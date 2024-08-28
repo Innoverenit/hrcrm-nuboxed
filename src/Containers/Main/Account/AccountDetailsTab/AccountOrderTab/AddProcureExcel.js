@@ -140,7 +140,7 @@ function AddProcureExcel(props) {
                     onChange={(value) => handleCategoryChange(value, index)}
                   >
                     {props.categoryList.map((a) => (
-                      <Option key={a.id} value={a.id}>{a.categoryName}</Option>
+                      <Option key={a.categoryId} value={a.categoryId}>{a.categoryName}</Option>
                     ))}
                   </Select>
                 </div>

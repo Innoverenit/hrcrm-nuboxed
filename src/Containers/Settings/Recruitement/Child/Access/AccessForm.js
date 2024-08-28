@@ -1150,7 +1150,70 @@ const onCheckAllTeamsChange = (e) => {
  
             {props.departmentData.hrInd === true ? 
 <div class="flex flex-col">
-  <div class="text-clr flex justify-center text-base font-bold  mt-6">General, HR & Self Service</div>
+  <div class="text-clr flex justify-center text-base font-bold  mt-6">HR</div>
+  
+  <div class="flex  ">
+    {/* Left Box */}
+    <div class=" border border-gray-300  w-1/2 p-1">
+      <div class="flex flex-col">
+      
+      <div class="flex justify-between mt-4">
+        <div >
+                <div class="text-sm font-semibold">Mileage</div>
+                <Checkbox indeterminate={indeterminateMileage} onChange={onCheckAllMileageChange} checked={checkAllMileage}>
+                <div class="text-xs">  Check all</div>
+                </Checkbox>
+                <Divider />
+                <CheckboxGroup options={melCheckedList} value={checkedMileageList} onChange={onMileageChange} />
+
+              </div>
+          
+              <div >
+                <div class="text-sm font-semibold">Expense</div>
+                <Checkbox indeterminate={indeterminateExpense} onChange={onCheckAllExpenseChange} checked={checkAllExpense}>
+                <div class="text-xs">  Check all</div>
+                </Checkbox>
+                <Divider />
+                <CheckboxGroup options={melCheckedList} value={checkedExpenseList} onChange={onExpenseChange} />
+              </div>
+          
+    
+        </div>
+      </div>
+    </div>
+
+    {/* Right Box */}
+    <div class="flex border border-gray-300  w-1/2  p-1">
+      <div class="flex flex-col">
+    
+        <div class="flex justify-between mt-4">
+        <div  >
+                <div class="text-sm font-semibold">Holiday</div>
+                <Checkbox indeterminate={indeterminateHoliday} onChange={onCheckAllHolidayChange} checked={checkAllHoliday}>
+                <div class="text-xs">  Check all</div>
+                </Checkbox>
+                <Divider />
+                <CheckboxGroup options={basicCheckedList} value={checkedHolidayList} onChange={onHolidayChange} />
+              </div> 
+             
+              <div>
+                <div class="text-sm font-semibold">Leaves</div>
+                <Checkbox indeterminate={indeterminateLeaves} onChange={onCheckAllLeavesChange} checked={checkAllLeaves}>
+                <div class="text-xs">Check all</div>
+                </Checkbox>
+                <Divider />
+                <CheckboxGroup options={melCheckedList} value={checkedLeavesList} onChange={onLeavesChange} />
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+: null}
+
+{props.departmentData.hrInd === true ? 
+<div class="flex flex-col">
+  <div class="text-clr flex justify-center text-base font-bold  mt-6">General & Self Service</div>
   
   <div class="flex  ">
     {/* Left Box */}
@@ -1262,62 +1325,15 @@ const onCheckAllTeamsChange = (e) => {
             </div>
             </div>
 
-        <div class="flex justify-between mt-4">
-        <div >
-                <div class="text-sm font-semibold">Mileage</div>
-                <Checkbox indeterminate={indeterminateMileage} onChange={onCheckAllMileageChange} checked={checkAllMileage}>
-                <div class="text-xs">  Check all</div>
-                </Checkbox>
-                <Divider />
-                <CheckboxGroup options={melCheckedList} value={checkedMileageList} onChange={onMileageChange} />
-
-              </div>
-          
-              <div >
-                <div class="text-sm font-semibold">Expense</div>
-                <Checkbox indeterminate={indeterminateExpense} onChange={onCheckAllExpenseChange} checked={checkAllExpense}>
-                <div class="text-xs">  Check all</div>
-                </Checkbox>
-                <Divider />
-                <CheckboxGroup options={melCheckedList} value={checkedExpenseList} onChange={onExpenseChange} />
-              </div>
-          
-          <div>
-            <div class="text-sm font-semibold">Calender</div>
-            <Checkbox indeterminate={indeterminateCalender} onChange={onCheckAllCalenderChange} checked={checkAllCalender}>
-              <div class="text-xs">  Check all</div>
-            </Checkbox>
-            <Divider />
-            <CheckboxGroup options={calenderCheckList} value={checkedCalenderList} onChange={onCalenderChange} />
-          </div>
-        </div>
+ 
         
-        <div class="flex justify-between mt-4">
-        <div  >
-                <div class="text-sm font-semibold">Holiday</div>
-                <Checkbox indeterminate={indeterminateHoliday} onChange={onCheckAllHolidayChange} checked={checkAllHoliday}>
-                <div class="text-xs">  Check all</div>
-                </Checkbox>
-                <Divider />
-                <CheckboxGroup options={basicCheckedList} value={checkedHolidayList} onChange={onHolidayChange} />
-              </div> 
-             
-              <div>
-                <div class="text-sm font-semibold">Leaves</div>
-                <Checkbox indeterminate={indeterminateLeaves} onChange={onCheckAllLeavesChange} checked={checkAllLeaves}>
-                <div class="text-xs">Check all</div>
-                </Checkbox>
-                <Divider />
-                <CheckboxGroup options={melCheckedList} value={checkedLeavesList} onChange={onLeavesChange} />
-              </div>
-        </div>
+    
       </div>
     </div>
   </div>
 </div>
 : null}
 
-     
 {props.departmentData.crmInd === true ? 
       <div class="flex flex-col ">
             <div class=" text-clr mt-6 flex justify-center text-base  font-bold">CRM</div>

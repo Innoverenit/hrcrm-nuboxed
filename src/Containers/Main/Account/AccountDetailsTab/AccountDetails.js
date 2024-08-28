@@ -17,17 +17,19 @@ function AccountDetails(props) {
     const { distributorData, fetchingDistributorDetailsByDistributorId } = props
     return (
         <>
-            <><Suspense fallback={"Loading..."}>
+            <>
+            <Suspense fallback={""}>
                 <AccountDetailsHeader distributorData={props.distributorData}
                  selectedLanguage={props.selectedLanguage}
-                 translateText={props.translateText} /></Suspense>
+                 translateText={props.translateText} />
+                 </Suspense>
                 {fetchingDistributorDetailsByDistributorId ? (
                     <MainWrapper>
                         <BundleLoader />
                     </MainWrapper>
                 ) : (
                     <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
-                        <Suspense fallback={"Loading..."}>
+                        <Suspense fallback={""}>
                         <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink w-full h-auto mr-auto ">
                                 {/* <div style={{ width: "22%" }}>
                                     <AccountDetailsLeft distributorData={distributorData}

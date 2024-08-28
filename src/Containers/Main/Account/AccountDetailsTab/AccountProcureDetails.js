@@ -52,19 +52,19 @@ function AccountProcureDetails(props) {
         try {
           setLoading(true); 
           const itemsToTranslate = [
-  'Category', // 0
-  'Brand', // 1
-  'Model', // 2
-  'Attribute', // 3
-  'Quality', // 4
-  'Location', // 5
-  'Specs',
-  'Units',
-  'Price',//8
-  'Pending',
-  "Invoice",//10
-  "Available",
-  'Generate Invoice',//12
+  '14', // 0
+  '264', // 1
+  '265', // 2
+  '259', // 3
+  '654', // 4
+  '658', // 5
+  '655',
+  '260',
+  '657',//8
+  '1223',
+  "1169",//10
+  "1225",
+  '1224',//12
         ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
