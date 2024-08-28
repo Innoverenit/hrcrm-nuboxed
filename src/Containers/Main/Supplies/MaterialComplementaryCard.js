@@ -49,22 +49,22 @@ function MaterialComplementaryCard(props) {
 };
   useEffect(() => {
     setPage(page + 1);
-    props.getSuppliesList(page);
+    props.getComplementaryList(page,props.particularDiscountData.suppliesId);
 
   }, []);
 
   const handleLoadMore = () => {
-    const PageMapd = props.purchaseList && props.purchaseList.length && props.purchaseList[0].pageCount
+    const PageMapd = props.complementaryList && props.complementaryList.length && props.complementaryList[0].pageCount
     setTimeout(() => {
       const {
-        getSuppliesList,
+        getComplementaryList,
 
         userId
       } = props;
-      if (props.purchaseList) {
+      if (props.complementaryList) {
         if (page < PageMapd) {
           setPage(page + 1);
-          getSuppliesList(page);
+          getComplementaryList(page,props.particularDiscountData.suppliesId);
         }
         if (page === PageMapd) {
           setHasMore(false)
@@ -142,16 +142,16 @@ function MaterialComplementaryCard(props) {
           </div>
 
           <InfiniteScroll
-            dataLength={props.purchaseList.length}
+            dataLength={props.complementaryList.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={props.fetchingPurchaseList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+            loader={props.fetchingComplementaryList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
             height={"80vh"}
             style={{ scrollbarWidth:"thin" }}
           >
-            {props.purchaseList.length ?
+            {props.complementaryList.length ?
               <>
-                {props.purchaseList.map((item,index) => {
+                {props.complementaryList.map((item,index) => {
                   const currentDate = dayjs().format("DD/MM/YYYY");
                   
                   return (
@@ -187,8 +187,8 @@ function MaterialComplementaryCard(props) {
                   );
                 })}
               </> :
-              !props.purchaseList.length
-                && !props.fetchingPurchaseList ? <NodataFoundPage /> : null}
+              !props.complementaryList.length
+                && !props.fetchingComplementaryList ? <NodataFoundPage /> : null}
           </InfiniteScroll>
         </div>
       </div>
@@ -204,6 +204,7 @@ function MaterialComplementaryCard(props) {
 
 const mapStateToProps = ({ supplies, auth }) => ({
   fetchingPurchaseList: supplies.fetchingPurchaseList,
+  fetchingComplementaryList: supplies.fetchingComplementaryList,
   purchaseList: supplies.purchaseList,
   updateSuppliesDrawer: supplies.updateSuppliesDrawer,
   addCurrencyValue: supplies.addCurrencyValue,
@@ -214,7 +215,7 @@ const mapStateToProps = ({ supplies, auth }) => ({
   materialInveDawer:supplies.materialInveDawer,
   priceOpenModal: supplies.priceOpenModal,
   orgId: auth.userDetails.organizationId,
-   complementaryList: supplies.complementaryLis
+   complementaryList: supplies.complementaryList
 });
 
 const mapDispatchToProps = (dispatch) =>

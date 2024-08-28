@@ -1123,12 +1123,12 @@ export const getMaterialsBySuppliesId = (suppliesId) => (dispatch) => {
     });
 };
 
-export const getComplementaryList = (orgId) => (dispatch) => {
+export const getComplementaryList = (pageNo,suppliesId) => (dispatch) => {
   dispatch({
     type: types.GET_COMPLEMENTARY_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplies/complementary/${orgId}`, {
+    .get(`${base_url2}/supplies/all-supplies/complementaryind/${pageNo}/${suppliesId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

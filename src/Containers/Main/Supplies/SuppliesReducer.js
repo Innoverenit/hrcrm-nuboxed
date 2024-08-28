@@ -976,7 +976,7 @@ export const suppliesReducer = (state = initialState, action) => {
                                           return {
                                             ...state,
                                             materialCpmplementary: false,
-                                            purchaseList: state.purchaseList.map((item) => {
+                                            complementaryList: state.complementaryList.map((item) => {
                                               if (item.suppliesId === action.payload.suppliesId) {
                                                 return action.payload;
                                               } else {
