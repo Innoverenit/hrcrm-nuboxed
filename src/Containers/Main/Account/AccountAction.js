@@ -4721,12 +4721,12 @@ export const upadtePayment = (data,paymentId,distributorId) => (dispatch) => {
     });
 }
 
-export const getInvoiveL = (invoiceId) => (dispatch) => {
+export const getInvoiveL = (procureOrderInvoiceId) => (dispatch) => {
   dispatch({
     type: types.GET_INVOICEL_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderPayment/paymentList/${invoiceId}`, {
+    .get(`${base_url2}/invoice/procureInvoice/${procureOrderInvoiceId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -5043,12 +5043,12 @@ export const paidUnpaidInvoice = ( data,procureOrderInvoiceId) => (dispatch, get
     })
 }
 
-export const getStatusTimeline = (customerId) => (dispatch) => {
+export const getStatusTimeline = (orderPhoneId) => (dispatch) => {
   dispatch({
       type: types.GET_STATUS_TIMELINE_REQUEST,
   });
   axios
-      .get(`${base_url}/customer/activity/list/${customerId}`, {
+      .get(`${base_url2}/orderPayment/process/${orderPhoneId}`, {
           headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },

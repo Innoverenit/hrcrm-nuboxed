@@ -8,16 +8,18 @@ import { BundleLoader } from '../../../../Components/Placeholder';
 
 
 
-const StatusCardView = (props) => {
+function StatusCardView (props) {
    
   useEffect(() => {
-      props.getStatusTimeline(props.customerId);
+      props.getStatusTimeline(props.particularRowData.orderPhoneId);
   }, []);
 
   const { statusActivityTimeline } = props;
 
   const currentDate = dayjs().format("DD/MM/YYYY");
   if (props.fetchingTimelineStatus) return <BundleLoader/>; 
+  console.log("INVSC",props.particularRowData)
+  
   return (
     <div className="mt-4 ml-4 ">
       <Timeline>
@@ -28,14 +30,14 @@ const StatusCardView = (props) => {
                 <div class=" flex flex-col w-[30rem]">
                  <div> {dayjs(status.creationDate).format('DD/MM/YYYY')} </div>
                 <div class="flex flex-row"> 
-                  <div class="mr-2">{status.category} </div>
+                  <div class="mr-2">{status.transactionNumber} </div>
                   {currentDate === dayjs(status.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-xs text-[tomato] font-bold  mr-2">
                       New
                     </span>
-                  ) : null}{status.activityType}</div>
-                  Completion by {dayjs(status.endDate).format('DD/MM/YYYY')}
-                  {status.category === 'Task' ? status.statusTask : null}
+                  ) : null}{status.paymentModeName}</div>
+                  Approved by {status.approveByName ? `${status.approveByName}`:""}
+               
                 </div>
                 
               </div>
@@ -46,11 +48,10 @@ const StatusCardView = (props) => {
   );
 };
 
-const mapStateToProps = ({ supplies, auth,customer }) => ({
+const mapStateToProps = ({ distributor, auth,customer }) => ({
   userId: auth.userDetails.userId,
-  customerId: customer.customer.customerId,
-  statusActivityTimeline: supplies.statusActivityTimeline,
-  fetchingTimelineStatus: supplies.fetchingTimelineStatus
+  statusActivityTimeline: distributor.statusActivityTimeline,
+  fetchingTimelineStatus: distributor.fetchingTimelineStatus
 });
 
 const mapDispatchToProps = (dispatch) =>

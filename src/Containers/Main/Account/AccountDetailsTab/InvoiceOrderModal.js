@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import InvouiceOrderTable from "./InvouiceOrderTable";
+import InvoiceOrderTable from "./InvoiceOrderTable";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 
 
@@ -21,7 +21,7 @@ class InvoiceOrderModal extends Component {
                     onClose={() => handlenvoiceOrderModal(false)}
                     footer={null}
                 >
-                    <InvouiceOrderTable
+                    <InvoiceOrderTable
                           particularRowData={this.props.particularRowData}
                           selectedLanguage={this.props.selectedLanguage}
                             translateText={this.props.translateText} />
