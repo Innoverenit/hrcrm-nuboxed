@@ -48,7 +48,6 @@ function AccountInvoiceTable(props) {
     const [data, setData] = useState(null);
     const [openStatus,setopenStatus] = useState(false);
 
-
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -209,7 +208,7 @@ function AccountInvoiceTable(props) {
         setLoading(true);
         setError(null);
         try {
-          const response = await axios.post(`${base_url2}/creditMemu/creditInd`,{
+          const response = await axios.post(`${base_url2}/creditMemo/creditInd`,{
           userId: props.userId,
           distributorId:item.distributorId,
           orgId: props.orgId,
@@ -282,7 +281,6 @@ function AccountInvoiceTable(props) {
           setLoading(false);
         }
       };
-
 
       if (loading) {
         return <div><BundleLoader/></div>;
@@ -432,7 +430,9 @@ function AccountInvoiceTable(props) {
                              <EventRepeatIcon
                              className="!text-icon cursor-pointer text-[green]"
                               onClick={()=>{
-                                setopenStatus(true);}}
+                                setopenStatus(true);
+                                handleSetParticularOrderData(item);
+                              }}
                              />
                                   </Tooltip>
                               </div>

@@ -452,9 +452,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         }
                         key="8"
                     >
-                        <Suspense fallback={"Loading ..."}>
-
-                        </Suspense>
+                       
                     </TabPane>
 
                     <TabPane

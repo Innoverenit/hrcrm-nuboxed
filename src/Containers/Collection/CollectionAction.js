@@ -595,7 +595,11 @@ export const getCollection = (orgId) => (dispatch) => {
     type: types.GET_COLLECTION_REQUEST,
   });
   axios
-    .get(`${base_url}/creditMemo/all-creditMemo/${orgId}`)
+    .get(`${base_url2}/creditMemo/all-creditMemo/${orgId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -617,7 +621,11 @@ export const getCloseCollection = (orgId) => (dispatch) => {
     type: types.GET_CLOSE_COLLECTION_REQUEST,
   });
   axios
-    .get(`${base_url}/creditMemo/closed/all-creditMemo/${orgId}`)
+    .get(`${base_url}/creditMemo/closed/all-creditMemo/${orgId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    }  )
     .then((res) => {
       console.log(res);
       dispatch({
