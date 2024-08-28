@@ -13,6 +13,33 @@ import { BundleLoader } from "../../../Components/Placeholder";
 const { Option } = Select;
 
 function LeadRefurbishForm(props) {
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+             "326", //  "Department",//0
+              "658",  // "Location",//1
+              "677" , // "Lead",//2             
+              "154",    //Submit
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+
     useEffect(() => {
         props.getDepartments()
         props.getLocationList(props.orgId);
@@ -52,7 +79,7 @@ function LeadRefurbishForm(props) {
                 <>
                     <div class=" flex  justify-evenly">
                         <div className=" w-[18%]">
-                        <div class=" text-xs font-bold font-poppins">Department</div>
+                        <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                             <Select
                                 className="w-[12rem]"
                                 value={department}
@@ -65,7 +92,7 @@ function LeadRefurbishForm(props) {
                         </div>
 
                         <div className=" w-[18%]">
-                            <div class=" text-xs font-bold font-poppins">Location</div>
+                            <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[1]}</div>
                             
                             <Select
                                 className="w-[12rem]"
@@ -79,7 +106,7 @@ function LeadRefurbishForm(props) {
                         </div>
 
                         <div className=" w-[18%]">
-                        <div class=" text-xs font-bold font-poppins">Lead</div>
+                        <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
                             <Select
                                 className="w-[12rem]"
                                 value={technician}
@@ -95,7 +122,7 @@ function LeadRefurbishForm(props) {
                             loading={props.addingLead}
                             disabled={!technician.length}
                             type="primary"
-                            onClick={handleSubmit}>Submit</Button>
+                            onClick={handleSubmit}> {translatedMenuItems[3]}</Button>
                        </div>
                     </div>
                   

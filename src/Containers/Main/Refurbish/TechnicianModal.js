@@ -11,7 +11,7 @@ const TechnicianModal = (props) => {
                 title="Order History"
                 width="60%"
                 visible={showTechnicianModal}
-                closable
+                closable 
                 destroyOnClose
                 onClose={() => handleTechnicianModal(false)}
                 footer={null}

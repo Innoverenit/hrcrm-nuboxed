@@ -198,44 +198,44 @@ function EmployeeForm(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-          "Upload",//0
-          " First Name",//1
-          " Middle Name",//2
-          " Last Name",//3
-          "Email",//4
-          "Currency",//5
-          "Dial Code",//6
-          "Personal",//7
-          "Dial Code",//8
-          "Work #",//9
-          "Date Of Joining",//10
-          "Date Of Birth",//11
-          "Linkedln",//12
-          "Address",//13
-          "Street",//14
-          "Zip code",//15
-          "City",//16
-          "State/Provinence",//17
-          "Country",//18
-          "Time Zone",//19
-          "Department",//20
-          "Level",//21
-          "Role",//22
-          "Salary",//23
-          "Designation",//24
-          "Workplace",//25
-          "Location",//26
-          "Job Type",//27
-          "Category",//28
-          "Employee Type",//29
-          "Employee",//30
-          "Intern",//31
-          "Reports To Department",//32
-          "Reporting Manager",//33
-          "Secondary Department",//34
-          "Secondary Reporting Manager",//35
-          "Submit",//36
-          "Address for  Corresponedenc",//37
+        "294", // "Upload",//0
+         "295",  // "First Name",//1
+          "353", // "Middle Name",//2
+         "354",  // "Last Name",//3
+          "140", // "Email",//4
+         "241",  // "Currency",//5
+          "357", // "Dial Code",//6
+          "964", // "Personal",//7
+         "357",  // "Dial Code",//8
+         "685",  // "Work #",//9
+         "967",  // "Date Of Joining",//10
+          "968", // "Date Of Birth",//11
+          "547", // "Linkedln",//12
+         "185",  // "Address",//13
+          "186", // "Street",//14
+          "187", // "Zip code",//15
+          "188", // "City",//16
+         "314",  // "State/Provinence",//17
+        "1109",// "Country",//18
+        "95",   // "Time Zone",//19
+        "326",   // "Department",//20
+          "979", // "Level",//21
+         "980",  // "Role",//22
+         "981",  // "Salary",//23
+          "325", // "Designation",//24
+         "983",  // "Workplace",//25
+         "658",  // "Location",//26
+          "985", // "Job Type",//27
+         "14",  // "Category",//28
+         "991",  // "Employee Type",//29
+         "992",  // "Employee",//30
+       "1270",   // "Intern",//31
+       "1271", //  "",   // "Reports To Department",//32
+         "997",  // "Reporting Manager",//33
+        "998",   // "Secondary Department",//34
+         "999",  // "Secondary Reporting Manager",//35
+         "154",  // "Submit",//36
+         "969",  // "Address for  Corresponedence",//37
           
          
         ];

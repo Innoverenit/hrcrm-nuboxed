@@ -11,6 +11,33 @@ import { BundleLoader } from "../../../Components/Placeholder";
 function OpenRepairTable(props) {
 
     const [page, setPage] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+             "1068", // "order",//0
+              "203",  // "duedate",//1
+               "677", //   "Lead"
+                "316",   // "notes"
+    
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         setPage(page + 1);
         props.getOpenRepair(props.userId)
