@@ -40,7 +40,7 @@ function PurchaseOrderTable(props) {
         setLoading(true); 
         const itemsToTranslate = [
    
-         "", //  "PO",//0
+        //  "", //  "PO",//0
          "679",   // "Created",//1
           "658",  // "Location",//2
            "772", // "Delivery",//3

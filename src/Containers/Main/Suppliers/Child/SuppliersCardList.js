@@ -15,7 +15,6 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Popconfirm, Tooltip } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Link } from 'react-router-dom';
-import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import UpdateSupplierModal from "./UpdateSupplierModal";
@@ -94,14 +93,17 @@ function SuppliersCardList(props) {
                {/* Email */}
                {props.translatedMenuItems[2]}
                </div>
-            
+               <div className=" w-[16.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+               {/* Email */}
+               {props.translatedMenuItems[17]}
+               </div>
             {/* <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
              Country 
              {props.translatedMenuItems[3]}
 
             </div> */}
 
-            <div class=" w-[5.001rem]"> {props.translatedMenuItems[17]}</div>
+            {/* <div class=" w-[5.001rem]"> {props.translatedMenuItems[17]}</div> */}
             <div class=" w-[16.7rem]"> {props.translatedMenuItems[38]}</div>
           </div>
           <div class="overflow-x-auto h-[80vh]">
@@ -231,7 +233,7 @@ function SuppliersCardList(props) {
                               </div>
 
                               <div>
-                                <Tooltip title={props.translatedMenuItems[20]}>
+                                {/* <Tooltip title={props.translatedMenuItems[20]}>
                                   <BorderColorIcon
                                     className="!text-icon cursor-pointer text-[tomato]"
                                     onClick={() => {
@@ -241,7 +243,7 @@ function SuppliersCardList(props) {
 
                                     }}
                                   />
-                                </Tooltip>
+                                </Tooltip> */}
                               </div>
                               <div>
                                 <Tooltip title={props.translatedMenuItems[21]}>

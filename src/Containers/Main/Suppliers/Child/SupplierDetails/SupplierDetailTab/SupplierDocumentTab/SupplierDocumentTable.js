@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import {
   getSupplierDocument,
@@ -11,9 +11,43 @@ import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 class SupplierDocumentTable extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+      loading: true
+    };
+  }
   componentDidMount() {
+    this.props.getCustomerData(this.props.userId);
+    this.props.getDepartments();
+    
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
     this.props.getSupplierDocument(this.props.supplier.supplierId);
   }
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       '74', // 0Date
+'110', // 1 Name
+'147', // 2 Description
+'1207', // 3Uploaded By
+
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
+  }
+
   render() {
     const {
       documentsBySupplierId,
@@ -60,24 +94,27 @@ class SupplierDocumentTable extends Component {
     if (fetchingDocumentsBySupplierId) {
       return <BundleLoader />;
     }
-
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <>
        <div className="flex justify-end sticky  z-auto">
           <div className="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className="md:w-[0.5rem]"></div>
-              <div className="md:w-[7.4rem]">
-                <FormattedMessage id="app.date" defaultMessage="Date" />
+              <div className="md:w-[7.4rem]"> {translatedMenuItems[0]} 
+              {/* Date */}
               </div>
-              <div className="md:w-[5.1rem]">
-                <FormattedMessage id="app.name" defaultMessage="Name" />
+              <div className="md:w-[5.1rem]"> {translatedMenuItems[1]} 
+              {/* Name */}
               </div>
-              <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.description" defaultMessage="Description" />
+              <div className="md:w-[8.8rem]"> {translatedMenuItems[2]} 
+               {/* Description */}
               </div>
-              <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.uploadedby" defaultMessage="Uploaded By" />
+              <div className="md:w-[8.8rem]"> {translatedMenuItems[3]} 
+               {/* Uploaded By */}
               </div>
             </div>
             <div className="overflow-x-auto h-[64vh]">

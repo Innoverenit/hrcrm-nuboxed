@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSupplierSupplies,setSupplierSuppliesType,getSupplierSuppliesQuality  } from "../../../../SuppliersAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Tooltip,Button,Select } from "antd";
 import SupplierSuppliesToggle from "./SupplierSuppliesToggle";
@@ -22,6 +21,7 @@ function SupplierSuppliesCardTable(props) {
   const [currentType, setCurrentType] = useState({});
   const [rowdata, setrowData] = useState({});
   const [page, setPage] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   const { handleUpdateShipperModal } = props;
 
@@ -48,7 +48,27 @@ function SupplierSuppliesCardTable(props) {
   const handleLoadMore = () => {
     setPage(page + 1);
   };
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "110",//0 Name
+         "14",//10 Category
+          "259",//2 Attribute
+          // "",//3 Tag With Supplier
+          "654",//4 Quality
+         
+        ];
 
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getSupplierSuppliesQuality();
   }, []);
@@ -69,24 +89,21 @@ function SupplierSuppliesCardTable(props) {
       <div className=' flex justify-end sticky  z-auto'>
         <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-xl:w-[6.6rem]">  <FormattedMessage
-              id="app.name"
-              defaultMessage="Name"
-            /></div>
-             <div className="w-[7.9rem] max-xl:text-[0.65rem] max-xl:w-[6.9rem]">
-              <FormattedMessage id="app.category" defaultMessage="Category" />
+            <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-xl:w-[6.6rem]">   {translatedMenuItems[0]}
+              {/* Name */}
+            </div>
+             <div className="w-[7.9rem] max-xl:text-[0.65rem] max-xl:w-[6.9rem]">  {translatedMenuItems[1]}
+             {/* Category */}
               </div>
-              <div className="w-[7.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">
-              <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
+              <div className="w-[7.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">  {translatedMenuItems[2]}
+              {/* Attribute */}
               </div>
-            <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
-              id="app.tagwithsuplier"
-              defaultMessage="Tag with Supplier"
-            /></div>
-                <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
-              id="app.quality"
-              defaultMessage="Quality"
-            /></div>       
+            <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">    {translatedMenuItems[3]}
+         {/* Tag with Supplier" */}
+           </div>
+                <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">   {translatedMenuItems[4]}
+                  {/* Quality */}
+                  </div>       
             <div className="w-[1.5rem]">
             </div>
           </div>
@@ -133,6 +150,7 @@ function SupplierSuppliesCardTable(props) {
 <SupplierSuppliesToggle
 item={item}
 supplierId={props.supplier.supplierId}
+
 />
 
 

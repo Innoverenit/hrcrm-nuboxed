@@ -24,7 +24,7 @@ class SupplierOverDetailView extends Component {
       const itemsToTranslate = [
        
       "188",  // "City",
-      "",   // "State",
+      // "",   // "State",
       "1236",   // "Pincode",
       "1109",  // "Country",
       "186",   // "Street" 
