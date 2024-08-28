@@ -10,6 +10,14 @@ const initialState = {
   fetchingTodayCustomerError: false,
   todayCustomer: [],
 
+  fetchingCollection: false,
+  fetchingCollectionError: false,
+  CollectionCreditMemo:[],
+
+  fetchingCloseCollection: false,
+  fetchingCloseCollectionError: false,
+  closeCreditMemo:[],
+
   fetchingAllCustomer: false,
   fetchingAllCustomerError: false,
   allCustomer: [],
@@ -525,6 +533,36 @@ export const collectionReducer = (state = initialState, action) => {
         fetchingDistributorCreditMemo: false,
         fetchingDistributorCreditMemoError: true,
       };
+
+      case types.GET_COLLECTION_REQUEST:
+        return { ...state, fetchingCollection: true };
+      case types.GET_COLLECTION_SUCCESS:
+        return {
+          ...state,
+          fetchingCollection: false,
+          CollectionCreditMemo: action.payload,
+        };
+      case types.GET_COLLECTION_FAILURE:
+        return {
+          ...state,
+          fetchingCollection: false,
+          fetchingCollectionError: true,
+        };
+
+        case types.GET_CLOSE_COLLECTION_REQUEST:
+          return { ...state, fetchingCloseCollection: true };
+        case types.GET_CLOSE_COLLECTION_SUCCESS:
+          return {
+            ...state,
+            fetchingCloseCollection: false,
+            closeCreditMemo: action.payload,
+          };
+        case types.GET_CLOSE_COLLECTION_FAILURE:
+          return {
+            ...state,
+            fetchingCloseCollection: false,
+            fetchingCloseCollectionError: true,
+          };
 
     case types.GET_REAL_TIME_COLLECTION_TOGGLE_DATA_REQUEST:
       return { ...state, fetchingRealTimeCollectionToggleData: true };

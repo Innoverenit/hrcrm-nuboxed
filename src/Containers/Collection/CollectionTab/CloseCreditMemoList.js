@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import dayjs from "dayjs";
-import {getCollection} from "../CollectionAction"
+import {getCloseCollection} from "../CollectionAction"
 import { BundleLoader } from "../../../Components/Placeholder";
 import { FormattedMessage } from "react-intl";
 
-function CreditMemoList(props) {
+function CloseCreditMemoList(props) {
 
   useEffect(() => {
-    props.getCollection(props.orgId);
+    props.getCloseCollection(props.orgId);
   }, []);
 
   return (
@@ -39,6 +39,18 @@ function CreditMemoList(props) {
                 Generated
                
                 </div>
+                <div className=" w-[7.32rem] max-xl:w-[6.32rem] ">
+                Set Up
+               
+                </div>
+                <div className=" w-[7.32rem] max-xl:w-[6.32rem] ">
+                Date
+               
+                </div>
+                <div className=" w-[7.32rem] max-xl:w-[6.32rem] ">
+                UserId
+               
+                </div>
             <div className="w-[6.023rem]">
                 Applied
              
@@ -48,7 +60,7 @@ function CreditMemoList(props) {
           </div>
 
 
-          {props.CollectionCreditMemo.map((item) => {
+          {props.closeCreditMemo.map((item) => {
             return (
               <div>
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
@@ -138,13 +150,13 @@ function CreditMemoList(props) {
   );
 }
 const mapStateToProps = ({ collection, auth }) => ({
-  CollectionCreditMemo:collection.CollectionCreditMemo,
+  closeCreditMemo:collection.closeCreditMemo,
   orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getCollection
+      getCloseCollection
     },
     dispatch
   );
@@ -152,5 +164,5 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CreditMemoList);
+)(CloseCreditMemoList);
 

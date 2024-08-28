@@ -6,10 +6,10 @@ import { bindActionCreators } from "redux";
 import { linkComplementryToggle } from "./SuppliesAction";
 
 function ComplementaryToggle(props) {
-  const[data,setData]=useState(props.purchaseList)
+  const[data,setData]=useState(props.complementaryList)
   useEffect(()=>{
-    setData(props.purchaseList)
-  },[props.purchaseList])
+    setData(props.complementaryList)
+  },[props.complementaryList])
   const [toggle, setToggle] = React.useState(props.complementaryInd);
   console.log(props.complementaryInd)
 
@@ -67,7 +67,7 @@ function ComplementaryToggle(props) {
 const mapStateToProps = ({ auth, supplies }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
-  purchaseList: supplies.purchaseList,
+  complementaryList: supplies.complementaryList,
 });
 
 const mapDispatchToProps = (dispatch) =>

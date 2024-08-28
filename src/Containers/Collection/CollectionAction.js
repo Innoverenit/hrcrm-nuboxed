@@ -590,6 +590,50 @@ export const getDistributorCreditMemo = () => (dispatch) => {
     });
 };
 
+export const getCollection = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_COLLECTION_REQUEST,
+  });
+  axios
+    .get(`${base_url}/creditMemo/all-creditMemo/${orgId}`)
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COLLECTION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COLLECTION_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getCloseCollection = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CLOSE_COLLECTION_REQUEST,
+  });
+  axios
+    .get(`${base_url}/creditMemo/closed/all-creditMemo/${orgId}`)
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CLOSE_COLLECTION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CLOSE_COLLECTION_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getRealTimePaymentDelete = (data, a) => (dispatch) => {
   console.log(data);
   dispatch({
