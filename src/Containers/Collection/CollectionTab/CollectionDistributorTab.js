@@ -8,10 +8,13 @@ import {
 import CreditMemoList from "./CreditMemoList"
 import { getAllDistributorsList } from "../CollectionAction";
 import { connect } from "react-redux";
+import LockIcon from '@mui/icons-material/Lock';
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
+import CloseCreditMemoList from "./CloseCreditMemoList";
+import { Tooltip } from "antd";
 const DistributorCollectionTableToday = lazy(() => import("../Distributor/DistributorCollectionTableToday"));
 const DistributorColletcionArchive = lazy(() => import("../Distributor/DistributorColletcionArchive"));
 const DistributorCollectionTableAll = lazy(() => import("../Distributor/DistributorCollectionTableAll"));
@@ -27,6 +30,9 @@ function CollectionDistributorTab(props) {
 
   const [selectedRowDistributor, setSelectedRowDistributor] = useState([]);
   const [activeKey, setActiveKey] = useState("1");
+  const [showCloseCreditMemoList, setShowCloseCreditMemoList] = useState(false);
+
+
 
   function handleTabChange(key) {
     setActiveKey(key);
@@ -109,31 +115,44 @@ function CollectionDistributorTab(props) {
           </TabPane>
 
 
-
-
+       
           <TabPane
-            tab={
-              <>
-                <span>
-                  <i class="fas fa-archive"></i>&nbsp;<FormattedMessage
-                    id="app.creditmemo"
-                    defaultMessage="Credit Memo"
-                  />
-                </span>
-                &nbsp;
-              </>
-            }
-            key="3"
-          >
-            <Suspense fallback={"Loading ..."}>
-              <CreditMemoList/>
-{/* 
-              <DistributorColletcionArchive
+  tab={
+    <>
+      <span onClick={() => {
+        setShowCloseCreditMemoList(false);
+        setActiveKey("3");
+      }}>
+        <i className="fas fa-archive"></i>&nbsp;
+        <FormattedMessage id="app.creditmemo" defaultMessage="Credit Memo" />
+      </span>
+      {activeKey === "3" && (
+        <>
+          <Tooltip title="Close">
+            <LockIcon
+              onClick={() => setShowCloseCreditMemoList(true)}
+              className="!text-icon cursor-pointer ml-1"
+            />
+          </Tooltip>
+        </>
+      )}
+    </>
+  }
+  key="3"
+>
+  <Suspense fallback={"Loading ..."}>
+    {showCloseCreditMemoList ? (
+      <CloseCreditMemoList />
+    ) : (
+      <CreditMemoList />
+    )}
+  </Suspense>
+</TabPane>
 
-                handleClearReturnCheck={handleClearReturnCheck}
-              /> */}
-            </Suspense>
-          </TabPane>
+
+
+
+        
 
           {/* <TabPane
             tab={

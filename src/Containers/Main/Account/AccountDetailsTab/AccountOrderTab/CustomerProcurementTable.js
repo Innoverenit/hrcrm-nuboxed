@@ -24,6 +24,7 @@ import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPag
 const UpdateProcureModal = lazy(() => import('./UpdateProcureModal'));
 const AccountProcureDetailsModal = lazy(() => import('../AccountProcureDetailsModal'));
 const ProcureStatusShowDrawer = lazy(() => import('./ProcureStatusShowDrawer'));
+const ProcureInvoiceListDrawer = lazy(() => import('./ProcureInvoiceListDrawer'));
 
 function CustomerProcurementTable(props) {
   const [page, setPage] = useState(0);
@@ -46,17 +47,19 @@ function CustomerProcurementTable(props) {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-                "106",
+                "106",//0
                 "660",
                 "772",
-                "658",
+                "658",//3
                "1170",
-                "73",
+                "73",//5
                "1171",
-                "142",
+                "142",//7
                 "108",
-                "679", //10
-                "1210",//11
+                "679", //9
+                "1169",//10
+                
+
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -249,7 +252,9 @@ const handleLoadMoreLow = () => {
                                             </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <Button type="primary">{translatedMenuItems[11]}</Button>
+                  <Button type="primary" onClick={()=>{setopenInvoiceModal(true);}}>
+                    {translatedMenuItems[10]}
+                    </Button>
                   </div>
                                         <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
                                             <Tooltip title={<FormattedMessage
@@ -420,7 +425,9 @@ const handleLoadMoreLow = () => {
                       </div>
                   </div>
                   <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <Button type="primary">{translatedMenuItems[11]}</Button>
+                  <Button type="primary" onClick={()=>{setopenInvoiceModal(true);}}>
+                    {translatedMenuItems[10]}
+                    </Button>
                   </div>
                   <div class="flex w-6 max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
@@ -490,6 +497,12 @@ translateText={props.translateText}
            handleStatuShowDrawer={props.handleStatuShowDrawer}
            />
          
+         <ProcureInvoiceListDrawer
+                    particularRowData={particularRowData}
+         openInvoiceModal={openInvoiceModal}
+         setopenInvoiceModal={setopenInvoiceModal}
+         translatedMenuItems={translatedMenuItems}
+         />
     </>
   );
 

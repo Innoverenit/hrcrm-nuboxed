@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-    // getOrderInvoiveList,
+    getOrderInvoiveList,
     handleInvoiceModal
 } from "../AccountAction";
 import {  Select } from 'antd';
@@ -12,13 +12,20 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvoiceOrderModal from "./InvoiceOrderModal";
 import InvoiceModal from "./InvoiceModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import { base_url2 } from "../../../../Config/Auth";
+import axios from "axios";
+import Swal from 'sweetalert2';
+
 const { Option } = Select;
 
-function InvouiceOrderTable(props) {
+function InvoiceOrderTable(props) {
     const [pageNo, setPageNo] = useState(0);
     
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [data, setData] = useState([]);
+
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -45,10 +52,26 @@ function InvouiceOrderTable(props) {
     
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
-    // useEffect(() => {
-    //    // setPageNo(pageNo + 1);
-    //     props.getOrderInvoiveList(props.particularRowData.orderId)
-    // }, []);
+
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(`${base_url2}/invoice/procureInvoice/${props.particularRowData.procureOrderInvoiceId}`,{
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+          setData(response.data);
+          setLoading(false);
+        } catch (error) {
+          setError(error);
+          setLoading(false);
+        }
+      };
+  
+ useEffect(()=> {
+    fetchData();
+ },[]);
+
     
     const [particularRowData, setParticularRowData] = useState({})
     const handleRowData = (item) => {
@@ -205,4 +228,4 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(InvouiceOrderTable);
+export default connect(mapStateToProps, mapDispatchToProps)(InvoiceOrderTable);

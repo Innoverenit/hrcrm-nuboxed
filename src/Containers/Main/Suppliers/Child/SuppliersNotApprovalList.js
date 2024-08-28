@@ -9,7 +9,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import SuplierNotApprovalPublishToggle from "../Child/SuplierNotApprovalPublishToggle"
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
-import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SupplierSearchedData from "./SupplierSearchedData";
 
@@ -139,17 +138,7 @@ function SuppliersNotApprovalList(props) {
                                   {item.emailId}
                                 </div>
                               </div>                          
-                            </div>
-                            {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex w-[9.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
-
-                                <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm">
-                                <CountryFlag1 countryCode={countryCode} />
-                                 &nbsp;
-                                   {countryCode}
-                                </div>
-                              </div>
-                            </div> */}
+                            </div>                        
 
                             <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs">

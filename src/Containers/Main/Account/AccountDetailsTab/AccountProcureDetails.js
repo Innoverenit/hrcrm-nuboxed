@@ -203,7 +203,7 @@ const handleGenerateInvoice= async () => {
       unit: editedFields[item.id]?.unit || item.unit
     }));
     try {
-      const response = await axios.post(`${base_url2}/invoice/procureInvoice/test `,{
+      const response = await axios.post(`${base_url2}/invoice/procureInvoice `,{
       //   paymentMode: "Cash",
       //   remarks: "",
       //   invoiceId:invoices,
@@ -231,7 +231,6 @@ const handleGenerateInvoice= async () => {
         
       );
       setData(response.data);
-
       Swal.fire({
         title: 'Success!',
         text: 'Invoice generated successfully!',

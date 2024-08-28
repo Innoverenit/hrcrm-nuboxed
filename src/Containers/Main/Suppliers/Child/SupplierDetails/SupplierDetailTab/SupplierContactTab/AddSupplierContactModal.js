@@ -27,6 +27,8 @@ class AddSupplierContactModal extends Component {
                         <SupplierContactForm
                             type={this.props.type}
                             id={this.props.id}
+                            translateText={this.props.translateText}
+                            selectedLanguage={this.props.selectedLanguage}
                         />
                     </Suspense>
                 </StyledDrawer>

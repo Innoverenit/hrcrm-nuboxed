@@ -202,7 +202,9 @@ props.getInvoiceCount(props.distributorData.distributorId)
                               translateText={props.translateText} /> :
                                 <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" 
                                 selectedLanguage={props.selectedLanguage}
-                              translateText={props.translateText}/>
+                              translateText={props.translateText}
+                              
+                              />
                             }
                         </Suspense>
                     </TabPane>}
@@ -253,7 +255,8 @@ props.getInvoiceCount(props.distributorData.distributorId)
                        
                                 <CustomerProcurementTable distributorId={props.distributorData.distributorId} 
                                 selectedLanguage={props.selectedLanguage}
-                                translateText={props.translateText} />
+                                translateText={props.translateText}
+                                 />
 
                           
                         </Suspense>

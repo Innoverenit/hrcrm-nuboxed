@@ -10,7 +10,6 @@ import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvoiceOrderModal from "./InvoiceOrderModal";
-import InvoiceModal from "./InvoiceModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const { Option } = Select;
 
@@ -24,11 +23,11 @@ function InvouiceSTable(props) {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-    'Invoice ', // 0
-    'Order', // 1
-    'Value', // 2
-    'Type', // 3
-    ' Status', // 4
+    '1169', // 0
+    '660', // 1
+    '218', // 2
+    '71', // 3
+    '142', // 4
    
 
 
@@ -47,7 +46,7 @@ function InvouiceSTable(props) {
       }, [props.selectedLanguage]);
     useEffect(() => {
        // setPageNo(pageNo + 1);
-        props.getInvoiveL(props.particularRowData.invoiceId)
+        props.getInvoiveL(props.particularRowData.procureOrderInvoiceId)
     }, []);
     const [particularRowData, setParticularRowData] = useState({})
     const handleRowData = (item) => {
