@@ -99,10 +99,10 @@ class SupplierDetailsTab extends Component {
               key="1"
             >
               <Suspense fallback={"Loading ..."}>
-                <PurchaseOrderTable supplier={this.props.supplier} 
+                <PurchaseOrderTable supplier={this.props.supplier}           
                 translateText={this.props.translateText}
-
-                />
+                selectedLanguage={this.props.selectedLanguage}/>
+                
               </Suspense>
             </TabPane>
 
@@ -149,7 +149,7 @@ class SupplierDetailsTab extends Component {
                 <SupplierSuppliesCardTable
                   supplier={this.props.supplier}
                   translateText={this.props.translateText}
-          selectedLanguage={this.props.selectedLanguage}
+                 selectedLanguage={this.props.selectedLanguage}
                 />
               </Suspense>
             </TabPane>
@@ -240,7 +240,10 @@ class SupplierDetailsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <SuppliersActivityTable supplier={this.props.supplier} />
+                <SuppliersActivityTable supplier={this.props.supplier} 
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage}/>
+                
               </Suspense>
             </TabPane>
           

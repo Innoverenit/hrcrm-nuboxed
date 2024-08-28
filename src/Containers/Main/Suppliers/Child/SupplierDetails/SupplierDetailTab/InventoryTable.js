@@ -29,6 +29,7 @@ function InventoryTable(props) {
     const [editsuppliesId, setEditsuppliesId] = useState(null);
     const [data, setData] = useState([]);
     const [availabilityDate, setavailabilityDate] = useState('');
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
     useEffect(() => {
         setPageNo(pageNo + 1);
@@ -39,7 +40,33 @@ function InventoryTable(props) {
         setData(props.inventoryList || []);
     }, [props.inventoryList]);
 
-
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+            "649",//0 Trade ID
+            "859",//1  Creation 
+            "14",//2 Category
+            "264",//3 Brand
+            "265",//4 Model
+            // "",//5 Availability Date
+            "259",//6 Attribute
+            "654",//7  Quality
+            "655",//8  Specs
+            "254",//9 Unit
+            "657",//10 Price
+            "739",//11 Publish
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
     const handleRowData = (item) => {
         setRowData(item)
     }
@@ -178,41 +205,41 @@ function InventoryTable(props) {
             <div className=' flex justify-end sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[92%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                    <div className=" w-[31.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
-                            Trade ID
+                    <div className=" w-[31.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[0]}
+                            {/* Trade ID */}
                             </div>
-                            <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                            Creation 
+                            <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[1]}
+                            {/* Creation  */}
                         </div>
-                        <div className=" w-[19.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
-                            Category
+                        <div className=" w-[19.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[2]}
+                            {/* Category */}
                             </div>
-                        <div className=" w-[17.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                            Brand
+                        <div className=" w-[17.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]"> {translatedMenuItems[3]}
+                            {/* Brand */}
                         </div>
-                        <div className=" w-[42.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                           Model
+                        <div className=" w-[42.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]"> {translatedMenuItems[4]}
+                           {/* Model */}
                         </div>
-                        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                          Availability Date
+                        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[5]}
+                          {/* Availability Date */}
                         </div>
-                        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                          Attribute
+                        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[6]}
+                          {/* Attribute */}
                         </div>
-                        <div className=" w-[12.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                            Quality
+                        <div className=" w-[12.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[7]}
+                            {/* Quality */}
                         </div>
-                        <div className=" w-[13.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
-                            Specs
+                        <div className=" w-[13.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]"> {translatedMenuItems[8]}
+                            {/* Specs */}
                         </div>
-                        <div className=" md:w-[14.9rem]">
-                           Unit
+                        <div className=" md:w-[14.9rem]"> {translatedMenuItems[9]}
+                           {/* Unit */}
                         </div>
-                        <div className=" md:w-[5.9rem]">
-                         Price
+                        <div className=" md:w-[5.9rem]"> {translatedMenuItems[10]}
+                         {/* Price */}
                         </div>
-                        <div className=" md:w-[5.9rem]">
-                         Publish
+                        <div className=" md:w-[5.9rem]"> {translatedMenuItems[11]}
+                         {/* Publish */}
                         </div>
                     </div>
                     <div class="">

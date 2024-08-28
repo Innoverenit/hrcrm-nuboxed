@@ -20,6 +20,8 @@ const SupplierAddListModal = (props) => {
           <SuppliersListForm
             rowdata={props.rowdata}
             translatedMenuItems={props.translatedMenuItems}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
           />
         </Suspense>
       </StyledDrawer>
