@@ -11,6 +11,34 @@ import InfiniteScroll from "react-infinite-scroll-component";
 function OpenQcTable(props) {
 
     const [page, setPage] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+             "660", // "order#",//0
+              "760",  // "duedate",//1
+               "677", //   "Lead"
+                "142",   // "Status"
+    
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+
+
     useEffect(() => {
         setPage(page + 1);
         props.getOpenQcByUser(props.userId)
@@ -27,10 +55,12 @@ function OpenQcTable(props) {
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                         <div className=" md:w-[34.12rem]">Order#</div>
-                        <div className=" md:w-[35.1rem]"><FormattedMessage
+                        <div className=" md:w-[35.1rem]">
+                            <FormattedMessage
                             id="app.duedate"
                             defaultMessage="duedate"
-                        /></div>
+                        />
+                        </div>
                         <div className=" md:w-[9.8rem] ">
                             <FormattedMessage
                                 id="app.lead"

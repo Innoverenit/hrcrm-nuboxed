@@ -16,7 +16,9 @@ function RefurbishRejectModal(props) {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <RejectedPhoneList rowData={props.rowData} />
+                    <RejectedPhoneList rowData={props.rowData}
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage} />
                 </Suspense>
             </StyledDrawer>
         </>

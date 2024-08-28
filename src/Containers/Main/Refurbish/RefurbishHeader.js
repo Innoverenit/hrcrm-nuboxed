@@ -10,6 +10,8 @@ class RefurbishHeader extends Component {
         <ActionHeader
           leftComponent={
             <RefurbishActionLeft
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
               setProductionViewType={this.props.setProductionViewType}
               viewType={this.props.viewType}
             />
