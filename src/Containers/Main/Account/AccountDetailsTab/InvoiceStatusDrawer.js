@@ -3,8 +3,9 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import InvoiceStatusCardView from "./InvoiceStatusCardView";
 
-const InvoiceStatusDrawer = (props) => {
-  
+function InvoiceStatusDrawer (props) {
+
+  console.log("INVSCD",props.particularRowData)
   return (
     <>
       <StyledDrawer
@@ -17,7 +18,7 @@ const InvoiceStatusDrawer = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-        <InvoiceStatusCardView/> 
+        <InvoiceStatusCardView particularRowData={props.particularRowData}/> 
         </Suspense>
       </StyledDrawer>
     </>

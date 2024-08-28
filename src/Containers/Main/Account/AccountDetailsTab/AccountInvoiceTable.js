@@ -2,7 +2,6 @@ import React, { useEffect, useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-    getAccountInvoiveList,
     handlenvoiceOrderModal,
     getGeneratedInvoiveList,
     upadtePayment,
@@ -43,7 +42,7 @@ function AccountInvoiceTable(props) {
     const minRecordingTime = 3000; // 3 seconds
     const timerRef = useRef(null);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-    const [particularRowData, setParticularRowData] = useState({});
+
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
@@ -77,8 +76,8 @@ function AccountInvoiceTable(props) {
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
     useEffect(() => {
-        props.getAccountInvoiveList(props.distributorId)
-        props.getGeneratedInvoiveList(props.distributorId)
+        // props.getAccountInvoiveList(props.distributorId)
+        props.getGeneratedInvoiveList(props.distributorId);
     }, []);
 
     const {
@@ -99,7 +98,6 @@ function AccountInvoiceTable(props) {
             setCurrentData(e.target.value);
         
             if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search  
-                props.getAccountInvoiveList(props.distributorId)
                 props.getGeneratedInvoiveList(props.distributorId)       
               props.ClearSearchedInvoice()
               setSearchOnEnter(false);
@@ -175,6 +173,7 @@ function AccountInvoiceTable(props) {
         setShowIcon(false)
         setCurrency("")
     }
+    const [particularRowData, setParticularRowData] = useState({});
     function handleSetParticularOrderData(item) {
         setParticularRowData(item);
     }
@@ -205,36 +204,18 @@ function AccountInvoiceTable(props) {
     }
     const [hasMore, setHasMore] = useState(true);
     
-    const handleLoadMore = () => {
-        const callPageMapd = props.accountInvoice && props.accountInvoice.length &&props.accountInvoice[0].pageCount
-        setTimeout(() => {
-          const {
-            getAccountInvoiveList,
-           // userDetails: { employeeId },
-          } = props;
-          if  (props.accountInvoice)
-          {
-            if (pageNo < callPageMapd) {
-                setPageNo(pageNo + 1);
-                getAccountInvoiveList(props.orgId,pageNo); 
-          }
-          if (pageNo === callPageMapd){
-            setHasMore(false)
-          }
-        }
-        }, 100);
-      };
-
-
-      const sendCreditMemo= async () => {
+   
+      const sendCreditMemo= async (item) => {
         setLoading(true);
         setError(null);
         try {
-          const response = await axios.post(`${base_url2}/invoice/creditmemo `,{
+          const response = await axios.post(`${base_url2}/creditMemu/creditInd`,{
           userId: props.userId,
-          distributorId:props.distributorId,
-            pay: "",
-            orgId: props.orgId,
+          distributorId:item.distributorId,
+          orgId: props.orgId,
+          invoiceId:item.procureOrderInvoiceId,
+          creditInd:true,
+          orderId:item.orderPhoneId,
           },
             {
               headers: {
@@ -263,7 +244,44 @@ function AccountInvoiceTable(props) {
           setLoading(false);
         }
       }; 
-
+      
+      const executePayementLink= async () => {
+        setLoading(true);
+        setError(null);
+        try {
+          const response = await axios.post(`${base_url2}/invoice/paylinkDummy `,{
+          userId: props.userId,
+          distributorId:props.distributorId,
+            paylink: "",
+            orgId: props.orgId,
+          },
+            {
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            }  
+          );
+          setData(response.data);
+          Swal.fire({
+            title: 'Success!',
+            text: 'Payment successfull',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+        } 
+        
+        catch (err) {
+          setError(err);
+          Swal.fire({
+            title: 'Error!',
+            text: 'There was an issue generating the invoice.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        } finally {
+          setLoading(false);
+        }
+      };
 
 
       if (loading) {
@@ -304,6 +322,7 @@ function AccountInvoiceTable(props) {
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
                         {/* <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div> */}
                         <div className=" md:w-[8rem]">Credit Memo</div>
+                        <div className=" md:w-[8rem]"></div>
                         <div className=" md:w-[8rem]">{translatedMenuItems[4]}</div>
                     </div>
                     <div class="h-[33vh]">
@@ -372,16 +391,29 @@ function AccountInvoiceTable(props) {
                                                                 <Button
                                                                     className="cursor-pointer"
                                                                     onClick={() => {
-                                                                        sendCreditMemo();
+                                                                        sendCreditMemo(item);
                                                                         handleSetParticularOrderData(item);
                                                                     }}
                                                                 >Generate</Button>
                                                             </Tooltip>
                                                       
                           
-                          </div>
-                                                   
+                          </div>       
                                                     </div>
+                                                    <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <Tooltip title="">
+                                                                <Button
+                                                                    className="cursor-pointer"
+                                                                    onClick={() => {
+                                                                        // executePayementLink();
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+                                                                > Payment link</Button>
+                                                            </Tooltip>
+                                                      
+                          
+                          </div>       
+                                   
                                                      <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         <Tooltip title="">
@@ -393,18 +425,19 @@ function AccountInvoiceTable(props) {
                                                                     }}
 
                                                                 />
-                                                            </Tooltip>
-                                                            <Tooltip title="Status">
-                              <div>
+                                                            </Tooltip>      
+                          </div>
+                          <div>
+                          <Tooltip title="Status">
                              <EventRepeatIcon
-                             className="!text-icon cursor-pointer text-[pink]"
+                             className="!text-icon cursor-pointer text-[green]"
                               onClick={()=>{
                                 setopenStatus(true);}}
                              />
+                                  </Tooltip>
                               </div>
-                              </Tooltip>
+                         
                           
-                          </div>
                                                    
                                                     </div>
                                                 </div>
@@ -445,6 +478,7 @@ function AccountInvoiceTable(props) {
                     handlePaidModal={props.handlePaidModal}   
                 />
                 <InvoiceStatusDrawer
+                                  particularRowData={particularRowData}
                  openStatus={openStatus}
                  setopenStatus={setopenStatus}
                 />
@@ -468,7 +502,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getAccountInvoiveList,
+       
             getGeneratedInvoiveList,
             handlenvoiceOrderModal,
             upadtePayment,
