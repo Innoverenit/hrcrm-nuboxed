@@ -20,6 +20,8 @@ function RefurbishActionLeft (props) {
   const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false); //Code for Search
   const minRecordingTime = 3000; // 3 seconds
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const timerRef = useRef(null);
   const {
     transcript,
@@ -102,6 +104,26 @@ function RefurbishActionLeft (props) {
         }
       };
       useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "663",//0 My Repair Orders
+              "228",//1 ALL
+             
+             
+    
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+      useEffect(() => {
         if (!listening && isRecording) {
           handleStopListening();
         }
@@ -125,7 +147,7 @@ function RefurbishActionLeft (props) {
               {/* {user.designation === "Executive" && */}
     
     
-              <Tooltip title="My Repair Orders">
+              <Tooltip title={translatedMenuItems[0]}>
                 <span class=" text-sm cursor-pointer"
                   onClick={() => setProductionViewType("list")}
                   style={{
@@ -150,7 +172,8 @@ function RefurbishActionLeft (props) {
                 }}
               >
                 <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                  <div className="text-white">ALL</div></Avatar>
+                  <div className="text-white">{translatedMenuItems[1]}</div></Avatar>  
+                  {/* ALL */}
     
               </span>
               </Badge>
