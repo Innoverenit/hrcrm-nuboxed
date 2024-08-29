@@ -42,10 +42,40 @@ const TaskApproveTable = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     setPage(page + 1);
     props.getAprrovalTaskTable(props.employeeId,page);
   }, []);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+         "71", //  "Type",//0
+          "110",  // "Name",//1
+          "794" , // "Submitted By",//2
+           "112" ,// "Ageing",//3
+          "113" , // "Info",//5
+          //  "", // "Assigned On",//5
+        
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const handleRowData = (data) => {
     setrowData(data);
   };
@@ -105,34 +135,34 @@ const TaskApproveTable = (props) => {
     userDetails: { employeeId },
   } = props;
 
- 
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
 
   return (
     <>
       
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]"><FormattedMessage
-                          id="app.type"
-                          defaultMessage="type"
-                        /></div>
-        <div className=" w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]"><FormattedMessage
-                          id="app.name"
-                          defaultMessage="name"
-                        /></div>
-             <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] "><FormattedMessage
-                          id="app.submittedby"
-                          defaultMessage="submittedby"
-                        /></div>
-        <div className="w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]"><FormattedMessage
-                          id="app.ageing"
-                          defaultMessage="Ageing"
-                        /></div>
-                         <div className="w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">Info</div>
-        <div className="w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]"><FormattedMessage
-                          id="app.assignedOn"
-                          defaultMessage="Assigned On"
-                        /></div>
+          <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]">{translatedMenuItems[0]} 
+           {/* type */}
+                    </div>
+        <div className=" w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]">{translatedMenuItems[1]} 
+                        {/* name" */}
+                      </div>
+             <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] ">{translatedMenuItems[2]} 
+              {/* submittedby */}
+                        </div>
+        <div className="w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]">{translatedMenuItems[3]} 
+       {/* Ageing */}
+                        </div>
+                         <div className="w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">{translatedMenuItems[4]} 
+                          {/* Info */}
+                          </div>
+        <div className="w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]">
+          {/* {translatedMenuItems[5]}  */}
+          Assigned On
+                        </div>
         <div className="w-[8.52rem]"></div>
        
 </div>
@@ -243,15 +273,7 @@ const TaskApproveTable = (props) => {
                                     {item.contact ? (
                                       <>{item.contact}</>
                                     ) : null}        
-
-                   </div>
-
-
-        
-     
-  
-                   
-                   
+                   </div>                                            
                                 <div className=" flex  w-[5.9rem] ml-3 max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned On</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
@@ -328,9 +350,7 @@ const TaskApproveTable = (props) => {
   )}
 </div>
 
-</div>
-
-                          
+</div>                       
                     
 <div class="flex flex-col w-[1.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <Tooltip title="Notes">
@@ -359,6 +379,8 @@ const TaskApproveTable = (props) => {
       <UpdateTaskModal
           updateTaskModal={updateTaskModal}
           handleUpdateTaskModal={handleUpdateTaskModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
          <AddTaskProjectDrawerModal
           handleTaskProjectDrawerModal={props.handleTaskProjectDrawerModal}

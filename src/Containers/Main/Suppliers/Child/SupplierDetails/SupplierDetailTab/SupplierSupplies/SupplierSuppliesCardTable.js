@@ -55,7 +55,7 @@ function SupplierSuppliesCardTable(props) {
          "110",//0 Name
          "14",//10 Category
           "259",//2 Attribute
-          // "",//3 Tag With Supplier
+          "1276",//3 Tag With Supplier
           "654",//4 Quality
          
         ];

@@ -27,7 +27,7 @@ function Call (props) {
             "77",  // 'Owner',//8
              "78" ,// 'Completed',//9
              "82" ,// 'Loading',//10
-              'You have reached the end of page',//11
+              // 'You have reached the end of page',//11
              "222", // 'None',//12
              "118", // 'Not available',//13
              "80" ,// 'Yes',//14

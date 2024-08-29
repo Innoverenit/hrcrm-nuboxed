@@ -22,7 +22,10 @@ const AddTaskModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <TaskForm {...formProps} selectedTask={props.selectedTask} />
+          <TaskForm {...formProps} selectedTask={props.selectedTask} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+          />
         </Suspense>
       </StyledDrawer>
     </>
