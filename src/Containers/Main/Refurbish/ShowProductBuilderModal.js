@@ -19,7 +19,9 @@ const ShowProductBuilderModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <InspectedPhoneByOrder rowData={props.rowData} />
+                    <InspectedPhoneByOrder rowData={props.rowData} 
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage}/>
                 </Suspense>
             </StyledDrawer>
         </>
