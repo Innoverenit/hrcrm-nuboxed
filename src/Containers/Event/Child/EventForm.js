@@ -561,10 +561,7 @@ const {
                   <Field
                     isRequired
                     name="eventTypeId"
-                    //label="Type"
-                    // label={
-                    //   <FormattedMessage id="app.type" defaultMessage="type" />
-                    // }
+                    //label="Type"               
                     component={SearchSelect}
                     isColumnWithoutNoCreate
                     selectType="eventType"
@@ -576,13 +573,7 @@ const {
                   <Field
                     isRequired
                     name="eventSubject"
-                    //label="Topic"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.subject"
-                    //     defaultMessage="subject"
-                    //   />
-                    // }
+                    //label="Topic"             
                     isColumn
                   style={{ width:"100%"}}
                     component={InputComponent}
@@ -596,13 +587,7 @@ const {
                         <Field
                           isRequired
                           name="startDate"
-                          //label="Start "
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.startDate"
-                          //     defaultMessage="Start Date"
-                          //   />
-                          // }
+                          //label="Start "                    
                           isColumn
                           component={DatePicker}
                           value={values.startDate}
@@ -615,13 +600,7 @@ const {
                         <Field
                           isRequired
                           name="startTime"
-                          // label="Start Time"
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.startTime"
-                          //     defaultMessage="Start Time"
-                          //   />
-                          // }
+                          // label="Start Time"                    
                           isColumn
                           component={TimePicker}
                           use12Hours
@@ -638,13 +617,7 @@ const {
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End "
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.enddate"
-                        //     defaultMessage="enddate"
-                        //   />
-                        // }
+                        // label="End "               
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -671,13 +644,7 @@ const {
                       <Field
                         isRequired
                         name="endTime"
-                        //label="End Time"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.endtime"
-                        //     defaultMessage="endtime"
-                        //   />
-                        // }
+                        //label="End Time"              
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -693,13 +660,7 @@ const {
                     defaultValue={{ label: timeZone, value: userId }}
                     isColumnWithoutNoCreate
                     name="timeZone"
-                    //label="TimeZone "
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.timeZone"
-                    //     defaultMessage="timeZone"
-                    //   />
-                    // }
+                    //label="TimeZone "        
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}

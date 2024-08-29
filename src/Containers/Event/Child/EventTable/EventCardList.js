@@ -399,6 +399,8 @@ function EventCardList (props) {
         <UpdateEventModal
           updateEventModal={updateEventModal}
           handleUpdateEventModal={handleUpdateEventModal}
+          selectedLanguage={props.selectedLanguage}
+          translateText={props.translateText}
         />
          </Suspense>
       </>

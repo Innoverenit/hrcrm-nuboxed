@@ -126,7 +126,8 @@ function CallForm(props) {
         "97",  // "Prospect",//11
          "73", // "Contact",//12
        "99" ,  // "Opportunity",//13
-        "316"  // "Notes"//14
+        "316"  ,// "Notes"//14
+        "Create"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -1297,7 +1298,7 @@ function CallForm(props) {
                     "Update"
                   ) : (
                     // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="create" />
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[15]}</div>
                   )}
                 </Button>
               </div>

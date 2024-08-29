@@ -37,22 +37,22 @@ function UpdateSupplierForm (props) {
             emailId: props.setEditingSuppliers.emailId || "",
             orgId: props.orgId,
             assignedTo: selectedOption ? selectedOption.employeeId:props.setEditingSuppliers.userId,
-            address: [
-              {
-              addressType:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].addressType : "",
-                address1: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].address1 : "",
-                address2:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].address2 : "",
-                addressId:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].addressId : "",
-              town: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].town :"",
-              street:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].street : "",
-              city:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].city : "",
-              pinCode:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].pinCode : "",
-              country: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].country :"",
-                latitude: "",
-                longitude: "",
+            // address: [
+            //   {
+            //   addressType:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].addressType : "",
+            //     address1: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].address1 : "",
+            //     address2:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].address2 : "",
+            //     addressId:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].addressId : "",
+            //   town: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].town :"",
+            //   street:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].street : "",
+            //   city:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].city : "",
+            //   pinCode:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].pinCode : "",
+            //   country: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].country :"",
+            //     latitude: "",
+            //     longitude: "",
 
-              },
-            ],
+            //   },
+            // ],
             // address: "",
           }}
           validationSchema={CustomerSchema}
@@ -92,10 +92,11 @@ function UpdateSupplierForm (props) {
                     isColumn
                     inlineLabel
                   />
+                  </div>
                    <div class=" flex justify-between">
                     <div class="w-[30%] max-sm:w-[40%] ">
                       {/* Dial Code               */}
-                      <div className="font-bold font-poppins text-xs"> {props.translatedMenuItems[14]}</div>
+                      <div class="font-bold font-poppins text-xs"> {props.translatedMenuItems[14]}</div>
                       <FastField
                         name="dialCode"
                         selectType="dialCode"
@@ -125,7 +126,11 @@ function UpdateSupplierForm (props) {
                     </div>
                   </div>
                   <div class="w-full">
-                  <div className="font-bold font-poppins text-xs"> {props.translatedMenuItems[16]}</div>
+                  <div className="font-bold text-[0.75rem] mb-1 leading-lh1.2 ">         
+                        {/* Email */}
+                        {props.translatedMenuItems[16]}
+         
+                   </div>
                     <FastField
                       type="email"
                       name="emailId"                  
@@ -137,13 +142,13 @@ function UpdateSupplierForm (props) {
                     />
                   </div>
           
-                </div>
+             
                 <div class="h-full w-w47.5 max-sm:w-full">
                 <div class=" h-full w-full">
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <div className=" font-bold text-xs mb-1 leading-lh1.2 ">         
+            <div className="font-bold text-[0.75rem] mb-1 leading-lh1.2 ">         
                         {/* Assigned */}
                         {props.translatedMenuItems[24]}
          

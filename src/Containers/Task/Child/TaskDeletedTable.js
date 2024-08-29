@@ -2,7 +2,6 @@ import React, { lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import styled from 'styled-components';
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
@@ -683,6 +682,8 @@ class TaskDeletedTable extends React.Component {
            <UpdateTaskModal
           updateTaskModal={updateTaskModal}
           handleUpdateTaskModal={handleUpdateTaskModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
 
 
@@ -690,7 +691,8 @@ class TaskDeletedTable extends React.Component {
 handleTaskProjectDrawerModal={this.props.handleTaskProjectDrawerModal}
 addDrawerTaskProjectModal={this.props.addDrawerTaskProjectModal}
 data={this.state.data}
-
+translateText={this.props.translateText}
+selectedLanguage={this.props.selectedLanguage}
       />
           
          

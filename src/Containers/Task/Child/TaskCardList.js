@@ -1463,6 +1463,8 @@ const TaskCardList = (props) => {
    <UpdateTaskModal
           updateTaskModal={updateTaskModal}
           handleUpdateTaskModal={handleUpdateTaskModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <DownloadTaskModal
           item={currentprocessName}
@@ -1516,6 +1518,8 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
  currentNameId={currentNameId}
  handleUpdateDocumentDrawerModal={props.handleUpdateDocumentDrawerModal}
  addUpdatedocumentTaskModal={props.addUpdatedocumentTaskModal}
+ translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}
 />
 </Suspense>
 
