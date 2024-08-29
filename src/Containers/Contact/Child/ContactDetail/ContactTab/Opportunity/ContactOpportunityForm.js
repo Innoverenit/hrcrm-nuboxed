@@ -49,9 +49,9 @@ function ContactOpportunityForm(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-       "Name",//0
-          "Start Date",//1
-         "End Date",//2
+     "110", //  "Name" 0
+          "176",//1 Start Date
+         "126",//2 End Date
           "Value",//3
          "Currency",//4
           "Description",//5

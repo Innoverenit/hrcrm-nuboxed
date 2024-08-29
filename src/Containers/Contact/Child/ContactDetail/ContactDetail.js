@@ -18,7 +18,12 @@ class ContactDetails extends Component {
     return (
       <>
         <>
-          <ContactDetailHeader />
+          <ContactDetailHeader 
+          
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+          />
           {fetchingContactByContactId ? (
             <MainWrapper>
               <BundleLoader />

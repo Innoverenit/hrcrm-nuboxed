@@ -47,12 +47,12 @@ class LinkedDocuments extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'Date', // 0
-'Name', // 1
-'Type', // 2
-'Share', // 3
-'Description', // 4
-'Uploaded By', // 5
+     "74" ,//  'Date' 0
+   "110",// 'Name', // 1
+       "71",// 'Type' 2
+        "1158",//  'Share' 3
+         "147",// 'Description'  4
+          "1207",  //  'Uploaded By', // 5
 
       ];
 
@@ -204,7 +204,7 @@ class LinkedDocuments extends Component {
             scroll={{ y: tableHeight }}
             expandedRowRender={(record) => {
               //debugger;
-              return <p style={{ margin: 0 }}>{record.documentDescription}</p>;
+              return <div>{record.documentDescription}</div>;
             }}
             rowKey="ContactId"
             columns={columns}

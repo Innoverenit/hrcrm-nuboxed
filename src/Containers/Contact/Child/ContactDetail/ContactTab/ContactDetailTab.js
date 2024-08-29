@@ -42,8 +42,8 @@ class ContactDetailTab extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'Documents', // 0
-     'Quotation', // 1
+       '1166', //   Documents 0
+       '213',// Quotation 1
 
 
       ];
