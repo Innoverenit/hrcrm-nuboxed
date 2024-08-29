@@ -57,11 +57,7 @@ const OrderRepairCompletedCard = (props) => {
     };
 
     useEffect(() => {
-      if (props.selectedCategory==="Orders" && props.selectedButtonIcon==="repair"){
         fetchData1();
-      }
-        
-
     }, [props.userId,props.startDate,props.endDate]);
 
   useEffect(() => {

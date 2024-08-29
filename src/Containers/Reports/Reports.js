@@ -20,6 +20,11 @@ const buttonData = [
   { name: 'Receivables' },
   { name: 'Productivity' },
   { name: 'Invoice' },
+  { name: 'Deals' },
+  { name: 'Leads' },
+  { name: 'Calls' },
+  { name: 'Events'},
+  { name: 'Quotation'},
 ];
 
 const dropdownOptions = {
