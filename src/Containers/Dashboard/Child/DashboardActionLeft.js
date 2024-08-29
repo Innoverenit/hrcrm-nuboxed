@@ -1,5 +1,5 @@
 import { Badge, Tag, Tooltip, Avatar, Button } from "antd";
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState, lazy, Suspense ,useEffect} from "react";
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 import { connect } from "react-redux";
 import { Tabs } from "antd";
@@ -28,6 +28,40 @@ const DashboardActionLeft = (props) => {
   // const [activeTab, setActiveTab] = useState("");
   const [dashboardRegionalVisible, setDashboardRegionalVisible] = useState(false);
   //const [showShareForm, setShowShareForm] = useState(false);
+ const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+          "24", //  "Region",//0
+          "1143",   // "Multi Org",//1
+          "97",  // "Prospect",//2
+           "248", // "Customer",//3
+           "203", // "Production",//4
+            "661",// "Repair ",//5
+            "511", // "Investors",//6
+            "", //"RecruitPro" 7
+            "105", // "Tasks" 8
+            "24",  // "Region" 9
+            "",  // "My Details"10
+            "Procure"
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   const {
     setSelectedTimeIntervalReport,
     dateRangeList,
@@ -102,12 +136,12 @@ const DashboardActionLeft = (props) => {
                       color: activeButton === "Regional" && "tomato",
                     }}
                   >
-                    <Tooltip title="Region">
+                    <Tooltip title={translatedMenuItems[0]}>
                       <Button
                         style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
 
                       >
-                        <div class=" text-white  ">Region</div>
+                        <div class=" text-white  ">{translatedMenuItems[0]}</div>
                       </Button>
                     </Tooltip>
                   </span>
@@ -126,12 +160,12 @@ const DashboardActionLeft = (props) => {
                       color: activeButton === "multiOrg" && "tomato",
                     }}
                   >
-                    <Tooltip title="Multi Org">
+                    <Tooltip title={translatedMenuItems[1]}>
                       <Button
                         style={{ background: activeButton === "multiOrg" ? "#f279ab" : "#4bc076" }}
 
                       >
-                        <span class=" text-white !text-icon">Multi Org</span>
+                        <span class=" text-white !text-icon">{translatedMenuItems[1]}</span>
                       </Button>
                     </Tooltip>
                   </span>
@@ -151,7 +185,7 @@ const DashboardActionLeft = (props) => {
                       color: activeButton === "Customer" ? activeButton === "Customer" && "tomato" && viewType === "ALL" && "#444" : viewType === "ALL" && "tomato",
                     }}
                   >
-                    <Tooltip title="Prospect">
+                    <Tooltip title={translatedMenuItems[2]}>
                       <Avatar style={{ background: activeButton === "Customer" ? "#f279ab" : "#4bc076" }}>
                         <ApartmentIcon className="text-white !text-icon"/>
                       </Avatar>
@@ -175,7 +209,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="Customer">
+                    <Tooltip title={translatedMenuItems[3]}>
                       <Avatar style={{ background: activeButton === "Accounts" ? "#f279ab" : "#4bc076" }}>
                         <AcUnitIcon className="text-white !text-icon" />
                       </Avatar>
@@ -197,7 +231,7 @@ const DashboardActionLeft = (props) => {
                       color: activeButton === "Order" && "tomato",
 
                     }}
-                  >  <Tooltip title="Production">
+                  >  <Tooltip title={translatedMenuItems[4]}>
                       <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
                         <DynamicFeedIcon className="text-white !text-icon"/>
                       </Avatar>
@@ -219,7 +253,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="Repair">
+                    <Tooltip title={translatedMenuItems[5]}>
                       <Avatar style={{ background: activeButton === "Finance" ? "#f279ab" : "#4bc076" }}>
                         <OnDeviceTrainingIcon className="text-white !text-icon" />
                       </Avatar>
@@ -241,7 +275,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="Investors">
+                    <Tooltip title={translatedMenuItems[6]}>
                       <Avatar style={{ background: activeButton === "Investors" ? "#f279ab" : "#4bc076" }}>
                         <LocationCityIcon className="text-white !text-icon"/>
                       </Avatar>
@@ -263,7 +297,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="RecruitPro">
+                    <Tooltip title={translatedMenuItems[7]}>
                       <Avatar style={{ background: activeButton === "RecruitPro" ? "#f279ab" : "#4bc076" }}>
                         <RecentActorsIcon className="text-white !text-icon"  />
                       </Avatar>
@@ -280,7 +314,7 @@ const DashboardActionLeft = (props) => {
                     color: activeButton === "Tasks" && "tomato",
                   }}
                 >
-                  <Tooltip title="Tasks">
+                  <Tooltip title={translatedMenuItems[8]}>
                     <Avatar style={{ background: activeButton === "Tasks" ? "#f279ab" : "#4bc076" }}>
                       <FactCheckIcon className="text-white !text-icon" />
                     </Avatar>
@@ -302,12 +336,12 @@ const DashboardActionLeft = (props) => {
                       color: activeButton === "Regional" && "tomato",
                     }}
                   >
-                    <Tooltip title="Region">
+                    <Tooltip title={translatedMenuItems[0]}>
                       <Button
                         style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
                         type="primary"
                       >
-                        <span class=" text-white ">Region</span>
+                        <span class=" text-white ">{translatedMenuItems[0]}</span>
                       </Button>
                     </Tooltip>
                   </span>
@@ -325,12 +359,12 @@ const DashboardActionLeft = (props) => {
                       color: activeButton === "multiOrg" && "tomato",
                     }}
                   >
-                    <Tooltip title="Multi Org">
+                    <Tooltip title={translatedMenuItems[1]}>
                       <Button
                         style={{ background: activeButton === "multiOrg" ? "#f279ab" : "#4bc076" }}
 
                       >
-                        <span class=" text-white !text-icon">Multi Org</span>
+                        <span class=" text-white !text-icon">{translatedMenuItems[1]}</span>
                       </Button>
                     </Tooltip>
                   </span>
@@ -344,7 +378,7 @@ const DashboardActionLeft = (props) => {
                     color: activeButton === "test" && "tomato",
                   }}
                 >
-                  <Tooltip title="My Details">
+                  <Tooltip title={translatedMenuItems[10]}>
                     <Avatar style={{ background: activeButton === "test" ? "#f279ab" : "#4bc076" }}>
                       <PersonIcon className="text-white !text-icon" />
                     </Avatar>
@@ -379,7 +413,7 @@ const DashboardActionLeft = (props) => {
 
                   }}
                 >
-                  <Tooltip title="Tasks">
+                  <Tooltip title={translatedMenuItems[8]}>
                     <Avatar style={{ background: activeButton === "Tasks" ? "#f279ab" : "#4bc076" }}>
                       <FactCheckIcon className="text-white !text-icon"
 
@@ -402,7 +436,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="Prospect">
+                    <Tooltip title={translatedMenuItems[2]}>
                       <Avatar style={{ background: activeButton === "Customer" ? "#f279ab" : "#4bc076" }}>
                         <ApartmentIcon className="text-white !text-icon" />
                       </Avatar>
@@ -426,7 +460,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="Customer">
+                    <Tooltip title={translatedMenuItems[3]}>
                       <Avatar style={{ background: activeButton === "Accounts" ? "#f279ab" : "#4bc076" }}>
                         <AcUnitIcon className="text-white !text-icon"
 
@@ -452,7 +486,7 @@ const DashboardActionLeft = (props) => {
                       color: activeButton === "Order" && "tomato",
 
                     }}
-                  >  <Tooltip title="Production">
+                  >  <Tooltip title={translatedMenuItems[4]}>
                       <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
                         <DynamicFeedIcon className="text-white !text-icon"
 
@@ -476,7 +510,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="Repair">
+                    <Tooltip title={translatedMenuItems[5]}>
                       <Avatar style={{ background: activeButton === "Finance" ? "#f279ab" : "#4bc076" }}>
                         <OnDeviceTrainingIcon className="text-white !text-icon" />
                       </Avatar>
@@ -498,7 +532,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="Procure">
+                    <Tooltip title={translatedMenuItems[11]}>
                       <Avatar style={{ background: activeButton === "Procure" ? "#f279ab" : "#4bc076" }}>
                         <ShopIcon className="text-white !text-icon" />
                       </Avatar>
@@ -520,7 +554,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="Investors">
+                    <Tooltip title={translatedMenuItems[6]}>
                       <Avatar style={{ background: activeButton === "Investors" ? "#f279ab" : "#4bc076" }}>
                         <LocationCityIcon className="text-white !text-icon"
                         />
@@ -543,7 +577,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >
-                    <Tooltip title="RecruitPro">
+                    <Tooltip title={translatedMenuItems[7]}>
                       <Avatar style={{ background: activeButton === "RecruitPro" ? "#f279ab" : "#4bc076" }}>
                         <RecentActorsIcon className="text-white !text-icon"
                         />

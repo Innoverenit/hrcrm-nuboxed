@@ -2294,7 +2294,7 @@ export const linkSupplierApproval = (supplierId,approveInd) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: types.ADDING_SUPPLIER_APPROVAL_SUCCESS,
-        payload: supplierId,
+        payload: res.data,
       });
       message.success(res.data);
     })

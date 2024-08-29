@@ -18,6 +18,8 @@ class DashboardHeader extends Component {
             setDashboardViewType={this.props.setDashboardViewType}
             handleButtonClick={this.props.handleButtonClick}
             activeButton={this.props.activeButton}
+            selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}
            />}
           // rightComponent={<DashboardActionRight
           // viewType={this.props.viewType}
