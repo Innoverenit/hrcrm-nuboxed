@@ -40,8 +40,8 @@ function PurchaseOrderTable(props) {
         setLoading(true); 
         const itemsToTranslate = [
    
-        //  "", //  "PO",//0
-         "679",   // "Created",//1
+          // "PO", //0
+          "679",   // "Created",//0
           "658",  // "Location",//2
            "772", // "Delivery",//3
            "73", // "Contact",//4
@@ -52,7 +52,7 @@ function PurchaseOrderTable(props) {
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        // setTranslatedMenuItems(translations);
+        setTranslatedMenuItems(translations);
         setLoading(false);
       } catch (error) {
         setLoading(false);
@@ -128,35 +128,35 @@ function PurchaseOrderTable(props) {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=" w-[15.1rem]  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
-                        {translatedMenuItems[0]} {/* <FormattedMessage
+                      <FormattedMessage
                                 id="app.po"
                                 defaultMessage="PO ID"
-                            /> */}
+                            />
                             </div>
                         <div className=" w-[14.1rem]   old max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                        {translatedMenuItems[1]}    {/* <FormattedMessage
+                        {translatedMenuItems[0]}    {/* <FormattedMessage
                                 id="app.created"
                                 defaultMessage="Created" /> */}
                         </div>
                         <div className=" w-[14.1rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                        {translatedMenuItems[2]} {/* <FormattedMessage
+                        {translatedMenuItems[1]} {/* <FormattedMessage
                                 id="app.location"
                                 defaultMessage="Location" /> */}
                         </div>
                         <div className=" w-[14.12rem]   max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                        {translatedMenuItems[3]}  {/* Delivery */}
+                        {translatedMenuItems[2]}  {/* Delivery */}
                         </div>
                         <div className=" w-[14.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                        {translatedMenuItems[4]} {/* Contact */}
+                        {translatedMenuItems[3]} {/* Contact */}
                         </div>
                        
                         <div className=" w-[14.13rem]    max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
-                        {translatedMenuItems[5]}  {/* <FormattedMessage
+                        {translatedMenuItems[4]}  {/* <FormattedMessage
                                 id="app.currency"
                                 defaultMessage="Currency" /> */}
                         </div>
                         <div className=" w-[14.11rem]   max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                        {translatedMenuItems[6]}  {/* <FormattedMessage
+                        {translatedMenuItems[5]}  {/* <FormattedMessage
                                 id="app.value"
                                 defaultMessage="Value" /> */}
                         </div>

@@ -28,13 +28,13 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
        "140",   // "Email",//2
         "1109",  // "Country",//3
         "835",  // "My Suppliers",//4
-        //  "", // "Not Approved",//5
+         "1257", // "Not Approved",//5
          "228", // "ALL",//6
-        //  "", // 'Deleted',//7
+         "1258", // 'Deleted',//7
         "228",  // 'Search by Name or Sector',//8 (ALL)
         "85",  // 'Add',//9
          "82", // 'Loading',//10
-        //  "", // 'Export Supplier',//11
+        "1277", // 'Export Supplier',//11
          "104", // 'Create',//12
          "824", // 'Suppliers',//13
          "357", // 'Dial Code',//14
@@ -45,14 +45,14 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
         "657",  // 'Price',//19
         "170",  // 'Edit',//20
         "84",  // 'Delete',//21
-        // "",  // 'Do you want to delete',//22
+       "1259",  // 'Do you want to delete',//22
         "100",  // 'New',//23
          "76", // 'Assigned',//24
          "1107", // 'Update',//25
          "14", // 'Category',//26
          "259", // 'Attribute',//27
           "654",// 'Quality',//28
-        //  "", // 'Last',//29
+         "1260", // 'Last',//29
           "76",// 'Date',//30
          "1079", // 'Cancel',//31
          "796", // 'Material',//32

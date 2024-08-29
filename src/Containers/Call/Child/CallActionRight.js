@@ -21,7 +21,10 @@ const CallActionRight = (props) => {
     <div class=" flex  items-center">
        {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.callFullListInd === true &&(
           <Suspense fallback={<BundleLoader />}>
-                    <CallSharedForm/>
+                    <CallSharedForm
+                     selectedLanguage={props.selectedLanguage}
+                     translateText={props.translateText}
+                    />
           </Suspense>
          )} 
       <Tooltip placement="left" title={props.translatedMenuItems[0]}>

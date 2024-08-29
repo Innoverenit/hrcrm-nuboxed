@@ -13,7 +13,6 @@ import StoreIcon from '@mui/icons-material/Store';
 import EuroIcon from '@mui/icons-material/Euro';
 import { DeleteOutlined } from "@ant-design/icons";
 import { Popconfirm, Tooltip } from "antd";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Link } from 'react-router-dom';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -104,7 +103,7 @@ function SuppliersCardList(props) {
             </div> */}
 
             {/* <div class=" w-[5.001rem]"> {props.translatedMenuItems[17]}</div> */}
-            <div class=" w-[16.7rem]"> {props.translatedMenuItems[38]}</div>
+            <div className=" w-[16.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[38]}</div>
           </div>
           <div class="overflow-x-auto h-[80vh]">
             <InfiniteScroll

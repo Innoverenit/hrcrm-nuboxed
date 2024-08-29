@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from '../../../../../../Components/Placeholder';
 import { getPurchaseOrderDetailsList, updatePriceOfPoItem } from "../../../SuppliersAction"
@@ -74,32 +73,27 @@ function PoSupplierDetailsTable(props) {
                 <div class="rounded m-1 p-1   w-[100%]   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[16.1rem]">
-                        {translatedMenuItems[0]} {/* <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                            /> */}
+                        {translatedMenuItems[0]} 
+                        {/* Name" */}
+                           
                             </div>
                         <div className=" md:w-[13.1rem]">
-                        {translatedMenuItems[1]}   {/* <FormattedMessage
-                                id="app.category"
-                                defaultMessage="Category" /> */}
+                        {translatedMenuItems[1]} 
+                        {/* Category */}
                         </div>
 
                         <div className=" md:w-[10.12rem]">
-                        {translatedMenuItems[2]}   {/* <FormattedMessage
-                                id="app.attribute"
-                                defaultMessage="Attribute" /> */}
+                        {translatedMenuItems[2]} 
+                         {/* Attribute */}
                         </div>
 
                         <div className=" md:w-[8.13rem]">
-                        {translatedMenuItems[3]}  {/* <FormattedMessage
-                                id="app.unit"
-                                defaultMessage="Unit" /> */}
+                        {translatedMenuItems[3]}  
+                        {/* Unit */}
                         </div>
                         <div className=" md:w-[21.14rem]">
-                        {translatedMenuItems[4]}  {/* <FormattedMessage
-                                id="app.price"
-                                defaultMessage="Price/Unit" /> */}
+                        {translatedMenuItems[4]}  
+                        {/* Price/Unit */}
                         </div>
 
                     </div>

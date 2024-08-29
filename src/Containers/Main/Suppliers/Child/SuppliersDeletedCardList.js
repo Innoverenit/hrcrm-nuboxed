@@ -68,7 +68,7 @@ function SuppliersDeletedCardList(props) {
             {props.translatedMenuItems[36]}
 
             </div>
-            <div className="w-[3.8rem]">  {props.translatedMenuItems[37]}</div>
+            <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  {props.translatedMenuItems[37]}</div>
           </div>
           <div class="overflow-x-auto h-[85vh]">
         

@@ -56,17 +56,18 @@ return(
 {props.searchSupplierList.length > 0 ? (
     <SupplierSearchedData
     searchSupplierList={props.searchSupplierList}
-    translatedMenuItems={props.translatedMenuItems}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
     />
   ) : (
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  {props.translatedMenuItems[0]}</div>
-            <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
+            <div className=" w-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
             {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[8.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[2]}</div>
+            <div className=" w-[7.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[2]}</div>
             {/* <div className="w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.9rem]">
              Address
                {props.translatedMenuItems[34]}
@@ -77,7 +78,7 @@ return(
               {props.translatedMenuItems[35]}
             </div> */}
           
-            <div class=" w-[22rem]">Owner</div>
+          <div className=" w-[20.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">Owner</div>
           </div>
         <InfiniteScroll
         dataLength={props.allSupplierList.length}

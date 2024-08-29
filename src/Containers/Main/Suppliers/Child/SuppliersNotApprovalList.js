@@ -72,7 +72,8 @@ function SuppliersNotApprovalList(props) {
             {props.translatedMenuItems[2]}</div>
             
             <div className="w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-text-xs max-xl:w-[9.5rem]">
-            {/* {props.translatedMenuItems[3]} */}Approve
+            {props.translatedMenuItems[17]}
+            {/* Approve */}
             </div>
 
           </div>
