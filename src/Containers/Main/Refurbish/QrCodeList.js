@@ -1,5 +1,6 @@
 import 'webrtc-adapter';
 import React from 'react';
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import { Modal, Button } from 'antd';
 import { QrReader } from 'react-qr-reader';
 import { Link } from 'react-router-dom';
@@ -10,7 +11,7 @@ const QRCodeListScanner = (props) => {
 
   return (
     <>
-      <Button onClick={props.startScanning}>Scanner</Button>
+     <DocumentScannerIcon onClick={props.startScanning} className='!cursor-pointer text-lg'/>
 
       <Modal
         title="QR Code Scanner"
