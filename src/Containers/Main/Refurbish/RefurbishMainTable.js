@@ -35,6 +35,7 @@ import AddLeadInRefurbish from "./AddLeadInRefurbish";
 import RefurbishRejectModal from "./RefurbishRejectModal";
 import SearchedDataRefurbish from "./SearchedDataRefurbish";
 import RefurbishNoteAll from "./RefurbishNoteAll";
+import PhoneScanner from "../Scan/PhoneScanner/PhoneScanner";
 const TechnicianModal = lazy(() => import("./TechnicianModal"));
 const AssignOrderModal = lazy(() => import("./AssignOrderModal"));
 const AddAssignRepairModal = lazy(() => import("./AddAssignRepairModal"));
@@ -370,7 +371,7 @@ const ProductionOrderList = (props) => {
 
                                             <div className=" flex w-[10.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.qcStartInd === 0 ?<div class=" font-bold text-[#ff1862] text-xs text-center">QC to be approved by Sales Owner/ Customer </div>
+                                                    {item.qcStartInd === 0 ?<div class=" font-bold text-[#ff1862] text-[0.65rem] text-center">QC to be approved by Sales Owner/ Customer </div>
                                                         : item.qcStartInd === 1 ?
                                                             // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
                                                             <Tooltip title={translatedMenuItems[14]}>

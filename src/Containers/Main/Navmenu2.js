@@ -65,53 +65,54 @@ function NavMenu(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          'Dashboard', // 0
-'Planner', // 1
-'Calls', // 2
-'Task', // 3
-'Events', // 4
-'Reports', // 5
-'Leads', // 6
-'Quotation', // 7
-'Contact', // 8
-'Prospect', // 9
-'Pitch', // 10
-'Data Room', // 11
-'Deals', // 12
-'Contact Invest', // 13
-'Investor', // 14
-'Club', // 15
-'Order', // 16
-'Customer', // 17
-'Catalogue', // 18
-'Quality', // 19
-'Procure', // 20
-'Material', // 21
-'Suppliers', // 22
-'Trade', // 23
-'Vendor', // 24
-'Procurement', // 25
-'Inventory', // 26
-'Shipper', // 27
-'Leaves', // 28
-'Mileage', // 29
-'Expense', // 30
-'Holiday', // 31
-'Teams', // 32
-'Users', // 33
-'Location', //34
-'KPI Assessment', //35
-'Collections', //36
-'Production', //37
-'Refurbish', //38
-'Subscription', //39
-'Program', //40
-'Course',//41
-'Assessment', //42
-'Demand', //43
-'Project', //44
-'Requirement', //45
-'Talent', //46
+          '22', // 0
+'43', // 1
+'70', // 2
+'199', // 3
+'35', // 4
+'197', // 5
+'270', // 6
+'213', // 7
+'73', // 8
+'97', // 9
+'426', // 10
+'481', // 11
+'490', // 12
+'517', // 13
+'201', // 14
+'592', // 15
+'202', // 16
+'248', // 17
+'725', // 18
+'654', // 19
+'666', // 20
+'796', // 21
+'824', // 22
+'856', // 23
+'870', // 24
+'1145', // 25
+'880', // 26
+'887', // 27
+'41', // 28
+'1099', // 29
+'1146', // 30
+'1101', // 31
+'495', // 32
+'948', // 33
+'658', //34
+'1147', //35
+'920', //36
+'203', //37
+'758', //38
+'1148', //39
+'1149', //40
+'1150',//41
+'1102', //42
+'1151', //43
+'137', //44
+'1152', //45
+'1153', //46
+'1164',//47
             
              
         ];

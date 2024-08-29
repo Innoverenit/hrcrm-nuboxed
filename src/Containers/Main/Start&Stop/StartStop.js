@@ -561,6 +561,8 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCountries } from "../../Auth/AuthAction";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import { addAttendence, getAttendanceList, addLocationDetails } from "../../Customer/CustomerAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {base_url} from "../../../Config/Auth";
@@ -777,14 +779,14 @@ function StartStop(props) {
       )}
 
       <div className="ml-2">
-        <Button
+        <div
           disabled={!drop1}
-          type="primary"
-          style={{ backgroundColor: !startInd ? "#77dd77" : "#ff7158bf" }}
+          // type="primary"
+          // style={{ backgroundColor: !startInd ? "#77dd77" : "#ff7158bf" }}
           onClick={handleClick}
         >
-          {startInd ? "Stop" : "Start"}
-        </Button>
+          {startInd ? <DoDisturbIcon className="!text-red-600 cursor-pointer"/> : <PlayCircleOutlineIcon className="!text-green-500 cursor-pointer"/>}
+        </div>
       </div>
     </div>
   );
