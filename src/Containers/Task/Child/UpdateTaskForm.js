@@ -33,6 +33,7 @@ import { Select } from "antd";
 const { Option } = Select;
 
 function UpdateTaskForm(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const includeOption = props.setEditingTask.included===null?[]: props.setEditingTask.included.map((item) => {
     return item.fullName
   })
@@ -72,6 +73,35 @@ function UpdateTaskForm(props) {
           });
     setCandidate(candidateNameOption);
   }, [props.setEditingTask]);
+  
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "124",//0 Priority
+          "71",//1 Type
+          "142",//2 Status
+          "126",//3 End Date
+          "110",//4 Name
+          "76",//5 Assigned
+          "75",//6 Include
+          "316",//7 Notes
+          "91",//8 Link
+          "97",//9 Prospect
+          "73",//10 Contact
+          "99",//11 Opportunity
+          "1246",//12 Update       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   function handleTypeChange(data) {
     debugger;
@@ -471,13 +501,8 @@ function UpdateTaskForm(props) {
                 <div class=" flex justify-between  max-sm:flex-col">
                 <div class=" flex justify-between flex-col w-full">
                         
-                <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                          {/* Priority */}
-                          <FormattedMessage
-                              id="app.priority"
-                              defaultMessage="priority"
-                            />
-                          
+                <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"> {translatedMenuItems[0]}
+                          {/* Priority */}                       
                         </div>
                         <div className="flex">
   <Tooltip title="High">
@@ -522,10 +547,8 @@ function UpdateTaskForm(props) {
                       </div>
                   <div class=" w-1/2 max-sm:w-wk">
                    
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                              id="app.type"
-                              defaultMessage="type"
-                            /></div>
+                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">{translatedMenuItems[1]} </div>
+                  {/* Type */}
                     <Field
                       name="taskTypeId"
                       component={SelectComponent}
@@ -535,11 +558,7 @@ function UpdateTaskForm(props) {
                     />
                   </div>
                   <div class=" w-3/12 ml-2">                
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      <FormattedMessage
-                        id="app.status"
-                        defaultMessage="status"
-                      />
+                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">{translatedMenuItems[2]} 
                       {/* Status */}
                     </div>
                     <div class=" w-full">
@@ -647,16 +666,11 @@ function UpdateTaskForm(props) {
                  </div>
                 <div class=" flex justify-between">
                 <div class=" w-1/2 ">
+                <div className="font-bold font-poppins text-xs">{translatedMenuItems[3]}  </div>
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End "
-                        label={
-                          <FormattedMessage
-                          id="app.enddate"
-                          defaultMessage="enddate"
-                        />
-                        }
+                        // label="End "                
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -681,17 +695,12 @@ function UpdateTaskForm(props) {
                       />
                     </div>
                     <div class=" w-5/12">
+                    <div className="font-bold font-poppins text-xs">{translatedMenuItems[4]}  </div>
                           <Field
                             isRequired
                             name="taskName"
                             //label="Name"
-                            // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                              id="app.name"
-                              defaultMessage="name"
-                            />
-                            }
+                            // value={values.taskName}                       
                             component={InputComponent}
                             isColumn
                             width={"100%"}
@@ -917,16 +926,12 @@ function UpdateTaskForm(props) {
                   )} */}
                 </div>
               </div>
-              <div class=" h-full w-w47.5 max-sm:w-wk">          
+              <div class=" h-full w-w47.5 max-sm:w-wk">  
+              <div className="font-bold font-poppins text-xs">{translatedMenuItems[5]}  </div>
+              {/* Assigned */}        
                 <Field
                   name="assignedTo"
-                  // label="Assigned"
-                  label={
-                    <FormattedMessage
-                                id="app.assignedto"
-                                defaultMessage="assignedto"
-                              />
-                  }
+                  // label="Assigned"             
                   isColumn
                   component={SelectComponent}
                   value={values.assignedTo}
@@ -940,7 +945,8 @@ function UpdateTaskForm(props) {
                 />
 
 <div class="w-full mt-3">
-                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Include</div> 
+                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">{translatedMenuItems[6]}</div> 
+                     {/* Include */}
   
                      <Select
   name="included"
@@ -1006,12 +1012,10 @@ function UpdateTaskForm(props) {
                 )}
        */}
                 <div class="mt-3">
+                <div className="font-bold font-poppins text-xs">{translatedMenuItems[7]}  </div>
                 <Field
                   name="taskDescription"
-                  //label="Notes"
-                  label={
-                    <FormattedMessage id="app.notes" defaultMessage="notes" />
-                  }
+                  //label="Notes"             
                   width={"21.875em"}
                   isColumn
                   component={TextareaComponent}
@@ -1020,17 +1024,12 @@ function UpdateTaskForm(props) {
                 </div>
          
                 <div class=" mt-3">
+                <div className="font-bold font-poppins text-xs">{translatedMenuItems[8]}  </div>
                       <Field
                             type="text"
                             name="link"
-                            //label="Name"
-                            // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.link"
-                                defaultMessage="link"
-                              />
-                            }
+                            //label="link"
+                            // value={values.taskName}                       
                             component={InputComponent}
                             isColumn
                             width={"100%"}
@@ -1038,17 +1037,13 @@ function UpdateTaskForm(props) {
                           />
                       </div>
                       <div class="mt-3">
+                      <div className="font-bold font-poppins text-xs">{translatedMenuItems[9]}  </div>
+                      {/* Prospect */}
                   {props.user.crmInd === true &&(
                  <Field
                  name="customerId"
                  // selectType="customerList"
-                 isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.prospect"
-                     defaultMessage="Prospect"
-                   />
-                 }
+                 isColumnWithoutNoCreate             
                  //component={SearchSelect}
                  component={SelectComponent}
                  options={
@@ -1064,18 +1059,12 @@ function UpdateTaskForm(props) {
                   )} 
                   </div>
                   <div class="mt-3">
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[10]}  </div>
                   {props.user.crmInd === true &&(
                   <Field
-                    name="contactId"
-                    //selectType="contactList"
+                    name="contactId"         
                     isColumnWithoutNoCreate
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="contact"
-                      />
-                    }
+                    // label="Contact"               
                     component={SelectComponent}
                     isColumn
                     options={Array.isArray(ContactData) ? ContactData : []}
@@ -1090,17 +1079,13 @@ function UpdateTaskForm(props) {
                   )} 
                   </div>
                   <div class="mt-3">
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[11]}
+                    {/* Opportunity */} </div>
                   {props.user.crmInd === true &&(
                  <Field
                  name="opportunityId"
                  // selectType="customerList"
-                 isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.opportunity"
-                     defaultMessage="opportunity"
-                   />
-                 }
+                 isColumnWithoutNoCreate           
                  //component={SearchSelect}
                  component={SelectComponent}
                  options={
@@ -1197,10 +1182,10 @@ function UpdateTaskForm(props) {
               >
                 {isEditing ? (
                   "Update"
-                ) : (
-                  // "Create"
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                ) : (            
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[12]}  </div>
                 )}
+                {/* Update */}
               </Button>
             </div>
           </Form>

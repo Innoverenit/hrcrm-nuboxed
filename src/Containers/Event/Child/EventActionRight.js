@@ -30,7 +30,10 @@ class EventActionRight extends React.Component {
     return (
       <div class=" flex items-center" >
          {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.eventFullListInd === true &&(
-         <Suspense fallback={<BundleLoader />}> <EventSharedForm/></Suspense>
+         <Suspense fallback={<BundleLoader />}> <EventSharedForm
+         selectedLanguage={this.props.selectedLanguage}
+         translateText={this.props.translateText}
+         /></Suspense>
          )} 
         <Tooltip placement="left" title="Create">
           <Button type="primary"

@@ -82,12 +82,11 @@ function UpdateSupplierForm (props) {
             <Form className="form-background">
               <div class="flex justify-between max-sm:flex-col">
                 <div class="h-full w-w47.5 max-sm:w-full">
-                
+                <div className="font-bold font-poppins text-xs"> {props.translatedMenuItems[0]}</div>
                   <Field
                     isRequired
                     name="name"
-                    type="text"
-                    label={props.translatedMenuItems[0]} 
+                    type="text"               
                     width={"100%"}
                     component={InputComponent}             
                     isColumn
@@ -96,10 +95,10 @@ function UpdateSupplierForm (props) {
                    <div class=" flex justify-between">
                     <div class="w-[30%] max-sm:w-[40%] ">
                       {/* Dial Code               */}
+                      <div className="font-bold font-poppins text-xs"> {props.translatedMenuItems[14]}</div>
                       <FastField
                         name="dialCode"
                         selectType="dialCode"
-                        label={props.translatedMenuItems[14]} 
                         isColumn
                         component={SearchSelect}
                         defaultValue={{
@@ -112,9 +111,9 @@ function UpdateSupplierForm (props) {
                   
                     </div>
                     <div class="w-[68%] max-sm:w-[50%]">
+                    <div className="font-bold font-poppins text-xs"> {props.translatedMenuItems[15]}</div>
                       <FastField
-                        name="phoneNo"
-                        label={`${props.translatedMenuItems[15]} #`} 
+                        name="phoneNo"               
                         type="text"
                         placeholder="Phone #"
                         isColumn
@@ -126,10 +125,10 @@ function UpdateSupplierForm (props) {
                     </div>
                   </div>
                   <div class="w-full">
+                  <div className="font-bold font-poppins text-xs"> {props.translatedMenuItems[16]}</div>
                     <FastField
                       type="email"
-                      name="emailId"
-                      label={props.translatedMenuItems[16]} 
+                      name="emailId"                  
                       className="field"
                       isColumn
                       width={"100%"}
@@ -144,11 +143,11 @@ function UpdateSupplierForm (props) {
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">         
+            <div className=" font-bold text-xs mb-1 leading-lh1.2 ">         
                         {/* Assigned */}
                         {props.translatedMenuItems[24]}
          
-            </Listbox.Label>
+            </div>
             <div className="relative ">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}

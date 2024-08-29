@@ -19,7 +19,8 @@ const UpdateSupplierModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
           <UpdateSupplierForm
             rowdata={props.rowdata}
-            translatedMenuItems={props.translatedMenuItems}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
           />
         </Suspense>
       </StyledDrawer>

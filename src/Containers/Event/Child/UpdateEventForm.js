@@ -42,6 +42,7 @@ function UpdateEventForm (props) {
   //     reminder: true,
   //   };
   // }
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const includeOption = props.setEditingEvents.included===null?[]: props.setEditingEvents.included.map((item) => {
     return item.fullName
   })
@@ -55,6 +56,34 @@ function UpdateEventForm (props) {
   function handleChangeInclude(value) {
     setInclude(value)
   }
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "124",//0 Priority
+          "71",//1 Type
+          "142",//2 Status
+          "126",//3 End Date
+          "110",//4 Name
+          "76",//5 Assigned
+          "75",//6 Include
+          "316",//7 Notes
+          "91",//8 Link
+          "97",//9 Prospect
+          "73",//10 Contact
+          "99",//11 Opportunity
+          "1246",//12 Update       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(()=> {
 
     props.getAllCustomerData(props.userId)
@@ -68,7 +97,7 @@ function UpdateEventForm (props) {
     const includeOption = props.setEditingEvents.included===null?[]: props.setEditingEvents.included.map((item) => {
       return item.fullName
     })
-
+ 
     
    
     setInclude(includeOption)

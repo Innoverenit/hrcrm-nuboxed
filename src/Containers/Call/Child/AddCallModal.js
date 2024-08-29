@@ -19,7 +19,10 @@ const AddCallModal = (props) => {
         onClose={() => handleCallModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <CallForm {...formProps} selectedCall={props.selectedCall} />
+          <CallForm {...formProps} selectedCall={props.selectedCall}
+           selectedLanguage={props.selectedLanguage}
+           translateText={props.translateText}
+          />
         </Suspense>
       </StyledDrawer>
     </>

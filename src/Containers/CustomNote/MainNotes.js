@@ -34,7 +34,11 @@ class MainNotes extends Component {
                         style={{ paddingBottom: "0.625em" }}
                       >
                         <Suspense fallback={<BundleLoader />}> 
-                        <MainSingleNotes {...item} userId={this.props.userId} /></Suspense>
+                        <MainSingleNotes {...item} userId={this.props.userId}
+                         translatedMenuItems={this.translatedMenuItems}
+                         selectedLanguage={this.props.selectedLanguage}
+                         translateText={this.props.translateText}
+                        /></Suspense>
                       </Timeline.Item>
                     ))}
                 </Timeline>

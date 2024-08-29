@@ -33,8 +33,7 @@ function Call (props) {
              "80" ,// 'Yes',//14
              "81", // 'No',//15
              "316" ,// 'Notes',//16
-             "84", // 'Delete',//17
-              '',//
+             "84", // 'Delete',//17              
 
             ];
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

@@ -14,6 +14,8 @@ class EventHeader extends Component {
                     leftComponent={<EventActionLeft clickView={this.props.clickView}
                     setclickView={this.props.setclickView}/>}
                     rightComponent={<EventActionRight
+                        selectedLanguage={this.props.selectedLanguage}
+                        translateText={this.props.translateText}
                     />}
                 />
                 </Suspense>

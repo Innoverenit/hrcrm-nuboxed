@@ -4,13 +4,9 @@ import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addProcureDetails, getBrand, getModel } from "../../../../../Account/AccountAction";
-// import ProcureDetailsCardList from "./ProcureDetailsCardList";
 import {addManual,getCategorylist} from "../../../../SuppliersAction";
 import {getSaleCurrency} from "../../../../../../Auth/AuthAction";
 import {getAllProductList,getLocationList} from "../../../../../Account/AccountAction";
-import { base_url2 } from "../../../../../../../Config/Auth";
-import LazySelect from "../../../../../../../Components/Forms/Formik/LazySelect";
-import { Field } from "formik";
 const { Option } = Select;
 
 function AddManualForm(props) {

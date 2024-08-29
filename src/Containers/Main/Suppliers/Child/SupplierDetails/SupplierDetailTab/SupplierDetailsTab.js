@@ -66,7 +66,7 @@ class SupplierDetailsTab extends Component {
             ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      // this.setState({ translatedMenuItems: translations });
+      this.setState({ translatedMenuItems: translations });
     } catch (error) {
       console.error('Error translating menu items:', error);
     }
