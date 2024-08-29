@@ -12,6 +12,7 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { StyledSelect, } from "../../../Components/UI/Antd";
 import {
   setSelectedReportType,
@@ -115,7 +116,7 @@ class ReportActionLeft extends React.Component {
                 </div>
              
 
-{this.props.selectedCategory === "Orders" && (
+{/* {this.props.selectedCategory === "Orders" && (
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -180,7 +181,22 @@ class ReportActionLeft extends React.Component {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>)}
+                </Badge>)} */}
+
+                {/* {this.props.selectedCategory === "Production" && this.props.UserOrgFlipClick && reportViewType === "ALL" && (
+<span class="cursor-pointer mr-1"
+                    onClick={() => this.props.handleButtonIcon("location")}
+                    style={{
+                      color: this.props.selectedButtonIcon === "location" && "tomato",
+                    }}
+                  >
+                    <Tooltip title="Location">
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "location" ? "#f279ab" : "#4bc076" }}>
+                        <LocationOnIcon className="text-white !text-icon" />
+                      </Avatar>
+                    </Tooltip>
+                  </span>
+)} */}
                 </div>
               </>
             )}

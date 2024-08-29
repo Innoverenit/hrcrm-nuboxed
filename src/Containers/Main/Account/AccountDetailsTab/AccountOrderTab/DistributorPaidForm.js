@@ -18,6 +18,7 @@ const DistributorSchema = Yup.object().shape({
   paymentMode: Yup.string().required("Input required"),
   entryAmount: Yup.string().required("Input required"),
   date: Yup.string().required("Input required"),
+  orderCurrencyId:Yup.string().required("Input required"),
   
 });
 function DistributorPaidForm(props) {
@@ -39,7 +40,6 @@ function DistributorPaidForm(props) {
     props.getPaymentMode(props.orgId)
   }, [])
 
-  console.log("ppId",props.particularRowData)
   return (
     <>
       <Formik
@@ -120,7 +120,6 @@ function DistributorPaidForm(props) {
                 
                   <div class="w-[31%]">
                     <Field
-                      
                       name="orderCurrencyId"
                       label={
                         <FormattedMessage
@@ -128,7 +127,7 @@ function DistributorPaidForm(props) {
                           defaultMessage="currency"
                         />
                       }
-
+                      isRequired
                       isColumn
                       inlineLabel
                       component={SelectComponent}

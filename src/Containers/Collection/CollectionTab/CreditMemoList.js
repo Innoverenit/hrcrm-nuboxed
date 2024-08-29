@@ -55,14 +55,14 @@ function CreditMemoList(props) {
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex font-medium   w-[12.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
-                        {item.orderSourceName}
+                        {item.newOrderNo}
                       </div>
 
                     </div>
 
                     <div className=" flex font-medium   w-[10.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
-                        {item.orderId}
+                        {item.invoiceNum}
                       </div>
 
                     </div>
@@ -73,19 +73,19 @@ function CreditMemoList(props) {
 
 
                       <div class=" text-xs  font-poppins text-center">
-                        {item.transactionNumber}
+                        {item.distributorName}
 
                       </div>
                     </div>
                     <div className=" flex font-medium  w-[9.02rem] max-xl:w-[5.02rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                       <div class=" text-xs  font-poppins text-center">
-                        {item.paymentType}
+                        {item.creditMemo}
 
                       </div>
                     </div>
                     <div className=" flex font-medium  w-[8.01rem]  max-xl:w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                     <div class=" text-xs  font-poppins text-center">
-                      {` ${dayjs(item.date).format("DD-MM-YY")}`}
+                      {` ${dayjs(item.creationDate).format("DD-MM-YY")}`}
 
                     </div>
                   </div>
@@ -94,25 +94,9 @@ function CreditMemoList(props) {
 
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                    
-                      <div className=" flex font-medium   w-[10.03rem] max-xl:w-[4.03rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                        <div class=" text-xs  font-poppins">
-                          {item.paymentAmount} &nbsp; {item.orderCurrencyName}
-                        </div>
-
-                      </div>
-                      <div className=" flex font-medium   w-[11.04rem] max-xl:w-[8.54rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                        <div class=" text-xs  font-poppins">
-                          {item.paymentModeName}
-                        </div>
-
-                      </div>
-                   
-
-                    
                       <div className=" flex font-medium   w-[7.05rem] max-xl:w-[3.85rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
 
-
-                        <div class=" text-xs  font-poppins">
+                        {/* <div class=" text-xs  font-poppins">
                           <span>
                             <MultiAvatar
                               primaryTitle={item.salesExecutive}
@@ -120,7 +104,7 @@ function CreditMemoList(props) {
                               imgHeight={"1.8rem"}
                             />
                           </span>
-                        </div>
+                        </div> */}
 
                       </div>
 

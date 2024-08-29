@@ -385,6 +385,7 @@ function AccountInvoiceTable(props) {
                                                     </div> */}
                                                        <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        {item.distributorCreditInd && (
                                                         <Tooltip title="">
                                                                 <Button
                                                                     className="cursor-pointer"
@@ -393,7 +394,7 @@ function AccountInvoiceTable(props) {
                                                                         handleSetParticularOrderData(item);
                                                                     }}
                                                                 >Generate</Button>
-                                                            </Tooltip>
+                                                            </Tooltip>)}
                                                       
                           
                           </div>       

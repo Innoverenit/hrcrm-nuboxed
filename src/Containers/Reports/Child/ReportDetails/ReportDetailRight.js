@@ -10,13 +10,11 @@ import OrgRequirement from "../OrganizationView/Requirement";
 import ReportsCardList from "../ReportsCardList";
 import { setTimeRangeReport,getAllReportInvestors } from "../../ReportAction";
 import ReportsProspectList from "../../ReportsProspectList";
-import OrderProductionCard from "./OrderProductionCard";
-import OrderProcureCard from "./OrderProcureCard";
 import OrdeRepairTab from "./OrdeRepairTab";
 import OrdeRepairOrgTab from "./OrdeRepairOrgTab";
 import InvoiceReportUserTab from "./InvoiceReportUserTab";
 import InvoiceReportOrgTab from "./InvoiceReportOrgTab";
-
+import ProductionReportOrgTab from "./ProductionReportOrgTab";
 class ReportDetailRight extends Component {
 
     state = {
@@ -69,24 +67,13 @@ class ReportDetailRight extends Component {
 
           {this.props.reportViewType === "ME" && (
             <>
-{this.props.selectedButtonIcon === "repair" && this.props.selectedCategory === "Orders" && (
+{this.props.selectedCategory === "Orders" && (
    <OrdeRepairTab               
    selectedButtonIcon={this.props.selectedButtonIcon}
    selectedCategory={this.props.selectedCategory}
    />
   )}
-    {this.props.selectedButtonIcon === "Procure" && this.props.selectedCategory === "Orders" && (
-  <OrderProcureCard
-  selectedButtonIcon={this.props.selectedButtonIcon}
-  selectedCategory={this.props.selectedCategory}
-  />
-  )}
-{this.props.selectedButtonIcon === "production" && this.props.selectedCategory === "Orders" && (
-  <OrderProductionCard
-  selectedButtonIcon={this.props.selectedButtonIcon}
-  selectedCategory={this.props.selectedCategory}
-  />
-  )}
+
   {this.props.selectedCategory === "Invoice" && (
   <InvoiceReportUserTab
   selectedButtonIcon={this.props.selectedButtonIcon}
@@ -99,7 +86,7 @@ class ReportDetailRight extends Component {
           )}
            {this.props.reportViewType === "ALL" && this.props.userorgflipClick && (
             <>
-          {this.props.selectedButtonIcon === "repair" && this.props.selectedCategory === "Orders" && (
+          {this.props.selectedCategory === "Orders" && (
    <OrdeRepairOrgTab               
    selectedButtonIcon={this.props.selectedButtonIcon}
    selectedCategory={this.props.selectedCategory}
@@ -107,6 +94,12 @@ class ReportDetailRight extends Component {
   )}
   {this.props.selectedCategory === "Invoice" && (
   <InvoiceReportOrgTab
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
+    {this.props.selectedCategory === "Production" && (
+  <ProductionReportOrgTab
   selectedButtonIcon={this.props.selectedButtonIcon}
   selectedCategory={this.props.selectedCategory}
   />
