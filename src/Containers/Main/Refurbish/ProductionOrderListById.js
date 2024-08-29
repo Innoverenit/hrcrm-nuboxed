@@ -114,7 +114,32 @@ function ProductionOrderListById(props) {
           }
         }
       }, [listening, isRecording, startTime]);
-
+      const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+      const [loading, setLoading] = useState(true);
+      useEffect(() => {
+          const fetchMenuTranslations = async () => {
+            try {
+              setLoading(true); 
+              const itemsToTranslate = [
+         
+               "660", // "order",//0
+                "760",  // "duedate",//1
+                 "677", //   "Lead"
+                  "142",   // "Status"
+                  // ""Search by OrderID 
+              ];
+      
+              const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+              setTranslatedMenuItems(translations);
+              setLoading(false);
+            } catch (error) {
+              setLoading(false);
+              console.error('Error translating menu items:', error);
+            }
+          };
+      
+          fetchMenuTranslations();
+        }, [props.selectedLanguage]);
 
     const handleLoadMore = () => {
         const callPageMapd = props.orderByUser && props.orderByUser.length &&props.orderByUser[0].pageCount
@@ -163,20 +188,17 @@ function ProductionOrderListById(props) {
 
                     <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                         <div className='w-[17.2rem]'></div>
-                        <div className=" w-[23.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order ID</div>
-                        <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.duedate"
-                            defaultMessage="duedate"
-                        /></div>
-                        <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.lead"
-                            defaultMessage="Lead"
-                        /></div>
+                        <div className=" w-[23.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]} ID</div>
+                        <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[1]}
+                        </div>
+                        <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[2]}
+                        </div>
 
-                        <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.status"
-                            defaultMessage="status"
-                        /></div>
+                        <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[3]}
+                        </div>
                         <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
                     </div>
                     <div class="">

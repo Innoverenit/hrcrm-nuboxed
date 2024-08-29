@@ -28,6 +28,44 @@ const QRCodeModal = lazy(() => import("../../../Components/UI/Elements/QRCodeMod
 
 function InspectedPhoneByOrder(props) {
 
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+             "264", //  Brand,//0
+              "265",  // "model",//1
+              "316" ,// Notes             
+              "76", // "Assigned ",//3
+              "1222" , // Issue //4
+              "113",    //Info5
+              "1217" , // "conditions",//6
+              "",      //Technician7
+              "1252",// Print8
+               "661",    //Repair 9
+                "119" ,//    Task10
+               "", // Receive Spare11
+                
+                "277",// Company12
+               
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+
     const componentRefs = useRef([]);
     useEffect(() => {
         props.getDispatchUpdateList(props.rowData.orderPhoneId)
@@ -163,27 +201,48 @@ function InspectedPhoneByOrder(props) {
           />
         </div>
                         <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                            <div className=" md:w-[7.12rem]">Brand</div>
-                            <div className=" md:w-[7.1rem]"><FormattedMessage
+                            <div className=" md:w-[7.12rem]">
+                            {translatedMenuItems[0]} {/* Brand */}
+                                </div>
+                            <div className=" md:w-[7.1rem]">
+                            {translatedMenuItems[1]}   {/* <FormattedMessage
                                 id="app.model"
                                 defaultMessage="model"
-                            /></div>
-                            <div className=" md:w-[6.8rem] "><FormattedMessage
+                            /> */}
+                            </div>
+                            <div className=" md:w-[6.8rem] ">
+                            IMEI
+                                {/* <FormattedMessage
                                 id="app.imei"
                                 defaultMessage="imei"
-                            /></div>
-                            <div className="md:w-[8.6rem]">Issue </div>
+                            /> */}
+                            </div>
+                            <div className="md:w-[8.6rem]">
+                            {translatedMenuItems[3]} {/* Issue  */}
+                                </div>
 
-                            <div className="md:w-[4.7rem]">Info</div>
-                            <div className="md:w-[5.9rem]"><FormattedMessage
+                            <div className="md:w-[4.7rem]">
+                            {translatedMenuItems[4]} {/* Info */}
+                                </div>
+                            <div className="md:w-[5.9rem]">
+                            {translatedMenuItems[5]}  {/* <FormattedMessage
                                 id="app.conditions"
                                 defaultMessage="conditions"
-                            /></div>
-                            <div className="md:w-[7rem]">Technician</div> 
-                            <div className="md:w-[6rem]">QC</div>
-                            <div className="md:w-[4rem]">Repair</div>
+                            /> */}
+                            </div>
+                            <div className="md:w-[7rem]">
+                            {translatedMenuItems[6]}  {/* Technician */}
+                                </div> 
+                            <div className="md:w-[6rem]">
+                          QC
+                                </div>
+                            <div className="md:w-[4rem]">
+                            {translatedMenuItems[8]}  {/* Repair */}
+                                </div>
                             {/* <div className="md:w-[5rem]">Qa</div> */}
-                            <div className="md:w-[7.2rem]">Task</div>
+                            <div className="md:w-[7.2rem]">
+                            {translatedMenuItems[9]}  {/* Task */}
+                                </div>
                         </div>
                         <div class="overflow-y-auto h-[72vh]"  style={{ scrollbarWidth:"thin"}}>
                             {props.updateDispatchList.length === 0 ? <NodataFoundPageRefubish /> :props.updateDispatchList.map((item, index) => {
@@ -241,8 +300,8 @@ function InspectedPhoneByOrder(props) {
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {item.repairTechnicianName && <MultiAvatar
                                                         primaryTitle={item.repairTechnicianName}
-                                                        imgWidth={"2.1rem"}
-                                                        imgHeight={"2.1rem"}
+                                                        imgWidth={"1.8rem"}
+                                                        imgHeight={"1.8rem"}
                                                     />}
                                                 </div>
                                             </div>
@@ -277,7 +336,7 @@ function InspectedPhoneByOrder(props) {
                                                             handleParticularRow(item)
                                                         }}
                                                     >
-                                                        Receive Spare
+                                                      {translatedMenuItems[11]}  {/* Receive Spare */}
                                                     </Button>
                                                 </div>
                                             </div>
@@ -289,7 +348,8 @@ function InspectedPhoneByOrder(props) {
                                                         trigger={() => <Button
                                                             onClick={handlePrint}
                                                         >
-                                                            Print<QrCodeIcon className="!text-icon"/></Button>
+                                                             {translatedMenuItems[7]}  {/* Print */}
+                                                            <QrCodeIcon className="!text-icon"/></Button>
                                                         }
                                                         content={() => componentRefs.current[index]
                                                         }
@@ -306,9 +366,9 @@ function InspectedPhoneByOrder(props) {
                                                                 alignItems: "center",
                                                             }}
                                                         >
-                                                            <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Company: {item.company}</div>
-                                                            <div style={{ marginBottom: "10px" }}>Model: {item.model}</div>
-                                                            <div style={{ marginBottom: "10px" }}>IMEI: {item.imei}</div>
+                                                            <div style={{ marginBottom: "10px", fontWeight: "bold" }}> {translatedMenuItems[12]}: {item.company}</div>
+                                                            <div style={{ marginBottom: "10px" }}> {translatedMenuItems[1]}: {item.model}</div>
+                                                            <div style={{ marginBottom: "10px" }}> {translatedMenuItems[2]}: {item.imei}</div>
                                                             <div style={{ marginBottom: "10px" }}>
                                                                 <QRCode value={item.imei} className="!text-icon" />
                                                             </div>
@@ -317,10 +377,7 @@ function InspectedPhoneByOrder(props) {
                                                 </div>
                                             </div>
                                             <div>
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.task"
-                                                                        defaultMessage="Task"
-                                                                    />}>
+                                                                    <Tooltip title={translatedMenuItems[4]}>
                                                                         {/* <FormatListBulletedIcon
                                                                             className="!text-base cursor-pointer"
                                                                             style={{ color: expand && item.phoneId === data.phoneId ? "red" : "black" }}
@@ -346,7 +403,7 @@ function InspectedPhoneByOrder(props) {
                                                                 </div>
                                                                 <div className=" flex  w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Notes">
+                                                    <Tooltip title= {translatedMenuItems[2]}>
                                                     <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
                                                             onClick={() => {
                                                                 handleSetRowData(item);
@@ -366,17 +423,25 @@ function InspectedPhoneByOrder(props) {
                     </div>
 
                 </div>}
-            {show && <ReceivedSpareList data={data} />}
+            {show && <ReceivedSpareList data={data}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage} />}
             {showTask &&(
-<PhoneListOrderTaskTable data={data}/>
+<PhoneListOrderTaskTable data={data}
+ translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}/>
                 )}
 
 <ProcessTaskAllDrawer
+ translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}
                    data={data}
                    allTaskModal={props.allTaskModal}
                   handleAllTaskModal={props.handleAllTaskModal}
                 />
                  <RepairPhoneNotesOrderModal
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage}
                     RowData={RowData}
                     phoNotesRepairOrderModal={props.phoNotesRepairOrderModal}
                     handleRepairPhoneNotesOrderModal={props.handleRepairPhoneNotesOrderModal}
