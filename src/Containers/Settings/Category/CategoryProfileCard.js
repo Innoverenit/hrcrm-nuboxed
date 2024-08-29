@@ -16,8 +16,8 @@ function CategoryProfileCard(props) {
               handleRuleClick={props.handleRuleClick}
               toggleViewType={toggleViewType}
               currentRulesOpen={props.currentRulesOpen}
-            //   recruitProAdvance={props.recruitProAdvance}
-            //   handleRecruitProAdvance={props.handleRecruitProAdvance}
+              recruitProAdvance={props.recruitProAdvance}
+              handleRecruitProAdvance={props.handleRecruitProAdvance}
             />
           ) : null
         }

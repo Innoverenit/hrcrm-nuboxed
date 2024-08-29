@@ -12,7 +12,6 @@ import {
 } from "@ant-design/icons";
 import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
 import FWLogo from "../../Assets/Images/name.jpg";//ct
-// import FWLogo1 from "../../Assets/Images/dsdde.jpg"; //ct
 import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nubox
 import DevelopTk from "../../Assets/Images/logo_22.png";// testhr
 
@@ -82,7 +81,7 @@ class Login extends Component {
           >
             <img
               className="big-logo w-[13rem]"
-              src={DevelopTk}
+              src={FWLogo}
               alt="Tekorero logo"
             />
             <br />

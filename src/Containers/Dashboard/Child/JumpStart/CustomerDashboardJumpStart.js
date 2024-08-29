@@ -15,8 +15,8 @@ import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 
 class CustomerDashboardJumpStart extends React.Component{
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     const startDate = dayjs().startOf("month"); 
     const endDate = dayjs();
     var today = new Date(),
@@ -32,11 +32,37 @@ class CustomerDashboardJumpStart extends React.Component{
     startDate,
     endDate
   };
-}
+  this.state = {
+    translatedMenuItems: [],
+};
+  }
 
 componentDidMount() {
    this.props.getJumpDistributorDetail(this.props.timeRangeType);
+   this.fetchMenuTranslations();
 }
+componentDidUpdate(prevProps) {
+  if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+    this.fetchMenuTranslations();
+  }
+}
+
+fetchMenuTranslations = async () => {
+  try {
+    const itemsToTranslate = [
+      "",//0 "Customer Added"
+      "",//1 "Contacts Added"
+      "1229",//2 "Orders Added"
+      "",//3"Orders Completed"
+      
+    ];
+
+    const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+    this.setState({ translatedMenuItems: translations });
+  } catch (error) {
+    console.error('Error translating menu items:', error);
+  }
+};
 // componentDidMount() {
   
 //    if (this.props.role==="USER"&&this.props.user.department==="Recruiter"){
@@ -105,12 +131,7 @@ render() {
                              <JumpStartBox
             noProgress
             bgColor="linear-gradient(270deg,#F15753,orange)"
-            title={
-              <FormattedMessage
-                id="app.customerAdded"
-                defaultMessage="Customer Added"
-              />
-            }
+            title={this.state.translatedMenuItems[0]}
             value={this.props.distributorinDashboard.totalDistributor}
             jumpstartClick={()=>this.props.handleCustomerAddedModal(true)}
           />
@@ -128,12 +149,7 @@ render() {
                                <JumpStartBox
             noProgress
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-            title={
-              <FormattedMessage
-                id="app.ContactsAdded"
-                defaultMessage="Contacts Added"
-              />
-            }
+            title={this.state.translatedMenuItems[1]}
             value={this.props.distributorinDashboard.totalContactPerson}
             jumpstartClick={()=>this.props.handleContactAddedModal(true)}
           />
@@ -153,12 +169,7 @@ render() {
             noProgress
             bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
             // title="Open Tasks"
-            title={
-              <FormattedMessage
-                id="app.OrdersAdded"
-                defaultMessage="Orders Added"
-              />
-            }
+            title={this.state.translatedMenuItems[2]}
             value={this.props.distributorinDashboard.totalOrder}
             jumpstartClick={()=>this.props.handleOrderAddedModal(true)}
             cursorData={"pointer"}
@@ -178,12 +189,7 @@ render() {
                               <JumpStartBox
             noProgress
             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-            title={
-              <FormattedMessage
-                id="app.ordersCompleted"
-                defaultMessage="Orders Completed"
-              />
-            }
+            title={this.state.translatedMenuItems[3]}
             value={this.props.distributorinDashboard.completeOrder}
             jumpstartClick={()=>this.props.handleOrderClosedModal(true)}
             cursorData={"pointer"}

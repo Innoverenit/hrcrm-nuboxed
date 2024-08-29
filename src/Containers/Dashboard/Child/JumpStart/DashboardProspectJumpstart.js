@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -10,6 +10,31 @@ import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 
 function DashboardProspectJumpstart(props) {
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+        "", //  "Prospects"//0
+         "",   // "Quotations this Year",//1
+          "",  // "Quotations Life Time",//2
+           "", // "Open Quotations",//3
+         ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const { openPitchQualified, handlePitchQualifiedDrawer, openPitchAdded, handlePitchAddedDrawer,
     openDealAdded, handleDealAddedDrawer, openDealClosed, handleDealClosedDrawer
   } = props;
@@ -34,10 +59,7 @@ console.log(props.prospectLifeTime.customerCountByCountry)
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              title={<FormattedMessage
-                id="app.prospects"
-                defaultMessage="Prospects"
-              />}
+              title={translatedMenuItems[0]}
             jumpstartClick={()=>props.handleProspectDrawer(true)}
             cursorData={"pointer"}
              value={props.prospectChart.customerCountByCountry}
@@ -58,10 +80,7 @@ console.log(props.prospectLifeTime.customerCountByCountry)
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-              title={<FormattedMessage
-                id="app.opertunitiesThisYear"
-                defaultMessage="Quotations this Year"
-              />}
+              title={translatedMenuItems[1]}
             jumpstartClick={()=>props.handleQuotationYear(true)}
              cursorData={"pointer"}
             value={props.openQuotationYear.yearlyOpportunityCountByCountry}
@@ -86,10 +105,7 @@ console.log(props.prospectLifeTime.customerCountByCountry)
                                <JumpStartBox
    bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
-              title={<FormattedMessage
-                id="app.financeclosed"
-                defaultMessage="Quotations Life Time"
-              />}
+              title={translatedMenuItems[2]}
               value={props.prospectLifeTime.opportunityCountByCountry}
             jumpstartClick={()=>props.handleQuotationLife(true)}
             cursorData={"pointer"}
@@ -110,10 +126,7 @@ console.log(props.prospectLifeTime.customerCountByCountry)
                               <JumpStartBox
                          bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
-              title={<FormattedMessage
-                id="app.financecancelled"
-                defaultMessage="Open Quotations"
-              />}
+              title={translatedMenuItems[3]}
               value={props.prospectQuotation.openOpportunityCountByCountry}
             // jumpstartClick={()=>handleDealClosedDrawer(true)}
             // cursorData={"pointer"}
