@@ -34,14 +34,14 @@ function OpportunityTable(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Quotation",//0
-          "Prospect",//1
-          "Sponsor",//2
-          "Start Date",//3
-          "Value",//4
-          "Stages",//5
-          "Sales Rep",//6
-          "Owner"//7
+         "213",//0 Quotation
+          "97",//1 Prospect
+          "216",//2 Sponsor
+          "176",//3 Start Date
+          "218",//4 Value
+          "219",//5 Stages
+          "220",//6 Sales Rep
+          "77"//7Owner"
          
         ];
 
