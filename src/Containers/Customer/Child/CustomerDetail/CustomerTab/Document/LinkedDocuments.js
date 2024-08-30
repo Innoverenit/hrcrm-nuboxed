@@ -55,13 +55,18 @@ class LinkedDocuments extends Component {
     try {
       const itemsToTranslate = [
         
-"Date",//0
-"Name",//1
-"Description",//2
-"Uploaded By",//3
-"File Name",//4
-"Contract",//5
-        
+           "74" ,  // "Date",//0
+             "110" , // "Name",//1
+           "47" ,   // "Description",//2
+           "1207" ,   // "Uploaded By",//3
+             "1208" , // "File Name",//4
+             "1205" , // "Contract",//5
+            "" ,  // Search  6
+           "" ,   // Reset 7   
+            "" ,  // New8
+             "" , // "Download"9
+            "1259" ,  // Do you want to delete?10
+             "84" , // "Delete"11
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -99,14 +104,14 @@ class LinkedDocuments extends Component {
           size="small"
         
         >
-          Search
+          {this.state.translatedMenuItems[6]} {/* Search */}
         </Button>
         <Button className="w-[90%]"
           onClick={() => this.handleReset(clearFilters)}
           size="small"
      
         >
-          Reset
+         {this.state.translatedMenuItems[7]}  {/* Reset */}
         </Button>
       </div>
     ),
@@ -209,7 +214,7 @@ class LinkedDocuments extends Component {
     <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-xs   font-poppins font-medium  cursor-pointer">
+                                            <div class="text-xs   font-poppins   cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
@@ -231,19 +236,19 @@ class LinkedDocuments extends Component {
         {date === currentdate ? (
     <span class="text-xs text-[tomato] font-bold"
     >
-            New
+             {this.state.translatedMenuItems[8]}{/* New */}
           </span>
         ) : null} 
                               </div>
                           </div>
-                          <div className=" flex font-medium  md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                          <div className=" flex   md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                           
                             <div class="text-xs  font-poppins">
                             {elipsize(item.documentDescription || "", 15)}
                             </div>
                         </div>
                         </div>
-                        <div className="flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className="flex   md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 <div className="text-xs  font-poppins text-center">
 <div className="font-normal text-xs font-poppins">
@@ -259,13 +264,13 @@ class LinkedDocuments extends Component {
                      </div>
 </div>
 </div>
-<div className=" flex font-medium  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex   md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                               <div class=" text-xs  font-poppins text-center">
                               {item.fileName}
 
                               </div>
                           </div>
-                          <div className=" flex font-medium  md:w-[4.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex   md:w-[4.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                               <div class=" text-xs  font-poppins text-center">
                               <ContractToggle
           contractInd={item.contractInd}
@@ -281,7 +286,7 @@ class LinkedDocuments extends Component {
                               <a
             href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
-          > <Tooltip title="Download">
+          > <Tooltip title= {this.state.translatedMenuItems[9]}>
             <DownloadIcon
             className="cursor-pointer !text-icon"
             /></Tooltip>
@@ -290,12 +295,12 @@ class LinkedDocuments extends Component {
           <div>
             
           <Popconfirm
-                        title="Do you want to delete?"
+                        title= {this.state.translatedMenuItems[10]}
                         okText="Yes"
                         cancelText="No"
                         onConfirm={() => deleteDocument(item.documentId)}
                       >
-                         <Tooltip title="Delete">
+                         <Tooltip title= {this.state.translatedMenuItems[11]}>
       
             <DeleteOutlined
 className="cursor-pointer !text-icon text-[red]"

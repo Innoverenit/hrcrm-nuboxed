@@ -37,14 +37,19 @@ function LinkedContact(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Name ",//0
-          "Email",//1
-          "Mobile",//2      
-          "Department",//3
-          "Designation",//4
-          "Portal",//5
-         
-         
+       "110", //  "Name ",//0
+       "140", //   "Email",//1
+       "546", //   "Mobile",//2      
+       "326", //   "Department",//3
+       "325", //   "Designation",//4
+       "", //   "Portal",//5
+       "100", // New 6
+       "170", // "Edit"7
+       "", //  "Do you wish to detach?"8
+       "", //  "Detach Contact"9
+       "", //  Login Applied10
+       "", //  Login Approved11
+       "", // Apply For Login12
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -159,7 +164,7 @@ function LinkedContact(props) {
                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                      
-                                <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                <div className=" flex  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 <div>
                                 <SubTitle>
@@ -188,7 +193,7 @@ function LinkedContact(props) {
         {date === currentdate ? (
           <span class="text-xs text-[tomato] font-bold"
           >
-            New
+           {translatedMenuItems[6]} {/* New */}
           </span>
         ) : null}
        
@@ -220,7 +225,7 @@ function LinkedContact(props) {
     {item.department}
   </div>
 </div>
-<div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex  md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs  font-poppins text-center">
@@ -228,7 +233,7 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs  font-poppins text-center">
@@ -242,7 +247,7 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs  font-poppins text-center">
@@ -260,11 +265,11 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs  font-poppins text-center">
-                                    <Tooltip title="Edit">
+                                    <Tooltip title={translatedMenuItems[7]}>
               <span
                 className=" !cursor-pointer "
             
@@ -286,12 +291,13 @@ function LinkedContact(props) {
                                     <StyledPopconfirm
               placement="bottom"
               //title="Do you wish to detach?"
-              title={
-                <FormattedMessage
-                  id="app.doyouwishtodetach?"
-                  defaultMessage="Do you wish to detach?"
-                />
-              }
+              title={translatedMenuItems[8]}
+              // {
+              //   <FormattedMessage
+              //     id="app.doyouwishtodetach?"
+              //     defaultMessage="Do you wish to detach?"
+              //   />
+              // }
               //   onConfirm={() =>
               //     unlinkContactFromOpportunity(opportunityId, name)
               //   }
@@ -299,12 +305,13 @@ function LinkedContact(props) {
               <ActionIcon
                className=" !text-xl cursor-pointer text-[#fb8500]"
                 //tooltipTitle="Detach Contact"
-                tooltiptitle={
-                  <FormattedMessage
-                    id="app.detachcontact"
-                    defaultMessage="Detach Contact"
-                  />
-                }
+                tooltiptitle={translatedMenuItems[9]}
+                // {
+                //   <FormattedMessage
+                //     id="app.detachcontact"
+                //     defaultMessage="Detach Contact"
+                //   />
+                // }
                 iconType="api"
                 onClick={null}
                 size="1em"
@@ -334,8 +341,10 @@ function LinkedContact(props) {
               
             )
         }}
-    ><FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /></Button>
-</div> : item.accessInd === 2 ? <b>Login Applied</b> : <b style={{ color: "#32CD32" }}>Login Approved</b>
+    >
+     {translatedMenuItems[12]} {/* <FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /> */}
+      </Button>
+</div> : item.accessInd === 2 ? <b>{translatedMenuItems[10]}</b> : <b style={{ color: "#32CD32" }}>{translatedMenuItems[11]}</b>
 
 }
 

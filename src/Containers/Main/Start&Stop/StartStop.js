@@ -711,7 +711,7 @@ function StartStop(props) {
   }
 
   return (
-    <div className="flex items-center -mt-4">
+    <div className="flex items-center ">
       <div className="ml-[22px] mt-[0.2rem] max-sm:ml-1">
         <Select
           value={drop1}

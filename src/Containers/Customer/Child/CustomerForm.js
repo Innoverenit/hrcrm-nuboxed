@@ -62,24 +62,25 @@ function CustomerForm(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          ' Name', // 0
-'Url ', // 1
-'Dial Code', // 2
-'Phone No', // 3
-'Sector', // 4
-'Source', // 5
-'Potential', // 6
-'Currency', // 7
-'Type', // 8
-'Assigned', // 9
-'Address', // 10
-'Create'
-// 'Street',//11
-// 'Zip Code',//12
-// 'City',//13
-// 'State',//14
-// 'Country',//15
-        ];
+        '110',// ' Name', // 0
+        '302',    // 'Url ', // 1
+         '357',   // 'Dial Code', // 2
+          '300',  // 'Phone No', // 3
+         '278',   // 'Sector', // 4
+         '279',   // 'Source', // 5
+        '407',// 'Potential', // 6
+         '241',   // 'Currency', // 7
+          '71',  // 'Type', // 8
+          '76',  // 'Assigned', // 9
+          '185',  // 'Address', // 10
+           '104', // 'Create',  // 11
+          '316',  // Notes12
+           '158', // Start13
+           '5', // Stop"14
+           '194', // Clear" 15    
+          '',  // Search or select source" //16
+          '',  // Search or select sector"//17
+  ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -575,7 +576,7 @@ country_dial_code
 <Select
         showSearch
         style={{ width: 200 }}
-        placeholder="Search or select sector"
+        placeholder={translatedMenuItems[17]}
         optionFilterProp="children"
         loading={isLoadingSector}
         onFocus={handleSelectSectorFocus}
@@ -601,7 +602,7 @@ country_dial_code
 <Select
         showSearch
         style={{ width: 200 }}
-        placeholder="Search or select source"
+        placeholder= {translatedMenuItems[16]}
         optionFilterProp="children"
         loading={isLoading}
         onFocus={handleSelectFocus}
@@ -678,11 +679,11 @@ country_dial_code
 
 {props.customerConfigure.noteInd===true&&
 <div class="mt-3">
-                    <div>Notes</div>
+                    <div> {translatedMenuItems[12]}</div>
                     <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
+                      <Tooltip title= {translatedMenuItems[13]}>
                         <span  >
                           <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
                         </span>
@@ -690,7 +691,7 @@ country_dial_code
                     </span>
 
                     <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
+                      <Tooltip title= {translatedMenuItems[14]}>
                         <span
                           
                             >
@@ -700,7 +701,7 @@ country_dial_code
                     </span>
 
                     <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
+                      <Tooltip title= {translatedMenuItems[15]}>
                         <span  >
                           <RotateRightIcon className="!text-icon ml-1" />
                         </span>

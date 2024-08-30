@@ -32,10 +32,10 @@ class LinkedInvoice extends Component {
     try {
       const itemsToTranslate = [
         
-        "Date",//0
-        "Name",//1
-        "Description",//2
-        "Uploaded By",//3
+       "74", // "Date",//0
+       "110", // "Name",//1
+        "147",// "Description",//2
+       "1207", // "Uploaded By",//3
         
       ];
 

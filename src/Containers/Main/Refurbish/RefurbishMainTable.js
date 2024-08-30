@@ -152,14 +152,15 @@ const ProductionOrderList = (props) => {
               "772",      //Delivery7
               "108", // "Normal"8
               "771" ,// "Final"9
-            // "",   // Add Lead10
+             "1272",// Add Lead10
               "316",      // "Notes" 11
               "117" ,   // Reject 12
-            //   "", // Assign For Repair 13
-            //    "",  // Assign For QC 14
+              "1299", // Assign For Repair 13
+               "1274",  // Assign For QC 14
                "100" , //  New 15
                "170",   // "Edit" 16
                "661",    //Repair
+            //    QC to be approved by Sales Owner/ Customer
             ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

@@ -37,6 +37,37 @@ const CustomerActionLeft = (props) => {
   const [searchOnEnter, setSearchOnEnter] = useState(false);
   const [currentData, setCurrentData] = useState("");
   const dummy = ["cloud", "azure", "fgfdg"];
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+   "374", // "My Prospects" // 0
+   "227",// "Team View", // 1
+   "228",// '"All', // 2
+   "228",// '"ALL"', // 3
+   "288",// 'Search by Name or Sector" // 4
+   "396",// ' Sort by Creation Date', // 5
+   "289",// 'Creation Date', // 6
+  
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+  
   console.log(searchOnEnter)
   const handleChange = (e) => {
     setCurrentData(e.target.value);
@@ -207,7 +238,8 @@ const CustomerActionLeft = (props) => {
   return (
     <div class=" flex items-center"
     >
-      <Tooltip title={<FormattedMessage id="app.myprospects" defaultMessage="My Prospects" />}>
+      <Tooltip title= {translatedMenuItems[0]}>
+      {/* FormattedMessage id="app.myprospects" defaultMessage="My Prospects" />} */}
         <Badge
           size="small"
           count={(props.viewType === "table" && props.recordData.customer) || 0}
@@ -246,7 +278,7 @@ const CustomerActionLeft = (props) => {
         </Badge>
       </Tooltip> */}
       {user.teamsAccessInd === true && (
-        <Tooltip title="Team View">
+        <Tooltip title= {translatedMenuItems[1]}>
           <Badge
             size="small"
             count={(teamCount||props.viewType === "teams" && props.customerTeamRecordData.prospectTeam || 0)}
@@ -267,7 +299,7 @@ const CustomerActionLeft = (props) => {
         </Tooltip>
       )}
       {(user.crmInd === true && user.customerFullListInd === true || user.role === "ADMIN") && (
-        <Tooltip title="All">
+        <Tooltip title= {translatedMenuItems[2]}>
           <Badge
             size="All"
             count={(props.viewType === "all" && props.customerAllRecordData.customer) || 0}
@@ -281,10 +313,10 @@ const CustomerActionLeft = (props) => {
               }}
             >
               <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                <FormattedMessage
+              {translatedMenuItems[3]} {/* <FormattedMessage
                   id="app.all"
                   defaultMessage="ALL"
-                />
+                /> */}
               </Avatar>
 
             </span>
@@ -333,7 +365,8 @@ const CustomerActionLeft = (props) => {
       >
         <div class=" w-72 max-sm:w-24">
           <Input
-            placeholder="Search by Name or Sector"
+            placeholder= {translatedMenuItems[4]}
+            // "Search by Name or Sector"
 
             width={"100%"}
             suffix={suffix}
@@ -345,10 +378,10 @@ const CustomerActionLeft = (props) => {
         <div class="w-[40%]  ml-2 max-sm:w-[45%]">
           <StyledSelect placeholder={
             <span>
-              Sort by Creation Date
+               {translatedMenuItems[5]}{/* Sort by Creation Date */}
             </span>
           } onChange={(e) => props.handleFilterChange(e)}>
-            <Option value="CreationDate">Creation Date</Option>
+            <Option value="CreationDate"> {translatedMenuItems[6]}</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>
           </StyledSelect>
