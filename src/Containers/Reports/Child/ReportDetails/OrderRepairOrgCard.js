@@ -57,7 +57,7 @@ const OrderRepairOrgCard = (props) => {
     };
 
     useEffect(() => {
-      if (props.selectedCategory==="Orders" && props.selectedButtonIcon==="repair"){
+      if (props.selectedCategory==="Orders"){
         fetchData1();
       }
         

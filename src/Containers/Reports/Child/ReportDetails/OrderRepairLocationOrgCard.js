@@ -13,7 +13,7 @@ import {getlocation} from "../../../Event/Child/Location/LocationAction";
 const ButtonGroup = Button.Group;
 const { Option } = Select;
 
-const OrderRepairLocationCard = (props) => {
+const OrderRepairLocationOrgCard = (props) => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const tab = document.querySelector('.ant-layout-sider-children');
   const tableHeight = tab && tab.offsetHeight * 0.75;
@@ -31,7 +31,7 @@ const OrderRepairLocationCard = (props) => {
         const end = `${endDate.format("YYYY-MM-DD")}T20:00:00Z`;
 
       try {
-        const response = await axios.get(`${base_url2}/dashboard/allOrderLocation/${ev}/${props.userId}/${props.startDate}/${props.endDate}`,{
+        const response = await axios.get(`${base_url2}/dashboard/allOrgOrderLocation/${ev}/${props.orgId}/${props.startDate}/${props.endDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -48,7 +48,7 @@ const OrderRepairLocationCard = (props) => {
     const [loading2, setLoading2] = useState(false);
       const fetchData2 = async (ev) => {
         try {
-          const response = await axios.get(`${base_url2}/dashboard/completeOrderLocation/${ev}/${props.userId}/${props.startDate}/${props.endDate}`,{
+          const response = await axios.get(`${base_url2}/dashboard/completeOrgOrderLocation/${ev}/${props.orgId}/${props.startDate}/${props.endDate}`,{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
@@ -65,7 +65,7 @@ const OrderRepairLocationCard = (props) => {
     const [loading3, setLoading3] = useState(false);
       const fetchData3 = async (ev) => {
         try {
-          const response = await axios.get(`${base_url2}/dashboard/inCompleteOrderLocation/${ev}/${props.userId}/${props.startDate}/${props.endDate}`,{
+          const response = await axios.get(`${base_url2}/dashboard/inCompleteOrgOrderLocation/${ev}/${props.orgId}/${props.startDate}/${props.endDate}`,{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
@@ -525,4 +525,4 @@ const OrderRepairLocationCard = (props) => {
       },
       dispatch
     );
-    export default connect(mapStateToProps, mapDispatchToProps)(OrderRepairLocationCard);
+    export default connect(mapStateToProps, mapDispatchToProps)(OrderRepairLocationOrgCard);
