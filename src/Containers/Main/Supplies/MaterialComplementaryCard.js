@@ -7,7 +7,7 @@ import {
 } from "./SuppliesAction";
 import EuroIcon from '@mui/icons-material/Euro';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Tooltip, Popconfirm } from "antd";
+import { Tooltip, Popconfirm,Input } from "antd";
 import {
   DeleteOutlined,
   PhoneFilled,
@@ -21,8 +21,11 @@ import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import ComplementaryToggle from "./ComplementaryToggle";
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import { AudioOutlined } from '@ant-design/icons';
 
 
+const { Search } = Input;
 
 function MaterialComplementaryCard(props) {
 
@@ -34,6 +37,13 @@ function MaterialComplementaryCard(props) {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [openComplementary,setopenComplementary] = useState(false);
+
+  const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); 
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
 
   const openModal = () => {
     setModalVisible(true);
@@ -127,8 +137,99 @@ function MaterialComplementaryCard(props) {
       materialBuildrawer, 
       handleMaterialBuilderDrawer,
       handlePriceModal } = props;
+
+      const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+  
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+
+        const handleChange = (e) => {
+          setCurrentData(e.target.value);
+          if (searchOnEnter&& e.target.value.trim() === "") {  //Code for Search
+             props.getPhonelistByOrderId(props.rowData.orderPhoneId, "0");
+             props.ClearReducerData();
+            setSearchOnEnter(false);
+          }
+        };
+        const handleSearch = () => {
+          if (currentData.trim() !== "") {
+            // Perform the search
+             props.searchOpenOrdeReceived(currentData);
+            setSearchOnEnter(true);  //Code for Search
+          } else {
+            console.error("Input is empty. Please provide a value.");
+          }
+        };
+        const handleStartListening = () => {
+          setStartTime(Date.now());
+          setIsRecording(true);
+          SpeechRecognition.startListening();
+          if (timerRef.current) {
+            clearTimeout(timerRef.current);
+          }
+          timerRef.current = setTimeout(() => {
+            SpeechRecognition.stopListening();
+            setIsRecording(false);
+          }, minRecordingTime);
+        };
+        const suffix = (
+          <AudioOutlined
+            onClick={handleStartListening}
+            style={{
+              fontSize: 16,
+              color: '#1890ff',
+            }}
+      
+          />
+        );
+
+      const handleStopListening = () => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+          if (transcript.trim() !== "") {
+            setCurrentData(transcript);
+            props.searchOpenOrdeReceived(transcript);
+            setSearchOnEnter(true);
+          }
+        };
+        useEffect(() => {
+          if (!listening && isRecording) {
+            handleStopListening();
+          }
+        }, [listening]);
+        useEffect(() => {
+          if (isRecording && !listening) {
+            const elapsedTime = Date.now() - startTime;
+            if (elapsedTime < minRecordingTime) {
+              SpeechRecognition.startListening();
+            } else {
+              setIsRecording(false);
+            }
+          }
+        }, [listening, isRecording, startTime]);
+
   return (
     <>
+     <Input
+          placeholder="Search by Name "
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+
+
       <div className=" flex sticky z-auto">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-bold sticky  z-10">
