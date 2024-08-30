@@ -28,6 +28,39 @@ function ProductionRepairOrder(props) {
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+     
+           "660", // "order",//0
+            "760",  // "duedate",//1
+             "677", //   "Lead"2
+              "142",   // "Status"3
+              "1280",// ""Search by OrderID 4
+            "100",  // New5
+             "316",  // "Notes"6
+             "1315",  // Start Repair7
+             "1316",  // "Pause repair"8
+             "1317",  // "Resume repair"9
+              "78", // Completed10
+             
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
     useEffect(() => {
         setPage(page + 1);
         props.getRepairOrderByUser(props.userId)
@@ -142,7 +175,7 @@ function ProductionRepairOrder(props) {
                 <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div class=" w-64 max-sm:w-24">
         <Input
-          placeholder="Search by OrderID "
+          placeholder={translatedMenuItems[4]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -152,19 +185,24 @@ function ProductionRepairOrder(props) {
       </div>
                     <div className=" flex max-sm:hidden w-[100%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className="w-[10.5rem]"></div>
-                        <div className=" w-[21.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order ID</div>
-                        <div className=" w-[27.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[21.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[0]}  {/* Order ID */}
+                          </div>
+                        <div className=" w-[27.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[1]}  {/* <FormattedMessage
                             id="app.duedate"
                             defaultMessage="duedate"
-                        />
+                        /> */}
                         </div>
                         <div className=" md:w-[18.8rem] ">
-                            <FormattedMessage
+                        {translatedMenuItems[2]}  {/* <FormattedMessage
                                 id="app.lead"
                                 defaultMessage="Lead"
-                            />
+                            /> */}
                         </div>
-                        <div className="w-[20.6rem]">Status</div>
+                        <div className="w-[20.6rem]">
+                        {translatedMenuItems[3]} {/* Status */}
+                          </div>
                         <div className="w-[0.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
                     </div>
                     <div class="">
@@ -207,7 +245,7 @@ function ProductionRepairOrder(props) {
                                                     &nbsp;&nbsp;
                                                     {date === currentdate ? (
                                                         <span class="text-[tomato] font-bold text-xs">
-                                                            New
+                                                          {translatedMenuItems[5]}  {/* New */}
                                                         </span>
                                                     ) : null}
                                                 </div>
@@ -239,7 +277,7 @@ function ProductionRepairOrder(props) {
                                                 </div>
                                                 <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class="  text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Notes">
+                                                    <Tooltip title={translatedMenuItems[6]}>
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer"
                                                             // style={{ cursor: "pointer" }}
@@ -270,11 +308,13 @@ function ProductionRepairOrder(props) {
 
                                                                         props.userId)
                                                                 }}
-                                                            >Start Repair</Button> :
+                                                            >
+                                                             {translatedMenuItems[7]} {/* Start Repair */}
+                                                              </Button> :
                                                             item.repairInspectionInd === 1 ?
                                                                 <Button style={{ width: "8rem" }}
                                                                     onClick={handlePauseResume}>
-                                                                    {hide ? "Pause Repair" : "Resume Repair"}</Button> : <div class="text-green-600">Completed</div>}
+                                                                    {hide ?  translatedMenuItems[8] :  translatedMenuItems[9]}</Button> : <div class="text-green-600"> {translatedMenuItems[10]}</div>}
 
                                                     </div>
                                                 </div>
@@ -310,6 +350,7 @@ function ProductionRepairOrder(props) {
 
 
 }
+
 
 const mapStateToProps = ({ refurbish, auth }) => ({
     locationId: auth.userDetails.locationId,

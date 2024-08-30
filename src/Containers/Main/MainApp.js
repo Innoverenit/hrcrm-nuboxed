@@ -458,7 +458,7 @@ function MainApp(props) {
                      </div>
                 
                   <div class="ml-2">
-                    <QRCodeList
+                    <QRCodeList  class
                       handleScan={handleScan}
                       stopScanning={stopScanning}
                       startScanning={startScanning}

@@ -38,18 +38,18 @@ function AllCompleteOrderList(props) {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-    'Urgent', // 0
-    'Order', // 1
-    ' Customer', // 2
-    'Contact', // 3
-    ' Units', // 4
-    'Owner', // 5
-    ' Supervisor',
-    'Lead',
+  "106",  // 'Urgent', // 0
+  "660",    // 'Order', // 1
+  "248",    // ' Customer', // 2
+  "73",  // 'Contact', // 3
+  "260",  // ' Units', // 4
+  "77", // 'Owner', // 5
+  "676",  // ' Supervisor',
+  "677",   // 'Lead',
    
-    'Created',
-    "High",
-    "Normal"
+  "679",    // 'Created',
+  
+  "108",  // "Normal"
 
 
           ];
@@ -401,7 +401,7 @@ function AllCompleteOrderList(props) {
               
                 <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10">
                   
-                <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[10]} </div>
+                <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
                         <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
           <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>

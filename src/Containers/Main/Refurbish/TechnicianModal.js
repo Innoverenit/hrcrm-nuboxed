@@ -4,7 +4,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 const OrderQCandRepairHistory = lazy(() => import("./OrderQCandRepairHistory"));
 
 const TechnicianModal = (props) => {
-    const { showTechnicianModal, handleTechnicianModal, ...formProps } = props;
+    const { showTechnicianModal, handleTechnicianModal } = props;
     return (
         <>
             <StyledDrawer
@@ -17,7 +17,9 @@ const TechnicianModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <OrderQCandRepairHistory rowData={props.rowData} />
+                    <OrderQCandRepairHistory rowData={props.rowData}
+                      translateText={props.translateText}
+                      selectedLanguage={props.selectedLanguage} />
                 </Suspense>
             </StyledDrawer>
         </>

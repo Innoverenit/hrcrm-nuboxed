@@ -67,6 +67,9 @@ class InventoryDetailRight extends Component {
         <InventoryDetailTab
           inventory={this.props.inventory}
           tabData={this.props.tabData}
+          translateText={this.props.translateText}
+          translatedMenuItems={this.props.translatedMenuItems}
+          selectedLanguage={this.props.selectedLanguage}
         />
       </div>
     );

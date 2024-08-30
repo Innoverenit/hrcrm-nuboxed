@@ -15,23 +15,23 @@ function Inventory(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Name",//0
-          "Country",//1
-          "Address",//2
-          "Pin Code",//3
-          "New",//4
-          "Store Config",//5
-          "Add Zone",//6
-          'Zone Code',//7
-          'Rack',//8
-          'Zone Type',//9
-          'Description',//10
-          'Submit',//11
-          'Zone',//12
-          'Save',//13
-          'Cancel',//14
-          'My View',//15
-          'Location',//16
+       "110", //  "Name",//0
+        "1109",//   "Country",//1
+        "185",//   "Address",//2
+        "879",//   "Pin Code",//3
+       "100", //   "New",//4
+        "1070",//   "Store Config",//5
+       "1071", //   "Add Zone",//6
+       "1072", //   'Zone Code',//7
+        "1073",//   'Rack',//8
+       "1074", //   'Zone Type',//9
+       "127", //   'Description',//10
+       "154", //   'Submit',//11
+       "1077", //   'Zone',//12
+       "1078", //   'Save',//13
+       "1079", //   'Cancel',//14
+        "23",//   'My View',//15
+       "658", //   'Location',//16
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

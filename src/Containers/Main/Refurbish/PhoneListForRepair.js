@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -50,6 +48,42 @@ function PhoneListForRepair(props) {
     const handlePrint = () => {
         window.print();
     };
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+             "1318", // Search by device ID",//0
+              "1320",  //"scan",//1
+           "264", //   Brand 2
+           "265", //   "model"3
+           "1222", //   Issue4
+           "1321", //   Estimate (hours) 5 
+           "158", //  "Start"6
+           "111", //     "End"7
+           "199", //     Task8
+            "1322",// "Resume"9
+           "316", // "Notes"10
+           "1252", // "Print"11
+            "",    //    "Pause"
+           "144"  ,// In Progress
+            "268"//Complete
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         setPage(page + 1);
         props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
@@ -283,36 +317,48 @@ function PhoneListForRepair(props) {
                                                 </div>
                                                 </div>
                     <div className=" flex  w-[100%]  max-sm:hidden p-1 bg-transparent font-bold sticky z-10">
-                        <div className=" w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Brand</div>
-                        <div className=" w-[7.31rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           {translatedMenuItems[2]} {/* Brand */}
+                            </div>
+                        <div className=" w-[7.31rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[3]} {/* <FormattedMessage
                             id="app.model"
                             defaultMessage="model"
-                        /></div>
-                        <div className=" w-[10.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+                        /> */}
+                        </div>
+                        <div className=" w-[10.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                         IMEI   {/* <FormattedMessage
                             id="app.iMEI"
                             defaultMessage="IMEI"
-                        /></div>
-                        <div className="w-[4.01rem]">Issue</div>
+                        /> */}
+                        </div>
+                        <div className="w-[4.01rem]">{translatedMenuItems[4]}</div>
                         <div className="w-[8.31rem]"></div>
                         <div className="w-[8.58rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            Estimate (hours)
+                        {translatedMenuItems[5]} {/* Estimate (hours) */}
                         </div>
-                        <div className="w-[6.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[6.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[6]}  {/* <FormattedMessage
                             id="app.start"
                             defaultMessage="Start"
-                        /></div>
-                        <div className="w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        /> */}
+                        </div>
+                        <div className="w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[7]}   {/* <FormattedMessage
                             id="app.end"
                             defaultMessage="End"
-                        /></div>
+                        /> */}
+                        </div>
 
-                        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                         TAT   {/* <FormattedMessage
                             id="app.tat"
                             defaultMessage="TAT"
-                        /></div>
+                        /> */}
+                        </div>
 
                         {/* <div className="w-[10.81rem]">Spare</div> */}
-                        <div className="w-[10.43rem]">Task</div>
+                        <div className="w-[10.43rem]">{translatedMenuItems[8]}</div>
                         <div className="w-[2.03rem]"></div>
                         <div className="w-[2rem]"></div>
                     </div>
@@ -401,7 +447,7 @@ function PhoneListForRepair(props) {
                                                 {props.rowData.repairInspectionInd !== 0 &&
                                                 <div class=" text-xs  flex w-[3.5rem] font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {(x === true && y === true) &&
-                                                        <Tooltip title="Pause">
+                                                        <Tooltip title={translatedMenuItems[12]}>
                                                             <PlayCircleFilledSharp className="!text-lg"
                                                                 // class=" cursor-pointer"
                                                                 onClick={() => {
@@ -418,7 +464,7 @@ function PhoneListForRepair(props) {
                                                     {item.repairStatus === "To Start" && <StatusIcon 
                                                         type="In Progress"
                                                         iconType="fa-hourglass-half"
-                                                        tooltip="In Progress"
+                                                        tooltip={translatedMenuItems[13]}
                                                         id={item.phoneId}
                                                         indStatus={item.repairStatus}
                                                         phoneId={RowData.phoneId}
@@ -430,7 +476,7 @@ function PhoneListForRepair(props) {
                                                         }}
                                                     />}
                                                     {item.repairStatus === "In Progress" && item.pauseInd === false &&
-                                                        <Tooltip title="Resume">
+                                                        <Tooltip title={translatedMenuItems[9]}>
                                                             <PauseCircleFilled
                                                                 class=" cursor-pointer text-orange-400"
                                                                 onClick={() => {
@@ -448,7 +494,7 @@ function PhoneListForRepair(props) {
                                                     {item.repairStatus === "In Progress" && item.pauseInd === false && item.totalTaskCount === item.totalCompleteAndNoNeedTaskCount && <StatusIcon1
                                                         type="Complete"
                                                         iconType="fa-hourglass"
-                                                        tooltip="Complete"
+                                                        tooltip={translatedMenuItems[14]}
                                                         indStatus={item.repairStatus}
                                                         status={active}
                                                         id={item.phoneId}
@@ -560,7 +606,7 @@ function PhoneListForRepair(props) {
                                                           />                                                       
                                                     </Tooltip> */}
                                                   
-                                                  <Tooltip title="Task">
+                                                  <Tooltip title={translatedMenuItems[8]}>
                                                      <Progress
                                                     percent={acivedPercentage}
                                                     success={{acivedPercentage}}
@@ -582,7 +628,7 @@ function PhoneListForRepair(props) {
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex  w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Notes">
+                                                    <Tooltip title={translatedMenuItems[10]}>
                                                     <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
                                                             onClick={() => {
                                                                 handleSetRowData(item);
@@ -597,10 +643,7 @@ function PhoneListForRepair(props) {
 
                                             <div className=" flex ml-1   w-[4.023rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title={<FormattedMessage
-                                                        id="app.Print"
-                                                        defaultMessage="Print"
-                                                    />}>
+                                                    <Tooltip title={translatedMenuItems[11]}>
 
                                                         <ReactToPrint
                                                            trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon className="!text-icon"/></Button>}
