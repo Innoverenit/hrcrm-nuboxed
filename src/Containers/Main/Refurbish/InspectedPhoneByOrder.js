@@ -39,7 +39,7 @@ function InspectedPhoneByOrder(props) {
        
              "264", //  Brand,//0
               "265",  // "model",//1
-              "316" ,// Notes             
+              "316" ,// Notes  2           
               "76", // "Assigned ",//3
               "1222" , // Issue //4
               "113",    //Info5
@@ -205,7 +205,8 @@ function InspectedPhoneByOrder(props) {
                             {translatedMenuItems[0]} {/* Brand */}
                                 </div>
                             <div className=" md:w-[7.1rem]">
-                            {translatedMenuItems[1]}   {/* <FormattedMessage
+                            {translatedMenuItems[1]}  
+                             {/* <FormattedMessage
                                 id="app.model"
                                 defaultMessage="model"
                             /> */}
@@ -218,30 +219,30 @@ function InspectedPhoneByOrder(props) {
                             /> */}
                             </div>
                             <div className="md:w-[8.6rem]">
-                            {translatedMenuItems[3]} {/* Issue  */}
+                            {translatedMenuItems[4]} {/* Issue  */}
                                 </div>
 
                             <div className="md:w-[4.7rem]">
-                            {translatedMenuItems[4]} {/* Info */}
+                            {translatedMenuItems[5]} {/* Info */}
                                 </div>
                             <div className="md:w-[5.9rem]">
-                            {translatedMenuItems[5]}  {/* <FormattedMessage
+                            {translatedMenuItems[6]}  {/* <FormattedMessage
                                 id="app.conditions"
                                 defaultMessage="conditions"
                             /> */}
                             </div>
                             <div className="md:w-[7rem]">
-                            {translatedMenuItems[6]}  {/* Technician */}
+                            {translatedMenuItems[7]}  {/* Technician */}
                                 </div> 
                             <div className="md:w-[6rem]">
                           QC
                                 </div>
                             <div className="md:w-[4rem]">
-                            {translatedMenuItems[8]}  {/* Repair */}
+                            {translatedMenuItems[9]}  {/* Repair */}
                                 </div>
                             {/* <div className="md:w-[5rem]">Qa</div> */}
                             <div className="md:w-[7.2rem]">
-                            {translatedMenuItems[9]}  {/* Task */}
+                            {translatedMenuItems[10]}  {/* Task */}
                                 </div>
                         </div>
                         <div class="overflow-y-auto h-[72vh]"  style={{ scrollbarWidth:"thin"}}>
@@ -348,7 +349,7 @@ function InspectedPhoneByOrder(props) {
                                                         trigger={() => <Button
                                                             onClick={handlePrint}
                                                         >
-                                                             {translatedMenuItems[7]}  {/* Print */}
+                                                             {translatedMenuItems[8]}  {/* Print */}
                                                             <QrCodeIcon className="!text-icon"/></Button>
                                                         }
                                                         content={() => componentRefs.current[index]

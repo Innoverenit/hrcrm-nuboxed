@@ -13,6 +13,35 @@ import ReassignView from './ReassignView'
 
 const RepairTechnicianList = (props) => {
 
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+              "110",  // "Name"
+              "299",  // "Mobile #"
+              "1309", // "Total Unit"
+              "1310",// "Remaining"
+              "144", // "In Progress"
+              "268", // "Complete"
+              "117",  //   reject
+               "1311" ,// Reassign
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         props.getNoOfRepairTechnicianById(props.rowData.orderPhoneId)
     }, [])
@@ -70,45 +99,49 @@ const RepairTechnicianList = (props) => {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" w-[8rem] md:w-[8rem]"><FormattedMessage
+                        <div className=" w-[8rem] md:w-[8rem]">
+                            {/* <FormattedMessage
                             id="app.name"
                             defaultMessage="Name"
-                        />
+                        /> */}
                         </div>
                         <div className=" md:w-[8rem]">
-                            <FormattedMessage
+                            {/* <FormattedMessage
                                 id="app.mobile"
                                 defaultMessage="Mobile #"
-                            />
+                            /> */}
                         </div>
                         <div className="md:w-[7rem]">
-                            <FormattedMessage
+                            {/* <FormattedMessage
                                 id="app.totalUnit"
                                 defaultMessage="Total Units"
-                            /></div>
+                            /> */}
+                            </div>
                         <div className=" md:w-[8rem]">
-                            <FormattedMessage
+                            {/* <FormattedMessage
                                 id="app.remaining"
                                 defaultMessage="Remaining"
-                            />
+                            /> */}
                         </div>
                         <div className=" md:w-[8rem]">
 
-                            <FormattedMessage
+                            {/* <FormattedMessage
                                 id="app.InProgress"
                                 defaultMessage="In Progress"
-                            />
+                            /> */}
                         </div>
                         <div className="md:w-[8rem]">
-                            <FormattedMessage
+                            {/* <FormattedMessage
                                 id="app.complete"
                                 defaultMessage="Complete"
-                            /></div>
+                            /> */}
+                            </div>
                         <div className="md:w-[8rem]">
-                            <FormattedMessage
+                            {/* <FormattedMessage
                                 id="app.rejected"
                                 defaultMessage="Reject"
-                            /></div>
+                            /> */}
+                            </div>
                     </div>
                     {props.repairByTechnician.map((item) => {
                         let remain = Number(item.totalPhone) - Number(item.repairInProgressPhoneCount) - Number(item.repairCompletePhoneCount)
@@ -186,7 +219,9 @@ const RepairTechnicianList = (props) => {
                                                         handleReassign();
                                                         handleRowdata(item)
                                                     }}
-                                                >Reassign</Button>
+                                                >
+                                                 {translatedMenuItems[7]}   {/* Reassign */}
+                                                    </Button>
                                             </div>
                                         </div>
 

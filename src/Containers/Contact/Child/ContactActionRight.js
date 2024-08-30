@@ -38,8 +38,8 @@ class ContactActionRight extends React.Component {
     try {
       const itemsToTranslate = [
                      
-        "Add",//0
-      "Import",//1
+       "85", // "Add",//0
+     "123" // "Import",//1
        
       ];
 

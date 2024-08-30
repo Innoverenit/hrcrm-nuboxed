@@ -23,6 +23,7 @@ function OpenQcTable(props) {
               "760",  // "duedate",//1
                "677", //   "Lead"
                 "142",   // "Status"
+             
     
             ];
     

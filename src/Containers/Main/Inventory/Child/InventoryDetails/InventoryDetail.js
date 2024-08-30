@@ -52,9 +52,8 @@ function InventoryDetail(props) {
            "82" ,// 'Loading',//10
             "679",// 'Created',//11
            "1083", // 'Supplier',//12
-           "100",
-            // 'New',//13
-            'To Stock',//14
+           "100",// 'New',//13
+           "1256", // 'To Stock',//14
            "110" ,// 'Name',//15
            "14", // 'Category',//16
            "259" ,// 'Attribute',//17
@@ -68,7 +67,7 @@ function InventoryDetail(props) {
            "1088", // 'Check for',//25
            "1089", // 'Generate',//26
            "1090", // 'Select from existing',//27
-            'Change Status',//28
+          "1250" , // 'Change Status',//28
            "1091", // 'In Stock',//29
            "1092", // 'Ordered',//30
            "1093" ,// 'Balance',//31
@@ -78,18 +77,18 @@ function InventoryDetail(props) {
           "1042",  // 'Manufacture',//35
            "778", // 'To Dispatch',//36
             "1052",// 'Store',//37
-            'You have reached the end of page',//38
+          "1251",// 'You have reached the end of page',//38
           "1095" , // 'Send To Store',//39
           "170",  // 'Edit',//40
-             'Print',//41
+          "1252",  //  'Print',//41
            "1097", // 'Dispatch By',//42
-           // 'list for',//43
+          "1253", // 'list for',//43
            "657", // 'Price',//44
           "1086" , // 'Damage',//45
           "771",  // 'Final',//46
           "1098" , // 'Select Zone',//47
            "1044", // 'Item',//48
-            'System',//49
+             "1254", // 'System',//49
          "2056"   // 'Part',//50
           ];
   

@@ -96,7 +96,7 @@ class ContactDetailTab extends Component {
        "1166", // "Documents",//2
        "1165", // "Activity",//3
        "1169", // "Invoice",//4
-        "",// "Campaign",//5
+        "1304",// "Campaign",//5
         "1168",// "Summary"//6
           "104",      // "Create" 7
           ""      // "Upload Document"8

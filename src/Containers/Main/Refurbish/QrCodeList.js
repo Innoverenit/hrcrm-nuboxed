@@ -11,7 +11,7 @@ const QRCodeListScanner = (props) => {
 
   return (
     <>
-     <DocumentScannerIcon onClick={props.startScanning} className='!cursor-pointer text-lg'/>
+     <DocumentScannerIcon onClick={props.startScanning} className='!cursor-pointer text-lg text-[tomato]'/>
 
       <Modal
         title="QR Code Scanner"

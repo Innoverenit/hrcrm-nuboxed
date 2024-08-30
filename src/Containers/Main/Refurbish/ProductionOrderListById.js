@@ -124,9 +124,16 @@ function ProductionOrderListById(props) {
          
                "660", // "order",//0
                 "760",  // "duedate",//1
-                 "677", //   "Lead"
-                  "142",   // "Status"
-                  // ""Search by OrderID 
+                 "677", //   "Lead"2
+                  "142",   // "Status"3
+                  "1280",// ""Search by OrderID 4
+                "100",  // New5
+                 "316",  // "Notes"6
+                 "1279",  // Start Inspection7
+                 "1312",  // "Pause Inspection"8
+                 "1313",  // "Resume Inspection"9
+                  "1314", // Inspection Completed10
+                 "144",  // In Progress11
               ];
       
               const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -177,7 +184,7 @@ function ProductionOrderListById(props) {
                 <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div class=" w-64 max-sm:w-24">
         <Input
-          placeholder="Search by OrderID "
+          placeholder={translatedMenuItems[4]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -245,7 +252,7 @@ function ProductionOrderListById(props) {
                                                         <span
                                                            className=" text-[0.65rem] text-[tomato] font-bold"
                                                         >
-                                                            New
+                                                          {translatedMenuItems[5]}  {/* New */}
                                                         </span>
                                                     ) : null}
                                                 </div>
@@ -268,13 +275,14 @@ function ProductionOrderListById(props) {
 
                                                 <div className=" flex   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        {item.qcInProgressPhoneCount} In Progress
+                                                        {item.qcInProgressPhoneCount} {translatedMenuItems[11]}
+                                                        {/* In Progress */}
                                                     </div>
 
                                                 </div>
                                                 <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class="   text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Notes">
+                                                    <Tooltip title={translatedMenuItems[6]}>
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer"
                                                             // style={{ cursor: "pointer" }}
@@ -303,10 +311,10 @@ function ProductionOrderListById(props) {
                                                                     }, item.orderPhoneId, props.userId)
                                                                 }}
                                                             >
-                                                                Start Inspection
+                                                              {translatedMenuItems[7]}  {/* Start Inspection */}
 
                                                             </Button> : item.qcInspectionInd === 1 ?
-                                                                <Button className="w-32" onClick={handlePauseResume}>{hide ? "Pause Inspection" : "Resume Inspection"}</Button> : <div class="text-green-600">Inspection Completed</div>}
+                                                                <Button className="w-32" onClick={handlePauseResume}>{hide ? translatedMenuItems[8] : translatedMenuItems[9]}</Button> : <div class="text-green-600">{translatedMenuItems[10]}</div>}
 
                                                     </div>
                                                 </div>
