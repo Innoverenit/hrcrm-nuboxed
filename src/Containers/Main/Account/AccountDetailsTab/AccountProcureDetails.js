@@ -155,6 +155,17 @@ function AccountProcureDetails(props) {
   };
 
   const handleUpdate = (id) => {
+    const unitValue = editedFields[id]?.unit || 1;
+    if (unitValue < 1) {
+      Swal.fire({
+        title: 'Validation Error!',
+        text: 'Unit value must be at least 1.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+      return;
+    }
+
     const data = {
       model: brand,
       orderPhoneId: props.particularRowData.orderId,
@@ -185,23 +196,62 @@ function AccountProcureDetails(props) {
   // }
   
   const handleUnitChange = (id, value) => {
-    setEditedFields((prevFields) => ({
-      ...prevFields,
-      [id]: {
-        ...prevFields[id],
-        unit: value,
-      },
-    }));
+    const unitValue = parseInt(value, 10);
+    if (unitValue < 1 || isNaN(unitValue)) {
+      setEditedFields((prevFields) => ({
+        ...prevFields,
+        [id]: {
+          ...prevFields[id],
+          unit: 1, 
+        },
+      }));
+    } else {
+      setEditedFields((prevFields) => ({
+        ...prevFields,
+        [id]: {
+          ...prevFields[id],
+          unit: unitValue,
+        },
+      }));
+    }
   };
 
 const handleGenerateInvoice= async () => {
     setLoading(true);
     setError(null);
-    const itemList = props.procureDetails.map(item => ({
-      price: item.price,
-      procureOrderProductId: item.id, // Assuming id is the procureOrderProductId
-      unit: editedFields[item.id]?.unit || item.unit
-    }));
+    const itemList = props.procureDetails.map(item => {
+      const unitValue = editedFields[item.id]?.unit || item.unit;  
+      if (unitValue < 1) {
+        Swal.fire({
+          title: 'Validation Error!',
+          text: 'Unit value must be at least 1 for all items.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        setLoading(false);
+        return null; 
+      }
+  
+      return {
+        price: item.price,
+        procureOrderProductId: item.id,
+        unit: unitValue
+      };
+    }).filter(item => item !== null); 
+  
+    if (itemList.length === 0) {
+      setLoading(false);
+      return; 
+    }
+    if (invoices.trim() === '') {
+      Swal.fire({
+        title: 'Validation Error',
+        text: 'Invoice field cannot be blank.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+      return;
+    }
     try {
       const response = await axios.post(`${base_url2}/invoice/procureInvoice `,{
       //   paymentMode: "Cash",
@@ -284,17 +334,20 @@ const handleGenerateInvoice= async () => {
           <div className="md:w-[4.8rem]">
           {translatedMenuItems[8]} {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}
           </div>
-          <div className="md:w-[2.8rem]">
+          <div className="md:w-[3.8rem]">
           {translatedMenuItems[7]} {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
           </div>
-          <div className="md:w-[4.8rem]">
+          <div className="md:w-[5.8rem]">
           {translatedMenuItems[9]}
           </div>
-          <div className="md:w-[4.8rem]">
+          <div className="md:w-[5rem]">
           {translatedMenuItems[10]} 
           </div>
           <div className="md:w-[4.8rem]">
           {translatedMenuItems[11]} 
+          </div>
+          <div className="md:w-[4.8rem]">
+   Remng.Units
           </div>
           <div className="md:w-[2rem]"></div>
         </div>
@@ -332,7 +385,7 @@ const handleGenerateInvoice= async () => {
                                       <div className="font-normal text-xs  font-poppins">{item.category}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {/* {editContactId === item.id ? (
                     <select
@@ -353,7 +406,7 @@ const handleGenerateInvoice= async () => {
                                    <div className="font-normal text-xs  font-poppins">{item.brand}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[30rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[15rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {/* {editContactId === item.id ? (
                     <Select
@@ -373,7 +426,7 @@ const handleGenerateInvoice= async () => {
                              <div className="font-normal text-xs  font-poppins">{item.model}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {/* {editContactId === item.id ? (
                     <select
@@ -394,7 +447,7 @@ const handleGenerateInvoice= async () => {
                    <div className="font-normal text-xs  font-poppins">{item.attribute}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {/* {editContactId === item.id ? (
                     <select
@@ -415,7 +468,7 @@ const handleGenerateInvoice= async () => {
                   <div className="font-normal text-xs  font-poppins">{item.quality}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {/* {editContactId === item.id ? (
                     <select
@@ -433,7 +486,7 @@ const handleGenerateInvoice= async () => {
                   ) : (
                     <div className="font-normal text-xs  font-poppins">{item.location}</div>
                   )} */}
-                  
+                  <div className="font-normal text-xs  font-poppins">{item.location}</div>
                 </div>
               </div>
               <div className="flex  md:w-[6rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
@@ -482,14 +535,17 @@ const handleGenerateInvoice= async () => {
                       value={newUnitName}
                       onChange={(e) => setUnitName(e.target.value)}
                     /> */}
+                    {/* {item.reaminingInvoiceUnit === 0 ? `${item.unit}` : */}
                     <input
   placeholder="Update Unit"
-  style={{border:"2px solid black"}}
-  type="text"
+  style={{ border: "2px solid black" }}
+  type="number"
+  min="1"
   value={editedFields[item.id]?.unit || item.unit}
   onChange={(e) => handleUnitChange(item.id, e.target.value)}
+  onBlur={(e) => handleUnitChange(item.id, e.target.value)}
 />
-                  
+        
                  
                 </div>
               </div>
