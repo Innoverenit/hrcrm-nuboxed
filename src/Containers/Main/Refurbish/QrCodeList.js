@@ -36,6 +36,8 @@ const QRCodeListScanner = (props) => {
             <span onClick={props.stopScanning}>
               <Link
                 to={`scan/${props.data}`}>
+                
+                 
                 {props.data}
               </Link>
             </span>
