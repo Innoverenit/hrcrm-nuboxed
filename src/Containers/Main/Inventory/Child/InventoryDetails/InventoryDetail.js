@@ -134,7 +134,7 @@ function InventoryDetail(props) {
                     inventory={inventory}
                     tabData={tabData}
                     translateText={props.translateText}
-                    //translatedMenuItems={translatedMenuItems}
+                    translatedMenuItems={translatedMenuItems}
                     selectedLanguage={props.selectedLanguage}
                   />
                   </div>
@@ -142,7 +142,9 @@ function InventoryDetail(props) {
                   <div class="cursor-pointer">
                   <InventoryMaterialTab inventory={inventory}  translateText={props.translateText}
         translatedMenuItems={translatedMenuItems}
-        selectedLanguage={props.selectedLanguage}/>
+        selectedLanguage={props.selectedLanguage}
+        
+        />
                   </div>
                 ) : props.viewType1 === "production" && props.productionInd ? (
                   <div class="cursor-pointer">
