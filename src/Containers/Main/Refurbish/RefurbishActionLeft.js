@@ -109,9 +109,8 @@ function RefurbishActionLeft (props) {
             const itemsToTranslate = [
              "663",//0 My Repair Orders
               "228",//1 ALL
-             
-             
-    
+             "1280",    //  "Search by OrderID"
+           
             ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -155,7 +154,7 @@ function RefurbishActionLeft (props) {
                   }}
                 >
                   <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
-                    <HomeRepairServiceIcon className="text-white cursor-pointer" /></Avatar>
+                    <HomeRepairServiceIcon className="text-white cursor-pointer !text-icon" /></Avatar>
     
                 </span>
               </Tooltip>
@@ -179,9 +178,9 @@ function RefurbishActionLeft (props) {
               </Badge>
               </Tooltip>
 {viewType === "all"?
-              <div class=" w-64 max-sm:w-24">
+              <div class=" w-64 max-sm:w-24 ml-2">
         <Input
-          placeholder="Search by OrderID"
+          placeholder={translatedMenuItems[2]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}

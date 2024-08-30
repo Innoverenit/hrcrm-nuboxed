@@ -36,9 +36,9 @@ class CustomerActionRight extends React.Component {
     try {
       const itemsToTranslate = [
                      
-        "Add",//0
-      "Import",//1
-       
+       "85", // "Add",//0
+        "123" ,   // "Import",//1
+         "104"    // "Create"
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -74,7 +74,7 @@ class CustomerActionRight extends React.Component {
          </Tooltip>
       )}
       </div>
-        <Tooltip placement="left" title="Create">
+        <Tooltip placement="left" title={this.state.translatedMenuItems[2]}>
           {this.props.user.customerCreateInd ===true && user.crmInd === true &&(
           <Button
             type="primary"

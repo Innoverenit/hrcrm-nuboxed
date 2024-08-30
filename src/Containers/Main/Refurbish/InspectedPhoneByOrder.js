@@ -44,11 +44,11 @@ function InspectedPhoneByOrder(props) {
               "1222" , // Issue //4
               "113",    //Info5
               "1217" , // "conditions",//6
-              "",      //Technician7
+              "1281",      //Technician7
               "1252",// Print8
                "661",    //Repair 9
                 "119" ,//    Task10
-               "", // Receive Spare11
+               "1282", // Receive Spare11
                 
                 "277",// Company12
                

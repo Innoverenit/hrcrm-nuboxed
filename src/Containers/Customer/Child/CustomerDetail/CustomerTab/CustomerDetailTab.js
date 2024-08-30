@@ -91,15 +91,15 @@ class ContactDetailTab extends Component {
     try {
       const itemsToTranslate = [
         
-        "Quotation",//0
-        "Contact",//1
-        "Documents",//2
-        "Activity",//3
-        "Invoice",//4
-        "Campaign",//5
-        "Summary"//6
-      
-        
+       "213", // "Quotation",//0
+       "73", // "Contact",//1
+       "1166", // "Documents",//2
+       "1165", // "Activity",//3
+       "1169", // "Invoice",//4
+        "",// "Campaign",//5
+        "1168",// "Summary"//6
+          "104",      // "Create" 7
+          ""      // "Upload Document"8
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -171,23 +171,13 @@ class ContactDetailTab extends Component {
                   {activeKey === "1" && (
                     <>
                       <Tooltip //title="Create"
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title= {this.state.translatedMenuItems[7]}
                       >
                         {this.props.user.opportunityCreateInd === true && (
                           <PlusOutlined
                             type="plus"
                             //tooltipTitle="Create"
-                            tooltiptitle={
-                              <FormattedMessage
-                                id="app.Create"
-                                defaultMessage="Create"
-                              />
-                            }
+                            tooltiptitle= {this.state.translatedMenuItems[7]}
                             onClick={() => {
                               handleCustomerOpportunityModal(true);
                             }}
@@ -228,23 +218,13 @@ class ContactDetailTab extends Component {
                     <>
                
                       <Tooltip //title="Create"
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title= {this.state.translatedMenuItems[7]}
                       >
                         {this.props.user.contactCreateInd === true && (
                           <PlusOutlined
                             type="plus"
                             //tooltipTitle="Create"
-                            tooltiptitle={
-                              <FormattedMessage
-                                id="app.Create"
-                                defaultMessage="Create"
-                              />
-                            }
+                            tooltiptitle= {this.state.translatedMenuItems[7]}
                             onClick={() => {
                               handleCustomerContactModal(true);
                             }}
@@ -300,22 +280,13 @@ class ContactDetailTab extends Component {
                   {activeKey === "5" && (
                     <>
                      <Tooltip //title="Create"
-                        title={
-                          <FormattedMessage
-                          id="app.uploaddocument"
-                          defaultMessage="Upload Document"
-                        />
-                        }
+                        title=
+                         {this.state.translatedMenuItems[8]}
                       >
                       <PlusOutlined
                         type="plus"
                         //tooltipTitle="Upload Document"
-                        tooltiptitle={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
+                        tooltiptitle= {this.state.translatedMenuItems[8]}
                         onClick={() => handleDocumentUploadModal(true)}
                         size="0.875em"
                         style={{
@@ -389,21 +360,11 @@ class ContactDetailTab extends Component {
                   {activeKey === "7" && (
                     <>
                       <Tooltip //title="Create"
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title= {this.state.translatedMenuItems[7]}
                       >
                       <PlusOutlined
                         type="plus"
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title= {this.state.translatedMenuItems[7]}
                         onClick={() => handleCallActivityModal(true)}
                         size="0.875em"
                         style={{
@@ -477,21 +438,11 @@ class ContactDetailTab extends Component {
                   {activeKey === "9" && (
                     <>
                         <Tooltip //title="Create"
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title= {this.state.translatedMenuItems[7]}
                       >
                       <PlusOutlined
                         type="plus"
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title= {this.state.translatedMenuItems[7]}
                         onClick={() => this.props.handleCampaignDrawer(true)}
                         size="0.875em"
                         style={{

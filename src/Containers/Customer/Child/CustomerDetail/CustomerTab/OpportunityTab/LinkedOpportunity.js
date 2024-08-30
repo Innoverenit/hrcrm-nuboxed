@@ -29,14 +29,15 @@ function OpportunityTable(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Quotation",//0
-          "Start Date",//1
-          "End Date",//2      
-          "Value",//3
-          "Status",//4
-          "Sponsor",//5
-         
-         
+              "213",  //  "Quotation",//0
+              "176", //   "Start Date",//1
+              "126",   //   "End Date",//2      
+              "218", //   "Value",//3
+              "142",//   "Status",//4
+              "216",  //   "Sponsor",//5
+                  "",    // Search
+                  "",  // Reset
+                  "",      // Filter
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -84,14 +85,14 @@ function OpportunityTable(props) {
             size="small"
             style={{ width: 90 }}
           >
-            Search
+          {translatedMenuItems[6]}  {/* Search */}
           </Button>
           <Button className="w-[90%]"
             onClick={() => handleReset(clearFilters)}
             size="small"
             
           >
-            Reset
+          {translatedMenuItems[7]}  {/* Reset */}
           </Button>
           <Button
             type="link"
@@ -102,7 +103,7 @@ function OpportunityTable(props) {
               setSearchedColumn(dataIndex);
             }}
           >
-            Filter
+            {translatedMenuItems[8]}{/* Filter */}
           </Button>
         </div>
       ),
@@ -162,245 +163,7 @@ function OpportunityTable(props) {
     addUpdateCustomerOpportunityModal,
     setEditCustomerOpportunity,
   } = props;
-//   const columns = [
-//     {
-//       title: "",
-//       width: "2%",
-//     },
-//     // {
-//     //   title: "",
-//     //   dataIndex: "imageId",
-//     //   width: "3%",
-//     //   render: (name, item, i) => {
-//     //     return (
-//     //       <SubTitle>
-//     //         <MultiAvatar
-//     //           primaryTitle={item.accountName}
-//     //           imageId={item.imageId}
-//     //           imageURL={item.imageURL}
-//     //           imgWidth={"1.8em"}
-//     //           imgHeight={"1.8em"}
-//     //         />
-//     //       </SubTitle>
-//     //     );
-//     //   },
-//     // },
-//     {
-//       title: "",
-//       width: "1%",
-//     },
-//     { title: "Name",
-//        dataIndex:"opportunityName",
-//        width:"25%",
-//        ...getColumnSearchProps('opportunityName'),
-//        render(name, item, ) {
-//         return (
-//           <>
-//            <Link
-//               toUrl={`/opportunity/${item.opportunityId}`}
-//               title={`${item.opportunityName || ""} `}
-//             />
-//           </>
-//         );
-//       }
-//    },
-//     {
-//       //title: "Start Date",
-//       title: (
-//         <FormattedMessage id="app.startDate" defaultMessage="Start Date" />
-//       ),
-//       dataIndex: "startDate",
-//       width: "20%",
-//       defaultSortOrder: "descend",
-//       sorter: (a, b) => {
-//         var startDateA = a.startDate; // ignore upper and lowercase
-//         var startDateB = b.startDate; // ignore upper and lowercase
-//         if (startDateA < startDateB) {
-//           return -1;
-//         }
-//         if (startDateA > startDateB) {
-//           return 1;
-//         }
 
-//         return 0;
-//       },
-//       render: (text, item) => {
-//         const startDate = dayjs(item.startDate).format("ll");
-//         return <span>{startDate}</span>;
-//       },
-//     },
-//     {
-//       //title: "End Date",
-//       title: <FormattedMessage id="app.endDate" defaultMessage="End Date" />,
-//       dataIndex: "endDate",
-//       width: "20%",
-//       defaultSortOrder: "descend",
-//       render: (text, item) => {
-//         const endDate = dayjs(item.endDate).format("ll");
-//         return <span>{endDate}</span>;
-//       },
-//       sorter: (a, b) => {
-//         var endDateA = a.endDate; // ignore upper and lowercase
-//         var endDateB = b.endDate; // ignore upper and lowercase
-//         if (endDateA < endDateB) {
-//           return -1;
-//         }
-//         if (endDateA > endDateB) {
-//           return 1;
-//         }
-
-//         return 0;
-//       },
-//     },
-//     {
-//       //title: "Value",
-//       title: (
-//         <FormattedMessage
-//           id="app.proposalAmount"
-//           defaultMessage="Value"
-//         />
-//       ),
-//       dataIndex: "proposalAmount",
-//       width: "20%",
-//       onFilter: (value, record) => record.proposalAmount.indexOf(value) === 0,
-//       render: (name, item, i) => {        
-//         return (
-//           <>
-//             {/* {item.proposalAmount} {item.currency} */}
-//             <span>
-//             <CurrencySymbol currencyType={item.currency} />
-//             &nbsp;&nbsp;{item.proposalAmount}
-//           </span>
-//           </>
-//         );
-//       },
-//     },
-// {
-// title:(
-//   <FormattedMessage
-//     id="app.status"
-//     defaultMessage="Status"
-//   />
-// ),
-// render: (name, item, i) => {
-//   var findProbability = item.probability;
-//   item.stageList.forEach((element) => {
-//     if (element.oppStage === item.oppStage) {
-//       findProbability = element.probability;}
-//    });
-//   return (
-//     <>
-//     <Tooltip title={item.oppStage}>
-// {" "}
-// <Progress
-// type="circle"
-// style={{ cursor: "pointer",color:"red" }}
-// percent={findProbability}
-// //disable={true}
-// width={30}
-//  strokeColor={"#005075"}
-
-// />
-  
-// </Tooltip>
-
-//     </>
-//   );
-// },
-// dataIndex: "status",
-// width: "7%",
-// },
-
-//     {
-//       //title: "sponsor",
-//       title: (
-//         <FormattedMessage
-//           id="app.sponsor"
-//           defaultMessage="Sponsor"
-//         />
-//       ),
-//       dataIndex: "contactName",
-//       width: "10%",
-//       onFilter: (value, record) => record.contactName.indexOf(value) === 0,
-//       render: (name, item, i) => {        
-//         return (
-//           <>
-//             {item.contactName} 
-//           </>
-//         );
-//       },
-//       render: (name, item, i) => {
-//         return (
-//           <>
-//             <Tooltip title={item.contactName}>
-//               <span>
-//                 <MultiAvatar
-//                   primaryTitle={item.contactName}
-//                   imageId={item.imageId}
-//                   imageURL={item.imageURL}
-//                   imgWidth={"1.8em"}
-//                   imgHeight={"1.8em"}
-//                 />
-//               </span>
-//             </Tooltip>
-
-//           </>
-//         );
-//       },
-//     },
-//     {
-//       title: "",
-//       // dataIndex: "documentId",
-//       width:"2%",
-//       render: (name, item, i) => {
-//         return (
-//           <Tooltip title={item.description}>
-           
-//           <InfoIcon 
-          
-//               // type="edit"
-//               style={{ cursor: "pointer",fontSize:"1rem" }}
-             
-//             />
-          
-//           </Tooltip>
-//         );
-//       },
-//     },
-//     {
-//       title: "",
-//       width: "1%",
-//     },
-//     {
-
-//       title: "",
-//       dataIndex: "documentId",
-//       width:"2%",
-//       render: (name, item, i) => {
-//         return (
-//           <Tooltip title="Edit">
-//              {user.opportunityUpdateInd ===true && (
-//           <BorderColorIcon 
-          
-//               type="edit"
-//               style={{ cursor: "pointer",fontSize:"0.8rem" }}
-//               onClick={() => {
-//                 props.setEditCustomerOpportunity(item);
-//                 handleUpdateCustomerOpportunityModal(true);
-//                 handleSetCurrentOpportunityId(item.opportunityId)
-                
-//               }}
-//             />
-//             )}
-//           </Tooltip>
-//         );
-//       },
-//     },
-//     {
-//       title: "",
-//       width: "1%",
-//     },
-//   ];
 if (fetchingCustomerOpportunity) return <BundleLoader/>;
   const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;

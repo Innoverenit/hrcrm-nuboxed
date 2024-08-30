@@ -24,10 +24,10 @@ const CustomerMapTable = (props) => {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "LOB",//0
-              "Applicable",//1
-              "Potential",//2
-              "Currency",//3
+           "280", //  "LOB",//0
+           "1227",  //   "Applicable",//1
+           "407",  //   "Potential",//2
+          "241",   //   "Currency",//3
              
             ];
     

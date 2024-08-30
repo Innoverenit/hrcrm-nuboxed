@@ -71,15 +71,22 @@ function CustomerAllCardList(props) {
         setLoading(true); 
         const itemsToTranslate = [
 
-    'Name', // 0
-'Work', // 1
-'Sector', // 2
-'Source', // 3
-'Quotation', // 4
-'PipeLine', // 5
-'Assigned', // 6
-'Owner', // 7
-'Customer', // 8
+    "110", // 'Name', // 0
+   "378",// 'Work', // 1
+   "278",// 'Sector', // 2
+   "279",// 'Source', // 3
+   "213",// 'Quotation', // 4
+   "328",// 'PipeLine', // 5
+   "76",// 'Assigned', // 6
+   "77",// 'Owner', // 7
+   "248",// 'Customer', // 8
+       "100",   // new 9
+    "1300" , //  Change status to Customer?"10
+    "99" ,  // "Opportunity"11
+    "392" ,  // Pulse 12
+    "316" ,  // "Notes"13
+    "170" ,  // "Edit" 14
+   "73" // Contact 15
 
         ];
 
@@ -306,7 +313,7 @@ const [rowdata, setrowdata] = useState("");
         {date === currentdate ? (
     <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
     >
-            New
+            {translatedMenuItems[9]}
           </div>
         ) : null}   
                                             </div>
@@ -416,7 +423,7 @@ const [rowdata, setrowdata] = useState("");
 
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
-                          title="Change status to Account?"
+                          title= {translatedMenuItems[10]}
                           onConfirm={() => handleConfirm(item.customerId)}
                           okText="Yes"
                           cancelText="No"
@@ -483,7 +490,7 @@ const [rowdata, setrowdata] = useState("");
 
                       <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                         <div>
-                          <Tooltip title="Contact">
+                          <Tooltip title= {translatedMenuItems[15]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
                               onClick={() => {
@@ -495,7 +502,7 @@ const [rowdata, setrowdata] = useState("");
                           </Tooltip>
                         </div>
                         <div>
-                          <Tooltip title="Opportunity">
+                          <Tooltip title= {translatedMenuItems[11]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
                               onClick={() => {
@@ -510,7 +517,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                       <div class="flex w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                         <div>
-                          <Tooltip title="Pulse">
+                          <Tooltip title= {translatedMenuItems[12]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
                               onClick={() => {
@@ -530,7 +537,7 @@ const [rowdata, setrowdata] = useState("");
           
         /> 
                         <div>
-                          <Tooltip title="Notes">
+                          <Tooltip title= {translatedMenuItems[13]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-[#4bc076]"
                               onClick={() => {
@@ -558,7 +565,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>
                         <div>
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
-                            <Tooltip title="Edit">
+                            <Tooltip title= {translatedMenuItems[14]}>
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato]"
 
