@@ -1,19 +1,18 @@
-import React, { useEffect, } from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-        import AddDashboardRepairOrdersCloseModal from "../../Child/JumpStart/AddDashboardRepairOrdersCloseModal"
-import AddDashboardRepairOrdersOpenModal from "../../Child/JumpStart/AddDashboardRepairOrdersOpenModal"
-import AddDashboardRepairOrdersAddedModal from "../../Child/JumpStart/AddDashboardRepairOrdersAddedModal"
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getFinaceOrderDetails,
-  handleDasboardRepairOrderDrawer,
-  handleDasboardRepairOrderOpenDrawer,
-  handleDasboardRepairOrderCloseDrawer,
 } from "../../DashboardAction";
+import FinaceRapairDrawer from "./FinaceRapairDrawer";
 
 function DashboardFinanceJumpstart(props) {
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [orderType, setOrderType] = useState("");
+  const [ordersData, setOrdersData] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
      props.getFinaceOrderDetails(props.userId,props.timeRangeType)
@@ -29,6 +28,32 @@ function DashboardFinanceJumpstart(props) {
     props.getFinaceOrderDetails(props.orgId,props.timeRangeType)
     }
  }, [props.buttonName,props.orgId,props.userId,props.timeRangeType]);
+
+const openModal = (type) => {
+    setOrderType(type);
+    setModalVisible(true);
+    fetchOrdersData(type, 0); 
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const fetchOrdersData = (type, page) => {
+    const fetchOrders = {
+      Added: props.getOrdersAddedData,
+      Open: props.getOrdersOpenData,
+      Closed: props.getRepairDashboardOrderClose,
+      Cancelled: props.getRepairDashboardOrderCancelled
+    }[type];
+
+    fetchOrders(props.userId, props.startDate, props.endDate, page)
+      .then(data => {
+        setOrdersData(data.orders);
+        setHasMore(data.hasMore);
+      });
+  };
+  
   return (
     <>
       <div class=" flex flex-row w-full" >
@@ -45,11 +70,11 @@ function DashboardFinanceJumpstart(props) {
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title="Orders Added"
-              jumpstartClick={()=>props.handleDasboardRepairOrderDrawer(true)}
+              jumpstartClick={() => openModal("Added")}
               cursorData={"pointer"}
               value={props.finaceOrderinDashboard.totalOrder}
              isLoading={props.fetchingFinaceorderDetails}
-            />
+            /> 
                          </div>
                      </div>
                      </div>
@@ -65,7 +90,7 @@ function DashboardFinanceJumpstart(props) {
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
               title="Orders Open"
-          jumpstartClick={()=>props.handleDasboardRepairOrderOpenDrawer(true)}
+              jumpstartClick={() => openModal("Open")}
               cursorData={"pointer"}
             value={ props.finaceOrderinDashboard.pendingOrder}
             isLoading={props.fetchingFinaceorderDetails}
@@ -86,7 +111,7 @@ function DashboardFinanceJumpstart(props) {
               noProgress
               title="Orders Closed"
              
-              jumpstartClick={()=>props.handleDasboardRepairOrderCloseDrawer(true)}
+              jumpstartClick={() => openModal("Closed")}
               cursorData={"pointer"}
               value={props.finaceOrderinDashboard.completeOrder}
               isLoading={props.fetchingFinaceorderDetails}
@@ -106,8 +131,7 @@ function DashboardFinanceJumpstart(props) {
                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
               title="Orders  Cancelled"
-              
-              // jumpstartClick={()=>handleDealClosedDrawer(true)}
+              jumpstartClick={() => openModal("Cancelled")}
               cursorData={"pointer"}
               value={props.finaceOrderinDashboard.cancelOrder}
               isLoading={props.fetchingFinaceorderDetails}
@@ -120,19 +144,14 @@ function DashboardFinanceJumpstart(props) {
         </div>
       </div>
 
-      <AddDashboardRepairOrdersAddedModal
-      addDashboardRepairOrderModal={props.addDashboardRepairOrderModal}
-       handleDasboardRepairOrderDrawer={props.handleDasboardRepairOrderDrawer}
-      />
-        <AddDashboardRepairOrdersOpenModal
-        addDashboardRepairOrderOpenModal={props.addDashboardRepairOrderOpenModal}
-      // addDashboardRepairOrderModal={props.addDashboardRepairOrderModal}
-       handleDasboardRepairOrderOpenDrawer={props.handleDasboardRepairOrderOpenDrawer}
-      />
-       <AddDashboardRepairOrdersCloseModal
-        addDashboardRepairOrderCloseModal={props.addDashboardRepairOrderCloseModal}
-      // addDashboardRepairOrderModal={props.addDashboardRepairOrderModal}
-       handleDasboardRepairOrderCloseDrawer={props.handleDasboardRepairOrderCloseDrawer}
+
+<FinaceRapairDrawer
+        isVisible={modalVisible}
+        closeModal={closeModal}
+        type={orderType}
+        ordersData={ordersData}
+        hasMore={hasMore}
+        setHasMore={setHasMore}
       />
     </>
 
@@ -144,30 +163,15 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   orgId: auth.userDetails.organizationId,
   fetchingJumpOrderCount: dashboard.fetchingJumpOrderCount,
   userId: auth.userDetails.userId,
-  addDashboardRepairOrderModal:dashboard.addDashboardRepairOrderModal,
   finaceOrderinDashboard: dashboard.finaceOrderinDashboard,
   fetchingFinaceorderDetails: dashboard.fetchingFinaceorderDetails,
   timeRangeType: dashboard.timeRangeType,
-  addDashboardRepairOrderCloseModal:dashboard.addDashboardRepairOrderCloseModal,
-  addDashboardRepairOrderOpenModal:dashboard.addDashboardRepairOrderOpenModal
-
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getFinaceOrderDetails,
-      handleDasboardRepairOrderDrawer,
-      handleDasboardRepairOrderOpenDrawer,
-      handleDasboardRepairOrderCloseDrawer,
-      //   getJumpInvestor2list,
-      //   getJumpInvestor3list,
-      //   getJumpInvestor4list,
-      //   handlePitchQualifiedDrawer,
-      //   handlePitchAddedDrawer,
-      //   handleDealAddedDrawer,
-      //   handleDealClosedDrawer
-
     },
     dispatch
   );

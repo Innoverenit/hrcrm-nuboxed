@@ -1,38 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import {getRepairDashboardOrderAdded} from "../../../../Dashboard/DashboardAction"
+import {getRepairDashboardOrderAdded,getRepairDashboardOrderOpen,
+    getRepairDashboardOrderClose,getRepairDashboardOrderCancelled } from "../../DashboardAction";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Badge,Select } from "antd";
 import dayjs from "dayjs";
-import { MultiAvatar, MultiAvatar2 } from "../../../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 
-function RepairDashboardOrderAddedList(props) {
+const actionCreators = {
+    Added: getRepairDashboardOrderAdded,
+    Open: getRepairDashboardOrderOpen,
+    Closed: getRepairDashboardOrderClose,
+    Cancelled: getRepairDashboardOrderCancelled
+  };
+
+function FinaceRapairDrawerCard (props) {
 
   const [page, setPage] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
+//   const [hasMore, setHasMore] = useState(true);
 
       useEffect(()=> {
         if (props.timeRangeType === "today"){
-          props.getRepairDashboardOrderAdded(props.userId,props.startDate,props.endDate,page);
+          props.fetchOrdersData(props.userId,props.startDate,props.endDate,page);
         }
         else {
-          props.getRepairDashboardOrderAdded(props.userId,props.startDate,props.endDate,page); 
+          props.fetchOrdersData(props.userId,props.startDate,props.endDate,page); 
         }
-      }, [props.userId,props.startDate,props.endDate]);
+      }, [props.userId,props.startDate,props.endDate,props.type]);
 
 
       const handleLoadMore = () => {
-        const proPag = props.repairDashboardOrderAdded && props.repairDashboardOrderAdded.length && props.repairDashboardOrderAdded[0].pageCount
+        const proPag = props.ordersData && props.ordersData.length && props.ordersData[0].pageCount
         setTimeout(() => {
-          if (props.repairDashboardOrderAdded) {
+          if (props.ordersData) {
             if (page < proPag) {
               setPage(page + 1);
-              props.getRepairDashboardOrderAdded(props.userId,props.startDate,props.endDate,page);
+              props.fetchOrdersData(props.userId,props.startDate,props.endDate,page);
             }
             if (page === proPag) {
-              setHasMore(false)
+              props.setHasMore(false)
             }
           }
         }, 100);
@@ -57,9 +65,9 @@ function RepairDashboardOrderAddedList(props) {
         </div>
        
         <InfiniteScroll
-            dataLength={props.repairDashboardOrderAdded.length}
+            dataLength={props.ordersData.length}
             next={handleLoadMore}
-            hasMore={hasMore}
+            hasMore={props.hasMore}
             // loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
             height={"85vh"}
             style={{scrollbarWidth:"thin"}}
@@ -254,7 +262,7 @@ function RepairDashboardOrderAddedList(props) {
 }
 
 
-const mapStateToProps = ({ auth, account, opportunity,dashboard }) => ({
+const mapStateToProps = ({ auth, dashboard }) => ({
     userId: auth.userDetails.userId,
     user: auth.userDetails,
     startDate: dashboard.startDate,
@@ -264,12 +272,17 @@ const mapStateToProps = ({ auth, account, opportunity,dashboard }) => ({
     
   
   });
-  const mapDispatchToProps = (dispatch) =>
-    bindActionCreators(
+  const mapDispatchToProps = (dispatch,ownProps) => {
+    const fetchOrdersData = actionCreators[ownProps.type];
+
+     return bindActionCreators(
       {
-        getRepairDashboardOrderAdded
+        fetchOrdersData,
+        getRepairDashboardOrderAdded,
+        getRepairDashboardOrderOpen,
+      
       },
       dispatch
-    );
-  export default connect(mapStateToProps, mapDispatchToProps)(RepairDashboardOrderAddedList);
+    )};
+  export default connect(mapStateToProps, mapDispatchToProps)(FinaceRapairDrawerCard );
 
