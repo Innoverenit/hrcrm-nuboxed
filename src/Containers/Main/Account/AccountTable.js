@@ -21,8 +21,10 @@ import {
   handleAccountModal,
   emptyDistributor,
   handleAccountPulse,
-  updateAccountPrice
+  updateAccountPrice,
+  handleAccountAddress
 } from "./AccountAction";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -31,6 +33,7 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
 import AccountSearchedData from "./AccountSearchedData";
 import AccountCreditToggle from "./AccountCreditToggle";
+import AddAccountAdressModal from "./AddAccountAdressModal";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 const  AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const AccountModal = lazy(() => import("./AccountModal"));
@@ -426,7 +429,14 @@ function AccountTable(props) {
                               </div>
                             </div>
       
-                         
+                            <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAccountAddress(true);
+            handleCurrentRowData(item);
+          }}
+          
+        />    
 
                             <div className=" flex   max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
@@ -498,6 +508,12 @@ function AccountTable(props) {
         handleAccountModal={handleAccountModal}
          selectedLanguage={props.selectedLanguage}
         translateText={props.translateText}/>
+         <AddAccountAdressModal    
+        item={RowData}
+         type="Distributor"
+         addAccountAddressModal={props.addAccountAddressModal}
+         handleAccountAddress={props.handleAccountAddress}
+      /> 
 </Suspense>
     </>  );
 }
@@ -517,6 +533,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
   accountModal:distributor.accountModal,
   deletingDistributorById:distributor.deletingDistributorById,
   distributorSearch:distributor.distributorSearch,
+  addAccountAddressModal:distributor.addAccountAddressModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -533,7 +550,8 @@ const mapDispatchToProps = (dispatch) =>
       handleAccountModal,
       emptyDistributor,
       handleAccountPulse,
-      updateAccountPrice
+      updateAccountPrice,
+      handleAccountAddress
     },
     dispatch
   );

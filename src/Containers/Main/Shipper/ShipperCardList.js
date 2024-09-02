@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from "redux";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Popconfirm, Switch } from "antd";
 import {
@@ -11,6 +12,7 @@ import {
   handleShipperOrderModal,
   handleShipperActivityTableModal,
   deleteShipperData,
+  handleShipperAddress
 } from "./ShipperAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateShipperModal from "./UpdateShipperModal";
@@ -18,6 +20,7 @@ import AddShipperOrderModal from "./AddShipperOrderModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import ShipperSearchedData from "./ShipperSearchedData";
+import AddShipperAdressModal from "./AddShipperAdressModal";
 
 
 function ShipperCardList(props) {
@@ -195,7 +198,14 @@ function ShipperCardList(props) {
                               unCheckedChildren="No"
                             />
                           </div>
-                        
+                          <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleShipperAddress(true);
+            handleRowData(item);
+          }}
+          
+        />    
                         <div class="flex justify-end max-sm:w-wk items-center">
                           <div>
                             <Tooltip title={props.translatedMenuItems[9]}>
@@ -251,6 +261,12 @@ function ShipperCardList(props) {
         handleSetCurrentShipperId={handleSetCurrentShipperId}
         translatedMenuItems={props.translatedMenuItems}
       />
+        <AddShipperAdressModal  
+        item={rowdata}
+         type="shipper"
+         addShipperAddressModal={props.addShipperAddressModal}
+         handleShipperAddress={props.handleShipperAddress}
+      />
     </>
   )
 }
@@ -262,7 +278,8 @@ const mapStateToProps = ({ shipper, auth }) => ({
   updateShipperModal: shipper.updateShipperModal,
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
-  shipperSerachedData: shipper.shipperSerachedData
+  shipperSerachedData: shipper.shipperSerachedData,
+  addShipperAddressModal: shipper.addShipperAddressModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -274,6 +291,7 @@ const mapDispatchToProps = (dispatch) =>
       deleteShipperData,
       getShipperByUserId,
       setEditShipper,
+      handleShipperAddress
     },
     dispatch
   );

@@ -10,7 +10,9 @@ import {
   handleShipperOrderModal,
   handleShipperActivityTableModal,
   deleteShipperData,
+  handleShipperAddress
 } from "./ShipperAction";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateShipperModal from "./UpdateShipperModal";
 import AddShipperOrderModal from "./AddShipperOrderModal";
@@ -19,6 +21,7 @@ import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import ShipperSearchedData from "./ShipperSearchedData";
+import AddShipperAdressModal from "./AddShipperAdressModal";
 
 function AllShipperList(props) {
   const { handleUpdateShipperModal, updateShipperModal } = props;
@@ -172,7 +175,14 @@ function AllShipperList(props) {
                             unCheckedChildren="No"
                           />
                         </div>
-                       
+                        <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleShipperAddress(true);
+            handleRowData(item);
+          }}
+          
+        />    
                           <div>
                             <Tooltip title={props.translatedMenuItems[9]}>
                               <BorderColorIcon
@@ -232,6 +242,12 @@ function AllShipperList(props) {
         shipperId={currentShipperId}
         handleSetCurrentShipperId={handleSetCurrentShipperId}
       /> */}
+        <AddShipperAdressModal 
+        item={rowdata}
+         type="shipper"
+         addShipperAddressModal={props.addShipperAddressModal}
+         handleShipperAddress={props.handleShipperAddress}
+      />
     </>
   )
 }
@@ -244,7 +260,8 @@ const mapStateToProps = ({ shipper, auth }) => ({
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
   orgId:auth.userDetails.organizationId,
-  shipperSerachedData: shipper.shipperSerachedData
+  shipperSerachedData: shipper.shipperSerachedData,
+  addShipperAddressModal: shipper.addShipperAddressModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -256,6 +273,7 @@ const mapDispatchToProps = (dispatch) =>
       deleteShipperData,
       getAllShipperList,
       setEditShipper,
+      handleShipperAddress
     },
     dispatch
   );

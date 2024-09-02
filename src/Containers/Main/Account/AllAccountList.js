@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 import {
   getAllDistributorsList,
   handleUpdateAccountModal,
-
+  handleAccountAddress
 } from "./AccountAction"
 import dayjs from "dayjs";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ExploreIcon from "@mui/icons-material/Explore";
 import NodataFoundPage from '../../../Helpers/ErrorBoundary/NodataFoundPage';
@@ -17,6 +18,7 @@ import { Tooltip } from 'antd';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AccountSearchedData from './AccountSearchedData';
+import AddAccountAdressModal from './AddAccountAdressModal';
 const AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
@@ -261,6 +263,14 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </Tooltip>
                           </div>
                         </div>
+                        <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAccountAddress(true);
+            handleCurrentRowData(item);
+          }}
+          
+        />    
                         <div className=" flex    max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title="Edit">
@@ -302,7 +312,13 @@ ${(item.address && item.address.length && item.address[0].country) || ""
         RowData={RowData}
         handleAccountPulse={props.handleAccountPulse}
         showPulseModal={props.showPulseModal}
-      /></Suspense>
+      />
+       <AddAccountAdressModal   
+        item={RowData}
+         type="Distributor"
+         addAccountAddressModal={props.addAccountAddressModal}
+         handleAccountAddress={props.handleAccountAddress}
+      /> </Suspense>
     </>
   )
 }
@@ -314,6 +330,7 @@ const mapStateToProps = ({ distributor,auth }) => ({
   updateAccountModal: distributor.updateAccountModal,
   orgId: auth.userDetails.organizationId,
   distributorSearch:distributor.distributorSearch,
+  addAccountAddressModal:distributor.addAccountAddressModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -321,7 +338,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       getAllDistributorsList,
       handleUpdateAccountModal,
-
+      handleAccountAddress
     },
     dispatch
   );

@@ -197,6 +197,8 @@ const initialState = {
   updateCallModal: false,
   updateTaskModal: false,
 
+  addShipperAddressModal:false,
+
   updatingShipperTaskCall: false,
   updatingShipperTaskCallError: false,
 
@@ -1418,6 +1420,9 @@ export const shipperReducer = (state = initialState, action) => {
               reInstatedShipperById: false,
               reInstatedShipperByIdError: true,
           };
+
+          case types.HANDLE_SHIPPER_ADDRESS_MODAL:
+            return { ...state, addShipperAddressModal: action.payload };  
 
 
     default:
