@@ -18,6 +18,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; 
 import ShopIcon from '@mui/icons-material/Shop'
 const DashboardShareForm=lazy(()=>import("./DashboardShareForm"));
 const { TabPane } = Tabs;
@@ -43,11 +44,11 @@ const DashboardActionLeft = (props) => {
            "203", // "Production",//4
             "661",// "Repair ",//5
             "511", // "Investors",//6
-            "", //"RecruitPro" 7
+            "1286", //"RecruitPro" 7
             "105", // "Tasks" 8
             "24",  // "Region" 9
-            "",  // "My Details"10
-            "Procure"
+            "1287",  // "My Details"10
+            "666"// "Procure"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -233,7 +234,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >  <Tooltip title={translatedMenuItems[4]}>
                       <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
-                        <DynamicFeedIcon className="text-white !text-icon"/>
+                        <PrecisionManufacturingIcon className="text-white !text-icon"/>
                       </Avatar>
                     </Tooltip>
                   </span>
@@ -488,7 +489,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >  <Tooltip title={translatedMenuItems[4]}>
                       <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
-                        <DynamicFeedIcon className="text-white !text-icon"
+                        <PrecisionManufacturingIcon className="text-white !text-icon"
 
                         />
                       </Avatar>

@@ -42,16 +42,11 @@ useEffect(()=>{
           <div className="md:w-[4rem]">Owner</div>
           <div className="md:w-[7.1rem]">Creation Date</div>
           <div className="md:w-[37rem]">Revised</div>
+          <div className="md:w-[4rem]"></div>  {/* show status icon */}
 
 
         </div>
-        {/* <InfiniteScroll
-          dataLength={props.allCompleteOrder.length}
-          next={handleLoadMore}
-          hasMore={hasMore}
-          loader={props.fetchingAllOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-          height={"75vh"}
-        > */}
+       
           {props.orderAddedList.length ?
             <>
               {props.orderAddedList.map((item) => {
@@ -85,17 +80,13 @@ useEffect(()=>{
                     // }}
                     >
                       <div class="flex">
-                        <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
+                        <div className=" flex  w-wk   max-sm:w-full">
                           <div className="flex max-sm:w-full">
                             <div class="w-[9.1rem]">
                               <Badge size="small" count={item.productNum}>
                                 <span
                                   class="underline cursor-pointer text-[#1890ff]"
-                                //   onClick={() => {
-                                //     handleOrder(item.orderId);
-                                //     handleSetParticularOrderData(item);
-                                //     props.handleOrderDetailsModal(true);
-                                //   }}
+                               
 
                                 >{`${item.newOrderNo} `}
 
@@ -142,94 +133,73 @@ useEffect(()=>{
                         </div>
                       </div>
                       <div class="flex">
-                        <div className=" flex font-medium flex-col  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                          <h4 class=" text-xs  font-poppins">
+                          <div class=" text-xs  font-poppins">
                             {item.noOfPhones}
-                          </h4>
+                          </div>
                         </div>
-                        <div className=" flex font-medium flex-col  md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <h4 class=" text-xs  font-poppins">
+                        <div className=" flex   md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs  font-poppins">
                             <MultiAvatar2
                               primaryTitle={item.userName}
                               imageURL={item.imageURL}
                               imgWidth={"1.8rem"}
                               imgHeight={"1.8rem"}
                             />
-                          </h4>
+                          </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex  md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                           <span>{date}</span>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[7.8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex  md:w-[7.8rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 <span>{item.payableOfferPrice}</span>
 </div>
                       </div>
                       <div class="flex">
-                        <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex   md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                          <h4 class=" text-xs  font-semibold  font-poppins">
+                          <div class=" text-xs  font-semibold  font-poppins">
                             {item.noOfownerPhones}
-                          </h4>
+                          </div>
                         </div>
                         <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
                           {item.orderStatus}
                         </div>
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                          <h4 class=" text-xs  font-poppins">
+                         
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Notes">
-                              <NoteAltIcon
-                                style={{ cursor: "pointer", color: "green", fontSize: "1rem" }}
-                                // onClick={() => {
-
-                                //   props.handleNotesModalInOrder(true);
-                                //   handleSetParticularOrderData(item);
-                                // }}
-                              />
+                              <NoteAltIcon className=" !text-icon cursor-pointer text-green-600" />
 
                             </Tooltip>
-                          </h4>
+                          </div>
 
 
                         </div>
 
 
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <h4 class=" text-xs  font-poppins">
+                        <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Status">
-                              <EventRepeatIcon
-                                style={{ cursor: "pointer", fontSize: "1rem", }}
-                                // onClick={() => {
-                                //   props.handleStatusOfOrder(true);
-                                //   handleSetParticularOrderData(item);
-                                // }}
-                              />
+                              <EventRepeatIcon  className=" !text-icon cursor-pointer"   />
                             </Tooltip>
-                          </h4>
-                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-
+                          </div>
+                      
 
                         </div>
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <h4 class=" text-xs  font-poppins">
+                        <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Collection">
-                              <PaidIcon
-                                style={{ cursor: "pointer", fontSize: "1rem", }}
-                                // onClick={() => {
-                                //   props.handlePaidModal(true);
-                                //   handleSetParticularOrderData(item);
-                                // }}
-                              // style={{ color: "blue" }}
+                              <PaidIcon className=" !text-icon cursor-pointer"                           
                               />
                             </Tooltip>
 
-                          </h4>
-                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-
+                          </div>
+                          
 
                         </div>
 
@@ -238,13 +208,13 @@ useEffect(()=>{
 
                     </div>
                   </div>
-                  // </div>
+                
                 );
               })}
             </> :
             !props.orderAddedList.length && !props.fetchingOrderAddedList ? <NodataFoundPage /> 
             : null}
-        {/* </InfiniteScroll> */}
+
       </OnlyWrapCard>
     </>
   );
@@ -252,15 +222,8 @@ useEffect(()=>{
 }
 
 const mapStateToProps = ({ order, auth,dashboard, distributor }) => ({
-//   allCompleteOrder: order.allCompleteOrder,
-//   addPaidButtonModal: order.addPaidButtonModal,
 orderAddedList:dashboard.orderAddedList,
 fetchingOrderAddedList:dashboard.fetchingOrderAddedList,
-//   addStatusOfOrder: order.addStatusOfOrder,
-//   addNotesInOrder: order.addNotesInOrder,
-//   fetchingAllOrderList: order.fetchingAllOrderList,
-//   userId: auth.userDetails.userId,
-//   addOrderDetailsModal: distributor.addOrderDetailsModal,
 orgId: auth.userDetails.organizationId,
 timeRangeType:dashboard.timeRangeType,
 startDate: dashboard.startDate,
@@ -271,13 +234,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getOrderAddedList
-    //   getAllOrderList,
-    //   handleNotesModalInOrder,
-    //   handleStatusOfOrder,
-    //   handlePaidModal,
-    //   emptyOrders,
-    //   handleOrderDetailsModal
-    },
+       },
     dispatch
   );
 

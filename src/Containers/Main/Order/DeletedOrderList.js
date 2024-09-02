@@ -46,18 +46,18 @@ function DeletedOrderList(props) {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-    'Urgent', // 0
-    'Order', // 1
-    ' Customer', // 2
-    'Contact', // 3
-    ' Units', // 4
-    'Owner', // 5
-    ' Supervisor',
-    'Lead',
-   
-    'Created',
-    "High",
-    "Normal"
+              "106",  // 'Urgent', // 0
+              "660",    // 'Order', // 1
+              "248",    // ' Customer', // 2
+              "73",  // 'Contact', // 3
+              "260",  // ' Units', // 4
+              "77", // 'Owner', // 5
+              "676",  // ' Supervisor',
+              "677",   // 'Lead',
+               
+              "679",    // 'Created',
+              
+              "108",  // "Normal"
 
 
           ];
@@ -398,7 +398,7 @@ function DeletedOrderList(props) {
             <div className=' flex sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-                <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[10]} </div>
+                <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
                         <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
           <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>

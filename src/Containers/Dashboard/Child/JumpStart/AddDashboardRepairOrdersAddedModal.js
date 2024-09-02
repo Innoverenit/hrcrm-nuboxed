@@ -14,10 +14,9 @@ class RepairDashboardModal extends Component {
 
     return (
       <div>
-        <StyledDrawer
+        <StyledDrawer className=" mt-12"
           title="Orders Added"
           width="55em"
-          style={{ marginTop: "5rem" }}
           visible={this.props.addDashboardRepairOrderModal}
           closable
           placement="right"

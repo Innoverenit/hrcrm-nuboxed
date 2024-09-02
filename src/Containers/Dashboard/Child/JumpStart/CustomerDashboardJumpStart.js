@@ -15,8 +15,8 @@ import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 
 class CustomerDashboardJumpStart extends React.Component{
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     const startDate = dayjs().startOf("month"); 
     const endDate = dayjs();
     var today = new Date(),
@@ -50,10 +50,10 @@ componentDidUpdate(prevProps) {
 fetchMenuTranslations = async () => {
   try {
     const itemsToTranslate = [
-      "",//0 "Customer Added"
-      "",//1 "Contacts Added"
+      "1296",//0 "Customer Added"
+      "1297",//1 "Contacts Added"
       "1229",//2 "Orders Added"
-      "",//3"Orders Completed"
+      "1298",//3"Orders Completed"
       
     ];
 
@@ -110,11 +110,11 @@ render() {
   const formattedDate = dayjs(this.props.dateOfJoining).format('DD-MM-YYYY'); // Format the date as per your requirement
   const { showDatelist, fetchingDatewiseReport } = this.props;
   console.log( this.props.taskperCount)
-   const startDate = `${this.state.startDate.format('DD-MM-YYYY')}T20:00:00Z`
+   const startDate = `${this.props.startDate.format('DD-MM-YYYY')}T20:00:00Z`
   //   const endDate = new Date(this.state.endDate);
 
   console.log(startDate)
-  console.log(this.state.endDate.format('DD-MM-YYYY'))
+  console.log(this.props.endDate.format('DD-MM-YYYY'))
   return(
     <>
     <div class=" flex flex-row w-full" >

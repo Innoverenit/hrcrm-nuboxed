@@ -17,10 +17,10 @@ function CustomerDashJumpstart(props) {
         setLoading(true); 
         const itemsToTranslate = [
    
-        "", // "Customers"//0
-         "",   // "Revenue this Year",//1
-          "",  // ""Revenue Life Time",//2
-           "", // "Open Orders,//3
+        "1292", // "Customers"//0
+         "1293",   // "Revenue this Year",//1
+          "1294",  // ""Revenue Life Time",//2
+           "1295", // "Open Orders,//3
          ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

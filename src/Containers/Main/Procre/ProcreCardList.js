@@ -48,16 +48,16 @@ useEffect(() => {
         setLoading(true); 
         const itemsToTranslate = [
 
-        'Item', 
-        ' Price/Unit', 
-        'Unit', 
-        'Procure', 
-        'Delivery', 
-        'Location',
-        'Created',
-        "Owner",
-        "Trade",
-        "Submitted By"
+        "1044", // 'Item', 
+        "788",// ' Price/Unit', 
+        "256",// 'Unit', 
+        "666",  // 'Procure', 
+        "772", // 'Delivery', 
+        "658",// 'Location',
+        "679", // 'Created',
+        "77", // "Owner",
+        "856",// "Trade",
+        "794",// "Submitted By"
       ];
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
