@@ -80,7 +80,7 @@ function SuppliersDeletedCardList(props) {
                     return (
                       <>
                       <div
-                  className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:h-[7rem] max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="font-medium  flex items-center w-[16.1rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
@@ -138,13 +138,11 @@ function SuppliersDeletedCardList(props) {
                                   item.address[0].postalCode) ||
                                   ""}
                               </div>
-                            </div>
-
-                            <div className=" flex  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <Suspense fallback={<BundleLoader />}> <ReInstateSuppliers supplierId={item.supplierId} /></Suspense>
                             </div>
-                          </div>
+                            </div>
+          
                           </div>
                         </div>
                       </>

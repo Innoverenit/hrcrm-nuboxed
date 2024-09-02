@@ -77,7 +77,7 @@ function InvestorCardList(props) {
             "589",//6 First Meeting
             "1161",//7 Shares
             "218",//8Value
-            "529",//9Club
+            "592",//9Club
             "76",//10Assigned
             "77",//11 Owner
             "279"//12Source

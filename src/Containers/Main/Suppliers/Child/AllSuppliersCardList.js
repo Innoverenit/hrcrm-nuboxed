@@ -96,7 +96,7 @@ return(
   return (
     <>
         <div
-                  className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="font-medium  flex items-center w-[18.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
@@ -111,20 +111,23 @@ return(
                                       {/* New */}               {props.translatedMenuItems[23]}
                                     </div>
                                   ) : null}
-                            </div>                          
+                            </div>       
+                            </div>      
+                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">             
                             <div className=" flex  w-[7.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
                               <div class="  text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                 {item.dialCode} {item.phoneNo}
                               </div>
 
                             </div>
-                            </div>
-                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                    
                             <div className=" flex  w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
                                 <div class="  text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                  {item.emailId}
                               </div>
                             </div>
+                       
+                     
                             <div className=" flex w-20 max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                      
 
@@ -141,30 +144,13 @@ return(
                    </span>
                      </Tooltip>
                            </div>
-                            {/* <div className=" flex  w-[16.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.04rem] max-lg:w-[10.03rem] ">
-                              <div class="  text-xs  font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                {`${(item.address && item.address.length && item.address[0].address1) || ""}
-          ${(item.address && item.address.length && item.address[0].state) || ""}
-          ${(item.address && item.address.length && item.address[0].street) || ""}  ${(item.address && item.address.length && item.address[0].postalCode) || ""}`}
-                              </div>
-                            </div> */}
-                            </div>
-                            {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
-
-                              <div class="  text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                {(item.address &&
-                                  item.address.length &&
-                                  item.address[0].city) ||
-                                  ""}
-                              </div>
-                            </div>                       
-                            </div> */}
-                            <div class="flex max-sm:justify-end max-sm:w-wk items-center">
+                           </div>
+                           
+                            <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                             <div>
 <Tooltip title={props.translatedMenuItems[18]}>
 <StoreIcon
-                            className="!text-icon cursor-pointer text-[red]"
+                            className="!text-icon cursor-pointer text-[red] max-sm:!text-2xl"
                             // onClick={() => {
                             //    props.setEditSuppliers(item);
                             //   handleRowData(item);
@@ -174,7 +160,7 @@ return(
           </Tooltip>
           </div>    
           <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-2xl"
           onClick={() => {
             props.handleSuppliersAddress(true);
             handleRowData(item);
@@ -184,7 +170,7 @@ return(
  <div>
 <Tooltip title={props.translatedMenuItems[19]}>
             <BorderColorIcon
-             className="!text-icon cursor-pointer text-[tomato]"
+             className="!text-icon cursor-pointer text-[tomato] max-sm:!text-2xl"
               onClick={() => {
                  props.setEditSuppliers(item);
                 handleRowData(item);
@@ -199,7 +185,7 @@ return(
              onConfirm={() => props.deleteSupplierData(item.supplierId)}
             >
               <DeleteOutlined
-className=" !text-icon cursor-pointer text-[red]"
+className=" !text-icon cursor-pointer text-[red] max-sm:!text-2xl"
               />
             </Popconfirm>
             </div>
