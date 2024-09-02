@@ -169,6 +169,14 @@ function SuppliersCardList(props) {
                     
                             </div>
                             </div>
+                            <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs">
+                           
+                           <SuplierNotApprovalPublish
+                            approvedInd={item.approvedInd}
+                           supplierId={item.supplierId}
+                           
+                           />
+                         </div>
                           
                                    {/* {countryCode}                        */}
                             <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
@@ -179,14 +187,7 @@ function SuppliersCardList(props) {
                                   supplierId={item.supplierId}
                                 />
                               </div>
-                              <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs">
-                           
-                                <SuplierNotApprovalPublish
-                                 approvedInd={item.approvedInd}
-                                supplierId={item.supplierId}
-                                
-                                />
-                              </div>
+                             
                             </div>                          
                             <div class="flex max-sm:w-wk items-center max-sm:justify-evenly">
                               <div>
