@@ -951,16 +951,16 @@ export const suppliersReducer = (state = initialState, action) => {
         return {
           ...state,
           addingSupplierApproval: false,
-          supplierList: state.supplierList.map((item) => {
-            if (item.supplierId === action.payload.supplierId) {
-              return action.payload;
-            } else {
-              return item;
-            }
-          }),
-          // supplierList: state.supplierList.filter(
-          //   (item) => item.supplierId !== action.payload
-          // ),
+          // supplierList: state.supplierList.map((item) => {
+          //   if (item.supplierId === action.payload.supplierId) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
+          supplierList: state.supplierList.filter(
+            (item) => item.supplierId !== action.payload
+          ),
         };
       case types.ADDING_SUPPLIER_APPROVAL_FAILURE:
         return {
