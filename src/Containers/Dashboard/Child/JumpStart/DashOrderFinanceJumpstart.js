@@ -11,15 +11,15 @@ function DashOrderFinanceJumpstart(props) {
     openDealAdded, handleDealAddedDrawer, openDealClosed, handleDealClosedDrawer
   } = props;
 
+  
   useEffect(() => {
-    // props.getJumpFinanceDetail(props.orgId, props.timeRangeType)
   }, [props.timeRangeType])
   return (
     <>
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
+
         <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                     
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
@@ -36,10 +36,9 @@ function DashOrderFinanceJumpstart(props) {
             />
                          </div>
                      </div>
-                 
                  </div> 
+
                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                     
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
@@ -54,20 +53,32 @@ function DashOrderFinanceJumpstart(props) {
                         />}
             
                         />
-                        <JumpStartBox
-                          bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-                          noProgress
-                          title={<FormattedMessage
-                            id="app.financecancelled"
-                            defaultMessage="Receivable Cancelled"
-                          />}
-                      
-                        />
+                        
                          </div>
                      </div>
                  
                  </div> 
+
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                             </div>
+                             <JumpStartBox
+              bgColor="linear-gradient(270deg,#F15753,orange)"
+              noProgress
+              title={<FormattedMessage
+                id="app.financeadded"
+                defaultMessage="Receivable Added"
+              />}
+           
+            />
+                         </div>
+                     </div>
+                 </div> 
           
+                 
         </div>
       </div>
 

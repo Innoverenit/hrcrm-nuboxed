@@ -43,14 +43,6 @@ export const handleOrderAddedModal = (modalProps) => (dispatch) => {
   });
 };
 
-
-export const handleDasboardRepairOrderDrawer = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_DASHBOARD_REPAIR_ORDER_MODAL,
-    payload: modalProps,
-  });
-};
-
 export const setDashboardViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_DASHBOARD_VIEW_TYPE, payload: viewType });
 
@@ -72,41 +64,9 @@ export const handleActionDrawerModal = (modalProps) => (dispatch) => {
   });
 };
 
-
-export const handleOrderOpenModal = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_ORDER_OPEN_MODAL,
-    payload: modalProps,
-  });
-};
-
-
 export const handleOrderClosedModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_ORDER_CLOSED_MODAL,
-    payload: modalProps,
-  });
-};
-
-
-export const handleOrderCancelModal = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_ORDER_CANCEL_MODAL,
-    payload: modalProps,
-  });
-};
-
-
-export const handleDasboardRepairOrderOpenDrawer = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_DASHBOARD_REPAIR_ORDER_OPEN_MODAL,
-    payload: modalProps,
-  });
-};
-
-export const handleDasboardRepairOrderCloseDrawer = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_DASHBOARD_REPAIR_ORDER_CLOSE_MODAL,
     payload: modalProps,
   });
 };
@@ -2917,6 +2877,32 @@ export const getRepairDashboardOrderOpen = (userId, startDate, endDate,page) => 
       console.log(err.response);
       dispatch({
         type: types.GET_REPAIR_DASHBOARD_ORDER_OPEN_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRepairDashboardOrderCancelled = (userId, startDate, endDate,page) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dashboard/CancelledDummy/${userId}/${endDate}/${startDate}/${page}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_FAILURE,
         payload: err,
       });
     });

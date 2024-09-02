@@ -228,8 +228,6 @@ const initialState = {
   fetchingStageActionNotificationsError: false,
   stageactionNotifications: [],
 
-  orderCancelModal:false,
-
   billableCandidateModal: false,
 
   fetchingAllDatewiseReport: false,
@@ -392,9 +390,7 @@ const initialState = {
   fetchingLeadsQualified: false,
   fetchingLeadsQualifiedError: false,
   showQualifiedLeads: [],
-
-  addDashboardRepairOrderCloseModal:false,
-
+  
   openLeadAdded: false,
   fetchingLeadsAdded: false,
   fetchingLeadsAddedError: false,
@@ -414,8 +410,6 @@ const initialState = {
   fetchingOppoClosedError: false,
   showClosedOppo: [],
 
-  orderOpenModal:false,
-
   openPitchQualified: false,
   fetchingPitchQualified: false,
   fetchingPitchQualifiedError: false,
@@ -425,7 +419,7 @@ const initialState = {
   fetchingDealAdded: false,
   fetchingDealAddedError: false,
   showAddedDeal: [],
-  addDashboardRepairOrderModal:false,
+
 
   openDealClosed: false,
   fetchingDealClosed: false,
@@ -449,9 +443,6 @@ const initialState = {
   fetchingHottestPitch: false,
   fetchingHottestPitchError: false,
   showHottestPitch: [],
-
-
-  addDashboardRepairOrderOpenModal:false,
 
   fetchingColdestPitch: false,
   fetchingColdestPitchError: false,
@@ -496,27 +487,17 @@ const initialState = {
 
   fetchingJumpstartFinanceDetail: false,
   fetchingJumpstartFinanceDetailError: false,
-  financeDetail: []
+  financeDetail: [],
+
+  fetchingRepairDashboardOrderCancelled: false,
+  fetchingRepairDashboardOrderCancelledError:false,
+  repairDashboardOrderCancelled:[],
 };
 
 export const dashboardReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_DASHBOARD_VIEW_TYPE:
       return { ...state, viewType: action.payload };
-
-
-      case types.HANDLE_DASHBOARD_REPAIR_ORDER_MODAL:
-        return { ...state, addDashboardRepairOrderModal: action.payload };
-
-
-        case types.HANDLE_DASHBOARD_REPAIR_ORDER_CLOSE_MODAL:
-          return { ...state, addDashboardRepairOrderCloseModal: action.payload };
-
-
-        case types.HANDLE_DASHBOARD_REPAIR_ORDER_OPEN_MODAL:
-          return { ...state, addDashboardRepairOrderOpenModal: action.payload };
-
-
       case types.HANDLE_ORDER_ADDED_MODAL:
       return { ...state, orderAddedModal: action.payload };
 
@@ -525,9 +506,6 @@ export const dashboardReducer = (state = initialState, action) => {
 
       case types.HANDLE_CONTACT_ADDED_MODAL:
       return { ...state, contactAddedModal: action.payload };
-
-      case types.HANDLE_ORDER_CANCEL_MODAL:
-        return { ...state, orderCancelModal: action.payload };
 
     case types.GET_SKILLS_CLOUD_REQUEST:
       return { ...state, fetchingSkillsCloud: true };
@@ -944,7 +922,7 @@ export const dashboardReducer = (state = initialState, action) => {
 
       case types.GET_REPAIR_DASHBOARD_ORDER_OPEN_REQUEST:
         return { ...state, fetchingRepairDashboardOrderOpenError: true };
-      case types.GET_REPAIR_DASHBOARD_ORDER_ADDED_SUCCESS:
+      case types.GET_REPAIR_DASHBOARD_ORDER_OPEN_SUCCESS:
         return {
           ...state,
           fetchingRepairDashboardOrderOpenError: false,
@@ -1575,14 +1553,6 @@ export const dashboardReducer = (state = initialState, action) => {
           fetchingOrderCancelList: false,
           fetchingOrdercancelListError: true,
         };
-
-
-
-        case types.HANDLE_ORDER_OPEN_MODAL:
-          return { ...state, orderOpenModal: action.payload };
-
-
-
 
       case types.GET_ORDER_ADDED_LIST_REQUEST:
         return { ...state, fetchingOrderAddedList: true };
@@ -2241,6 +2211,22 @@ export const dashboardReducer = (state = initialState, action) => {
               gettingDevelopChart: false,
               gettingDevelopChartError: true,
             };
+
+
+            case types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_REQUEST:
+              return { ...state, fetchingRepairDashboardOrderCancelledError: true };
+            case types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_SUCCESS:
+              return {
+                ...state,
+                fetchingRepairDashboardOrderCancelledError: false,
+                repairDashboardOrderCancelled:action.payload,
+              };
+            case types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_FAILURE:
+              return {
+                ...state,
+                fetchingRepairDashboardOrderCancelled: false,
+                fetchingRepairDashboardOrderCancelledError: true,
+              };
 
     default:
       return state;

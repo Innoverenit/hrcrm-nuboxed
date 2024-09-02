@@ -1,25 +1,30 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import OrdersAddedModal from "./OrdersAddedModal"
-import OrdersCancelModal from "./OrdersCancelModal"
-import OrdersOpenModal from "./OrdersOpenModal"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getJumpOrderCount,
   getJumpOrderDetail,
 handleOrderAddedModal,
-handleOrderCancelModal,
 handleOrderClosedModal,
-handleOrderOpenModal
+getOrderAddedList,
+getOrderOpenList,
+getOrderClosedList,
+getOrderCancelList
 } from "../../DashboardAction";
-import OrdersClosedModal from "./OrdersClosedModal"
+import OrdersClosedModal from "./OrdersClosedModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import { base_url2 } from "../../../../Config/Auth";
+import axios from 'axios';
+import OrdersOpenDrawer from "./OrdersOpenDrawer";
 
 function DashboardOrderJumpstart(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalData, setModalData] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentOrderType, setCurrentOrderType] = useState("");
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -43,14 +48,65 @@ function DashboardOrderJumpstart(props) {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
+  
   useEffect(() => {
     props.getJumpOrderDetail(props.timeRangeType, "Catalog")
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 
+  useEffect(() => {
+    if (props.orderAddedList) {
+      setModalData(props.orderAddedList);
+    }
+  }, [props.orderAddedList]);
+
+  useEffect(() => {
+    if (props.orderOpenList) {
+      setModalData(props.orderOpenList);
+    }
+  }, [props.orderOpenList]);
+
+  useEffect(() => {
+    if (props.orderClosedList) {
+      setModalData(props.orderClosedList);
+    }
+  }, [props.orderClosedList]);
+
+  useEffect(() => {
+    if (props.orderCancelList) {
+      setModalData(props.orderCancelList);
+    }
+  }, [props.orderCancelList]);
+
+
+
+  const handleClick = (type) => {
+    setCurrentOrderType(type);
+    setIsModalOpen(true);
+
+    switch(type) {
+      case 'Added':
+        props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
+        break;
+      case 'Open':
+        props.getOrderOpenList(props.orgId,props.endDate,props.startDate);
+        break;
+      case 'Closed':
+        props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
+        break;
+      case 'Cancelled':
+        props.getOrderCancelList(props.orgId,props.endDate,props.startDate);
+        break;
+      default:
+        break;
+    }
+  };
+
+  
   if (loading) {
     return <div><BundleLoader/></div>;
   } 
+
   return (
     <>
       <div class=" flex flex-row w-full" >
@@ -68,7 +124,7 @@ function DashboardOrderJumpstart(props) {
               noProgress
               title= {translatedMenuItems[0]}
             
-              jumpstartClick={()=>props.handleOrderAddedModal(true)}
+              jumpstartClick={()=> handleClick("Added")}
               cursorData={"pointer"}
               value={props.orderinDashboard.totalOrder}
             isLoading={props.fetchingorderDetails}
@@ -87,9 +143,8 @@ function DashboardOrderJumpstart(props) {
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-              title= {translatedMenuItems[1]}
-              
-            jumpstartClick={()=>props.handleOrderOpenModal(true)}
+              title= {translatedMenuItems[1]} 
+            jumpstartClick={()=> handleClick("Open")}
               cursorData={"pointer"}
             // value={ props.orderinDashboard.pendingOrder}
             isLoading={props.fetchingorderDetails}
@@ -111,7 +166,7 @@ function DashboardOrderJumpstart(props) {
               noProgress
               title= {translatedMenuItems[2]}
           
-              jumpstartClick={()=>props.handleOrderClosedModal(true)}
+              jumpstartClick={()=> handleClick("Closed")}
               cursorData={"pointer"}
             // value={props.orderinDashboard.completeOrder}
             isLoading={props.fetchingorderDetails}
@@ -131,38 +186,25 @@ function DashboardOrderJumpstart(props) {
                               <JumpStartBox
                              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                               noProgress
-                              title= {translatedMenuItems[3]}
-                              
-                              jumpstartClick={()=>props.handleOrderCancelModal(true)}
+                              title= {translatedMenuItems[3]} 
+                              jumpstartClick={()=> handleClick("Cancelled")}
                               cursorData={"pointer"}
                               value={props.orderinDashboard.cancelOrder}
                             isLoading={props.fetchingorderDetails}
                             />
                           </div>
-                      </div>
-                     
+                      </div>      
                   </div>
-            
-            
-
-
           </div>
           
         </div>
       
-   
-     <OrdersAddedModal
-      selectedLanguage={props.selectedLanguage}
-      translateText={props.translateText}
-       orderAddedModal={props.orderAddedModal}
-       handleOrderAddedModal={props.handleOrderAddedModal}
-      />
-        <OrdersCancelModal
+        {/* <OrdersCancelModal
          selectedLanguage={props.selectedLanguage}
          translateText={props.translateText}
        orderCancelModal={props.orderCancelModal}
        handleOrderCancelModal={props.handleOrderCancelModal}
-      />
+      /> */}
        <OrdersClosedModal
         selectedLanguage={props.selectedLanguage}
         translateText={props.translateText}
@@ -170,13 +212,21 @@ function DashboardOrderJumpstart(props) {
        handleOrderClosedModal={props.handleOrderClosedModal}
       />
 
-<OrdersOpenModal
+{/* <OrdersOpenModal
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
        orderOpenModal={props.orderOpenModal}
        handleOrderOpenModal={props.handleOrderOpenModal}
+      /> */}
+
+      <OrdersOpenDrawer
+ selectedLanguage={props.selectedLanguage}
+ translateText={props.translateText}
+ isModalOpen={isModalOpen}
+ setIsModalOpen={() => setIsModalOpen(false)}
+ modalData={modalData}
+ title={currentOrderType}
       />
-      
    
     </>
 
@@ -189,11 +239,14 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   fetchingorderDetails: dashboard.fetchingorderDetails,
   userId: auth.userDetails.employeeId,
   orderAddedModal:dashboard.orderAddedModal,
-  orderCancelModal:dashboard.orderCancelModal,
   orderClosedModal:dashboard.orderClosedModal,
   timeRangeType: dashboard.timeRangeType,
-  orderOpenModal:dashboard.orderOpenModal
-
+  startDate: dashboard.startDate,
+  endDate: dashboard.endDate,
+  orderAddedList:dashboard.orderAddedList,
+  orderOpenList:dashboard.orderOpenList,
+  orderClosedList:dashboard.orderClosedList,
+  orderCancelList:dashboard.orderCancelList,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -202,16 +255,11 @@ const mapDispatchToProps = (dispatch) =>
       getJumpOrderCount,
       getJumpOrderDetail,
       handleOrderAddedModal,
-      handleOrderCancelModal,
       handleOrderClosedModal,
-      handleOrderOpenModal
-      //   getJumpInvestor2list,
-      //   getJumpInvestor3list,
-      //   getJumpInvestor4list,
-      //   handlePitchQualifiedDrawer,
-      //   handlePitchAddedDrawer,
-      //   handleDealAddedDrawer,
-      //   handleDealClosedDrawer
+      getOrderAddedList,
+      getOrderOpenList,
+      getOrderClosedList,
+      getOrderCancelList
 
     },
     dispatch
