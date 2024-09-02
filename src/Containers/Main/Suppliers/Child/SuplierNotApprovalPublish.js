@@ -34,7 +34,7 @@ function SuplierNotApprovalPublish(props) {
                     cancelText="Cancel"
                 >
                     <Switch className="toggle-clr"
-            checked={props.approvedInd}
+            //  checked={props.approvedInd}
                         // isLoading={true}
                         checkedChildren="Yes"
                         unCheckedChildren="No"
