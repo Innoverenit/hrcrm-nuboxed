@@ -141,8 +141,8 @@ function RefurbishActionLeft (props) {
 
         return (
           <>
-            <FlexContainer alignItems="center">
-    
+            
+            <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto  ">
               {/* {user.designation === "Executive" && */}
     
     
@@ -178,7 +178,7 @@ function RefurbishActionLeft (props) {
               </Badge>
               </Tooltip>
 {viewType === "all"?
-              <div class=" w-64 max-sm:w-24 ml-2">
+              <div class=" w-64 max-sm:w-40 ml-4">
         <Input
           placeholder={translatedMenuItems[2]}
           width={"100%"}
@@ -191,7 +191,7 @@ function RefurbishActionLeft (props) {
       :null}
 
 
-            </FlexContainer>
+            </div>
     
           </>
         );

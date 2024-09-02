@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { ActionHeader } from "../../../Components/Utils";
 import RefurbishActionLeft from "./RefurbishActionLeft";
-import RefurbishActionRight from "./RefurbishActionRight";
 
 class RefurbishHeader extends Component {
   render() {
@@ -16,10 +15,7 @@ class RefurbishHeader extends Component {
               viewType={this.props.viewType}
             />
           }
-        // rightComponent={
-        //   <RefurbishActionRight
-        //   />
-        // }
+       
         />
       </>
     );
