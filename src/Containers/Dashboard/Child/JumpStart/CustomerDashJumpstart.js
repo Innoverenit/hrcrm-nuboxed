@@ -51,7 +51,7 @@ function CustomerDashJumpstart(props) {
        
         <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
-                     <div class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
                                  <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
@@ -67,7 +67,7 @@ function CustomerDashJumpstart(props) {
                  </div> 
                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
-                     <div class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                     <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-pink-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
                                  <div class="rounded-full p-2 bg-pink-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
@@ -83,7 +83,7 @@ function CustomerDashJumpstart(props) {
                  </div> 
         <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
-                     <div class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                     <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
                                  <div class="rounded-full p-2 bg-yellow-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
@@ -99,7 +99,7 @@ function CustomerDashJumpstart(props) {
                  </div> 
                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
-                     <div class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                     <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-blue-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
                                  <div class="rounded-full p-2 bg-blue-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
