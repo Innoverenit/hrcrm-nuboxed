@@ -553,10 +553,10 @@ const {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]"  style={{scrollbarWidth:"thin"}}>
-            <Form className="form-background">
+            <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]  "  style={{scrollbarWidth:"thin"}}>
+            <Form className="form-background max-sm:w-[90%]">
               <div class=" flex justify-between max-sm:flex-col">
-                <div class=" h-full w-w47.5  mt-3 max-sm:w-wk">
+                <div class=" h-full w-w47.5  max-sm:w-wk">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                   <Field
                     isRequired
@@ -582,7 +582,7 @@ const {
               
                   <div class="mt-3">
                     <div class=" flex justify-between">
-                      <div class=" w-5/12">
+                      <div class=" w-5/12 flex flex-col">
                       <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
                         <Field
                           isRequired
@@ -595,7 +595,7 @@ const {
                         
                         />
                       </div>
-                      <div class=" w-5/12">
+                      <div class=" w-5/12 flex flex-col">
                       <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
                         <Field
                           isRequired
@@ -612,7 +612,7 @@ const {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-5/12">
+                    <div class=" w-5/12 flex flex-col mt-1">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
                       <Field
                         isRequired
@@ -639,7 +639,7 @@ const {
                         }}
                       />
                     </div>
-                    <div class=" w-5/12">
+                    <div class=" w-5/12 flex flex-col mt-1">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                       <Field
                         isRequired
@@ -654,7 +654,7 @@ const {
                       />
                     </div>
                   </div>
-                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
+                  <div class=" text-xs font-bold font-poppins mt-1"> {translatedMenuItems[6]}</div>
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
@@ -667,32 +667,7 @@ const {
                     component={SearchSelect}
                     inlineLabel
                   />
-       
-
-                    {/* <Field
-                      name="employeesId"
-                      isColumnWithoutNoCreate
-                      selectType="employee"
-                      // label="Assigned"
-                      label={
-                        <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="Assigned"
-                        />
-                      }
-                      component={SearchSelect}
-                      isColumn
-                      value={values.employeeId}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName || ""} ${
-                          lastName || ""
-                        }`,
-                        value: employeeId,
-                      }}
-                      inlineLabel
-                    /> */}
-                   
-                
+                       
                    <div class="mt-3" >
                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                   {props.user.crmInd === true &&(
@@ -789,38 +764,7 @@ const {
                   )} 
                   </div>
                 
-                  {/* <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    label="Team"
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={
-                      props.setClearbitCandidateData
-                    }
-                    component={CandidateClearbit}
-                    inlineLabel
-                  /> */}
-                  {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
-                  
+                               
                 </div>
                 <div class="h-full w-w47.5 max-sm:w-wk ">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
@@ -828,12 +772,8 @@ const {
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            {/* <Listbox.Label className="block text-sm font-semibold text-gray-700">            
-              <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="assignedto"
-                      />
-            </Listbox.Label> */}
+                           {/* assignedto" */}
+                 
             <div className="relative ">
             <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
                 {selected}
@@ -897,28 +837,9 @@ const {
         )}
       </Listbox>
       </div>
-      <div class="mt-1">
+      <div class="mt-2">
       <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
-                  {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="include"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${empName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-
+              
 {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</div> */}
                    <Select
           showSearch
@@ -938,7 +859,7 @@ const {
           ))}
         </Select>
                  </div>
-                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
+                 <div class=" text-xs font-bold font-poppins mt-1"> {translatedMenuItems[12]}</div>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (

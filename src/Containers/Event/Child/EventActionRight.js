@@ -1,4 +1,4 @@
-import React, { Component,lazy,Suspense } from "react";
+import React, { Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Button from "antd/lib/button";
@@ -6,8 +6,6 @@ import { Tooltip } from "antd";
 import { handleEventModal } from "../EventAction";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { BundleLoader } from "../../../Components/Placeholder";
-const EventSharedForm =lazy(()=>import("./EventSharedForm"));
-
 class EventActionRight extends React.Component {
   state = {
     isClicked: "import",
@@ -30,7 +28,7 @@ class EventActionRight extends React.Component {
     return (
       <div class=" flex items-center" >
          {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.eventFullListInd === true &&(
-         <Suspense fallback={<BundleLoader />}> <EventSharedForm
+         <Suspense fallback={<BundleLoader />}> <div
          selectedLanguage={this.props.selectedLanguage}
          translateText={this.props.translateText}
          /></Suspense>

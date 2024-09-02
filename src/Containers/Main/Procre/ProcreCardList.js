@@ -142,7 +142,7 @@ const {handleProcureNotesDrawerModal,
   return (
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
         <div className=" md:w-[0.5rem]"></div>
                         <div className=" md:w-[11rem]">{translatedMenuItems[0]}</div>
                         <div className=" md:w-[5.4rem]">{translatedMenuItems[1]}</div>
@@ -176,24 +176,8 @@ const {handleProcureNotesDrawerModal,
            
             return (
               <div key={item.iteamId}>
-              <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+              <div className="flex rounded  mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
 <div>
-{/* <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full ">
-                                                                <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
-
-                                                                    {item.priority === "High" && (
-                                                                        <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
-                                                                    )}
-                                                                    {item.priority === "Medium" && (
-                                                                        <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
-                                                                    {item.priority === "Low" && (
-                                                                        <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
-                                                                </div>
-                                                            </div>
-                                                        </Tooltip> */}
 </div>
                   <div class="flex">
                   <div className=" flex flex-col w-wk items-center   max-sm:w-full">
@@ -372,7 +356,7 @@ const {handleProcureNotesDrawerModal,
                   <div >
                       <Tooltip title="Notes">
                         <NoteAltIcon
-                         className=" !text-icon cursor-pointer text-green-800"
+                         className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                           onClick={() => {
                             handleSetParticularOrderData(item);
                             handleProcureNotesDrawerModal(true);
@@ -403,7 +387,7 @@ const {handleProcureNotesDrawerModal,
                        {!item.acceptedInd && (
                      
                       <BorderColorIcon
-                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1 max-sm:!text-2xl"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.iteamId)}

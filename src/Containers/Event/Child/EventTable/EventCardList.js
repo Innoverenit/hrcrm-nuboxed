@@ -182,7 +182,7 @@ function EventCardList (props) {
             };
                     return (
                         <div>
-                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                            <div className="flex rounded   mt-1 bg-white h-8 items-center p-1 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:h-24"
                                 style={{
                                     // borderBottom: "3px dotted #515050"
                                 }}>
@@ -307,7 +307,7 @@ function EventCardList (props) {
           </div>
                    </div>
                                </div>
-                               <div class="flex justify-end max-sm:w-wk items-center"> 
+                               <div class="flex justify-end max-sm:w-wk items-center max-sm:justify-evenly"> 
                     
                       <div class="flex  w-[4rem] max-sm:flex-row items-center justify-between max-sm:w-auto">
                     <div class="">
@@ -333,12 +333,7 @@ function EventCardList (props) {
               )}
         
                         </div>
-                        <div>
-                        {/* <Tooltip title={item.eventDescription}>  
-                        <EventNoteIcon
-                          className="!text-base cursor-pointer"
-                       />
-                        </Tooltip> */}
+                    
                          <Tooltip title={
       <div>
         {item.eventDescription}
@@ -352,11 +347,11 @@ function EventCardList (props) {
     }>
       <EventNoteIcon className="!text-icon cursor-pointer" />
     </Tooltip>
-                    </div>
-                    </div>
+                   
+                 
                     
                     
-        <div class="flex flex-row  w-[4rem] max-sm:flex-row justify-evenly items-center max-sm:w-auto">
+    
        
           <Tooltip title="Edit">
               <BorderColorIcon
