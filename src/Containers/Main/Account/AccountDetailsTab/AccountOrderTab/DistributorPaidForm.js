@@ -59,6 +59,7 @@ function DistributorPaidForm(props) {
           orderCurrencyId: props.particularRowData.orderCurrencyName || "",
           orgId: props.orgId,
           approveByFinanceInd: false,
+          orderPaymentType:"Procure"
         
       
         }}

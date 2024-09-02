@@ -1538,3 +1538,10 @@ export const reinstateToggleForShipper = (data, shipperId,userId) => (
       message.error("Something went wrong")
     });
 };
+
+export const handleShipperAddress = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SHIPPER_ADDRESS_MODAL,
+    payload: modalProps,
+  });
+};

@@ -8,6 +8,8 @@ const initialState = {
 
   updateAccountModal: false,
 
+  addAccountAddressModal:false,
+
   fetchingPiByItem: false,
   fetchingPiByItemError: false,
   piByItem:[],
@@ -3872,6 +3874,9 @@ export const distributorReducer = (state = initialState, action) => {
                                       fetchingTimelineStatus: false,
                                       fetchingTimelineStatusError: true,
                                     };
+
+                                    case types.HANDLE_ACCOUNT_ADDRESS_MODAL:
+                                      return { ...state, addAccountAddressModal: action.payload };
 
     default:
       return state;

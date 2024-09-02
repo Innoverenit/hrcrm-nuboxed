@@ -70,6 +70,24 @@ const initialState = {
 
   addSuppliersModal: false,
 
+  addingContactMand:false,
+  addingContactMandError:false,
+
+  removeAddressData:false,
+  removeAddressDataError:false,
+
+  updateContactAddress:false,
+  updateContactAddressError:false,
+
+  addSuppliersAddressModal:false,
+
+  addingContactAddress:false,
+  addingContactAddressError:false,
+ 
+  fetchingContactAddress:false,
+  fetchingContactAddressError:false,
+  contactAddress:[],
+
   addingSuppliers: false,
   addingSuppliersError: false,
 
@@ -1928,7 +1946,103 @@ export const suppliersReducer = (state = initialState, action) => {
                                       case types.HANDLE_CLAER_SEARCHED_DATA_SUPPLIER:
                                         return { ...state, 
                                           searchSupplierList: [], 
-                                        };  
+                                        }; 
+
+                                        case types.ADD_CONTACT_ADDRESS_REQUEST:
+                                          return { ...state, addingContactAddress: true };
+                                        case types.ADD_CONTACT_ADDRESS_SUCCESS:
+                                          return {
+                                            ...state,
+                                            addingContactAddress: false,
+                                            contactAddress:[action.payload,...state.contactAddress]
+                                            // sectors: [...state.sectors, action.payload],
+                                            
+                                          };
+                                        case types.ADD_CONTACT_ADDRESS_FAILURE:
+                                          return {
+                                            ...state,
+                                            addingContactAddress: false,
+                                            addingContactAddressError: true,
+                                          };       
+                                        
+                                          return { ...state, fetchingContactAddress: true };
+                                          case types.GET_CONTACT_ADDRESS_DATA_SUCCESS:
+                                            return {
+                                              ...state,
+                                              fetchingContactAddress: false,
+                                              contactAddress: action.payload,
+                                            };
+                                          case types.GET_CONTACT_ADDRESS_DATA_FAILURE:
+                                            return {
+                                              ...state,
+                                              fetchingContactAddress: false,
+                                              fetchingContactAddressError: true,
+                                            };
+
+                                            case types.UPDATE_CONTACT_ADDRESS_REQUEST:
+        return { ...state, updateContactAddress: true };
+      case types.UPDATE_CONTACT_ADDRESS_SUCCESS:
+        return {
+          ...state,
+          //contactAddress
+          updateContactAddress: false,
+          contactAddress: state.contactAddress.map((item) => {
+            if (item.addressId === action.payload.addressId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+          //sectors:[action.payload,...state.sectors]
+          // sectors: [...state.sectors, action.payload],
+          
+        };
+      case types.UPDATE_CONTACT_ADDRESS_FAILURE:
+        return {
+          ...state,
+          updateContactAddress: false,
+          updateContactAddressError: true,
+        };
+
+
+        case types.REMOVE_ADDRESS_DATA_REQUEST:
+          return { ...state, removeAddressData: true };
+        case types.REMOVE_ADDRESS_DATA_SUCCESS:
+          return {
+            ...state,
+            removeAddressData: false,
+            contactAddress: state.contactAddress.filter(
+              (item) => item.addressId !== action.payload
+            ),
+          };
+        case types.REMOVE_ADDRESS_DATA_FAILURE:
+          return {
+            ...state,
+            removeAddressData: false,
+            removeAddressDataError: false,
+          };
+  
+          case types.ADD_CONTACT_MAND_REQUEST:
+            return { ...state, addingContactMand: true };
+          case types.ADD_CONTACT_MAND_SUCCESS:
+            return {
+              ...state,
+              addingContactMand: false,
+              //sectors:[action.payload,...state.sectors]
+              // sectors: [...state.sectors, action.payload],
+              
+            };
+          case types.ADD_CONTACT_MAND_FAILURE:
+            return {
+              ...state,
+              addingContactMand: false,
+              addingContactMandError: true,
+            };
+        
+
+            case types.HANDLE_SUPPLIERS_ADDRESS_MODAL:
+              return { ...state, addSuppliersAddressModal: action.payload };
+
 
 
     default:

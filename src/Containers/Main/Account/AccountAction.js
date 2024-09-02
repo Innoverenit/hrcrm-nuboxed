@@ -5069,3 +5069,9 @@ export const getStatusTimeline = (orderPhoneId) => (dispatch) => {
       });
 };
 
+export const handleAccountAddress = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ACCOUNT_ADDRESS_MODAL,
+    payload: modalProps,
+  });
+};

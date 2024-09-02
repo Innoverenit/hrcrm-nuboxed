@@ -5,8 +5,10 @@ import {
   getSuppliersList, emptysUPPLIERS, deleteSupplierData,
   handleUpdateSupplierModal, setEditSuppliers,
   handleSuppliersPriceDrawer,
-  handleSuppliersListDrawer
+  handleSuppliersListDrawer,
+  handleSuppliersAddress
 } from "../SuppliersAction"
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import StoreIcon from '@mui/icons-material/Store';
@@ -22,6 +24,7 @@ import SupplierAddListModal from "./SupplierAddListModal";
 import SuplierPublishToggle from "./SuplierPublishToggle";
 import SupplierSearchedData from "./SupplierSearchedData";
 import SuplierNotApprovalPublish from "./SuplierNotApprovalPublish";
+import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
 
 function SuppliersCardList(props) {
 
@@ -230,7 +233,14 @@ function SuppliersCardList(props) {
                                   />
                                 </Tooltip>
                               </div>
-
+                              <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleSuppliersAddress(true);
+            handleRowData(item);
+          }}
+          
+        />    
                               <div>
                                 {/* <Tooltip title={props.translatedMenuItems[20]}>
                                   <BorderColorIcon
@@ -293,6 +303,12 @@ function SuppliersCardList(props) {
         handleSuppliersListDrawer={props.handleSuppliersListDrawer}
         translatedMenuItems={props.translatedMenuItems}
       />
+       <AddSuppliersAdressModal    
+        item={rowdata}
+         type="supplier"
+         addSuppliersAddressModal={props.addSuppliersAddressModal}
+         handleSuppliersAddress={props.handleSuppliersAddress}
+      /> 
     </>
   )
 }
@@ -307,7 +323,8 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
   updateSupplierModal: suppliers.updateSupplierModal,
-  searchSupplierList:suppliers.searchSupplierList
+  searchSupplierList:suppliers.searchSupplierList,
+  addSuppliersAddressModal: suppliers.addSuppliersAddressModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -319,7 +336,8 @@ const mapDispatchToProps = (dispatch) =>
       setEditSuppliers,
       handleUpdateSupplierModal,
       handleSuppliersPriceDrawer,
-      handleSuppliersListDrawer
+      handleSuppliersListDrawer,
+      handleSuppliersAddress
     },
     dispatch
   );

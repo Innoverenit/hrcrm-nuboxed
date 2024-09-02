@@ -3,14 +3,17 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
   getSuppliersNotApprovalList, 
-  emptynotApprovedSuppliers
+  emptynotApprovedSuppliers,
+  handleSuppliersAddress
 } from "../SuppliersAction"
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import SuplierNotApprovalPublishToggle from "../Child/SuplierNotApprovalPublishToggle"
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SupplierSearchedData from "./SupplierSearchedData";
+import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
 
 function SuppliersNotApprovalList(props) {
 
@@ -91,18 +94,7 @@ function SuppliersNotApprovalList(props) {
                   {props.notApprovalSupplierList.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                    const countryCode = item.address[0].country_alpha2_code;
-                    const dataLoc = ` Address : ${
-                      item.address && item.address.length && item.address[0].address1
-                    } 
-                        
-                       Country : ${
-                         (item.address &&
-                           item.address.length &&
-                           item.address[0].country) ||
-                         ""
-                       } 
-                         `;
+                  
                     return (
                       <>
                         <div
@@ -148,7 +140,15 @@ function SuppliersNotApprovalList(props) {
                                 supplierId={item.supplierId}
                                 />
                               </div>
-                            </div>                  
+                            </div>  
+                            <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleSuppliersAddress(true);
+            handleRowData(item);
+          }}
+          
+        />                   
                           </div>
                         </div>
                       </>
@@ -162,6 +162,12 @@ function SuppliersNotApprovalList(props) {
         </div>
       </div>
       )}
+      <AddSuppliersAdressModal    
+        item={rowdata}
+         type="supplier"
+         addSuppliersAddressModal={props.addSuppliersAddressModal}
+         handleSuppliersAddress={props.handleSuppliersAddress}
+      /> 
     </>
   )
 }
@@ -178,14 +184,16 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
   updateSupplierModal: suppliers.updateSupplierModal,
-  searchSupplierList:suppliers.searchSupplierList
+  searchSupplierList:suppliers.searchSupplierList,
+  addSuppliersAddressModal: suppliers.addSuppliersAddressModal
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getSuppliersNotApprovalList,
-      emptynotApprovedSuppliers
+      emptynotApprovedSuppliers,
+      handleSuppliersAddress
     },
     dispatch
   );

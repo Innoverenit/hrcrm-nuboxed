@@ -2306,3 +2306,192 @@ export const linkSupplierApproval = (supplierId,approveInd) => (dispatch) => {
       });
     });
 };
+
+export const addContactAddress = (data,type,id) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.ADD_CONTACT_ADDRESS_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/api/v1/saveAddressByType/${type}/${id}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.ADD_CONTACT_ADDRESS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_CONTACT_ADDRESS_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+
+
+
+
+export const getContactAddressData = (id,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_ADDRESS_DATA_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/api/v1/address/type/${id}/${type}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_ADDRESS_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_ADDRESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const updateContactAddress = (data) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.UPDATE_CONTACT_ADDRESS_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/api/v1/address/update`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_CONTACT_ADDRESS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.UPDATE_CONTACT_ADDRESS_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+
+
+export const removeAddressData = (addressId) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_ADDRESS_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/api/v1/delete/address/${addressId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Address Deleted Successfully',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch({
+        type: types.REMOVE_ADDRESS_DATA_SUCCESS,
+        payload: addressId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_ADDRESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addContactMand = (addressId,primaryInd) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.ADD_CONTACT_MAND_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/api/v1/address/makePrimary/${addressId}/${primaryInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.ADD_CONTACT_MAND_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_CONTACT_MAND_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+export const handleSuppliersAddress = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIERS_ADDRESS_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+

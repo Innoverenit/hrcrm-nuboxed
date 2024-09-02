@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {getAllSuppliersList,emptysUPPLIERS,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers } from "../SuppliersAction"
+import {getAllSuppliersList,emptysUPPLIERS,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers,handleSuppliersAddress } from "../SuppliersAction"
 import StoreIcon from '@mui/icons-material/Store';
 import {Popconfirm,Tooltip } from "antd";
 import dayjs from "dayjs";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import { DeleteOutlined } from "@ant-design/icons";
 import SupplierSearchedData from "./SupplierSearchedData";
 import { MultiAvatar2 } from "../../../../Components/UI/Elements";
+import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
 
 function AllSuppliersCardList(props) {
 
@@ -170,7 +172,15 @@ return(
                             // }}
                           />
           </Tooltip>
-          </div>            
+          </div>    
+          <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleSuppliersAddress(true);
+            handleRowData(item);
+          }}
+          
+        />            
  <div>
 <Tooltip title={props.translatedMenuItems[19]}>
             <BorderColorIcon
@@ -210,6 +220,12 @@ className=" !text-icon cursor-pointer text-[red]"
         handleUpdateSupplierModal={props.handleUpdateSupplierModal}
         translatedMenuItems={props.translatedMenuItems}
       />
+       <AddSuppliersAdressModal    
+        item={rowdata}
+         type="supplier"
+         addSuppliersAddressModal={props.addSuppliersAddressModal}
+         handleSuppliersAddress={props.handleSuppliersAddress}
+      /> 
 </>
 )
 }
@@ -223,7 +239,8 @@ const mapStateToProps = ({ shipper, suppliers,auth }) => ({
   addShipperOrderModal: shipper.addShipperOrderModal,
   orgId:auth.userDetails.organizationId,
   updateSupplierModal:suppliers.updateSupplierModal,
-  searchSupplierList:suppliers.searchSupplierList
+  searchSupplierList:suppliers.searchSupplierList,
+  addSuppliersAddressModal: suppliers.addSuppliersAddressModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -233,7 +250,8 @@ const mapDispatchToProps = (dispatch) =>
       emptysUPPLIERS,
       deleteSupplierData,
       setEditSuppliers,
-      handleUpdateSupplierModal
+      handleUpdateSupplierModal,
+      handleSuppliersAddress
     },
     dispatch
   );
