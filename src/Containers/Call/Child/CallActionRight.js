@@ -6,7 +6,7 @@ import { Tooltip } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { handleCallModal } from "../CallAction";
-const CallSharedForm = lazy(() => import("./CallSharedForm"));
+
 
 
 
@@ -21,7 +21,7 @@ const CallActionRight = (props) => {
     <div class=" flex  items-center">
        {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.callFullListInd === true &&(
           <Suspense fallback={<BundleLoader />}>
-                    <CallSharedForm
+                    <div
                      selectedLanguage={props.selectedLanguage}
                      translateText={props.translateText}
                     />
@@ -32,7 +32,7 @@ const CallActionRight = (props) => {
           type="primary"
           onClick={() => props.handleCallModal(true)}
         >
-          <DataSaverOnIcon className="!text-icon"/> {props.translatedMenuItems[1]}
+          <DataSaverOnIcon className="!text-icon"/> {props.translatedMenuItems[16]}
           {/* Add */}
         </Button>
       </Tooltip>

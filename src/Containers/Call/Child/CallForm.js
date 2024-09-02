@@ -127,7 +127,7 @@ function CallForm(props) {
          "73", // "Contact",//12
        "99" ,  // "Opportunity",//13
         "316"  ,// "Notes"//14
-        "Create"
+        "104" //Create
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -655,8 +655,7 @@ function CallForm(props) {
                      
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
                         {/* Type */}
-                        {translatedMenuItems[0]} 
-                        {/* <FormattedMessage id="app.type" defaultMessage="type" /> */}
+                        {translatedMenuItems[0]}                 
                       </div>
                       <div class=" flex justify-between">
                         {/* <Tooltip title="Inbound"> */}
@@ -829,11 +828,7 @@ function CallForm(props) {
                   <Field
                     // isRequired
                     name="callPurpose"
-                    // label="Topic"
-                    // label={
-                      
-                    //   <FormattedMessage id="app.subject"defaultMessage="subject"/>
-                    // }
+                    // label="Topic"            
                     component={InputComponent}
                     isColumn
                     width={"100%"}
@@ -843,10 +838,7 @@ function CallForm(props) {
           <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                   <Field
                     name="startDate"
-                    // label="Date"
-                    // label={
-                    //   <FormattedMessage id="app.date" defaultMessage="date" />
-                    // }
+                    // label="Date"                
                     component={DatePicker}
                     isColumn
                     width={"100%"}
@@ -886,13 +878,7 @@ function CallForm(props) {
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                       <Field
                         name="endTime"
-                        // label="End Time"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.endtime"
-                        //     defaultMessage="End Time"
-                        //   />
-                        // }
+                        // label="End Time"                 
                         component={TimePicker}
                         use12Hours
                         isRequired
@@ -910,13 +896,7 @@ function CallForm(props) {
                     defaultValue={{ label: timeZone, value: userId }}
                     name="timeZone"
                     isColumnWithoutNoCreate
-                    //label="TimeZone "
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.timeZone"
-                    //     defaultMessage="time Zone"
-                    //   />
-                    // }
+                    //label="TimeZone "         
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -924,35 +904,7 @@ function CallForm(props) {
                     inlineLabel
                   />
                   </div>
-                  
-                  {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>
-                            <FormattedMessage
-                              id="app.thiscalloccursinthepast!"
-                              defaultMessage="This Call occurs in the past !"
-                            />
-                          </b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>
-                            {" "}
-                            <FormattedMessage
-                              id="app.thiscalloccursinthepast!"
-                              defaultMessage="This Call occurs in the past !"
-                            />
-                          </b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
+                             
                 </div>
                 <div class=" mt-3 h-3/4 w-w47.5 max-sm:w-wk " 
                 >   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
@@ -1028,27 +980,7 @@ function CallForm(props) {
       )}
     </Listbox>
     <div class="mt-3">
-    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
-                  {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="include"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${empName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-                  {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</div> */}
+    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>           
                    <Select
           showSearch
           className=" mt-1"
@@ -1120,29 +1052,7 @@ function CallForm(props) {
               
                   <div class="mt-3">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</div>
-                  {props.user.crmInd === true &&(
-              //    <Field
-              //    name="opportunityId"
-              //    // selectType="customerList"
-              //    isColumnWithoutNoCreate
-              //    label={
-              //      <FormattedMessage
-              //        id="app.opportunity"
-              //        defaultMessage="opportunity"
-              //      />
-              //    }
-              //    //component={SearchSelect}
-              //    component={SelectComponent}
-              //    options={
-              //      Array.isArray(opportunityNameOption)
-              //        ? opportunityNameOption
-              //        : []
-              //    }
-              //    isColumn
-              //    margintop={"0"}
-              //    value={values.opportunityId}
-              //    inlineLabel
-              //  />
+                  {props.user.crmInd === true &&(       
               <>
 {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</div> */}
               <Select

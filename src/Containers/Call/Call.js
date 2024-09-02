@@ -17,23 +17,22 @@ function Call (props) {
         try {
             const itemsToTranslate = [
              "104" ,// 'Create',//0
-           "85",
-            "71" , // 'Type',//2
-           "72" ,  // 'Subject',//3
-            "73"  ,// 'Contact',//4
-             "74", // 'Date', //5
+            "71" , // 'Type',//1
+           "72" ,  // 'Subject',//2
+            "73"  ,// 'Contact',//3
+             "74", // 'Date', //4
+             "78" ,// 'Completed',//5
              "75" ,// 'Include',//6
              "76", // 'Assigned',//7
             "77",  // 'Owner',//8
-             "78" ,// 'Completed',//9
-             "82" ,// 'Loading',//10
-              // 'You have reached the end of page',//11
-             "222", // 'None',//12
-             "118", // 'Not available',//13
-             "80" ,// 'Yes',//14
-             "81", // 'No',//15
-             "316" ,// 'Notes',//16
-             "84", // 'Delete',//17              
+             "82" ,// 'Loading',//9
+             "222", // 'None',//10
+             "118", // 'Not available',//11
+             "80" ,// 'Yes',//12
+             "81", // 'No',//13
+             "316" ,// 'Notes',//14
+             "84", // 'Delete',//15   
+             "85"         //Add 16
 
             ];
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

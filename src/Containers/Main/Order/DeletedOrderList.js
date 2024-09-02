@@ -121,7 +121,7 @@ function DeletedOrderList(props) {
             <div className=' flex justify-end sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               
-                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
+                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
                 <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
                         <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
@@ -151,7 +151,7 @@ function DeletedOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
@@ -397,7 +397,7 @@ function DeletedOrderList(props) {
 
             <div className=' flex sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
+                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
                 <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
                         <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
@@ -427,7 +427,7 @@ function DeletedOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
@@ -600,7 +600,7 @@ function DeletedOrderList(props) {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                           className=" !text-icon cursor-pointer text-green-800"
+                           className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -617,7 +617,7 @@ function DeletedOrderList(props) {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer max-sm:!text-2xl"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
@@ -630,7 +630,7 @@ function DeletedOrderList(props) {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                             className=" !text-icon cursor-pointer "
+                             className=" !text-icon cursor-pointer max-sm:!text-2xl "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
@@ -644,7 +644,7 @@ function DeletedOrderList(props) {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                             className=" !text-icon cursor-pointer "
+                             className=" !text-icon cursor-pointer max-sm:!text-2xl "
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
