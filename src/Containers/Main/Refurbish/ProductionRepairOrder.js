@@ -173,7 +173,7 @@ function ProductionRepairOrder(props) {
         <>
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div class=" w-64 max-sm:w-24">
+                <div class=" w-64 max-sm:w-32">
         <Input
           placeholder={translatedMenuItems[4]}
           width={"100%"}
@@ -225,9 +225,7 @@ function ProductionRepairOrder(props) {
                                                 {item.priority === "High" && (
                       <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                     )}
-                    {item.priority === "Medium" && (
-                      <div class="rounded-[50%] h-6 w-6 bg-[orange]" ></div>
-                    )}
+                  
                     {item.priority === "Low" && (
                       <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
@@ -275,21 +273,7 @@ function ProductionRepairOrder(props) {
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class="  text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title={translatedMenuItems[6]}>
-                                                        <NoteAltIcon
-                                                            className="!text-icon cursor-pointer"
-                                                            // style={{ cursor: "pointer" }}
-                                                            onClick={() => {
-                                                                handleRowData(item);
-                                                                props.handleProductionNotesModal(true);
-                                                            }}
-                                                        />
-
-                                                    </Tooltip>
-                                                </div>
-                                            </div>
+                                           
                                                 <div className=" flex justify-center w-[8rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInspectionInd === 0 ?
@@ -323,6 +307,21 @@ function ProductionRepairOrder(props) {
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.reason}
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class="  text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-2xl">
+                                                    <Tooltip title={translatedMenuItems[6]}>
+                                                        <NoteAltIcon
+                                                            className="!text-icon cursor-pointer"
+                                                            // style={{ cursor: "pointer" }}
+                                                            onClick={() => {
+                                                                handleRowData(item);
+                                                                props.handleProductionNotesModal(true);
+                                                            }}
+                                                        />
+
+                                                    </Tooltip>
                                                 </div>
                                             </div>
                                         </div>

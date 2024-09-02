@@ -182,7 +182,7 @@ function ProductionOrderListById(props) {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div class=" w-64 max-sm:w-24">
+                <div class=" w-64 max-sm:w-32">
         <Input
           placeholder={translatedMenuItems[4]}
           width={"100%"}
@@ -224,14 +224,12 @@ function ProductionOrderListById(props) {
                                 return (
                                     <div >
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex w-[8.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                          <div class="flex  max-sm:w-wk items-center">
+                                            <div className=" flex   ">
                                                     {item.priority === "High" && (
                                                         <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                     )}
-                                                    {item.priority === "Medium" && (
-                                                        <div class="rounded-[50%] h-6 w-6 bg-[orange]" ></div>
-                                                    )}
+                                                   
                                                     {item.priority === "Low" && (
                                                         <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                                                     )}
@@ -256,45 +254,29 @@ function ProductionOrderListById(props) {
                                                         </span>
                                                     ) : null}
                                                 </div>
-                                                
-
-                                                <div className=" flex   w-[14rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                              </div>
+                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                            <div className=" flex   w-[14rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
 
                                                 </div>
-                                            </div>
-                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex   w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex   w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.lead}
                                                     </div>
 
                                                 </div>
 
-                                                <div className=" flex   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInProgressPhoneCount} {translatedMenuItems[11]}
                                                         {/* In Progress */}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class="   text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title={translatedMenuItems[6]}>
-                                                        <NoteAltIcon
-                                                            className="!text-icon cursor-pointer"
-                                                            // style={{ cursor: "pointer" }}
-                                                            onClick={() => {
-                                                                handleRowData(item);
-                                                                props.handleProductionNotesModal(true);
-                                                            }}
-                                                        />
-
-                                                    </Tooltip>
-                                                </div>
-                                            </div>
+                                              
                                                 <div className=" flex  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInspectionInd === 0 ?
@@ -318,6 +300,21 @@ function ProductionOrderListById(props) {
 
                                                     </div>
                                                 </div>
+                                                <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class="   text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-2xl">
+                                                    <Tooltip title={translatedMenuItems[6]}>
+                                                        <NoteAltIcon
+                                                            className="!text-icon cursor-pointer"
+                                                            // style={{ cursor: "pointer" }}
+                                                            onClick={() => {
+                                                                handleRowData(item);
+                                                                props.handleProductionNotesModal(true);
+                                                            }}
+                                                        />
+
+                                                    </Tooltip>
+                                                </div>
+                                            </div>
                                             </div>
 
                                         </div>
