@@ -168,7 +168,7 @@ const handleLoadMoreLow = () => {
     <>
       <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky  z-10">
+                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky  z-10 max-sm:hidden">
                         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
                         <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
@@ -202,8 +202,10 @@ const handleLoadMoreLow = () => {
                                       
                                       <div>
                                          
-                <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                  <div class="flex">
+                <div className="flex rounded justify-between max-sm:rounded-lg
+               max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500
+                bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
@@ -268,14 +270,14 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                        :null}
-                  </div>
-                  <div class="flex">
+                  
                     <div className=" flex  text-xs md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
                     </div>
                   </div>
+                  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div class="flex  flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
@@ -311,36 +313,36 @@ const handleLoadMoreLow = () => {
                   <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
-                  <div class="flex justify-end items-center">
-                    <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                      <div class=" text-xs  font-semibold  font-poppins">
-                        {item.noOfownerPhones}
-                      </div>
-                    </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
-                      {item.orderStatus}
-                    </div>
-                    <div className=" flex    max-sm:flex-row  max-sm:justify-between  ">
+                  <div class=" text-xs  font-semibold  font-poppins">
+                    {item.noOfownerPhones}
+                  </div>
+                  </div>
+                  <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
+                  {item.orderStatus}
+                  </div>
+                  </div>
+                  <div class="flex justify-end items-center max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                   
+                    
                       <div class=" text-xs  font-poppins">
                         {item.qcStartInd !== 0 && <Tooltip title="Add Lead">
                           <PersonAddAlt1
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon  max-sm:!text-2xl cursor-pointer"
                             style={{ color: item.supervisorUserName ? "green" : "red" }}
                             onClick={() => {
                               props.handleLeadModal(true)
                               handleSetParticularOrderData(item)
                             }} />
                         </Tooltip>}
-                      </div>
+                    
                     </div>
-                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-
-                      {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                   
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                             className=" !text-icon cursor-pointer text-green-800"
+                             className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -350,29 +352,24 @@ const handleLoadMoreLow = () => {
                         </Tooltip>
                       </div>
 
-
-                    </div>
-
-                 
-                    <div className=" flex    max-sm:flex-row  max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                             className="!text-icon cursor-pointer"
+                             className="!text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
                             }}
                           />
                         </Tooltip>
-                      </div>
+                      
 
                     </div>
-                    <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
+                    
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                             className="!text-icon cursor-pointer"
+                             className="!text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -382,8 +379,8 @@ const handleLoadMoreLow = () => {
                         </Tooltip>
 
                       </div>
-                    </div>
-                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+             
+                   
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                         <Popconfirm
@@ -391,14 +388,14 @@ const handleLoadMoreLow = () => {
                                onConfirm={() => props.deleteOrderRepairData(item.orderId,props.userId)}
                             >
                               <DeleteOutlined
-                                className=" !text-icon cursor-pointer text-[red]"
+                                className=" !text-icon cursor-pointer text-[red] max-sm:!text-2xl"
 
                               />
                             </Popconfirm>
                         </Tooltip>
 
                       </div>
-                    </div>
+                   
 
 
                   </div>
@@ -420,7 +417,7 @@ const handleLoadMoreLow = () => {
             
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky  z-10">
+                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky  z-10 max-sm:hidden">
            <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">{translatedMenuItems[9]} </div>
            <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
@@ -452,10 +449,11 @@ const handleLoadMoreLow = () => {
                                     return (
                                       <div>
                                        
-                <div className="flex rounded justify-between   mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                  <div class="flex">
+                <div className="flex rounded justify-between max-sm:flex-col  mt-1 bg-white h-8 items-center p-1  max-sm:rounded-lg max-sm:h-[9rem]
+                max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                 <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
                   <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
-                                                        <Tooltip>
+                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
 
@@ -470,8 +468,8 @@ const handleLoadMoreLow = () => {
                                                                         <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                 </div>
                                                             </div>
-                                                        </Tooltip>
-                                                    </div>
+                          </Tooltip>
+                    </div>
                     <div className=" flex   w-wk   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
@@ -519,14 +517,14 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                      :null}
-                  </div>
-                  <div class="flex">
-                    <div className=" flex   md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                     <div className=" flex   md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
                     </div>
+                 
                   </div>
+                  <div class="flex justify-end max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
@@ -562,8 +560,7 @@ const handleLoadMoreLow = () => {
                   <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
-                  <div class="flex justify-end">
-                    <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
@@ -572,11 +569,14 @@ const handleLoadMoreLow = () => {
                     <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
+                    </div>
+                    <div class="flex justify-end max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                    
                     <div className=" flex    max-sm:flex-row  max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         {item.qcStartInd !== 0 && <Tooltip title="Add Lead">
                           <PersonAddAlt1
-                            className="!text-xl cursor-pointer"
+                            className="!text-icon cursor-pointer max-sm:!text-2xl"
                             style={{ color: item.supervisorUserName ? "green" : "red" }}
                             onClick={() => {
                               props.handleLeadModal(true)
@@ -591,7 +591,7 @@ const handleLoadMoreLow = () => {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                            className=" !text-icon cursor-pointer text-green-800"
+                            className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -609,7 +609,7 @@ const handleLoadMoreLow = () => {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
@@ -623,7 +623,7 @@ const handleLoadMoreLow = () => {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -642,7 +642,7 @@ const handleLoadMoreLow = () => {
                                onConfirm={() => props.deleteOrderRepairData(item.orderId,props.userId)}
                             >
                               <DeleteOutlined
-                                className=" !text-icon cursor-pointer text-[red]"
+                                className=" !text-icon cursor-pointer text-[red] max-sm:!text-2xl"
 
                               />
                             </Popconfirm>

@@ -26,10 +26,10 @@ function DashboardOrderJumpstart(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-       "Orders Added", // 0
-       "Orders Open", // 1
-        "Orders Closed", // 2
-       "Orders Cancelled"//3
+    "1229",  //  "Orders Added", // 0
+     "1230", //  "Orders Open", // 1
+      "1231",//   "Orders Closed", // 2
+      "1232",//  "Orders Cancelled"//3
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

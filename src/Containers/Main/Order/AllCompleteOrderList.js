@@ -123,7 +123,7 @@ function AllCompleteOrderList(props) {
               <div className=' flex sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               
-                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
+                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
                   
                 <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
                         <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
@@ -159,7 +159,7 @@ function AllCompleteOrderList(props) {
                 //   borderBottom: "3px dotted #515050",
                 // }}
                 >
-                  <div class="flex">
+                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
@@ -228,16 +228,18 @@ function AllCompleteOrderList(props) {
 
 
                     </div>
-                  </div>
-                  <div class="flex">
+                    <div class="flex">
                     <div className=" flex   md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
                     </div>
 
+                  </div>
+                
 
                   </div>
+                  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
@@ -306,9 +308,9 @@ function AllCompleteOrderList(props) {
                   <div className=" flex text-xs md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
-  
-                  <div class="flex">
-                    <div className=" flex  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  </div>
+                  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                   <div className=" flex  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
@@ -323,7 +325,7 @@ function AllCompleteOrderList(props) {
                       <div class=" font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                              className=" !text-icon cursor-pointer text-green-800"
+                              className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -335,12 +337,13 @@ function AllCompleteOrderList(props) {
 
 
                     </div>
-
-                    <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
+                    </div>
+                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                   
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer max-sm:!text-2xl"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
@@ -348,12 +351,11 @@ function AllCompleteOrderList(props) {
                             }} />
                         </Tooltip>
                       </div>
-                    </div>
-                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+                   
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                         className=" !text-icon cursor-pointer "
+                         className=" !text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
@@ -362,12 +364,11 @@ function AllCompleteOrderList(props) {
                         </Tooltip>
                       </div>
 
-                    </div>
-                    <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
+                  
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                           className=" !text-icon cursor-pointer "
+                           className=" !text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -383,7 +384,7 @@ function AllCompleteOrderList(props) {
                   </div>
 
                 </div>
-              </div>
+              
 
                                     );
                                 })}
@@ -399,7 +400,7 @@ function AllCompleteOrderList(props) {
             <div className=' flex  sticky  z-auto'>
             <div class="rounded  m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               
-                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10">
+                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10 max-sm:hidden">
                   
                 <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
                         <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
@@ -436,7 +437,7 @@ function AllCompleteOrderList(props) {
                 //   borderBottom: "3px dotted #515050",
                 // }}
                 >
-                  <div class="flex">
+                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
@@ -500,12 +501,8 @@ function AllCompleteOrderList(props) {
                         />
 
                       </div>
-
-
-
                     </div>
-                  </div>
-                  <div class="flex">
+                    <div class="flex">
                     <div className=" flex  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
@@ -514,6 +511,8 @@ function AllCompleteOrderList(props) {
 
 
                   </div>
+                  </div>
+                  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
@@ -582,9 +581,9 @@ function AllCompleteOrderList(props) {
                   <div className=" flex text-xs md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
-  
-                  <div class="flex">
-                    <div className=" flex  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  </div>
+                  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                  <div className=" flex  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
@@ -593,13 +592,14 @@ function AllCompleteOrderList(props) {
                     <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
-                    <div className=" flex max-sm:flex-row  max-sm:justify-between  ">
-
-                      {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
+                    </div>
+                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                    
+                    
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                              className=" !text-icon cursor-pointer text-green-800"
+                              className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -610,13 +610,11 @@ function AllCompleteOrderList(props) {
                       </div>
 
 
-                    </div>
-
-                    <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
+                    
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer max-sm:!text-2xl"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
@@ -624,12 +622,11 @@ function AllCompleteOrderList(props) {
                             }} />
                         </Tooltip>
                       </div>
-                    </div>
-                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+                    
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                             className=" !text-icon cursor-pointer "
+                             className=" !text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
@@ -638,12 +635,11 @@ function AllCompleteOrderList(props) {
                         </Tooltip>
                       </div>
 
-                    </div>
-                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
+                    
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                            className=" !text-icon cursor-pointer "
+                            className=" !text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -659,7 +655,7 @@ function AllCompleteOrderList(props) {
                   </div>
 
                 </div>
-              </div>
+              
 
                                     );
                                 })}

@@ -37,17 +37,17 @@ function DistributorPauseForm(props) {
             setLoading(true); 
             const itemsToTranslate = [
     
-            'Brand', 
-            ' Model', 
-            'Unique ID', 
-            'Info', 
-            'Condition', 
-            'Quoted',
-            'Total Hours',
-            "Total Cost",
-            "Final Price",
-            "QC",
-            "Issue",
+         "264",   // 'Brand', 
+           "265",  // ' Model', 
+           "1216",  // 'Unique ID', 
+           "113",  // 'Info', 
+           "1217",  // 'Condition', 
+           "770",  // 'Quoted',
+           "1218",  // 'Total Hours',
+           "1219",  // "Total Cost",
+           "1220",  // "Final Price",
+          
+           "1222",  // "Issue",
 
           ];
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -156,8 +156,8 @@ function DistributorPauseForm(props) {
                                     <div className=" md:w-[6.5rem]">{translatedMenuItems[6]}</div>
                                     <div className=" md:w-[6.31rem]">{translatedMenuItems[7]}</div>
                                     <div className=" md:w-[6.3rem]">{translatedMenuItems[8]}</div>
-                                    <div className=" md:w-[7rem]">{translatedMenuItems[9]}</div>
-                                    <div className=" md:w-[6rem]">{translatedMenuItems[10]}</div>
+                                    <div className=" md:w-[7rem]">QC</div>
+                                    <div className=" md:w-[6rem]">{translatedMenuItems[9]}</div>
                                     <div className=" md:w-[2rem]"></div>
                                     <div className=" md:w-[1rem]"></div>
                                     <div className=" md:w-[1rem]"></div>

@@ -18,10 +18,10 @@ function DashboardProspectJumpstart(props) {
         setLoading(true); 
         const itemsToTranslate = [
    
-        "", //  "Prospects"//0
-         "",   // "Quotations this Year",//1
-          "",  // "Quotations Life Time",//2
-           "", // "Open Quotations",//3
+        "1288", //  "Prospects"//0
+         "1290",   // "Quotations this Year",//1
+          "1289",  // "Quotations Life Time",//2
+           "1291", // "Open Quotations",//3
          ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

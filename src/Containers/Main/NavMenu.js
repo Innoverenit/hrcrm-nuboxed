@@ -40,6 +40,10 @@ import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import ShopTwoIcon from '@mui/icons-material/ShopTwo';
 import PeopleIcon from '@mui/icons-material/People';
 import { BundleLoader } from '../../Components/Placeholder';
+import GolfCourseIcon from '@mui/icons-material/GolfCourse';
+import FactoryIcon from '@mui/icons-material/Factory';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 
 const SubMenu = Menu.SubMenu;
 
@@ -205,7 +209,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
   <Link to="/dashboard" onClick={() => handleSelect('/dashboard')}>
     <DashboardIcon
 
-      style={{ fontSize: "large" }}
+    className='!text-base'
     />
 
     <span class="text-white text-ls ml-1">
@@ -230,7 +234,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <Link to="/planner" onClick={() => handleSelect('/planner')}>
               {/* <Icon type="calendar" style={{ color: "white" }} /> */}
               <CalendarMonthIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
 
               <span class="text-white text-ls ml-1">
@@ -251,7 +255,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               {/* <Icon style={{ color: "white" }} type="phone" /> */}
               <VolumeUpIcon
                 // icon={solid("phone-volume")}
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage id="app.calls" defaultMessage="Calls" /> */}
@@ -272,7 +276,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <Link to="/Task" onClick={() => handleSelect('/Task')}>
               {/* <Icon type="file-done" /> */}
               <FactCheckIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage id="app.task" defaultMessage="Task" /> */}
@@ -293,7 +297,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <Link to="/event" onClick={() => handleSelect('/event')}>
               {/* <Icon type="schedule" /> */}
               <EventAvailableIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage
@@ -317,7 +321,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           color: selectedMenuItem === '/reports' ? 'tomato' : '#4bc076' }}>
             <Link to="/reports"onClick={() => handleSelect('/reports')}>
               <PictureAsPdfIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage id="app.reports" defaultMessage="Reports" /> */}
@@ -340,7 +344,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <Link to="/leads" onClick={() => handleSelect('/leads')}>
               <GroupsIcon
 
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.leads" defaultMessage="Leads" /> */}
@@ -363,7 +367,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             color: selectedMenuItem === '/opportunity' ? 'tomato' : '#4bc076' }}>
             <Link to="/opportunity" onClick={() => handleSelect('/opportunity')}>
             <LightbulbIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.quotation" defaultMessage="Quotation" /> */}
@@ -389,7 +393,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <Link to="/contact" onClick={() => handleSelect('/contact')}>
 
               <ContactsIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.contact" defaultMessage="Contact" /> */}
@@ -415,7 +419,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 
               <ApartmentIcon
 
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.prospect" defaultMessage="Prospect" /> */}
@@ -437,7 +441,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             color: selectedMenuItem === '/pitch' ? 'tomato' : '#4bc076' }}>
             <Link to="/pitch" onClick={() => handleSelect('/pitch')}>
               <FilePresentIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.pitch" defaultMessage="Pitch" /> */}
@@ -458,8 +462,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           <Menu.Item key="/dataroom " style={{ height: "1.45rem",
             color: selectedMenuItem === '/dataroom' ? 'tomato' : '#4bc076' }}>
             <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
-              <FilePresentIcon
-                style={{ fontSize: "large" }}
+              <MarkUnreadChatAltIcon
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
               {/* Data Room */}
@@ -477,7 +481,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             color: selectedMenuItem === '/deal' ? 'tomato' : '#4bc076' }}>
             <Link to="/deal" onClick={() => handleSelect('/deal')}>
               <CurrencyExchangeIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.deals" defaultMessage="Deals" /> */}
@@ -497,7 +501,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             color: selectedMenuItem === '/contactInvest' ? 'tomato' : '#4bc076' }}>
             <Link to="/contactInvest"  onClick={() => handleSelect('/contactInvest')}>
               <PermContactCalendarIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.contactInvest" defaultMessage="Contact Invest" /> */}
@@ -517,10 +521,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           color: selectedMenuItem === '/investor' ? 'tomato' : '#4bc076' }}>
             <Link to="/investor" onClick={() => handleSelect('/investor')}>
 
-              <LocationCityIcon
-
-                style={{ fontSize: "large" }}
-              />
+              <LocationCityIcon className='!text-base'  />
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.investor" defaultMessage="Investor" /> */}
                 {translatedMenuItems[14]}
@@ -539,11 +540,11 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           color: selectedMenuItem === '/club' ? 'tomato' : '#4bc076' }}>
             <Link to="/club" onClick={() => handleSelect('/club')}>
 
-              <LocationCityIcon
+              <GolfCourseIcon className='!text-base'
 
-                style={{ fontSize: "large" }}
+               
               />
-              <span class="text-white text-ls ml-1">
+              <span class="text-white text-ls ml-1 ">
              {/* Club */}
                 {translatedMenuItems[15]}
                 &nbsp;&nbsp;&nbsp;
@@ -586,7 +587,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           
                 <PortraitIcon
             
-                  style={{ fontSize: "large" }}
+                className='!text-base'
                 />
                  <span class="text-white text-ls ml-1">
                  {/* <FormattedMessage id="app.talent" defaultMessage="Talent" /> */}
@@ -612,7 +613,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <Link to="/requirement " onClick={() => handleSelect('/requirement')}>
 
               <RecentActorsIcon
-                style={{ fontSize: "large" }} />
+              className='!text-base' />
 
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.requirement" defaultMessage="Requirement" /> */}
@@ -634,7 +635,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
            color: selectedMenuItem === '/project' ? 'tomato' : '#4bc076' }}>
               <Link to="/project" onClick={() => handleSelect('/project')}>
                 <LightbulbIcon
-                  style={{ fontSize: "large" }}
+                className='!text-base'
                 />
                 <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage id="app.project" defaultMessage="Project" /> */}
@@ -655,7 +656,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <Link to="/demand" onClick={() => handleSelect('/demand')}>
               <ContactsIcon
 
-                style={{ fontSize: "large" }} />
+              className='!text-base' />
 
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.demand" defaultMessage="Demand" /> */}
@@ -682,7 +683,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           color: selectedMenuItem === '/publish' ? 'tomato' : '#4bc076' }}>
             <Link to="/publish" onClick={() => handleSelect('/publish')}>
 
-              <CellTowerIcon  style={{ fontSize: "large" }}/>
+              <CellTowerIconclassName='!text-base'/>
               <span class="text-white text-ls ml-1">
                  <FormattedMessage
                 id="app.publish"
@@ -700,7 +701,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             <Link to="/Billing">
               <AccessAlarmIcon
 
-                 style={{ fontSize: "large" }}
+               className='!text-base'
               />
              <span class="text-white text-ls ml-3">
             
@@ -715,7 +716,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               <Link to="/Invoice">
                 <TextSnippetIcon
 
-                    style={{ fontSize: "large" }}
+                  className='!text-base'
                 />
                <span class="text-white text-ls ml-3">
                 
@@ -733,7 +734,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               
                 <HandshakeIcon
              
-                 style={{ fontSize: "large" }}
+               className='!text-base'
                 />
                 <span class="text-white text-ls ml-3">
            
@@ -769,7 +770,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               <Link to="/Accessment" onClick={() => handleSelect('/accessment')}>
                 <ComputerIcon
 
-                    style={{ fontSize: "large" }}
+                  className='!text-base'
                 />
                  <span class="text-white text-ls ml-1">
                  {/* <FormattedMessage
@@ -790,7 +791,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               <Link to="/Course" onClick={() => handleSelect('/course')}>
                 <NewspaperIcon
 
-                  style={{ fontSize: "large" }}
+                className='!text-base'
                 />
                <span class="text-white text-ls ml-1">
                {/* <FormattedMessage
@@ -811,7 +812,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               <Link to="/Program" onClick={() => handleSelect('/program')}>
                 <LibraryBooksIcon
 
-                   style={{ fontSize: "large" }}
+                 className='!text-base'
                 />
                 <span class="text-white text-ls ml-1">
               
@@ -870,7 +871,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           color: selectedMenuItem === '/order' ? 'tomato' : '#4bc076' }}>
             <Link to="/order"  onClick={() => handleSelect('/order')}>
               <DynamicFeedIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage
@@ -891,7 +892,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
            color: selectedMenuItem === '/account' ? 'tomato' : '#4bc076' }}>
             <Link to="/account"  onClick={() => handleSelect('/account')}>
               <AcUnitIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
               {translatedMenuItems[17]}
@@ -910,7 +911,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         color: selectedMenuItem === '/product' ? 'tomato' : '#4bc076' }}>
           <Link to="/product" onClick={() => handleSelect('/product')}>
             <ViewInArIcon
-              style={{ fontSize: "large" }}
+            className='!text-base'
             />
             <span class="text-white text-ls ml-1">
               {/* <FormattedMessage
@@ -929,7 +930,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         color: selectedMenuItem === '/subscriptionmainapps' ? 'tomato' : '#4bc076' }}>
           <Link to="/subscriptionmainapps" onClick={() => handleSelect('/subscriptionmainapps')}>
             <SubscriptionsIcon
-              style={{ fontSize: "large" }}
+            className='!text-base'
             />
             <span class="text-white text-ls ml-1">
               {/* <FormattedMessage
@@ -950,7 +951,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             color: selectedMenuItem === '/refurbish' ? 'tomato' : '#4bc076' }}>
             <Link to="/refurbish" onClick={() => handleSelect('/refurbish')}>
               <OnDeviceTrainingIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage
@@ -969,7 +970,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         color: selectedMenuItem === '/production' ? 'tomato' : '#4bc076' }}>
           <Link to="/production" onClick={() => handleSelect('/production')}>
             <PrecisionManufacturingIcon
-              style={{ fontSize: "large" }}
+            className='!text-base'
             />
             <span class="text-white text-ls ml-1">
               {/* <FormattedMessage
@@ -987,7 +988,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         color: selectedMenuItem === '/quality' ? 'tomato' : '#4bc076' }}>
           <Link to="/quality" onClick={() => handleSelect('/quality')}>
             <VerifiedUserIcon
-              style={{ fontSize: "large" }}
+            className='!text-base'
             />
             <span class="text-white text-ls ml-1">
               {/* <FormattedMessage
@@ -1004,7 +1005,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         color: selectedMenuItem === '/promotion' ? 'tomato' : '#4bc076' }}>
           <Link to="/promotion" onClick={() => handleSelect('/promotion')}>
             <PointOfSaleIcon 
-              style={{ fontSize: "large" }}
+            className='!text-base'
             />
             <span class="text-white text-ls ml-1">
               {/* <FormattedMessage
@@ -1019,7 +1020,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
  color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
   <Link to="/procre" onClick={() => handleSelect('/procre')}>
     <LocalMallIcon
-      style={{ fontSize: "large" }}
+    className='!text-base'
     />
     <span class="text-white text-ls ml-1">
       Procure
@@ -1035,7 +1036,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             color: selectedMenuItem === '/supplies' ? 'tomato' : '#4bc076' }}>
             <Link to="/supplies" onClick={() => handleSelect('/supplies')} >
               <CategoryIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage
@@ -1054,8 +1055,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 <Menu.Item key="/suppliers" style={{ height: "1.45rem", 
  color: selectedMenuItem === '/suppliers' ? 'tomato' : '#4bc076'}}>
   <Link to="/suppliers" onClick={() => handleSelect('/suppliers')}>
-    <CategoryIcon
-      style={{ fontSize: "large" }}
+    <FactoryIcon
+    className='!text-base'
     />
     <span class="text-white text-ls ml-1">
       {/* <FormattedMessage
@@ -1074,7 +1075,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
  color: selectedMenuItem === '/trade' ? 'tomato' : '#4bc076'}}>
   <Link to="/trade" onClick={() => handleSelect('/trade')}>
     <ShopTwoIcon
-      style={{ fontSize: "large" }}
+    className='!text-base'
     />
     <span class="text-white text-ls ml-1">
       {/* Trade */}
@@ -1089,7 +1090,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
  color: selectedMenuItem === '/vendor' ? 'tomato' : '#4bc076'}}>
   <Link to="/vendor" onClick={() => handleSelect('/vendor')}>
     <CategoryIcon
-      style={{ fontSize: "large" }}
+    className='!text-base'
     />
     <span class="text-white text-ls ml-1">
       Vendor
@@ -1107,7 +1108,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
             <Link to="/procurement" onClick={() => handleSelect('/procurement')}>
               <CrisisAlertIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage
@@ -1127,7 +1128,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
     <Menu.Item key="/inventory" style={{ height: "1.45rem",  color: selectedMenuItem === '/inventory' ? 'tomato' : '#4bc076' }}>
       <Link to="/inventory" onClick={() => handleSelect('/inventory')}>
         <InventoryIcon
-          style={{ fontSize: "large" }}
+        className='!text-base'
         />
         <span className="text-white text-ls ml-1">
           {/* <FormattedMessage
@@ -1150,7 +1151,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
             color: selectedMenuItem === '/shipper' ? 'tomato' : '#4bc076' }}>
             <Link to="/shipper" onClick={() => handleSelect('/shipper')}>
               <LocalShippingIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage
@@ -1277,7 +1278,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
           color: selectedMenuItem === '/expense' ? 'tomato' : '#4bc076' }}>
           <Link to="/expense" onClick={() => handleSelect('/expense')}>
             <ReceiptIcon
-              style={{ fontSize: "large" }}
+            className='!text-base'
             />
             <span class="text-white text-ls ml-1">
               {/* <FormattedMessage
@@ -1324,7 +1325,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
         color: selectedMenuItem === '/assessment' ? 'tomato' : '#4bc076' }}>
           <Link to="/assessment" onClick={() => handleSelect('/assessment')}>
 
-            <i class="fas fa-holly-berry"></i>
+            < AssessmentIcon  className="!!text-base"/>
             &nbsp;
             <span class="text-white text-ls ml-1">
            {/* KPI Assessment */}
@@ -1347,7 +1348,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
                 color: selectedMenuItem === '/teams' ? 'tomato' : '#4bc076'}}>
                 <Link to="/teams" onClick={() => handleSelect('/teams')}>
                  <PeopleIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
                   />
                   <span class="text-white text-ls ml-1">
                     {/* <FormattedMessage 
@@ -1369,7 +1370,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
             <Link to="/Employees" onClick={() => handleSelect('/employees')}>
               <GroupsIcon
 
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
               {translatedMenuItems[33]}
@@ -1388,7 +1389,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
         {/* <Menu.Item key="/plant" style={{ height: "1.45rem", paddingLeft: "1rem" }}>
           <Link to="/plant">
             <FactoryIcon
-              style={{ fontSize: "large" }}
+            className='!text-base'
             />
             <span class="text-white text-ls ml-1"><FormattedMessage
               id="app.plant"
@@ -1403,7 +1404,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
            color: selectedMenuItem === '/location' ? 'tomato' : '#4bc076' }}>
             <Link to="/location" onClick={() => handleSelect('/location')}>
               <LocationOnIcon
-                style={{ fontSize: "large" }}
+              className='!text-base'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage
