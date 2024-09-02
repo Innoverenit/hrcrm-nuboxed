@@ -513,10 +513,14 @@ class Dashboard extends Component {
                               <StackedClosureChart 
                               selectedLanguage={this.props.selectedLanguage}
                               translateText={this.props.translateText}/>)
+                              // : this.state.activeButton === "Order" ? (
+                              //   <StackedClosureChart 
+                              //   selectedLanguage={this.props.selectedLanguage}
+                              //   translateText={this.props.translateText} />)
                               : this.state.activeButton === "Order" ? (
-                                <StackedClosureChart 
-                                selectedLanguage={this.props.selectedLanguage}
-                                translateText={this.props.translateText} />)
+                                <CustomerViewGoogleMap/>)
+                              
+
                                 : this.state.activeButton === "Finance" ? (
                                   <StackedClosureChart 
                                   selectedLanguage={this.props.selectedLanguage}
@@ -553,10 +557,26 @@ class Dashboard extends Component {
        prospectLifeTime={this.props.prospectLifeTime}
        />
              }
-                      {this.state.activeButton==="Investors"&&
+               
+                {this.state.activeButton==="Investors"&&
        <DashboardProspectJumpstart
        selectedLanguage={this.props.selectedLanguage}
        translateText={this.props.translateText}/>
+             }
+              {this.state.activeButton==="Order"&&
+       <DashboardProspectJumpstart
+       selectedLanguage={this.props.selectedLanguage}
+       translateText={this.props.translateText}
+       selectedCountry={this.state.selectedCountry}
+       fetchingProspectQuotation={this.props.fetchingProspectQuotation}
+       fetchingProspectData={this.props.fetchingProspectData}
+       openQuotationYear={this.props.openQuotationYear}
+       fetchingOpenQuotationYear={this.props.fetchingOpenQuotationYear}
+       prospectChart={this.props.prospectChart}
+       fetchingProspectLifetime={this.props.fetchingProspectLifetime}
+       prospectQuotation={this.props.prospectQuotation}
+       prospectLifeTime={this.props.prospectLifeTime}
+       />
              }
                 <div class=" flex flex-col justify-between" >
                      {/* {this.state.activeButton==="Customer"&&
