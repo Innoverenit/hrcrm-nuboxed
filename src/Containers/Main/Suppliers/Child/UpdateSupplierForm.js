@@ -53,7 +53,7 @@ function UpdateSupplierForm (props) {
 
             //   },
             // ],
-            // address: "",
+            address: "",
           }}
           validationSchema={CustomerSchema}
           onSubmit={(values, { resetForm }) => {
@@ -215,7 +215,7 @@ function UpdateSupplierForm (props) {
         )}
       </Listbox>
       </div>
-                  <div>
+                  {/* <div>
                     <div class="mt-3">
                     <FieldArray
                       name="address"
@@ -228,7 +228,7 @@ function UpdateSupplierForm (props) {
                       )}
                     />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
