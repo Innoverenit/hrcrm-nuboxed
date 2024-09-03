@@ -237,7 +237,7 @@ const handleLoadMoreLow = () => {
                     <div className=" flex  font-bold  w-wk   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
-                          <Badge size="small" count={item.productNum}>
+                          <Badge size="small" count={item.count}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
@@ -483,7 +483,7 @@ const handleLoadMoreLow = () => {
                     <div className=" flex   w-wk   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
                         <div class="w-[9.43rem]">
-                          <Badge size="small" count={item.productNum}>
+                          <Badge size="small" count={item.count}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
                               onClick={() => {
