@@ -13,6 +13,8 @@ import { TextareaComponent } from "../../../../../Components/Forms/Formik/Textar
 import { FormattedMessage } from "react-intl";
 import { getCurrency } from "../../../../Auth/AuthAction";
 import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
+import Swal from 'sweetalert2';
+
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const DistributorSchema = Yup.object().shape({
   paymentMode: Yup.string().required("Input required"),
@@ -66,17 +68,8 @@ function DistributorPaidForm(props) {
         validationSchema={DistributorSchema}
       
         onSubmit={(values, { resetForm }) => {
-
-         
-          // props.addPaidOrder(
-          //   {
-          //     ...values,
-          //     // date: `${newEndDate}T00:00:00Z`,
-          //   },
-          //   props.particularRowData.orderId,
-          //   props.distributorId,
-          // );
-       
+if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotalValue) 
+  && Number(values.entryAmount) >= 0 ) {
           props.addPaidOrder(
             {
               ...values,
@@ -86,6 +79,16 @@ function DistributorPaidForm(props) {
             props.particularRowData.orderId ? props.particularRowData.orderId:props.particularRowData.orderPhoneId,
             props.distributorId,
           ); 
+        }
+          else {
+            Swal.fire({
+              title: 'Validation Error!',
+              text: 'Amount can not exceed remaining total value or be less than 0!',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            });
+          }
+
           resetForm();
         }}
       >

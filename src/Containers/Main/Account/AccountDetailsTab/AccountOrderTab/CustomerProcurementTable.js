@@ -212,7 +212,7 @@ const handleLoadMoreLow = () => {
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md:text-xs">
-                                            {` ${dayjs(item.deliveryDate).format("ll")}`}
+                                            {` ${dayjs(item.deliveryDate).format("DD/MM/YYYY")}`}
                                                   </div>
                       
                                          
@@ -388,10 +388,9 @@ const handleLoadMoreLow = () => {
                   
                       
                       <div class="max-sm:w-full justify-between flex md:text-xs">
-                      {` ${dayjs(item.deliveryDate).format("ll")}`}
+                   {dayjs(item.deliveryDate).format("DD/MM/YYYY")}
                             </div>
 
-                   
                     </div>
                   </div>
                   <div class="flex">

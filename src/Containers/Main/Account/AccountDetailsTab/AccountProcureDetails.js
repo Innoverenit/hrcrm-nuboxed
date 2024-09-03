@@ -223,7 +223,7 @@ function AccountProcureDetails(props) {
         ...prevFields,
         [id]: {
           ...prevFields[id],
-          unit: 1, 
+          reaminingInvoiceUnit: 1, 
         },
       }));
     } else {
@@ -231,7 +231,7 @@ function AccountProcureDetails(props) {
         ...prevFields,
         [id]: {
           ...prevFields[id],
-          unit: unitValue,
+          reaminingInvoiceUnit: unitValue,
         },
       }));
     }
@@ -242,7 +242,7 @@ const handleGenerateInvoice= async () => {
     setLoading(true);
     setError(null);
     const itemList = props.procureDetails.map(item => {
-      const unitValue = editedFields[item.id]?.unit || item.unit;  
+      const unitValue = editedFields[item.id]?.reaminingInvoiceUnit || item.reaminingInvoiceUnit;  
       if (unitValue < 1) {
         Swal.fire({
           title: 'Validation Error!',
@@ -257,8 +257,9 @@ const handleGenerateInvoice= async () => {
       return {
         price: item.price,
         procureOrderProductId: item.id,
-        unit: unitValue,
-        invR:RowInvoices,
+        unit: item.unit,
+        // invR:RowInvoices,
+        reaminingInvoiceUnit:unitValue
       };
     }).filter(item => item !== null); 
   
@@ -547,15 +548,9 @@ const handleGenerateInvoice= async () => {
               </div>
               <div className="flex  ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                
-                     {/* <input
-                      placeholder="Update Unit"
-                      style={{border:"2px solid black"}}
-                      type="text"
-                      value={newUnitName}
-                      onChange={(e) => setUnitName(e.target.value)}
-                    /> */}
-                    {/* {item.reaminingInvoiceUnit === 0 ? `${item.unit}` :
+                {item.unit}
+                    
+                    {/* {item.reaminingInvoiceUnit === 0 ? `$` :
                     <input
   placeholder="Update Unit"
   style={{ border: "2px solid black" }}
@@ -566,21 +561,14 @@ const handleGenerateInvoice= async () => {
   onBlur={(e) => handleUnitChange(item.id, e.target.value)}
 />
         } */}
-        <input
-  placeholder="Update Unit"
-  style={{ border: "2px solid black",width:"2.5rem" }}
-  // type="number"
-  min="1"
-  value={editedFields[item.id]?.unit || item.unit}
-  onChange={(e) => handleUnitChange(item.id, e.target.value)}
-  onBlur={(e) => handleUnitChange(item.id, e.target.value)}
-/>
+ 
                  
                 </div>
               </div>
 
               <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
+                {item.reaminingInvoiceUnit}
                   {/* {editContactId === item.id ? (
                     <select
                       className="customize-select"
@@ -603,14 +591,16 @@ const handleGenerateInvoice= async () => {
              
             <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                 
-                   <input
-                   placeholder="Invoice"
-                   style={{border:"2px solid black", width:"4rem"}}
-                   type="text"
-                   value={RowInvoices}
-                   onChange={(e) => setRowInvoices(e.target.value)}
-                 />
+                {/* {item.reaminingInvoiceUnit === 0 ? `$` : */}
+                <input
+  placeholder="Update Unit"
+  style={{ border: "1px solid grey",width:"2.5rem" }}
+  // type="number"
+  min="1"
+  value={editedFields[item.id]?.reaminingInvoiceUnit || item.reaminingInvoiceUnit}
+  onChange={(e) => handleUnitChange(item.id, e.target.value)}
+  onBlur={(e) => handleUnitChange(item.id, e.target.value)}
+/>
              
                 </div>
               </div>
@@ -659,7 +649,7 @@ const handleGenerateInvoice= async () => {
                 <div className="text-xs  font-poppins">
                    <input
                    placeholder="invoice"
-                   style={{border:"2px solid black"}}
+                   style={{border:"1px solid grey"}}
                    type="text"
                    value={invoices}
                    onChange={(e) => setInvoices(e.target.value)}
@@ -667,29 +657,29 @@ const handleGenerateInvoice= async () => {
                 </div>
                 <div>
                 <Select
-                     style={{border:"2px solid black"}}
+                     style={{width:"10rem"}}
                       value={CreditMemo}
-                      onChange={(e) => handleCreditMemo(e.target.value)}
-                      mode="multiple" 
+                      onChange={(value) => handleCreditMemo(value)}
+                      // mode="multiple" 
                     >
-                       {creditmemoData.length > 0 ? (
-    creditmemoData.map((critem, crindex) => (
+   {creditmemoData.map((critem, crindex) => (
       <option key={crindex} value={critem.creditMemoId}>
         {critem.creditMemo}
       </option>
-    ))
-  ) : (
-    <option value="" disabled>No Credit Memos Available</option>
-  )}
+    ))}
+
                     </Select>
                     </div>
-              </div>
-          <Button
+                    <div>
+                    <Button
                         type='primary'
                         onClick={handleGenerateInvoice}
                     >
         {translatedMenuItems[12]}
                     </Button>
+                    </div>
+              </div>
+          
           </InfiniteScroll>
       </div>
     </>
