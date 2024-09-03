@@ -1404,9 +1404,7 @@ export const addProcureDetails = (customer, orderPhoneId, cb) => (dispatch, getS
       dispatch(getProcureDetails(orderPhoneId))
       Swal.fire({
         icon: 'success',
-        title: 'list added',
-        showConfirmButton: false,
-        timer: 1500,
+        title: 'Items added to cart',
       })
       dispatch({
         type: types.ADD_PROCURE_DETAILS_SUCCESS,

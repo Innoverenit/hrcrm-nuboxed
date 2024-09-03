@@ -310,7 +310,7 @@ function AddProcurementInAccount(props) {
                                                     />
                                                 </Tooltip>
                                                 &nbsp;
-                                                <Tooltip title={<FormattedMessage
+                                                {/* <Tooltip title={<FormattedMessage
                                                     id="app.medium"
                                                     defaultMessage="Medium"
                                                 />}>
@@ -329,7 +329,7 @@ function AddProcurementInAccount(props) {
                                                             height: "31px"
                                                         }}
                                                     />
-                                                </Tooltip>
+                                                </Tooltip> */}
                                                 &nbsp;
                                                 <Tooltip title={<FormattedMessage
                                                     id="app.low"

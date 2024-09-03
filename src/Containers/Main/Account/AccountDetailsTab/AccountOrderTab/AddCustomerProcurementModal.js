@@ -11,7 +11,7 @@ class AddCustomerProcurementModal extends Component {
         return (
             <div>
                 <StyledDrawer
-                    title="Add Procurement"
+                    title="Add Order"
                     width="90%"
                     visible={addLinkCustomerProcurementModal}
                     destroyOnClose
