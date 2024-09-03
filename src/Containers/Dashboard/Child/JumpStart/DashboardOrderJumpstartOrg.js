@@ -18,7 +18,7 @@ import { base_url2 } from "../../../../Config/Auth";
 import axios from 'axios';
 import OrdersOpenDrawer from "./OrdersOpenDrawer";
 
-function DashboardOrderJumpstart(props) {
+function DashboardOrderJumpstartOrg(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -86,16 +86,16 @@ function DashboardOrderJumpstart(props) {
 
     switch(type) {
       case 'Added':
-        props.getOrderAddedList(props.userId,props.endDate,props.startDate);
+        props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
         break;
       case 'Open':
-        props.getOrderOpenList(props.userId,props.endDate,props.startDate);
+        props.getOrderOpenList(props.orgId,props.endDate,props.startDate);
         break;
       case 'Closed':
-        props.getOrderClosedList(props.userId,props.endDate,props.startDate);
+        props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
         break;
       case 'Cancelled':
-        props.getOrderCancelList(props.userId,props.endDate,props.startDate);
+        props.getOrderCancelList(props.orgId,props.endDate,props.startDate);
         break;
       default:
         break;
@@ -237,7 +237,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   orderinDashboard: dashboard.orderinDashboard,
   orgId: auth.userDetails.organizationId,
   fetchingorderDetails: dashboard.fetchingorderDetails,
-  userId: auth.userDetails.userId,
+  userId: auth.userDetails.employeeId,
   orderAddedModal:dashboard.orderAddedModal,
   orderClosedModal:dashboard.orderClosedModal,
   timeRangeType: dashboard.timeRangeType,
@@ -268,4 +268,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashboardOrderJumpstart);
+)(DashboardOrderJumpstartOrg);

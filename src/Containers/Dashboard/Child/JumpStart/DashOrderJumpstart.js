@@ -21,11 +21,6 @@ function DashOrderJumpstart(props) {
         "", //          "Receivables Added", // 0
           "1233",// "Receivables Closed", // 1
           "1234",// "Receivables Cancelled" // 2
-
-
-
-
-
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
