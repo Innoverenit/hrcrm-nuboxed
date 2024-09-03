@@ -28,7 +28,7 @@ function Contact(props) {
   const [selectedRole, setSelectedRole] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
   const [filterText, setFilterText] = useState('');
-  const [viewType, setViewType] = useState(null);
+  const [viewType, setViewType] = useState('table');
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   const [filter, setFilter] = useState("creationdate");
 const [filteredData, setFilteredData] = useState(props.contactByUserId);

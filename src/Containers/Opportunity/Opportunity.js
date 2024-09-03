@@ -172,7 +172,8 @@ const mapStateToProps = ({ opportunity, auth }) => ({
   userId: auth.userDetails.userId,
   addOpportunityModal: opportunity.addOpportunityModal,
   // viewType: opportunity.viewType,
-  teamsAccessInd:auth.userDetails.teamsAccessInd
+  teamsAccessInd:auth.userDetails.teamsAccessInd,
+  teamLeadInd:auth.userDetails.teamLeadInd
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

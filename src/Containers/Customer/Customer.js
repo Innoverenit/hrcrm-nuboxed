@@ -29,7 +29,7 @@ class Customer extends Component {
   this.state = { 
     currentData: "",
   filter:"creationdate",
-  viewType: null, // Default viewType
+  viewType: "table", // Default viewType
   teamsAccessInd: props.teamsAccessInd ,
   currentUser:"",
   isMobile: false, };
