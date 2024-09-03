@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import {  StyledSelect } from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { Button, Input, Badge, Tooltip, Avatar } from "antd";
@@ -21,6 +21,11 @@ function OrderActionLeft (props) {
   const [currentData, setCurrentData] = useState("");
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); //Code for Search
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
+
 
 
   useEffect(() => {
@@ -49,12 +54,20 @@ function OrderActionLeft (props) {
 
     if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
       setPage(pageNo + 1);
-      props.getAllHighOrderList(props.orgId,pageNo,"High");
-      props.getAllMediumOrderList(props.orgId,pageNo,"Medium");
-      props.getAllLowOrderList(props.orgId,pageNo,"Low");
-      props.getCompletedHighOrderList(props.userId, pageNo,"High");
-      props.getCompletedMediumOrderList(props.userId, pageNo,"Medium");
-      props.getCompletedLowOrderList(props.userId, pageNo,"Low");
+    //   props.getRepairHighOrderList(props.userId, pageNo,"High");
+    // props.getRepairMediumOrderList(props.userId, pageNo,"Medium");
+    // props.getRepairLowOrderList(props.userId, pageNo,"Low");
+    //   props.getAllHighOrderList(props.orgId,pageNo,"High");
+    //   props.getAllMediumOrderList(props.orgId,pageNo,"Medium");
+    //   props.getAllLowOrderList(props.orgId,pageNo,"Low");
+    //   props.getCompletedHighOrderList(props.userId, pageNo,"High");
+    //   props.getCompletedMediumOrderList(props.userId, pageNo,"Medium");
+    //   props.getCompletedLowOrderList(props.userId, pageNo,"Low");
+    //   props.getDeletedHighOrderList(props.userId, pageNo,"High");
+    //   props.getDeletedMediumOrderList(props.userId, pageNo,"Medium");
+    //   props.getDeletedLowOrderList(props.userId, pageNo,"Low");
+    //   props.getAllProcure(props.orgId, pageNo);
+    //   props.getEcomList(props.orgId, pageNo);
       props.ClearSearchedOrder();
       setSearchOnEnter(false);
     }
@@ -68,9 +81,21 @@ function OrderActionLeft (props) {
       console.error("Input is empty. Please provide a value.");
     }
   };
+  const handleStartListening = () => {
+    setStartTime(Date.now());
+    setIsRecording(true);
+    SpeechRecognition.startListening();
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+    timerRef.current = setTimeout(() => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+    }, minRecordingTime);
+  };
   const suffix = (
     <AudioOutlined
-      onClick={SpeechRecognition.startListening}
+      onClick={handleStartListening}
       style={{
         fontSize: 16,
         color: '#1890ff',
@@ -78,6 +103,31 @@ function OrderActionLeft (props) {
 
     />
   );
+  const handleStopListening = () => {
+    SpeechRecognition.stopListening();
+    setIsRecording(false);
+    if (transcript.trim() !== "") {
+      setCurrentData(transcript);
+      props.inputOrderNoSearch(transcript);
+      setSearchOnEnter(true);
+    }
+  };
+  useEffect(() => {
+    if (!listening && isRecording) {
+      handleStopListening();
+    }
+  }, [listening]);
+  useEffect(() => {
+    if (isRecording && !listening) {
+      // If recording was stopped but less than 5 seconds have passed, restart listening
+      const elapsedTime = Date.now() - startTime;
+      if (elapsedTime < minRecordingTime) {
+        SpeechRecognition.startListening();
+      } else {
+        setIsRecording(false);
+      }
+    }
+  }, [listening, isRecording, startTime]);
 
   return (
     <FlexContainer alignItems="center">
@@ -268,7 +318,7 @@ function OrderActionLeft (props) {
 >         
 <Button type={props.viewType === "ecom" ? "primary" : ""} style={{ backgroundColor: props.viewType === "ecom" ? "" : "tomato" }}>
     
-    <div class="text-white">Ecom</div></Button>
+    <div class="text-white">Commerce</div></Button>
     
 </span>
 
@@ -324,15 +374,16 @@ function OrderActionLeft (props) {
   
      
     
-      <div class=" w-64 ml-2 max-sm:w-24">
-        <Input
-          placeholder="Search by Customer or Order ID"
-          width={"100%"}
-          suffix={suffix}
-          onPressEnter={handleSearch}
-          onChange={handleChange}
-          value={currentData}
-        /></div>
+      <div class=" w-72 md:ml-4 max-sm:w-16 ml-0">
+          <Input
+            placeholder="Search by OrderId"
+            class="w-96"
+            suffix={suffix}
+            onPressEnter={handleSearch}
+            onChange={handleChange}
+            value={currentData}
+          />
+        </div>
         </>
     </FlexContainer>
   );

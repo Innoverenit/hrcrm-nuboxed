@@ -26,6 +26,7 @@ import { MultiAvatar2,MultiAvatar } from "../../../Components/UI/Elements";
 import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/StatusOfOrderModal";
 import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import { PersonAddAlt1 } from "@mui/icons-material";
+import OrderSearchedData from "./OrderSearchedData";
 const { Option } = Select;
 
 function AllCompleteOrderList(props) {
@@ -119,6 +120,15 @@ function AllCompleteOrderList(props) {
         return () => props.emptyCompleteOrders();
     }, []);
     return (
+      <div>
+    {props.orderSearch.length > 0 ? (
+      <OrderSearchedData
+      orderSearch={props.orderSearch}
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+    translatedMenuItems={props.translatedMenuItems}
+      />
+    ) : (
         <>
               <div className=' flex sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -688,6 +698,8 @@ function AllCompleteOrderList(props) {
                 addOrderDetailsModal={props.addOrderDetailsModal} />
 
         </>
+         )}
+  </div>
     )
 }
 
@@ -705,6 +717,7 @@ const mapStateToProps = ({ order, auth, distributor }) => ({
     userId: auth.userDetails.userId,
     addOrderDetailsModal: distributor.addOrderDetailsModal,
     orgId: auth.userDetails.organizationId,
+    orderSearch:order.orderSearch
 });
 
 const mapDispatchToProps = (dispatch) =>

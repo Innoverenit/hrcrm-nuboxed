@@ -12,11 +12,10 @@ import NextPlanIcon from '@mui/icons-material/NextPlan';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import EcomStatusCardDrawer from "./EcomStatusCardDrawer";
-import EcomSearchedData from "./EcomSearchedData";
 // import ProcureOrderModal from "./Child/ProcureOrderModal";
 // import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
 
-function EcomCardList(props) {
+function EcomSearchedData(props) {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [editedFields, setEditedFields] = useState({});
@@ -106,15 +105,7 @@ const {handleProcureNotesDrawerModal,
   addDrawerProcureNotesModal
 } = props;
   return (
-    <div>
-    {props.orderSearch.length > 0 ? (
-      <EcomSearchedData
-      orderSearch={props.orderSearch}
-      translateText={props.translateText}
-      selectedLanguage={props.selectedLanguage}
-    translatedMenuItems={props.translatedMenuItems}
-      />
-    ) : (
+  
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
@@ -132,16 +123,8 @@ const {handleProcureNotesDrawerModal,
                        
                         <div className="md:w-[1rem]"></div>
         </div>
-        <InfiniteScroll
-            hasMore={hasMore}
-          dataLength={props.ecomList.length}
-          next={handleLoadMore}
-          loader={props.fetchingEcomList?<div class="flex justify-center" >Loading...</div>:null}
-          height={"79vh"}
-          style={{ scrollbarWidth:"thin"}}
-          endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
-        >
-          {data.map((item) => {
+       
+          {props.orderSearch.map((item) => {
             const currentDate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
            
@@ -223,7 +206,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-
             </div>
             );
           })}
-        </InfiniteScroll>
+       
       </div>
 
        <EcomStatusCardDrawer
@@ -241,8 +224,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-
         handleProcureNotesDrawerModal={props.handleProcureNotesDrawerModal}
       /> */}
     </>
-       )}
-  </div>
+      
   );
 
 
@@ -254,7 +236,6 @@ const mapStateToProps = ({ order,procre,auth }) => ({
   fetchingEcomList: order.fetchingEcomList,
   orgId: auth.userDetails.organizationId,
   userId: auth.userDetails.userId,
-  orderSearch:order.orderSearch
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -270,4 +251,4 @@ getEcomList,
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(EcomCardList);
+)(EcomSearchedData);

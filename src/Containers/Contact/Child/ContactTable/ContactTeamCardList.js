@@ -27,8 +27,10 @@ import {
   handleContactNotesDrawerModal,
   emptyContact,
   handleContactPulseDrawerModal,
-  handleHospitalUploadModal
+  handleHospitalUploadModal,
+  handleContactAddressDrawerModal
 } from "../../ContactAction";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
@@ -42,6 +44,7 @@ import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import DocumentUpload from "./DocumentUpload";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddContactAddressDrawerModal from "./AddContactAddressDrawerModal";
 
 const Option = Select;
 const UpdateContactModal = lazy(() =>
@@ -338,7 +341,18 @@ if (loading) {
     </Tooltip>
 
              </div>
-           
+             <div>
+              <Tooltip title="Address">
+ <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleContactAddressDrawerModal(true);
+            handleSetCurrentContact(item);
+          }}
+          
+        />
+     </Tooltip>
+     </div>
               <div>
               <Tooltip title="Notes">
  <NoteAltIcon
@@ -561,6 +575,15 @@ if (loading) {
         selectedLanguage={props.selectedLanguage}
        translatedMenuItems={props.translatedMenuItems}
       />
+      <AddContactAddressDrawerModal
+        item={currentContact}
+        type="Contact"
+        addDrawerContactAddressModal={props.addDrawerContactAddressModal}
+        handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+      />
     </>
   );
 }
@@ -587,6 +610,7 @@ const mapStateToProps = ({
   addDrawerContactModal: contact.addDrawerContactModal,
   fetchingTeamContact:contact.fetchingTeamContact,
   hospitalUploadModal: contact.hospitalUploadModal,
+  addDrawerContactAddressModal:contact.addDrawerContactAddressModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -604,7 +628,8 @@ const mapDispatchToProps = (dispatch) =>
       handleContactPulseDrawerModal,
       handleContactEmailDrawerModal,
       emptyContact,
-      handleHospitalUploadModal
+      handleHospitalUploadModal,
+      handleContactAddressDrawerModal
     },
     dispatch
   );

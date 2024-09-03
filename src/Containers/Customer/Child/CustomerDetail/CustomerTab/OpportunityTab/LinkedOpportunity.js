@@ -35,9 +35,9 @@ function OpportunityTable(props) {
               "218", //   "Value",//3
               "142",//   "Status",//4
               "216",  //   "Sponsor",//5
-                  "",    // Search
-                  "",  // Reset
-                  "",      // Filter
+                  "1305",    // Search
+                  "1307",  // Reset
+                  "1306",      // Filter
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
