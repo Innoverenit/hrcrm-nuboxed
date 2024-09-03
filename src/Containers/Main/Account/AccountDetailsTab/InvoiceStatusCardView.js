@@ -27,16 +27,17 @@ function StatusCardView (props) {
           statusActivityTimeline.map((status, index) => ( 
             <Timeline.Item key={index} > 
               <div className="flex flex-row justify-between items-center">           
-                <div class=" flex flex-col w-[30rem]">
-                 <div> {dayjs(status.creationDate).format('DD/MM/YYYY')} </div>
-                <div class="flex flex-row"> 
-                  <div class="mr-2">{status.transactionNumber} </div>
-                  {currentDate === dayjs(status.creationDate).format("DD/MM/YYYY") ? (
+                <div class="flex flex-col w-[30rem]">
+                 <div> {dayjs(status.creationDate).format('DD/MM/YYYY')}  {currentDate === dayjs(status.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-xs text-[tomato] font-bold  mr-2">
                       New
                     </span>
-                  ) : null}{status.paymentModeName}</div>
-                  Approved by {status.approveByName ? `${status.approveByName}`:""}
+                  ) : null} </div>
+                <div class="flex flex-row"> 
+                  <div class="mr-2">{status.transactionNumber} </div>
+                  {status.paymentModeName}</div>
+                  {status.approveByName ?
+                    `Approved by ${status.approveByName} - ${dayjs(status.approveDate).format('DD/MM/YYYY')} `:""}
                
                 </div>
                 

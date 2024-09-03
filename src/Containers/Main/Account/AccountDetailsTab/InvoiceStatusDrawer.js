@@ -4,12 +4,10 @@ import { StyledDrawer } from "../../../../Components/UI/Antd";
 import InvoiceStatusCardView from "./InvoiceStatusCardView";
 
 function InvoiceStatusDrawer (props) {
-
-  console.log("INVSCD",props.particularRowData)
   return (
     <>
       <StyledDrawer
-        title="Status"
+        title={`${props.particularRowData.invoiceId}`}
         width="60%"
         visible={props.openStatus}
         maskClosable={false}

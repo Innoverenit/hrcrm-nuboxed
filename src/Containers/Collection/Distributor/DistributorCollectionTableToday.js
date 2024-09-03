@@ -151,13 +151,13 @@ function DistributorColletcionArchive(props) {
 
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                          {item.transactionNumber}
+                          {item.invoiceId}
 
                         </div>
                       </div>
                       <div className=" flex font-medium flex-col w-[7.15rem] max-xl:w-[2.15rem] max-lg:w-[3.15rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                          {item.paymentType}
+                        {item.transactionNumber}
 
                         </div>
                       </div>
