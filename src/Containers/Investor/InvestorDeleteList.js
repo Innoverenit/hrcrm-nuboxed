@@ -66,13 +66,14 @@ function InvestorDeleteList(props) {
             "144",//3 In Progress
             "579",//4 signed
             "14",//5 Category
-            "589",//6 First Meeting
-            "1158",//7 share
-            "218",//8 Value
-            "592",//9 Club
-            "76",//10 Assigned
-            "77",//11 Owner
-            "279",//12 source
+            "279",//6 source
+            "589",//7 First Meeting
+            "1158",//8 share
+            "218",//9 Value
+            "592",//10 Club
+            "76",//11 Assigned
+            "77",//12 Owner
+          
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -196,34 +197,34 @@ function InvestorDeleteList(props) {
           {translatedMenuItems[5]}
           {/* "Category" */}            
           </div>
+          <div className="w-[5.34rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+        {translatedMenuItems[6]}
+        {/* "Source"         */}
+          </div>
           <div className="w-[7.22rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[6]}
+          {translatedMenuItems[7]}
       {/* First Meeting */}
           </div>
           <div className="w-[5.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[7]}
+          {translatedMenuItems[8]}
        {/* Shares # */}
           </div>         
           <div className="w-[5.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[8]}
+          {translatedMenuItems[9]}
         {/* Value */}
           </div>
           <div className="w-[3.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[9]}
+          {translatedMenuItems[10]}
         {/* Club */}
           </div>
         <div className="w-[4.33rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
-        {translatedMenuItems[10]}
+        {translatedMenuItems[11]}
       {/* Assigned" */}         
          </div>
         <div className="w-[3.13rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
-        {translatedMenuItems[11]}
+        {translatedMenuItems[12]}
         {/* "owner" */}       
                 </div>
-        <div className="w-[15.34rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        {translatedMenuItems[12]}
-        {/* "Source"         */}
-          </div>
      
       </div>
        
@@ -331,16 +332,23 @@ function InvestorDeleteList(props) {
     )}
                                 </div>
                                 <div className=" flex items-center w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                  {/* # Deals */}
+                                  {/* # Signed */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.signed}
                                     </div>
                                 </div>
                                 <div className=" flex  items-center w-[5.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* # Deals */}
+                                    {/* # category */}
 
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.category}
+                                    </div>
+                                </div>
+                                <div className=" flex items-center  w-[4.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* >Source */}
+
+                                    <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.source}
                                     </div>
                                 </div>
                                 <div className=" flex  items-center w-[6.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -415,13 +423,11 @@ function InvestorDeleteList(props) {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                   <div className=" flex items-center  w-[4.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* >Source */}
+                
 
-                                    <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.source}
-                                    </div>
-                                </div>
+                                <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <ReInstateInvestor investorId={item.investorId} />
+                            </div>
                                 <div class="flex items-center cursor-pointer justify-between">  
                                   <div>
                                   <Tooltip title="Document">
@@ -493,16 +499,8 @@ function InvestorDeleteList(props) {
               />
             </Tooltip>
             </div>                                                   
-            <div >
-                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-            <span class="cursor-pointer">
-            <LocationOnIcon   className=" !text-icon cursor-pointer text-[#960a0a]"/>
-            </span>
-          </Tooltip>
-          </div>
-          <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <ReInstateInvestor investorId={item.investorId} />
-                            </div>
+            
+         
            
                   </div>
                       </div>   

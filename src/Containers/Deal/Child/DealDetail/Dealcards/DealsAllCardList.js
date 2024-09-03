@@ -195,7 +195,7 @@ const DealsAllCardList = (props) => {
 
                      <div class="max-sm:w-full w-52" >
                        <Tooltip>
-                         <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
+                         <div class="max-sm:w-full max-sm:justify-start flex md:flex-col">
                                     {/* Name */}
                                     
                            <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">                            
@@ -214,8 +214,10 @@ const DealsAllCardList = (props) => {
                          </div>
                        </Tooltip>
                      </div>
+                     </div>
                    </div>
                  </div>
+                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                  <div className=" flex  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs  font-poppins">
@@ -241,15 +243,15 @@ const DealsAllCardList = (props) => {
                      </SubTitle>
                    </div>
                  </div>
-               </div>
-               <div class="flex">
+              
+             
                  <div className=" flex  items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs justify-center  font-poppins">
                      {dayjs(item.startDate).format("DD/MM/YYYY")}
                    </div>
                  </div>
-
+</div>
                  <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-sm  font-poppins text-center">
@@ -331,7 +333,7 @@ const DealsAllCardList = (props) => {
                      />
                    </span>
                  </div>
-               </div>
+            
              </div>
            </div>
             )

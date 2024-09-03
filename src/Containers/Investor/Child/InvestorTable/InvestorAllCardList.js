@@ -444,13 +444,7 @@ function InvestorAllCardList(props) {
             </Tooltip>
  
             </div>
-            <div>
-                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-            <span class="cursor-pointer">
-            <LocationOnIcon   className=" !text-icon cursor-pointer text-[#960a0a]"/>
-            </span>
-          </Tooltip>
-          </div>
+           
             <div>
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title="Edit">
