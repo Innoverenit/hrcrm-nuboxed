@@ -252,7 +252,7 @@ function EmployeeTable(props) {
      <div class=" h-h86 overflow-auto overflow-x-auto">
         <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
                     <div className="w-[10rem] md:w-[16.5rem]">{translatedMenuItems[0]}</div>
                     {/* Name */}
                     <div className=" md:w-[9.1rem]">{translatedMenuItems[1]}</div>
@@ -274,8 +274,9 @@ function EmployeeTable(props) {
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (
                         <div>
-                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
-                                <div class="flex">
+                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:justify-between   max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
+                              <div class="flex  max-sm:w-wk items-center max-sm:items-center">
                                     <div className=" flex md:w-[15.6rem] max-sm:w-full ">
                                     <EmployeeDetailsView
           employeeId={item.employeeId}
@@ -307,7 +308,7 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
 
-                               
+                                <div class="flex  max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
                                 <div className=" flex md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     {item.countryDialCode} {item.mobileNo}
@@ -318,6 +319,8 @@ function EmployeeTable(props) {
                                        {item.emailId}
                                     </div>
                                 </div>
+                                </div>
+                                <div class="flex  max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
                                 <div className=" flex md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     {props.user.userDeleteInd === true || user.role === "ADMIN" ? (
@@ -334,10 +337,10 @@ function EmployeeTable(props) {
                                 <div className=" flex  ml-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                   
-            <MultiOrgEmployee
-              multyOrgAccessInd={item.multyOrgAccessInd}
-              employeeId={item.employeeId}
-            />
+                            <MultiOrgEmployee
+                              multyOrgAccessInd={item.multyOrgAccessInd}
+                              employeeId={item.employeeId}
+                            />
 
                                     </div>
                                 </div>
@@ -356,15 +359,11 @@ function EmployeeTable(props) {
                 
                 > */}
                 { item.role === "ADMIN" ?(
-<CellTowerIcon 
-  // onClick={() => {
-  //   handleEmployeeDrawerForAdmin(true);
-  //   handleSetCurrentEmployeeId(item.employeeId)
-  // }}
- style={{ 
-  // color: item.role === "ADMIN" ?"blue":  "",
-  fontSize: "123%"
-  }}
+<CellTowerIcon  className=" text-[123%]"
+//  style={{ 
+//   // color: item.role === "ADMIN" ?"blue":  "",
+//   fontSize: "123%"
+//   }}
 />
                 ):null}
 
@@ -374,9 +373,8 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
                                 <div className=" flex md:w-[12.12rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    <div class=" text-xs  font-poppins text-center">
-                                    <span
-              style={{ cursor: "pointer" }}
+                                    <div class=" text-xs  font-poppins text-center ">
+                                    <span className=" cursor-pointer max-sm:!text-2xl "
               onClick={() => {
                 // props.getCandidateById(item.candidateId);
                  props.getEmployeeDocument(item.employeeId);
@@ -386,18 +384,13 @@ function EmployeeTable(props) {
               }}
             >
     
-                <MonitorHeartIcon
-                  style={{ fontSize: "0.8rem", color: "#df9697" }}
-                />
-         
-            </span>
+                <MonitorHeartIcon className="!text-icon text-[#df9697] "  />  </span>
                                     </div>
                                 </div>
                                 <div className=" flex md:w-[9.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="Add as Admin">
-           <CircleNotificationsIcon
-           style={{ cursor: "pointer",fontSize: "1rem" }}
+           <CircleNotificationsIcon className=" cursor-pointer !text-icon max-sm:!text-2xl"
            onClick={() => {
             handleSetCurrentEmployeeId(item);
             props.handleNotifyDrawer(true);
@@ -414,7 +407,7 @@ function EmployeeTable(props) {
                  onConfirm={() => props.deleteEmployeeData(item.userId)}>
            <Tooltip title="Delete">
         
-           <DeleteOutlined className=" cursor-pointer text-red-600 !text-icon"
+           <DeleteOutlined className=" cursor-pointer text-red-600 !text-icon max-sm:!text-2xl"
         />
        
            </Tooltip>
@@ -423,7 +416,7 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
                                 
-
+</div>
                             </div>
                         </div>
                     )

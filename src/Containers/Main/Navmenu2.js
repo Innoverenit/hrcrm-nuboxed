@@ -1380,7 +1380,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
         {click ? (
           <CloseIcon className="menu-icon" />
         ) : (
-          <MenuOpenIcon className="menu-icon" />
+          <MenuOpenIcon className="menu-icon  !text-orange-600" />
         )}
       </div>
     </div>
