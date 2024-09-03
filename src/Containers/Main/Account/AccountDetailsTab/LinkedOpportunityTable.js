@@ -38,20 +38,21 @@ function LinkedOpportunityTable(props) {
         try {
           setLoading(true); 
           const itemsToTranslate = [
-              "Repair",
-              "Quotation",
-              "Delivery",
-              "Location",
-             "Budget",
-              "Contact",
-             "Payment",
-              "Status",
-              "To Order",
-              
-              "Procure",
-              "Created Date"
-
-
+           "661", //   "Repair",0
+          "213",  //   "Quotation",1
+           "772", //   "Delivery",2
+          "658",  //   "Location",3
+           "1170", //  "Budget",4
+          "73",  //   "Contact",5
+         "1171",   //  "Payment",6
+           "142", //   "Status",7
+          "1172", //   "To Order",8
+           "666", //   "Procure",9
+           "1226", //   "Created Date"10
+        "100",  //  New11
+        "1300",  //  Change status to Customer?12
+          "387", //  Convert13
+         "1341",   // "Change status to Order?
         ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -100,7 +101,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div class=" w-[8.5rem]"> {translatedMenuItems[0]}</div>
                         <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
                         <div className=" md:w-[7rem]">
-                        {translatedMenuItems[9]}  
+                        {translatedMenuItems[10]}  
                           </div>
                         <div className=" md:w-[7.1rem]"> {translatedMenuItems[2]}</div>
                         <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
@@ -144,9 +145,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                                                               <div
                                                                                                   class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                                           )}
-                                                                                          {item.priority === "Medium" && (
-                                                                                              <div
-                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
+                                                                                          
                                                                                           {item.priority === "Low" && (
                                                                                               <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                                       </div>
@@ -166,7 +165,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-xs text-[tomato] font-bold">
-                                            New
+                                           {translatedMenuItems[11]} {/* New */}
                                           </span>
                                         ) : null} </span>
                                                    
@@ -225,7 +224,8 @@ console.log(props.user.moduleMapper.ecomModInd)
                   <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                   <Popconfirm
-                          title="Change status to Customer?"
+                          title={translatedMenuItems[12]}
+                          // "Change status to Customer?"
                           onConfirm={() => handleConfirm(item.customerId)}
                           okText="Yes"
                           cancelText="No"
@@ -236,7 +236,8 @@ console.log(props.user.moduleMapper.ecomModInd)
                              
                               >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
-                              Convert<NextPlanIcon  className="!text-icon"/>
+                              {translatedMenuItems[13]} {/* Convert */}
+                              <NextPlanIcon  className="!text-icon"/>
                               </div>
                             </Button>
                           
@@ -260,7 +261,7 @@ console.log(props.user.moduleMapper.ecomModInd)
 <div class=" w-[8.5rem]"> {translatedMenuItems[9]}</div>
 <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
 <div className=" md:w-[6rem]">
-{translatedMenuItems[9]}
+{translatedMenuItems[10]}
                         </div>
                         <div className=" md:w-[7.1rem]"> {translatedMenuItems[2]}</div>
                         <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
@@ -304,9 +305,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                                                               <div
                                                                                                   class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                                           )}
-                                                                                          {item.priority === "Medium" && (
-                                                                                              <div
-                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
+                                                                                          
                                                                                           {item.priority === "Low" && (
                                                                                               <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                                       </div>
@@ -326,7 +325,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-xs text-[tomato] font-bold">
-                                            New
+                                           {translatedMenuItems[11]} {/* New */}
                                           </span>
                                         ) : null} </span>
                                                    
@@ -384,14 +383,16 @@ console.log(props.user.moduleMapper.ecomModInd)
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                   <Popconfirm
-                          title="Change status to Order?"
+                          title={translatedMenuItems[14]}
+                          // "Change status to Order?"
                           onConfirm={() => handleConfirm(item.quotationId,props.userId)}
                           okText="Yes"
                           cancelText="No"
                         >
                   <Button type="primary"  style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}>
                   <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
-                              Convert<NextPlanIcon  className="!text-icon"/>
+                  {translatedMenuItems[13]}  {/* Convert */}
+                              <NextPlanIcon  className="!text-icon"/>
                               </div>
                      </Button>
                   </Popconfirm>

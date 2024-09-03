@@ -30,7 +30,9 @@ class DistributorDocumentTable extends Component {
             
               
              
-            "Date","Name","Descroption"
+           "74", // "Date",
+           "110", // "Name",
+           "147", // "Description"
             
             
           ];

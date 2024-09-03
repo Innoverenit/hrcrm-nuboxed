@@ -19,12 +19,12 @@ function AccountDeleteTable(props) {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-    'Name', // 0
-    'Mobile', // 1
-    'Website', // 2
-    'Address', // 3
-    'City', // 4
-    'Pin Code', // 5
+  "110",  // 'Name', // 0
+  "546",   // 'Mobile', // 1
+  "700",   // 'Website', // 2
+  "185",   // 'Address', // 3
+  "188",  // 'City', // 4
+  "879",  // 'Pin Code', // 5
   
             ];
     

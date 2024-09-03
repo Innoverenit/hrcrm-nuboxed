@@ -37,13 +37,16 @@ const AllAccountList = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-'Name', // 0
-'Work', // 1
-'Category', // 2
-'Type', // 3
-'Payment(Days)', // 4
-'Tax', // 5
-'Owner'
+          "110",    // 'Name', // 0
+          "378",     // 'Work', // 1
+          "14",    // 'Category', // 2
+          "71",   // 'Type', // 3
+          "668",   // 'Payment(Days)', // 4
+          "1215",  // 'Tax', // 5
+          "77",    // 'Owner' 6
+          "100", // New
+          "392",// "Pulse" 
+          "170",// "Edit"
       ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -76,7 +79,7 @@ const AllAccountList = (props) => {
   ) : (
       <div className=' flex  sticky z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins sticky  z-10">
             <div className=" w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  
             {translatedMenuItems[0]}
             {/* Name */}
@@ -159,7 +162,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                     </Link>  &nbsp;&nbsp;
                                     {date === currentdate ? (
                                       <div class="text-[0.65rem] text-[tomato] font-bold" >
-                                        New
+                                        {translatedMenuItems[7]}  {/* New */}
                                       </div>
                                     ) : null}
 
@@ -252,7 +255,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                         <div className=" flex    max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
-                            <Tooltip title="Pulse">
+                            <Tooltip title=  {translatedMenuItems[8]}>
+                            {/* "Pulse"> */}
                               <MonitorHeartIcon
                                 onClick={() => {
                                   props.handleAccountPulse(true);
@@ -273,7 +277,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
         />    
                         <div className=" flex    max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
-                            <Tooltip title="Edit">
+                            <Tooltip title=  {translatedMenuItems[9]}>
+                            {/*  "Edit"> */}
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato]"
                                 onClick={() => {

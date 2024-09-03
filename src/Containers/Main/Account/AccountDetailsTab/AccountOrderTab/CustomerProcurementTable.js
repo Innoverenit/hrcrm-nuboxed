@@ -48,7 +48,7 @@ function CustomerProcurementTable(props) {
             setLoading(true); 
             const itemsToTranslate = [
                 "106",//0
-                "660",
+                "660", 
                 "772",
                 "658",//3
                "1170",
@@ -56,9 +56,10 @@ function CustomerProcurementTable(props) {
                "1171",
                 "142",//7
                 "108",
-                "679", //9
-                "1169",//10
-                
+                "679", //9created date
+                "1169",//10 invoice
+               "100", // New11
+               "142", // "Status"12
 
           ];
     
@@ -117,7 +118,7 @@ const handleLoadMoreLow = () => {
                         {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
                           <div className=" md:w-[6rem]">  
-                          {translatedMenuItems[10]}
+                          {translatedMenuItems[9]}
                           </div>
                         <div className=" md:w-[7.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
@@ -174,9 +175,7 @@ const handleLoadMoreLow = () => {
                                                                                               <div
                                                                                                   class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                                                           )}
-                                                                                          {item.priority === "Medium" && (
-                                                                                              <div
-                                                                                                  class="border rounded-[50%] h-6 w-6 bg-[orange]"></div>)}
+                                                                                       
                                                                                           {item.priority === "Low" && (
                                                                                               <div class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>)}
                                                                                       </div>
@@ -196,7 +195,7 @@ const handleLoadMoreLow = () => {
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-[0.65rem] text-[tomato] font-bold">
-                                            New
+                                            {/* New */}
                                           </span>
                                         ) : null} </span>
                                                    
@@ -259,10 +258,11 @@ const handleLoadMoreLow = () => {
                     </Button>
                   </div>
                                         <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
-                                            <Tooltip title={<FormattedMessage
-                                                                id="app.status"
-                                                                defaultMessage="Status"
-                                                            />}>
+                                            <Tooltip title= {translatedMenuItems[12]}>
+                                            {/* // {<FormattedMessage
+                                            //                     id="app.status"
+                                            //                     defaultMessage="Status"
+                                            //                 />}> */}
                                                                 <EventRepeatIcon
 
                                                                     className="!text-base cursor-pointer"
@@ -286,13 +286,13 @@ const handleLoadMoreLow = () => {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
-        {translatedMenuItems[9]} {/* Normal */}
+        {translatedMenuItems[8]} {/* Normal */}
            </div>
                         <div className=" md:w-[7.4rem] ml-2">
                         {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
                           <div className=" md:w-[6rem]">
-                          {translatedMenuItems[10]}
+                          {translatedMenuItems[9]}
                           </div>
                         <div className=" md:w-[7.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
@@ -371,7 +371,7 @@ const handleLoadMoreLow = () => {
                                                                 >{item.newOrderNo}</span>
                                                                  <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-[0.65rem] text-[tomato] font-bold">
-                      New
+                  {translatedMenuItems[11]}     {/* New */}
                     </span>
                   ) : null} </span>
                              
@@ -449,10 +449,11 @@ const handleLoadMoreLow = () => {
                                                                 />
                                                                 </Tooltip> */}
                                                        <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
-                                            <Tooltip title={<FormattedMessage
+                                            <Tooltip title={translatedMenuItems[12]}>
+                                             {/* {<FormattedMessage
                                                                 id="app.status"
                                                                 defaultMessage="Status"
-                                                            />}>
+                                                            />}> */}
                                                                 <EventRepeatIcon
 
                                                                     className="!text-base cursor-pointer"

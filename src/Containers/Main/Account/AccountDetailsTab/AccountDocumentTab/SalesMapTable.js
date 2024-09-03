@@ -19,7 +19,10 @@ const SalesMapTable = (props) => {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-   "LOB","Applicable","Potential","Currency"
+                     "280",   // "LOB",
+                     "1227",   // "Applicable",
+                      "407",  // "Potential",
+                      "241",  // "Currency"
 
 
           ];
