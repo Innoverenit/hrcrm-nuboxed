@@ -276,7 +276,7 @@ const handleGenerateInvoice= async () => {
       return;
     }
     try {
-      const response = await axios.post(`${base_url2}/invoice/procureInvoice/test `,{
+      const response = await axios.post(`${base_url2}/invoice/procureInvoice `,{
       //   paymentMode: "Cash",
       //   remarks: "",
       //   invoiceId:invoices,
@@ -666,10 +666,11 @@ const handleGenerateInvoice= async () => {
                  />
                 </div>
                 <div>
-                <select
+                <Select
                      style={{border:"2px solid black"}}
                       value={CreditMemo}
                       onChange={(e) => handleCreditMemo(e.target.value)}
+                      mode="multiple" 
                     >
                        {creditmemoData.length > 0 ? (
     creditmemoData.map((critem, crindex) => (
@@ -680,7 +681,7 @@ const handleGenerateInvoice= async () => {
   ) : (
     <option value="" disabled>No Credit Memos Available</option>
   )}
-                    </select>
+                    </Select>
                     </div>
               </div>
           <Button
