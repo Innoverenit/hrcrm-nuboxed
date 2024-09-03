@@ -59,8 +59,8 @@ function DistributorPaidForm(props) {
           orderCurrencyId: props.particularRowData.orderCurrencyName || "",
           orgId: props.orgId,
           approveByFinanceInd: false,
-          orderPaymentType:"Procure"
-        
+          orderPaymentType:"Procure",
+          remainingTotalValue:props.particularRowData.remainingTotalValue || 0,
       
         }}
         validationSchema={DistributorSchema}
@@ -137,10 +137,10 @@ function DistributorPaidForm(props) {
                   </div>
                   <div class="w-[31%]">
                     <Field
+                      isRequired
                       name="date"
                       label="Date "
                       isColumn
-                      isRequired
                       inlineLabel
                       width={"100%"}
                       component={DatePicker}
@@ -170,6 +170,7 @@ function DistributorPaidForm(props) {
                 <div class="flex justify-evenly">
                   <div class="w-[30%]">
                     <Field
+                      isRequired
                       name="transactionNumber"
                       label={
                         <FormattedMessage
@@ -188,7 +189,7 @@ function DistributorPaidForm(props) {
                     <Field
                       name="invoiceId"
                       label="Invoice Id"
-                     
+                      disabled
                       isColumn
                       inlineLabel
                       width={"100%"}
@@ -198,13 +199,13 @@ function DistributorPaidForm(props) {
                   </div>
                   <div class="w-[30%]">
                     <Field
+                      isRequired
                       name="paymentMode"
                       label={
                         <FormattedMessage
                           id="app.mode"
                           defaultMessage="Mode"
                         />}
-                      isRequired
                       isColumn
                       inlineLabel
                       width={"100%"}

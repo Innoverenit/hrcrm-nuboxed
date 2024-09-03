@@ -39,13 +39,16 @@ function AccountProcureDetails(props) {
   const [currency, setCurrency] = useState("");
   const [newPrice, setPrice] = useState('');
   const [invoices, setInvoices] = useState('');
+  const [RowInvoices, setRowInvoices] = useState('');
   // const [particularRowData, setParticularRowData] = useState({});
-
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [CreditMemo, setCreditMemo] = useState("");
 
   const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const [creditmemoData,setcreditmemoData]=useState([]);
 
   useEffect(() => {
       const fetchMenuTranslations = async () => {
@@ -61,7 +64,7 @@ function AccountProcureDetails(props) {
   '655',
   '260',
   '657',//8
-  '1223',
+  '1093',
   "1169",//10
   "1225",
   '1224',//12
@@ -87,7 +90,23 @@ function AccountProcureDetails(props) {
     props.getLocationList(props.orgId);
     props.getSaleCurrency()
     props.getProcureDetails(props.particularRowData.orderPhoneId);
+    fetchCreditMemoData();
   }, []);
+
+  const fetchCreditMemoData = async () => {
+    try {
+      const response = await axios.get(`${base_url2}/creditMemo/creditMemoList/${props.distributorId}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setcreditmemoData(response.data);
+      setLoading(false);
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    }
+  };
 
   const handleChange = (id, fieldName, value) => {
     setEditedFields((prevFields) => ({
@@ -143,7 +162,6 @@ function AccountProcureDetails(props) {
 
   const handleCategoryChange = async (value) => {
     setCategory(value);
-   
   };
   
   const handleModelChange = (value) => {
@@ -195,6 +213,9 @@ function AccountProcureDetails(props) {
   //   return <BundleLoader />;
   // }
   
+  const handleCreditMemo = async (value) => {
+    setCreditMemo(value);
+  };
   const handleUnitChange = (id, value) => {
     const unitValue = parseInt(value, 10);
     if (unitValue < 1 || isNaN(unitValue)) {
@@ -216,6 +237,7 @@ function AccountProcureDetails(props) {
     }
   };
 
+
 const handleGenerateInvoice= async () => {
     setLoading(true);
     setError(null);
@@ -235,7 +257,8 @@ const handleGenerateInvoice= async () => {
       return {
         price: item.price,
         procureOrderProductId: item.id,
-        unit: unitValue
+        unit: unitValue,
+        invR:RowInvoices,
       };
     }).filter(item => item !== null); 
   
@@ -253,7 +276,7 @@ const handleGenerateInvoice= async () => {
       return;
     }
     try {
-      const response = await axios.post(`${base_url2}/invoice/procureInvoice `,{
+      const response = await axios.post(`${base_url2}/invoice/procureInvoice/test `,{
       //   paymentMode: "Cash",
       //   remarks: "",
       //   invoiceId:invoices,
@@ -272,6 +295,7 @@ const handleGenerateInvoice= async () => {
         procureOrderInvoiceId: "",
         procureOrderProductInvoiceId:"",
         orgId: props.orgId,
+        creditMemoId:CreditMemo,
       },
         {
           headers: {
@@ -302,7 +326,6 @@ const handleGenerateInvoice= async () => {
     }
     setInvoices("");
   }; 
-
 
 
   
@@ -345,9 +368,6 @@ const handleGenerateInvoice= async () => {
           </div>
           <div className="md:w-[4.8rem]">
           {translatedMenuItems[11]} 
-          </div>
-          <div className="md:w-[4.8rem]">
-   Remng.Units
           </div>
           <div className="md:w-[2rem]"></div>
         </div>
@@ -535,17 +555,26 @@ const handleGenerateInvoice= async () => {
                       value={newUnitName}
                       onChange={(e) => setUnitName(e.target.value)}
                     /> */}
-                    {/* {item.reaminingInvoiceUnit === 0 ? `${item.unit}` : */}
+                    {/* {item.reaminingInvoiceUnit === 0 ? `${item.unit}` :
                     <input
   placeholder="Update Unit"
   style={{ border: "2px solid black" }}
-  type="number"
+  // type="number"
   min="1"
   value={editedFields[item.id]?.unit || item.unit}
   onChange={(e) => handleUnitChange(item.id, e.target.value)}
   onBlur={(e) => handleUnitChange(item.id, e.target.value)}
 />
-        
+        } */}
+        <input
+  placeholder="Update Unit"
+  style={{ border: "2px solid black",width:"2.5rem" }}
+  // type="number"
+  min="1"
+  value={editedFields[item.id]?.unit || item.unit}
+  onChange={(e) => handleUnitChange(item.id, e.target.value)}
+  onBlur={(e) => handleUnitChange(item.id, e.target.value)}
+/>
                  
                 </div>
               </div>
@@ -572,22 +601,19 @@ const handleGenerateInvoice= async () => {
                 </div>
               </div>
              
-              {/* <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+            <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
+                 
                    <input
-                   placeholder="invoice"
-                   style={{border:"2px solid black"}}
+                   placeholder="Invoice"
+                   style={{border:"2px solid black", width:"4rem"}}
                    type="text"
-                   value={invoices}
-                   onChange={(e) => setInvoices(e.target.value)}
+                   value={RowInvoices}
+                   onChange={(e) => setRowInvoices(e.target.value)}
                  />
-                  ) : (
-                  
-                    <div className="font-normal text-xs  font-poppins"> {item.invoice} </div>
-                  )}
+             
                 </div>
-              </div> */}
+              </div>
               <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
                 {/* <div className="flex">
                   {editContactId === item.id ? (
@@ -629,7 +655,7 @@ const handleGenerateInvoice= async () => {
             </div>
           );
         })}
-         <div className="flex  md:w-[4rem] max-sm:flex-row ">
+         <div className="flex  md:w-[4rem] max-sm:flex-row mt-2">
                 <div className="text-xs  font-poppins">
                    <input
                    placeholder="invoice"
@@ -639,6 +665,23 @@ const handleGenerateInvoice= async () => {
                    onChange={(e) => setInvoices(e.target.value)}
                  />
                 </div>
+                <div>
+                <select
+                     style={{border:"2px solid black"}}
+                      value={CreditMemo}
+                      onChange={(e) => handleCreditMemo(e.target.value)}
+                    >
+                       {creditmemoData.length > 0 ? (
+    creditmemoData.map((critem, crindex) => (
+      <option key={crindex} value={critem.creditMemoId}>
+        {critem.creditMemo}
+      </option>
+    ))
+  ) : (
+    <option value="" disabled>No Credit Memos Available</option>
+  )}
+                    </select>
+                    </div>
               </div>
           <Button
                         type='primary'

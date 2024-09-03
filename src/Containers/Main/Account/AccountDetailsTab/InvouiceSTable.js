@@ -23,12 +23,13 @@ function InvouiceSTable(props) {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-    '1169', // 0
-    '660', // 1
+    '110', // 0
+    '14', // 1
     '218', // 2
     '71', // 3
-    '142', // 4
-   
+    '260', // 4
+    '142', // 5
+   '259',//6
 
 
           ];
@@ -95,12 +96,13 @@ function InvouiceSTable(props) {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
-                    <div class=" w-[8.5rem]">{translatedMenuItems[0]} ID</div>
-                        <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>
+                    <div class=" w-[8.5rem]">{translatedMenuItems[0]} </div>
+                        <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} </div>
+                        <div className=" md:w-[7rem] ">{translatedMenuItems[6]}</div>
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
-                        <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div>
-                        <div className=" md:w-[8.8rem] ">{translatedMenuItems[4]}</div>
-                      
+                        <div className="md:w-[5rem]">Total Value</div>
+                        <div className=" md:w-[7rem] ">{translatedMenuItems[4]}</div>
+                        <div className="md:w-[3.8rem]">{translatedMenuItems[5]}</div>
                     </div>
                     <div class="">
                         {/* <InfiniteScroll
@@ -121,7 +123,7 @@ function InvouiceSTable(props) {
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
-                                                           {item.invoiceId}
+                                                           {item.name}
                                                            
 
                                                         </div>
@@ -133,24 +135,24 @@ function InvouiceSTable(props) {
                                                     </div>
                                                     <div className=" flex  w-[14.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {item.orderId}
+                                                        {item.category}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {item.paymentAmount}
+                                                         {item.price}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {item.paymentModeName}
+                                                            {item.totalPrice}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {item.remarks}
+                                                            {item.unit}
                                                         </div>
                                                     </div>
                                                     
