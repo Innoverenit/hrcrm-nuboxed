@@ -29,10 +29,10 @@ const DataRoomCard = (props) => {
         setLoading(true); 
         const itemsToTranslate = [
    
-           "482 ",//0 Room Name
-            "483 ",//1 Room Member List
-            "484 ",//2 List Of User
-            "485 ",//3 List of Contact
+           "482",//0 Room Name
+            "483",//1 Room Member List
+            "484",//2 List Of User
+            "485",//3 List of Contact
             
 
         ];
@@ -63,16 +63,16 @@ const DataRoomCard = (props) => {
        <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">
+            <div className=" font-poppins text-xs font-bold w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">
             {translatedMenuItems[0]}  {/* Room Name */}
             </div>
-            <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+            <div className="font-poppins text-xs font-bold  w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
             {translatedMenuItems[1]}  {/* Room Member List */}
             </div>
-            <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]">
+            <div className=" font-poppins text-xs font-bold  w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]">
             {translatedMenuItems[2]} {/* List Of user */}
             </div>
-            <div className="w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins text-xs font-bold  w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {translatedMenuItems[3]} {/* List Of Contact */}
                 </div>    
             <div className="w-[4.3rem]"></div>
@@ -89,7 +89,7 @@ const DataRoomCard = (props) => {
                 console.log(countryCode)
                 return (
                   <div>
-                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:">
+                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:flex-col  p-1 max-sm:h-[5rem] max-sm:">
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex   w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
 

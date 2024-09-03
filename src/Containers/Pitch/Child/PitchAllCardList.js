@@ -115,37 +115,37 @@ serachedPitchData={props.serachedPitchData}
 ) : (
  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
+        <div className="font-bold font-poppins text-xs w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
         {translatedMenuItems[0]}
         {/* name */}
                 </div>
         <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className="  w-[5.3rem]  max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className="font-bold font-poppins text-xs  w-[5.3rem]  max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         {translatedMenuItems[1]} 
         {/* Mobile */}
                 </div>
         <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        <div className=" font-bold font-poppins text-xs w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
         {translatedMenuItems[2]} 
         {/* company */}
                 </div>
-                    <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div className="font-bold font-poppins text-xs w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                     {translatedMenuItems[3]}  
                     {/* source */}
                 </div>
-                     <div className="w-[3.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     <div className="font-bold font-poppins text-xs w-[3.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {translatedMenuItems[4]} 
                      {/* sector */}
                 </div>
-        <div className="w-[4.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className="font-bold font-poppins text-xs w-[4.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
           {/* Assigned */}
         {translatedMenuItems[5]}
         </div>
-        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
+        <div className="font-bold font-poppins text-xs w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
         {translatedMenuItems[6]}
         {/* owner */}
                 </div>
-        <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        <div className="font-bold font-poppins text-xs w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[7]}
         {/* qualify */}
                 </div>
@@ -185,7 +185,7 @@ serachedPitchData={props.serachedPitchData}
                     return (
                       <div>
                       <div
-          className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+          className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
         >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex font-medium  w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
@@ -366,7 +366,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       </span>
              </div>
                           </div>                                                                     
-<div class="flex max-sm:justify-between max-sm:w-wk items-center">
+<div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
 <div class="flex justify-between items-center max-sm:w-[50%] ">                       
              <div class="rounded-full bg-white  h-5 cursor-pointer w-8 max-xl:w-[1.5rem]">
               {item.url !== null ? (
@@ -413,8 +413,11 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       convertInd={item.convertInd}
     /> */}
 </div>
+</div>
                           </div>
-                          <div class="flex max-sm:flex-row  justify-between md:w-20 max-sm:w-[25%] ">
+                          </div>
+                          <div class="flex max-sm:justify-evenly max-sm:w-wk ">
+                          <div class="flex max-sm:flex-row  justify-evenly md:w-20 max-sm:w-[25%] ">
                                                 <div >
                                     <Tooltip title="Notes">
                       <NoteAltIcon
@@ -499,7 +502,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                         </div>               
               </div>
               </div>
-                </div>
+           
+               
                       </div>                       
                                 </div>
                     )

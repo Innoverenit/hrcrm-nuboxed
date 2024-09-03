@@ -390,7 +390,7 @@ props.getInvestorCurrency();
                       
                             {/* name="salutation"
                             */}
-                        <div class="text-xs font-bold w-full max-sm:w-full">
+                        <div class="text-xs font-bold font-poppins w-full max-sm:w-full">
                              {translatedMenuItems[0]}
                              <FastField
                             isRequired
@@ -404,7 +404,7 @@ props.getInvestorCurrency();
                         </div>
                       </div>                  
                       <div class=" flex justify-between  max-sm:flex-col">
-                        <div class=" text-xs font-bold w-2/5 max-sm:w-full"> 
+                        <div class=" text-xs font-bold   w-2/5 max-sm:w-full"> 
                         {translatedMenuItems[1]}  
                           <FastField
                             name="middleName"                                    
