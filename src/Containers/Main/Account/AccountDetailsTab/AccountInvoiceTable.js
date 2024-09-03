@@ -319,8 +319,9 @@ function AccountInvoiceTable(props) {
                         {/* <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} </div> */}
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
                         {/* <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div> */}
+                        <div className=" md:w-[8rem]">Outstanding</div>
                         <div className=" md:w-[8rem]">Credit Memo</div>
-                        <div className=" md:w-[8rem]">Remaining Total Value</div>
+                       
                         <div className=" md:w-[8rem]"></div>
                         <div className=" md:w-[8rem]">{translatedMenuItems[4]}</div>
                     </div>
@@ -376,6 +377,12 @@ function AccountInvoiceTable(props) {
                                                             {item.totalValue}
                                                         </div>
                                                     </div>
+                                                    <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+
+                                                    {item.remainingTotalValue} 
+
+                          </div>
                                                     {/* <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
@@ -400,12 +407,7 @@ function AccountInvoiceTable(props) {
                           
                           </div>       
 
-                                                                    <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                    {item.remainingTotalValue} 
-
-                          </div>
+                                                                    
                                                    
                                                     </div>
                                                     </div>

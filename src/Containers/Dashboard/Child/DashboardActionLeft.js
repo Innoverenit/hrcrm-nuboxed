@@ -99,11 +99,11 @@ const DashboardActionLeft = (props) => {
             color={showShareForm && viewType === "ALL" ? "tomato" : "#FFA500"}
             
             style={{
-              fontWeight: viewType === "ALL" ? "tomato" : "#FFA500",
+              fontWeight: showShareForm && viewType === "ALL" ? "tomato" : "#FFA500",
               
             }}
             onClick={() => {
-              setDashboardViewType("ALL");
+              {!showShareForm ? setDashboardViewType("ALL"):setDashboardViewType("ME");}
               toggleShareForm(); // Toggle the state when switching to "ALL"
             }}
           >
@@ -482,7 +482,11 @@ const DashboardActionLeft = (props) => {
                 // overflowCount={999}
                 >
                   <span class="cursor-pointer mr-1"
-                    onClick={() => handleButtonClick("Order")}
+                    onClick={() => 
+                      handleButtonClick("Order")
+
+
+                    }
                     style={{
                       color: activeButton === "Order" && "tomato",
 

@@ -215,7 +215,7 @@ const initialState = {
   fetchingSalesDatewiseReportError: false,
   showSalesDatelist: [],
 
-  viewType: "test",
+  viewType: "ME",
   isCustomSelected: false,
   startDate: dayjs().toISOString(),
   endDate: dayjs().toISOString(),

@@ -50,7 +50,7 @@ function DashboardOrderJumpstart(props) {
   }, [props.selectedLanguage]);
   
   useEffect(() => {
-    props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+    // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 
@@ -86,16 +86,16 @@ function DashboardOrderJumpstart(props) {
 
     switch(type) {
       case 'Added':
-        props.getOrderAddedList(props.userId,props.endDate,props.startDate);
+        // props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
         break;
       case 'Open':
-        props.getOrderOpenList(props.userId,props.endDate,props.startDate);
+        // props.getOrderOpenList(props.orgId,props.endDate,props.startDate);
         break;
       case 'Closed':
-        props.getOrderClosedList(props.userId,props.endDate,props.startDate);
+        // props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
         break;
       case 'Cancelled':
-        props.getOrderCancelList(props.userId,props.endDate,props.startDate);
+        // props.getOrderCancelList(props.orgId,props.endDate,props.startDate);
         break;
       default:
         break;
@@ -123,11 +123,10 @@ function DashboardOrderJumpstart(props) {
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title= {translatedMenuItems[0]}
-            
               jumpstartClick={()=> handleClick("Added")}
               cursorData={"pointer"}
-              value={props.orderinDashboard.totalOrder}
-            isLoading={props.fetchingorderDetails}
+              value={"0"}
+            // isLoading={props.fetchingorderDetails}
             />
                          </div>
                      </div>
@@ -146,8 +145,8 @@ function DashboardOrderJumpstart(props) {
               title= {translatedMenuItems[1]} 
             jumpstartClick={()=> handleClick("Open")}
               cursorData={"pointer"}
-            // value={ props.orderinDashboard.pendingOrder}
-            isLoading={props.fetchingorderDetails}
+            // value={ pendingOrder}
+            // isLoading={props.fetchingorderDetails}
             />
                            </div>
                        </div>
@@ -168,8 +167,8 @@ function DashboardOrderJumpstart(props) {
           
               jumpstartClick={()=> handleClick("Closed")}
               cursorData={"pointer"}
-            // value={props.orderinDashboard.completeOrder}
-            isLoading={props.fetchingorderDetails}
+            // value={completeOrder}
+            // isLoading={props.fetchingorderDetails}
             />
                            </div>
                        </div>
@@ -189,8 +188,8 @@ function DashboardOrderJumpstart(props) {
                               title= {translatedMenuItems[3]} 
                               jumpstartClick={()=> handleClick("Cancelled")}
                               cursorData={"pointer"}
-                              value={props.orderinDashboard.cancelOrder}
-                            isLoading={props.fetchingorderDetails}
+                              value={"0"}
+                            // isLoading={props.fetchingorderDetails}
                             />
                           </div>
                       </div>      
@@ -237,7 +236,7 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   orderinDashboard: dashboard.orderinDashboard,
   orgId: auth.userDetails.organizationId,
   fetchingorderDetails: dashboard.fetchingorderDetails,
-  userId: auth.userDetails.userId,
+  userId: auth.userDetails.employeeId,
   orderAddedModal:dashboard.orderAddedModal,
   orderClosedModal:dashboard.orderClosedModal,
   timeRangeType: dashboard.timeRangeType,
