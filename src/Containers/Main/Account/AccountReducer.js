@@ -10,6 +10,9 @@ const initialState = {
 
   addAccountAddressModal:false,
 
+  fetchingimeiSearchPhoneData: false,
+  fetchingimeiSearchPhoneDataError: false,
+
   fetchingPiByItem: false,
   fetchingPiByItemError: false,
   piByItem:[],
@@ -3877,6 +3880,23 @@ export const distributorReducer = (state = initialState, action) => {
 
                                     case types.HANDLE_ACCOUNT_ADDRESS_MODAL:
                                       return { ...state, addAccountAddressModal: action.payload };
+                                      case types.GET_SEARCH_IMEIPHONE_REQUEST:
+                                        return { ...state, fetchingimeiSearchPhoneData: true };
+                                      case types.GET_SEARCH_IMEIPHONE_SUCCESS:
+                                        return {
+                                          ...state,
+                                          fetchingimeiSearchPhoneData: false,
+                                          phoneListById: action.payload,
+                                         
+                                        };
+                                      case types.GET_SEARCH_IMEIPHONE_FAILURE:
+                                        return { ...state, fetchingimeiSearchPhoneDataError: true };
+                                
+                                        case types.HANDLE_CLAER_PHONEREDUCER_DATA_REFURBISH:
+                                                  return { ...state, 
+                                                    phoneListById: [], 
+                                                  };
+
 
     default:
       return state;

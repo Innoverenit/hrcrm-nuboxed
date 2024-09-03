@@ -5075,3 +5075,34 @@ export const handleAccountAddress = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+export const searchimeiNamePhone = (imei,orderPhoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_IMEIPHONE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/search/${imei}/${orderPhoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEIPHONE_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEIPHONE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const ClearPhoneDataOfrefurbish = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_PHONEREDUCER_DATA_REFURBISH,
+  });
+};

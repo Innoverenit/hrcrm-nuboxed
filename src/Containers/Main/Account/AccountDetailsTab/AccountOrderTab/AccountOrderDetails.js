@@ -2,9 +2,11 @@ import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from 'react-intl';
-import { getPhonelistById, handlePhoneNotesOrderModal } from "../../AccountAction";
-import { Button, Tooltip } from "antd";
+import { getPhonelistById, handlePhoneNotesOrderModal,searchimeiNamePhone,ClearPhoneDataOfrefurbish } from "../../AccountAction";
+import { Button, Tooltip,Input } from "antd";
 import QRCode from "qrcode.react";
+import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
+import { AudioOutlined } from '@ant-design/icons';
 import ButtonGroup from "antd/lib/button/button-group";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
@@ -25,6 +27,12 @@ function DistributorPauseForm(props) {
     const [dimensions, setDimensions] = React.useState({ width: 500, height: 500 });
 
     const componentRefs = useRef([]);
+    const [currentData, setCurrentData] = useState("");
+    const [searchOnEnter, setSearchOnEnter] = useState(false); 
+    const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false);
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
 
     const handlePrint = () => {
         window.print();
@@ -72,6 +80,87 @@ function DistributorPauseForm(props) {
     //     setPage(page + 1);
     //     props.getPhonelistById(props.particularRowData.orderId, page)
     // };
+
+    const {
+        transcript,
+        listening,
+        resetTranscript,
+        browserSupportsSpeechRecognition
+      } = useSpeechRecognition();
+      useEffect(() => {
+        // props.getCustomerRecords();
+        if (transcript) {
+          console.log(">>>>>>>", transcript);
+          setCurrentData(transcript);
+        }
+        }, [ transcript]);
+        const handleChange = (e) => {
+            setCurrentData(e.target.value);
+        
+            if (searchOnEnter&&e.target.value.trim() === "") {
+                setPage(0);
+                props.getPhonelistById(props.particularRowData.orderId, 0)
+                props.ClearPhoneDataOfrefurbish()
+              setSearchOnEnter(false);
+            }
+          };
+          const handleSearch = () => {
+            if (currentData.trim() !== "") {
+              // Perform the search
+              props.searchimeiNamePhone(currentData,props.particularRowData.orderId);
+              setSearchOnEnter(true);  //Code for Search
+            } else {
+              console.error("Input is empty. Please provide a value.");
+            }
+          };
+          const handleStartListening = () => {
+            setStartTime(Date.now());
+            setIsRecording(true);
+            SpeechRecognition.startListening();
+            if (timerRef.current) {
+              clearTimeout(timerRef.current);
+            }
+            timerRef.current = setTimeout(() => {
+              SpeechRecognition.stopListening();
+              setIsRecording(false);
+            }, minRecordingTime);
+          };
+          const suffix = (
+            <AudioOutlined
+            onClick={handleStartListening}
+              style={{
+                fontSize: 16,
+                color: '#1890ff',
+              }}
+        
+            />
+          );
+          const handleStopListening = () => {
+            SpeechRecognition.stopListening();
+            setIsRecording(false);
+            if (transcript.trim() !== "") {
+              setCurrentData(transcript);
+              props.searchimeiNamePhone(transcript);
+              setSearchOnEnter(true);
+            }
+          };
+          useEffect(() => {
+            if (!listening && isRecording) {
+              handleStopListening();
+            }
+          }, [listening]);
+          useEffect(() => {
+            if (isRecording && !listening) {
+              // If recording was stopped but less than 5 seconds have passed, restart listening
+              const elapsedTime = Date.now() - startTime;
+              if (elapsedTime < minRecordingTime) {
+                SpeechRecognition.startListening();
+              } else {
+                setIsRecording(false);
+              }
+            }
+          }, [listening, isRecording, startTime]);
+
 
     const handleLoadMore = () => {
         const callPageMapd = props.phoneListById && props.phoneListById.length &&props.phoneListById[0].pageCount
@@ -144,6 +233,17 @@ function DistributorPauseForm(props) {
                     <>
                         <div className=' flex  sticky flex-col z-auto'>
                             <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                            <div class=" w-72 ml-4 max-sm:w-28">
+          <Input
+            placeholder="Search by Imei"
+            width={"100%"}
+            suffix={suffix}
+            onPressEnter={handleSearch}  
+            onChange={handleChange}
+             value={currentData}
+        
+          />
+        </div>
                                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                                     <div className=" md:w-[4.2rem]">
                                     {translatedMenuItems[0]}</div>
@@ -430,6 +530,8 @@ const mapDispatchToProps = (dispatch) =>
         {
             getPhonelistById,
             handlePhoneNotesOrderModal,
+            searchimeiNamePhone,
+            ClearPhoneDataOfrefurbish
         },
         dispatch
     );
