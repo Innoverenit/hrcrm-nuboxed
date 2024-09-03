@@ -117,37 +117,37 @@ function DealWonCard(props) {
   <>    
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[13.82rem] max-xl:w-[11.12rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className=" font-bold font-poppins text-xs w-[13.82rem] max-xl:w-[11.12rem] max-xl:text-xs] max-lg:text-[0.45rem]">
         {translatedMenuItems[0]}
        {/* "name" */}
                 </div>
-        <div className=" w-[8.21rem] max-xl:w-[7.21rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className=" font-bold font-poppins text-xs w-[8.21rem] max-xl:w-[7.21rem] max-xl:text-xs] max-lg:text-[0.45rem]">
         {translatedMenuItems[1]}
          {/* investor"              */}
                 </div>
-        <div className=" w-[7.21rem] max-xl:w-[6.21rem] max-xl:text-xs] max-lg:text-[0.45rem] ">
+        <div className="  font-bold font-poppins text-xs w-[7.21rem] max-xl:w-[6.21rem] max-xl:text-xs] max-lg:text-[0.45rem] ">
         {translatedMenuItems[2]}
         {/* "sponsor"          */}
                 </div>
-        <div className="w-[6.11rem] max-xl:w-[7.11rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className=" font-bold font-poppins text-xs w-[6.11rem] max-xl:w-[7.11rem] max-xl:text-xs] max-lg:text-[0.45rem]">
         {translatedMenuItems[3]}
        {/* startdate" */}       
                 </div>
-        <div className="w-[8.16rem] max-xl:w-[9.16rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className=" font-bold font-poppins text-xs w-[8.16rem] max-xl:w-[9.16rem] max-xl:text-xs] max-lg:text-[0.45rem]">
           <FormattedMessage
                   id="app.proposalamt"
                   defaultMessage="proposalamt"
                 />
                 </div>
-        <div className="w-[8.14rem] max-xl:w-[6.14rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className=" font-bold font-poppins text-xs w-[8.14rem] max-xl:w-[6.14rem] max-xl:text-xs] max-lg:text-[0.45rem]">
         {translatedMenuItems[5]}
          {/* "stages" */}             
                 </div> 
-        <div className="w-[8.1rem] max-xl:w-[7.1rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className="font-bold font-poppins text-xs w-[8.1rem] max-xl:w-[7.1rem] max-xl:text-xs] max-lg:text-[0.45rem]">
         {translatedMenuItems[6]}
         {/* salesRep" */}      
                 </div>
-        <div className="w-[5.22rem] max-xl:w-[5.21rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className="font-bold font-poppins text-xs w-[5.22rem] max-xl:w-[5.21rem] max-xl:text-xs] max-lg:text-[0.45rem]">
         {translatedMenuItems[7]} 
         {/* owner" */}
                 </div>

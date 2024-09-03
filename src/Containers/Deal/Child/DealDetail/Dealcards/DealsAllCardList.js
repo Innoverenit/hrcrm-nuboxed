@@ -97,43 +97,43 @@ const DealsAllCardList = (props) => {
     />
   ) : (
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[14.5rem]">
+      <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+          <div className=" font-bold font-poppins text-xs md:w-[14.5rem]">
           {translatedMenuItems[0]}
           {/* name */}
           </div>
-          <div className=" md:w-[13.13rem]">
+          <div className=" font-bold font-poppins text-xs md:w-[13.13rem]">
           {translatedMenuItems[1]}
            {/* investor */}
           </div>
-          <div className=" md:w-[9.2rem] ">
+          <div className="font-bold font-poppins text-xs md:w-[9.2rem] ">
           {translatedMenuItems[2]}
           {/* sponsor */}
          
           </div>
-          <div className="md:w-[6.12rem]">
+          <div className=" font-bold font-poppins text-xs md:w-[6.12rem]">
           {translatedMenuItems[3]}
                      {/* startdate   */}
           </div>
-          <div className="md:w-[7.2rem]">
+          <div className="font-bold font-poppins text-xs md:w-[7.2rem]">
           {translatedMenuItems[4]}
            {/* Value */}       
           </div>
-          <div className="md:w-[4.2rem]">
+          <div className="font-bold font-poppins text-xs md:w-[4.2rem]">
           {translatedMenuItems[5]}
           {/* stages" */}
          
           </div>
-          <div className="md:w-[5.26rem]">
+          <div className="font-bold font-poppins text-xs md:w-[5.26rem]">
           {translatedMenuItems[6]}
             {/* Status */}
             </div>
-          <div className="md:w-[7.21rem]">
+          <div className="font-bold font-poppins text-xs md:w-[7.21rem]">
           {translatedMenuItems[7]}
           {/* Assign To" */}
        
           </div>
-          <div className="md:w-[3rem]">
+          <div className=" font-bold font-poppins text-xs md:w-[3rem]">
           {translatedMenuItems[8]}
               {/* owner" */}
  </div>
@@ -173,7 +173,7 @@ const DealsAllCardList = (props) => {
             return (
               <div>
               <div
-             className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+             className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
                <div class="flex justify-between">
                  <div className=" flex  w-[15rem]   max-sm:w-full">

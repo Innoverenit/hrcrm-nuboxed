@@ -117,39 +117,39 @@ const DealsTeamCardList = (props) => {
   ) : (
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-          <div className=" md:w-[14.5rem]">
+          <div className=" md:w-[14.5rem]font-bold font-poppins text-xs">
           {translatedMenuItems[0]}
            {/* "name" */}    
           </div>
-          <div className=" md:w-[13.13rem]">
+          <div className=" md:w-[13.13rem] font-bold font-poppins text-xs">
           {translatedMenuItems[1]}
          {/* investor" */}     
           </div>
-          <div className=" md:w-[9.2rem] ">
+          <div className=" md:w-[9.2rem] font-bold font-poppins text-xs">
           {translatedMenuItems[2]}
                     {/* sponsor */}     
           </div>
-          <div className="md:w-[6.12rem]">
+          <div className="md:w-[6.12rem] font-bold font-poppins text-xs">
           {translatedMenuItems[3]}
                 {/* startdate" */}
           </div>
-          <div className="md:w-[7.2rem]">
+          <div className="md:w-[7.2rem] font-bold font-poppins text-xs">
           {translatedMenuItems[4]}
          {/* Value */} 
           </div>
-          <div className="md:w-[4.2rem]">
+          <div className="md:w-[4.2rem] font-bold font-poppins text-xs">
           {translatedMenuItems[5]}
           {/* "stages" */}
           </div>
-          <div className="md:w-[5.26rem]">
+          <div className="md:w-[5.26rem] font-bold font-poppins text-xs">
           {translatedMenuItems[6]}
             {/* Status */}
             </div>
-          <div className="md:w-[7.21rem]">
+          <div className="md:w-[7.21rem] font-bold font-poppins text-xs">
           {translatedMenuItems[7]}
           {/* Assign To" */}  
           </div>
-          <div className="md:w-[3rem]">
+          <div className="md:w-[3rem] font-bold font-poppins text-xs">
           {translatedMenuItems[8]}
         {/* owner */}
           </div>
@@ -192,6 +192,7 @@ const DealsTeamCardList = (props) => {
                  <div
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
+                  <div class="flex max-sm:justify-start max-sm:w-wk max-sm:items-center">
                   <div class="flex justify-between">
                     <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
@@ -209,7 +210,7 @@ const DealsTeamCardList = (props) => {
                         <div>
 
                         </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                      
                         <div class="max-sm:w-full w-52" >
                           <Tooltip>
                             <div class="max-sm:w-full max-sm:justify-start flex md:flex-col">
@@ -229,10 +230,11 @@ const DealsTeamCardList = (props) => {
                             </div>
                           </Tooltip>
                         </div>
+                        </div>
                       </div>
                       </div>
                     </div>
-                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                    <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                     <div className=" flex   items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-poppins">
@@ -256,17 +258,16 @@ const DealsTeamCardList = (props) => {
                         </SubTitle>
                       </div>
                     </div>
-                  </div>
-                  <div class="flex">
+               
+                  
                     <div className=" flex  items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-
                       <div class=" text-xs justify-center  font-poppins">
                         {dayjs(item.startDate).format("DD/MM/YYYY")}
                       </div>
                     </div>
-</div>
-<div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                    </div>
+
+                <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                     <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs font-poppins text-center">
                         <CurrencySymbol currencyType={item.currency} />
@@ -350,8 +351,7 @@ const DealsTeamCardList = (props) => {
                         />
                       </span>
                     </div>
-                  </div>
-                </div>
+                  </div>             
               </div>
               </div>
             )
