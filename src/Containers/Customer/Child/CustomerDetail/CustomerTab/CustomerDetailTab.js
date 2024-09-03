@@ -99,7 +99,7 @@ class ContactDetailTab extends Component {
         "1304",// "Campaign",//5
         "1168",// "Summary"//6
           "104",      // "Create" 7
-          ""      // "Upload Document"8
+          "1325"      // "Upload Document"8
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -524,6 +524,8 @@ class ContactDetailTab extends Component {
             addCustomerContactModal={addCustomerContactModal}
             defaultCustomers={[{ label: name, value: customerId }]}
             customerId={{ value: customerId }}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
             // callback={() => getContactListByCustomerId(customerId)}
           />
 

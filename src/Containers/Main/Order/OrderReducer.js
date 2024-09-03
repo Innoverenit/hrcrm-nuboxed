@@ -10,6 +10,10 @@ const initialState = {
   fetchingAllHighOrderListError: false,
   allHighCompleteOrder:[],
 
+  fetchingInputOrderNosrch: false,
+  fetchingInputOrderNosrchError: false,
+  orderSearch:[],
+
   fetchingAllLowOrderList: false,
   fetchingAllLowOrderListError: false,
   allLowCompleteOrder:[],
@@ -731,25 +735,26 @@ export const orderReducer = (state = initialState, action) => {
                       return {
                         ...state,
                         fetchingInputOrderNosrch: false,
-                        allHighCompleteOrder: action.payload,
-                        allMediumCompleteOrder: action.payload,
-                        allLowCompleteOrder: action.payload,
-                        completedHighOrder:action.payload,
-                        completedMediumOrder:action.payload,
-                        completedLowOrder:action.payload,
+                        // allHighCompleteOrder: action.payload,
+                        // allMediumCompleteOrder: action.payload,
+                        // allLowCompleteOrder: action.payload,
+                        // completedHighOrder:action.payload,
+                        // completedMediumOrder:action.payload,
+                        // completedLowOrder:action.payload,
+                        orderSearch:action.payload,
                       };
                     case types.INPUT_ORDER_NO_SEARCH_FAILURE:
                       return { ...state, fetchingInputOrderNosrchError: true };   
                       
                       case types.HANDLE_CLAER_SEARCHED_ORDER:
                         return { ...state, 
-                          allHighCompleteOrder: [], 
-                          allMediumCompleteOrder: [],
-                          allLowCompleteOrder: [],
-                          completedHighOrder:[],
-                          completedMediumOrder:[],
-                          completedLowOrder:[],
-
+                          // allHighCompleteOrder: [], 
+                          // allMediumCompleteOrder: [],
+                          // allLowCompleteOrder: [],
+                          // completedHighOrder:[],
+                          // completedMediumOrder:[],
+                          // completedLowOrder:[],
+                          orderSearch:[],
                         };
 
                         case types.GET_ECOM_LIST_REQUEST:

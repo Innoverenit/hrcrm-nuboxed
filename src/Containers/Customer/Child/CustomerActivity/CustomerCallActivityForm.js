@@ -103,21 +103,22 @@ function CustomerCallActivityForm(props) {
         setLoading(true); 
         const itemsToTranslate = [
 
-    'Type', // 0
-'Category', // 1
-'Mode', // 2
-'Channel', // 3
-'Subject', // 4
-'Date', // 5
-'Start Time', // 6
-'End Time', // 7
-'Time Zone', // 8
-'Assigned ',//9
-'Include',//10
-'Tag Company',//11
-'Contact',//12
-"Opportunity",//13
-'Create'
+          "71", //  "Type",//0
+          "14", // "Category",//1
+         "26" , // "Mode",//2
+         "90" , // "Channel",//3
+         "72" , // "Subject",//4
+         "74" , // "Date",//5
+         "93" , // "Start Time",//6
+          "94" ,// "End Time",//7
+         "95" , // "Time Zone",//8
+         "76",  // "Assigned",//9
+         "75",  // "Include",//10
+         "97",  // "Prospect",//11
+          "73", // "Contact",//12
+        "99" ,  // "Opportunity",//13
+         "316"  ,// "Notes"//14
+         "104" //Create
 
         ];
 

@@ -45,18 +45,18 @@ function CustomerOpportunityForm(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Name",//0
-          "Start Date",//1
-          "End Date",//2
-          "Value",//3
-          "Currency",//4
-          "Description",//5
-          "Assigned",//6      
-          "Customer",//7
-          "Contact",//8
-          "Workflow",//9
-          "Stages",//10    
-          "Create"
+          '110', // 0
+          '176', // 1
+          '126', // 2
+          '218', // 3
+          '241', // 4
+          "147",//5
+          '76', // 6
+          '75', // 7
+          '248', // 8
+          '73', // 9
+          '141', // 10
+          '104', // 11
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

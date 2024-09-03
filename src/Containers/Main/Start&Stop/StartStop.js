@@ -147,7 +147,12 @@ function StartStop(props) {
 
   return (
     <div className="flex items-center ">
-      <div>
+     <div className="relative max-w-xs mx-auto mt-1">
+      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-white px-2">
+        <span className="text-sm font-medium"> Attendance</span>
+      </div>
+      <div className="border-2 border-black rounded-md p-1 flex">
+      <div className="mr-6">
         <Select
         className=" w-36  max-sm:w-24"
           value={drop1}
@@ -162,7 +167,6 @@ function StartStop(props) {
           <Option value="Remote">Remote</Option>
         </Select>
       </div>
-
       {drop1 === "Travel" && (
         <div className="mt-[0.2rem]">
           <DatePicker 
@@ -224,6 +228,11 @@ function StartStop(props) {
           {startInd ? <DoDisturbIcon className="!text-red-600 cursor-pointer"/> : <PlayCircleOutlineIcon className="!text-green-500 cursor-pointer"/>}
         </div>
       </div>
+      </div>
+    </div>
+     
+
+     
     </div>
   );
 }

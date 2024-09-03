@@ -61,9 +61,9 @@ class LinkedDocuments extends Component {
            "1207" ,   // "Uploaded By",//3
              "1208" , // "File Name",//4
              "1205" , // "Contract",//5
-            "" ,  // Search  6
-           "" ,   // Reset 7   
-            "" ,  // New8
+            "1305" ,  // Search  6
+           "1307" ,   // Reset 7   
+            "100" ,  // New8
              "" , // "Download"9
             "1259" ,  // Do you want to delete?10
              "84" , // "Delete"11

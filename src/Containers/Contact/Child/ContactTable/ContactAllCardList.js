@@ -26,8 +26,10 @@ import {
   handleContactEmailDrawerModal,
   handleContactNotesDrawerModal,
   emptyContact,
-  handleContactPulseDrawerModal
+  handleContactPulseDrawerModal,
+  handleContactAddressDrawerModal
 } from "../../ContactAction";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import DoNotDisturbOnTotalSilenceIcon from '@mui/icons-material/DoNotDisturbOnTotalSilence';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
 import AddchartIcon from "@mui/icons-material/Addchart";
@@ -39,6 +41,7 @@ import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import {  Tooltip, Select } from "antd";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddContactAddressDrawerModal from "./AddContactAddressDrawerModal";
 const Option = Select;
 const UpdateContactModal = lazy(() =>
   import("../UpdateContact/UpdateContactModal")
@@ -319,7 +322,18 @@ if (loading) {
     </Tooltip>
 
              </div>
-           
+             <div>
+              <Tooltip title="Address">
+ <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleContactAddressDrawerModal(true);
+            handleSetCurrentContact(item);
+          }}
+          
+        />
+     </Tooltip>
+     </div>
               <div>
               <Tooltip title="Notes">
  <NoteAltIcon
@@ -526,6 +540,15 @@ if (loading) {
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
+       <AddContactAddressDrawerModal
+        item={currentContact}
+        type="Contact"
+        addDrawerContactAddressModal={props.addDrawerContactAddressModal}
+        handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+      />
     </>
   );
 }
@@ -539,6 +562,7 @@ const mapStateToProps = ({
   userId: auth.userDetails.userId,
   allContacts: contact.allContacts,
   user: auth.userDetails,
+  addDrawerContactAddressModal:contact.addDrawerContactAddressModal,
   addDrawerContactPulseModal:contact.addDrawerContactPulseModal,
    fetchingContacts: contact.fetchingContacts,
   fetchingContactsError: contact.fetchingContactsError,
@@ -566,7 +590,8 @@ const mapDispatchToProps = (dispatch) =>
       handleContactNotesDrawerModal,
       handleContactPulseDrawerModal,
       handleContactEmailDrawerModal,
-      emptyContact
+      emptyContact,
+      handleContactAddressDrawerModal
     },
     dispatch
   );
