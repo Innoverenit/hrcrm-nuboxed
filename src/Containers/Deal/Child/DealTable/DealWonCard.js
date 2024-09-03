@@ -175,7 +175,7 @@ function DealWonCard(props) {
                  return (
                     <div>
                     <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium  w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.1rem] max-sm:flex-row max-sm:w-auto  items-center">
@@ -304,7 +304,7 @@ function DealWonCard(props) {
             </Tooltip>
                    </div>
                    </div>
-                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                   <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                    
                     <div>
                     <Tooltip title='Click to Open'><span

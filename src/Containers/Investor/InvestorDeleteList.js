@@ -1,15 +1,12 @@
 import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
-import {  DeleteOutlined } from "@ant-design/icons";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ArticleIcon from '@mui/icons-material/Article';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import InfiniteScroll from "react-infinite-scroll-component"; 
 import { Tooltip, Select, } from "antd";
 import dayjs from "dayjs";
 import {
@@ -63,19 +60,19 @@ function InvestorDeleteList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [         
-            "Name",//0
-            "Sector",//1
-            "Deals",//2
-            "In Progress",//3
-            "signed",//4
-            "Category",//5
-            "First Meeting",//6
-            "Shares",//7
-            " Value",//8
-            "Club",//9
-            "Assigned",//10
-            "Owner",//11
-            "Source"//12
+            "110",//0 Name
+            "278",//1 sector
+            "490",//2 Deals
+            "144",//3 In Progress
+            "579",//4 signed
+            "14",//5 Category
+            "589",//6 First Meeting
+            "1158",//7 share
+            "218",//8 Value
+            "592",//9 Club
+            "76",//10 Assigned
+            "77",//11 Owner
+            "279",//12 source
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
