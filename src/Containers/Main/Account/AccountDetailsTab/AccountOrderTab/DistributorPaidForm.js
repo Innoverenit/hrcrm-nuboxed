@@ -101,7 +101,7 @@ function DistributorPaidForm(props) {
           <Form>
             <div class="flex justify-around max-sm:flex-col">
               <div class=" h-full w-w47.5 max-sm:w-wk">
-                <div class="flex justify-between">
+                <div class="flex justify-evenly">
                   <div class="w-[31%]">
                     <Field
                       name="entryAmount"
@@ -150,7 +150,7 @@ function DistributorPaidForm(props) {
 
                   </div>
                 </div>
-                <div class="flex justify-between">
+                <div class="flex justify-between ">
                 <div class="w-[47.5%]">
                   <Field
                     name="remarks"
@@ -163,23 +163,11 @@ function DistributorPaidForm(props) {
                      style={{height:"9rem"}}
                   />
                 </div>
-                <div class="w-[47.5%] mt-4">
-                  <Field
-                    name="docId"
-                    label={
-                      <FormattedMessage
-                        id="app.documentId"
-                        defaultMessage="Document Id"
-                      />
-                    }
-                    isRequired
-                    component={DragableUpload}
-                  />
-                </div>
+               
                 </div>
               </div>
               <div class=" h-full w-w47.5 max-sm:w-wk">
-                <div class="flex justify-between">
+                <div class="flex justify-evenly">
                   <div class="w-[30%]">
                     <Field
                       name="transactionNumber"
@@ -225,8 +213,10 @@ function DistributorPaidForm(props) {
 
                     />
                   </div>
+                  
                 </div>
-                {/* <div class="w-full">
+                <div class="flex justify-between ">
+                  <div class="w-[47.5%] mt-4  flex justify-end">
                   <Field
                     name="docId"
                     label={
@@ -238,7 +228,8 @@ function DistributorPaidForm(props) {
                     isRequired
                     component={DragableUpload}
                   />
-                </div> */}
+                </div>
+                </div>
               </div>
             </div>
 

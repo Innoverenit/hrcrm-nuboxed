@@ -55,27 +55,27 @@ const { Option } = Select;
 const AccountOrderTable = (props) => {
     const [page, setPage] = useState(0);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true); 
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-                "Urgent",
-                "Order",
-                "LOB",
-                "Owner",
-                "Contact",
-                "Quoted",
-                "Final",
-                "Revised",
-                "Received",
-                "Supervisor",
-                "Lead",
-                "Repair",
-                "High",
-                "Normal",
-                "Created Date"
+             "106",   // "Urgent",0
+             "660",    // "Order",1
+             "280",     // "LOB",2
+                "77",    // "Owner",3
+                "73",   // "Contact",4
+                "770",  // "Quoted",5
+                "771",   // "Final",6
+                "1332",   // "Revised",7
+                "1085",  // "Received",8
+                "676",   // "Supervisor",9
+                "677",  // "Lead",10
+                "661",  // "Repair",11
+           
+                "108",   // "Normal",12
+                "1226",   // "Created Date"13
 
 
           ];
@@ -165,7 +165,7 @@ const AccountOrderTable = (props) => {
       
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]  bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" flex  w-[100%]  bg-transparent font-bold font-poppins sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
                     {translatedMenuItems[0]}   {/* Urgent */}
                          </div>
@@ -177,7 +177,7 @@ const AccountOrderTable = (props) => {
                              {translatedMenuItems[1]} ID
                         </div>
                         <div className=" md:w-[5.012rem]">
-                        {translatedMenuItems[14]}
+                        {translatedMenuItems[13]}
                         </div>
                         <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
@@ -624,14 +624,14 @@ const AccountOrderTable = (props) => {
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  bg-transparent font-bold sticky z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
-                    {translatedMenuItems[13]}   {/* Normal */}
+                    {translatedMenuItems[12]}   {/* Normal */}
                          </div>
                         <div className=" md:w-[11.41rem] ml-2">
                         
                              {translatedMenuItems[1]}ID
                         </div>
                         <div className=" md:w-[5.012rem]">
-                        {translatedMenuItems[14]}
+                        {translatedMenuItems[13]}
                         </div>
                         <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}

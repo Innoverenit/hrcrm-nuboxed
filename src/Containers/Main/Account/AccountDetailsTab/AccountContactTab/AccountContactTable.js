@@ -526,13 +526,23 @@ const AccountContactTable = (props) => {
     const fetchMenuTranslations = async () => {
         try {
             const itemsToTranslate = [
-                "Name",
-                "Email",
-                "Mobile",
-                "Designation",
-                "Department",
-                "LOB",
-                "Potential"
+               "110", // "Name",0
+               "140", // "Email",1
+               "546",  // "Mobile",2
+               "325", // "Designation",3
+               "326",  // "Department",4
+               "280",  // "LOB",5
+               "407",  // "Potential"6
+               "170", // "Edit" 7
+               "1349", // Apply For Login8
+               "1347", // Login Applied9
+               "1348",  // Login Approved10
+               "392",  // "Pulse"11
+          
+               "1342",  // "Mid-Level"12
+               "1343",  // "Strategic"13
+               "1344", // "C-Level"14
+                
             ];
 
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -641,7 +651,8 @@ const AccountContactTable = (props) => {
                                                     className="!text-icon text-green-600"
                                                     type="DecisionMaker"
                                                     iconType="fa-vote-yea"
-                                                    tooltip="C-Level"
+                                                    tooltip= {translatedMenuItems[14]}
+                                                    // "C-Level"
                                                     role={item.contactRole}
                                                     onClick={() => handleAddPlusClick(item.contactPersonId, "C-Level")}
                                                 />
@@ -649,7 +660,8 @@ const AccountContactTable = (props) => {
                                                     className="!text-icon text-blue-600"
                                                     type="Evaluator"
                                                     iconType="fa-address-card"
-                                                    tooltip="Strategic"
+                                                    tooltip={translatedMenuItems[13]}
+                                                    // "Strategic"
                                                     role={item.contactRole}
                                                     onClick={() => handleAddPlusClick(item.contactPersonId, "Strategic")}
                                                 />
@@ -657,7 +669,8 @@ const AccountContactTable = (props) => {
                                                     className="!text-icon text-blue-600"
                                                     type="Influencer"
                                                     iconType="fa-hands-helping"
-                                                    tooltip="Mid-Level"
+                                                    tooltip={translatedMenuItems[12]}
+                                                    // "Mid-Level"
                                                     role={item.contactRole}
                                                     onClick={() => handleAddPlusClick(item.contactPersonId, "Mid-Level")}
                                                 />
@@ -668,7 +681,8 @@ const AccountContactTable = (props) => {
 
                                 <div className="flex w-[1.01rem] max-sm:flex-row max-sm:justify-between">
                                     <div className="!text-icon font-poppins">
-                                        <Tooltip title="Edit">
+                                        <Tooltip title={translatedMenuItems[7]}>
+                                        {/* "Edit"> */}
                                             <BorderColorIcon
                                                 className="!text-icon cursor-pointer text-red-600"
                                                 onClick={() => {
@@ -700,7 +714,8 @@ const AccountContactTable = (props) => {
                                         <Input
                                             onPressEnter={(e) => handleKeyPress(item.contactPersonId, e)}
                                             onChange={(e) => handleInputChange(item.contactPersonId, e)}
-                                            placeholder="Potential"
+                                            placeholder={translatedMenuItems[6]}
+                                            // "Potential"
                                             defaultValue={item.potential}
                                             style={{ width: "6rem" }}
                                         />
@@ -740,16 +755,21 @@ const AccountContactTable = (props) => {
                             );
                         }}
                     >
-                        <FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" />
+                       {translatedMenuItems[8]} {/* <FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /> */}
                     </Button>
                 </div>
             ) : item.accessInd === 2 ? (
-                <b>Login Applied</b>
+                <b>
+                   {translatedMenuItems[9]} {/* Login Applied */}
+                    </b>
             ) : (
-                <b style={{ color: "#32CD32" }}>Login Approved</b>
+                <b style={{ color: "#32CD32" }}>
+                  {translatedMenuItems[10]}  {/* Login Approved */}
+                    </b>
             )}
 
-            <Tooltip title="Pulse">
+            <Tooltip title={translatedMenuItems[11]}>
+            {/* "Pulse"> */}
                 <MonitorHeartIcon
                     className="!text-icon cursor-pointer text-[#df9697]"
                     onClick={() => {

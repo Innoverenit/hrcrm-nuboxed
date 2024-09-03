@@ -26,7 +26,6 @@ import {
 } from "./AccountAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -51,16 +50,24 @@ function AccountTable(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-            'Name', // 0
-            'Work', // 1
-            'Category', // 2
-            'Type', // 3
-            'Payment(Days)', // 4
-            'Payment', // 5
-            'Tax', // 6
-            'Assigned', // 7
-            'Owner', // 8
-            "Credit",//9
+           "110", // 'Name', // 0
+         "378", // 'Work', // 1
+          "14",  // 'Category', // 2
+          "71",  // 'Type', // 3
+           "688", // 'Payment(Days)', // 4
+            "1171",// 'Payment', // 5
+           "1215", // 'Tax', // 6
+            "76",// 'Assigned', // 7
+   
+            "1338",// "Credit",//8
+            "100", // New 9
+            "1259",// "Save" //10
+            "692", // More Info With AI 11
+            "392",// "Pulse" 12
+            "170",// "Edit"13
+            "1259", // "Do you want to delete?"14
+             "1079",// cancel15
+             "1339",// Update Revised Price 16
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -139,7 +146,7 @@ function AccountTable(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins sticky  z-10">
             <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
             {translatedMenuItems[0]}
             {/* Name */}
@@ -178,8 +185,8 @@ function AccountTable(props) {
            {/* Owner */}        
             {/* </div> */}
             <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-          {translatedMenuItems[9]}
-            {/* Assigned */}          
+          {translatedMenuItems[8]}
+            {/* Credit */}          
             </div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
@@ -231,14 +238,14 @@ function AccountTable(props) {
                                   
 
                                       <Link
-                                        class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-xs text-[#042E8A] flex items-center cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
+                                        class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-xs text-[#042E8A] font-bold font-poppins flex items-center cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
                                         to={`distributor/${item.distributorId}`}
                                         title={`${item.name}`}>
                                         {item.name.substring(0, 25)}
                                       </Link> 
                                       {date === currentdate ? (
                                         <div class="text-[0.65rem] text-[tomato] font-bold" >
-                                          New
+                                        {translatedMenuItems[9]}  {/* New */}
                                         </div>
                                       ) : null}
 
@@ -297,22 +304,27 @@ function AccountTable(props) {
                                                                 <div className=" flex justify-between flex-col">
                                                                     <Button onClick={() => {
                                                                         handleSubmitPrice()
-                                                                    }} >
-                                                                        <FormattedMessage
+                                                                    }} >{translatedMenuItems[10]}
+                                                                        {/* <FormattedMessage
                                                                             id="app.save"
                                                                             defaultMessage="Save"
-                                                                        />
+                                                                        /> */}
                                                                     </Button>
-                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}><FormattedMessage
+                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}>
+                                                                    {translatedMenuItems[15]} {/* <FormattedMessage
                                                                         id="app.cancel"
                                                                         defaultMessage="Cancel"
-                                                                    /></Button>
+                                                                    /> */}
+                                                                    </Button>
                                                                 </div>
                                                             </>
-                                                        ) : <Tooltip title={<FormattedMessage
-                                                            id="app.updaterevisedprice"
-                                                            defaultMessage="Update Revised Price"
-                                                        />}>
+                                                        ) : <Tooltip title={translatedMenuItems[16]}
+                                                        // {<FormattedMessage
+                                                        //     id="app.updaterevisedprice"
+                                                        //     defaultMessage="Update Revised Price"
+                                                        // />}
+                                                        // 
+                                                        >
                                                             <PublishedWithChangesIcon
                                                                 onClick={() => {
                                                                     handleUpdateRevisePrice()
@@ -379,7 +391,8 @@ function AccountTable(props) {
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">            
 <div className=" flex  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
   <div class=" text-xs  font-poppins">
-    <Tooltip title="More Info With AI">
+    <Tooltip title={translatedMenuItems[11]}>
+    {/* "More Info With AI" */}
       <AcUnitIcon
         className=" !text-icon cursor-pointer text-[tomato]"
         onClick={() => {
@@ -417,7 +430,8 @@ function AccountTable(props) {
                            
                             <div className=" flex    max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
-                                <Tooltip title="Pulse">
+                                <Tooltip title={translatedMenuItems[12]}>
+                                {/* "Pulse"> */}
                                   <MonitorHeartIcon
                                     onClick={() => {
                                       props.handleAccountPulse(true);
@@ -430,7 +444,7 @@ function AccountTable(props) {
                             </div>
       
                             <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          className=" !text-icon cursor-pointer text-[#020103]"
           onClick={() => {
             props.handleAccountAddress(true);
             handleCurrentRowData(item);
@@ -440,7 +454,8 @@ function AccountTable(props) {
 
                             <div className=" flex   max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
-                                <Tooltip title="Edit">
+                                <Tooltip title={translatedMenuItems[13]}>
+                                {/* "Edit"> */}
                                   <BorderColorIcon
                                     className=" !text-icon cursor-pointer text-[tomato]"
                                     onClick={() => {
@@ -459,7 +474,8 @@ function AccountTable(props) {
                               <div class=" text-xs  font-poppins">
                                 <Popconfirm
                                 loading={props.deletingDistributorById}
-                                  title="Do you want to delete?"
+                                  title={translatedMenuItems[14]}
+                                  // Do you want to delete?"
                                   onConfirm={() => props.deleteDistributor({}, item.distributorId,props.userId)}
                                 >
                                   <DeleteOutlined

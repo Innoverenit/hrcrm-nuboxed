@@ -69,16 +69,16 @@ props.getInvoiceCount(props.distributorData.distributorId)
             const itemsToTranslate = [
    "203", // 'Production', // 0
    "661", // 'Repair', // 1
-   "668", // ' Procure', // 2
+   "666", // ' Procure', // 2
     "213",// 'Quotation', // 3
     "1165",// ' Activity', // 4
     "316",// 'Notes', // 5
-   "116", // ' Documents',
+   "138", // ' Documents',
    "1167", // 'Sales Map',
     "1168",// 'Summary',
     "73",// 'Contact ',
     "1169",// 'Invoice',//10
-    "104",// 'Create',
+    "104",// 'Create',11
    "1212", //  'Commerce', //12              
    "1213", // 'Add Commerce',//13
           ];
@@ -180,7 +180,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                         <Tooltip title="Add Order">
                                             <AddShoppingCartIcon
                                                 type="plus"
-                                                tooltipTitle={translatedMenuItems[11]}
+                                                tooltipTitle={translatedMenuItems[1]}
                                                 onClick={() => {
                                                     props.handleLinkDistributorOrderConfigureModal(true);
                                                 }}
@@ -320,7 +320,36 @@ props.getInvoiceCount(props.distributorData.distributorId)
                 translateText={props.translateText}/>
               </Suspense>
             </TabPane>
-                  
+            <TabPane
+                        tab={
+                            <>
+                            <span>
+                                   <ReceiptIcon className="!text-icon"/>
+                                   {translatedMenuItems[10]}
+                                </span>
+                            <Badge
+            size="small"
+            count={( props.invoiceCount.paymentCount) || 0}
+            overflowCount={999}
+            offset={[ 0, -16]}
+          >
+                                
+                                </Badge>
+                                {activeKey === "11" && (
+                                    <>  
+                                    </>
+                                )}
+                                
+                            </>
+                        }
+                        key="11"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                            <AccountInvoiceTable    distributorId={props.distributorData.distributorId}
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText} />
+                        </Suspense>
+                    </TabPane> 
                     <TabPane
                         tab={
                             <>
@@ -515,36 +544,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                               translateText={props.translateText}/>
                         </Suspense>
                     </TabPane>
-                    <TabPane
-                        tab={
-                            <>
-                            <span>
-                                   <ReceiptIcon className="!text-icon"/>
-                                   {translatedMenuItems[10]}
-                                </span>
-                            <Badge
-            size="small"
-            count={( props.invoiceCount.paymentCount) || 0}
-            overflowCount={999}
-            offset={[ 0, -16]}
-          >
-                                
-                                </Badge>
-                                {activeKey === "11" && (
-                                    <>  
-                                    </>
-                                )}
-                                
-                            </>
-                        }
-                        key="11"
-                    >
-                        <Suspense fallback={"Loading ..."}>
-                            <AccountInvoiceTable    distributorId={props.distributorData.distributorId}
-                            selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText} />
-                        </Suspense>
-                    </TabPane>
+                  
                 </StyledTabs>
             </TabsWrapper>
             {/* <AddDistributorDocumentModal
