@@ -213,7 +213,7 @@ const DealsTeamCardList = (props) => {
                       
                         <div class="max-sm:w-full w-52" >
                           <Tooltip>
-                            <div class="max-sm:w-full max-sm:justify-start flex md:flex-col">
+                            <div class="max-sm:w-full max-sm:justify-start flex md:flex-col ml-1">
                             {/* Name */}                                                                      
                               <div class=" text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
                              

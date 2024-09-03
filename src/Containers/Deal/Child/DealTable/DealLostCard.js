@@ -152,7 +152,7 @@ function DealLostCard(props) {
                     />
                         </div>                                                                                   
                                                 <Tooltip>
-                                                <div class=" flex max-sm:w-full  flex-row md:flex-col">
+                                                <div class=" flex max-sm:w-full font-bold font-poppins text-xs flex-row md:flex-col">
                                                     {/* Name */}
                                                   
                                                     <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
@@ -165,7 +165,7 @@ function DealLostCard(props) {
                                             </div>
                                                 </Tooltip>
                                        {/* Sector */}
-                                            <div class=" text-xs  font-poppins">   
+                                            <div class=" text-xs font-bold font-poppins">   
                                             <Link to ="/investor">
                                 {item.investor}
                                 </Link>

@@ -66,18 +66,11 @@ function InvesterForm(props) {
           '71', // 5Type
          "14",//6 Category
           "619",//7 UBO
-          "622",//8 Identification
-          // "",//9Infocit
-          "74",//10 Date
-          "147",//11 Description
-          "76",//12 Assigned
-          "185", //13 "Address",
-              "186", // "Street",//15
-             "187",//Zip Code",//16
-             "188",// "City",17
-              "314",// "State",//18
-              "1109",// "Country",//19
-              "Create"
+          "622",//8 Identification       
+          "74",//9 Date
+          "147",//10 Description
+          "76",//11 Assigned                
+              "104",//Create 12
         
         ];
 
@@ -599,8 +592,7 @@ function InvesterForm(props) {
                  
                   <div class=" flex flex-col   mt-4">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    {translatedMenuItems[9]} 
-                      {/* Inofocit */}
+                                        Inofocit
                       </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
@@ -611,7 +603,7 @@ function InvesterForm(props) {
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk font-bold font-poppins text-xs">
-                  {translatedMenuItems[10]}  
+                  {translatedMenuItems[9]}  
                   {/* Date */}
                     <Field
                       name="firstMeetingDate"                    
@@ -623,7 +615,7 @@ function InvesterForm(props) {
                   </div>
                   <div class="mt-3">
                     <div>
-                 <span class="font-bold font-poppins text-xs ">{translatedMenuItems[11]} </span> 
+                 <span class="font-bold font-poppins text-xs ">{translatedMenuItems[10]} </span> 
                   {/* description */}           
                   <span>
                     <span onClick={SpeechRecognition.startListening}>
@@ -672,7 +664,7 @@ function InvesterForm(props) {
         {({ open }) => (
           <>
             <Listbox.Label className="font-bold text-xs font-poppins ">
-            {translatedMenuItems[12]} 
+            {translatedMenuItems[11]} 
             {/* Assigned */}
             </Listbox.Label>
             <div className="relative mt-[0.1rem]">
@@ -808,7 +800,7 @@ function InvesterForm(props) {
                   htmlType="submit"
                   loading={addingInvestor}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                  <div class="font-poppins font-bold text-xs">{translatedMenuItems[12]}</div>
                 </Button>
               </div>
             </Form>

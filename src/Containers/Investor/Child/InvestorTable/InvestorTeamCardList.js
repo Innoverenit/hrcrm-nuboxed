@@ -63,9 +63,10 @@ function InvestorTeamCardList(props) {
             "578",//3Discussion
             "579",//4signed
             "14",//5 Category
-            "76",//10Assigned
-            "77",//11 Owner
-            "279"//12Source
+            "279",//6 Source
+            "76",//7 Assigned
+            "77",//8  Owner
+           
 
         ];
 
@@ -181,18 +182,18 @@ function InvestorTeamCardList(props) {
           {translatedMenuItems[5]}
           {/* "Category */}
           </div>
-         
-        <div className="w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+          <div className="w-[9.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
         {translatedMenuItems[6]}
+         {/* Source" */}         
+          </div>
+        <div className="w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+        {translatedMenuItems[7]}
         {/* Assigned" */}
              
          </div>
-         <div className="w-[9.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        {translatedMenuItems[8]}
-         {/* Source" */}         
-          </div>
+        
         <div className="w-[4.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
-        {translatedMenuItems[7]}
+        {translatedMenuItems[8]}
         {/* owner" */}         
                 </div>
       
@@ -315,13 +316,18 @@ function InvestorTeamCardList(props) {
                                     </div>
                                 </div>
                                 <div className=" flex  items-center w-[6.12rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Deals */}
+                                   {/* Category */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {Category}
                                     </div>
                                 </div>
-                               
+                                <div className=" flex  items-center  w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Source */}
+                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.source}
+                                    </div>
+                                </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -351,12 +357,7 @@ function InvestorTeamCardList(props) {
             </span>           
                                     </div>
                                 </div>
-                                <div className=" flex  items-center  w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Source */}
-                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.source}
-                                    </div>
-                                </div>
+                              
                                 <div className=" flex   w-[4.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                                          {/* Owner */}
                        <span>
@@ -443,14 +444,7 @@ function InvestorTeamCardList(props) {
                 }}
               />
             </Tooltip>
-            </div>                                                        
-            <div>
-                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-            <span class="cursor-pointer">
-            <LocationOnIcon   className=" !text-icon cursor-pointer text-[#960a0a] max-sm:!text-2xl"/>
-            </span>
-          </Tooltip>
-          </div>
+            </div>                                                              
             <div>
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title="Edit">
