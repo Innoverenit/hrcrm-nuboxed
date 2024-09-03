@@ -98,7 +98,7 @@ const LocationCard = (props) => {
           loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
           height={"80vh"}
         >
-          <div className=" flex justify-between w-[100%] mt-3 p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex justify-between w-[100%] mt-3 p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
             <div className=" md:w-[7.5rem]">
             {translatedMenuItems[0]}</div>
             <div className="   md:w-[9.1rem]">
@@ -137,7 +137,8 @@ const LocationCard = (props) => {
             {props.showLocation.map((item) => {
               return (
                 <div >
-                  <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                     <div class="flex">
                       <div className=" flex  flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 

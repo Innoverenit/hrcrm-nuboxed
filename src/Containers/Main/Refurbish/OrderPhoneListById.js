@@ -43,6 +43,48 @@ function OrderPhoneListById(props) {
     const handlePrint = () => {
         window.print();
     };
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+             "1318", // Search by device ID",//0
+              "1320",  //"scan",//1
+           "264", //   Brand 2
+           "265", //   "model"3
+           "1222", //   Issue4
+           "1321", //   Estimate (hours) 5 
+           "158", //  "Start"6
+           "111", //     "End"7
+           "199", //     Task8
+            "1322",// "Resume"9
+           "316", // "Notes"10
+           "1252", // "Print"11
+          
+           "144"  ,// In Progress12
+            "268",//Complete13
+           "1308" ,// Spare14
+                "142",//  "Status"15
+              "",  // Can't Repair 16
+           "1250", //   Change Status17
+       "661" //    Reapir18
+
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
 
     useEffect(() => {
         setPageNo(pageNo + 1);
@@ -240,7 +282,8 @@ function OrderPhoneListById(props) {
                 <div class="flex items-center">
                 <div class=" w-72 ml-1 max-sm:w-28">
           <Input
-            placeholder="Search by Imei"
+            placeholder= {translatedMenuItems[1]}
+            // "Search by Imei"
             width={"100%"}
             suffix={suffix}
             onPressEnter={handleSearch}  
@@ -250,10 +293,11 @@ function OrderPhoneListById(props) {
           />
         </div>
         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title={<FormattedMessage
+                                                    <Tooltip title= {translatedMenuItems[1]}>
+                                                     {/* {<FormattedMessage
                                                         id="app.scan"
                                                         defaultMessage="scan"
-                                                    />}>
+                                                    />} */}
 
                                                         <Button
                                                             // onClick={() => {
@@ -261,8 +305,9 @@ function OrderPhoneListById(props) {
                                                             //     handleSetRowData(item)
                                                             // }}
                                                             class=" bg-green-600 cursor-pointer text-gray-50"
-                                                        >
-                                                            Scan </Button>
+                                                        > {translatedMenuItems[1]}
+                                                            {/* Scan  */}
+                                                            </Button>
 
                                                     </Tooltip>
 
@@ -270,37 +315,55 @@ function OrderPhoneListById(props) {
                                                 </div>
                     <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
                    
-                        <div className=" w-[4.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Brand</div>
-                        <div className=" w-[8.012rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className=" w-[4.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[2]} {/* Brand */}
+                            </div>
+                        <div className=" w-[8.012rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[3]}  {/* <FormattedMessage
                             id="app.model"
                             defaultMessage="model"
-                        /></div>
-                        <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+                        /> */}
+                        </div>
+                        <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                        IMEI {/* <FormattedMessage
                             id="app.iMEI"
                             defaultMessage="IMEI"
-                        /></div>
-                        <div className="w-[8.001rem]">Issue</div>
-                        <div className="w-[6.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            Estimate (hours)
+                        /> */}
                         </div>
-                        <div className="w-[3.510rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[8.001rem]">
+                        {translatedMenuItems[4]}    {/* Issue */}
+                        </div>
+                        <div className="w-[6.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[5]}  {/* Estimate (hours) */}
+                        </div>
+                        <div className="w-[3.510rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[6]}   {/* <FormattedMessage
                             id="app.start"
                             defaultMessage="Start"
-                        /></div>
-                        <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        /> */}
+                        </div>
+                        <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[7]}   {/* <FormattedMessage
                             id="app.end"
                             defaultMessage="End"
-                        /></div>
+                        /> */}
+                        </div>
 
                         <div className="w-[6.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">TAT</div>
 
-                        <div className="w-[5.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <FormattedMessage
+                        <div className="w-[5.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[15]}    {/* <FormattedMessage
                             id="app.status"
                             defaultMessage="Status"
-                        /></div>
+                        /> */}
+                        </div>
 
-                        <div className="w-[4.212rem]">Spare</div>
-                        <div className="w-[13.523rem]">Task</div>
+                        <div className="w-[4.212rem]">
+                        {translatedMenuItems[14]}  {/* Spare */}
+                            </div>
+                        <div className="w-[13.523rem]">
+                        {translatedMenuItems[8]}  {/* Task */}
+                            </div>
                         
                     </div>
                     <div class=" ">
@@ -336,7 +399,8 @@ function OrderPhoneListById(props) {
                                 console.log(acivedPercentage)
                                 return (
                                     <div>
-                                        <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 max-sm:h-[8rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                        <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-24 max-sm:flex-col max-sm:justify-between  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex  w-[5.21rem] max-xl:w-[4.21rem] max-lg:w-[3.1rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                                     {item.company}
@@ -348,6 +412,10 @@ function OrderPhoneListById(props) {
                                                     </div>
 
                                                 </div>
+                                             
+                                                </div>
+                                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                    
                                                 <div className=" flex  w-[9.2rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.imei}
@@ -358,27 +426,9 @@ function OrderPhoneListById(props) {
                                                     <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 20 && '...'}</span>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                {/* <div className=" flex w-[2rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        <SubTitle>
-                                                            {item.qrCodeId ? (
-                                                                <QRCodeModal
-                                                                    qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                                    imgHeight={"2.8em"}
-                                                                    imgWidth={"2.8em"}
-                                                                    imgRadius={20}
-                                                                />
-                                                            ) : (
-                                                                <span class="text-[0.6rem] font-bold max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                                    No QR
-                                                                </span>
-                                                            )}
-                                                        </SubTitle>
-
-                                                    </div>
-                                                </div> */}
+                                            
+                                           
+                                                
                                                 <div className=" flex  w-[4.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" >
                                                         <div>
@@ -386,9 +436,9 @@ function OrderPhoneListById(props) {
                                                             {props.rowData.qcInspectionInd === 1 ?
                                                                 <ButtonGroup>
                                                                     {item.qcStatus === "To Start" && <StatusIcon
-                                                                        type="In Progress"
+                                                                        type= "In Progress"
                                                                         iconType="fa fa-hourglass-half"
-                                                                        tooltip="In Progress"
+                                                                        tooltip= {translatedMenuItems[12]}
                                                                         id={item.phoneId}
                                                                         indStatus={item.qcStatus}
                                                                         phoneId={RowData.phoneId}
@@ -399,9 +449,9 @@ function OrderPhoneListById(props) {
                                                                         }}
                                                                     />}
                                                                     {item.qcStatus === "In Progress" && <StatusIcon
-                                                                        type="Complete"
+                                                                        type= "Complete"
                                                                         iconType="fa fa-hourglass"
-                                                                        tooltip="Complete"
+                                                                        tooltip= {translatedMenuItems[13]}
                                                                         indStatus={item.qcStatus}
                                                                         status={active}
                                                                         id={item.phoneId}
@@ -417,14 +467,15 @@ function OrderPhoneListById(props) {
 
                                                     </div>
                                                 </div>
+                                                
                                                 <div className=" flex  w-[4.2rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.totalhours}
 
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                           
+                                           
                                                 <div className=" flex  w-[4.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcStartTime === null ? "" : dayjs(item.qcStartTime).format('HH:mm:ss')}
@@ -460,7 +511,7 @@ function OrderPhoneListById(props) {
                                                                         }, item.phoneId)
                                                                     }}
                                                                 >
-                                                                    Can't Repair
+                                                                    {translatedMenuItems[16]} {/* Can't Repair */}
                                                                 </Button> :
                                                                 <Button
                                                                     loading={RowData.phoneId === item.phoneId && props.updatingCantRepairQc}
@@ -472,7 +523,7 @@ function OrderPhoneListById(props) {
                                                                         }, item.phoneId)
                                                                     }}
                                                                 >
-                                                                    Change Status
+                                                                 {translatedMenuItems[17]}   {/* Change Status */}
                                                                 </Button>
                                                                 //   <Tooltip title="Can't Repair">
                                                                 //   <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" />
@@ -484,13 +535,13 @@ function OrderPhoneListById(props) {
                                             </div>
                                             <div className=" flex   md:w-[10.64rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins">
-                                                    {item.cannotRepairInd ? "Can't Repair":"Repair"}
+                                                    {item.cannotRepairInd ? translatedMenuItems[18]:translatedMenuItems[20]}
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                 <div className=" flex w-[4.51rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        <Tooltip title="Spare">
+                                                        <Tooltip title={translatedMenuItems[15]}>
                                                             <Button
                                                                 type="primary"
                                                                 style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
@@ -500,7 +551,8 @@ function OrderPhoneListById(props) {
                                                                     props.handleSpareList(true);
                                                                 }}>
                                                                 {/* <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} /> */}
-                                                                Spares </Button>
+                                                                {/* Spares  */}
+                                                                {translatedMenuItems[14]} </Button>
 
                                                         </Tooltip>
                                                         {/* {isValidPercentage ? (
@@ -549,7 +601,7 @@ function OrderPhoneListById(props) {
                                                             />
                                                         </Tooltip> */}
                                                            {/* {isAcivedPercentage ? ( */}
-                                                            <Tooltip title="Task">
+                                                            <Tooltip title={translatedMenuItems[8]}>
                                                                 <Progress
                                                                    percent={acivedPercentage}
                                                                     success={{acivedPercentage}}
@@ -568,7 +620,7 @@ function OrderPhoneListById(props) {
                                                 </div>
                                                 <div className=" flex  w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        <Tooltip title="Notes">
+                                                        <Tooltip title={translatedMenuItems[10]}>
                                                         <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
 
                                                               
@@ -584,16 +636,20 @@ function OrderPhoneListById(props) {
                                                 </div>
                                                 <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        <Tooltip title={<FormattedMessage
-                                                            id="app.Print"
-                                                            defaultMessage="Print"
-                                                        />}>
+                                                        <Tooltip title={translatedMenuItems[11]}
+                                                        // {<FormattedMessage
+                                                        //     id="app.Print"
+                                                        //     defaultMessage="Print"
+                                                        // />}\
+                                                        >
                                                             {/* <PrintOutlined
                                                                             // onClick={handlePrint}
                                                                             className="!text-base cursor-pointer"
                                                                         /> */}
                                                             <ReactToPrint
-                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon className="!text-icon"/></Button>}
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>
+                                                                {translatedMenuItems[11]}{/* Print  */}
+                                                                <QrCodeIcon className="!text-icon"/></Button>}
                                                                 content={() => componentRefs.current[index]}
                                                             />
                                                         </Tooltip>
@@ -605,17 +661,10 @@ function OrderPhoneListById(props) {
                                             </div>
                                             <div style={{ display: "none", textAlign: "center" }}>
 
-                                                <div
-                                                    ref={(el) => (componentRefs.current[index] = el)}
-                                                    style={{
-                                                        fontSize: "16px",
-                                                        marginBottom: "20px",
-                                                        display: "flex",
-                                                        flexDirection: "column",
-                                                        alignItems: "center",
-                                                    }}
-                                                >
-                                                    <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
+                                                <div className=" flex flex-col mt-5 text-sm items-center"
+                                                    ref={(el) => (componentRefs.current[index] = el)}>
+                                                   
+                                                    <div   className=" text-5xl mt-8">
                                                         <QRCode size={150} value={item.imei} />
                                                     </div>
                                                     <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
@@ -631,7 +680,7 @@ function OrderPhoneListById(props) {
                 <div class="flex justify-end">
                     {props.rowData.qcInspectionInd === 1 ? <Button
                         type="primary"
-                        onClick={handlePuaseButton}>{hide ? "Resume" : "Pause"}
+                        onClick={handlePuaseButton}>{hide ? translatedMenuItems[9]: translatedMenuItems[12]}
                     </Button> : null}
                 </div>
                 {spares && (

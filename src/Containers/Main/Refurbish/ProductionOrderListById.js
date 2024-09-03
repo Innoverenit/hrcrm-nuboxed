@@ -6,7 +6,6 @@ import { getOrderByUser, handleOrderPhoneModal, qcInspectionButton,
 import { Button, Badge ,Input, Tooltip} from "antd";
 import dayjs from "dayjs";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
-import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from '../../../Components/Placeholder';
@@ -182,7 +181,7 @@ function ProductionOrderListById(props) {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div class=" w-64 max-sm:w-32">
+                <div class=" w-64 max-sm:w-40">
         <Input
           placeholder={translatedMenuItems[4]}
           width={"100%"}
@@ -223,7 +222,8 @@ function ProductionOrderListById(props) {
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div >
-                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-24 max-sm:justify-between max-sm:flex-col max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                           <div class="flex  max-sm:w-wk items-center">
                                             <div className=" flex   ">
                                                     {item.priority === "High" && (
@@ -276,7 +276,6 @@ function ProductionOrderListById(props) {
                                                     </div>
 
                                                 </div>
-                                              
                                                 <div className=" flex  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInspectionInd === 0 ?
@@ -300,11 +299,13 @@ function ProductionOrderListById(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                </div>
+                                        
+                                                <div className=" flex  w-wk   max-sm:flex-row max-sm:w-auto max-sm:justify-between  justify-end">
                                                 <div class="   text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-2xl">
                                                     <Tooltip title={translatedMenuItems[6]}>
                                                         <NoteAltIcon
-                                                            className="!text-icon cursor-pointer"
+                                                            className="!text-icon cursor-pointer max-sm:!text-2xl"
                                                             // style={{ cursor: "pointer" }}
                                                             onClick={() => {
                                                                 handleRowData(item);
@@ -315,7 +316,7 @@ function ProductionOrderListById(props) {
                                                     </Tooltip>
                                                 </div>
                                             </div>
-                                            </div>
+                                           
 
                                         </div>
                                     </div>
