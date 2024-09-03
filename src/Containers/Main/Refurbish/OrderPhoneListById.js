@@ -665,7 +665,7 @@ function OrderPhoneListById(props) {
                                                     ref={(el) => (componentRefs.current[index] = el)}>
                                                    
                                                     <div   className=" text-5xl mt-8">
-                                                        <QRCode size={150} value={item.imei} />
+                                                        <QRCode size={150} value={item.phoneId} />
                                                     </div>
                                                     <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
                                                 </div>
