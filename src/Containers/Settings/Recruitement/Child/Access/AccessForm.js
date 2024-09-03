@@ -27,7 +27,7 @@ const materialNewOptions = [
   "Create",
   "Update",
   "Delete",
-  "Inventory Material",
+ 
 ];
 const userOptions = ["Access", "Create", "Update", "Delete", "Access Plus"];
 const defaultCheckedList = ["Full List"];
@@ -583,15 +583,16 @@ const AccessForm = (props) => {
   const [checkAllMaterials, setCheckAllMaterials] = useState(false);
 
   const onMaterialsChange = (list) => {
+    console.log(list)
     setCheckedMaterialsList(list);
     setIndeterminateMaterials(
-      !!list.length && list.length < materialNewOptions.length
+      !!list.length && list.length < plainOptions.length
     );
-    setCheckAllMaterials(list.length === materialNewOptions.length);
+    setCheckAllMaterials(list.length === plainOptions.length);
   };
 
   const onCheckAllMaterialsChange = (e) => {
-    setCheckedMaterialsList(e.target.checked ? materialNewOptions : []);
+    setCheckedMaterialsList(e.target.checked ? plainOptions : []);
     setIndeterminateMaterials(false);
     setCheckAllMaterials(e.target.checked);
   };
@@ -1362,7 +1363,7 @@ const AccessForm = (props) => {
     setCheckAllPlanner(e.target.checked);
   };
 
-  
+  console.log(checkedMaterialList)
   function handleUpdateAccess() {
     let data = {
       vendor: checkedVendorList || [],
@@ -1433,6 +1434,7 @@ const AccessForm = (props) => {
   }
   console.log("departmentData", props.departmentData);
   console.log(props.departmentAcces.vendor);
+  console.log(checkedMaterialList)
 
   if (props.fetchingDepartmentAccess) {
     return <BundleLoader />;
@@ -1973,7 +1975,7 @@ const AccessForm = (props) => {
                         </Checkbox>
                         <Divider />
                         <CheckboxGroup
-                          options={materialNewOptions}
+                          options={plainOptions}
                           value={checkedMaterialsList}
                           onChange={onMaterialsChange}
                         />
