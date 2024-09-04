@@ -25,7 +25,7 @@ class OpportunitySelectStages extends Component {
             ? -1
             : 0
         )
-        .findIndex((stage) => stage.opportunityStagesId === this.props.opportunityStagesId);
+        .findIndex((stage) => stage.stagesId === this.props.stagesId);
 
     return (
       <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
@@ -52,7 +52,7 @@ class OpportunitySelectStages extends Component {
                 //     : this.props.candidateName
                 //     ? this.handleStageClick(item.stageId)
                 //     : null
-                this.handleStageClick(item.opportunityStagesId)
+                this.handleStageClick(item.stagesId)
                 }
                 // loading={this.props.linkingOpportunity}
               >

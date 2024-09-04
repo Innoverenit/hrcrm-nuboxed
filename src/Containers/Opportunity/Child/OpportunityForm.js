@@ -59,15 +59,30 @@ function OpportunityForm(props) {
   const [defaultOption, setDefaultOption] = useState(props.fullName);
   const [selected, setSelected] = useState(defaultOption);
 
+  const[stage,setStage]=useState([])
+const [isLoadingStage, setIsLoadingStage] = useState(false);
+const [selectedStage, setSelectedStage] = useState(null);
+
   const [include, setInclude] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [touched, setTouched] = useState(false);
+
+  const [isLoadingWorkflow, setIsLoadingWorkflow] = useState(false);
+
+  const [workflow, setWorkflow] = useState([]);
+  const [selectedWorkflow, setSelectedWorkflow] = useState(null);
   const [selectedValues, setSelectedValues] = useState([]);
   const [loading, setLoading] = useState(true);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   const [customers, setCustomers] = useState([]);
   const [contacts, setContacts] = useState([]);
+
+  const[workFlowType,setWorkFlowType]=useState([])
+
+  const [selectedWorkFlowType, setSelectedWorkFlowType] = useState(null);
+  const [isLoadingWorkflowType, setIsLoadingWorkflowType] = useState(false);
+  const [touchedWorkFlowType, setTouchedWorkFlowType] = useState(false);
   const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
   const [isLoadingContacts, setIsLoadingContacts] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
@@ -323,7 +338,108 @@ const AllEmplo = props.assignedToList.map((item) => {
 });
 const filteredEmployeesData = AllEmplo.filter(
   (item) => item.value !== props.user.userId
+
+
 );
+
+
+const handleSelectWorkflowTypeFocus = () => {
+  if (!touchedWorkFlowType) {
+    fetchWorkFlowType();
+    // fetchSector();
+
+    setTouchedWorkFlowType(true);
+  }
+};
+
+const handleWorkFlowTypeChange = (type) => {
+  setSelectedWorkFlowType(type);
+  // fetchWorkFlowType(customerId);
+  fetchWorkflow(type)
+};
+
+
+const fetchWorkFlowType = async () => {
+  setIsLoadingWorkflowType(true);
+  try {
+    // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
+    // setCustomers(response.data);
+    const apiEndpoint = `${base_url}/workflowCategory/All`;
+    const response = await fetch(apiEndpoint,{
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${props.token}`,
+        'Content-Type': 'application/json',
+        // Add any other headers if needed
+      },
+    });
+    const data = await response.json();
+    setWorkFlowType(data);
+  } catch (error) {
+    console.error('Error fetching customers:', error);
+  } finally {
+    setIsLoadingWorkflowType(false);
+  }
+};
+
+
+const fetchWorkflow = async (type) => {
+  setIsLoadingWorkflow(true);
+  try {
+    // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+    // setContacts(response.data);
+    const apiEndpoint = `${base_url}/workflow/for_dropdown/${props.orgId}/${type}`;
+    const response = await fetch(apiEndpoint,{
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${props.token}`,
+        'Content-Type': 'application/json',
+        // Add any other headers if needed
+      },
+    });
+    const data = await response.json();
+    setWorkflow(data);
+  } catch (error) {
+    console.error('Error fetching contacts:', error);
+  } finally {
+    setIsLoadingWorkflow(false);
+  }
+};
+
+
+const handleWorkflowChange=(workflowDetailsId)=>{
+  setSelectedWorkflow(workflowDetailsId);
+  fetchStage(workflowDetailsId)
+}
+
+
+const fetchStage= async (workflowId) => {
+  setIsLoadingStage(true);
+  try {
+    // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+    // setContacts(response.data);
+    const apiEndpoint = `${base_url}/workflow/stages/for_dropdown/${props.orgId}/${workflowId}`;
+    const response = await fetch(apiEndpoint,{
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${props.token}`,
+        'Content-Type': 'application/json',
+        // Add any other headers if needed
+      },
+    });
+    const data = await response.json();
+    setStage(data);
+  } catch (error) {
+    console.error('Error fetching contacts:', error);
+  } finally {
+    setIsLoadingStage(false);
+  }
+};
+
+
+const handleStageChange=(value)=>{
+  setSelectedStage(value);
+}
 
   const [text, setText] = useState("");
   function handletext(e) {
@@ -376,7 +492,7 @@ const filteredEmployeesData = AllEmplo.filter(
           // included: selectedValues,
           emialInd:emailInd ? "true" : "false",
         }}
-        validationSchema={OpportunitySchema}
+        // validationSchema={OpportunitySchema}
         onSubmit={(values, { resetForm }) => {
           console.log(values);
           console.log(values);
@@ -456,6 +572,9 @@ const filteredEmployeesData = AllEmplo.filter(
               ...values,
               customerId:selectedCustomer,
               contactId:selectedContact,
+              oppStage: selectedStage,
+              oppWorkflow: selectedWorkflow,
+              workFlowType:selectedWorkFlowType,
               startDate: `${newStartDate}T20:00:00Z`,
               endDate: `${newEndDate}T20:00:00Z`,
               included: selectedValues,
@@ -741,53 +860,56 @@ const filteredEmployeesData = AllEmplo.filter(
       </Select>            
                 </div>
                         </div>
+                        <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow Type</label>
+      <Select
+       
+        placeholder="Select WorkflowType"
+        loading={isLoadingWorkflowType}
+        onFocus={handleSelectWorkflowTypeFocus}
+        onChange={handleWorkFlowTypeChange}// Disable Contact dropdown if no customer is selected
+      >
+        {workFlowType.map(flow => (
+          <Option key={flow.workflowCategoryId} value={flow.workflowCategoryId}>
+            {flow.name}
+          </Option>
+        ))}
+      </Select>
+                
                                           
-                <div class="flex justify-between max-sm:flex-col mt-3">
-                  <div class=" w-w47.5 max-sm:w-wk">                 
-                    <div class="font-bold text-xs">{translatedMenuItems[10]}</div>
-                      <Field
-                        name="oppWorkflow"
-                        // selectType="contactListFilter"
-                        isColumnWithoutNoCreate
-                        isRequired
-                        placeolder="Select type"                     
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(WorkflowOptions) ? WorkflowOptions : []
-                        }
-                        value={values.oppWorkflow}
-                        isColumn
-                        inlineLabel
-                      />            
+      <div class="flex justify-between max-sm:flex-col mt-3">
+                  <div class=" w-w47.5 max-sm:w-wk">
+                   
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow</label>
+      <Select
+       
+        placeholder="Select Workflow"
+        loading={isLoadingWorkflow}
+        onChange={handleWorkflowChange}
+        disabled={!selectedWorkFlowType}
+      >
+        {workflow.map(work => (
+          <Option key={work.workflowDetailsId} value={work.workflowDetailsId}>
+            {work.workflowName}
+          </Option>
+        ))}
+      </Select>
                   </div>
                  
-                  <div class=" w-w47.5 max-sm:w-wk ">          
-                    <div class="font-bold text-xs">{translatedMenuItems[11]}</div>
-                    {/* Stages */}
-                      <Field
-                        name="oppStage"
-                        isRequired
-                        isColumnWithoutNoCreate                       
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(
-                            getStagesOptions("oppWorkflow", values.oppWorkflow)
-                          )
-                            ? getStagesOptions(
-                                "oppWorkflow",
-                                values.oppWorkflow
-                              )
-                            : []
-                        }
-                        value={values.oppStage}
-                        filterOption={{
-                          filterType: "oppWorkflow",
-                          filterValue: values.oppWorkflow,
-                        }}
-                        disabled={!values.oppWorkflow}
-                        isColumn
-                        inlineLabel
-                      />        
+                  <div class=" w-w47.5 max-sm:w-wk ">
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Stage</label>
+      <Select
+       
+        placeholder="Select Stage"
+        loading={isLoadingStage}
+        onChange={handleStageChange}
+      disabled={!selectedWorkflow}
+      >
+        {stage.map(stage => (
+          <Option key={stage.stagesId} value={stage.stagesId}>
+            {stage.stageName}
+          </Option>
+        ))}
+      </Select>
                   </div>
                 </div>
                 <div class="mt-3">

@@ -1,65 +1,47 @@
-
-import React, { useEffect,useState } from "react";
-import { Switch, Popconfirm, } from "antd";
+import React, { useEffect, useState } from "react";
+import { Switch, Popconfirm } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { linkComplementryToggle } from "./SuppliesAction";
 
 function ComplementaryToggle(props) {
-  const[data,setData]=useState(props.complementaryList)
-  useEffect(()=>{
-    setData(props.complementaryList)
-  },[props.complementaryList])
-  const [toggle, setToggle] = React.useState(props.complementaryInd);
-  console.log(props.complementaryInd)
+  const [toggle, setToggle] = useState(props.complementaryInd);
 
-  function handleToggleCollection(item) {
-    if (props.complementaryInd) {
-      props.linkComplementryToggle({
-        suppliesId: props.suppliesId,
-        complementaryItem: props.complementaryItem,
-        complementaryInd: props.complementaryInd ? false : true,
-         
-      });
-      setToggle( props.complementaryInd ? false : true);
- 
-    } else {
-      props.linkComplementryToggle({
-        suppliesId: props.suppliesId,
-        complementaryItem: props.complementaryItem,
-         complementaryInd: props.complementaryInd ? false : true,
-      });
-      setToggle( props.complementaryInd ? false : true);
-    }
+  // Synchronize toggle state with props.complementaryInd
+  useEffect(() => {
+    setToggle(props.complementaryInd);
+  }, [props.complementaryInd]);
+
+  function handleToggleCollection() {
+    const newComplementaryInd = !toggle;
+    props.linkComplementryToggle({
+      suppliesId: props.suppliesId,
+      complementaryItem: props.complementaryItem,
+      complementaryInd: newComplementaryInd,
+    });
+    setToggle(newComplementaryInd);
   }
 
   function handleCancel() {
-    if (props.complementaryInd) {
-      setToggle(true);
-    } else {
-      setToggle(false);
-    }
+    setToggle(props.complementaryInd);
   }
+
   return (
     <>
-      
-        <Popconfirm
-          title="Confirm status change?"
-          onConfirm={() => handleToggleCollection()}
-          onCancel={handleCancel}
-          okText="Yes"
-          cancelText="No"
-        >
-          <Switch
-            className="toggle-clr"
-            checked={props.complementaryInd || toggle}
-            // disabled={props.status}
-            isLoading={true}       
-            checkedChildren="Yes"
-            unCheckedChildren="No"
-          />
-        </Popconfirm>
-      
+      <Popconfirm
+        title="Confirm status change?"
+        onConfirm={handleToggleCollection}
+        onCancel={handleCancel}
+        okText="Yes"
+        cancelText="No"
+      >
+        <Switch
+          className="toggle-clr"
+          checked={toggle}
+          checkedChildren="Yes"
+          unCheckedChildren="No"
+        />
+      </Popconfirm>
     </>
   );
 }
@@ -77,8 +59,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ComplementaryToggle);
 
+export default connect(mapStateToProps, mapDispatchToProps)(ComplementaryToggle);
