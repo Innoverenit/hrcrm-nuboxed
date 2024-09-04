@@ -267,6 +267,8 @@ function InvestorTeamCardList(props) {
                                         </Tooltip>
                               
                                 </div>
+                                </div>
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex items-center  w-[11.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                         
                                      {/* Sector  */}
                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
@@ -288,8 +290,8 @@ function InvestorTeamCardList(props) {
                      {item.countryAlpha2Code}
                                   </div>
                               </div>
-                                </div>                                                                                   
-                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                                                                                                               
+                           
                                
                                 <div className=" flex  items-center w-[7.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                      {/* Deals */}
@@ -297,7 +299,9 @@ function InvestorTeamCardList(props) {
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.totalWonOppProposalValue}
                                     </div>
-                                </div>                            
+                                </div>    
+                                </div>    
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Pipeline Value */}
 
@@ -321,13 +325,15 @@ function InvestorTeamCardList(props) {
                                     {Category}
                                     </div>
                                 </div>
+</div>
+<div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center  w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Source */}
                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.source}
                                     </div>
                                 </div>
-                                </div>
+                            
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Assigned */}
@@ -375,6 +381,7 @@ function InvestorTeamCardList(props) {
             </span>
                    </div>
                   </div>
+                  </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   
                                        
@@ -386,14 +393,14 @@ function InvestorTeamCardList(props) {
                     handleInvestorPulseDrawerModal(true);
                     handleCurrentRowData(item);
                   }}
-                  className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-2xl "
+                  className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl "
                 />
              </Tooltip>
         {/* } */}
                           </div>
                           <div>
                           <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-2xl"
+          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
           onClick={() => {
             props.handleInvestorAddressDrawerModal(true);
             handleCurrentRowData(item);
@@ -408,7 +415,7 @@ function InvestorTeamCardList(props) {
                   props.handleInvestorNotesDrawerModal(true);
                   handleCurrentRowData(item);
                 }}
-                className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
+                className=" !text-icon cursor-pointer text-green-800 max-sm:!text-xl"
               />
            </Tooltip>
                    </div>
@@ -423,7 +430,7 @@ function InvestorTeamCardList(props) {
                   {" "}
                   <a href={`https://${item.url}`} target="_blank">
                     <ExploreIcon
-                      className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
+                      className=" !text-icon cursor-pointer text-green-800 max-sm:!text-xl"
                     />
                   </a>
                 </span>
@@ -436,7 +443,7 @@ function InvestorTeamCardList(props) {
           
             <Tooltip title="Investor Contact">
               <LocationCityIcon
-              className=" !text-icon cursor-pointer p-1 text-blue-500 max-sm:!text-3xl"
+              className=" !text-icon cursor-pointer p-1 text-blue-500 max-sm:!text-xl"
                 onClick={() => {
                   handleInvestorContModal(true);
                     handleCurrentRowData(item);                 
@@ -447,7 +454,7 @@ function InvestorTeamCardList(props) {
             <div>
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title="Edit">
-              <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-2xl"
+              <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
                 onClick={() => {
                     handleUpdateInvestorModal(true);
                     handleCurrentRowData(item);                
@@ -466,7 +473,7 @@ function InvestorTeamCardList(props) {
                          <Tooltip title="Delete">                      
                           <DeleteOutlined
                             type="delete"
-                            className="!text-icon text-[red] cursor-pointer max-sm:!text-2xl"
+                            className="!text-icon text-[red] cursor-pointer max-sm:!text-xl"
                           />                      
                         </Tooltip>
                       </StyledPopconfirm>        
