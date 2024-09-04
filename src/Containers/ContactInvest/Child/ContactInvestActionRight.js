@@ -34,9 +34,9 @@ class ContactInvestActionRight extends React.Component {
         
           
          
-        "Add",//0
-      "Import",//1
-      "Upload"//2
+        "85",//0 Add
+      "123",//1 Import
+      "294"//2 Upload
         
         
       ];

@@ -91,23 +91,23 @@ const DealDeletedCard = (props) => {
   return (
     <>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[10.5rem]">
+        <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+          <div className=" font-bold font-poppins text-xs md:w-[10.5rem]">
           {translatedMenuItems[0]} </div>
           {/* Name */}
-          <div className=" md:w-[9.1rem]">  {translatedMenuItems[1]} </div>
+          <div className=" font-bold font-poppins text-xs md:w-[9.1rem]">  {translatedMenuItems[1]} </div>
           {/* investor */}
-          <div className=" md:w-[15.2rem] ">  {translatedMenuItems[2]}</div>
+          <div className="  font-bold font-poppins text-xs md:w-[15.2rem] ">  {translatedMenuItems[2]}</div>
           {/* Sponsor */}
-          <div className="md:w-[11.1rem]">  {translatedMenuItems[3]}</div>
+          <div className=" font-bold font-poppins text-xs md:w-[11.1rem]">  {translatedMenuItems[3]}</div>
           {/* startDate */}
-          <div className="md:w-[7.5rem]">  {translatedMenuItems[4]}</div>
+          <div className=" font-bold font-poppins text-xs md:w-[7.5rem]">  {translatedMenuItems[4]}</div>
           {/* Value */}
-          <div className="md:w-[4.2rem]">  {translatedMenuItems[5]}</div>
+          <div className=" font-bold font-poppins text-xs md:w-[4.2rem]">  {translatedMenuItems[5]}</div>
           {/* Stages */}
-          <div className="md:w-[7.1rem]">  {translatedMenuItems[6]}</div>
+          <div className=" font-bold font-poppins text-xs md:w-[7.1rem]">  {translatedMenuItems[6]}</div>
           {/* assignedTo */}
-          <div className="md:w-[3rem]">  {translatedMenuItems[7]}</div>
+          <div className=" font-bold font-poppins text-xs md:w-[3rem]">  {translatedMenuItems[7]}</div>
             {/* owner  */}
         </div>
         <InfiniteScroll
@@ -144,11 +144,10 @@ const DealDeletedCard = (props) => {
               } `;
             return (
               <div>
-                <div className="flex justify-between rounded  mt-2 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-                // style={{
-                //     borderBottom: "3px dotted #515050"
-                // }}
+                <div className="flex justify-between rounded  mt-2 bg-white h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+          
                 >
+                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div class="flex justify-between">
                     <div className=" flex  w-[12rem]   max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
@@ -167,7 +166,7 @@ const DealDeletedCard = (props) => {
                         </div>
                         <div class="max-sm:w-full" >
                           <Tooltip>
-                            <div class="max-sm:w-full max-sm:justify-between flex md:">                           
+                            <div class=" ml-3 max-sm:w-full max-sm:justify-between flex md:">                           
                                             {/* Name */}
                                        
                               <div class=" text-[0.82rem] flex text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -187,14 +186,17 @@ const DealDeletedCard = (props) => {
                         </div>
                       </div>
                     </div>
+                    </div>
+                    </div>
+                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     <div className=" flex   md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
                       <div class="text-xs  font-poppins">
                         <Link to="/investor">
                           {item.investor}
                         </Link>
                       </div>
-                    </div>
-
+                    
+</div>
                     <div className=" flex  md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
                       <div class="text-xs  font-poppins">
                         <SubTitle>
@@ -209,15 +211,15 @@ const DealDeletedCard = (props) => {
                           }
                         </SubTitle>
                       </div>
-                    </div>
-                  </div>
-                  <div class="flex">
+                    </div>             
+                             
                     <div className=" flex  md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
                       <div class="text-xs justify-center  font-poppins">
                         {dayjs(item.startDate).format("DD/MM/YYYY")}
                       </div>
                     </div>
-
+</div>
+             <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     <div className=" flex md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
                       <div class="text-xs  font-poppins text-center">
                         <CurrencySymbol currencyType={item.currency} />
@@ -280,6 +282,7 @@ const DealDeletedCard = (props) => {
 
                       </div>
                     </div>
+                    </div>
                     <div className=" flex md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
                       <span>
                         <MultiAvatar2
@@ -290,7 +293,7 @@ const DealDeletedCard = (props) => {
                         />
                       </span>
                     </div>
-                  </div>
+                  
                 </div>
               </div>
             )

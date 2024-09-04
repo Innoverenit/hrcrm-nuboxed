@@ -146,35 +146,35 @@ if (loading) {
     <>
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className=" md:w-[15.32rem]">
+        <div className="font-bold font-poppins text-xs md:w-[15.32rem]">
         {translatedMenuItems[0]} 
         {/* name */}
                 </div>
-        <div className=" md:w-[12.72rem]">
+        <div className="font-bold font-poppins text-xs md:w-[12.72rem]">
         {translatedMenuItems[1]}
         {/* company */}
                 </div>
-        <div className=" md:w-[9.6rem] ">
+        <div className="font-bold font-poppins text-xs md:w-[9.6rem] ">
         {translatedMenuItems[2]} 
         {/* designation */}
                 </div>
-        <div className="md:w-[11.3rem]">
+        <div className="font-bold font-poppins text-xs md:w-[11.3rem]">
         {translatedMenuItems[3]} 
         {/* department */}
                 </div>
-        <div className="md:w-[6.1rem]"># 
+        <div className="font-bold font-poppins text-xs md:w-[6.1rem]"># 
         {translatedMenuItems[4]} 
         {/* deals */}
                 </div>
-        <div className="md:w-[7.21rem]"> 
+        <div className="font-bold font-poppins text-xs md:w-[7.21rem]"> 
         {translatedMenuItems[5]} 
         {/* dealValue */}
                 </div>
-        <div className="md:w-[5.2rem]">
+        <div className="font-bold font-poppins text-xs md:w-[5.2rem]">
         {translatedMenuItems[6]}
         {/* source */}
                 </div>
-        <div className="md:w-[6.8rem]">
+        <div className=" font-bold font-poppins text-xs md:w-[6.8rem]">
         {translatedMenuItems[7]} 
         {/* owner */}
                 </div>
@@ -214,7 +214,7 @@ if (loading) {
                     return (
                       <div>
                       <div
-        className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+        className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                           <div className=" flex font-medium  md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
@@ -252,6 +252,7 @@ if (loading) {
                           </div>
                
                           </div>
+                          <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                           <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[14.01rem]">
                          {/* Company  */}
                               <div class=" text-xs  font-poppins">   
@@ -264,13 +265,15 @@ if (loading) {
                                    {item.designation}
                               </div>
                           </div>
-                          <div class="flex">
+                        
                           <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[12.2rem]">
                            {/* Department */}
                             <div class="text-xs  font-poppins">
                                  {item.department}
                             </div>
                         </div>
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                           <div className=" flex  md:w-[5.22rem] max-sm:flex-row w-full  ">
                               {/* # Deals */}
 
@@ -289,8 +292,8 @@ if (loading) {
                               <div class="text-xs  font-poppins">
                               </div>
                           </div>
-                          </div>
-                          <div class="flex">
+                         
+                         
         <div className="flex   md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">       
         <Tooltip title={item.ownerName}>
           <div class="max-sm:flex justify-end mt-1">      
@@ -304,10 +307,11 @@ if (loading) {
     </Tooltip>
 
              </div>
-             <div class=" flex justify-end items-center w-[7rem] max-sm:flex   max-sm:w-full">   
+             </div>
+             <div class=" flex justify-evenly items-center w-[7rem] max-sm:flex   max-sm:w-full">   
              <Tooltip title="Pulse">
  <MonitorHeartIcon
- className=" !text-icon cursor-pointer text-[#df9697]"
+ className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl"
           onClick={() => {
             handleContactInvestPulseDrawerModal(true);
             handleCurrentContactIdata(item);
@@ -322,7 +326,7 @@ if (loading) {
             handleCurrentContactIdata(item);
           }}
         >
-         <PhoneInTalkIcon className=" !text-icon cursor-pointer"/>
+         <PhoneInTalkIcon className=" !text-icon cursor-pointer max-sm:!text-xl"/>
         </span>
       )}
       {item.doNotCallInd === true && (
@@ -332,12 +336,12 @@ if (loading) {
             handleCurrentContactIdata(item);
           }}
         >
-          <PhoneDisabledIcon className="!text-icon text-[gold]"/>
+          <PhoneDisabledIcon className="!text-icon text-[gold] max-sm:!text-xl"/>
         </span>
       )}
     </Tooltip>          
                   <Tooltip title={item.emailId}>   
-      <MailOutlineIcon className="!text-icon cursor-pointer text-green-400"
+      <MailOutlineIcon className="!text-icon cursor-pointer text-green-400 max-sm:!text-xl"
         type="mail"     
         onClick={() => {
           props.getContactById(item.contactId);
@@ -345,25 +349,10 @@ if (loading) {
         }}
       />
      </Tooltip>            
-     <Tooltip>
-                  <span class="cursor-pointer"              
-                onClick={() => {
-                  handleCurrentContactIdata(item);
-                  props.handleContactDrawerModal(true);
-                }}
-              >{user.pulseAccessInd === true && (
-                <MonitorHeartIcon className=" !text-icon cursor-pointer text-[#df9697]"/>
-              )}
-              </span>
-     </Tooltip>
-              <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-      <span class="cursor-pointer"       
-      >
-      <LocationOnIcon  className="!text-icon cursor-pointer text-[#960a0a]"/>
-      </span>
-    </Tooltip>   
+    
+              
     <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
           onClick={() => {
             props.handleContactAddressDrawerModal(true);
             handleCurrentContactIdata(item);
@@ -376,7 +365,7 @@ if (loading) {
             props.handleContactInvestNotesDrawerModal(true);
             handleCurrentContactIdata(item);
           }}
-          className="text-green-500 cursor-pointer !text-icon"
+          className="text-green-500 cursor-pointer !text-icon max-sm:!text-xl"
         />
      </Tooltip>   
      <div>
@@ -393,7 +382,7 @@ if (loading) {
       )}
       </div>
              </div>
-                      </div>                   
+                                     
                   </div>
             </div>
                     )
