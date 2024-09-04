@@ -511,7 +511,9 @@ class ContactInvestForm extends Component {
                   <div class="w-full mt-3 "
                    style={{ backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <div class="text-white font-medium m-[0.2rem_0_0.4rem_0.2rem] text-xs flex" > Address</div>
+                  <div class="text-white font-medium m-[0.2rem_0_0.4rem_0.2rem] text-xs flex" >{translatedMenuItems[14]}
+                     {/* Address */}
+                     </div>
                   </div>
                     </div>
                   <FieldArray
@@ -537,7 +539,7 @@ class ContactInvestForm extends Component {
                   htmlType="submit"
                   loading={addingContact}
                 >
-                 <div className="font-bold font-poppins text-xs"> {translatedMenuItems[14]}</div>
+                 <div className="font-bold font-poppins text-xs"> {translatedMenuItems[15]}</div>
                   {/*                     
                     Create */}
                 </Button>

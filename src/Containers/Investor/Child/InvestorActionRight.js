@@ -22,8 +22,8 @@ function InvestorActionRight (props) {
   const fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        "Add", //0   
-        "Upload", //1
+        "85", //0    Add
+        "294", //1 Upload
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

@@ -38,7 +38,7 @@ class DataRoomActionRight extends React.Component {
     try {
       const itemsToTranslate = [   
 
-        "Add",         
+        "85",   //Add      
 
       ];
 

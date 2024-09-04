@@ -175,6 +175,7 @@ const DealsAllCardList = (props) => {
               <div
              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
+               <div class="flex max-sm:justify-start max-sm:w-wk max-sm:items-center">
                <div class="flex justify-between">
                  <div className=" flex  w-[15rem]   max-sm:w-full">
                    <div className="flex max-sm:w-full items-center">
@@ -217,6 +218,7 @@ const DealsAllCardList = (props) => {
                      </div>
                    </div>
                  </div>
+                 </div>
                  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                  <div className=" flex  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
@@ -252,7 +254,7 @@ const DealsAllCardList = (props) => {
                    </div>
                  </div>
 </div>
-                 <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row  max-sm:justify-evenly w-wk ">
 
                    <div class=" text-sm  font-poppins text-center">
                      <CurrencySymbol currencyType={item.currency} />
@@ -260,8 +262,8 @@ const DealsAllCardList = (props) => {
                      {item.proposalAmount}
 
                    </div>
-                 </div>
-                 <div className=" flex items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                
+                 <div className=" flex items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-evenly  ">
 
                    <div class=" text-xs  font-poppins text-center">
                      <Dropdown
@@ -294,9 +296,12 @@ const DealsAllCardList = (props) => {
                      </Dropdown>
                    </div>
                  </div>
+                 </div>
                  <div className=" flex items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
                  {myIndicator}
                  </div>
+                 
+                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                  <div className=" flex  items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs  font-poppins">
@@ -333,7 +338,7 @@ const DealsAllCardList = (props) => {
                      />
                    </span>
                  </div>
-            
+            </div>
              </div>
            </div>
             )
