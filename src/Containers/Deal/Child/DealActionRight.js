@@ -32,8 +32,8 @@ class DealActionRight extends React.Component {
         
           
          
-        "Add",//0
-      "Export",//1
+        "85",//0 Add
+      "499",//1 Export
       
         
         

@@ -120,13 +120,13 @@ props.getInvestorCurrency();
               "74",//11 Date
               "241",//12 Currency
               "76",//13 Assigned
-              "185", // "Address",
-              "186", // "Street",//15
-             "187",//Zip Code",//16
-             "188",// "City",17
-              "314",// "State",//18
-              "1109",// "Country",//19
-              "316",//14 Notes
+              "185", // 14 "Address",
+            //   "186", // "Street",//15
+            //  "187",//Zip Code",//16
+            //  "188",// "City",17
+            //   "314",// "State",//18
+            //   "1109",// "Country",//19
+              "316",//15 Notes
                "104",//  Create
             ];
     
