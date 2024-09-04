@@ -69,10 +69,10 @@ function ProcureInvoiceList (props) {
                     {props.translatedMenuItems[10]} ID 
                         </div>
                         <div className=" md:w-[7.4rem]">
-                            {/* {translatedMenuItems[1]} ID */} AWB
+                            {/* {translatedMenuItems[1]} ID */} Track ID
                             </div>
                         <div className=" md:w-[7.1rem]">
-                            {/* {translatedMenuItems[2]} */} Shipping
+                            {/* {translatedMenuItems[2]} */} Ship On
                         </div>
                         <div className=" md:w-[8rem]">
                             {props.translatedMenuItems[7]} 
