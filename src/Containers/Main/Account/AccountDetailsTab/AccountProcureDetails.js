@@ -277,7 +277,7 @@ const handleGenerateInvoice= async () => {
       return;
     }
     try {
-      const response = await axios.post(`${base_url2}/invoice/procureInvoice `,{
+      const response = await axios.post(`${base_url2}/invoice/procureInvoice`,{
       //   paymentMode: "Cash",
       //   remarks: "",
       //   invoiceId:invoices,
@@ -660,7 +660,7 @@ const handleGenerateInvoice= async () => {
                      style={{width:"10rem"}}
                       value={CreditMemo}
                       onChange={(value) => handleCreditMemo(value)}
-                      // mode="multiple" 
+                      mode="multiple" 
                     >
    {creditmemoData.map((critem, crindex) => (
       <option key={crindex} value={critem.creditMemoId}>
