@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -213,9 +214,10 @@ function AccountProcureDetails(props) {
   //   return <BundleLoader />;
   // }
   
-  const handleCreditMemo = async (value) => {
+  const handleCreditMemo =  (value) => {
     setCreditMemo(value);
   };
+
   const handleUnitChange = (id, value) => {
     const unitValue = parseInt(value, 10);
     if (unitValue < 1 || isNaN(unitValue)) {
@@ -257,9 +259,9 @@ const handleGenerateInvoice= async () => {
       return {
         price: item.price,
         procureOrderProductId: item.id,
-        unit: item.unit,
-        // invR:RowInvoices,
-        reaminingInvoiceUnit:unitValue
+        // unit: item.unit,
+        unit:RowInvoices,
+        // reaminingInvoiceUnit:unitValue
       };
     }).filter(item => item !== null); 
   
@@ -276,6 +278,9 @@ const handleGenerateInvoice= async () => {
       });
       return;
     }
+
+   
+
     try {
       const response = await axios.post(`${base_url2}/invoice/procureInvoice`,{
       //   paymentMode: "Cash",
@@ -296,7 +301,7 @@ const handleGenerateInvoice= async () => {
         procureOrderInvoiceId: "",
         procureOrderProductInvoiceId:"",
         orgId: props.orgId,
-        creditMemoId:CreditMemo,
+        creditMemoList:creditMemo,
       },
         {
           headers: {
@@ -595,11 +600,9 @@ const handleGenerateInvoice= async () => {
                 <input
   placeholder="Update Unit"
   style={{ border: "1px solid grey",width:"2.5rem" }}
-  // type="number"
   min="1"
-  value={editedFields[item.id]?.reaminingInvoiceUnit || item.reaminingInvoiceUnit}
-  onChange={(e) => handleUnitChange(item.id, e.target.value)}
-  onBlur={(e) => handleUnitChange(item.id, e.target.value)}
+  value={editedFields[item.id]?.RowInvoices || item.RowInvoices}
+  onChange={(e) => setRowInvoices(item.id, e.target.value)}
 />
              
                 </div>

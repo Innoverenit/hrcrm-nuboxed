@@ -102,7 +102,8 @@ function InvouiceSTable(props) {
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
                         <div className="md:w-[5rem]">Total Value</div>
                         <div className=" md:w-[7rem] ">{translatedMenuItems[4]}</div>
-                        <div className="md:w-[3.8rem]">{translatedMenuItems[5]}</div>
+                        <div className="md:w-[3.8rem]">Ship on</div>
+                        <div className="md:w-[3.8rem]">Track ID</div>
                     </div>
                     <div class="">
                         {/* <InfiniteScroll
