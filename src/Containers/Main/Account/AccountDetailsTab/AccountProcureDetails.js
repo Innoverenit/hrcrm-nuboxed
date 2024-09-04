@@ -301,7 +301,7 @@ const handleGenerateInvoice= async () => {
         procureOrderInvoiceId: "",
         procureOrderProductInvoiceId:"",
         orgId: props.orgId,
-        creditMemoList:creditMemo,
+        creditMemoList:CreditMemo,
       },
         {
           headers: {
