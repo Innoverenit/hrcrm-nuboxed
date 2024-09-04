@@ -2,6 +2,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {
+  getCategory,
+ 
+} from "../../Settings/Category/CategoryList/CategoryListAction";
+
 import { Button, Input, Select,Tooltip,Switch, Popconfirm } from "antd";
 import { getMaterialCurrency, createMaterialCurrency,materialPricetype
  } from "./SuppliesAction";
@@ -28,6 +33,13 @@ function PriceAddCard(props) {
     props.getMaterialCurrency(props.particularDiscountData.suppliesId);
     props.getSaleCurrency()
   }, []);
+
+  useEffect(() => {
+    props.getCategory(props.orgId); 
+   
+}, [])
+
+ 
   
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -72,6 +84,7 @@ function PriceAddCard(props) {
       suppliesPrice: '',
       suppliesPriceB2C: '',
       vat: '',
+      catagoryId:"",
 
 
     };
@@ -131,9 +144,10 @@ function PriceAddCard(props) {
         suppliesId: props.particularDiscountData.suppliesId,
         userId: props.userId,
         orgId: props.orgId,
+        SCategory:row.catagoryId
       };
       props.createMaterialCurrency(result)
-      setRows([{ currency: '', suppliesPrice: '', suppliesPriceB2C: '', vat: '' }]);
+      setRows([{ currency: '', suppliesPrice: '', suppliesPriceB2C: '', vat: '',catagoryId:"" }]);
   };
   const handleEditClick = (id) => {
     setEditsuppliesId(id);
@@ -218,7 +232,28 @@ function PriceAddCard(props) {
                   {/* Type */}  {translatedMenuItems[3]}
                   </div>
                 <div class="w-24">
-                
+                <div>
+                <div class="font-bold text-xs font-poppins text-black">
+                  {/* Currency */} {translatedMenuItems[1]}
+                  </div>
+                  <div class="font-bold text-xs font-poppins text-black">
+               Catagory
+                  </div>
+                <div class="w-24">
+                <Select
+                        classNames="w-32"
+                      value={row.catagoryId}
+                      onChange={(value) => handleChange(index, 'catagoryId',value)}
+                      >
+                        {props.categoryListData.map((s) => (
+                          <Option key={s.categoryId} value={s.categoryId}>
+                            {s.name}
+                          </Option>
+                        ))}
+                      </Select>
+
+                </div>
+              </div>
                        
                       </div>
                       </div>
@@ -238,6 +273,7 @@ function PriceAddCard(props) {
             <div className=" md:w-[7%]">  {translatedMenuItems[1]}</div>
             <div className=" md:w-[6.1rem]">  {translatedMenuItems[2]}(B2B)</div>
             <div className=" md:w-[4.2rem] ">  {translatedMenuItems[2]}(B2C)</div>
+            <div className=" md:w-[4.2rem] ">  Catagory name</div>
             <div className="md:w-[5.8rem]">  {translatedMenuItems[3]}</div>
             <div className="w-12"></div>         
             </div>
@@ -306,6 +342,11 @@ function PriceAddCard(props) {
                     </div>
                     )}
                   </div>
+                  <div className=" text-xs  font-poppins">
+                      <div> {item.SCategoryName}</div>
+                    </div>
+                    
+                  
                   <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                   <Popconfirm
         title="Are you sure you want to change status ?"
@@ -378,12 +419,13 @@ function PriceAddCard(props) {
 
 };
 
-const mapStateToProps = ({ product, auth,supplies }) => ({
+const mapStateToProps = ({ product,categoryList, auth,supplies }) => ({
   materialCurrency: supplies.materialCurrency,
   fetchingMaterialCurrency: supplies.fetchingMaterialCurrency,
   addDiscountModal: product.addDiscountModal,
   addProductOfferModal: product.addProductOfferModal,
   currencies: auth.currencies,
+  categoryListData: categoryList.categoryListData,
   userId: auth.userDetails.userId,
   fetchingSaleCurrency:auth.fetchingSaleCurrency,
   saleCurrencies:auth.saleCurrencies,
@@ -396,9 +438,11 @@ const mapDispatchToProps = (dispatch) =>
       getMaterialCurrency,
       createMaterialCurrency,
       materialPricetype,
+      getCategory,
     //   handleOfferModal,
     //   getCurrency,
       getSaleCurrency,
+     
     //   removeProductPrice
     },
     dispatch
