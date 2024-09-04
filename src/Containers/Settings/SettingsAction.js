@@ -6427,13 +6427,13 @@ export const getPaymentFinance = () => (dispatch) => {
 
 
 
-export const addPaymentData = (paymentModeId,liveInd,cb) => (dispatch) => {
+export const addPaymentData = (data,cb) => (dispatch) => {
     
   dispatch({
     type: types.ADD_PAYMENT_DATA_REQUEST,
   });
   axios
-    .put(`${base_url}/paymentMode/active_deActive/${paymentModeId}/${liveInd}`, {}, {
+    .post(`${base_url}/paymentMode`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

@@ -29,6 +29,25 @@ const materialNewOptions = [
   "Delete",
  
 ];
+const inventoryNewOptions = [
+  "Access",
+  "Create",
+  "Update",
+  "Delete",
+  "Full List",
+  "Material"
+ 
+];
+
+const supplierNewOptions = [
+  "Access",
+  "Create",
+  "Update",
+  "Delete",
+  "Full List",
+  "Inventory"
+ 
+];
 const userOptions = ["Access", "Create", "Update", "Delete", "Access Plus"];
 const defaultCheckedList = ["Full List"];
 const melCheckedList = ["Access", "Full List"];
@@ -49,6 +68,410 @@ const eventCheckedList = ["Access"];
 const plannerCheckedList = ["Access"];
 
 const AccessForm = (props) => {
+  const [checkedCustomerList, setCheckedCustomerList] = useState(
+    props.departmentAcces.customer
+  );
+  const [indeterminateCustomer, setIndeterminateCustomer] = useState(true);
+  const [checkAllCustomer, setCheckAllCustomer] = useState(false);
+
+  const [checkedOpportunityList, setCheckedOpportunityList] = useState(
+    props.departmentAcces.opportunity
+  );
+  const [indeterminateOpportunity, setIndeterminateOpportunity] =
+    useState(true);
+  const [checkAllOpportunity, setCheckAllOpportunity] = useState(false);
+
+
+  const [checkedTalentList, setCheckedTalentList] = useState(
+    props.departmentAcces.talent
+  );
+  const [indeterminateTalent, setIndeterminateTalent] = useState(true);
+  const [checkAllTalent, setCheckAllTalent] = useState(false);
+
+
+  const [checkedContactList, setCheckedContactList] = useState(
+    props.departmentAcces.contact
+  );
+  const [indeterminateContact, setIndeterminateContact] = useState(true);
+  const [checkAllContact, setCheckAllContact] = useState(false);
+
+
+  const [checkedRequirementList, setCheckedRequirementList] = useState(
+    props.departmentAcces.requirement
+  );
+  const [indeterminateRequirement, setIndeterminateRequirement] =
+    useState(true);
+  const [checkAllRequirement, setCheckAllRequirement] = useState(false);
+
+  const [checkedPublishList, setCheckedPublishList] = useState(
+    props.departmentAcces.publish
+  );
+  const [indeterminatePublish, setIndeterminatePublish] = useState(true);
+  const [checkAllPublish, setCheckAllPublish] = useState(false);
+
+  const [checkedPulseList, setCheckedPulseList] = useState(
+    props.departmentAcces.pulse
+  );
+  const [indeterminatePulse, setIndeterminatePulse] = useState(true);
+  const [checkAllPulse, setCheckAllPulse] = useState(false);
+
+  const [checkedLeadsList, setCheckedLeadsList] = useState(
+    props.departmentAcces.leads
+  );
+  const [indeterminateLeads, setIndeterminateLeads] = useState(true);
+  const [checkAllLeads, setCheckAllLeads] = useState(false);
+
+
+  const [checkedCustomerCommercialsList, setCheckedCustomerCommercialsList] =
+  useState(props.departmentAcces.comercial);
+const [
+  indeterminateCustomerCommercials,
+  setIndeterminateCustomerCommercials,
+] = useState(true);
+const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
+  useState(false);
+
+
+  const [checkedProgramList, setCheckedProgramList] = useState(
+    props.departmentAcces.program
+  );
+  const [indeterminateProgram, setIndeterminateProgram] = useState(true);
+  const [checkAllProgram, setCheckAllProgram] = useState(false);
+
+
+  const [checkedCourseList, setCheckedCourseList] = useState(
+    props.departmentAcces.course
+  );
+  const [indeterminateCourse, setIndeterminateCourse] = useState(true);
+  const [checkAllCourse, setCheckAllCourse] = useState(false);
+
+  const [checkedHoursList, setCheckedHoursList] = useState(
+    props.departmentAcces.hours
+  );
+  const [indeterminateHours, setIndeterminateHours] = useState(true);
+  const [checkAllHours, setCheckAllHours] = useState(false);
+  const [checkedLocationList, setCheckedLocationList] = useState(
+    props.departmentAcces.location
+  );
+  const [indeterminateLocation, setIndeterminateLocation] = useState(true);
+  const [checkAllLocation, setCheckAllLocation] = useState(false);
+
+  const [checkedMileageList, setCheckedMileageList] = useState(
+    props.departmentAcces.mileage
+  );
+  const [indeterminateMileage, setIndeterminateMileage] = useState(true);
+  const [checkAllMileage, setCheckAllMileage] = useState(false);
+
+  const [checkedExpenseList, setCheckedExpenseList] = useState(
+    props.departmentAcces.expense
+  );
+  const [indeterminateExpense, setIndeterminateExpense] = useState(true);
+  const [checkAllExpense, setCheckAllExpense] = useState(false);
+
+  const [checkedLeavesList, setCheckedLeavesList] = useState(
+    props.departmentAcces.leave
+  );
+  const [indeterminateLeaves, setIndeterminateLeaves] = useState(true);
+  const [checkAllLeaves, setCheckAllLeaves] = useState(false);
+
+  const [checkedUserList, setCheckedUserList] = useState(
+    props.departmentAcces.user
+  );
+  const [indeterminateUser, setIndeterminateUser] = useState(true);
+  const [checkAllUser, setCheckAllUser] = useState(false);
+
+  const [checkedOrderList, setCheckedOrderList] = useState(
+    props.departmentAcces.order
+  );
+  const [indeterminateOrder, setIndeterminateOrder] = useState(true);
+  const [checkAllOrder, setCheckAllOrder] = useState(false);
+
+
+  const [checkedMaterialsList, setCheckedMaterialsList] = useState(
+    ""
+   );
+   const [indeterminateMaterials, setIndeterminateMaterials] = useState(true);
+   const [checkAllMaterials, setCheckAllMaterials] = useState(false);
+
+
+   const [checkedSupplierList, setCheckedSupplierList] = useState(
+    props.departmentAcces.supplier
+  );
+  const [indeterminateSupplier, setIndeterminateSupplier] = useState(true);
+  const [checkAllSupplier, setCheckAllSupplier] = useState(false);
+
+  const [checkedQualityList, setCheckedQualityList] = useState(
+    props.departmentAcces.quality
+  );
+  const [indeterminateQuality, setIndeterminateQuality] = useState(true);
+  const [checkAllQuality, setCheckAllQuality] = useState(false);
+
+  const [checkedClubList, setCheckedClubList] = useState(
+    props.departmentAcces.club
+  );
+  const [indeterminateClub, setIndeterminateClub] = useState(true);
+  const [checkAllClub, setCheckAllClub] = useState(false);
+
+
+  const [checkedInventoryList, setCheckedInventoryList] = useState(
+    props.departmentAcces.inventory
+  );
+  const [indeterminateInventory, setIndeterminateInventory] = useState(true);
+  const [checkAllInventory, setCheckAllInventory] = useState(false);
+
+
+  const [checkedRefurbishList, setCheckedRefurbishList] = useState(
+    props.departmentAcces.refurbish
+  );
+  const [indeterminateRefurbish, setIndeterminateRefurbish] = useState(true);
+  const [checkAllRefurbish, setCheckAllRefurbish] = useState(false);
+
+
+  const [checkedAccountList, setCheckedAccountList] = useState(
+    props.departmentAcces.account
+  );
+  const [indeterminateAccount, setIndeterminateAccount] = useState(true);
+  const [checkAllAccount, setCheckAllAccount] = useState(false);
+
+
+
+  const [checkedDashboardList, setCheckedDashboardList] = useState(
+    props.departmentAcces.dashboard
+  );
+  const [indeterminateDashboard, setIndeterminateDashboard] = useState(true);
+  const [checkAllDashboard, setCheckAllDashboard] = useState(false);
+
+
+  const [checkedReportList, setCheckedReportList] = useState(
+    props.departmentAcces.report
+  );
+  const [indeterminateReport, setIndeterminateReport] = useState(true);
+  const [checkAllReport, setCheckAllReport] = useState(false);
+
+
+  const [checkedSettingsList, setCheckedSettingsList] = useState(
+    props.departmentAcces.settings
+  );
+  const [indeterminateSettings, setIndeterminateSettings] = useState(true);
+  const [checkAllSettings, setCheckAllSettings] = useState(false);
+
+
+  const [checkedScannerList, setCheckedScannerList] = useState(
+    props.departmentAcces.scanner
+  );
+  const [indeterminateScanner, setIndeterminateScanner] = useState(true);
+  const [checkAllScanner, setCheckAllScanner] = useState(false);
+
+
+  const [checkedBasicList, setCheckedBasicList] = useState(
+    props.departmentAcces.basic
+  );
+  const [indeterminateBasic, setIndeterminateBasic] = useState(true);
+  const [checkAllBasic, setCheckAllBasic] = useState(false);
+
+
+  const [checkedCalenderList, setCheckedCalenderList] = useState(
+    props.departmentAcces.calender
+  );
+  const [indeterminateCalender, setIndeterminateCalender] = useState(true);
+  const [checkAllCalender, setCheckAllCalender] = useState(false);
+
+  const [checkedHolidayList, setCheckedHolidayList] = useState(
+    props.departmentAcces.holiday
+  );
+  const [indeterminateHoliday, setIndeterminateHoliday] = useState(true);
+  const [checkAllHoliday, setCheckAllHoliday] = useState(false);
+
+
+  const [checkedTasksList, setCheckedTasksList] = useState(
+    props.departmentAcces.task
+  );
+  const [indeterminateTasks, setIndeterminateTasks] = useState(true);
+  const [checkAllTasks, setCheckAllTasks] = useState(false);
+
+  const [checkedJunkList, setCheckedJunkList] = useState(
+    props.departmentAcces.junk
+  );
+  const [indeterminateJunk, setIndeterminateJunk] = useState(true);
+  const [checkAllJunk, setCheckAllJunk] = useState(false);
+
+
+
+  const [checkedInvestorList, setCheckedInvestorList] = useState(
+    props.departmentAcces.investor
+  );
+  const [indeterminateInvestor, setIndeterminateInvestor] = useState(true);
+  const [checkAllInvestor, setCheckAllInvestor] = useState(false);
+
+
+  const [checkedInvestorContactList, setCheckedInvestorContactList] = useState(
+    props.departmentAcces.investorContact
+  );
+  const [indeterminateInvestorContact, setIndeterminateInvestorContact] =
+    useState(true);
+  const [checkAllInvestorContact, setCheckAllInvestorContact] = useState(false);
+
+
+  const [checkedDealList, setCheckedDealList] = useState(
+    props.departmentAcces.deal
+  );
+  const [indeterminateDeal, setIndeterminateDeal] = useState(true);
+  const [checkAllDeal, setCheckAllDeal] = useState(false);
+
+
+  const [checkedDataRoomList, setCheckedDataRoomList] = useState(
+    props.departmentAcces.dataRoom
+  );
+  const [indeterminateDataRoom, setIndeterminateDataRoom] = useState(true);
+  const [checkAllDataRoom, setCheckAllDataRoom] = useState(false);
+
+
+  const [checkedPromotionsList, setCheckedPromotionsList] = useState(
+    props.departmentAcces.promotion
+  );
+  const [indeterminatePromotions, setIndeterminatePromotions] = useState(true);
+  const [checkAllPromotions, setCheckAllPromotions] = useState(false);
+
+
+  const [checkedPitchList, setCheckedPitchList] = useState(
+    props.departmentAcces.pitch
+  );
+  const [indeterminatePitch, setIndeterminatePitch] = useState(true);
+  const [checkAllPitch, setCheckAllPitch] = useState(false);
+
+
+  const [checkedRepositoryList, setCheckedRepositoryList] = useState(
+    props.departmentAcces.repository
+  );
+  const [indeterminateRepository, setIndeterminateRepository] = useState(true);
+  const [checkAllRepository, setCheckAllRepository] = useState(false);
+
+  const [checkedShipperList, setCheckedShipperList] = useState(
+    props.departmentAcces.shipper
+  );
+  const [indeterminateShipper, setIndeterminateShipper] = useState(true);
+  const [checkAllShipper, setCheckAllShipper] = useState(false);
+
+
+  const [checkedProcurementList, setCheckedProcurementList] = useState(
+    props.departmentAcces.procurement
+  );
+  const [indeterminateProcurement, setIndeterminateProcurement] =
+    useState(true);
+  const [checkAllProcurement, setCheckAllProcurement] = useState(false);
+
+
+
+  const [checkedProductionList, setCheckedProductionList] = useState(
+    props.departmentAcces.production
+  );
+  const [indeterminateProduction, setIndeterminateProduction] = useState(true);
+  const [checkAllProduction, setCheckAllProduction] = useState(false);
+
+
+  const [checkedSubscriptionList, setCheckedSubscriptionList] = useState(
+    props.departmentAcces.subscription
+  );
+  const [indeterminateSubscription, setIndeterminateSubscription] =
+    useState(true);
+  const [checkAllSubscription, setCheckAllSubscription] = useState(false);
+
+
+
+  const [checkedPlantList, setCheckedPlantList] = useState(
+    props.departmentAcces.plant
+  );
+  const [indeterminatePlant, setIndeterminatePlant] = useState(true);
+  const [checkAllPlant, setCheckAllPlant] = useState(false);
+
+
+  const [checkedTeamsList, setCheckedTeamsList] = useState(
+    props.departmentAcces.teams
+  );
+  const [indeterminateTeams, setIndeterminateTeams] = useState(true);
+  const [checkAllTeams, setCheckAllTeams] = useState(false);
+
+
+  const [checkedPaymentsList, setCheckedPaymentsList] = useState(
+    props.departmentAcces.payment
+  );
+  const [indeterminatePayments, setIndeterminatePayments] = useState(true);
+  const [checkAllPayments, setCheckAllPayments] = useState(false);
+
+
+  const [checkedMaterialList, setCheckedMaterialList] = useState(
+    []
+  );
+  const [indeterminateMaterial, setIndeterminateMaterial] = useState(true);
+  const [checkAllMaterial, setCheckAllMaterial] = useState(false);
+
+
+  const [checkedCatalougeList, setCheckedCatalougeList] = useState(
+    props.departmentAcces.catalouge
+  );
+  const [indeterminateCatalouge, setIndeterminateCatalouge] = useState(true);
+  const [checkAllCatalouge, setCheckAllCatalouge] = useState(false);
+
+
+  const [checkedCollectionList, setCheckedCollectionList] = useState(
+    props.departmentAcces.collection
+  );
+  const [indeterminateCollection, setIndeterminateCollection] = useState(true);
+  const [checkAllCollection, setCheckAllCollection] = useState(false);
+
+  const [checkedPlanner, setCheckedPlanner] = useState(props.departmentAcces.planner);
+  const [indeterminatePlanner, setIndeterminatePlanner] = useState(true);
+  const [checkAllPlanner, setCheckAllPlanner] = useState(false);
+
+  const [checkedEvents, setCheckedEvents] = useState(
+    props.departmentAcces.event
+  );
+  const [indeterminateEvents, setIndeterminateEvents] = useState(true);
+  const [checkAllEvents, setCheckAllEvents] = useState(false);
+
+  const [checkedCalls, setCheckedCalls] = useState(props.departmentAcces.call);
+  const [indeterminateCalls, setIndeterminateCalls] = useState(true);
+  const [checkAllCalls, setCheckAllCalls] = useState(false);
+
+  const [checkedLanguage, setCheckedLanguage] = useState(
+    props.departmentAcces.language
+  );
+  const [indeterminatLanguage, setIndeterminateLanguage] = useState(true);
+  const [checkAllLanguage, setCheckAllLanguage] = useState(false);
+
+
+  const [checkedTopicList, setCheckedTopicList] = useState(
+    props.departmentAcces.topic
+  );
+  const [indeterminateTopic, setIndeterminateTopic] = useState(true);
+  const [checkAllTopic, setCheckAllTopic] = useState(false);
+
+  const [checkedAccessmentList, setCheckedAccessmentList] = useState(
+    props.departmentAcces.assessment
+  );
+  const [indeterminateAccessment, setIndeterminateAccessment] = useState(true);
+  const [checkAllAccessment, setCheckAllAccessment] = useState(false);
+
+
+  const [checkedCatalogList, setCheckedCatalogList] = useState(
+    props.departmentAcces.catalog
+  );
+  const [indeterminateCatalog, setIndeterminateCatalog] = useState(true);
+  const [checkAllCatalog, setCheckAllCatalog] = useState(false);
+
+
+
+
+
+  //Vendor
+  const [checkedVendorList, setCheckedVendorList] = useState(
+    props.departmentAcces.vendor
+  );
+  const [indeterminateVendor, setIndeterminateVendor] = useState(true);
+  const [checkAllVendor, setCheckAllVendor] = useState(false);
+
+
+
   useEffect(() => {
     console.log(props.roleTypeId);
     props.getDepartmentAccess(props.roleTypeId);
@@ -108,7 +531,7 @@ const AccessForm = (props) => {
     setCheckedReportList(props.departmentAcces.report);
     setCheckedDataRoomList(props.departmentAcces.dataRoom);
     setCheckedScannerList(props.departmentAcces.scanner);
-    setCheckedMaterialList(props.departmentAcces.material);
+    //setCheckedMaterialList(props.departmentAcces.material);
     setCheckedCatalougeList(props.departmentAcces.catalouge);
     setCheckedCatalougeList(props.departmentAcces.promotion);
     setCheckedLanguage(props.departmentAcces.language);
@@ -179,12 +602,6 @@ const AccessForm = (props) => {
     props.departmentAcces.event,
     props.departmentAcces.planner,
   ]);
-  //Vendor
-  const [checkedVendorList, setCheckedVendorList] = useState(
-    props.departmentAcces.vendor
-  );
-  const [indeterminateVendor, setIndeterminateVendor] = useState(true);
-  const [checkAllVendor, setCheckAllVendor] = useState(false);
 
   const onVendorChange = (list) => {
     setCheckedVendorList(list);
@@ -199,11 +616,7 @@ const AccessForm = (props) => {
   };
 
   //Customer
-  const [checkedCustomerList, setCheckedCustomerList] = useState(
-    props.departmentAcces.customer
-  );
-  const [indeterminateCustomer, setIndeterminateCustomer] = useState(true);
-  const [checkAllCustomer, setCheckAllCustomer] = useState(false);
+
 
   const onCustomerChange = (list) => {
     setCheckedCustomerList(list);
@@ -220,12 +633,7 @@ const AccessForm = (props) => {
   };
 
   //Opportunity
-  const [checkedOpportunityList, setCheckedOpportunityList] = useState(
-    props.departmentAcces.opportunity
-  );
-  const [indeterminateOpportunity, setIndeterminateOpportunity] =
-    useState(true);
-  const [checkAllOpportunity, setCheckAllOpportunity] = useState(false);
+ 
 
   const onOpportunityChange = (list) => {
     setCheckedOpportunityList(list);
@@ -242,11 +650,7 @@ const AccessForm = (props) => {
   };
 
   //Talent
-  const [checkedTalentList, setCheckedTalentList] = useState(
-    props.departmentAcces.talent
-  );
-  const [indeterminateTalent, setIndeterminateTalent] = useState(true);
-  const [checkAllTalent, setCheckAllTalent] = useState(false);
+ 
 
   const onTalentChange = (list) => {
     setCheckedTalentList(list);
@@ -262,11 +666,7 @@ const AccessForm = (props) => {
 
   // Contact
 
-  const [checkedContactList, setCheckedContactList] = useState(
-    props.departmentAcces.contact
-  );
-  const [indeterminateContact, setIndeterminateContact] = useState(true);
-  const [checkAllContact, setCheckAllContact] = useState(false);
+  
 
   const onContactChange = (list) => {
     setCheckedContactList(list);
@@ -282,12 +682,7 @@ const AccessForm = (props) => {
 
   // Requirement
 
-  const [checkedRequirementList, setCheckedRequirementList] = useState(
-    props.departmentAcces.requirement
-  );
-  const [indeterminateRequirement, setIndeterminateRequirement] =
-    useState(true);
-  const [checkAllRequirement, setCheckAllRequirement] = useState(false);
+  
 
   const onRequirementChange = (list) => {
     setCheckedRequirementList(list);
@@ -305,11 +700,7 @@ const AccessForm = (props) => {
 
   // Publish
 
-  const [checkedPublishList, setCheckedPublishList] = useState(
-    props.departmentAcces.publish
-  );
-  const [indeterminatePublish, setIndeterminatePublish] = useState(true);
-  const [checkAllPublish, setCheckAllPublish] = useState(false);
+  
 
   const onPublishChange = (list) => {
     setCheckedPublishList(list);
@@ -325,11 +716,7 @@ const AccessForm = (props) => {
 
   // Pulse
 
-  const [checkedPulseList, setCheckedPulseList] = useState(
-    props.departmentAcces.pulse
-  );
-  const [indeterminatePulse, setIndeterminatePulse] = useState(true);
-  const [checkAllPulse, setCheckAllPulse] = useState(false);
+ 
 
   const onPulseChange = (list) => {
     setCheckedPulseList(list);
@@ -344,11 +731,7 @@ const AccessForm = (props) => {
   };
 
   //Leads
-  const [checkedLeadsList, setCheckedLeadsList] = useState(
-    props.departmentAcces.leads
-  );
-  const [indeterminateLeads, setIndeterminateLeads] = useState(true);
-  const [checkAllLeads, setCheckAllLeads] = useState(false);
+ 
 
   const onLeadsChange = (list) => {
     setCheckedLeadsList(list);
@@ -363,14 +746,7 @@ const AccessForm = (props) => {
   };
   // Customer Commercials
 
-  const [checkedCustomerCommercialsList, setCheckedCustomerCommercialsList] =
-    useState(props.departmentAcces.comercial);
-  const [
-    indeterminateCustomerCommercials,
-    setIndeterminateCustomerCommercials,
-  ] = useState(true);
-  const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
-    useState(false);
+ 
 
   const onCustomerCommercialsChange = (list) => {
     setCheckedCustomerCommercialsList(list);
@@ -386,11 +762,7 @@ const AccessForm = (props) => {
   };
   // Program
 
-  const [checkedProgramList, setCheckedProgramList] = useState(
-    props.departmentAcces.program
-  );
-  const [indeterminateProgram, setIndeterminateProgram] = useState(true);
-  const [checkAllProgram, setCheckAllProgram] = useState(false);
+ 
 
   const onProgramChange = (list) => {
     setCheckedProgramList(list);
@@ -423,11 +795,7 @@ const AccessForm = (props) => {
   };
   // Course
 
-  const [checkedCourseList, setCheckedCourseList] = useState(
-    props.departmentAcces.course
-  );
-  const [indeterminateCourse, setIndeterminateCourse] = useState(true);
-  const [checkAllCourse, setCheckAllCourse] = useState(false);
+  
 
   const onCourseChange = (list) => {
     setCheckedCourseList(list);
@@ -441,11 +809,7 @@ const AccessForm = (props) => {
     setCheckAllCourse(e.target.checked);
   };
   // Hours
-  const [checkedHoursList, setCheckedHoursList] = useState(
-    props.departmentAcces.hours
-  );
-  const [indeterminateHours, setIndeterminateHours] = useState(true);
-  const [checkAllHours, setCheckAllHours] = useState(false);
+  
 
   const onHoursChange = (list) => {
     setCheckedHoursList(list);
@@ -460,11 +824,7 @@ const AccessForm = (props) => {
   };
   // Location
 
-  const [checkedLocationList, setCheckedLocationList] = useState(
-    props.departmentAcces.location
-  );
-  const [indeterminateLocation, setIndeterminateLocation] = useState(true);
-  const [checkAllLocation, setCheckAllLocation] = useState(false);
+ 
 
   const onLocationChange = (list) => {
     setCheckedLocationList(list);
@@ -480,11 +840,7 @@ const AccessForm = (props) => {
     setCheckAllLocation(e.target.checked);
   };
   // Mileage
-  const [checkedMileageList, setCheckedMileageList] = useState(
-    props.departmentAcces.mileage
-  );
-  const [indeterminateMileage, setIndeterminateMileage] = useState(true);
-  const [checkAllMileage, setCheckAllMileage] = useState(false);
+  
 
   const onMileageChange = (list) => {
     setCheckedMileageList(list);
@@ -500,11 +856,7 @@ const AccessForm = (props) => {
     setCheckAllMileage(e.target.checked);
   };
   // Expense
-  const [checkedExpenseList, setCheckedExpenseList] = useState(
-    props.departmentAcces.expense
-  );
-  const [indeterminateExpense, setIndeterminateExpense] = useState(true);
-  const [checkAllExpense, setCheckAllExpense] = useState(false);
+ 
 
   const onExpenseChange = (list) => {
     setCheckedExpenseList(list);
@@ -520,11 +872,7 @@ const AccessForm = (props) => {
     setCheckAllExpense(e.target.checked);
   };
   // Leaves
-  const [checkedLeavesList, setCheckedLeavesList] = useState(
-    props.departmentAcces.leave
-  );
-  const [indeterminateLeaves, setIndeterminateLeaves] = useState(true);
-  const [checkAllLeaves, setCheckAllLeaves] = useState(false);
+  
 
   const onLeavesChange = (list) => {
     setCheckedLeavesList(list);
@@ -540,11 +888,7 @@ const AccessForm = (props) => {
     setCheckAllLeaves(e.target.checked);
   };
   // User
-  const [checkedUserList, setCheckedUserList] = useState(
-    props.departmentAcces.user
-  );
-  const [indeterminateUser, setIndeterminateUser] = useState(true);
-  const [checkAllUser, setCheckAllUser] = useState(false);
+ 
 
   const onUserChange = (list) => {
     setCheckedUserList(list);
@@ -558,11 +902,7 @@ const AccessForm = (props) => {
     setCheckAllUser(e.target.checked);
   };
   // Order
-  const [checkedOrderList, setCheckedOrderList] = useState(
-    props.departmentAcces.order
-  );
-  const [indeterminateOrder, setIndeterminateOrder] = useState(true);
-  const [checkAllOrder, setCheckAllOrder] = useState(false);
+ 
 
   const onOrderChange = (list) => {
     setCheckedOrderList(list);
@@ -576,53 +916,44 @@ const AccessForm = (props) => {
     setCheckAllOrder(e.target.checked);
   };
   // Materials
-  const [checkedMaterialsList, setCheckedMaterialsList] = useState(
-    props.departmentAcces.material
-  );
-  const [indeterminateMaterials, setIndeterminateMaterials] = useState(true);
-  const [checkAllMaterials, setCheckAllMaterials] = useState(false);
-
-  const onMaterialsChange = (list) => {
-    console.log(list)
-    setCheckedMaterialsList(list);
-    setIndeterminateMaterials(
-      !!list.length && list.length < plainOptions.length
-    );
-    setCheckAllMaterials(list.length === plainOptions.length);
-  };
-
-  const onCheckAllMaterialsChange = (e) => {
-    setCheckedMaterialsList(e.target.checked ? plainOptions : []);
-    setIndeterminateMaterials(false);
-    setCheckAllMaterials(e.target.checked);
-  };
+  // const [checkedMaterialsList, setCheckedMaterialsList] = useState(
+  //   props.departmentAcces.material
+  // );
+ 
+ 
+   const onMaterialsChange = (list) => {
+     setCheckedMaterialsList(list);
+     setIndeterminateMaterials(
+       !!list.length && list.length < materialNewOptions.length
+     );
+     setCheckAllMaterials(list.length === materialNewOptions.length);
+   };
+ 
+   const onCheckAllMaterialsChange = (e) => {
+     setCheckedMaterialsList(e.target.checked ? materialNewOptions : []);
+     setIndeterminateMaterials(false);
+     setCheckAllMaterials(e.target.checked);
+   };
+ 
   // Supplier
-  const [checkedSupplierList, setCheckedSupplierList] = useState(
-    props.departmentAcces.supplier
-  );
-  const [indeterminateSupplier, setIndeterminateSupplier] = useState(true);
-  const [checkAllSupplier, setCheckAllSupplier] = useState(false);
+  
 
   const onSupplierChange = (list) => {
     setCheckedSupplierList(list);
     setIndeterminateSupplier(
-      !!list.length && list.length < plainOptions.length
+      !!list.length && list.length < supplierNewOptions.length
     );
-    setCheckAllSupplier(list.length === plainOptions.length);
+    setCheckAllSupplier(list.length === supplierNewOptions.length);
   };
 
   const onCheckAllSupplierChange = (e) => {
-    setCheckedSupplierList(e.target.checked ? plainOptions : []);
+    setCheckedSupplierList(e.target.checked ? supplierNewOptions : []);
     setIndeterminateSupplier(false);
     setCheckAllSupplier(e.target.checked);
   };
   // Quality
 
-  const [checkedQualityList, setCheckedQualityList] = useState(
-    props.departmentAcces.quality
-  );
-  const [indeterminateQuality, setIndeterminateQuality] = useState(true);
-  const [checkAllQuality, setCheckAllQuality] = useState(false);
+  
 
   const onQualityChange = (list) => {
     setCheckedQualityList(list);
@@ -636,11 +967,7 @@ const AccessForm = (props) => {
     setCheckAllQuality(e.target.checked);
   };
   // Club
-  const [checkedClubList, setCheckedClubList] = useState(
-    props.departmentAcces.club
-  );
-  const [indeterminateClub, setIndeterminateClub] = useState(true);
-  const [checkAllClub, setCheckAllClub] = useState(false);
+  
 
   const onClubChange = (list) => {
     setCheckedClubList(list);
@@ -654,31 +981,23 @@ const AccessForm = (props) => {
     setCheckAllClub(e.target.checked);
   };
   // Inventory
-  const [checkedInventoryList, setCheckedInventoryList] = useState(
-    props.departmentAcces.inventory
-  );
-  const [indeterminateInventory, setIndeterminateInventory] = useState(true);
-  const [checkAllInventory, setCheckAllInventory] = useState(false);
+  
 
   const onInventoryChange = (list) => {
     setCheckedInventoryList(list);
     setIndeterminateInventory(
-      !!list.length && list.length < plainOptions.length
+      !!list.length && list.length < inventoryNewOptions.length
     );
-    setCheckAllInventory(list.length === plainOptions.length);
+    setCheckAllInventory(list.length === inventoryNewOptions.length);
   };
 
   const onCheckAllInventoryChange = (e) => {
-    setCheckedInventoryList(e.target.checked ? plainOptions : []);
+    setCheckedInventoryList(e.target.checked ? inventoryNewOptions : []);
     setIndeterminateInventory(false);
     setCheckAllInventory(e.target.checked);
   };
   // Refurbish
-  const [checkedRefurbishList, setCheckedRefurbishList] = useState(
-    props.departmentAcces.refurbish
-  );
-  const [indeterminateRefurbish, setIndeterminateRefurbish] = useState(true);
-  const [checkAllRefurbish, setCheckAllRefurbish] = useState(false);
+ 
 
   const onRefurbishChange = (list) => {
     setCheckedRefurbishList(list);
@@ -694,11 +1013,7 @@ const AccessForm = (props) => {
     setCheckAllRefurbish(e.target.checked);
   };
   // Account/Customer
-  const [checkedAccountList, setCheckedAccountList] = useState(
-    props.departmentAcces.account
-  );
-  const [indeterminateAccount, setIndeterminateAccount] = useState(true);
-  const [checkAllAccount, setCheckAllAccount] = useState(false);
+ 
 
   const onAccountChange = (list) => {
     setCheckedAccountList(list);
@@ -714,11 +1029,7 @@ const AccessForm = (props) => {
     setCheckAllAccount(e.target.checked);
   };
   // Dashboard
-  const [checkedDashboardList, setCheckedDashboardList] = useState(
-    props.departmentAcces.dashboard
-  );
-  const [indeterminateDashboard, setIndeterminateDashboard] = useState(true);
-  const [checkAllDashboard, setCheckAllDashboard] = useState(false);
+ 
 
   const onDashboardChange = (list) => {
     setCheckedDashboardList(list);
@@ -734,11 +1045,7 @@ const AccessForm = (props) => {
     setCheckAllDashboard(e.target.checked);
   };
   // Reports
-  const [checkedReportList, setCheckedReportList] = useState(
-    props.departmentAcces.report
-  );
-  const [indeterminateReport, setIndeterminateReport] = useState(true);
-  const [checkAllReport, setCheckAllReport] = useState(false);
+ 
 
   const onReportChange = (list) => {
     setCheckedReportList(list);
@@ -754,11 +1061,7 @@ const AccessForm = (props) => {
     setCheckAllReport(e.target.checked);
   };
   // Settings
-  const [checkedSettingsList, setCheckedSettingsList] = useState(
-    props.departmentAcces.settings
-  );
-  const [indeterminateSettings, setIndeterminateSettings] = useState(true);
-  const [checkAllSettings, setCheckAllSettings] = useState(false);
+  
 
   const onSettingsChange = (list) => {
     setCheckedSettingsList(list);
@@ -774,11 +1077,7 @@ const AccessForm = (props) => {
     setCheckAllSettings(e.target.checked);
   };
   // Scanner
-  const [checkedScannerList, setCheckedScannerList] = useState(
-    props.departmentAcces.scanner
-  );
-  const [indeterminateScanner, setIndeterminateScanner] = useState(true);
-  const [checkAllScanner, setCheckAllScanner] = useState(false);
+ 
 
   const onScannerChange = (list) => {
     setCheckedScannerList(list);
@@ -794,11 +1093,7 @@ const AccessForm = (props) => {
     setCheckAllScanner(e.target.checked);
   };
   // Basic
-  const [checkedBasicList, setCheckedBasicList] = useState(
-    props.departmentAcces.basic
-  );
-  const [indeterminateBasic, setIndeterminateBasic] = useState(true);
-  const [checkAllBasic, setCheckAllBasic] = useState(false);
+  
 
   const onBasicChange = (list) => {
     setCheckedBasicList(list);
@@ -814,11 +1109,7 @@ const AccessForm = (props) => {
     setCheckAllBasic(e.target.checked);
   };
   // Clender
-  const [checkedCalenderList, setCheckedCalenderList] = useState(
-    props.departmentAcces.calender
-  );
-  const [indeterminateCalender, setIndeterminateCalender] = useState(true);
-  const [checkAllCalender, setCheckAllCalender] = useState(false);
+  
 
   const onCalenderChange = (list) => {
     setCheckedCalenderList(list);
@@ -834,11 +1125,7 @@ const AccessForm = (props) => {
     setCheckAllCalender(e.target.checked);
   };
   // Holiday
-  const [checkedHolidayList, setCheckedHolidayList] = useState(
-    props.departmentAcces.holiday
-  );
-  const [indeterminateHoliday, setIndeterminateHoliday] = useState(true);
-  const [checkAllHoliday, setCheckAllHoliday] = useState(false);
+ 
 
   const onHolidayChange = (list) => {
     setCheckedHolidayList(list);
@@ -854,12 +1141,7 @@ const AccessForm = (props) => {
     setCheckAllHoliday(e.target.checked);
   };
   // Tasks
-  const [checkedTasksList, setCheckedTasksList] = useState(
-    props.departmentAcces.task
-  );
-  const [indeterminateTasks, setIndeterminateTasks] = useState(true);
-  const [checkAllTasks, setCheckAllTasks] = useState(false);
-
+  
   const onTasksChange = (list) => {
     setCheckedTasksList(list);
     setIndeterminateTasks(
@@ -874,12 +1156,7 @@ const AccessForm = (props) => {
     setCheckAllTasks(e.target.checked);
   };
   // Junk
-  const [checkedJunkList, setCheckedJunkList] = useState(
-    props.departmentAcces.junk
-  );
-  const [indeterminateJunk, setIndeterminateJunk] = useState(true);
-  const [checkAllJunk, setCheckAllJunk] = useState(false);
-
+  
   const onJunkChange = (list) => {
     setCheckedJunkList(list);
     setIndeterminateJunk(!!list.length && list.length < junkCheckedList.length);
@@ -892,11 +1169,7 @@ const AccessForm = (props) => {
     setCheckAllJunk(e.target.checked);
   };
   // Investor
-  const [checkedInvestorList, setCheckedInvestorList] = useState(
-    props.departmentAcces.investor
-  );
-  const [indeterminateInvestor, setIndeterminateInvestor] = useState(true);
-  const [checkAllInvestor, setCheckAllInvestor] = useState(false);
+  
 
   const onInvestorChange = (list) => {
     setCheckedInvestorList(list);
@@ -912,12 +1185,7 @@ const AccessForm = (props) => {
     setCheckAllInvestor(e.target.checked);
   };
   //Investor Contact
-  const [checkedInvestorContactList, setCheckedInvestorContactList] = useState(
-    props.departmentAcces.investorContact
-  );
-  const [indeterminateInvestorContact, setIndeterminateInvestorContact] =
-    useState(true);
-  const [checkAllInvestorContact, setCheckAllInvestorContact] = useState(false);
+ 
 
   const onInvestorContactChange = (list) => {
     setCheckedInvestorContactList(list);
@@ -933,11 +1201,7 @@ const AccessForm = (props) => {
     setCheckAllInvestorContact(e.target.checked);
   };
   //Deal
-  const [checkedDealList, setCheckedDealList] = useState(
-    props.departmentAcces.deal
-  );
-  const [indeterminateDeal, setIndeterminateDeal] = useState(true);
-  const [checkAllDeal, setCheckAllDeal] = useState(false);
+ 
 
   const onDealChange = (list) => {
     setCheckedDealList(list);
@@ -951,11 +1215,7 @@ const AccessForm = (props) => {
     setCheckAllDeal(e.target.checked);
   };
   //Data Room
-  const [checkedDataRoomList, setCheckedDataRoomList] = useState(
-    props.departmentAcces.dataRoom
-  );
-  const [indeterminateDataRoom, setIndeterminateDataRoom] = useState(true);
-  const [checkAllDataRoom, setCheckAllDataRoom] = useState(false);
+ 
 
   const onDataRoomChange = (list) => {
     setCheckedDataRoomList(list);
@@ -972,12 +1232,7 @@ const AccessForm = (props) => {
   };
   // Promotions
 
-  const [checkedPromotionsList, setCheckedPromotionsList] = useState(
-    props.departmentAcces.promotion
-  );
-  const [indeterminatePromotions, setIndeterminatePromotions] = useState(true);
-  const [checkAllPromotions, setCheckAllPromotions] = useState(false);
-
+ 
   const onPromotionsChange = (list) => {
     setCheckedPromotionsList(list);
     setIndeterminatePromotions(
@@ -992,11 +1247,7 @@ const AccessForm = (props) => {
     setCheckAllPromotions(e.target.checked);
   };
   //Pitch
-  const [checkedPitchList, setCheckedPitchList] = useState(
-    props.departmentAcces.pitch
-  );
-  const [indeterminatePitch, setIndeterminatePitch] = useState(true);
-  const [checkAllPitch, setCheckAllPitch] = useState(false);
+ 
 
   const onPitchChange = (list) => {
     setCheckedPitchList(list);
@@ -1010,11 +1261,7 @@ const AccessForm = (props) => {
     setCheckAllPitch(e.target.checked);
   };
   //Repository
-  const [checkedRepositoryList, setCheckedRepositoryList] = useState(
-    props.departmentAcces.repository
-  );
-  const [indeterminateRepository, setIndeterminateRepository] = useState(true);
-  const [checkAllRepository, setCheckAllRepository] = useState(false);
+
 
   const onRepositoryChange = (list) => {
     setCheckedRepositoryList(list);
@@ -1031,11 +1278,7 @@ const AccessForm = (props) => {
   };
   // Shipper
 
-  const [checkedShipperList, setCheckedShipperList] = useState(
-    props.departmentAcces.shipper
-  );
-  const [indeterminateShipper, setIndeterminateShipper] = useState(true);
-  const [checkAllShipper, setCheckAllShipper] = useState(false);
+ 
 
   const onShipperChange = (list) => {
     setCheckedShipperList(list);
@@ -1050,12 +1293,7 @@ const AccessForm = (props) => {
   };
   // Procurement
 
-  const [checkedProcurementList, setCheckedProcurementList] = useState(
-    props.departmentAcces.procurement
-  );
-  const [indeterminateProcurement, setIndeterminateProcurement] =
-    useState(true);
-  const [checkAllProcurement, setCheckAllProcurement] = useState(false);
+ 
 
   const onProcurementChange = (list) => {
     setCheckedProcurementList(list);
@@ -1071,11 +1309,7 @@ const AccessForm = (props) => {
     setCheckAllProcurement(e.target.checked);
   };
   // Production
-  const [checkedProductionList, setCheckedProductionList] = useState(
-    props.departmentAcces.production
-  );
-  const [indeterminateProduction, setIndeterminateProduction] = useState(true);
-  const [checkAllProduction, setCheckAllProduction] = useState(false);
+ 
 
   const onProductionChange = (list) => {
     setCheckedProductionList(list);
@@ -1091,12 +1325,7 @@ const AccessForm = (props) => {
     setCheckAllProduction(e.target.checked);
   };
   // Subscription
-  const [checkedSubscriptionList, setCheckedSubscriptionList] = useState(
-    props.departmentAcces.subscription
-  );
-  const [indeterminateSubscription, setIndeterminateSubscription] =
-    useState(true);
-  const [checkAllSubscription, setCheckAllSubscription] = useState(false);
+ 
 
   const onSubscriptionChange = (list) => {
     setCheckedSubscriptionList(list);
@@ -1112,11 +1341,7 @@ const AccessForm = (props) => {
   };
   // Plant
 
-  const [checkedPlantList, setCheckedPlantList] = useState(
-    props.departmentAcces.plant
-  );
-  const [indeterminatePlant, setIndeterminatePlant] = useState(true);
-  const [checkAllPlant, setCheckAllPlant] = useState(false);
+ 
 
   const onPlantChange = (list) => {
     setCheckedPlantList(list);
@@ -1130,11 +1355,7 @@ const AccessForm = (props) => {
     setCheckAllPlant(e.target.checked);
   };
   // Teams
-  const [checkedTeamsList, setCheckedTeamsList] = useState(
-    props.departmentAcces.teams
-  );
-  const [indeterminateTeams, setIndeterminateTeams] = useState(true);
-  const [checkAllTeams, setCheckAllTeams] = useState(false);
+ 
 
   const onTeamsChange = (list) => {
     setCheckedTeamsList(list);
@@ -1148,11 +1369,7 @@ const AccessForm = (props) => {
     setCheckAllTeams(e.target.checked);
   };
   // Payments
-  const [checkedPaymentsList, setCheckedPaymentsList] = useState(
-    props.departmentAcces.payment
-  );
-  const [indeterminatePayments, setIndeterminatePayments] = useState(true);
-  const [checkAllPayments, setCheckAllPayments] = useState(false);
+ 
 
   const onPaymentsChange = (list) => {
     setCheckedPaymentsList(list);
@@ -1168,11 +1385,7 @@ const AccessForm = (props) => {
     setCheckAllPayments(e.target.checked);
   };
   // Material
-  const [checkedMaterialList, setCheckedMaterialList] = useState(
-    props.departmentAcces.material
-  );
-  const [indeterminateMaterial, setIndeterminateMaterial] = useState(true);
-  const [checkAllMaterial, setCheckAllMaterial] = useState(false);
+ 
 
   const onMaterialChange = (list) => {
     setCheckedMaterialList(list);
@@ -1188,11 +1401,7 @@ const AccessForm = (props) => {
     setCheckAllMaterial(e.target.checked);
   };
   // Catalouge
-  const [checkedCatalougeList, setCheckedCatalougeList] = useState(
-    props.departmentAcces.catalouge
-  );
-  const [indeterminateCatalouge, setIndeterminateCatalouge] = useState(true);
-  const [checkAllCatalouge, setCheckAllCatalouge] = useState(false);
+  
 
   const onCatalougeChange = (list) => {
     setCheckedCatalougeList(list);
@@ -1208,11 +1417,7 @@ const AccessForm = (props) => {
     setCheckAllCatalouge(e.target.checked);
   };
   // Collections
-  const [checkedCollectionList, setCheckedCollectionList] = useState(
-    props.departmentAcces.collection
-  );
-  const [indeterminateCollection, setIndeterminateCollection] = useState(true);
-  const [checkAllCollection, setCheckAllCollection] = useState(false);
+ 
 
   const onCollectionChange = (list) => {
     setCheckedCollectionList(list);
@@ -1228,11 +1433,7 @@ const AccessForm = (props) => {
     setCheckAllCollection(e.target.checked);
   };
   // Catalog
-  const [checkedCatalogList, setCheckedCatalogList] = useState(
-    props.departmentAcces.catalog
-  );
-  const [indeterminateCatalog, setIndeterminateCatalog] = useState(true);
-  const [checkAllCatalog, setCheckAllCatalog] = useState(false);
+  
 
   const onCatalogChange = (list) => {
     setCheckedCatalogList(list);
@@ -1248,11 +1449,7 @@ const AccessForm = (props) => {
     setCheckAllCatalog(e.target.checked);
   };
   //Assessment
-  const [checkedAccessmentList, setCheckedAccessmentList] = useState(
-    props.departmentAcces.assessment
-  );
-  const [indeterminateAccessment, setIndeterminateAccessment] = useState(true);
-  const [checkAllAccessment, setCheckAllAccessment] = useState(false);
+ 
 
   const onAccessmentChange = (list) => {
     setCheckedAccessmentList(list);
@@ -1268,11 +1465,7 @@ const AccessForm = (props) => {
     setCheckAllAccessment(e.target.checked);
   };
   //Topic
-  const [checkedTopicList, setCheckedTopicList] = useState(
-    props.departmentAcces.topic
-  );
-  const [indeterminateTopic, setIndeterminateTopic] = useState(true);
-  const [checkAllTopic, setCheckAllTopic] = useState(false);
+  
   const onTopicChange = (list) => {
     setCheckedTopicList(list);
     setIndeterminateTopic(!!list.length && list.length < plainOptions.length);
@@ -1286,11 +1479,7 @@ const AccessForm = (props) => {
   };
 
   // Language
-  const [checkedLanguage, setCheckedLanguage] = useState(
-    props.departmentAcces.language
-  );
-  const [indeterminatLanguage, setIndeterminateLanguage] = useState(true);
-  const [checkAllLanguage, setCheckAllLanguage] = useState(false);
+  
 
   const onLanguageChange = (list) => {
     setCheckedLanguage(list);
@@ -1306,10 +1495,7 @@ const AccessForm = (props) => {
     setCheckAllLanguage(e.target.checked);
   };
   // Calls
-  const [checkedCalls, setCheckedCalls] = useState(props.departmentAcces.call);
-  const [indeterminateCalls, setIndeterminateCalls] = useState(true);
-  const [checkAllCalls, setCheckAllCalls] = useState(false);
-
+ 
   const onCallsChange = (list) => {
     setCheckedCalls(list);
     setIndeterminateCalls(
@@ -1325,11 +1511,7 @@ const AccessForm = (props) => {
   };
 
   // Events
-  const [checkedEvents, setCheckedEvents] = useState(
-    props.departmentAcces.event
-  );
-  const [indeterminateEvents, setIndeterminateEvents] = useState(true);
-  const [checkAllEvents, setCheckAllEvents] = useState(false);
+  
 
   const onEventsChange = (list) => {
     setCheckedEvents(list);
@@ -1345,9 +1527,7 @@ const AccessForm = (props) => {
     setCheckAllEvents(e.target.checked);
   };
   // Planner
-  const [checkedPlanner, setCheckedPlanner] = useState(props.departmentAcces.planner);
-  const [indeterminatePlanner, setIndeterminatePlanner] = useState(true);
-  const [checkAllPlanner, setCheckAllPlanner] = useState(false);
+ 
 
   const onPlannerChange = (list) => {
     setCheckedPlanner(list);
@@ -1388,7 +1568,7 @@ const AccessForm = (props) => {
       leave: checkedLeavesList || [],
       user: checkedUserList || [],
       order: checkedOrderList || [],
-      material: checkedMaterialsList || [],
+      material: checkedMaterialsList||[] ,
       supplier: checkedSupplierList || [],
       quality: checkedQualityList || [],
       club: checkedClubList || [],
@@ -1421,7 +1601,7 @@ const AccessForm = (props) => {
       dataRoom: checkedDataRoomList || [],
       scanner: checkedScannerList || [],
       catalouge: checkedCatalougeList || [],
-      material: checkedMaterialList || [],
+      // material: checkedMaterialsList || [],
       promotion: checkedPromotionsList || [],
       departmentId: props.departmentId,
       roleTypeId: props.roleTypeId,
@@ -1435,6 +1615,7 @@ const AccessForm = (props) => {
   console.log("departmentData", props.departmentData);
   console.log(props.departmentAcces.vendor);
   console.log(checkedMaterialList)
+  console.log(checkedMaterialsList)
 
   if (props.fetchingDepartmentAccess) {
     return <BundleLoader />;
@@ -1967,18 +2148,18 @@ const AccessForm = (props) => {
                       <div>
                         <div class="text-sm font-semibold">Materials</div>
                         <Checkbox
-                          indeterminate={indeterminateMaterials}
-                          onChange={onCheckAllMaterialsChange}
-                          checked={checkAllMaterials}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedMaterialsList}
-                          onChange={onMaterialsChange}
-                        />
+          indeterminate={indeterminateMaterials}
+          onChange={onCheckAllMaterialsChange}
+          checked={checkAllMaterials}
+        >
+          <div className="text-xs"> Check all </div>
+        </Checkbox>
+        <Divider />
+        <Checkbox.Group
+          options={materialNewOptions}
+          value={checkedMaterialsList}
+          onChange={onMaterialsChange}
+        />
                       </div>
                     </div>
                     <div class="flex justify-between mt-4">
@@ -1993,7 +2174,7 @@ const AccessForm = (props) => {
                         </Checkbox>
                         <Divider />
                         <CheckboxGroup
-                          options={plainOptions}
+                          options={inventoryNewOptions}
                           value={checkedInventoryList}
                           onChange={onInventoryChange}
                         />
@@ -2091,7 +2272,7 @@ const AccessForm = (props) => {
                         </Checkbox>
                         <Divider />
                         <CheckboxGroup
-                          options={plainOptions}
+                          options={supplierNewOptions}
                           value={checkedSupplierList}
                           onChange={onSupplierChange}
                         />

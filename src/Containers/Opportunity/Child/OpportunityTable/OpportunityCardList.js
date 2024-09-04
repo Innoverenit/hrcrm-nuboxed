@@ -338,12 +338,12 @@ overlay={
       // candidateName={item.candidateName}
       // approveInd={item.approveInd}
       // rejectInd={item.rejectInd}
-      stageClick={(opportunityStagesId) => {
+      stageClick={(stagesId) => {
         props.LinkStageOpportunity(
           {
             opportunityId: item.opportunityId,
             //oppStage: item.oppStage,
-            opportunityStagesId:opportunityStagesId
+            opportunityStagesId:stagesId
             // recruitmentProcessId: item.recruitmentProcessId,
             // recruitmentId: item.recruitmentId,
             // profileId: item.profileId,
