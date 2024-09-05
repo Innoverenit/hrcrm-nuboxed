@@ -542,11 +542,13 @@ const handleLoadMoreLow = () => {
                       </div>
                   </div>
                   <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
+                  <Button type="primary" onClick={()=>{
+                    setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
                   }}>
                     {translatedMenuItems[10]}
                     </Button>
+                    
                   </div>
                   <div class="flex w-6 max-sm:flex-row max-sm:w-[10%]">
                                                         <div>
