@@ -34,6 +34,7 @@ class Order extends Component {
     const { activeKey, activeKey1 } = this.state;
     return (
       <React.Fragment>
+        <Suspense fallback={<BundleLoader />}>
         <OrderHeader
          selectedLanguage={this.props.selectedLanguage}
          translateText={this.props.translateText}
@@ -43,7 +44,7 @@ class Order extends Component {
           activeKey1={activeKey1}
         />
 
-        <Suspense fallback={<BundleLoader />}>
+        
           
           {this.props.viewType === "list" ? (
             <OrderTableByUserID

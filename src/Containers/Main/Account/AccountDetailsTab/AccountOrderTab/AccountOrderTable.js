@@ -76,8 +76,23 @@ const AccountOrderTable = (props) => {
            
                 "108",   // "Normal",12
                 "679",   // "Created "13
-
-
+                "100",   //     "New"14
+                "1377",                 // Ship15
+                "1078",      // "Save"16
+                "1079",      // "Cancel"17
+                "1339",      // "Update Revised Price"18
+                "1381",     // Tag Supervisor19
+                "1383",     // "Select Inventory Location"20
+               "1378",       // "Pickup"21
+               "1384",      // "PI List"22
+               "316",      // "Notes"23
+               "142",      // "Status"24
+               "920",      // "Collections"25
+               "1382",       // "Rating"26
+               "1389",      // "Feedback"27
+               "170",      // Edit28
+               "84",      // Delete29
+              "1380", // "Add Supervisor"
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -299,10 +314,10 @@ const AccountOrderTable = (props) => {
                                                             {date === currentdate ? (
                                                                 <span
                                                                     class="text-[tomato] text-[0.65rem] font-bold">
-                                                                    {<FormattedMessage
+                                                                    {/* {<FormattedMessage
                                                                         id="app.new"
                                                                         defaultMessage="New"
-                                                                    />}
+                                                                    />} */}{translatedMenuItems[14]}
                                                                 </span>
                                                             ) : null}
                                                         </div>
@@ -340,7 +355,9 @@ const AccountOrderTable = (props) => {
                                                                         handleSetParticularOrderData(item)
                                                                     }
                                                                     }
-                                                                ><span className='!text-[#faad14]'>AWB</span></Button>
+                                                                ><span className='!text-[#faad14]'>
+                                                                    {/* Ship  */}
+                                                                    {translatedMenuItems[15]} ID</span></Button>
                                                             </Badge>
                                                         </div>
                                                     </div>
@@ -395,21 +412,25 @@ const AccountOrderTable = (props) => {
                                                                     <Button onClick={() => {
                                                                         handleSubmitPrice()
                                                                     }} >
-                                                                        <FormattedMessage
+                                                                       {translatedMenuItems[16]} {/* <FormattedMessage
                                                                             id="app.save"
                                                                             defaultMessage="Save"
-                                                                        />
+                                                                        /> */}
                                                                     </Button>
-                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}><FormattedMessage
+                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}>
+                                                                    {translatedMenuItems[17]}  {/* <FormattedMessage
                                                                         id="app.cancel"
                                                                         defaultMessage="Cancel"
-                                                                    /></Button>
+                                                                    /> */}
+                                                                    </Button>
                                                                 </div>
                                                             </>
-                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={<FormattedMessage
-                                                            id="app.updaterevisedprice"
-                                                            defaultMessage="Update Revised Price"
-                                                        />}>
+                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title=
+                                                        {translatedMenuItems[18]}   // {<FormattedMessage
+                                                        //     id="app.updaterevisedprice"
+                                                        //     defaultMessage="Update Revised Price"
+                                                        // />}
+                                                        >
                                                             <PublishedWithChangesIcon
                                                                 onClick={() => {
                                                                     handleUpdateRevisePrice()
@@ -435,7 +456,9 @@ const AccountOrderTable = (props) => {
                                                                 imageURL={item.imageURL}
                                                                 imgWidth={"1.8rem"}
                                                                 imgHeight={"1.8rem"}
-                                                            />:<div class="text-[red]">Tag Supervisor</div>}
+                                                            />:<div class="text-[red]">
+                                                                {/* Tag Supervisor */}{translatedMenuItems[19]}
+                                                                </div>}
                                                         {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
                                                         </span> */}
@@ -449,10 +472,12 @@ const AccountOrderTable = (props) => {
                                                 <div className=" flex  md:w-[11.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     {item.inventoryReceiveInd ? null
                                                         :
-                                                        <Tooltip title={<FormattedMessage
-                                                            id="app.selectinventorylocation"
-                                                            defaultMessage="Select Inventory Location"
-                                                        />}>
+                                                        <Tooltip title={translatedMenuItems[20]}
+                                                        // {<FormattedMessage
+                                                        //     id="app.selectinventorylocation"
+                                                        //     defaultMessage="Select Inventory Location"
+                                                        // />}
+                                                        >
                                                             <Button
                                                                 type='primary'
                                                                 className="cursor-pointer text-xs bg-[#3096e9] text-white"
@@ -460,11 +485,11 @@ const AccountOrderTable = (props) => {
                                                                     handleSetParticularOrderData(item);
                                                                     props.handleOrderPickupModal(true);
                                                                 }}
-                                                            >
-                                                                <FormattedMessage
+                                                            >{translatedMenuItems[21]}
+                                                                {/* <FormattedMessage
                                                                     id="app.orderpickup"
                                                                     defaultMessage="Pickup"
-                                                                />
+                                                                /> */}
 
                                                             </Button>
                                                         </Tooltip>}
@@ -472,7 +497,9 @@ const AccountOrderTable = (props) => {
                                                 <div class="flex items-center  justify-end w-[8rem]">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                     <div>
-                                                            <Tooltip title="PI List">
+                                                            <Tooltip title={translatedMenuItems[22]}
+                                                            // "PI List"
+                                                            >
                                                                 <span
                                                                     className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
@@ -484,10 +511,12 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.notes"
-                                                                defaultMessage="Notes"
-                                                            />}>
+                                                            <Tooltip title={translatedMenuItems[23]}
+                                                            // {<FormattedMessage
+                                                            //     id="app.notes"
+                                                            //     defaultMessage="Notes"
+                                                            // />}
+                                                            >
                                                                 <NoteAltIcon
                                                                     className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
@@ -500,10 +529,12 @@ const AccountOrderTable = (props) => {
                                                         </div>
 
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.status"
-                                                                defaultMessage="Status"
-                                                            />}>
+                                                            <Tooltip title={translatedMenuItems[24]}
+                                                            // {<FormattedMessage
+                                                            //     id="app.status"
+                                                            //     defaultMessage="Status"
+                                                            // />}
+                                                            >
                                                                 <EventRepeatIcon
 
                                                                     className="!text-icon cursor-pointer"
@@ -519,7 +550,9 @@ const AccountOrderTable = (props) => {
                                                    
 
                                                         <div>
-                                                            <Tooltip title="Collection">
+                                                            <Tooltip title={translatedMenuItems[25]}
+                                                            // "Collection"
+                                                            >
                                                                 <PaidIcon
                                                                     className="!text-icon cursor-pointer"
                                                                     onClick={() => {
@@ -533,7 +566,9 @@ const AccountOrderTable = (props) => {
                                                         </div>
                                                         { !item.inventoryReceiveInd ? (
                                                         <div class=" cursor-pointer">
-                                                        <Tooltip title="Add Supervisor">
+                                                        <Tooltip title={translatedMenuItems[30]}
+                                                        // "Add Supervisor"
+                                                        >
                                                             <PersonAddAlt1
                                                                 className="!text-icon cursor-pointer"
                                                                 style={{ color: item.supervisorUserName ? "green" : "red" }}
@@ -548,10 +583,12 @@ const AccountOrderTable = (props) => {
                                                     
                                                    
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.rating"
-                                                                defaultMessage="Rating"
-                                                            />}>
+                                                            <Tooltip title={translatedMenuItems[26]}
+                                                            // {<FormattedMessage
+                                                            //     id="app.rating"
+                                                            //     defaultMessage="Rating"
+                                                            // />}
+                                                            >
                                                                 <StarBorderIcon
 
                                                                     className="!text-icon cursor-pointer" />
@@ -559,10 +596,12 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.feedback"
-                                                                defaultMessage="Feedback"
-                                                            />}>
+                                                            <Tooltip title={translatedMenuItems[27]}
+                                                            // {<FormattedMessage
+                                                            //     id="app.feedback"
+                                                            //     defaultMessage="Feedback"
+                                                            // />}
+                                                            >
                                                                 <FeedbackIcon
                                                                     className="!text-icon cursor-pointer text-[#10d512] "
                                                                 />
@@ -573,10 +612,12 @@ const AccountOrderTable = (props) => {
 
                                                     
                                                         <div>
-                                                            {item.inventoryReceiveInd ? null : <Tooltip title={<FormattedMessage
-                                                                id="app.updateorder"
-                                                                defaultMessage="Update Order"
-                                                            />}>
+                                                            {item.inventoryReceiveInd ? null : <Tooltip title={translatedMenuItems[28]}
+                                                            // {<FormattedMessage
+                                                            //     id="app.edit"
+                                                            //     defaultMessage="Edit"
+                                                            // />}
+                                                            >
                                                                 <BorderColorIcon
                                                                     className=" !text-icon cursor-pointer text-[tomato]"
                                                                     onClick={() => {
@@ -588,10 +629,12 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>}
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.delete"
-                                                                defaultMessage="Detele"
-                                                            />}>
+                                                            <Tooltip title={translatedMenuItems[29]}
+                                                            // {<FormattedMessage
+                                                            //     id="app.delete"
+                                                            //     defaultMessage="Detele"
+                                                            // />}
+                                                            >
                                                                 <DeleteOutlined
                                                                     className="!text-icon cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
@@ -725,10 +768,10 @@ const AccountOrderTable = (props) => {
                                                             {date === currentdate ? (
                                                                 <span
                                                                     class="text-[tomato] text-[0.65rem] font-bold">
-                                                                    {<FormattedMessage
+                                                                   {translatedMenuItems[14]} {/* {<FormattedMessage
                                                                         id="app.new"
                                                                         defaultMessage="New"
-                                                                    />}
+                                                                    />} */}
                                                                 </span>
                                                             ) : null}
                                                         </div>
@@ -766,7 +809,9 @@ const AccountOrderTable = (props) => {
                                                                         handleSetParticularOrderData(item)
                                                                     }
                                                                     }
-                                                                ><span className='!text-[#faad14]'>AWB</span></Button>
+                                                                ><span className='!text-[#faad14]'>
+                                                                   {/* Ship  */}
+                                                                   {translatedMenuItems[15]}  ID</span></Button>
                                                             </Badge>
                                                         </div>
                                                     </div>
@@ -821,21 +866,25 @@ const AccountOrderTable = (props) => {
                                                                     <Button onClick={() => {
                                                                         handleSubmitPrice()
                                                                     }} >
-                                                                        <FormattedMessage
+                                                                    {translatedMenuItems[16]}     {/* <FormattedMessage
                                                                             id="app.save"
                                                                             defaultMessage="Save"
-                                                                        />
+                                                                        /> */}
                                                                     </Button>
-                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}><FormattedMessage
+                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}>
+                                                                    {translatedMenuItems[17]}     {/* <FormattedMessage
                                                                         id="app.cancel"
                                                                         defaultMessage="Cancel"
-                                                                    /></Button>
+                                                                    /> */}
+                                                                    </Button>
                                                                 </div>
                                                             </>
-                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={<FormattedMessage
-                                                            id="app.updaterevisedprice"
-                                                            defaultMessage="Update Revised Price"
-                                                        />}>
+                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={translatedMenuItems[18]} 
+                                                        // {<FormattedMessage
+                                                        //     id="app.updaterevisedprice"
+                                                        //     defaultMessage="Update Revised Price"
+                                                        // />}
+                                                        >
                                                             <PublishedWithChangesIcon
                                                                 onClick={() => {
                                                                     handleUpdateRevisePrice()
@@ -864,7 +913,9 @@ const AccountOrderTable = (props) => {
                                                                 imageURL={item.imageURL}
                                                                 imgWidth={"1.8rem"}
                                                                 imgHeight={"1.8rem"}
-                                                            /> : <div class="text-[red]">Tag Supervisor</div>}
+                                                            /> : <div class="text-[red]">
+                                                             {translatedMenuItems[19]}    {/* Tag Supervisor */}
+                                                                </div>}
                                                     </div>
                                                 </div>
                                                 <div className=" flex   md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -875,10 +926,12 @@ const AccountOrderTable = (props) => {
                                                 <div className=" flex  md:w-[11.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     {item.inventoryReceiveInd ? null
                                                         :
-                                                        <Tooltip title={<FormattedMessage
-                                                            id="app.selectinventorylocation"
-                                                            defaultMessage="Select Inventory Location"
-                                                        />}>
+                                                        <Tooltip title={translatedMenuItems[20]} 
+                                                        // {<FormattedMessage
+                                                        //     id="app.selectinventorylocation"
+                                                        //     defaultMessage="Select Inventory Location"
+                                                        // />}
+                                                        >
                                                             <Button
                                                                 type='primary'
                                                                 className="cursor-pointer text-xs bg-[#3096e9] text-white"
@@ -887,10 +940,10 @@ const AccountOrderTable = (props) => {
                                                                     props.handleOrderPickupModal(true);
                                                                 }}
                                                             >
-                                                                <FormattedMessage
+                                                              {translatedMenuItems[21]}   {/* <FormattedMessage
                                                                     id="app.orderpickup"
                                                                     defaultMessage="Pickup"
-                                                                />
+                                                                /> */}
 
                                                             </Button>
                                                         </Tooltip>}
@@ -898,7 +951,9 @@ const AccountOrderTable = (props) => {
                                                 <div class="flex items-center justify-end w-[8rem]">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                     <div>
-                                                            <Tooltip title="PI List">
+                                                            <Tooltip title={translatedMenuItems[22]} 
+                                                            // "PI List"
+                                                            >
                                                                 <span
                                                                     className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
@@ -910,10 +965,12 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.notes"
-                                                                defaultMessage="Notes"
-                                                            />}>
+                                                            <Tooltip title={translatedMenuItems[23]} 
+                                                            // {<FormattedMessage
+                                                            //     id="app.notes"
+                                                            //     defaultMessage="Notes"
+                                                            // />}
+                                                            >
                                                                 <NoteAltIcon
                                                                     className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
@@ -926,10 +983,12 @@ const AccountOrderTable = (props) => {
                                                         </div>
 
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.status"
-                                                                defaultMessage="Status"
-                                                            />}>
+                                                            <Tooltip title={translatedMenuItems[24]} 
+                                                            // {<FormattedMessage
+                                                            //     id="app.status"
+                                                            //     defaultMessage="Status"
+                                                            // />}
+                                                            >
                                                                 <EventRepeatIcon
 
                                                                     className="!text-icon cursor-pointer"
@@ -945,7 +1004,9 @@ const AccountOrderTable = (props) => {
                                                   
 
                                                         <div>
-                                                            <Tooltip title="Collection">
+                                                            <Tooltip title={translatedMenuItems[25]} 
+                                                            // "Collection"
+                                                            >
                                                                 <PaidIcon
                                                                     className="!text-icon cursor-pointer"
                                                                     onClick={() => {
@@ -959,7 +1020,9 @@ const AccountOrderTable = (props) => {
                                                         </div>
                                                         { !item.inventoryReceiveInd ? (
                                                         <div class=" cursor-pointer">
-                                                        <Tooltip title="Add Supervisor">
+                                                        <Tooltip title={translatedMenuItems[30]} 
+                                                        // "Add Supervisor"
+                                                        >
                                                             <PersonAddAlt1
                                                                 className="!text-icon cursor-pointer"
                                                                 style={{ color: item.supervisorUserName ? "green" : "red" }}
@@ -974,10 +1037,12 @@ const AccountOrderTable = (props) => {
                                                     
                                                   
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.rating"
-                                                                defaultMessage="Rating"
-                                                            />}>
+                                                            <Tooltip title={translatedMenuItems[26]} 
+                                                            // {<FormattedMessage
+                                                            //     id="app.rating"
+                                                            //     defaultMessage="Rating"
+                                                            // />}
+                                                            >
                                                                 <StarBorderIcon
 
                                                                     className="!text-icon cursor-pointer" />
@@ -985,10 +1050,12 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.feedback"
-                                                                defaultMessage="Feedback"
-                                                            />}>
+                                                            <Tooltip title={translatedMenuItems[27]} 
+                                                            // {<FormattedMessage
+                                                            //     id="app.feedback"
+                                                            //     defaultMessage="Feedback"
+                                                            // />}
+                                                            >
                                                                 <FeedbackIcon
                                                                     className="!text-icon cursor-pointer text-[#10d512]"
                                                                 />
@@ -999,10 +1066,12 @@ const AccountOrderTable = (props) => {
 
                                                  
                                                         <div>
-                                                            {item.inventoryReceiveInd ? null : <Tooltip title={<FormattedMessage
-                                                                id="app.updateorder"
-                                                                defaultMessage="Update Order"
-                                                            />}>
+                                                            {item.inventoryReceiveInd ? null : <Tooltip title={translatedMenuItems[28]} 
+                                                            // {<FormattedMessage
+                                                            //     id="app.updateorder"
+                                                            //     defaultMessage="Update Order"
+                                                            // />}
+                                                            >
                                                                 <BorderColorIcon
                                                                     className=" !text-icon cursor-pointer text-[tomato]"
                                                                     onClick={() => {
@@ -1014,10 +1083,12 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>}
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={<FormattedMessage
-                                                                id="app.delete"
-                                                                defaultMessage="Detele"
-                                                            />}>
+                                                            <Tooltip title={translatedMenuItems[29]} 
+                                                            // {<FormattedMessage
+                                                            //     id="app.delete"
+                                                            //     defaultMessage="Detele"
+                                                            // />}
+                                                            >
                                                                 <DeleteOutlined
                                                                     className="!text-icon cursor-pointer text-[red]"
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}

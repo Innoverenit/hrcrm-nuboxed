@@ -200,7 +200,7 @@ function InspectedPhoneByOrder(props) {
         
           />
         </div>
-                        <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                        <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  max-sm:hidden z-10">
                             <div className=" md:w-[7.12rem]">
                             {translatedMenuItems[0]} {/* Brand */}
                                 </div>

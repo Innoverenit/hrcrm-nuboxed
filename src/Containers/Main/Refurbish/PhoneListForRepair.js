@@ -68,7 +68,7 @@ function PhoneListForRepair(props) {
             "1322",// "Resume"9
            "316", // "Notes"10
            "1252", // "Print"11
-            "",    //    "Pause"
+            "1324",    //    "Pause"
            "144"  ,// In Progress
             "268"//Complete
             ];
@@ -288,7 +288,8 @@ function PhoneListForRepair(props) {
                 <div class="flex items-center">
                 <div class=" w-72 ml-1 max-sm:w-28">
           <Input
-            placeholder="Search by Imei"
+            placeholder={translatedMenuItems[0]}
+            // "Search by Imei"
             width={"100%"}
             suffix={suffix}
             onPressEnter={handleSearch}  
@@ -298,10 +299,7 @@ function PhoneListForRepair(props) {
           />
         </div>
         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title={<FormattedMessage
-                                                        id="app.scan"
-                                                        defaultMessage="scan"
-                                                    />}>
+                                                    <Tooltip title={translatedMenuItems[1]}>
 
                                                         <Button
                                                             // onClick={() => {
@@ -309,8 +307,9 @@ function PhoneListForRepair(props) {
                                                             //     handleSetRowData(item)
                                                             // }}
                                                             class=" bg-green-600 cursor-pointer text-gray-50"
-                                                        >
-                                                            Scan </Button>
+                                                        >{translatedMenuItems[1]}
+                                                            {/* Scan  */}
+                                                            </Button>
 
                                                     </Tooltip>
 

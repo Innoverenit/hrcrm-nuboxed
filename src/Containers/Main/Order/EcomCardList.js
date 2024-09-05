@@ -2,19 +2,14 @@ import React, {  useEffect, useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip,Button,Input ,Popconfirm} from "antd";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
     getEcomList
 } from "./OrderAction";
 import dayjs from "dayjs";
-import NextPlanIcon from '@mui/icons-material/NextPlan';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { MultiAvatar } from "../../../Components/UI/Elements";
 import EcomStatusCardDrawer from "./EcomStatusCardDrawer";
 import EcomSearchedData from "./EcomSearchedData";
-// import ProcureOrderModal from "./Child/ProcureOrderModal";
-// import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
 
 function EcomCardList(props) {
   const [page, setPage] = useState(0);
@@ -45,15 +40,17 @@ useEffect(() => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-        'Order',//0
-        'Created', 
-        'Items',//2
-        'Status',
-        'Customer',//4
-        'Shipping Address',
-        'Billing Address',//6
-        'Invoices',
-        'Shipments',
+        "660",// 'Order',//0
+       "679", //  'Created', 1
+       "253", // 'Items',//2
+        "142",// 'Status',3
+      "248",  // 'Customer',//4
+     "1209",// 'Shipping Address',5
+      "710",  // 'Billing Address',//6
+      "1210",  // 'Invoices',7
+       "1211",  // 'Shipments',8
+     "100", //  New
+
       ];
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -157,7 +154,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-
                             </div>
                             {date === currentDate ? (
                                 <span className=" text-[0.65rem] text-[tomato] font-bold" >
-                                  New
+                                 {translatedMenuItems[9]} {/* New */}
                                 </span>
                               ) : null}
                         </div>
@@ -204,7 +201,8 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">                                                 
                         <div>
-                        <Tooltip title="Status"
+                        <Tooltip title={translatedMenuItems[3]}
+                        // "Status"
                                                                 
                                                             >
                                                                 <EventRepeatIcon
