@@ -1,4 +1,4 @@
-import React, { } from "react";
+import React, {useState,  useEffect} from "react";
 import { Tooltip, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -13,7 +13,31 @@ import {
 const CollectionActionLeft = (props) => {
   const dummy = ["cloud", "azure", "fgfdg"];
   const { user } = props;
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+        "1360",  // My Collections
+        "228",//  All
+        "1358",// Outstanding Opening
+        "1359",// Outstanding Closing
+  
+        ];
+  
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+  
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const { allCustomers } = props;
   console.log(allCustomers);
   var total =
@@ -47,7 +71,9 @@ const CollectionActionLeft = (props) => {
 
   return (
     <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
-      <Tooltip title="My Collections "
+      <Tooltip title=
+      {translatedMenuItems[0]}
+      //  "My Collections "
       // title="Distributor"
       >
         <span
@@ -59,14 +85,14 @@ const CollectionActionLeft = (props) => {
           }}
         >
           <Avatar style={{ background: props.viewType === "distributor" ? "#f279ab" : "#4bc076" }}>
-           ALL
+          {translatedMenuItems[1]} {/* ALL */}
           </Avatar>
         </span>
       </Tooltip>
 
       {props.viewType === "distributor" && (
         <>
-          <div style={{ marginLeft: "1.875em" }}>
+          <div className=" ml-5">
 
           </div>
           &nbsp; &nbsp;
@@ -74,10 +100,10 @@ const CollectionActionLeft = (props) => {
           &nbsp;
           {props.activeKey1 === "1" ? null : (
             <>
-              <div style={{ marginLeft: "1.25em" }}>
+              <div className=" ml-5">
                 <></>
               </div>
-              <div style={{ marginLeft: "1.25em" }}>
+              <div className=" ml-5">
                 <></>
               </div>
             </>
@@ -88,25 +114,29 @@ const CollectionActionLeft = (props) => {
       {props.viewType === "customer" && (
         <>
           {props.activeKey === "1" ? (
-            <div style={{ marginLeft: "1.875em" }}>
+            <div sclassName=" ml-5">
 
             </div>
           ) : (
-            <div style={{ marginLeft: "1.875em" }}>
+            <div className=" ml-5">
 
             </div>
           )}
 
           {props.activeKey === "1" ? null : (
             <>
-              <div style={{ marginLeft: "1.25em" }}>
+              <div className=" ml-5" >
                 <>
-                  <b>Outstanding Opening ₹ {`${costA}`}</b>
+                  <b>
+                    {/* Outstanding Opening */}
+                    {translatedMenuItems[2]}  ₹ {`${costA}`}</b>
                 </>
               </div>
-              <div style={{ marginLeft: "1.25em" }}>
+              <div className=" ml-5">
                 <>
-                  <b>Outstanding Closing ₹ {`${cost}`}</b>
+                  <b>
+                    {/* Outstanding Closing */}
+                    {translatedMenuItems[3]} ₹ {`${cost}`}</b>
                 </>
               </div>
             </>
@@ -116,6 +146,7 @@ const CollectionActionLeft = (props) => {
     </div>
   );
 };
+
 const mapStateToProps = ({ auth, collection, distributor, customer }) => ({
   user: auth.userDetails,
   viewType: collection.viewType,

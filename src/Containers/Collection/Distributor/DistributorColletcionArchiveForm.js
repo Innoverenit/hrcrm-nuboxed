@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState }  from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
@@ -10,7 +10,32 @@ import { DistributorCollectionArchiveToday } from "../CollectionAction";
 
 
 function EventForm(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+         "176", //    startDate,//0
+           "126",      //  enddate"
+          "154",  // "Submit",//1
+         
+           
+        ];
 
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const {
     user: { userId, timeZone },
     DistributorCollectionArchiveToday,
@@ -121,12 +146,7 @@ function EventForm(props) {
                   isRequired
                   name="startDate"
                   //label="Start "
-                  label={
-                    <FormattedMessage
-                      id="app.startdate"
-                      defaultMessage="Start Date"
-                    />
-                  }
+                  label= {translatedMenuItems[0]}                  
                   isColumn
                   component={DatePicker}
                   value={values.startDate}
@@ -141,12 +161,13 @@ function EventForm(props) {
                   isRequired
                   name="endDate"
                   // label="End "
-                  label={
-                    <FormattedMessage
-                      id="app.enddate"
-                      defaultMessage="enddate"
-                    />
-                  }
+                  label={translatedMenuItems[1]} 
+                  // {
+                  //   <FormattedMessage
+                  //     id="app.enddate"
+                  //     defaultMessage="enddate"
+                  //   />
+                  // }
                   component={DatePicker}
                   isColumn
                   value={values.endDate || values.startDate}
@@ -174,7 +195,7 @@ function EventForm(props) {
                 loading={props.DistributorCollectionArchive}
               >
 
-                <FormattedMessage id="app.submit" defaultMessage="Submit" />
+{translatedMenuItems[2]}   {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
 
               </Button>
             </div>

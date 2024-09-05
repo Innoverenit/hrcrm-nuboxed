@@ -75,7 +75,7 @@ const AccountOrderTable = (props) => {
                 "661",  // "Repair",11
            
                 "108",   // "Normal",12
-                "1226",   // "Created Date"13
+                "679",   // "Created "13
 
 
           ];
@@ -307,7 +307,7 @@ const AccountOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex md:w-[6.31rem] text-xs items-center max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                                     <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -733,7 +733,7 @@ const AccountOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex md:w-[6.31rem] items-center max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                                     <div className=" flex   md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
