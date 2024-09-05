@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from "react";
+import React, { useState, Suspense, lazy, useEffect } from "react";
 import {
   setCollectionViewType,
   getTodayDistributor,
@@ -27,6 +27,35 @@ function CollectionDistributorTab(props) {
     selectedTodayRowDistributor,
     setSelectedTodayRowDistributor,
   ] = useState([]);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+         "204", //  "Receivables",//0
+          "922",  // Archive",//1
+          "1357" , // "Credit Memo",//2
+        //  "", // close
+   
+          
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   const [selectedRowDistributor, setSelectedRowDistributor] = useState([]);
   const [activeKey, setActiveKey] = useState("1");
@@ -67,10 +96,11 @@ function CollectionDistributorTab(props) {
             tab={
               <>
                 <span>
-                  <i class="fas fa-hand-holding-usd"></i>&nbsp; <FormattedMessage
+                  <i class="fas fa-hand-holding-usd"></i>&nbsp; 
+                  {translatedMenuItems[0]}   {/* <FormattedMessage
                     id="app.receivable"
                     defaultMessage="Receivables"
-                  />
+                  /> */}
                 </span>
                 &nbsp;
                 {activeKey === "1" && <></>}
@@ -81,6 +111,8 @@ function CollectionDistributorTab(props) {
             <Suspense fallback={"Loading ..."}>
               {" "}
               <DistributorCollectionTableToday
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
                 rowSelectionTodayForDistributor={
                   rowSelectionTodayForDistributor
                 }
@@ -95,10 +127,11 @@ function CollectionDistributorTab(props) {
             tab={
               <>
                 <span>
-                  <i class="fas fa-archive"></i>&nbsp;<FormattedMessage
+                  <i class="fas fa-archive"></i>&nbsp;
+                  {translatedMenuItems[1]}   {/* <FormattedMessage
                     id="app.archive"
                     defaultMessage="Archive"
-                  />
+                  /> */}
                 </span>
                 &nbsp;
               </>
@@ -108,7 +141,8 @@ function CollectionDistributorTab(props) {
             <Suspense fallback={"Loading ..."}>
 
               <DistributorColletcionArchive
-
+                 translateText={props.translateText}
+                 selectedLanguage={props.selectedLanguage}
                 handleClearReturnCheck={handleClearReturnCheck}
               />
             </Suspense>
@@ -124,11 +158,13 @@ function CollectionDistributorTab(props) {
         setActiveKey("3");
       }}>
         <i className="fas fa-archive"></i>&nbsp;
-        <FormattedMessage id="app.creditmemo" defaultMessage="Credit Memo" />
+        {translatedMenuItems[2]} {/* <FormattedMessage id="app.creditmemo" defaultMessage="Credit Memo" /> */}
       </span>
       {activeKey === "3" && (
         <>
-          <Tooltip title="Close">
+          <Tooltip title= "Close">
+          {/* {translatedMenuItems[3]}> */}
+    
             <LockIcon
               onClick={() => setShowCloseCreditMemoList(true)}
               className="!text-icon cursor-pointer ml-1"
@@ -142,9 +178,13 @@ function CollectionDistributorTab(props) {
 >
   <Suspense fallback={"Loading ..."}>
     {showCloseCreditMemoList ? (
-      <CloseCreditMemoList />
+      <CloseCreditMemoList 
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}/>
     ) : (
-      <CreditMemoList />
+      <CreditMemoList 
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}/>
     )}
   </Suspense>
 </TabPane>

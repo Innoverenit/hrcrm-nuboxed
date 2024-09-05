@@ -22,6 +22,41 @@ function DistributorColletcionArchive(props) {
   }, []);
 
   const [particularRowData, setParticularRowData] = useState({});
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+         "938", //    Search by Payment Date,//0
+          "154",  // "Submit",//1
+          "248" , // "Customer",//2
+           "660" ,// "Order #,//3
+          "1169" , // " Invoice",//4
+           "926", // "Transaction ",//5
+          "71" , // "Type",//6
+          "74" , // Date",//7
+           "929" ,// "Amount",8
+           "86", // "Mode"9
+         "1085", //  Received10
+         "77", //  Owner"11
+           "194" // "Clear"12
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
 
   function handleSetParticularOrderData(item) {
     setParticularRowData(item);
@@ -65,7 +100,7 @@ function DistributorColletcionArchive(props) {
             <div class="flex justify-evenly h-full w-[52%] items-end max-sm:w-wk">
               <div class="w-[52%] max-sm:w-wk">
                 <div class="flex flex-row">
-                  Search by Payment Date
+                {translatedMenuItems[0]}   {/* Search by Payment Date */}
 
                   <Field
                     isRequired
@@ -85,7 +120,7 @@ function DistributorColletcionArchive(props) {
                   disabled={values.date ? false : true}
 
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                 {translatedMenuItems[1]}   {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
                 </Button>
               </div>
               <div class=" mb-[0.35rem]">
@@ -98,7 +133,7 @@ function DistributorColletcionArchive(props) {
                     handleClear();
                   }}
                 >
-                  <FormattedMessage id="app.clear" defaultMessage="Clear" />
+                   {translatedMenuItems[12]} {/* <FormattedMessage id="app.clear" defaultMessage="Clear" /> */}
                 </Button>
               </div>
             </div>
@@ -113,16 +148,36 @@ function DistributorColletcionArchive(props) {
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
-            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Invoice</div>
-            <div className=" w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /></div>
-            <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.type" defaultMessage="Type" /></div>
-            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
-            <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.amount" defaultMessage="Amount" /></div>
-            <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.mode" defaultMessage="Mode" /></div>
-            <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.received" defaultMessage="Received ?" /></div>
-            <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /></div>
+            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            {translatedMenuItems[2]}   {/* <FormattedMessage id="app.customer" defaultMessage="Customer" /> */}
+              </div>
+            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]} #
+              {/* <FormattedMessage id="app.order" defaultMessage="Order #" /> */}
+              </div>
+            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Invoice */} {translatedMenuItems[4]}
+              </div>
+            <div className=" w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  {translatedMenuItems[5]} ID
+              {/* <FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /> */}
+              </div>
+            <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* /<FormattedMessage id="app.type" defaultMessage="Type" /> */} {translatedMenuItems[6]}
+              </div>
+            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* <FormattedMessage id="app.date" defaultMessage="Date" /> */} {translatedMenuItems[7]}
+              </div>
+            <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* <FormattedMessage id="app.amount" defaultMessage="Amount" /> */} {translatedMenuItems[8]}
+              </div>
+            <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* <FormattedMessage id="app.mode" defaultMessage="Mode" /> */} {translatedMenuItems[9]}
+              </div>
+            <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[10]}?
+              {/* <FormattedMessage id="app.received" defaultMessage="Received ?" /> */}
+              </div>
+            <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* <FormattedMessage id="app.owner" defaultMessage="Owner" /> */} {translatedMenuItems[11]}
+              </div>
           </div>
           <div className=" overflow-scroll h-[67vh]">
             {props.todayDistributor.map((item) => {

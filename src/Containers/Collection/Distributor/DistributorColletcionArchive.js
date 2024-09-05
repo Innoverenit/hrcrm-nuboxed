@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -10,6 +10,39 @@ const DistributorColletcionArchiveForm = lazy(() => import("./DistributorColletc
 
 function DistributorColletcionArchive(props) {
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+        
+          "248" , // "Customer",//0
+           "660" ,// "Order #,//1
+          "1169" , // " Invoice",//2
+           "926", // "Transaction ",//3
+          "71" , // "Type",//4
+          "74" , // Date",//5
+           "929" ,// "Amount",6
+           "86", // "Mode"7
+        
+         "77", //  Owner"8
+           
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   return (
     <>
       <Suspense fallback={<BundleLoader />}>
@@ -18,16 +51,35 @@ function DistributorColletcionArchive(props) {
 
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[9.1rem] max-xl:w-[13.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-            <div className=" w-[8.2rem] max-xl:w-[9.2rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
-            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Invoice</div>
-            <div className=" w-[7.32rem] max-xl:w-[6.32rem] "><FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /></div>
-            <div className="w-[6.023rem]"><FormattedMessage id="app.type" defaultMessage="Type" /></div>
-            <div className="w-[6.12rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
-            <div className="w-[7.12rem] max-xl:w-[5.12rem]"><FormattedMessage id="app.amount" defaultMessage="Amount" /></div>
-            <div className="w-[7.21rem]"><FormattedMessage id="app.mode" defaultMessage="Mode" /></div>
-            <div className="w-[6rem] max-xl:w-[3rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /></div>
+      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            {translatedMenuItems[0]}   {/* <FormattedMessage id="app.customer" defaultMessage="Customer" /> */}
+              </div>
+            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]} #
+              {/* <FormattedMessage id="app.order" defaultMessage="Order #" /> */}
+              </div>
+            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Invoice */} {translatedMenuItems[2]}
+              </div>
+            <div className=" w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  {translatedMenuItems[3]} ID
+              {/* <FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /> */}
+              </div>
+            <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* /<FormattedMessage id="app.type" defaultMessage="Type" /> */} {translatedMenuItems[4]}
+              </div>
+            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* <FormattedMessage id="app.date" defaultMessage="Date" /> */} {translatedMenuItems[5]}
+              </div>
+            <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* <FormattedMessage id="app.amount" defaultMessage="Amount" /> */} {translatedMenuItems[6]}
+              </div>
+            <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* <FormattedMessage id="app.mode" defaultMessage="Mode" /> */} {translatedMenuItems[7]}
+              </div>
+
+            <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* <FormattedMessage id="app.owner" defaultMessage="Owner" /> */} {translatedMenuItems[8]}
+              </div>
           </div>
 
 
@@ -137,157 +189,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(DistributorColletcionArchive);
-
-// const columns = [
-//   {
-//     title: "Name",
-//     defaultSortOrder: "descend",
-//     ...getColumnSearchProps("orderSourceName"),
-//     dataIndex: "orderSourceName",
-//     width: "12%",
-//   },
-//   {
-//     title: "Order#",
-//     dataIndex: "orderId",
-//     ...getColumnSearchProps("orderId"),
-//     width: "14%",
-//     // render: (text, item) => {
-//     //   return (
-//     //     <>
-//     //       <span>
-//     //         {item.orderId}
-//     //       </span>
-//     //     </>
-//     //   )
-//     // }
-//   },
-//   {
-//     title: "Transaction ID",
-//     dataIndex: "transactionNumber",
-//     width: "14%",
-//     ...getColumnSearchProps("transactionNumber"),
-//   },
-//   {
-//     title: "Type",
-//     dataIndex: "paymentType",
-//     width: "6%",
-//     filters: [
-//       { text: "Part", value: "Part" },
-//       { text: "Complete", value: "Complete" },
-//     ],
-//     onFilter: (value, record) => {
-//       return record.paymentType === value;
-//     },
-//   },
-//   {
-//     title: "Date",
-//     dataIndex: "paymentDate",
-//     width: "8%",
-//     render: (name, item, i) => {
-//       return <span>{` ${dayjs(item.paymentDate).format("DD-MM-YY")}`}</span>;
-//     },
-//     sorter: (a, b) => {
-//       var nameA = a.paymentDate;
-//       var nameB = b.paymentDate;
-//       if (nameA < nameB) {
-//         return -1;
-//       }
-//       if (nameA > nameB) {
-//         return 1;
-//       }
-
-//       return 0;
-//     },
-//   },
-//   {
-//     title: "Amount",
-//     align: 'right',
-//     dataIndex: "paymentAmount",
-//     width: "7%",
-//     render: (name, item, i) => {
-//       return (
-//         <span>
-//           <CurrencySymbol currencyType={"INR"} />
-//           {item.paymentAmount.toFixed(2)}
-//         </span>
-//       );
-//     },
-//     sorter: (a, b) => {
-//       var nameA = a.paymentAmount;
-//       var nameB = b.paymentAmount;
-//       if (nameA < nameB) {
-//         return -1;
-//       }
-//       if (nameA > nameB) {
-//         return 1;
-//       }
-
-//       return 0;
-//     },
-//   },
-//   {
-//     width: "1%"
-//   },
-//   {
-//     title: "Mode",
-//     dataIndex: "paymentMode",
-//     align: 'center',
-//     width: "9%",
-//     filters: [
-//       { text: "Cash", value: "Cash" },
-//       { text: "Credit-Card", value: "Credit-Card" },
-//       { text: "Net Banking", value: "Net Banking" },
-//       { text: "UPI", value: "UPI" },
-//     ],
-//     onFilter: (value, record) => {
-//       return record.paymentMode === value;
-//     },
-//   },
-
-//   {
-//     title: "Received?",
-//     dataIndex: "approveByFinanceInd",
-//     width: "7%",
-//   },
-//   {
-//     title: "Owner",
-//     dataIndex: "salesExecutive",
-//     width: "15%",
-//     filters: salesOption,
-//     onFilter: (value, record) => {
-//       console.log(value, record);
-//       return record.salesExecutive === value;
-//     },
-//     sorter: (a, b) => {
-//       var nameA = a.salesExecutive.toLowerCase();
-//       var nameB = b.salesExecutive.toLowerCase();
-//       if (nameA < nameB) {
-//         return -1;
-//       }
-//       if (nameA > nameB) {
-//         return 1;
-//       }
-
-//       return 0;
-//     },
-//   },
-//   {
-//     title: "",
-//     dataIndex: "remarks",
-//     width: "3%",
-//     render: (text, item, i) => {
-//       return (
-//         <>
-//           {item.remarks ?
-//             <Tooltip title={item.remarks}>
-//               <span>
-//                 <i className="fa fa-sticky-note"></i>
-//               </span>
-//             </Tooltip>
-//             : null}
-//         </>
-
-//       )
-//     },
-//   }
-// ];
