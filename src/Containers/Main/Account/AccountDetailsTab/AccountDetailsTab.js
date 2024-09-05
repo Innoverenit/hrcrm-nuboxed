@@ -49,6 +49,7 @@ const DistributorDocumentTable = lazy(() => import("./AccountDocumentTab/Distrib
 const CatalogueOrderModal = lazy(() => import("./AccountOrder1Tab/CatalogueOrderModal"));
 const AccountContactTable = lazy(() => import("./AccountContactTab/AccountContactTable"))
 const AccountActivityTable = lazy(() => import("./AccountActivityTab/AccountActivityTable"));
+const AccountCreditMemos =lazy(()=>import("./AccountCreditMemo/AccountCreditMemos"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -81,6 +82,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
     "104",// 'Create',11
    "1212", //  'Commerce', //12              
    "1213", // 'Add Commerce',//13
+   '1357',// Memo 14
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -154,7 +156,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                             <DynamicFeedIcon
                                                 className="!text-icon  cursor-pointer"
                                             />
-                                            <span class="ml-1 text-xs">
+                                            <span class="ml-1">
                                             {translatedMenuItems[1]}   {/* Repair */}
                                                 </span>
                                         </Tooltip>
@@ -216,7 +218,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                             <ShopIcon
                                                 className="!text-icon  cursor-pointer"
                                             />
-                                            <span class="ml-1 text-xs">
+                                            <span class="ml-1">
                                             {translatedMenuItems[12]}
                                             {/* Procure */}
                                                 </span>
@@ -346,6 +348,37 @@ props.getInvoiceCount(props.distributorData.distributorId)
                     >
                         <Suspense fallback={"Loading ..."}>
                             <AccountInvoiceTable    distributorId={props.distributorData.distributorId}
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText} />
+                        </Suspense>
+                    </TabPane> 
+                    <TabPane
+                        tab={
+                            <>
+                            <span>
+                                   <ReceiptIcon className="!text-icon"/>
+                                   {translatedMenuItems[14]}
+                                </span>
+                            <Badge
+            size="small"
+            // count={( props.invoiceCount.paymentCount) || 0}
+            // overflowCount={999}
+            offset={[ 0, -16]}
+          >
+                                
+                                </Badge>
+                                {activeKey === "12" && (
+                                    <>  
+                                    </>
+                                )}
+                                
+                            </>
+                        }
+                        key="12"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                            <AccountCreditMemos
+                            distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText} />
                         </Suspense>
@@ -545,6 +578,8 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         </Suspense>
                     </TabPane>
                   
+                   
+
                 </StyledTabs>
             </TabsWrapper>
             {/* <AddDistributorDocumentModal

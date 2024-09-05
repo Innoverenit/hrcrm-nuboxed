@@ -1,7 +1,7 @@
-import React, { useEffect, useState, lazy ,Suspense } from "react";
+import React, { useEffect, useState, lazy,useRef,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip,Button } from "antd";
+import { Tooltip,Button,Input } from "antd";
 import dayjs from "dayjs";
 import {
   // getOrderProcurement,
@@ -12,7 +12,10 @@ import {
   setEditProcure,
   getProcureRecords,
   handleProcureDetailsModal,
-  handleStatuShowDrawer
+  handleStatuShowDrawer,
+  searchCustomerOrderNoData,
+  ClearReducerData,
+
 } from "../../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
@@ -21,14 +24,26 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import { AudioOutlined } from '@ant-design/icons';
+
+const { Search } = Input;
 const UpdateProcureModal = lazy(() => import('./UpdateProcureModal'));
 const AccountProcureDetailsModal = lazy(() => import('../AccountProcureDetailsModal'));
 const ProcureStatusShowDrawer = lazy(() => import('./ProcureStatusShowDrawer'));
 const ProcureInvoiceListDrawer = lazy(() => import('./ProcureInvoiceListDrawer'));
 
+
 function CustomerProcurementTable(props) {
   const [page, setPage] = useState(0);
   const [openInvoiceModal,setopenInvoiceModal] = useState(false);
+  const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); 
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
+
 
   useEffect(() => {
     props.getProcureRecords(props.distributorId,"procure");
@@ -107,8 +122,109 @@ const handleLoadMoreLow = () => {
   //   return <BundleLoader />;
   // }
 
+
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
+    const handleChange = (e) => {
+      setCurrentData(e.target.value);
+      if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
+        props.getDistributorOrderOfHigh(props.distributorId, "0", "procure","High")
+        props.getDistributorOrderOfLow(props.distributorId, "0", "procure","Low")
+        props.ClearReducerData();
+        setSearchOnEnter(false);
+      }
+    };
+
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        // Perform the search
+         props.searchCustomerOrderNoData(currentData);
+        setSearchOnEnter(true);  //Code for Search
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
+    const handleStartListening = () => {
+      setStartTime(Date.now());
+      setIsRecording(true);
+      SpeechRecognition.startListening();
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      timerRef.current = setTimeout(() => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+      }, minRecordingTime);
+    };
+    const suffix = (
+      <AudioOutlined
+        onClick={handleStartListening}
+        style={{
+          fontSize: 16,
+          color: '#1890ff',
+        }}
+  
+      />
+    );
+
+  const handleStopListening = () => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+      if (transcript.trim() !== "") {
+        setCurrentData(transcript);
+        props.searchCustomerOrderNoData(transcript);
+        setSearchOnEnter(true);
+      }
+    };
+    useEffect(() => {
+      if (!listening && isRecording) {
+        handleStopListening();
+      }
+    }, [listening]);
+    useEffect(() => {
+      if (isRecording && !listening) {
+        const elapsedTime = Date.now() - startTime;
+        if (elapsedTime < minRecordingTime) {
+          SpeechRecognition.startListening();
+        } else {
+          setIsRecording(false);
+        }
+      }
+    }, [listening, isRecording, startTime]);
+
   return (
     <>
+ <div class=" flex justify-between">
+        <div class="w-48 mb-3">
+          <div>
+            <div>
+            <Input
+          placeholder="Search by Name "
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
@@ -541,7 +657,9 @@ const mapDispatchToProps = (dispatch) =>
       setEditProcure,
       getProcureRecords,
       handleProcureDetailsModal,
-      handleStatuShowDrawer
+      handleStatuShowDrawer,
+      ClearReducerData,
+      searchCustomerOrderNoData
     },
     dispatch
   );

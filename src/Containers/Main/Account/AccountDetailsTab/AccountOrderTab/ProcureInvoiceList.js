@@ -18,6 +18,7 @@ import { base_url2 } from "../../../../../Config/Auth";
 import axios from "axios";
 import Swal from 'sweetalert2';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 const { Option } = Select;
 
@@ -29,6 +30,10 @@ function ProcureInvoiceList (props) {
     const [data, setData] = useState([]);
     const [openStatus,setopenStatus] = useState(false);
     const [hasMore, setHasMore] = useState(true);
+    const [date, setDate] = useState('');
+    const [trackId, settrackId] = useState('');
+    const [editedFields, setEditedFields] = useState({});
+    const [editsuppliesId, setEditsuppliesId] = useState(null);
 
       const fetchData = async () => {
         try {
@@ -54,12 +59,65 @@ function ProcureInvoiceList (props) {
         setParticularRowData(item);
     }
 
+    const handleInputChange = (value, key, dataIndex) => {
+        const updatedData = data.map((item) =>
+            item.procureOrderInvoiceId === key ? { ...item, [dataIndex]: value } : item
+        );
+        setData(updatedData);
+    };
+    
+      const handleDateChange = (e, item) => {
+        const selectedDate = new Date(e.target.value);
+        const deliveryDate = new Date(item.deliveryDate);
+    setDate(e.target.value);
+
+        // if (selectedDate >= deliveryDate) {
+        //     setDate(e.target.value);
+        // } else {   
+        //     alert('Shipping date cannot be earlier than delivery date');
+        // }
+    };
+    
+    
+      const handleEditClick = (procureOrderInvoiceId) => {
+        setEditsuppliesId(procureOrderInvoiceId);
+      };
+      const handleCancelClick = (procureOrderInvoiceId) => {
+        setEditedFields((prevFields) => ({ ...prevFields, [procureOrderInvoiceId]: undefined }));
+        setEditsuppliesId(null);
+      };
+    
+   
+    
+
+    const handlePostChange =  async (item) => {
+        let updatedItem={
+            shippingDate: new Date(date).toISOString(),
+          trackId:trackId
+        }
+        // props.updateOrdrSuplrItems(data);
+        try {
+
+            const response = await axios.put(`${base_url2}/supplies/suppliescatagory/${item.categoryId}`, updatedItem);
+            console.log("API Response:", response.data);
+        setData(prevData => 
+              prevData.map(cat =>
+                cat.procureOrderInvoiceId === item.procureOrderInvoiceId ? response.data : cat
+              )
+            );
+        
+            setEditsuppliesId(null);
+        
+          } catch (error) {
+            // Handle errors
+            console.error("Error updating item:", error);
+            setEditsuppliesId(null);
+          }
+      };
+
+
     return (
         <>
-
-        
-    
-        
 
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -69,7 +127,7 @@ function ProcureInvoiceList (props) {
                     {props.translatedMenuItems[10]} ID 
                         </div>
                         <div className=" md:w-[7.4rem]">
-                            {/* {translatedMenuItems[1]} ID */} Track ID
+                            {/* {translatedMenuItems[1]} ID */} Ship ID
                             </div>
                         <div className=" md:w-[7.1rem]">
                             {/* {translatedMenuItems[2]} */} Ship On
@@ -106,21 +164,45 @@ function ProcureInvoiceList (props) {
                                                                 </div>
                                                             ) : null}
                                                     </div>
-                                                    <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    {/* <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         
                                                                 {item.newOrderNo}
                                                         </div>
-                                                    </div>
-                                                    {/* <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {item.orderPaymentType}
-                                                        </div>
                                                     </div> */}
+                                                    
+                                                   
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.totalValue}
+                                                        {editsuppliesId === item.procureOrderInvoiceId ? (
+                       <Input
+                       style={{ width: "3rem" }}
+                       value={item.trackId}
+                       onChange={(e) => handleInputChange(e.target.value, item.procureOrderInvoiceId, 'trackId')}
+                     />
+                       
+                    ) : (
+                      <div className="font-normal text-sm  font-poppins">
+                        <div> {item.trackId}</div>
+                      </div>
+                    )}
+                                                        </div>
+                                                    </div>
+                                                    <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        {editsuppliesId === item.procureOrderInvoiceId ? (
+                                                                <input
+          type="date"
+          value={date}
+          onChange={(e) => handleDateChange(e,item)}
+        //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
+          class="border border-black rounded"
+        /> ) : (
+            <div className="font-normal text-sm  font-poppins">
+              <div> 
+              {dayjs(item.shippingDate).format("YYYY/MM/DD")} </div>
+            </div>
+          )}
                                                         </div>
                                                     </div>
                                                     {/* <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
@@ -135,10 +217,33 @@ function ProcureInvoiceList (props) {
                                                        
                                                    
                                                     </div>
-                                                     <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                       
-                                                                                                      </div>
-                                                </div>
+                                                                                                    </div>
+                                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                            <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    {editsuppliesId === item.procureOrderInvoiceId ? (
+                        <>
+                      <Button 
+                      type="primary"
+                      loading={props.updatingOrdrSuplrItems}
+                      onClick={() => handlePostChange(item)}>
+                        Save
+                      </Button>
+                        <Button 
+                         type="primary"
+                        onClick={() => handleCancelClick(item.procureOrderInvoiceId)} className="ml-[0.5rem]">
+                        Cancel
+                      </Button>
+                      </>
+                      
+                    ) : (
+                      <Button
+                      type="primary"
+                    //   className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                        onClick={() => handleEditClick(item.procureOrderInvoiceId)}
+                      >Ship</Button>
+                    )}
+    </div>
+    </div>
                                             </div>
                                         </>
                                     )
