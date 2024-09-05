@@ -5104,3 +5104,34 @@ export const ClearPhoneDataOfrefurbish = () => (dispatch) => {
     type: types.HANDLE_CLAER_PHONEREDUCER_DATA_REFURBISH,
   });
 };
+
+export const ClearReducerData= () => (dispatch) => {
+  dispatch({
+    type: types.CLAER_REDUCERS_DATA,
+  });
+};
+
+export const searchCustomerOrderNoData = (imei) => (dispatch) => {
+  dispatch({
+    type: types.SEARCH_CUSTOMER_ORDERNO_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/ORDER/DUMMY/${imei}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.SEARCH_CUSTOMER_ORDERNO_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+     
+      dispatch({
+        type: types.SEARCH_CUSTOMER_ORDERNO_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
