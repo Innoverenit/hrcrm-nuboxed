@@ -1,6 +1,7 @@
 import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import BrandList from "../Product/Child/BrandList"
 import { BundleLoader } from "../../Components/Placeholder";
 import { handleConfigureModal, setProductViewType } from "./ProductAction";
 const ProductHeader=lazy(()=>import("./Child/ProductHeader"));
@@ -54,6 +55,10 @@ class Product extends Component {
                   <ProductDeleteList
                   translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage} />) :
+                  this.props.viewType === "brand" ? (
+                    <BrandList
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage} />) :
                 this.props.viewType === "category" ? (
                   <ProductCategory 
                   translateText={this.props.translateText}

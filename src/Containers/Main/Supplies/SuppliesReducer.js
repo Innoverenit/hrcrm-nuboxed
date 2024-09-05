@@ -95,6 +95,10 @@ const initialState = {
 
     addCurrencyValue: false,
 
+
+    addingSuppliesBrand:false,
+    addingSuppliesBrandError:false,
+
     addingPriceRate: false,
     addingPriceRateError: false,
 
@@ -109,6 +113,10 @@ const initialState = {
     fetchingBrandModel: false,
     fetchingBrandModelError: false,
     brandModel: [],
+
+    fetchingBrandSupplies:false,
+    fetchingBrandSuppliesError:false,
+    brandSupplies:[],
 
     fetchingSuppliescount: false,
     fetchingSuppliescountError: false,
@@ -762,6 +770,21 @@ export const suppliesReducer = (state = initialState, action) => {
           creatingMaterialDiscount: false,
           creatingMaterialDiscountError: true,
         };
+
+
+
+        case types.GET_BRAND_SUPPLIES_REQUEST:
+      return { ...state, fetchingBrandSupplies: true, fetchingBrandProduct: false };
+    case types.GET_BRAND_SUPPLIES_SUCCESS:
+      //const newData = action.payload.filter(item => !state.products.includes(item));
+      return { ...state, fetchingBrandSupplies: false, 
+        // products: [
+        // ...state.products,
+        // ...action.payload] };
+        brandSupplies: action.payload
+      }
+    case types.GET_BRAND_SUPPLIES_FAILURE:
+      return { ...state, fetchingBrandSupplies: false, fetchingBrandSuppliesError: true };
   
         case types.GET_MATERIAL_DISCOUNT_REQUEST:
         return {
@@ -990,6 +1013,25 @@ export const suppliesReducer = (state = initialState, action) => {
                                             materialCpmplementary: false,
                                             materialCpmplementaryError: true,
                                           };
+
+
+
+
+                                          case types.ADD_SUPPLIES_BRAND_REQUEST:
+      return { ...state, addingSuppliesBrand: true };
+    case types.ADD_SUPPLIES_BRAND_SUCCESS:
+      return {
+        ...state, addingSuppliesBrand: false, 
+        // addConfigureModal: false,
+        //brandProduct: [action.payload, ...state.brandProduct]
+      };
+    case types.ADD_SUPPLIES_BRAND_FAILURE:
+      return {
+        ...state,
+        addingSuppliesBrand: false,
+        addingSuppliesBrandError: true,
+        // addConfigureModal: false,
+      };
 
 
   

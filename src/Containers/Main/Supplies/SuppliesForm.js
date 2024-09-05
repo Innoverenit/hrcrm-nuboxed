@@ -197,7 +197,23 @@ class Suppliesform extends Component {
                         style={{ flexBasis: "80%" }}
                       />
                     </div>
+
+                    
                   </div>
+                  <div class="font-bold text-xs font-poppins text-black">Brand</div>
+                      <Field
+                        name="brandName"
+                        //label="Sub Attribute"
+                        placeholder="Start typing to search or create..."
+                        optionLabel="brandName"
+                        optionValue="brandName"
+                        url={`${base_url2}/supplies/supplies-brand`}
+                        component={LazySelect}
+                        isColumn
+                        inlineLabel
+                        style={{ flexBasis: "80%" }}
+                      />
+                    
                   <div class="flex justify-between">
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[12]}</div>

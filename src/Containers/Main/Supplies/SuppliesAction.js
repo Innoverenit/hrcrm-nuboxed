@@ -1256,3 +1256,61 @@ export const linkComplementryToggle = ( data) => (dispatch) => {
     })
 };
 
+
+export const addSuppliesBrand = (data, cb) => (dispatch) => {
+  console.log("inside add product");
+  dispatch({ type: types.ADD_SUPPLIES_BRAND_REQUEST });
+  axios
+    .post(`${base_url2}/supplies/saveSuppliesBrand`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_SUPPLIES_BRAND_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SUPPLIES_BRAND_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
+
+
+
+export const getBrandSupplies = (pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_BRAND_SUPPLIES_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/supplies/allSuppliesBrand`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_SUPPLIES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BRAND_SUPPLIES_FAILURE,
+        payload: err,
+      });
+    });
+};
+

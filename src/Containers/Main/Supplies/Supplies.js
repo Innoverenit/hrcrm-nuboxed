@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setSuppliesViewType, handleSuppliesModal } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
+const SuppliesBrandTable =lazy(()=>import("./SuppliesBrandTable"))
 const SuppliesHeader =lazy(()=>import("./SuppliesHeader"));
 const SuppliesTable =lazy(()=>import("./SuppliesTable"));
 const SuppliesDeletedTable =lazy(()=>import("./SuppliesDeletedTable"));
@@ -53,6 +54,12 @@ function Supplies(props) {
                      translateText={props.translateText}
                      selectedLanguage={props.selectedLanguage}
                      /> 
+                    ) : viewType === "brand" ? (
+                   
+                        <SuppliesBrandTable 
+                        translateText={props.translateText}
+                        selectedLanguage={props.selectedLanguage}
+                        /> 
                 ) : viewType === "category" ? (
                 <SuppliesCategoryCard translateText={props.translateText}
                 selectedLanguage={props.selectedLanguage}/>) :

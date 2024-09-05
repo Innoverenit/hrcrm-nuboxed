@@ -1022,6 +1022,37 @@ export const getCategoryImage = () => (dispatch) => {
 
 
 
+
+export const getBrandProduct = (pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_BRAND_PRODUCT_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/product/allProductBrand`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BRAND_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
 export const moveProductQuality = (data,qualityCheckBuilderId) => (dispatch) => {
   dispatch({
     type: types.MOVE_PRODUCT_QUALITY_REQUEST,
@@ -2197,4 +2228,34 @@ export const updateDateYearProduct = ( data,productId) => (dispatch) => {
         payload: err,
       });
     })
+};
+
+
+
+
+export const addProductBrand = (data, cb) => (dispatch) => {
+  console.log("inside add product");
+  dispatch({ type: types.ADD_PRODUCT_BRAND_REQUEST });
+  axios
+    .post(`${base_url2}/product/saveProductBrand`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_PRODUCT_BRAND_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PRODUCT_BRAND_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
 };

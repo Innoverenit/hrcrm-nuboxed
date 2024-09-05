@@ -1,6 +1,7 @@
 import React, { useEffect, useState,useRef } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Badge, Avatar,Input } from "antd";
 import { AudioOutlined } from '@ant-design/icons';
@@ -222,6 +223,23 @@ function SuppliesActionLeft (props) {
                         </span>
                     </Badge>
                 </Tooltip>
+
+
+                <Tooltip title="Brand">
+        <div
+          class=" ml-2 text-xs cursor-pointer"
+          style={{
+
+            color: viewType === "brand" && "red",
+          }}
+          onClick={() => setSuppliesViewType("brand")}
+        >
+          <Avatar style={{ background: viewType === "brand" ? "#f279ab" : "#4bc076" }}>
+            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
 
                 <div class=" w-64 max-sm:w-24">
                 {viewType === "all" &&         
