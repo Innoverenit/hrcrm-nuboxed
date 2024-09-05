@@ -68,16 +68,16 @@ function ProductCardList(props) {
         setLoading(true); 
         const itemsToTranslate = [
    
-           "Article #",//0
-            "Name",//1
-            "Category",//2
-            "Attribute ",//3
-            " Brand",//5
-            " Model",//5
-            " Website",//6
-            "Feature",//7
-            "Warranty",//8
-"Year",//9
+           "732",//0 Article #
+            "110",//1 Name
+            "14",//2  Category
+            "259",//3 Attribute
+            "264",//5Brand
+            "265",//5 Model
+            "700",//6Website
+            "1203",//7 Feature
+            "1204",//8 Warranty
+              "1371",//9 year
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -465,6 +465,8 @@ useEffect(() => {
         <UpdateProductModal
           updateProductModal={updateProductModal}
           handleUpdateProductModal={handleUpdateProductModal}
+           translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
 
         <ProductBuilderDrawer
