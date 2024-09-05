@@ -238,6 +238,10 @@ const initialState = {
 
   productQualityDrawer:false,
 
+  fetchingBrandProduct:false,
+  fetchingBrandProductError:false,
+  brandProduct:[],
+
   addProductOfferModal: false,
 
   addingOffer: false,
@@ -270,6 +274,9 @@ const initialState = {
   updateDistributorOfferModal: false,
 
   setEditingDistributorOffer: {},
+
+  addingProductBrand:false,
+  addingProductBrandError:false,
 
   updateCustomerOfferById: false,
   updateCustomerOfferByIdError: false,
@@ -1211,6 +1218,22 @@ export const productReducer = (state = initialState, action) => {
       };
 
 
+
+
+      case types.GET_BRAND_PRODUCT_REQUEST:
+      return { ...state, fetchingBrandProduct: true, fetchingBrandProduct: false };
+    case types.GET_BRAND_PRODUCT_SUCCESS:
+      //const newData = action.payload.filter(item => !state.products.includes(item));
+      return { ...state, fetchingBrandProduct: false, 
+        // products: [
+        // ...state.products,
+        // ...action.payload] };
+        brandProduct: action.payload
+      }
+    case types.GET_BRAND_PRODUCT_FAILURE:
+      return { ...state, fetchingBrandProduct: false, fetchingBrandProductError: true };
+
+
       case types.ADD_CATEGORY_REQUEST:
         return { ...state, addingCategory: true };
       case types.ADD_CATEGORY_SUCCESS:
@@ -1345,6 +1368,26 @@ export const productReducer = (state = initialState, action) => {
         removingProductBuilder: false,
         removingProductBuilderError: true,
       };
+
+
+
+
+      case types.ADD_PRODUCT_BRAND_REQUEST:
+      return { ...state, addingProductBrand: true };
+    case types.ADD_PRODUCT_BRAND_SUCCESS:
+      return {
+        ...state, addingProductBrand: false, 
+        // addConfigureModal: false,
+        brandProduct: [action.payload, ...state.brandProduct]
+      };
+    case types.ADD_PRODUCT_BRAND_FAILURE:
+      return {
+        ...state,
+        addingProductBrand: false,
+        addingProductBrandError: true,
+        // addConfigureModal: false,
+      };
+
 
     case types.UPDATE_PRO_SUPPL_BUILDER_REQUEST:
       return { ...state, addingProductBuilder: true };

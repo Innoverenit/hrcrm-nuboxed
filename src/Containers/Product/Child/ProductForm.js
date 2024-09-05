@@ -197,6 +197,8 @@ class Productform extends Component {
             alert: "",
             maxDiscount: 0,
             maxDiscountValidDate: "",
+            
+brandName:"",
             publishInd: true,
             marginType: this.state.percentage ? "Percentage" : "Amount",
             consumerMarginType: this.state.amount ? "Amount" : "Percentage",
@@ -315,6 +317,22 @@ class Productform extends Component {
                       />
                     </div>
                   </div>
+
+                  <div class="w-[47%]">
+                    <div class=" text-xs font-bold font-poppins">Brand</div>
+                      <Field
+                        name="brandName"
+                        // label="Sub Category"
+                        placeholder="Search or Create"
+                        optionLabel="brandName"
+                        optionValue="brandName"
+                        url={`${base_url2}/product/brand`}
+                        component={LazySelect}
+                        isColumn
+                        inlineLabel
+
+                      />
+                    </div>
 
                   <div class="flex justify-between mt-5">
                     <div class="w-[48%]">
