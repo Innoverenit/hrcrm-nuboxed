@@ -286,9 +286,8 @@ const LeadsCardList = (props) => {
           return (
             <div>
               <div
-                className="flex rounded justify-between 
-                max-sm:rounded-lg max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500
-                 bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                     <div>
@@ -388,6 +387,8 @@ const LeadsCardList = (props) => {
                       </div>
                     </div>
                   </div> 
+                  </div>
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                   <div className=" flex  w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
          
          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -397,8 +398,8 @@ const LeadsCardList = (props) => {
       
          </div>
        </div>              
-                </div>
-                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                \
+               
                  
                   <div className=" flex w-[3.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -530,7 +531,7 @@ const LeadsCardList = (props) => {
   </div>
                   </div>
                   </div>
-                  <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
+                  <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
                   <div>
               <Tooltip title="Address">
  <AddLocationAltIcon
@@ -640,7 +641,7 @@ const LeadsCardList = (props) => {
 
       <div className=' flex  justify-center  sticky z-auto mt-1'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-     <div className="font-bold font-poppins text-xs flex  w-[92%] max-sm:hidden p-1 bg-transparent  sticky top-0 z-10">
+     <div className="font-bold font-poppins text-xs flex  w-[92%] p-1 bg-transparent  sticky top-0 z-10 max-sm:hidden">
       <div className="font-bold font-poppins text-xs w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-orange-400 text-white">{translatedMenuItems[12]}</div>
         <div className="font-bold font-poppins text-xs  w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
         <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
@@ -701,7 +702,7 @@ const LeadsCardList = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
@@ -947,7 +948,7 @@ const LeadsCardList = (props) => {
 </div>
                 </div>
                 </div>
-                <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
+                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
                
                 <div>
               <Tooltip title="Address">
@@ -1122,7 +1123,7 @@ const LeadsCardList = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
@@ -1367,7 +1368,7 @@ const LeadsCardList = (props) => {
 </div>
                 </div>
                 </div>
-                <div class="flex max-sm:justify-end max-sm:w-wk items-center">
+                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                 <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {

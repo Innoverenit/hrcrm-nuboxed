@@ -2,7 +2,6 @@ import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -209,53 +208,53 @@ const [rowdata, setrowdata] = useState("");
          <div className=' flex sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-            <div className="font-poppins w-[17.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className="font-poppins font-bold text-xs w-[17.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className="font-poppins w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className="font-poppins font-bold text-xs w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             {translatedMenuItems[1]}
              {/* work */}
 
             </div>
-            <div className="font-poppins w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className="font-poppins font-bold text-xs w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             {translatedMenuItems[2]}
              {/* sector */}
 
             </div>
-            <div className="font-poppins w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className="font-poppins font-bold text-xs w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             {translatedMenuItems[3]}
            {/* source */}
 
             </div>
-            <div className="font-poppins w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">           
+            <div className="font-poppins font-bold text-xs w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">           
             </div>
-            <div className="font-poppins w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className="font-poppins font-bold text-xs w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             {translatedMenuItems[4]}
              {/* quotation */}
 
             </div>
-            <div className=" font-poppins w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            <div className=" font-poppins font-bold text-xs w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
             {translatedMenuItems[5]}
              {/* Pipeline" */}
          
             </div>           
-            <div className="font-poppins w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className="font-poppins font-bold text-xs w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             {translatedMenuItems[6]}
             {/* Assigned" */}
           
             </div>
-            <div className="font-poppins w-[4.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
+            <div className="font-poppins font-bold text-xs w-[4.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
             {translatedMenuItems[7]}
              {/* Owner" */}
          
             </div>
-            <div className="font-poppins w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {translatedMenuItems[8]}
              {/* Customer" */}
           
             </div>
-            <div className="w-[4.12rem]"></div>
+          
 
           </div>
         <InfiniteScroll
@@ -594,15 +593,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>                               
-                        <div class="w-4">
-                          <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-
-                            <LocationOnIcon
-                              className=" !text-icon cursor-pointer text-[#960A0A]"
-                            />
-
-                          </Tooltip>
-                        </div>
+                      
                         <div class="w-4">
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title= {translatedMenuItems[14]}>

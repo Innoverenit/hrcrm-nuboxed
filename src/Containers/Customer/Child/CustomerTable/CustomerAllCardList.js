@@ -2,7 +2,6 @@ import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import dayjs from "dayjs";
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -487,9 +486,9 @@ const [rowdata, setrowdata] = useState("");
                         <div>
                         </div>
                       </div>
-
+                    
                       <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                        <div>
+                      <div class="w-4">
                           <Tooltip title= {translatedMenuItems[15]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
@@ -501,7 +500,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>
-                        <div>
+                        <div class="w-4">
                           <Tooltip title= {translatedMenuItems[11]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -516,7 +515,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>
                       </div>
                       <div class="flex w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                        <div>
+                      <div class="w-4">
                           <Tooltip title= {translatedMenuItems[12]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
@@ -536,7 +535,7 @@ const [rowdata, setrowdata] = useState("");
           }}
           
         /> 
-                        <div>
+                  <div class="w-4">
                           <Tooltip title= {translatedMenuItems[13]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-[#4bc076]"
@@ -553,17 +552,8 @@ const [rowdata, setrowdata] = useState("");
                       </div>
 
                       <div class="flex w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
-                        <div >
-                          <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-
-                            <LocationOnIcon
-                              className=" !text-icon cursor-pointer text-[#960A0A]"
-
-                            />
-
-                          </Tooltip>
-                        </div>
-                        <div>
+                      
+                      <div class="w-4">
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title= {translatedMenuItems[14]}>
                               <BorderColorIcon

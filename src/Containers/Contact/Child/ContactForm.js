@@ -72,11 +72,11 @@ class ContactForm extends Component {
 '279', // 10
 '326', // 11
 '325' ,// 12
- '185',
+ '185',//13
 //  'Bedrooms',
- '657',
+ '657',//14
   // 'Property Type',
-  '104'
+  '104'//15
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
       this.setState({ translatedMenuItems: translations ,loading: false});

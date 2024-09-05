@@ -71,7 +71,7 @@ class UpdateContactForm extends Component {
 '326', // 11
 '325' ,// 12
 '316', //13
-// 'Update'
+'1246'// 'Update'
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
