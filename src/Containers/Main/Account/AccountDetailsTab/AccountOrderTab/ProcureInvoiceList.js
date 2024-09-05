@@ -34,6 +34,8 @@ function ProcureInvoiceList (props) {
     const [trackId, settrackId] = useState('');
     const [editedFields, setEditedFields] = useState({});
     const [editsuppliesId, setEditsuppliesId] = useState(null);
+    const [invoicDataCount, setinvoicDataCount] = useState({});
+    const [invoicDataCountLoading, setinvoicDataCountLoading] = useState(true);
 
       const fetchData = async () => {
         try {
@@ -49,9 +51,24 @@ function ProcureInvoiceList (props) {
           setLoading(false);
         }
       };
+      const invoiceDataCount = async () => {
+        try {
+          const response = await axios.get(`${base_url2}/invoice/invoice/count/${props.particularRowData.orderPhoneId}`,{
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+          setinvoicDataCount(response.data);
+          setinvoicDataCountLoading(false);
+        } catch (error) {
+          setError(error);
+          setinvoicDataCountLoading(false);
+        }
+      };
   
  useEffect(()=> {
     fetchData();
+    invoiceDataCount();
  },[]);
 
 
@@ -93,12 +110,13 @@ function ProcureInvoiceList (props) {
     const handlePostChange =  async (item) => {
         let updatedItem={
             shippingDate: new Date(date).toISOString(),
-          trackId:trackId
+          trackId:trackId,
+          procureOrderInvoiceId:item.procureOrderInvoiceId,
         }
         // props.updateOrdrSuplrItems(data);
         try {
 
-            const response = await axios.put(`${base_url2}/supplies/suppliescatagory/${item.categoryId}`, updatedItem);
+            const response = await axios.put(`${base_url2}/invoice/order/ship`, updatedItem);
             console.log("API Response:", response.data);
         setData(prevData => 
               prevData.map(cat =>
@@ -118,7 +136,14 @@ function ProcureInvoiceList (props) {
 
     return (
         <>
-
+<div class="text-xs">Total Invoice: {invoicDataCount.orderProcureInvoice || 0}
+  {/* <Badge
+                                    size="small"
+                                    count={(invoicDataCount.orderProcureInvoice) || 0}
+                                    overflowCount={999}
+                                    offset={[ 0, -16]}
+                                /> */}
+                                </div>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">

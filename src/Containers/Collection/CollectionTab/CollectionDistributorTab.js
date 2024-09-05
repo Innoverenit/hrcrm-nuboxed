@@ -39,7 +39,7 @@ function CollectionDistributorTab(props) {
          "204", //  "Receivables",//0
           "922",  // Archive",//1
           "1357" , // "Credit Memo",//2
-        //  "", // close
+                 // close
    
           
 

@@ -67,8 +67,8 @@ class Collection extends Component {
       <>
        <Suspense fallback={<BundleLoader />}>
         <CollectionHeader
-         translateText={this.translateText}
-         selectedLanguage={this.selectedLanguage}
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
           setCollectionViewType={setCollectionViewType}
           setCustomerSubViewType={setCustomerSubViewType}
           setDistributorViewType={setDistributorViewType}
@@ -87,8 +87,8 @@ class Collection extends Component {
         />
      
            <CollectionDistributorTab
-            translateText={this.translateText}
-            selectedLanguage={this.selectedLanguage}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
               handleTabChange1={this.handleTabChange1}
              activeKey1={activeKey1}
            /> 
