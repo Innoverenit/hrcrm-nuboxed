@@ -68,7 +68,7 @@ function OrderPhoneListById(props) {
             "268",//Complete13
            "1308" ,// Spare14
                 "142",//  "Status"15
-              "",  // Can't Repair 16
+              "1330",  // Can't Repair 16
            "1250", //   Change Status17
        "661" //    Reapir18
 

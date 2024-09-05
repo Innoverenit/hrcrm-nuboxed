@@ -18,10 +18,10 @@ const ApproveSpareTable = (props) => {
             setLoading(true); 
             const itemsToTranslate = [
        
-             "", //  "Spare Name",//0
-              "",  // "Phone imei",//1
-              "" , // "Phone Model",//2             
-             "", //   OEM
+             "1282", //  "Spare Name",//0
+              "184",  // "Phone imei",//1
+              "1285" , // "Phone Model",//2             
+            //  "", //   OEM
               
             ];
     

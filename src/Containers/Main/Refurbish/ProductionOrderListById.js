@@ -327,11 +327,15 @@ function ProductionOrderListById(props) {
                 </div>
                 <Suspense fallback={<BundleLoader />}>
                     <OrderPhoneModal
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage}
                         showPhoneList={props.showPhoneList}
                         handleOrderPhoneModal={props.handleOrderPhoneModal}
                         rowData={rowData}
                     />
                     <RefurbishNoteAll
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage}
                      rowData={rowData}
                      productioNoteModal={props.productioNoteModal}
                     handleProductionNotesModal={props.handleProductionNotesModal}
