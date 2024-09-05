@@ -528,7 +528,7 @@ props.emptyClearbit();
 }
                     </div>
                   </div>            
-                  <div class=" mt-3">
+                  <div class=" mt-1">
                   <div className="font-bold text-xs">{translatedMenuItems[6]}</div>
                   <Field                  
                     name="companyName"
@@ -555,7 +555,7 @@ props.emptyClearbit();
 }
                   </div>
                                         
-                  <div class=" flex  justify-between mt-3">
+                  <div class=" flex  justify-between mt-1">
                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
                    {props.customerConfigure.sectorInd===true&&
                   <div className="font-bold text-xs">{translatedMenuItems[8]}</div>

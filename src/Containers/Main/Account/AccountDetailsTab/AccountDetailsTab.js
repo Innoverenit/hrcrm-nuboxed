@@ -18,6 +18,7 @@ import {
     handleAccountOpportunityModal,
     getInvoiceCount
 } from "../AccountAction";
+import LayersIcon from '@mui/icons-material/Layers';// salesmap
 import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
@@ -30,6 +31,7 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import { HistoryOutlined } from "@ant-design/icons";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import ShopIcon from '@mui/icons-material/Shop'
+import CreditCardIcon from '@mui/icons-material/CreditCard';
 
 const CompleteOrderTable= lazy(() => import("./AccountOrderTab/CompleteOrderTable"));
 const AddSupplierContactModal   = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal"));
@@ -74,10 +76,10 @@ props.getInvoiceCount(props.distributorData.distributorId)
     "213",// 'Quotation', // 3
     "1165",// ' Activity', // 4
     "316",// 'Notes', // 5
-   "138", // ' Documents',
-   "1167", // 'Sales Map',
-    "1168",// 'Summary',
-    "73",// 'Contact ',
+   "138", // ' Documents',6
+   "1167", // 'Sales Map',7
+    "1168",// 'Summary',8
+    "73",// 'Contact ',9
     "1169",// 'Invoice',//10
     "104",// 'Create',11
    "1212", //  'Commerce', //12              
@@ -154,7 +156,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                              <span onClick={() => handleOrderClick(false)}>
                                         <Tooltip title="Orders">
                                             <DynamicFeedIcon
-                                                className="!text-icon  cursor-pointer"
+                                                className="!text-icon text-[#968181] cursor-pointer"
                                             />
                                             <span class="ml-1">
                                             {translatedMenuItems[1]}   {/* Repair */}
@@ -216,7 +218,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                             <>
                              <Tooltip title={translatedMenuItems[12]}>
                                             <ShopIcon
-                                                className="!text-icon  cursor-pointer"
+                                                className="!text-icon text-[#BEE8C2] cursor-pointer"
                                             />
                                             <span class="ml-1">
                                             {translatedMenuItems[12]}
@@ -267,7 +269,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
               tab={
                 <>
                   <span>
-                    <LightbulbIcon className="!text-icon" />
+                    <LightbulbIcon className="!text-icon text-[#D1BEE8]" />
                     <span class=" ml-1">
                       {/* <FormattedMessage
                         id="app.quotation"
@@ -325,8 +327,8 @@ props.getInvoiceCount(props.distributorData.distributorId)
             <TabPane
                         tab={
                             <>
-                            <span>
-                                   <ReceiptIcon className="!text-icon"/>
+                            <span class="ml-1">
+                                   <ReceiptIcon className="!text-icon text-[#7ed548] ml-1"/>
                                    {translatedMenuItems[10]}
                                 </span>
                             <Badge
@@ -356,7 +358,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                             <span>
-                                   <ReceiptIcon className="!text-icon"/>
+                                   <CreditCardIcon className="!text-icon text-[#8a4767] mr-1"/>
                                    {translatedMenuItems[14]}
                                 </span>
                             <Badge
@@ -388,8 +390,8 @@ props.getInvoiceCount(props.distributorData.distributorId)
                             <>
 
                                 <span>
-                                    <i class="fab fa-connectdevelop"></i>
-                                    <span class="ml-1">
+                                    <i class="fab fa-connectdevelop text-[#e8ccbf]"></i>
+                                    <span class="ml-1 ">
                                     {translatedMenuItems[4]}
                                     {/* Activity */}
                                         </span>
@@ -423,7 +425,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                                    <i className="fa fa-sticky-note" aria-hidden="true"></i>
+                                    <i className="fa fa-sticky-note text-[#A5A5CF]"   aria-hidden="true"></i>
                                     <span class="ml-1">
                                     {translatedMenuItems[5]}
                                     {/* Notes */}
@@ -463,7 +465,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                                    <i class="far fa-file"></i>
+                                    <i class="far fa-file text-[#819296]"></i>
                                     <span class="ml-1">
                                     {translatedMenuItems[6]}
                                     {/* Documents */}
@@ -503,11 +505,12 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                                    {/* <i class="far fa-file"></i> */}
+                                <LayersIcon className="!text-icon text-[#839681] ml-1"/>
                                     <span class="ml-1">
                                     {translatedMenuItems[7]}
                                     {/* Sales Map */}
                                         </span>
+                                     
                                 </span>
 
                             </>
@@ -521,7 +524,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                                <SummarizeIcon className="!text-icon mr-1"/>
+                                <SummarizeIcon className="!text-icon text-[#96818D] mr-1"/>
                                     
                                     {translatedMenuItems[8]}
                                     {/* Summary */}
@@ -547,7 +550,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                               <ContactsIcon className="!text-icon" />
+                               <ContactsIcon className="!text-icon text-[#96bdc6]" />
                                     {translatedMenuItems[9]}
                                     
                                     {/* Contact */}
