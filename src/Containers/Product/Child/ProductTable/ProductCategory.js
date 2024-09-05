@@ -39,7 +39,7 @@ function ProductCategory(props) {
         const itemsToTranslate = [
    
           
-            "Category",//0
+            "14",//0 Category
            
             
 

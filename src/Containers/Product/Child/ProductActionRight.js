@@ -38,8 +38,8 @@ class ProductActionRight extends React.Component {
         
           
          
-        "Add",
-        "Upload",
+        "85",//Add
+        "294",//upload
         
         
       ];

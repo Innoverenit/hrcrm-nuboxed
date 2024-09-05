@@ -50,32 +50,32 @@ function UpdatePitchForm (props) {
   const handleReset = (resetForm) => {
     resetForm();
   };
-
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-             "295",//0 First Name
-              "353",//1 Middle Name
-              "354",//2 Last Name
-              "140",//3 Email
-              "357",//4 Dial Code
-              "300",//5 Phone No
-              "277",//6 Company
-              "302",//7 Url
-              "454",//8 Share Quantity
-              "455",//9 Share Value
-              "14",//10 Category
-              "74",//11 Date
-              "241",//12 Currency
-              "76",//13 Assigned
-              "185", // "Address",
-              "186", // "Street",//15
-             "187",//Zip Code",//16
-             "188",// "City",17
-              "314",// "State",//18
-              "1109",// "Country",//19
-              "316",//14 Notes
+         "295",//0 First Name
+          "353",//1 Middle Name
+          "354",//2 Last Name
+          "140",//3 Email
+          "357",//4 Dial Code
+          "300",//5 Phone No
+          "277",//6 Company
+          "302",//7 Url
+          "454",//8 Share Quantity
+          "455",//9 Share Value
+          "14",//10 Category
+          "74",//11 Date
+          "241",//12 Currency
+          "76",//13 Assigned
+          "185", // 14 "Address",
+        //   "186", // "Street",//15
+        //  "187",//Zip Code",//16
+        //  "188",// "City",17
+        //   "314",// "State",//18
+        //   "1109",// "Country",//19
+          "316",//15 Notes
+           "104",//  Update
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -88,6 +88,7 @@ function UpdatePitchForm (props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
+ 
   useEffect (()=>{
     props.getAllEmployeelist();
     props.getDialCode();
@@ -673,7 +674,7 @@ function UpdatePitchForm (props) {
                   htmlType="submit"
                  Loading={props.updatePitchById}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="create" />
+                 <div class="font-bold font-poppins text-xs">{translatedMenuItems[16]} </div>
                   {/* Update */}
                 </Button>
               </div>

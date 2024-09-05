@@ -9,13 +9,8 @@ import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { addProduct } from "../ProductAction";
 import { getWorkflowList } from "../../Production/ProductionAction"
 import LazySelect from "../../../Components/Forms/Formik/LazySelect";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { getCurrency } from "../../Auth/AuthAction";
 import { CurrencySymbol } from "../../../Components/Common";
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import * as Yup from "yup";
 
@@ -60,21 +55,21 @@ class Productform extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        "Article",
-        "Name",
-        "category",
-        "Sub Category ",
-        "Atrribute",
-        "Sub Attribute",
-        "Workflow",
-        "Weight",
-        "Lenght",
-        "Width",
-        "Height",
-        "Brand",
-        "Model",
-        "Description",
-        "Create"
+        "1058",//Article
+        "110",//Name
+        "14",//category
+        "1154",//sub category
+        "259",//Atrribute
+        "263",//Sub Attribute
+        "141",//Workflow
+        "1241",//Weight
+        "1242",//Length
+        "1243",//Width
+        "1244",//Height
+        "254",//Brand
+        "265",//model
+        "147",//Description
+        "104"//Create
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
