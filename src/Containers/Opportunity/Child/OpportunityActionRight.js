@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useEffect,useState  } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
@@ -15,7 +15,24 @@ import UploadIcon from '@mui/icons-material/Upload';
 const Option = StyledSelect.Option;
 
 const OpportunityActionRight = (props) => {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]); // Re-run when selectedLanguage changes
 
+  const fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "85", //0    Add
+        "294", //1 Export
+      ];
+
+      const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+      setTranslatedMenuItems(translations);
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   const {
     userId,
           subscriptionType,
@@ -42,7 +59,8 @@ const OpportunityActionRight = (props) => {
           // ghost
           onClick={() => handleOpportunityModal(true)}
         >
-          <DataSaverOnIcon className="!text-icon"/>Add
+          <DataSaverOnIcon className="!text-icon"/>{translatedMenuItems[0]}
+          {/* Add */}
         </Button>
           )}  
       </Tooltip>
@@ -54,10 +72,8 @@ const OpportunityActionRight = (props) => {
       >
         {/* Export */}
         <UploadIcon className=" !text-icon"/>
-        <FormattedMessage
-              id="app.export"
-              defaultMessage="Export"
-            />
+        {translatedMenuItems[1]}
+        {/* Export */}
       </Button>
       
     </div>

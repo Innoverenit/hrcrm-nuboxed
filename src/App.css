@@ -334,7 +334,7 @@
   position: relative;
   display: inline-block;
   width: -webkit-fill-available;
-  height: 26px;
+  height: 1.44rem;
   min-width: 0;
   padding: 4px 11px;
   color: rgba(0, 0, 0, 0.85);
@@ -441,6 +441,7 @@ style attribute {
   position: relative;
   height: 1.48rem;
   font-family: "Poppins";
+  font-size: 0.75rem;
   margin: 0 0 0.42rem 0.1rem;
   box-shadow: 0 0.25em 0.62em #aaa;
   background-color: #fff;
@@ -461,6 +462,7 @@ style attribute {
   position: relative;
   height: 1.48rem;
   font-family: "Poppins";
+  font-size: 0.75rem;
   margin: 0 0 0.42rem 0.1rem;
   box-shadow: 0 0.25em 0.62em #aaa;
   background-color: #fff;
