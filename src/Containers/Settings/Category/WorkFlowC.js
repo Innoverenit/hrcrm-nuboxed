@@ -5,7 +5,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm,Switch, Input,Tooltip,Select } from "antd";
+import { Popconfirm,Switch, Input,Tooltip,Select,Button } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
@@ -26,6 +26,7 @@ const { Option } = Select;
 const WorkFlowC = (props) => {
   const [touched, setTouched] = useState(false);
   const [type, setType] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
   const [currentData, setCurrentData] = useState("");
@@ -43,6 +44,11 @@ const WorkFlowC = (props) => {
     console.log(name)
       setEditingId(sectorId);
       setCategoryName(name);
+  };
+
+  const handleSelectType = (value) => {
+    setSelectedValue(value);
+   
   };
 
 
@@ -67,6 +73,7 @@ const WorkFlowC = (props) => {
       let data={
         name:newCategoryName,
         orgId:props.orgId,
+        navType:selectedValue
       }
       props.addWorkFlowCategory(data)
       setAddingRegion(false)
@@ -93,6 +100,7 @@ const WorkFlowC = (props) => {
 
   const handleCancelAdd = () => {
     setCategoryName('');
+    setSelectedValue(null);
       setAddingRegion(false);
   };
   const cancelEdit = () => {
@@ -192,7 +200,7 @@ return <div><BundleLoader/></div>;
  
             <div className="add-region">
               {addingRegion ? (
-                  <div>
+                  <div style={{display:"flex"}}>
                       <input 
                         placeholder="Add workFlowCategory"
                       style={{border:"2px solid black",width:"55%"}}
@@ -200,11 +208,30 @@ return <div><BundleLoader/></div>;
                           value={newCategoryName} 
                           onChange={(e) => setCategoryName(e.target.value)} 
                       />
-                      <button 
+                        <Select
+        style={{ width: '55%' }}
+        placeholder="Select workFlowCategory"
+        onChange={handleSelectType}
+        disabled={!newCategoryName}
+        value={selectedValue}
+      >
+        <Option value="Production">Production</Option>
+        <Option value="Quotation">Quotation</Option>
+        <Option value="Repair">Repair</Option>
+        <Option value="Supplier-Onboarding">Supplier-Onboarding</Option>
+        <Option value="Task">Task</Option>
+        <Option value="User-Onboarding">User-Onboarding</Option>
+        <Option value="Deals">Deals</Option>
+        <Option value="Test">Test</Option>
+      </Select>
+                      <Button 
+                        disabled={!selectedValue}
                          loading={props.addingWorkflowCategory}
-                      onClick={handleSector}>Save</button>
-                      <button onClick={handleCancelAdd}>Cancel</button>
+                      onClick={handleSector}>Save</Button>
+                      <Button onClick={handleCancelAdd}>Cancel</Button>
                   </div>
+
+                  
               ) : (
                   <button 
                   loading={props.addingWorkflowCategory}
