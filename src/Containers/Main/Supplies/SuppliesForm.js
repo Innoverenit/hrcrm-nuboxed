@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,DatePicker } from "antd";
 import * as Yup from "yup";
-import dayjs from 'dayjs';
 import { Formik, Form, Field } from "formik";
 import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
 import { base_url2 } from "../../../Config/Auth";
@@ -57,10 +56,10 @@ class Suppliesform extends Component {
         "818",//9
         "147",//10
         "104",//11
-        "Weight",//12
-        "Length",//13
-        "Width",//14
-        "Height",//15
+        "1241",//Weight
+        "1242",//Length
+        "1243",//Width
+        "1244",//Height
 
       ];
 

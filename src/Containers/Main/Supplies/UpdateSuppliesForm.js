@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import { Formik, Form, Field,FastField } from "formik";
 import { base_url2 } from "../../../Config/Auth";
 import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
-import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { updateSupplies } from "./SuppliesAction";
@@ -15,7 +14,7 @@ import { getCurrency } from "../../Auth/AuthAction"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import MultiImageUpload from "../../../Components/MultiImageUpload";
-// import MaterialImagesView from "./";
+
 
 const SuppliesSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
@@ -59,11 +58,11 @@ function UpdateSuppliesForm (props) {
           "818",//9
           "147",//10
           "104",//11
-          "Update",
-          "Weight",//12
-          "Length",//13
-          "Width",//14
-          "Height",//15
+          "1246",//Update
+          "1241",//Weight
+        "1242",//Length
+        "1243",//Width
+        "1244",//Height
       
        
           
