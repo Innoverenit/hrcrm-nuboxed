@@ -156,7 +156,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                              <span onClick={() => handleOrderClick(false)}>
                                         <Tooltip title="Orders">
                                             <DynamicFeedIcon
-                                                className="!text-icon text-[#968181] cursor-pointer"
+                                                className="!text-icon text-[#81968f] cursor-pointer"
                                             />
                                             <span class="ml-1">
                                             {translatedMenuItems[1]}   {/* Repair */}
@@ -218,7 +218,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                             <>
                              <Tooltip title={translatedMenuItems[12]}>
                                             <ShopIcon
-                                                className="!text-icon text-[#BEE8C2] cursor-pointer"
+                                                className="!text-icon text-[#78a1bb] cursor-pointer"
                                             />
                                             <span class="ml-1">
                                             {translatedMenuItems[12]}
@@ -269,7 +269,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
               tab={
                 <>
                   <span>
-                    <LightbulbIcon className="!text-icon text-[#D1BEE8]" />
+                    <LightbulbIcon className="!text-icon text-[#bfa89e]" />
                     <span class=" ml-1">
                       {/* <FormattedMessage
                         id="app.quotation"
@@ -327,8 +327,8 @@ props.getInvoiceCount(props.distributorData.distributorId)
             <TabPane
                         tab={
                             <>
-                            <span class="ml-1">
-                                   <ReceiptIcon className="!text-icon text-[#7ed548] ml-1"/>
+                            <span>
+                                   <ReceiptIcon className="!text-icon text-[#a9d8b8] mr-1"/>
                                    {translatedMenuItems[10]}
                                 </span>
                             <Badge
@@ -358,7 +358,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                             <span>
-                                   <CreditCardIcon className="!text-icon text-[#8a4767] mr-1"/>
+                                   <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>
                                    {translatedMenuItems[14]}
                                 </span>
                             <Badge
@@ -390,7 +390,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                             <>
 
                                 <span>
-                                    <i class="fab fa-connectdevelop text-[#e8ccbf]"></i>
+                                    <i class="fab fa-connectdevelop text-[#8332ac]"></i>
                                     <span class="ml-1 ">
                                     {translatedMenuItems[4]}
                                     {/* Activity */}
@@ -425,7 +425,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                                    <i className="fa fa-sticky-note text-[#A5A5CF]"   aria-hidden="true"></i>
+                                    <i className="fa fa-sticky-note text-[#b6465f]"   aria-hidden="true"></i>
                                     <span class="ml-1">
                                     {translatedMenuItems[5]}
                                     {/* Notes */}
@@ -465,7 +465,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                                    <i class="far fa-file text-[#819296]"></i>
+                                    <i class="far fa-file text-[#41ead4]"></i>
                                     <span class="ml-1">
                                     {translatedMenuItems[6]}
                                     {/* Documents */}
@@ -505,7 +505,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                                <LayersIcon className="!text-icon text-[#839681] ml-1"/>
+                                <LayersIcon className="!text-icon text-[#f49097] ml-1"/>
                                     <span class="ml-1">
                                     {translatedMenuItems[7]}
                                     {/* Sales Map */}
@@ -524,7 +524,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                                <SummarizeIcon className="!text-icon text-[#96818D] mr-1"/>
+                                <SummarizeIcon className="!text-icon text-[#55d6c2] mr-1"/>
                                     
                                     {translatedMenuItems[8]}
                                     {/* Summary */}
@@ -550,7 +550,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span>
-                               <ContactsIcon className="!text-icon text-[#96bdc6]" />
+                               <ContactsIcon className="!text-icon text-[#96bdc6] mr-1" />
                                     {translatedMenuItems[9]}
                                     
                                     {/* Contact */}

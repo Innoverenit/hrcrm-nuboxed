@@ -70,6 +70,12 @@ const LeadsTeamHotcard = (props) => {
           '1114', // 11
           '272', //12
           '273', //13
+          '185',//Address 14
+'316',//notes15
+'1165',// 16activity
+'140',// 17 email
+'170',//18 edit
+'1259',//19 "Do you want to delete?"
             ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -442,7 +448,7 @@ const LeadsTeamHotcard = (props) => {
           
         /> 
                     <div >
-                      <Tooltip title="Notes">
+                      <Tooltip title={translatedMenuItems[15]}>
                         <NoteAltIcon
                          className=" !text-icon cursor-pointer text-green-800"
                           onClick={() => {
@@ -456,13 +462,9 @@ const LeadsTeamHotcard = (props) => {
                     </div>
                     <div >
                       <Tooltip
-                        title={
-                          <FormattedMessage
-                            id="app.activity"
-                            defaultMessage="Activity"
-                          />
-                        }
+                        title={translatedMenuItems[16]}
                       >
+                        {/* activity */}
                         <AddchartIcon
                          className="!text-icon cursor-pointer text-blue-500"
                           onClick={() => {
@@ -475,7 +477,7 @@ const LeadsTeamHotcard = (props) => {
                     </div>
                   
                     <div >
-                      <Tooltip title={item.email}>
+                      <Tooltip title={translatedMenuItems[17]}>
                         <MailOutlineIcon
                           type="mail"
                           className="!text-icon cursor-pointer text-green-400"
@@ -488,7 +490,7 @@ const LeadsTeamHotcard = (props) => {
                     </div>
                     {user.leadsUpdateInd === true && user.crmInd === true && (
                      <div >
-                        <Tooltip title="Edit">
+                        <Tooltip title={translatedMenuItems[18]}>
                           <BorderColorIcon
                            className="!text-icon cursor-pointer text-[tomato]"
                             onClick={() => {
@@ -504,7 +506,7 @@ const LeadsTeamHotcard = (props) => {
                       <div >
                        
                         <StyledPopconfirm
-                          title="Do you want to delete?"
+                          title={translatedMenuItems[19]}
                           onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                      <Tooltip title="Delete">
                           <DeleteOutlined

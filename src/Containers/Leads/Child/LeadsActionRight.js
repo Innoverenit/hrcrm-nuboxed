@@ -29,7 +29,8 @@ class LeadsActionRight extends React.Component {
       <>
 
           <Button type="primary"  onClick={() => handleLeadsModal(true)}>
-          <DataSaverOnIcon className="!text-icon"/>Add
+          <DataSaverOnIcon className="!text-icon"/>
+          Add
           </Button>
           
           </>
@@ -38,7 +39,8 @@ class LeadsActionRight extends React.Component {
           <Button type="primary"  
         onClick={() => this.props.handleLeadsImportModal(true)}
         >
-            <UploadIcon className=" !text-icon"/>Import
+            <UploadIcon className=" !text-icon"/>
+            Import
           </Button>
           </div>
         </div>
