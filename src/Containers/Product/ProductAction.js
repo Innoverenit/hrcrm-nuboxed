@@ -43,6 +43,15 @@ export const emptyProductList = () => (dispatch) => {
     type: types.EMPTY_PRODUCT_LIST, 
   });
 };
+
+
+
+export const handleProductBrandModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCT_BRAND_MODAL,
+    payload: modalProps,
+  });
+};
 export const handleProductQuality =(modalProps)=>(dispatch) => {
   dispatch({
     type: types.HANDLE_PRODUCT_QUALITY_DRAWER,

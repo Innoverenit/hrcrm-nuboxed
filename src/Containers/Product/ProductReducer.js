@@ -182,6 +182,9 @@ const initialState = {
 
   categoryProductModal:false,
 
+
+  addProductBrandModal:false,
+
   addDiscountModal: false,
 
   addHistoryModal: false,
@@ -1232,6 +1235,12 @@ export const productReducer = (state = initialState, action) => {
       }
     case types.GET_BRAND_PRODUCT_FAILURE:
       return { ...state, fetchingBrandProduct: false, fetchingBrandProductError: true };
+
+
+
+
+      case types.HANDLE_PRODUCT_BRAND_MODAL:
+        return { ...state, addProductBrandModal: action.payload };
 
 
       case types.ADD_CATEGORY_REQUEST:

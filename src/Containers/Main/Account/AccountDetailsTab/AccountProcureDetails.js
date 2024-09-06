@@ -43,7 +43,7 @@ function AccountProcureDetails(props) {
   const [RowInvoices, setRowInvoices] = useState('');
   // const [particularRowData, setParticularRowData] = useState({});
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [CreditMemo, setCreditMemo] = useState("");
+  const [CreditMemo, setCreditMemo] = useState([]);
 
   const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -243,6 +243,7 @@ function AccountProcureDetails(props) {
 const handleGenerateInvoice= async () => {
     setLoading(true);
     setError(null);
+    const selectedData = creditmemoData.filter(item => CreditMemo.includes(item.creditMemo));
     const itemList = props.procureDetails.map(item => {
       const unitValue = editedFields[item.id]?.reaminingInvoiceUnit || item.reaminingInvoiceUnit;  
       if (unitValue < 1) {
@@ -259,8 +260,8 @@ const handleGenerateInvoice= async () => {
       return {
         price: item.price,
         procureOrderProductId: item.id,
-        // unit: item.unit,
-        unit:RowInvoices,
+        unit: item.unit,
+        //unit:RowInvoices,
         // reaminingInvoiceUnit:unitValue
       };
     }).filter(item => item !== null); 
@@ -301,7 +302,7 @@ const handleGenerateInvoice= async () => {
         procureOrderInvoiceId: "",
         procureOrderProductInvoiceId:"",
         orgId: props.orgId,
-        creditMemoList:CreditMemo,
+        creditMemoList:selectedData,
       },
         {
           headers: {
@@ -666,7 +667,7 @@ const handleGenerateInvoice= async () => {
                       mode="multiple" 
                     >
    {creditmemoData.map((critem, crindex) => (
-      <option key={crindex} value={critem.creditMemoId}>
+      <option  key={critem.creditMemoId} value={critem.creditMemo}>
         {critem.creditMemo}
       </option>
     ))}

@@ -241,6 +241,22 @@ function SuppliesActionLeft (props) {
         </div>
       </Tooltip>
 
+      <Tooltip title="Brand Model">
+        <div
+          class=" ml-2 text-xs cursor-pointer"
+          style={{
+
+           // color: viewType === "brand" && "red",
+          }}
+         // onClick={() => setSuppliesViewType("brand")}
+        >
+          <Avatar style={{ background: viewType === "brand" ? "#f279ab" : "#4bc076" }}>
+            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
+
                 <div class=" w-64 max-sm:w-24">
                 {viewType === "all" &&         
         <Input

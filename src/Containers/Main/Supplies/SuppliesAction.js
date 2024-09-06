@@ -28,6 +28,14 @@ export const handleBrandModel = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
+
+export const handleSuppliesBrandModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIES_BRAND_MODAL,
+    payload: modalProps,
+  });
+};
 export const addSupplies = (purchase) => (dispatch) => {
   console.log("inside add purchase");
   dispatch({ type: types.ADD_SUPPLIES_REQUEST });
@@ -1309,6 +1317,36 @@ export const getBrandSupplies = (pageNo) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_BRAND_SUPPLIES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getBrandProductList = (brandId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BRAND_PRODUCT_LIST_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/supplies/supplies/brand/${brandId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_PRODUCT_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BRAND_PRODUCT_LIST_FAILURE,
         payload: err,
       });
     });
