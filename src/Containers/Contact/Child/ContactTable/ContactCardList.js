@@ -232,7 +232,7 @@ function ContactCardList(props) {
                     return (
                       <div>
                       <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
                           <div className=" flex font-medium  w-[14rem] max-sm:flex-row  max-sm:justify-between max-sm:w-wk  ">
@@ -293,7 +293,7 @@ function ContactCardList(props) {
                             </div>
                         </div>
                         </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk">
+                        <div class="flex max-sm:justify-evenly max-sm:w-wk">
                         <div className="flex  w-[6.01rem] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 <div className="text-xs font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -318,8 +318,8 @@ function ContactCardList(props) {
 
                               </div>
                           </div>
+                       
                           </div>
-                          <div class="flex items-center max-sm:justify-between max-sm:w-wk">
                           <div className="flex   w-[3.01rem] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
         <Tooltip title={item.ownerName}>
           <div class="max-sm:flex justify-end">
@@ -335,6 +335,8 @@ function ContactCardList(props) {
     </Tooltip>
 
              </div>
+          
+             <div class="flex items-center max-sm:justify-evenly max-sm:w-wk">
              <div>
               <Tooltip title="Address">
  <AddLocationAltIcon
@@ -417,7 +419,7 @@ function ContactCardList(props) {
       )}
     </Tooltip>
                   </div>
-                  <div class=" max-sm:flex justify-end  max-sm:w-full">
+               
                   <Tooltip title={item.emailId}>
      
       <MailOutlineIcon
@@ -429,9 +431,7 @@ function ContactCardList(props) {
         }}
       />
      </Tooltip>
-                  </div>
-
-                              
+                                            
         {user.contactUpdateInd === true &&  user.crmInd === true && (
       <div>
      

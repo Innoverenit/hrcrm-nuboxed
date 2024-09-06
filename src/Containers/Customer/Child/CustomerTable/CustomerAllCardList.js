@@ -85,7 +85,10 @@ function CustomerAllCardList(props) {
     "392" ,  // Pulse 12
     "316" ,  // "Notes"13
     "170" ,  // "Edit" 14
-   "73" // Contact 15
+   "73", // Contact 15
+   "144" ,//In Progress 16
+   "387",//  Convert 17
+   "389"//   Converted 18
 
         ];
 
@@ -282,7 +285,7 @@ const [rowdata, setrowdata] = useState("");
            } `;
                     return (
                         <div>
-                            <div className="flex rounded max-sm:flex-col justify-between bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+                            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
                                 >
                                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                    <div className=" flex  w-[18rem] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
@@ -365,8 +368,8 @@ const [rowdata, setrowdata] = useState("");
 
                           </div>
                                 </div>
-                                </div>
-                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            
+                              
                                 <div className=" flex  w-[4.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                   
 
@@ -375,6 +378,8 @@ const [rowdata, setrowdata] = useState("");
 
                           </div>
                                 </div>
+                                </div>
+                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex w-[1rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between ">
                                     
 
@@ -414,9 +419,9 @@ const [rowdata, setrowdata] = useState("");
          imgHeight={"1.8rem"}
        />
      </Tooltip>
-          </div>
+        
                                 </div>
-                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            
                       
                       <div className=" flex  justify-center w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
@@ -431,18 +436,19 @@ const [rowdata, setrowdata] = useState("");
                             <Button type="primary"
                               style={{ width: "8rem" }}>
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
-                               {item.convertInd===0 && "Convert"}
-                               {item.convertInd===1 && "In progress"}
-                               {item.convertInd===2 && "Converted"}
+                              {item.convertInd === 0 && translatedMenuItems[17]}
+                                {item.convertInd === 1 && translatedMenuItems[16]}
+                                {item.convertInd === 2 && translatedMenuItems[18]}
                                <NextPlanIcon className="!text-icon " />
                               </div>
                             </Button>
                           )}
                         </Popconfirm>
                       </div>
-
+                      </div>
+                      <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                       <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
-                        <div>
+                    
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -459,14 +465,15 @@ const [rowdata, setrowdata] = useState("");
                                 </a>
                               </div>
                             )
-                              : <div class=" w-3">
+                              : 
+                              <div class=" w-3">
 
                               </div>
                             }
                           </Tooltip>
-
-                        </div>
-                        <div>
+                          </div>
+                        
+                      
                           <div
                             style={{ fontSize: "0.8rem" }}
                             onClick={() => {
@@ -481,14 +488,12 @@ const [rowdata, setrowdata] = useState("");
                             {user.pulseAccessInd === true && <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
                             />}
-                          </div>
-                        </div>
-                        <div>
-                        </div>
-                      </div>
+                        
+                        </div>                 
+                   
                     
                       <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                      <div class="w-4">
+                   
                           <Tooltip title= {translatedMenuItems[15]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
@@ -500,7 +505,8 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>
-                        <div class="w-4">
+                       
+                    
                           <Tooltip title= {translatedMenuItems[11]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -512,10 +518,10 @@ const [rowdata, setrowdata] = useState("");
 
                             />
                           </Tooltip>
-                        </div>
-                      </div>
+                       
+                     
                       <div class="flex w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                      <div class="w-4">
+           
                           <Tooltip title= {translatedMenuItems[12]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
@@ -526,6 +532,7 @@ const [rowdata, setrowdata] = useState("");
 
                             />
                           </Tooltip>
+                  
                         </div>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
@@ -535,7 +542,7 @@ const [rowdata, setrowdata] = useState("");
           }}
           
         /> 
-                  <div class="w-4">
+              
                           <Tooltip title= {translatedMenuItems[13]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-[#4bc076]"
@@ -548,12 +555,12 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
 
-                        </div>
-                      </div>
+                    
+                    
 
                       <div class="flex w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                       
-                      <div class="w-4">
+                    
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title= {translatedMenuItems[14]}>
                               <BorderColorIcon
@@ -578,12 +585,12 @@ const [rowdata, setrowdata] = useState("");
                 }}
               />
             </Tooltip> */}
-                        </div>
+                     
                       </div>
-
+                      </div>
                     </div>
-                            </div>
-                        </div>
+                    </div>
+                   
                     )
                 })}
                 </InfiniteScroll>

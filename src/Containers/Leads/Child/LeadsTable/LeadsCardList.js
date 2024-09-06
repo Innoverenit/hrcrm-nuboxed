@@ -82,7 +82,13 @@ const LeadsCardList = (props) => {
 '1114', // 11
 '272', //12
 '273', //13
-
+'185',//Address 14
+'1148',//subscription 15
+'316',//notes16
+'1165',// 17 activity
+'140',// 18 email
+'170',//19 edit
+'1259',//20 "Do you want to delete?"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -230,10 +236,10 @@ const LeadsCardList = (props) => {
         <div className="font-bold font-poppins text-xs w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
         <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        <div className="font-bold font-poppins text-xs w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-          {/* {translatedMenuItems[3]} */}
-          </div>
-        <div className="font-bold font-poppins text-xs w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
+        {/* <div className="font-bold font-poppins text-xs w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          {translatedMenuItems[3]}
+          </div> */}
+        <div className="font-bold font-poppins text-xs w-[10.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
         <div className="font-bold font-poppins text-xs w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
         <div className= "font-bold font-poppins text-xs w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
         <div className= "font-bold font-poppins text-xs w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
@@ -289,7 +295,7 @@ const LeadsCardList = (props) => {
                 className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                  max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-               <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+               <div class="flex flex-row mr-1 items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                     <div>
                       <ButtonGroup>
                         <RoleButton
@@ -354,9 +360,9 @@ const LeadsCardList = (props) => {
                       </ButtonGroup>
                     </div>
                   </div>
-                  <div className=" flex  w-[9rem] max-xl:w-[9.5rem] max-lg:w-[5rem]  ml-1   max-sm:w-auto">
+                  <div className=" flex  w-[9rem] max-xl:w-[9.5rem] max-lg:w-[5rem]  mr-1   max-sm:w-auto">
                     <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                      <div>
+                      <div class=" mr-1 ">
                        
                           <MultiAvatar
                             primaryTitle={item.name}
@@ -398,9 +404,7 @@ const LeadsCardList = (props) => {
       
          </div>
        </div>              
-                \
-               
-                 
+                                            
                   <div className=" flex w-[3.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                      
@@ -533,7 +537,7 @@ const LeadsCardList = (props) => {
                   </div>
                   <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
                   <div>
-              <Tooltip title="Address">
+              <Tooltip title={translatedMenuItems[14]}>
  <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
@@ -546,7 +550,7 @@ const LeadsCardList = (props) => {
      </Tooltip>
      </div>
                   <div >
-                      <Tooltip title="Subscription">
+                      <Tooltip title={translatedMenuItems[15]}>
                       
                         <Html5Outlined
                          className=" !text-icon cursor-pointer text-green-800"
@@ -559,7 +563,7 @@ const LeadsCardList = (props) => {
                       </Tooltip>
                     </div>
                     <div >
-                      <Tooltip title="Notes">
+                      <Tooltip title={translatedMenuItems[16]}>
                         <NoteAltIcon
                          className=" !text-icon cursor-pointer text-green-800"
                           onClick={() => {
@@ -571,13 +575,9 @@ const LeadsCardList = (props) => {
                     </div>
                     <div >
                       <Tooltip
-                        title={
-                          <FormattedMessage
-                            id="app.activity"
-                            defaultMessage="Activity"
-                          />
-                        }
+                        title={translatedMenuItems[17]}
                       >
+                        {/* activity */}
                         <AddchartIcon
                          className="!text-icon cursor-pointer text-blue-500"
                           onClick={() => {
@@ -590,7 +590,7 @@ const LeadsCardList = (props) => {
                     </div>                                          
                    
                     <div >
-                      <Tooltip title={item.email}>
+                      <Tooltip title={translatedMenuItems[18]}>
                         <MailOutlineIcon
                           type="mail"
                           className="!text-icon cursor-pointer text-green-400"
@@ -603,7 +603,7 @@ const LeadsCardList = (props) => {
                     </div>
                     {user.leadsUpdateInd === true && user.crmInd === true && (
                      <div >
-                        <Tooltip title="Edit">
+                        <Tooltip title={translatedMenuItems[19]}>
                           <BorderColorIcon
                            className="!text-icon cursor-pointer text-[tomato]"
                             onClick={() => {
@@ -618,7 +618,7 @@ const LeadsCardList = (props) => {
                     {user.leadsDeleteInd === true && user.crmInd === true && (
                       <div >                     
                         <StyledPopconfirm
-                          title="Do you want to delete?"
+                          title={translatedMenuItems[20]}
                           onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                      <Tooltip title="Delete">
                           <DeleteOutlined
@@ -646,9 +646,9 @@ const LeadsCardList = (props) => {
         <div className="font-bold font-poppins text-xs  w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
         <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        <div className="font-bold font-poppins text-xs w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-          {/* {translatedMenuItems[3]} */}
-          </div>
+        {/* <div className="font-bold font-poppins text-xs w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          {translatedMenuItems[3]}
+          </div> */}
         <div className="font-bold font-poppins text-xs w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
         <div className="font-bold font-poppins text-xs w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
         <div className= "font-bold font-poppins text-xs w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
@@ -705,7 +705,7 @@ const LeadsCardList = (props) => {
               className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-             <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+             <div class="flex flex-row mr-1 items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                   <div>
                     <ButtonGroup>
                       <RoleButton
@@ -769,7 +769,7 @@ const LeadsCardList = (props) => {
                 </div>
                 <div className=" flex font-medium flex-col w-[9rem] max-xl:w-[9.5rem] max-lg:w-[5rem] ml-1  max-sm:w-auto">
                   <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                    <div>
+                  <div class=" mr-1 ">
                      
                         <MultiAvatar
                           primaryTitle={item.name}
@@ -951,7 +951,7 @@ const LeadsCardList = (props) => {
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
                
                 <div>
-              <Tooltip title="Address">
+              <Tooltip title={translatedMenuItems[14]}>
  <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
@@ -964,7 +964,7 @@ const LeadsCardList = (props) => {
      </Tooltip>
      </div>
      <div>
-                      <Tooltip title="Subscription">
+                      <Tooltip title={translatedMenuItems[15]}>
                       
                         <Html5Outlined
                          className=" !text-icon cursor-pointer text-green-800"
@@ -979,7 +979,7 @@ const LeadsCardList = (props) => {
                       </div>
                  
                   <div >
-                    <Tooltip title="Notes">
+                    <Tooltip title={translatedMenuItems[16]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
                         onClick={() => {
@@ -993,12 +993,7 @@ const LeadsCardList = (props) => {
                   </div>
                   <div >
                     <Tooltip
-                      title={
-                        <FormattedMessage
-                          id="app.activity"
-                          defaultMessage="Activity"
-                        />
-                      }
+                      title={translatedMenuItems[17]}
                     >
                       <AddchartIcon
                        className="!text-icon cursor-pointer text-blue-500"
@@ -1012,7 +1007,7 @@ const LeadsCardList = (props) => {
                   </div>                                                                                       
                  
                   <div >
-                    <Tooltip title={item.email}>
+                    <Tooltip title={translatedMenuItems[18]}>
                       <MailOutlineIcon
                         type="mail"
                         className="!text-icon cursor-pointer text-green-400"
@@ -1025,7 +1020,7 @@ const LeadsCardList = (props) => {
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
                    <div >
-                      <Tooltip title="Edit">
+                      <Tooltip title={translatedMenuItems[19]}>
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
                           onClick={() => {
@@ -1041,7 +1036,7 @@ const LeadsCardList = (props) => {
                     <div >
                      
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title={translatedMenuItems[20]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title="Delete">
                         <DeleteOutlined
@@ -1126,7 +1121,7 @@ const LeadsCardList = (props) => {
               className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-             <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+             <div class="flex flex-row items-center mr-1 w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                   <div>
                     <ButtonGroup>
                       <RoleButton
@@ -1190,7 +1185,7 @@ const LeadsCardList = (props) => {
                 </div>
                 <div className=" flex  w-[9rem] max-xl:w-[9.5rem] max-lg:w-[5rem] ml-1  max-sm:w-auto">
                   <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                    <div>
+                  <div class=" mr-1 ">
                      
                         <MultiAvatar
                           primaryTitle={item.name}
@@ -1378,7 +1373,7 @@ const LeadsCardList = (props) => {
           
         /> 
                 <div >
-                      <Tooltip title="Subscription">
+                      <Tooltip title={translatedMenuItems[15]}>
                       
                         <Html5Outlined
                          className=" !text-icon cursor-pointer text-green-800"
@@ -1391,7 +1386,7 @@ const LeadsCardList = (props) => {
                       </Tooltip>
                     </div>
                   <div >
-                    <Tooltip title="Notes">
+                    <Tooltip title={translatedMenuItems[16]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
                         onClick={() => {
@@ -1403,13 +1398,9 @@ const LeadsCardList = (props) => {
                   </div>
                   <div >
                     <Tooltip
-                      title={
-                        <FormattedMessage
-                          id="app.activity"
-                          defaultMessage="Activity"
-                        />
-                      }
+                      title={translatedMenuItems[17]}
                     >
+                      {/* activity */}
                       <AddchartIcon
                        className="!text-icon cursor-pointer text-blue-500"
                         onClick={() => {
@@ -1422,7 +1413,7 @@ const LeadsCardList = (props) => {
                   </div>                                                                                  
                  
                   <div >
-                    <Tooltip title={item.email}>
+                    <Tooltip title={translatedMenuItems[18]}>
                       <MailOutlineIcon
                         type="mail"
                         className="!text-icon cursor-pointer text-green-400"
@@ -1435,7 +1426,7 @@ const LeadsCardList = (props) => {
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
                    <div >
-                      <Tooltip title="Edit">
+                      <Tooltip title={translatedMenuItems[19]}>
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
                           onClick={() => {
@@ -1451,7 +1442,7 @@ const LeadsCardList = (props) => {
                     <div >
                      
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title={translatedMenuItems[20]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title="Delete">
                         <DeleteOutlined

@@ -2,7 +2,6 @@ import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
@@ -104,7 +103,10 @@ function CustomerCardList(props) {
     "392" ,  // Pulse 12
     "316" ,  // "Notes"13
     "170" ,  // "Edit" 14
-   "73" // Contact 15
+   "73", // Contact 15
+   "144" ,//In Progress 16
+   "387",//  Convert 17
+   "389"//   Converted 18
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -388,7 +390,7 @@ if (loading) {
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex  w-[13rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
@@ -499,8 +501,8 @@ if (loading) {
 
                         </div>
                       </div>
-                    </div>
-                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                    
+                   
                       <div className=" flex max-sm:w-auto w-[4.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                        {/* Pipeline Value */}
 
@@ -514,7 +516,9 @@ if (loading) {
       {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
-                      </div>                  
+                      </div> 
+                      </div>
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">                 
                       <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
@@ -555,8 +559,7 @@ if (loading) {
                           </div>
                         </Tooltip>
                       </div>
-                    </div>
-                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                
 
                       <div className=" flex  justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
@@ -571,18 +574,18 @@ if (loading) {
                             <Button type="primary"
                               style={{ width: "8rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}>
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
-                                {item.convertInd === 0 && "Convert"}
-                                {item.convertInd === 1 && "In progress"}
-                                {item.convertInd === 2 && "Converted"}
+                                {item.convertInd === 0 && translatedMenuItems[17]}
+                                {item.convertInd === 1 && translatedMenuItems[16]}
+                                {item.convertInd === 2 && translatedMenuItems[18]}
                                 <NextPlanIcon  className="!text-icon "/>
                               </div>
                             </Button>
                           )}
                         </Popconfirm>
                       </div>
-
+                      </div>
+                      <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
                      
-                        <div>
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -605,8 +608,8 @@ if (loading) {
                             }
                           </Tooltip>
 
-                        </div>
-                        <div>
+                   
+                
                           <div
                             style={{ fontSize: "0.8rem" }}
                             onClick={() => {
@@ -621,10 +624,7 @@ if (loading) {
                             {user.pulseAccessInd === true && <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
                             />}
-                          </div>
-                        </div>
-                        <div>
-                        </div>                    
+                          </div>                                       
                         <div >
                           <Tooltip title={translatedMenuItems[15]}>
                             <ContactsIcon
@@ -709,8 +709,9 @@ if (loading) {
               />
             </Tooltip> */}
                         </div>                 
-                    </div>
+                
                   </div>
+                </div>
                 </div>
               )
             })}

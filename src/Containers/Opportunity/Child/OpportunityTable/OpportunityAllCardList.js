@@ -156,7 +156,7 @@ function OpportunityAllCardList(props) {
 
                   <div className="max-sm:w-wk">
                    <div
-                className="flex  rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex  rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex w-[13rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
@@ -188,7 +188,8 @@ function OpportunityAllCardList(props) {
                                       </Tooltip>
                             
                               </div>
-
+                              </div>
+                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                               <div className=" flex  w-44 max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
                                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
@@ -197,10 +198,10 @@ function OpportunityAllCardList(props) {
                   
                                   </div>
                               </div>
-                              </div>
+                           
                             
                               
-                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                           
                               <div className=" flex  w-[7rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 

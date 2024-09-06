@@ -81,7 +81,12 @@ const LeadsAllCardList = (props) => {
           '1114', // 11
           '272', //12
           '273', //13
-
+'185',//Address 14
+'316',//notes15
+'1165',// 16activity
+'140',// 17 email
+'170',//18 edit
+'1259',//19 "Do you want to delete?"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -266,7 +271,7 @@ const LeadsAllCardList = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
@@ -516,7 +521,7 @@ const LeadsAllCardList = (props) => {
 </div>
                 </div>
                 </div>
-                <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
+                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
                 <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
@@ -526,7 +531,7 @@ const LeadsAllCardList = (props) => {
           
         /> 
                   <div >
-                    <Tooltip title="Notes">
+                    <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
                         onClick={() => {
@@ -540,13 +545,9 @@ const LeadsAllCardList = (props) => {
                   </div>
                   <div >
                     <Tooltip
-                      title={
-                        <FormattedMessage
-                          id="app.activity"
-                          defaultMessage="Activity"
-                        />
-                      }
+                      title={translatedMenuItems[16]}
                     >
+                      {/* Activity */}
                       <AddchartIcon
                        className="!text-icon cursor-pointer text-blue-500"
                         onClick={() => {
@@ -558,7 +559,7 @@ const LeadsAllCardList = (props) => {
                     </Tooltip>
                   </div>                                                                                                 
                   <div >
-                    <Tooltip title={item.email}>
+                    <Tooltip title={translatedMenuItems[17]}>
                       <MailOutlineIcon
                         type="mail"
                         className="!text-icon cursor-pointer text-green-400"
@@ -571,7 +572,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
                    <div >
-                      <Tooltip title="Edit">
+                      <Tooltip title={translatedMenuItems[18]}>
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
                           onClick={() => {
@@ -587,7 +588,7 @@ const LeadsAllCardList = (props) => {
                     <div >
                      
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title={translatedMenuItems[19]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title="Delete">
                         <DeleteOutlined
@@ -669,7 +670,7 @@ const LeadsAllCardList = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
@@ -920,7 +921,7 @@ const LeadsAllCardList = (props) => {
           
         /> 
                   <div >
-                    <Tooltip title="Notes">
+                    <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
                         onClick={() => {
@@ -934,13 +935,9 @@ const LeadsAllCardList = (props) => {
                   </div>
                   <div >
                     <Tooltip
-                      title={
-                        <FormattedMessage
-                          id="app.activity"
-                          defaultMessage="Activity"
-                        />
-                      }
+                      title={translatedMenuItems[16]}
                     >
+                      {/* Activity */}
                       <AddchartIcon
                        className="!text-icon cursor-pointer text-blue-500"
                         onClick={() => {
@@ -953,7 +950,7 @@ const LeadsAllCardList = (props) => {
                   </div>         
                            
                   <div >
-                    <Tooltip title={item.email}>
+                    <Tooltip title={translatedMenuItems[17]}>
                       <MailOutlineIcon
                         type="mail"
                         className="!text-icon cursor-pointer text-green-400"
@@ -966,7 +963,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
                    <div >
-                      <Tooltip title="Edit">
+                      <Tooltip title={translatedMenuItems[18]}>
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
                           onClick={() => {
@@ -982,7 +979,7 @@ const LeadsAllCardList = (props) => {
                     <div >
                      
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title={translatedMenuItems[19]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title="Delete">
                         <DeleteOutlined
@@ -1064,7 +1061,7 @@ const LeadsAllCardList = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem]  max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
@@ -1315,7 +1312,7 @@ const LeadsAllCardList = (props) => {
           
         />         
                   <div >
-                    <Tooltip title="Notes">
+                    <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
                         onClick={() => {
@@ -1327,13 +1324,9 @@ const LeadsAllCardList = (props) => {
                   </div>
                   <div >
                     <Tooltip
-                      title={
-                        <FormattedMessage
-                          id="app.activity"
-                          defaultMessage="Activity"
-                        />
-                      }
+                      title={translatedMenuItems[16]}
                     >
+                      {/* Activity */}
                       <AddchartIcon
                        className="!text-icon cursor-pointer text-blue-500"
                         onClick={() => {
@@ -1346,7 +1339,7 @@ const LeadsAllCardList = (props) => {
                   </div>                                                                                      
                  
                   <div >
-                    <Tooltip title={item.email}>
+                    <Tooltip title={translatedMenuItems[17]}>
                       <MailOutlineIcon
                         type="mail"
                         className="!text-icon cursor-pointer text-green-400"
@@ -1359,7 +1352,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                   {user.leadsUpdateInd === true && user.crmInd === true && (
                    <div >
-                      <Tooltip title="Edit">
+                      <Tooltip title={translatedMenuItems[18]}>
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
                           onClick={() => {
@@ -1375,7 +1368,7 @@ const LeadsAllCardList = (props) => {
                     <div >
                      
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title={translatedMenuItems[19]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title="Delete">
                         <DeleteOutlined
