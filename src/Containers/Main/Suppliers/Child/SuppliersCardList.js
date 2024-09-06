@@ -82,8 +82,8 @@ function SuppliersCardList(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex  justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-            <div className=" w-[13.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
+          <div className=" flex ml-4  justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+            <div className=" w-[18.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
             {/* "Name" */}
             {props.translatedMenuItems[0]}
             </div>
@@ -91,11 +91,11 @@ function SuppliersCardList(props) {
               {/* Phone  */}
                {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[16.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+            <div className=" w-[21.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Email */}
                {props.translatedMenuItems[2]}
                </div>
-               <div className=" w-[16.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+               <div className=" w-[6.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Email */}
                {/* {props.translatedMenuItems[17]} */}Disqualify
                </div>
@@ -106,7 +106,7 @@ function SuppliersCardList(props) {
             </div> */}
 
             {/* <div class=" w-[5.001rem]"> {props.translatedMenuItems[17]}</div> */}
-            <div className=" w-[16.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[38]}</div>
+            <div className=" w-[18.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[38]}</div>
           </div>
           <div class="overflow-x-auto h-[80vh]">
             <InfiniteScroll
@@ -150,7 +150,7 @@ function SuppliersCardList(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-evenly items-center">
-                              <div className=" flex items-center flex-col w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
+                              <div className=" flex items-center  w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
 
                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {item.dialCode} {item.phoneNo}
