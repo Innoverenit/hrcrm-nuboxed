@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getProductionOrderDetails } from "../../AccountAction";
-import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 function OrderCatalogueDetails(props) {

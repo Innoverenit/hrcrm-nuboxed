@@ -42,14 +42,14 @@ function PriceDiscountCard(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Add Row",//0
-          "Volume",//1
-          "Value",
-          "Start Date",
-          "End Date",
-          "Submit",
-          "Save",
-          "Cancel"
+      "1370",  //  "Add Row",//0
+      "1369",  //   "Volume",//1
+       "218", //   "Value",
+       "126", //   "Start Date",
+       "154", //   "End Date",
+      "154",  //   "Submit",
+     "1078",   //   "Save",
+      "1079",  //   "Cancel"
          
         ];
 

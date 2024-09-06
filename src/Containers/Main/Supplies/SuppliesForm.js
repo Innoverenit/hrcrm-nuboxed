@@ -60,6 +60,7 @@ class Suppliesform extends Component {
         "1242",//Length
         "1243",//Width
         "1244",//Height
+       "1275" // Availability date
 
       ];
 
@@ -142,7 +143,7 @@ class Suppliesform extends Component {
                       </div>
                     </div>
                   </div>
-                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[0]}</div>
+                  <div class=" mt-2 font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[0]}</div>
                   <Field
                     isRequired
                     name="categoryName"
@@ -401,7 +402,9 @@ class Suppliesform extends Component {
                   </div>
                   <div className="flex justify-between mt-4">
                     <div className="w-full">
-                      <div class="font-bold text-xs font-poppins text-black">Date</div>
+                      <div class="font-bold text-xs font-poppins text-black">
+                      {this.state.translatedMenuItems[16]} {/*Availability Date */}
+                        </div>
                       <Field name="availabilityDate">
                         {({ field, form }) => (
                           <input

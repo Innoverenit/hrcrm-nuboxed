@@ -15,7 +15,8 @@ import {
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { FileExcelOutlined, PlusOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
-
+import Shop2Icon from '@mui/icons-material/Shop2'; 
+import InventoryIcon from '@mui/icons-material/Inventory';
 const AddPoModal = lazy(() => import("./AddPoModal"));
 const AddSupplierInventoryImportModal = lazy(() => import("./SuppliersActivityTab/SuppliersActivityTable"));
 const PurchaseOrderTable = lazy(() => import("./PurchaseOrderTable"));
@@ -29,6 +30,7 @@ const SupplierDocumentTable = lazy(() => import("./SupplierDocumentTab/SupplierD
 const AddSupplierDocumentModal = lazy(() => import("./SupplierDocumentTab/AddSupplierDocumentModal"));
 const AddSuppliersActivityModal = lazy(() => import("./SuppliersActivityTab/AddSuppliersActivityModal"));
 const SuppliersActivityTable = lazy(() => import("./SuppliersActivityTab/SuppliersActivityTable"));
+
 
 const TabPane = StyledTabs.TabPane;
 
@@ -81,7 +83,7 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
                 <div className="flex items-center">
-                  <i class="far fa-share-square"></i>&nbsp;
+                <Shop2Icon className="!text-icon"/>
                    <div className="max-xl:text-[0.65rem]">
                    {this.state.translatedMenuItems[0]}
                    {/* Purchase Order */}
@@ -113,7 +115,7 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
                 <div className="flex items-center">
-                  <i class="far fa-share-square"></i>&nbsp;
+                  <InventoryIcon className="!text-icon"/>&nbsp;
                    <div className="max-xl:text-[0.65rem]">{this.state.translatedMenuItems[1]}</div>
                   {activeKey === "2" && (
                     <>
@@ -223,7 +225,7 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
                   <span>
-                    <i class="far fa-file"></i>
+                  <i class="fab fa-connectdevelop text-[#8332ac]"></i>
                     <span className="max-xl:text-[0.65rem] ml-1">{this.state.translatedMenuItems[5]}</span>
                   </span>
                   {activeKey === "6" && (

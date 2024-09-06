@@ -23,7 +23,9 @@ class UploadMaterialModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <UploadMaterialModalForm />
+                        <UploadMaterialModalForm 
+                         translateText={this.props.translateText}
+                         selectedLanguage={this.props.selectedLanguage}/>
                     </Suspense>
                     
                 </StyledDrawer>

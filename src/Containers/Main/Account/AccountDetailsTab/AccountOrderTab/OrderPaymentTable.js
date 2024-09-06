@@ -50,8 +50,9 @@ function OrderPaymentTable(props) {
             {/* <div className=" md:w-[4.21rem] ">Invoice Id</div>  */}
             <div className=" md:w-[4.5rem] ">Created </div>
             <div className="md:w-[5.8rem]">Entry</div>
-            <div className=" md:w-[4.2rem] ">Amount</div>
+            <div className=" md:w-[4.2rem] ">Amount</div>  {/* 929 */}
             <div className=" md:w-[4.2rem] ">Mode</div>
+            {/* 86 */}
             <div className=" md:w-[4.2rem] ">Reason</div>
             <div className=" md:w-[6.2rem] ">Approved </div>
             <div className="md:w-[6rem]"></div>
