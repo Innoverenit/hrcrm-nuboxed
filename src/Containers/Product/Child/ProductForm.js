@@ -55,21 +55,21 @@ class Productform extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        "1058",//Article
-        "110",//Name
-        "14",//category
-        "1154",//sub category
-        "259",//Atrribute
-        "263",//Sub Attribute
-        "141",//Workflow
-        "1241",//Weight
-        "1242",//Length
-        "1243",//Width
-        "1244",//Height
-        "254",//Brand
-        "265",//model
-        "147",//Description
-        "104"//Create
+        "1058",//Article 0
+        "110",//Name 1
+        "14",//category 2
+        "1154",//sub category 3
+        "259",//Atrribute4
+        "263",//Sub Attribute 5
+        "141",//Workflow 6
+        "1241",//Weight 7
+        "1242",//Length 8
+        "1243",//Width 9 
+        "1244",//Height 10
+        "254",//Brand 11 
+        "265",//model12 
+        "147",//Description 13 
+        "104"//Create 14
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -319,7 +319,9 @@ brandName:"",
                   </div>
 
                   <div class="w-[47%]">
-                    <div class=" text-xs font-bold font-poppins">Brand</div>
+                    <div class=" text-xs font-bold font-poppins">
+                      {/* Brand */}
+                      </div>
                       <Field
                         name="brandName"
                         // label="Sub Category"
