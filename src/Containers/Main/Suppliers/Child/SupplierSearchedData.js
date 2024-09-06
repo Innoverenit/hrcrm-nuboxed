@@ -88,7 +88,10 @@ function SupplierSearchedData(props) {
               <FormattedMessage id="app.country" defaultMessage="Country" />
 
             </div>
+            <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
+              Publish
 
+            </div>
             <div class=" w-[5rem]"></div>
           </div>
           <div class="overflow-x-auto h-[80vh]">

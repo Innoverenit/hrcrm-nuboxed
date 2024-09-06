@@ -65,7 +65,7 @@ const {
     
         if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
           //setPage(pageNo + 1);
-          props.getSuppliersList(props.userId, page);
+         // props.getSuppliersList(props.userId, page);
           props.ClearSearchedDataOfSupplier()
           setSearchOnEnter(false);
         }
