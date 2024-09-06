@@ -12,6 +12,7 @@ const initialState = {
     addBrandModel: false,
 
     priceOpenModal:false,
+    addSuppliesBrandModal:false,
 
     creatingMaterialCurrency: false,
     creatingMaterialCurrencyError: false,
@@ -54,6 +55,10 @@ const initialState = {
     fetchingPurchaseList: false,
     fetchingPurchaseListError: false,
     purchaseList: [],
+
+    fetchingBrandProductList:false,
+    fetchingBrandProductListError:false,
+    brandProductListData:{},
 
     updateSuppliesDrawer: false,
 
@@ -190,6 +195,10 @@ export const suppliesReducer = (state = initialState, action) => {
 
         case types.SET_SUPPLIES_VIEW_TYPE:
             return { ...state, viewType: action.payload };
+
+
+            case types.HANDLE_SUPPLIES_BRAND_MODAL:
+              return { ...state, addSuppliesBrandModal: action.payload };
 
         case types.HANDLE_SUPPLIES_MODAL:
             return { ...state, addSuppliesModal: action.payload };
@@ -601,6 +610,22 @@ export const suppliesReducer = (state = initialState, action) => {
                 deletingSuppliesData: false,
                 deletingSuppliesDataError: true,
             };
+
+
+
+
+            case types.GET_BRAND_PRODUCT_LIST_REQUEST:
+      return { ...state, fetchingBrandProductList: true, fetchingBrandProductListError: false };
+    case types.GET_BRAND_PRODUCT_LIST_SUCCESS:
+      //const newData = action.payload.filter(item => !state.products.includes(item));
+      return { ...state, fetchingBrandProductList: false, 
+        // products: [
+        // ...state.products,
+        // ...action.payload] };
+        brandProductListData: action.payload
+      }
+    case types.GET_BRAND_PRODUCT_LIST_FAILURE:
+      return { ...state, fetchingBrandProductList: false, fetchingBrandProductError: true };
 
         case types.HANDLE_SUPPLIERSLIST_DRAWER:
             return { ...state, suppliersListDrwr: action.payload };
@@ -1023,7 +1048,7 @@ export const suppliesReducer = (state = initialState, action) => {
       return {
         ...state, addingSuppliesBrand: false, 
         // addConfigureModal: false,
-        //brandProduct: [action.payload, ...state.brandProduct]
+        brandSupplies: [action.payload, ...state.brandSupplies]
       };
     case types.ADD_SUPPLIES_BRAND_FAILURE:
       return {

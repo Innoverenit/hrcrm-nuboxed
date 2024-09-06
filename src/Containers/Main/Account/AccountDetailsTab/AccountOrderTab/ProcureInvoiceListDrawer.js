@@ -12,7 +12,8 @@ const ProcureInvoiceListDrawer = (props) => {
     return (
         <>
             <StyledDrawer  
-                title={`${props.translatedMenuItems[10]}:${props.particularRowData.newOrderNo}`}
+                //title={`${props.translatedMenuItems[10]}:${props.particularRowData.newOrderNo}`}
+                title={`Order ${props.particularRowData.newOrderNo}`}
                 width={drawerWidth}
                 visible={props.openInvoiceModal}
                 closable

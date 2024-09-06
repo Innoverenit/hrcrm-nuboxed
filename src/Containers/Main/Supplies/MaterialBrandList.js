@@ -1,7 +1,6 @@
 import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import MaterialBrandModal from "./MaterialBrandModal"
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
@@ -23,12 +22,7 @@ import {
   MultiAvatar2,
 } from "../../../Components/UI/Elements";
 import { Link } from 'react-router-dom';
-import {addSuppliesBrand,
-    getBrandSupplies,
-    handleSuppliesBrandModal
-} from 
-    "./SuppliesAction"
-import { BundleLoader } from "../../../Components/Placeholder";
+import {getBrandProductList} from "./SuppliesAction"
 
 
 
@@ -37,12 +31,11 @@ function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function SuppliesBrandTable(props) {
+function MaterialBrandList(props) {
 
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
-  const [currentBrandId, setCurrentBrandId] = useState("");
  
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -51,14 +44,9 @@ function SuppliesBrandTable(props) {
 
   useEffect(() => {
    
-    props.getBrandSupplies();
+    props.getBrandProductList(props.currentBrandId.brand);
    
   }, []);
-
-  function handleSetCurrentBrandId(item) {
-    setCurrentBrandId(item);
-    // console.log("opp",item);
-  }
 //   useEffect(() => {
 //     const fetchMenuTranslations = async () => {
 //       try {
@@ -129,94 +117,7 @@ function SuppliesBrandTable(props) {
 
   return (
     <>
-      <Formik
-          initialValues={{
-            brandName:"",
-          }}
-        //   validationSchema={ContactSchema}
-          onSubmit={(values, { resetForm }) => {
-            console.log(values);
-         
-              props.addSuppliesBrand(
-                {
-                  ...values,
-                //   whatsapp: this.state.whatsapp ? "Different" : "Same",
-                //   price:values.price,
-                },
-                // this.props.userId,
-                // () => this.handleReset(resetForm)
-              );
-          }}
-        >
-          {({
-            values,
-            errors,
-            touched,
-            isSubmitting,
-            setFieldValue,
-            setFieldTouched,
-          }) => (
-            <div class="overflow-y-auto  overflow-x-hidden ">
-            <Form className="form-background">
-              <div class=" flex justify-around max-sm:flex-col"
-              >
-                <div class=" h-full w-w47.5 max-sm:w-wk"
-                >
-                  <div class=" flex  flex-nowrap justify-between">
-                
-                    <FastField name="imageId" component={PostImageUpld} />
-               
-                    <div>
-                      <div class=" flex justify-between max-sm:flex-col">
-               
-                            {/* name="salutation"
-                           */}
-                        <div class=" w-wk max-sm:w-full">
-                        <div class=" text-xs font-bold font-poppins"> 
-                      Name            
-                          </div>
-                          <FastField
-                            isRequired
-                            name="brandName"
-                            // label="First Name"                          
-                            type="text"
-                            width={"100%"}
-                            isColumn
-                            component={InputComponent}
-                            inlineLabel
-                          />
-                        </div>
-                      </div>                  
-                     
-                    </div>
-                  </div>
-                  
-                              
-                 
-                 
-                <Button
-                  type="primary"
-                  htmlType="submit"
-            loading={props.addingSuppliesBrand}
-                >
-    Submit     
-                  {/*                     
-                    Create */}
-                </Button>
-             
-                 
-                 
-                                          
-                </div>
-              
-              </div>
-             
-      
-             
-            </Form>
-            </div>
-          )}
-        </Formik>
+    
  
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -259,8 +160,8 @@ function SuppliesBrandTable(props) {
           </div>
        
 
-             {props.brandSupplies.length === 0 ? <NodataFoundPage /> : props.brandSupplies.map((item, index) => {
-       
+            {/* {props.brandProduct.length === 0 ? <NodataFoundPage /> : props.brandProduct.map((item, index) => {
+      
               return (
                 <div>
                   <div
@@ -272,7 +173,7 @@ function SuppliesBrandTable(props) {
                           <div>
                             
                             <MultiAvatar
-                              primaryTitle={item.brandName}
+                              primaryTitle={item.name}
                               imageId={item.imageId}
                               imageURL={item.imageURL}
                               imgWidth={"1.8rem"}
@@ -285,16 +186,11 @@ function SuppliesBrandTable(props) {
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer"
-                                //  onClick={() => {
-                                //   props.handleSuppliesBrandModal(true);
-                                //   handleSetCurrentBrandId(item);
-                                // }}
-                                >
+                                <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                 
+                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.brandName}
-                                 
+                                  </Link>
 
                                   &nbsp;&nbsp;
                                 
@@ -312,12 +208,7 @@ function SuppliesBrandTable(props) {
                       </div>
                       <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                   
-                        <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer"
-                          onClick={() => {
-                            props.handleSuppliesBrandModal(true);
-                            handleSetCurrentBrandId(item);
-                          }}
-                        >
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.brand}
                         </div>
 
@@ -334,23 +225,18 @@ function SuppliesBrandTable(props) {
                       </div>
                      
                     </div>
-                  
+                    
                   </div>
                 </div>
               )
-            })} 
+            })} */}
          
         </div>
       </div>
-    
   
-  <Suspense fallback={<BundleLoader/>}>
-  <MaterialBrandModal
-      currentBrandId={currentBrandId}
-  addSuppliesBrandModal={props.addSuppliesBrandModal}
-  handleSuppliesBrandModal={props.handleSuppliesBrandModal}
-      />
-      </Suspense>
+  {/* <Suspense fallback={<BundleLoader />}>
+
+      </Suspense> */}
     </>
   );
 }
@@ -369,19 +255,18 @@ const mapStateToProps = ({
   
  
   user: auth.userDetails,
-  brandSupplies:supplies.brandSupplies,
-  addSuppliesBrandModal:supplies.addSuppliesBrandModal
+  brandProduct:product.brandProduct,
+  brandProductListData:supplies.brandProductListData
 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        addSuppliesBrand,
-        getBrandSupplies,
-        handleSuppliesBrandModal
+        getBrandProductList
+        // addProductBrand,
         // getBrandProduct
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(SuppliesBrandTable);
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialBrandList);
 

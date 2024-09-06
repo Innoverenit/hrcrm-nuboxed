@@ -21,8 +21,12 @@ import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../../Components/UI/Elements";
+import ProductBrandModal from "./ProductBrandModal"
 import { Link } from 'react-router-dom';
-import {addProductBrand,getBrandProduct} from "../ProductAction"
+import {addProductBrand,getBrandProduct,
+  handleProductBrandModal
+} from "../ProductAction"
+import { BundleLoader } from "../../../Components/Placeholder";
 
 
 
@@ -314,7 +318,12 @@ function BrandList(props) {
                       </div>
                       <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                   
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                         onClick={() => {
+                          props.handleProductBrandModal(true);
+                          //handleSetCurrentBrandId(item);
+                        }}
+                        >
                           {item.brand}
                         </div>
 
@@ -555,9 +564,13 @@ function BrandList(props) {
         </div>
       </div>
   
-  {/* <Suspense fallback={<BundleLoader />}>
-
-      </Suspense> */}
+  <Suspense fallback={<BundleLoader />}>
+  <ProductBrandModal
+      //currentBrandId={currentBrandId}
+      addProductBrandModal={props.addProductBrandModal}
+  handleProductBrandModal={props.handleProductBrandModal}
+      />
+      </Suspense>
     </>
   );
 }
@@ -576,13 +589,15 @@ const mapStateToProps = ({
  
   user: auth.userDetails,
   brandProduct:product.brandProduct,
+  addProductBrandModal:product.addProductBrandModal
 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         addProductBrand,
-        getBrandProduct
+        getBrandProduct,
+      handleProductBrandModal
     },
     dispatch
   );
