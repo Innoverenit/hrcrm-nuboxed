@@ -33,6 +33,7 @@ function AccountProcureDetails(props) {
   const [brand, setBrand] = useState("");
   const [quality, setQuality] = useState("");
   const [model, setModel] = useState("");
+  const [inputValues, setInputValues] = useState({});
   const [newUnitName, setUnitName] = useState('');
   const [specs, setSpecs] = useState("");
   const [category, setCategory] = useState("");
@@ -260,7 +261,7 @@ const handleGenerateInvoice= async () => {
       return {
         price: item.price,
         procureOrderProductId: item.id,
-        unit: item.unit,
+        unit:  inputValues[item.id] || '',
         //unit:RowInvoices,
         // reaminingInvoiceUnit:unitValue
       };
@@ -334,7 +335,12 @@ const handleGenerateInvoice= async () => {
     setInvoices("");
   }; 
 
-
+  const handleInputChange = (id, value) => {
+    setInputValues({
+      ...inputValues,
+      [id]: value
+    });
+  };
   
   return (
     <>
@@ -602,8 +608,11 @@ const handleGenerateInvoice= async () => {
   placeholder="Update Unit"
   style={{ border: "1px solid grey",width:"2.5rem" }}
   min="1"
-  value={editedFields[item.id]?.RowInvoices || item.RowInvoices}
-  onChange={(e) => setRowInvoices(item.id, e.target.value)}
+  value={inputValues[item.id] || ''}
+  onChange={(e) => handleInputChange(item.id, e.target.value)}
+  
+  // value={editedFields[item.id]?.RowInvoices || item.RowInvoices}
+  // onChange={(e) => setRowInvoices(item.id, e.target.value)}
 />
              
                 </div>
