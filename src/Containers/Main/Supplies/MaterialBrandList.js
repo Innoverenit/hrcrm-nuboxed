@@ -1,27 +1,7 @@
 import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import { Formik, Form, FastField, Field, FieldArray } from "formik";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ExploreIcon from "@mui/icons-material/Explore";
-
-import dayjs from "dayjs";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import ContactsIcon from '@mui/icons-material/Contacts';
-//import { getCountries } from "../../../../Auth/AuthAction";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button, Popconfirm } from "antd";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import NextPlanIcon from '@mui/icons-material/NextPlan';
-import {
-  MultiAvatar,
-  MultiAvatar2,
-} from "../../../Components/UI/Elements";
-import { Link } from 'react-router-dom';
+import {  Select } from "antd";
 import {getBrandProductList} from "./SuppliesAction"
 
 
@@ -83,10 +63,6 @@ function MaterialBrandList(props) {
 //     fetchMenuTranslations();
 //   }, [props.selectedLanguage]);
 
- 
-
-
- 
 
   
 //   const handleLoadMore = () => {
@@ -106,14 +82,6 @@ function MaterialBrandList(props) {
 //     }, 100);
 //   };
  
-  
-  
-
-
-   
- 
-
-
 
   return (
     <>

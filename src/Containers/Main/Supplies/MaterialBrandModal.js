@@ -26,6 +26,8 @@ class MaterialBrandModal extends Component {
           <Suspense fallback={<BundleLoader />}>
             <MaterialBrandList
             currentBrandId={this.props.currentBrandId}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             />
           </Suspense>
         </StyledDrawer>
