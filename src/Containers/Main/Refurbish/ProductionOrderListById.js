@@ -193,12 +193,12 @@ function ProductionOrderListById(props) {
       </div>
 
                     <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                        <div className='w-[17.2rem]'></div>
-                        <div className=" w-[23.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]} ID</div>
-                        <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className='w-[5.2rem]'></div>
+                        <div className=" w-[13.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]} ID</div>
+                        <div className=" w-[20.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[1]}
                         </div>
-                        <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[21.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[2]}
                         </div>
 
@@ -225,7 +225,7 @@ function ProductionOrderListById(props) {
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-24 max-sm:justify-between max-sm:flex-col max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                           <div class="flex  max-sm:w-wk items-center">
-                                            <div className=" flex   ">
+                                            <div className=" flex  md:w-[3.26rem] ">
                                                     {item.priority === "High" && (
                                                         <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                     )}

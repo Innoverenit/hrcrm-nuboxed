@@ -56,21 +56,21 @@ function PhoneListForRepair(props) {
             setLoading(true); 
             const itemsToTranslate = [
        
-             "1318", // Search by device ID",//0
-              "1320",  //"scan",//1
-           "264", //   Brand 2
-           "265", //   "model"3
-           "1222", //   Issue4
-           "1321", //   Estimate (hours) 5 
-           "158", //  "Start"6
-           "111", //     "End"7
-           "199", //     Task8
-            "1322",// "Resume"9
-           "316", // "Notes"10
-           "1252", // "Print"11
-            "1324",    //    "Pause"
-           "144"  ,// In Progress
-            "268"//Complete
+                "1318", // Search by device ID",//0
+                "1320",  //"scan",//1
+             "264", //   Brand 2
+             "265", //   "model"3
+             "1222", //   Issue4
+             "1321", //   Estimate (hours) 5 
+             "158", //  "Start"6
+             "111", //     "End"7
+             "199", //     Task8
+              "1322",// "Resume"9
+             "316", // "Notes"10
+             "1252", // "Print"11
+              "1324",    //    "Pause"
+             "144"  ,// In Progress
+              "268"//Complete
             ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -84,6 +84,7 @@ function PhoneListForRepair(props) {
     
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
+    
     useEffect(() => {
         setPage(page + 1);
         props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
@@ -569,7 +570,7 @@ function PhoneListForRepair(props) {
                                                     <Tooltip title={translatedMenuItems[11]}>
 
                                                         <ReactToPrint
-                                                           trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon className="!text-icon"/></Button>}
+                                                           trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>{translatedMenuItems[11]} <QrCodeIcon className="!text-icon"/></Button>}
                                                             content={() => componentRefs.current[index]}
                                                         />
                                                     </Tooltip>

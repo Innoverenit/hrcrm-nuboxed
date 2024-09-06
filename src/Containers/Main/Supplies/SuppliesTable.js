@@ -124,7 +124,8 @@ function SuppliesTable(props) {
           "824",//12
           "880",//13
           "170",//14
-
+          "264",  // Brand
+          "265",// model
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -173,6 +174,14 @@ function SuppliesTable(props) {
             <div className="w-[7.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Sub Category */}
               {translatedMenuItems[4]}
+              </div>
+              <div className="w-[4.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Brand*/}
+              {translatedMenuItems[15]}
+              </div>
+              <div className="w-[4.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Model*/}
+              {translatedMenuItems[16]}
               </div>
             <div className="w-[5.0rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Attribute */}
@@ -530,16 +539,22 @@ function SuppliesTable(props) {
        handleMaterialInventory={props.handleMaterialInventory}
         />
         <PriceModal
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
           particularDiscountData={particularDiscountData}
           handlePriceModal={handlePriceModal}
           priceOpenModal={props.priceOpenModal}
         />
          <MaterialDetailsDrawer
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         particularDiscountData={particularDiscountData}
          modalVisible={modalVisible}
        closeModal={closeModal}
         />
  <MaterialComplementaryDrawer
+  translateText={props.translateText}
+  selectedLanguage={props.selectedLanguage}
    particularDiscountData={particularDiscountData}
       openComplementary={openComplementary}
       setopenComplementary={setopenComplementary}

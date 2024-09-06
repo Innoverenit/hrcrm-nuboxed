@@ -186,15 +186,15 @@ const ProductionOrderList = (props) => {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                  <div className=" flex max-sm:hidden  justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10 ">
-                    <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[red]"> {translatedMenuItems[6]} </div>
-                        <div className=" w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div className=" md:w-[3rem] text-[white] flex justify-center mr-1 bg-[red]"> {translatedMenuItems[6]} </div>
+                        <div className=" w-[4.2rem] flex justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.orderid"
                             defaultMessage="orderid"
                         /> */} {translatedMenuItems[0]}
                         </div>
                         {props.accountInfoInd &&(
-                        <div className=" w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[3.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.customer"
                             defaultMessage="customer"
@@ -206,41 +206,42 @@ const ProductionOrderList = (props) => {
                         /></div> */}
                        
 
-                        <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[2.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.quoted"
                             defaultMessage="Quoted"
                         /> */}  {translatedMenuItems[5]}
                         </div>
-                        <div className="md:w-[4.8rem]"> {translatedMenuItems[9]}
+                        <div className="w-[2.8rem]"> {translatedMenuItems[9]}
                             {/* <FormattedMessage
                             id="app.final"
                             defaultMessage="Final"
                         /> */}
                         </div>
-                        <div className="w-[10.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[5.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
-                            <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className="w-[23.2rem]"></div>
+                            <div className="w-[2.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.lead"
                             defaultMessage="Lead"
                         />  */} {translatedMenuItems[2]}
                         </div>
-                        <div className="w-[4.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[3.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.assigned"
                             defaultMessage="Assigned"
                         />  */} {translatedMenuItems[3]}
                         </div>
-                        <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[2.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.owner"
                             defaultMessage="owner"
                         /> */}  {translatedMenuItems[4]}
                          </div>
 
-                        <div className="w-[7.2rem]"></div>
+                        <div className="w-[4.2rem]"></div>
                     </div>
                     <InfiniteScroll
                     className=" max-sm:h-[34vh]"
@@ -276,7 +277,7 @@ const ProductionOrderList = (props) => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                                            <div className=" flex w-[9.7rem] max-sm:w-auto ">
+                                            <div className=" flex w-[10.7rem] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
                                                         class=" underline font-bold  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
@@ -296,7 +297,7 @@ const ProductionOrderList = (props) => {
                                                 ) : null}
                                             </div>
                                             {props.accountInfoInd &&(
-                                            <div className=" flex  w-[6.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex  w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
                                                 </div>
@@ -304,12 +305,12 @@ const ProductionOrderList = (props) => {
                                         </div>
                                        
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  max-sm:items-center">
-                                            <div className=" flex  w-[5.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  w-[3.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.expectedPrice}
                                                 </div>
                                             </div>
-                                            <div className=" flex w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                    {item.payableOfferPrice} 
                                                 </div>
@@ -328,7 +329,7 @@ const ProductionOrderList = (props) => {
                                         </div>
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  max-sm:items-center">
 
-                                            <div className=" flex w-[10.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className="flex w-[10.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcStartInd === 0 ?<div class=" font-bold text-[#ff1862] text-[0.65rem] text-center">QC to be approved by Sales Owner/ Customer </div>
                                                         : item.qcStartInd === 1 ?
@@ -476,14 +477,14 @@ const ProductionOrderList = (props) => {
                 <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex max-sm:hidden  justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
-                        <div className=" w-[8.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.orderid"
                             defaultMessage="orderid"
                         /> */} {translatedMenuItems[0]}
                         </div>
                         {props.accountInfoInd &&(
-                        <div className=" w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[3.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.customer"
                             defaultMessage="customer"
@@ -495,40 +496,41 @@ const ProductionOrderList = (props) => {
                         /></div> */}
                        
 
-                        <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[2.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.quoted"
                             defaultMessage="Quoted"
                         /> */}  {translatedMenuItems[5]}
                         </div>
-                        <div className="md:w-[4.8rem]"> {translatedMenuItems[9]}
+                        <div className="md:w-[2.8rem]"> {translatedMenuItems[9]}
                             {/* <FormattedMessage
                             id="app.final"
                             defaultMessage="Final"
                         /> */}
                         </div>
-                        <div className="w-[26.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[5.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
-                            <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className="w-[23.2rem]"></div>
+                            <div className="w-[2.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.lead"
                             defaultMessage="Lead"
                         />  */} {translatedMenuItems[2]}
                         </div>
-                        <div className="w-[4.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[3.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.assigned"
                             defaultMessage="Assigned"
                         />  */} {translatedMenuItems[3]}
                         </div>
-                        <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[2.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* <FormattedMessage
                             id="app.owner"
                             defaultMessage="owner"
                         /> */}  {translatedMenuItems[4]}
                          </div>
-                        <div className="w-[7.2rem]"></div>
+                        <div className="w-[4.2rem]"></div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.productionNormal.length}
@@ -563,7 +565,7 @@ const ProductionOrderList = (props) => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                                            <div className=" flex  w-[9.7rem] max-sm:w-auto ">
+                                            <div className=" flex  w-[10.7rem] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
                                                         class=" underline font-bold  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
@@ -583,7 +585,7 @@ const ProductionOrderList = (props) => {
                                                 ) : null}
                                             </div>
                                             {props.accountInfoInd && (
-                                            <div className=" flex   w-[6.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex   w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
                                                 </div>
@@ -591,12 +593,12 @@ const ProductionOrderList = (props) => {
                                         </div>
                                         
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                                            <div className=" flex   w-[5.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex   w-[3.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.expectedPrice}
                                                 </div>
                                             </div>
-                                            <div className=" flex  w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                    {item.payableOfferPrice} 
                                                 </div>
@@ -620,14 +622,14 @@ const ProductionOrderList = (props) => {
                                                     {item.qcStartInd === 0 ? <div class=" font-bold text-[#ff1862] text-xs text-center">QC to be approved by Sales Owner/ Customer </div>
                                                         : item.qcStartInd === 1 ?
                                                             // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
-                                                            <Tooltip title="Assign For QC">
+                                                            <Tooltip title={translatedMenuItems[14]}>
                                                                 <Button
                                                                     className="bg-[#1685e6] text-white"
                                                                     onClick={() => {
                                                                         props.handleAssignOrderById(true);
                                                                         handleRowData(item);
                                                                     }}
-                                                                >Assign For QC </Button>
+                                                                >{translatedMenuItems[14]} </Button>
                                                             </Tooltip>
                                                             // </Badge>
                                                             : item.qcStartInd === 2 ? <div style={{ color: "#ff6347" }}>QC {translatedMenuItems[3]}</div>

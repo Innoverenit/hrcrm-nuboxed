@@ -32,14 +32,14 @@ function PriceDiscountCardB2C(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Add Row",//0
+       "1370", //  "Add Row",//0
          
-          "Value",
-          "Start Date",
-          "End Date",
-          "Submit",
-          "Save",
-          "Cancel"
+     "218",   //   "Value",
+      "176",  //   "Start Date",
+       "126", //   "End Date",
+       "154", //   "Submit",
+       "1078", //   "Save",
+       "1079", //   "Cancel"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

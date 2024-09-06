@@ -8,6 +8,7 @@ import { AudioOutlined } from '@ant-design/icons';
 import {materialCategorySearch,getMaterialCategory, getSuppliesCount,getSuppliesDeletedCount,getSuppliesList,ClearReducerDataOfMaterial,inputSuppliesDataSearch } from "./SuppliesAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import CategoryIcon from '@mui/icons-material/Category';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 
 function SuppliesActionLeft (props) {
 
@@ -148,7 +149,7 @@ function SuppliesActionLeft (props) {
             const fetchMenuTranslations = async () => {
               try {
                 const itemsToTranslate = [
-                 "",//0
+                 "1237",//0
                   "228",//1
                   "14",//2
                   "798",//3
@@ -206,23 +207,7 @@ function SuppliesActionLeft (props) {
         </div>
       </Tooltip>
 
-                <Tooltip title={translatedMenuItems[3]}>
-                <Badge size="small"
-                        count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
-                        overflowCount={999}
-                    >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
-                            onClick={() => setSuppliesViewType("dashboard")}
-                            style={{
-                                color: viewType === "dashboard" && "#1890ff",
-                            }}
-                        >
-                            <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
-                                <DeleteOutlined className="text-white" /></Avatar>
-
-                        </span>
-                    </Badge>
-                </Tooltip>
+                
 
 
                 <Tooltip title="Brand">
@@ -251,11 +236,28 @@ function SuppliesActionLeft (props) {
          // onClick={() => setSuppliesViewType("brand")}
         >
           <Avatar style={{ background: viewType === "brand" ? "#f279ab" : "#4bc076" }}>
-            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+            <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
         </div>
       </Tooltip>
+      <Tooltip title={translatedMenuItems[3]}>
+                <Badge size="small"
+                        count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
+                        overflowCount={999}
+                    >
+                        <span class=" md:mr-2 text-sm cursor-pointer"
+                            onClick={() => setSuppliesViewType("dashboard")}
+                            style={{
+                                color: viewType === "dashboard" && "#1890ff",
+                            }}
+                        >
+                            <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
+                                <DeleteOutlined className="text-white" /></Avatar>
+
+                        </span>
+                    </Badge>
+                </Tooltip>
 
                 <div class=" w-64 max-sm:w-24">
                 {viewType === "all" &&         

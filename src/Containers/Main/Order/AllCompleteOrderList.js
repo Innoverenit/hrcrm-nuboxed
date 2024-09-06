@@ -51,8 +51,14 @@ function AllCompleteOrderList(props) {
   "679",    // 'Created',
   
   "108",  // "Normal"
-
-
+  "100",     // New10
+  "1380",   // Add Supervisor11
+  "316",     // Notes12
+  "142",      // "Status"13
+  "920",      // "Collection"14
+  
+        "85",  // Add15
+       "1079"   // Cancel16
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -205,7 +211,7 @@ function AllCompleteOrderList(props) {
                               {date === currentdate ? (
                                 <span  className=" text-[0.65rem] text-[tomato] font-bold" 
                                 >
-                                  New
+                                 {translatedMenuItems[10]} {/* New */}
                                 </span>
                               ) : null}
                             </span>
@@ -295,10 +301,10 @@ function AllCompleteOrderList(props) {
                             <Button
                               type="primary"
                             >
-                              Add
+                            {translatedMenuItems[15]}  {/* Add */}
                             </Button>
                             <Button onClick={handleCancel}>
-                              Cancel
+                            {translatedMenuItems[16]} {/* Cancel */}
                             </Button>
                           </div>
                           :
@@ -333,7 +339,7 @@ function AllCompleteOrderList(props) {
 
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
                       <div class=" font-poppins">
-                        <Tooltip title="Notes">
+                        <Tooltip title={translatedMenuItems[12]}>
                           <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
@@ -351,7 +357,7 @@ function AllCompleteOrderList(props) {
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                    
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Add Supervisor">
+                        <Tooltip title={translatedMenuItems[11]}>
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer max-sm:!text-2xl"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
@@ -363,7 +369,7 @@ function AllCompleteOrderList(props) {
                       </div>
                    
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Status">
+                        <Tooltip title={translatedMenuItems[13]}>
                           <EventRepeatIcon
                          className=" !text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
@@ -376,7 +382,7 @@ function AllCompleteOrderList(props) {
 
                   
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Collection">
+                        <Tooltip title={translatedMenuItems[14]}>
                           <PaidIcon
                            className=" !text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
@@ -482,7 +488,7 @@ function AllCompleteOrderList(props) {
                             
                               {date === currentdate ? (
                                 <span className=" text-[0.65rem] text-[tomato] font-bold"  >
-                                  New
+                                 {translatedMenuItems[10]} {/* New */}
                                 </span>
                               ) : null}
                             </span>
@@ -568,10 +574,10 @@ function AllCompleteOrderList(props) {
                             <Button
                               type="primary"
                             >
-                              Add
+                            {translatedMenuItems[15]}  {/* Add */}
                             </Button>
                             <Button onClick={handleCancel}>
-                              Cancel
+                            {translatedMenuItems[16]}  {/* Cancel */}
                             </Button>
                           </div>
                           :
@@ -607,7 +613,7 @@ function AllCompleteOrderList(props) {
                     
                     
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Notes">
+                        <Tooltip title={translatedMenuItems[12]}>
                           <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
@@ -622,7 +628,7 @@ function AllCompleteOrderList(props) {
 
                     
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Add Supervisor">
+                        <Tooltip title={translatedMenuItems[11]}>
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer max-sm:!text-2xl"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
@@ -634,7 +640,7 @@ function AllCompleteOrderList(props) {
                       </div>
                     
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Status">
+                        <Tooltip title={translatedMenuItems[13]}>
                           <EventRepeatIcon
                              className=" !text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
@@ -647,7 +653,7 @@ function AllCompleteOrderList(props) {
 
                     
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Collection">
+                        <Tooltip title={translatedMenuItems[14]}>
                           <PaidIcon
                             className=" !text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {

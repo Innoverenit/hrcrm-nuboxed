@@ -41,7 +41,7 @@ function AllOrderList(props) {
           setLoading(true); 
           const itemsToTranslate = [
   "106",  // 'Urgent', // 0
-  "660",    // 'Order', // 1
+  "660",    // 'Order', // 1{translatedMenuItems[15]}
   "248",    // ' Customer', // 2
   "73",  // 'Contact', // 3
   "260",  // ' Units', // 4
@@ -52,7 +52,13 @@ function AllOrderList(props) {
   "679",    // 'Created',
   
   "108",  // "Normal"
-
+  "100",     // New10
+  "1380",   // Add supervisor11
+  "316",     // Notes12
+  "142",      // "Status"13
+  "920",      // "Collection"14
+  "85", // Add15
+  "1079"// Cancel16
 
         ];
   
@@ -135,12 +141,12 @@ const handleLoadMoreLow = () => {
         <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-      <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-        <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+      <div className=" md:w-[3rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
+        <div className=" md:w-[7.31rem] ">{translatedMenuItems[1]} ID</div>
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
           <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
+          <div className="md:w-[3.818rem]">{translatedMenuItems[4]}</div>
+          <div className="md:w-[4.531rem]">{translatedMenuItems[5]}</div>
           <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
           <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
           <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
@@ -204,7 +210,7 @@ const handleLoadMoreLow = () => {
                                                     </div>
                     <div className=" flex  w-wk     max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[9.43rem]">
+                        <div class="w-[12.43rem]">
                         <Badge size="small" count={item.productNum}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
@@ -221,13 +227,13 @@ const handleLoadMoreLow = () => {
                           &nbsp;&nbsp;
                               {date === currentdate ? (
                                 <span className=" text-[0.65rem] text-[tomato] font-bold" >
-                                  New
+                                 {translatedMenuItems[10]} {/* New */}
                                 </span>
                               ) : null}
                         </div>
-                      
+                        
 
-                        <div class="max-sm:w-full md:w-[9.02rem]">
+                        <div class="max-sm:w-full md:w-[10.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
@@ -238,7 +244,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[7.21rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -263,7 +269,7 @@ const handleLoadMoreLow = () => {
                   </div>
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -278,7 +284,7 @@ const handleLoadMoreLow = () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -308,10 +314,10 @@ const handleLoadMoreLow = () => {
                             <Button
                               type="primary"
                             >
-                              Add
+                            {translatedMenuItems[15]}  {/* Add */}
                             </Button>
                             <Button onClick={handleCancel}>
-                              Cancel
+                              {translatedMenuItems[16]}{/* Cancel */}
                             </Button>
                           </div>
                           :
@@ -344,7 +350,7 @@ const handleLoadMoreLow = () => {
                     
                     
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Notes">
+                        <Tooltip title={translatedMenuItems[12]}>
                           <NoteAltIcon
                             className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
@@ -359,7 +365,7 @@ const handleLoadMoreLow = () => {
 
                    
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Add Supervisor">
+                        <Tooltip title={translatedMenuItems[11]}>
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer max-sm:!text-2xl"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
@@ -372,7 +378,7 @@ const handleLoadMoreLow = () => {
                    
                   
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Status">
+                        <Tooltip title={translatedMenuItems[13]}>
                           <EventRepeatIcon
                           className=" !text-icon cursor-pointer max-sm:!text-2xl "
                             onClick={() => {
@@ -386,7 +392,7 @@ const handleLoadMoreLow = () => {
                     
                     
                       <div class=" text-xs  font-poppins">
-                        <Tooltip title="Collection">
+                        <Tooltip title={translatedMenuItems[14]}>
                           <PaidIcon
                            className=" !text-icon cursor-pointer max-sm:!text-2xl"
                             onClick={() => {
@@ -416,10 +422,10 @@ const handleLoadMoreLow = () => {
       </div>
      
       <div className=' flex justify-end sticky  z-auto'>
-       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+       <div class="rounded m-1 max-sm:hidden max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-       <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
-                        <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+       <div className=" md:w-[3rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
+       <div className=" md:w-[7.31rem] ">{translatedMenuItems[1]} ID</div>
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
           <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
           <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
@@ -486,7 +492,7 @@ const handleLoadMoreLow = () => {
                                                     </div>
                      <div className=" flex items-center    max-sm:w-full">
                        <div className="flex  items-center max-sm:w-full">
-                         <div class="w-[9.43rem]">
+                         <div class="w-[11.43rem]">
                            <Badge size="small" count={item.productNum}>
                              <span
                                class="underline font-bold cursor-pointer text-[#1890ff] text-xs"
@@ -503,13 +509,13 @@ const handleLoadMoreLow = () => {
                            &nbsp;&nbsp;
                                {date === currentdate ? (
                                  <span className=" text-[0.65rem] text-[tomato] font-bold" >
-                                   New
+                                  {translatedMenuItems[10]} {/* New */}
                                  </span>
                                ) : null}
                          </div>
                        
  
-                         <div class="max-sm:w-full md:w-[9.02rem]">
+                         <div class="max-sm:w-full md:w-[11.02rem]">
                            <Tooltip>
                              <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                                {item.distributorName}
@@ -520,7 +526,7 @@ const handleLoadMoreLow = () => {
                        </div>
                      </div>
  
-                     <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
+                     <div class="flex flex-row items-center md:w-[7.21rem] max-sm:flex-row w-full max-sm:justify-between">
                        <div>
                          <MultiAvatar2
                            primaryTitle={item.contactPersonName}
@@ -590,10 +596,10 @@ const handleLoadMoreLow = () => {
                              <Button
                                type="primary"
                              >
-                               Add
+                            {translatedMenuItems[15]}   {/* Add */}
                              </Button>
                              <Button onClick={handleCancel}>
-                               Cancel
+                             {translatedMenuItems[16]} {/* Cancel */}
                              </Button>
                            </div>
                            :
@@ -629,7 +635,7 @@ const handleLoadMoreLow = () => {
  
                       
                        <div class=" text-xs  font-poppins">
-                         <Tooltip title="Notes">
+                         <Tooltip title={translatedMenuItems[12]}>
                            <NoteAltIcon
                                 className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                              onClick={() => {
@@ -643,7 +649,7 @@ const handleLoadMoreLow = () => {
  
  
                        <div class=" text-xs  font-poppins">
-                         <Tooltip title="Add Supervisor">
+                         <Tooltip title="{translatedMenuItems[11]}">
                            <PersonAddAlt1
                              className="!text-icon cursor-pointer max-sm:!text-2xl"
                              style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
@@ -655,7 +661,7 @@ const handleLoadMoreLow = () => {
                        </div>
                     
                        <div class=" text-xs  font-poppins">
-                         <Tooltip title="Status">
+                         <Tooltip title={translatedMenuItems[13]}>
                            <EventRepeatIcon
                               className=" !text-icon cursor-pointer max-sm:!text-2xl"
                              onClick={() => {
@@ -668,7 +674,7 @@ const handleLoadMoreLow = () => {
  
                     
                        <div class=" text-xs  font-poppins">
-                         <Tooltip title="Collection">
+                         <Tooltip title={translatedMenuItems[14]}>
                            <PaidIcon
                              className=" !text-icon cursor-pointer max-sm:!text-2xl"
                              onClick={() => {

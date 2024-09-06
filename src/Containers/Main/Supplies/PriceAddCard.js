@@ -45,13 +45,16 @@ function PriceAddCard(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Add Row",//0
-          "Currency",//1
-          "Price",//2
-          "Type",
-          "Submit",//3
-             " Save",
-             "Cancel"  
+     "1370",   //  "Add Row",//0
+       "241", //   "Currency",//1
+      "657",  //   "Price",//2
+      "71",  //   "Type",
+       "154", //   "Submit",//3
+       "1078", //      " Save",
+       "1079", //      "Cancel"  
+     "14", //  Catagory
+     "110", //name
+
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -237,7 +240,8 @@ function PriceAddCard(props) {
                   {/* Currency */} {translatedMenuItems[1]}
                   </div>
                   <div class="font-bold text-xs font-poppins text-black">
-               Catagory
+               {/* Catagory */}{translatedMenuItems[7]}
+                  
                   </div>
                 <div class="w-24">
                 <Select
@@ -273,7 +277,9 @@ function PriceAddCard(props) {
             <div className=" md:w-[7%]">  {translatedMenuItems[1]}</div>
             <div className=" md:w-[6.1rem]">  {translatedMenuItems[2]}(B2B)</div>
             <div className=" md:w-[4.2rem] ">  {translatedMenuItems[2]}(B2C)</div>
-            <div className=" md:w-[4.2rem] ">  Catagory name</div>
+            <div className=" md:w-[7.2rem] "> {translatedMenuItems[7]} {translatedMenuItems[8]}
+              {/* Catagory name */}
+              </div>
             <div className="md:w-[5.8rem]">  {translatedMenuItems[3]}</div>
             <div className="w-12"></div>         
             </div>

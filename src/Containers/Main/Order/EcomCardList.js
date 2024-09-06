@@ -113,17 +113,17 @@ const {handleProcureNotesDrawerModal,
       />
     ) : (
     <>
-    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[11rem]">{translatedMenuItems[0]} ID</div>
+                        <div className=" md:w-[10rem]">{translatedMenuItems[0]} ID</div>
                         <div className=" md:w-[5.4rem]">{translatedMenuItems[1]}</div>
                         <div className=" md:w-[5.4rem]">{translatedMenuItems[2]}</div>
-                        <div className=" md:w-[5.4rem]">{translatedMenuItems[7]}</div>
-                        <div className=" md:w-[5.4rem]">{translatedMenuItems[8]}</div>
-                        <div className=" md:w-[5.4rem]">{translatedMenuItems[4]}</div>
-                        <div className=" md:w-[5.4rem]">{translatedMenuItems[5]}</div>
-                        <div className=" md:w-[5.4rem]">{translatedMenuItems[6]}</div>
+                        <div className=" md:w-[4.4rem]">{translatedMenuItems[7]}</div>
+                        <div className=" md:w-[4.4rem]">{translatedMenuItems[8]}</div>
+                        <div className=" md:w-[3.4rem]">{translatedMenuItems[4]}</div>
+                        <div className=" md:w-[8.4rem]">{translatedMenuItems[5]}</div>
+                        <div className=" md:w-[8.4rem]">{translatedMenuItems[6]}</div>
                         <div className=" md:w-[5.4rem]"></div>
                         <div className=" md:w-[12rem]"></div>
                        
@@ -146,9 +146,10 @@ const {handleProcureNotesDrawerModal,
             return (
                 <div>
                 <div
-className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex   md:w-[6rem] max-sm:flex-row max-sm:justify-between  ">
+                        <div className=" flex   md:w-[10rem] max-sm:flex-row max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
                                 {item.newOrderNo}
                             </div>
