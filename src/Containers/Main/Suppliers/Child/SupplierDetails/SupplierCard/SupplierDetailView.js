@@ -6,6 +6,7 @@ class SupplierDetailView extends Component {
     super(props);
     this.state = {
       translatedMenuItems: [],
+      loading: true
     };
   }
 
@@ -13,40 +14,42 @@ class SupplierDetailView extends Component {
     this.fetchMenuTranslations();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+  //     this.fetchMenuTranslations();
+  //   }
+  // }
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+        "875",
+        "140"
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
     }
   }
 
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-         "Phone #",
-        "Email"
-            ];
-
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      // this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  };
   render() {
     const {
       supplier: { phoneNo, emailId, shipByName },
       toggleViewType,
     } = this.props;
-
+    const {loading,translatedMenuItems } = this.state;
     return (
       <>
         <ShipperItemRow
-          label={this.state.translatedMenuItems[0]}
+          label={translatedMenuItems[0]}
             // <FormattedMessage id="app.phoneNo" defaultMessage="Phone #" />
           
           value={phoneNo} />
         <ShipperItemRow
-          label={this.state.translatedMenuItems[1]}
+          label={translatedMenuItems[1]}
             // <FormattedMessage id="app.email" defaultMessage="Email" />
           
           value={emailId} />

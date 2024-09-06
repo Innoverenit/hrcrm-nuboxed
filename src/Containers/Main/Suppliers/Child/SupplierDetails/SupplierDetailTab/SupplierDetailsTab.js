@@ -80,11 +80,13 @@ class SupplierDetailsTab extends Component {
             <TabPane
               tab={
                 <>
+                <div className="flex items-center">
                   <i class="far fa-share-square"></i>&nbsp;
                    <div className="max-xl:text-[0.65rem]">
                    {this.state.translatedMenuItems[0]}
                    {/* Purchase Order */}
                    </div>
+                  
                   {activeKey === "1" && (
                     <>
                       <Tooltip title="Create">
@@ -94,6 +96,7 @@ class SupplierDetailsTab extends Component {
                       </Tooltip>
                     </>
                   )}
+                   </div>
                 </>
               }
               key="1"
@@ -109,6 +112,7 @@ class SupplierDetailsTab extends Component {
             <TabPane
               tab={
                 <>
+                <div className="flex items-center">
                   <i class="far fa-share-square"></i>&nbsp;
                    <div className="max-xl:text-[0.65rem]">{this.state.translatedMenuItems[1]}</div>
                   {activeKey === "2" && (
@@ -123,7 +127,8 @@ class SupplierDetailsTab extends Component {
                        //onClick={() => this.props.handleSupplierInventoryImportModal(true)}
                       />                     
                     </>
-                  )}                 
+                  )} 
+                  </div>                
                 </>
               }
               key="2"
@@ -240,7 +245,7 @@ class SupplierDetailsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <SuppliersActivityTable supplier={this.props.supplier} 
+                <SuppliersActivityTable supplierId={this.props.supplier && this.props.supplier.supplierId } 
                     translateText={this.props.translateText}
                     selectedLanguage={this.props.selectedLanguage}/>
                 

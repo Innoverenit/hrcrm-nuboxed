@@ -97,7 +97,7 @@ function SuppliersCardList(props) {
                </div>
                <div className=" w-[16.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Email */}
-               {props.translatedMenuItems[17]}
+               {/* {props.translatedMenuItems[17]} */}Disqualify
                </div>
             {/* <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
              Country 

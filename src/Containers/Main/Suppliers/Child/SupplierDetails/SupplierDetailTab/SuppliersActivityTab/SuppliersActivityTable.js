@@ -21,6 +21,7 @@ class SuppliersActivityTable extends Component {
             handleUpdateTaskModal,
             updateTaskModal,
         } = this.props;
+        console.log(this.props.supplier)
         const columns = [
             {
                 title: "",
