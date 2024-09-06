@@ -5,9 +5,12 @@ import { withRouter } from "react-router-dom";
 import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import {handleUploadInvestorModal} from "../InvestorAction";
+import { base_url } from "../../../Config/Auth";
 import UploadInvestor from "./UploadInvestor";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UploadIcon from '@mui/icons-material/Upload';
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+
 
 const Option = StyledSelect.Option;
 
@@ -24,6 +27,7 @@ function InvestorActionRight (props) {
       const itemsToTranslate = [
         "85", //0    Add
         "294", //1 Upload
+        // "1351",//Download Xl 2
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -36,11 +40,40 @@ function InvestorActionRight (props) {
   
     const {
       user,
+      userId,
+      role,
       handleInvestorModal
     } = props;
     return (
       <div class=" flex  items-center">
-        
+     {props.viewType === "list"  && (
+        <Tooltip placement="left" title=" Download-XL">
+        <a
+        href={`${base_url}/excel/export/investor/user/${props.userId}`}>
+            <DownloadForOfflineIcon
+            style={{fontSize: "x-large"}}/>
+         </a>
+         </Tooltip>
+       )}
+
+{props.viewType === "teams"  && (
+        <Tooltip placement="left" title=" Download-XL">
+        <a
+        href={`${base_url}/excel/export/investor/team/${props.userId}`}>
+            <DownloadForOfflineIcon
+            style={{fontSize: "x-large"}}/>
+         </a>
+         </Tooltip>
+       )}
+         {props.viewType === "all"  && (
+        <Tooltip placement="left" title=" Download-XL">
+        <a
+        href={`${base_url}/excel/export/investor/all/${props.orgId}`}>
+            <DownloadForOfflineIcon
+            style={{fontSize: "x-large"}}/>
+         </a>
+         </Tooltip>
+    )} 
         {props.viewType === "list"  &&  user.imInd === true  &&  user.investorCreateInd === true &&  (
           <div>
         <Tooltip placement="left" title="Create">
@@ -79,7 +112,8 @@ const mapStateToProps = ({ auth,investor}) => ({
   userId: auth.userDetails.userId,
   role: auth.userDetails.role,
   user: auth.userDetails,
-  uploadInvestorList: investor.uploadInvestorList
+  uploadInvestorList: investor.uploadInvestorList,
+  orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
