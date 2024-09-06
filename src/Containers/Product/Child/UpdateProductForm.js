@@ -59,21 +59,21 @@ class Productform extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        "657",//price
-        "1058",//Article
-        "110",//Name
-        "14",//category
-        "1154",//sub category
-        "259",//Atrribute
-        "263",//Sub Attribute
-        "1241",//Weight
-        "1242",//Length
-        "1243",//Width
-        "1244",//Height
-        "254",//Brand
-        "265",//model
-        "147",//Description
-        "1246",//Update
+        "657",//price 0
+        "1058",//Article 1
+        "110",//Name 2
+        "14",//category 3
+        "1154",//sub category 4
+        "259",//Atrribute 5
+        "263",//Sub Attribute 6 
+        "1241",//Weight 7
+        "1242",//Length 8
+        "1243",//Width 9
+        "1244",//Height 10
+        "254",//Brand 11
+        "265",//model 12
+        "147",//Description 13
+        "1246",//Update 14
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
