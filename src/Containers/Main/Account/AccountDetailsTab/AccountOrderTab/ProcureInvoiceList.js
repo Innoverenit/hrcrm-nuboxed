@@ -81,6 +81,8 @@ function ProcureInvoiceList (props) {
             item.procureOrderInvoiceId === key ? { ...item, [dataIndex]: value } : item
         );
         setData(updatedData);
+        const updatedTrackId = updatedData.find(item => item.procureOrderInvoiceId === key)?.trackId;
+    settrackId(updatedTrackId);
     };
     
       const handleDateChange = (e, item) => {
@@ -115,8 +117,12 @@ function ProcureInvoiceList (props) {
         }
         // props.updateOrdrSuplrItems(data);
         try {
+          const headers = {
+            'Content-Type': 'application/json',
+            'Authorization':  `Bearer ${props.token}`  // Replace with your actual token if required
+          };
 
-            const response = await axios.put(`${base_url2}/invoice/order/ship`, updatedItem);
+            const response = await axios.put(`${base_url2}/invoice/order/ship`, updatedItem, { headers });
             console.log("API Response:", response.data);
         setData(prevData => 
               prevData.map(cat =>
@@ -290,6 +296,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
     userId: auth.userDetails.userId,
     orgId: auth.userDetails.organizationId,
     currencies: auth.currencies,
+    token: auth.token,
     fetchingAccountInvoice:distributor.fetchingAccountInvoice,
     accountInvoice:distributor.accountInvoice,
     invoiceOrders:distributor.invoiceOrders,
@@ -310,3 +317,22 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProcureInvoiceList);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       
