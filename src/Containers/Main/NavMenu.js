@@ -5,6 +5,7 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import GroupsIcon from '@mui/icons-material/Groups';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { Menu, Badge } from "antd";
+import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import ComputerIcon from '@mui/icons-material/Computer';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
@@ -500,7 +501,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           <Menu.Item key="/contactInvest" style={{ height: "1.45rem",
             color: selectedMenuItem === '/contactInvest' ? 'tomato' : '#4bc076' }}>
             <Link to="/contactInvest"  onClick={() => handleSelect('/contactInvest')}>
-              <PermContactCalendarIcon
+              <ContactEmergencyIcon
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">

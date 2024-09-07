@@ -21,7 +21,9 @@ const InventoryPriceDrawer = (props) => {
         onClose={() => handleInvestorPriceDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <InventoryPriceAddTable  RowData={props.RowData} />
+          <InventoryPriceAddTable  RowData={props.RowData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

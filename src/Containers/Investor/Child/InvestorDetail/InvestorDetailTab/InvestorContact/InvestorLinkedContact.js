@@ -48,14 +48,14 @@ class InvestorLinkedContact extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'Name', // 0
-'Sponsor', // 1
-'Start Date', // 2
-'Value', // 3
-'Stages', // 4
-'Status', // 5
-'Assign To', // 6
-'Owner'//7
+           "110",   //        'Name', // 0
+             "216", // 'Sponsor', // 1
+             "176", // 'Start Date', // 2
+            "218",  // 'Value', // 3
+           "219",   // 'Stages', // 4
+           "142",   // 'Status', // 5
+            "76",  // 'Assign ', // 6
+             "77", // 'Owner'//7
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
       this.setState({ translatedMenuItems: translations ,loading: false});
@@ -211,8 +211,8 @@ class InvestorLinkedContact extends Component {
     } 
     return (
       <>
-        <div class="rounded m-1 p-1 w-[100%]   overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+        <div class="rounded m-1 p-1 w-[99%]   overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky z-10">
           <div className=" md:w-[16.1rem]">
           {translatedMenuItems[0]}     
           {/* Name      */}

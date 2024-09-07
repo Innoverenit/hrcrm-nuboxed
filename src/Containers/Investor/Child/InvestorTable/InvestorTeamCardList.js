@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -6,10 +6,10 @@ import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import ExploreIcon from "@mui/icons-material/Explore";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import LocationCityIcon from '@mui/icons-material/LocationCity';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
+import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import {
   MultiAvatar,
   MultiAvatar2 } from "../../../../Components/UI/Elements";
@@ -27,18 +27,15 @@ import ReactCountryFlag from 'react-country-flag';
 import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,
   handleInvestorPulseDrawerModal,  handleInvestorAddressDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData} from "../../InvestorAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
-import ContactsInvestorModal from "./ContactsInvestorModal";
-import InvestorSearchedData from "./InvestorSearchedData";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { BundleLoader } from "../../../../Components/Placeholder";
-import AddInvestorAdressModal from "./AddInvestorAdressModal";
-const AddInvestorNotesDrawerModal = lazy(() =>
-  import("../InvestorDetail/AddInvestorNotesDrawerModal")
-);
-const UpdateInvestorModal = lazy(() =>
-  import("../UpdateInvestor/UpdateInvestorModal")
-);
+const InvestorPulseDrawerModal = lazy(() =>import("./InvestorPulseDrawerModal"));
+const InvestorSearchedData = lazy(() =>import("./InvestorSearchedData"));
+const ContactsInvestorModal = lazy(() =>import("./ContactsInvestorModal"));
+const  AddInvestorAdressModal = lazy(() =>import("./AddInvestorAdressModal"));
+const AddInvestorNotesDrawerModal = lazy(() =>  import("../InvestorDetail/AddInvestorNotesDrawerModal"));
+const UpdateInvestorModal = lazy(() =>import("../UpdateInvestor/UpdateInvestorModal"));
+
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -231,7 +228,7 @@ function InvestorTeamCardList(props) {
                             <div  className="flex rounded justify-between max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col 
                 bg-white mt-1 h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium  w-[13.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex   w-[13.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
                                 <div>
 
             <MultiAvatar
@@ -251,13 +248,13 @@ function InvestorTeamCardList(props) {
                                         <div class=" flex max-sm:w-full  flex-row md:flex-col">                                         
                                             {/* Name */}
                                            
-                                            <div class=" text-sm text-blue-500 flex  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                            <div class=" text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
+                                            <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
   </Link>                                   
-        &nbsp;&nbsp;
+       
         {date === currentdate ? (
-          <span class="text-[tomato] mt-[0.4rem] font-bold">
+          <span class="text-[tomato] mt-[0.4rem] font-bold ml-1 text-[0.65rem]">
             New
           </span>
         ) : null}
@@ -296,7 +293,7 @@ function InvestorTeamCardList(props) {
                                 <div className=" flex  items-center w-[7.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                      {/* Deals */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.totalWonOppProposalValue}
                                     </div>
                                 </div>    
@@ -372,8 +369,8 @@ function InvestorTeamCardList(props) {
               <MultiAvatar
                 primaryTitle={item.ownerName}
                 imageId={item.ownerImageId}
-                imgWidth={"1.9rem"}
-                imgHeight={"1.9rem"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             </Tooltip>
             </div>
@@ -442,7 +439,7 @@ function InvestorTeamCardList(props) {
                         <div>
           
             <Tooltip title="Investor Contact">
-              <LocationCityIcon
+              <ContactEmergencyIcon
               className=" !text-icon cursor-pointer p-1 text-blue-500 max-sm:!text-xl"
                 onClick={() => {
                   handleInvestorContModal(true);
@@ -490,7 +487,7 @@ function InvestorTeamCardList(props) {
 
 
         )}  
-
+<Suspense fallback={<BundleLoader />}>
       <UpdateInvestorModal
         RowData={RowData}
         updateInvestorModal={updateInvestorModal}
@@ -528,16 +525,8 @@ function InvestorTeamCardList(props) {
          type="investor"
          addInvestorAddressModal={props.addInvestorAddressModal}
          handleInvestorAddressDrawerModal={props.handleInvestorAddressDrawerModal}
-      /> 
-      {/* <AddCustomerDrawerModal
-        addDrawerCustomerModal={props.addDrawerCustomerModal}
-        handleCustomerDrawerModal={props.handleCustomerDrawerModal}
-      />
-          <AddCustomerEmailDrawerModal
-        // contactById={props.contactById}
-        addDrawerCustomerEmailModal={props.addDrawerCustomerEmailModal}
-        handleCustomerEmailDrawerModal={props.handleCustomerEmailDrawerModal}
-      /> */}
+      /> </Suspense>
+      
     </>
   );
 }

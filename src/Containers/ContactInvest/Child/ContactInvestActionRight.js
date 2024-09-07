@@ -76,12 +76,13 @@ class ContactInvestActionRight extends React.Component {
           currentUser={this.props.currentUser} 
           />
         ) : null} */}
-       { role == "ADMIN" && (
+       { 
+      //  role == "ADMIN"  && 
+      (
         <Tooltip placement="left" title="XL">
         <a
         href={`${base_url}/excel/export/user/contact/${userId}`}>
-            <InsertDriveFileIcon 
-            style={{fontSize: "x-large"}}/>
+            <InsertDriveFileIcon  className="!text-xl"   />
          </a>
          </Tooltip>
        )} {user.imInd === true  && user.investorContactCreateInd === true &&  (

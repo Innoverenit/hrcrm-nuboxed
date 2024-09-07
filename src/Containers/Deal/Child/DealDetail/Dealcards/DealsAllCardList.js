@@ -256,7 +256,7 @@ const DealsAllCardList = (props) => {
 </div>
                  <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row  max-sm:justify-evenly w-wk ">
 
-                   <div class=" text-sm  font-poppins text-center">
+                   <div class=" text-xs  font-poppins text-center">
                      <CurrencySymbol currencyType={item.currency} />
                      &nbsp;
                      {item.proposalAmount}

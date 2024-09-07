@@ -1,9 +1,9 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
+import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import { bindActionCreators } from "redux";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import ExploreIcon from "@mui/icons-material/Explore";
-import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ArticleIcon from '@mui/icons-material/Article';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Tooltip, Select, } from "antd";
@@ -32,14 +32,14 @@ import {getInvestorDeletelist,
   handleInvestorPriceDrawer
 } from "./InvestorAction";
 import { BundleLoader } from "../../Components/Placeholder";
-import InventoryPriceDrawer from "./Child/InvestorTable/InventoryPriceDrawer";
-import AddInvestorNotesDrawerModal from "./Child/InvestorDetail/AddInvestorNotesDrawerModal";
-import InvestorDocumentDrawerModal from "./Child/InvestorTable/InvestorDocumentDrawerModal";
-import InvestorPulseDrawerModal from "./Child/InvestorTable/InvestorPulseDrawerModal";
-import ContactsInvestorModal from "./Child/InvestorTable/ContactsInvestorModal";
-import InvestorSearchedData from "./Child/InvestorTable/InvestorSearchedData";
-import ReInstateInvestor from "./ReInstateInvestor";
 
+const InventoryPriceDrawer = lazy(() => import("./Child/InvestorTable/InventoryPriceDrawer"));
+const AddInvestorNotesDrawerModal = lazy(() => import("./Child/InvestorDetail/AddInvestorNotesDrawerModal"));
+const ReInstateInvestor = lazy(() => import("./ReInstateInvestor"));
+const InvestorSearchedData = lazy(() => import("./Child/InvestorTable/InvestorSearchedData"));
+const ContactsInvestorModal = lazy(() => import("./Child/InvestorTable/ContactsInvestorModal"));
+const InvestorPulseDrawerModal = lazy(() => import("./Child/InvestorTable/InvestorPulseDrawerModal"));
+const InvestorDocumentDrawerModal = lazy(() => import("./Child/InvestorTable/InvestorDocumentDrawerModal"));
 
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -273,7 +273,7 @@ function InvestorDeleteList(props) {
                                             {/* Name */}
                                   
                                             <div class="text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap  text-[#042E8A] cursor-pointer max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
                                             {item.name}
                                         </Link>                                
                                               {/* {/* <Link */}
@@ -425,8 +425,8 @@ function InvestorDeleteList(props) {
               <MultiAvatar
                 primaryTitle={item.ownerName}
                 imageId={item.ownerImageId}
-                imgWidth={"1.9rem"}
-                imgHeight={"1.9rem"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             </Tooltip>
             </div>
@@ -438,14 +438,15 @@ function InvestorDeleteList(props) {
                             </div>
                 </div>
                                             
-                                <div class="flex w-wk cursor-pointer justify-evenly">  
+                                <div class="flex w-wk cursor-pointer justify-end items-center">  
                                   <div>
                                   <Tooltip title="Document">
-                                    <ArticleIcon
+                                    <ArticleIcon 
                                   onClick={() => {
                                     handleInvestorDocumentModal(true);
                                     handleCurrentRowData(item);
                                   }}
+                                   className=" !text-icon cursor-pointer"
                                   />
                                   </Tooltip>
                                   </div>          
@@ -499,7 +500,7 @@ function InvestorDeleteList(props) {
                         </div>      
                         <div >         
             <Tooltip title="Investor Contact">
-              <LocationCityIcon
+              <ContactEmergencyIcon
               className=" !text-icon cursor-pointer p-1 text-blue-500 max-sm:!text-xl "
                 onClick={() => {
                   handleInvestorContModal(true);
@@ -522,7 +523,7 @@ function InvestorDeleteList(props) {
    
      </div>
      )}  
-
+<Suspense fallback={<BundleLoader />}>
 <ContactsInvestorModal
         RowData={RowData}
         addDrawerInvestorContactModal={addDrawerInvestorContactModal}
@@ -561,7 +562,7 @@ function InvestorDeleteList(props) {
           priceInvestorDrawer={priceInvestorDrawer}
           key={priceInvestorDrawer ? 'open' : 'closed'}
         />
-      
+      </Suspense>
     </>
   );
 }

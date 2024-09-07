@@ -53,11 +53,11 @@ class InvestorLinkedDocuments extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'Date', // 0
-' Name', // 1
-'Type', // 2
-'Description', // 3
-'Uploaded By', // 4
+             "74" ,  //        'Date', // 0
+               "110", // ' Name', // 1
+              "71",  // 'Type', // 2
+               "147", // 'Description', // 3
+               "1207", // 'Uploaded By', // 4
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
       this.setState({ translatedMenuItems: translations ,loading: false});
