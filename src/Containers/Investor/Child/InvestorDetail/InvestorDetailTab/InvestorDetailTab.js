@@ -3,27 +3,20 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Badge, Tooltip } from "antd";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import AddchartIcon from '@mui/icons-material/Addchart'; 
 import { FormattedMessage } from "react-intl";
 import { PlusOutlined } from "@ant-design/icons";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import {getContactListByInvestorId,handleInvestorContactModal,
-  handleActivityModal,
-  handleDealModal
-} from "../../../InvestorAction";
-import {handleCustomerContactModal} from "../../../../Customer/CustomerAction"
-import {
-  handleDocumentUploadModal,
-} from "../../../../Customer/CustomerAction";
-import InvestorActivityModal from "../InvestorActivity/InvestorActivityModal";
-import InvestorTimeLine from "../InvestorActivity/InvestorTimeLine";
-import CreateDealModal from "../../../../Deal/Child/CreateDealModal";
-import InvestorDeals from "./InvestorDeals";
-import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
-import AddCustomerContactModal from "../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/AddCustomerContactModal";
+import {getContactListByInvestorId,handleInvestorContactModal,  handleActivityModal,  handleDealModal} from "../../../InvestorAction";
+import {  handleDocumentUploadModal,handleCustomerContactModal} from "../../../../Customer/CustomerAction";
+
+const InvestorActivityModal=lazy(()=>import("../InvestorActivity/InvestorActivityModal"));
+const InvestorTimeLine=lazy(()=>import("../InvestorActivity/InvestorTimeLine"));
+const CreateDealModal=lazy(()=>import("../../../../Deal/Child/CreateDealModal"));
+const InvestorDeals=lazy(()=>import("./InvestorDeals"));
+const AddDocumentModals=lazy(()=>import("../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
+const AddCustomerContactModal=lazy(()=>import("../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/AddCustomerContactModal"));
 const InvestorLinkedContact =lazy(()=>import("./InvestorContact/InvestorLinkedContact"));
 const InvestorLinkedDocuments =lazy(()=>import("./InvestorDoc/InvestorLinkedDocuments"));
 const AddInvestorContactModal=lazy(()=>import("./InvestorContact/AddInvestorContactModal"));
@@ -117,7 +110,7 @@ getContactListByInvestorId(this.props.investorDetails.investorId);
               tab={
                 <>
                   <span>
- <ContactsIcon style={{fontSize:"1.1rem"}}/>
+ <ContactsIcon  className="!text-icon text-[#a9d8b8]"/>
                     <span class=" ml-1">
                       <FormattedMessage
                         id="app.contacts"
@@ -161,7 +154,9 @@ getContactListByInvestorId(this.props.investorDetails.investorId);
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <InvestorLinkedContact investorDetails={this.props.investorDetails}/>
+                <InvestorLinkedContact investorDetails={this.props.investorDetails}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
 
@@ -182,9 +177,9 @@ getContactListByInvestorId(this.props.investorDetails.investorId);
             <TabPane
               tab={
                 <>
-                  <InsertDriveFileIcon 
-                  style={{fontSize:"1.1rem"}}
-                  />
+                  <i 
+                  class="far fa-file  !text-icon text-[#41ead4]"
+                  ></i>
                   <span class=" ml-1">
                     <FormattedMessage
                       id="app.documents"
@@ -217,13 +212,15 @@ getContactListByInvestorId(this.props.investorDetails.investorId);
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <InvestorLinkedDocuments investorDetails={this.props.investorDetails}/>
+                <InvestorLinkedDocuments investorDetails={this.props.investorDetails}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
             <TabPane
               tab={
                 <>
-                  <AddchartIcon style={{fontSize:"1.1rem"}}/>
+                  <i class="fab fa-connectdevelop text-[#8332ac] !text-icon"></i>
                   <Badge
                 count={this.props.investorActivityCount.count}
                 overflowCount={999}
@@ -274,7 +271,7 @@ investorDetails={this.props.investorDetails}
             <TabPane
               tab={
                 <>
-                  <CurrencyExchangeIcon style={{fontSize:"1.1rem"}}/>
+                  <CurrencyExchangeIcon className="!text-icon text-[#fce762]"/>
                   <span class=" ml-1">
                     {
                       <FormattedMessage
@@ -317,9 +314,9 @@ investorDetails={this.props.investorDetails}
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <InvestorDeals
-
-investorDetails={this.props.investorDetails}
-                />
+              investorDetails={this.props.investorDetails}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}       />
               </Suspense>
             </TabPane>
             {/* <TabPane
@@ -430,34 +427,7 @@ investorDetails={this.props.investorDetails}
             handleActivityModal={handleActivityModal}
           />
 
-          {/* <AddRecruitModal
-            addRecruitModal={this.props.addRecruitModal}
-            handleRecruitModal={this.props.handleRecruitModal}
-          />
-          <AddTagProfileModal
-            addTagProfileModal={this.props.addTagProfileModal}
-            handleTagProfileModal={this.props.handleTagProfileModal}
-          />
-          <AddInvoiceModal
-            addInvoiceModal={addInvoiceModal}
-            handleInvoiceModal={handleInvoiceModal}
-          />
-          <ReactCustomerSpeechModal
-            customerId={customerId}
-            handleCustomerReactSpeechModal={handleCustomerReactSpeechModal}
-            addCustomerSpeechModal={addCustomerSpeechModal}
-          />
-          <AddCustomerOpportunityModal
-            addCustomerOpportunityModal={addCustomerOpportunityModal}
-            handleCustomerOpportunityModal={handleCustomerOpportunityModal}
-            defaultCustomers={[{ label: name, value: customerId }]}
-            customerId={{ value: customerId }}
-            callback={() => getOpportunityListByCustomerId(customerId)}
-          />
-                 <AddProjectDrawer
-            addCustomerProjectDrawer={addCustomerProjectDrawer}
-            handleCustomerProjectDrawer={handleCustomerProjectDrawer}
-          /> */}
+         
         </Suspense>
       </>
     );

@@ -18,7 +18,11 @@ function InvestorDetail (props) {
     return (
       <>
         <>
-          <InvestorDetailHeader/>
+       < Suspense fallback={"Loading..."}>
+          <InvestorDetailHeader 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}/>
+           </Suspense>
           {fetchingInvestorDetailsById ? (
             <MainWrapper>
               <BundleLoader />
@@ -29,10 +33,14 @@ function InvestorDetail (props) {
                   <div class=" flex flex-nowrap w-full"
                 >
                     <div class=" w-1/4">
-                      <InvestorDetailLeft investorDetails={investorDetails} />
+                      <InvestorDetailLeft investorDetails={investorDetails} 
+                       translateText={props.translateText}
+                       selectedLanguage={props.selectedLanguage}/>
                     </div>
                     <div class=" w-3/4">
-                      <InvestorDetailRight investorDetails={investorDetails} />
+                      <InvestorDetailRight investorDetails={investorDetails}
+                       translateText={props.translateText}
+                       selectedLanguage={props.selectedLanguage} />
                     </div>
                   </div>
                 </Suspense>

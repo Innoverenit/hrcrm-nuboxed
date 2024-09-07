@@ -27,14 +27,14 @@ const InvestorDeals = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          "Name",//0
-          "Sponsor",//1
-          "Start Date",//2
-          "Value",//3
-          "Stages",//4
-          "Status",//5      
-          "Assign To",//6  
-           "Owner",//7
+          "110",   //        'Name', // 0
+          "216", // 'Sponsor', // 1
+          "176", // 'Start Date', // 2
+         "218",  // 'Value', // 3
+        "219",   // 'Stages', // 4
+        "142",   // 'Status', // 5
+         "76",  // 'Assign ', // 6
+          "77", // 'Owner'//7
          
         ];
 

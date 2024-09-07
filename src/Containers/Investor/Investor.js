@@ -10,7 +10,8 @@ import {
   getLatestCustomer,
   getCustomerCloser, 
 } from "../Customer/CustomerAction";
-import InvestorDeleteList from './InvestorDeleteList';
+
+const InvestorDeleteList = lazy(() => import("./InvestorDeleteList"));
 const InvestorHeader = lazy(() => import("./Child/InvestorHeader"));
 const InvestorTeamCardList = lazy(() => import("./Child/InvestorTable/InvestorTeamCardList"));
 const InvestorAllCardList = lazy(() => import("./Child/InvestorTable/InvestorAllCardList"));
@@ -27,19 +28,7 @@ const [viewType, setViewType] = useState(null);
     setViewType(viewType);
     setTeamsAccessInd(false);
   };
-// function handleClear () {
-//   const startDate = dayjs()
-//     .startOf("month")
-//     .toISOString();
-//   const endDate = dayjs()
-//     .endOf("month")
-//     .toISOString();
-//     setcurrentData(currentData);
-// props.emptyInvestor();
-//   this.props.getInvestorsbyId(this.state.currentUser?this.state.currentUser:this.props.userId,0,"creationdate");
-//   this.props.getLatestCustomer(this.props.userId);
-//   this.props.getCustomerCloser(this.props.userId, startDate, endDate);
-// };
+
 const handleClear = () => {
   setcurrentData("");
   props.getInvestorsbyId(currentUser || props.userId, 0, "creationdate");
@@ -64,6 +53,7 @@ const handleChange = (e) => {
   } = props;
         return (
             <React.Fragment>
+              <Suspense fallback={<BundleLoader />}>
           <InvestorHeader
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
@@ -86,7 +76,7 @@ const handleChange = (e) => {
           addInvestorModal={addInvestorModal}
           handleInvestorModal={handleInvestorModal}
           />
- <Suspense fallback={<BundleLoader />}>
+ 
  {teamsAccessInd ? (
        <InvestorTeamCardList
        translateText={props.translateText}

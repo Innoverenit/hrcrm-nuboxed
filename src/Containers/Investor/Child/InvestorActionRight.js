@@ -1,4 +1,4 @@
-import React, {useEffect,useState  } from "react";
+import React, {useEffect,useState, lazy, Suspense  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
@@ -6,11 +6,11 @@ import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import {handleUploadInvestorModal} from "../InvestorAction";
 import { base_url } from "../../../Config/Auth";
-import UploadInvestor from "./UploadInvestor";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UploadIcon from '@mui/icons-material/Upload';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 
+const UploadInvestor=lazy(()=> import("./UploadInvestor"));
 
 const Option = StyledSelect.Option;
 
@@ -100,10 +100,11 @@ function InvestorActionRight (props) {
    </Tooltip>
    </div>
         )}
+         < Suspense fallback={"Loading..."}>
          <UploadInvestor
           handleUploadInvestorModal={props.handleUploadInvestorModal}
           uploadInvestorList={props.uploadInvestorList}
-        />
+        /></Suspense>
       </div>
     );
 }

@@ -9,9 +9,7 @@ import { bindActionCreators } from "redux";
 import PeopleIcon from '@mui/icons-material/People';
 import { withRouter } from "react-router-dom";
 import { AudioOutlined } from "@ant-design/icons";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
+import SpeechRecognition, {  useSpeechRecognition,} from "react-speech-recognition";
 import { getInvestor, ClearReducerDataOfInvestor, getInvestorsbyId, getInvestorTeam, searchInvestorName, getInvestorAll } from "../InvestorAction";
 import { Input } from "antd";
 
