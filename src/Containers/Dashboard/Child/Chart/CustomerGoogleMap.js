@@ -71,7 +71,7 @@ const CustomerGoogleMap = (props) => {
     ]
   };
   console.log(props.selectedCountry)
-const{latitude,longitude}=props.address[0]
+const{latitude,longitude}= data.address && data.address.length && data.address[0]
   const center = {
     lat: parseFloat(latitude),
     lng: parseFloat(longitude)

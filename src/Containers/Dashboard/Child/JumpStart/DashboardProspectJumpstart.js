@@ -43,7 +43,7 @@ function DashboardProspectJumpstart(props) {
 //     props.getJumpFinanceDetail(props.orgId, props.timeRangeType)
 //   }, [props.timeRangeType])
 console.log(props.prospectChart)
-console.log(props.prospectLifeTime.customerCountByCountry)
+// console.log(props.prospectLifeTime.customerCountByCountry)
   return (
     <>
       <div class=" flex flex-row w-full" >
@@ -62,7 +62,7 @@ console.log(props.prospectLifeTime.customerCountByCountry)
               title={translatedMenuItems[0]}
             jumpstartClick={()=>props.handleProspectDrawer(true)}
             cursorData={"pointer"}
-             value={props.prospectChart.customerCountByCountry}
+            //  value={props.prospectChart.customerCountByCountry}
             isLoading={props.fetchingProspectData}
             />
                         
@@ -83,7 +83,7 @@ console.log(props.prospectLifeTime.customerCountByCountry)
               title={translatedMenuItems[1]}
             jumpstartClick={()=>props.handleQuotationYear(true)}
              cursorData={"pointer"}
-            value={props.openQuotationYear.yearlyOpportunityCountByCountry}
+            // value={props.openQuotationYear.yearlyOpportunityCountByCountry}
           isLoading={props.fetchingOpenQuotationYear}
             />
                            </div>
@@ -106,7 +106,7 @@ console.log(props.prospectLifeTime.customerCountByCountry)
    bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
               title={translatedMenuItems[2]}
-              value={props.prospectLifeTime.opportunityCountByCountry}
+              // value={props.prospectLifeTime.opportunityCountByCountry}
             jumpstartClick={()=>props.handleQuotationLife(true)}
             cursorData={"pointer"}
             // value={props.financeDetail.opportunityAdded}
@@ -127,7 +127,7 @@ console.log(props.prospectLifeTime.customerCountByCountry)
                          bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
               title={translatedMenuItems[3]}
-              value={props.prospectQuotation.openOpportunityCountByCountry}
+              // value={props.prospectQuotation.openOpportunityCountByCountry}
             // jumpstartClick={()=>handleDealClosedDrawer(true)}
             // cursorData={"pointer"}
             // value={ props.financeDetail.closedOpportunity}
