@@ -190,20 +190,24 @@ class Dashboard extends Component {
            <div class=" flex flex-col h-[21rem] overflow-auto " >
            {viewType==="ME" ?
            (
-             <DashboardJumpstartAll
+            <h2>Me View</h2>
+           && this.state.activeButton==="test" ?
+            ( <DashboardJumpstart 
              selectedLanguage={this.props.selectedLanguage}
-             translateText={this.props.translateText}/> 
-
-             && this.state.activeButton==="Procure" ?
+             translateText={this.props.translateText}/>)
+ 
+             : this.state.activeButton==="Procure" ?
              (<DashboardProcureJumpstartUser
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}
              />)
-             : this.state.activeButton==="Order" && 
+             : this.state.activeButton==="Order" &&
              (<DashboardOrderJumpstart
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}
-             />)
+             />) 
+             
+            
            )
              :
              viewType==="bulb" ? (<DashboardBulbJumpstart
@@ -221,11 +225,6 @@ class Dashboard extends Component {
              translateText={this.props.translateText}
              />)
              
-             :  
-             this.state.activeButton==="RecruitPro" ?
-           (<DashboardJumpstartAll
-            selectedLanguage={this.props.selectedLanguage}
-             translateText={this.props.translateText}/>)
              : this.state.activeButton==="Investors" ?
              (<DashboardInvestorsOrgJumpstart
               selectedLanguage={this.props.selectedLanguage}
@@ -246,7 +245,10 @@ class Dashboard extends Component {
              selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}
              />
-             
+          //    :this.state.activeButton==="RecruitPro" ?
+          //  (<DashboardJumpstartAll
+          //   selectedLanguage={this.props.selectedLanguage}
+          //    translateText={this.props.translateText}/>)
            
              : this.state.activeButton==="Finance" ?
              (<DashboardFinanceJumpstart
@@ -288,10 +290,17 @@ class Dashboard extends Component {
             
              :
              (
+              <>
               <DashboardJumpstart 
               selectedLanguage={this.props.selectedLanguage}
               translateText={this.props.translateText}/>
-      
+
+               {this.state.activeButton==="RecruitPro" &&
+               (<DashboardJumpstartAll
+                selectedLanguage={this.props.selectedLanguage}
+                 translateText={this.props.translateText}/>)
+                }
+      </>
           )}
              <div class=" w-wk" >
              <div class=" flex flex-col " >
