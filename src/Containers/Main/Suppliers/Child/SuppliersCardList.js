@@ -9,6 +9,7 @@ import {
   handleSuppliersAddress
 } from "../SuppliersAction"
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import InventoryIcon from '@mui/icons-material/Inventory';
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import StoreIcon from '@mui/icons-material/Store';
@@ -216,8 +217,8 @@ function SuppliersCardList(props) {
                                 </Tooltip>
                               </div>
                               <div>
-                                <Tooltip title="">
-                                  <AssignmentIcon
+                                <Tooltip title={props.translatedMenuItems[39]}>
+                                  <InventoryIcon
                                     className="!text-icon cursor-pointer text-[green] max-sm:!text-2xl"
                                     onClick={() => {
                                       props.setEditSuppliers(item);
@@ -227,6 +228,7 @@ function SuppliersCardList(props) {
                                   />
                                 </Tooltip>
                               </div>
+                              <Tooltip title={props.translatedMenuItems[34]}>
                               <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-2xl"
           onClick={() => {
@@ -234,7 +236,8 @@ function SuppliersCardList(props) {
             handleRowData(item);
           }}
           
-        />                              
+        />      
+               </Tooltip>                
                               <div>
                                 <Tooltip title={props.translatedMenuItems[21]}>
                                   <Popconfirm

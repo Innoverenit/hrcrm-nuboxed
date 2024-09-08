@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 
 class SupplierDetailView extends Component {
   constructor(props) {
@@ -62,12 +62,12 @@ export default SupplierDetailView;
 
 const ShipperItemRow = ({ label, value }) => {
   return (
-    <div class="flex items-center flex-nowrap m-1 text-sm max-xl:text-[0.65rem]">
+    <div class="flex items-center justify-end flex-nowrap m-1 text-sm max-xl:text-[0.65rem]">
       <div class="text-[#444] font-semibold w-[40%]">
         {label}
       </div>
       <div
-        class=" whitespace-nowrap overflow-hidden text-ellipsis w-[61%] max-xl:text-[0.65rem]">
+        class="flex justify-end  whitespace-nowrap overflow-hidden text-ellipsis w-[61%] max-xl:text-[0.65rem]">
         {value}
       </div>
     </div>
