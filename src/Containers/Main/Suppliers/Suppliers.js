@@ -61,7 +61,8 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
          "188", // 'City',//35
          "879", // 'Pin Code',//36
          "1069", // 'Reinstate',//37
-          "739",// "Publish",
+          "739",// "Publish",//38
+          "880"//39 Invenntory
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

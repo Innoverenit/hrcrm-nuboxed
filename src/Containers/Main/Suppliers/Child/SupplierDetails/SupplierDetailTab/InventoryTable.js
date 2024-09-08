@@ -45,15 +45,15 @@ function InventoryTable(props) {
         try {
           const itemsToTranslate = [
             "649",//0 Trade ID
-            "859",//1  Creation 
+            "679",//1  Created
             "14",//2 Category
             "264",//3 Brand
             "265",//4 Model
-            // "",//5 Availability Date
+            "1275",//5 Availability Date
             "259",//6 Attribute
             "654",//7  Quality
             "655",//8  Specs
-            "254",//9 Unit
+            "260",//9 Units
             "657",//10 Price
             "739",//11 Publish
           ];
@@ -190,7 +190,7 @@ function InventoryTable(props) {
         
     return (
         <>
-        <div class=" ml-6 h-6 w-60 max-sm:w-[11rem]">
+        <div class=" ml-2 h-6 w-60 max-sm:w-[11rem]">
                 <Input
           placeholder="Search by Trade ID"
           width={"100%"}
@@ -203,8 +203,8 @@ function InventoryTable(props) {
 
                 </div>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[92%] p-2 bg-transparent font-bold sticky top-0 z-10">
+                <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" w-[31.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[0]}
                             {/* Trade ID */}
                             </div>
@@ -289,18 +289,18 @@ function InventoryTable(props) {
                                                         
                                                     </div>
                                                     <div className=" flex   w-[8.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center  max-xl:text-[0.65rem] text-xs font-poppins">
                                                             {item.brand}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[21.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class=" flex items-center  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.model}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[6.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
 {editsuppliesId === item.inventorySupplieId ? (
                                                                 <input
           type="date"
@@ -309,7 +309,7 @@ function InventoryTable(props) {
           min={dayjs(item.availabilityDate).format("DD/MM/YYYY")}
           class="border border-black rounded"
         /> ) : (
-            <div className="font-normal text-sm  font-poppins">
+            <div className="font-normal text-xs  font-poppins">
               <div> 
               {dayjs(item.availabilityDate).format("YYYY/MM/DD")}</div>
             </div>
@@ -318,34 +318,34 @@ function InventoryTable(props) {
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[6.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.attributeName}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[5.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.quality}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[4.32rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" max-xl:text-[0.65rem] text-xs font-poppins w-20">
+                                                        <div class="flex items-center  max-xl:text-[0.65rem] text-xs font-poppins w-20">
                                                             {item.spces}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[6.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
                                                            {item.unit}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex   w-[8.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                    <div className=" flex  w-[8.01rem] max-xl:w-[18.01rem] max-sm:justify-between items-center max-sm:flex-row ">
+                                                        <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
                                                            {item.currency} {item.price}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="  text-xs max-sm:text-xs flex items-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <SuplierInventoryPublishToggle
                                   publishInventoryInd={item.publishInventoryInd}
                                   inventorySupplieId={item.inventorySupplieId}
@@ -372,7 +372,7 @@ function InventoryTable(props) {
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.inventorySupplieId)}

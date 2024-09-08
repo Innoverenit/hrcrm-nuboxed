@@ -30,7 +30,18 @@ class SupplierContactForm extends Component {
         this.props.getDesignations();
         this.props.getDepartments();
     }
+    // '295', // 0 First name
+    // '353', // 1 middle name
+    // '354', // 2 last name
+    // '140', // 3mobile #
+    // '1117', // 4 Email 
+    // '357', // 5 Linkdin
+    // '546', // 6notes 
+    // '1157', // 7 designation
+    // '547', // 8 department
 
+    //  '185',//9 Address
+    //   '104'//10 create
     render() {
         const designation = this.props.designations.map((item) => {
             return {

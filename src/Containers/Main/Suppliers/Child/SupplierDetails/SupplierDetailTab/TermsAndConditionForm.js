@@ -16,13 +16,13 @@ function TermsAndConditionForm(props) {
           setLoading(true); 
           const itemsToTranslate = [
   
-         "",   //  "Special terms and condition",//0
+         "1262",   //  "Special terms and conditions",//0
          "772",   //   "Delivery",//1
-         "",   //  "Freight",
-         "",  //  "Packing",
-         "",   //   "Warrenty",
-         "",  //   "Test Certificate",
-         "", //   "Order Acceptance",
+         "1263",   //  "Freight",
+         "1264",  //  "Packing",
+         "1204",   //   "Warrenty",
+         "1266",  //   "Test Certificate",
+         "1267", //   "Order Acceptance",
          "1171",     // "Payment",
          "154",     // "Submit"
 
@@ -76,9 +76,11 @@ function TermsAndConditionForm(props) {
                     values,
                     ...rest
                 }) => (
+
                     <Form>
-                        <div class="flex justify-between">
-                            <div class="w-[32%]">
+                        <div className="flex flex-row justify-between">
+                        <div class="flex flex-col justify-between w-[45%]">
+                            <div class="w-wk">
                                 <div class=" text-xs font-bold font-poppins">{translatedMenuItems[0]}</div>
                                 <Field
                                     name="specialTerms"
@@ -93,8 +95,8 @@ function TermsAndConditionForm(props) {
                                     component={TextareaComponent}
                                 />
                             </div>
-                            <div class="w-[32%]">
-                            <div class=" text-xs font-bold font-poppins">{translatedMenuItems[1]}</div>
+                            <div class="w-wk">
+                            <div class=" text-xs font-bold font-poppins mt-1">{translatedMenuItems[1]}</div>
                                 <Field
                                     name="delivery"
                                     // label={<FormattedMessage
@@ -108,8 +110,8 @@ function TermsAndConditionForm(props) {
                                     component={TextareaComponent}
                                 />
                             </div>
-                            <div class="w-[32%]">
-                            <div class=" text-xs font-bold font-poppins">{translatedMenuItems[2]}</div>
+                            <div class="w-wk">
+                            <div class=" text-xs font-bold font-poppins mt-1">{translatedMenuItems[2]}</div>
                                 <Field
                                     name="freight"
                                     // label={<FormattedMessage
@@ -123,9 +125,21 @@ function TermsAndConditionForm(props) {
                                     component={TextareaComponent}
                                 />
                             </div>
+                            <div class="w-wk">
+                            <div class=" text-xs font-bold font-poppins mt-1">{translatedMenuItems[6]}</div>
+                                <Field
+                                    name="orderacceptance"                          
+                                    //     id="app.orderacceptance"                             
+                                    isRequired
+                                    isColumn
+                                    inlineLabel
+                                    width={"100%"}
+                                    component={TextareaComponent}
+                                />
+                            </div>
                         </div>
-                        <div class="flex justify-between">
-                            <div class="w-[32%]">
+                        <div class="flex  flex-col justify-between  w-[45%]">
+                            <div class="w-wk">
                             <div class=" text-xs font-bold font-poppins">{translatedMenuItems[3]}</div>
                                 <Field
                                     name="packing"
@@ -140,14 +154,11 @@ function TermsAndConditionForm(props) {
                                     component={TextareaComponent}
                                 />
                             </div>
-                            <div class="w-[32%]">
-                            <div class=" text-xs font-bold font-poppins">{translatedMenuItems[4]}</div>
+                            <div class="w-wk ">
+                            <div class=" text-xs font-bold font-poppins mt-1">{translatedMenuItems[4]}</div>
                                 <Field
-                                    name="warrenty"
-                                    // label={<FormattedMessage
-                                    //     id="app.warrenty"
-                                    //     defaultMessage="Warrenty"
-                                    // />}
+                                    name="warrenty"                             
+                                    //     defaultMessage="Warrenty"                                 
                                     isRequired
                                     isColumn
                                     inlineLabel
@@ -155,14 +166,10 @@ function TermsAndConditionForm(props) {
                                     component={TextareaComponent}
                                 />
                             </div>
-                            <div class="w-[32%]">
-                            <div class=" text-xs font-bold font-poppins">{translatedMenuItems[5]}</div>
+                            <div class="w-wk">
+                            <div class=" text-xs font-bold font-poppins mt-1">{translatedMenuItems[5]}</div>
                                 <Field
-                                    name="testCertificate"
-                                    // label={<FormattedMessage
-                                    //     id="app.testCertificate"
-                                    //     defaultMessage="Test Certificate"
-                                    // />}
+                                    name="testCertificate"                               
                                     F isRequired
                                     isColumn
                                     inlineLabel
@@ -170,31 +177,12 @@ function TermsAndConditionForm(props) {
                                     component={TextareaComponent}
                                 />
                             </div>
-                        </div>
-                        <div class="flex justify-between">
-                            <div class="w-[32%]">
-                            <div class=" text-xs font-bold font-poppins">{translatedMenuItems[6]}</div>
+                            <div class="w-wk">
+                            <div class=" text-xs font-bold font-poppins mt-1">{translatedMenuItems[7]}</div>
                                 <Field
-                                    name="orderacceptance"
-                                    // label={<FormattedMessage
-                                    //     id="app.orderacceptance"
-                                    //     defaultMessage="Order Acceptance"
-                                    // />}
-                                    isRequired
-                                    isColumn
-                                    inlineLabel
-                                    width={"100%"}
-                                    component={TextareaComponent}
-                                />
-                            </div>
-                            <div class="w-[32%]">
-                            <div class=" text-xs font-bold font-poppins">{translatedMenuItems[7]}</div>
-                                <Field
-                                    name="payment"
-                                    // label={<FormattedMessage
-                                    //     id="app.payment"
+                                 name="payment"                          
                                     //     defaultMessage="Payment"
-                                    // />}
+                               
                                     isRequired
                                     isColumn
                                     inlineLabel
@@ -202,7 +190,11 @@ function TermsAndConditionForm(props) {
                                     component={TextareaComponent}
                                 />
                             </div>
-                            <div class="w-[32%] mt-3.7rem">
+                        </div>
+                        </div>
+                        <div class="flex justify-end">
+                                                 
+                            <div class="w-wk mt-3.7rem mt-1">
                                 <Button
                                     type="primary"
                                     htmlType="submit"
@@ -215,7 +207,7 @@ function TermsAndConditionForm(props) {
                                 </Button>
                             </div>
                         </div>
-                    </Form>
+                    </Form>                   
                 )}
             </Formik>
         </>

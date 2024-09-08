@@ -25,7 +25,7 @@ const AddPurchaseOrder = (props) => {
             setLoading(true); 
             const itemsToTranslate = [
        
-          "798",  // "Materials",//0
+          "798",  // " linked Material",//0
              "654",   // "Quality",//1
               "260",  // "Units",//2
               "14",  // "Category",//3
@@ -154,7 +154,7 @@ const AddPurchaseOrder = (props) => {
                             <div class="flex w-wk">
                                 <div class=" flex flex-col w-wk">
                                     <div class="w-[47.5%]">
-                                    <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}> {translatedMenuItems[0]} </div>
+                                    <div className='font-bold font-poppins text-xs'> {translatedMenuItems[0]} </div>
                       <Select
                         className="w-[250px]"
                         value={material}
@@ -187,7 +187,7 @@ const AddPurchaseOrder = (props) => {
                                         />  */}
                                     </div>
                                     <div class="w-w48  max-sm:w-wk">
-                      <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}> {translatedMenuItems[1]} </div>
+                      <div className=' font-bold font-poppins text-xs mt-1'> {translatedMenuItems[1]} </div>
                       <Select
                         className="w-[250px]"
                         value={quality}
@@ -200,7 +200,7 @@ const AddPurchaseOrder = (props) => {
 
                     </div>
                                     <div class="w-[47.5%]">
-                                        <div class=" text-xs font-poppins font-bold"> {translatedMenuItems[2]} </div>
+                                        <div class="  font-bold font-poppins text-xs mt-1"> {translatedMenuItems[2]} </div>
                                         <Field
                                             name="unit"
                                             // label={<FormattedMessage

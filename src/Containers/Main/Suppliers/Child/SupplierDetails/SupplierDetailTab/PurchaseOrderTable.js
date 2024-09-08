@@ -41,12 +41,14 @@ function PurchaseOrderTable(props) {
         const itemsToTranslate = [
    
           // "PO", //0
-          "679",   // "Created",//0
+          "77",   // "Owner",//0
           "658",  // "Location",//2
            "772", // "Delivery",//3
            "73", // "Contact",//4
             "241",// "Currency ",//5
-           "218" // "Value",//6
+           "218", // "Value",//6
+           "1246" //update 7
+          //  "",//Terms and consdtions
             
 
         ];
@@ -204,7 +206,7 @@ function PurchaseOrderTable(props) {
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[5.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                             <MultiAvatar
                                                                 primaryTitle={item.userName}
                                                                 imgWidth={"1.8rem"}
@@ -300,7 +302,7 @@ function PurchaseOrderTable(props) {
                       </Button>
                     </>
                   ) : (
-                    <Tooltip title="Update Info">
+                    <Tooltip title= {translatedMenuItems[7]}  >
                     <BorderColorIcon
                       tooltipTitle="Edit"
                     
@@ -313,7 +315,7 @@ function PurchaseOrderTable(props) {
                
               </div>
                                                     <div className=" flex  w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs items-center font-poppins">
                                                             {item.locationName === null ? <Button
                                                                 type="primary"
                                                                 onClick={() => {
@@ -329,9 +331,9 @@ function PurchaseOrderTable(props) {
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs  font-poppins">
-                                                            <Tooltip title="Terms and condition">
-                                                                <TerminalSharp
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
+                                                            <Tooltip title="Terms and conditions">
+                                                                <TerminalSharp className="!text-icon text-[#c3b20b]"
                                                                     onClick={() => {
                                                                         handleRowData(item)
                                                                         props.handleTermsnConditionModal(true)
