@@ -341,7 +341,7 @@ class SuppliersActivityCallForm extends Component {
                         style={{
                           flexBasis: "80%",
                           width: "100%",
-                          marginTop: "0px",
+                          marginTop: "2px",
                         }}
                       />
                     </div>
@@ -357,7 +357,7 @@ class SuppliersActivityCallForm extends Component {
                         // inlineLabel
                         style={{
                           flexBasis: "80%",
-                          marginTop: "0px",
+                          marginTop: "2px",
                           width: "100%",
                         }}
                       />
