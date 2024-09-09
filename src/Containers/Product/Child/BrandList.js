@@ -24,9 +24,12 @@ import {
 import ProductBrandModal from "./ProductBrandModal"
 import { Link } from 'react-router-dom';
 import {addProductBrand,getBrandProduct,
-  handleProductBrandModal
+  handleProductBrandModal,
+  deleteProductBrandData
 } from "../ProductAction"
+import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
+import { DeleteOutlined } from "@ant-design/icons";
 
 
 
@@ -40,7 +43,8 @@ function BrandList(props) {
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
- 
+  const [loading, setLoading] = useState(true);
+  const [currentBrandId, setCurrentBrandId] = useState("");
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
@@ -51,41 +55,32 @@ function BrandList(props) {
     props.getBrandProduct();
    
   }, []);
-//   useEffect(() => {
-//     const fetchMenuTranslations = async () => {
-//       try {
-//         setLoading(true); 
-//         const itemsToTranslate = [
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
 
-//    "110", // 'Name', // 0
-//    "378",// 'Work', // 1
-//    "278",// 'Sector', // 2
-//    "279",// 'Source', // 3
-//    "213",// 'Quotation', // 4
-//    "328",// 'PipeLine', // 5
-//    "76",// 'Assigned', // 6
-//    "77",// 'Owner', // 7
-//    "248",// 'Customer', // 8
-//        "100",   // new 9
-//     "1300" , //  Change status to Customer?"10
-//     "99" ,  // "Opportunity"11
-//     "392" ,  // Pulse 12
-//     "316" ,  // "Notes"13
-//     "170" ,  // "Edit" 14
-//    "73" // Contact 15
-//         ];
+   "110", // 'Name', // 0
+   "264",// 'Brand Id', // 1
+   "1431",// 'Live', // 2
+   "1004",// 'Inactive', // 3
+   "84",// 'Delete', // 4
+   "154",// 'Submit', // 5
+   
+        ];
 
-//         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-//         setTranslatedMenuItems(translations);
-//         setLoading(false);
-//       } catch (error) {
-//         setLoading(false);
-//         console.error('Error translating menu items:', error);
-//       }
-//     };
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
 
-//     fetchMenuTranslations();
-//   }, [props.selectedLanguage]);
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
  
 
@@ -116,7 +111,10 @@ function BrandList(props) {
 
    
  
-
+function handleSetCurrentBrandId(item) {
+  setCurrentBrandId(item);
+  // console.log("opp",item);
+}
 
 
   return (
@@ -165,7 +163,8 @@ function BrandList(props) {
                            */}
                         <div class=" w-wk max-sm:w-full">
                         <div class=" text-xs font-bold font-poppins"> 
-                      Name            
+                      {/* Name             */}
+                      {translatedMenuItems[0]}
                           </div>
                           <FastField
                             isRequired
@@ -191,7 +190,7 @@ function BrandList(props) {
                   htmlType="submit"
             loading={props.addingProductBrand}
                 >
-    Submit     
+   {translatedMenuItems[5]}   
                   {/*                     
                     Create */}
                 </Button>
@@ -215,21 +214,22 @@ function BrandList(props) {
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
             <div></div>
             <div className="font-poppins w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-            {translatedMenuItems[0]}
-           {/* name */}
+           
             </div>
             <div className="font-poppins w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-            Name
+            {translatedMenuItems[0]}
              {/* work */}
             </div>
             <div className="font-poppins w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-        Brand Id
+        {/* Brand Id */}
+        {`${translatedMenuItems[1]}Id`}
               {/* "Sector" */}
           
             </div>
             <div className="font-poppins w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
           
-            Live
+            {/* Live */}
+            {translatedMenuItems[2]}
          
             </div>
             <div className="font-poppins w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
@@ -237,12 +237,14 @@ function BrandList(props) {
 
             </div>
             <div className="font-poppins w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-           Inactive
+           {/* Inactive */}
+           {translatedMenuItems[3]}
               {/* Quotation" */}
      
             </div>
             <div className="font-poppins w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-          Delete
+          {/* Delete */}
+          {translatedMenuItems[4]}
              {/* Pipeline" */}
             </div>       
           
@@ -252,21 +254,7 @@ function BrandList(props) {
        
 
             {props.brandProduct.length === 0 ? <NodataFoundPage /> : props.brandProduct.map((item, index) => {
-        //       const currentdate = dayjs().format("DD/MM/YYYY");
-        //       const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-        //       const countryCode = item.countryAlpha2Code
-        //       const diff = Math.abs(
-        //         dayjs().diff(dayjs(item.lastRequirementOn), "days")
-        //       );
-        //       const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
-        //         } 
-        //    Street : ${item.address && item.address.length && item.address[0].street
-        //         }   
-        //   State : ${item.address && item.address.length && item.address[0].state}
-        //  Country : ${(item.address && item.address.length && item.address[0].country) || ""
-        //         } 
-        //    PostalCode : ${item.address && item.address.length && item.address[0].postalCode
-        //         } `;
+        
               return (
                 <div>
                   <div
@@ -321,7 +309,7 @@ function BrandList(props) {
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
                          onClick={() => {
                           props.handleProductBrandModal(true);
-                          //handleSetCurrentBrandId(item);
+                          handleSetCurrentBrandId(item);
                         }}
                         >
                           {item.brand}
@@ -335,6 +323,26 @@ function BrandList(props) {
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.brandCount}
+                        </div>
+
+                      </div>
+
+
+                      <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+
+
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <StyledPopconfirm
+            title="Do you want to delete?"
+            onConfirm={() => props.deleteProductBrandData({active:false},item.brand)}
+          >
+           
+           
+            <DeleteOutlined
+           
+            type="delete" className="!text-icon cursor-pointer text-[red]" />
+          
+          </StyledPopconfirm>
                         </div>
 
                       </div>
@@ -566,7 +574,9 @@ function BrandList(props) {
   
   <Suspense fallback={<BundleLoader />}>
   <ProductBrandModal
-      //currentBrandId={currentBrandId}
+   translateText={props.translateText}
+   selectedLanguage={props.selectedLanguage}
+      currentBrandId={currentBrandId}
       addProductBrandModal={props.addProductBrandModal}
   handleProductBrandModal={props.handleProductBrandModal}
       />
@@ -597,6 +607,7 @@ const mapDispatchToProps = (dispatch) =>
     {
         addProductBrand,
         getBrandProduct,
+        deleteProductBrandData,
       handleProductBrandModal
     },
     dispatch

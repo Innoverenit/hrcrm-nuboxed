@@ -4,16 +4,16 @@ import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm, message, Input } from "antd";
-import { MainWrapper } from "../../../../Components/UI/Layout";
-import { BundleLoader } from "../../../../Components/Placeholder";
+import { MainWrapper } from "../../Components/UI/Layout";
+import { BundleLoader } from "../../Components/Placeholder";
 import {
     getBrandModel,
     addBrandModel,
-} from "./BrandModelAction";
+} from "../Settings/Category/Brand&Model/BrandModelAction";
 import dayjs from "dayjs"; 
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 
-const BrandModel = (props) => {
+const ProductBrandModelList = (props) => {
     const [currentData, setCurrentData] = useState("");
     const [brandModel, setBrandModelData] = useState(props.brandModel);
     const [editingId, setEditingId] = useState(null);
@@ -255,4 +255,4 @@ const mapDispatchToProps = (dispatch) =>
         },
         dispatch
     );
-export default connect(mapStateToProps, mapDispatchToProps)(BrandModel);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductBrandModelList);

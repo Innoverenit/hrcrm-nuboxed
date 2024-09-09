@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Select,Tooltip } from "antd";
 import { Link } from 'react-router-dom';
-import {getBrandProductList} from "./SuppliesAction"
+import {getBrandCatalogueList} from "../ProductAction"
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 
 
 
@@ -13,11 +14,12 @@ function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function MaterialBrandList(props) {
+function ProductBrandList(props) {
 
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(true);
  
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -26,44 +28,36 @@ function MaterialBrandList(props) {
 
   useEffect(() => {
    
-    props.getBrandProductList(props.currentBrandId.brand);
+    props.getBrandCatalogueList(props.currentBrandId.brand);
    
   }, []);
-//   useEffect(() => {
-//     const fetchMenuTranslations = async () => {
-//       try {
-//         setLoading(true); 
-//         const itemsToTranslate = [
 
-//    "110", // 'Name', // 0
-//    "378",// 'Work', // 1
-//    "278",// 'Sector', // 2
-//    "279",// 'Source', // 3
-//    "213",// 'Quotation', // 4
-//    "328",// 'PipeLine', // 5
-//    "76",// 'Assigned', // 6
-//    "77",// 'Owner', // 7
-//    "248",// 'Customer', // 8
-//        "100",   // new 9
-//     "1300" , //  Change status to Customer?"10
-//     "99" ,  // "Opportunity"11
-//     "392" ,  // Pulse 12
-//     "316" ,  // "Notes"13
-//     "170" ,  // "Edit" 14
-//    "73" // Contact 15
-//         ];
 
-//         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-//         setTranslatedMenuItems(translations);
-//         setLoading(false);
-//       } catch (error) {
-//         setLoading(false);
-//         console.error('Error translating menu items:', error);
-//       }
-//     };
+useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
 
-//     fetchMenuTranslations();
-//   }, [props.selectedLanguage]);
+   "110", // 'Name', // 0
+   "1455",// '  Product Id', // 1
+   "1456",// 'Brand Name', // 2
+   "141",// 'Workflow Name', // 3
+ 
+   
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
 
   
@@ -98,39 +92,40 @@ function MaterialBrandList(props) {
            {/* name */}
             </div>
             <div className="font-poppins w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-            Catagory Name
+            {/* Name */}
+            {translatedMenuItems[0]}
              {/* work */}
             </div>
             <div className="font-poppins w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-       Article No
+        {/* Product Id */}
+        {`${translatedMenuItems[1]} Id`}
               {/* "Sector" */}
           
             </div>
-            {/* <div className="font-poppins w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className="font-poppins w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
           
-            Live
+            {/* Brand Name */}
+            {translatedMenuItems[2]}
          
-            </div> */}
-            {/* <div className="font-poppins w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
+            </div>
+            <div className="font-poppins w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
               
 
-            </div> */}
-             {/* <div className="font-poppins w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-           Inactive
-           
+            </div>
+            <div className="font-poppins w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            {/* Workflow Name */}
+            {translatedMenuItems[3]}
+              {/* Quotation" */}
      
-            </div> */}
-            {/* <div className="font-poppins w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-          Delete
-           
-            </div>        */}
+            </div>
+              
           
             <div className="w-[4.12rem]"></div>
 
           </div>
        
 
-          {props.brandProductListData.length === 0 ? <NodataFoundPage /> : props.brandProductListData.map((item, index) => {
+         {props.brandCatalogueListData.length === 0 ? <NodataFoundPage /> : props.brandCatalogueListData.map((item, index) => {
       
               return (
                 <div>
@@ -140,7 +135,17 @@ function MaterialBrandList(props) {
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex  w-[13rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
-                        
+                          <div>
+                            
+                            <MultiAvatar
+                              primaryTitle={item.productFullName}
+                              imageId={item.imageId}
+                              imageURL={item.imageURL}
+                              imgWidth={"1.8rem"}
+                              imgHeight={"1.8rem"}
+                            />
+                     
+                          </div>
                           <div class="w-[4%]"></div>
 
                           <div class="max-sm:w-full md:flex items-center">
@@ -149,7 +154,7 @@ function MaterialBrandList(props) {
                                 <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
-                                    {item.categoryName}
+                                    {item.productFullName}
                                   </Link>
 
                                   &nbsp;&nbsp;
@@ -169,17 +174,43 @@ function MaterialBrandList(props) {
                       <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                   
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.articleNo}
+                          {item.productId}
                         </div>
 
                       </div>
                     </div>
-                
+                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                      <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+
+
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          {item.brandName}
+                        </div>
+
+                      </div>
+
+                      
+                     
+                    </div>
+
+                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                      <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+
+
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          {item.workflowName}
+                        </div>
+
+                      </div>
+
+                      
+                     
+                    </div>
                     
                   </div>
                 </div>
               )
-            })} 
+            })}
          
         </div>
       </div>
@@ -205,18 +236,18 @@ const mapStateToProps = ({
   
  
   user: auth.userDetails,
-  //brandProduct:product.brandProduct,
-  brandProductListData:supplies.brandProductListData
+  brandProduct:product.brandProduct,
+  brandCatalogueListData:product.brandCatalogueListData
 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        getBrandProductList
+        getBrandCatalogueList
         // addProductBrand,
         // getBrandProduct
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(MaterialBrandList);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductBrandList);
 

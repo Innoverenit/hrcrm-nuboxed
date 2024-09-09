@@ -219,28 +219,31 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("brand")}
         >
-          <Avatar style={{ background: viewType === "brand" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
             <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
         </div>
       </Tooltip>
 
+
       <Tooltip title="Brand Model">
         <div
           class=" ml-2 text-xs cursor-pointer"
           style={{
 
-           // color: viewType === "brand" && "red",
+            color: viewType === "brandModel" && "red",
           }}
-         // onClick={() => setSuppliesViewType("brand")}
+          onClick={() => setSuppliesViewType("brandModel")}
         >
-          <Avatar style={{ background: viewType === "brand" ? "#f279ab" : "#4bc076" }}>
-            <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
+          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+          <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
         </div>
       </Tooltip>
+
+     
       <Tooltip title={translatedMenuItems[3]}>
                 <Badge size="small"
                         count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}

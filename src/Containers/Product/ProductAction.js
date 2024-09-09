@@ -2268,3 +2268,85 @@ export const addProductBrand = (data, cb) => (dispatch) => {
       cb();
     });
 };
+
+
+
+export const getBrandCatalogueList = (brandId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BRAND_CATALOGUE_LIST_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/product/activeBrand/${brandId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_CATALOGUE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BRAND_CATALOGUE_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const deleteProductBrandData = (data,productBrandId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_PRODUCT_BRAND_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/product/deleteBrand/${productBrandId}`,data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Brand Deleted Successfully',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch(getBrandProduct());
+      
+      dispatch({
+        type: types.DELETE_PRODUCT_BRAND_DATA_SUCCESS,
+        payload: productBrandId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_PRODUCT_BRAND_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};

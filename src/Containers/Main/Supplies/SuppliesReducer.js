@@ -166,6 +166,10 @@ const initialState = {
     materialInventory:[],
     fetchingMaterialInventoryError: false,
 
+
+    deleteSuppliesBrandData:false,
+    deleteSuppliesBrandDataError:false,
+
     featuredMaterialToggle: false,
     featuredMaterialToggleError:false,
 
@@ -626,6 +630,27 @@ export const suppliesReducer = (state = initialState, action) => {
       }
     case types.GET_BRAND_PRODUCT_LIST_FAILURE:
       return { ...state, fetchingBrandProductList: false, fetchingBrandProductError: true };
+
+
+
+
+      case types.DELETE_SUPPLIES_BRAND_DATA_REQUEST:
+        return { ...state, deleteSuppliesBrandData: true };
+      case types.DELETE_SUPPLIES_BRAND_DATA_SUCCESS:
+        return {
+          ...state,
+          deleteSuppliesBrandData: false,
+          brandSupplies: state.brandSupplies.filter(
+            (item) => item.suppliesBrandId !== action.payload
+          ),
+        };
+      case types.DELETE_SUPPLIES_BRAND_DATA_FAILURE:
+        return {
+          ...state,
+          deleteSuppliesBrandData: false,
+          deleteSuppliesBrandDataError: false,
+        };
+
 
         case types.HANDLE_SUPPLIERSLIST_DRAWER:
             return { ...state, suppliersListDrwr: action.payload };
