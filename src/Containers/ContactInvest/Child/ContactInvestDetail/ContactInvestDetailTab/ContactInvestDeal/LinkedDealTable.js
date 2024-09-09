@@ -30,12 +30,12 @@ function LinkedDealTable(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          "Name",//0
-          "Start Date",//1
-          "End Date",//2
-          "Value",//3
-          "Status",//4
-          "Sponsor",//5     
+        "110",  // "Name",//0
+         "176", // "Start Date",//1
+         "126", // "End Date",//2
+         "218", // "Value",//3
+        "142",// "Status",//4
+        "216",  // "Sponsor",//5     
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -77,13 +77,13 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
         {/* End Date */}
           </div>
         <div className="md:w-[4.2rem]">
-          Value</div>
+        {translatedMenuItems[3]}</div>
         <div className="md:w-[4.5rem]">
-        {translatedMenuItems[3]}  
+        {translatedMenuItems[4]}  
         {/* Status */}
           </div>
         <div className="md:w-[3.8rem]">
-        {translatedMenuItems[4]}  
+        {translatedMenuItems[5]}  
         {/*Sponser */}
           </div> 
         <div className="w-[9rem]"></div>

@@ -104,6 +104,7 @@ const{handleContactInvestModal,addContactInvestModal,
 }=props;
         return (
             <React.Fragment>
+             <Suspense fallback={<BundleLoader />}>
                 <ContactInvestHeader
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
@@ -132,7 +133,7 @@ const{handleContactInvestModal,addContactInvestModal,
              addContactInvestModal={addContactInvestModal}
              handleContactInvestModal={handleContactInvestModal}
       />
-       <Suspense fallback={<BundleLoader />}>
+      
 
        {teamsAccessInd ? (
         <ContactInvestTeamsCardList   
