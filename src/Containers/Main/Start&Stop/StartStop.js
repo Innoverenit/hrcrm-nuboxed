@@ -149,7 +149,7 @@ function StartStop(props) {
     <div className="flex items-center ">
      <div className="relative max-w-xs mx-auto mt-1">
       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-white px-2">
-        <span className="text-sm font-poppins font-normal"> Attendance</span>
+        <span className="text-[0.65rem] font-poppins font-normal"> Attendance</span>
       </div>
       <div className="border-2 border-grey rounded-md p-1 flex">
       <div className="mr-6">

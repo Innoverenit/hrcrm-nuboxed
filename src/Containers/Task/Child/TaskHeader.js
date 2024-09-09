@@ -12,10 +12,14 @@ class TaskHeader extends Component {
           leftComponent={
             
             <Suspense fallback={<BundleLoader />}><TaskActionLeft 
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             viewType={viewType}
             setTaskViewType={setTaskViewType}
           /></Suspense>}
-          rightComponent={<Suspense fallback={<BundleLoader />}><TaskActionRight 
+          rightComponent={<Suspense fallback={<BundleLoader />}><TaskActionRight
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage} 
             viewType={viewType}
           /></Suspense>}
         />

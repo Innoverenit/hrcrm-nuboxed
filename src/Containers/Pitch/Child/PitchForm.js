@@ -121,13 +121,19 @@ props.getInvestorCurrency();
               "241",//12 Currency
               "76",//13 Assigned
               "185", // 14 "Address",
-            //   "186", // "Street",//15
-            //  "187",//Zip Code",//16
-            //  "188",// "City",17
-            //   "314",// "State",//18
-            //   "1109",// "Country",//19
               "316",//15 Notes
-               "104",//  Create
+               "104",//  16Create
+            "194" ,//  "Clear"17
+            "5" , //  "Stop"18
+            "158" , //  "Start19
+            "273" , //  "Cold"20
+            "272" , //  "Warm"21
+            "271" , //  "Hot"22
+            "279" ,  //  Source23
+            "1302" ,  //  Search or select source24
+            "288" ,  //  Search or select sector25
+            "278" , //  Sector26
+            "460" , //  businessregistration27
             ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -523,16 +529,17 @@ props.getInvestorCurrency();
                      {contract ?
                     <div class="w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[27]}  
                                      <Field
                         name="businessRegistration"
                         type="text"
                         label="URL"
-                        Label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" businessregistration"
-                          />
-                        }
+                        // Label={
+                        //   <FormattedMessage
+                        //     id="app.businessregistration"
+                        //     defaultMessage=" businessregistration"
+                        //   />
+                        // }
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -577,12 +584,15 @@ props.getInvestorCurrency();
 
                   <div class=" flex justify-between">
                   {contract ?
-                  <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>           
-                     <div class="font-bold text-xs">Sector</div>
+                  <div class=" w-w47.5 flex flex-col" >           
+                     <div class="font-bold text-xs">
+                     {translatedMenuItems[26]}   {/* Sector */}
+                      </div>
 <Select
         showSearch
        
-        placeholder="Search or select sector"
+        placeholder= {translatedMenuItems[25]}  
+        // "Search or select sector"
         optionFilterProp="children"
         loading={isLoadingSector}
         onFocus={handleSelectSectorFocus}
@@ -597,13 +607,16 @@ props.getInvestorCurrency();
                     </div>
                      : ( null)}
                        {contract ?
-                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>                
+                    <div class=" w-w47.5 flex flex-col" >                
 
-                     <div class="font-bold text-xs"> Source</div>
+                     <div class="font-bold text-xs"> 
+                      {/* Source */} {translatedMenuItems[23]}  
+                      </div>
 
 <Select
         showSearch    
-        placeholder="Search or select source"
+        placeholder= {translatedMenuItems[24]}  
+        // "Search or select source"
         optionFilterProp="children"
         loading={isLoading}
         onFocus={handleSelectFocus}
@@ -619,7 +632,7 @@ props.getInvestorCurrency();
 : ( null)}                 
                     </div>
                     <div class=" flex items-center justify-between">
-                    <div class=" flex flex-col   mt-4">
+                    <div class=" flex flex-col   mt-2">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                   {translatedMenuItems[10]}   {/* Category */}
                       </div>
@@ -633,7 +646,7 @@ props.getInvestorCurrency();
                   </div>
                   <div class=" flex justify-between  w-3/5 max-sm:w-wk">                 
        <div className="flex">
-      <Tooltip title="Hot">
+      <Tooltip title= {translatedMenuItems[22]}  >
         <i
           className={`fas fa-mug-hot${priority === "hot" ? " selected" : ""}`}
           onClick={() => handleIconClick("hot")}
@@ -648,7 +661,7 @@ props.getInvestorCurrency();
         ></i>
       </Tooltip>
      
-      <Tooltip title="Warm">
+      <Tooltip title={translatedMenuItems[21]}>
         <i
           className={`fas fa-burn${priority === "warm" ? " selected" : ""}`}
           onClick={() => handleIconClick("warm")}
@@ -664,7 +677,7 @@ props.getInvestorCurrency();
         ></i>
       </Tooltip>
   
-      <Tooltip title="Cold">
+      <Tooltip title="{translatedMenuItems[20]}">
         <i
           className={`far fa-snowflake${priority === "cold" ? " selected" : ""}`}
           onClick={() => handleIconClick("cold")}
@@ -786,10 +799,11 @@ props.getInvestorCurrency();
         </>
       )}
     </Listbox>
-                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">                 
+                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-1">
+                 {translatedMenuItems[14]}                 
                   <FieldArray
                     name="address"
-                    label="Address"
+                    // label="Address"
                     render={(arrayHelpers) => (
                       <AddressFieldArray
                         arrayHelpers={arrayHelpers}
@@ -801,12 +815,12 @@ props.getInvestorCurrency();
                   
                 <div class="mt-3">   
                   <div>          
-                <span class=" font-bold text-xs font-poppins">{translatedMenuItems[14]} </span>  
+                <span class=" font-bold text-xs font-poppins">{translatedMenuItems[15]} </span>  
                 {/* Notes */}
            
                   <span>
                     <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
+                      <Tooltip title={translatedMenuItems[19]}>
                         <span  >
                           <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
                         </span>
@@ -814,7 +828,7 @@ props.getInvestorCurrency();
                     </span>
 
                     <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
+                      <Tooltip title={translatedMenuItems[18]}>
                         <span>
                           <StopCircleIcon className="!text-icon ml-1 text-green-600" />
                         </span>
@@ -822,7 +836,7 @@ props.getInvestorCurrency();
                     </span>
 
                     <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
+                      <Tooltip title={translatedMenuItems[17]}>
                         <span >
                           <RotateRightIcon  className="!text-icon ml-1"/>
                         </span>
@@ -850,7 +864,7 @@ props.getInvestorCurrency();
                   htmlType="submit"
                   loading={props.addingPitch}
                 >
-                             <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[15]}</div>  
+                             <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[16]}</div>  
                   {/*                     
                     Create */}
                 </Button>
