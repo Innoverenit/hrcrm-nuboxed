@@ -257,6 +257,13 @@ export const handleContactInvestNotesDrawerModal = (modalProps) => (dispatch) =>
   });
 };
 
+export const handleDealModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_DEAL_MODAL,
+    payload: modalProps,
+  });
+};
+
 
 export const getAllContactInvest = (pageNo,type) => (dispatch) => {
  

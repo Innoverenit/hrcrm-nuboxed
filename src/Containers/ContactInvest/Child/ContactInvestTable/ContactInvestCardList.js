@@ -26,12 +26,14 @@ import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {
   handleContactInvestNotesDrawerModal,
+  handleDealModal,
   getContactInvestByUserId,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal,handleContactAddressDrawerModal} from "../../ContactInvestAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
+import AddContactInvestDealModal from "./AddContactInvestDealModal";
 const AddContactInvestNotesDrawerModal = lazy(() =>  import("../AddContactInvestNotesDrawerModal"));
 const UpdateContactInvestModal = lazy(() => import("../UpdateContactInvest/UpdateContactInvestModal"));
 
@@ -276,7 +278,12 @@ function ContactInvestCardList(props) {
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
                                 <div className=" flex   md:w-[5.22rem] max-sm:flex-row w-full  ">
                                     {/* Deals */}
-                                    <div class=" text-xs  font-poppins">
+                                    <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
+                                      onClick={() => {
+                                        props.handleDealModal(true);
+                                        handleCurrentContactIdata(item);
+                                      }}
+                                    >
                                      {item.oppNo}
                                     </div>
                                 </div>
@@ -407,9 +414,18 @@ function ContactInvestCardList(props) {
         translatedMenuItems={props.translatedMenuItems}
         contactiData={contactiData}
         addDrawerContactInvestNotesModal={addDrawerContactInvestNotesModal}
-        handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}
+        handleContactInvestNotesDrawerModal={handleContactInvestNotesDrawerModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
-      />   
+      />  
+       <AddContactInvestDealModal
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+        contactiData={contactiData}
+        addDrawerDealModal={props.addDrawerDealModal}
+        handleDealModal={props.handleDealModal}
+        handleCurrentContactIdata={handleCurrentContactIdata}
+      />  
     </>
   );
 }
@@ -435,7 +451,8 @@ const mapStateToProps = ({
   addContactSpeechModal: contact.addContactSpeechModal,
   addDrawerContactModal: contact.addDrawerContactModal,
   contactiNVESTbyId: contactinvest.contactiNVESTbyId,
-  addContactAddressModal:contactinvest.addContactAddressModal
+  addContactAddressModal:contactinvest.addContactAddressModal,
+  addDrawerDealModal: contactinvest.addDrawerDealModal
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -454,7 +471,8 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateContactInvestModal,
       handleContactInvestPulseDrawerModal,
       handleContactInvestNotesDrawerModal,
-      handleContactAddressDrawerModal
+      handleContactAddressDrawerModal,
+      handleDealModal
     },
     dispatch
   );

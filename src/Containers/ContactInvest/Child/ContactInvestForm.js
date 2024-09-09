@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select } from "antd";
+import { Listbox} from '@headlessui/react'
+import {getAllEmployeelist} from "../../Investor/InvestorAction"
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import {getSources} from "../../Settings/Category/Source/SourceAction"
@@ -44,23 +46,23 @@ class ContactInvestForm extends Component {
       candidate: false,
       availability: false,
       translatedMenuItems: [],
-      loading: true
+      loading: true,
+      selected: '', 
+      defaultOption: this.props.fullName,
     };
   }
 
   componentDidMount() {
+    this.props.getAllEmployeelist();
     this.props.getInvestorData(this.props.userId);
     this.props.getSources(this.props.orgId);
     this.props.getDialCode();
+    // this.props.getCustomerData(this.props.userId);
+     this.props.getDepartments();
+     this.fetchMenuTranslations();
   }
-  componentDidMount() {
-    this.props.getCustomerData(this.props.userId);
-    this.props.getDepartments();
-    
-  }
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
+
+
 
   async fetchMenuTranslations() {
     try {
@@ -81,7 +83,8 @@ class ContactInvestForm extends Component {
 '326', // 12 Department
 '279' ,//13 Source
 '185',//Address
-'104'//Create
+'104',//Create
+"76"//16 Assigned    
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
       this.setState({ translatedMenuItems: translations ,loading: false});
@@ -91,6 +94,9 @@ class ContactInvestForm extends Component {
       console.error('Error translating menu items:', error);
     }
   }
+  setDefaultOption = (newOption) => {
+    this.setState({ defaultOption: newOption });
+  };
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });
   };
@@ -100,6 +106,10 @@ class ContactInvestForm extends Component {
   handleWhatsApp = (checked) => {
     this.setState({ whatsapp: checked });
   };
+  setSelected = (value) => {
+    this.setState({ selected: value });
+  };
+
   handleReset = (resetForm) => {
     const { callback } = this.props;
     callback && callback();
@@ -134,7 +144,9 @@ class ContactInvestForm extends Component {
   };
 
   render() {
-
+    const { selected } = this.state;
+    const { allEmployeeList } = this.props;
+    const selectedOption = allEmployeeList.find((item) => item.empName === selected);
     const countryNameOption = this.props.dialCodeList.map((item) => {
       return {
         label: `+${item.country_dial_code}`,
@@ -232,6 +244,7 @@ class ContactInvestForm extends Component {
                 postalCode: "",
                 country: this.props.user.country,
                 latitude: "",
+                assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 longitude: "",
               },
             ],
@@ -247,6 +260,7 @@ class ContactInvestForm extends Component {
               : addContactInvest(
                 {
                   ...values,
+                  assignedTo: selectedOption ? selectedOption.employeeId:userId,
                 //   whatsapp: this.state.whatsapp ? "Different" : "Same",
                 },
                 this.props.userId,
@@ -313,7 +327,7 @@ class ContactInvestForm extends Component {
                       </div>
                     </div>
                   </div>
-                  <div class=" flex justify-between">
+                  <div class=" flex justify-between mt-1">
                     <div class=" font-bold font-poppins text-xs w-full">
                   {translatedMenuItems[3]}
                       <FastField
@@ -398,9 +412,10 @@ class ContactInvestForm extends Component {
                        />
                       )}
                     </div>
+                    {this.state.whatsapp && (
                     <div class=" font-bold font-poppins text-xs w-2/4">      
                     {translatedMenuItems[7]}           
-                      {this.state.whatsapp && (
+                     
                         <FastField
                           type="text"
                           name="phoneNumber"
@@ -412,10 +427,11 @@ class ContactInvestForm extends Component {
                           inlineLabel
                           width={"100%"}
                         />
-                      )}
+                     
                     </div>
+                      )}
                   </div>
-                 
+              
                   < div class=" flex justify-between mt-2">
                     <div class="font-bold font-poppins text-xs w-full">
                   {translatedMenuItems[8]}
@@ -447,6 +463,78 @@ class ContactInvestForm extends Component {
 </div>
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " >
+                <div className="flex justify-between">
+        <div className="h-full w-full">
+          <Listbox value={selected} onChange={this.setSelected}>
+            {({ open }) => (
+              <>
+                <Listbox.Label className="font-bold text-xs font-poppins">
+                  {translatedMenuItems[16]} 
+                  {/* Assigned */}
+                </Listbox.Label>
+                <div className="relative mt-[0.1rem]">
+                  <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+                    {selected || 'Select an employee'}
+                  </Listbox.Button>
+                  {open && (
+                    <Listbox.Options
+                      static
+                      className="absolute z-10 mt-1 max-h-56 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                    >
+                      {allEmployeeList.map((item) => (
+                        <Listbox.Option
+                          key={item.employeeId}
+                          className={({ active }) =>
+                            `relative cursor-default select-none py-2 pl-3 pr-9 ${
+                              active ? 'text-white bg-indigo-600' : 'text-gray-900'
+                            }`
+                          }
+                          value={item.empName}
+                        >
+                          {({ selected, active }) => (
+                            <>
+                              <div className="flex items-center">
+                                <span
+                                  className={`ml-3 block truncate ${
+                                    selected ? 'font-semibold' : 'font-normal'
+                                  }`}
+                                >
+                                  {item.empName}
+                                </span>
+                              </div>
+                              {selected && (
+                                <span
+                                  className={`absolute inset-y-0 right-0 flex items-center pr-4 ${
+                                    active ? 'text-white' : 'text-indigo-600'
+                                  }`}
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                </span>
+                              )}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  )}
+                </div>
+              </>
+            )}
+          </Listbox>
+        </div>
+      </div>
                   <div class=" flex  justify-between">
                     <div class="font-bold font-poppins text-xs  w-w47.5">
                     {translatedMenuItems[10]}
@@ -567,6 +655,7 @@ const mapStateToProps = ({ auth, contact,source, customer,investor, opportunity,
   opportunityId: opportunity.opportunity.opportunityId,
   departmentId: departments.departmentId,
   designationTypeId: designations.designationTypeId,
+  allEmployeeList:investor.allEmployeeList,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -579,6 +668,7 @@ const mapDispatchToProps = (dispatch) =>
       getDialCode,
       getInvestorData,
       getDepartments,
+      getAllEmployeelist
     },
     dispatch
   );

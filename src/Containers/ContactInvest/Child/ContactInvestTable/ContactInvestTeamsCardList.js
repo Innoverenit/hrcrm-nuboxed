@@ -26,11 +26,13 @@ import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getTeamsContactInvest,
   handleContactInvestNotesDrawerModal,
+  handleDealModal,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactAddressDrawerModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
+import AddContactInvestDealModal from "./AddContactInvestDealModal";
 const AddContactInvestNotesDrawerModal = lazy(() =>
   import("../AddContactInvestNotesDrawerModal")
 );
@@ -109,13 +111,27 @@ function ContactInvestTeamsCardList(props) {
   function handleCurrentContactIdata(dta) {
     setContactiData(dta);
   }
-
   const handleLoadMore = () => {
-            setPage(pageNo + 1);
-            props.getTeamsContactInvest(props.currentUser?props.currentUser:pageNo,
-            )  ; 
-            setPage(pageNo + 1);
-  }
+
+    const proPag = props.teamsContactInvestData && props.teamsContactInvestData.length && props.teamsContactInvestData[0].pageCount
+    setTimeout(() => {
+      if (props.teamsContactInvestData) {
+        if (pageNo < proPag) {
+          setPage(pageNo + 1);
+          props.getTeamsContactInvest(props.userId,pageNo);
+        }
+        if (pageNo === proPag) {
+          setHasMore(false)
+        }
+      }
+    }, 100);
+  };
+  // const handleLoadMore = () => {
+  //           setPage(pageNo + 1);
+  //           props.getTeamsContactInvest(props.currentUser?props.currentUser:pageNo,
+  //           )  ; 
+  //           setPage(pageNo + 1);
+  // }
   const {
     user,
     fetchingAllContactInvest,
@@ -184,7 +200,7 @@ if (loading) {
         loader={props.fetchingTeamsContactInvest?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"80vh"}
         style={{scrollbarWidth:"thin"}}
-
+        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >     
        { !props.fetchingTeamsContactInvest && props.teamsContactInvestData.length === 0 ?<NodataFoundPage />:props.teamsContactInvestData.map((item,index) =>  {
         
@@ -268,7 +284,12 @@ if (loading) {
                           <div className=" flex  md:w-[5.22rem] max-sm:flex-row w-full  items-center ">
                               {/* # Deals */}
 
-                              <div class=" text-xs font-poppins">
+                              <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
+                               onClick={() => {
+                                props.handleDealModal(true);
+                                handleCurrentContactIdata(item);
+                              }}
+                              >
                                {item.oppNo}
                               </div>
                           </div>
@@ -444,6 +465,15 @@ if (loading) {
         addDrawerContactModal={props.addDrawerContactModal}
         handleContactDrawerModal={props.handleContactDrawerModal}
       /> */}
+      <AddContactInvestDealModal
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+        contactiData={contactiData}
+        addDrawerDealModal={props.addDrawerDealModal}
+        handleDealModal={props.handleDealModal}
+        handleCurrentContactIdata={handleCurrentContactIdata}
+      />  
     </>
   );
 }
@@ -471,6 +501,7 @@ const mapStateToProps = ({
   allContactInvestData:contactinvest.allContactInvestData,
   teamsContactInvestData:contactinvest.teamsContactInvestData,
   addContactAddressModal:contactinvest.addContactAddressModal,
+  addDrawerDealModal: contactinvest.addDrawerDealModal,
   addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal
 });
 const mapDispatchToProps = (dispatch) =>
@@ -490,7 +521,8 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateContactInvestModal,
       handleContactInvestNotesDrawerModal,
       handleContactInvestPulseDrawerModal,
-      handleContactAddressDrawerModal
+      handleContactAddressDrawerModal,
+      handleDealModal
     },
     dispatch
   );
