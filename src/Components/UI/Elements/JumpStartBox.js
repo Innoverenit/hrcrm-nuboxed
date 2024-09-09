@@ -124,7 +124,7 @@ const JumpStartDetail = ({
             </Tooltip>
           </div>
         ) : (
-            <div class=" font-semibold font-poppins">{title || "N/A"}</div>
+            <div class=" font-normal font-poppins">{title || "N/A"}</div>
           )}
 
         {isLoading ? (
@@ -139,7 +139,7 @@ const JumpStartDetail = ({
             <MyLoader />{" "}
           </span>
         ) : (
-            <div class="text-base font-poppins" >
+            <div class="text-base font-poppins font-semibold" >
               {isLevelTextInputOpen ? (
                 <>
                   <Select                    

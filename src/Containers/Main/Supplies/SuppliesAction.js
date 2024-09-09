@@ -1352,3 +1352,33 @@ export const getBrandProductList = (brandId) => (dispatch) => {
     });
 };
 
+
+
+export const deleteSuppliesBrandData = (data,suppliesBrandId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_SUPPLIES_BRAND_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplies/deleteBrand/${suppliesBrandId}`,data, {
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    })
+    .then((res) => {
+      dispatch(getBrandSupplies());
+      
+      console.log(res);
+      dispatch({
+        type: types.DELETE_SUPPLIES_BRAND_DATA_SUCCESS,
+        payload: suppliesBrandId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SUPPLIES_BRAND_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+

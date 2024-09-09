@@ -9,6 +9,7 @@ import {
   MultiAvatar,
 } from "../../../../../../Components/UI/Elements";
 import { getOpportunityListByContactId } from "../../../../../Contact/ContactAction";
+import {getDeallist} from "../../../../ContactInvestAction"
 import { Progress, Tooltip } from "antd";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import InfoIcon from '@mui/icons-material/Info';
@@ -50,12 +51,13 @@ function LinkedDealTable(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
   useEffect(() => {
-     props.getOpportunityListByContactId(props.contactInVestDetail.contactId);
+    // props.getOpportunityListByContactId(props.contactInVestDetail.contactId);
+     props.getDeallist(props.contactInVestDetail.contactId)
   }, []); 
-  const { fetchingContactOpportunity, opportunityByContactId } = props;
+  const { fetchingDealList, dealAllList } = props;
   
 console.log(props.contactInVestDetail.contactId)
-if (fetchingContactOpportunity) return <BundleLoader/>;
+if (fetchingDealList) return <BundleLoader/>;
 
   return (
     <>
@@ -90,7 +92,7 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
 
       </div>
 
-      { !fetchingContactOpportunity && opportunityByContactId.length === 0 ?<NodataFoundPage />:opportunityByContactId.map((item,index) =>  {
+      { !fetchingDealList && dealAllList.length === 0 ?<NodataFoundPage />:dealAllList.map((item,index) =>  {
               var findProbability = item.probability;
               item.stageList.forEach((element) => {
                 if (element.oppStage === item.oppStage) {
@@ -258,8 +260,10 @@ width={30}
   );
 }
 
-const mapStateToProps = ({ auth,contact }) => ({
+const mapStateToProps = ({ auth,contact,contactinvest }) => ({
   userId: auth.userDetails.userId,
+  dealAllList:contactinvest.dealAllList,
+  fetchingDealList:contactinvest.fetchingDealList,
   fetchingContactOpportunity: contact.fetchingContactOpportunity,
   opportunityByContactId: contact.opportunityByContactId,
   contactId: contact.contact.contactId,
@@ -268,6 +272,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
        getOpportunityListByContactId,
+       getDeallist
     },
     dispatch
   );

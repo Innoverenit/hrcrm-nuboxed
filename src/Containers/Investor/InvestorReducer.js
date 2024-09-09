@@ -236,7 +236,10 @@ export const investorReducer = (state = initialState, action) => {
         return {
           ...state,
           fetchingAllInvestors: false,
-          allInvestorsbyId: [...state.investorsbyId, ...action.payload],
+          allInvestorsbyId: [
+            ...state.allInvestorsbyId,
+            ...action.payload],
+          // allInvestorsbyId: [...state.investorsbyId, ...action.payload],
           clearbit:null
         };
       case types.GET_ALL_INVESTORS_BY_ID_FAILURE:
@@ -658,7 +661,10 @@ export const investorReducer = (state = initialState, action) => {
                     return {
                       ...state,
                       fetchingTeamInvestor: false,
-                  teamInvestor:action.payload,
+                      teamInvestor: [
+                        ...state.teamInvestor,
+                        ...action.payload],
+                  // teamInvestor:action.payload,
                     };
                   case types.GET_TEAM_INVESTOR_FAILURE:
                     return {

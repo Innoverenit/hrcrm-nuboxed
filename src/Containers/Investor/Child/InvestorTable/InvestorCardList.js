@@ -139,16 +139,37 @@ function InvestorCardList(props) {
     setRowData(datas);
   }
 
+  // const handleLoadMore = () => {
+
+  //     setPage(page + 1);
+  //     props.getInvestorsbyId(
+  //       props.currentUser ? props.currentUser : props.userId,
+  //       page,
+  //       props.filter?props.filter:"creationdate"
+  //     );
+  // };
   const handleLoadMore = () => {
-
-      setPage(page + 1);
-      props.getInvestorsbyId(
-        props.currentUser ? props.currentUser : props.userId,
-        page,
-        props.filter?props.filter:"creationdate"
-      );
+    const callPageMapd = props.investorsbyId && props.investorsbyId.length &&props.investorsbyId[0].pageCount
+    setTimeout(() => {
+      const {
+        getInvestorsbyId, 
+      } = props;
+      if  (props.investorsbyId)
+      {
+        if (page < callPageMapd) {
+          setPage(page + 1);
+          getInvestorsbyId(
+                  props.currentUser ? props.currentUser : props.userId,
+                  page,
+                  props.filter?props.filter:"creationdate"
+                );
+      }
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 100);
   };
-
   const {
     fetchingInvestors,
     investorsbyId,
@@ -247,6 +268,7 @@ function InvestorCardList(props) {
         loader={fetchingInvestors?<div  class="flex justify-center">Loading...</div>:null}
         height={"80vh"}
         style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
         
         { !fetchingInvestors && investorsbyId.length === 0 ?<NodataFoundPage />:investorsbyId.map((item,index) =>  {

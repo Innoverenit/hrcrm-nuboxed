@@ -2418,27 +2418,6 @@ export const getOpenQuotationThisYear = (country) => (dispatch) => {
     });
 };
 
-
-export const handleQuotationYear = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_QUOTATION_YEAR_DRAWER,
-    payload: modalProps,
-  });
-};
-
-
-
-
-export const handleQuotationLife = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_QUOTATION_LIFE_DRAWER,
-    payload: modalProps,
-  });
-};
-
-
-
-
 export const getProspectTableData = (country) => (dispatch) => {
   dispatch({
     type: types.GET_PROSPECT_TABLE_DATA_REQUEST,

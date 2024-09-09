@@ -25,10 +25,13 @@ import {
 import { Link } from 'react-router-dom';
 import {addSuppliesBrand,
     getBrandSupplies,
-    handleSuppliesBrandModal
+    handleSuppliesBrandModal,
+    deleteSuppliesBrandData
 } from 
     "./SuppliesAction"
+    import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
+import { DeleteOutlined } from "@ant-design/icons";
 
 
 
@@ -38,7 +41,7 @@ function onChange(pagination, filters, sorter) {
 }
 
 function SuppliesBrandTable(props) {
-
+  const [loading, setLoading] = useState(true);
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
@@ -54,6 +57,33 @@ function SuppliesBrandTable(props) {
     props.getBrandSupplies();
    
   }, []);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+   "110", // 'Name', // 0
+   "264",// 'Brand Id', // 1
+   "1431",// 'Live', // 2
+   "1004",// 'Inactive', // 3
+   "84",// 'Delete', // 4
+   "154",// 'Submit', // 5
+   
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   function handleSetCurrentBrandId(item) {
     setCurrentBrandId(item);
@@ -173,7 +203,8 @@ function SuppliesBrandTable(props) {
                            */}
                         <div class=" w-wk max-sm:w-full">
                         <div class=" text-xs font-bold font-poppins"> 
-                      Name            
+                      {/* Name             */}
+                      {translatedMenuItems[0]}
                           </div>
                           <FastField
                             isRequired
@@ -199,7 +230,8 @@ function SuppliesBrandTable(props) {
                   htmlType="submit"
             loading={props.addingSuppliesBrand}
                 >
-    Submit     
+    {/* Submit      */}
+    {translatedMenuItems[5]}   
                   {/*                     
                     Create */}
                 </Button>
@@ -223,21 +255,24 @@ function SuppliesBrandTable(props) {
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
             <div></div>
             <div className="font-poppins w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-            {translatedMenuItems[0]}
+            {/* {translatedMenuItems[0]} */}
            {/* name */}
             </div>
             <div className="font-poppins w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-            Name
+            {/* Name */}
+            {translatedMenuItems[0]}
              {/* work */}
             </div>
             <div className="font-poppins w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-        Brand Id
+        {/* Brand Id */}
+        {`${translatedMenuItems[1]} Id`}
               {/* "Sector" */}
           
             </div>
             <div className="font-poppins w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
           
-            Live
+            {/* Live */}
+            {translatedMenuItems[2]}
          
             </div>
             <div className="font-poppins w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
@@ -245,12 +280,14 @@ function SuppliesBrandTable(props) {
 
             </div>
             <div className="font-poppins w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-           Inactive
+           {/* Inactive */}
+           {translatedMenuItems[3]}
               {/* Quotation" */}
      
             </div>
             <div className="font-poppins w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-          Delete
+          {/* Delete */}
+          {translatedMenuItems[4]}
              {/* Pipeline" */}
             </div>       
           
@@ -334,6 +371,27 @@ function SuppliesBrandTable(props) {
                       </div>
                      
                     </div>
+
+
+
+                    <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+
+
+<div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<StyledPopconfirm
+title="Do you want to delete?"
+onConfirm={() => props.deleteSuppliesBrandData({active:false},item.brand)}
+>
+
+
+<DeleteOutlined
+
+type="delete" className="!text-icon cursor-pointer text-[red]" />
+
+</StyledPopconfirm>
+</div>
+
+</div>
                   
                   </div>
                 </div>
@@ -378,7 +436,8 @@ const mapDispatchToProps = (dispatch) =>
     {
         addSuppliesBrand,
         getBrandSupplies,
-        handleSuppliesBrandModal
+        handleSuppliesBrandModal,
+        deleteSuppliesBrandData
         // getBrandProduct
     },
     dispatch

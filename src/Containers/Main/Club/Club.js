@@ -25,9 +25,27 @@ class Club extends Component {
     }
 }
 
-  componentDidMount() {
-     this.props.getclubShare();
+componentDidMount() {
+  this.props.getclubShare();
+
+  // Set the initial club data when clubShareData is available
+  if (this.props.clubShareData && this.props.clubShareData.length > 0) {
+    this.setState({
+      departmentData: this.props.clubShareData[0],
+    });
   }
+}
+
+componentDidUpdate(prevProps) {
+  // Check if clubShareData has changed and set the initial state
+  if (prevProps.clubShareData !== this.props.clubShareData) {
+    if (this.props.clubShareData && this.props.clubShareData.length > 0) {
+      this.setState({
+        departmentData: this.props.clubShareData[0],
+      });
+    }
+  }
+}
   setCurrentData = (value) => {
     this.setState({ currentData: value });
   };
@@ -75,47 +93,47 @@ class Club extends Component {
            ))}
          </StyledTabs>
          </TabsWrapper>
-          ):viewType === "teams" ?(
-          <TabsWrapper style={{height:"150vh" }}>
-          <StyledTabs type="card">
-          {this.props.clubShareData.map((member, i) => (
-            <TabPane key={i} tab={
-              <span onClick={() => this.handleOnClick(member)}>
-                {member.clubName}
-              </span>
-            }>
-              {this.state.departmentData.clubId && (
-                <Suspense fallback={"Loading..."}>
-                  <div>
-                  <ClubTableTeam clubId={this.state.departmentData.clubId} />
-                  </div>
-                </Suspense>
-              )}
-            </TabPane>
-          ))}
-        </StyledTabs>
-        </TabsWrapper>)
-         :viewType === "all" ?(
-          <TabsWrapper style={{height:"150vh" }}>
-          <StyledTabs type="card">
-          {this.props.clubShareData.map((member, i) => (
-            <TabPane key={i} tab={
-              <span onClick={() => this.handleOnClick(member)}>
-                {member.clubName}
-              </span>
-            }>
-              {this.state.departmentData.clubId && (
-                <Suspense fallback={"Loading..."}>
-                  <div>
-                  <ClubTableForAll clubId={this.state.departmentData.clubId} />
-                  </div>
-                </Suspense>
-              )}
-            </TabPane>
-          ))}
-        </StyledTabs>
-        </TabsWrapper>)
-        :null}
+        //   ):viewType === "teams" ?(
+        //   <TabsWrapper style={{height:"150vh" }}>
+        //   <StyledTabs type="card">
+        //   {this.props.clubShareData.map((member, i) => (
+        //     <TabPane key={i} tab={
+        //       <span onClick={() => this.handleOnClick(member)}>
+        //         {member.clubName}
+        //       </span>
+        //     }>
+        //       {this.state.departmentData.clubId && (
+        //         <Suspense fallback={"Loading..."}>
+        //           <div>
+        //           <ClubTableTeam clubId={this.state.departmentData.clubId} />
+        //           </div>
+        //         </Suspense>
+        //       )}
+        //     </TabPane>
+        //   ))}
+        // </StyledTabs>
+        // </TabsWrapper>)
+        //  :viewType === "all" ?(
+        //   <TabsWrapper style={{height:"150vh" }}>
+        //   <StyledTabs type="card">
+        //   {this.props.clubShareData.map((member, i) => (
+        //     <TabPane key={i} tab={
+        //       <span onClick={() => this.handleOnClick(member)}>
+        //         {member.clubName}
+        //       </span>
+        //     }>
+        //       {this.state.departmentData.clubId && (
+        //         <Suspense fallback={"Loading..."}>
+        //           <div>
+        //           <ClubTableForAll clubId={this.state.departmentData.clubId} />
+        //           </div>
+        //         </Suspense>
+        //       )}
+        //     </TabPane>
+        //   ))}
+        // </StyledTabs>
+        // </TabsWrapper>)
+ ) :null}
         </Suspense>
       </React.Fragment>
     );

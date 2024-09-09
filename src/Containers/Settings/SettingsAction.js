@@ -3633,7 +3633,6 @@ export const addProcessForDeals = (data,  cb) => (
 };
 
 export const getProcessForDeals = (orgId) => (dispatch) => {
-  debugger;
   dispatch({
     type: types.GET_PROCESS_FOR_DEALS_REQUEST,
   });

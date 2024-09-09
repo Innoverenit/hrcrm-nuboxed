@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BrandList from "../Product/Child/BrandList"
 import { BundleLoader } from "../../Components/Placeholder";
+import ProductBrandModelList from "./ProductBrandModelList"
 import { handleConfigureModal, setProductViewType } from "./ProductAction";
 const ProductHeader=lazy(()=>import("./Child/ProductHeader"));
 const ProductDeleteList =lazy(()=>import("./Child/ProductTable/ProductDeleteList"));
@@ -57,6 +58,10 @@ class Product extends Component {
                   selectedLanguage={this.props.selectedLanguage} />) :
                   this.props.viewType === "brand" ? (
                     <BrandList
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage} />) :
+                    this.props.viewType === "brandModel" ? (
+                    <ProductBrandModelList
                     translateText={this.props.translateText}
                     selectedLanguage={this.props.selectedLanguage} />) :
                 this.props.viewType === "category" ? (
