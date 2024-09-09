@@ -1,6 +1,7 @@
 import React, { Component, Suspense } from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
+import ProductBrandList from "./ProductBrandList"
 
 import { bindActionCreators } from "redux";
 //import MaterialBrandList from "./MaterialBrandList"
@@ -24,10 +25,12 @@ class ProductBrandModal extends Component {
           onClose={() => this.props.handleProductBrandModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            {/* <MaterialBrandList
+            <ProductBrandList
+                              translateText={this.props.translateText}
+                              selectedLanguage={this.props.selectedLanguage}
             currentBrandId={this.props.currentBrandId}
-            /> */}
-            Hello
+            />
+           
           </Suspense>
         </StyledDrawer>
       </div>

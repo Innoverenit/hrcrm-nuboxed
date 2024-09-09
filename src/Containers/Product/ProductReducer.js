@@ -167,6 +167,12 @@ const initialState = {
   updateServiceById: false,
   updateServiceByIdError: false,
 
+
+
+  fetchingBrandCatalogueList:false,
+  fetchingBrandCatalogueListError:false,
+  brandCatalogueListData:[],
+
   fetchingProductsDesc:false,
   fetchingProductsDescError:false,
   productsDesc:[],
@@ -349,6 +355,9 @@ const initialState = {
   fetchingProductCurrency: false,
   fetchingProductCurrencyError: false,
   ProductCurrency: [],
+
+  deleteProductBrandData:false,
+  deleteProductBrandDataError:false,
 
   creatingProductCurrency: false,
   creatingProductCurrencyError: false,
@@ -1223,6 +1232,25 @@ export const productReducer = (state = initialState, action) => {
 
 
 
+      case types.DELETE_PRODUCT_BRAND_DATA_REQUEST:
+        return { ...state, deleteProductBrandData: true };
+      case types.DELETE_PRODUCT_BRAND_DATA_SUCCESS:
+        return {
+          ...state,
+          deleteProductBrandData: false,
+          brandProduct: state.brandProduct.filter(
+            (item) => item.productBrandId !== action.payload
+          ),
+        };
+      case types.DELETE_PRODUCT_BRAND_DATA_FAILURE:
+        return {
+          ...state,
+          deleteProductBrandData: false,
+          deleteProductBrandDataError: false,
+        };
+
+
+
       case types.GET_BRAND_PRODUCT_REQUEST:
       return { ...state, fetchingBrandProduct: true, fetchingBrandProduct: false };
     case types.GET_BRAND_PRODUCT_SUCCESS:
@@ -1235,6 +1263,22 @@ export const productReducer = (state = initialState, action) => {
       }
     case types.GET_BRAND_PRODUCT_FAILURE:
       return { ...state, fetchingBrandProduct: false, fetchingBrandProductError: true };
+
+
+
+
+      case types.GET_BRAND_CATALOGUE_LIST_REQUEST:
+      return { ...state, fetchingBrandCatalogueList: true, fetchingBrandCatalogueListError: false };
+    case types.GET_BRAND_CATALOGUE_LIST_SUCCESS:
+      //const newData = action.payload.filter(item => !state.products.includes(item));
+      return { ...state, fetchingBrandCatalogueList: false, 
+        // products: [
+        // ...state.products,
+        // ...action.payload] };
+        brandCatalogueListData: action.payload
+      }
+    case types.GET_BRAND_CATALOGUE_LIST_FAILURE:
+      return { ...state, fetchingBrandCatalogueList: false, fetchingBrandCatalogueListError: true };
 
 
 

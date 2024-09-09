@@ -282,7 +282,7 @@ const DeleteOnClick = async (item) => {
                     )}
     </div> 
 
-{item.categoryCount===1 &&
+
     <div>
                               <Popconfirm
                                 title="Do you want to delete?"
@@ -291,7 +291,7 @@ const DeleteOnClick = async (item) => {
 
                                 <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
                               </Popconfirm>
-                            </div>}
+                            </div>
                     </div>
                    
                   </div>

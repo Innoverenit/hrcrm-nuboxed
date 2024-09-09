@@ -207,6 +207,23 @@ const ProductActionLeft = (props) => {
 
         </div>
       </Tooltip>
+
+
+      <Tooltip title="BrandModel">
+        <div
+          class=" ml-2 text-xs cursor-pointer"
+          style={{
+
+            color: props.viewType === "brandModel" && "red",
+          }}
+          onClick={() => props.setProductViewType("brandModel")}
+        >
+          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
 <div class=" w-64 max-sm:w-24">
                 
 {props.viewType === "category" &&
