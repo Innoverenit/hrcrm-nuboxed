@@ -20,25 +20,29 @@ import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFound
 
 class LinkedContactInvestDocuments extends Component {
   
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
   componentDidMount() {
     const {
       contactInVestDetail: { contactId },
       getContactDocument,
     } = this.props;
     getContactDocument(contactId);
-  }
-  componentDidMount() {
-    this.props.getCustomerData(this.props.userId);
-    this.props.getDepartments();
-    
-  }
-  componentDidMount() {
     this.fetchMenuTranslations();
-    this.props.getCustomerConfigure(this.props.orgId,"add","contact")
   }
-  async fetchMenuTranslations() {
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+  fetchMenuTranslations = async () => {
     try {
-      this.setState({ loading: true });
       const itemsToTranslate = [
        '74', // 0 Date
 '110', // 1 Name
@@ -47,15 +51,13 @@ class LinkedContactInvestDocuments extends Component {
 '1207'//4Uploaded By
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations ,loading: false});
-     
+      this.setState({ translatedMenuItems: translations });
     } catch (error) {
-      this.setState({ loading: false });
       console.error('Error translating menu items:', error);
     }
-  }
+  };
   render() {
-    const { loading, translatedMenuItems } = this.state; 
+   
     return (
       <>
           <div className=' flex sticky z-auto'>          
@@ -63,19 +65,19 @@ class LinkedContactInvestDocuments extends Component {
                   <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                   
                   <div className="md:w-[9.7rem]">
-                  {translatedMenuItems[0]}  
+                  {this.state.translatedMenuItems[0]}  
                   {/* Date */}
                     </div>
                       <div className=" md:w-[14.12rem]">
-                      {translatedMenuItems[1]}  
+                      {this.state.translatedMenuItems[1]}  
                       {/* Name */}
                         </div>
                       <div className=" md:w-[10.5rem]">
-                      {translatedMenuItems[2]}  
+                      {this.state.translatedMenuItems[2]}  
                       {/* Description*/}
                         </div>
                       <div className=" md:w-[9.8rem] ">
-                      {translatedMenuItems[3]}  
+                      {this.state.translatedMenuItems[3]}  
                       {/* Uploaded By */}
                         </div>
                      

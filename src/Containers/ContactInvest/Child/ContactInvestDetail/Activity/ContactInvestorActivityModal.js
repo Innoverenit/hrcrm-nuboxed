@@ -55,7 +55,7 @@ const ContactInvestorActivityModal = (props) => {
           <TabsWrapper>
             <StyledTabs
               defaultActiveKey="1"
-              style={{ overflow: "visible", width: "56vw", padding: "5px" }}
+              style={{ overflow: "visible", width: "50vw", padding: "4px" }}
               animated={false}
             >
               <TabPane

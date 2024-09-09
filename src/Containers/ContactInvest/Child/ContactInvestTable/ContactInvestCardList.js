@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip } from "antd";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
@@ -33,12 +32,8 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
-const AddContactInvestNotesDrawerModal = lazy(() =>
-  import("../AddContactInvestNotesDrawerModal")
-);
-const UpdateContactInvestModal = lazy(() =>
-  import("../UpdateContactInvest/UpdateContactInvestModal")
-);
+const AddContactInvestNotesDrawerModal = lazy(() =>  import("../AddContactInvestNotesDrawerModal"));
+const UpdateContactInvestModal = lazy(() => import("../UpdateContactInvest/UpdateContactInvestModal"));
 
 function ContactInvestCardList(props) {
 
@@ -60,7 +55,7 @@ function ContactInvestCardList(props) {
            "1160",//4 Deal
            "526",//5 Deal Value
            "279",// Source
-           "77",//7     Owner          
+                 
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -182,11 +177,7 @@ function ContactInvestCardList(props) {
         {translatedMenuItems[6]}
         {/* source" */}           
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[6.8rem]">
-        {translatedMenuItems[7]} 
-        {/* owner" */}
-             
-                </div>
+      
        {/* Action */}
       </div>
           <InfiniteScroll
@@ -243,7 +234,7 @@ function ContactInvestCardList(props) {
                                           <div class=" flex  max-sm:w-full justify-between flex-row md:flex-col">
                                             
                                             <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
   </Link>                                               
       
@@ -261,28 +252,28 @@ function ContactInvestCardList(props) {
                                         </div>
                                 </div>                     
                                 </div>
-                                <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[14.01rem]">
+                                <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center items-center">
+                                <div className=" flex max-sm:w-full max-sm:justify-between items-center flex-row  w-[14.01rem]">
                                    {/* Company  */}
                                     <div class=" text-xs  font-poppins">   
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.5rem]">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.5rem] items-center">
                                {/* Designation */}
                                     <div class="text-xs  font-poppins">
                                          {item.designation}
                                     </div>
                                 </div>
                            
-                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[12.2rem]">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[12.2rem] items-center">
                                 {/* Department */}
                                   <div class="text-xs  font-poppins">
                                        {item.department}
                                   </div>
                               </div>
                               </div>
-                              <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                              <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
                                 <div className=" flex   md:w-[5.22rem] max-sm:flex-row w-full  ">
                                     {/* Deals */}
                                     <div class=" text-xs  font-poppins">
@@ -304,19 +295,7 @@ function ContactInvestCardList(props) {
                                     </div>
                                 </div>
                                                           
-                                <div className="flex   md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">
-                                         {/* Owner */}               
-              <Tooltip title={item.ownerName}>
-                <div class="max-sm:flex justify-end mt-1">           
-              <MultiAvatar
-                primaryTitle={item.ownerName}
-                imageId={item.ownerImageId}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />           
-            </div>
-          </Tooltip>
-                   </div>
+                               
                    </div>
       <div class=" flex  flex-row justify-evenly items-center w-[7rem] max-sm:flex   max-sm:w-full">                 
                   

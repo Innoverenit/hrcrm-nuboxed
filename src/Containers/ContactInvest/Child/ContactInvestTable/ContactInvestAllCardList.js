@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip } from "antd";
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
@@ -216,7 +215,7 @@ if (loading) {
                       <div
         className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                          <div className=" flex font-medium  md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
 <div>                        
       <MultiAvatar2
@@ -233,7 +232,7 @@ if (loading) {
                                     <div class=" flex  max-sm:w-full justify-between flex-row md:flex-col">
                                       
                                       <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
+                                      <Link class="overflow-ellipsis whitespace-nowrap text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   &nbsp;&nbsp;
@@ -252,14 +251,14 @@ if (loading) {
                           </div>
                
                           </div>
-                          <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                          <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
                           <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[14.01rem]">
                          {/* Company  */}
                               <div class=" text-xs  font-poppins">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.5rem]">
+                          <div className=" flex max-sm:w-full max-sm:justify-between items-center flex-row  w-[10.5rem]">
                            {/* Designation */}
                               <div class="text-xs  font-poppins">
                                    {item.designation}
@@ -273,7 +272,7 @@ if (loading) {
                             </div>
                         </div>
                         </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                        <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
                           <div className=" flex  md:w-[5.22rem] max-sm:flex-row w-full  ">
                               {/* # Deals */}
 
@@ -294,7 +293,7 @@ if (loading) {
                           </div>
                          
                          
-        <div className="flex   md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">       
+        <div className="flex   md:w-[3.2rem] items-center  max-sm:flex-row w-full max-sm:justify-between">       
         <Tooltip title={item.ownerName}>
           <div class="max-sm:flex justify-end mt-1">      
         <MultiAvatar

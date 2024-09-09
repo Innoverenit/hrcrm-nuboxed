@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip } from "antd";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
@@ -231,12 +230,12 @@ if (loading) {
                                     <div class=" flex  max-sm:w-full justify-between flex-row md:flex-col">
                                       
                                       <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
+                                      <Link class="overflow-ellipsis whitespace-nowrap  text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   &nbsp;&nbsp;
   {date === currentdate ? (
-    <span class="text-[tomato] mt-[0.4rem] font-bold">  New </span>
+    <span class="text-[tomato] mt-[0.4rem] font-bold text-[0.65rem]">  New </span>
   ) : null} 
                                       </div>
                                       </div>
@@ -245,42 +244,42 @@ if (loading) {
                                   </div>
                           </div>       
                           </div>
-                          <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                          <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
                           <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[14.01rem]">
                               {/* Company  */}
                               <div class=" text-xs  font-poppins">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.5rem]">
+                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.5rem] items-center">
                             {/* Designation */}
                               <div class="text-xs  font-poppins">
                                    {item.designation}
                               </div>
                           </div>         
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[12.2rem]">
+                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[12.2rem] items-center">
                           {/* Department */}
                             <div class="text-xs  font-poppins">
                                  {item.department}
                             </div>
                         </div>
                         </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                          <div className=" flex  md:w-[5.22rem] max-sm:flex-row w-full  ">
+                        <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
+                          <div className=" flex  md:w-[5.22rem] max-sm:flex-row w-full  items-center ">
                               {/* # Deals */}
 
                               <div class=" text-xs font-poppins">
                                {item.oppNo}
                               </div>
                           </div>
-                          <div className=" flex   md:w-[5.05rem] max-sm:flex-row w-full  ">
+                          <div className=" flex   md:w-[5.05rem] max-sm:flex-row w-full items-center  ">
                              {/* Deal Value */}
 
                               <div class=" text-xs  font-poppins">
                                {item.totalProposalValue}
                               </div>
-                          </div>
-                          <div className="flex  max-sm:justify-between  md:w-[6.81rem] max-sm:flex-row w-full ">
+                          </div> 
+                          <div className="flex  max-sm:justify-between  md:w-[6.81rem] max-sm:flex-row w-full items-center">
                           {/* Source */}
                               <div class="text-xs  font-poppins">
 

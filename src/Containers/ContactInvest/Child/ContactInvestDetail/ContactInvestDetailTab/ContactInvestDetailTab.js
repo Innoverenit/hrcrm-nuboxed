@@ -2,13 +2,11 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import AddchartIcon from '@mui/icons-material/Addchart'; 
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {handleContactInvestActivityModal} from "../../../ContactInvestAction"
 import { PlusOutlined } from "@ant-design/icons";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
-import WorkIcon from "@mui/icons-material/Work";
 import {
   handleContactOpportunityModal,
   handleContactReactSpeechModal,
@@ -48,8 +46,7 @@ class ContactInvestDetailTab extends Component {
               tab={
                 <>
                  
-                 <WorkIcon style={{fontSize:"1.1rem"}}
-                  />
+                 <CurrencyExchangeIcon className="!text-icon text-[#fce762]"/>
                     <span class=" ml-1">
                      <FormattedMessage
                       id="app.deals"
@@ -67,13 +64,17 @@ class ContactInvestDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDealTable contactInVestDetail={this.props.contactInVestDetail}/>
+                <LinkedDealTable contactInVestDetail={this.props.contactInVestDetail}
+                selectedLanguage={this.props.selectedLanguage}
+                translateText={this.props.translateText}/>
               </Suspense>
             </TabPane>       
             <TabPane
               tab={
                 <>
-                  <InsertDriveFileIcon style={{ fontSize: "1.1rem" }} />
+                <i 
+                  class="far fa-file  !text-icon text-[#41ead4]"
+                  ></i>
                   <span class=" ml-1">
                     <FormattedMessage
                       id="app.documents"
@@ -108,14 +109,15 @@ class ContactInvestDetailTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <LinkedContactInvestDocuments contactInVestDetail={this.props.contactInVestDetail}
-                
+                   selectedLanguage={this.props.selectedLanguage}
+                   translateText={this.props.translateText}
                 />
               </Suspense>
             </TabPane>
             <TabPane
               tab={
                 <>
-                  <AddchartIcon style={{fontSize:"1.1rem"}}/>
+                   <i class="fab fa-connectdevelop text-[#8332ac] !text-icon"></i>
                   <span class=" ml-1">
                     {
                       <FormattedMessage
@@ -152,8 +154,9 @@ class ContactInvestDetailTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <ContactInvestTimeLine
-
-contactInVestDetail={this.props.contactInVestDetail}
+                        contactInVestDetail={this.props.contactInVestDetail}
+                        selectedLanguage={this.props.selectedLanguage}
+                        translateText={this.props.translateText}
                 />
               </Suspense>
             </TabPane>

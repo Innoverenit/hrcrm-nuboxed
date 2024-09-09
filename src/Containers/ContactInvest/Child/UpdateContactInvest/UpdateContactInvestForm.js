@@ -69,7 +69,7 @@ class UpdateContactInvestForm extends Component {
 '279' ,//13 Source
 '326', // 11Department
 '325', // 12
-'1107'//13Update
+''//13UpdateContact
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);

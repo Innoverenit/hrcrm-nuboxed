@@ -179,7 +179,7 @@ const ContactInvestActionLeft = (props) => {
       </Tooltip>
     
    
-      <div class=" w-72 md:ml-4 max-sm:w-16 ml-3">
+      <div class=" w-[19rem] md:ml-4 max-sm:w-16 ml-3">
    
           <Input
        placeholder="Search by Name or Company"
