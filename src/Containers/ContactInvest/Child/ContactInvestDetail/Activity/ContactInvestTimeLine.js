@@ -11,7 +11,6 @@ const ContactInvestTimeline = (props) => {
   useEffect(() => {
     props.getContactInvestTimeline(props.contactInVestDetail.contactId);
   }, []);
-
   const { contactInvestStatus,fetchingContactInvestStatus, ratingValue } = props;
   console.log(props.contactInVestDetail.investorLeadsId)
   if (fetchingContactInvestStatus) return <BundleLoader/>;
@@ -23,7 +22,9 @@ const ContactInvestTimeline = (props) => {
             contactInvestStatus.map((status, i) => (
               <Timeline.Item key={i}>
               <div>
-              <div>{status.category} {status.activityType} {dayjs(status.endDate).format('ll')}</div>
+              <div>{status.category} {status.activityType} {dayjs(status.endDate).format('MMMM D, YYYY h:mm A')} 
+                {/* {dayjs(status.endDate).fromNow(true)} */}
+              </div>
               <span class=" ml-2">
              
              <>

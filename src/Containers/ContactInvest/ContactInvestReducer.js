@@ -6,6 +6,8 @@ const initialState = {
     addingContactInvest: false, 
     addContactInvestModal: false,
 
+    addDrawerDealModal:false,
+
     addDrawerContactInvestPulseModal:false,
 
     addingContactinvestActivityEvent: false,
@@ -224,7 +226,8 @@ export const contactInvestReducer = (state = initialState, action) => {
             case types.HANDLE_CONTACT_INVEST_NOTES_DRAWER_MODAL:
               return { ...state, addDrawerContactInvestNotesModal: action.payload };
 
-
+              case types.HANDLE_DEAL_MODAL:
+                return { ...state, addDrawerDealModal: action.payload };
               
               case types.GET_ALL_CONTACT_INVEST_REQUEST:
 
@@ -233,7 +236,9 @@ export const contactInvestReducer = (state = initialState, action) => {
     return {
       ...state,
       fetchingAllContactInvest: false,
-      allContactInvestData: action.payload,
+      // allContactInvestData: action.payload,
+      allContactInvestData: [ ...state.allContactInvestData,
+        ...action.payload],
     };
   case types.GET_ALL_CONTACT_INVEST_FAILURE:
     return {
@@ -249,7 +254,9 @@ export const contactInvestReducer = (state = initialState, action) => {
     return {
       ...state,
       fetchingTeamsContactInvest: false,
-      teamsContactInvestData: action.payload,
+      teamsContactInvestData: [ ...state.teamsContactInvestData,
+        ...action.payload],
+      // teamsContactInvestData: action.payload,
     };
   case types.GET_TEAMS_CONTACT_INVEST_FAILURE:
     return {
