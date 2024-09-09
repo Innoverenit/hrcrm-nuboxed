@@ -36,23 +36,21 @@ function UpdateInvestorForm (props) {
         const itemsToTranslate = [
           "110",//0 Name
           "102",//1 URL
-          "140",//3 Email
-          "357",//4 Dial Code
-          "300",//5 Phone No
-          '71', // 2Type
-         "14",//10 Category
-          "619",//7UBO
-          "622",//8Identification
-          // "",//9Infocit
-          "74",//11 Date
-          "316",//11Notes
-          "76",//12 Assigned
-          "185", // "Address",
-          "186", // "Street",//15
-           "187",//Zip Code",//16
-           "188",// "City",17
-              "314",// "State",//18
-              "1109",// "Country",//19
+          "140",//2 Email
+          "357",//3 Dial Code
+          "300",//4 Phone No
+          '71', //5 2Type
+         "14",//6 Category
+                
+          "74",//7 Date
+          "316",//8Notes
+          "76",//9 Assigned
+          "185", //10 "Address",
+          "186", // 11"Street",//
+           "187",//Zip Code",//12
+           "188",// "City",13
+              "314",// "State",//14
+              "1109",// "Country",//15
         
         ];
 
@@ -211,7 +209,7 @@ function UpdateInvestorForm (props) {
               <div class=" flex justify-between max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk" >
                   
-                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
+                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold  ">
                    {translatedMenuItems[0]} 
                    {/* Name */}
                     </div>
@@ -357,8 +355,8 @@ function UpdateInvestorForm (props) {
                     <div class="flex justify-between">
                  <div class=" flex flex-col items-center  mt-4">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    {translatedMenuItems[7]} 
-                      {/* UBO */}
+                   
+                      UBO
                       </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
@@ -370,8 +368,8 @@ function UpdateInvestorForm (props) {
                   </div>
                   <div class=" flex flex-col items-center  mt-4">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    {translatedMenuItems[8]} 
-                      {/* Identification */}
+                 
+                      Identification
                       </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
@@ -387,7 +385,7 @@ function UpdateInvestorForm (props) {
                   <div class=" flex flex-col   mt-4">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[9]} 
-                      {/* Inofocit */}
+                      Inofocit
                       </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
@@ -398,7 +396,7 @@ function UpdateInvestorForm (props) {
                     />
                   </div>
                   <div class="font-bold font-poppins text-xs w-w47.5 max-sm:w-wk mt-2">
-                  {translatedMenuItems[10]} 
+                  {translatedMenuItems[7]} 
                     <Field
                       name="firstMeetingDate"
                       // label="Date"
@@ -408,28 +406,19 @@ function UpdateInvestorForm (props) {
                       inlineLabel
                     />
                   </div>
-                 <div class="mt-3 font-bold text-xs font-poppins">
-                 {translatedMenuItems[11]} 
-                  <Field
-                    name="notes"
-                    // label="Notes"               
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                    /> 
-                    </div>  
+                 
                  </div>
 
                  <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 >
                   
-                   <div class=" flex justify-between mt-3">
+                   <div class=" flex justify-between ">
                    <div class=" h-full w-full">
                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
             <Listbox.Label className=" font-bold text-xs font-poppins">
-            {translatedMenuItems[12]} 
+            {translatedMenuItems[9]} 
               {/* Assigned */}
             </Listbox.Label>
             <div className="relative mt-[0.1rem]">
@@ -556,6 +545,16 @@ function UpdateInvestorForm (props) {
                     )}
                   />    
                   </div>              */}
+                  <div class="mt-3 font-bold text-xs font-poppins">
+                 {translatedMenuItems[8]} 
+                  <Field
+                    name="notes"
+                    // label="Notes"               
+                    width={"100%"}
+                    isColumn
+                    component={TextareaComponent}
+                    /> 
+                    </div>  
                 </div>
               </div>
              
@@ -565,7 +564,8 @@ function UpdateInvestorForm (props) {
                   htmlType="submit"
                   Loading={updateInvestorById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                  {translatedMenuItems[1246]}
+                  {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
                   {/* Update */}
                 </Button>
               </div>
