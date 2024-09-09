@@ -46,7 +46,7 @@ class InvestorFunnelTab extends Component {
     const { activeKey } = this.state;
     return (
       <>
-        <TabsWrapper style={{height:"44vh"}}>
+        <TabsWrapper style={{height:"44vh", width:"36rem"}}>
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}

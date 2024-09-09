@@ -108,10 +108,7 @@ const DashboardActionLeft = (props) => {
             }}
           >
             {showShareForm ? "Enterprise" : "My view"}
-            {/* <FormattedMessage
-                  id="app.enterprise"
-                  defaultMessage="Enterprise"
-                /> */}
+            
           </Tag>
         )}
 
@@ -174,7 +171,7 @@ const DashboardActionLeft = (props) => {
               )}
 
 
-              {user.crmInd === true && (
+              {props.moduleMapper.crmInd === true && user.customerAccessInd === true && (
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -220,7 +217,7 @@ const DashboardActionLeft = (props) => {
               )}
 
 
-              {user.orderManagementInd === true && (
+              {/* {props.moduleMapper.orderManagementInd === true && ( */}
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -239,7 +236,7 @@ const DashboardActionLeft = (props) => {
                     </Tooltip>
                   </span>
                 </Badge>
-              )}
+              {/* )} */}
 
               {user.repairInd === true && (
                 <Badge
@@ -263,7 +260,7 @@ const DashboardActionLeft = (props) => {
                   </span>
                 </Badge>
               )}
-              {user.imInd === true && (
+              {props.moduleMapper.imInd === true && user.investorAccessInd && (
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -423,7 +420,26 @@ const DashboardActionLeft = (props) => {
                   </Tooltip>
                 </span>
               </Badge>
+  {props.moduleMapper.orderManagementInd === true && (
+  <Badge
+                  size="small"
+                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+                // overflowCount={999}
+                >
+                  <span class="cursor-pointer mr-1"
+                    onClick={() => handleButtonClick("Order")}
+                    style={{
+                      color: activeButton === "Order" && "tomato",
 
+                    }}
+                  >  <Tooltip title={translatedMenuItems[4]}>
+                      <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
+                        <PrecisionManufacturingIcon className="text-white !text-icon"/>
+                      </Avatar>
+                    </Tooltip>
+                  </span>
+                </Badge>
+              )}
               {user.crmInd === true && (
                 <Badge
                   size="small"
@@ -475,7 +491,7 @@ const DashboardActionLeft = (props) => {
 
 
 
-              {user.orderManagementInd === true && (
+              {props.moduleMapper.productionInd === true && props.moduleMapper.orderManagementInd === true && (
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -524,7 +540,7 @@ const DashboardActionLeft = (props) => {
                   </span>
                 </Badge>
               )}
-
+                {props.moduleMapper.ecomModInd === true && props.moduleMapper.erpInd === true &&
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -545,7 +561,7 @@ const DashboardActionLeft = (props) => {
 
                   </span>
                 </Badge>
-
+}
               {user.imInd === true && (
                 <Badge
                   size="small"
@@ -642,6 +658,7 @@ const mapStateToProps = ({ auth, dashboard }) => ({
   userId: auth.userDetails.userId,
   dateRangeList: dashboard.dateRangeList,
   viewType: dashboard.viewType,
+  moduleMapper:auth.userDetails.moduleMapper
 
 });
 

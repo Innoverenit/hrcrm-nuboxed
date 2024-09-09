@@ -22,7 +22,7 @@ const AddAccountModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <AddAccountForm {...formProps}
+                    <AddAccountForm 
                   selectedLanguage={props.selectedLanguage}
                   translateText={props.translateText}/>
                 </Suspense>

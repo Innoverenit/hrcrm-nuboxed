@@ -31,7 +31,6 @@ const CustomerSchema = Yup.object().shape({
   url: Yup.string().required("Input needed!"),
   // phoneNo: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
-function AddAccountForm (props) {
 
 const AddAccountForm = ({
   userId,
@@ -55,7 +54,9 @@ const AddAccountForm = ({
   getSaleCurrency,
   getCategory,
   emptyClearbit,
-  category
+  category,
+  translateText,
+  selectedLanguage,
 }) => {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -88,7 +89,7 @@ const AddAccountForm = ({
                    
       ];
 
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        const translations = await translateText(itemsToTranslate, selectedLanguage);
         setTranslatedMenuItems(translations);
         setLoading(false);
       } catch (error) {
@@ -98,7 +99,7 @@ const AddAccountForm = ({
     };
 
     fetchMenuTranslations();
-  }, [props.selectedLanguage]);
+  }, [selectedLanguage]);
 
   useEffect(() => {
     getCountry();
@@ -709,7 +710,7 @@ const AddAccountForm = ({
     </>
   );
 };
-}
+
 const mapStateToProps = ({ auth, countrys, leads,employee, catgCustomer, distributor, rule, groups, category }) => ({
   userId: auth.userDetails.userId,
   groupId: auth.userDetails.groupId,
