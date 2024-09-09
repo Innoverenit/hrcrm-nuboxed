@@ -112,7 +112,7 @@ function ProcureInvoiceList (props) {
     const handlePostChange =  async (item) => {
         let updatedItem={
             shippingDate: new Date(date).toISOString(),
-          trackId:trackId,
+          trackId:trackId?trackId:item.trackId,
           procureOrderInvoiceId:item.procureOrderInvoiceId,
         }
         // props.updateOrdrSuplrItems(data);
@@ -195,12 +195,7 @@ function ProcureInvoiceList (props) {
                                                                 </div>
                                                             ) : null}
                                                     </div>
-                                                    {/* <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        
-                                                                {item.newOrderNo}
-                                                        </div>
-                                                    </div> */}
+                                                   
                                                     
                                                    
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
@@ -224,7 +219,8 @@ function ProcureInvoiceList (props) {
                                                         {editsuppliesId === item.procureOrderInvoiceId ? (
                                                                 <input
           type="date"
-          value={date}
+          // value={date}
+          value={dayjs(item.shippingDate).format("YYYY-MM-DD")}
           onChange={(e) => handleDateChange(e,item)}
         //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
           class="border border-black rounded"
@@ -236,14 +232,7 @@ function ProcureInvoiceList (props) {
           )}
                                                         </div>
                                                     </div>
-                                                    {/* <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                      
-                            <PaidUnpaidAccountInvoiceToggle procureOrderInvoiceId={item.procureOrderInvoiceId} paymentInd={item.paymentInd}/>
-                          </div>
                                                    
-                                                    </div> */}
                                                        <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                        
                                                    
@@ -269,7 +258,7 @@ function ProcureInvoiceList (props) {
                     ) : (
                       <Button
                       type="primary"
-                    //   className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                  
                         onClick={() => handleEditClick(item.procureOrderInvoiceId)}
                       >Ship</Button>
                     )}
