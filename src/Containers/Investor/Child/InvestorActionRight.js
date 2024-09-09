@@ -68,7 +68,7 @@ function InvestorActionRight (props) {
          {props.viewType === "all"  && (
         <Tooltip placement="left" title=" Download-XL">
         <a
-        href={`${base_url}/excel/export/investor/all/${props.orgId}`}>
+        href={`${base_url}/excel/export/investor/All/${props.orgId}`}>
             <DownloadForOfflineIcon
             style={{fontSize: "x-large"}}/>
          </a>

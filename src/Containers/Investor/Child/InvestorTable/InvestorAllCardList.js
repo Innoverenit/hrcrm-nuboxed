@@ -121,17 +121,25 @@ function InvestorAllCardList(props) {
   function handleCurrentRowData(datas) {
     setRowData(datas);
   }
-
   const handleLoadMore = () => {
-
-      setPage(page + 1);
-      props.getAllInvestorsbyId(
-        props.currentUser ? props.currentUser :
-        page,
-        props.filter?props.filter:"creationdate"
-      );
-  };
-
+    const callPageMapd = props.allInvestorsbyId && props.allInvestorsbyId.length &&props.allInvestorsbyId[0].pageCount
+    setTimeout(() => {  
+      if  (props.allInvestorsbyId)
+      {
+        if (page < callPageMapd) {    
+    setPage(page + 1);
+    props.getAllInvestorsbyId(
+      props.currentUser ? props.currentUser :
+      page,
+      props.filter?props.filter:"creationdate"
+    );
+            }
+              if (page === callPageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
+  }
   const {
     fetchingAllInvestors,
     allInvestorsbyId,
@@ -210,6 +218,7 @@ function InvestorAllCardList(props) {
         loader={fetchingAllInvestors?<div class="flex items-center">Loading...</div>:null}
         height={"80vh"}
         style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         
         { !fetchingAllInvestors && allInvestorsbyId.length === 0 ?<NodataFoundPage />:allInvestorsbyId.map((item,index) =>  {

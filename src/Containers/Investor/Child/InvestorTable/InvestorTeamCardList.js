@@ -110,13 +110,23 @@ function InvestorTeamCardList(props) {
   }
 
   const handleLoadMore = () => {
-
-      setPage(page + 1);
-      props.getTeamInvestor(
-        props.currentUser ? props.currentUser : props.userId,
-        page,
-      );
-  };
+    const callPageMapd = props.teamInvestor && props.teamInvestor.length &&props.teamInvestor[0].pageCount
+    setTimeout(() => {  
+      if  (props.teamInvestor)
+      {
+        if (page < callPageMapd) {    
+    setPage(page + 1);
+    props.getTeamInvestor(
+            props.currentUser ? props.currentUser : props.userId,
+            page,
+          );
+            }
+              if (page === callPageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
+  }
 
   const {
     fetchingTeamInvestor,
@@ -201,6 +211,7 @@ function InvestorTeamCardList(props) {
         loader={fetchingTeamInvestor?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
         height={"80vh"}
         style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         
         { !fetchingTeamInvestor && teamInvestor.length === 0 ?<NodataFoundPage />:teamInvestor.map((item,index) =>  {
