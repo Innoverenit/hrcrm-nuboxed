@@ -28,12 +28,12 @@ function LinkedDealContact(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          "Name",//0
-          'Tag Investor',//1
-          "Amount",//2
-          "Payout (in months)",//3
-          "Interested",//4
-          "Collected",//5       
+       "110",   // "Name",//0
+        "1445",   // 'Tag Investor',//1
+        "929",   // "Amount",//2
+       "1445",    // "Payout (in months)",//3
+       "1447",    // "Interested",//4
+        "1448",   // "Collected",//5       
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -143,7 +143,7 @@ if (props.fetchingDealsContactList) {
             <div className="w-[2.8rem]">
             </div>
           </div>
-          <div class="overflow-x-auto h-[77vh]">
+          <div class="overflow-x-auto h-[83vh]" style={{ scrollbarWidth:"thin"}}>
             {/* <InfiniteScroll
               dataLength={props.dealsContactList.length}
               next={handleLoadMore}
