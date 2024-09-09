@@ -3,7 +3,7 @@ import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -69,9 +69,21 @@ const PitchCardList = (props) => {
           "278",//4 sector
           "14",//5 Category
           "1158",//6 share
-          "218",//7Value
-           "77",//8 Owner
-           "1114"//9 qualify
+          "589",//7 First Meeting
+          "218",//8Value
+           "76",//9 Assigned
+           "1114",//10 qualify
+            "271" , // 11 Hot
+            "272",  // 12 Warm
+            "273",  //13  Cold"
+            "100", //14  New
+          "", //  15"Qualify? Pitch will move to Investor section!
+          "", // 16 Company name is required to enable qualification action
+          "316",// 17 Notes
+          "1165", // 18 Activity
+          "170", // 19 Edit
+          "1259",  // 20 Do you want to delete?
+          "84"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -240,12 +252,9 @@ const handleLoadMore2 = () => {
           {/* Assigned */}
         {translatedMenuItems[9]}
         </div> 
-        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
-        {translatedMenuItems[10]} 
-             {/* owner */}
-                </div>
+       
         <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem] font-bold font-poppins text-xs">
-        {translatedMenuItems[11]} 
+        {translatedMenuItems[10]} 
            {/* qualify */}
                 </div>
       </div>
@@ -294,11 +303,7 @@ const countryCode = item.countryAlpha2Code
                                               type="Hot"
                                               iconType="fas fa-mug-hot"
                                               // tooltip="Hot"
-                                              tooltip={<FormattedMessage
-                                              id="app.hot"
-                                              defaultMessage="Hot"
-                                              className="text-icon"
-                                              />}
+                                              tooltip= {translatedMenuItems[11]} 
                                               role={item.type}
                                               onClick={() =>{
                                               const typ="Hot"
@@ -312,11 +317,7 @@ const countryCode = item.countryAlpha2Code
                                                 type="Warm"
                                                 iconType="	fas fa-burn"
                                                 // tooltip="Warm"
-                                                tooltip={<FormattedMessage
-                                                id="app.warm"
-                                                defaultMessage="Warm"
-                                                className="text-icon"
-                                                />}
+                                                tooltip= {translatedMenuItems[12]} 
                                                 role={item.type}
                                                 onClick={() =>{
                                                 const typ="Warm"
@@ -330,11 +331,7 @@ const countryCode = item.countryAlpha2Code
                                                 type="Cold"
                                                 iconType="far fa-snowflake"
                                                 // tooltip="Cold"
-                                                tooltip={<FormattedMessage
-                                                id="app.cold"
-                                                defaultMessage="Cold"
-                                                className="text-icon"
-                                                />}
+                                                tooltip= {translatedMenuItems[13]} 
                                                 role={item.type}
                                                 onClick={() => {
                                                 const typ="Cold"
@@ -347,7 +344,7 @@ const countryCode = item.countryAlpha2Code
                                                 </div>  
 
                                                 </div>  
-                                <div className=" flex font-medium  w-[7.5vw] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div className=" flex   w-[7.5vw] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                                 <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
                                             <div>
 
@@ -360,11 +357,9 @@ const countryCode = item.countryAlpha2Code
                                                         />
                                                       
                                             </div>
-                                   <div class="w-[4%]">
-
-                                   </div>
+                                  
                                    <div class="flex max-sm:justify-start max-sm:w-wk items-center">
-                                        <div class="max-sm:w-full" >
+                                        <div class="max-sm:w-full ml-1" >
                                         <Tooltip>
                                           <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
                                                                 {/* Name
@@ -380,8 +375,8 @@ const countryCode = item.countryAlpha2Code
                                                {/* </Link> */}
                                                &nbsp;&nbsp;
                                                {date === currentdate ? (
-                                                 <span class="text-[tomato] mt-[0.4rem] font-bold" >
-                                                   New
+                                                 <span class="text-[tomato] mt-[0.4rem] font-bold text-[0.65rem]" >
+                                                 {translatedMenuItems[14]}    {/* New */}
                                                  </span>
                                                ) : null}
                                               
@@ -439,36 +434,36 @@ const countryCode = item.countryAlpha2Code
 </div>
                        </div>
                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                       <div className=" flex font-medium items-center w-[3.121vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                       <div className=" flex  items-center w-[3.121vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Category */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {Category}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[4vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[4vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Share */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.unitOfShare}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[4.181vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[4.181vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* # Value */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                    
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[4.121vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[4.121vw] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Deals */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.shareCurrency} {item.valueOfShare}
                                     </div>
                                 </div>
-                       <div className=" flex font-medium  w-[4vw] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex   w-[4vw] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                    {/* Assigned */}
 
                                     <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -495,23 +490,7 @@ const countryCode = item.countryAlpha2Code
                       </span>       
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  w-[2.5vw] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                             {/* Owner */}
-                       <span>
-                       <Tooltip title={item.ownerName}>
-                <div class="max-sm:flex justify-end">
-                <Tooltip title={item.ownerName}>
-              <MultiAvatar
-                primaryTitle={item.ownerName}
-                imageId={item.ownerImageId}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />
-            </Tooltip>
-            </div>
-          </Tooltip>
-            </span>
-                   </div>
+                               
                    </div>
                               
                                                      
@@ -533,11 +512,11 @@ const countryCode = item.countryAlpha2Code
             ) : null}
                         </div>  
                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                   <div className=" flex font-medium flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                   <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                                   {/* Qualif */}                                                      
                                     <div>
                                     {item.companyName ? (
-                                    <Tooltip title="Qualify? Pitch will move to Investor section!">
+                                    <Tooltip title= {translatedMenuItems[15]} >
                         <ConnectWithoutContactIcon
                           onClick={() => {
                             handleRowData(item);
@@ -548,7 +527,7 @@ const countryCode = item.countryAlpha2Code
                         />
                       </Tooltip>
                         ) : (
-                          <Tooltip title="Company name is required to enable qualification action">
+                          <Tooltip title= {translatedMenuItems[16]} >
                             <ConnectWithoutContactIcon
                               className="!text-icon cursor-not-allowed text-gray-400"
                             />
@@ -561,7 +540,7 @@ const countryCode = item.countryAlpha2Code
           
      <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
     <div >
-                    <Tooltip title="Notes">
+                    <Tooltip title= {translatedMenuItems[17]} >
        <NoteAltIcon
                 onClick={() => {
                   props.handlePitchNotesDrawerModal(true);
@@ -572,30 +551,17 @@ const countryCode = item.countryAlpha2Code
            </Tooltip>
 
             </div>
-            <div>
-            <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleAddresspitchModal(true);
-            handleRowData(item);
-          }}
-          
-        />   
-            </div>
+            
             <div>
 <Tooltip
-        title={
-          <FormattedMessage id="app.activity" defaultMessage="Activity" />
-        }
+        title= {translatedMenuItems[18]} 
       >
-                  <AddchartIcon
-                  className="!text-icon cursor-pointer text-blue-500"
-
-                  onClick={()=>{
+                  <i class="fab fa-connectdevelop text-[#8332ac] !text-icon cursor-pointer"
+                                   onClick={()=>{
                     props.handleAssimodal(true)
                     handleRowData(item)
                     }}
-                  />
+                  ></i>
                   </Tooltip>
                   </div>
                   <div>
@@ -619,7 +585,7 @@ const countryCode = item.countryAlpha2Code
            
             {user.imInd === true  &&  user.pitchUpdateInd === true && (  
                                 <div>
-            <Tooltip title="Edit">
+            <Tooltip title= {translatedMenuItems[19]} >
               <BorderColorIcon
                 className="!text-icon cursor-pointer text-[tomato]"
                 onClick={() => {
@@ -635,9 +601,9 @@ const countryCode = item.countryAlpha2Code
                         <div>
 
                         <StyledPopconfirm
-            title="Do you want to delete?"
+            title= {translatedMenuItems[20]} 
             onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
-          > <Tooltip title="Delete">
+          > <Tooltip title= {translatedMenuItems[21]} >
              {user.imInd === true  &&  user.plantDeleteInd === true && ( 
             <DeleteOutlined
               type="delete"
@@ -757,10 +723,7 @@ const countryCode = item.countryAlpha2Code
 type="Hot"
 iconType="fas fa-mug-hot"
 // tooltip="Hot"
-tooltip={<FormattedMessage
-id="app.hot"
-defaultMessage="Hot"
-/>}
+tooltip= {translatedMenuItems[11]} 
 role={item.type}
 onClick={() =>{
 const typ="Hot"
@@ -774,10 +737,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 type="Warm"
 iconType="	fas fa-burn"
 // tooltip="Warm"
-tooltip={<FormattedMessage
-id="app.warm"
-defaultMessage="Warm"
-/>}
+tooltip= {translatedMenuItems[12]} 
 role={item.type}
 onClick={() =>{
 const typ="Warm"
@@ -791,10 +751,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 type="Cold"
 iconType="far fa-snowflake"
 // tooltip="Cold"
-tooltip={<FormattedMessage
-id="app.cold"
-defaultMessage="Cold"
-/>}
+tooltip= {translatedMenuItems[13]} 
 role={item.type}
 onClick={() => {
 const typ="Cold"
@@ -807,7 +764,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>  
 
 
-                          <div className=" flex font-medium  w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                          <div className=" flex   w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
 <div>
 
@@ -820,7 +777,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       />
     
 </div>
-          <div class="max-sm:w-full" >
+          <div class="max-sm:w-full ml-1" >
                                   <Tooltip>
                                     <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
                                     
@@ -836,7 +793,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                          &nbsp;&nbsp;
                                          {date === currentdate ? (
                                            <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold" >
-                                             New
+                                           {translatedMenuItems[14]}    {/* New */}
                                            </span>
                                          ) : null}
                                         
@@ -890,21 +847,21 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                  </div>
                  <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                          {/* Deals */}
-                              <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {Category}
                               </div>
                           </div>
                           <div className=" flex items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                {/* Deals */}
 
-                              <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unitOfShare}
                               </div>
                           </div>
                           <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                              {/* # Deals */}
 
-                              <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.valueOfShare}
                               </div>
                           </div>
@@ -979,7 +936,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   <div class="flex flex-col max-sm:justify-evenly max-sm:w-wk items-center">
                               <div>
                               {item.companyName ? (
-                              <Tooltip title="Qualify? Pitch will move to Investor section!">
+                              <Tooltip title= {translatedMenuItems[15]} >
                   <ConnectWithoutContactIcon
                     onClick={() => {
                       handleRowData(item);
@@ -990,7 +947,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   />
                 </Tooltip>
                   ) : (
-                    <Tooltip title="Company name is required to enable qualification action">
+                    <Tooltip title= {translatedMenuItems[16]} >
                       <ConnectWithoutContactIcon
                         className="!text-icon cursor-not-allowed text-gray-400"
                       />
@@ -1002,7 +959,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
 <div class="flex justify-between items-center max-sm:w-[50%] ">                                              
              <div >
-                        <Tooltip title="Notes">
+                        <Tooltip title= {translatedMenuItems[17]} >
                         <NoteAltIcon
                     onClick={() => {
                       props.handlePitchNotesDrawerModal(true);
@@ -1012,30 +969,17 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   />
               </Tooltip>
       </div>
-      <div>
-            <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleAddresspitchModal(true);
-            handleRowData(item);
-          }}
-          
-        />   
-            </div>
+    
       <div>
                   <Tooltip
-                    title={
-                      <FormattedMessage id="app.activity" defaultMessage="Activity" />
-                    }
+                    title= {translatedMenuItems[18]} 
                   >
-                  <AddchartIcon
-                  className="!text-icon cursor-pointer text-blue-500"
-
-                  onClick={()=>{
-                  props.handleAssimodal(true)
-                  handleRowData(item)
-                  }}
-                  />
+                  <i class="fab fa-connectdevelop text-[#8332ac] !text-icon cursor-pointer"
+                                   onClick={()=>{
+                    props.handleAssimodal(true)
+                    handleRowData(item)
+                    }}
+                  ></i>
                   </Tooltip>
        </div>
       <div>
@@ -1060,7 +1004,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
      
       {user.imInd === true  &&  user.pitchUpdateInd === true && (  
                           <div>
-      <Tooltip title="Edit">
+      <Tooltip title= {translatedMenuItems[19]} >
         <BorderColorIcon
           className="!text-icon cursor-pointer text-[tomato]"
           onClick={() => {
@@ -1077,9 +1021,9 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   <div>
 
                   <StyledPopconfirm
-      title="Do you want to delete?"
+      title={translatedMenuItems[20]} 
       onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
-    > <Tooltip title="Delete">
+    > <Tooltip title= {translatedMenuItems[21]} >
        {user.imInd === true  &&  user.plantDeleteInd === true && ( 
       <DeleteOutlined
         type="delete"
@@ -1139,10 +1083,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         {translatedMenuItems[8]}  
           {/* Assigned */}
           </div>
-        <div className="font-bold font-poppins text-xs w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[9]}  
-          {/* owner */}
-                </div>
+       
         <div className="font-bold font-poppins text-xs w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[10]} 
         {/* qualify */}
@@ -1194,10 +1135,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 type="Hot"
 iconType="fas fa-mug-hot"
 // tooltip="Hot"
-tooltip={<FormattedMessage
-id="app.hot"
-defaultMessage="Hot"
-/>}
+tooltip= {translatedMenuItems[11]} 
 role={item.type}
 onClick={() =>{
 const typ="Hot"
@@ -1211,10 +1149,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 type="Warm"
 iconType="	fas fa-burn"
 // tooltip="Warm"
-tooltip={<FormattedMessage
-id="app.warm"
-defaultMessage="Warm"
-/>}
+tooltip= {translatedMenuItems[12]} 
 role={item.type}
 onClick={() =>{
 const typ="Warm"
@@ -1228,10 +1163,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 type="Cold"
 iconType="far fa-snowflake"
 // tooltip="Cold"
-tooltip={<FormattedMessage
-id="app.cold"
-defaultMessage="Cold"
-/>}
+tooltip= {translatedMenuItems[13]}
+ 
 role={item.type}
 onClick={() => {
 const typ="Cold"
@@ -1244,7 +1177,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>  
 
 
-                          <div className=" flex font-medium  w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                          <div className=" flex   w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
 <div>
 
@@ -1258,7 +1191,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>
                              <div >
                              </div>
-                                  <div class="max-sm:w-full" >
+                                  <div class="max-sm:w-full ml-1" >
                                   <Tooltip>
                                     <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">                           
                                       {/* Name   */}
@@ -1272,7 +1205,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                          &nbsp;&nbsp;
                                          {date === currentdate ? (
                                            <span class="text-[tomato]  text-[0.65rem ]mt-[0.4rem] font-bold" >
-                                             New
+                                             {translatedMenuItems[14]}  {/* New */}
                                            </span>
                                          ) : null}          
                                                       </div>
@@ -1315,35 +1248,35 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>
 
                  </div>
-                 <div className=" flex font-medium   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex    w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                   {/* Company */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "None"}
 </div>
 
                  </div>
-                 <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                 <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             {/* # Deals */}
 
-                              <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {Category}
                               </div>
                           </div>
-                          <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                              {/* # Deals */}
 
-                              <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unitOfShare}
                               </div>
                           </div>
-                          <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                               {/* # Deals */}
 
-                              <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.valueOfShare}
                               </div>
                           </div>
-                 <div className=" flex font-medium  w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex   w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                              {/* Assigned */}
 
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -1371,24 +1304,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
        
                               </div>
                           </div>
-                          <div className=" flex   w-[2.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {/* owner */}
-                 <span>
-                 <Tooltip title={item.ownerName}>
-          <div class="max-sm:flex justify-end">
-          <Tooltip title={item.ownerName}>
-        <MultiAvatar
-          primaryTitle={item.ownerName}
-          imageId={item.ownerImageId}
-          imgWidth={"1.8rem"}
-          imgHeight={"1.8rem"}
-        />
-      </Tooltip>
-      </div>
-    </Tooltip>
-      </span>
-             </div>
-                          </div>            
+                         </div>            
                           <div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
               {item.url !== null ? (
         <Tooltip title={item.url}>
@@ -1409,7 +1325,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   </div>                
                   <div>
                               {item.companyName ? (
-                              <Tooltip title="Qualify? Pitch will move to Investor section!">
+                              <Tooltip title= {translatedMenuItems[15]} >
                   <ConnectWithoutContactIcon
                     onClick={() => {
                       handleRowData(item);
@@ -1420,7 +1336,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   />
                 </Tooltip>
                   ) : (
-                    <Tooltip title="Company name is required to enable qualification action">
+                    <Tooltip title= {translatedMenuItems[16]} >
                       <ConnectWithoutContactIcon
                         className="!text-icon cursor-not-allowed text-gray-400"
                       />
@@ -1430,7 +1346,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
 <div class="flex justify-between items-center max-sm:w-[50%] ">
                    <div >
-                              <Tooltip title="Notes">
+                              <Tooltip title= {translatedMenuItems[17]} >
                         <NoteAltIcon
                           onClick={() => {
                             props.handlePitchNotesDrawerModal(true);
@@ -1440,29 +1356,17 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         />
                     </Tooltip>
                     </div>
-                    <div>
-            <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleAddresspitchModal(true);
-            handleRowData(item);
-          }}
-          
-        />   
-            </div>
+                    
       <div>
                 <Tooltip
-                  title={
-                    <FormattedMessage id="app.activity" defaultMessage="Activity" />
-                  }
+                  title= {translatedMenuItems[18]} 
                 >
-                <AddchartIcon
-                className="!text-icon cursor-pointer text-blue-500"
-                onClick={()=>{
-                props.handleAssimodal(true)
-                handleRowData(item)
-                }}
-                />
+               <i class="fab fa-connectdevelop text-[#8332ac] !text-icon cursor-pointer"
+                                   onClick={()=>{
+                    props.handleAssimodal(true)
+                    handleRowData(item)
+                    }}
+                  ></i>
                 </Tooltip>
       </div>
          <div>
@@ -1485,7 +1389,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       </Tooltip> </div>   
       {user.imInd === true  &&  user.pitchUpdateInd === true && (  
                           <div>
-      <Tooltip title="Edit">
+      <Tooltip title= {translatedMenuItems[19]} >
         <BorderColorIcon
           className="!text-icon cursor-pointer text-[tomato]"
           onClick={() => {
@@ -1499,9 +1403,9 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           )}                        
                   <div>
                   <StyledPopconfirm
-      title="Do you want to delete?"
+      title= {translatedMenuItems[20]} 
       onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
-    > <Tooltip title="Delete">
+    > <Tooltip title= {translatedMenuItems[21]} >
        {user.imInd === true  &&  user.plantDeleteInd === true && ( 
       <DeleteOutlined
         type="delete"

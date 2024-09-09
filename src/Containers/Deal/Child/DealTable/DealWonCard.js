@@ -56,8 +56,12 @@ function DealWonCard(props) {
           "176",//3 Start Date
           "1159",//4 Values
           "219",//5 Stages
-          "220",//6 Sales Rep
+          "76",//6 Assigned
           "77",//7 Owner
+          "232", // Click to Open
+          "316", // Notes
+          "170", // "Edit"
+          "1259",// "Do you want to delete?"
             
         ];
 
@@ -145,7 +149,7 @@ function DealWonCard(props) {
                 </div> 
         <div className="font-bold font-poppins text-xs w-[8.1rem] max-xl:w-[7.1rem] max-xl:text-xs] max-lg:text-[0.45rem]">
         {translatedMenuItems[6]}
-        {/* salesRep" */}      
+        {/* Assigned" */}      
                 </div>
         <div className="font-bold font-poppins text-xs w-[5.22rem] max-xl:w-[5.21rem] max-xl:text-xs] max-lg:text-[0.45rem]">
         {translatedMenuItems[7]} 
@@ -175,7 +179,7 @@ function DealWonCard(props) {
                  return (
                     <div>
                     <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium  w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.1rem] max-sm:flex-row max-sm:w-auto  items-center">
@@ -194,7 +198,7 @@ function DealWonCard(props) {
                                         <div class=" flex max-sm:w-full  flex-row md:flex-col">                                   
                                            {/* Name */}                                   
                                          <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
-                                        <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-sm cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
+                                        <Link class="overflow-ellipsis whitespace-nowrap text-xs  text-[#042E8A] max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-sm cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>                          
                       &nbsp;&nbsp;       
@@ -266,7 +270,7 @@ function DealWonCard(props) {
             >
               <Tooltip title={item.stageName}>
                 {" "}
-                <Progress class="cursor-pointer text-red text-lg"
+                <Progress className="cursor-pointer text-red text-lg"
                   type="circle"              
                   percent={findProbability}
                   width={30}
@@ -307,7 +311,7 @@ function DealWonCard(props) {
                    <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                    
                     <div>
-                    <Tooltip title='Click to Open'><span
+                    <Tooltip title= {translatedMenuItems[8]}><span
           onClick={() => {
            props.LinkClosedOpportunity(
              item.opportunityId,
@@ -317,23 +321,14 @@ function DealWonCard(props) {
            );         
          }}                
          >
-          <LockIcon className="!text-icon"
-                style={{
-                  cursor: "pointer",
-                }}
-              />
+          <LockIcon className="!text-icon cursor-pointer" />
             </span>
      </Tooltip> 
                     </div>
                     <div>
                     <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.notes"
-                            defaultMessage="Notes"
-                          />
-                        }
+                        title= {translatedMenuItems[9]}
                       >
                         <span
                           onClick={() => {
@@ -350,13 +345,7 @@ function DealWonCard(props) {
                       <div>
                          <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.edit"
-                            defaultMessage="Edit"
-                          />
-                        }
-                      >
+                        title= {translatedMenuItems[10]} >
                         {user.imInd === true && user.dealUpdateInd === true && (
                           <span class="cursor-pointer text-[blue]"
                             onClick={() => {
@@ -373,7 +362,7 @@ function DealWonCard(props) {
                       </div>                                  
                       <div>
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title= {translatedMenuItems[11]}
                         onConfirm={() =>
                           deleteOpportunityData(item.opportunityId)
                         }
@@ -388,25 +377,14 @@ function DealWonCard(props) {
                           </StyledPopconfirm>
                       </div>                                                                
                    <div>
-                   <span       
-         style={{ cursor: "pointer" }}
+                   <span class=" cursor-default"     
+         
          onClick={() => {
-            //  props.getAllRecruitmentByOppId(item.opportunityId);
-            //  props.getAllRecruitmentPositionByOppId(item.opportunityId);
-            //  props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
-            //  props.getAllRecruitmentPositionFilledByOppId(
-            //    item.opportunityId
-            //  );
-            //  props.getAllRecruitmentDetailsByOppId(item.opportunityId);
-            //  props.handleOpportunityDrawerModal(true);
-            //  props.getOpportunitySKill(item.oppInnitiative);
-            //  handleSetCurrentOpportunityId(item.opportunityName);
+            
            }}
          >
            {user.pulseAccessInd === true && (
-             <MonitorHeartIcon className="!text-icon"
-               style={{ color: "#df9697" }}
-             />
+             <MonitorHeartIcon className="!text-icon text-[#df9697]" />
            )}
          </span>
                  </div>

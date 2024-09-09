@@ -36,9 +36,10 @@ const DealsTeamCardList = (props) => {
           "176",//3 Start Date
           "1159",//4 Values
           "219",//5 Stages
-          "220",//6 Sales Rep
+          "76",//6 Assigned
           "77",//7 Owner
           "9",//8 Action
+         "100" // New
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -223,7 +224,7 @@ const DealsTeamCardList = (props) => {
                                 {date === currentdate ? (
                                   <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold"
                                   >
-                                    New
+                                   {translatedMenuItems[9]}  {/* New */}
                                   </span>
                                 ) : null}
                               </div>

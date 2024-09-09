@@ -85,9 +85,16 @@ function DealCardList(props) {
           "176",//3 Start Date
           "1159",//4 Values
           "219",//5 Stages
-          "220",//6 Sales Rep
+          "76",//6 Assigned
           "77",//7 Owner
           "9",//8 Action
+         "494", // Lost
+         "493", // Won
+          "1445",// Tag Investor
+          "316",// "Notes"
+        "170",  // "Edit"
+         "1259", // Do you want to delete?
+         "84" // delete
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -173,10 +180,10 @@ function DealCardList(props) {
                   <div class=" flex  basis-[100%] overflow-hidden"
                   >
                     <div 
-                      class="font-semibold text-[#337df4] cursor-pointer text-sm ">
-         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
+                      class="font-semibold text-[#337df4] cursor-pointer text-xs ">
+         {/* <Link class="overflow-ellipsis whitespace-nowrap  text-xs text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}> */}
       {item.opportunityName}
-    </Link>
+    {/* </Link> */}
                   
                     </div>
                   </div>
@@ -190,7 +197,7 @@ function DealCardList(props) {
                     )}
                   </div>
                   <div>
-                    <div class="font-medium text-xs ml-1 ">
+                    <div class=" text-xs ml-1 ">
                                                   
                       {<CurrencySymbol currencyType={item.currency} />}
                       &nbsp;{item.proposalAmount || ""}
@@ -283,13 +290,8 @@ function DealCardList(props) {
                       {item.approveInd && item.opportunityOwner ? (
                         <>
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.Own"
-                                defaultMessage="Own"
-                              />
-                            }
-                          >
+                            title=
+                            {translatedMenuItems[10]} >
                             <CheckCircleTwoTone
                               type="check-circle"
                               theme="twoTone"
@@ -300,7 +302,7 @@ function DealCardList(props) {
                         </>
                       ) : item.rejectInd && item.opportunityOwner ? (
                         <>
-                          <Tooltip title={"Lost"}>
+                          <Tooltip title= {translatedMenuItems[9]}>
                             {" "}
                             <StopTwoTone
                               type="stop"
@@ -316,12 +318,7 @@ function DealCardList(props) {
                       ) : (
                         <>
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.Own"
-                                defaultMessage="Won"
-                              />
-                            }
+                            title= {translatedMenuItems[10]}
                           >
                             <CheckCircleTwoTone
                                className="!text-icon text-[#24D8A7] cursor-pointer"
@@ -336,13 +333,7 @@ function DealCardList(props) {
                           </Tooltip>
                         
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.drop"
-                                defaultMessage="Lost"
-                              />
-                            }
-                          >
+                            title= {translatedMenuItems[9]}>
                             <StopTwoTone
                             className="!text-icon text-[red] cursor-pointer ml-2"
                               type="stop"
@@ -362,12 +353,7 @@ function DealCardList(props) {
                     <div>
                     <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.contact"
-                            defaultMessage="Tag Investor"
-                          />
-                        }
+                        title= {translatedMenuItems[11]}
                       >
                         <span
                           onClick={() => {
@@ -382,12 +368,7 @@ function DealCardList(props) {
                       </Tooltip>
                       <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.notes"
-                            defaultMessage="Notes"
-                          />
-                        }
+                        title= {translatedMenuItems[12]}
                       >
                         <span
                           onClick={() => {
@@ -402,12 +383,7 @@ function DealCardList(props) {
                       </Tooltip>
                       <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.edit"
-                            defaultMessage="Edit"
-                          />
-                        }
+                        title= {translatedMenuItems[13]}
                       >
                         {user.imInd === true && user.dealUpdateInd === true && (
                           <span class="cursor-pointer text-[blue]"
@@ -423,12 +399,12 @@ function DealCardList(props) {
                         )}
                       </Tooltip>
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title= {translatedMenuItems[14]}
                         onConfirm={() =>
                           deleteDealsData(item.invOpportunityId,props.userId)
                         }
                       >
-                         <Tooltip title="Delete">
+                         <Tooltip title={translatedMenuItems[15]}>
                         {user.imInd === true && user.dealDeleteInd === true && (
                           <DeleteOutlined
                             type="delete"
