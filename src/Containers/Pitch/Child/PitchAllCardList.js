@@ -50,8 +50,19 @@ const PitchAllCardList = (props) => {
           "279",//3 source
           "278",//4 sector
             "76",//5 Assigned
-            "77",//6 Owner
-            "1114",//7  Qualify        
+          
+            "1114",//6 Qualify       
+            "271" , // 7 Hot
+            "272",  // 8 Warm
+            "273",  //9 Cold"
+            "100", //10  New
+          "1453", //  11"Qualify? Pitch will move to Investor section!
+          "1454", // 12 Company name is required to enable qualification action
+          "316",// 13 Notes
+          "1165", // 14 Activity
+          "170", // 15 Edit
+          "1259",  // 16 Do you want to delete?
+          "84" 
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -141,12 +152,9 @@ serachedPitchData={props.serachedPitchData}
           {/* Assigned */}
         {translatedMenuItems[5]}
         </div>
-        <div className="font-bold font-poppins text-xs w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[6]}
-        {/* owner */}
-                </div>
+       
         <div className="font-bold font-poppins text-xs w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
-        {translatedMenuItems[7]}
+        {translatedMenuItems[6]}
         {/* qualify */}
                 </div>
       </div>
@@ -205,7 +213,7 @@ serachedPitchData={props.serachedPitchData}
 
                              </div>
 
-                                  <div class="max-sm:w-full" >
+                                  <div class="max-sm:w-full ml-1" >
                                   <Tooltip>
                                     <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">                                    
                                       {/* Name */}
@@ -222,7 +230,7 @@ serachedPitchData={props.serachedPitchData}
                                          &nbsp;&nbsp;
                                          {date === currentdate ? (
                                            <span class="text-[tomato] mt-[0.4rem] font-bold" >
-                                             New
+                                           {translatedMenuItems[10]}  {/* New */}
                                            </span>
                                          ) : null}
                                         
@@ -239,10 +247,7 @@ serachedPitchData={props.serachedPitchData}
 type="Hot"
 iconType="fas fa-mug-hot"
 // tooltip="Hot"
-tooltip={<FormattedMessage
-id="app.hot"
-defaultMessage="Hot"
-/>}
+tooltip={translatedMenuItems[7]}
 role={item.type}
 onClick={() =>{
 const typ="Hot"
@@ -256,10 +261,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 type="Warm"
 iconType="	fas fa-burn"
 // tooltip="Warm"
-tooltip={<FormattedMessage
-id="app.warm"
-defaultMessage="Warm"
-/>}
+tooltip={translatedMenuItems[8]}
 role={item.type}
 onClick={() =>{
 const typ="Warm"
@@ -273,10 +275,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 type="Cold"
 iconType="far fa-snowflake"
 // tooltip="Cold"
-tooltip={<FormattedMessage
-id="app.cold"
-defaultMessage="Cold"
-/>}
+tooltip={translatedMenuItems[9]}
 role={item.type}
 onClick={() => {
 const typ="Cold"
@@ -348,27 +347,40 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
        
                               </div>
                           </div>
-                          <div className=" flex  w-[3.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {/* Owner */}
-                 <span>
-                 <Tooltip title={item.ownerName}>
-          <div class="max-sm:flex justify-end">
-          <Tooltip title={item.ownerName}>
-        <MultiAvatar
-          primaryTitle={item.ownerName}
-          imageId={item.ownerImageId}
-          imgWidth={"1.9rem"}
-          imgHeight={"1.9rem"}
-        />
-      </Tooltip>
-      </div>
-    </Tooltip>
-      </span>
-             </div>
+                          
                           </div>                                                                     
 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
 <div class="flex justify-between items-center max-sm:w-[50%] ">                       
-             <div class="rounded-full bg-white  h-5 cursor-pointer w-8 max-xl:w-[1.5rem]">
+            
+             <div className=" flex  w-12 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                            {/* Qualify */}                 
+                             
+                              <div>
+                              {item.companyName ? (
+                              <Tooltip title={translatedMenuItems[11]}>
+                  <ConnectWithoutContactIcon
+                    onClick={() => {
+                      handleRowData(item);
+                      props.handlePitchConvertModal(true);
+                   
+                    }}
+                    className="!text-icon cursor-pointer text-[blue]"
+                  />
+                </Tooltip>
+                  ) : (
+                    <Tooltip title={translatedMenuItems[12]}>
+                      <ConnectWithoutContactIcon
+                        className="!text-icon cursor-not-allowed text-gray-400"
+                      />
+                    </Tooltip>
+                  )}
+{/* <StatusPitchToggle
+      type={props.convertInd ? "primary" : "danger"}
+      investorLeadsId={item.investorLeadsId}
+      convertInd={item.convertInd}
+    /> */}
+</div>
+<div class="rounded-full bg-white  h-5 cursor-pointer w-8 max-xl:w-[1.5rem]">
               {item.url !== null ? (
         <Tooltip title={item.url}>
           <span className=" cursor-pointer"
@@ -384,42 +396,13 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         </Tooltip>
       ) : null}
                   </div>  
-             <div className=" flex  w-12 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                            {/* Qualify */}                 
-                              <div class=" text-xs  font-poppins">                    
-                              </div>
-                              <div>
-                              {item.companyName ? (
-                              <Tooltip title="Qualify? Pitch will move to Investor section!">
-                  <ConnectWithoutContactIcon
-                    onClick={() => {
-                      handleRowData(item);
-                      props.handlePitchConvertModal(true);
-                   
-                    }}
-                    className="!text-icon cursor-pointer text-[blue]"
-                  />
-                </Tooltip>
-                  ) : (
-                    <Tooltip title="Company name is required to enable qualification action">
-                      <ConnectWithoutContactIcon
-                        className="!text-icon cursor-not-allowed text-gray-400"
-                      />
-                    </Tooltip>
-                  )}
-{/* <StatusPitchToggle
-      type={props.convertInd ? "primary" : "danger"}
-      investorLeadsId={item.investorLeadsId}
-      convertInd={item.convertInd}
-    /> */}
-</div>
 </div>
                           </div>
                           </div>
                           <div class="flex max-sm:justify-evenly max-sm:w-wk ">
                           <div class="flex max-sm:flex-row  justify-evenly md:w-20 max-sm:w-[25%] ">
                                                 <div >
-                                    <Tooltip title="Notes">
+                                    <Tooltip title={translatedMenuItems[13]}>
                       <NoteAltIcon
                                 onClick={() => {
                                   props.handlePitchNotesDrawerModal(true);
@@ -429,21 +412,10 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                               />
                           </Tooltip>
                             </div>
-                            <div>
-            <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleAddresspitchModal(true);
-            handleRowData(item);
-          }}
-          
-        />   
-            </div>
+                           
                             <div>
                                 <Tooltip
-                                  title={
-                                    <FormattedMessage id="app.activity" defaultMessage="Activity" />
-                                  }
+                                  title={translatedMenuItems[14]}
                                 >
                                 <AddchartIcon
                                 className="!text-icon cursor-pointer text-blue-500"
@@ -474,7 +446,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                             </Tooltip> </div>
                             {user.imInd === true  &&  user.pitchUpdateInd === true && (  
                                                 <div>
-                            <Tooltip title="Edit">
+                            <Tooltip title={translatedMenuItems[15]}>
                               <BorderColorIcon
                                 className="!text-icon cursor-pointer text-[tomato]"
                                 onClick={() => {
@@ -488,9 +460,9 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                                 )}                                             
                                         <div>
                                         <StyledPopconfirm
-                            title="Do you want to delete?"
+                            title={translatedMenuItems[16]}
                             onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
-                          > <Tooltip title="Delete">
+                          > <Tooltip title={translatedMenuItems[17]}>
                             {user.imInd === true  &&  user.plantDeleteInd === true && ( 
                             <DeleteOutlined
                               type="delete"

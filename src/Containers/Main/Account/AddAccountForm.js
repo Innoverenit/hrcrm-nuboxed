@@ -31,6 +31,7 @@ const CustomerSchema = Yup.object().shape({
   url: Yup.string().required("Input needed!"),
   // phoneNo: Yup.string().matches(phoneRegExp, 'Phone number is not valid').min(8, "Minimum 8 digits").max(10, "Number is too long")
 });
+function AddAccountForm (props) {
 
 const AddAccountForm = ({
   userId,
@@ -60,40 +61,44 @@ const AddAccountForm = ({
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   const fetchMenuTranslations = async () => {
-  //     try {
-  //       setLoading(true); 
-  //       const itemsToTranslate = [
-  //        " Name",
-  //                   "Dial Code",
-  //                   "Phone",
-  //                   "Website",
-  //                   "Country",
-  //                   "Tax Registration",
-  //                   "Insurancegrade",
-  //                   "Type",
-  //                   "Creditlimit",
-  //                   "Currency",
-  //                   "Payment Term Days",
-  //                   "Category",
-  //                   "Custom Payment",
-  //                   "Assigned",
-  //                   "Description",
-  //                      "Create"
-  //     ];
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+                "110",    // " Name",1
+                "357",   // "Dial Code",2
+                "102",   // "Phone",3
+                "700",    // "Website",4
+                    "1109",    // "Country",5
+                    "702",  // "Tax Registration",6
+                    "703",// "Insurancegrade",7
+                    "71",   // "Type",8
+                    "705",   // "Creditlimit",9
+                    "241",   // "Currency",10
+                    "707",// "Payment Term Days",11
+                    "14",  // "Category",12
+                    "",  // "Custom Payment",13
+                    "76",  // "Assigned",14
+                    "147",  // "Description",`15
+                    "104",  //    "Create"16
+                   "158" ,// Start17
+                   "5" ,// "Stop  18
+                   "194", // "Clear19
+                   
+      ];
 
-  //       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-  //       setTranslatedMenuItems(translations);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       setLoading(false);
-  //       console.error('Error translating menu items:', error);
-  //     }
-  //   };
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
 
-  //   fetchMenuTranslations();
-  // }, [props.selectedLanguage]);
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     getCountry();
@@ -704,7 +709,7 @@ const AddAccountForm = ({
     </>
   );
 };
-
+}
 const mapStateToProps = ({ auth, countrys, leads,employee, catgCustomer, distributor, rule, groups, category }) => ({
   userId: auth.userDetails.userId,
   groupId: auth.userDetails.groupId,
