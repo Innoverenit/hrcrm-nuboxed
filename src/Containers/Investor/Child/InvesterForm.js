@@ -351,7 +351,7 @@ function InvesterForm(props) {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem] " style={{scrollbarWidth:"thin"}}>
             <Form className="form-background">
             <div class=" flex justify-between max-sm:flex-col">
                 <div class=" h-full w-w47.5 max-sm:w-wk"   >
@@ -546,7 +546,7 @@ function InvesterForm(props) {
                              
                           />
                     </div>
-                    <div class=" flex flex-col items-center  mt-4">
+                    <div class=" flex flex-col items-center ">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[6]} 
                     {/* Category */}
@@ -561,7 +561,7 @@ function InvesterForm(props) {
                   </div>
                     </div> 
                  <div class="flex justify-between">
-                 <div class=" flex flex-col items-center  mt-4">
+                 <div class=" flex flex-col items-center  mt-2">
                     <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[7]} 
                       {/* UBO */}
@@ -574,7 +574,7 @@ function InvesterForm(props) {
                       unCheckedChildren="No"
                     />
                   </div>
-                  <div class=" flex flex-col items-center  mt-4">
+                  <div class=" flex flex-col items-center  mt-2">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[8]} 
                     {/* Identification */}
@@ -590,7 +590,7 @@ function InvesterForm(props) {
                   
                  </div>
                  
-                  <div class=" flex flex-col   mt-4">
+                  <div class=" flex flex-col   mt-2">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                                         Inofocit
                       </div>
@@ -602,7 +602,7 @@ function InvesterForm(props) {
                       unCheckedChildren="No"
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk font-bold font-poppins text-xs">
+                  <div class=" w-w47.5 max-sm:w-wk font-bold font-poppins text-xs mt-2">
                   {translatedMenuItems[9]}  
                   {/* Date */}
                     <Field
@@ -613,47 +613,7 @@ function InvesterForm(props) {
                       inlineLabel
                     />
                   </div>
-                  <div class="mt-3">
-                    <div>
-                 <span class="font-bold font-poppins text-xs ">{translatedMenuItems[10]} </span> 
-                  {/* description */}           
-                  <span>
-                    <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span >                      
-                        
-                          <StopCircleIcon  className="!text-icon ml-1 text-green-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span  >
-                          <RotateRightIcon className="!text-icon ml-1"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </span>
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div>           
-                </div>
-                  </div>
+                 
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
                 >
@@ -790,6 +750,47 @@ function InvesterForm(props) {
                     )}
                   />
               </div>
+              <div class="mt-3">
+                    <div>
+                 <span class="font-bold font-poppins text-xs ">{translatedMenuItems[10]} </span> 
+                  {/* description */}           
+                  <span>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span >                      
+                        
+                          <StopCircleIcon  className="!text-icon ml-1 text-green-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span  >
+                          <RotateRightIcon className="!text-icon ml-1"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </span>
+                  <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>           
+                </div>
+                  </div>
                 </div>
               </div>
            
