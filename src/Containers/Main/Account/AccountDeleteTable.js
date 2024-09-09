@@ -119,7 +119,7 @@ function AccountDeleteTable(props) {
         
 
         <div class=" text-xs  font-semibold  font-poppins">
-        {item.address[0].address1 || ""} {item.address[0].address2 || ""} {item.address[0].street || ""}  {item.address[0].city || ""}  
+        {/* {item.address[0].address1 || ""} {item.address[0].address2 || ""} {item.address[0].street || ""}  {item.address[0].city || ""}   */}
                     </div>
     </div>
     
@@ -127,12 +127,12 @@ function AccountDeleteTable(props) {
 
 
         <div class=" text-xs  font-semibold  font-poppins">
-        {item.address[0].city || ""}
+        {/* {item.address[0].city || ""} */}
              </div>
     </div>
     <div className=" flex  md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
         <div class=" text-xs  font-semibold  font-poppins">
-        {item.address[0].pinCode || ""}
+        {/* {item.address[0].pinCode || ""} */}
              </div>
     </div>
     

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-
 import { connect } from "react-redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -9,7 +8,6 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
-
 import {getProspectTableData} from "../../../Dashboard/DashboardAction";
 import { Tooltip ,Popconfirm,Button} from "antd";
 import dayjs from "dayjs";
@@ -19,15 +17,9 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-//import { BundleLoader } from "../../Components/Placeholder";
 
-function ProspectTableData (props) {
-    // useEffect(()=>{
-    //  props.getProspectTableData(props.selectedCountry)
-    // }, []);
+function InvestorJumpstartDrawerCard (props) {
 
-    
-  const{user}=props
     return (
       <>
        <div className=' flex justify-end sticky z-auto'>
@@ -118,7 +110,7 @@ function ProspectTableData (props) {
             height={"75vh"}
           > */}
 
-            { props.modalData.map((item, index) => {
+            {props.modalData.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
               const countryCode = item.address[0].countryAlpha2Code
@@ -313,7 +305,7 @@ function ProspectTableData (props) {
                           okText="Yes"
                           cancelText="No"
                         >
-                          {user.erpInd === true && (
+                          {props.user.erpInd === true && (
                             <Button type="primary"
                               style={{ width: "8rem" }}>
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
@@ -363,7 +355,7 @@ function ProspectTableData (props) {
                             // }}
                           >
                             {" "}
-                            {user.pulseAccessInd === true && <MonitorHeartIcon
+                            {props.user.pulseAccessInd === true && <MonitorHeartIcon
                               className=" !text-xl cursor-pointer text-[#df9697]"
                             />}
                           </div>
@@ -443,30 +435,16 @@ function ProspectTableData (props) {
                           </Tooltip>
                         </div>
                         <div>
-                          {props.user.customerUpdateInd === true && user.crmInd === true && (
+                       
                             <Tooltip title="Edit">
                               <BorderColorIcon
                                 className=" !text-xl cursor-pointer text-[tomato]"
 
-                                // onClick={() => {
-                                //   props.setEditCustomer(item);
-                                //   handleUpdateCustomerModal(true);
-                                //   handleSetCurrentCustomerId(item.customerId);
-
-                                // }}
+                  
                               />
                             </Tooltip>
-                          )}
-                          {/* <Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                style={{ cursor: "pointer",fontSize: "1rem" }}
-                onClick={() => {
-                  props.getCustomerById(item.customerId);
-                  props.handleCustomerEmailDrawerModal(true);
-                }}
-              />
-            </Tooltip> */}
+                        
+
                         </div>
                       </div>
 
@@ -477,7 +455,7 @@ function ProspectTableData (props) {
 
               )
             })}
-          {/* </InfiniteScroll> */}
+
         </div>
       </div>
       </>
@@ -485,12 +463,8 @@ function ProspectTableData (props) {
   }
   const mapStateToProps = ({dashboard,auth }) => ({
     fetchingProspectTableData:dashboard.fetchingProspectTableData,
-    // userId: auth.userDetails.userId,
-    // fetchingLeadsQualified:dashboard.fetchingLeadsQualified,
-    // timeRangeType:dashboard.timeRangeType,
     user: auth.userDetails,
     prospectTableData: dashboard.prospectTableData,
-    // endDate: dashboard.endDate,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -501,4 +475,4 @@ bindActionCreators(
   dispatch
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProspectTableData);
+export default connect(mapStateToProps, mapDispatchToProps)(InvestorJumpstartDrawerCard);

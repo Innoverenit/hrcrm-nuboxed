@@ -261,11 +261,6 @@ const initialState = {
   fetchingRepairDashboardOrderAddedError:false,
   repairDashboardOrderAdded:[],
 
-
-  prospectQuotationYearModal:false,
-
-  prospectQuotationLifeModal:false,
-
   dateRangeList: [
     {
       id: 1,
@@ -522,8 +517,6 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingSkillsCloudError: true,
       };
 
-      case types.HANDLE_QUOTATION_YEAR_DRAWER:
-        return { ...state, prospectQuotationYearModal: action.payload };
     case types.CHANGE_SELECTED_TIME_INTERVAL_REPORT:
       return {
         ...state,
@@ -701,9 +694,6 @@ export const dashboardReducer = (state = initialState, action) => {
 
         case types.HANDLE_PROSPECT_DRAWER:
           return { ...state, prospectDrawerModal: action.payload };
-
-          case types.HANDLE_QUOTATION_LIFE_DRAWER:
-            return { ...state, prospectQuotationLifeModal: action.payload };
 
     case types.GET_DASHBOARD_CLOSURE_RATIO_REQUEST:
       return { ...state, fetchingdashBoardClosureRatio: true };

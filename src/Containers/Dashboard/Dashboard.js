@@ -11,6 +11,7 @@ const CustomerViewGoogleMap=lazy(()=>import("./CustomerViewGoogleMap"));
 const CustomerAccountGoogleMap=lazy(()=> import("../Dashboard/CustomerAccountGoogleMap"));
 const CustomerDashboardJumpStart=lazy(()=>import("./Child/JumpStart/CustomerDashboardJumpStart"));
 const DashboardProspectJumpstart=lazy(()=>import("./Child/JumpStart/DashboardProspectJumpstart"));
+const DashboardInvestorJumpstart=lazy(()=>import ("./Child/JumpStart/DashboardInvestorJumpstart"));
 const CustomerDashJumpstart=lazy(()=>import("./Child/JumpStart/CustomerDashJumpstart"));
 const  DashOrderJumpstart=lazy(()=>import("./Child/JumpStart/DashOrderJumpstart"));
 const DashOrderFinanceJumpstart=lazy(()=> import("./Child/JumpStart/DashOrderFinanceJumpstart"));
@@ -59,7 +60,7 @@ class Dashboard extends Component {
       activeTab: "Q1",
       loading: false,
       tab: ["Q1", "Q2", "Q3", "Q4"],
-      activeButton: "test",
+      activeButton: "Tasks",
       selectedCountry: "",
       setInfoWindowPosition:null,
       showShareForm: false,
@@ -201,13 +202,22 @@ class Dashboard extends Component {
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}
              />)
+             :this.state.activeButton==="Accounts" ?
+             (<CustomerDashboardJumpStart
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>)
+             : this.state.activeButton==="Finance" ?
+             (<DashboardFinanceJumpstart
+              buttonName={buttonName} 
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
+             />)
              : this.state.activeButton==="Order" &&
              (<DashboardOrderJumpstart
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}
              />) 
-             
-            
+ 
            )
              :
              viewType==="bulb" ? (<DashboardBulbJumpstart
@@ -315,10 +325,10 @@ class Dashboard extends Component {
         selectedLanguage={this.props.selectedLanguage}
         translateText={this.props.translateText}/>)
         // <CustomerLeadsTab/>)
-        :this.state.activeButton==="RecruitPro" ?(
-          <StackedClosureChartAll
-          selectedLanguage={this.props.selectedLanguage}
-          translateText={this.props.translateText}/>)
+        // :this.state.activeButton==="RecruitPro" ?(
+        //   <StackedClosureChartAll
+        //   selectedLanguage={this.props.selectedLanguage}
+        //   translateText={this.props.translateText}/>)
         :this.state.activeButton==="Order" ?(
           <OrdersDashTab
           selectedLanguage={this.props.selectedLanguage}
@@ -361,17 +371,16 @@ class Dashboard extends Component {
     </div>
 
     <div className="flex justify-between">
-  {viewType === "ME" ? (
-    <StackedClosureChartAll 
-    selectedLanguage={this.props.selectedLanguage}
-    translateText={this.props.translateText}/>
-  )
+  {viewType === "ME" && 
+  // (<StackedClosureChartAll 
+  //   selectedLanguage={this.props.selectedLanguage}
+  //   translateText={this.props.translateText}/> )
   //  : this.state.activeButton === "Investors" ? (
   //   // <DashInvestorsChartTab />
   //   <FunnelTab/>
   
   // ) 
-  : this.state.activeButton === "RecruitPro" ? (
+  this.state.activeButton === "RecruitPro" ? (
     <DashboardDetailsTab viewType={viewType}
     selectedLanguage={this.props.selectedLanguage}
     translateText={this.props.translateText}
@@ -593,7 +602,7 @@ class Dashboard extends Component {
              }
                
                 {this.state.activeButton==="Investors"&&
-       <DashboardProspectJumpstart
+       <DashboardInvestorJumpstart
        selectedLanguage={this.props.selectedLanguage}
        translateText={this.props.translateText}/>
              }

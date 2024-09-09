@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddProspectDrawerModal from "../JumpStart/AddProspectDrawerModal"
-import { getJumpFinanceDetail ,getProspectTableData,
-  getQuotationTableData,handleProspectDrawer} from "../../DashboardAction"
-import { JumpStartBox,  } from "../../../../Components/UI/Elements";
+import InvestorJumpstartDrawer from "./InvestorJumpstartDrawer";
+import { getJumpFinanceDetail,
+  getOrderAddedList,
+getOrderOpenList,
+getOrderClosedList,
+getOrderCancelList
+} from "../../DashboardAction"
+import { JumpStartBox } from "../../../../Components/UI/Elements";
+import axios from 'axios';
+import {base_url2} from "../../../../Config/Auth";
 
-function DashboardProspectJumpstart(props) {
+function DashboardInvestorJumpstart(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,6 +22,8 @@ function DashboardProspectJumpstart(props) {
   const [currentOrderType, setCurrentOrderType] = useState("");
 
   const [error, setError] = useState(null);
+ 
+  
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -23,11 +31,10 @@ function DashboardProspectJumpstart(props) {
         setLoading(true); 
         const itemsToTranslate = [
    
-        "1288", //  "Prospects"//0
-         "",   // "Current Quotation",//1
-         "1291", // "Open Quotations",//2
-          "1289",  // "Quotations Life Time",//3 
-        
+        "201", //  "Investors"//0
+         "1458",   // "Current Deals",//1
+          "1459",  // "Open Deals",//2
+           "1460", // "Deals Life Time",//3
          ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -41,48 +48,85 @@ function DashboardProspectJumpstart(props) {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
+
+  const [data1, setData1] = useState({});
+  const [loading1, setLoading1] = useState(false);
+    const fetchData1 = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/FD1`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setData1(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError(error);
+        setLoading1(false);
+      }
+    };
+
+
   const { openPitchQualified, handlePitchQualifiedDrawer, openPitchAdded, handlePitchAddedDrawer,
     openDealAdded, handleDealAddedDrawer, openDealClosed, handleDealClosedDrawer
   } = props;
-
-  useEffect(() => {
-    if (props.prospectTableData) {
-      setModalData(props.prospectTableData);
-    }
-  }, [props.prospectTableData]);
-
-  useEffect(() => {
-    if (props.quotationTableData) {
-      setModalData(props.quotationTableData);
-    }
-  }, [props.quotationTableData]);
-
-  const handleClick = (type) => {
-    setCurrentOrderType(type);
-    setIsModalOpen(true);
-  
-    switch(type) {
-      case 'Prospect':
-        props.getProspectTableData(props.selectedCountry)
-        break;
-      case 'Current Quotation':
-        props.getQuotationTableData(props.selectedCountry);
-        break;
-      case 'Open Quotations':
-        props.getQuotationTableData(props.selectedCountry);
-        break;
-      case 'Quotations Life Time':
-        props.getQuotationTableData(props.selectedCountry);
-        break;
-      default:
-        break;
-    }
-  };
+const orderAddedList=[];
 //   useEffect(() => {
 //     props.getJumpFinanceDetail(props.orgId, props.timeRangeType)
-//   }, [props.timeRangeType])    
+//   }, [props.timeRangeType])
 console.log(props.prospectChart)
 // console.log(props.prospectLifeTime.customerCountByCountry)
+
+useEffect(() => {
+  if (data1) {
+    setModalData(data1);
+  }
+}, [data1]);
+
+useEffect(() => {
+  if (props.orderOpenList) {
+    setModalData(props.orderOpenList);
+  }
+}, [props.orderOpenList]);
+
+useEffect(() => {
+  if (props.orderClosedList) {
+    setModalData(props.orderClosedList);
+  }
+}, [props.orderClosedList]);
+
+useEffect(() => {
+  if (props.orderCancelList) {
+    setModalData(props.orderCancelList);
+  }
+}, [props.orderCancelList]);
+
+
+
+
+const handleClick = (type) => {
+  setCurrentOrderType(type);
+  setIsModalOpen(true);
+
+  switch(type) {
+    case 'Investor':
+      fetchData1();
+      break;
+    case 'Current Deals':
+      props.getOrderOpenList(props.userId,props.endDate,props.startDate);
+      break;
+    case 'Open Deals':
+      props.getOrderClosedList(props.userId,props.endDate,props.startDate);
+      break;
+    case 'Deals Life Time':
+      props.getOrderCancelList(props.userId,props.endDate,props.startDate);
+      break;
+    default:
+      break;
+  }
+};
+
+
   return (
     <>
       <div class=" flex flex-row w-full" >
@@ -99,10 +143,10 @@ console.log(props.prospectChart)
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title={translatedMenuItems[0]}
-            jumpstartClick={()=>handleClick("Prospect")}
+              jumpstartClick={()=> handleClick("Investor")}
             cursorData={"pointer"}
             //  value={props.prospectChart.customerCountByCountry}
-            isLoading={props.fetchingProspectData}
+            // isLoading={props.fetchingProspectData}
             />
                         
                      </div>
@@ -120,18 +164,38 @@ console.log(props.prospectChart)
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
               title={translatedMenuItems[1]}
-              jumpstartClick={()=>handleClick("Current Quotation")}
+              jumpstartClick={()=> handleClick("Current Deals")}
              cursorData={"pointer"}
-            // value={props.openQuotationYear.yearlyOpportunityCountByCountry}
-          isLoading={props.fetchingOpenQuotationYear}
+            //value={props.openQuotationYear.yearlyOpportunityCountByCountry}
+          // isLoading={props.fetchingOpenQuotationYear}
             />
                            </div>
                        </div>
                     
                    </div>  
-           
-
-           
+      
+          
+          <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                               </div>
+                               <JumpStartBox
+   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
+              noProgress
+              title={translatedMenuItems[2]}
+              // value={props.prospectLifeTime.opportunityCountByCountry}
+              jumpstartClick={()=> handleClick("Open Deals")}
+            cursorData={"pointer"}
+            // value={props.financeDetail.opportunityAdded}
+            // isLoading={props.fetchingProspectLifetime}
+            />
+                           </div>
+                       </div>
+                     
+                   </div>  
                    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                       
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
@@ -142,57 +206,32 @@ console.log(props.prospectChart)
                               <JumpStartBox
                          bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
-              title={translatedMenuItems[2]}
+              title={translatedMenuItems[3]}
               // value={props.prospectQuotation.openOpportunityCountByCountry}
-              jumpstartClick={()=>handleClick("Open Quotations")}
+              jumpstartClick={()=> handleClick("Deals Life Time")}
             cursorData={"pointer"}
             // value={ props.financeDetail.closedOpportunity}
-          isLoading={props.fetchingProspectQuotation}
+          // isLoading={props.fetchingProspectQuotation}
             />
                           </div>
                       </div>
                      
                   </div>
-          
-          <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                       
-                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                           <div class="flex flex-row items-center">
-                               <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
-                               </div>
-
-                               <JumpStartBox
-   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-              noProgress
-              title={translatedMenuItems[3]}
-              // value={props.prospectLifeTime.opportunityCountByCountry}
-              jumpstartClick={()=>handleClick("Quotations Life Time")}
-            cursorData={"pointer"}
-            // value={props.financeDetail.opportunityAdded}
-            isLoading={props.fetchingProspectLifetime}
-            />
-      
-                           </div>
-                       </div>
-                     
-                   </div>  
-                 
-                  
+           
           
           
         </div>
       </div>
-<AddProspectDrawerModal
-selectedCountry={props.selectedCountry}
-selectedLanguage={props.selectedLanguage}
-translateText={props.translateText}
-isModalOpen={isModalOpen}
-setIsModalOpen={() => setIsModalOpen(false)}
-modalData={modalData}
-title={currentOrderType}
+
+<InvestorJumpstartDrawer
+ selectedLanguage={props.selectedLanguage}
+ translateText={props.translateText}
+ isModalOpen={isModalOpen}
+ setIsModalOpen={() => setIsModalOpen(false)}
+ modalData={modalData}
+ title={currentOrderType}
 />
- </>
+    </>
 
   );
 }
@@ -212,18 +251,22 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   timeRangeType: dashboard.timeRangeType,
   startDate: dashboard.startDate,
   endDate: dashboard.endDate,
-  prospectTableData: dashboard.prospectTableData,
-  quotationTableData:dashboard.quotationTableData,
-  
+  prospectQuotationLifeModal:dashboard.prospectQuotationLifeModal,
+  prospectQuotationYearModal:dashboard.prospectQuotationYearModal,
+  orderAddedList:dashboard.orderAddedList,
+  orderOpenList:dashboard.orderOpenList,
+  orderClosedList:dashboard.orderClosedList,
+  orderCancelList:dashboard.orderCancelList,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getJumpFinanceDetail,
-      handleProspectDrawer,
-      getProspectTableData,
-      getQuotationTableData,
+      getOrderAddedList,
+      getOrderOpenList,
+      getOrderClosedList,
+      getOrderCancelList
 
     },
     dispatch
@@ -232,4 +275,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashboardProspectJumpstart);
+)(DashboardInvestorJumpstart);

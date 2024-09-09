@@ -234,8 +234,8 @@ const DashboardJumpStart = (props) => {
                                <JumpStartBox
             noProgress
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-            title={<FormattedMessage id="app.avHoursThisMonth" defaultMessage="Average work hours" />}
-            value={`${avgHour.hours} avg hours / day`} 
+            title="Avg hours / day"
+            value={`${avgHour.hours}`} 
             isLoading={fetchingAvgHour}
             
           />

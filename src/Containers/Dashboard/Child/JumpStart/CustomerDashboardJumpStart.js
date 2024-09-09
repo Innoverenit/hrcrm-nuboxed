@@ -110,11 +110,11 @@ render() {
   const formattedDate = dayjs(this.props.dateOfJoining).format('DD-MM-YYYY'); // Format the date as per your requirement
   const { showDatelist, fetchingDatewiseReport } = this.props;
   console.log( this.props.taskperCount)
-   const startDate = `${this.props.startDate.format('DD-MM-YYYY')}T20:00:00Z`
+  //  const startDate = `${this.props.startDate.format('DD-MM-YYYY')}T20:00:00Z`
   //   const endDate = new Date(this.state.endDate);
 
-  console.log(startDate)
-  console.log(this.props.endDate.format('DD-MM-YYYY'))
+  // console.log(startDate)
+  // console.log(this.props.endDate.format('DD-MM-YYYY'));
   return(
     <>
     <div class=" flex flex-row w-full" >

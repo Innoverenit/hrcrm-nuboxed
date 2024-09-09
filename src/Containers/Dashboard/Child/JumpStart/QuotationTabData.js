@@ -31,23 +31,6 @@ function QuotationTabData(props) {
   const [currentItem, setCurrentItem] = useState("");
 
 
-
-
-
-  useEffect(()=>{
-    props.getQuotationTableData(props.selectedCountry)
-   }, []);
-
-   useEffect(() => {
-    // Check if data is available
-    if (props.quotationTableData.length > 0) {
-      // Update activeTab when data is available
-      
-    }
-  }, [props.quotationTableData]);
-
-
-
   const {
     user,
     opportunityByUserId,

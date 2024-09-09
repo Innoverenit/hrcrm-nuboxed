@@ -1,41 +1,44 @@
-import React, { Component,Suspense ,lazy} from "react";
+import React, { Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ProspectTableData from "../JumpStart/ProspectTableData"
-import styled from 'styled-components'
 import { StyledDrawer } from "../../../../Components/UI/Antd";
+import QuotationTabData from "./QuotationTabData";
 
+function AddProspectDrawerModal (props) {
 
-
-
-class AddProspectDrawerModal extends Component {
-  render() {
-   
+   console.log("tttt",props.title)
     return (
       <div>
  <StyledDrawer
           title="Prospect"
           width={"87%"}
           destroyOnClose
-          visible={this.props.prospectDrawerModal}
-      
-        onClose={() => this.props.handleProspectDrawer(false)}
+          visible={props.isModalOpen}
+          onClose={props.setIsModalOpen}
       
         
         >
           <Suspense fallback={<BundleLoader />}>
       
-        
-       <ProspectTableData
-       selectedCountry={this.props.selectedCountry}
-       />
+          {props.title === "Investor" ? (
+            <ProspectTableData
+            selectedCountry={props.selectedCountry}
+            modalData={props.modalData}
+            />  ) : 
+ <QuotationTabData 
+ modalData={props.modalData}
+ selectedCountry={props.selectedCountry}
+/>
+
+}
+      
         </Suspense>
          
         </StyledDrawer>
       </div>
     );
-  }
 }
 const mapStateToProps = ({ profile, auth,employee,candidate }) => ({
     
