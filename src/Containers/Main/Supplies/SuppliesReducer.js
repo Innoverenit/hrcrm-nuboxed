@@ -52,6 +52,10 @@ const initialState = {
     addingMasterList: false,
     addingMasterListError: false,
 
+
+    updatingBrandMaterial:false,
+    updatingBrandMaterialError:false,
+
     fetchingPurchaseList: false,
     fetchingPurchaseListError: false,
     purchaseList: [],
@@ -1082,6 +1086,29 @@ export const suppliesReducer = (state = initialState, action) => {
         addingSuppliesBrandError: true,
         // addConfigureModal: false,
       };
+
+
+
+
+      case types.UPDATE_BRAND_MATERIAL_REQUEST:
+        return { ...state, updatingBrandMaterial: true };
+      case types.UPDATE_BRAND_MATERIAL_SUCCESS:
+        // return { ...state, updatingDocuments: false, Documents: [...state.Documents, action.payload] };
+        return {
+          ...state,
+          updatingBrandMaterial: false,
+          brandSupplies: state.brandSupplies.map((document) =>
+            document.brand === action.payload.brand
+              ? action.payload
+              : document
+          ),
+        };
+      case types.UPDATE_BRAND_MATERIAL_FAILURE:
+        return {
+          ...state,
+          updatingBrandMaterial: false,
+          updatingBrandMaterialError: true,
+        };
 
 
   

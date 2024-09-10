@@ -17,6 +17,7 @@ function RepairTaskList(props) {
     }, []);
 
     const [task, setTask] = useState("")
+    const [selectedLevel, setSelectedLevel] = useState(null);
     const [customName, setCustomeName] = useState("")
     const [type, setType] = useState(false)
     const handleTask = (value) => {
@@ -35,9 +36,14 @@ function RepairTaskList(props) {
             phoneId: props.phoneId,
             itemTaskId: task === "custom" ? "" : task,
             taskName: customName,
-            userId: props.userId
+            userId: props.userId,
+             level:task === "custom" ? selectedLevel : ""
         }, props.phoneId, handleCallback())
     }
+    const handleChangeValue = (value) => {
+        console.log("Selected Level:", value);
+        setSelectedLevel(value); // Update selected value in state
+      };
     return (
         <>
             <div class="flex justify-around max-sm:flex-col">
@@ -60,6 +66,18 @@ function RepairTaskList(props) {
                                 <Input type="text" value={customName} placeholder="Enter Custome Task" onChange={(value) => { handleCustomeName(value) }} />
                             </div>
                         }
+                                                                      {task === "custom" &&
+                        <Select
+        style={{ width: 200 }}
+        placeholder="Select a Level"
+        onChange={handleChangeValue} 
+        value={selectedLevel}   
+      >
+        <Option value="L1">L1</Option>
+        <Option value="L2">L2</Option>
+        <Option value="L3">L3</Option>
+      </Select>
+}
                     </div>
 
                 </div>

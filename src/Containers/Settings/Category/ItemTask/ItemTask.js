@@ -20,9 +20,12 @@ import {
     updateItemTask
 } from "../ItemTask/ItemTaskAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { Select } from 'antd';
 
+const { Option } = Select;
 
 const ItemTask = (props) => {
+  const [selectedLevel, setSelectedLevel] = useState(null);
   const [currentData, setCurrentData] = useState("");
   const [itemTaskListData, setItemTaskListData] = useState(props.itemTaskListData);
   const [editingId, setEditingId] = useState(null);
@@ -33,11 +36,12 @@ const ItemTask = (props) => {
       props.getItemTaskCount(props.orgId) 
   }, [])
 
-  const editRegion = (itemTaskId, name) => {
+  const editRegion = (itemTaskId, name,level) => {
     console.log(name)
     console.log(name)
       setEditingId(itemTaskId);
       setItemTaskName(name);
+      setSelectedLevel(level)
   };
 
 
@@ -51,7 +55,8 @@ const ItemTask = (props) => {
       console.log(region)
       let data={
         itemTaskId:region.itemTaskId,
-        name:newItemTaskName
+        name:newItemTaskName,
+        level:selectedLevel
        
       }
 props.updateItemTask(data,region.itemTaskId)
@@ -72,6 +77,7 @@ setEditingId(null);
       let data={
         name:newItemTaskName,
         orgId:props.orgId,
+        level:selectedLevel
       }
       props.addItemTask(data,props.orgId)
       setAddingRegion(false)
@@ -103,6 +109,7 @@ setEditingId(null);
   const cancelEdit = () => {
       setEditingId(null);
   };
+
   useEffect(() => {
       
       if (props.itemTaskListData.length > 0) {
@@ -110,6 +117,10 @@ setEditingId(null);
         setItemTaskListData(props.itemTaskListData);
       }
     }, [props.itemTaskListData]);
+    const handleChangeValue = (value) => {
+      console.log("Selected Level:", value);
+      setSelectedLevel(value); // Update selected value in state
+    };
 
 // console.log(regions)
 if (props.fetchingItemTask) {
@@ -147,6 +158,17 @@ return <div><BundleLoader/></div>;
                           value={newItemTaskName} 
                           onChange={(e) => setItemTaskName(e.target.value)} 
                       />
+
+<Select
+        style={{ width: 200 }}
+        placeholder="Select a Level"
+        onChange={handleChangeValue} 
+        value={selectedLevel}   
+      >
+        <Option value="L1">L1</Option>
+        <Option value="L2">L2</Option>
+        <Option value="L3">L3</Option>
+      </Select>
                       <button 
                     
                          loading={props.addingItemTask}
@@ -180,8 +202,24 @@ return <div><BundleLoader/></div>;
                                         New
                                       </span> : null}</div>
             )}
+             {editingId === region.itemTaskId ? (
+              
+<Select
+        style={{ width: 200 }}
+        placeholder="Select a Level"
+        onChange={handleChangeValue} 
+        value={selectedLevel}   
+      >
+        <Option value="L1">L1</Option>
+        <Option value="L2">L2</Option>
+        <Option value="L3">L3</Option>
+      </Select>
+            ) : (
+                <div >{region.level}&nbsp;&nbsp;&nbsp;
+               
+                                      </div>
+            )}
 
-            {/* Action buttons */}
             <div >
                 {/* Edit button */}
                 {editingId === region.itemTaskId ? (
@@ -190,7 +228,7 @@ return <div><BundleLoader/></div>;
                         <button className=" ml-4"   onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   className=" !text-icon text-red-600 cursor-pointer " onClick={() => editRegion(region.itemTaskId, region.name)} />
+                    <BorderColorIcon   className=" !text-icon text-red-600 cursor-pointer " onClick={() => editRegion(region.itemTaskId, region.name,region.level)} />
                 )}
 
                 {/* Delete button */}

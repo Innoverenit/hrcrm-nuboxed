@@ -10,6 +10,10 @@ const initialState = {
   candidateSequenceModal: false,
 
 
+  addingPaymentApi:false,
+  addingPaymentApiError:false,
+
+
 
   removeSkillData:false,
   removeSkillDataError:false,
@@ -2996,6 +3000,32 @@ export const settingsReducer = (state = initialState, action) => {
         addingApprove: false,
         addingApproveError: true,
       };
+
+
+
+
+      case types.ADD_PAYMENT_API_REQUEST:
+        return { ...state, addingPaymentApi: true };
+    case types.ADD_PAYMENT_API_SUCCESS:
+        return {
+            ...state,
+            addingPaymentApi: false,
+            // paymentFinance: state.paymentFinance.map((item) => {
+            //   if (item.paymentTypeId === action.payload.paymentTypeId) {
+            //     return action.payload;
+            //   } else {
+            //     return item;
+            //   }
+            // }),
+
+        };
+    case types.ADD_PAYMENT_API_FAILURE:
+        return {
+            ...state,
+            addingPaymentApi: false,
+            addingPaymentApiError: true,
+            // conversionCurrencies:[action.payload,...state.conversionCurrencies]   
+        };
 
     case types.GET_APPROVE_DATA_REQUEST:
       return { ...state, fetchingApproveData: true };

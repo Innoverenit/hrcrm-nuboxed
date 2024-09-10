@@ -2350,3 +2350,38 @@ export const deleteProductBrandData = (data,productBrandId) => (dispatch) => {
       });
     });
 };
+
+
+
+
+export const updateBrandProduct = (data, productBrandId, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.UPDATE_BRAND_PRODUCT_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url2}/product/brandUpdate/${productBrandId}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+    
+      // message.success("Document has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_BRAND_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_BRAND_PRODUCT_FAILURE,
+      });
+    });
+};

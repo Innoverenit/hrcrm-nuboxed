@@ -399,6 +399,10 @@ const initialState = {
   fetchingProductsByProductIdError: false,
   productsByproductId: {},
 
+
+  updatingBrandProduct:false,
+  updatingBrandProductError:false,
+
   productPUblishToggle: false,
   productPUblishToggleError:false,
 
@@ -1250,6 +1254,25 @@ export const productReducer = (state = initialState, action) => {
         };
 
 
+        case types.UPDATE_BRAND_PRODUCT_REQUEST:
+        return { ...state, updatingBrandProduct: true };
+      case types.UPDATE_BRAND_PRODUCT_SUCCESS:
+        // return { ...state, updatingDocuments: false, Documents: [...state.Documents, action.payload] };
+        return {
+          ...state,
+          updatingBrandProduct: false,
+          brandProduct: state.brandProduct.map((document) =>
+            document.brand === action.payload.brand
+              ? action.payload
+              : document
+          ),
+        };
+      case types.UPDATE_BRAND_PRODUCT_FAILURE:
+        return {
+          ...state,
+          updatingBrandProduct: false,
+          updatingBrandProductError: true,
+        };
 
       case types.GET_BRAND_PRODUCT_REQUEST:
       return { ...state, fetchingBrandProduct: true, fetchingBrandProduct: false };

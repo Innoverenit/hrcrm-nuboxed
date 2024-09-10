@@ -1,6 +1,7 @@
 import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import MaterialBrandModal from "./MaterialBrandModal"
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
@@ -15,7 +16,7 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
 //import { getCountries } from "../../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button, Popconfirm } from "antd";
+import { Tooltip, Select,Input, Button, Popconfirm } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import {
@@ -26,7 +27,8 @@ import { Link } from 'react-router-dom';
 import {addSuppliesBrand,
     getBrandSupplies,
     handleSuppliesBrandModal,
-    deleteSuppliesBrandData
+    deleteSuppliesBrandData,
+    updateBrandMaterial
 } from 
     "./SuppliesAction"
     import { StyledPopconfirm } from "../../../Components/UI/Antd";
@@ -42,10 +44,15 @@ function onChange(pagination, filters, sorter) {
 
 function SuppliesBrandTable(props) {
   const [loading, setLoading] = useState(true);
-
+  const [data, setData] = useState([]);
+  const [editedFields, setEditedFields] = useState({});
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [currentBrandId, setCurrentBrandId] = useState("");
+  const [newimageId, setnewimageId] = useState("");
+
+  const [newbrandName, setNewBrandName] = useState('');
  
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -57,6 +64,10 @@ function SuppliesBrandTable(props) {
     props.getBrandSupplies();
    
   }, []);
+
+  useEffect(() => {
+    setData(props.brandSupplies);
+}, [props.brandSupplies]);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -89,6 +100,18 @@ function SuppliesBrandTable(props) {
     setCurrentBrandId(item);
     // console.log("opp",item);
   }
+  function handleSetImage(imageId) {
+    setnewimageId(imageId);
+  }
+  const handleEditClick = (brand,brandName) => {
+    setEditsuppliesId(brand);
+    setNewBrandName(brandName)
+  };
+
+  const handleCancelClick = (brand) => {
+    setEditedFields((prevFields) => ({ ...prevFields, [brand]: undefined }));
+    setEditsuppliesId(null);
+  };
 //   useEffect(() => {
 //     const fetchMenuTranslations = async () => {
 //       try {
@@ -153,7 +176,17 @@ function SuppliesBrandTable(props) {
 
 
    
- 
+const handleSave = (item) => {
+  console.log(newbrandName)
+  console.log(newimageId)
+  let data={
+    brandName:newbrandName,
+    imageId:newimageId?newimageId:item.imageId
+  }
+  props.updateBrandMaterial(data,item.brand)
+  
+  setEditsuppliesId(null); // Exit edit mode
+};
 
 
 
@@ -296,7 +329,7 @@ function SuppliesBrandTable(props) {
           </div>
        
 
-             {props.brandSupplies.length === 0 ? <NodataFoundPage /> : props.brandSupplies.map((item, index) => {
+             {data.length === 0 ? <NodataFoundPage /> : data.map((item, index) => {
        
               return (
                 <div>
@@ -308,13 +341,32 @@ function SuppliesBrandTable(props) {
                         <div className="flex max-sm:w-auto">
                           <div>
                             
+                          {editsuppliesId === item.brand ? (
+    
+    <EditUpload
+    imageId={item.imageId}
+    imgWidth={100}
+    imgHeight={100}
+    getImage={handleSetImage}
+  />
+                       
+                    ) : (
+                      <div className=" text-xs  font-poppins">
+                        <div> 
+                            {item.imageId ? (
                             <MultiAvatar
-                              primaryTitle={item.brandName}
-                              imageId={item.imageId}
-                              imageURL={item.imageURL}
-                              imgWidth={"1.8rem"}
+                              imageId={item.imageId ? item.imageId : ''}
                               imgHeight={"1.8rem"}
+                              imgWidth={"1.8rem"}
                             />
+                          ) : (
+                            <div class="font-bold text-xs" >
+                              No Image
+                            </div>
+                          )}
+                          </div>
+                      </div>
+                    )}
                      
                           </div>
                           <div class="w-[4%]"></div>
@@ -322,21 +374,23 @@ function SuppliesBrandTable(props) {
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer"
-                                //  onClick={() => {
-                                //   props.handleSuppliesBrandModal(true);
-                                //   handleSetCurrentBrandId(item);
-                                // }}
-                                >
-
-                                 
-                                    {item.brandName}
-                                 
-
-                                  &nbsp;&nbsp;
-                                
-
-                                </div>
+                              <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {editsuppliesId === item.brand ? (
+                            <Input
+                            style={{ width: "3rem" }}
+                          value={newbrandName}
+                            // onChange={(e) => handleInputChange(e.target.value, item.brandName, 'brandName')}
+                            onChange={(e) => setNewBrandName(e.target.value)}
+                           
+                          />
+                      
+                       
+                    ) : (
+                      <div className=" text-xs  font-poppins">
+                        <div>  {item.brandName}</div>
+                      </div>
+                    )}
+                        </div>
                               </div>
                             </Tooltip>
                           </div>
@@ -369,6 +423,35 @@ function SuppliesBrandTable(props) {
                         </div>
 
                       </div>
+
+
+                      <div className=" flex  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+    {editsuppliesId === item.brand ? (
+                        <>
+                      <Button 
+                      type="primary"
+                    //   loading={props.updatingOrdrSuplrItems}
+                    onClick={() => handleSave(item)}
+                      >
+                        Save
+                      </Button>
+                        <Button 
+                         type="primary"
+                        onClick={() => handleCancelClick(item.brand)} className="ml-[0.5rem]"
+                        >
+                        Cancel
+                      </Button>
+                      </>
+                      
+                    ) : (
+                      <BorderColorIcon
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                        tooltipTitle="Edit"
+                        iconType="edit"
+                        onClick={() => handleEditClick(item.brand,item.brandName)}
+                      />
+                    )}
+    </div> 
                      
                     </div>
 
@@ -436,6 +519,7 @@ const mapDispatchToProps = (dispatch) =>
     {
         addSuppliesBrand,
         getBrandSupplies,
+        updateBrandMaterial,
         handleSuppliesBrandModal,
         deleteSuppliesBrandData
         // getBrandProduct
