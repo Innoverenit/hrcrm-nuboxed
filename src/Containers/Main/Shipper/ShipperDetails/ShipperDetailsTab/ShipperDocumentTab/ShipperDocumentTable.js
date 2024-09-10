@@ -1,17 +1,48 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import { getShipperDocument } from "../../../ShipperAction";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 class ShipperDocumentTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeKey: "1",
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
     this.props.getShipperDocument(this.props.shipperId);
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
 
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       "74", // "Date",
+       "110",// "Name",
+       "147",// Description",
+       "1207",  // "Uploaded By",
+    
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
   render() {
     const {
       documentsByShipperId,
@@ -24,24 +55,24 @@ class ShipperDocumentTable extends Component {
 
     return (
       <>
-        <div className="flex  sticky  z-auto">
+        <div className="flex  sticky h-[78vh] z-auto">
           <div className="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
               <div className="md:w-[0.5rem]"></div>
-              <div className="md:w-[7.4rem]">
-                <FormattedMessage id="app.date" defaultMessage="Date" />
+              <div className=" Font-poppins font-bold text-xs md:w-[7.4rem]">
+              {this.state.translatedMenuItems[0]}
               </div>
-              <div className="md:w-[5.1rem]">
-                <FormattedMessage id="app.name" defaultMessage="Name" />
+              <div className=" Font-poppins font-bold text-xs md:w-[5.1rem]">
+              {this.state.translatedMenuItems[1]}
               </div>
-              <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.description" defaultMessage="Description" />
+              <div className="Font-poppins font-bold text-xs md:w-[8.8rem]">
+              {this.state.translatedMenuItems[2]}
               </div>
-              <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.uploadedby" defaultMessage="Uploaded By" />
+              <div className="Font-poppins font-bold text-xs md:w-[8.8rem]">
+              {this.state.translatedMenuItems[3]}
               </div>
             </div>
-            <div className="overflow-x-auto h-[64vh]">
+            <div className="overflow-x-auto h-[72vh]">
               {documentsByShipperId.length > 0 ? (
                 documentsByShipperId.map((item) => (
                   <div key={item.id}>

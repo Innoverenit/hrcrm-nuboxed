@@ -12,8 +12,8 @@ import LockIcon from '@mui/icons-material/Lock';
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
 import CloseCreditMemoList from "./CloseCreditMemoList";
+import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { Tooltip } from "antd";
 const DistributorCollectionTableToday = lazy(() => import("../Distributor/DistributorCollectionTableToday"));
 const DistributorColletcionArchive = lazy(() => import("../Distributor/DistributorColletcionArchive"));
@@ -95,8 +95,8 @@ function CollectionDistributorTab(props) {
           <TabPane
             tab={
               <>
-                <span>
-                  <i class="fas fa-hand-holding-usd"></i>&nbsp; 
+                <span class="!text-tab">
+                  <i class="fas fa-hand-holding-usd text-[#9e7682]"></i>&nbsp; 
                   {translatedMenuItems[0]}   {/* <FormattedMessage
                     id="app.receivable"
                     defaultMessage="Receivables"
@@ -126,8 +126,8 @@ function CollectionDistributorTab(props) {
           <TabPane
             tab={
               <>
-                <span>
-                  <i class="fas fa-archive"></i>&nbsp;
+                <span className="!text-tab">
+                  <i class="fas fa-archive text-[#605770]"></i>&nbsp;
                   {translatedMenuItems[1]}   {/* <FormattedMessage
                     id="app.archive"
                     defaultMessage="Archive"
@@ -157,7 +157,7 @@ function CollectionDistributorTab(props) {
         setShowCloseCreditMemoList(false);
         setActiveKey("3");
       }}>
-        <i className="fas fa-archive"></i>&nbsp;
+         <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>&nbsp;
         {translatedMenuItems[2]} {/* <FormattedMessage id="app.creditmemo" defaultMessage="Credit Memo" /> */}
       </span>
       {activeKey === "3" && (
@@ -168,6 +168,8 @@ function CollectionDistributorTab(props) {
             <LockIcon
               onClick={() => setShowCloseCreditMemoList(true)}
               className="!text-icon cursor-pointer ml-1"
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
             />
           </Tooltip>
         </>

@@ -21,12 +21,12 @@ function CloseCreditMemoList(props) {
           "1169",// Invoice  1
           "248" , // "Customer",//2
            "218" ,//   Value,//3
-          "" , // "Generated",//4
+          "1365" , // "Generated",//4
           
-          "" , // "Set Up",//5
+          "1366" , // "Set Up",//5
           "74" , // Date",//6
-           "" ,// "UserId",7
-           "", // "Applied"8
+          //  "" ,// "UserId",7
+           "1368", // "Applied"8
         
            
         ];

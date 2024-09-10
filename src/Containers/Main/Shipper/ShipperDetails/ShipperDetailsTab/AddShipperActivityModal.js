@@ -23,7 +23,10 @@ const AddShipperActivityModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}></Suspense>
-        <ShipperActivityTable shipperId={props.shipperId} />
+        <ShipperActivityTable shipperId={props.shipperId}
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+         />
       </StyledModal>
     </div>
   );

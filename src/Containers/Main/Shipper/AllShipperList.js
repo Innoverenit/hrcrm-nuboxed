@@ -17,7 +17,6 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateShipperModal from "./UpdateShipperModal";
 import AddShipperOrderModal from "./AddShipperOrderModal";
 import { Link } from 'react-router-dom';
-import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import ShipperSearchedData from "./ShipperSearchedData";
@@ -73,14 +72,14 @@ function AllShipperList(props) {
       <div className=' flex  sticky  z-auto'>
       <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[0]}</div>
-            <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[1]} #</div>
-            <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
-            <div className="w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
-            <div className="w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[4]}</div>
-            <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[5]}</div>
-            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div>
-            <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
+            <div className="font-poppins font-bold text-xs w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[0]}</div>
+            <div className="font-poppins font-bold text-xs w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[1]} #</div>
+            <div className="font-poppins font-bold text-xs w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
+            <div className="font-poppins font-bold text-xs w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
+            <div className="font-poppins font-bold text-xs w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[4]}</div>
+            <div className="font-poppins font-bold text-xs w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[5]}</div>
+            <div className="font-poppins font-bold text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div>
+            <div className="font-poppins font-bold text-xs w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
           </div>
           <InfiniteScroll
         dataLength={props.allShipper.length}
@@ -175,6 +174,7 @@ function AllShipperList(props) {
                             unCheckedChildren="No"
                           />
                         </div>
+                        <div className="flex justify-items-end">
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
@@ -196,6 +196,7 @@ function AllShipperList(props) {
                                 }}
                               />
                             </Tooltip>
+                          </div>
                           </div>
                           <div>
                             <Popconfirm

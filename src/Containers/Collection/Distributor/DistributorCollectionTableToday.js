@@ -11,7 +11,6 @@ import {
   handleDistributorProductModal
 } from "../CollectionAction";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
 import DistributorPaymentToggle from "./DistributorPaymentToggle";
 import DistributorProductHistory from "./DistributorProductHistory";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -99,7 +98,7 @@ function DistributorColletcionArchive(props) {
           <Form>
             <div class="flex justify-evenly h-full w-[52%] items-end max-sm:w-wk">
               <div class="w-[52%] max-sm:w-wk">
-                <div class="flex flex-row">
+                <div class=" font-bold font-poppins text-xs flex flex-row">
                 {translatedMenuItems[0]}   {/* Search by Payment Date */}
 
                   <Field
@@ -112,7 +111,7 @@ function DistributorColletcionArchive(props) {
                 </div>
 
               </div>
-              <div class="md:w-[0%] mb-[0.35rem]">
+              <div class="md:w-[0%] mb-[0.35rem] font-bold font-poppins text-xs">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -123,7 +122,7 @@ function DistributorColletcionArchive(props) {
                  {translatedMenuItems[1]}   {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
                 </Button>
               </div>
-              <div class=" mb-[0.35rem]">
+              <div class="font-bold font-poppins text-xs mb-[0.35rem]">
                 <Button
                   type="primary"
                   disabled={values.date ? false : true}
@@ -148,38 +147,38 @@ function DistributorColletcionArchive(props) {
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {translatedMenuItems[2]}   {/* <FormattedMessage id="app.customer" defaultMessage="Customer" /> */}
               </div>
-            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]} #
+            <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]} #
               {/* <FormattedMessage id="app.order" defaultMessage="Order #" /> */}
               </div>
-            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Invoice */} {translatedMenuItems[4]}
               </div>
-            <div className=" w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  {translatedMenuItems[5]} ID
+            <div className="font-bold font-poppins text-xs w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  {translatedMenuItems[5]} ID
               {/* <FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /> */}
               </div>
-            <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* /<FormattedMessage id="app.type" defaultMessage="Type" /> */} {translatedMenuItems[6]}
               </div>
-            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* <FormattedMessage id="app.date" defaultMessage="Date" /> */} {translatedMenuItems[7]}
               </div>
-            <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* <FormattedMessage id="app.amount" defaultMessage="Amount" /> */} {translatedMenuItems[8]}
               </div>
-            <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* <FormattedMessage id="app.mode" defaultMessage="Mode" /> */} {translatedMenuItems[9]}
               </div>
-            <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[10]}?
+            <div className="font-bold font-poppins text-xs w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[10]}?
               {/* <FormattedMessage id="app.received" defaultMessage="Received ?" /> */}
               </div>
-            <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* <FormattedMessage id="app.owner" defaultMessage="Owner" /> */} {translatedMenuItems[11]}
               </div>
           </div>
-          <div className=" overflow-scroll h-[67vh]">
+          <div className="overflow-scroll h-[67vh]">
             {props.todayDistributor.map((item) => {
 
               return (

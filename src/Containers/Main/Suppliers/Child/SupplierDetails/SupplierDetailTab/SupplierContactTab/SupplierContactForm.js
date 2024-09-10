@@ -9,7 +9,6 @@ import AddressFieldArray from "../../../../../../../Components/Forms/Formik/Addr
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import PostImageUpld from "../../../../../../../Components/Forms/Formik/PostImageUpld";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import { addSupplierContact } from "../../../../SuppliersAction";
 import { getDesignations } from "../../../../../../Settings/Designation/DesignationAction";
@@ -26,23 +25,61 @@ const ContactSchema = Yup.object().shape({
 });
 
 class SupplierContactForm extends Component {
-    componentDidMount() {
+   
+    constructor(props) {
+        super(props);
+        this.state = {
+          visible: false,
+          option: "Mobile",
+          option1: "Mobile",
+          option2: "Work",
+          currentOption: "",
+          whatsapp: false,
+          candidate: false,
+          availability: false,
+          translatedMenuItems: [],
+        
+        };
+      }
+      componentDidMount() {
         this.props.getDesignations();
         this.props.getDepartments();
+        this.fetchMenuTranslations();
     }
-    // '295', // 0 First name
-    // '353', // 1 middle name
-    // '354', // 2 last name
-    // '140', // 3mobile #
-    // '1117', // 4 Email 
-    // '357', // 5 Linkdin
-    // '546', // 6notes 
-    // '1157', // 7 designation
-    // '547', // 8 department
-
-    //  '185',//9 Address
-    //   '104'//10 create
+    componentDidUpdate(prevProps) {
+        if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+          this.fetchMenuTranslations();
+        }
+      }
+      async fetchMenuTranslations() {
+        try {
+          this.setState({ loading: true });
+          const itemsToTranslate = [
+     '295', // 0 First name
+     '353', // 1 middle name
+    '354', // 2 last name
+    '357',// 3 Dial Code
+    '299', // 4 mobile #
+     '140', // 5 Email 
+     '547', // 6 Linkdin
+    '316', // 7 notes 
+    '76',// 8 Assigned
+     '325', // 9 designation
+    '326', // 10 department
+    '185',//11 Address
+   '104'//12 create
+          ];
+          const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+          this.setState({ translatedMenuItems: translations ,loading: false});
+         
+        } catch (error) {
+          this.setState({ loading: false });
+          console.error('Error translating menu items:', error);
+        }
+      }
+  
     render() {
+        const { translatedMenuItems } = this.state; 
         const designation = this.props.designations.map((item) => {
             return {
                 label: item.designationType || "",
@@ -125,10 +162,10 @@ class SupplierContactForm extends Component {
                                         width: "45%",
                                     }}
                                 >
-                                    <FlexContainer flexWrap="no-wrap">
+                                   <div class=" flex flex-row flex-nowrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                         <FastField name="imageId" component={PostImageUpld} />
                                         <div>
-                                            <FlexContainer justifyContent="space-between">
+                                        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                                 {/* <div style={{ width: "35%" }}>
                                                     <FastField
                                                         name="salutation"
@@ -146,26 +183,35 @@ class SupplierContactForm extends Component {
                                                         }}
                                                     />
                                                 </div> */}
-                                                <div  className="w-[63%] h-[2.0625em] flex-[0_0_80%] mt-0">
-                                                    <FastField
-                                                        isRequired
-                                                        name="firstName"
-                                                        label="First Name"
-                                                        type="text"
-                                                        width={"100%"}
-                                                        isColumn
-                                                        component={InputComponent}
-                                                        inlineLabel
-                                                   
-                                                    />
-                                                </div>
-                                            </FlexContainer>
+                                            <div class=" flex justify-between max-sm:flex-col">
+               
+               {/* name="salutation"
+              */}
+           <div class=" w-[100%] max-sm:w-full">
+           <div class=" text-xs font-bold font-poppins"> 
+            {translatedMenuItems[0]}             
+             </div>
+             <FastField
+               isRequired
+               name="firstName"
+               // label="First Name"                          
+               type="text"
+               width={"100%"}
+               isColumn
+               component={InputComponent}
+               inlineLabel
+             />
+           </div>
+         </div>   
+                                            </div>
                                             <mt-3 />
-                                            <FlexContainer justifyContent="space-between">
-                                            <div className="w-[63%] h-[2.0625em] flex-[0_0_80%] mt-0">
+                                            <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                                            <div class=" w-[100%] max-sm:w-full">
+                                            <div class=" text-xs font-bold font-poppins"> 
+                                            {translatedMenuItems[1]}</div>
                                                     <FastField
                                                         name="middleName"
-                                                        label="Middle Name"
+                                                        // label="Middle Name"
                                                         type="text"
                                                         width={"100%"}
                                                         isColumn
@@ -174,10 +220,12 @@ class SupplierContactForm extends Component {
                                                       
                                                     />
                                                 </div>
-                                                <div className="w-[63%] h-[2.0625em] flex-[0_0_80%] mt-0">
+                                                <div class=" w-[100%] max-sm:w-full">
+                                                <div class=" text-xs font-bold font-poppins"> 
+                                                {translatedMenuItems[2]}</div>
                                                     <FastField
                                                         name="lastName"
-                                                        label="Last Name"
+                                                        // label="Last Name"
                                                         type="text"
                                                         width={"100%"}
                                                         isColumn
@@ -186,17 +234,19 @@ class SupplierContactForm extends Component {
                                                     
                                                     />
                                                 </div>
-                                            </FlexContainer>
+                                            </div>
                                         </div>
-                                    </FlexContainer>
+                                    </div>
                                     <mt-3 />
-                                    <FlexContainer justifyContent="space-between">
-                                    <div className="w-[47%] flex-[0_0_80%] ">
+                                    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto">
+                                    <div class=" w-2/4">
+                                    <div class=" text-xs font-bold font-poppins"> 
+                                    {translatedMenuItems[3]}</div>
                                             <FastField
                                                 name="dialCode1"
-                                                label="Mobile #"
+                                                // label="Mobile #"
                                                 isColumn
-                                                margintop={"0.25em"}
+                                                width="100px"               
                                                 selectType="dialCode"
                                                 component={SearchSelect}
                                                 defaultValue={{
@@ -207,7 +257,9 @@ class SupplierContactForm extends Component {
                                                
                                             />
                                         </div>
-                                        <div className="w-[47%] h-[2.0625em] flex-[0_0_80%] mt-0">
+                                        <div class=" w-2/5 max-sm:w-2/5 ">
+                                        <div class=" text-xs font-bold font-poppins"> 
+                                        {translatedMenuItems[4]}</div>
                                             <FastField
                                                 type="text"
                                                 name="mobileNo"
@@ -219,14 +271,14 @@ class SupplierContactForm extends Component {
                                                
                                             />
                                         </div>
-                                    </FlexContainer>
+                                    </div>
                                     <mt-3 />
-                                    <FlexContainer justifyContent="space-between">
+                                    {/* <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                     <div className="w-[47%] flex-[0_0_80%] ">
                                             <FastField
                                                 name="dialCode2"
                                                 selectType="dialCode"
-                                                label="Phone #"
+                                                // label="Phone #"
                                                 isColumn
                                                 margintop={"0.25em"}
                                                 component={SearchSelect}
@@ -250,16 +302,18 @@ class SupplierContactForm extends Component {
                                                
                                             />
                                         </div>
-                                    </FlexContainer>
+                                    </div> */}
 
                                     <mt-3 />
-                                    <FlexContainer justifyContent="space-between">
-                                    <div className="w-[100%] h-[2.0625em] flex-[0_0_80%] mt-0 border-r-3 border-r-custom-red ">
+                                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                                    <div className="w-[100%]">
+                                    <div class=" text-xs font-bold font-poppins"> 
+                                    {translatedMenuItems[5]}</div>
                                             <FastField
                                                 // isRequired
                                                 type="email"
                                                 name="emailId"
-                                                label="Email"
+                                                // label="Email"
                                                 className="field"
                                                 isColumn
                                                 width={"100%"}
@@ -269,14 +323,16 @@ class SupplierContactForm extends Component {
                                               
                                             />
                                         </div>
-                                    </FlexContainer>
+                                    </div>
                                     <mt-3 />
-                                    <FlexContainer justifyContent="space-between">
-                                    <div className="w-[100%] h-[2.0625em] flex-[0_0_80%] mt-0 ">
+                                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                                    <div className="w-[100%]">
+                                    <div class=" text-xs font-bold font-poppins"> 
+                                    {translatedMenuItems[6]}</div>
                                             <FastField
                                                 type="text"
                                                 name="linkedIn"
-                                                label="Linkedin "
+                                                // label="Linkedin "
                                                 isColumn
                                                 width={"100%"}
                                                 component={InputComponent}
@@ -284,11 +340,13 @@ class SupplierContactForm extends Component {
                                              
                                             />
                                         </div>
-                                    </FlexContainer>
+                                    </div>
                                     <mt-3 style={{ marginTop: "25px" }} />
+                                    <div class=" text-xs font-bold font-poppins"> 
+                                    {translatedMenuItems[7]}</div>
                                     <Field
                                         name="notes"
-                                        label="Notes"
+                                        // label="Notes"
                                         width={"100%"}
                                         isColumn
                                         component={TextareaComponent}
@@ -309,12 +367,14 @@ class SupplierContactForm extends Component {
                                         marginTop: "10px"
                                     }}
                                 >
-                                    <FlexContainer justifyContent="space-between">
+                                 <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                         <div style={{ width: "47%" }}>
+                                        <div class=" text-xs font-bold font-poppins"> 
+                                        {translatedMenuItems[9]}</div>
                                             <Field
                                                 name="designationId"
                                                 placeholder="Designation"
-                                                label="Designation"
+                                                // label="Designation"
                                                 component={SelectComponent}
                                                 options={Array.isArray(designation) ? designation : []}
                                                 style={{
@@ -324,10 +384,12 @@ class SupplierContactForm extends Component {
                                             />
                                         </div>
                                         <div style={{ width: "47%" }}>
+                                        <div class=" text-xs font-bold font-poppins"> 
+                                        {translatedMenuItems[10]}</div>
                                             <Field
                                                 name="departmentId"
                                                 // placeholder="Designation"
-                                                label="Department"
+                                                // label="Department"
                                                 component={SelectComponent}
                                                 options={Array.isArray(department) ? department : []}
                                                 style={{
@@ -336,10 +398,12 @@ class SupplierContactForm extends Component {
                                                 }}
                                             />
                                         </div>
-                                    </FlexContainer>
+                                    </div>
                                     <mt-3 />
 
                                     <div style={{ marginTop: "30px" }}>
+                                    <div class=" text-xs font-bold font-poppins"> 
+                                    {translatedMenuItems[11]}</div>
                                         <FieldArray
                                             name="address"
                                             render={(arrayHelpers) => (
@@ -353,18 +417,18 @@ class SupplierContactForm extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <FlexContainer justifyContent="flex-end">
+                            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                                 <Button
                                     type="primary"
                                     htmlType="submit"
                                     // icon={<PoweroffOutlined />}
                                     loading={this.props.addingContactSupplier}
                                 >
-                                    {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
-
-                                    Create
+                      <div class=" text-xs font-bold font-poppins"> 
+                        {translatedMenuItems[11]}</div>
+                     {/* create */}
                                 </Button>
-                            </FlexContainer>
+                            </div>
                         </Form>
                     )}
                 </Formik>

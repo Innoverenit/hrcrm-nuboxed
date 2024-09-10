@@ -53,18 +53,18 @@ const handleClear = () => {
       "1069",   // 'Reinstate',//7
       "82",   // 'Loading',//8
       "170",   // 'Edit',//9
-      "",   //  'Do you want to delete',//10
+      "1259",   //  'Do you want to delete',//10
       "887",   //  'Shipper',//11
        "357",  //  'Dial Code',//12
-       "",  //  'Integrated',//13
+       "1269",  //  'Integrated',//13
       "76",   //  'Assigned',//14
        "104",  //  'Create',//15
-       "",  //  'Update',//16
+       "126",  //  'Update',//16
        "900",  //  'My Shippers',//17
        "228",  //  'All',//18
-       "",  //  'Deleted',//19
+       "902",  //  'Deleted',//19
        "288",  //  'Search by Name or Sector',//20
-        "", //  'Export Shipper',//21
+        "1268", //  'Export Shipper',//21
        "85",  //  'Add',//22
           ];
   
