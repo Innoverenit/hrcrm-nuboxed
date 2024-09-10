@@ -8,6 +8,7 @@ import {getJumpDistributorDetail,
   handleOrderClosedModal,} from "../../DashboardAction";
 // import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
+import CustomerJumpStartDrawer from "./CustomerJumpStartDrawer";
 import CustomerAddedModal from "./CustomerAddedModal";
 import ContactAddedModal from "./ContactAddedModal";
 import OrdersAddedModal from "./OrdersAddedModal";
@@ -202,6 +203,9 @@ render() {
                   </div>
         </div>
 
+<CustomerJumpStartDrawer
+
+/>
         
          <CustomerAddedModal
        customerAddedModal={this.props.customerAddedModal}

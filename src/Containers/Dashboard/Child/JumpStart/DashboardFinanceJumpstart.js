@@ -6,6 +6,8 @@ import {
   getFinaceOrderDetails,
 } from "../../DashboardAction";
 import FinaceRapairDrawer from "./FinaceRapairDrawer";
+import CustomerPieChart from "./CustomerPieChart";
+import RepairUsrPieChart from "./RepairUsrPieChart";
 
 function DashboardFinanceJumpstart(props) {
 
@@ -53,11 +55,12 @@ const openModal = (type) => {
         setHasMore(data.hasMore);
       });
   };
-  
+
+
   return (
     <>
-      <div class=" flex flex-row w-full" >
-        <div class=" flex w-full max-sm:flex-col" >
+      <div class=" flex flex-col" >
+        <div class=" flex w-full" >
           
           <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
@@ -141,6 +144,10 @@ const openModal = (type) => {
                      
                   </div>
             
+        </div>
+
+        <div class=" mt-1" >
+        <RepairUsrPieChart/>
         </div>
       </div>
 

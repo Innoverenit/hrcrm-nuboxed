@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect,lazy } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getJumpFinanceDetail } from "../../DashboardAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
+
+const DashRepairBarClousreJumpstartUser =lazy(()=>import("./DashRepairBarClousreJumpstartUser"));
 
 function DashOrderFinanceJumpstart(props) {
 
@@ -16,8 +18,8 @@ function DashOrderFinanceJumpstart(props) {
   }, [props.timeRangeType])
   return (
     <>
-      <div class=" flex flex-row w-full" >
-        <div class=" flex w-full max-sm:flex-col" >
+      <div class=" flex flex-col" >
+        <div class=" flex w-full" >
 
         <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
@@ -80,6 +82,12 @@ function DashOrderFinanceJumpstart(props) {
           
                  
         </div>
+
+<div class="mt-1">
+<DashRepairBarClousreJumpstartUser 
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}/>
+</div>
       </div>
 
 

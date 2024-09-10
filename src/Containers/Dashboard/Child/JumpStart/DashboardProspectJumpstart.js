@@ -24,7 +24,7 @@ function DashboardProspectJumpstart(props) {
         const itemsToTranslate = [
    
         "1288", //  "Prospects"//0
-         "",   // "Current Quotation",//1
+         "1468",   // "Current Quotation",//1
          "1291", // "Open Quotations",//2
           "1289",  // "Quotations Life Time",//3 
         
