@@ -7,9 +7,9 @@ import {
 } from "../AccountAction";
 import {  Select } from 'antd';
 import dayjs from "dayjs";
-import InfiniteScroll from "react-infinite-scroll-component";
+
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import InvoiceOrderModal from "./InvoiceOrderModal";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 const { Option } = Select;
 
@@ -30,6 +30,9 @@ function InvouiceSTable(props) {
     '260', // 4
     '142', // 5
    '259',//6
+    "218",// Value
+  "1379", // Ship on
+   "1486" // track ID
 
 
           ];
@@ -95,15 +98,15 @@ function InvouiceSTable(props) {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold text-xs font-poppins sticky z-10">
                     <div class=" w-[8.5rem]">{translatedMenuItems[0]} </div>
                         <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} </div>
                         <div className=" md:w-[7rem] ">{translatedMenuItems[6]}</div>
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
-                        <div className="md:w-[5rem]">Total Value</div>
+                        <div className="md:w-[5rem]">{translatedMenuItems[7]}</div>
                         <div className=" md:w-[7rem] ">{translatedMenuItems[4]}</div>
-                        <div className="md:w-[3.8rem]">Ship on</div>
-                        <div className="md:w-[3.8rem]">Track ID</div>
+                        <div className="md:w-[3.8rem]">{translatedMenuItems[8]}</div>
+                        <div className="md:w-[3.8rem]">{translatedMenuItems[9]} ID</div>
                     </div>
                     <div class="">
                         {/* <InfiniteScroll
@@ -123,7 +126,7 @@ function InvouiceSTable(props) {
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
+                                                        <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                            {item.name}
                                                            
 

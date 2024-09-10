@@ -33,10 +33,8 @@ import {
     updateSubOrderAwb,
     handlePIModal
 } from "../../AccountAction";
-import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input, Select, Tooltip } from 'antd';
-import { MultiAvatar, MultiAvatar2 } from '../../../../../Components/UI/Elements';
-import { BundleLoader } from '../../../../../Components/Placeholder';
+import { MultiAvatar } from '../../../../../Components/UI/Elements';
 import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
@@ -197,12 +195,10 @@ const AccountOrderTable = (props) => {
                         <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
                         </div>
-                        <div className=" md:w-[5.08rem]">
-                        {translatedMenuItems[3]}   {/* <FormattedMessage
-                                id="app.owner"
-                                defaultMessage="Owner"
-                            /> */}
-                        </div>
+                        {/* <div className=" md:w-[5.08rem]">
+                        {translatedMenuItems[3]} 
+                           
+                        </div> */}
 
                         <div className="md:w-[5.81rem]">
                         </div>
@@ -296,12 +292,7 @@ const AccountOrderTable = (props) => {
 
                                                     <div className=" flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                         <div class=" text-xs font-poppins">
-                                                            <Badge
-                                                                class=" ml-2"
-                                                                size="small"
-                                                                count={item.count || 0}
-                                                                overflowCount={999}
-                                                            >
+                                                          
                                                                 <span
                                                                     class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                     onClick={() => {
@@ -309,6 +300,13 @@ const AccountOrderTable = (props) => {
                                                                         props.handleOrderDetailsModal(true);
                                                                     }}
                                                                 >{item.newOrderNo}</span>
+                                                                  <Badge
+                                                                class=" ml-2"
+                                                                size="small"
+                                                                count={item.count || 0}
+                                                                overflowCount={999}
+                                                                offset={[ 0, -16]}
+                                                            >
                                                             </Badge>
                                                            
                                                             {date === currentdate ? (
@@ -325,10 +323,10 @@ const AccountOrderTable = (props) => {
                                                     <div className=" flex md:w-[6.31rem] text-xs items-center max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
-                                                    <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex md:w-[6.31rem] text-xs max-sm:flex-row w-full max-sm:justify-between ">
                                                     
                                                     </div>
-                                                    <div className=" flex   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {/* <div className=" flex   md:w-[4.02rem] text-xs max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div >
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
@@ -337,7 +335,7 @@ const AccountOrderTable = (props) => {
                                                                 imgHeight={"1.8rem"}
                                                             />
                                                         </div>
-                                                    </div>
+                                                    </div> */}
 
                                                     <div className=" flex md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" font-poppins ">
@@ -346,6 +344,7 @@ const AccountOrderTable = (props) => {
                                                                 size="small"
                                                                 count={item.awbCount || 0}
                                                                 overflowCount={999}
+                                                                offset={[ 0, -16]}
                                                             >
                                                                 <Button
                                                                     style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
@@ -383,7 +382,7 @@ const AccountOrderTable = (props) => {
                                                     <div className=" flex  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 1000).toFixed(2)}k
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.finalPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
@@ -391,8 +390,7 @@ const AccountOrderTable = (props) => {
 
                                                     <div className=" flex items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />
-                                                            {visible && (item.orderId === particularRowData.orderId) ?
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} /> {visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input
                                                                     type='text'
                                                                     value={price}
@@ -448,7 +446,7 @@ const AccountOrderTable = (props) => {
                                                         {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex  md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  md:w-[16.04rem] text--xs max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div >
                                                     {item.supervisorUserName ? 
                                                     <MultiAvatar
@@ -554,7 +552,7 @@ const AccountOrderTable = (props) => {
                                                             // "Collection"
                                                             >
                                                                 <PaidIcon
-                                                                    className="!text-icon cursor-pointer"
+                                                                    className="!text-icon cursor-pointer text-[#e5625e]"
                                                                     onClick={() => {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);
@@ -679,9 +677,9 @@ const AccountOrderTable = (props) => {
                         <div className=" md:w-[5.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
                         </div>
-                        <div className=" md:w-[5.08rem]">
+                        {/* <div className=" md:w-[5.08rem]">
                         {translatedMenuItems[3]}   
-                        </div>
+                        </div> */}
 
                         <div className="md:w-[5.81rem]">
                         </div>
@@ -750,12 +748,7 @@ const AccountOrderTable = (props) => {
 
                                                     <div className=" flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                                                         <div class=" text-xs  font-poppins">
-                                                            <Badge
-                                                                class=" ml-2"
-                                                                size="small"
-                                                                count={item.count || 0}
-                                                                overflowCount={999}
-                                                            >
+                                                           
                                                                 <span
                                                                     class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                     onClick={() => {
@@ -763,6 +756,13 @@ const AccountOrderTable = (props) => {
                                                                         props.handleOrderDetailsModal(true);
                                                                     }}
                                                                 >{item.newOrderNo}</span>
+                                                                 <Badge
+                                                                class=" ml-2"
+                                                                size="small"
+                                                                count={item.count || 0}
+                                                                overflowCount={999}
+                                                                offset={[ 0, -16]}
+                                                            >
                                                             </Badge>
                                                             &nbsp;&nbsp;
                                                             {date === currentdate ? (
@@ -776,13 +776,13 @@ const AccountOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex md:w-[6.31rem] items-center max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex md:w-[6.31rem] text-xs items-center max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
-                                                    <div className=" flex   md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[6.31rem] text-xs max-sm:flex-row w-full max-sm:justify-between ">
                                                     </div>
 
-                                                    <div className=" flex   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    {/* <div className=" flex   md:w-[4.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div >
                                                             <MultiAvatar2
                                                                 primaryTitle={item.userName}
@@ -791,16 +791,11 @@ const AccountOrderTable = (props) => {
                                                                 imgHeight={"1.8rem"}
                                                             />
                                                         </div>
-                                                    </div>
+                                                    </div> */}
 
                                                     <div className=" flex  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class="  font-poppins">
-                                                            <Badge
-                                                                class=" ml-2"
-                                                                size="small"
-                                                                count={item.awbCount || 0}
-                                                                overflowCount={999}
-                                                            >
+                                                           
                                                                 <Button
                                                                     style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
                                                                     class=" bg-green-500"
@@ -812,7 +807,12 @@ const AccountOrderTable = (props) => {
                                                                 ><span className='!text-[#faad14]'>
                                                                    {/* Ship  */}
                                                                    {translatedMenuItems[15]}  ID</span></Button>
-                                                            </Badge>
+                                                                   <Badge
+                                                                class=" ml-2"
+                                                                size="small"
+                                                                count={item.awbCount || 0}
+                                                                overflowCount={999}
+                                                            > </Badge>
                                                         </div>
                                                     </div>
                                                     <div className=" flex md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -837,7 +837,7 @@ const AccountOrderTable = (props) => {
                                                     <div className=" flex   items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
-                                                        <CurrencySymbol currencyType={item.orderCurrencyName} />{(item.finalPrice / 1000).toFixed(2)}k
+                                                        <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.finalPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
@@ -845,8 +845,7 @@ const AccountOrderTable = (props) => {
 
                                                     <div className=" flex   items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
-                                                            <CurrencySymbol currencyType={item.orderCurrencyName} />
-                                                            {visible && (item.orderId === particularRowData.orderId) ?
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} /> {visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input
                                                                     type='text'
                                                                     value={price}
@@ -863,7 +862,9 @@ const AccountOrderTable = (props) => {
                                                         {visible && (item.orderId === particularRowData.orderId) ? (
                                                             <>
                                                                 <div className=" flex justify-between flex-col">
-                                                                    <Button onClick={() => {
+                                                                    <Button 
+                                                                    type='cancel'
+                                                                    onClick={() => {
                                                                         handleSubmitPrice()
                                                                     }} >
                                                                     {translatedMenuItems[16]}     {/* <FormattedMessage
@@ -871,7 +872,9 @@ const AccountOrderTable = (props) => {
                                                                             defaultMessage="Save"
                                                                         /> */}
                                                                     </Button>
-                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}>
+                                                                    <Button
+                                                                     type='cancel'
+                                                                     onClick={() => handleUpdateRevisePrice(false)}>
                                                                     {translatedMenuItems[17]}     {/* <FormattedMessage
                                                                         id="app.cancel"
                                                                         defaultMessage="Cancel"
@@ -902,7 +905,7 @@ const AccountOrderTable = (props) => {
                                                         {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex   md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex text-xs   md:w-[16.04rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div >
                                                         {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
                                                             {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
@@ -1008,7 +1011,7 @@ const AccountOrderTable = (props) => {
                                                             // "Collection"
                                                             >
                                                                 <PaidIcon
-                                                                    className="!text-icon cursor-pointer"
+                                                                    className="!text-icon cursor-pointer text-[#e5625e]"
                                                                     onClick={() => {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);

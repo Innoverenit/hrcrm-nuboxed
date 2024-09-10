@@ -76,7 +76,7 @@ class DistributorDocumentTable extends Component {
                                 <div >
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex w-3/4">
-                                            <div className=" flex  md:w-[1.56rem] max-sm:w-full  ">
+                                            <div className=" flex  md:w-[1.56rem] max-sm:w-full text-xs  ">
 
 
                                             {` ${dayjs(item.creationDate).format("YYYY-MM-DD")}`}

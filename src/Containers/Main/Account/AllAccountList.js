@@ -47,6 +47,9 @@ const AllAccountList = (props) => {
           "100", // New
           "392",// "Pulse" 
           "170",// "Edit"
+          "76",// 'Assigned', // 10
+   
+          "1338",// "Credit",//11
       ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -99,8 +102,16 @@ const AllAccountList = (props) => {
             <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">
             {translatedMenuItems[5]}
               {/* Tax*/}</div>
+              <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+          {translatedMenuItems[8]}
+            {/* Credit */}          
+            </div>
+  <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+          {translatedMenuItems[10]}
+            {/* Assigned */}          
+            </div>
                 <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
-            {translatedMenuItems[6]}
+            {translatedMenuItems[11]}
            {/* Owner */}        
             </div>
           
@@ -137,7 +148,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                     <div>
                     <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium flex-col w-[16rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
+                        <div className=" flex  w-[16rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-auto">
                             <div>
                               <MultiAvatar
@@ -155,7 +166,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                   <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
 
                                     <Link
-                                      class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 max-sm:text-sm text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
+                                      class="overflow-ellipsis whitespace-nowrap  max-sm:text-sm text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
                                       to={`distributor/${item.distributorId}`}
                                       title={`${item.name}`}>
                                       {item.name.substring(0, 25)}

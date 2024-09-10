@@ -176,6 +176,10 @@ function AccountTable(props) {
               {/* Tax */}
               </div>   
            {/* "billingaddress" */}
+           <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+          {translatedMenuItems[8]}
+            {/* Credit */}          
+            </div>
   <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
           {translatedMenuItems[7]}
             {/* Assigned */}          
@@ -184,10 +188,7 @@ function AccountTable(props) {
             {/* {translatedMenuItems[8]} */}
            {/* Owner */}        
             {/* </div> */}
-            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-          {translatedMenuItems[8]}
-            {/* Credit */}          
-            </div>
+            
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
           </div>

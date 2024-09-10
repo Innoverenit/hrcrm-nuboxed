@@ -577,9 +577,9 @@ iframe#webpack-dev-server-client-overlay {
 .ant-btn-cancel {
   color: #fff;
   height: 1.58rem;
-  font-size: 0.8125em;
+  font-size: 0.55em;
   border-color: #fff;
-  padding: 3px 8px;
+  padding: 2px 1px;
   color: white;
   border-radius: 0.3rem;
   box-shadow: grey 1px 2px 0px 0px;
