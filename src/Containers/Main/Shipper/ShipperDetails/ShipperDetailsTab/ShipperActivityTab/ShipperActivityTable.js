@@ -7,7 +7,6 @@ import {
   PhoneOutlined,
   ScheduleOutlined,
 } from "@ant-design/icons";
-import { StyledTable } from "../../../../../../Components/UI/Antd";
 import {
   getActivityListByShipperId,
   handleUpdateEventModal,
@@ -17,11 +16,51 @@ import {
 import { setEditEvents } from "../../../../../Event/EventAction";
 import { setEditTask } from "../../../../../Task/TaskAction";
 import dayjs from "dayjs"
-import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 class ShipperActivityTable extends Component {
+
+    constructor(props) {
+    super(props);
+    this.state = {
+      activeKey: "1",
+      breadCumb: false,
+      breadCumb1: false,
+      value: 1,
+      dailyCustomInd: 1,
+      showDel: false,
+      translatedMenuItems: [],
+    };
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       "71",//Type 0
+       "1228",// "Topic 1
+       "158",// start
+       "111",  // end
+    
+       
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
+
   componentDidMount() {
     this.props.getActivityListByShipperId(this.props.shipperId);
   }
@@ -43,20 +82,24 @@ class ShipperActivityTable extends Component {
   
     return (
       <>
-            <div className=' flex  sticky  z-auto'>
+            <div className=' flex  sticky h-[78vh]  z-auto'>
             <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.type" defaultMessage="Type"/></div>
-                        <div className=" md:w-[5.1rem]"><FormattedMessage id="app.topic" defaultMessage="Topic"/></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.start" defaultMessage="Start"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.end" defaultMessage="End"/></div>
+                        <div className=" md:w-[7.4rem]">      {this.state.translatedMenuItems[0]}</div>
+                        {/* Type */}
+                        <div className=" md:w-[5.1rem]">      {this.state.translatedMenuItems[1]}</div>
+                        {/* Topic */}
+                        <div className=" md:w-[8.8rem] ">      {this.state.translatedMenuItems[2]}</div>
+                        {/* Start */}
+                        <div className="md:w-[3.8rem]">      {this.state.translatedMenuItems[3]}</div>
+                        {/* End */}
                         <div className="md:w-[6.12rem]"></div>
                      
 
 
                     </div>
-                    <div class="overflow-x-auto h-[64vh]">
+                    <div class="overflow-x-auto h-[72vh]">
                     {this.props.activityShipper.length > 0 ? (
                this.props.activityShipper.map((item) => (
                             

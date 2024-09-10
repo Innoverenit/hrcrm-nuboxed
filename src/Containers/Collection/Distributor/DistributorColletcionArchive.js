@@ -52,32 +52,32 @@ function DistributorColletcionArchive(props) {
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {translatedMenuItems[0]}   {/* <FormattedMessage id="app.customer" defaultMessage="Customer" /> */}
               </div>
-            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]} #
+            <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]} #
               {/* <FormattedMessage id="app.order" defaultMessage="Order #" /> */}
               </div>
-            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Invoice */} {translatedMenuItems[2]}
               </div>
-            <div className=" w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  {translatedMenuItems[3]} ID
+            <div className="font-bold font-poppins text-xs w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  {translatedMenuItems[3]} ID
               {/* <FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /> */}
               </div>
-            <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* /<FormattedMessage id="app.type" defaultMessage="Type" /> */} {translatedMenuItems[4]}
               </div>
-            <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* <FormattedMessage id="app.date" defaultMessage="Date" /> */} {translatedMenuItems[5]}
               </div>
-            <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* <FormattedMessage id="app.amount" defaultMessage="Amount" /> */} {translatedMenuItems[6]}
               </div>
-            <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* <FormattedMessage id="app.mode" defaultMessage="Mode" /> */} {translatedMenuItems[7]}
               </div>
 
-            <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* <FormattedMessage id="app.owner" defaultMessage="Owner" /> */} {translatedMenuItems[8]}
               </div>
           </div>

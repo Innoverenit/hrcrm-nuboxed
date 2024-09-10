@@ -1,11 +1,9 @@
 import React, { lazy, Suspense,useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { MultiAvatar } from "../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import {getCollection} from "../CollectionAction"
-import { BundleLoader } from "../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 
 function CreditMemoList(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -20,10 +18,8 @@ function CreditMemoList(props) {
           "1169",// Invoice Id 1
           "248" , // "Customer",//2
            "218" ,//   Value,//3
-          "" , // "Generated",//4
-          
-          
-           "", // "Applied"5
+          "1365" , // "Generated",//4       
+           "1368", // "Applied"5
         
            
         ];
@@ -50,26 +46,26 @@ function CreditMemoList(props) {
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[9.1rem] max-xl:w-[13.1rem]">
+            <div className="font-poppins font-bold text-xs w-[9.1rem] max-xl:w-[13.1rem]">
             {translatedMenuItems[0]} {/* Order Id */}
                
                 </div>
-                <div className="w-[6.12rem]">
+                <div className="font-poppins font-bold text-xs w-[6.12rem]">
                 {translatedMenuItems[1]} ID {/* Invoice Id */}
 
                 </div>
-            <div className=" w-[8.2rem] max-xl:w-[9.2rem]">
+            <div className="font-poppins font-bold text-xs w-[8.2rem] max-xl:w-[9.2rem]">
             {translatedMenuItems[2]} {/* Customer */}
               
                 </div>
-            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {translatedMenuItems[3]}  {/* Value */}
                 </div>
-            <div className=" w-[7.32rem] max-xl:w-[6.32rem] ">
+            <div className="font-poppins font-bold text-xs w-[7.32rem] max-xl:w-[6.32rem] ">
             {translatedMenuItems[4]}{/* Generated */}
                
                 </div>
-            <div className="w-[6.023rem]">
+            <div className="font-poppins font-bold text-xs w-[6.023rem]">
             {translatedMenuItems[5]}{/* Applied */}
              
                 </div>

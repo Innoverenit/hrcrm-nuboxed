@@ -8,7 +8,6 @@ import { CurrencySymbol } from "../../../Components/Common";
 import { Link } from "../../../Components/Common";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 class AllDistributorList extends Component {
@@ -17,14 +16,44 @@ class AllDistributorList extends Component {
     searchText: "",
     searchedColumn: "",
     page: 0,
-    hasMore: true
+    hasMore: true,
+    translatedMenuItems: [],
   };
 
   componentDidMount() {
     this.setState({ page: this.state.page + 1 })
     this.props.getAllDistributorsList(this.state.page);
+    this.fetchMenuTranslations();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       '248',// customer 
+       '546',// Mobile
+       '700',// Website
+       '185',//  Address
+       '1236',// pinCode
+       '188',// city
+       '77',// owner
+       '1093',//  Balance
+       '267',// Previous
+       
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
   handleLoadMore = () => {
     this.setState({ page: this.state.page + 1 })
     this.props.getAllDistributorsList(this.state.page);
@@ -35,22 +64,31 @@ class AllDistributorList extends Component {
     if (this.props.fetchingAllDistributorsError) {
       return <APIFailed />;
     }
-
+ 
 
     return (
       <>
         <div className='flex  sticky z-auto'>
           <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
             <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-              <div className=" md:w-[8.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-              <div className=" md:w-[5.1rem]"><FormattedMessage id="app.mobile" defaultMessage="Mobile" /></div>
-              <div className=" md:w-[6.8rem] "><FormattedMessage id="app.website" defaultMessage="Website" /></div>
-              <div className="md:w-[5.9rem]"><FormattedMessage id="app.address" defaultMessage="Address" /></div>
-              <div className="md:w-[7.8rem]"><FormattedMessage id="app.pincode" defaultMessage="Pin Code" /></div>
-              <div className="md:w-[7.9rem]"><FormattedMessage id="app.city" defaultMessage="City" /></div>
-              <div className="md:w-[6.2rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /> </div>
-              <div className="md:w-[11.3rem]"><FormattedMessage id="app.balance" defaultMessage="Balance" /></div>
-              <div className="md:w-[11.3rem]"><FormattedMessage id="app.previous" defaultMessage="Previous" /></div>
+              <div className=" md:w-[8.1rem]">{this.state.translatedMenuItems[0]}</div>
+               {/* customer */}
+              <div className=" md:w-[5.1rem]">{this.state.translatedMenuItems[1]}</div>
+              {/* Mobile */}
+              <div className=" md:w-[6.8rem] ">{this.state.translatedMenuItems[2]}</div>
+               {/* Website */}
+              <div className="md:w-[5.9rem]">{this.state.translatedMenuItems[3]}</div>
+               {/* Address */}
+              <div className="md:w-[7.8rem]">{this.state.translatedMenuItems[4]}</div> 
+              {/* pinCode */}
+              <div className="md:w-[7.9rem]">{this.state.translatedMenuItems[5]}</div>
+               {/* city */}
+              <div className="md:w-[6.2rem]">{this.state.translatedMenuItems[6]} </div>
+               {/* owner */}
+              <div className="md:w-[11.3rem]">{this.state.translatedMenuItems[7]}</div> 
+              {/* Balance */}
+              <div className="md:w-[11.3rem]">{this.state.translatedMenuItems[8]}</div>
+               {/* Previous */}
 
 
             </div>
@@ -60,6 +98,7 @@ class AllDistributorList extends Component {
               hasMore={this.state.hasMore}
               loader={this.props.fetchingAllDistributors ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
               height={"75vh"}
+              style={{scrollbarWidth:"thin"}}
             >
 
               {this.props.allDistributors.map((item) => {

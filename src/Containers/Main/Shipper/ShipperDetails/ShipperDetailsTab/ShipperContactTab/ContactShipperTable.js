@@ -6,29 +6,66 @@ import {
   setEditShipperContact,
 } from "../../../ShipperAction";
 import { getContactShipperList } from "../../../../Suppliers/SuppliersAction"
-import { EditOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import UpdateShipperContactModal from "./UpdateShipperContactModal";
 import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
-import { FormattedMessage } from "react-intl";
 class ShipperContactTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeKey: "1",
+      breadCumb: false,
+      breadCumb1: false,
+      value: 1,
+      dailyCustomInd: 1,
+      showDel: false,
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
     this.props.getContactShipperList(this.props.shipperId);
+    this.fetchMenuTranslations();
   }
+ 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       "110",//Name 0
+       "140",//Email 1
+       "546",// "Mobile no" 2
+       "325",  // Designation 3
+       "326",  // Department 4
+       
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
+
 
   render() {
 
     return (
       <>
-        <div className=' flex  sticky  z-auto'>
+        <div className=' flex  sticky h-[78vh]  z-auto'>
           <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
             <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-              <div className=" md:w-[7.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-              <div className=" md:w-[11.12rem]"><FormattedMessage id="app.email" defaultMessage="Email" /></div>
-              <div className=" md:w-[4.8rem] "><FormattedMessage id="app.mobileno" defaultMessage="Mobile No" /></div>
-              <div className="md:w-[2.9rem]"><FormattedMessage id="app.designation" defaultMessage="Designation" /></div>
-              <div className="md:w-[7.8rem]"><FormattedMessage id="app.department" defaultMessage="Department" /></div>
+              <div className="font-bold font-poppins text-xs md:w-[7.1rem]">{this.state.translatedMenuItems[0]}</div>
+              <div className="font-bold font-poppins text-xs md:w-[11.12rem]">{this.state.translatedMenuItems[1]}</div>
+              <div className="font-bold font-poppins text-xs md:w-[4.8rem] ">{this.state.translatedMenuItems[2]}</div>
+              <div className="font-bold font-poppins text-xs md:w-[2.9rem]">{this.state.translatedMenuItems[3]}</div>
+              <div className="font-bold font-poppins text-xs md:w-[7.8rem]">{this.state.translatedMenuItems[4]}</div>
               <div className=" md:w-[3.1rem]"></div>
 
             </div>

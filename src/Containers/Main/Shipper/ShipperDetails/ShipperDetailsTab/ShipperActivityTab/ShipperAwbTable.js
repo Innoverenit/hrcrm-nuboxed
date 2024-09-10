@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip } from "antd";
-import {
-  FileDoneOutlined,
-  PhoneOutlined,
-  ScheduleOutlined,
-} from "@ant-design/icons";
 import {
   getAwbListByShipperId,
   handleUpdateEventModal,
@@ -16,16 +10,50 @@ import {
 import { setEditEvents } from "../../../../../Event/EventAction";
 import { setEditTask } from "../../../../../Task/TaskAction";
 import dayjs from "dayjs";
-import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
-import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 class ShipperAwbTable extends Component {
-  componentDidMount() {
-    this.props.getAwbListByShipperId(this.props.shipperId);
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeKey: "1",
+      translatedMenuItems: [],
+    };
   }
 
+  handleTabChange = (key) => this.setState({ activeKey: key });
+
+  componentDidMount() {
+    this.props.getAwbListByShipperId(this.props.shipperId);
+  } 
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       "1377", // "Ship Id",
+       "679",// "Created",
+       "1378",// Pick up",
+       "772",  // "Delivery",
+    
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
   render() {
     const {
       handleUpdateEventModal,
@@ -42,14 +70,18 @@ class ShipperAwbTable extends Component {
 
     return (
       <>
-            <div className=' flex  sticky  z-auto'>
+            <div className=' flex  sticky h-[78vh]  z-auto'>
             <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.awb#" defaultMessage="AWB #"/></div>
-                        <div className=" md:w-[10.1rem]"><FormattedMessage id="app.created" defaultMessage="Created"/></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.pickUp" defaultMessage="Pick Up"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
+                        <div className="Font-poppins font-bold text-xs md:w-[7.4rem]">  {this.state.translatedMenuItems[0]}</div>
+                        {/* AWB# */}
+                        <div className="Font-poppins font-bold text-xs md:w-[10.1rem]">  {this.state.translatedMenuItems[1]}</div>
+                        {/* Created */}
+                        <div className="Font-poppins font-bold text-xs md:w-[8.8rem] ">  {this.state.translatedMenuItems[2]}</div>
+                        {/* pickUp */}
+                        <div className="Font-poppins font-bold text-xs md:w-[3.8rem]">  {this.state.translatedMenuItems[3]}</div>
+                        {/* Delivery */}
                         <div className="md:w-[6.12rem]"></div>
                       
                      

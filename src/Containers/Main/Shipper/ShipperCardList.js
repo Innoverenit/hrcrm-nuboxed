@@ -78,35 +78,35 @@ function ShipperCardList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
              {/* Name */}
               {props.translatedMenuItems[0]}
               </div>
-            <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
              {/* Phone */}
               {props.translatedMenuItems[1]} #
               </div>
-            <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
              {/* Email */}
               {props.translatedMenuItems[2]}
               </div>
-            <div className="w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Ship By */}
               {props.translatedMenuItems[3]}
             </div>
-            <div className="w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" font-poppins font-bold text-xs w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
              {/* Address */}
               {props.translatedMenuItems[4]}
               </div>
-            <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {/* City */}
               {props.translatedMenuItems[5]}
               </div>
-            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {/* Pin Code */}
               {props.translatedMenuItems[6]}
               </div>
-            <div className="w-[10.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
+            <div className="font-poppins font-bold text-xs w-[10.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
           </div>
           <InfiniteScroll
             dataLength={props.shipperByUserId.length}
@@ -198,16 +198,18 @@ function ShipperCardList(props) {
                               unCheckedChildren="No"
                             />
                           </div>
+                          <div class="flex justify-end max-sm:w-wk items-center">
+                          <div class="flex max-sm:flex-row  justify-end md:w-20 max-sm:w-[25%] ">
+                           
                           <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
             props.handleShipperAddress(true);
             handleRowData(item);
-          }}
-          
-        />    
-                        <div class="flex justify-end max-sm:w-wk items-center">
-                          <div>
+          }}         
+        />      
+       
+                                            
                             <Tooltip title={props.translatedMenuItems[9]}>
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-2xl"
@@ -220,8 +222,8 @@ function ShipperCardList(props) {
                                 }}
                               />
                             </Tooltip>
-                          </div>
-                          <div>
+                  
+                       
                             <Popconfirm
                               title={`${props.translatedMenuItems[10]}?`}
                               onConfirm={() => props.deleteShipperData(item.shipperId, props.userId)}
@@ -231,7 +233,7 @@ function ShipperCardList(props) {
 
                               />
                             </Popconfirm>
-                          </div>
+                         </div>
                         </div>
                         </div>
                       </div>

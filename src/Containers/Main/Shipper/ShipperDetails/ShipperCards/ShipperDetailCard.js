@@ -13,11 +13,15 @@ class ShipperDetailCard extends Component {
                         viewType === "view" ? (
                             <ShipperDetailView shipper={shipper}
                                 toggleViewType={toggleViewType}
+                                translatedMenuItems={this.props.translatedMenuItems}
+                                selectedLanguage={this.props.selectedLanguage}
                             />
                         ) : (
                                 <ShipperViewDataEdit
                                     shipper={shipper}
                                     toggleViewType={toggleViewType}
+                                    translatedMenuItems={this.props.translatedMenuItems}
+                                    selectedLanguage={this.props.selectedLanguage}
                                 />
                             )
                     }

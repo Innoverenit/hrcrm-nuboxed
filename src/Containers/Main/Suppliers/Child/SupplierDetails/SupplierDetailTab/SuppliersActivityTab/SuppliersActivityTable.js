@@ -9,6 +9,45 @@ import {getActivityListBySupplierId} from "../../../../SuppliersAction";
 
 class SuppliersActivityTable extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+          activeKey: "1",
+          translatedMenuItems: [],
+        };
+      }
+    
+      handleTabChange = (key) => this.setState({ activeKey: key });
+    
+      componentDidMount() {
+        this.props.getTodayPurchaseOrder(this.props.supplier.supplierId)
+        this.fetchMenuTranslations();
+      }
+      componentDidUpdate(prevProps) {
+        if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+          this.fetchMenuTranslations();
+        }
+      }
+    
+      fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+           
+           "831", // "Purchase Order", 0
+           "880",// "Inventory",1
+           "1235",// "Materials",2
+           "73",  // "Contact",3
+           "138",  // "Document",4
+           "1165", // "Activity" 5
+                ];
+    
+          const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+          this.setState({ translatedMenuItems: translations });
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      }; 
+
     componentDidMount() {
         this.props.getActivityListBySupplierId(this.props.supplierId);
     }

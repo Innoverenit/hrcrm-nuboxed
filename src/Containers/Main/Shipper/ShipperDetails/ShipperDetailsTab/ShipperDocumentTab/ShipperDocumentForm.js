@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from "react-intl";
 import { FlexContainer } from "../../../../../../Components/UI/Layout";
-
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
@@ -29,8 +27,36 @@ class ShipperDocumentForm extends Component {
       ownerAbove: "Specific",
       selectedownerAbove: "Specific",
       data: [1],
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       "71",//Type 0
+       "110",// "Name id" 1
+       "147",// "Description" 2
+       "154",  //Submit 3
+   
+       
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
   handleButtonClick = () => {
     console.log(length);
     let length = this.state.data.length;
@@ -128,11 +154,7 @@ class ShipperDocumentForm extends Component {
           }) => (
             <Form class="form-background">
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "45%",
-                  }}
+                <div className="h-[100%] w-[45%]"              
                 ><div class=" mt-3"/>
                   <Field
                     name="documentId"
@@ -148,7 +170,7 @@ class ShipperDocumentForm extends Component {
                   <Field
                     name="documentTypeId"
                     selectType="documentType"
-                    label={<FormattedMessage id="app.Type" defaultMessage="Type" />}                  
+                    label= {this.state.translatedMenuItems[0]}                
                     component={SearchSelect}
                     isColumn
                     margintop={"0.25em"}
@@ -156,22 +178,18 @@ class ShipperDocumentForm extends Component {
                     inlineLabel              
                   />
                 </div>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "45%",
-                  }}
+                <div className="h-[100%] w-[45%]"                
                 >
                   <Field
                     name="documentName"
-                    label={<FormattedMessage id="app.name" defaultMessage="Name" />}                   
+                    label= {this.state.translatedMenuItems[1]}                   
                     width={"100%"}
                     isColumn
                     component={InputComponent}             
                   />               
                   <Field
                     name="documentDescription"
-                    label={<FormattedMessage id="app.Description" defaultMessage="Description" />}                 
+                    label= {this.state.translatedMenuItems[2]}                 
                     isRequired
                     isColumn
                     width={"100%"}
@@ -186,7 +204,7 @@ class ShipperDocumentForm extends Component {
                   type="primary"
                   Loading={addingDocumentByShipperId}
                 >
-                       {<FormattedMessage id="app.submit" defaultMessage="Submit"/>}
+                        {this.state.translatedMenuItems[3]}
                 </Button>
               </FlexContainer>
             </Form>

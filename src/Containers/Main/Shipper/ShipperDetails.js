@@ -18,7 +18,10 @@ class ShipperDetails extends Component {
     return (
       <>
         <>
-          <ShipperDetailsHeader />
+          <ShipperDetailsHeader
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
+          />
           {fetchingShipperDetailsByShipperId ? (
             <MainWrapper>
               <BundleLoader />
@@ -28,10 +31,16 @@ class ShipperDetails extends Component {
               <Suspense fallback={"Loading..."}>
                 <div class="flex flex-nowrap" flexWrap="no-wrap" style={{ width: "100%" }}>
                   <div class="w-[22%]">
-                    <ShipperDetailsLeft shipper={shipper} />
+                    <ShipperDetailsLeft shipper={shipper}
+                     translateText={this.props.translateText}
+                     selectedLanguage={this.props.selectedLanguage}
+                    />
                   </div>
                   <div class="w-[78%]">
-                    <ShipperDetailsRight shipper={shipper} />
+                    <ShipperDetailsRight shipper={shipper}
+                     translateText={this.props.translateText}
+                     selectedLanguage={this.props.selectedLanguage}
+                    />
                   </div>
                 </div>
               </Suspense>
