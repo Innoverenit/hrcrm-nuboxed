@@ -6563,3 +6563,35 @@ export const searchWordsName = (word) => (dispatch) => {
       });
     });
 }; 
+
+
+
+export const addPaymentApi = (data,cb) => (dispatch) => {
+    
+  dispatch({
+    type: types.ADD_PAYMENT_API_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/ApiKey`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getPaymentFinance())
+      dispatch({
+        type: types.ADD_PAYMENT_API_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PAYMENT_API_FAILURE,
+        payload: err,
+      });
+      cb && cb("Failure");
+    });
+};

@@ -1,6 +1,8 @@
 import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+//import BorderColorIcon from '@mui/icons-material/BorderColor';
+import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
@@ -14,7 +16,7 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
 //import { getCountries } from "../../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button, Popconfirm } from "antd";
+import { Tooltip, Input,Select, Button, Popconfirm } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import {
@@ -25,7 +27,8 @@ import ProductBrandModal from "./ProductBrandModal"
 import { Link } from 'react-router-dom';
 import {addProductBrand,getBrandProduct,
   handleProductBrandModal,
-  deleteProductBrandData
+  deleteProductBrandData,
+  updateBrandProduct
 } from "../ProductAction"
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -43,12 +46,18 @@ function BrandList(props) {
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [data, setData] = useState([]);
+  const [editedFields, setEditedFields] = useState({});
   const [loading, setLoading] = useState(true);
+  const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [currentBrandId, setCurrentBrandId] = useState("");
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
+  const [newimageId, setnewimageId] = useState("");
 
+
+  const [newbrandName, setNewBrandName] = useState('');
 
   useEffect(() => {
    
@@ -82,39 +91,66 @@ function BrandList(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
+
+  useEffect(() => {
+    setData(props.brandProduct);
+}, [props.brandProduct]);
+
+ 
+  function handleSetImage(imageId) {
+    setnewimageId(imageId);
+  }
+
  
 
 
  
-
-  
-//   const handleLoadMore = () => {
-//     const callPageMapd = props.customerByUserId && props.customerByUserId.length &&props.customerByUserId[0].pageCount
-//     setTimeout(() => {
-
-//       if  (props.customerByUserId)
-//       {
-//         if (page < callPageMapd) {
-//           setPage(page + 1);
-//           props.getCustomerListByUserId(props.userId, page, "creationdate");
-//       }
-//       if (page === callPageMapd){
-//         setHasMore(false)
-//       }
-//     }
-//     }, 100);
-//   };
- 
   
   
 
+const handleEditClick = (brand,brandName) => {
+  setEditsuppliesId(brand);
+  setNewBrandName(brandName)
+};
 
+
+const handleCancelClick = (brand) => {
+  setEditedFields((prevFields) => ({ ...prevFields, [brand]: undefined }));
+  setEditsuppliesId(null);
+};
    
  
 function handleSetCurrentBrandId(item) {
   setCurrentBrandId(item);
   // console.log("opp",item);
 }
+
+
+const handleInputChange = (value, key, dataIndex) => {
+  setEditedFields((prevFields) => ({
+    ...prevFields,
+    [dataIndex]: {
+      ...prevFields[dataIndex],
+      [key]: value,
+    },
+  }));
+
+
+};
+
+
+const handleSave = (item) => {
+  console.log(newbrandName)
+  console.log(newimageId)
+  let data={
+    brandName:newbrandName,
+    imageId:newimageId?newimageId:item.imageId
+  }
+  props.updateBrandProduct(data,item.brand)
+  
+  setEditsuppliesId(null); // Exit edit mode
+};
+
 
 
   return (
@@ -253,7 +289,7 @@ function handleSetCurrentBrandId(item) {
           </div>
        
 
-            {props.brandProduct.length === 0 ? <NodataFoundPage /> : props.brandProduct.map((item, index) => {
+            {data.length === 0 ? <NodataFoundPage /> : data.map((item, index) => {
         
               return (
                 <div>
@@ -263,45 +299,60 @@ function handleSetCurrentBrandId(item) {
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex  w-[13rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
-                          <div>
-                            
+                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+
+{editsuppliesId === item.brand ? (
+    
+    <EditUpload
+    imageId={item.imageId}
+    imgWidth={100}
+    imgHeight={100}
+    getImage={handleSetImage}
+  />
+                       
+                    ) : (
+                      <div className=" text-xs  font-poppins">
+                        <div> 
+                            {item.imageId ? (
                             <MultiAvatar
-                              primaryTitle={item.name}
-                              imageId={item.imageId}
-                              imageURL={item.imageURL}
-                              imgWidth={"1.8rem"}
+                              imageId={item.imageId ? item.imageId : ''}
                               imgHeight={"1.8rem"}
+                              imgWidth={"1.8rem"}
                             />
-                     
+                          ) : (
+                            <div class="font-bold text-xs" >
+                              No Image
+                            </div>
+                          )}
                           </div>
-                          <div class="w-[4%]"></div>
+                      </div>
+                    )}
+                      
+</div>
+                         
 
-                          <div class="max-sm:w-full md:flex items-center">
-                            <Tooltip>
-                              <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
-
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
-                                    {item.brandName}
-                                  </Link>
-
-                                  &nbsp;&nbsp;
-                                  {/* {date === currentdate ? (
-                                    <div class="text-[0.65rem] mt-[0.4rem] text-[tomato] font-bold"
-                                    >
-                                      {translatedMenuItems[9]}
-                                    </div>
-                                  ) : null} */}
-
-                                </div>
-                              </div>
-                            </Tooltip>
-                          </div>
+                          
                         </div>
                       </div>
                       <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
-
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {editsuppliesId === item.brand ? (
+                            <Input
+                            style={{ width: "3rem" }}
+                          value={newbrandName}
+                            // onChange={(e) => handleInputChange(e.target.value, item.brandName, 'brandName')}
+                            onChange={(e) => setNewBrandName(e.target.value)}
+                           
+                          />
+                      
+                       
+                    ) : (
+                      <div className=" text-xs  font-poppins">
+                        <div>  {item.brandName}</div>
+                      </div>
+                    )}
+                        </div>
 
                       </div>
                       <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -346,224 +397,39 @@ function handleSetCurrentBrandId(item) {
                         </div>
 
                       </div>
-                      {/* <div className=" flex max-sm:w-auto  items-center  w-[5.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-        
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          <CountryFlag1 countryCode={countryCode} />
-                         
-                        </div>
-                      </div>
-                      <div className=" flex items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-                 
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.oppNo}
-
-                        </div>
-                      </div> */}
-                    </div>
-                    {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex max-sm:w-auto w-[4.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
-     
-                            {item.totalProposalValue && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-      {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
-      </div>
-    )}
-                      </div>                  
-                      <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
-                      
-
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-
-                          <div>
-                            {item.assignedTo === null ? (
-                              <div class="text-xs  font-poppins">No Data</div>
-                            ) : (
-                              <>
-                                {item.assignedTo === item.ownerName ? (
-
-                                  null
-                                ) : (
-                                  <MultiAvatar2
-                                    primaryTitle={item.assignedTo}
-                                    imgWidth={"1.8rem"}
-                                    imgHeight={"1.8rem"}
-                                  />
-                                )}
-                              </>
-                            )}
-                          </div>
-
-                        </div>
-                      </div>
-                      <div className=" flex f items-center max-sm:w-auto w-[2rem] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
-                        <Tooltip title={item.ownerName}>
-                          <div class="max-sm:flex justify-end">
-                            <Tooltip title={item.ownerName}>
-                              <MultiAvatar
-                                primaryTitle={item.ownerName}
-                                imageId={item.ownerImageId}
-                                imgWidth={"1.8rem"}
-                                imgHeight={"1.8rem"}
-                              />
-                            </Tooltip>
-                          </div>
-                        </Tooltip>
-                      </div>
-                    </div>
-                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
-                      <div className=" flex  justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-
-                        <div class=" text-xs  font-poppins"></div>
-                        <Popconfirm
-                          title={translatedMenuItems[10]}
-                          onConfirm={() => handleConfirm(item.customerId)}
-                          okText="Yes"
-                          cancelText="No"
+                      <div className=" flex  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+    {editsuppliesId === item.brand ? (
+                        <>
+                      <Button 
+                      type="primary"
+                    //   loading={props.updatingOrdrSuplrItems}
+                    onClick={() => handleSave(item)}
+                      >
+                        Save
+                      </Button>
+                        <Button 
+                         type="primary"
+                        onClick={() => handleCancelClick(item.brand)} className="ml-[0.5rem]"
                         >
-                          {user.erpInd === true && (
-                            <Button type="primary"
-                              style={{ width: "8rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}>
-                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
-                                {item.convertInd === 0 && "Convert"}
-                                {item.convertInd === 1 && "In progress"}
-                                {item.convertInd === 2 && "Converted"}
-                                <NextPlanIcon  className="!text-icon "/>
-                              </div>
-                            </Button>
-                          )}
-                        </Popconfirm>
-                      </div>
+                        Cancel
+                      </Button>
+                      </>
+                      
+                    ) : (
+                      <BorderColorIcon
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                        tooltipTitle="Edit"
+                        iconType="edit"
+                        onClick={() => handleEditClick(item.brand,item.brandName)}
+                      />
+                    )}
+    </div> 
 
-                     
-                        <div>
-                          <Tooltip title={item.url}>
-                            {item.url !== "" ? (
-                              <div
-                                //type="edit"
-                                style={{ cursor: "pointer" }}
-                                onClick={() => { }}
-                              >
-                                {" "}
-                                <a href={`https://${item.url}`} target="_blank">
-                                  <ExploreIcon
-                                    className=" !text-icon cursor-pointer text-[green]"
-
-                                  />
-                                </a>
-                              </div>
-                            )
-                              : <div class=" w-3">
-
-                              </div>
-                            }
-                          </Tooltip>
-
-                        </div>
-                        <div>
-                          <div
-                            style={{ fontSize: "0.8rem" }}
-                            onClick={() => {
-                              props.getCustomerDetailsById(item.customerId);
-                              props.getCustomerKeySkill(item.customerId);
-                              //   this.props.getCustomerDocument(item.customerId );
-
-                              props.handleCustomerDrawerModal(item, true);
-                            }}
-                          >
-                            {" "}
-                            {user.pulseAccessInd === true && <MonitorHeartIcon
-                              className=" !text-icon cursor-pointer text-[#df9697]"
-                            />}
-                          </div>
-                        </div>
-                        <div>
-                        </div>                    
-                        <div >
-                          <Tooltip title={translatedMenuItems[15]}>
-                            <ContactsIcon
-                              className=" !text-icon cursor-pointer text-[#709ab3]"
-                              onClick={() => {
-                                handleCustomerContactDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                              }}
-
-                            />
-                          </Tooltip>
-                        </div>
-                        <div >
-                          <Tooltip title={translatedMenuItems[11]}>
-                            <LightbulbIcon
-                              className=" !text-icon cursor-pointer text-[#AF5910]"
-                              onClick={() => {
-                                handleCustomerOpportunityDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
-
-                            />
-                          </Tooltip>
-
-                        </div>                                       
-                        <div >
-                          <Tooltip title={translatedMenuItems[12]}>
-                            <MonitorHeartIcon
-                              className=" !text-icon cursor-pointer text-[#df9697]"
-                              onClick={() => {
-                                handleCustomerPulseDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                              }}
-                            />
-                          </Tooltip>
-                        </div>
-                        <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleAddressCutomerModal(true);
-            handleRowData(item);
-          }}
-          
-        /> 
-                        <div >
-                          <Tooltip title={translatedMenuItems[13]}>
-                            <NoteAltIcon
-                              className=" !text-icon cursor-pointer text-[#4bc076]"
-                              onClick={() => {
-                                handleCustomerNotesDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
-                            />
-                          </Tooltip>
-                        </div>                                     
-                        <div >
-                          <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-
-                            <LocationOnIcon
-                              className=" !text-icon cursor-pointer text-[#960A0A]"
-                            />
-                          </Tooltip>
-                        </div>
-                        <div >
-                          {props.user.customerUpdateInd === true && user.crmInd === true && (
-                            <Tooltip title={translatedMenuItems[14]}>
-                              <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
-
-                                onClick={() => {
-                                  props.setEditCustomer(item);
-                                  handleUpdateCustomerModal(true);
-                                  handleSetCurrentCustomerId(item.customerId);
-
-                                }}
-                              />
-                            </Tooltip>
-                          )}
-             
-                        </div>                 
-                    </div> */}
+                      
+                   
+                    </div>
+                
                   </div>
                 </div>
               )
@@ -606,6 +472,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         addProductBrand,
+        updateBrandProduct,
         getBrandProduct,
         deleteProductBrandData,
       handleProductBrandModal

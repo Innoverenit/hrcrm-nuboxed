@@ -1382,3 +1382,38 @@ export const deleteSuppliesBrandData = (data,suppliesBrandId) => (dispatch) => {
     });
 };
 
+
+
+
+export const updateBrandMaterial = (data, suppliesBrandId, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.UPDATE_BRAND_MATERIAL_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url2}/supplies/brandUpdate/${suppliesBrandId}`,
+      data,
+      {
+        // headers: {
+        //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        // },
+      }
+    )
+    .then((res) => {
+    
+      // message.success("Document has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_BRAND_MATERIAL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_BRAND_MATERIAL_FAILURE,
+      });
+    });
+};
+
