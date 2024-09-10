@@ -10,19 +10,15 @@ import {
     ClearSearchedInvoice,
     handlePaidModal,
 } from "../AccountAction";
-import { FormattedMessage } from "react-intl";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
-import {  Select,Popconfirm, Tooltip,Input,Button } from 'antd';
+import {  Select, Tooltip,Input,Button } from 'antd';
 import dayjs from "dayjs";
-import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvoiceOrderModal from "./InvoiceOrderModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import InvoiceModal from "./InvoiceModal";
 import Invoicesearch from "./Invoicesearch";
-import PaidUnpaidAccountInvoiceToggle from "./PaidUnpaidAccountInvoiceToggle";
 import PaidIcon from '@mui/icons-material/Paid';
 import InvoicePaidModal from "./InvoicePaidModal";
 import { base_url2 } from "../../../../Config/Auth";
@@ -58,7 +54,13 @@ function AccountInvoiceTable(props) {
     '218', // 2
     '71', // 3
     '142', // 4
-   
+    "",// Search by Invoice ID"
+   "", // Outstanding
+ " 100",  // Credit Memo
+  "",  // New
+  "1089",  // Generate
+   "", // Payment link
+  "142",// Status
 
 
           ];
@@ -289,7 +291,7 @@ function AccountInvoiceTable(props) {
         <>
          <div class=" w-64 max-sm:w-24">
         <Input
-          placeholder="Search by ID"
+          placeholder={translatedMenuItems[5]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -308,9 +310,9 @@ function AccountInvoiceTable(props) {
         <>
         
 
-            <div className=' flex sticky  z-auto'>
+            <div className=' flex sticky  z-auto mt-1'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
                     {/* <div className=" md:w-[6.54rem] text-[white] flex justify-center bg-[Green]">
                    Generated
                          </div> */}
@@ -319,13 +321,13 @@ function AccountInvoiceTable(props) {
                         {/* <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} </div> */}
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
                         {/* <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div> */}
-                        <div className=" md:w-[8rem]">Outstanding</div>
-                        <div className=" md:w-[8rem]">Credit Memo</div>
+                        <div className=" md:w-[8rem]">{translatedMenuItems[6]}</div>
+                        <div className=" md:w-[8rem]">{translatedMenuItems[7]}</div>
                        
                         <div className=" md:w-[8rem]"></div>
                         <div className=" md:w-[8rem]">{translatedMenuItems[4]}</div>
                     </div>
-                    <div class="h-[33vh]">
+                    <div class="h-[69vh]" style={{scrollbarWidth:"thin"}}>
                         {/* <InfiniteScroll
                             dataLength={props.accountInvoice.length}
                             next={handleLoadMore}
@@ -341,9 +343,9 @@ function AccountInvoiceTable(props) {
                                     return (
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
-                                                <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
+                                                <div class=" flex flex-row justify-between items-center w-wk max-sm:">
+                                                    <div className=" flex  justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins  font-bold flex items-center">
                                                           
                                                            <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
@@ -356,11 +358,11 @@ function AccountInvoiceTable(props) {
                                                         </div>
                                                         {date === currentdate ? (
                                                                 <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
-                                                                    New
+                                                                 {translatedMenuItems[8]}   {/* New */}
                                                                 </div>
                                                             ) : null}
                                                     </div>
-                                                    <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  text-xs w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         
                                                                 {item.newOrderNo}
@@ -371,7 +373,7 @@ function AccountInvoiceTable(props) {
                                                          {item.orderPaymentType}
                                                         </div>
                                                     </div> */}
-                                                    <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex text-xs w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.totalValue}
@@ -401,7 +403,7 @@ function AccountInvoiceTable(props) {
                                                                         sendCreditMemo(item);
                                                                         handleSetParticularOrderData(item);
                                                                     }}
-                                                                >Generate</Button>
+                                                                >{translatedMenuItems[9]}</Button>
                                                             </Tooltip>)}
                                                       
                           
@@ -419,17 +421,17 @@ function AccountInvoiceTable(props) {
                                                                         // executePayementLink();
                                                                         handleSetParticularOrderData(item);
                                                                     }}
-                                                                > Payment link</Button>
+                                                                > {translatedMenuItems[10]}</Button>
                                                             </Tooltip>
                                                       
                           
                           </div>       
                                    
-                                                     <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                     <div className=" flex  items-center  w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="   ">
                                                         <Tooltip title="">
                                                                 <PaidIcon
-                                                                    className="!text-icon cursor-pointer"
+                                                                    className="!text-icon cursor-pointer text-[#e5625e]"
                                                                     onClick={() => {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);
@@ -439,7 +441,7 @@ function AccountInvoiceTable(props) {
                                                             </Tooltip>      
                           </div>
                           <div>
-                          <Tooltip title="Status">
+                          <Tooltip title={translatedMenuItems[11]}>
                              <EventRepeatIcon
                              className="!text-icon cursor-pointer text-[green]"
                               onClick={()=>{

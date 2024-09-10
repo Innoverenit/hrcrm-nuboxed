@@ -23,7 +23,8 @@ module.exports = {
 'xxs':'0.62rem',
 'xm':'0.875rem',
 'ls':'0.8rem',
-'icon':'1.1rem'
+'icon':'1.1rem',
+'tab':'0.8rem',
             },
             colors: {
               "clr": "tomato",

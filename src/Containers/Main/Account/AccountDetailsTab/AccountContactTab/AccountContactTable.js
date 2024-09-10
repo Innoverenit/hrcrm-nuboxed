@@ -504,7 +504,6 @@ import { Tooltip, Button, Input, Select } from "antd";
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
 
 const UpdateAccountContactModal = lazy(() => import('./UpdateAccountContactModal'));
 const AccountContactJumpstartBoxDrawer = lazy(() => import('./AccountContactJumpstartBoxDrawer'));
@@ -607,7 +606,7 @@ const AccountContactTable = (props) => {
         <>
             <div className='flex sticky h-70 z-auto'>
                 <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+                    <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  font-poppins text-xs z-10">
                         <div className="md:w-[5.1rem]">{translatedMenuItems[0]}</div>
                         <div className="md:w-[6.01rem]">{translatedMenuItems[1]}</div>
                         <div className="md:w-[4.8rem]">{translatedMenuItems[2]}</div>
@@ -763,7 +762,7 @@ const AccountContactTable = (props) => {
                    {translatedMenuItems[9]} {/* Login Applied */}
                     </b>
             ) : (
-                <b style={{ color: "#32CD32" }}>
+                <b style={{ color: "#32CD32" ,font:"12px" }}>
                   {translatedMenuItems[10]}  {/* Login Approved */}
                     </b>
             )}

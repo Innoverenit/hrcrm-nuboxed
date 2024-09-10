@@ -33,7 +33,7 @@ import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturi
 import ShopIcon from '@mui/icons-material/Shop'
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 
-const CompleteOrderTable= lazy(() => import("./AccountOrderTab/CompleteOrderTable"));
+const CompleteOrderTable= lazy(() =>import("./AccountOrderTab/CompleteOrderTable"));
 const AddSupplierContactModal   = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal"));
 const SalesMapTable  = lazy(() => import("./AccountDocumentTab/SalesMapTable"));
 const AddSupplierDocumentModal = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal"));
@@ -85,6 +85,10 @@ props.getInvoiceCount(props.distributorData.distributorId)
    "1212", //  'Commerce', //12              
    "1213", // 'Add Commerce',//13
    '1357',// Memo 14
+     "202",       //    Order
+     "667",      //    Completed Orders
+     "1475",       //    Add Order
+ "1474",       //    Add Contact
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -123,8 +127,8 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                                 <span onClick={() => handleOrderCreateClick(false)}>
-                                    <PrecisionManufacturingIcon />
-                                    <span class="ml-1">
+                                    <PrecisionManufacturingIcon className=" !text-icon" />
+                                    <span class="ml-1 !text-tab font-poppins ">
                                     {translatedMenuItems[0]} {/* Production */}
                                         </span>
                                 </span>
@@ -154,11 +158,11 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         tab={
                             <>
                              <span onClick={() => handleOrderClick(false)}>
-                                        <Tooltip title="Orders">
+                                        <Tooltip title={translatedMenuItems[15]}>
                                             <DynamicFeedIcon
                                                 className="!text-icon text-[#81968f] cursor-pointer"
                                             />
-                                            <span class="ml-1">
+                                            <span class="ml-1 !text-tab font-poppins ">
                                             {translatedMenuItems[1]}   {/* Repair */}
                                                 </span>
                                         </Tooltip>
@@ -171,7 +175,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                 ></Badge>
                                 &nbsp;
                                 {activeKey === "3" && (
-                                    <Tooltip title="Completed Orders">
+                                    <Tooltip title={translatedMenuItems[16]}>
                                         <HistoryOutlined
                                             fontSize="small"
                                             onClick={handleOpenOrder}
@@ -181,7 +185,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                 &nbsp;
                                 {activeKey === "3" && (
                                     <>
-                                        <Tooltip title="Add Order">
+                                        <Tooltip title={translatedMenuItems[17]}>
                                             <AddShoppingCartIcon
                                                 type="plus"
                                                 tooltipTitle={translatedMenuItems[1]}
@@ -220,7 +224,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                             <ShopIcon
                                                 className="!text-icon text-[#78a1bb] cursor-pointer"
                                             />
-                                            <span class="ml-1">
+                                            <span class="ml-1 !text-tab font-poppins ">
                                             {translatedMenuItems[12]}
                                             {/* Procure */}
                                                 </span>
@@ -270,7 +274,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                 <>
                   <span>
                     <LightbulbIcon className="!text-icon text-[#bfa89e]" />
-                    <span class=" ml-1">
+                    <span class=" ml-1 !text-tab font-poppins ">
                       {/* <FormattedMessage
                         id="app.quotation"
                         defaultMessage="Quotation"
@@ -327,7 +331,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
             <TabPane
                         tab={
                             <>
-                            <span>
+                            <span class= "!text-tab font-poppins " >
                                    <ReceiptIcon className="!text-icon text-[#a9d8b8] mr-1"/>
                                    {translatedMenuItems[10]}
                                 </span>
@@ -357,7 +361,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                     <TabPane
                         tab={
                             <>
-                            <span>
+                            <span  class= "!text-tab font-poppins ">
                                    <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>
                                    {translatedMenuItems[14]}
                                 </span>
@@ -391,7 +395,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
 
                                 <span>
                                     <i class="fab fa-connectdevelop text-[#8332ac]"></i>
-                                    <span class="ml-1 ">
+                                    <span class="ml-1 !text-tab font-poppins ">
                                     {translatedMenuItems[4]}
                                     {/* Activity */}
                                         </span>
@@ -424,9 +428,44 @@ props.getInvoiceCount(props.distributorData.distributorId)
                     <TabPane
                         tab={
                             <>
+                                <span class="!text-tab font-poppins ">
+                               <ContactsIcon className="!text-icon text-[#96bdc6] mr-1" />
+                                    {translatedMenuItems[9]}
+                                    
+                                    {/* Contact */}
+                                </span>
+                                {activeKey === "10" && (
+                                    <>
+                                        <Tooltip title={translatedMenuItems[18]}>
+                                            <AddIcon
+                                                type="plus"
+                                                tooltipTitle={translatedMenuItems[11]}
+                                                onClick={() => {
+                                                    //  props.handleDistributorContactModal(true);
+                                                    props.handleSupplierContactModal(true)
+                                                }}
+                                                className="!text-icon  cursor-pointer ml-1"
+                                            />
+                                        </Tooltip>
+                                    </>
+                                )}
+                            </>
+                        }
+                        key="10"
+                    >
+                        <Suspense fallback={"Loading ..."}>
+                            <AccountContactTable distributorId={props.distributorData.distributorId} 
+                              selectedLanguage={props.selectedLanguage}
+                              translateText={props.translateText}/>
+                        </Suspense>
+                    </TabPane>
+
+                    <TabPane
+                        tab={
+                            <>
                                 <span>
                                     <i className="fa fa-sticky-note text-[#b6465f]"   aria-hidden="true"></i>
-                                    <span class="ml-1">
+                                    <span class="ml-1 !text-tab font-poppins ">
                                     {translatedMenuItems[5]}
                                     {/* Notes */}
                                         </span>
@@ -466,14 +505,14 @@ props.getInvoiceCount(props.distributorData.distributorId)
                             <>
                                 <span>
                                     <i class="far fa-file text-[#41ead4]"></i>
-                                    <span class="ml-1">
+                                    <span class="ml-1 !text-tab font-poppins ">
                                     {translatedMenuItems[6]}
                                     {/* Documents */}
                                         </span>
                                 </span>
                                 {activeKey === "7" && (
                                     <>
-                                        <Tooltip title="{translatedMenuItems[11]}">
+                                        <Tooltip title={translatedMenuItems[11]}>
                                             <AddIcon
                                                 // type="plus"
                                                 // tooltipTitle="Create"
@@ -506,7 +545,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                             <>
                                 <span>
                                 <LayersIcon className="!text-icon text-[#f49097] ml-1"/>
-                                    <span class="ml-1">
+                                    <span class="ml-1 !text-tab font-poppins ">
                                     {translatedMenuItems[7]}
                                     {/* Sales Map */}
                                         </span>
@@ -523,7 +562,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                     <TabPane
                         tab={
                             <>
-                                <span>
+                                <span class="!text-tab font-poppins ">
                                 <SummarizeIcon className="!text-icon text-[#55d6c2] mr-1"/>
                                     
                                     {translatedMenuItems[8]}
@@ -546,40 +585,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         </Suspense>
                     </TabPane>
 
-                    <TabPane
-                        tab={
-                            <>
-                                <span>
-                               <ContactsIcon className="!text-icon text-[#96bdc6] mr-1" />
-                                    {translatedMenuItems[9]}
-                                    
-                                    {/* Contact */}
-                                </span>
-                                {activeKey === "10" && (
-                                    <>
-                                        <Tooltip title="Add Contact">
-                                            <AddIcon
-                                                type="plus"
-                                                tooltipTitle="{translatedMenuItems[11]}"
-                                                onClick={() => {
-                                                    //  props.handleDistributorContactModal(true);
-                                                    props.handleSupplierContactModal(true)
-                                                }}
-                                                className="!text-icon  cursor-pointer ml-1"
-                                            />
-                                        </Tooltip>
-                                    </>
-                                )}
-                            </>
-                        }
-                        key="10"
-                    >
-                        <Suspense fallback={"Loading ..."}>
-                            <AccountContactTable distributorId={props.distributorData.distributorId} 
-                              selectedLanguage={props.selectedLanguage}
-                              translateText={props.translateText}/>
-                        </Suspense>
-                    </TabPane>
+                    
                   
                    
 

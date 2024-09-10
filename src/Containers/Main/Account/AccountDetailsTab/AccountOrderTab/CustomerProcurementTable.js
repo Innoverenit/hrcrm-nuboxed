@@ -18,9 +18,7 @@ import {
 
 } from "../../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { BundleLoader } from "../../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
@@ -226,7 +224,7 @@ const handleLoadMoreLow = () => {
       </div>
 
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
            </div>
@@ -319,12 +317,12 @@ const handleLoadMoreLow = () => {
                                                 </Tooltip>
                                               </div>
                                             </div>
-                                            <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex md:w-[6.31rem] text-xs  max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                           </div>
                                         
-                                          <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+                                          <div class="flex flex-row text-xs items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md:text-xs">
@@ -384,7 +382,7 @@ const handleLoadMoreLow = () => {
                                                                     className="!text-base cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatuShowDrawer(true);
-                                                                        handleSetParticularOrderData(item);
+                                                                        handleSetParticularOrderData(item.status);
                                                                     }}
                                                                 />
                                                             </Tooltip>
@@ -400,7 +398,7 @@ const handleLoadMoreLow = () => {
       </div>
      
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
+      <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky text-xs font-poppins z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
         {translatedMenuItems[8]} {/* Normal */}
            </div>
@@ -495,12 +493,12 @@ const handleLoadMoreLow = () => {
                           </Tooltip>
                         </div>
                       </div>
-                      <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
                                                     {date}
                                                     </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full text-xs max-sm:justify-between">
                   
                       
                       <div class="max-sm:w-full justify-between flex md:text-xs">
@@ -510,7 +508,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
                       <div class=" font-poppins text-xs">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -576,7 +574,7 @@ const handleLoadMoreLow = () => {
                                                                     className="!text-base cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatuShowDrawer(true);
-                                                                        handleSetParticularOrderData(item);
+                                                                        handleSetParticularOrderData(item.status);
                                                                     }}
                                                                 />
                                                             </Tooltip>

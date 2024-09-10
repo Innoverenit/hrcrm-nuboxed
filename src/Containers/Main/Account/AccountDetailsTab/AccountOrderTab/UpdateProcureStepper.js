@@ -19,8 +19,36 @@ class UpdateProcureStepper extends Component {
         this.state = {
             current: 0,
             thirdPageData: {},
+            translatedMenuItems: [],
         };
     }
+    componentDidMount() {
+        this.fetchMenuTranslations();
+      }
+    
+      componentDidUpdate(prevProps) {
+        if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+          this.fetchMenuTranslations();
+        }
+      }
+    
+      fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+            "660",//0 "Order"
+            "236",//1 "Order Details"
+            "269",//2 "Units Info"
+            "252",//3 "Proceed"
+         "267" // "Previous"
+            
+          ];
+    
+          const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+          this.setState({ translatedMenuItems: translations });
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
     handleSubmit = (data) => {
         this.setState({ thirdPageData: data });
         this.handleComplete();
@@ -41,12 +69,12 @@ class UpdateProcureStepper extends Component {
     render() {
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
+                title:this.state.translatedMenuItems[0],
                 icon: <UserOutlined />,
-                content: <Suspense fallback={<BundleLoader />}><ProcureStep1 orderId={this.props.particularRowData.orderId} inspectionRequiredInd={this.props.inspectionRequiredInd} /> </Suspense>,
+                content: <Suspense fallback={<BundleLoader />}><ProcureStep1
+                selectedLanguage={this.props.selectedLanguage}
+                translateText={this.props.translateText}
+                 orderId={this.props.particularRowData.orderId} inspectionRequiredInd={this.props.inspectionRequiredInd} /> </Suspense>,
             },
             // {
             //     title: <FormattedMessage
@@ -66,18 +94,12 @@ class UpdateProcureStepper extends Component {
             <>
                 <StyledSteps current={current}>
                     <Step
-                        title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
-                        />}
+                        title={<AddShoppingCartIcon className="!text-icon" />}
+                        description={this.state.translatedMenuItems[1]}
                     />
                     <Step
-                        title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        title={<ControlPointDuplicateIcon className="!text-icon" />}
+                        description={this.state.translatedMenuItems[2]}
                     />
                 </StyledSteps>
                 <div class="min-[50vh]"
@@ -96,11 +118,7 @@ class UpdateProcureStepper extends Component {
 
 
                                         >
-                                            <FormattedMessage
-                                                id="app.proceed"
-                                                defaultMessage="Proceed"
-                                            />
-
+                                            {this.state.translatedMenuItems[3]}
                                         </Button>
                                     </>
                                 )}
@@ -112,10 +130,7 @@ class UpdateProcureStepper extends Component {
                                 className=" w-16 absolute top-3/4 right-0 mt"
                                 style={{ marginRight: "1rem", marginTop: "90px" }}
                                 onClick={() => this.prev()}>
-                                <FormattedMessage
-                                    id="app.previous"
-                                    defaultMessage="Previous"
-                                />
+                               {this.state.translatedMenuItems[4]}
 
                             </Button>
                         )}

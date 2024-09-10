@@ -11,6 +11,38 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 const { Option } = Select;
 
 function OrderPaymentTable(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+  '926', // 0Transaction 650
+  '679', // 1 679Created
+  '1424', // 1424Entry
+    "929",    // Amount
+    "86",   // Mode
+    "422",   // 422Reason
+    "116",     // 116Approved
+   "1078", // 1078 Save
+   "1079", // 1079  Cancel
+   "1259",     //  Do you want to delete?1259"
+    "84",    //  Delete84
+       "1423", //  1423Refund
+        ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
 
   useEffect(() => {
     props.getDistributorOrderPayment(props.particularRowData.orderId ? props.particularRowData.orderId:props.particularRowData.orderPhoneId);
@@ -46,15 +78,15 @@ function OrderPaymentTable(props) {
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
 
-            <div className=" md:w-[6.1rem]">Transaction ID</div>
+            <div className=" md:w-[6.1rem]">{translatedMenuItems[0]}  ID</div>
             {/* <div className=" md:w-[4.21rem] ">Invoice Id</div>  */}
-            <div className=" md:w-[4.5rem] ">Created </div>
-            <div className="md:w-[5.8rem]">Entry</div>
-            <div className=" md:w-[4.2rem] ">Amount</div>  {/* 929 */}
-            <div className=" md:w-[4.2rem] ">Mode</div>
+            <div className=" md:w-[4.5rem] ">{translatedMenuItems[1]} </div>
+            <div className="md:w-[5.8rem]">{translatedMenuItems[2]}</div>
+            <div className=" md:w-[4.2rem] ">{translatedMenuItems[3]}</div>  {/* 929 */}
+            <div className=" md:w-[4.2rem] ">{translatedMenuItems[4]}</div>
             {/* 86 */}
-            <div className=" md:w-[4.2rem] ">Reason</div>
-            <div className=" md:w-[6.2rem] ">Approved </div>
+            <div className=" md:w-[4.2rem] ">{translatedMenuItems[5]}</div>
+            <div className=" md:w-[6.2rem] ">{translatedMenuItems[6]} </div>
             <div className="md:w-[6rem]"></div>
           </div>
 
@@ -155,12 +187,12 @@ function OrderPaymentTable(props) {
                                 orderId: props.particularRowData.orderId
                               }, item.paymentId, hnadleCallback())
                             }}>
-                            Save
+                          {translatedMenuItems[7]}
                           </Button>
                           <Button
                             className="ml-2"
                             onClick={() => handleEditIcon()}>
-                            Cancel
+                          {translatedMenuItems[8]}
                           </Button>
                         </>
 
@@ -180,14 +212,14 @@ function OrderPaymentTable(props) {
                     </div>
                     {item.approveByFinanceInd === false ? <div>
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title={translatedMenuItems[9]}
                         onConfirm={() => props.deleteOrderPaymentData({
                           orderPaymentType: "Repair",
                           reason: "",
                           paymentId: item.paymentId
                         }, item.paymentId)}
                       >
-                        <Tooltip title="Delete">
+                        <Tooltip title={translatedMenuItems[10]}>
                           <DeleteIcon
                             className="!text-icon cursor-pointer text-[red]"
                           />
@@ -195,7 +227,7 @@ function OrderPaymentTable(props) {
                       </StyledPopconfirm>
                     </div> :
                       <div>
-                        <Button type="primary">Refund</Button>
+                        <Button type="primary">{translatedMenuItems[11]}</Button>
                       </div>
                     }
                   </div>

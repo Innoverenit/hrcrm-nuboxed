@@ -28,14 +28,24 @@ class PaidButtonModal extends Component {
 
                         {this.props.type === "incomplete" ?
                             <>
-                                <DistributorPaidForm particularRowData={this.props.particularRowData}  distributorId={this.props.distributorId} 
+                                <DistributorPaidForm
+                                 particularRowData={this.props.particularRowData} 
+                                  distributorId={this.props.distributorId} 
                                 type={this.props.type}
+                                selectedLanguage={this.props.selectedLanguage}
+                                translateText={this.props.translateText} 
                                 />
-                                <OrderPaymentTable particularRowData={this.props.particularRowData} 
+                                <OrderPaymentTable
+                                 particularRowData={this.props.particularRowData} 
                                   type={this.props.type}
+                                  selectedLanguage={this.props.selectedLanguage}
+                                  translateText={this.props.translateText} 
                                 />
                             </> :
-                            <OrderPaymentTable particularRowData={this.props.particularRowData} />}
+                            <OrderPaymentTable 
+                            particularRowData={this.props.particularRowData} 
+                            selectedLanguage={this.props.selectedLanguage}
+                            translateText={this.props.translateText} />}
                     </Suspense>
                 </StyledDrawer>
             </>

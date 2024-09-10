@@ -24,7 +24,9 @@ class UpdateProcureModal extends Component {
                     <Suspense fallback={<BundleLoader />}>
                     <UpdateProcureStepper
                         distributorId={this.props.distributorId}
-                        particularRowData={this.props.particularRowData} />
+                        particularRowData={this.props.particularRowData}
+                        selectedLanguage={this.props.selectedLanguage}
+                        translateText={this.props.translateText}  />
                     </Suspense>
                 </StyledDrawer>
             </div>

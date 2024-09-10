@@ -27,6 +27,38 @@ function ProcureStep1(props) {
             label: `${item.firstName || ""} ${item.lastName || ""}`
         }
     })
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    '110', // 0
+    '14', // 1
+    '218', // 2
+    '71', // 3
+    '260', // 4
+    '142', // 5
+   '259',//6
+    "",// Value
+  "1379", // Ship on
+   "" // track ID
+
+
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         props.getContactDistributorList(props.setEdittingProcure.distributorId)
         props.getSaleCurrency()
@@ -121,35 +153,7 @@ function ProcureStep1(props) {
                 <div class="overflow-y-auto h-[28rem] overflow-x-hidden max-sm:h-[30rem]">
                     <Form>
                         <div class=" flex justify-between">
-                            {/* <div class=" w-[47%] flex-col flex">
-                                <div class="mt-3">
-                                    <div class=" text-xs font-bold font-poppins text-black"><h3> <FormattedMessage
-                                        id="app.deliveryaddress"
-                                        defaultMessage="Delivery Address"
-                                    /></h3></div>
-
-                                    <FieldArray
-                                        name="loadingAddress"
-                                        render={(arrayHelpers) => (
-                                            <AddressFieldArray1
-                                                singleAddress
-                                                arrayHelpers={arrayHelpers}
-                                                values={values}
-                                            />
-                                        )}
-                                    />
-                                </div>
-                                <div class="mt-3">
-                                    <Field
-                                        name="comments"
-                                        label="Notes"
-                                        width={"100%"}
-                                        isColumn
-                                        component={TextareaComponent}
-                                    />
-                                </div>
-
-                            </div> */}
+                          
                             <div class=" w-[47%]">
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
