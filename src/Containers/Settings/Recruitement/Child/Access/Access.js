@@ -90,9 +90,30 @@ class Access extends PureComponent {
         }
     }
 
+    // componentDidMount() {
+    //     this.props.getDepartmentList(this.props.orgId)
+    // }
     componentDidMount() {
         this.props.getDepartmentList(this.props.orgId)
-    }
+      
+        // Set the initial club data when departmentList is available
+        if (this.props.departmentList && this.props.departmentList.length > 0) {
+          this.setState({
+            departmentData: this.props.departmentList[0],
+          });
+        }
+      }
+      
+      componentDidUpdate(prevProps) {
+        // Check if departmentList has changed and set the initial state
+        if (prevProps.departmentList !== this.props.departmentList) {
+          if (this.props.departmentList && this.props.departmentList.length > 0) {
+            this.setState({
+              departmentData: this.props.departmentList[0],
+            });
+          }
+        }
+      }
 
     handleOnClick = (data) => {
         console.log(data);

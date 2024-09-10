@@ -13,6 +13,7 @@ import {
 import { BundleLoader } from "../../../../../Components/Placeholder";
 const CheckboxGroup = Checkbox.Group;
 const plainOptions = ["Access", "Create", "Update", "Delete", "Full List"];
+const clubOption = ["Access", "Create", "Update", "Delete", "Full List","Activity","Pulse","Note"];
 const accountOptions = [
   "Access",
   "Create",
@@ -66,6 +67,7 @@ const multiLanguageCheckedList = ["Multiple"];
 const callCheckedList = ["Access"];
 const eventCheckedList = ["Access"];
 const plannerCheckedList = ["Access"];
+const downloadCheckedList = ["All"];
 
 const AccessForm = (props) => {
   const [checkedCustomerList, setCheckedCustomerList] = useState(
@@ -433,6 +435,11 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
   const [indeterminateCalls, setIndeterminateCalls] = useState(true);
   const [checkAllCalls, setCheckAllCalls] = useState(false);
 
+  const [checkedDownload, setCheckedDownload] = useState(props.departmentAcces.download);
+  const [indeterminateDownload, setIndeterminateDownload] = useState(true);
+  const [checkAllDownload, setCheckAllDownload] = useState(false);
+
+
   const [checkedLanguage, setCheckedLanguage] = useState(
     props.departmentAcces.language
   );
@@ -535,6 +542,7 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
     setCheckedCatalougeList(props.departmentAcces.catalouge);
     setCheckedCatalougeList(props.departmentAcces.promotion);
     setCheckedLanguage(props.departmentAcces.language);
+    setCheckedDownload(props.departmentAcces.download);
     setCheckedCalls(props.departmentAcces.call);
     setCheckedEvents(props.departmentAcces.event);
     setCheckedPlanner(props.departmentAcces.planner);
@@ -599,6 +607,7 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
     props.departmentAcces.promotion,
     props.departmentAcces.language,
     props.departmentAcces.call,
+    props.departmentAcces.download,
     props.departmentAcces.event,
     props.departmentAcces.planner,
   ]);
@@ -971,12 +980,12 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
 
   const onClubChange = (list) => {
     setCheckedClubList(list);
-    setIndeterminateClub(!!list.length && list.length < plainOptions.length);
-    setCheckAllClub(list.length === plainOptions.length);
+    setIndeterminateClub(!!list.length && list.length < clubOption.length);
+    setCheckAllClub(list.length === clubOption.length);
   };
 
   const onCheckAllClubChange = (e) => {
-    setCheckedClubList(e.target.checked ? plainOptions : []);
+    setCheckedClubList(e.target.checked ? clubOption : []);
     setIndeterminateClub(false);
     setCheckAllClub(e.target.checked);
   };
@@ -1510,6 +1519,23 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
     setCheckAllPayments(e.target.checked);
   };
 
+ // Download
+ 
+ const onDownloadChange = (list) => {
+  setCheckedDownload(list);
+  setIndeterminateDownload(
+    !!list.length && list.length < downloadCheckedList.length
+  );
+  setCheckAllDownload(list.length === downloadCheckedList.length);
+};
+
+const onCheckAllDownloadChange = (e) => {
+  setCheckedDownload(e.target.checked ? downloadCheckedList : []);
+  setIndeterminateDownload(false);
+  setCheckAllDownload(e.target.checked);
+};
+
+
   // Events
   
 
@@ -1607,6 +1633,7 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
       roleTypeId: props.roleTypeId,
       language: multiLanguageCheckedList || [],
       call: callCheckedList || [],
+      download: downloadCheckedList || [],
       event: eventCheckedList || [],
       planner: plannerCheckedList || [],
     };
@@ -1872,6 +1899,22 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
                           options={callCheckedList}
                           value={checkedCalls}
                           onChange={onCallsChange}
+                        />
+                      </div>
+                      <div>
+                        <div class="text-sm font-semibold">Download</div>
+                        <Checkbox
+                          indeterminate={indeterminateDownload}
+                          onChange={onCheckAllDownloadChange}
+                          checked={checkAllDownload}
+                        >
+                          <div class="text-xs"> Check all </div>
+                        </Checkbox>
+                        <Divider />
+                        <CheckboxGroup
+                          options={downloadCheckedList}
+                          value={checkedDownload}
+                          onChange={onDownloadChange}
                         />
                       </div>
                       <div>
@@ -2619,7 +2662,7 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
                         </Checkbox>
                         <Divider />
                         <CheckboxGroup
-                          options={plainOptions}
+                          options={clubOption}
                           value={checkedClubList}
                           onChange={onClubChange}
                         />

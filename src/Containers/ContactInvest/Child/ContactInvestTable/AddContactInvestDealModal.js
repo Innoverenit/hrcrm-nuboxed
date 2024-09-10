@@ -22,7 +22,7 @@ class AddContactInvestDealModal extends Component {
           <Suspense fallback={<BundleLoader />}>
            
              <DealContactCard
-             
+             contactiData={this.props.contactiData}
              translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
             translatedMenuItems={this.props.translatedMenuItems}
