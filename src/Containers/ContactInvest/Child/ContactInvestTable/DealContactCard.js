@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
 import "jspdf-autotable";
-import {getTeamsDeals} from "../../../Deal/DealAction";
+import {getContactDeal} from "../../ContactInvestAction";
 import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -53,11 +53,8 @@ const DealContactCard = (props) => {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
   useEffect(() => {
-    props.getTeamsDeals(props.userId,page);
-    setPage(page + 1);
-    // props.getSectors();
-    // props.getCountries();
-  }, []);
+    props.getContactDeal(props.contactiData.contactId);
+  }, [props.contactiData.contactId]);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -74,17 +71,17 @@ const DealContactCard = (props) => {
     setrowData(data);
   };
   const handleLoadMore = () => {
-    const callPageMapd = props.teamsDealsData && props.teamsDealsData.length &&props.teamsDealsData[0].pageCount
+    const callPageMapd = props.contactdealAllList && props.contactdealAllList.length &&props.contactdealAllList[0].pageCount
     setTimeout(() => {
       const {
-        getTeamsDeals,
+        getContactDeal,
 
       } = props;
-      if  (props.teamsDealsData)
+      if  (props.contactdealAllList)
       {
         if (page < callPageMapd) {
           setPage(page + 1);
-          getTeamsDeals(
+          getContactDeal(
             props.userId,page
           );
       }
@@ -98,9 +95,9 @@ const DealContactCard = (props) => {
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
-  const { user, deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal, fetchingTeamsDealsData, leadsAllData } = props;
+  const { user, deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal, fetchingContactDealList, leadsAllData } = props;
 
-  if (fetchingTeamsDealsData) {
+  if (fetchingContactDealList) {
     return <BundleLoader />;
   }
 
@@ -109,12 +106,12 @@ const DealContactCard = (props) => {
   }
   return (
     <>
-      {props.dealSerachedData.length > 0 ? (
+      {/* {props.dealSerachedData.length > 0 ? (
      <Suspense fallback={<BundleLoader />}>
    <SearchedDataDeal
     dealSerachedData={props.dealSerachedData}
     /></Suspense>
-  ) : (
+  ) : ( */}
       <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
           <div className=" md:w-[14.5rem]font-bold font-poppins text-xs">
@@ -154,16 +151,16 @@ const DealContactCard = (props) => {
         {/* owner */}
           </div>
         </div>
-        <InfiniteScroll
-          dataLength={props.teamsDealsData.length}
+        {/* <InfiniteScroll
+          dataLength={props.contactdealAllList.length}
           next={handleLoadMore}
           hasMore={hasMore}
-          loader={fetchingTeamsDealsData ? <div class="flex justify-center">Loading...</div> : null}
+          loader={fetchingContactDealList ? <div class="flex justify-center">Loading...</div> : null}
           height={"77vh"}
           endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
           style={{scrollbarWidth:"thin"}}
-        >
-          {!fetchingTeamsDealsData && props.teamsDealsData.length === 0 ? <NodataFoundPage /> : props.teamsDealsData.map((item, index) => {
+        > */}
+          {!fetchingContactDealList && props.contactdealAllList.length === 0 ? <NodataFoundPage /> : props.contactdealAllList.map((item, index) => {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
               if (element.oppStage === item.oppStage) {
@@ -356,13 +353,13 @@ const DealContactCard = (props) => {
               </div>
             )
           })}
-        </InfiniteScroll>
+        {/* </InfiniteScroll> */}
       </div>
-       )} 
+       {/* )}  */}
     </>
   );
 };
-const mapStateToProps = ({ auth, leads, deal, sector, pitch }) => ({
+const mapStateToProps = ({ auth, leads, deal, sector,contactinvest, pitch }) => ({
   //   leadsAllData: leads.leadsAllData,
   user: auth.userDetails,
   userId: auth.userDetails.userId,
@@ -371,14 +368,14 @@ const mapStateToProps = ({ auth, leads, deal, sector, pitch }) => ({
   updatePitchModal: pitch.updatePitchModal,
   openASSImodal: pitch.openASSImodal,
   allDealsData: deal.allDealsData,
-  teamsDealsData:deal.teamsDealsData,
-  fetchingTeamsDealsData:deal.fetchingTeamsDealsData,
+  contactdealAllList:contactinvest.contactdealAllList,
+  fetchingContactDealList:contactinvest.fetchingContactDealList,
   dealSerachedData: deal.dealSerachedData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        getTeamsDeals,
+        getContactDeal,
     },
     dispatch
   );

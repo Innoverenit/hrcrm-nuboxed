@@ -5588,7 +5588,7 @@ export const getclubShare = (investorId) => (dispatch) => {
 export const updateClub = (data,clubId) => (dispatch) => {
   dispatch({ type: types.UPDATE_CLUB_REQUEST });
   axios
-    .put(`${base_url}/club/${clubId}`, data, {
+    .put(`${base_url}/club/update/${clubId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

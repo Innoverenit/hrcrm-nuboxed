@@ -4542,7 +4542,12 @@ export const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingClub: false,
-        clubShareData: [action.payload, ...state.clubShareData]
+        clubShareData: state.clubShareData.map((club) =>
+          club.clubId === action.payload.clubId
+            ? action.payload
+            : club
+        ),
+        // clubShareData: [action.payload, ...state.clubShareData]
       };
     case types.UPDATE_CLUB_FAILURE:
       return {

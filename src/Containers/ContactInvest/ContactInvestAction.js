@@ -542,6 +542,32 @@ export const getDeallist = (contactId) => (dispatch) => {
     });
 };
 
+export const getContactDeal = (contactId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_DEAL_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorOpportunit/open/List/contact/${contactId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_DEAL_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CONTACT_DEAL_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const handleUploadContactInvestModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_UPLOAD_CONTACTINVEST_MODAL,

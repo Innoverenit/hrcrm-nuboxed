@@ -253,7 +253,7 @@ function InvestorDeleteList(props) {
               className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[10rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium  w-[10.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex font-medium  w-[10.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
                                 <div>
 
                                                    <MultiAvatar
@@ -269,7 +269,7 @@ function InvestorDeleteList(props) {
 
                                    </div>                 
                                         <Tooltip>
-                                        <div class=" flex max-sm:w-full  flex-row md:flex-col">                                         
+                                        <div class=" flex max-sm:w-full  flex-row md:flex-col ml-1">                                         
                                             {/* Name */}
                                   
                                             <div class="text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
@@ -501,7 +501,7 @@ function InvestorDeleteList(props) {
                         <div >         
             <Tooltip title="Investor Contact">
               <ContactEmergencyIcon
-              className=" !text-icon cursor-pointer p-1 text-blue-500 max-sm:!text-xl "
+              className=" !text-icon cursor-pointer  text-blue-500 max-sm:!text-xl "
                 onClick={() => {
                   handleInvestorContModal(true);
                     handleCurrentRowData(item);

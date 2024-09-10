@@ -127,16 +127,16 @@ function ClubList(props) {
 //     props.updateClub(updatedData,clubId);
 //     setEditsuppliesId(null);
 //   };
-const { clubShareData } = props;
-let clubId; // Declare clubId outside
+// const { clubShareData } = props;
+// let clubId; // Declare clubId outside
 
-if (clubShareData && clubShareData.length > 0) {
-  const firstItem = clubShareData[0];
-  clubId = firstItem.clubId;
-  console.log(clubId); // or use the clubId as needed
-} else {
-  console.error("clubShareData is undefined or empty");
-}
+// if (clubShareData && clubShareData.length > 0) {
+//   const firstItem = clubShareData[0];
+//   clubId = firstItem.clubId;
+//   console.log(clubId); // or use the clubId as needed
+// } else {
+//   console.error("clubShareData is undefined or empty");
+// }
 
 function handleUpdate(key) {
   console.log('Submitting Row:', key);
@@ -145,11 +145,11 @@ function handleUpdate(key) {
     noOfShare: key.noOfShare,
     discount: key.discount,
   };
-  if (clubId) {
-    props.updateClub(updatedData, clubId);
-  } else {
-    console.error("clubId is undefined");
-  }
+  // if (clubId) {
+    props.updateClub(updatedData, key.clubId);
+  // } else {
+  //   console.error("clubId is undefined");
+  // }
   setEditsuppliesId(null);
 };
 console.log(props.clubShareData)

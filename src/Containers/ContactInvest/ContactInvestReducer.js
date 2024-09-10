@@ -12,6 +12,10 @@ const initialState = {
     ffetchingDealListError: false,
     dealAllList:[],
 
+    fetchingContactDealList: false,
+    fetchingContactDealListError: false,
+    contactdealAllList:[],
+
     addDrawerContactInvestPulseModal:false,
 
     addingContactinvestActivityEvent: false,
@@ -382,6 +386,21 @@ export const contactInvestReducer = (state = initialState, action) => {
                           ffetchingDealListError: true,
                         };
 
+
+                        case types.GET_CONTACT_DEAL_LIST_REQUEST:
+                        return { ...state, fetchingContactDealList: true };
+                      case types.GET_CONTACT_DEAL_LIST_SUCCESS:
+                        return {
+                          ...state,
+                          fetchingContactDealList: false,
+                          contactdealAllList: action.payload,
+                        };
+                      case types.GET_CONTACT_DEAL_LIST_FAILURE:
+                        return {
+                          ...state,
+                          fetchingContactDealList: false,
+                          fetchingContactDealListError: true,
+                        };
 
                       case types.HANDLE_UPLOAD_CONTACTINVEST_MODAL:
                         return { ...state, uploadContactInvestList: action.payload };    
