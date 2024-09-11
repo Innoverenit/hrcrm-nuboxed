@@ -62,7 +62,7 @@ useEffect(()=>{
   }
 
   return (
-    <div>
+    <div >
      
       {props.thisMonthTaskGant.length?
       <Gantt tasks={tasks} />:null}

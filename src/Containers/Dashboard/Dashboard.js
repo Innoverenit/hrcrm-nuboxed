@@ -193,7 +193,7 @@ class Dashboard extends Component {
           <div class=" h-[45vh] max-sm:h-[19rem] max-sm:overflow-x-auto">
          <div class="flex justify-around  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
-           <div class=" flex flex-col h-[21rem] overflow-auto " >
+           <div class=" flex flex-col h-[21rem] overflow-auto border box-border" >
            {viewType==="ME" ?
            (
             <h2>Me View</h2>
@@ -423,7 +423,7 @@ class Dashboard extends Component {
     </div>
      </div>
 
-     <div class="w-[47%] max-sm:w-wk">
+     <div class="w-[47%] max-sm:w-wk border box-border">
      <div class=" flex flex-col" >
      <div className="flex justify-between">
     {/* {this.state.activeButton === "test" && viewType !== "ALL" && (
@@ -529,7 +529,7 @@ class Dashboard extends Component {
     >
     <div class=" h-[21rem]   max-sm:h-[12rem] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
-           <div class="w-[47.5%] max-sm:w-wk">
+           <div class="w-[47.5%] max-sm:w-wk border box-border">
            <div class=" flex flex-col " >            
 
     <div class=" flex justify-between " >                                          
@@ -601,7 +601,7 @@ class Dashboard extends Component {
     </div>
     </div>
 
-     <div class="w-[47.5%] max-sm:w-wk">
+     <div class="w-[47.5%] max-sm:w-wk border box-border">
   
      <div class=" flex flex-col " >
        <div class=" flex flex-col  justify-between" >

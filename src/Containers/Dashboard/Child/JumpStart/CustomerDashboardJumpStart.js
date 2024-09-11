@@ -1,11 +1,13 @@
-import React, {} from "react";
+import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import {getJumpDistributorDetail,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
-  handleOrderClosedModal,} from "../../DashboardAction";
+  handleOrderClosedModal,getCustomerAddedList,getContactAddedList,getOrderAddedList,
+  getOrderClosedList
+} from "../../DashboardAction";
 // import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import CustomerJumpStartDrawer from "./CustomerJumpStartDrawer";
@@ -15,219 +17,197 @@ import OrdersAddedModal from "./OrdersAddedModal";
 import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 
-class CustomerDashboardJumpStart extends React.Component{
-  constructor() {
-    super();
-    const startDate = dayjs().startOf("month"); 
-    const endDate = dayjs();
-    var today = new Date(),
-    date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate();
+function CustomerDashboardJumpStart (props) {
+  
+  const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'));
+  const [startDate] = useState(dayjs().startOf('month'));
+  const [endDate] = useState(dayjs());
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [modalData, setModalData] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentOrderType, setCurrentOrderType] = useState("");
 
-  this.state = {
-    date: date,
-    startDate,
-    endDate
+  useEffect(() => {
+    props.getJumpDistributorDetail(props.timeRangeType);
+    fetchMenuTranslations();
+  }, [props.timeRangeType]);
+
+  useEffect(() => {
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+  const fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        '1296', // 0 "Customer Added"
+        '1297', // 1 "Contacts Added"
+        '1229', // 2 "Orders Added"
+        '1298'  // 3 "Orders Completed"
+      ];
+
+      const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+      setTranslatedMenuItems(translations);
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
   };
-  this.state = {
-    translatedMenuItems: [],
-};
-  }
 
-componentDidMount() {
-   this.props.getJumpDistributorDetail(this.props.timeRangeType);
-   this.fetchMenuTranslations();
-}
-componentDidUpdate(prevProps) {
-  if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-    this.fetchMenuTranslations();
-  }
-}
 
-fetchMenuTranslations = async () => {
-  try {
-    const itemsToTranslate = [
-      "1296",//0 "Customer Added"
-      "1297",//1 "Contacts Added"
-      "1229",//2 "Orders Added"
-      "1298",//3"Orders Completed"
-      
-    ];
+  useEffect(() => {
+    if (props.contactAddedList) {
+      setModalData(props.contactAddedList);
+    }
+  }, [props.contactAddedList]);
 
-    const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-    this.setState({ translatedMenuItems: translations });
-  } catch (error) {
-    console.error('Error translating menu items:', error);
-  }
-};
-// componentDidMount() {
-  
-//    if (this.props.role==="USER"&&this.props.user.department==="Recruiter"){
-//     const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
-//     const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
-//   const { getDateWiseList, recruiterId,   } = this.props;
-//   getDateWiseList(recruiterId,  startDate, endDate);
-//    }else{
-//     const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
-//     const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
-//     const { getSalesDateWiseList, orgId } = this.props;
-//     getSalesDateWiseList(orgId,  startDate, endDate);
-//    }
-   
-// }
-// componentWillReceiveProps(nextProps) {
-//   if (
-//     this.props.startDate !== nextProps.startDate ||
-//     this.props.endDate !== nextProps.endDate
-//   ) {
-//         if(this.props.role==="USER"&&this.props.user.department==="Recruiter"){
-//     const { getDateWiseList, recruiterId, startDate, endDate } = nextProps;
-//     getDateWiseList(recruiterId, startDate, endDate);
-//         }else{
-//           const { getSalesDateWiseList, orgId, startDate, endDate } = nextProps;
-//           getSalesDateWiseList(orgId, startDate, endDate);
-//         }
-        
-//   }
-// }
-// componentDidMount() {
-//   const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
-//   const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
-//   this.props.getTasklist(this.props.userId)
-//    this.props.getavgHour(this.props.userId, startDate, endDate);
-//    this.props.getleaveLeftSideDetails(this.props.userId);
-//   console.log(`Start Date: ${this.state.startDate.format("ll")}`);
-//   console.log(`End Date: ${this.state.endDate.format("ll")}`);
-// }
-//   useEffect(() => { 
-//    props.getDateWiseList(props.recruiterId,props.startDate, props.endDate);
-// }, [props.startDate, props.endDate, props.type]);
-  
-render() {
-  const formattedDate = dayjs(this.props.dateOfJoining).format('DD-MM-YYYY'); // Format the date as per your requirement
-  const { showDatelist, fetchingDatewiseReport } = this.props;
-  console.log( this.props.taskperCount)
-  //  const startDate = `${this.props.startDate.format('DD-MM-YYYY')}T20:00:00Z`
-  //   const endDate = new Date(this.state.endDate);
+  useEffect(() => {
+    if (props.customerAddedList) {
+      setModalData(props.customerAddedList);
+    }
+  }, [props.customerAddedList]);
 
-  // console.log(startDate)
-  // console.log(this.props.endDate.format('DD-MM-YYYY'));
+  useEffect(() => {
+    if (props.orderAddedList) {
+      setModalData(props.orderAddedList);
+    }
+  }, [props.orderAddedList]);
+
+  useEffect(() => {
+    if (props.orderClosedList) {
+      setModalData(props.orderClosedList);
+    }
+  }, [props.orderClosedList]);
+
+
+
+
+
+  const handleClick = (type) => {
+    setCurrentOrderType(type);
+    setIsModalOpen(true);
+
+    switch(type) {
+      case 'Added':
+        props.getCustomerAddedList(props.orgId,props.endDate,props.startDate);
+        break;
+      case 'Contact Added':
+        props.getContactAddedList(props.orgId,props.endDate,props.startDate);
+        break;
+      case 'Orders Added':
+        props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
+        break;
+      case 'Closed':
+        props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
+        break;
+      default:
+        break;
+    }
+  };
+
+
   return(
     <>
-    <div class=" flex flex-row w-full" >
-    <div class="flex w-full max-sm:flex-col" >
-   
-
-    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                     
-                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                         <div class="flex flex-row items-center">
-                             <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
-                             </div>
-                             <JumpStartBox
-            noProgress
-            bgColor="linear-gradient(270deg,#F15753,orange)"
-            title={this.state.translatedMenuItems[0]}
-            value={this.props.distributorinDashboard.totalDistributor}
-            jumpstartClick={()=>this.props.handleCustomerAddedModal(true)}
-          />
-                         </div>
-                     </div>
-                 
-                 </div> 
-                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                       
-                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                           <div class="flex flex-row items-center">
-                               <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
-                               </div>
-                               <JumpStartBox
-            noProgress
-            bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-            title={this.state.translatedMenuItems[1]}
-            value={this.props.distributorinDashboard.totalContactPerson}
-            jumpstartClick={()=>this.props.handleContactAddedModal(true)}
-          />
-                           </div>
-                       </div>
-                    
-                   </div>  
-         
-                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                       
-                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                           <div class="flex flex-row items-center">
-                               <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
-                               </div>
-                               <JumpStartBox
-            noProgress
-            bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-            // title="Open Tasks"
-            title={this.state.translatedMenuItems[2]}
-            value={this.props.distributorinDashboard.totalOrder}
-            jumpstartClick={()=>this.props.handleOrderAddedModal(true)}
-            cursorData={"pointer"}
-            
-          />
-                           </div>
-                       </div>
-                     
-                   </div>  
-                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                      
-                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                          <div class="flex flex-row items-center">
-                              <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
-                              </div>
-                              <JumpStartBox
-            noProgress
-            bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-            title={this.state.translatedMenuItems[3]}
-            value={this.props.distributorinDashboard.completeOrder}
-            jumpstartClick={()=>this.props.handleOrderClosedModal(true)}
-            cursorData={"pointer"}
-            
-          />
-                          </div>
-                      </div>
-                     
-                  </div>
-                  </div>
+    <div className="flex flex-row w-full">
+        <div className="flex w-full max-sm:flex-col">
+          <div className="w-full md:w-1/2 xl:w-1/3 p-2">
+            <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+              <div className="flex flex-row items-center">
+                <div className="flex-shrink pr-3">
+                  <div className="rounded-full p-2 bg-green-600"><i className="fa fa-wallet fa-2x fa-inverse"></i></div>
+                </div>
+                <JumpStartBox
+                  noProgress
+                  bgColor="linear-gradient(270deg,#F15753,orange)"
+                  title={translatedMenuItems[0]}
+                  value={props.distributorinDashboard.totalDistributor}
+                  jumpstartClick={()=> handleClick("Added")}
+                  cursorData={"pointer"}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 xl:w-1/3 p-2">
+            <div className="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+              <div className="flex flex-row items-center">
+                <div className="flex-shrink pr-3">
+                  <div className="rounded-full p-2 bg-pink-600"><i className="fas fa-users fa-2x fa-inverse"></i></div>
+                </div>
+                <JumpStartBox
+                  noProgress
+                  bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
+                  title={translatedMenuItems[1]}
+                  value={props.distributorinDashboard.totalContactPerson}
+                  jumpstartClick={() => props.handleContactAddedModal(true)}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 xl:w-1/3 p-2">
+            <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+              <div className="flex flex-row items-center">
+                <div className="flex-shrink pr-3">
+                  <div className="rounded-full p-2 bg-yellow-600"><i className="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                </div>
+                <JumpStartBox
+                  noProgress
+                  bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
+                  title={translatedMenuItems[2]}
+                  value={props.distributorinDashboard.totalOrder}
+                  jumpstartClick={() => props.handleOrderAddedModal(true)}
+                  cursorData="pointer"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 xl:w-1/3 p-2">
+            <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+              <div className="flex flex-row items-center">
+                <div className="flex-shrink pr-3">
+                  <div className="rounded-full p-2 bg-blue-600"><i className="fas fa-server fa-2x fa-inverse"></i></div>
+                </div>
+                <JumpStartBox
+                  noProgress
+                  bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+                  title={translatedMenuItems[3]}
+                  value={props.distributorinDashboard.completeOrder}
+                  jumpstartClick={() => props.handleOrderClosedModal(true)}
+                  cursorData="pointer"
+                />
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
 
 <CustomerJumpStartDrawer
-
+ selectedLanguage={props.selectedLanguage}
+ translateText={props.translateText}
+ isModalOpen={isModalOpen}
+ setIsModalOpen={() => setIsModalOpen(false)}
+ modalData={modalData}
+ title={currentOrderType}
 />
         
          <CustomerAddedModal
-       customerAddedModal={this.props.customerAddedModal}
-       handleCustomerAddedModal={this.props.handleCustomerAddedModal}
+       customerAddedModal={props.customerAddedModal}
+       handleCustomerAddedModal={props.handleCustomerAddedModal}
       />
 
 <ContactAddedModal
-       contactAddedModal={this.props.contactAddedModal}
-       handleContactAddedModal={this.props.handleContactAddedModal}
+       contactAddedModal={props.contactAddedModal}
+       handleContactAddedModal={props.handleContactAddedModal}
       />
         <OrdersAddedModal
-       orderAddedModal={this.props.orderAddedModal}
-       handleOrderAddedModal={this.props.handleOrderAddedModal}
+       orderAddedModal={props.orderAddedModal}
+       handleOrderAddedModal={props.handleOrderAddedModal}
       />
       <OrdersClosedModal
-       orderClosedModal={this.props.orderClosedModal}
-       handleOrderClosedModal={this.props.handleOrderClosedModal}
+       orderClosedModal={props.orderClosedModal}
+       handleOrderClosedModal={props.handleOrderClosedModal}
       />
      
    </>
   ); 
-}
 }
 const mapStateToProps = ({ dashboard,auth ,leave}) => ({
   user: auth.userDetails,
@@ -253,6 +233,11 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
   contactAddedModal:dashboard.contactAddedModal,
   orderAddedModal:dashboard.orderAddedModal,
   orderClosedModal:dashboard.orderClosedModal,
+  contactAddedList:dashboard.contactAddedList,
+  customerAddedList:dashboard.customerAddedList,
+  orderAddedList:dashboard.orderAddedList,
+  orderClosedList:dashboard.orderClosedList
+
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -261,7 +246,10 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   handleContactAddedModal,
   handleOrderAddedModal,
   handleOrderClosedModal,
-//   getDateWiseList,
+  getCustomerAddedList,
+  getContactAddedList,
+  getOrderAddedList,
+  getOrderClosedList
 //   getSalesDateWiseList,
 //   getTasklist,
 //   getavgHour,

@@ -45,7 +45,7 @@ const RepairUsrPieChart = (props) => {
   return (
     <div className="pie-chart">
 
-<Chart options={options} series={series} type="pie" height={300} width={300} />
+<Chart options={options} series={series} type="pie" height={200} width={200} />
     </div>
   );
 };
