@@ -13,7 +13,12 @@ const initialState = {
   addingPaymentApi:false,
   addingPaymentApiError:false,
 
+  fetchingIdentifiers: false,
+  fetchingIdentifiersError: false,
+          identifiers:[],
 
+          addingIdentifiers: false,
+          addingIdentifiersError: false,
 
   removeSkillData:false,
   removeSkillDataError:false,
@@ -2327,6 +2332,46 @@ export const settingsReducer = (state = initialState, action) => {
         addingNotificationsError: true,
       };
 
+
+      case types.GET_IDENTIFIER_REQUEST:
+        return { ...state, fetchingIdentifiers: true };
+      case types.GET_IDENTIFIER_SUCCESS:
+        return {
+          ...state,
+          fetchingIdentifiers: false,
+          identifiers: action.payload,
+        };
+      case types.GET_IDENTIFIER_FAILURE:
+        return {
+          ...state,
+          fetchingIdentifiers: false,
+          fetchingIdentifiersError: false,
+        };
+  
+  
+      case types.ADDING_IDENTIFIER_REQUEST:
+        return { ...state, addingIdentifiers: true };
+      case types.ADDING_IDENTIFIER_SUCCESS:
+        return {
+          ...state,
+          addingIdentifiers: false,
+          identifiers: state.identifiers.map((item) => {
+            if (item.notificationRuleId
+              === action.payload.notificationRuleId
+            ) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+        };
+      case types.ADDING_IDENTIFIER_FAILURE:
+        return {
+          ...state,
+          addingIdentifiers: false,
+          addingIdentifiersError: true,
+        };
+  
     case types.GET_REQUIREMENTS_DURATION_REQUEST:
       return { ...state, fetchingRequirementsDuration: true };
     case types.GET_REQUIREMENTS_DURATION_SUCCESS:
