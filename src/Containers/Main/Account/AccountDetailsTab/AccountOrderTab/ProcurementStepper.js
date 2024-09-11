@@ -91,7 +91,7 @@ class ProcurementStepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        {this.props.orderId && 
+                                        {/* {this.props.orderId &&  */}
                                         <Button style={{ marginRight: "3rem", marginTop: "65px" }}
                                             className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
@@ -102,7 +102,7 @@ class ProcurementStepper extends Component {
                                                 defaultMessage="Proceed"
                                             />
                                         </Button>
-                                       } 
+                                       {/* }  */}
                                     </>
                                 )}
                             </>
