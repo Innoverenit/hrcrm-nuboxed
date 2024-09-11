@@ -153,7 +153,7 @@ function CollectionDistributorTab(props) {
           <TabPane
   tab={
     <>
-      <span onClick={() => {
+      <span  class="!text-tab" onClick={() => {
         setShowCloseCreditMemoList(false);
         setActiveKey("3");
       }}>

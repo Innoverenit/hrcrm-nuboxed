@@ -1,9 +1,7 @@
 import React, { useEffect,lazy,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm, message, Input } from "antd";
+import {Input } from "antd";
 import { MainWrapper } from "../../Components/UI/Layout";
 import { BundleLoader } from "../../Components/Placeholder";
 import {

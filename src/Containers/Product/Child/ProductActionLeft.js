@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { getRecords,getCategory,getDeletedProductRecords,catalogueCategorySearch} from "../ProductAction";
 import CategoryIcon from '@mui/icons-material/Category';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 
 const ProductActionLeft = (props) => {
 
@@ -219,7 +220,7 @@ const ProductActionLeft = (props) => {
           onClick={() => props.setProductViewType("brandModel")}
         >
           <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
-            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+            <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
         </div>
