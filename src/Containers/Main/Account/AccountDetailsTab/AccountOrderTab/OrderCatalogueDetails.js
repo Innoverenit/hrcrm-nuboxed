@@ -12,11 +12,11 @@ function OrderCatalogueDetails(props) {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-    'Name', // 0
-    'Category', // 1
-    'Attribute', // 2
-    ' Units', // 3
-  
+               "110" ,    // 'Name', // 0
+                 "14" ,    // 'Category', // 1
+                "259" ,     // 'Attribute', // 2
+                 "260" ,    // ' Units', // 3
+                
 
 
           ];
