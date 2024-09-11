@@ -22,7 +22,10 @@ class UploadCatalogue extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <UploadCatalogueForm />
+                        <UploadCatalogueForm
+                           translateText={this.props.translateText}
+                           selectedLanguage={this.props.selectedLanguage}
+                        />
                     </Suspense>
                 </StyledDrawer>
             </div>
