@@ -46,11 +46,13 @@ export const QulityProductionTable = (props) => {
          "110", // "Name",
          "74" ,// "Date",//2
          "142", // "Status",//3
-        "778" , // "To Dispatch",//5
-          "Assignedto",//6
-        "1042",  // "Manufacture",//7
-         "1043" // "Step",//8
-          
+        "778" , // "To Dispatch",//4
+         "76", // "Assignedto",//5
+        "1042",  // "Manufacture",//6
+         "1043" ,// "Step",//7
+        "143" ,  //  To Start8
+       "1098", //  Select zone"9
+        "1508",//  "Select rack" 10
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -179,7 +181,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
     <>
     <div className='flex sticky z-auto'>
             <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
                     <div className=""></div>
                     <div className="md:w-[22.12rem]">
                     {translatedMenuItems[0]}
@@ -249,7 +251,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                         {(item.qualityStatus === "To Start" || item.qualityStatus === null) && (
     <StatusIcon
         type="In Progress"
-        tooltip="To Start"
+        tooltip={translatedMenuItems[8]}
         role={item.qualityStatus}
         iconType={<HourglassTopIcon className=' !text-icon text-orange-600'/>}
         // onClick={() => {
@@ -311,7 +313,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                 <div className=" flex  items-center md:w-[17.023rem] max-sm:flex-row  max-sm:justify-between ">
                                                     <div class="flex text-xs  font-semibold  font-poppins" >
                                                          {item.qualityStatus === "Complete"&&(
-                                                    <Select placeholder="Select zone" 
+                                                    <Select placeholder={translatedMenuItems[9]}
                                                     loading={isLoadingZone}
                                                     onFocus={handleSelectZoneFocus}
                                                     onChange={handleZoneChange}
@@ -326,7 +328,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
       )}
                                                     
 {item.qualityStatus === "Complete"&&(
-      <Select placeholder="Select rack" 
+      <Select placeholder={translatedMenuItems[10]} 
       
       loading={isLoadingRack}
       onChange={handleRackChange}

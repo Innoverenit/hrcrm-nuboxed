@@ -31,11 +31,11 @@ function InvoiceOrderTable(props) {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-    'Invoice ', // 0
-    'Order', // 1
-    'Value', // 2
-    'Type', // 3
-    ' Status', // 4
+   "1169", // 'Invoice ', // 0
+   "360", // 'Order', // 1
+   "218" ,// 'Value', // 2
+   "71" ,// 'Type', // 3
+ "660"   // ' Status', // 4
    
 
 

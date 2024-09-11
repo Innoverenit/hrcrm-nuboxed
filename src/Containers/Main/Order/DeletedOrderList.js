@@ -137,10 +137,10 @@ function DeletedOrderList(props) {
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
           <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
           <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
+          <div className="md:w-[5.031rem]">{translatedMenuItems[8]}</div>
           <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
           <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
-          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
+          <div className="md:w-[9.73rem]">{translatedMenuItems[5]}</div>
           <div className="md:w-24"></div>
         </div>
                     <InfiniteScroll
@@ -245,6 +245,9 @@ function DeletedOrderList(props) {
 
                   </div>
                   <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <span>{date}</span>
+                  </div>
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -309,9 +312,7 @@ function DeletedOrderList(props) {
                     </div>
 
                   </div>
-                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <span>{date}</span>
-                  </div>
+                
                   <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <ReInstateOrderToggle item={item} />
@@ -413,10 +414,10 @@ function DeletedOrderList(props) {
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
           <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
           <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
+          <div className="md:w-[5.031rem]">{translatedMenuItems[8]}</div>
           <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
           <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
-          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
+          <div className="md:w-[9.73rem]">{translatedMenuItems[5]}</div>
           <div className="md:w-24"></div>
         </div>
                     <InfiniteScroll
@@ -521,6 +522,10 @@ function DeletedOrderList(props) {
 
                   </div>
                   <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <span>{date}</span>
+                  </div>
+                  
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -584,9 +589,6 @@ function DeletedOrderList(props) {
                       </div>
                     </div>
 
-                  </div>
-                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <span>{date}</span>
                   </div>
                   
                   <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">

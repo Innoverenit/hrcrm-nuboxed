@@ -22,6 +22,37 @@ const DispatchReceiveToggle = lazy(() => import("./DispatchReceiveToggle"));
 
 
 function OpenReceivedOrderIdForm(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+        "1314",  // Inspection Completed,//0
+        "264", // "Brand",//1
+        "265", // "Model",//2
+        "",  // "Color",//3     
+         "1217",   // Condition4
+         "1281",  // Technician5
+         "1051",  // Inspected6
+         "105",  // "Task"7
+        "316", // "Notes"8
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getDispatchUpdateList(props.rowData.orderPhoneId)
   }, [])
@@ -74,7 +105,7 @@ let buttonRendered = false;
               type="primary"
               disabled={!tense}
             >
-              Inspection Completed
+             {translatedMenuItems[0]} {/* Inspection Completed */}
             </Button>
           </div>
         </div>
@@ -87,16 +118,16 @@ let buttonRendered = false;
 </div>
 
                 <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                    <div className='w-[5.2rem]'>Brand</div>
-                    <div className=" w-[4.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Model</div>
+                    <div className='w-[5.2rem]'>{translatedMenuItems[1]}</div>
+                    <div className=" w-[4.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[2]}</div>
                     <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">IMEI</div>
                     <div className=" w-[4.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">OS</div>
                     <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">GB</div>
 
-                    <div className="w-[2.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Color</div>
-                    <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Condition</div>
-                    <div className=" w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Technician</div>                 
-                    <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Inspected</div>
+                    <div className="w-[2.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[3]}</div>
+                    <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[4]}</div>
+                    <div className=" w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div>                 
+                    <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div>
                     
                 </div>
                 <div class="">
@@ -160,7 +191,7 @@ let buttonRendered = false;
                                                     />
                                                 </div>
                                             </div>
-                                            <Tooltip title="Task">
+                                            <Tooltip title={translatedMenuItems[7]}>
             <FileDoneOutlined type="file-done"  className=" cursor-pointer !text-icon text-black"
               onClick={() => {
                 handleRowData(item);
@@ -169,7 +200,7 @@ let buttonRendered = false;
             />
 
           </Tooltip>
-          <Tooltip title="Notes">
+          <Tooltip title={translatedMenuItems[8]}>
             <NoteAltIcon className=" cursor-pointer !text-icon text-green-600"
            
            onClick={() => {

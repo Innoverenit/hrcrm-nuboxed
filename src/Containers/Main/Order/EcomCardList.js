@@ -51,6 +51,7 @@ useEffect(() => {
        "1211",  // 'Shipments',8
      "100", //  New
 
+
       ];
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -124,6 +125,7 @@ const {handleProcureNotesDrawerModal,
                         <div className=" md:w-[3.4rem]">{translatedMenuItems[4]}</div>
                         <div className=" md:w-[8.4rem]">{translatedMenuItems[5]}</div>
                         <div className=" md:w-[8.4rem]">{translatedMenuItems[6]}</div>
+                        <div className=" md:w-[4.4rem]">{translatedMenuItems[3]}</div>
                         <div className=" md:w-[5.4rem]"></div>
                         <div className=" md:w-[12rem]"></div>
                        
@@ -161,25 +163,25 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                         </div>
                       
                         </div>
-                        <div className=" flex   md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins">
+                        <div className=" flex  items-center md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs  items-center font-poppins">
                             {date}
                             </div>
                     
                         </div>
-                        <div className=" flex   md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins">
+                        <div className=" flex items-center  md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs   font-poppins">
                                 {item.category}  {item.attribute}
                             </div>
 
                         </div>
-                        <div className=" flex   md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  items-center  md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
                       
                             </div>
                     
                         </div>
-                        <div className=" flex   md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center  md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
                        
                             </div>
@@ -208,7 +210,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                                                             >
                                                                 <EventRepeatIcon
 
-                                                                    className="!text-base cursor-pointer"
+                                                                    className="!text-base cursor-pointer text-[green]"
                                                                     onClick={() => {
                                                                        openModal();
                                                                         handleSetParticularOrderData(item);

@@ -30,12 +30,12 @@ function ProcureOrderDetails(props) {
           setLoading(true); 
           const itemsToTranslate = [
   
-        "Category" , 
-          "Brand", 
-          "Model", 
-         "Attribute" , 
-         "Price", 
-          "Specs" ,
+      "14",  // "Category" , 
+       "264", //   "Brand", 
+       "265", //   "Model", 
+       "259", //  "Attribute" , 
+       "657", //  "Price", 
+       "655", //   "Specs" ,
          
         ];
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -151,42 +151,42 @@ function ProcureOrderDetails(props) {
 <div className="flex  md:w-[13rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 
-                    <div className="font-normal text-xs  font-poppins">{item.category}</div>
+                    <div className=" text-xs  font-poppins">{item.category}</div>
                  
                 </div>
               </div>
               <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 
-                    <div className="font-normal text-xs  font-poppins">{item.brand}</div>
+                    <div className=" text-xs  font-poppins">{item.brand}</div>
                  
                 </div>
               </div>
               <div className="flex  md:w-[24rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 
-                    <div className="font-normal text-xs  font-poppins">{item.model}</div>
+                    <div className=" text-xs  font-poppins">{item.model}</div>
                 
                 </div>
               </div>
               <div className="flex  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 
-                    <div className="font-normal text-xs  font-poppins">{item.attribute}</div>
+                    <div className=" text-xs  font-poppins">{item.attribute}</div>
                 
                 </div>
               </div>
               <div className="flex  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 
-                    <div className="font-normal text-xs  font-poppins">{item.price}{item.currency}</div>
+                    <div className=" text-xs  font-poppins">{item.price}{item.currency}</div>
                 
                 </div>
               </div>
               <div className="flex  md:w-[12rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                  
-                    <div className="font-normal text-xs  font-poppins">{item.specs}</div>
+                    <div className=" text-xs  font-poppins">{item.specs}</div>
                
                 </div>
               </div>
@@ -194,7 +194,7 @@ function ProcureOrderDetails(props) {
               <div className="flex  ml-2 md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                  
-                    <div className="font-normal text-xs  font-poppins">{item.unit}</div>
+                    <div className=" text-xs  font-poppins">{item.unit}</div>
                 
                 </div>
               </div>

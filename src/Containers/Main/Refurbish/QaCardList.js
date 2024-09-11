@@ -35,10 +35,16 @@ function QaCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          "Order",//0
-          "Inspection",//1
-          "Due Date",//2
-          "Move To Dispatch",//3       
+        "660",  // "Order",//0
+        "780", // "Inspection",//1
+        "760", // "Due Date",//2
+        "781",  // "Move To Dispatch",//3     
+         "1280",   // Search by OrderNo  
+         "100",  // New
+         "158",  // Start
+         "78",  // Completed
+         "144", // In Progress
+         "316", // "Notes"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -183,7 +189,7 @@ function QaCardList(props) {
                 <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div class=" w-64 max-sm:w-24">
         <Input
-          placeholder="Search by OrderNo "
+          placeholder={translatedMenuItems[4]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -254,7 +260,8 @@ function QaCardList(props) {
                                                         <span
                                                             class="text-[tomato] font-bold ml-4 text-[0.65rem]"
                                                         >
-                                                            New
+                                                           {translatedMenuItems[5]} 
+                                                             {/* New */}
                                                         </span>
                                                     ) : null}
                                                 </div>
@@ -270,15 +277,15 @@ function QaCardList(props) {
                                    props.updateDispatchInspectionButton({ dispatchInspectionInd: 1 }, item.orderPhoneId, props.locationDetailsId)
                                   }}
                                   style={{ backgroundColor: "#33ad33", color: "white", fontWeight: "500" }}>
-                                  Start
+                                 {translatedMenuItems[6]}   {/* Start */}
                                 </Button>
                                 : item.dispatchInspectionInd === 2 ||
                                   item.dispatchInspectionInd === 3 ||
                                   item.dispatchInspectionInd === 4 ?
-                                  <div class=" text-[green]">Completed</div>
+                                  <div class=" text-[green]">  {translatedMenuItems[7]}</div>
                                   : item.dispatchInspectionInd === 1 ?
                                     <div class=" text-[tomato]">
-                                  In Progress
+                                 {translatedMenuItems[8]}   {/* In Progress */}
                                     </div> :
                                     null}
                             </div>
@@ -308,7 +315,7 @@ function QaCardList(props) {
                               </div>
                             </div>
                             <div class="   flex justify-end text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Notes">
+                                                    <Tooltip title=  {translatedMenuItems[9]}>
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer"
                                                            
@@ -341,6 +348,8 @@ function QaCardList(props) {
                     handleProductionNotesModal={props.handleProductionNotesModal}
                     />
                     <DispatchPhoneListModal
+                      translateText={props.translateText}
+                      selectedLanguage={props.selectedLanguage}
         rowData={rowData}
         handlePickupDateModal={props.handlePickupDateModal}
         openPickupDateModal={props.openPickupDateModal}
