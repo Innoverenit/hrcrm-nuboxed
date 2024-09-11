@@ -26,6 +26,9 @@ function QCPhoneTaskList(props) {
                             <div class="basis-[85%]">
                                 {item.taskName}
                             </div>
+                            <div class="basis-[85%]">
+                                {item.level}
+                            </div>
                             <Tooltip title="Spare">
                                 <AddIcon
                                   onClick={() => {

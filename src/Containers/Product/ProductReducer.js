@@ -8,6 +8,11 @@ const initialState = {
   addCustomerModal: false,
 
 
+  fetchingProductBrandDetails:false,
+  fetchingProductBrandDetailsError:false,
+  productBrandDetails:[],
+
+
   fetchingQualityProducts:false,
   fetchingQualityProductsError:false,
 
@@ -262,6 +267,11 @@ const initialState = {
   fetchingCustomerOfferHistory: false,
   fetchingCustomerOfferHistoryError: false,
   customerOfferHistory: [],
+
+
+  fetchingBrandDeleteProduct:false,
+  fetchingBrandDeleteProductError:false,
+  brandDeleteProduct:[],
 
   fetchingDistributorOfferHistory: false,
   fetchingDistributorOfferHistoryError: false,
@@ -983,7 +993,31 @@ export const productReducer = (state = initialState, action) => {
         addingDistributorOffer: false,
         addingDistributorOfferError: true,
         addProductOfferModal: false,
+        addProductBrandDetailsModal:false,
       };
+
+
+
+      case types.GET_PRODUCT_BRAND_DETAILS_REQUEST:
+        return { ...state, fetchingProductBrandDetails: true };
+      case types.GET_PRODUCT_BRAND_DETAILS_SUCCESS:
+        return {
+          ...state,
+          fetchingProductBrandDetails: false,
+          productBrandDetails: action.payload,
+          // opportunityByUserId: action.payload,
+  
+          //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_PRODUCT_BRAND_DETAILS_FAILURE:
+        return {
+          ...state,
+          fetchingProductBrandDetails: false,
+          fetchingProductBrandDetailsError: true,
+        };
+
+      case types.HANDLE_PRODUCT_BRAND_DETAILS_MODAL:
+        return { ...state, addProductBrandDetailsModal: action.payload };
 
     case types.GET_CUSTOMER_OFFER_HISTORY_REQUEST:
       return { ...state, fetchingCustomerOfferHistory: true };
@@ -1274,18 +1308,34 @@ export const productReducer = (state = initialState, action) => {
           updatingBrandProductError: true,
         };
 
-      case types.GET_BRAND_PRODUCT_REQUEST:
-      return { ...state, fetchingBrandProduct: true, fetchingBrandProduct: false };
-    case types.GET_BRAND_PRODUCT_SUCCESS:
+
+
+
+        case types.GET_BRAND_PRODUCT_REQUEST:
+          return { ...state, fetchingBrandProduct: true, fetchingBrandProduct: false };
+        case types.GET_BRAND_PRODUCT_SUCCESS:
+          //const newData = action.payload.filter(item => !state.products.includes(item));
+          return { ...state, fetchingBrandProduct: false, 
+            // products: [
+            // ...state.products,
+            // ...action.payload] };
+            brandProduct: action.payload
+          }
+        case types.GET_BRAND_PRODUCT_FAILURE:
+          return { ...state, fetchingBrandProduct: false, fetchingBrandProductError: true };
+
+      case types.GET_BRAND_DELETE_PRODUCT_REQUEST:
+      return { ...state, fetchingBrandDeleteProduct: true,  };
+    case types.GET_BRAND_DELETE_PRODUCT_SUCCESS:
       //const newData = action.payload.filter(item => !state.products.includes(item));
-      return { ...state, fetchingBrandProduct: false, 
+      return { ...state, fetchingBrandDeleteProduct: false, 
         // products: [
         // ...state.products,
         // ...action.payload] };
-        brandProduct: action.payload
+        brandDeleteProduct: action.payload
       }
-    case types.GET_BRAND_PRODUCT_FAILURE:
-      return { ...state, fetchingBrandProduct: false, fetchingBrandProductError: true };
+    case types.GET_BRAND_DELETE_PRODUCT_FAILURE:
+      return { ...state, fetchingBrandDeleteProduct: false, fetchingBrandDeleteProductError: true };
 
 
 

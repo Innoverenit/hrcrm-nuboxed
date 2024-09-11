@@ -349,6 +349,13 @@ export const handleWinModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleProductBrandDetailsModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCT_BRAND_DETAILS_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleWonModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_WON_MODAL,
@@ -2382,6 +2389,65 @@ export const updateBrandProduct = (data, productBrandId, cb) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.UPDATE_BRAND_PRODUCT_FAILURE,
+      });
+    });
+};
+
+
+
+export const getBrandDeleteProduct = (pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_BRAND_DELETE_PRODUCT_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/product/allInActiveProductBrand`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_DELETE_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BRAND_DELETE_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getProductBrandDetails = (brandId,) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCT_BRAND_DETAILS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/inActiveBrand/${brandId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCT_BRAND_DETAILS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCT_BRAND_DETAILS_FAILURE,
+        payload: err,
       });
     });
 };

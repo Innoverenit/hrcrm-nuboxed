@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Button, Tooltip, Input } from "antd";
+import { Button, Tooltip, Input,Badge } from "antd";
 import QRCode from "qrcode.react";
 import {
   handleReceivedOrderIdPhoneNoteModal,
@@ -365,6 +365,29 @@ function OpenReceivedOrderIdForm(props) {
                         <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div>
                         </div>
                       </div>
+                      <div className=" flex  w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.levelCount&&item.levelCount.map((level)=>{
+                                                            return(
+                                                                <span 
+                                                                style={{marginLeft:"9px",cursor:"pointer"}}
+                                                                onClick={() => {
+                                                                   props.handleRefurbishLevelModal(true);
+                                                                   // handleSetCurrentOpportunityId(item);
+                                                                 }}
+                                                               title={level.level}
+                                                               >
+                                                                <Badge size="small" count={level.levelCount}>
+                                                                {level.level}
+                                                                </Badge>
+                                                                   {/* {level.levelCount} */}
+                                                                   {/* {item.issue.substring(0, 10)}{item.issue.length > 20 && '...'} */}
+                                                               </span>
+                                                            )
+                                                        })}
+
+                                                    </div>
+                                                </div>
 
                       <div className=" flex font-medium  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                         {item.receivePhoneInd?(

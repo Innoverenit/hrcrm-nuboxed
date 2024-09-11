@@ -31,7 +31,7 @@ const RepairTaskTable = (props) => {
                     return (
                         <div class="cursor-pointer w-[100%] flex justify-center max-sm:w-auto mt-2 ">
                              <div class="w-[30%]">
-                                {item.taskName}
+                                {item.taskName} {item.level}
                             </div>
                             <div class="w-[70%] flex justify-between">
                                 <QCPhoneTaskToggle item={item}  
