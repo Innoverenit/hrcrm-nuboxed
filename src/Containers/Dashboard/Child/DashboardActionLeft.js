@@ -19,16 +19,12 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; 
-import ShopIcon from '@mui/icons-material/Shop'
+import ShopIcon from '@mui/icons-material/Shop';
 const DashboardShareForm=lazy(()=>import("./DashboardShareForm"));
 const { TabPane } = Tabs;
+
 const DashboardActionLeft = (props) => {
-  //   const tab=[
-  //   "Q1","Q2","Q3","Q4"
-  // ]
-  // const [activeTab, setActiveTab] = useState("");
   const [dashboardRegionalVisible, setDashboardRegionalVisible] = useState(false);
-  //const [showShareForm, setShowShareForm] = useState(false);
  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {

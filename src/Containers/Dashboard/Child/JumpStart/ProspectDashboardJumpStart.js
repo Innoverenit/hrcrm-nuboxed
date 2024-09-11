@@ -118,7 +118,8 @@ function ProspectDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#F15753,orange)"
-                  title={translatedMenuItems[0]}
+                  // title={translatedMenuItems[0]}
+                  title={"Prospect Added"}
                   value={props.distributorinDashboard.totalDistributor}
                   jumpstartClick={()=> handleClick("Added")}
                   cursorData={"pointer"}
@@ -135,7 +136,8 @@ function ProspectDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-                  title={translatedMenuItems[1]}
+                  // title={translatedMenuItems[1]}
+                  title={"Contacts Added"}
                   value={props.distributorinDashboard.totalContactPerson}
                   jumpstartClick={() => props.handleContactAddedModal(true)}
                 />
@@ -151,7 +153,8 @@ function ProspectDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-                  title={translatedMenuItems[2]}
+                  // title={translatedMenuItems[2]}
+                  title={"Quotation Added"} 
                   value={props.distributorinDashboard.totalOrder}
                   jumpstartClick={() => props.handleOrderAddedModal(true)}
                   cursorData="pointer"
@@ -168,7 +171,8 @@ function ProspectDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-                  title={translatedMenuItems[3]}
+                  // title={translatedMenuItems[3]}
+                  title={"Quotation Completed"} 
                   value={props.distributorinDashboard.completeOrder}
                   jumpstartClick={() => props.handleOrderClosedModal(true)}
                   cursorData="pointer"

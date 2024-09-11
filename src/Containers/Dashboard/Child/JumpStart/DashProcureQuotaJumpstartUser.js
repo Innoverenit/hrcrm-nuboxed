@@ -25,6 +25,32 @@ function DashProcureQuotaJumpstartUser(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
 
+  const [error, setError] = useState(null);
+
+  const [data1, setData1] = useState([]);
+  const [loading1, setLoading1] = useState(false);
+
+    const fetchData1 = async () => {
+      const status=currentOrderType;
+      try {
+        const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setData1(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError(error);
+        setLoading1(false);
+      }
+    };
+
+    useEffect(() => {
+        fetchData1();
+    }, [props.userId,props.startDate,props.endDate]);
+
+
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
