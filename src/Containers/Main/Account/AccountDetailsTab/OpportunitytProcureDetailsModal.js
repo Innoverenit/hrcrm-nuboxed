@@ -43,4 +43,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(OpportunitytProcureDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(OpportunitytProcureDetailsModal);
