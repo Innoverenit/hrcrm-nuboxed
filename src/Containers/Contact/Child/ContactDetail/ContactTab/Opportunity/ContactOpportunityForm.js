@@ -49,17 +49,17 @@ function ContactOpportunityForm(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-     "110", //  "Name" 0
-          "176",//1 Start Date
-         "126",//2 End Date
-          "Value",//3
-         "Currency",//4
-          "Description",//5
-          " Assigned",//6
-          "Include",//7
-         "Workflow",///8
-         "Stages",//9
-         "Create"
+           "110", //  "Name" 0
+           "176",//1 Start Date
+           "126",//2 End Date
+             "218" ,//Value 3
+            "241",//Currency" 4
+            "147",//Description 5
+            "76",// Assigned 6
+            "75",//Include"7
+           "141",//Workflow 8
+           "219",//stages",//9
+            "104",//Create
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

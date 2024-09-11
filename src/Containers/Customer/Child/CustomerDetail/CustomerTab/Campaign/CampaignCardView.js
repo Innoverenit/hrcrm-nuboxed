@@ -339,20 +339,20 @@ if(fetchingCustomerCampaign){
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
          <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[7.8rem]">{translatedMenuItems[0]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[7.8rem]">{translatedMenuItems[0]} </div>
         {/* Type */}
-        <div className=" md:w-[6.23rem]">{translatedMenuItems[1]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[6.23rem]">{translatedMenuItems[1]} </div>
         {/* Subject */}
-        <div className=" md:w-[7.25rem] ">{translatedMenuItems[2]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[7.25rem] ">{translatedMenuItems[2]} </div>
         {/* Start */}
-        <div className=" md:w-[5.43rem] ">{translatedMenuItems[3]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[5.43rem] ">{translatedMenuItems[3]} </div>
         {/* End */}
      
-        <div className="md:w-[5.32rem]">{translatedMenuItems[4]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[5.32rem]">{translatedMenuItems[4]} </div>
      {/* Include */}
-        <div className="md:w-[6.15rem]">{translatedMenuItems[5]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[6.15rem]">{translatedMenuItems[5]} </div>
         {/* Assigned */}
-        <div className="md:w-[24rem]">{translatedMenuItems[6]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[24rem]">{translatedMenuItems[6]} </div>
                 {/* Owner    */}
       </div>
       <InfiniteScroll

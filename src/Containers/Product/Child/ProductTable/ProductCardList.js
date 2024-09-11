@@ -78,6 +78,11 @@ function ProductCardList(props) {
             "1203",//7 Feature
             "1204",//8 Warranty
               "1371",//9 year
+              // "",//Quality
+              // "",//Add Price
+              // "",//Product Builder
+              // "",//Cell
+              // "",//Edit
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

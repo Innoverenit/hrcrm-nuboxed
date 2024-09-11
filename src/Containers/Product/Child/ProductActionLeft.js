@@ -160,7 +160,7 @@ const ProductActionLeft = (props) => {
     
       <Tooltip title="Category">
         <div
-          class=" ml-2 text-xs cursor-pointer"
+          class=" mr-2 text-xs cursor-pointer"
           style={{
 
             color: props.viewType === "category" && "red",
@@ -174,7 +174,41 @@ const ProductActionLeft = (props) => {
         </div>
       </Tooltip>
 
-<Tooltip title="Suspended Products">
+      <Tooltip title="BrandModel">
+        <div
+          class=" mr-2 text-xs cursor-pointer"
+          style={{
+
+            color: props.viewType === "brandModel" && "red",
+          }}
+          onClick={() => props.setProductViewType("brandModel")}
+        >
+          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+            <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
+
+
+
+<Tooltip title="Brand">
+        <div
+          class=" mr-2 text-xs cursor-pointer"
+          style={{
+
+            color: props.viewType === "brand" && "red",
+          }}
+          onClick={() => props.setProductViewType("brand")}
+        >
+          <Avatar style={{ background: props.viewType === "brand" ? "#f279ab" : "#4bc076" }}>
+            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
+
+      <Tooltip title="Suspended Products">
 <Badge
     size="small"
      count={( props.deletedProductCount.deletedProduct) || 0}
@@ -192,39 +226,6 @@ const ProductActionLeft = (props) => {
   </Avatar>
   </Badge>
 </Tooltip>
-
-<Tooltip title="Brand">
-        <div
-          class=" ml-2 text-xs cursor-pointer"
-          style={{
-
-            color: props.viewType === "brand" && "red",
-          }}
-          onClick={() => props.setProductViewType("brand")}
-        >
-          <Avatar style={{ background: props.viewType === "brand" ? "#f279ab" : "#4bc076" }}>
-            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
-          </Avatar>
-
-        </div>
-      </Tooltip>
-
-
-      <Tooltip title="BrandModel">
-        <div
-          class=" ml-2 text-xs cursor-pointer"
-          style={{
-
-            color: props.viewType === "brandModel" && "red",
-          }}
-          onClick={() => props.setProductViewType("brandModel")}
-        >
-          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
-            <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
-          </Avatar>
-
-        </div>
-      </Tooltip>
 <div class=" w-64 max-sm:w-24">
                 
 {props.viewType === "category" &&
