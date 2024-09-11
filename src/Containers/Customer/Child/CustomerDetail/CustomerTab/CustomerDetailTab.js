@@ -10,6 +10,7 @@ import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import CampaignIcon from '@mui/icons-material/Campaign';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 import {
   handleDocumentUploadModal,
   getContactListByCustomerId,
@@ -98,8 +99,8 @@ class ContactDetailTab extends Component {
        "1169", // "Invoice",//4
         "1304",// "Campaign",//5
         "1168",// "Summary"//6
-          "104",      // "Create" 7
-          "1325"      // "Upload Document"8
+          "104",  // "Create" 7
+          "1325",  // "Upload Document"8
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -162,8 +163,8 @@ class ContactDetailTab extends Component {
             <TabPane
               tab={
                 <>
-                  <span>
-                    <LightbulbIcon className="!text-icon"/>
+                  <span class="!text-tab">
+                    <LightbulbIcon className="!text-icon text-[#bfa89e]"/>
                     <span class=" ml-1">
                     {this.state.translatedMenuItems[0]}
                     </span>
@@ -208,8 +209,8 @@ class ContactDetailTab extends Component {
               tab={
                 <>
                   <span>
- <ContactsIcon className="!text-icon"/>
-                    <span class=" ml-1">
+ <ContactsIcon className="!text-icon text-[#96bdc6]"/>
+                    <span class="!text-tab ml-1">
                       {/* Contacts */}
                       {this.state.translatedMenuItems[1]}
                     </span>
@@ -252,28 +253,14 @@ class ContactDetailTab extends Component {
             />
               </Suspense>
             </TabPane>
-
-            {/* <TabPane
-              tab={
-                <>
-                  <MonetizationOnIcon 
-                 style={{fontSize:"1.1rem"}}
-                  />
-                  <span class=" ml-1">Commercials</span>
-                </>
-              }
-              key="9"
-            >
-              <CommercialsForm />
-            </TabPane> */}
-
+          
             <TabPane
               tab={
                 <>
                   <InsertDriveFileIcon 
-                 className="!text-icon"
+                 className="!text-icon text-[#41ead4]"
                   />
-                  <span class=" ml-1">
+                  <span class="!text-tab ml-1">
                   {this.state.translatedMenuItems[2]}
                     {/* Documents */}
                   </span>
@@ -310,49 +297,20 @@ class ContactDetailTab extends Component {
                translatedMenuItems={this.props.translatedMenuItems}
                 />
               </Suspense>
-            </TabPane>
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <NoteAltIcon style={{fontSize:"1.1rem"}}/>
-           
-                    <FormattedMessage id="app.notes" defaultMessage="Notes" />
-            
-                    {activeKey === "6" && (
-                      <>
-                        <Tooltip title="Voice to Text">
-                          <span
-                            onClick={() => handleCustomerReactSpeechModal(true)}
-                          >
-                            <MicIcon 
-                            style={{fontSize:"1.1rem"}}
-                             />
-                          </span>
-                        </Tooltip>
-                      </>
-                    )}
-                  </span>
-                </>
-              }
-              key="6"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LinkedNotes />
-              </Suspense>
-            </TabPane> */}
+            </TabPane>      
                   <TabPane
               tab={
                 <>
 
-                  <ReceiptIcon className="!text-icon"/>
+<i class="fab fa-connectdevelop text-[#8332ac]"></i> 
                   <Badge
                 count={this.props.customerActivityCount.count}
                 overflowCount={999}
               > 
                    </Badge>
-                  <span class=" ml-1">                   
+                
+                  <span class="!text-tab ml-1">   
+                          
                          {this.state.translatedMenuItems[3]}                 
           {/* Activity */}
                  
@@ -394,8 +352,8 @@ class ContactDetailTab extends Component {
             <TabPane
               tab={
                 <>
-                  <ReceiptIcon className="!text-icon"/>
-                  <span class=" ml-1">
+                  <ReceiptIcon className="!text-icon text-[#a9d8b8]"/>
+                  <span class="!text-tab ml-1">
                     
                          {this.state.translatedMenuItems[4]}
                     {/* Invoice */}
@@ -422,13 +380,13 @@ class ContactDetailTab extends Component {
               tab={
                 <>
 
-                  <CampaignIcon className="!text-icon text-[6ea4bf]"/>
+                  <CampaignIcon className="!text-icon text-[#f5f749]"/>
                   <Badge
                 // count={this.props.customerActivityCount.count}
                 // overflowCount={999}
               > 
                    </Badge>
-                  <span class=" ml-1">
+                  <span class="!text-tab ml-1">
                     
                       {this.state.translatedMenuItems[5]}
                     
@@ -475,7 +433,9 @@ class ContactDetailTab extends Component {
                             <>
                                 <span>
                                     {/* <i class="far fa-file"></i> */}
-                                    <span class="ml-1">   {this.state.translatedMenuItems[6]}
+                                    <span class="!text-tab ml-1">  
+                                    <SummarizeIcon className="!text-icon text-[#55d6c2] mr-1"/>
+                                       {this.state.translatedMenuItems[6]}
                                       {/* Summary */}
                                       </span>
                                 </span>

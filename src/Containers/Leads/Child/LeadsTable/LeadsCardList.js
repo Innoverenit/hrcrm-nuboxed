@@ -245,7 +245,6 @@ const LeadsCardList = (props) => {
         <div className= "font-bold font-poppins text-xs w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
         <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
         <div className="font-bold font-poppins text-xs w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className="font-bold font-poppins text-xs w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
         <div className="font-bold font-poppins text-xs w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
         <div className="w-12"></div>
 
@@ -499,19 +498,7 @@ const LeadsCardList = (props) => {
                     </div>
                     )}
                   </div>
-                  <div className=" flex  w-[3.11rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
-                    <div>
-                    {/* <Tooltip title={item.ownerName}> */}
-                <div class="max-sm:flex justify-end">       
-              <MultiAvatar
-                primaryTitle={item.ownerName}
-                imageId={item.ownerImageId}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />   
-            </div>   
-                    </div>
-                  </div>
+                
                   <div className=" flex w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
@@ -655,7 +642,6 @@ const LeadsCardList = (props) => {
         <div className= "font-bold font-poppins text-xs w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
         <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
         <div className="font-bold font-poppins text-xs w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className="font-bold font-poppins text-xs w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
         <div className="font-bold font-poppins text-xs w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
         <div className="w-12"></div>
 
@@ -909,22 +895,7 @@ const LeadsCardList = (props) => {
                   </div>
                   )}
                 </div>
-                <div className=" flex  w-[3.11rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
-                  <div>
-                  {/* <Tooltip title={item.ownerName}> */}
-              <div class="max-sm:flex justify-end">
-              {/* <Tooltip title={item.ownerName}> */}
-            <MultiAvatar
-              primaryTitle={item.ownerName}
-              imageId={item.ownerImageId}
-              imgWidth={"1.8rem"}
-              imgHeight={"1.8rem"}
-            />
-          {/* </Tooltip> */}
-          </div>
-        {/* </Tooltip> */}
-                  </div>
-                </div>
+              
                 <div className=" flex f w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                   <div class=" text-xs  font-poppins"></div>
                   <div>
@@ -1072,7 +1043,7 @@ const LeadsCardList = (props) => {
         <div className= "font-bold font-poppins text-xs w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
         <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
         <div className="font-bold font-poppins text-xs w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className="font-bold font-poppins text-xs w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
+
         <div className="font-bold font-poppins text-xs w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
         <div className="w-12"></div>
 
@@ -1324,22 +1295,7 @@ const LeadsCardList = (props) => {
                   </div>
                   )}
                 </div>
-                <div className=" flex  w-[3.11rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
-                  <div>
-                  {/* <Tooltip title={item.ownerName}> */}
-              <div class="max-sm:flex justify-end">
-              {/* <Tooltip title={item.ownerName}> */}
-            <MultiAvatar
-              primaryTitle={item.ownerName}
-              imageId={item.ownerImageId}
-              imgWidth={"1.8rem"}
-              imgHeight={"1.8rem"}
-            />
-          {/* </Tooltip> */}
-          </div>
-        {/* </Tooltip> */}
-                  </div>
-                </div>
+            
                 <div className=" flex  w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                   <div class=" text-xs  font-poppins"></div>
                   <div>

@@ -399,7 +399,7 @@ function CustomerOpportunityForm(props) {
         {({ open }) => (
           <>
             <div className=" font-bold text-xs mb-1 leading-lh1.2  ">                        
-               {translatedMenuItems[0]} 
+               {translatedMenuItems[6]} 
               {/* Assigned */}
             </div>
             <div className="relative mt-1">

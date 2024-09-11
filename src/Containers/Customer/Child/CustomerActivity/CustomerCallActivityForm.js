@@ -524,7 +524,7 @@ function CustomerCallActivityForm(props) {
                         unCheckedChildren="Video"
                       />
                     </div>
-                    <div class=" w-1/3 self-baseline max-sm:w-wk">
+                    <div class="font-bold text-xs font-poppins w-1/3 self-baseline max-sm:w-wk">
                     {translatedMenuItems[3]}
                       <FastField
                         name="modeType"
@@ -581,7 +581,7 @@ function CustomerCallActivityForm(props) {
                   </div>
                 
                   <div class=" flex justify-between mt-3 max-sm:flex-col">
-                    <div class=" w-1/2 max-sm:w-wk">               
+                    <div class="font-bold text-xs font-poppins  w-1/2 max-sm:w-wk">               
                     {translatedMenuItems[6]}
                       <Field
                         name="startTime"
@@ -597,7 +597,7 @@ function CustomerCallActivityForm(props) {
                         }}
                       />
                     </div>
-                    <div class=" w-2/5 max-sm:w-wk">
+                    <div class="font-bold text-xs font-poppins  w-2/5 max-sm:w-wk">
                     {translatedMenuItems[7]}
                       <Field
                         name="endTime"
@@ -615,7 +615,8 @@ function CustomerCallActivityForm(props) {
                     </div>
                   </div>
                  <div class=" mt-3">
-                 {translatedMenuItems[8]}
+                  <div className="font-bold text-xs font-poppins "> {translatedMenuItems[8]}</div>
+              
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}

@@ -56,17 +56,17 @@ class LinkedDocuments extends Component {
       const itemsToTranslate = [
         
            "74" ,  // "Date",//0
-             "110" , // "Name",//1
-           "47" ,   // "Description",//2
+           "110" , // "Name",//1
+           "147" ,   // "Description",//2
            "1207" ,   // "Uploaded By",//3
-             "1208" , // "File Name",//4
-             "1205" , // "Contract",//5
-            "1305" ,  // Search  6
+          "1208" , // "File Name",//4
+          "1205" , // "Contract",//5
+          "1305" ,  // Search  6
            "1307" ,   // Reset 7   
-            "100" ,  // New8
-             "" , // "Download"9
-            "1259" ,  // Do you want to delete?10
-             "84" , // "Delete"11
+          "100" ,  // New8
+           "1351" , // "Download"9
+           "1259" ,  // Do you want to delete?10
+            "84" , // "Delete"11
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -179,18 +179,18 @@ class LinkedDocuments extends Component {
         <div class="rounded m-1 p-1 w-[100%]    shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
           
-        <div className=" md:w-[6rem]">
+        <div className="font-bold font-poppins text-xs md:w-[6rem]">
         {this.state.translatedMenuItems[0]}</div>
         {/* Date */}
-                <div className=" md:w-[8.1rem]">{this.state.translatedMenuItems[1]}</div>
+                <div className="font-bold font-poppins text-xs  md:w-[8.1rem]">{this.state.translatedMenuItems[1]}</div>
                 {/* Name */}
-        <div className=" md:w-[9.13rem]">{this.state.translatedMenuItems[2]}</div>
+        <div className="font-bold font-poppins text-xs  md:w-[9.13rem]">{this.state.translatedMenuItems[2]}</div>
         {/* Description */}
-        <div className="md:w-[5.1rem]">{this.state.translatedMenuItems[3]}</div>
+        <div className="font-bold font-poppins text-xs  md:w-[5.1rem]">{this.state.translatedMenuItems[3]}</div>
         {/* uploadedBy */}
-        <div className="md:w-[10.2rem]">{this.state.translatedMenuItems[4]}</div>
+        <div className="font-bold font-poppins text-xs  md:w-[10.2rem]">{this.state.translatedMenuItems[4]}</div>
         {/* fileName */}
-                     <div className="md:w-[8.2rem]">{this.state.translatedMenuItems[1]}</div>
+                     <div className="font-bold font-poppins text-xs  md:w-[8.2rem]">{this.state.translatedMenuItems[5]}</div>
                      {/* Contract */}
         
         
