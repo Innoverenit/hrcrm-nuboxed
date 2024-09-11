@@ -248,7 +248,7 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.spces}
                     onChange={(value) => handleSpecsChange(value, index)}
-                    disabled={!fieldEnabled.specs}
+                    //disabled={!fieldEnabled.specs}
                  >
                     <Option value="US">US</Option>
                     <Option value="CE">CE</Option>
@@ -264,7 +264,7 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.quality}
                     onChange={(value) => handleQualityChange(value, index)}
-                    disabled={!fieldEnabled.quality}
+                   // disabled={!fieldEnabled.quality}
                   >
                      <Option value="A+">A+</Option>
                     <Option value="A">A</Option>
@@ -281,7 +281,7 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.type}
                     onChange={(value) => handleTypeChange(value, index)}
-                    disabled={!fieldEnabled.type}
+                    //disabled={!fieldEnabled.type}
                   >
                     <Option value="Finished">Finished</Option>
                     <Option value="UnFinished">UnFinished</Option>
@@ -296,7 +296,7 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.locationId}
                     onChange={(value) => handleLocationChange(value, index)}
-                    disabled={!fieldEnabled.locationId}
+                    //disabled={!fieldEnabled.locationId}
                  >
                     {props.locationlist.map((a) => (
                       <Option key={a.locationDetailsId} value={a.locationDetailsId}>{a.locationName}</Option>
@@ -311,7 +311,7 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.currencyId}
                     onChange={(value) => handleCurrencyChange(value, index)}
-                    disabled={!fieldEnabled.currencyId}
+                    //disabled={!fieldEnabled.currencyId}
                 >
                     {props.saleCurrencies.map((a) => (
                       <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
@@ -327,7 +327,7 @@ function AddManualForm(props) {
                     value={row.price}
                     onChange={(e) => handleUnitChange(index, 'price', e.target.value)}
                     placeholder="Enter Price"
-                    disabled={!fieldEnabled.price}
+                    //disabled={!fieldEnabled.price}
                   />
                 </div>
               </div>

@@ -7,7 +7,7 @@ class SupplierOverViewCard extends Component {
     render() {
         const { supplier } = this.props;
         return (
-            <div>
+            <div >
                  <Suspense fallback={<BundleLoader />}>
                 <ViewEditCard>
                     {({ viewType }, toggleViewType) =>

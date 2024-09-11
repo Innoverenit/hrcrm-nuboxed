@@ -36,7 +36,19 @@ function OpportunitytProcureDetails(props) {
   const [currency, setCurrency] = useState("");
   const [newPrice, setPrice] = useState('');
 
-
+  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', spces: '',price:'',quality:'',saleCurrencies:'',id:'',currencyId:'' }]);
+  const [fieldEnabled, setFieldEnabled] = useState({
+    brand: false,
+    model: false,
+    attribute: false,
+    specs: false,
+    quality: false,
+    type: false,
+    locationId: false,
+    currencyId: false,
+    price: false,
+    unit: false
+  });
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -44,15 +56,15 @@ function OpportunitytProcureDetails(props) {
         try {
           setLoading(true); 
           const itemsToTranslate = [
-  'Category', // 0
-  'Brand', // 1
-  'Model', // 2
-  'Attribute', // 3
-  'Quality', // 4
-  'Location', // 5
-  'Specs',
-  'Units',
-  'Price',
+  '14', // 0
+  '264', // 1
+  '265', // 2
+  '259', // 3
+  '654', // 4
+  '658', // 5
+  '655',
+  '260',
+  '657',
         ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -68,13 +80,13 @@ function OpportunitytProcureDetails(props) {
     }, [props.selectedLanguage]);
 
   useEffect(() => {
-    props.getBrand();
+   // props.getBrand();
     props.getCategorylist();
-    props.getAllProductList();
+   // props.getAllProductList();
     props.getSupplierSuppliesQuality();
     props.getLocationList(props.orgId);
     props.getSaleCurrency()
-    props.getProcureDetails(props.particularRowItem.orderPhoneId);
+    props.getProcureDetails(props.particularRowItem.quotationId);
   }, []);
 
   const handleChange = (id, fieldName, value) => {
@@ -131,11 +143,20 @@ function OpportunitytProcureDetails(props) {
 
   const handleCategoryChange = async (value) => {
     setCategory(value);
-   
+    props.getBrand(value);
   };
   
-  const handleModelChange = (value) => {
-    setModel(value);
+  const handleModelChange = (value, index) => {
+    const selectedModel = props.model.find((model) => model.model === value);
+    const updatedRows = [...rows];
+    updatedRows[index].model = value;
+    updatedRows[index].modelId = selectedModel.id; 
+    setRows(updatedRows);
+    setFieldEnabled((prevState) => ({
+      ...prevState,
+      attribute: true
+    }));
+    props.getAllProductList(updatedRows[index].category, updatedRows[index].brand,value);
   };
 
   const handleSpecsChange = (value) => {

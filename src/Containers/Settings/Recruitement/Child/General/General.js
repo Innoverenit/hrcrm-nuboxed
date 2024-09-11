@@ -16,6 +16,7 @@ import {
 import * as Yup from "yup";
 import dayjs from "dayjs";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
+import Identifier from "./Identifier";
 const Notifications = lazy(() => import("../General/Notifications"));
 const { Option } = Select;
 const GeneralSchema = Yup.object().shape({
@@ -68,7 +69,7 @@ function General(props) {
           b2bCheckInvenOrdInd: props.requirementDuration.b2bCheckInvenOrdInd,
           b2cCheckInvenOrdInd: props.requirementDuration.b2cCheckInvenOrdInd,
           shipInvoicePayImentnd: props.requirementDuration.shipInvoicePayImentnd,
-          
+          amcInd: props.requirementDuration.amcInd,
           
           proInd: props.requirementDuration.proInd,
           
@@ -155,7 +156,7 @@ function General(props) {
                       </div>
                       {props.user.productionInd === true ? (
    <>
-   <div class=" flex  justify-between mt-2 ml-4">
+   <div class=" flex  justify-between mt-2 ">
    <div class=" text-xs  ">Process</div>
    <div>
    <Field
@@ -168,7 +169,7 @@ function General(props) {
    />
    </div>
  </div>
- <div class=" flex  justify-between mt-2 ml-4">
+ <div class=" flex  justify-between mt-2 ">
  <div class=" text-xs  ">Make To</div>
  <div>
    <Field
@@ -182,7 +183,7 @@ function General(props) {
      </div>
  </div>
 
- <div class=" flex  justify-between mt-2 ml-4">
+ <div class=" flex  justify-between mt-2">
  <div class=" text-xs  ">Show Orders To Investor</div>
  <div>
    <Field
@@ -195,8 +196,21 @@ function General(props) {
    />
      </div>
  </div>
+ <div class=" flex  justify-between mt-2 ">
+ <div class=" text-xs  ">AMC</div>
+ <div>
+   <Field
+      name="amcInd"
+     component={SwitchComponent}
+     data={values.amcInd}
+     checkedChildren={"Yes"}
+     unCheckedChildren={"No"}
+     width={"7em"}
+   />
+     </div>
+ </div>
 </>
-) : (
+ ) : (
   <div className="mt-4 ml-4 text-red-500">
     Production module is Switched off. Switch it on to Access Features.
   </div>
@@ -536,7 +550,10 @@ function General(props) {
                 </div>
               </Form>
               </div>
+              <div className="flex flex-col">
               <Notifications />
+              <Identifier/>
+              </div>
             </div>
           </div>
         )}
