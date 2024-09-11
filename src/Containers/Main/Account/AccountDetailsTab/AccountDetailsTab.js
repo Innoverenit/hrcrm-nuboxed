@@ -195,7 +195,8 @@ function AccountDetailsTab(props) {
             <TabsWrapper>
                 <StyledTabs defaultActiveKey="1" onChange={handleTabChange}>
 
-                    {props.productionInd && <TabPane
+                    {/* {props.productionInd &&  */}
+                    <TabPane
                         tab={
                             <>
                                 <span onClick={() => handleOrderCreateClick(false)}>
@@ -225,7 +226,7 @@ function AccountDetailsTab(props) {
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText} />
                         </Suspense> */}
-                    </TabPane>}
+                    </TabPane>
                     {props.user.repairInd && <TabPane
                         tab={
                             <>
