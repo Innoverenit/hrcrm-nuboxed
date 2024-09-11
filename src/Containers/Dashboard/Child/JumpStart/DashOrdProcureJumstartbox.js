@@ -30,8 +30,8 @@ function DashOrdrProcureJumstartbox(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-    "1229",  //  "Order Shipped", // 0
-     "1230", //  "Order Reached", // 1
+    "1493",  //  "Order Shipped", // 0
+    "1494", //  "Order Reached", // 1
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -116,8 +116,7 @@ function DashOrdrProcureJumstartbox(props) {
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              // title= {translatedMenuItems[0]}
-              title={"Order Shipped"}
+              title= {translatedMenuItems[0]}
               jumpstartClick={()=> handleClick("Order Shipped")}
               cursorData={"pointer"}
               value={"0"}
@@ -137,8 +136,7 @@ function DashOrdrProcureJumstartbox(props) {
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-              // title= {translatedMenuItems[1]} 
-              title={"Order Reached"}
+              title= {translatedMenuItems[1]} 
             jumpstartClick={()=> handleClick("Order Reached")}
               cursorData={"pointer"}
             // value={ pendingOrder}

@@ -17,7 +17,7 @@ import OrdersAddedModal from "./OrdersAddedModal";
 import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 
-function CustomerDashboardJumpStart (props) {
+function InvestorDashboardJumpStart (props) {
   
   const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'));
   const [startDate] = useState(dayjs().startOf('month'));
@@ -40,10 +40,10 @@ function CustomerDashboardJumpStart (props) {
   const fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        '1296', // 0 "Customer Added"
+        '1296', // 0 "Investot Added"
         '1297', // 1 "Contacts Added"
-        '1229', // 2 "Orders Added"
-        '1298'  // 3 "Orders Completed"
+        '1229', // 2 "Deals Added"
+        '1298'  // 3 "Deals Completed"
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -93,10 +93,10 @@ function CustomerDashboardJumpStart (props) {
       case 'Contact Added':
         props.getContactAddedList(props.orgId,props.endDate,props.startDate);
         break;
-      case 'Orders Added':
+      case 'Deals Added':
         props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
         break;
-      case 'Closed':
+      case 'Deals Completed':
         props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
         break;
       default:
@@ -137,7 +137,7 @@ function CustomerDashboardJumpStart (props) {
                   bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
                   title={translatedMenuItems[1]}
                   value={props.distributorinDashboard.totalContactPerson}
-                  jumpstartClick={()=> handleClick("Contact Added")}
+                  jumpstartClick={() => props.handleContactAddedModal(true)}
                 />
               </div>
             </div>
@@ -153,7 +153,7 @@ function CustomerDashboardJumpStart (props) {
                   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                   title={translatedMenuItems[2]}
                   value={props.distributorinDashboard.totalOrder}
-                  jumpstartClick={()=> handleClick("Orders Added")}
+                  jumpstartClick={() => props.handleOrderAddedModal(true)}
                   cursorData="pointer"
                 />
               </div>
@@ -170,7 +170,7 @@ function CustomerDashboardJumpStart (props) {
                   bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                   title={translatedMenuItems[3]}
                   value={props.distributorinDashboard.completeOrder}
-                  jumpstartClick={()=> handleClick("Closed")}
+                  jumpstartClick={() => props.handleOrderClosedModal(true)}
                   cursorData="pointer"
                 />
               </div>
@@ -250,10 +250,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getContactAddedList,
   getOrderAddedList,
   getOrderClosedList
-//   getSalesDateWiseList,
-//   getTasklist,
-//   getavgHour,
-//   getleaveLeftSideDetails
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerDashboardJumpStart);
+export default connect(mapStateToProps, mapDispatchToProps)(InvestorDashboardJumpStart);

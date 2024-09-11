@@ -42,6 +42,7 @@ const TaskOrganizationTab= lazy(()=>import("./TaskOrganizationTab"));
 const CustomerLeadsTab= lazy(()=>import("./CustomerLeadsTab"));
 const DashboardCustomerOrgJumpstart= lazy(()=>import("./Child/JumpStart/DashboardCustomerOrgJumpstart"));
 const DashCustomerChartTab= lazy(()=>import("./DashCustomerChartTab"));
+const ProspectDashboardJumpStart= lazy(()=>import("./Child/JumpStart/ProspectDashboardJumpStart"));
 const DashboardInvestorsOrgJumpstart= lazy(()=>import("./Child/JumpStart/DashboardInvestorsOrgJumpstart"));
 const InvestorsPitchTab= lazy(()=>import("./InvestorsPitchTab"));
 const GantChartTab= lazy(()=>import("./Child/GantChartTab"));
@@ -57,7 +58,11 @@ const DashboardFinanceJumpstart= lazy(()=>import("./Child/JumpStart/DashboardFin
 const FinanceDashTab=lazy(()=>import("./FinanceDashTab"));
 const DashRepairOrdrLeftJumstartbox =lazy(()=>import("./Child/JumpStart/DashRepairOrdrLeftJumstartbox"));
 const DashRepairOrdRightJumstartbox =lazy(()=>import("./Child/JumpStart/DashRepairOrdRightJumstartbox"));
+const InvestorDashboardJumpStart= lazy(()=>import("./Child/JumpStart/InvestorDashboardJumpStart"));
+
 class Dashboard extends Component {
+
+
   constructor(props) {
     super(props);
     this.state = {
@@ -228,6 +233,16 @@ class Dashboard extends Component {
              translateText={this.props.translateText}
              /> </>
             )
+            : this.state.activeButton==="Customer" ?
+             (<ProspectDashboardJumpStart
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>)
+
+             : this.state.activeButton==="Investors" ?
+             (<InvestorDashboardJumpStart
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>)
+
              : this.state.activeButton==="Order" &&
              (<DashboardOrderJumpstart
               selectedLanguage={this.props.selectedLanguage}
@@ -251,10 +266,7 @@ class Dashboard extends Component {
              translateText={this.props.translateText}
              />)
              
-             : this.state.activeButton==="Investors" ?
-             (<DashboardInvestorsOrgJumpstart
-              selectedLanguage={this.props.selectedLanguage}
-             translateText={this.props.translateText}/>)
+            
 
              :viewType === "ALL" && 
              this.state.activeButton==="Customer" ?
@@ -284,6 +296,11 @@ class Dashboard extends Component {
              />)
              : this.state.activeButton==="Accounts" ?
              (<CustomerDashboardJumpStart
+              selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>)
+
+             : this.state.activeButton==="Investors" ?
+             (<DashboardInvestorsOrgJumpstart
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}/>)
 
@@ -336,10 +353,10 @@ class Dashboard extends Component {
        selectedLanguage={this.props.selectedLanguage}
        translateText={this.props.translateText}
        />)
-       :this.state.activeButton==="Investors" ?(
-        <InvestorsPitchTab
-        selectedLanguage={this.props.selectedLanguage}
-        translateText={this.props.translateText}/>)
+      //  :this.state.activeButton==="Investors" ?(
+      //   <InvestorsPitchTab
+      //   selectedLanguage={this.props.selectedLanguage}
+      //   translateText={this.props.translateText}/>)
         // <CustomerLeadsTab/>)
         // :this.state.activeButton==="RecruitPro" ?(
         //   <StackedClosureChartAll
@@ -358,10 +375,10 @@ class Dashboard extends Component {
               :this.state.activeButton==="multiOrg" && activeTab ?(
                 null)
             
-       :  this.state.activeButton==="Customer" ?(
-        <CustomerLeadsTab
-        selectedLanguage={this.props.selectedLanguage}
-        translateText={this.props.translateText}/>)
+      //  :  this.state.activeButton==="Customer" ?(
+      //   <CustomerLeadsTab
+      //   selectedLanguage={this.props.selectedLanguage}
+      //   translateText={this.props.translateText}/>)
         :  viewType==="ALL" ?(
           <Piechart1
           // width={450}
