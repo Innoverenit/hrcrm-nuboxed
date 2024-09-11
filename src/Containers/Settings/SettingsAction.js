@@ -2339,6 +2339,60 @@ export const addingNotifications = (data, orgId) => (dispatch, getState) => {
       });
     });
 };
+
+export const getIdentifier = (orgId) => (dispath) => {
+  dispath({ type: types.GET_IDENTIFIER_REQUEST });
+  axios
+    .get(`${base_url}/notification/rule/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispath({
+        type: types.GET_IDENTIFIER_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      dispath({
+        type: types.GET_IDENTIFIER_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const addingIdentifier = (data, orgId) => (dispatch, getState) => {
+  //console.log(permissions, userId);
+  const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADDING_IDENTIFIER_REQUEST,
+  });
+  axios
+    .put(`${base_url}/notification/rule/update`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch(getIdentifier(orgId))
+      dispatch({
+        type: types.ADDING_IDENTIFIER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADDING_IDENTIFIER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 export const getRequirementsDuration = (orgId) => (dispath) => {
   dispath({ type: types.GET_REQUIREMENTS_DURATION_REQUEST });
   axios

@@ -10,19 +10,17 @@ class DistributorDocumentTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          translatedMenuItems: [],
+            translatedMenuItems: [],
+            loading: true
         };
       }
     
       componentDidMount() {
         this.fetchMenuTranslations();
+        this.props.getDistributorTable(this.props.distributorId);
       }
     
-      componentDidUpdate(prevProps) {
-        if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-          this.fetchMenuTranslations();
-        }
-      }
+
     
       fetchMenuTranslations = async () => {
         try {
@@ -38,14 +36,12 @@ class DistributorDocumentTable extends Component {
           ];
     
           const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-          this.setState({ translatedMenuItems: translations });
+          this.setState({ translatedMenuItems: translations,loading: false });
         } catch (error) {
+            this.setState({ loading: false });
           console.error('Error translating menu items:', error);
         }
       };
-    componentDidMount() {
-        this.props.getDistributorTable(this.props.distributorId);
-    }
     render() {
         const {
             documentTable,
@@ -53,7 +49,7 @@ class DistributorDocumentTable extends Component {
             fetchingDocumentsByTableError,
 
         } = this.props;
-       
+        const {loading,translatedMenuItems } = this.state;
 
         return (
             <>
@@ -61,9 +57,9 @@ class DistributorDocumentTable extends Component {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[7.4rem]">{this.state.translatedMenuItems[0]}</div>
-                        <div className=" md:w-[5.1rem]">{this.state.translatedMenuItems[1]}</div>
-                        <div className=" md:w-[8.8rem] ">{this.state.translatedMenuItems[2]}</div>
+                        <div className=" md:w-[7.4rem]">{translatedMenuItems[0]}</div>
+                        <div className=" md:w-[5.1rem]">{translatedMenuItems[1]}</div>
+                        <div className=" md:w-[8.8rem] ">{translatedMenuItems[2]}</div>
               
                      
 

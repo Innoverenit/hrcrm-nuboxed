@@ -17,6 +17,7 @@ class Quality extends Component {
     const { setQualityViewType, viewType } = this.props;
     return (
       <React.Fragment>
+         <Suspense fallback={<BundleLoader />}>
         <QulityHeader
         
           setQualityViewType={setQualityViewType}
@@ -28,7 +29,7 @@ class Quality extends Component {
           setCurrentData={this.setCurrentData}
         />
 
-        <Suspense fallback={<BundleLoader />}>
+       
           {this.props.viewType === "production" ? (
             <QulityProductionTable 
             translateText={this.props.translateText}

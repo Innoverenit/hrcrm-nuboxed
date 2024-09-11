@@ -25,14 +25,40 @@ function DashProcureQuotaJumpstartUser(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
 
+  const [error, setError] = useState(null);
+
+  const [data1, setData1] = useState([]);
+  const [loading1, setLoading1] = useState(false);
+
+    const fetchData1 = async () => {
+      const status=currentOrderType;
+      try {
+        const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setData1(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError(error);
+        setLoading1(false);
+      }
+    };
+
+    useEffect(() => {
+        fetchData1();
+    }, [props.userId,props.startDate,props.endDate]);
+
+
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-    "1229",  //  "Quotation Created", // 0
-     "1230", //  "Quotation Converted", // 1
-      "1231",//   "Quotation Cancelled", // 2
+    "1495",  //  "Quotation Created", // 0
+     "1496", //  "Quotation Converted", // 1
+      "1497",//   "Quotation Cancelled", // 2
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -117,8 +143,7 @@ function DashProcureQuotaJumpstartUser(props) {
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              // title= {translatedMenuItems[0]}
-              title={"Quotation Created"}
+              title= {translatedMenuItems[0]}
               jumpstartClick={()=> handleClick("Quotation Created")}
               cursorData={"pointer"}
               value={"0"}
@@ -138,8 +163,7 @@ function DashProcureQuotaJumpstartUser(props) {
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-              // title= {translatedMenuItems[1]} 
-              title={"Quotation Converted"}
+              title= {translatedMenuItems[1]} 
             jumpstartClick={()=> handleClick("Open")}
               cursorData={"pointer"}
             // value={ pendingOrder}
@@ -159,8 +183,8 @@ function DashProcureQuotaJumpstartUser(props) {
                               <JumpStartBox
                              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                               noProgress
-                              // title= {translatedMenuItems[2]} 
-                              title={"Quotation Cancelled"}
+                              title= {translatedMenuItems[2]} 
+                            
                               jumpstartClick={()=> handleClick("Cancelled")}
                               cursorData={"pointer"}
                               value={"0"}

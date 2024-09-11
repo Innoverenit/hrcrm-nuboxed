@@ -16,7 +16,6 @@ import {
     handleAddOrderModal,
     getOrderRecords,
     handleAccountOpportunityModal,
-    getInvoiceCount
 } from "../AccountAction";
 import LayersIcon from '@mui/icons-material/Layers';// salesmap
 import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
@@ -62,9 +61,6 @@ function AccountDetailsTab(props) {
     const [openOrder, setOpenOrder] = useState(false)
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-props.getInvoiceCount(props.distributorData.distributorId)
-    }, []);
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -118,6 +114,82 @@ props.getInvoiceCount(props.distributorData.distributorId)
     const handleTabChange = (key) => setactiveKey(key);
     console.log(props.productionInd)
     console.log(props.activeKey)
+
+    const renderTabContent = (key) => {
+        switch (key) {
+          case "1":
+            return     <div> 
+                   <LinkedOpportunityTable distributorData={props.distributorData} 
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}/>
+                </div>;
+          case "2":
+            return  <div> <AccountOrder1Table distributorId={props.distributorData.distributorId} 
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText} /></div>;
+            case "3":
+                return  <div>  {openOrder ?
+                    <CompleteOrderTable distributorId={props.distributorData.distributorId} type="complete" 
+                    selectedLanguage={props.selectedLanguage}
+                  translateText={props.translateText} /> :
+                    <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" 
+                    selectedLanguage={props.selectedLanguage}
+                  translateText={props.translateText}
+                  
+                  />
+                }</div>;
+                case "4":
+                    return  <div>   <CustomerProcurementTable distributorId={props.distributorData.distributorId} 
+                    selectedLanguage={props.selectedLanguage}
+                    translateText={props.translateText}
+                     /></div>;
+                     case "5":
+                        return  <div><AccountActivityTable distributorId={props.distributorData.distributorId} 
+                        selectedLanguage={props.selectedLanguage}
+                        translateText={props.translateText}/></div>;
+                        case "6":
+                        return  <div>  
+                            <ErpNote
+                        type="distributor"
+                        id={props.distributorData.distributorId}
+                        selectedLanguage={props.selectedLanguage}
+                             translateText={props.translateText}
+                       /></div>;
+                       case "7":
+                        return  <div>  
+                            <DistributorDocumentTable
+                                distributorId={props.distributorData.distributorId}
+                                selectedLanguage={props.selectedLanguage}
+                              translateText={props.translateText}
+                            />
+                            </div>;
+                            case "9":
+                        return  <div>  
+                            <SalesMapTable
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText}
+                            /></div>;
+                            case "10":
+                                return  <div>  
+                                   <AccountContactTable distributorId={props.distributorData.distributorId} 
+                              selectedLanguage={props.selectedLanguage}
+                              translateText={props.translateText}/></div>;
+                              case "11":
+                                return  <div>  
+                                 <AccountInvoiceTable    distributorId={props.distributorData.distributorId}
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText} /></div>;
+                            case "12":
+                                return  <div>  
+                                 <AccountCreditMemos
+                            distributorId={props.distributorData.distributorId}
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText} /></div>;
+
+          default:
+            return null;
+        }
+      };
     return (
         <>
             <TabsWrapper>
@@ -148,11 +220,11 @@ props.getInvoiceCount(props.distributorData.distributorId)
                                 )}</>}
                         key="2"
                     >
-                        <Suspense fallback={"Loading ..."}>
+                        {/* <Suspense fallback={"Loading ..."}>
                             <AccountOrder1Table distributorId={props.distributorData.distributorId} 
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText} />
-                        </Suspense>
+                        </Suspense> */}
                     </TabPane>}
                     {props.user.repairInd && <TabPane
                         tab={
@@ -203,7 +275,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         key="3"
                     >
 
-                        <Suspense fallback={"Loading ..."}>
+                        {/* <Suspense fallback={"Loading ..."}>
                             {openOrder ?
                                 <CompleteOrderTable distributorId={props.distributorData.distributorId} type="complete" 
                                 selectedLanguage={props.selectedLanguage}
@@ -214,7 +286,7 @@ props.getInvoiceCount(props.distributorData.distributorId)
                               
                               />
                             }
-                        </Suspense>
+                        </Suspense> */}
                     </TabPane>}
 
                    <TabPane
@@ -261,10 +333,10 @@ props.getInvoiceCount(props.distributorData.distributorId)
 
                         <Suspense fallback={"Loading ..."}>
                        
-                                <CustomerProcurementTable distributorId={props.distributorData.distributorId} 
+                                {/* <CustomerProcurementTable distributorId={props.distributorData.distributorId} 
                                 selectedLanguage={props.selectedLanguage}
                                 translateText={props.translateText}
-                                 />
+                                 /> */}
 
                           
                         </Suspense>
@@ -321,12 +393,12 @@ props.getInvoiceCount(props.distributorData.distributorId)
               }
               key="1"
             >
-              <Suspense fallback={"Loading ..."}>
+              {/* <Suspense fallback={"Loading ..."}>
                 {" "}
                 <LinkedOpportunityTable distributorData={props.distributorData} 
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}/>
-              </Suspense>
+              </Suspense> */}
             </TabPane>
             <TabPane
                         tab={
@@ -352,11 +424,11 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         }
                         key="11"
                     >
-                        <Suspense fallback={"Loading ..."}>
+                        {/* <Suspense fallback={"Loading ..."}>
                             <AccountInvoiceTable    distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText} />
-                        </Suspense>
+                        </Suspense> */}
                     </TabPane> 
                     <TabPane
                         tab={
@@ -382,12 +454,12 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         }
                         key="12"
                     >
-                        <Suspense fallback={"Loading ..."}>
+                        {/* <Suspense fallback={"Loading ..."}>
                             <AccountCreditMemos
                             distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText} />
-                        </Suspense>
+                        </Suspense> */}
                     </TabPane> 
                     <TabPane
                         tab={
@@ -418,11 +490,11 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         }
                         key="5"
                     >
-                        <Suspense fallback={"Loading ..."}>
+                        {/* <Suspense fallback={"Loading ..."}>
                             <AccountActivityTable distributorId={props.distributorData.distributorId} 
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText}/>
-                        </Suspense>
+                        </Suspense> */}
                     </TabPane>
 
                     <TabPane
@@ -453,11 +525,11 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         }
                         key="10"
                     >
-                        <Suspense fallback={"Loading ..."}>
+                        {/* <Suspense fallback={"Loading ..."}>
                             <AccountContactTable distributorId={props.distributorData.distributorId} 
                               selectedLanguage={props.selectedLanguage}
                               translateText={props.translateText}/>
-                        </Suspense>
+                        </Suspense> */}
                     </TabPane>
 
                     <TabPane
@@ -474,14 +546,14 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         }
                         key="6"
                     >
-                        <Suspense fallback={"Loading ..."}>
+                        {/* <Suspense fallback={"Loading ..."}>
                         <ErpNote
                          type="distributor"
                          id={props.distributorData.distributorId}
                          selectedLanguage={props.selectedLanguage}
                               translateText={props.translateText}
                         />
-                        </Suspense>
+                        </Suspense> */}
                     </TabPane>
 
                     {/* <TabPane
@@ -531,13 +603,13 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         }
                         key="7"
                     >
-                        <Suspense fallback={"Loading ..."}>
+                        {/* <Suspense fallback={"Loading ..."}>
                             <DistributorDocumentTable
                                 distributorId={props.distributorData.distributorId}
                                 selectedLanguage={props.selectedLanguage}
                               translateText={props.translateText}
                             />
-                        </Suspense>
+                        </Suspense> */}
                     </TabPane>
 
                     <TabPane
@@ -574,15 +646,15 @@ props.getInvoiceCount(props.distributorData.distributorId)
                         }
                         key="9"
                     >
-                        <Suspense fallback={"Loading ..."}>
+                        {/* <Suspense fallback={"Loading ..."}>
                             <SalesMapTable
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText}
                             />
-                            {/* <SummaryTable
+                            <SummaryTable
                                
-                            /> */}
-                        </Suspense>
+                            />
+                        </Suspense> */}
                     </TabPane>
 
                     
@@ -590,6 +662,9 @@ props.getInvoiceCount(props.distributorData.distributorId)
                    
 
                 </StyledTabs>
+                <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
             </TabsWrapper>
             {/* <AddDistributorDocumentModal
                 distributorDocumentUploadModal={
@@ -695,7 +770,7 @@ const mapDispatchToProps = (dispatch) =>
             handleSupplierContactModal,
             getOrderRecords,
             handleAccountOpportunityModal,
-            getInvoiceCount
+            
         },
         dispatch
     );

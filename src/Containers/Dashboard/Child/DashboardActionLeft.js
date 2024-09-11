@@ -19,16 +19,12 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; 
-import ShopIcon from '@mui/icons-material/Shop'
+import ShopIcon from '@mui/icons-material/Shop';
 const DashboardShareForm=lazy(()=>import("./DashboardShareForm"));
 const { TabPane } = Tabs;
+
 const DashboardActionLeft = (props) => {
-  //   const tab=[
-  //   "Q1","Q2","Q3","Q4"
-  // ]
-  // const [activeTab, setActiveTab] = useState("");
   const [dashboardRegionalVisible, setDashboardRegionalVisible] = useState(false);
-  //const [showShareForm, setShowShareForm] = useState(false);
  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -217,7 +213,7 @@ const DashboardActionLeft = (props) => {
               )}
 
 
-              {/* {props.moduleMapper.orderManagementInd === true && ( */}
+              {props.moduleMapper.orderManagementInd === true && (
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -236,7 +232,7 @@ const DashboardActionLeft = (props) => {
                     </Tooltip>
                   </span>
                 </Badge>
-              {/* )} */}
+             )}
 
               {user.repairInd === true && (
                 <Badge
@@ -420,26 +416,7 @@ const DashboardActionLeft = (props) => {
                   </Tooltip>
                 </span>
               </Badge>
-  {props.moduleMapper.orderManagementInd === true && (
-  <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
-                  <span class="cursor-pointer mr-1"
-                    onClick={() => handleButtonClick("Order")}
-                    style={{
-                      color: activeButton === "Order" && "tomato",
-
-                    }}
-                  >  <Tooltip title={translatedMenuItems[4]}>
-                      <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
-                        <PrecisionManufacturingIcon className="text-white !text-icon"/>
-                      </Avatar>
-                    </Tooltip>
-                  </span>
-                </Badge>
-              )}
+ 
               {user.crmInd === true && (
                 <Badge
                   size="small"
@@ -487,11 +464,7 @@ const DashboardActionLeft = (props) => {
                   </span>
                 </Badge>
               )}
-
-
-
-
-              {props.moduleMapper.productionInd === true && props.moduleMapper.orderManagementInd === true && (
+ { props.moduleMapper.orderManagementInd === true && (
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -517,7 +490,6 @@ const DashboardActionLeft = (props) => {
                   </span>
                 </Badge>
               )}
-
               {user.repairInd === true && (
                 <Badge
                   size="small"

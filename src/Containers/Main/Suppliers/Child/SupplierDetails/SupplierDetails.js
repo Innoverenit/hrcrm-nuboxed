@@ -5,6 +5,9 @@ import { getSupplierBySupplierId } from "../../SuppliersAction";
 import { MainWrapper } from "../../../../../Components/UI/Layout";
 import { withRouter } from "react-router";
 import { BundleLoader } from "../../../../../Components/Placeholder";
+import SupplierOverViewCard from "./SupplierCard/SupplierOverViewCard";
+import SupplierDetailCard from "./SupplierCard/SupplierDetailCard";
+import SupplierOverViewDetailCard from "./SupplierCard/SupplierOverViewDetailCard";
 const  SupplierDetailsHeader =lazy(()=>import("../SupplierDetails/SupplierDetailsHeader"));
 const SupplierDetailsLeft =lazy(()=>import("./SupplierDetailsLeft"));
 const SupplierDetailsRight =lazy(()=>import("./SupplierDetailTab/SupplierDetailsRight"));
@@ -21,6 +24,25 @@ class SupplierDetails extends Component {
           <SupplierDetailsHeader 
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}/>
+              <div class="flex">
+        <Suspense fallback={<BundleLoader />}>
+        <div className="flex flex-col h-[4rem] w-[20%]">
+          <SupplierOverViewCard  supplier={supplier}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}/>
+            </div>
+             <div className="flex flex-col w-[20%]">
+          <SupplierDetailCard supplier={supplier}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage} />
+            </div>
+            <div className="flex h-[4rem] w-[60%] overflow-x-auto">
+          <SupplierOverViewDetailCard supplier={supplier}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage} />
+            </div>
+        </Suspense>
+        </div>
           </Suspense>
           {fetchingSupplierDetailsBySupplierId ? (
             <MainWrapper>
@@ -30,12 +52,12 @@ class SupplierDetails extends Component {
             <div>
               <Suspense fallback={"Loading..."}>
                 <div class="flex flex-nowrap w-full max-sm:flex-col">
-                  <div class="w-[22%] max-sm:w-wk">
+                  {/* <div class="w-[22%] max-sm:w-wk">
                     <SupplierDetailsLeft supplier={supplier}
                       translateText={this.props.translateText}
                       selectedLanguage={this.props.selectedLanguage} />
-                  </div>
-                  <div class="w-[78%] max-sm:w-wk">
+                  </div> */}
+                  <div class="w-[100%] max-sm:w-wk">
                     <SupplierDetailsRight supplier={supplier} 
                       translateText={this.props.translateText}
                       selectedLanguage={this.props.selectedLanguage}/>

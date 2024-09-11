@@ -26,6 +26,42 @@ function OrderActionLeft (props) {
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+        "941",  // List View 0
+        "203",   // Production 1
+        "667",  // Complete Orders 2
+        "228",  // ALL 3
+        "663",   // My Repair Orders 4
+        "661",   // Repair 5
+        "664",   // my Repair Orders-Completed 6
+        "666",   // Procure 7 
+        "1518",   // Ecom 8
+        "1212",  // Commerce 9
+        "667",  // Completed Orders 10
+          "668",  // Cancelled Orders 11
+          "1280",// Search by OrderId 12
+         "665",   // My Repair Orders-Deleted
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
 
   useEffect(() => {
@@ -134,7 +170,7 @@ function OrderActionLeft (props) {
       <>
       {props.user.productionInd === true && (
       <div className="">
-        <Tooltip title="List View">
+        <Tooltip title={translatedMenuItems[0]}>
           <Badge
             size="small"
             count={(props.viewType === "production" && props.orderCount.order) || 0}
@@ -150,11 +186,11 @@ function OrderActionLeft (props) {
             >
               
               <Button type={props.viewType === "production" ? "primary" : ""} style={{ backgroundColor: props.viewType === "production" ? "" : "tomato" }}>
-             <div class="text-white">Production</div></Button>
+             <div class="text-white ">{translatedMenuItems[1]}</div></Button>
             </span>
           </Badge>
         </Tooltip>
-        <Tooltip title="Complete Orders">
+        <Tooltip title={translatedMenuItems[2]}>
           <Badge
             size="small"
             // count={(props.viewType === "complete" && orderCount.order) || 0}
@@ -169,12 +205,12 @@ function OrderActionLeft (props) {
               }}
             >
               <Avatar style={{ background: props.viewType === "complete" ? "#f279ab" : "#4bc076" }}>
-                <HistoryOutlined fontSize="small" className="text-white" /></Avatar>
+                <HistoryOutlined className="text-white !text-icon" /></Avatar>
 
             </span>
           </Badge>
         </Tooltip>
-        <Tooltip title="ALL">
+        <Tooltip title={translatedMenuItems[3]}>
           <Badge
             size="small"
             count={(props.viewType === "productionAll" && props.allOrderCount.order) || 0}
@@ -189,7 +225,7 @@ function OrderActionLeft (props) {
               }}
             >
               <Avatar style={{ background: props.viewType === "productionAll" ? "#f279ab" : "#4bc076" }}>
-                <div className="text-white">ALL</div></Avatar>
+                <div className="text-white ">{translatedMenuItems[3]}</div></Avatar>
 
             </span>
           </Badge>
@@ -202,7 +238,7 @@ function OrderActionLeft (props) {
       <div className=" cursor-pointer">
       {props.user.repairInd === true && (
         <>
-        <Tooltip title="My Repair Orders">
+        <Tooltip title={translatedMenuItems[4]}>
           <Badge
             size="small"
             count={(props.viewType === "list" && props.orderCount.order) || 0}
@@ -220,32 +256,13 @@ function OrderActionLeft (props) {
                 <TocIcon className="text-white" /></Avatar> */}
 <Button type={props.viewType === "list" ? "primary" : ""} style={{ backgroundColor: props.viewType === "list" ? "" : "tomato" }}>
                 
-                <div class="text-white">Repair</div></Button>
+                <div class="text-white ">{translatedMenuItems[5]}</div></Button>
                 
             </span>
           </Badge>
         </Tooltip>
-        <Tooltip title="ALL">
-          <Badge
-            size="small"
-            count={(props.viewType === "all" && props.allOrderCount.order) || 0}
-
-            overflowCount={999}
-          >
-
-            <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("all")}
-              style={{
-                color: props.viewType === "all" && "#1890ff",
-              }}
-            >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                <div className="text-white">ALL</div></Avatar>
-
-            </span>
-          </Badge>
-        </Tooltip>
-        <Tooltip title="All Repair Orders-Completed">
+      
+        <Tooltip title={translatedMenuItems[6]}>
           <Badge
             size="small"
             // count={(props.viewType === "allcomplete" && orderCount.order) || 0}
@@ -260,12 +277,12 @@ function OrderActionLeft (props) {
               }}
             >
               <Avatar style={{ background: props.viewType === "allcomplete" ? "#f279ab" : "#4bc076" }}>
-                <HistoryOutlined fontSize="small" className="text-white" /></Avatar>
+                <HistoryOutlined className="text-white !text-icon" /></Avatar>
 
             </span>
           </Badge>
         </Tooltip>
-        <Tooltip title=" All Repair Orders-Deleted">
+        <Tooltip title= {translatedMenuItems[13]}>
                 {/* <Badge
           size="small"
           count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
@@ -278,16 +295,40 @@ function OrderActionLeft (props) {
                         }}
                     >
                         <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
-                        <DeleteOutlined className="text-white" /></Avatar>
+                        <DeleteOutlined className="text-white !text-icon" /></Avatar>
 
                     </span>
                     {/* </Badge> */}
                 </Tooltip>
+                {props.user.erpInd === true && props.user.repairInd === true && props.user.orderFullListInd === true && props.user.orderManagementInd === true && (  
+                <>
+                <Tooltip title={translatedMenuItems[3]}>
+          <Badge
+            size="small"
+            count={(props.viewType === "all" && props.allOrderCount.order) || 0}
+
+            overflowCount={999}
+          >
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setOrderViewType("all")}
+              style={{
+                color: props.viewType === "all" && "#1890ff",
+              }}
+            >
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                <div className="text-white ">{translatedMenuItems[3]}</div></Avatar>
+
+            </span>
+          </Badge>
+        </Tooltip>
+        </>
+      )}
                 </>
               )}
          {props.user.moduleMapper.ecomModInd === true && (
           <>     
-        <Tooltip title="Procure">
+        <Tooltip title={translatedMenuItems[7]}>
           {/* <Badge
             size="small"
             count={(props.viewType === "list" && props.orderCount.order) || 0}
@@ -303,12 +344,12 @@ function OrderActionLeft (props) {
             >         
 <Button type={props.viewType === "procure" ? "primary" : ""} style={{ backgroundColor: props.viewType === "procure" ? "" : "tomato" }}>
                 
-                <div class="text-white">Procure</div></Button>
+                <div class="text-white ">{translatedMenuItems[7]}</div></Button>
                 
             </span>
           {/* </Badge> */}
         </Tooltip>
-        <Tooltip title="Ecom">
+        <Tooltip title={translatedMenuItems[8]}>
 
 <span class=" mr-1 text-sm cursor-pointer"
   onClick={() => props.setOrderViewType("ecom")}
@@ -318,12 +359,12 @@ function OrderActionLeft (props) {
 >         
 <Button type={props.viewType === "ecom" ? "primary" : ""} style={{ backgroundColor: props.viewType === "ecom" ? "" : "tomato" }}>
     
-    <div class="text-white">Commerce</div></Button>
+    <div class="text-white">{translatedMenuItems[9]}</div></Button>
     
 </span>
 
 </Tooltip>
-        <Tooltip title="Completed Orders">
+        <Tooltip title={translatedMenuItems[10]}>
           {/* <Badge
             size="small"
             count={(props.viewType === "list" && props.orderCount.order) || 0}
@@ -339,13 +380,13 @@ function OrderActionLeft (props) {
             >         
 <Avatar style={{ backgroundColor: props.viewType === "completedorders" ? "#f279ab" : "#4bc076" }}>
                 
-<HistoryOutlined fontSize="small" className="text-white" /> </Avatar>
+<HistoryOutlined  className="text-white !text-icon" /> </Avatar>
                 
             </span>
           {/* </Badge> */}
         </Tooltip>
 
-        <Tooltip title="Cancelled Orders">
+        <Tooltip title={translatedMenuItems[11]}>
           {/* <Badge
             size="small"
             count={(props.viewType === "list" && props.orderCount.order) || 0}
@@ -361,7 +402,7 @@ function OrderActionLeft (props) {
             >         
 <Avatar  style={{ backgroundColor: props.viewType === "cancelledorders" ? "#f279ab" : "#4bc076" }}>
                 
-<DeleteOutlined className="text-white" /></Avatar>
+<DeleteOutlined className="text-white !text-icon" /></Avatar>
                 
             </span>
           {/* </Badge> */}
@@ -376,7 +417,7 @@ function OrderActionLeft (props) {
     
       <div class=" w-72 md:ml-4 max-sm:w-16 ml-0">
           <Input
-            placeholder="Search by OrderId"
+            placeholder={translatedMenuItems[12]}
             class="w-96"
             suffix={suffix}
             onPressEnter={handleSearch}

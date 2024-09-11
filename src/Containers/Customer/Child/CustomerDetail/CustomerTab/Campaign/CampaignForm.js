@@ -29,6 +29,7 @@ import { TextareaComponent } from "../../../../../../Components/Forms/Formik/Tex
 import { StyledPopconfirm } from "../../../../../../Components/UI/Antd";
 import { setClearbitCandidateData } from "../../../../../Candidate/CandidateAction";
 import { Listbox } from '@headlessui/react';
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 // yup validation scheme for creating a opportunity
 const EventSchema = Yup.object().shape({
@@ -48,6 +49,8 @@ function CampaignForm (props) {
       const [reminder,setRemider] = useState(true);
       const [defaultOption, setDefaultOption] = useState(props.fullName);
       const [selected, setSelected] = useState(defaultOption);
+      const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+      const [loading, setLoading] = useState(true);
 
  function handleCallback  () {
     const { handleChooserModal, handleEventModal, callback }= props;
@@ -64,6 +67,41 @@ function CampaignForm (props) {
    props.getContactListByCustomerId(props.customer.customerId);
   },[])
   
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+          "71", //  "Type",//0
+          "72", // "Subject",//1
+         "176" , // "Start Date",//2
+         "93" , // "Start Time",//3
+         "126" , // "End Date",//4
+         "94" , // "End Time",//5
+         "95" , // "Time Zone",//6
+          "76" ,// "Assigned",//7
+         "75" , // "Include",//8        
+         "73",  // "Contact",//9
+         "99",  // "Opportunity",//10
+         "185", // "address",//11
+         "316" ,  // "Notes",//12
+          "104" //Create
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   const sortedEmployee =props.assignedToList.sort((a, b) => {
     const nameA = a.empName.toLowerCase();
     const nameB = b.empName.toLowerCase();
@@ -126,6 +164,10 @@ const {
       creatorId,
       employeeId,
     } = props;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    }
+  
     return (
       <>
         <Formik
@@ -286,14 +328,11 @@ const {
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col">
                 <div class=" h-full w-w47.5 mt-3 max-sm:w-wk">
-                  
+                <div className="font-bold font-poppins text-xs"> {translatedMenuItems[0]}</div>
                   <Field
                     isRequired
                     name="eventTypeId"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    //label="Type"                   
                     component={SearchSelect}
                     isColumnWithoutNoCreate
                     selectType="eventType"
@@ -301,16 +340,11 @@ const {
                     isColumn
                     inlineLabel
                   />
+                   <div className="font-bold font-poppins text-xs"> {translatedMenuItems[1]}</div>
                   <Field
                     isRequired
                     name="eventSubject"
-                    //label="Topic"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="Subject"
-                      />
-                    }
+                    //label="Topic"                  
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -320,16 +354,11 @@ const {
                   <div class=" mt-3">
                     <div class=" flex justify-between">
                       <div class=" w-1/2">
+                      <div className="font-bold font-poppins text-xs"> {translatedMenuItems[2]}</div>
                         <Field
                           isRequired
                           name="startDate"
-                          //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.startDate"
-                              defaultMessage="Start Date"
-                            />
-                          }
+                          //label="Start "           
                           isColumn
                           component={DatePicker}
                           value={values.startDate}
@@ -340,16 +369,11 @@ const {
                         />
                       </div>
                       <div class=" w-5/12">
+                      <div className="font-bold font-poppins text-xs"> {translatedMenuItems[3]}</div>
                         <Field
                           isRequired
                           name="startTime"
-                          // label="Start Time"
-                          label={
-                            <FormattedMessage
-                              id="app.startTime"
-                              defaultMessage="Start Time"
-                            />
-                          }
+                          // label="Start Time"           
                           isColumn
                           component={TimePicker}
                           use12Hours
@@ -364,16 +388,11 @@ const {
                   </div>
                   <div class=" flex justify-between">
                     <div class=" w-1/2">
+                    <div className="font-bold font-poppins text-xs"> {translatedMenuItems[4]}</div>
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        // label="End "          
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -398,16 +417,11 @@ const {
                       />
                     </div>
                     <div class=" w-5/12">
+                    <div className="font-bold font-poppins text-xs"> {translatedMenuItems[5]}</div>
                       <Field
                         isRequired
                         name="endTime"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        //label="End Time"                    
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -419,18 +433,13 @@ const {
                       />
                     </div>
                   </div>
+                  <div className="font-bold font-poppins text-xs"> {translatedMenuItems[6]}</div>
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
                     isColumnWithoutNoCreate
                     name="timeZone"
-                    //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="Time Zone"
-                      />
-                    }
+                    //label="TimeZone "        
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -464,9 +473,9 @@ const {
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block text-xs font-semibold text-gray-700 mt-3">
-              Assigned
-            </Listbox.Label>
+          <div className="font-bold font-poppins text-xs"> {translatedMenuItems[7]}</div>
+              {/* Assigned */}
+          
             <div className="relative mt-1">
             <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" >
                 {selected}
@@ -530,15 +539,11 @@ const {
         )}
       </Listbox>
       <div class=" mt-3">
+      <div className="font-bold font-poppins text-xs"> {translatedMenuItems[8]}</div>
                   <Field
                     name="included"
                     // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="Include"
-                      />
-                    }
+                 
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -575,18 +580,13 @@ const {
                   )} 
                   </div> */}
                   <div class=" mt-3">
+                  <div className="font-bold font-poppins text-xs"> {translatedMenuItems[9]}</div>
                   {props.user.crmInd === true &&(
                   <Field
                     name="contact"
                     //selectType="contactList"
                     isColumnWithoutNoCreate
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="Contact"
-                      />
-                    }
+                    // label="Contact"                 
                     component={SelectComponent}
                     isColumn
                     options={Array.isArray(ContactData) ? ContactData : []}
@@ -601,17 +601,13 @@ const {
                   )} 
                   </div>
                   <div class=" mt-3">
+                  <div className="font-bold font-poppins text-xs"> {translatedMenuItems[10]}</div>
                   {props.user.crmInd === true &&(
                  <Field
                  name="opportunity"
                  // selectType="customerList"
                  isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.opportunity"
-                     defaultMessage="Opportunity"
-                   />
-                 }
+        
                  //component={SearchSelect}
                  component={SelectComponent}
                  options={
@@ -660,7 +656,7 @@ const {
                   )} */}
                 </div>
                 <div class=" h-full w-w47.5 mt-3 max-sm:w-wk ">
-                
+                <div className="font-bold font-poppins text-xs"> {translatedMenuItems[11]}</div>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -672,12 +668,10 @@ const {
                     )}
                   />
               <div class=" mt-3">
+              <div className="font-bold font-poppins text-xs"> {translatedMenuItems[12]}</div>
                   <Field
                     name="eventDescription"
-                    //label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    //label="Notes"             
                     isColumn
                     width={"100%"}
                     component={TextareaComponent}
@@ -758,7 +752,7 @@ const {
                     "Update"
                   ) : (
                     // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="Create" />
+                    <div className="font-bold font-poppins text-xs"> {translatedMenuItems[13]}</div>
                   )}
                 </Button>
               </div>

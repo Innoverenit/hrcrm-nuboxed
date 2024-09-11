@@ -9,6 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { getRecords,getCategory,getDeletedProductRecords,catalogueCategorySearch} from "../ProductAction";
 import CategoryIcon from '@mui/icons-material/Category';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 
 const ProductActionLeft = (props) => {
 
@@ -159,7 +160,7 @@ const ProductActionLeft = (props) => {
     
       <Tooltip title="Category">
         <div
-          class=" ml-2 text-xs cursor-pointer"
+          class=" mr-2 text-xs cursor-pointer"
           style={{
 
             color: props.viewType === "category" && "red",
@@ -173,7 +174,41 @@ const ProductActionLeft = (props) => {
         </div>
       </Tooltip>
 
-<Tooltip title="Suspended Products">
+      <Tooltip title="BrandModel">
+        <div
+          class=" mr-2 text-xs cursor-pointer"
+          style={{
+
+            color: props.viewType === "brandModel" && "red",
+          }}
+          onClick={() => props.setProductViewType("brandModel")}
+        >
+          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+            <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
+
+
+
+<Tooltip title="Brand">
+        <div
+          class=" mr-2 text-xs cursor-pointer"
+          style={{
+
+            color: props.viewType === "brand" && "red",
+          }}
+          onClick={() => props.setProductViewType("brand")}
+        >
+          <Avatar style={{ background: props.viewType === "brand" ? "#f279ab" : "#4bc076" }}>
+            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
+
+      <Tooltip title="Suspended Products">
 <Badge
     size="small"
      count={( props.deletedProductCount.deletedProduct) || 0}

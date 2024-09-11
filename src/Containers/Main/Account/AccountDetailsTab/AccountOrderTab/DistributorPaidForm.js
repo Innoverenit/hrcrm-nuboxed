@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as Yup from "yup";
@@ -24,6 +24,40 @@ const DistributorSchema = Yup.object().shape({
   
 });
 function DistributorPaidForm(props) {
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+        "929",  // Amount 0
+        "241",   // "currency" 1
+        "74",  // Date 2
+        "1422",  // Reason 3
+        "926",   // Transaction ID 4
+        "1169",   // Invoice Id 5
+        "86",   // "Mode" 6
+        "138",   // "Document Id" 7 
+        "154",   // "Submit" 8
+      
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
 
   const currencyOption = props.currencies.map((item) => {
     return {
@@ -106,13 +140,14 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
               <div class=" h-full w-w47.5 max-sm:w-wk">
                 <div class="flex justify-evenly">
                   <div class="w-[31%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[0]}</div>
                     <Field
                       name="entryAmount"
-                      label={
-                        <FormattedMessage
-                          id="app.amount"
-                          defaultMessage="Amount"
-                        />}
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.amount"
+                      //     defaultMessage="Amount"
+                      //   />}
                       isRequired
                       isColumn
                       inlineLabel
@@ -123,14 +158,15 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                   </div>
                 
                   <div class="w-[31%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[1]}</div>
                     <Field
                       name="orderCurrencyId"
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="currency"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.currency"
+                      //     defaultMessage="currency"
+                      //   />
+                      // }
                       isRequired
                       isColumn
                       inlineLabel
@@ -139,10 +175,11 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                     />
                   </div>
                   <div class="w-[31%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[2]}</div>
                     <Field
                       isRequired
                       name="date"
-                      label="Date "
+                      // label="Date "
                       isColumn
                       inlineLabel
                       width={"100%"}
@@ -155,13 +192,14 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                 </div>
                 <div class="flex justify-between ">
                 <div class="w-[47.5%]">
+                <div class="text-xs font-poppins font-bold">{translatedMenuItems[3]}</div>
                   <Field
                     name="remarks"
-                    label={
-                      <FormattedMessage
-                        id="app.reason"
-                        defaultMessage="Reason"
-                      />}
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.reason"
+                    //     defaultMessage="Reason"
+                    //   />}
                     component={TextareaComponent}
                      style={{height:"9rem"}}
                   />
@@ -172,14 +210,15 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
               <div class=" h-full w-w47.5 max-sm:w-wk">
                 <div class="flex justify-evenly">
                   <div class="w-[30%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[4]} ID</div>
                     <Field
                       isRequired
                       name="transactionNumber"
-                      label={
-                        <FormattedMessage
-                          id="app.transactionid"
-                          defaultMessage="Transaction ID"
-                        />}
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.transactionid"
+                      //     defaultMessage="Transaction ID"
+                      //   />}
                       isColumn
                       inlineLabel
                       width={"100%"}
@@ -189,9 +228,10 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                     />
                   </div>
                   <div class="w-[30%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[5]} ID</div>
                     <Field
                       name="invoiceId"
-                      label="Invoice Id"
+                      // label="Invoice Id"
                       disabled
                       isColumn
                       inlineLabel
@@ -201,14 +241,15 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                     />
                   </div>
                   <div class="w-[30%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[6]}</div>
                     <Field
                       isRequired
                       name="paymentMode"
-                      label={
-                        <FormattedMessage
-                          id="app.mode"
-                          defaultMessage="Mode"
-                        />}
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.mode"
+                      //     defaultMessage="Mode"
+                      //   />}
                       isColumn
                       inlineLabel
                       width={"100%"}
@@ -221,14 +262,15 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                 </div>
                 <div class="flex justify-between ">
                   <div class="w-[47.5%] mt-4  flex justify-end">
+                    <div class="text-xs font-poppins font-bold">{translatedMenuItems[7]}</div>
                   <Field
                     name="docId"
-                    label={
-                      <FormattedMessage
-                        id="app.documentId"
-                        defaultMessage="Document Id"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.documentId"
+                    //     defaultMessage="Document Id"
+                    //   />
+                    // }
                     isRequired
                     component={DragableUpload}
                   />
@@ -244,10 +286,10 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                 htmlType="submit"
                 loading={props.addingPaidByDistributorId}
               >
-                <FormattedMessage
+              {translatedMenuItems[8]}  {/* <FormattedMessage
                   id="app.submit"
                   defaultMessage="Submit"
-                />
+                /> */}
 
               </Button>
             </div>

@@ -19,6 +19,7 @@ import { MultiAvatar } from "../../../Components/UI/Elements";
 import ProcureOrderModal from "./Child/ProcureOrderModal";
 import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
 import ProcureSearchedData from "./ProcureSearchedData";
+import { Cancel, Edit } from "@mui/icons-material";
 
 function ProcreCardList(props) {
   const [page, setPage] = useState(0);
@@ -49,16 +50,26 @@ useEffect(() => {
         setLoading(true); 
         const itemsToTranslate = [
 
-        "1044", // 'Item', 
-        "788",// ' Price/Unit', 
-        "256",// 'Unit', 
-        "666",  // 'Procure', 
-        "772", // 'Delivery', 
-        "658",// 'Location',
-        "679", // 'Created',
-        "77", // "Owner",
-        "856",// "Trade",
-        "794",// "Submitted By"
+        "1044", // 'Item', 0
+        "788",// ' Price/Unit',1 
+        "256",// 'Unit', 2
+        "666",  // 'Procure', 3
+        "772", // 'Delivery', 4
+        "658",// 'Location',5
+        "679", // 'Created',6
+        "77", // "Owner",7
+        "856",// "Trade",8
+        "794",// "Submitted By"9
+       "100", // New110
+      //  "",  // Change status to Accepted?11
+      "80",   // Yes12
+       "81",  // No113
+      //  "",  // Accepted14
+      // "",   // Accept15
+      "316",   // "Notes"16
+      "1078",   // Save17
+      "1079",   // Cancel18
+      "170",   // Edit19
       ];
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -190,16 +201,16 @@ const {handleProcureNotesDrawerModal,
 <div>
 </div>
                   <div class="flex">
-                  <div className=" flex flex-col w-wk items-center   max-sm:w-full">
+                  <div className=" flex  w-wk items-center   max-sm:w-full">
                   <div className="flex items-center max-sm:w-full">
-                      <div className=" flex items-center  md:w-[12rem] max-sm:w-full  ">
+                      <div className=" flex items-center  text-xs  md:w-[12rem] max-sm:w-full  ">
                                                       {item.category} {item.brand} {item.model} {item.attribute}
                                                     </div>
                                                     <div className=" flex   md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs  font-semibold  font-poppins">
  
-                      <div className="font-normal text-xs  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.price}</div>
                       </div>
                     </div>
@@ -212,9 +223,9 @@ const {handleProcureNotesDrawerModal,
                       </div>
                     </div>
   </div> 
-                        <div class="max-sm:w-full  items-center md:w-[12.02rem]">
+                        <div class="max-sm:w-full  items-center md:w-[7.52rem]">
                           <Tooltip>
-                          <div class="max-sm:w-full  justify-between md: flex flex-row text-xs">                      
+                          <div class="max-sm:w-full  justify-between md:flex text-xs">                      
                                 <span
                                                                     class="underline cursor-pointer text-[#1890ff] font-bold"
                                                                     onClick={() => {
@@ -225,7 +236,7 @@ const {handleProcureNotesDrawerModal,
                                                                 </span>
                                                                 <span> {date === currentDate ? (
                                                                   <span className="text-[0.65rem] text-[tomato] font-bold">
-                                                                    New
+                                                                   {translatedMenuItems[10]} {/* New */}
                                                                   </span>
                                                                 ) : null} </span>
                             
@@ -244,7 +255,7 @@ const {handleProcureNotesDrawerModal,
 
                         </div>
                          </div>
-                  </div>
+                  </div>n
                   <div class="flex items-center">
                     <div className=" flex   md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
@@ -274,10 +285,13 @@ const {handleProcureNotesDrawerModal,
                   {props.userId === item.userId && item.tradeId !== null && (
                   <div class=" text-xs  font-poppins">
                         <Popconfirm
-                          title="Change status to Accepted?"
+                          title={translatedMenuItems[11]}
+                          // "Change status to Accepted?"
                           onConfirm={() => props.procureToAccept(item.iteamId,data,props.orgId)}
-                          okText="Yes"
-                          cancelText="No"
+                          okText={translatedMenuItems[12]}
+                          // "Yes"
+                          cancelText={translatedMenuItems[13]}
+                          // "No"
                         >
                          
                             <Button type="primary"
@@ -286,7 +300,7 @@ const {handleProcureNotesDrawerModal,
                               loading={props.fetchingAllProcure}
                               >
                               <div class="text-xs max-xl:text-[0.65rem] text-white  max-lg:text-[0.45rem] flex justify-between items-center " >
-                                   {item.acceptedInd? "Accepted": "Accept"}           
+                                   {item.acceptedInd? translatedMenuItems[14]: translatedMenuItems[15]}           
                                 {/* Accept */}
                                 <NextPlanIcon className=" !text-icon" />
                               </div>
@@ -305,7 +319,7 @@ const {handleProcureNotesDrawerModal,
                      />
                        
                     ) : (
-                      <div className="font-normal text-xs  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.tradeId}</div>
                       </div>
                     )}
@@ -323,7 +337,7 @@ const {handleProcureNotesDrawerModal,
                      />
                        
                     ) : (
-                      <div className="font-normal text-xs  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.tradePrice}</div>
                       </div>
                     )}
@@ -347,7 +361,7 @@ const {handleProcureNotesDrawerModal,
                      />
                        
                     ) : (
-                      <div className="font-normal text-xs  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.tradeUnit}</div>
                       </div>
                     )}
@@ -364,7 +378,7 @@ const {handleProcureNotesDrawerModal,
                     </div>
                   </div>
                   <div >
-                      <Tooltip title="Notes">
+                      <Tooltip title={translatedMenuItems[16]}>
                         <NoteAltIcon
                          className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                           onClick={() => {
@@ -383,12 +397,12 @@ const {handleProcureNotesDrawerModal,
                       type="primary"
                       loading={props.updatingProcures}
                       onClick={() => handleSave(item)}>
-                        Save
+                       {translatedMenuItems[17]} {/* Save */}
                       </Button>
                         <Button 
                          type="primary"
                         onClick={() => handleCancelClick(item.iteamId)} className="ml-[0.5rem]">
-                        Cancel
+                       {translatedMenuItems[18]} {/* Cancel */}
                       </Button>
                       </>
                       
@@ -398,7 +412,7 @@ const {handleProcureNotesDrawerModal,
                      
                       <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1 max-sm:!text-2xl"
-                        tooltipTitle="Edit"
+                        tooltipTitle={translatedMenuItems[19]}
                         iconType="edit"
                         onClick={() => handleEditClick(item.iteamId)}
                       />

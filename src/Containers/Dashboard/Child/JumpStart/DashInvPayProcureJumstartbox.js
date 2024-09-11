@@ -30,9 +30,9 @@ function DashInvPayProcureJumstartbox(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-    "1229",  //  "Invoice Sent", // 0
-     "1230", //  "Payment Received", // 1
-      "1231",//   "Payment Reconciled", // 2
+    "1498",  //  "Invoice Sent", // 0
+     "1499", //  "Payment Received", // 1
+      "1500",//   "Payment Reconciled", // 2
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -117,8 +117,7 @@ function DashInvPayProcureJumstartbox(props) {
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              // title= {translatedMenuItems[0]}
-              title={"Invoice Sent"}
+              title= {translatedMenuItems[0]}
               jumpstartClick={()=> handleClick("Invoice Sent")}
               cursorData={"pointer"}
               value={"0"}
@@ -138,8 +137,8 @@ function DashInvPayProcureJumstartbox(props) {
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-              // title= {translatedMenuItems[1]} 
-              title={"Payment Received"}
+              title= {translatedMenuItems[1]} 
+             
             jumpstartClick={()=> handleClick("Payment Received")}
               cursorData={"pointer"}
             // value={ pendingOrder}
@@ -159,8 +158,7 @@ function DashInvPayProcureJumstartbox(props) {
                               <JumpStartBox
                              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                               noProgress
-                              // title= {translatedMenuItems[2]} 
-                              title={"Payment Reconciled"}
+                              title= {translatedMenuItems[2]} 
                               jumpstartClick={()=> handleClick("Payment Reconciled")}
                               cursorData={"pointer"}
                               value={"0"}

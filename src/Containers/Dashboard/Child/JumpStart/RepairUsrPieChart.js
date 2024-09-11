@@ -32,7 +32,7 @@ const RepairUsrPieChart = (props) => {
     },
 ]
 
-      const labels = repairUsrPieChart.map(item => item.type);
+  const labels = repairUsrPieChart.map(item => item.type);
   const counts = repairUsrPieChart.map(item => item.count);
   const series = counts;
   const options = {

@@ -94,19 +94,18 @@ function CustomerCardList(props) {
    "279",// 'Source', // 3
    "213",// 'Quotation', // 4
    "328",// 'PipeLine', // 5
-   "76",// 'Assigned', // 6
-   "77",// 'Owner', // 7
-   "248",// 'Customer', // 8
-       "100",   // new 9
-    "1300" , //  Change status to Customer?"10
-    "99" ,  // "Opportunity"11
-    "392" ,  // Pulse 12
-    "316" ,  // "Notes"13
-    "170" ,  // "Edit" 14
-   "73", // Contact 15
-   "144" ,//In Progress 16
-   "387",//  Convert 17
-   "389"//   Converted 18
+   "76",// 'Assigned', // 6 
+   "248",// 'Customer', // 7
+    "100",   // new 8
+    "1300" , //  Change status to Customer?"9
+    "99" ,  // "Opportunity"10
+    "392" ,  // Pulse 11
+    "316" ,  // "Notes"12
+    "170" ,  // "Edit" 13
+   "73", // Contact 14
+   "144" ,//In Progress 15
+   "387",//  Convert 16
+   "389"//   Converted 17
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -348,14 +347,9 @@ if (loading) {
             <div className="font-poppins font-bold text-xs w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             {translatedMenuItems[6]}
             {/* Assigned */}
-            </div>
-            <div className="font-poppins font-bold text-xs w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
-            {translatedMenuItems[7]}
-              {/* Owner" */}
-          
-            </div>
+            </div>          
             <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            {translatedMenuItems[8]}
+            {translatedMenuItems[7]}
               {/* Customer" */}
           
             </div>
@@ -408,12 +402,12 @@ if (loading) {
                           </div>
                           <div class="w-[4%]"></div>
 
-                          <div class="max-sm:w-full md:flex items-center">
+                          <div class="max-sm:w-full flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                 <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                  <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
                                   </Link>
 
@@ -421,7 +415,7 @@ if (loading) {
                                   {date === currentdate ? (
                                     <div class="text-[0.65rem] mt-[0.4rem] text-[tomato] font-bold"
                                     >
-                                      {translatedMenuItems[9]}
+                                      {translatedMenuItems[8]}
                                     </div>
                                   ) : null}
                                   {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
@@ -545,27 +539,13 @@ if (loading) {
 
                         </div>
                       </div>
-                      <div className=" flex f items-center max-sm:w-auto w-[2rem] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
-                        <Tooltip title={item.ownerName}>
-                          <div class="max-sm:flex justify-end">
-                            <Tooltip title={item.ownerName}>
-                              <MultiAvatar
-                                primaryTitle={item.ownerName}
-                                imageId={item.ownerImageId}
-                                imgWidth={"1.8rem"}
-                                imgHeight={"1.8rem"}
-                              />
-                            </Tooltip>
-                          </div>
-                        </Tooltip>
-                      </div>
-                
-
+                     
+              
                       <div className=" flex  justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
-                          title={translatedMenuItems[10]}
+                          title={translatedMenuItems[9]}
                           onConfirm={() => handleConfirm(item.customerId)}
                           okText="Yes"
                           cancelText="No"
@@ -626,7 +606,7 @@ if (loading) {
                             />}
                           </div>                                       
                         <div >
-                          <Tooltip title={translatedMenuItems[15]}>
+                          <Tooltip title={translatedMenuItems[14]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
                               onClick={() => {
@@ -638,7 +618,7 @@ if (loading) {
                           </Tooltip>
                         </div>
                         <div >
-                          <Tooltip title={translatedMenuItems[11]}>
+                          <Tooltip title={translatedMenuItems[10]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
                               onClick={() => {
@@ -652,7 +632,7 @@ if (loading) {
 
                         </div>                                       
                         <div >
-                          <Tooltip title={translatedMenuItems[12]}>
+                          <Tooltip title={translatedMenuItems[11]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
                               onClick={() => {
@@ -671,7 +651,7 @@ if (loading) {
           
         /> 
                         <div >
-                          <Tooltip title={translatedMenuItems[13]}>
+                          <Tooltip title={translatedMenuItems[12]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-[#4bc076]"
                               onClick={() => {
@@ -685,7 +665,7 @@ if (loading) {
                        
                         <div >
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
-                            <Tooltip title={translatedMenuItems[14]}>
+                            <Tooltip title={translatedMenuItems[13]}>
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato]"
 

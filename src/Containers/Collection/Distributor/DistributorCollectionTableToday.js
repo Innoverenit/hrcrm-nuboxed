@@ -179,6 +179,7 @@ function DistributorColletcionArchive(props) {
               </div>
           </div>
           <div className="overflow-scroll h-[67vh]">
+      
             {props.todayDistributor.map((item) => {
 
               return (

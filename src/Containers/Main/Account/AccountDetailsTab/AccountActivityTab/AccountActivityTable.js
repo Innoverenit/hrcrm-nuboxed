@@ -43,7 +43,7 @@ class DistributorActivityTable extends Component {
            "71" ,// "Type",
           "1228"  ,// "Topic",
            "158", // "Start",
-            " 111"// "End"
+            "111"// "End"
             
             
           ];

@@ -15,7 +15,6 @@ import {
   handleUpdateCustomerContactModal,
   putCustomerContactToggle
 } from "../../../../CustomerAction";
-import { FormattedMessage } from "react-intl";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -42,14 +41,14 @@ function LinkedContact(props) {
        "546", //   "Mobile",//2      
        "326", //   "Department",//3
        "325", //   "Designation",//4
-       "", //   "Portal",//5
+       "1350", //   "Portal",//5
        "100", // New 6
        "170", // "Edit"7
-       "", //  "Do you wish to detach?"8
-       "", //  "Detach Contact"9
-       "", //  Login Applied10
-       "", //  Login Approved11
-       "", // Apply For Login12
+       "1345", //  "Do you wish to detach?"8
+       "1346", //  "Detach Contact"9
+       "1347", //  Login Applied10
+       "1348", //  Login Approved11
+       "1349", // Apply For Login12
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -111,25 +110,25 @@ function LinkedContact(props) {
      
       <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className=" md:w-[17.5rem]">{translatedMenuItems[0]}
+        <div className="font-bold font-poppins text-xs  md:w-[17.5rem]">{translatedMenuItems[0]}
           {/* Name */}
         </div>
-        <div className=" md:w-[16.1rem]">{translatedMenuItems[1]}
+        <div className="font-bold font-poppins text-xs  md:w-[16.1rem]">{translatedMenuItems[1]}
 {/* Email */}
         </div>
-        <div className="md:w-[10.1rem]">{translatedMenuItems[2]}
+        <div className="font-bold font-poppins text-xs  md:w-[10.1rem]">{translatedMenuItems[2]}
           {/* Mobile */}
         </div>
-        <div className="md:w-[14.2rem]">{translatedMenuItems[3]}
+        <div className="font-bold font-poppins text-xs  md:w-[14.2rem]">{translatedMenuItems[3]}
           {/* Department */}
         </div>
-                     <div className="md:w-[7.2rem]">{translatedMenuItems[4]}
+                     <div className="font-bold font-poppins text-xs  md:w-[7.2rem]">{translatedMenuItems[4]}
                       {/* Designation */}
                      </div>
                 
         
         <div className="w-[4.21rem]"></div>
-        <div className="md:w-[7.21rem]">{translatedMenuItems[5]}
+        <div className="font-bold font-poppins text-xs  md:w-[7.21rem]">{translatedMenuItems[5]}
 {/* Portal */}
         </div>
 

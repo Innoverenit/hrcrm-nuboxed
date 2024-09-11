@@ -4,8 +4,7 @@ import { bindActionCreators } from "redux";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import {getCloseCollection} from "../CollectionAction"
-import { BundleLoader } from "../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 
 function CloseCreditMemoList(props) {
 
@@ -21,11 +20,10 @@ function CloseCreditMemoList(props) {
           "1169",// Invoice  1
           "248" , // "Customer",//2
            "218" ,//   Value,//3
-          "1365" , // "Generated",//4
-          
+          "1365" , // "Generated",//4         
           "1366" , // "Set Up",//5
           "74" , // Date",//6
-          //  "" ,// "UserId",7
+          "1507" ,// "User Id",7
            "1368", // "Applied"8
         
            
@@ -82,7 +80,7 @@ function CloseCreditMemoList(props) {
                 </div>
                 <div className=" w-[7.32rem] max-xl:w-[6.32rem] ">
                 {/* UserId */}
-                {translatedMenuItems[7]} 
+                {translatedMenuItems[7]} ID
                 </div>
             <div className="w-[6.023rem]">
             {translatedMenuItems[8]}  {/* Applied */}

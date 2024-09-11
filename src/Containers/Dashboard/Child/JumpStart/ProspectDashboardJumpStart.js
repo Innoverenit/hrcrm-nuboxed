@@ -17,7 +17,7 @@ import OrdersAddedModal from "./OrdersAddedModal";
 import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 
-function CustomerDashboardJumpStart (props) {
+function ProspectDashboardJumpStart (props) {
   
   const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'));
   const [startDate] = useState(dayjs().startOf('month'));
@@ -40,10 +40,10 @@ function CustomerDashboardJumpStart (props) {
   const fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        '1296', // 0 "Customer Added"
+        '1296', // 0 "Prospect Added"
         '1297', // 1 "Contacts Added"
-        '1229', // 2 "Orders Added"
-        '1298'  // 3 "Orders Completed"
+        '1229', // 2 "Quotation Added"
+        '1298'  // 3 "Quotation Completed"
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -118,7 +118,8 @@ function CustomerDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#F15753,orange)"
-                  title={translatedMenuItems[0]}
+                  // title={translatedMenuItems[0]}
+                  title={"Prospect Added"}
                   value={props.distributorinDashboard.totalDistributor}
                   jumpstartClick={()=> handleClick("Added")}
                   cursorData={"pointer"}
@@ -135,9 +136,10 @@ function CustomerDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-                  title={translatedMenuItems[1]}
+                  // title={translatedMenuItems[1]}
+                  title={"Contacts Added"}
                   value={props.distributorinDashboard.totalContactPerson}
-                  jumpstartClick={()=> handleClick("Contact Added")}
+                  jumpstartClick={() => props.handleContactAddedModal(true)}
                 />
               </div>
             </div>
@@ -151,9 +153,10 @@ function CustomerDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-                  title={translatedMenuItems[2]}
+                  // title={translatedMenuItems[2]}
+                  title={"Quotation Added"} 
                   value={props.distributorinDashboard.totalOrder}
-                  jumpstartClick={()=> handleClick("Orders Added")}
+                  jumpstartClick={() => props.handleOrderAddedModal(true)}
                   cursorData="pointer"
                 />
               </div>
@@ -168,9 +171,10 @@ function CustomerDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-                  title={translatedMenuItems[3]}
+                  // title={translatedMenuItems[3]}
+                  title={"Quotation Completed"} 
                   value={props.distributorinDashboard.completeOrder}
-                  jumpstartClick={()=> handleClick("Closed")}
+                  jumpstartClick={() => props.handleOrderClosedModal(true)}
                   cursorData="pointer"
                 />
               </div>
@@ -256,4 +260,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 //   getleaveLeftSideDetails
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(CustomerDashboardJumpStart);
+export default connect(mapStateToProps, mapDispatchToProps)(ProspectDashboardJumpStart);

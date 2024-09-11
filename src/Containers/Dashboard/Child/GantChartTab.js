@@ -48,7 +48,7 @@ class GantChartTab extends Component {
     const { activeKey } = this.state;
     return (
       <>
-        <TabsWrapper>
+        <TabsWrapper className="w-wk">
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}

@@ -78,6 +78,11 @@ function ProductCardList(props) {
             "1203",//7 Feature
             "1204",//8 Warranty
               "1371",//9 year
+              // "",//Quality
+              // "",//Add Price
+              // "",//Product Builder
+              // "",//Cell
+              // "",//Edit
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -190,36 +195,36 @@ useEffect(() => {
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">  
           <div className="w-[7.01rem]"></div>        
-            <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+            <div className="font-bold font-poppins text-xs w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
             {translatedMenuItems[0]} {/* Article # */}
               </div>
-            <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
+            <div className="font-bold font-poppins text-xs w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
             {translatedMenuItems[1]}  {/* Name */}
               </div>
-            <div className=" w-[9.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
+            <div className="font-bold font-poppins text-xs w-[9.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
             {translatedMenuItems[2]}
             {/* Category */}
               </div>
-            <div className="w-[9.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">
+            <div className="font-bold font-poppins text-xs w-[9.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">
             {translatedMenuItems[3]} {/* Attribute */}
               </div>
-            <div className="w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">
+            <div className="font-bold font-poppins text-xs w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">
             {translatedMenuItems[4]}{/* Brand */}
               </div>
-            <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
+            <div className="font-bold font-poppins text-xs w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
             {translatedMenuItems[5]} {/* Model */}
             
             </div>
-            <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            <div className="font-bold font-poppins text-xs w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[6]}  {/* Website */}
               </div>
-              <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              <div className="font-bold font-poppins text-xs w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[7]}  
               </div>
-              <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              <div className="font-bold font-poppins text-xs w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[8]}  
               </div>
-              <div className="w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              <div className="font-bold font-poppins text-xs w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[9]}  
               </div>
             <div className="w-[7rem]"></div>
@@ -473,24 +478,34 @@ useEffect(() => {
           particularDiscountData={particularDiscountData}
           proBuilderDrawer={proBuilderDrawer}
           handleProductBuilderDrawer={handleProductBuilderDrawer}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <PriceDrawer
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
           particularDiscountData={particularDiscountData}
           handlePriceDrawer={handlePriceDrawer}
           priceOpenDrawer={priceOpenDrawer}
         />
         <ProductCellDrawer
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
          particularDiscountData={particularDiscountData}
         clickProdclDrwr={props.clickProdclDrwr}
         handleProdCellDrawer={props.handleProdCellDrawer}
         />
 
 <ProductQualityDrawer
+  translateText={props.translateText}
+  selectedLanguage={props.selectedLanguage}
          particularDiscountData={particularDiscountData}
          productQualityDrawer={props.productQualityDrawer}
          handleProductQuality={props.handleProductQuality}
         />
         <ProductDetailsDrawer
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         particularDiscountData={particularDiscountData}
         modalVisible={modalVisible}
         closeModal={closeModal}

@@ -134,7 +134,7 @@ function ContactCardList(props) {
           '213', // 4
           '328', // 5
           '329', // 6
-          '77' // 7
+      
 
         ];
 
@@ -191,9 +191,7 @@ function ContactCardList(props) {
         <div className="font-bold font-poppins text-xs md:w-[3.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
         {translatedMenuItems[5]}</div>
         <div className="font-bold font-poppins text-xs w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
-        {translatedMenuItems[6]}</div>
-        <div className="font-bold font-poppins text-xs w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
-        {translatedMenuItems[7]}</div>
+        {translatedMenuItems[6]}</div>      
         <div className="w-[4.2rem]"></div>
 
       </div>
@@ -320,21 +318,7 @@ function ContactCardList(props) {
                           </div>
                        
                           </div>
-                          <div className="flex   w-[3.01rem] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
-        <Tooltip title={item.ownerName}>
-          <div class="max-sm:flex justify-end">
-          <Tooltip title={item.ownerName}>
-        <MultiAvatar
-          primaryTitle={item.ownerName}
-          imageId={item.ownerImageId}
-          imgWidth={"1.8rem"}
-          imgHeight={"1.8rem"}
-        />
-      </Tooltip>
-      </div>
-    </Tooltip>
-
-             </div>
+                       
           
              <div class="flex items-center max-sm:justify-evenly max-sm:w-wk">
              <div>

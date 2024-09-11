@@ -41,7 +41,7 @@ function AllOrderList(props) {
           setLoading(true); 
           const itemsToTranslate = [
   "106",  // 'Urgent', // 0
-  "660",    // 'Order', // 1{translatedMenuItems[15]}
+  "660",    // 'Order', // 1
   "248",    // ' Customer', // 2
   "73",  // 'Contact', // 3
   "260",  // ' Units', // 4
@@ -146,10 +146,11 @@ const handleLoadMoreLow = () => {
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
           <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
           <div className="md:w-[3.818rem]">{translatedMenuItems[4]}</div>
+          <div className="md:w-[5.03rem]">{translatedMenuItems[8]}</div>
           <div className="md:w-[4.531rem]">{translatedMenuItems[5]}</div>
           <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
-          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
+          <div className="md:w-[9.76rem]">{translatedMenuItems[7]}</div>
+          
           <div className="md:w-24"></div>
         </div>
         <InfiniteScroll
@@ -259,13 +260,15 @@ const handleLoadMoreLow = () => {
 
                     </div>
                     <div class="flex">
-                    <div className=" flex  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-[3.31rem] max-sm:flex-row items-center w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
                     </div>
 
-
+                    <div className=" flex text-xs md:w-[11.912rem] items-center max-sm:flex-row w-full max-sm:justify-between ">
+                    <span>{date}</span>
+                  </div>
                   </div>
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
@@ -333,20 +336,18 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                      </div>
-                  <div className=" flex text-xs md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <span>{date}</span>
-                  </div>
-                  <div className=" flex  md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  
+                  <div className=" flex  md:w-[0.01rem] max-sm:flex-row items-center w-full max-sm:justify-between ">
 
-                      <div class=" text-xs  font-semibold  font-poppins">
+                      <div class=" text-xs  font-semibold  items-center font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
+                    <div class="rounded-full text-xs bg-white items-center h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
                     </div>
-                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                    <div class="flex max-sm:justify-between items-center max-sm:w-wk max-sm:items-center">
                     
                     
                       <div class=" text-xs  font-poppins">
@@ -380,7 +381,7 @@ const handleLoadMoreLow = () => {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title={translatedMenuItems[13]}>
                           <EventRepeatIcon
-                          className=" !text-icon cursor-pointer max-sm:!text-2xl "
+                          className=" !text-icon cursor-pointer max-sm:!text-2xl text-[green]"
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
@@ -394,7 +395,7 @@ const handleLoadMoreLow = () => {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title={translatedMenuItems[14]}>
                           <PaidIcon
-                           className=" !text-icon cursor-pointer max-sm:!text-2xl"
+                           className=" !text-icon cursor-pointer max-sm:!text-2xl text-[#e5625e]"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -429,10 +430,11 @@ const handleLoadMoreLow = () => {
           <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
           <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
           <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="md:w-[5.03rem]">{translatedMenuItems[8]}</div>
           <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
           <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
-          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
+          <div className="md:w-[9.76rem]">{translatedMenuItems[7]}</div>
+          
            <div className="md:w-24"></div>
          </div>
          <InfiniteScroll
@@ -541,7 +543,7 @@ const handleLoadMoreLow = () => {
  
                      </div>
                      <div class="flex">
-                     <div className=" flex  md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                     <div className=" flex  md:w-[3.31rem] max-sm:flex-row items-center w-full max-sm:justify-between ">
                        <div class=" font-poppins text-xs">
                          {item.noOfPhones}
                        </div>
@@ -551,6 +553,9 @@ const handleLoadMoreLow = () => {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                   <div className=" flex text-xs items-center md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between ">
+                     <span>{date}</span>
+                   </div>
                    <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                      <div>
                        <MultiAvatar
@@ -566,7 +571,7 @@ const handleLoadMoreLow = () => {
  
                    </div>
                    <div class=" flex">
-                     <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                     <div class="flex flex-row items-center  md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
                        <div>
                          <MultiAvatar2
                            primaryTitle={item.supervisorUserName}
@@ -616,20 +621,18 @@ const handleLoadMoreLow = () => {
                      </div>
                      
                    </div>
-                   <div className=" flex text-xs  md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between ">
-                     <span>{date}</span>
-                   </div>
-                   <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  
+                   <div className=" flex  items-center md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
  
                        <div class=" text-xs  font-semibold  font-poppins">
                          {item.noOfownerPhones}
                        </div>
                      </div>
-                     <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
+                     <div class="rounded-full text-xs items-center bg-white  h-5 cursor-pointer w-8 justify-cente">
                        {item.orderStatus}
                      </div>
                      </div>
-                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                     <div class="flex max-sm:justify-between  max-sm:w-wk max-sm:items-center">
                      
                      
  
@@ -663,7 +666,7 @@ const handleLoadMoreLow = () => {
                        <div class=" text-xs  font-poppins">
                          <Tooltip title={translatedMenuItems[13]}>
                            <EventRepeatIcon
-                              className=" !text-icon cursor-pointer max-sm:!text-2xl"
+                              className=" !text-icon cursor-pointer max-sm:!text-2xl text-[green]"
                              onClick={() => {
                                props.handleStatusOfOrder(true);
                                handleSetParticularOrderData(item);
@@ -676,7 +679,7 @@ const handleLoadMoreLow = () => {
                        <div class=" text-xs  font-poppins">
                          <Tooltip title={translatedMenuItems[14]}>
                            <PaidIcon
-                             className=" !text-icon cursor-pointer max-sm:!text-2xl"
+                             className=" !text-icon cursor-pointer max-sm:!text-2xl text-[#e5625e]"
                              onClick={() => {
                                props.handlePaidModal(true);
                                handleSetParticularOrderData(item);
