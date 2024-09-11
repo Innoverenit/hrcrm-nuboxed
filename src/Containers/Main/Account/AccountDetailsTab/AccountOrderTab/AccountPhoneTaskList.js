@@ -25,7 +25,7 @@ console.log(props.particularRowData)
                     return (
                         <div class="cursor-pointer w-[18%] flex justify-center ">
                             <div class="basis-[85%]">
-                                {item.taskName}
+                                {item.taskName} {item.level}
                             </div>
                             <div>
                             <Tooltip title="Spare">

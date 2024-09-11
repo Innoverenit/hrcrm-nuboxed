@@ -6,6 +6,12 @@ import Swal from 'sweetalert2'
 
 export const setProductionViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_PRODUCTION_VIEW_TYPE, payload: viewType });
+export const handleRefurbishLevelModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REFURBISH_LEVEL_MODAL,
+    payload: modalProps,
+  });
+};
 
 export const getTodayProduction = (date) => (dispatch) => {
   dispatch({
@@ -2511,4 +2517,31 @@ export const handleAllSpareProcess = (modalProps) => (dispatch) => {
     type: types.HANDLE_ALL_SPARE_PROCESS_MODAL,
     payload: modalProps,
   });
+};
+
+
+export const getLevelData = (phoneId,level) => (dispatch) => {
+  dispatch({
+    type: types.GET_LEVEL_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/itemTask/levelWise/${phoneId}/${level}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LEVEL_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_LEVEL_DATA_FAILURE,
+        payload: err,
+      });
+    });
 };

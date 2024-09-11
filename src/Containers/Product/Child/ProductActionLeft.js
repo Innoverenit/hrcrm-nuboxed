@@ -226,6 +226,56 @@ const ProductActionLeft = (props) => {
   </Avatar>
   </Badge>
 </Tooltip>
+
+<Tooltip title="Brand">
+        <div
+          class=" ml-2 text-xs cursor-pointer"
+          style={{
+
+            color: props.viewType === "brand" && "red",
+          }}
+          onClick={() => props.setProductViewType("brand")}
+        >
+          <Avatar style={{ background: props.viewType === "brand" ? "#f279ab" : "#4bc076" }}>
+            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
+
+
+      <Tooltip title="BrandModel">
+        <div
+          class=" ml-2 text-xs cursor-pointer"
+          style={{
+
+            color: props.viewType === "brandModel" && "red",
+          }}
+          onClick={() => props.setProductViewType("brandModel")}
+        >
+          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
+
+
+      <Tooltip title="Reinstate">
+        <div
+          class=" ml-2 text-xs cursor-pointer"
+          style={{
+
+          color: props.viewType === "instate" && "red",
+          }}
+          onClick={() => props.setProductViewType("instate")}
+        >
+          <Avatar style={{ background: props.viewType === "instate" ? "#f279ab" : "#4bc076" }}>
+            <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+          </Avatar>
+
+        </div>
+      </Tooltip>
 <div class=" w-64 max-sm:w-24">
                 
 {props.viewType === "category" &&

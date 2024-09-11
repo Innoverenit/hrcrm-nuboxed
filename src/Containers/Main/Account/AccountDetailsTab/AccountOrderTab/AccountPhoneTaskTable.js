@@ -32,6 +32,7 @@ function AccountPhoneTaskTable(props) {
             itemTaskId: task === "custom" ? "" : task,
             taskName: customName,
             userId: props.userId,
+            orgId:props.orgId,
             level:task === "custom" ? selectedLevel : ""
         }, props.phoneId, handleCallback())
     }

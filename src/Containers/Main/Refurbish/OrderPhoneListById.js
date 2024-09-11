@@ -10,11 +10,12 @@ import {
     updateQCStatus,
     searchimeiName,
     ClearReducerDataOfrefurbish,
-    handleQcexpand
+    handleQcexpand,
+    handleRefurbishLevelModal
 } from "./RefurbishAction";
 import { AudioOutlined } from '@ant-design/icons';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Button, Tooltip, Progress,Input } from "antd";
+import { Button, Tooltip, Progress,Input,Badge } from "antd";
 import ButtonGroup from "antd/lib/button/button-group";
 import dayjs from "dayjs";
 import QRCode from "qrcode.react";
@@ -26,12 +27,14 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import QCSpareListModal from "./QCSpareListModal";
 import QCExpandListModal from "./QCExpandListModal";
+import RefurbishLevelModal from "./RefurbishLevelModal"
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
 const DistributorPhoneTaskTable = lazy(() => import('./DistributorPhoneTaskTable'));
 
 function OrderPhoneListById(props) {
     const [pageNo, setPageNo] = useState(0);
+    const [currentLevel, setCurrentLevel] = useState("");
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const [startTime, setStartTime] = useState(null);
@@ -104,6 +107,10 @@ function OrderPhoneListById(props) {
           setCurrentData(transcript);
         }
         }, [ transcript]);
+        function handleSetCurrentlevel(level) {
+            setCurrentLevel(level);
+            // console.log("opp",item);
+          }
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         const callPageMapd = props.orderPhoneList && props.orderPhoneList.length &&props.orderPhoneList[0].pageCount
@@ -426,6 +433,30 @@ function OrderPhoneListById(props) {
                                                     <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 20 && '...'}</span>
                                                     </div>
                                                 </div>
+
+                                                <div className=" flex  w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.levelCount&&item.levelCount.map((level)=>{
+                                                            return(
+                                                                <span 
+                                                                style={{marginLeft:"9px",cursor:"pointer"}}
+                                                                onClick={() => {
+                                                                   props.handleRefurbishLevelModal(true);
+                                                                   handleSetCurrentlevel(level);
+                                                                 }}
+                                                               title={level.level}
+                                                               >
+                                                                <Badge size="small" count={level.levelCount}>
+                                                                {level.level}
+                                                                </Badge>
+                                                                   {/* {level.levelCount} */}
+                                                                   {/* {item.issue.substring(0, 10)}{item.issue.length > 20 && '...'} */}
+                                                               </span>
+                                                            )
+                                                        })}
+
+                                                    </div>
+                                                </div>
                                             
                                            
                                                 
@@ -712,6 +743,14 @@ function OrderPhoneListById(props) {
                     qcExpandList={props.qcExpandList}
                     handleQcexpand={props.handleQcexpand}
                 />
+                 <RefurbishLevelModal
+                 addRefurbishLevelModal={props.addRefurbishLevelModal}
+                //   phoneId={phoneId}
+                //     RowData={RowData}
+                currentLevel={currentLevel}
+                handleRefurbishLevelModal={props.handleRefurbishLevelModal}
+                    
+                />
             </div>
             {/* } */}
         </>
@@ -730,7 +769,8 @@ const mapStateToProps = ({ refurbish, auth, inventory }) => ({
     phoNotesQCOrderModal: refurbish.phoNotesQCOrderModal,
     updatingQCStatus:refurbish.updatingQCStatus,
     qcSpareList:refurbish.qcSpareList,
-    qcExpandList: refurbish.qcExpandList
+    qcExpandList: refurbish.qcExpandList,
+    addRefurbishLevelModal:refurbish.addRefurbishLevelModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -741,6 +781,7 @@ const mapDispatchToProps = (dispatch) =>
             handleQCPhoneNotesOrderModal,
             getOrderByUser,
             updateCantRepairQC,
+            handleRefurbishLevelModal,
             searchimeiName,
             ClearReducerDataOfrefurbish,
             handleSpareList,

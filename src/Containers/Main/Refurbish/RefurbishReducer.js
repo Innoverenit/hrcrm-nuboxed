@@ -7,6 +7,11 @@ const initialState = {
   fetchingTodayProductionError: false,
   production: [],
 
+
+  fetchingLevelData:false,
+  fetchingLevelDataError:false,
+  levelData:[],
+
   fetchingNoOfRepairTechnicianById: false,
   fetchingNoOfRepairTechnicianByIdError: false,
   repairByTechnician: [],
@@ -17,6 +22,8 @@ const initialState = {
   allTaskModal:false,
 
   allSpareProcessModal:false,
+
+  addRefurbishLevelModal:false,
 
   fetchingProductionUrgent: false,
   fetchingProductionUrgentError: false,
@@ -750,6 +757,9 @@ export const refurbishReducer = (state = initialState, action) => {
     case types.HANDLE_PRODUCTION_ORDERID_MODAL:
       return { ...state, productionOrderIdModal: action.payload };
 
+      case types.HANDLE_REFURBISH_LEVEL_MODAL:
+        return { ...state, addRefurbishLevelModal: action.payload };
+
     case types.HANDLE_PHONE_NOTE_PRODUCTION_MODAL:
       return { ...state, phoNoteProductionModal: action.payload };
 
@@ -1083,6 +1093,27 @@ export const refurbishReducer = (state = initialState, action) => {
         fetchingRepairorderById: false,
         fetchingRepairorderByIdError: true,
       };
+
+
+
+
+      case types.GET_LEVEL_DATA_REQUEST:
+      return { ...state, fetchingLevelData: true };
+    case types.GET_LEVEL_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingLevelData: false,
+         levelData: action.payload,
+
+        //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+      };
+    case types.GET_LEVEL_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingLevelData: false,
+        fetchingLevelDataError: true,
+      };
+
     case types.HANDLE_REPAIR_PHONE_NOTES_ORDER_MODAL:
       return { ...state, phoNotesRepairOrderModal: action.payload };
 

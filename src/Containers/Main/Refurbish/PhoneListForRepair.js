@@ -14,7 +14,7 @@ import {
     ClearReducerDataOfrepair,
     handleSpareProcess
 } from "./RefurbishAction";
-import { Button, Tooltip,  Progress,Input } from "antd";
+import { Button, Tooltip,  Progress,Input,Badge } from "antd";
 import {  RollbackOutlined } from "@ant-design/icons";
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
@@ -417,6 +417,31 @@ function PhoneListForRepair(props) {
                                                 <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div>
                                                 </div>
                                             </div>
+
+
+                                            <div className=" flex  w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.levelCount&&item.levelCount.map((level)=>{
+                                                            return(
+                                                                <span 
+                                                                style={{marginLeft:"9px",cursor:"pointer"}}
+                                                                onClick={() => {
+                                                                   props.handleRefurbishLevelModal(true);
+                                                                   // handleSetCurrentOpportunityId(item);
+                                                                 }}
+                                                               title={level.level}
+                                                               >
+                                                                <Badge size="small" count={level.levelCount}>
+                                                                {level.level}
+                                                                </Badge>
+                                                                   {/* {level.levelCount} */}
+                                                                   {/* {item.issue.substring(0, 10)}{item.issue.length > 20 && '...'} */}
+                                                               </span>
+                                                            )
+                                                        })}
+
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                           
