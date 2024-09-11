@@ -119,7 +119,7 @@ function QulityActionLeft (props) {
 
         return (
             <div class="flex items-center">
- {props.user.productionInd === true && (
+ {props.user.productionInd === true && props.user.repairInd === true && (
                 <Tooltip
                     title="Production">
 {/* <Badge
