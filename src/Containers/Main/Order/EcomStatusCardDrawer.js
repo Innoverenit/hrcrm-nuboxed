@@ -23,7 +23,11 @@ const EcomStatusCardDrawer = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
 
-               <EcomStatuShower   particularRowData={props.particularRowData}/>    
+               <EcomStatuShower   particularRowData={props.particularRowData}
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage}
+                translatedMenuItems={props.translatedMenuItems}
+               />    
 
                 </Suspense>
             </StyledDrawer>

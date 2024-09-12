@@ -237,9 +237,9 @@ function SuppliesActionLeft (props) {
           onClick={() => setSuppliesViewType("brandModel")}
         >
           <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
-          <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
+          <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
-
+       
         </div>
       </Tooltip>
 
