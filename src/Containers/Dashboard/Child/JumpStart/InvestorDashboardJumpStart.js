@@ -16,6 +16,8 @@ import ContactAddedModal from "./ContactAddedModal";
 import OrdersAddedModal from "./OrdersAddedModal";
 import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
+import axios from 'axios';
+import {base_url2} from "../../../../Config/Auth";
 
 function InvestorDashboardJumpStart (props) {
   
@@ -28,9 +30,28 @@ function InvestorDashboardJumpStart (props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
 
+  const [invesortAdded, setinvesortAdded] = useState([]);
+  const [loading1, setLoading1] = useState(false);
+
+    const fetchInvesortAdded = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/investor/report/all-investor/self/count/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setinvesortAdded(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError(error);
+        setLoading1(false);
+      }
+    };
+
   useEffect(() => {
     props.getJumpDistributorDetail(props.timeRangeType);
     fetchMenuTranslations();
+    fetchInvesortAdded();
   }, [props.timeRangeType]);
 
   useEffect(() => {

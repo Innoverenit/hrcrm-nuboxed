@@ -283,6 +283,11 @@ class Dashboard extends Component {
              selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}
              />
+            : this.state.activeButton==="Tasks" ? (
+              <TaskOrganizationTab
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
+              />)
           //    :this.state.activeButton==="RecruitPro" ?
           //  (<DashboardJumpstartAll
           //   selectedLanguage={this.props.selectedLanguage}
@@ -348,21 +353,17 @@ class Dashboard extends Component {
              <div class=" w-wk" >
              <div class=" flex flex-col " >
        <div class=" flex justify-between" >
-       {this.state.activeButton==="Tasks" ? (
-       <TaskOrganizationTab
-       selectedLanguage={this.props.selectedLanguage}
-       translateText={this.props.translateText}
-       />)
-      //  :this.state.activeButton==="Investors" ?(
-      //   <InvestorsPitchTab
-      //   selectedLanguage={this.props.selectedLanguage}
-      //   translateText={this.props.translateText}/>)
-        // <CustomerLeadsTab/>)
-        // :this.state.activeButton==="RecruitPro" ?(
-        //   <StackedClosureChartAll
-        //   selectedLanguage={this.props.selectedLanguage}
-        //   translateText={this.props.translateText}/>)
-        :this.state.activeButton==="Order" ?(
+       
+       {/* :this.state.activeButton==="Investors" ?(
+        <InvestorsPitchTab
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}/>)
+        <CustomerLeadsTab/>)
+        :this.state.activeButton==="RecruitPro" ?(
+          <StackedClosureChartAll
+          selectedLanguage={this.props.selectedLanguage}
+          translateText={this.props.translateText}/>) */}
+        {this.state.activeButton==="Order" ?(
           <OrdersDashTab
           selectedLanguage={this.props.selectedLanguage}
           translateText={this.props.translateText}/>)

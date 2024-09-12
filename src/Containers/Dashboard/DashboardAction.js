@@ -2783,7 +2783,7 @@ export const getRepairDashboardOrderClose = (userId, startDate, endDate,page) =>
     type: types.GET_REPAIR_DASHBOARD_ORDER_CLOSE_REQUEST,
   });
   axios
-    .get(`${base_url2}/dashboard/inCompleteOrderList/${userId}/${endDate}/${startDate}/${page}`, {
+    .get(`${base_url2}/dashboard/completeOrderList/${userId}/${endDate}/${startDate}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2840,7 +2840,7 @@ export const getRepairDashboardOrderOpen = (userId, startDate, endDate,page) => 
     type: types.GET_REPAIR_DASHBOARD_ORDER_OPEN_REQUEST,
   });
   axios
-    .get(`${base_url2}/dashboard/completeOrderList/${userId}/${endDate}/${startDate}/${page}`, {
+    .get(`${base_url2}/dashboard/inCompleteOrderList/${userId}/${endDate}/${startDate}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
