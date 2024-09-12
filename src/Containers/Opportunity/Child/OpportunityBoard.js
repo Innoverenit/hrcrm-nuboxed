@@ -78,16 +78,16 @@ console.log("publishIndTrueItem",publishIndTrueItem)
     return publishIndTrueItem ? publishIndTrueItem : null;
 }, [props.opportunityProcess]);
 
-
+let type="Quotation"
   useEffect(() => {
-    props.getProcessForOpportunity(props.orgId);
+    props.getProcessForOpportunity(props.orgId,type);
      props.getAllOpportunityListByUserId(props.userId)
   }, []);
 
   useEffect(() => {
     if (!processData) return;
     console.log("processData",processData)
-    props.getProcessStagesForOpportunity(processData.opportunityWorkflowDetailsId);
+    props.getProcessStagesForOpportunity(props.orgId,processData.workflowDetailsId);
   }, [processData]);   
 
   const [isDragging, setIsDragging] = useState(false);
@@ -140,7 +140,7 @@ console.log("publishIndTrueItem",publishIndTrueItem)
 
   function handleProcessClick(item) {
     setCurrentProcess(item);
-    props.getProcessStagesForOpportunity(item.opportunityWorkflowDetailsId);
+    props.getProcessStagesForOpportunity(props.orgId,item.workflowDetailsId);
   }
 
   return (
@@ -186,7 +186,7 @@ console.log("publishIndTrueItem",publishIndTrueItem)
                       .map((stage, index) => (
                         <Droppable
                           key={index}
-                          droppableId={stage.opportunityStagesId}
+                          droppableId={stage.stagesId}
                           type="stage"
                         
                         >
@@ -216,7 +216,7 @@ console.log("publishIndTrueItem",publishIndTrueItem)
                                       {props.opportunityByUserId
                                         .filter(
                                           (opp, index) =>
-                                            opp.opportunityStagesId === stage.opportunityStagesId
+                                            opp.opportunityStagesId === stage.stagesId
                                         )
                                         .map((opp, index) => {
                                           return (

@@ -364,7 +364,7 @@ const fetchWorkFlowType = async () => {
   try {
     // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
     // setCustomers(response.data);
-    const apiEndpoint = `${base_url}/workflowCategory/All`;
+    const apiEndpoint = `${base_url}/workflow/publish/for_dropdown/${props.organizationId}/Quotation`;
     const response = await fetch(apiEndpoint,{
       method: 'GET',
       headers: {
@@ -374,7 +374,7 @@ const fetchWorkFlowType = async () => {
       },
     });
     const data = await response.json();
-    setWorkFlowType(data);
+    setWorkflow(data);
   } catch (error) {
     console.error('Error fetching customers:', error);
   } finally {
@@ -860,7 +860,7 @@ const handleStageChange=(value)=>{
       </Select>            
                 </div>
                         </div>
-                        <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow Type</label>
+                        {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow Type</label>
       <Select
        
         placeholder="Select WorkflowType"
@@ -873,7 +873,7 @@ const handleStageChange=(value)=>{
             {flow.name}
           </Option>
         ))}
-      </Select>
+      </Select> */}
                 
                                           
       <div class="flex justify-between max-sm:flex-col mt-3">
@@ -883,9 +883,10 @@ const handleStageChange=(value)=>{
       <Select
        
         placeholder="Select Workflow"
-        loading={isLoadingWorkflow}
+      loading={isLoadingWorkflowType}
         onChange={handleWorkflowChange}
-        disabled={!selectedWorkFlowType}
+        onFocus={handleSelectWorkflowTypeFocus}
+        // disabled={!selectedWorkFlowType}
       >
         {workflow.map(work => (
           <Option key={work.workflowDetailsId} value={work.workflowDetailsId}>
