@@ -164,7 +164,7 @@ class Department extends Component {
       <>
         <div flexWrap="nowrap">
           
-              <div class=" flex flex-row justify-between">
+              <div class=" flex flex-row justify-end items-center">
 
                        <div class=" flex w-[18vw]" >
                        <Input
@@ -177,7 +177,7 @@ class Department extends Component {
           />
         </div>
     
-        <div class="w-[38rem]">
+        <div className="ml-2 mr-2">
   <a href={`${base_url}/excel/export/catagory/All/${this.props.orgId}?type=${"department"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { Popconfirm, Switch } from "antd";
 import ViewEditCard from "../../../../Components/UI/Elements/ViewEditCard";
 import { Select } from "../../../../Components/UI/Elements";
-import FWLogo1 from "../../../../Assets/Images/Production.jpg";
+import Ecomimg from "../../../../Assets/Images/Ecomimg.jpg";
+import Cataloimg from "../../../../Assets/Images/Ecomimg.jpg";
+import Materialimg from "../../../../Assets/Images/Ecomimg.jpg";
 import Trading from "../../../../Assets/Images/Trading.jpeg";
 
 const { Option } = Select;
@@ -68,7 +70,7 @@ class ModuleTrading extends Component {
             <div className=" flex h-28 justify-center "> 
               <img
               className="big-logo w-36 h-24 m-2"
-              src={FWLogo1}
+              src={Ecomimg}
               alt="Tekorero logo"
             /></div>
             <div class="flex  flex-col justify-center  ">
@@ -99,7 +101,7 @@ class ModuleTrading extends Component {
             <div className=" flex h-28 justify-center "> 
               <img
               className="big-logo w-36 h-24 m-2"
-              src={FWLogo1}
+              src={Cataloimg}
               alt="Tekorero logo"
             /></div>
             <div class="flex  flex-col justify-center  ">
@@ -129,7 +131,7 @@ class ModuleTrading extends Component {
             <div className=" flex h-28 justify-center "> 
               <img
               className="big-logo w-36 h-24 m-2"
-              src={FWLogo1}
+              src={Materialimg}
               alt="Tekorero logo"
             /></div>
             <div class="flex  flex-col justify-center  ">

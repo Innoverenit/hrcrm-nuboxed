@@ -7,23 +7,12 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ExploreIcon from "@mui/icons-material/Explore";
-
-import dayjs from "dayjs";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import ContactsIcon from '@mui/icons-material/Contacts';
-//import { getCountries } from "../../../../Auth/AuthAction";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select,Input, Button, Popconfirm } from "antd";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import NextPlanIcon from '@mui/icons-material/NextPlan';
 import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../../Components/UI/Elements";
-import { Link } from 'react-router-dom';
 import {addSuppliesBrand,
     getBrandSupplies,
     handleSuppliesBrandModal,
@@ -219,13 +208,13 @@ const handleSave = (item) => {
             setFieldValue,
             setFieldTouched,
           }) => (
-            <div class="overflow-y-auto  overflow-x-hidden ">
-            <Form className="form-background">
+            <div class="overflow-y-auto  overflow-x-hidden flex justify-evenly">
+            <Form className="form-background mt-2">
               <div class=" flex justify-around max-sm:flex-col"
               >
-                <div class=" h-full w-w47.5 max-sm:w-wk"
+                <div class=" h-full  max-sm:w-wk"
                 >
-                  <div class=" flex  flex-nowrap justify-between">
+                  <div class=" flex  flex-nowrap justify-evenly">
                 
                     <FastField name="imageId" component={PostImageUpld} />
                
@@ -253,12 +242,7 @@ const handleSave = (item) => {
                       </div>                  
                      
                     </div>
-                  </div>
-                  
-                              
-                 
-                 
-                <Button
+                    <Button
                   type="primary"
                   htmlType="submit"
             loading={props.addingSuppliesBrand}
@@ -268,16 +252,9 @@ const handleSave = (item) => {
                   {/*                     
                     Create */}
                 </Button>
-             
-                 
-                 
-                                          
-                </div>
-              
-              </div>
-             
-      
-             
+                  </div>                                                                                                                                                                            
+                </div>            
+              </div>                            
             </Form>
             </div>
           )}
