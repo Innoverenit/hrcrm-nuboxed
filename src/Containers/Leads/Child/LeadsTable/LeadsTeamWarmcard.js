@@ -151,15 +151,7 @@ const LeadsTeamWarmcard = (props) => {
 
    return (
     <div>
-       {props.serachedData.length > 0 ? (
-    <SearchedData
-    serachedData={props.serachedData}
-    translateText={props.translateText}
-    selectedLanguage={props.selectedLanguage}
-  translatedMenuItems={props.translatedMenuItems}
-  fetchingLeadsInputSearchData={props.fetchingLeadsInputSearchData}
-    />
-  ) : (
+ 
     <>
     
 
@@ -534,7 +526,7 @@ const LeadsTeamWarmcard = (props) => {
 
      
       </>
-)}
+
       <UpdateLeadsModal
         item={currentLeadsId}
         updateLeadsModal={updateLeadsModal}

@@ -1,6 +1,9 @@
-import React, { useState, useEffect, Suspense, lazy,useRef } from "react";
+import React, { useState, useEffect,Suspense, lazy,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
+
+import QrCodeIcon from '@mui/icons-material/QrCode';
 import {
   getSuppliesList,
   deletePurchaseData,
@@ -15,7 +18,7 @@ import {
 } from "./SuppliesAction";
 import EuroIcon from '@mui/icons-material/Euro';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Tooltip, Popconfirm } from "antd";
+import { Tooltip, Popconfirm,Button } from "antd";
 import {
   DeleteOutlined,
   PhoneFilled,
@@ -35,7 +38,8 @@ import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import MaterialRecommendToggle from "./MaterialRecommendToggle";
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import MaterialComplementaryDrawer from "./MaterialComplementaryDrawer";
-
+import QRCode from "qrcode.react";
+import ReactToPrint from "react-to-print";
 const PriceModal = lazy(() => import("./PriceModal"));
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
@@ -45,9 +49,9 @@ const SuppliersListDrawer = lazy(() => import("./SuppliesSupplierList/SuppliersL
 const MaterialDetailsDrawer=lazy(() => import("./MaterialById/MaterialDetailsDrawer"));
 
 function SuppliesTable(props) {
-
+  
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
-
+  
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -487,6 +491,41 @@ function SuppliesTable(props) {
                              />
                               </div>
                               </Tooltip>
+
+                              <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title="Print"
+                                                        // {<FormattedMessage
+                                                        //     id="app.Print"
+                                                        //     defaultMessage="Print"
+                                                        // />}\
+                                                        >
+                                                            {/* <PrintOutlined
+                                                                            // onClick={handlePrint}
+                                                                            className="!text-base cursor-pointer"
+                                                                        /> */}
+                                                            <ReactToPrint
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>
+                                                               Print 
+                                                                <QrCodeIcon className="!text-icon"/></Button>}
+                                                                content={() => componentRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
+
+                                                    </div>
+                                                </div>
+
+                                                <div style={{ display: "none", textAlign: "center" }}>
+
+<div className=" flex flex-col mt-5 text-sm items-center"
+    ref={(el) => (componentRefs.current[index] = el)}>
+   
+    <div   className=" text-5xl mt-8">
+        <QRCode size={150} value={`material/${item.suppliesId}`} />
+    </div>
+    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>Supplies Id:</span> {item.suppliesId}</div>
+</div>
+</div>
                           </div>
 
                         </div>

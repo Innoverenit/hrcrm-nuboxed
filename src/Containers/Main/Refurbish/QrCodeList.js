@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 const QRCodeListScanner = (props) => {
-
+console.log(props.data)
 
   return (
     <>
@@ -33,14 +33,25 @@ const QRCodeListScanner = (props) => {
               onResult={props.handleScan}
               onError={props.handleError}
               onClose={props.stopScanning} />
-            <span onClick={props.stopScanning}>
+               {typeof props.data === 'string' && props.data.trim() !== '' && props.data !== 'No result' ? (
+              <span onClick={props.stopScanning}>
+                <Link to={props.data}>
+                  Click here to Proceed
+                </Link>
+              </span>
+            ) : (
+              <span>No result</span>
+            )}
+            {/* <span onClick={props.stopScanning}>
               <Link
-                to={`scan/${props.data}`}>
+                 to={props.data}
+                >
                 
                  
-                {props.data}
+               
+                {props.data?"Click here to Proceed":"No result"}
               </Link>
-            </span>
+            </span> */}
 
           </div>
         )}
