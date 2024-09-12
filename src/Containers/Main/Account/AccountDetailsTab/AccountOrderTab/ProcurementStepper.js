@@ -102,7 +102,7 @@ class ProcurementStepper extends Component {
                                                 defaultMessage="Proceed"
                                             />
                                         </Button>
-                                       } 
+                                  }
                                     </>
                                 )}
                             </>
