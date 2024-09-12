@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import {getJumpDistributorDetail,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
@@ -28,7 +27,7 @@ function InvestorDashboardJumpStart (props) {
   const [loading, setLoading] = useState(true);
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentOrderType, setCurrentOrderType] = useState("");
+  const [currentOrderType, setCurrentOrderType,setError] = useState("");
 
   const [invesortAdded, setinvesortAdded] = useState([]);
   const [loading1, setLoading1] = useState(false);
