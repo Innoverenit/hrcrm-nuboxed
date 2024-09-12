@@ -2631,13 +2631,13 @@ export const addProcessForOpportunity = (data, orgId, cb) => (
       cb && cb("failure");
     });
 };
-export const getProcessForOpportunity = (orgId) => (dispatch) => {
+export const getProcessForOpportunity = (orgId,navType) => (dispatch) => {
   debugger;
   dispatch({
     type: types.GET_PROCESS_FOR_OPPORTUNITY_REQUEST,
   });
   axios
-    .get(`${base_url}/workflow/opportunityWorkflow/${orgId}`, {
+    .get(`${base_url}/workflow/publish/for_dropdown/${orgId}/${navType}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2831,14 +2831,14 @@ export const addProcessStageForOpportunity = (stage, cb) => (dispatch) => {
     });
 };
 
-export const getProcessStagesForOpportunity = (oppworkFlowId) => (
+export const getProcessStagesForOpportunity = (orgId,workflowId) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_PROCESS_STAGES_FOR_OPPORTUNITY_REQUEST,
   });
   axios
-    .get(`${base_url}/workflow/opportunityStages/${oppworkFlowId}`, {
+    .get(`${base_url}/workflow/stages/for_dropdown/${orgId}/${workflowId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
