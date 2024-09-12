@@ -31,7 +31,7 @@ function DashProcureQuotaJumpstartUser(props) {
   const [loading1, setLoading1] = useState(false);
 
     const fetchData1 = async () => {
-      const status=currentOrderType;
+      const status="Created";
       try {
         const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
           headers: {
@@ -45,9 +45,47 @@ function DashProcureQuotaJumpstartUser(props) {
         setLoading1(false);
       }
     };
+    const [data2, setData2] = useState([]);
+    const [loading2, setLoading2] = useState(false);
+  
+      const fetchData2 = async () => {
+        const status="Converted";
+        try {
+          const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+          setData2(response.data);
+          setLoading2(false);
+        } catch (error) {
+          setError(error);
+          setLoading2(false);
+        }
+      };
 
+      const [data3, setData3] = useState([]);
+      const [loading3, setLoading3] = useState(false);
+    
+        const fetchData3 = async () => {
+          const status="Cancelled";
+          try {
+            const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            });
+            setData3(response.data);
+            setLoading3(false);
+          } catch (error) {
+            setError(error);
+            setLoading3(false);
+          }
+        };
     useEffect(() => {
         fetchData1();
+        fetchData2();
+        fetchData3();
     }, [props.userId,props.startDate,props.endDate]);
 
 
