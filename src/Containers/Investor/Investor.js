@@ -21,7 +21,7 @@ const AddInvestorModal=lazy(()=>import("./Child/AddInvestorModal"));
 function Investor (props) {
 const [currentData,setcurrentData]=useState("");
 const [currentUser,setcurrentUser]=useState("");
-const [filter, setFilter] = useState("creationdate");
+const [filter, setFilter] = useState("Creationdate");
 const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   const setInvestorViewType = (viewType) => {
@@ -39,6 +39,7 @@ function handleCurrentData (value){
 const handleFilterChange = (data) => {
   setFilter(data);
   props.getInvestorsFilterData(props.userId, 0, data);
+  // props.getTeamInvestor(props.userId, 0,data);
 };
 const handleChange = (e) => {
   setcurrentData(e.target.value)
