@@ -1,6 +1,9 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import QRCode from "qrcode.react";
+import ReactToPrint from "react-to-print";
+import QrCodeIcon from '@mui/icons-material/QrCode';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import { Tooltip, Button, Select } from "antd";
@@ -22,6 +25,9 @@ const { Option } = Select;
 function ProductionTableView(props) {
     const [zone, setZone] = useState([]);
   const [rack, setRack] = useState([]);
+  const componentRefs = useRef([]);
+
+  
   const [particularDiscountData, setParticularDiscountData] = useState({});
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [isLoadingZone, setIsLoadingZone] = useState(false);
@@ -78,6 +84,10 @@ function ProductionTableView(props) {
     function handleParticularRowData(item) {
         setParticularDiscountData(item);
       }
+
+      const handlePrint = () => {
+        window.print();
+    };
 
 
 
@@ -391,7 +401,40 @@ function ProductionTableView(props) {
                                                     </div>
                                                 </div>
                                                
-                                               
+                                                <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title="Print"
+                                                        // {<FormattedMessage
+                                                        //     id="app.Print"
+                                                        //     defaultMessage="Print"
+                                                        // />}\
+                                                        >
+                                                            {/* <PrintOutlined
+                                                                            // onClick={handlePrint}
+                                                                            className="!text-base cursor-pointer"
+                                                                        /> */}
+                                                            <ReactToPrint
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>
+                                                               Print 
+                                                                <QrCodeIcon className="!text-icon"/></Button>}
+                                                                content={() => componentRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
+
+                                                    </div>
+                                                </div>
+
+                                                <div style={{ display: "none", textAlign: "center" }}>
+
+<div className=" flex flex-col mt-5 text-sm items-center"
+    ref={(el) => (componentRefs.current[index] = el)}>
+   
+    <div   className=" text-5xl mt-8">
+        <QRCode size={150} value={`production/${item.manufactureId}`} />
+    </div>
+    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>Manufacture Id:</span> {item.manufactureId}</div>
+</div>
+</div>
                                                
                                             </div>
                                             

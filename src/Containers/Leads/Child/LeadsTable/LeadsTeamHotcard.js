@@ -149,15 +149,7 @@ const LeadsTeamHotcard = (props) => {
 
    return (
     <div>
-       {props.serachedData.length > 0 ? (
-    <SearchedData
-    serachedData={props.serachedData}
-    translateText={props.translateText}
-    selectedLanguage={props.selectedLanguage}
-  translatedMenuItems={props.translatedMenuItems}
-  fetchingLeadsInputSearchData={props.fetchingLeadsInputSearchData}
-    />
-  ) : (
+     
     <>
         <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -531,7 +523,7 @@ const LeadsTeamHotcard = (props) => {
 
      
       </>
-)}
+
       <UpdateLeadsModal
         item={currentLeadsId}
         updateLeadsModal={updateLeadsModal}

@@ -1,9 +1,11 @@
 import React, { lazy, Suspense, useEffect, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
+import PhoneMaterialScanner from "../Main/Scan/PhoneScanner/PhoneMaterialScanner"
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 import AssessmentData from "../AssessmentData/AssessmentData"
 import { login_url } from "../../Config/Auth";
+import ProductionPhoneScanner from "../Main/Scan/PhoneScanner/ProductionPhoneScanner"
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
@@ -255,7 +257,7 @@ function MainApp(props) {
 
   const [supportedLanguages, setSupportedLanguages] = useState([]);
 
-  const [data, setData] = useState('No result');
+  const [data, setData] = useState(null);
   const [scanning, setScanning] = useState(false);
   const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -1090,6 +1092,30 @@ function MainApp(props) {
                       path="/scan/:phoneId"
                       render={(props) => (
                         <PhoneScanner
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    /> 
+
+<Route
+                      exact
+                      path="/material/:suppliesId"
+                      render={(props) => (
+                        <PhoneMaterialScanner
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    /> 
+
+<Route
+                      exact
+                      path="/production/:manufactureId"
+                      render={(props) => (
+                        <ProductionPhoneScanner
                           {...props}
                           translateText={translateText}
                            selectedLanguage={selectedLanguage}

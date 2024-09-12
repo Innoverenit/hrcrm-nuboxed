@@ -435,6 +435,26 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
         <hr />
+        <Menu.Item key="/sold" style={{ height: "1.45rem",
+            color: selectedMenuItem === '/sold' ? 'tomato' : '#4bc076' }}>
+            <Link to="/sold" onClick={() => handleSelect('/sold')}>
+
+              <ApartmentIcon
+
+              className='!text-base'
+              />
+              <span class="text-white text-ls ml-1">
+              {/* <FormattedMessage id="app.prospect" defaultMessage="Prospect" /> */}
+              {/* {translatedMenuItems[9]} */}
+              Sold
+                &nbsp;&nbsp;&nbsp;
+                {/* <Badge
+                  count={props.opportunityRecord.CustomerNo}
+                  overflowCount={999}
+                ></Badge> */}
+              </span>
+            </Link>
+          </Menu.Item>
         {(user.imInd === true && user.pitchAccessInd === true
         //  || user.role === "ADMIN" && user.imInd === true 
         ) && (

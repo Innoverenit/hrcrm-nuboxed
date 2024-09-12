@@ -150,15 +150,7 @@ const LeadsTeamColdCard = (props) => {
 
    return (
     <div>
-       {props.serachedData.length > 0 ? (
-    <SearchedData
-    serachedData={props.serachedData}
-    translateText={props.translateText}
-    selectedLanguage={props.selectedLanguage}
-  translatedMenuItems={props.translatedMenuItems}
-  fetchingLeadsInputSearchData={props.fetchingLeadsInputSearchData}
-    />
-  ) : (
+  
     <>
 
       <div className=' flex  sticky  z-auto'>
@@ -528,7 +520,7 @@ const LeadsTeamColdCard = (props) => {
       </div>
       </div>
       </>
-)}
+
       <UpdateLeadsModal
         item={currentLeadsId}
         updateLeadsModal={updateLeadsModal}
