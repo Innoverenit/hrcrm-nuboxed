@@ -42,14 +42,14 @@ useEffect(() => {
         const itemsToTranslate = [
         "660",// 'Order',//0
        "679", //  'Created', 1
-       "253", // 'Items',//2
-        "142",// 'Status',3
-      "248",  // 'Customer',//4
-     "1209",// 'Shipping Address',5
-      "710",  // 'Billing Address',//6
+       "248",  // 'Customer',//2
+       "1209",// 'Shipping Address',3
+        "710",  // 'Billing Address',//4
+       "253", // 'Items',//5
+        "142",// 'Status',6    
       "1210",  // 'Invoices',7
        "1211",  // 'Shipments',8
-     "100", //  New
+     "100", //  New 9
 
 
       ];
@@ -119,13 +119,17 @@ const {handleProcureNotesDrawerModal,
         <div className=" md:w-[0.5rem]"></div>
                         <div className="font-bold font-poppins text-xs md:w-[10rem]">{translatedMenuItems[0]} ID</div>
                         <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[1]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[2]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[4.4rem]">{translatedMenuItems[7]}</div>
+                        <div className="font-bold font-poppins text-xs md:w-[3.4rem]">{translatedMenuItems[2]}</div>
+                        {/* Customer */}
+                        <div className="font-bold font-poppins text-xs md:w-[8.4rem]">{translatedMenuItems[3]}</div>
+                        {/* Shipping */}
+                        <div className="font-bold font-poppins text-xs md:w-[8.4rem]">{translatedMenuItems[4]}</div>
+                        {/* Billing */}
+                        <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[5]}</div>
+                        {/* item */}
+                        <div className="font-bold font-poppins text-xs md:w-[4.4rem]">{translatedMenuItems[6]}</div>
+                        {/* <div className="font-bold font-poppins text-xs md:w-[4.4rem]">{translatedMenuItems[7]}</div>  */}
                         <div className="font-bold font-poppins text-xs md:w-[4.4rem]">{translatedMenuItems[8]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[3.4rem]">{translatedMenuItems[4]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[8.4rem]">{translatedMenuItems[5]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[8.4rem]">{translatedMenuItems[6]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[4.4rem]">{translatedMenuItems[3]}</div>
                         <div className="font-bold font-poppins text-xs md:w-[5.4rem]"></div>
                         <div className="font-bold font-poppins text-xs md:w-[12rem]"></div>
                        
@@ -151,7 +155,7 @@ const {handleProcureNotesDrawerModal,
 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex   md:w-[10rem] max-sm:flex-row max-sm:justify-between  ">
+                        <div className=" flex   md:w-[4rem] max-sm:flex-row max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
                                 {item.newOrderNo}
                             </div>
@@ -163,48 +167,43 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                         </div>
                       
                         </div>
-                        <div className=" flex  items-center md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  items-center md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  items-center font-poppins">
                             {date}
                             </div>
                     
                         </div>
+
+
+
                         <div className=" flex items-center  md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 {item.category}  {item.attribute}
                             </div>
 
                         </div>
-                        <div className=" flex  items-center  md:w-[10rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins">
-                      
+
+
+                        <div className=" flex items-center  md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs   font-poppins">
+                                {item.itemCount}
                             </div>
-                    
+
                         </div>
-                        <div className=" flex items-center  md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins">
-                       
+                        <div className=" flex items-center  md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs   font-poppins">
+                                {item.status}
                             </div>
-                    
+
                         </div>
-                        <div className=" flex   md:w-[6rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins">
-                            
-                            </div>
-                    
-                        </div>
-                        <div className=" flex   md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins">
-                              
-                            </div>
-                    
-                        </div>
+
+
                         <div className=" flex   md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
                         <Button type="primary" >{translatedMenuItems[7]}</Button>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">                                                 
                         <div>
-                        <Tooltip title={translatedMenuItems[3]}
+                        <Tooltip title={translatedMenuItems[6]}
                         // "Status"
                                                                 
                                                             >

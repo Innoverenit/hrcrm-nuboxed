@@ -333,13 +333,19 @@ function AllCompleteOrderList(props) {
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
+                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-center">
                       {item.orderStatus}
                     </div>
                     <div className=" flex    max-sm:flex-row  max-sm:justify-between  ">
 
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" font-poppins">
+                     
+
+
+                    </div>
+                    </div>
+                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                    <div class=" font-poppins">
                         <Tooltip title={translatedMenuItems[12]}>
                           <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
@@ -351,12 +357,6 @@ function AllCompleteOrderList(props) {
                           />
                         </Tooltip>
                       </div>
-
-
-                    </div>
-                    </div>
-                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                   
                       <div class=" text-xs  font-poppins">
                         <Tooltip title={translatedMenuItems[11]}>
                           <PersonAddAlt1

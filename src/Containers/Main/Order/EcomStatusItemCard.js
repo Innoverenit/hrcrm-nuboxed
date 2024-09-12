@@ -1,10 +1,7 @@
-import React, { useState, useEffect,lazy } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
-import InfiniteScroll from "react-infinite-scroll-component";
-// import {updateOrdrSuplrItems} from "../MyOrder/MyOrderAction";
-import { Tooltip,Button,Input,Popconfirm } from "antd";
+import {Button,Input } from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import dayjs from "dayjs";
 
@@ -14,12 +11,37 @@ function EcomStatusItemCard (props) {
     const [editsuppliesId, setEditsuppliesId] = useState(null);
     const [data, setData] = useState([]);
     const [date, setDate] = useState('');
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
     useEffect(() => {
         setData(props.statusEcomItems.orderItemInfo || []);
     }, [props.statusEcomItems.orderItemInfo]);
 
-
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "110",//0  Name
+              "14",//1 Category
+              "259",//2 Attribute
+              "1044",//3 Item ID
+              "260",//4 Units
+              "772",//5 Delivery
+            //   "",//6 Shipping
+              "1486",//7  Track (AWB)
+              "891",//8 Ship By
+              "170",// 9Edit
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
 
 const [RowData, setRowData] = useState("");
 
@@ -72,46 +94,37 @@ const handleInputChange = (value, key, dataIndex) => {
         <>
              <div> 
                       
-             <div className=' flex justify-end sticky flex-col z-auto'>
+             <div className=' flex justify-end w-[99%] sticky flex-col z-auto'>
              <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
              <div className=" flex rounded  max-sm:hidden w-[100%]  mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-                                    <div className=" md:w-[10rem]"><FormattedMessage
-                                        id="app.name"
-                                        defaultMessage="Name"
-                                    /></div>
-                                     <div className=" md:w-[4.5rem]"><FormattedMessage
-                                       id="app."
-                                        defaultMessage="Category"
-                                    /></div>
-                                        <div className=" md:w-[4.5rem]"><FormattedMessage
-                                       id="app."
-                                        defaultMessage="Attribute"
-                                    /></div>
-                                    <div className=" md:w-[4.5rem]"><FormattedMessage
-                                       id="app.itemid"
-                                        defaultMessage="Item ID"
-                                    /></div>
-                                     <div className=" md:w-[5.1rem]"><FormattedMessage
-                                        id="app.units"
-                                        defaultMessage="Units"
-                                    /></div>
-                                    <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app.loc"
-                                        defaultMessage="Delivery"
-                                    /></div>
-                                    <div className="md:w-[6.2rem]"><FormattedMessage
-                                        id="app.shippingno"
-                                        defaultMessage="Shipping "
-                                    /></div>
-                                    <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app.awb"
-                                        defaultMessage="AWB"
-                                    /></div>
+                                    <div className="text-xs font-bold font-poppins md:w-[10rem]"> {translatedMenuItems[0]}
+                                    {/* Name */}
+                                    </div>
+                                     <div className="text-xs font-bold font-poppins md:w-[4.5rem]"> {translatedMenuItems[1]}
+                                     {/* Category */}
+                                     </div>
+                                        <div className="text-xs font-bold font-poppins md:w-[4.5rem]"> {translatedMenuItems[2]}
+                                        {/* Attribute */}
+                                        </div>
+                                    <div className="text-xs font-bold font-poppins md:w-[4.5rem]"> {translatedMenuItems[3]}
+                                    {/* Item ID */}
+                                    </div>
+                                     <div className="text-xs font-bold font-poppins md:w-[5.1rem]"> {translatedMenuItems[4]}
+                                     {/* Units */}
+                                     </div>
+                                    <div className="text-xs font-bold font-poppins md:w-[5rem]"> {translatedMenuItems[5]}
+                                    {/* Delivery */}
+                                    </div>
+                                    <div className=" text-xs font-bold font-poppins md:w-[6.2rem]"> {translatedMenuItems[6]}
+                                    {/* Shipping */}
+                                    </div>
+                                    <div className="text-xs font-bold font-poppins md:w-[5rem]"> {translatedMenuItems[7]}
+                                     {/* AWB */}
+                                    </div>
                                    
-                                   <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app."
-                                        defaultMessage="Ship By"
-                                    /></div>
+                                   <div className="text-xs font-bold font-poppins  md:w-[5rem]"> {translatedMenuItems[8]}
+                                    {/* Ship By */}
+                                   </div>
                      
                         
                                    
@@ -218,7 +231,7 @@ const handleInputChange = (value, key, dataIndex) => {
                     ) : (
                       <BorderColorIcon
                       className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
-                        tooltipTitle="Edit"
+                        tooltipTitle={translatedMenuItems[9]}
                         iconType="edit"
                         onClick={() => handleEditClick(item.itemId)}
                       />

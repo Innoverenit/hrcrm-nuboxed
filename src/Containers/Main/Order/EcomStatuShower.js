@@ -1,7 +1,6 @@
-import React, {Suspense, lazy, useState,useEffect } from "react";
+import React, {useEffect ,useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../../Components/Placeholder";
 import { Button, Rate, Steps } from 'antd';
 import { FormattedMessage } from 'react-intl';
 import EcomStatusItemCard from "./EcomStatusItemCard";
@@ -10,11 +9,31 @@ import dayjs from 'dayjs';
 
 function EcomStatuShower (props) {
 
+
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
   useEffect(()=>{
     props.getEcomStatusItem(props.particularRowData.orderId);
       },[]);
 
-
+      useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+                "1421",// Order Created 
+                "1171", //Payment
+               "1397", //Order Pick Up
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
 
   return (
     <React.Fragment>
@@ -25,10 +44,8 @@ function EcomStatuShower (props) {
             current={1}
             items={[
                 {
-                    title: <FormattedMessage
-                        id="app.ordercreated"
-                        defaultMessage="Order Created"
-                    />,
+                    title:`${translatedMenuItems[0]}`,
+                                     
                     status: <FormattedMessage
                         id="app.progress"
                         defaultMessage="progress"
@@ -38,7 +55,9 @@ function EcomStatuShower (props) {
                     </>
                 },
                 {
-                    title: 'Payment',
+                    title:`${translatedMenuItems[1]}`,
+
+// payment
                     status: <>
                    
                         </>,
@@ -50,12 +69,18 @@ function EcomStatuShower (props) {
                         </>
                 },
                 {
-                    title: 'Order Pick Up',
+                    title:`${translatedMenuItems[2]}`,
+
+// orderpickup
                     status:  '',
                    // subTitle: <StatusItemCard statusItems={props.statusItems}/>,
                     description: <>
          
-                      <EcomStatusItemCard statusEcomItems={props.statusEcomItems} particularRowData={props.particularRowData} />
+                      <EcomStatusItemCard statusEcomItems={props.statusEcomItems} particularRowData={props.particularRowData} 
+                           translateText={props.translateText}
+                           selectedLanguage={props.selectedLanguage}
+                         translatedMenuItems={props.translatedMenuItems}
+                      />
                     </>
                 },
 

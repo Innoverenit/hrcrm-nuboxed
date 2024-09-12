@@ -19,7 +19,7 @@ import { MultiAvatar } from "../../../Components/UI/Elements";
 import ProcureOrderModal from "./Child/ProcureOrderModal";
 import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
 import ProcureSearchedData from "./ProcureSearchedData";
-import { Cancel, Edit } from "@mui/icons-material";
+
 
 function ProcreCardList(props) {
   const [page, setPage] = useState(0);
@@ -162,7 +162,8 @@ const {handleProcureNotesDrawerModal,
       />
     ) : (
     <>
-    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+   {/* <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div> */}
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]" >
         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
         <div className=" md:w-[0.5rem]"></div>
                         <div className="font-bold font-poppins text-xs md:w-[11rem]">{translatedMenuItems[0]}</div>
@@ -196,14 +197,18 @@ const {handleProcureNotesDrawerModal,
             );
            
             return (
-              <div key={item.iteamId}>
+              <div  key={item.iteamId}>
               <div className="flex rounded  mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
 <div>
 </div>
                   <div class="flex">
                   <div className=" flex  w-wk items-center   max-sm:w-full">
                   <div className="flex items-center max-sm:w-full">
-                      <div className=" flex items-center  text-xs  md:w-[12rem] max-sm:w-full  ">
+                  <div 
+  className="flex items-center truncate max-w-[100px] text-xs md:w-[12rem] max-sm:w-full" 
+  title={`${item.category} ${item.brand} ${item.model} ${item.attribute}`}
+>
+
                                                       {item.category} {item.brand} {item.model} {item.attribute}
                                                     </div>
                                                     <div className=" flex   md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -255,7 +260,7 @@ const {handleProcureNotesDrawerModal,
 
                         </div>
                          </div>
-                  </div>n
+                  </div>
                   <div class="flex items-center">
                     <div className=" flex   md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
@@ -284,9 +289,8 @@ const {handleProcureNotesDrawerModal,
                   </div>
                   {props.userId === item.userId && item.tradeId !== null && (
                   <div class=" text-xs  font-poppins">
-                        <Popconfirm
-                          title={translatedMenuItems[11]}
-                          // "Change status to Accepted?"
+                        <div
+                          title={translatedMenuItems[11]}                    
                           onConfirm={() => props.procureToAccept(item.iteamId,data,props.orgId)}
                           okText={translatedMenuItems[12]}
                           // "Yes"
@@ -306,7 +310,7 @@ const {handleProcureNotesDrawerModal,
                               </div>
                             </Button>
                          
-                        </Popconfirm>
+                        </div>
                       </div>
           )}
                   <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
