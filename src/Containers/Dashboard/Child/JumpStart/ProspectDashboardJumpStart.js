@@ -16,6 +16,8 @@ import ContactAddedModal from "./ContactAddedModal";
 import OrdersAddedModal from "./OrdersAddedModal";
 import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
+import axios from 'axios';
+import {base_url} from "../../../../Config/Auth";
 
 function ProspectDashboardJumpStart (props) {
   
@@ -27,6 +29,33 @@ function ProspectDashboardJumpStart (props) {
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
+
+ const [error, setError] = useState(null);
+
+  const [prospectAdded, setprospectAdded] = useState([]);
+  const [loading1, setLoading1] = useState(false);
+
+    const fetchProspectAdded = async () => {
+      try {
+        const response = await axios.get(`${base_url}/customer/report/count/self/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setprospectAdded(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError(error);
+        setLoading1(false);
+      }
+    };
+
+    // const [contactAdded, setcontactAdded] = useState([]);
+    // const [loading1, setLoading1] = useState(false);
+
+    useEffect(() => {
+      fetchProspectAdded();
+    }, [props.userId]);
 
   useEffect(() => {
     props.getJumpDistributorDetail(props.timeRangeType);
@@ -40,10 +69,10 @@ function ProspectDashboardJumpStart (props) {
   const fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        '1296', // 0 "Prospect Added"
+        '1536', // 0 "Prospect Added"
         '1297', // 1 "Contacts Added"
-        '1229', // 2 "Quotation Added"
-        '1298'  // 3 "Quotation Completed"
+        '1537', // 2 "Quotation Added"
+        '1298'  // 3 "Quotation Won"
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -118,9 +147,8 @@ function ProspectDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#F15753,orange)"
-                  // title={translatedMenuItems[0]}
-                  title={"Prospect Added"}
-                  value={props.distributorinDashboard.totalDistributor}
+                  title={translatedMenuItems[0]}
+                  value={prospectAdded.count}
                   jumpstartClick={()=> handleClick("Added")}
                   cursorData={"pointer"}
                 />
@@ -136,8 +164,7 @@ function ProspectDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-                  // title={translatedMenuItems[1]}
-                  title={"Contacts Added"}
+                  title={translatedMenuItems[1]}
                   value={props.distributorinDashboard.totalContactPerson}
                   jumpstartClick={() => props.handleContactAddedModal(true)}
                 />
@@ -153,8 +180,7 @@ function ProspectDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-                  // title={translatedMenuItems[2]}
-                  title={"Quotation Added"} 
+                  title={translatedMenuItems[2]}
                   value={props.distributorinDashboard.totalOrder}
                   jumpstartClick={() => props.handleOrderAddedModal(true)}
                   cursorData="pointer"
@@ -171,8 +197,7 @@ function ProspectDashboardJumpStart (props) {
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-                  // title={translatedMenuItems[3]}
-                  title={"Quotation Completed"} 
+                  title={translatedMenuItems[3]}
                   value={props.distributorinDashboard.completeOrder}
                   jumpstartClick={() => props.handleOrderClosedModal(true)}
                   cursorData="pointer"
@@ -240,7 +265,9 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
   contactAddedList:dashboard.contactAddedList,
   customerAddedList:dashboard.customerAddedList,
   orderAddedList:dashboard.orderAddedList,
-  orderClosedList:dashboard.orderClosedList
+  orderClosedList:dashboard.orderClosedList,
+  startDate: dashboard.startDate,
+  endDate:dashboard.endDate,
 
 });
 

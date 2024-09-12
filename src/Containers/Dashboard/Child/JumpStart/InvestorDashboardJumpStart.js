@@ -40,10 +40,10 @@ function InvestorDashboardJumpStart (props) {
   const fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        '1296', // 0 "Investot Added"
+        '1538', // 0 "Investor Added"
         '1297', // 1 "Contacts Added"
-        '1229', // 2 "Deals Added"
-        '1298'  // 3 "Deals Completed"
+        '1539', // 2 "Deals Added"
+        '1540'  // 3 "Deals Completed"
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

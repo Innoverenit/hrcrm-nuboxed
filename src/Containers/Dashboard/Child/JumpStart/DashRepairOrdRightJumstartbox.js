@@ -31,9 +31,9 @@ function DashRepairOrdRightJumstartbox (props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-    "1229",  //  "Order Packed", // 0
-     "1230", //  "Order Dispatched", // 1
-      "1231",//   "Feedback", // 2
+    "1524",  //  "Order Packed", // 0
+     "1525", //  "Order Dispatched", // 1
+      "1389",//   "Feedback", // 2
 
         ];
 

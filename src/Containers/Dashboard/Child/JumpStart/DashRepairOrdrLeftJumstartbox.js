@@ -31,10 +31,10 @@ function DashRepairOrdrLeftJumstartbox(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-    "1229",  //  "Order Inward", // 0
-     "1230", //  "Estimate Submitted", // 1
-      "1231",//   "Qc Approved", // 2
-      "1232",//  "Repair Approved"//3
+    "1520",  //  "Order Inward", // 0
+     "1521", //  "Estimate Submitted", // 1
+      "1522",//   "Qc Approved", // 2
+      "1520",//  "Repair Approved"//3
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
