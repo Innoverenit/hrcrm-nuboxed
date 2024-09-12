@@ -118,6 +118,7 @@ const DealsTeamCardList = (props) => {
   ) : (
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+        <div className=" flex justify-between w-[100%]">
           <div className=" md:w-[14.5rem]font-bold font-poppins text-xs">
           {translatedMenuItems[0]}
            {/* "name" */}    
@@ -150,8 +151,8 @@ const DealsTeamCardList = (props) => {
           {translatedMenuItems[7]}
           {/* Assign To" */}  
           </div>
-          <div className="md:w-[3rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[8]}
+          {/* <div className="md:w-[3rem] font-bold font-poppins text-xs">
+          {translatedMenuItems[8]} */}
         {/* owner */}
           </div>
         </div>
@@ -216,7 +217,7 @@ const DealsTeamCardList = (props) => {
                           <Tooltip>
                             <div class="max-sm:w-full max-sm:justify-start flex md:flex-col ml-1">
                             {/* Name */}                                                                      
-                              <div class=" text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
+                              <div class=" text-xs flex text-blue-500  font-poppins font-semibold  ">
                              
                                 {item.opportunityName}
                                 {/* </Link> */}

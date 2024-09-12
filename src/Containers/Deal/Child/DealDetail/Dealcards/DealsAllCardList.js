@@ -99,6 +99,7 @@ const DealsAllCardList = (props) => {
   ) : (
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+      <div className=" flex justify-between w-[100%]">
           <div className=" font-bold font-poppins text-xs md:w-[14.5rem]">
           {translatedMenuItems[0]}
           {/* name */}
@@ -134,8 +135,8 @@ const DealsAllCardList = (props) => {
           {/* Assign To" */}
        
           </div>
-          <div className=" font-bold font-poppins text-xs md:w-[3rem]">
-          {translatedMenuItems[8]}
+          {/* <div className=" font-bold font-poppins text-xs md:w-[3rem]">
+          {translatedMenuItems[8]} */}
               {/* owner" */}
  </div>
         </div>
@@ -200,7 +201,7 @@ const DealsAllCardList = (props) => {
                          <div class="max-sm:w-full max-sm:justify-start flex md:flex-col">
                                     {/* Name */}
                                     
-                           <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">                            
+                           <div class="text-xs flex text-blue-500  font-poppins font-semibold  ">                            
                              {item.opportunityName}
                              {/* </Link> */}
                              &nbsp;&nbsp;

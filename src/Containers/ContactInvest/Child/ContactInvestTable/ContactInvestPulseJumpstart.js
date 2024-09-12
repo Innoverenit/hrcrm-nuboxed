@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
+import CustomerPieChart from "../../../Dashboard/Child/JumpStart/CustomerPieChart"
 class ContactInvestPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -37,6 +38,7 @@ render() {
   console.log(this.state.endDate.format("YYYY MM DD"))
   return(
     <>
+   <div className=" flex flex-col">
     <div class=" flex flex-row w-full" >
     <div class="flex w-full" >
     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
@@ -50,8 +52,8 @@ render() {
             noProgress
             title={
               <FormattedMessage
-                id="app.opportunities"
-                defaultMessage="#Open Opportunities"
+                id="app.opendeals"
+                defaultMessage="#Open Deals"
               />
             }
             // }
@@ -96,7 +98,7 @@ render() {
         title={
           <FormattedMessage
             id="app.opportunities"
-            defaultMessage=" Opportunities Won"
+            defaultMessage="Opportunities"
           />
         }
          bgColor="#35CD7A"   
@@ -154,9 +156,12 @@ render() {
 
                          
         </div>
+      
       </div>
-
-
+      <div class=" mt-1" >
+        <CustomerPieChart/>
+        </div>
+</div>
   </>
   ); 
 }

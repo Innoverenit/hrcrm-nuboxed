@@ -34,11 +34,11 @@ const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
 const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
 // KAPSSN
-//  const login_url = "https://HrApp-env.eba-spcpp7ag.ap-south-1.elasticbeanstalk.com";
-//  const base_url = "https://develop.tekorero.com/employeePortal/api/v1";
-//  const base_url2 = "https://develop.tekorero.com/Erp";
-//  const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT"
-//  const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
+//  const login_url = "http://HrApp-env.eba-spcpp7ag.ap-south-1.elasticbeanstalk.com";
+//  const base_url = "http://HrApp-env.eba-spcpp7ag.ap-south-1.elasticbeanstalk.com/api/v1";
+//  const base_url2 = "http://HrApp-env.eba-spcpp7ag.ap-south-1.elasticbeanstalk.com/Erp";
+//  const asses_url = "http://HrApp-env.eba-spcpp7ag.ap-south-1.elasticbeanstalk.com/Assessment-0.0.1-SNAPSHOT"
+//  const sub_url = "http://develop.tekorero.com/Subscription/api/v2";
 
 
 export { base_url, sub_url,login_url, asses_url, base_url2 };

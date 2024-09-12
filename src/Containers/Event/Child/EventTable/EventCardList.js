@@ -40,7 +40,10 @@ function EventCardList (props) {
          "111", // "End",//3
         "75" , // "Include",//4
           "76",// "Assigned",//5
-         "77" //  "Owner",//6
+         "77", //  "Owner",//6
+           "170",   //  Edit
+           "84" ,  //  Delete
+         "1259" //  Do you want to delete?
 
         ];
 
@@ -111,6 +114,7 @@ function EventCardList (props) {
       <div class="rounded  justify-between m-1  max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
          <div className=" flex  w-[100%]  max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex justify-between text-xs font-poppins w-[93%]">
         <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
         {translatedMenuItems[0]} {/* <FormattedMessage
                   id="app.type"
@@ -163,6 +167,7 @@ function EventCardList (props) {
                   id="app.action"
                   defaultMessage="action"
                 /></div> */}
+                </div>
       </div>
       <InfiniteScroll
         dataLength={eventListRangeByUserId.length}
@@ -195,7 +200,7 @@ function EventCardList (props) {
                                             {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-[0.82rem]  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">                                       
+                                            <div class="text-xs   font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">                                       
                                             {item.eventType}
        
                                             </div>
@@ -207,7 +212,7 @@ function EventCardList (props) {
 
                                 <div className=" flex  w-[12.26rem] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
-                                    <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">   
+                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">   
                                     {item.eventSubject}
                                     </div>
                                 </div>
@@ -215,13 +220,13 @@ function EventCardList (props) {
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex w-[8.9rem] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
-                                    <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
+                                    <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
                                 <div className=" flex w-[5.32rem] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
-                                    <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
+                                    <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
@@ -233,7 +238,7 @@ function EventCardList (props) {
                                 <div className=" flex  w-[7.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
-                                    <div class=" text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
+                                    <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <Avatar.Group
                    maxCount={7}
                   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -263,7 +268,7 @@ function EventCardList (props) {
                                 <div className="flex  w-[7.69rem] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                    <div class="text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-[0.82rem]">
+                                    <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {/* <Tooltip title={item.assignedToName}> */}
               <SubTitle>
               <span>
@@ -353,7 +358,7 @@ function EventCardList (props) {
                     
     
        
-          <Tooltip title="Edit">
+          <Tooltip title={translatedMenuItems[7]}>
               <BorderColorIcon
                 type="edit"
                 className="!text-icon cursor-pointer text-[tomato]"
@@ -368,10 +373,10 @@ function EventCardList (props) {
            
             <StyledPopconfirm
               // title="Do you want to delete?"
-              title={<FormattedMessage id="app.doyouwanttodelete" defaultMessage="Do you want to delete" />}
+              title={translatedMenuItems[9]}
               onConfirm={() => deleteEvent(item.eventId, employeeId)}
             >
-               <Tooltip title="Delete">
+               <Tooltip title={translatedMenuItems[8]}>
               <DeleteOutlined  type="delete"
                 className="!text-icon cursor-pointer text-[red]"
               />
