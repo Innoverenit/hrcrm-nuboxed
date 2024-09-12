@@ -78,8 +78,8 @@ function CustomerForm(props) {
            '158', // Start13
            '5', // Stop"14
            '194', // Clear" 15    
-          '',  // Search or select source" //16
-          '',  // Search or select sector"//17
+          '1302',  // Search or select source" //16
+          '1303',  // Search or select sector"//17
   ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

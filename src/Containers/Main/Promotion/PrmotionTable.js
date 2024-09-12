@@ -321,6 +321,43 @@ const PrmotionTable = (props) => {
   });
 
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'asc' });
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+ 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+        "",  // Column name,//0
+        "" , //"Filter value"//1
+         "", //  Apply Filter,//2
+         "110", //  Name,//3
+        "" , //  Code,//4
+          "",//  Discount In %//5
+         "289", //   Creation Date,//6
+           "176",   //  Start Date7
+           "126" ,  //    End Date8
+         "725" ,// Catalogue9
+             "796",   //  Material10
+             "1083",   //  Supplier11
+           "880" ,//  Inventory12
+             "",  //  Discount Type13
+             "170",  //  "Edit"14
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     props.getPrmotionData();
@@ -376,7 +413,8 @@ const PrmotionTable = (props) => {
               name="column"
               value={filters.column}
               onChange={handleFilterChange}
-              placeholder="Column name"
+              placeholder={translatedMenuItems[0]}
+              // "Column name"
               className="border rounded p-1"
             />
             <input
@@ -384,11 +422,12 @@ const PrmotionTable = (props) => {
               name="value"
               value={filters.value}
               onChange={handleFilterChange}
-              placeholder="Filter value"
+              placeholder={translatedMenuItems[1]}
+              // "Filter value"
               className="border rounded p-1 ml-2"
             />
             <button onClick={handleApplyFilter} className="bg-blue-500 text-white h-8 p-2 rounded ml-2">
-              Apply Filter
+            {translatedMenuItems[2]} {/* Apply Filter */}
             </button>
           </div>
         </div>
@@ -399,39 +438,44 @@ const PrmotionTable = (props) => {
               onClick={() => handleSort('promoCodeName')}
               className="cursor-pointer flex items-center"
             >
-              Name
+            {translatedMenuItems[3]}  {/* Name */}
               {sortConfig.key === 'promoCodeName' && (
                 sortConfig.direction === 'asc' ? ' 🔼' : ' 🔽'
               )}
-              <SortIcon className="hidden group-hover:block ml-2" />
+              <SortIcon className="hidden group-hover:block ml-2 !text-icon" />
             </span>
           </div>
           <div className="   md:w-[9.1rem]">
-             Code 
+          {translatedMenuItems[4]}{/* Code  */}
             </div>
             <div className=" md:w-[6.1rem] ">
-             Discount In %
+            {translatedMenuItems[5]}  {/* Discount In % */}
               </div>
               <div className=" md:w-[6.15rem] ">
-            Creation Date
+              {translatedMenuItems[6]} {/* Creation Date */}
               </div>
               <div className=" md:w-[6.14rem] ">
-           Start Date
+              {translatedMenuItems[7]}  {/* Start Date */}
               </div>
               <div className=" md:w-[6.13rem] ">
-            End Date
+              {translatedMenuItems[8]}  {/* End Date */}
               </div>
             <div className=" md:w-[7.9rem] ">
-           Catalogue
+            {translatedMenuItems[9]}
+            {/* Catalogue */}
             </div>
             <div className="md:w-[7.51rem]">
-           Material
+            {translatedMenuItems[10]} 
+            {/* Material */}
               </div>
-            <div className=" md:w-[7.9rem] ">
-          SupplierInventory
+            <div className=" md:w-[3.9rem] ">
+            {translatedMenuItems[11]} {/* Supplier */}
+            </div>
+            <div className=" md:w-[3.9rem] ">
+            {translatedMenuItems[12]}   {/* Inventory */}
             </div>
             <div className=" md:w-[6.12rem] ">
-             Discount Type
+            {translatedMenuItems[13]}    {/* Discount Type */}
               </div>
             
         </div>
@@ -562,7 +606,7 @@ const PrmotionTable = (props) => {
                     />
 </div>
 <div>
-                    <Tooltip title="Edit">
+                    <Tooltip title= {translatedMenuItems[14]} >
                       <BorderColorIcon
                         className="!text-icon cursor-pointer text-[tomato]"
                         onClick={() => {
