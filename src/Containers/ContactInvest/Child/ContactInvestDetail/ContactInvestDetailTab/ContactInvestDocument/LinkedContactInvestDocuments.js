@@ -5,16 +5,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { base_url } from "../../../../../../Config/Auth";
-import {
-  StyledPopconfirm,
-} from "../../../../../../Components/UI/Antd";
+import {  StyledPopconfirm,} from "../../../../../../Components/UI/Antd";
 import DownloadIcon from '@mui/icons-material/Download';
-import {
-  deleteDocument 
-} from "../../../../../Contact/ContactAction";
-import {
-  getContactDocument 
-} from "../../../../../Customer/CustomerAction";
+import {deleteDocument } from "../../../../../Contact/ContactAction";
+import {  getContactDocument } from "../../../../../Customer/CustomerAction";
 import { DeleteOutlined} from "@ant-design/icons";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
@@ -62,7 +56,7 @@ class LinkedContactInvestDocuments extends Component {
       <>
           <div className=' flex sticky z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                  <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                  <div className=" flex  w-[100%]  p-1 bg-transparent font-bold text-xs sticky  z-10">
                   
                   <div className="md:w-[9.7rem]">
                   {this.state.translatedMenuItems[0]}  

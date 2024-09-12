@@ -42,6 +42,38 @@ function EmployeeCardView (props) {
   const [currentEmployeeId, setCurrentEmployeeId] = useState("");
   const [isCopied, setIsCopied] = useState(false);
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "",//0 Data Not AvailableData Not Available
+          "118",//1 Not Available
+           "995",//2Reports To:
+          "",//3Not Assigned 
+           "392",//4 Pulse
+           "",//5Required Document
+           "",// "Assign as Admin"
+          "",//  Onboarding
+          "170",//  "Edit" 
+                 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
 function handleSetCurrentEmployeeId(employeeId,) {
   setCurrentEmployeeId(employeeId,);
  
@@ -71,7 +103,7 @@ function handleSetCurrentUser(item) {
   ) : (
             <div class=" h-h86 overflow-auto overflow-x-auto">
              {props.employees=="Data not Found" ? "Data not Found" :
-            <div class="flex flex-wrap  w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">  
+            <div class="flex flex-wrap  justify-evenly w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">  
               {props.filteredData.length === 0 ?<span class=" flex items-center mt-8">Data Not Available</span> :props.filteredData.map((item) => {
                
                 const handleCopyClick = () => {
@@ -267,56 +299,6 @@ function handleSetCurrentUser(item) {
            </div>
            </div>
          
-                     
-                      {/* <div class=" flex flex-row justify-around w-full items-end">
-              
-                     <span>
-                        <Tooltip  title={`${item.countryDialCode} ${item.mobileNo}`}>
-                        <VolumeUpIcon  style={{fontSize:"0.8rem",color:"#24d8a7"}}  />
-                        </Tooltip> 
-                        </span>
-                        <span>
-                        <Tooltip  title={item.emailId}>
-                   <DraftsIcon 
-                   style={{fontSize:"0.8rem",color:"#24d8a7"}}
-                  // icon={regular("envelope")}  
-                  />
-          </Tooltip> 
-          </span>
-        
-            <span
-              style={{
-                cursor: "pointer",
-                
-              }}
-            >
-                {item.suspendInd !== true && ( 
-                    
-                    <CellTowerIcon
-                         // size={"small"}
-                         // type="ghost"
-                         // style={{            
-                         //   borderColor: "transparent",
-                         //   alignSelf: "flex-end",
-                         // }}
-                         style={{ 
-                             color: item.role === "ADMIN" ?"blue":  "green",
-                             fontSize: "123%"
-                             }}
-                         onClick={() => {
-                             handleEmployeeDrawerForAdmin(true);
-                             handleSetCurrentEmployeeId(item.employeeId)
-                           }}
-                        
-                     
-                       />
-                       )}  
-            </span>
-       
-         
-       
-                        </div>  */}
-
                     </div>
                  )  
             })}

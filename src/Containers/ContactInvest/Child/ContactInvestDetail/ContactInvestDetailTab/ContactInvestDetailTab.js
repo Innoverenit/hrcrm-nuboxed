@@ -24,8 +24,35 @@ class ContactInvestDetailTab extends Component {
     super(props);
     this.state = {
       activeKey: "1",
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "490",//0"Deals"
+        "1166",//1"Documents"
+        "1325",//2"Upload Document"
+        "1165",//3"Activity"
+       "104", // "Create"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
 
   handleTabChange = (key) => this.setState({ activeKey: key });
   render() {
@@ -47,11 +74,12 @@ class ContactInvestDetailTab extends Component {
                 <>
                  
                  <CurrencyExchangeIcon className="!text-icon text-[#fce762]"/>
-                    <span class=" ml-1">
-                     <FormattedMessage
+                    <span class=" ml-1 !text-tab">
+                    {this.state.translatedMenuItems[0]}
+                     {/* <FormattedMessage
                       id="app.deals"
                       defaultMessage="Deals"
-                    />
+                    /> */}
                   </span>
                   {activeKey === "1" && (
                     <>
@@ -75,11 +103,12 @@ class ContactInvestDetailTab extends Component {
                 <i 
                   class="far fa-file  !text-icon text-[#41ead4]"
                   ></i>
-                  <span class=" ml-1">
-                    <FormattedMessage
+                  <span class=" ml-1 !text-tab">
+                  {this.state.translatedMenuItems[1]}
+                    {/* <FormattedMessage
                       id="app.documents"
                       defaultMessage="Documents"
-                    />
+                    /> */}
                     {/* Documents */}
                   </span>
                   {activeKey === "2" && (
@@ -87,12 +116,7 @@ class ContactInvestDetailTab extends Component {
                       <PlusOutlined
                         type="plus"
                         // tooltipTitle="Upload Document"
-                        tooltiptitle={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
+                        tooltiptitle={this.state.translatedMenuItems[2]}
                         onClick={() => handleDocumentUploadModal(true)}
                         size="14px"
                         style={{
@@ -118,25 +142,17 @@ class ContactInvestDetailTab extends Component {
               tab={
                 <>
                    <i class="fab fa-connectdevelop text-[#8332ac] !text-icon"></i>
-                  <span class=" ml-1">
-                    {
-                      <FormattedMessage
-                        id="app.activity"
-                        defaultMessage="Activity"
-                      />
-                    }
+                  <span class=" ml-1 !text-tab">
+                    
+                      {this.state.translatedMenuItems[3]}
+                    
                     {/* Documents */}
                   </span>
                   {activeKey === "3" && (
                     <>
                       <PlusOutlined
                         type="plus"
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title={this.state.translatedMenuItems[4]}
                          onClick={() => handleContactInvestActivityModal(true)}
                         size="0.875em"
                         style={{

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import CustomerPieChart from "./CustomerPieChart"
 import dayjs from "dayjs";
 import {getJumpDistributorDetail,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
@@ -40,7 +41,7 @@ function CustomerDashboardJumpStart (props) {
   const fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        '1296', // 0 "Customer Added"
+        '1296', // 0 "Customer Added" 
         '1297', // 1 "Contacts Added"
         '1229', // 2 "Orders Added"
         '1298'  // 3 "Orders Completed"
@@ -107,6 +108,9 @@ function CustomerDashboardJumpStart (props) {
 
   return(
     <>
+
+   <div class=" flex flex-col">
+
     <div className="flex flex-row w-full">
         <div className="flex w-full max-sm:flex-col">
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
@@ -177,8 +181,12 @@ function CustomerDashboardJumpStart (props) {
             </div>
           </div>
         </div>
+        
       </div>
-
+      <div class=" mt-1" >
+        <CustomerPieChart/>
+        </div>
+</div>
 <CustomerJumpStartDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}

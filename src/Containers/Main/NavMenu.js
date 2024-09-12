@@ -477,24 +477,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
 
-{(user.imInd === true && user.dataRoomAccessInd === true
-//  || user.role === "ADMIN" && user.imInd === true 
-) && (
-          <Menu.Item key="/dataroom " style={{ height: "1.45rem",
-            color: selectedMenuItem === '/dataroom' ? 'tomato' : '#4bc076' }}>
-            <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
-              <MarkUnreadChatAltIcon
-              className='!text-base'
-              />
-              <span class="text-white text-ls ml-1">
-              {/* Data Room */}
-                {translatedMenuItems[11]}
-                &nbsp;&nbsp;&nbsp;
-                
-              </span>
-            </Link>
-          </Menu.Item>
-)}
+
         {(user.imInd === true && user.dealAccessInd === true 
         // || user.role === "ADMIN" && user.imInd === true
       ) && (
@@ -577,6 +560,24 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </Link>
           </Menu.Item>
           )}
+          {(user.imInd === true && user.dataRoomAccessInd === true
+            //  || user.role === "ADMIN" && user.imInd === true 
+            ) && (
+                      <Menu.Item key="/dataroom " style={{ height: "1.45rem",
+                        color: selectedMenuItem === '/dataroom' ? 'tomato' : '#4bc076' }}>
+                        <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
+                          <MarkUnreadChatAltIcon
+                          className='!text-base'
+                          />
+                          <span class="text-white text-ls ml-1">
+                          {/* Data Room */}
+                            {translatedMenuItems[11]}
+                            &nbsp;&nbsp;&nbsp;
+                            
+                          </span>
+                        </Link>
+                      </Menu.Item>
+            )}
         {/* {user.userType !== "USER" && user.department !== "Customer" &&user.department == "VENDOR" && ( */}
 
 

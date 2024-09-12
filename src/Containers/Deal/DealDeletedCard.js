@@ -35,9 +35,9 @@ const DealDeletedCard = (props) => {
           "176",//3 Start Date
           "1159",//4 Values
           "219",//5 Stages
-          "220",//6 Sales Rep
+          "76",//6 Sales Rep
           "77",//7 Owner
-          "9",//8 Action
+         
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -92,6 +92,7 @@ const DealDeletedCard = (props) => {
     <>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+        <div className=" flex justify-between w-[96%]">
           <div className=" font-bold font-poppins text-xs md:w-[10.5rem]">
           {translatedMenuItems[0]} </div>
           {/* Name */}
@@ -109,6 +110,7 @@ const DealDeletedCard = (props) => {
           {/* assignedTo */}
           <div className=" font-bold font-poppins text-xs md:w-[3rem]">  {translatedMenuItems[7]}</div>
             {/* owner  */}
+        </div>
         </div>
         <InfiniteScroll
           dataLength={props.deletedDeal.length}
@@ -169,7 +171,7 @@ const DealDeletedCard = (props) => {
                             <div class=" ml-3 max-sm:w-full max-sm:justify-between flex md:">                           
                                             {/* Name */}
                                        
-                              <div class=" text-[0.82rem] flex text-blue-500  font-poppins font-semibold  cursor-pointer">
+                              <div class=" text-[0.82rem] flex text-blue-500  font-poppins font-semibold  ">
                                             {/* link */}                          
                                 {item.opportunityName}
                                 {/* </Link> */}

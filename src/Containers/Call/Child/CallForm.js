@@ -1126,6 +1126,15 @@ function CallForm(props) {
                     </span>
                   </span>                               
                 </div>
+                <div>
+                    <textarea
+                      name="description"
+                      className="textarea h-26"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>
                   </div>
               
                   {/* <div class=" flex justify-between" >
