@@ -74,7 +74,7 @@ function FinaceRapairDrawerCard (props) {
             endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
             <>
-              {props.repairDashboardOrderAdded.map((item) => {
+              {props.ordersData.map((item) => {
                 const currentdate = dayjs().format("DD/MM/YYYY");
                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 

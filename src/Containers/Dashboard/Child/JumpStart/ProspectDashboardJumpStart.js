@@ -50,11 +50,28 @@ function ProspectDashboardJumpStart (props) {
       }
     };
 
-    // const [contactAdded, setcontactAdded] = useState([]);
-    // const [loading1, setLoading1] = useState(false);
+    const [contactAdded, setcontactAdded] = useState([]);
+    const [loading2, setLoading2] = useState(false);
 
+    const fetchContacttAdded = async () => {
+      const type="Prospect";
+      try {
+        const response = await axios.get(`${base_url}/contact/added/selfCount/date-wise/${props.userId}/${type}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setcontactAdded(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError(error);
+        setLoading1(false);
+      }
+    };
+    
     useEffect(() => {
       fetchProspectAdded();
+      fetchContacttAdded();
     }, [props.userId]);
 
   useEffect(() => {

@@ -18,6 +18,7 @@ class TaskOrganizationNew extends Component {
     if (this.props.fetchingTasks) {
       return <BundleLoader/>
     }
+    
     return (
       <>
   
