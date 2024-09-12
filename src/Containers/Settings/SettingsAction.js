@@ -2343,7 +2343,7 @@ export const addingNotifications = (data, orgId) => (dispatch, getState) => {
 export const getIdentifier = (orgId) => (dispath) => {
   dispath({ type: types.GET_IDENTIFIER_REQUEST });
   axios
-    .get(`${base_url}/notification/rule/${orgId}`, {
+    .get(`${base_url}/recruit/code/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2369,7 +2369,7 @@ export const addingIdentifier = (data, orgId) => (dispatch, getState) => {
     type: types.ADDING_IDENTIFIER_REQUEST,
   });
   axios
-    .put(`${base_url}/notification/rule/update`, data, {
+    .put(`${base_url}/recruit/code`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

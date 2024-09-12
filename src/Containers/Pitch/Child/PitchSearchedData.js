@@ -44,15 +44,15 @@ const PitchSearchedData = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
-  useEffect(() => {
-    props.getPitch(props.userId,page,"creationdate");
-    props.getPitchHot(props.userId, page,"creationdate","hot");
-    props.getPitchCold(props.userId, page,"creationdate","cold");
-    props.getPitchWarm(props.userId, page,"creationdate","warm");
-    setPage(page + 1);
-    // props.getSectors();
-    // props.getCountries();
-  }, []);
+  // useEffect(() => {
+  //   props.getPitch(props.userId,page,"creationdate");
+  //   props.getPitchHot(props.userId, page,"creationdate","hot");
+  //   props.getPitchCold(props.userId, page,"creationdate","cold");
+  //   props.getPitchWarm(props.userId, page,"creationdate","warm");
+  //   setPage(page + 1);
+  //   // props.getSectors();
+  //   // props.getCountries();
+  // }, []);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);

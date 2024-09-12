@@ -2355,15 +2355,15 @@ export const settingsReducer = (state = initialState, action) => {
         return {
           ...state,
           addingIdentifiers: false,
-          identifiers: state.identifiers.map((item) => {
-            if (item.notificationRuleId
-              === action.payload.notificationRuleId
-            ) {
-              return action.payload;
-            } else {
-              return item;
-            }
-          }),
+          // identifiers: state.identifiers.map((item) => {
+          //   if (item.notificationRuleId
+          //     === action.payload.notificationRuleId
+          //   ) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
         };
       case types.ADDING_IDENTIFIER_FAILURE:
         return {

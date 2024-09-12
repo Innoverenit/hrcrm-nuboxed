@@ -17,7 +17,6 @@ const Option = StyledSelect.Option;
 const { Search } = Input;
 
 const InvestorActionLeft = (props) => {
-  const [filter, setFilter] = useState("creationdate")
   const [currentData, setCurrentData] = useState("");
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
@@ -132,11 +131,7 @@ const InvestorActionLeft = (props) => {
     }
   }, [listening, isRecording, startTime]);
 
-  function handleFilterChange(data) {
-    setFilter(data)
-    props.getInvestorsbyId(props.userId, pageNo, data);
-    setPage(pageNo + 1);
-  }
+
 
   useEffect(() => {
 
@@ -310,7 +305,7 @@ const InvestorActionLeft = (props) => {
           <FormattedMessage id="app.clear" defaultMessage="Clear" />
         </Button> */}
         <div class=" w-[40%]  ml-2" >
-          <StyledSelect placeholder="Sort" onChange={(e) => props.handleFilterChange(e)}>
+          <StyledSelect placeholder="Sort" value={props.filter} onChange={(e) => props.handleFilterChange(e)}>
             <Option value="CreationDate">Creation Date</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>

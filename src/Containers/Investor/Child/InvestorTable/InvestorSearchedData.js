@@ -73,8 +73,7 @@ function InvestorSearchedData(props) {
         }
       }
     })
-    props.getInvestorsbyId(props.userId, page,"creationdate");
-    setPage(page + 1);
+   
   }, []);
   useEffect(() => {
     const handleResize = () => {
@@ -95,15 +94,7 @@ function InvestorSearchedData(props) {
     setRowData(datas);
   }
 
-  const handleLoadMore = () => {
-
-      setPage(page + 1);
-      props.getInvestorsbyId(
-        props.currentUser ? props.currentUser : props.userId,
-        page,
-        props.filter?props.filter:"creationdate"
-      );
-  };
+ 
 
   const {
     fetchingInvestors,
