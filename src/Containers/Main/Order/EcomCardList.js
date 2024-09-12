@@ -117,17 +117,17 @@ const {handleProcureNotesDrawerModal,
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[10rem]">{translatedMenuItems[0]} ID</div>
-                        <div className=" md:w-[5.4rem]">{translatedMenuItems[1]}</div>
-                        <div className=" md:w-[5.4rem]">{translatedMenuItems[2]}</div>
-                        <div className=" md:w-[4.4rem]">{translatedMenuItems[7]}</div>
-                        <div className=" md:w-[4.4rem]">{translatedMenuItems[8]}</div>
-                        <div className=" md:w-[3.4rem]">{translatedMenuItems[4]}</div>
-                        <div className=" md:w-[8.4rem]">{translatedMenuItems[5]}</div>
-                        <div className=" md:w-[8.4rem]">{translatedMenuItems[6]}</div>
-                        <div className=" md:w-[4.4rem]">{translatedMenuItems[3]}</div>
-                        <div className=" md:w-[5.4rem]"></div>
-                        <div className=" md:w-[12rem]"></div>
+                        <div className="font-bold font-poppins text-xs md:w-[10rem]">{translatedMenuItems[0]} ID</div>
+                        <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[1]}</div>
+                        <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[2]}</div>
+                        <div className="font-bold font-poppins text-xs md:w-[4.4rem]">{translatedMenuItems[7]}</div>
+                        <div className="font-bold font-poppins text-xs md:w-[4.4rem]">{translatedMenuItems[8]}</div>
+                        <div className="font-bold font-poppins text-xs md:w-[3.4rem]">{translatedMenuItems[4]}</div>
+                        <div className="font-bold font-poppins text-xs md:w-[8.4rem]">{translatedMenuItems[5]}</div>
+                        <div className="font-bold font-poppins text-xs md:w-[8.4rem]">{translatedMenuItems[6]}</div>
+                        <div className="font-bold font-poppins text-xs md:w-[4.4rem]">{translatedMenuItems[3]}</div>
+                        <div className="font-bold font-poppins text-xs md:w-[5.4rem]"></div>
+                        <div className="font-bold font-poppins text-xs md:w-[12rem]"></div>
                        
                         <div className="md:w-[1rem]"></div>
         </div>

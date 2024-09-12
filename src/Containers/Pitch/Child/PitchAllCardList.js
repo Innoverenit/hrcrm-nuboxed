@@ -8,7 +8,6 @@ import { MultiAvatar } from "../../../Components/UI/Elements";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
@@ -19,7 +18,6 @@ import {
 import dayjs from "dayjs";
 import AddchartIcon from '@mui/icons-material/Addchart';  
 import { Button, Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -351,8 +349,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           </div>                                                                     
 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
 <div class="flex justify-between items-center max-sm:w-[50%] ">                       
-            
-             <div className=" flex  w-12 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+
+             <div className=" flex  w-[2rem] max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                             {/* Qualify */}                 
                              
                               <div>
@@ -397,10 +395,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       ) : null}
                   </div>  
 </div>
-                          </div>
-                          </div>
-                          <div class="flex max-sm:justify-evenly max-sm:w-wk ">
-                          <div class="flex max-sm:flex-row  justify-evenly md:w-20 max-sm:w-[25%] ">
+                                            
                                                 <div >
                                     <Tooltip title={translatedMenuItems[13]}>
                       <NoteAltIcon
@@ -417,19 +412,18 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                 <Tooltip
                                   title={translatedMenuItems[14]}
                                 >
-                                <AddchartIcon
-                                className="!text-icon cursor-pointer text-blue-500"
+                                  <i class="fab fa-connectdevelop text-[#8332ac]"                                                    
                                 onClick={()=>{
                                 props.handleAssimodal(true)
                                 handleRowData(item)
                                 }}
-                                />
+                               ></i> 
                                 </Tooltip>
                                 </div>                                                                
                                       <div>
                                                 <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
                                         <span class="cursor-pointer" >
-                                        <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
+                                        <AddLocationAltIcon   className="!text-icon cursor-pointer text-[#8e4bc0]"/>
                                         </span>
                                       </Tooltip>
                                       </div>

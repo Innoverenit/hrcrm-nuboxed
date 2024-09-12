@@ -10,7 +10,6 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
@@ -360,10 +359,8 @@ serachedPitchData={props.serachedPitchData}
                                                         </div>
                                                               </div>           
                                           <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                                          <div class="flex justify-between items-center max-sm:w-[50%] ">                                                                    
+                                          <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                                                           
-                                                        <div className=" flex w-12 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">              
-                                                                        
                                                                           <div>
                                                                           {item.companyName ? (
                                                                           <Tooltip title= {translatedMenuItems[11]}>
@@ -389,7 +386,8 @@ serachedPitchData={props.serachedPitchData}
                                                   convertInd={item.convertInd}
                                                 /> */}
                                       </div>
-                                      <div class="rounded-full bg-white  h-5 cursor-pointer w-8 max-xl:w-[1.5rem]">
+                                      </div>
+                                      <div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
                                                           {item.url !== null ? (
                                                     <Tooltip title={item.url}>
                                                       <span className=" cursor-pointer"
@@ -406,11 +404,10 @@ serachedPitchData={props.serachedPitchData}
                                                     </Tooltip>
                                                   ) : null}
                                                               </div>
-                                                                      </div>
-                                                                      </div>
-                                                                      </div>
-                                                                      <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                                                                      <div class="flex max-sm:flex-row  justify-evenly md:w-20 max-sm:w-[25%] ">
+                                                                   
+                                                                 
+                                                                   
+                                                              <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">
                                                                                               <div >
                                                                                             <Tooltip title= {translatedMenuItems[13]}>
                                                                               <NoteAltIcon
@@ -428,20 +425,19 @@ serachedPitchData={props.serachedPitchData}
                                                                         <Tooltip
                                                                                 title= {translatedMenuItems[14]}
                                                                               >
-                                                                        <AddchartIcon
-                                                                        className="!text-icon cursor-pointer text-blue-500"
+                                                                   <i class="fab fa-connectdevelop text-[#8332ac]"  
 
                                                                         onClick={()=>{
                                                                           props.handleAssimodal(true)
                                                                           handleRowData(item)
                                                                           }}
-                                                                        />
+                                                                        ></i>
                                                                         </Tooltip>
                                                                             </div>                                                                               
                                                                                        <div>
                                                                                             <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
                                                                                     <span class="cursor-pointer" >
-                                                                                    <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
+                                                                                    <AddLocationAltIcon   className="!text-icon cursor-pointer text-[#8e4bc0]"/>
                                                                                     </span>
                                                                                   </Tooltip>
                                                                                   </div>
@@ -486,7 +482,7 @@ serachedPitchData={props.serachedPitchData}
                                                                                     </Tooltip>
                                                                                   </StyledPopconfirm>
                                                                                                 </div>                                                                                                                                                                                                                                             
-                                                                                            </div>
+                                                                                          </div>
                                                                 </div>
                                                                     </div>
                                                                   </div>
