@@ -141,15 +141,15 @@ function AllCompleteOrderList(props) {
               
                 <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
                   
-                <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-                        <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
-          <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="md:w-[5.031rem]">{translatedMenuItems[8]}</div>
-          <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
-          <div className="md:w-[9.73rem]">{translatedMenuItems[5]}</div>
+                <div className="font-bold font-poppins text-xs md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
+                        <div className="font-bold font-poppins text-xs md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.031rem]">{translatedMenuItems[8]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.06rem]">{translatedMenuItems[7]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[9.73rem]">{translatedMenuItems[5]}</div>
           <div className="md:w-24"></div>
         </div>
                     <InfiniteScroll
@@ -419,15 +419,15 @@ function AllCompleteOrderList(props) {
               
                 <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10 max-sm:hidden">
                   
-                <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
-                        <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
-          <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="md:w-[5.031rem]">{translatedMenuItems[8]}</div>
-          <div className="md:w-[6.06rem]">{translatedMenuItems[5]}</div>
-          <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="md:w-[9.73rem]">{translatedMenuItems[7]}</div>
+                <div className="font-bold font-poppins text-xs md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
+                        <div className="font-bold font-poppins text-xs md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.031rem]">{translatedMenuItems[8]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[6.06rem]">{translatedMenuItems[5]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[9.73rem]">{translatedMenuItems[7]}</div>
         
           <div className="md:w-24"></div>
         </div>

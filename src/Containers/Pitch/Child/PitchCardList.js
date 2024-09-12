@@ -3,7 +3,7 @@ import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -26,9 +26,7 @@ import {
   handlePitchConvertModal,
   handleAddresspitchModal
 } from "../PitchAction";
-import AddchartIcon from '@mui/icons-material/Addchart';  
 import { Button, Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
@@ -238,10 +236,10 @@ const handleLoadMore2 = () => {
                  {translatedMenuItems[5]} 
                  {/* Category */}
           </div>
-          <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
+          <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
           {translatedMenuItems[6]}   {/* Shares # */}      
           </div>
-          <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
+          <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
           {translatedMenuItems[7]}  {/* First Meeting */}   
           </div>
           <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
@@ -253,7 +251,7 @@ const handleLoadMore2 = () => {
         {translatedMenuItems[9]}
         </div> 
        
-        <div className="w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem] font-bold font-poppins text-xs">
+        <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem] font-bold font-poppins text-xs">
         {translatedMenuItems[10]} 
            {/* qualify */}
                 </div>
@@ -296,7 +294,7 @@ const countryCode = item.countryAlpha2Code
                         <div>
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                       <div class="flex flex-row items-center w-[6.5rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                       <div class="flex flex-row items-center w-[5rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                         <div>
                                               <ButtonGroup>
                                               <RoleButton
@@ -409,7 +407,7 @@ const countryCode = item.countryAlpha2Code
                       {countryCode}
                                     </div>
                               </div>
-                              <div className=" flex   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[11.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                           {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "None"}
@@ -572,7 +570,7 @@ const countryCode = item.countryAlpha2Code
                   <div>
                                 <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
                         <span class="cursor-pointer" >
-                        <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
+                        <AddLocationAltIcon   className="!text-icon cursor-pointer text-[#8e4bc0]"/>
                         </span>
                       </Tooltip>
                       </div>
@@ -641,7 +639,7 @@ const countryCode = item.countryAlpha2Code
         {/* mobile# */}
                 </div>
         <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="font-bold font-poppins text-xs w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        <div className="font-bold font-poppins text-xs w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
         {translatedMenuItems[2]}
         {/* company */}
                 </div>
@@ -673,7 +671,7 @@ const countryCode = item.countryAlpha2Code
         {translatedMenuItems[9]}       
         {/* owner */}
                 </div>
-        <div className="font-bold font-poppins text-xs w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        <div className="font-bold font-poppins text-xs w-[10.6rem] ml-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[10]} 
         {/* qualify */}
                 </div>
@@ -720,7 +718,7 @@ const countryCode = item.countryAlpha2Code
         >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                                <div class="flex flex-row items-center w-[6.1rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                <div class="flex flex-row items-center w-[5.rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
 
 <div>
 <ButtonGroup>
@@ -828,7 +826,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                 {countryCode}
                               </div>
                         </div>
-                        <div className=" flex   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex   w-[11.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* Company  */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "None"}
@@ -903,7 +901,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           
                           
                                  
-             
+                          <div class="flex justify-between items-center max-sm:w-[50%] "> 
                   <div class="flex flex-col max-sm:justify-evenly max-sm:w-wk items-center">
                               <div>
                               {item.companyName ? 
@@ -947,8 +945,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       ) : null}
                   </div>  
     
-<div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">
-<div class="flex justify-between items-center max-sm:w-[50%] ">                                              
+
+                                             
              <div >
                         <Tooltip title= {translatedMenuItems[17]} >
                         <NoteAltIcon
@@ -1026,7 +1024,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
     </StyledPopconfirm>
                   </div>                          
               </div>
-              </div>
+          
                 </div>
                       </div>                       
                     )
@@ -1046,7 +1044,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         {/* mobile# */}
                 </div>
         <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" font-bold font-poppins text-xs w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        <div className=" font-bold font-poppins text-xs w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
         {translatedMenuItems[2]} 
         {/* company */}
                 </div>
@@ -1075,7 +1073,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
           {/* Assigned */}
           </div>
        
-        <div className="font-bold font-poppins text-xs w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        <div className="font-bold font-poppins text-xs w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[10]} 
         {/* qualify */}
                 </div>
@@ -1119,7 +1117,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
           className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
         >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div class="flex flex-row items-center w-[6.1rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                <div class="flex flex-row items-center w-[5rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
 <div>
 <ButtonGroup>
 <RoleButton
@@ -1223,7 +1221,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                 {countryCode}
                               </div>
                         </div>
-                        <div className=" flex   w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex   w-[11.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Company */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "None"}
@@ -1233,28 +1231,28 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
                  <div className=" flex  w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-{/* Company  */}
+{/* source  */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source || "None"}
 </div>
 
                  </div>
                  <div className=" flex    w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                  {/* Company */}
+                  {/* sector */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "None"}
 </div>
 
                  </div>
                  <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            {/* # Deals */}
+                            {/* #category */}
 
                               <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {Category}
                               </div>
                           </div>
                           <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                             {/* # Deals */}
+                             {/* #share */}
 
                               <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unitOfShare}
@@ -1296,7 +1294,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                               </div>
                           </div>
                          </div>            
-                                    
+                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                         <div class="flex justify-between items-center max-sm:w-[50%] ">
                   <div>
                               {item.companyName ?   (
                     <Tooltip title= {translatedMenuItems[16]} >
@@ -1336,8 +1335,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         </Tooltip>
       ) : null}
                   </div>      
-<div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-<div class="flex justify-between items-center max-sm:w-[50%] ">
+
                    <div >
                               <Tooltip title= {translatedMenuItems[17]} >
                         <NoteAltIcon
