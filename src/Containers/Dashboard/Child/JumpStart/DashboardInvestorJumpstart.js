@@ -32,8 +32,8 @@ function DashboardInvestorJumpstart(props) {
         const itemsToTranslate = [
    
         "201", //  "Investors"//0
-         "1458",   // "Current Deals",//1
-          "1459",  // "Open Deals",//2
+         "1459",   // "Current Deals",//1
+          "1458",  // "Open Deals",//2
            "1460", // "Deals Life Time",//3
          ];
 
