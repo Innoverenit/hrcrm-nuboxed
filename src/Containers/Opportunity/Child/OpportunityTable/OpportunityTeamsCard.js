@@ -170,7 +170,7 @@ function OpportunityTeamsCard(props) {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {
-                   if (element.oppStage === item.oppStage) {
+                   if (element.stageName === item.oppStage) {
                      findProbability = element.probability;
                    }
                  });

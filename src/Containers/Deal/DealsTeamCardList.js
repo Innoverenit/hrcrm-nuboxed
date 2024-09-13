@@ -297,7 +297,7 @@ const DealsTeamCardList = (props) => {
                           }
                           trigger={["click"]}
                         >
-                          <Tooltip title={item.stageName}>
+                          <Tooltip title={item.oppStage}>
                             {" "}
                             <Progress
                               type="circle"

@@ -232,11 +232,11 @@ function DealCardList(props) {
                                   // candidateName={item.candidateName}
                                   // approveInd={item.approveInd}
                                   // rejectInd={item.rejectInd}
-                                  stageClick={(investorOppStagesId) => {
+                                  stageClick={(stagesId) => {
                                     props.LinkStageDeal({
                                       invOpportunityId: item.invOpportunityId,
                                       invOpportunityStagesId:
-                                        investorOppStagesId,
+                                      stagesId,
                                     });
                                   }}
                                 />{" "}
