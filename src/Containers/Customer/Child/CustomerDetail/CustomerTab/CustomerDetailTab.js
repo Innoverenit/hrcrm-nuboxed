@@ -246,7 +246,7 @@ class ContactDetailTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <LinkedContact  defaultCustomers={[{ label: name, value: customerId }]}
-            customerId={{ value: customerId }}
+            customerId={ customerId }
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
           translatedMenuItems={this.props.translatedMenuItems}

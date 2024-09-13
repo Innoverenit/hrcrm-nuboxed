@@ -270,7 +270,7 @@ const ContactActionLeft = (props) => {
       </div>
 
       <div class="w-[22%]  ml-2">
-          <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
+          <StyledSelect placeholder="Sort" value={props.filter}  onChange={(e)  => props.handleFilterChange(e)}>
           <Option value="CreationDate">Creation Date</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>

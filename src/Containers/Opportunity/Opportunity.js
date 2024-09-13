@@ -21,7 +21,9 @@ const OpportunityAllCardList = lazy(() => import("./Child/OpportunityTable/Oppor
 class Opportunity extends Component {
   constructor(props) {
     super(props);
-  this.state = { currentData: "",isMobile: false, viewType: "table", // Default viewType
+  this.state = { currentData: "",isMobile: false, 
+    // viewType: "table", // Default viewType
+    viewType: null, // Default viewType
   teamsAccessInd: props.teamsAccessInd , };
   };
   handleClear = () => {

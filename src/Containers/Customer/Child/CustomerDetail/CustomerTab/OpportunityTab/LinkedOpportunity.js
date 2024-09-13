@@ -50,7 +50,7 @@ function OpportunityTable(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
   useEffect(() => {
-    props.getOpportunityListByCustomerId(props.customerId);
+    props.getOpportunityListByCustomerId(props.customer.customerId);
   }, []);
   console.log(props.customerId);
   const [currentOpportunityId, setCurrentOpportunityId] = useState("");
@@ -386,7 +386,7 @@ const mapStateToProps = ({ customer,auth }) => ({
   user: auth.userDetails,
   fetchingCustomerOpportunity: customer.fetchingCustomerOpportunity,
   fetchingCustomerOpportunityError: customer.fetchingCustomerOpportunityError,
-  customerId: customer.customer.customerId,
+  //customerId: customer.customer.customerId,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   addUpdateCustomerOpportunityModal:customer.addUpdateCustomerOpportunityModal,
 });

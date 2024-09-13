@@ -381,7 +381,7 @@ const mapStateToProps = ({auth,
 }) => ({
   fetchingCustomerContact: customer.fetchingCustomerContact,
   fetchingCustomerContactError: customer.fetchingCustomerContactError,
-  customerId: customer.customer.customerId,
+  //customerId: customer.customer.customerId,
   userId:auth.userDetails.userId,
   designations: designations.designations,
   contactByCustomerId: customer.contactByCustomerId,
