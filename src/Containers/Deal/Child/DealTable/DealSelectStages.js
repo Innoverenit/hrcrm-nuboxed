@@ -24,7 +24,7 @@ class DealSelectStages extends Component {
             ? -1
             : 0
         )
-        .findIndex((stage) => stage.investorOppStagesId === this.props.investorOppStagesId);
+        .findIndex((stage) => stage.stagesId === this.props.stagesId);
 
     return (
       <div class=" flex justify-between" >
@@ -52,7 +52,7 @@ class DealSelectStages extends Component {
                 //     : this.props.candidateName
                 //     ? this.handleStageClick(item.stageId)
                 //     : null
-                this.handleStageClick(item.investorOppStagesId)
+                this.handleStageClick(item.stagesId)
                 }
               >
                 <Tooltip title={item.stageName}>

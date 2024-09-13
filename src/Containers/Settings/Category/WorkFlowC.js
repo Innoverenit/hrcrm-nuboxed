@@ -5,7 +5,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm,Switch, Input,Tooltip,Select,Button } from "antd";
+import { Popconfirm,Switch, Input,message,Tooltip,Select,Button } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
@@ -23,6 +23,16 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MainWrapper } from "../../../Components/UI/Layout";
 
 const { Option } = Select;  
+const optionsData = [
+  "Production",
+  "Quotation",
+  "Repair",
+  "Supplier-Onboarding",
+  "Task",
+  "User-Onboarding",
+  "Deals",
+  "Others",
+];
 const WorkFlowC = (props) => {
   const [touched, setTouched] = useState(false);
   const [type, setType] = useState([]);
@@ -182,6 +192,27 @@ const WorkFlowC = (props) => {
     props.updateGlobalWorkflow(data,key)
     console.log(`Row ${key} switch is now ${checked}`);
   };
+
+
+  const renderOptions = () => {
+    return optionsData.map((option) => {
+      const isDisabled = workFlowCategory.some((item) => item.name === option);
+      return (
+        <Option
+          key={option}
+          value={option}
+          disabled={isDisabled}
+          onMouseEnter={() => {
+            if (isDisabled) {
+              message.info(`${option} has already been selected.`);
+            }
+          }}
+        >
+          {option}
+        </Option>
+      );
+    });
+  };
   useEffect(() => {
       
       if (props.workFlowCategory.length > 0) {
@@ -215,14 +246,12 @@ return <div><BundleLoader/></div>;
         disabled={!newCategoryName}
         value={selectedValue}
       >
-        <Option value="Production">Production</Option>
-        <Option value="Quotation">Quotation</Option>
-        <Option value="Repair">Repair</Option>
-        <Option value="Supplier-Onboarding">Supplier-Onboarding</Option>
-        <Option value="Task">Task</Option>
-        <Option value="User-Onboarding">User-Onboarding</Option>
-        <Option value="Deals">Deals</Option>
-        <Option value="Test">Test</Option>
+       
+           
+            {renderOptions()}
+           
+          
+        
       </Select>
                       <Button 
                         disabled={!selectedValue}

@@ -371,7 +371,7 @@ function InspectedPhoneByOrder(props) {
                                                             <div style={{ marginBottom: "10px" }}> {translatedMenuItems[1]}: {item.model}</div>
                                                             <div style={{ marginBottom: "10px" }}> {translatedMenuItems[2]}: {item.imei}</div>
                                                             <div style={{ marginBottom: "10px" }}>
-                                                                <QRCode value={item.phoneId} className="!text-icon" />
+                                                                <QRCode value={`scan/${item.phoneId}`} className="!text-icon" />
                                                             </div>
                                                         </div>
                                                     </div>

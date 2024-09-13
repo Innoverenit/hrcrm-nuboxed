@@ -10,7 +10,7 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import {getInvestorCurrency} from "../../Auth/AuthAction"
 import {getAllEmployeelist} from "../../Investor/InvestorAction"
-import { Button, Tooltip } from "antd";
+import { Button, Tooltip,Select } from "antd";
 import { Formik, Form, Field} from "formik";
 import * as Yup from "yup";
 import {
@@ -31,17 +31,26 @@ import {createDeals,  getAllDealStages,
   getDealLinkedStages,
   getActiveAssignedToList
 } from "../DealAction";
+import { base_url } from "../../../Config/Auth";
 
-
+const { Option } = Select; 
 
 const OpportunitySchema = Yup.object().shape({
   opportunityName: Yup.string().required("Input needed!"),
-  oppWorkflow: Yup.string().required("Input needed!"),
+ // oppWorkflow: Yup.string().required("Input needed!"),
   currency: Yup.string().required("Input needed!"),
-  oppStage: Yup.string().required("Input needed!"),
+  //oppStage: Yup.string().required("Input needed!"),
 });
 function DealForm(props) {
   const [loading, setLoading] = useState(true);
+  const [workflow, setWorkflow] = useState([]);
+  const[stage,setStage]=useState([])
+const [isLoadingStage, setIsLoadingStage] = useState(false);
+const [selectedStage, setSelectedStage] = useState(null);
+  const [selectedWorkflow, setSelectedWorkflow] = useState(null);
+  const [selectedWorkFlowType, setSelectedWorkFlowType] = useState(null);
+  const [isLoadingWorkflowType, setIsLoadingWorkflowType] = useState(false);
+  const [touchedWorkFlowType, setTouchedWorkFlowType] = useState(false);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   
   useEffect(() => {
@@ -219,6 +228,70 @@ function DealForm(props) {
     setText(e.target.value);
 
   }
+
+
+  const handleWorkflowChange=(workflowDetailsId)=>{
+    setSelectedWorkflow(workflowDetailsId);
+    fetchStage(workflowDetailsId)
+  }
+
+
+  const fetchStage= async (workflowId) => {
+    setIsLoadingStage(true);
+    try {
+      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+      // setContacts(response.data);
+      const apiEndpoint = `${base_url}/workflow/stages/for_dropdown/${props.orgId}/${workflowId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setStage(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingStage(false);
+    }
+  };
+  const handleSelectWorkflowTypeFocus = () => {
+    if (!touchedWorkFlowType) {
+      fetchWorkFlowType();
+      // fetchSector();
+  
+      setTouchedWorkFlowType(true);
+    }
+  };
+  const handleStageChange=(value)=>{
+    setSelectedStage(value);
+  }
+
+  const fetchWorkFlowType = async () => {
+    setIsLoadingWorkflowType(true);
+    try {
+      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
+      // setCustomers(response.data);
+      const apiEndpoint = `${base_url}/workflow/publish/for_dropdown/${props.organizationId}/Deals`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setWorkflow(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingWorkflowType(false);
+    }
+  };
   const {
     transcript,
     listening,
@@ -349,6 +422,8 @@ function DealForm(props) {
             {
               ...values,
               startDate: `${newStartDate}T20:00:00Z`,
+              oppStage: selectedStage,
+              oppWorkflow: selectedWorkflow,
               endDate: `${newEndDate}T20:00:00Z`,
               description: transcript ? transcript : text,
               salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
@@ -654,7 +729,7 @@ function DealForm(props) {
                   <div class=" w-w47.5 max-sm:w-wk">
                   <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                {translatedMenuItems[10]} 
-                      <Field
+                      {/* <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
                         isColumnWithoutNoCreate
@@ -667,36 +742,42 @@ function DealForm(props) {
                         value={values.oppWorkflow}
                         isColumn
                         inlineLabel
-                      />
+                      /> */}
+
+<Select
+       
+       placeholder="Select Workflow"
+     loading={isLoadingWorkflowType}
+       onChange={handleWorkflowChange}
+       onFocus={handleSelectWorkflowTypeFocus}
+       // disabled={!selectedWorkFlowType}
+     >
+       {workflow.map(work => (
+         <Option key={work.workflowDetailsId} value={work.workflowDetailsId}>
+           {work.workflowName}
+         </Option>
+       ))}
+     </Select>
                     </div>
                   </div>
                   
                   <div class=" w-w47.5 max-sm:w-wk ">
                   <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                   {translatedMenuItems[11]} 
-                      <Field
-                        name="oppStage"
-                        isRequired
-                        isColumnWithoutNoCreate                  
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(
-                            getStagesOptions("oppWorkflow", values.oppWorkflow)
-                          )
-                            ? getStagesOptions(
-                                "oppWorkflow",
-                                values.oppWorkflow
-                              )
-                            : []}  
-                        value={values.oppStage}
-                        filterOption={{
-                          filterType: "oppWorkflow",
-                          filterValue: values.oppWorkflow,
-                        }}
-                        disabled={!values.oppWorkflow}
-                        isColumn
-                        inlineLabel
-                      />
+
+      <Select
+       
+        placeholder="Select Stage"
+        loading={isLoadingStage}
+        onChange={handleStageChange}
+      disabled={!selectedWorkflow}
+      >
+        {stage.map(stage => (
+          <Option key={stage.stagesId} value={stage.stagesId}>
+            {stage.stageName}
+          </Option>
+        ))}
+      </Select>
                     </div>
                   </div>
                 </div>
@@ -746,6 +827,7 @@ const mapStateToProps = ({ auth,source,investor, opportunity,deal,settings,emplo
   dealsProcess: settings.dealsProcess,
   customerData: customer.customerData,
   investorData:customer.investorData,
+  token: auth.token,
   dealsContactData: contact.dealsContactData,
   fullName: auth.userDetails.fullName,
   sources: source.sources,

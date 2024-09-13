@@ -268,7 +268,7 @@ function DealWonCard(props) {
               }
               trigger={["click"]}
             >
-              <Tooltip title={item.stageName}>
+              <Tooltip title={item.oppStage}>
                 {" "}
                 <Progress className="cursor-pointer text-red text-lg"
                   type="circle"              

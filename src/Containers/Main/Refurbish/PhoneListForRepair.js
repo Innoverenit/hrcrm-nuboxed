@@ -619,7 +619,7 @@ function PhoneListForRepair(props) {
                                                 <div style={{ fontSize: "5rem" }}>
                                                     <QRCode
                                                         size={150}
-                                                        value={item.phoneId} />
+                                                        value={`scan/${item.phoneId}`} />
                                                 </div>
                                                 <div style={{ fontSize: "1.5rem" }}> {item.imei}</div>
                                             </div>

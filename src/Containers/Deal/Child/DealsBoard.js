@@ -78,15 +78,15 @@ function DealsBoard(props) {
     let id = props.dealsProcess[0];
     return id;
   }, [props.dealsProcess]);
-
+let type="Deals"
   useEffect(() => {
-    props.getProcessForDeals(props.orgId);
+    props.getProcessForDeals(props.orgId,type);
      props.getAllDealsbyUserId(props.userId)
   }, []);
 
   useEffect(() => {
     if (!processData) return;
-    props.getProcessStagesForDeals(processData.investorOppWorkflowId);
+    props.getProcessStagesForDeals(props.orgId,processData.workflowDetailsId);
   }, [processData]);
 
 
@@ -140,7 +140,7 @@ function DealsBoard(props) {
 
   function handleProcessClick(item) {
     setCurrentProcess(item);
-    props.getProcessStagesForDeals(item.investorOppWorkflowId);
+    props.getProcessStagesForDeals(props.orgId,item.workflowDetailsId);
   }
 
 
@@ -187,7 +187,7 @@ function DealsBoard(props) {
                       .map((stage, index) => (
                         <Droppable
                           key={index}
-                          droppableId={stage.investorOppStagesId}
+                          droppableId={stage.stagesId}
                           type="stage"
                         
                         >
@@ -215,7 +215,7 @@ function DealsBoard(props) {
                                       //props.dealsByuserId
                                         .filter(
                                           (opp, index) =>
-                                            opp.invOpportunityStagesId === stage.investorOppStagesId
+                                            opp.invOpportunityStagesId === stage.stagesId
                                         )
                                         .map((opp, index) => {
                                           return (
