@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom';
 import {getBrandCatalogueList} from "../ProductAction"
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar } from "../../../Components/UI/Elements";
+// import {addProductBrand,getBrandProduct,
 
+//   addBrandProductList,
+
+// } from "../ProductAction"
 
 
 const Option = Select;
@@ -243,7 +247,9 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        getBrandCatalogueList
+        getBrandCatalogueList,
+     
+
         // addProductBrand,
         // getBrandProduct
     },

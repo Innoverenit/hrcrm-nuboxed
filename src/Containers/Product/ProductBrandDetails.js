@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import {Button,Tooltip,Checkbox} from "antd"
 import { bindActionCreators } from "redux";
-import {getProductBrandDetails} from "./ProductAction"
+import {getProductBrandDetails,addBrandProductList} from "./ProductAction"
+import { MultiAvatar } from "../../Components/UI/Elements";
+import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 function ProductBrandDetails(props) {
   const [loading, setLoading] = useState(true);
+  const [selectedCards, setSelectedCards] = useState([]);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   useEffect(() => {
@@ -34,6 +38,20 @@ function ProductBrandDetails(props) {
     useEffect(() => {
        props.getProductBrandDetails(props.currentBrandId.brand)
       }, []);
+
+      const handleCheckboxChange = (e, productId) => {
+        if (e.target.checked) {
+          setSelectedCards([...selectedCards, productId]);  // Add to selected cards
+        } else {
+          setSelectedCards(selectedCards.filter((cardId) => cardId !== productId)); // Remove from selected cards
+        }
+      };
+
+      const handleSubmit = () => {
+        const productList = selectedCards.map((id) => ({ productId: id }));
+        console.log({ active:true,productList });
+      props.addBrandProductList({ active:true,productList },props.currentBrandId.brand)
+      };
   return (
     <div className=' flex  sticky  z-auto'>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -77,7 +95,7 @@ function ProductBrandDetails(props) {
       </div>
    
 
-     {/* {props.brandCatalogueListData.length === 0 ? <NodataFoundPage /> : props.brandCatalogueListData.map((item, index) => {
+     {props.productBrandDetails.length === 0 ? <NodataFoundPage /> : props.productBrandDetails.map((item, index) => {
   
           return (
             <div>
@@ -87,6 +105,14 @@ function ProductBrandDetails(props) {
                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div className=" flex  w-[13rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                     <div className="flex max-sm:w-auto">
+                      <div>
+                      <Checkbox
+                style={{ marginTop: '10px' }}
+                onChange={(e) => handleCheckboxChange(e, item.productId)}
+              >
+                {/* Select */}
+              </Checkbox>
+                        </div>
                       <div>
                         
                         <MultiAvatar
@@ -105,9 +131,9 @@ function ProductBrandDetails(props) {
                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                             <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                              <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                              {/* <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}> */}
                                 {item.productFullName}
-                              </Link>
+                              {/* </Link> */}
 
                               &nbsp;&nbsp;
                             
@@ -162,21 +188,30 @@ function ProductBrandDetails(props) {
               </div>
             </div>
           )
-        })} */}
+        })} 
      
     </div>
+    <Button
+        type="primary"
+        style={{ marginTop: '20px' }}
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
   </div>
   )
 }
 
-const mapStateToProps = ({ auth, account, opportunity }) => ({
+const mapStateToProps = ({ auth, account, opportunity,product }) => ({
     userId: auth.userDetails.userId,
+    productBrandDetails:product.productBrandDetails
 
   });
   const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
       {
-        getProductBrandDetails
+        getProductBrandDetails,
+        addBrandProductList
       },
       dispatch
     );
