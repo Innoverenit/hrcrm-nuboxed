@@ -27,11 +27,11 @@ const sub_url = "https://crm.celltechnologies.nl/Assessment-0.0.1-SNAPSHOT";
 // const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
 //TestHr//hrweb( dkorekologo)
-// const login_url = "https://develop.tekorero.com/testHr";
-// const base_url = "https://develop.tekorero.com/testHr/api/v1";
-// const base_url2 = "https://develop.tekorero.com/testErp";
-// const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
-// const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
+const login_url = "https://develop.tekorero.com/testHr";
+const base_url = "https://develop.tekorero.com/testHr/api/v1";
+const base_url2 = "https://develop.tekorero.com/testErp";
+const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
+const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
 // KAPSSN
 //  const login_url = "http://HrApp-env.eba-spcpp7ag.ap-south-1.elasticbeanstalk.com";
