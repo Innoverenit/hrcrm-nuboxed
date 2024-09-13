@@ -8,7 +8,7 @@ import {
   getJumpBulblist3, getavgHour, getJumpTasklist, getTasklist, getJumpTask2list
 } from "../../DashboardAction";
 import FactCheckIcon from '@mui/icons-material/FactCheck';
-
+import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 
 // class DashboardTaskOrganizationJumpstart extends React.Component {
 //   constructor() {
@@ -250,7 +250,7 @@ const DashboardTaskOrganizationJumpstart = (props) => {
                        <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-green-600">< FactCheckIcon/></div>
+                                   <div class="rounded-full p-2 bg-green-600">< FactCheckIcon className=" text-white"/></div>
                                </div>
                                <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
@@ -268,7 +268,7 @@ const DashboardTaskOrganizationJumpstart = (props) => {
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-pink-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-pink-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-2 bg-pink-600">< FactCheckIcon className=" text-white"/></div>
                                </div>
                                <JumpStartBox
               bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
@@ -286,7 +286,7 @@ const DashboardTaskOrganizationJumpstart = (props) => {
                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-yellow-600">< FactCheckIcon/></div>
+                                   <div class="rounded-full p-2 bg-yellow-600">< FactCheckIcon className=" text-white"/></div>
                                </div>
                                <JumpStartBox
               bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
@@ -304,7 +304,7 @@ const DashboardTaskOrganizationJumpstart = (props) => {
                        <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-blue-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-blue-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-2 bg-blue-600"><EventRepeatIcon className='text-white'/></div>
                                </div>
                                <JumpStartBox
               bgColor="linear-gradient(270deg,#5786ea,#20dbde)"

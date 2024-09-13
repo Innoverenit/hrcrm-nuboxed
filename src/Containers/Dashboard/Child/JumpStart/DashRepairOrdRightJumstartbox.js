@@ -119,8 +119,8 @@ function DashRepairOrdRightJumstartbox (props) {
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-            //   title= {translatedMenuItems[0]}
-            title="Order Packed"
+              title= {translatedMenuItems[0]}
+            // title="Order Packed"
               jumpstartClick={()=> handleClick("Packed")}
               cursorData={"pointer"}
               value={props.orderinDashboard.totalOrder}
@@ -140,8 +140,8 @@ function DashRepairOrdRightJumstartbox (props) {
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-            //   title= {translatedMenuItems[1]} 
-              title="Estimate Submitted"
+              title= {translatedMenuItems[1]} 
+              // title="Estimate Submitted"
             jumpstartClick={()=> handleClick("Dispatched")}
               cursorData={"pointer"}
             // value={ props.orderinDashboard.pendingOrder}
@@ -162,8 +162,8 @@ function DashRepairOrdRightJumstartbox (props) {
                                <JumpStartBox
                 bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
-            //   title= {translatedMenuItems[2]}
-          title="Feedback"
+              title= {translatedMenuItems[2]}
+          // title="Feedback"
               jumpstartClick={()=> handleClick("Feedback")}
               cursorData={"pointer"}
             // value={props.orderinDashboard.completeOrder}

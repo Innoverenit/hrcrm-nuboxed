@@ -123,8 +123,8 @@ function DashRepairOrdrLeftJumstartbox(props) {
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-            //   title= {translatedMenuItems[0]}
-            title="Order Inward"
+              title= {translatedMenuItems[0]}
+            // title="Order Inward"
               jumpstartClick={()=> handleClick("Inward")}
               cursorData={"pointer"}
               value={props.orderinDashboard.totalOrder}
@@ -144,8 +144,8 @@ function DashRepairOrdrLeftJumstartbox(props) {
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-            //   title= {translatedMenuItems[1]} 
-              title="Estimate Submitted"
+              title= {translatedMenuItems[1]} 
+              // title="Estimate Submitted"
             jumpstartClick={()=> handleClick("Submitted")}
               cursorData={"pointer"}
             // value={ props.orderinDashboard.pendingOrder}
@@ -166,8 +166,8 @@ function DashRepairOrdrLeftJumstartbox(props) {
                                <JumpStartBox
                 bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
-            //   title= {translatedMenuItems[2]}
-          title="Qc Approved"
+              title= {translatedMenuItems[2]}
+          // title="Qc Approved"
               jumpstartClick={()=> handleClick("QcApproved")}
               cursorData={"pointer"}
             // value={props.orderinDashboard.completeOrder}
@@ -188,8 +188,8 @@ function DashRepairOrdrLeftJumstartbox(props) {
                               <JumpStartBox
                              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                               noProgress
-                            //   title= {translatedMenuItems[3]} 
-                            title="Repair Approved"
+                              title= {translatedMenuItems[3]} 
+                            // title="Repair Approved"
                               jumpstartClick={()=> handleClick("RepairApproved")}
                               cursorData={"pointer"}
                               value={props.orderinDashboard.cancelOrder}
