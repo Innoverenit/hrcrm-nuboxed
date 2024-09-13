@@ -8,7 +8,6 @@ import PaidIcon from '@mui/icons-material/Paid';
 import { DeleteOutlined } from "@ant-design/icons";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import InfiniteScroll from "react-infinite-scroll-component";
 import { handleOrderDetailsModal, handleLeadModal,
  
    } from "../Account/AccountAction";

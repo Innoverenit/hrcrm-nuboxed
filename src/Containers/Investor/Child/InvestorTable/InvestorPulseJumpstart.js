@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import CustomerPieChart from "../../../Dashboard/Child/JumpStart/CustomerPieChart"
  import {
   getInvestorWeightedValue,
   handleInvestorActivityJumpstartModal,
@@ -68,16 +71,19 @@ render() {
   } = this.props;
   return(
     <>
+    <div class="flex">
+    <div className="w-1/2">
         <div class=" text-base flex  font-bold justify-center text-[blue]">Current</div>
     <div class=" flex flex-row w-full" >
     
-    <div class="flex w-full" >
+    <div class="flex flex-wrap w-full" >
     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                 <div class="rounded-full p-1 bg-green-600">
+                                  <CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
                              </div>
                              <JumpStartBox
             noProgress
@@ -106,7 +112,7 @@ render() {
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-1 bg-pink-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
                                </div>
                                <JumpStartBox
             noProgress
@@ -137,7 +143,7 @@ render() {
                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-1 bg-yellow-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
                                </div>
                                <JumpStartBox
             bgColor="#35CD7A"
@@ -164,12 +170,12 @@ render() {
                      
                    </div>  
                    
-                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                   <div class="w-full md:w-1/2 xl:w-1/3 p-2 mt-2">
                       
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center">
                               <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                                  <div class="rounded-full p-1 bg-blue-600"><i class="fab fa-connectdevelop text-[#FFFF] !text-3xl"></i> </div>
                               </div>
                               <JumpStartBox
         noProgress
@@ -197,12 +203,12 @@ render() {
                      
                   </div>
        
-                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                  <div class="w-full md:w-1/2 xl:w-1/3 p-2 mt-2">
                       
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center">
                               <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                                  <div class="rounded-full p-1 bg-blue-600"><ContactsIcon className="!text-3xl text-[#FFFF]"/></div>
                               </div>
                               <JumpStartBox
            bgColor="linear-gradient(270deg,black,grey)"
@@ -226,15 +232,15 @@ render() {
                   </div>
          </div>
       </div>
-      <div class=" text-base justify-center flex font-bold  text-[blue]">Past</div>
+      <div class=" text-base justify-center flex font-bold mt-8 text-[blue]">Past</div>
         <div class=" flex flex-row w-full mt-4" >
-        <div class="flex w-full" >
+        <div class="flex w-full flex-wrap" >
         <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                 <div class="rounded-full p-1 bg-green-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
                              </div>
                              <JumpStartBox
              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
@@ -262,7 +268,7 @@ render() {
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-1 bg-pink-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
                                </div>
                                <JumpStartBox
                bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
@@ -290,7 +296,7 @@ render() {
                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-1 bg-yellow-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
                                </div>
                                <JumpStartBox
                bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
@@ -315,8 +321,17 @@ render() {
                    </div>  
            
             </div>
+          </div>        
           </div>
 
+          <div class=" mt-1 flex flex-col w-1/2 h-[83vh] items-center" > 
+      <div className="font-bold font-poppins  text-lg">Deals</div>
+        <CustomerPieChart/>
+       
+        <div className="font-bold font-poppins text-lg">Activity</div>
+        <CustomerPieChart/>
+        </div> 
+        </div>
           <AddInvestorActivityJumpstartModal
        RowData={this.props.RowData}
        addInvestorActivityJumpstartModal={addInvestorActivityJumpstartModal}

@@ -1,5 +1,4 @@
 import React, {useEffect,useState} from "react";
-import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import {getPaymentClik,
@@ -11,15 +10,15 @@ import { bindActionCreators } from "redux";
 import { JumpStartBox, } from "../../../../../Components/UI/Elements";
 import axios from 'axios';
 import {base_url2} from "../../../../../Config/Auth";
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 function AccountContactJumpstartBox (props) {
   const today = new Date();
   const formattedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-
   const [date, setDate] = useState(formattedDate);
   const [startDate, setStartDate] = useState(dayjs().startOf("month"));
   const [endDate, setEndDate] = useState(dayjs());
-  // const { startDate, endDate } = props;
+
   const [error, setError] = useState(null);
  
   const [data1, setData1] = useState({});
@@ -146,7 +145,16 @@ useEffect(()=>{
       <>
        <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
-        <div class="flex w-wk">
+        <div class="flex  w-wk">
+
+
+
+        <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+        <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-1 bg-green-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                             </div>  
         <JumpStartBox
                        bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
             noProgress
@@ -156,6 +164,16 @@ useEffect(()=>{
             value={ props.loginCount.count}
             isLoading={props.fetchingLoginCount}
           />
+</div>
+</div>
+
+</div>
+<div class="w-full md:w-1/2 xl:w-1/3 p-2">
+<div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-1 bg-pink-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                             </div>  
            <JumpStartBox
                        bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
             noProgress
@@ -165,6 +183,14 @@ useEffect(()=>{
             value={props.quatationClick.count}
             isLoading={props.fetchingQuatationClick}
           />
+          </div>
+          </div>
+</div>
+          <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-1 bg-yellow-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                             </div>  
           <JumpStartBox
             noProgress
             bgColor="linear-gradient(270deg,#F15753,orange)"
@@ -174,10 +200,16 @@ useEffect(()=>{
             value={props.paymentclick.count}
             isLoading={props.fetchingPaymentClick}
           />
-
+</div>
+</div>
          
 </div>
 <div class="flex w-wk">
+<div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-1 bg-blue-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                             </div>  
 <JumpStartBox
                        bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
             noProgress
@@ -187,6 +219,14 @@ useEffect(()=>{
             value={ props.quatationShipping.count}
             isLoading={props.fetchingQuatationShipping}
           />
+          </div>
+          </div>
+
+          <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-1 bg-green-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                             </div>  
           <JumpStartBox
   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
             noProgress
@@ -197,7 +237,8 @@ useEffect(()=>{
             isLoading={props.fetchingQuatationCheckout}
           />
          
-         
+         </div>
+         </div>
           </div>
         </div>
       </div>
