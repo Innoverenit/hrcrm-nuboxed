@@ -209,7 +209,12 @@ function InvestorAllCardList(props) {
            
                 </div>
        
-       
+                {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
       </div>
         <InfiniteScroll
         dataLength={allInvestorsbyId.length}
@@ -378,6 +383,12 @@ function InvestorAllCardList(props) {
                    
                   
                                 </div>
+                                {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           {item.noteScoreInd}
+          
+            </div>
+            )}    
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                                 <div class="flex items-center justify-evenly w-wk">            
                                 <div >

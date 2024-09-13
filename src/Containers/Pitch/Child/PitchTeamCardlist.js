@@ -153,6 +153,12 @@ serachedPitchData={props.serachedPitchData}
         {translatedMenuItems[6]}
           {/* Owner */}
           </div>
+          {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
         <div className="text-xs font-bold font-poppins w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[7]}
         {/* Qualify */}
@@ -360,7 +366,13 @@ serachedPitchData={props.serachedPitchData}
                                                 </Tooltip>
                                                   </span>
                                                         </div>
-                                                              </div>           
+                                                              </div>     
+                                                              {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}      
                                           <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                                           <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                                                           
