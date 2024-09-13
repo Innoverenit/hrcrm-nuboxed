@@ -191,6 +191,12 @@ if (loading) {
         {translatedMenuItems[7]}
         {/* owner             */}
                 </div>
+                {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
         {/* <div className="w-12">Action</div> */}
 
       </div>
@@ -324,7 +330,13 @@ if (loading) {
       </div>
     </Tooltip>
              </div>   
-             </div>                    
+             </div>   
+             {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}                 
                   <div class=" flex justify-evenly items-center w-[7rem] max-sm:flex   max-sm:w-full">
                   <div>
      <Tooltip title="Pulse">

@@ -255,6 +255,12 @@ const handleLoadMore2 = () => {
         {translatedMenuItems[10]} 
            {/* qualify */}
                 </div>
+                {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
       </div>
       <InfiniteScroll
         dataLength={props.pitchDataHot.length}
@@ -492,7 +498,12 @@ const countryCode = item.countryAlpha2Code
                    </div>
                               
                                                      
-             
+                   {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           {item.noteScoreInd}
+          
+            </div>
+            )}
                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                    <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                                   {/* Qualif */}                                                      
@@ -671,6 +682,12 @@ const countryCode = item.countryAlpha2Code
         {translatedMenuItems[9]}       
         {/* owner */}
                 </div>
+                {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
         <div className="font-bold font-poppins text-xs w-[10.6rem] ml-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[10]} 
         {/* qualify */}
@@ -900,7 +917,12 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           </div>
                           
                           
-                                 
+                          {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}      
                           <div class="flex justify-between items-center max-sm:w-[50%] "> 
                   <div class="flex flex-col max-sm:justify-evenly max-sm:w-wk items-center">
                               <div>
@@ -1072,7 +1094,12 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         {translatedMenuItems[8]}  
           {/* Assigned */}
           </div>
-       
+          {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
         <div className="font-bold font-poppins text-xs w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[10]} 
         {/* qualify */}
@@ -1293,7 +1320,13 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
        
                               </div>
                           </div>
-                         </div>            
+                         </div>   
+                         {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}       
                          <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                          <div class="flex justify-between items-center max-sm:w-[50%] ">
                   <div>

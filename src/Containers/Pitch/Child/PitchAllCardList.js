@@ -150,7 +150,12 @@ serachedPitchData={props.serachedPitchData}
           {/* Assigned */}
         {translatedMenuItems[5]}
         </div>
-       
+        {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
         <div className="font-bold font-poppins text-xs w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[6]}
         {/* qualify */}
@@ -346,7 +351,12 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                               </div>
                           </div>
                           
-                          </div>                                                                     
+                          </div>   
+                          {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+            </div>
+            )}                                                                  
 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
 <div class="flex justify-between items-center max-sm:w-[50%] ">                       
 
