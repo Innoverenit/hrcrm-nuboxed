@@ -14,10 +14,9 @@ getOrderCancelList
 } from "../../DashboardAction";
 import OrdersClosedModal from "./OrdersClosedModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { base_url2 } from "../../../../Config/Auth";
-import axios from 'axios';
 import OrdersOpenDrawer from "./OrdersOpenDrawer";
-
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import CustomerPieChart from "./CustomerPieChart"
 function DashboardOrderJumpstart(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -109,6 +108,7 @@ function DashboardOrderJumpstart(props) {
 
   return (
     <>
+    <div className=" flex flex-col">
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
           
@@ -117,7 +117,7 @@ function DashboardOrderJumpstart(props) {
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                 <div class="rounded-full p-2 bg-green-600"><DynamicFeedIcon className="text-white"/></div>
                              </div>
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
@@ -138,7 +138,7 @@ function DashboardOrderJumpstart(props) {
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-2 bg-pink-600"><DynamicFeedIcon className="text-white"/></div>
                                </div>
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
@@ -159,7 +159,7 @@ function DashboardOrderJumpstart(props) {
                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-2 bg-yellow-600"><DynamicFeedIcon className="text-white"/></div>
                                </div>
                                <JumpStartBox
                 bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
@@ -181,7 +181,7 @@ function DashboardOrderJumpstart(props) {
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center">
                               <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                                  <div class="rounded-full p-2 bg-blue-600"><DynamicFeedIcon className="text-white"/></div>
                               </div>
                               <JumpStartBox
                              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
@@ -198,7 +198,17 @@ function DashboardOrderJumpstart(props) {
           </div>
           
         </div>
-      
+        <div class=" mt-1 flex flex-row justify-between" >
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Order Value</div>
+        <CustomerPieChart/>
+        </div>
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Order Volume</div>
+        <CustomerPieChart/>
+        </div>
+      </div>
+      </div>
         {/* <OrdersCancelModal
          selectedLanguage={props.selectedLanguage}
          translateText={props.translateText}

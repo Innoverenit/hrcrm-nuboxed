@@ -6,6 +6,8 @@ import { bindActionCreators } from "redux";
 import CustomerPieChart from "./CustomerPieChart"
 import { getJumpFinanceDetail } from "../../DashboardAction"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 
 function CustomerDashJumpstart(props) {
 
@@ -54,7 +56,7 @@ function CustomerDashJumpstart(props) {
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                 <div class="rounded-full p-2 bg-green-600"><AcUnitIcon/></div>
                              </div>
                              <JumpStartBox
             bgColor="linear-gradient(270deg,#F15753,orange)"
@@ -102,7 +104,7 @@ function CustomerDashJumpstart(props) {
                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-blue-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-blue-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                 <div class="rounded-full p-2 bg-blue-600"><DynamicFeedIcon/></div>
                              </div>
                              <JumpStartBox
             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
@@ -122,9 +124,16 @@ function CustomerDashJumpstart(props) {
       </div>
 
   
-    <div class=" mt-1" >
+      <div class=" mt-1 flex flex-row justify-between" >
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Sector</div>
         <CustomerPieChart/>
         </div>
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Source</div>
+        <CustomerPieChart/>
+        </div>
+      </div>
         </div>
 
 

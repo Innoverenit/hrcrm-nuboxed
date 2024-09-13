@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
 const FunnelChartCustomer = lazy(()=>import("../Child/FunnelChartCustomer"));
 
 const TabPane = StyledTabs.TabPane;
@@ -47,37 +46,21 @@ class FunnelTab extends Component {
     return (
       <>
         <TabsWrapper style={{height:"44vh", width:"-webkit-fill-available"}}>
-          <StyledTabs
-            defaultActiveKey="1"
-            onChange={this.handleTabChange}
-            forceRender={true}
-          >
-            <TabPane
-              tab={
-                <>
-                  <ListAltIcon style={{fontSize:"1.1rem"}}/>
-                  <span class=" ml-1">
-                  <FormattedMessage
-              id="app.funnel"
-              defaultMessage="Funnel"
-            />
-                    </span>
+        
+              <div>
+              <ListAltIcon className="!text-icon"/><span class=" ml-1 font-bold font-poppins text-base  ">Funnel</span>
 
                 
-                </>
-              }
-              key="1"
-            >
               <Suspense fallback={"Loading ..."}>
                 {" "}
                <FunnelChartCustomer/>
               </Suspense>
-            </TabPane>
+           
 
 
-       
+            </div>    
         
-          </StyledTabs>
+        
         </TabsWrapper>
         <Suspense fallback={null}></Suspense>
       </>

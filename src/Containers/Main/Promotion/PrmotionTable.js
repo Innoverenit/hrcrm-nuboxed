@@ -136,7 +136,7 @@
 //                       <div className=" flex  flex-row md:w-[14.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-//                         <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+//                         <div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 //                           {item.promoCodeName}
 //                         </div>
 
@@ -147,7 +147,7 @@
 //                       <div className=" flex  flex-row md:w-[17.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-// <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+// <div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 //   {item.promoCode}
 // </div>
 
@@ -158,7 +158,7 @@
 // <div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-// <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+// <div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 //   {item.discountValue}%
 // </div>
 
@@ -169,7 +169,7 @@
 // <div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-// <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+// <div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 //   {date}
 // </div>
 
@@ -180,7 +180,7 @@
 // <div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-// <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+// <div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 //   {sdate}
 // </div>
 
@@ -191,7 +191,7 @@
 // <div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-// <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+// <div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 //   {edate}
 // </div>
 
@@ -204,7 +204,7 @@
 
 //                     <div className=" flex  flex-row md:w-[11.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
-//                       <div class=" font-normal text-[0.82rem]  font-poppins">
+//                       <div class=" font-normal text-xs  font-poppins">
 //                       <PrmotionProductionToggle
 //                           promoCodeId={item.promoCodeId}
 //                           productInd={item.productInd}
@@ -222,7 +222,7 @@
 //                     <div className=" flex  flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
-// <div class=" font-normal text-[0.82rem]  font-poppins">
+// <div class=" font-normal text-xs  font-poppins">
 //    <PrmotionMaterialToggle
 //                           promoCodeId={item.promoCodeId}
 //                           materialInd={item.materialInd}
@@ -232,7 +232,7 @@
 //                     <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
-//                       <div class=" font-normal text-[0.82rem]  font-poppins">
+//                       <div class=" font-normal text-xs  font-poppins">
                     
 //                          <PrmotionSupplierInventoryToggle
 //                           promoCodeId={item.promoCodeId}
@@ -243,7 +243,7 @@
 //                     <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
-// <div class=" font-normal text-[0.82rem]  font-poppins">
+// <div class=" font-normal text-xs  font-poppins">
 //                        <PrmotionDiscountToggle
 //                           promoCodeId={item.promoCodeId}
 //                           discountType={item.discountType}
@@ -329,12 +329,12 @@ const PrmotionTable = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-        "",  // Column name,//0
-        "" , //"Filter value"//1
-         "", //  Apply Filter,//2
+        "1555",  // Column name,//0
+        "1556" , //"Filter value"//1
+         "1557", //  Apply Filter,//2
          "110", //  Name,//3
-        "" , //  Code,//4
-          "",//  Discount In %//5
+        "1558" , //  Code,//4
+          "1559",//  Discount In %//5
          "289", //   Creation Date,//6
            "176",   //  Start Date7
            "126" ,  //    End Date8
@@ -342,7 +342,7 @@ const PrmotionTable = (props) => {
              "796",   //  Material10
              "1083",   //  Supplier11
            "880" ,//  Inventory12
-             "",  //  Discount Type13
+             "1560",  //  Discount Type13
              "170",  //  "Edit"14
 
         ];
@@ -432,7 +432,7 @@ const PrmotionTable = (props) => {
           </div>
         </div>
 
-        <div className="flex justify-between w-full p-1 bg-transparent font-bold sticky z-10">
+        <div className="flex justify-between w-full p-1 bg-transparent font-bold text-xs font-poppins sticky z-10">
           <div className="md:w-[7.5rem] relative group">
             <span
               onClick={() => handleSort('promoCodeName')}
@@ -492,7 +492,7 @@ const PrmotionTable = (props) => {
                   <div className=" flex  flex-row md:w-[14.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                    <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+                    <div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
                       {item.promoCodeName}
                     </div>
 
@@ -503,7 +503,7 @@ const PrmotionTable = (props) => {
                   <div className=" flex  flex-row md:w-[17.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-<div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+<div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 {item.promoCode}
 </div>
 
@@ -514,7 +514,7 @@ const PrmotionTable = (props) => {
 <div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-<div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+<div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 {item.discountValue}%
 </div>
 
@@ -525,7 +525,7 @@ const PrmotionTable = (props) => {
 <div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-<div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+<div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 {date}
 </div>
 
@@ -536,7 +536,7 @@ const PrmotionTable = (props) => {
 <div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-<div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+<div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 {sdate}
 </div>
 
@@ -547,7 +547,7 @@ const PrmotionTable = (props) => {
 <div className=" flex  flex-row md:w-[8.12rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-<div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+<div class=" font-normal text-xs font-poppins md:w-[10.1rem]">
 {edate}
 </div>
 
@@ -560,7 +560,7 @@ const PrmotionTable = (props) => {
 
                 <div className=" flex  flex-row md:w-[11.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
-                  <div class=" font-normal text-[0.82rem]  font-poppins">
+                  <div class=" font-normal text-xs  font-poppins">
                   <PrmotionProductionToggle
                       promoCodeId={item.promoCodeId}
                       productInd={item.productInd}
@@ -578,7 +578,7 @@ const PrmotionTable = (props) => {
                 <div className=" flex  flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
-<div class=" font-normal text-[0.82rem]  font-poppins">
+<div class=" font-normal text-xs  font-poppins">
 <PrmotionMaterialToggle
                       promoCodeId={item.promoCodeId}
                       materialInd={item.materialInd}
@@ -588,7 +588,7 @@ const PrmotionTable = (props) => {
                 <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
-                  <div class=" font-normal text-[0.82rem]  font-poppins">
+                  <div class=" font-normal text-xs  font-poppins">
                 
                      <PrmotionSupplierInventoryToggle
                       promoCodeId={item.promoCodeId}
@@ -599,7 +599,7 @@ const PrmotionTable = (props) => {
                 <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
 
-<div class=" font-normal text-[0.82rem]  font-poppins">
+<div class=" font-normal text-xs  font-poppins">
                    <PrmotionDiscountToggle
                       promoCodeId={item.promoCodeId}
                       discountType={item.discountType}

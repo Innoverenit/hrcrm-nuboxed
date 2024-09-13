@@ -12,10 +12,9 @@ getOrderOpenList,
 getOrderClosedList,
 getOrderCancelList
 } from "../../DashboardAction";
+import CustomerPieChart from "./CustomerPieChart"
 import OrdersClosedModal from "./OrdersClosedModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { base_url2 } from "../../../../Config/Auth";
-import axios from 'axios';
 import OrdersOpenDrawer from "./OrdersOpenDrawer";
 
 function DashboardProcureJumpstartOrg(props) {
@@ -109,6 +108,7 @@ function DashboardProcureJumpstartOrg(props) {
 
   return (
     <>
+    <div className=" flex flex-col">
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
           
@@ -197,7 +197,17 @@ function DashboardProcureJumpstartOrg(props) {
           </div>
           
         </div>
-      
+        <div class=" mt-1 flex flex-row justify-between" >
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Order Value</div>
+        <CustomerPieChart/>
+        </div>
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Order Volume</div>
+        <CustomerPieChart/>
+        </div>
+      </div>
+      </div>
         {/* <OrdersCancelModal
          selectedLanguage={props.selectedLanguage}
          translateText={props.translateText}

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
+import CustomerPieChart from "./CustomerPieChart"
 import {getJumpDistributorDetail,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
   handleOrderClosedModal,getCustomerAddedList,getContactAddedList,getOrderAddedList,
@@ -18,6 +19,9 @@ import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 import axios from 'axios';
 import {base_url} from "../../../../Config/Auth";
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import ContactsIcon from '@mui/icons-material/Contacts';
 
 function ProspectDashboardJumpStart (props) {
   
@@ -89,7 +93,7 @@ function ProspectDashboardJumpStart (props) {
         '1536', // 0 "Prospect Added"
         '1297', // 1 "Contacts Added"
         '1537', // 2 "Quotation Added"
-        '1298'  // 3 "Quotation Won"
+        '1496'  // 3 "Quotation Won"
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -153,13 +157,14 @@ function ProspectDashboardJumpStart (props) {
 
   return(
     <>
+    <div class=" flex flex-col">
     <div className="flex flex-row w-full">
         <div className="flex w-full max-sm:flex-col">
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-green-600"><i className="fa fa-wallet fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-green-600"><ApartmentIcon/></div>
                 </div>
                 <JumpStartBox
                   noProgress
@@ -176,7 +181,7 @@ function ProspectDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-pink-600"><i className="fas fa-users fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-pink-600"><ContactsIcon/></div>
                 </div>
                 <JumpStartBox
                   noProgress
@@ -192,7 +197,7 @@ function ProspectDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-yellow-600"><i className="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-yellow-600"><LightbulbIcon/></div>
                 </div>
                 <JumpStartBox
                   noProgress
@@ -209,7 +214,7 @@ function ProspectDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-blue-600"><i className="fas fa-server fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-blue-600"><LightbulbIcon/></div>
                 </div>
                 <JumpStartBox
                   noProgress
@@ -224,7 +229,17 @@ function ProspectDashboardJumpStart (props) {
           </div>
         </div>
       </div>
-
+      <div class=" mt-1 flex flex-row justify-between items-center" >
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Sector</div>
+        <CustomerPieChart/>
+        </div>
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Source</div>
+        <CustomerPieChart/>
+        </div>
+      </div>
+      </div>
 <CustomerJumpStartDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}

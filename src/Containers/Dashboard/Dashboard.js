@@ -363,11 +363,13 @@ class Dashboard extends Component {
           <StackedClosureChartAll
           selectedLanguage={this.props.selectedLanguage}
           translateText={this.props.translateText}/>) */}
-        {this.state.activeButton==="Order" ?(
-          <OrdersDashTab
-          selectedLanguage={this.props.selectedLanguage}
-          translateText={this.props.translateText}/>)
-          :this.state.activeButton==="Finance" ?(
+        {
+        // this.state.activeButton==="Order" ?(
+        //   <OrdersDashTab
+        //   selectedLanguage={this.props.selectedLanguage}
+        //   translateText={this.props.translateText}/>)
+          // :
+          this.state.activeButton==="Finance" ?(
             <FinanceDashTab
             selectedLanguage={this.props.selectedLanguage}
             translateText={this.props.translateText}/>)
