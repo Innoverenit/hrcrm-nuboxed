@@ -81,7 +81,7 @@ function CustomerAllCardList(props) {
    "248",// 'Customer', // 8
        "100",   // new 9
     "1300" , //  Change status to Customer?"10
-    "99" ,  // "Opportunity"11
+    "213" ,  // "Opportunity"11
     "392" ,  // Pulse 12
     "316" ,  // "Notes"13
     "170" ,  // "Edit" 14
@@ -252,6 +252,12 @@ const [rowdata, setrowdata] = useState("");
             {translatedMenuItems[8]}
              {/* customer */}
             </div>
+            {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
             <div className="w-[3.8rem]"></div>
             </div>
       </div>
@@ -422,7 +428,12 @@ const [rowdata, setrowdata] = useState("");
      </Tooltip>
         
                                 </div>
-                            
+                                {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            Score
+          
+            </div>
+            )}
                       
                       <div className=" flex  justify-center w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
@@ -435,7 +446,9 @@ const [rowdata, setrowdata] = useState("");
                         >
                           {user.erpInd === true && (
                             <Button type="primary"
-                              style={{ width: "8rem" }}>
+                            style={{ width: "6.5rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                           
+                            >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
                               {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}

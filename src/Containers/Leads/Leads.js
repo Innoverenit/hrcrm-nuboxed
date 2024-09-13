@@ -16,7 +16,7 @@ class Leads extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      viewType: 'card', // Default viewType
+      viewType: null, // Default viewType
       teamsAccessInd: props.teamsAccessInd ,// Default UerInd
       currentData: "",currentUser:"", 
     };

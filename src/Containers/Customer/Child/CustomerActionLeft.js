@@ -380,7 +380,7 @@ const CustomerActionLeft = (props) => {
             <span>
                {translatedMenuItems[5]}{/* Sort by Creation Date */}
             </span>
-          } onChange={(e) => props.handleFilterChange(e)}>
+          } value={props.filter} onChange={(e) => props.handleFilterChange(e)}>
             <Option value="CreationDate"> {translatedMenuItems[6]}</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>

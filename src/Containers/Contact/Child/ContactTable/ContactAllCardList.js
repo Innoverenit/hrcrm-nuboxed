@@ -181,6 +181,12 @@ if (loading) {
         {translatedMenuItems[6]}</div>
         <div className="font-bold font-poppins text-xs w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
         {translatedMenuItems[7]}</div>
+        {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
         <div className="w-[4.2rem]"></div>
 
       </div>
@@ -294,6 +300,12 @@ if (loading) {
 
                               </div>
                           </div>
+                          {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            Score
+          
+            </div>
+            )}
                           <div className="flex  w-[5.1rem]  max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                           
                               <div class="text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">

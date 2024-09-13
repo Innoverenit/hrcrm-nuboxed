@@ -98,7 +98,7 @@ function CustomerCardList(props) {
    "248",// 'Customer', // 7
     "100",   // new 8
     "1300" , //  Change status to Customer?"9
-    "99" ,  // "Opportunity"10
+    "213" ,  // "Opportunity"10
     "392" ,  // Pulse 11
     "316" ,  // "Notes"12
     "170" ,  // "Edit" 13
@@ -353,6 +353,12 @@ if (loading) {
               {/* Customer" */}
           
             </div>
+            {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
             </div>
            
 
@@ -540,7 +546,12 @@ if (loading) {
 
                         </div>
                       </div>
-                     
+                      {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            Score
+          
+            </div>
+            )}
               
                       <div className=" flex  justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
@@ -553,7 +564,7 @@ if (loading) {
                         >
                           {user.erpInd === true && (
                             <Button type="primary"
-                              style={{ width: "8rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}>
+                              style={{ width: "8rem", background: item.convertInd === 1 ? "tomato" :"linear-gradient(to right, #2BBCCF, #38C98D)" }}>
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
                                 {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}
@@ -741,6 +752,9 @@ if (loading) {
         addDrawerCustomerOpportunityModal={addDrawerCustomerOpportunityModal}
         handleCustomerOpportunityDrawerModal={handleCustomerOpportunityDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <AddCustomerEmailDrawerModal
         // contactById={props.contactById}

@@ -45,7 +45,7 @@ function Identifier(props) {
           productCode: props.identifiers.productCode === "barcode" ? true : false,
           repairCode: props.identifiers.repairCode === "barcode" ? true : false,
           userCode: props.identifiers.userCode === "barcode" ? true : false,
-
+          aiInd: props.identifiers.aiInd, 
         }}
         validationSchema={GeneralSchema}
         onSubmit={(values) => {
@@ -244,6 +244,19 @@ function Identifier(props) {
                                 setFieldValue("userCode", checked ? "barcode" : "qrcode");
                               }}
                             />
+                              </div>
+                          </div>
+                          <div class=" flex  justify-between mt-2">
+                          <div class=" text-xs  ">Enable AI</div>
+                          <div>
+                             <Field
+                          name="aiInd"
+                          component={SwitchComponent}
+                          data={values.aiInd}
+                          checkedChildren={"Yes"}
+                          unCheckedChildren={"No"}
+                          width={"7em"}
+                        />
                               </div>
                           </div>
                     </div>

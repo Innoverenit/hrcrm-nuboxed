@@ -46,30 +46,26 @@ class UpdateCustomerContactForm extends Component {
     this.fetchMenuTranslations();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
-  }
+ 
 
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
         
-"First Name",//0
-"Middle Name",//1
-"Last Name",//2
-   "Dial Code"  ,//3   
-   "Mobile",//4
-   "Phone No",//5
-   "Whatsapp",//6
-   "Email",//7
-   "Linkedin",//8
-   "Tag Company",//9
-   "Designation",//10
-   "Department",//11
-   "Notes",//12
-   "Create"//13
+"295",//0
+"353",//1
+"354",//2
+   "357"  ,//3   
+   "546",//4
+   "300",//5
+   "1157",//6
+   "140",//7
+   "547",//8
+   "361",//9
+   "325",//10
+   "326",//11
+   "316",//12
+   "104"//13
 
       ];
 
@@ -174,22 +170,22 @@ class UpdateCustomerContactForm extends Component {
             email:this.props.setEditingCustomerContact.email || "",
             emailId: this.props.setEditingCustomerContact.emailId || "",
             linkedinPublicUrl:  this.props.setEditingCustomerContact.linkedinPublicUrl || "",
-            address: [
-              {
-                addressId: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].addressId : "",
-                addressType: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].addressType : "",
-                address1:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].address1 : "",
-                address2:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].address2 : "",
-                town: "",
-                street: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].street : "",
-                city: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].city : "",
-                postalCode: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].postalCode : "",
-                state:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].state : "",
-                country: this.props.setEditingCustomerContact.countryName,
-                latitude: "",
-                longitude: "",
-              },
-            ],
+            // address: [
+            //   {
+            //     addressId: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].addressId : "",
+            //     addressType: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].addressType : "",
+            //     address1:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].address1 : "",
+            //     address2:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].address2 : "",
+            //     town: "",
+            //     street: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].street : "",
+            //     city: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].city : "",
+            //     postalCode: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].postalCode : "",
+            //     state:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].state : "",
+            //     country: this.props.setEditingCustomerContact.countryName,
+            //     latitude: "",
+            //     longitude: "",
+            //   },
+            // ],
             notes:this.props.setEditingCustomerContact.notes || "",
           }}
           validationSchema={UpdateCustomerContactSchema}
@@ -419,7 +415,7 @@ class UpdateCustomerContactForm extends Component {
                   <div class=" h-full w-[47.5%]"
                 >                
                    
-                    <FieldArray
+                    {/* <FieldArray
                     name="address"
                     label="Address"
                     render={(arrayHelpers) => (
@@ -428,7 +424,7 @@ class UpdateCustomerContactForm extends Component {
                         values={values}
                       />
                     )}
-                  />
+                  /> */}
                   <div class=" mt-3">          
                     <Field
                       name="notes"
