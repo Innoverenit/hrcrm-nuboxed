@@ -2451,3 +2451,36 @@ export const getProductBrandDetails = (brandId,) => (dispatch) => {
       });
     });
 };
+
+
+export const addBrandProductList = (data, productBrandId, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.ADD_BRAND_PRODUCT_LIST_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url2}/product/deleteBrand/${productBrandId}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+    
+      // message.success("Document has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.ADD_BRAND_PRODUCT_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_BRAND_PRODUCT_LIST_FAILURE,
+      });
+    });
+};

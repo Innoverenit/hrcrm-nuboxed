@@ -62,7 +62,7 @@ const initialState = {
 
     fetchingBrandProductList:false,
     fetchingBrandProductListError:false,
-    brandProductListData:{},
+    brandProductListData:[],
 
     updateSuppliesDrawer: false,
 

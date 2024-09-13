@@ -220,6 +220,10 @@ const initialState = {
   fetchingProductHistoryError: false,
   productsHistory: [],
 
+
+  addingBrandProductList:false,
+  addingBrandProductListError:false,
+
   deletingProductData: false,
   deletingProductDataError: false,
 
@@ -488,6 +492,30 @@ export const productReducer = (state = initialState, action) => {
         updateServiceById: false,
         updateServiceByIdError: true,
       };
+
+
+
+
+      case types.ADD_BRAND_PRODUCT_LIST_REQUEST:
+        return { ...state, addingBrandProductList: true };
+      case types.ADD_BRAND_PRODUCT_LIST_SUCCESS:
+        // return { ...state, updatingDocuments: false, Documents: [...state.Documents, action.payload] };
+        return {
+          ...state,
+          addingBrandProductList: false,
+          // brandProduct: state.brandProduct.map((document) =>
+          //   document.brand === action.payload.brand
+          //     ? action.payload
+          //     : document
+          // ),
+        };
+      case types.ADD_BRAND_PRODUCT_LIST_FAILURE:
+        return {
+          ...state,
+          addingBrandProductList: false,
+          addingBrandProductListError: true,
+        };
+
 
 
       case types.EMPTY_PRODUCT_LIST:
