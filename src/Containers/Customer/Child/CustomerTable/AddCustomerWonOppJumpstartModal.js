@@ -3,7 +3,6 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import CustrOpenOpportunityJumpstartCardList from "./CustrOpenOpportunityJumpstartCardList";
 import CustrWonOpportunityJumpstartCardList from "./CustrWonOpportunityJumpstartCardList";
 
 class AddCustomerWonOppJumpstartModal extends Component {
@@ -24,6 +23,9 @@ class AddCustomerWonOppJumpstartModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
             <CustrWonOpportunityJumpstartCardList 
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}
           customer={this.props.customer} 
            
             />
