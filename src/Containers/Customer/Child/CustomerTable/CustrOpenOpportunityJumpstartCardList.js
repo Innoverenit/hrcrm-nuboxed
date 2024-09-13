@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import { Tooltip, Menu, Dropdown, Progress } from "antd";
-import { CurrencySymbol } from "../../../../Components/Common";
+import { Tooltip,} from "antd";
 import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import LockIcon from "@mui/icons-material/Lock";
-import { DeleteOutlined } from "@ant-design/icons";
-import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
 import {getOpenOppListOfJumpstart} from "../../CustomerAction"
-
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
@@ -27,10 +17,36 @@ function CustrOpenOpportunityJumpstartCardList(props) {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     props.getOpenOppListOfJumpstart(props.customer.customerId,);
     // setPage(page + 1);
   }, []);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "213",//0 Quotation ID 
+          "216",//1 Sponsor
+          "176",//2 Start Date
+          "218",//3 value
+          "76",//4 Assigned
+          "77",//5 Owner  
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
     const [currentOpportunityId, setCurrentOpportunityId] = useState("");
     function handleSetCurrentOpportunityId(opportunityId,opportunityName) {
       setCurrentOpportunityId(opportunityId,opportunityName);
@@ -54,15 +70,21 @@ function CustrOpenOpportunityJumpstartCardList(props) {
 
       return (    
   <>
+  <div class="flex flex-wrap w-1/2">
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden  w-[100%]  max-xl:w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[31.8rem] max-lg:w-[29.8rem]">Quotation ID</div>
-        <div className=" w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.2rem] max-lg:w-[11.2rem]">Sponsor</div>
-        <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
-        <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.3rem]">Value</div>
-        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.1rem]">Sales Rep</div>
-        <div className="w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem]">Owner</div>
-    
+        <div className="text-xs font-bold font-poppins  w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[31.8rem] max-lg:w-[29.8rem]">{translatedMenuItems[0]} ID</div>
+        {/* Quotation ID  */}
+        <div className="text-xs font-bold font-poppins  w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.2rem] max-lg:w-[11.2rem]">{translatedMenuItems[1]}</div>
+        {/* Sponsor */}
+        <div className="text-xs font-bold font-poppins  w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[2]}</div>
+        {/* Start Date */}
+        <div className="text-xs font-bold font-poppins  w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.3rem]">{translatedMenuItems[3]}</div>
+        {/* Value */}
+        <div className="text-xs font-bold font-poppins  w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.1rem]">{translatedMenuItems[4]}</div>
+        {/* Assigned */}
+        <div className="text-xs font-bold font-poppins  w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem]">{translatedMenuItems[5]}</div>
+        {/* Owner */}
         <div className="w-12"></div>
       </div>
  
@@ -166,43 +188,7 @@ function CustrOpenOpportunityJumpstartCardList(props) {
 
                                     </div>
                                 </div>
-                                
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
-
-                                    {/* <div class=" text-sm  font-poppins text-center">
-                                    <Dropdown
-              overlay={
-                <div>
-                  <Menu mode="horizontal">
-                    <Menu.Item
-                      style={{
-                        paddingLeft: 5,
-                        paddingRight: 5,
-                        backgroundColor: "#F5F5F5",
-                      }}
-                    >
-                      
-                    </Menu.Item>
-                  </Menu>
-                </div>
-              }
-              trigger={["click"]}
-            >
-              <Tooltip title={item.stageName}>
-                {" "}
-                <Progress
-                  type="circle"
-                  className=" !text-base cursor-pointer text-[red]"
-                 
-                  percent={findProbability}
-                  width={30}
-                  strokeColor={"#005075"}
-                />
-              </Tooltip>
-            </Dropdown>
-
-                                    </div> */}
-                              
+                                                                                           
                                 <div className=" flex font-medium flex-col w-32 max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
@@ -250,7 +236,7 @@ function CustrOpenOpportunityJumpstartCardList(props) {
       </div>
 
    
-
+</div>
 
     </>
   );

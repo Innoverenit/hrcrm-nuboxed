@@ -696,6 +696,9 @@ const [rowdata, setrowdata] = useState("");
         addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}
         handleCustomerNotesDrawerModal={handleCustomerNotesDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );
