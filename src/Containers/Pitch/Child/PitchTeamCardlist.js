@@ -21,10 +21,8 @@ import {
   updateTypeForPitch,
   handleAssimodal,
   handleAddresspitchModal
-} from "../PitchAction";
-import AddchartIcon from '@mui/icons-material/Addchart';  
+} from "../PitchAction"; 
 import { Button, Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -53,7 +51,8 @@ const PitchTeamCardList = (props) => {
           "277",//2 Company
           "279",//3 source
           "278",//4 sector
-          "76",//5 Assigned       
+          "76",//5 Assigned  
+           "77",//Owner     
           "1114",//6 qualify
           "271" , // 7 Hot
           "272",  // 8Warm
@@ -122,6 +121,7 @@ serachedPitchData={props.serachedPitchData}
 ) : (
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div class="w-[90%]">
  <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" text-xs font-bold font-poppins w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
         {translatedMenuItems[0]}
@@ -149,12 +149,15 @@ serachedPitchData={props.serachedPitchData}
         {translatedMenuItems[5]}
           {/* Assigned */}
           </div>
-        
-        <div className="text-xs font-bold font-poppins w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+          <div className="text-xs font-bold font-poppins w-[3.521rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         {translatedMenuItems[6]}
+          {/* Owner */}
+          </div>
+        <div className="text-xs font-bold font-poppins w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        {translatedMenuItems[7]}
         {/* Qualify */}
                 </div>
-
+                </div>
       </div>
       <InfiniteScroll
         dataLength={props.teamPitch.length}
@@ -238,7 +241,7 @@ serachedPitchData={props.serachedPitchData}
                                               type="Hot"
                                               iconType="fas fa-mug-hot"
                                               // tooltip="Hot"
-                                              tooltip= {translatedMenuItems[7]}
+                                              tooltip= {translatedMenuItems[8]}
                                               role={item.type}
                                               onClick={() =>{
                                                 const typ="Hot"
@@ -252,7 +255,7 @@ serachedPitchData={props.serachedPitchData}
                                       type="Warm"
                                       iconType="	fas fa-burn"
                                       // tooltip="Warm"
-                                      tooltip= {translatedMenuItems[8]}
+                                      tooltip= {translatedMenuItems[9]}
                                       role={item.type}
                                       onClick={() =>{
                                       const typ="Warm"
@@ -266,7 +269,7 @@ serachedPitchData={props.serachedPitchData}
                                       type="Cold"
                                       iconType="far fa-snowflake"
                                       // tooltip="Cold"
-                                      tooltip= {translatedMenuItems[9]}
+                                      tooltip= {translatedMenuItems[10]}
                                       role={item.type}
                                       onClick={() => {
                                         const typ="Cold"
@@ -363,7 +366,7 @@ serachedPitchData={props.serachedPitchData}
                                                           
                                                                           <div>
                                                                           {item.companyName ? (
-                                                                          <Tooltip title= {translatedMenuItems[11]}>
+                                                                          <Tooltip title= {translatedMenuItems[12]}>
                                                               <ConnectWithoutContactIcon
                                                                 onClick={() => {
                                                                   handleRowData(item);
@@ -374,17 +377,13 @@ serachedPitchData={props.serachedPitchData}
                                                               />
                                                             </Tooltip>
                                                               ) : (
-                                                                <Tooltip title= {translatedMenuItems[12]}>
+                                                                <Tooltip title= {translatedMenuItems[13]}>
                                                                   <ConnectWithoutContactIcon
                                                                     className="!text-icon cursor-not-allowed text-gray-400"
                                                                   />
                                                                 </Tooltip>
                                                               )}
-                                      {/* <StatusPitchToggle
-                                                  type={props.convertInd ? "primary" : "danger"}
-                                                  investorLeadsId={item.investorLeadsId}
-                                                  convertInd={item.convertInd}
-                                                /> */}
+                                   
                                       </div>
                                       </div>
                                       <div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
@@ -409,7 +408,7 @@ serachedPitchData={props.serachedPitchData}
                                                                    
                                                               <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">
                                                                                               <div >
-                                                                                            <Tooltip title= {translatedMenuItems[13]}>
+                                                                                            <Tooltip title= {translatedMenuItems[14]}>
                                                                               <NoteAltIcon
                                                                                         onClick={() => {
                                                                                           props.handlePitchNotesDrawerModal(true);
@@ -423,7 +422,7 @@ serachedPitchData={props.serachedPitchData}
                    
                                                                                     <div>
                                                                         <Tooltip
-                                                                                title= {translatedMenuItems[14]}
+                                                                                title= {translatedMenuItems[15]}
                                                                               >
                                                                    <i class="fab fa-connectdevelop text-[#8332ac]"  
 
@@ -454,7 +453,7 @@ serachedPitchData={props.serachedPitchData}
                                                                                     </Tooltip> </div>
                                                                                             {user.imInd === true  &&  user.pitchUpdateInd === true && (  
                                                                                                         <div>
-                                                                                    <Tooltip title= {translatedMenuItems[15]}>
+                                                                                    <Tooltip title= {translatedMenuItems[16]}>
                                                                                       <BorderColorIcon
                                                                                         className="!text-icon cursor-pointer text-[tomato]"
                                                                                         onClick={() => {
@@ -469,9 +468,9 @@ serachedPitchData={props.serachedPitchData}
                                                                                                         )}                                                                  
                                                                                                 <div>
                                                                                                 <StyledPopconfirm
-                                                                                    title= {translatedMenuItems[16]}
+                                                                                    title= {translatedMenuItems[17]}
                                                                                     onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
-                                                                                  > <Tooltip title= {translatedMenuItems[17]}>
+                                                                                  > <Tooltip title= {translatedMenuItems[18]}>
                                                                                     {user.imInd === true  &&  user.plantDeleteInd === true && ( 
                                                                                     <DeleteOutlined
                                                                                       type="delete"
@@ -500,13 +499,7 @@ serachedPitchData={props.serachedPitchData}
                                               // updateLeadsModal={updateLeadsModal}
                                               handleUpdatePitchModal={props.handleUpdatePitchModal}
                                               // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-                                            />
-                                            {/* <AddLeadsEmailDrawerModal
-                                              item={currentLeadsId}
-                                              handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-                                              addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
-                                              handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
-                                            /> */}
+                                            />                                      
                                             <OpenASSimodal 
                                               rowdata={rowdata}
                                               openASSImodal={props.openASSImodal}

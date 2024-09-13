@@ -6,6 +6,7 @@ import { TabsWrapper } from "../../../../Components/UI/Layout";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { PlusOutlined } from "@ant-design/icons";
 import ReceiptIcon from '@mui/icons-material/Receipt';
+import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 import {
     handleLinkDistributorOrderConfigureModal,
     handleLinkCustomerProcurementModal,
@@ -26,7 +27,6 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import { BundleLoader } from '../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import { HistoryOutlined } from "@ant-design/icons";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import ShopIcon from '@mui/icons-material/Shop'
@@ -200,7 +200,7 @@ function AccountDetailsTab(props) {
                         tab={
                             <>
                                 <span onClick={() => handleOrderCreateClick(false)}>
-                                    <PrecisionManufacturingIcon className=" !text-icon" />
+                                    <PrecisionManufacturingIcon className=" !text-icon text-[#049a8f]" />
                                     <span class="ml-1 !text-tab font-poppins ">
                                     {translatedMenuItems[0]} {/* Production */}
                                         </span>
@@ -232,7 +232,7 @@ function AccountDetailsTab(props) {
                             <>
                              <span onClick={() => handleOrderClick(false)}>
                                         <Tooltip title={translatedMenuItems[15]}>
-                                            <DynamicFeedIcon
+                                            <OnDeviceTrainingIcon
                                                 className="!text-icon text-[#81968f] cursor-pointer"
                                             />
                                             <span class="ml-1 !text-tab font-poppins ">
@@ -347,7 +347,7 @@ function AccountDetailsTab(props) {
                 <>
                   <span>
                     <LightbulbIcon className="!text-icon text-[#bfa89e]" />
-                    <span class=" ml-1 !text-tab font-poppins ">
+                    <span class=" !text-tab font-poppins ">
                       {/* <FormattedMessage
                         id="app.quotation"
                         defaultMessage="Quotation"
