@@ -1,5 +1,4 @@
-import React, { useEffect, useState} from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useEffect, useState, lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
@@ -7,7 +6,7 @@ import {
   getJumpFinanceDetail
 } from "../../DashboardAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
-
+const StackedClosureChart= lazy(()=>import("../../../Dashboard/StackedClosureChart"));
 function DashOrderJumpstart(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -46,7 +45,7 @@ function DashOrderJumpstart(props) {
 
   return (
     <>
-   
+   <div class=" flex flex-col">
       <div class=" flex flex-row w-full"  >
        
         <div class=" flex w-full max-sm:flex-col" >
@@ -117,7 +116,10 @@ function DashOrderJumpstart(props) {
                   </div>   
         </div>
       </div>
-      
+      <div class="mt-1">
+      <StackedClosureChart />
+      </div>
+      </div>
     </>
 
   );

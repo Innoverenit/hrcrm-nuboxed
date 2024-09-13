@@ -13,9 +13,7 @@ getOrderClosedList,
 getOrderCancelList
 } from "../../DashboardAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { base_url2 } from "../../../../Config/Auth";
-import axios from 'axios';
-import OrdersOpenDrawer from "./OrdersOpenDrawer";
+import CustomerPieChart from "./CustomerPieChart"
 
 function DashInvPayProcureJumstartbox(props) {
 
@@ -104,6 +102,7 @@ function DashInvPayProcureJumstartbox(props) {
 
   return (
     <>
+    <div className=" flex flex-col">
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
           
@@ -169,6 +168,11 @@ function DashInvPayProcureJumstartbox(props) {
                   </div>
           </div>
           
+        </div>
+        <div>
+        <div class=" font-poppins font-bold text-base mt-1">By Process</div>
+        <CustomerPieChart/>
+        </div>
         </div>
   
       {/* <DashProcureQuotaDrawer

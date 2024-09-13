@@ -16,8 +16,9 @@ import CustomerAddedModal from "./CustomerAddedModal";
 import ContactAddedModal from "./ContactAddedModal";
 import OrdersAddedModal from "./OrdersAddedModal";
 import OrdersClosedModal from "./OrdersClosedModal";
-// import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
-
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import ContactsIcon from '@mui/icons-material/Contacts';
 function CustomerDashboardJumpStart (props) {
   
   const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'));
@@ -117,7 +118,7 @@ function CustomerDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-green-600"><i className="fa fa-wallet fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-green-600"><AcUnitIcon/></div>
                 </div>
                 <JumpStartBox
                   noProgress
@@ -134,7 +135,7 @@ function CustomerDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-pink-600"><i className="fas fa-users fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-pink-600"><ContactsIcon/></div>
                 </div>
                 <JumpStartBox
                   noProgress
@@ -150,7 +151,7 @@ function CustomerDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-yellow-600"><i className="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-yellow-600"><DynamicFeedIcon/></div>
                 </div>
                 <JumpStartBox
                   noProgress
@@ -167,7 +168,7 @@ function CustomerDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-blue-600"><i className="fas fa-server fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-blue-600"><DynamicFeedIcon/></div>
                 </div>
                 <JumpStartBox
                   noProgress
@@ -183,8 +184,15 @@ function CustomerDashboardJumpStart (props) {
         </div>
         
       </div>
-      <div class=" mt-1" >
+      <div class=" mt-1 flex flex-row justify-between" >
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Sector</div>
         <CustomerPieChart/>
+        </div>
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Source</div>
+        <CustomerPieChart/>
+        </div>
         </div>
 </div>
 <CustomerJumpStartDrawer

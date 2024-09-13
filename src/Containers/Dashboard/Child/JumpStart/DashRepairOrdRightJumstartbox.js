@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
@@ -14,10 +14,8 @@ getOrderCancelList
 } from "../../DashboardAction";
 import OrdersClosedModal from "./OrdersClosedModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { base_url2 } from "../../../../Config/Auth";
-import axios from 'axios';
 import OrdersOpenDrawer from "./OrdersOpenDrawer";
-
+const StackedClosureChart= lazy(()=>import("../../../Dashboard/StackedClosureChart"));
 function DashRepairOrdRightJumstartbox (props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -107,6 +105,7 @@ function DashRepairOrdRightJumstartbox (props) {
 
   return (
     <>
+    <div>
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
           
@@ -179,7 +178,10 @@ function DashRepairOrdRightJumstartbox (props) {
           </div>
           
         </div>
-      
+        <div class="mt-1">
+      <StackedClosureChart />
+      </div>
+      </div>
         {/* <OrdersCancelModal
          selectedLanguage={props.selectedLanguage}
          translateText={props.translateText}

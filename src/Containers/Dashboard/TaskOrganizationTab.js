@@ -53,34 +53,20 @@ class TaskOrganizationTab extends Component {
     return (
       <>
         <TabsWrapper1>
-          <StyledTabs
-            defaultActiveKey="1"
-            onChange={this.handleTabChange}
-            forceRender={true}
-          >
-            <TabPane
-              tab={
-                <>
-                  <ListAltIcon style={{fontSize:"1.1rem"}}/>
-                               <span class=" ml-1 font-semibold">
-               {/* {translatedMenuItems[0]} */} Tasks
-                </span>
-              
 
-                  {activeKey === "1" && (
-                    <>
-                    </>
-                  )}
-                </>
-              }
-              key="1"
-            >
+        <div>
+              <ListAltIcon className="!text-icon"/><span class="ml-1 font-bold font-poppins text-base  ">Task</span>
+
+                
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <TaskOrganizationNew /> 
               </Suspense>
-            </TabPane>
-          </StyledTabs>
+           
+
+
+            </div>    
+          
         </TabsWrapper1>
      
         <Suspense fallback={null}></Suspense>

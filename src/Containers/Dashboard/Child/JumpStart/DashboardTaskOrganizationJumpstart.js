@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -8,8 +7,8 @@ import {
   getDateWiseList, getSalesDateWiseList, getJumpBulblist, getJumpBulblist2,
   getJumpBulblist3, getavgHour, getJumpTasklist, getTasklist, getJumpTask2list
 } from "../../DashboardAction";
-import { FormattedMessage } from "react-intl";
-import { BundleLoader } from "../../../../Components/Placeholder";
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+
 
 // class DashboardTaskOrganizationJumpstart extends React.Component {
 //   constructor() {
@@ -251,7 +250,7 @@ const DashboardTaskOrganizationJumpstart = (props) => {
                        <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-2 bg-green-600">< FactCheckIcon/></div>
                                </div>
                                <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
@@ -287,7 +286,7 @@ const DashboardTaskOrganizationJumpstart = (props) => {
                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-2 bg-yellow-600">< FactCheckIcon/></div>
                                </div>
                                <JumpStartBox
               bgColor="linear-gradient(270deg,#3db8b5,#41e196)"

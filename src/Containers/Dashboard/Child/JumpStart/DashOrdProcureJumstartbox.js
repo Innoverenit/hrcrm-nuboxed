@@ -1,7 +1,8 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import {
   getJumpOrderCount,
   getJumpOrderDetail,
@@ -13,9 +14,7 @@ getOrderClosedList,
 getOrderCancelList
 } from "../../DashboardAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { base_url2 } from "../../../../Config/Auth";
-import axios from 'axios';
-
+const StackedClosureChart= lazy(()=>import("../../../Dashboard/StackedClosureChart"));
 
 function DashOrdrProcureJumstartbox(props) {
 
@@ -103,6 +102,7 @@ function DashOrdrProcureJumstartbox(props) {
 
   return (
     <>
+    <div className=" flex flex-col">
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
           
@@ -111,7 +111,7 @@ function DashOrdrProcureJumstartbox(props) {
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                 <div class="rounded-full p-2 bg-green-600"><DynamicFeedIcon className="text-white"/></div>
                              </div>
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
@@ -131,7 +131,7 @@ function DashOrdrProcureJumstartbox(props) {
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-2 bg-pink-600"><DynamicFeedIcon className="text-white"/></div>
                                </div>
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
@@ -150,7 +150,10 @@ function DashOrdrProcureJumstartbox(props) {
           </div>
           
         </div>
-  
+        <div class="mt-1">
+      <StackedClosureChart />
+      </div>
+  </div>
       {/* <DashProcureQuotaDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
