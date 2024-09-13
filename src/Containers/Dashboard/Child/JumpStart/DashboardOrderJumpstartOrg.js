@@ -120,7 +120,7 @@ function DashboardOrderJumpstartOrg(props) {
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><DynamicFeedIcon/></div>
+                                 <div class="rounded-full p-2 bg-green-600"><DynamicFeedIcon className="text-white"/></div>
                              </div>
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
@@ -141,7 +141,7 @@ function DashboardOrderJumpstartOrg(props) {
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-pink-600"><DynamicFeedIcon/></div>
+                                   <div class="rounded-full p-2 bg-pink-600"><DynamicFeedIcon className="text-white"/></div>
                                </div>
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
@@ -184,7 +184,7 @@ function DashboardOrderJumpstartOrg(props) {
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center">
                               <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-2 bg-blue-600"><DynamicFeedIcon/></div>
+                                  <div class="rounded-full p-2 bg-blue-600"><DynamicFeedIcon className="text-white"/></div>
                               </div>
                               <JumpStartBox
                              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"

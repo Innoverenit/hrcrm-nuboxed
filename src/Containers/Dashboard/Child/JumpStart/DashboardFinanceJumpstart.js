@@ -17,6 +17,35 @@ function DashboardFinanceJumpstart(props) {
   const [ordersData, setOrdersData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    "1229",  //  ""Orders Added" // 0
+     "1230", // "Orders Open" // 1
+        "1231",    // "Orders Closed"
+        "1232",    // "Orders  Cancelled"
+        // "",    // By Order Value
+        // "",    // By Order Volume
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
      props.getFinaceOrderDetails(props.userId,props.timeRangeType)
   }, [props.timeRangeType]);
@@ -73,7 +102,7 @@ const openModal = (type) => {
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              title="Orders Added"
+              title={translatedMenuItems[0]}
               jumpstartClick={() => openModal("Added")}
               cursorData={"pointer"}
               value={props.finaceOrderinDashboard.totalOrder}
@@ -93,7 +122,7 @@ const openModal = (type) => {
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-              title="Orders Open"
+              title={translatedMenuItems[1]}
               jumpstartClick={() => openModal("Open")}
               cursorData={"pointer"}
             value={ props.finaceOrderinDashboard.pendingOrder}
@@ -113,7 +142,7 @@ const openModal = (type) => {
                                <JumpStartBox
            bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
-              title="Orders Closed"
+              title={translatedMenuItems[2]}
              
               jumpstartClick={() => openModal("Closed")}
               cursorData={"pointer"}
@@ -134,7 +163,7 @@ const openModal = (type) => {
                               <JumpStartBox
                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
-              title="Orders  Cancelled"
+              title={translatedMenuItems[3]}
               jumpstartClick={() => openModal("Cancelled")}
               cursorData={"pointer"}
               value={props.finaceOrderinDashboard.cancelOrder}

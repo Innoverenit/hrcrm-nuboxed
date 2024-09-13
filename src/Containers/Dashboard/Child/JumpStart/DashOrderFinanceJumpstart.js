@@ -1,4 +1,4 @@
-import React, { useEffect,lazy } from "react";
+import React, { useEffect,lazy, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -12,8 +12,33 @@ function DashOrderFinanceJumpstart(props) {
   const { openPitchQualified, handlePitchQualifiedDrawer, openPitchAdded, handlePitchAddedDrawer,
     openDealAdded, handleDealAddedDrawer, openDealClosed, handleDealClosedDrawer
   } = props;
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    "1326",  //  ""Receivable Added"// 0
+     "1233", //  "Receivable Closed, // 1
+  
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  
+
   useEffect(() => {
   }, [props.timeRangeType])
   return (
@@ -30,10 +55,11 @@ function DashOrderFinanceJumpstart(props) {
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              title={<FormattedMessage
-                id="app.financeadded"
-                defaultMessage="Receivable Added"
-              />}
+              title={translatedMenuItems[0]}
+              // {<FormattedMessage
+              //   id="app.financeadded"
+              //   defaultMessage="Receivable Added"
+              // />}
            
             />
                          </div>
@@ -49,10 +75,11 @@ function DashOrderFinanceJumpstart(props) {
                        <JumpStartBox
                         bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                         noProgress
-                        title={<FormattedMessage
-                          id="app.financeclosed"
-                          defaultMessage="Receivable Closed"
-                        />}
+                        title={translatedMenuItems[1]}
+                        // {<FormattedMessage
+                        //   id="app.financeclosed"
+                        //   defaultMessage="Receivable Closed"
+                        // />}
             
                         />
                         
@@ -70,10 +97,11 @@ function DashOrderFinanceJumpstart(props) {
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
-              title={<FormattedMessage
-                id="app.financeadded"
-                defaultMessage="Receivable Added"
-              />}
+              title={translatedMenuItems[0]}
+              // {<FormattedMessage
+              //   id="app.financeadded"
+              //   defaultMessage="Receivable Added"
+              // />}
            
             />
                          </div>

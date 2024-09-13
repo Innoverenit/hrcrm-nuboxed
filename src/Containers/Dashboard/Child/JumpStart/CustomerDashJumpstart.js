@@ -24,7 +24,7 @@ function CustomerDashJumpstart(props) {
           "1294",  // ""Revenue Life Time",//2
            "1295", // "Open Orders,//3
          ];
-
+ 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
         setLoading(false);
@@ -56,7 +56,7 @@ function CustomerDashJumpstart(props) {
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><AcUnitIcon/></div>
+                                 <div class="rounded-full p-2 bg-green-600"><AcUnitIcon className='text-white'/></div>
                              </div>
                              <JumpStartBox
             bgColor="linear-gradient(270deg,#F15753,orange)"
@@ -104,7 +104,7 @@ function CustomerDashJumpstart(props) {
                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-blue-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-blue-600"><DynamicFeedIcon/></div>
+                                 <div class="rounded-full p-2 bg-blue-600"><DynamicFeedIcon className='text-white'/></div>
                              </div>
                              <JumpStartBox
             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
