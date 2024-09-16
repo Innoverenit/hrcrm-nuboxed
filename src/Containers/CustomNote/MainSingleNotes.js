@@ -13,7 +13,7 @@ export default function MainSingleNotes(props) {
     //   creatorDetails: { firstName, lastName }
     // }
   } = props;
-  const relativeTimeString = dayjs(creationDate).fromNow();
+  const relativeTimeString = dayjs(creationDate).format('MMMM D, YYYY h:mm A');
   return (
     <NotesWrapper>
       {/* <SubTitle fontSize='1.125em' whiteSpace='normal' fontFamily='Abel' style={{ color: '#393a3a' }}>
