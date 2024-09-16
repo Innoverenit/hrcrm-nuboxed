@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import Barcode from 'react-barcode';
 import {
     getRepairPhoneByUser,
     updaterepairStatus,
@@ -15,7 +16,7 @@ import {
     handleSpareProcess
 } from "./RefurbishAction";
 import { Button, Tooltip,  Progress,Input,Badge } from "antd";
-import {  RollbackOutlined } from "@ant-design/icons";
+import {  BarcodeOutlined, RollbackOutlined } from "@ant-design/icons";
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -40,6 +41,7 @@ function PhoneListForRepair(props) {
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const componentRefs = useRef([]);
+    const componentBarRefs = useRef([]);
     const [startTime, setStartTime] = useState(null);
     const [isRecording, setIsRecording] = useState(false); //Code for Search
     const minRecordingTime = 3000; // 3 seconds
@@ -48,6 +50,10 @@ function PhoneListForRepair(props) {
     const handlePrint = () => {
         window.print();
     };
+
+    const handlePrintBr=()=>{
+        window.print();
+    }
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -624,6 +630,36 @@ function PhoneListForRepair(props) {
                                                 <div style={{ fontSize: "1.5rem" }}> {item.imei}</div>
                                             </div>
                                         </div>
+                                        <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title={translatedMenuItems[11]}
+                                                       
+                                                        >
+                                                           
+                                                            <ReactToPrint
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} 
+                                                              onClick={handlePrintBr}>
+                                                            
+                                                                Print Br
+                                                                <BarcodeOutlined className="!text-icon"/></Button>}
+                                                                content={() => componentBarRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
+
+                                                    </div>
+                                                    <div style={{ display: "none", textAlign: "center" }}>
+
+                                                <div className=" flex flex-col mt-5 text-sm items-center"
+                                                    ref={(el) => (componentBarRefs.current[index] = el)}>
+                                                   
+                                                    <div   className=" text-5xl mt-8">
+                                                    <Barcode value={`scan/${item.phoneId}` } displayValue={false}/>
+                                                       
+                                                    </div>
+                                                    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                                </div>
+                                            </div>
+                                                </div>
                                     </div>
                                 </div>
                             )

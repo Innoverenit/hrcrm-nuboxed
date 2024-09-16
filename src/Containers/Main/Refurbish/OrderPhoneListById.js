@@ -13,7 +13,7 @@ import {
     handleQcexpand,
     handleRefurbishLevelModal
 } from "./RefurbishAction";
-import { AudioOutlined } from '@ant-design/icons';
+import { AudioOutlined, BarcodeOutlined } from '@ant-design/icons';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip, Progress,Input,Badge } from "antd";
 import ButtonGroup from "antd/lib/button/button-group";
@@ -29,6 +29,7 @@ import QCSpareListModal from "./QCSpareListModal";
 import QCExpandListModal from "./QCExpandListModal";
 import RefurbishLevelModal from "./RefurbishLevelModal"
 import { base_url } from "../../../Config/Auth";
+import Barcode from 'react-barcode';
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
 const DistributorPhoneTaskTable = lazy(() => import('./DistributorPhoneTaskTable'));
@@ -44,9 +45,16 @@ function OrderPhoneListById(props) {
   const timerRef = useRef(null);
     const componentRefs = useRef([]);
 
+    const componentBarRefs = useRef([]);
+
     const handlePrint = () => {
         window.print();
     };
+
+
+    const handlePrintBr=()=>{
+        window.print();
+    }
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -702,6 +710,37 @@ function OrderPhoneListById(props) {
                                                     <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
                                                 </div>
                                             </div>
+
+                                            <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title={translatedMenuItems[11]}
+                                                       
+                                                        >
+                                                           
+                                                            <ReactToPrint
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} 
+                                                              onClick={handlePrintBr}>
+                                                            
+                                                                Print Br
+                                                                <BarcodeOutlined className="!text-icon"/></Button>}
+                                                                content={() => componentBarRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
+
+                                                    </div>
+                                                    <div style={{ display: "none", textAlign: "center" }}>
+
+                                                <div className=" flex flex-col mt-5 text-sm items-center"
+                                                    ref={(el) => (componentBarRefs.current[index] = el)}>
+                                                   
+                                                    <div   className=" text-5xl mt-8">
+                                                    <Barcode value={`scan/${item.phoneId}` } displayValue={false}/>
+                                                       
+                                                    </div>
+                                                    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                                </div>
+                                            </div>
+                                                </div>
                                         </div>
                                     </div>
                                 )

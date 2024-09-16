@@ -8,6 +8,9 @@ const initialState = {
   addCustomerModal: false,
 
 
+  uploadImageList:false,
+
+
   fetchingProductBrandDetails:false,
   fetchingProductBrandDetailsError:false,
   productBrandDetails:[],
@@ -474,6 +477,11 @@ export const productReducer = (state = initialState, action) => {
         fetchingServiceById: false,
         fetchingServiceByIdError: true,
       };
+
+
+
+      case types.HANDLE_IMAGE_PRODUCT_MODAL:
+        return { ...state, uploadImageList: action.payload };
 
     /**
      * update a single contact by its ID

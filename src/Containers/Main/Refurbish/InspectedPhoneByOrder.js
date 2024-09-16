@@ -7,6 +7,7 @@ import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import ReactToPrint from "react-to-print";
 import QRCode from "qrcode.react";
+import Barcode from 'react-barcode';
 import { Button,Input,Tooltip,Progress } from "antd"
 import {
     searchimeiNamePhone,
@@ -16,7 +17,7 @@ import {
     handleRepairPhoneNotesOrderModal
 } from "./RefurbishAction";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import { AudioOutlined, BarcodeOutlined } from '@ant-design/icons';
 import ReceivedSpareList from "./ProductionTab/ReceivedSpareList";
 import { BundleLoader } from "../../../Components/Placeholder";
 import PhoneListOrderTaskTable from "./PhoneListOrderTaskTable";
@@ -30,6 +31,7 @@ function InspectedPhoneByOrder(props) {
 
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const componentBarRefs = useRef([]);
 
     useEffect(() => {
         const fetchMenuTranslations = async () => {
@@ -74,6 +76,9 @@ function InspectedPhoneByOrder(props) {
     const handlePrint = () => {
         window.print();
     };
+    const handlePrintBr=()=>{
+        window.print();
+    }
     const [showTask, setshowTask] = React.useState(false);
     const [expand, setExpand] = useState(false);
     const [phoneId, setphoneId] = useState("");
@@ -377,6 +382,39 @@ function InspectedPhoneByOrder(props) {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title={translatedMenuItems[11]}
+                                                       
+                                                        >
+                                                           
+                                                            <ReactToPrint
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} 
+                                                              onClick={handlePrintBr}>
+                                                            
+                                                                Print Br
+                                                                <BarcodeOutlined className="!text-icon"/></Button>}
+                                                                content={() => componentBarRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
+
+                                                    </div>
+                                                    <div style={{ display: "none", textAlign: "center" }}>
+
+                                                <div className=" flex flex-col mt-5 text-sm items-center"
+                                                    ref={(el) => (componentBarRefs.current[index] = el)}>
+                                                   
+                                                    <div   className=" text-5xl mt-8">
+                                                    <Barcode value={`scan/${item.phoneId}` } displayValue={false}/>
+                                                       
+                                                    </div>
+                                                    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                                </div>
+                                            </div>
+                                                </div>
+
+                                               
                                             <div>
                                                                     <Tooltip title={translatedMenuItems[4]}>
                                                                         {/* <FormatListBulletedIcon

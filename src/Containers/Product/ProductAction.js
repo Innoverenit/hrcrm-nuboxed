@@ -111,6 +111,14 @@ export const getService = () => (dispatch) => {
     });
 };
 
+
+export const handleImageProductModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_IMAGE_PRODUCT_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const getProductsById = (productId) => (dispatch) => {
   dispatch({
     type: types.GET_PRODUCT_BY_ID_REQUEST,
