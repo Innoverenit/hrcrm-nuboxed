@@ -6,8 +6,11 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { Tooltip } from "antd";
 import {
-  handleUploadProductModal
+  handleUploadProductModal,
+  handleImageProductModal
+
 } from "../ProductAction";
+import UploadImageModal from "../Child/UploadImageModal"
 import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { FileExcelOutlined } from "@ant-design/icons";
@@ -78,6 +81,19 @@ class ProductActionRight extends React.Component {
             ><FileExcelOutlined className="!text-icon" />
             </Button>
           </Tooltip>
+
+
+
+          <Tooltip title="Upload Image">
+            <Button
+              className="export"
+              onClick={() => this.props.handleImageProductModal(true)}
+              //default
+             // href={`${base_url}/export/product?orgId=${organizationId}`}
+            >
+              Upload Image
+            </Button>
+          </Tooltip>
           
 
          
@@ -100,19 +116,26 @@ class ProductActionRight extends React.Component {
           selectedLanguage={this.props.selectedLanguage}
           handleUploadProductModal={this.props.handleUploadProductModal}
           uploadProductList={this.props.uploadProductList}
-        /></Suspense>
+        />
+        <UploadImageModal
+        uploadImageList={this.props.uploadImageList}
+        handleImageProductModal={this.props.handleImageProductModal}
+        />
+        </Suspense>
       </>
     );
   }
 }
 
 const mapStateToProps = ({ product, auth, }) => ({
-  uploadProductList: product.uploadProductList
+  uploadProductList: product.uploadProductList,
+  uploadImageList:product.uploadImageList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      handleUploadProductModal
+      handleUploadProductModal,
+      handleImageProductModal
     },
     dispatch
   );
