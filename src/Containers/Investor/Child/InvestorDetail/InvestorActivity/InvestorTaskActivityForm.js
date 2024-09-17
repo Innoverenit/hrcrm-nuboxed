@@ -156,9 +156,9 @@ const [priority,setpriority]=useState(props.selectedTask
           "147",//Description 7
           "91",//Link 8
          "104", //Create 9
-         "107",// High
-        //  "",// Medium
-        //  "",//  Low
+         "107",// High 10
+         "1602",// Medium
+        "1603",//  Low
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -470,7 +470,7 @@ const [priority,setpriority]=useState(props.selectedTask
                               />
                             </Tooltip>
                             &nbsp;
-                            <Tooltip title="Medium">
+                            <Tooltip title={translatedMenuItems[11]}>
                               <Button
                                 type="primary"
                                  shape="circle"
@@ -488,7 +488,7 @@ const [priority,setpriority]=useState(props.selectedTask
                               />
                             </Tooltip>
                             &nbsp;
-                            <Tooltip title= "Low">
+                            <Tooltip title={translatedMenuItems[12]}>
                               <Button
                                 type="primary"
                                  shape="circle"
@@ -841,7 +841,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   <div>                  
                 </div>
                 </div>
-                <div class=" h-full w-w47.5 max-sm:w-wk mt-3">
+                <div class=" h-full w-w47.5 max-sm:w-wk ">
                          
                                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (

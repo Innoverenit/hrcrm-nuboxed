@@ -1,9 +1,8 @@
-import React, { Suspense,lazy } from "react";
+import React, { Suspense,lazy,useEffect,useState } from "react";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
 const InvestorCallActivityForm=lazy(()=>import("./InvestorCallActivityForm"));
 const InvestorEventActivityForm=lazy(()=>import("./InvestorEventActivityForm"));
 const InvestorTaskActivityForm=lazy(()=>import("./InvestorTaskActivityForm"));
@@ -17,13 +16,41 @@ const InvestorActivityModal = (props) => {
   const { handleActivityModal, investorActivityModal, ...formProps } = props;
   const isSmallScreen = window.innerWidth <= 600;
   const drawerWidth = isSmallScreen ? "90%" : "55%";
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          // "", //  "Schedule",//0
+          "70", // "Calls",//1
+          "35" , // "Events",//2
+          "105" , // "Tasks",//3
+        
+        
+       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.schedulecall"
-          defaultMessage="Schedule"
-        />}
+        // title=
+        // {translatedMenuItems[0]}
         width={drawerWidth}
         visible={investorActivityModal}
         maskClosable={false}
@@ -36,14 +63,13 @@ const InvestorActivityModal = (props) => {
           rowdata={props.rowdata}
           /> */}
           <InvestorActivityTab 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
            customerId={props. customerId }
            customer={props.customer}
            defaultInvestor={props.defaultInvestor}
            investorId={props. investorId }
-           investorDetails={props.investorDetails}
-           translateText={props.translateText}
-           selectedLanguage={props.selectedLanguage}
-           />
+           investorDetails={props.investorDetails}/>
 
         </Suspense>
       </StyledDrawer>
@@ -56,24 +82,23 @@ const InvestorActivityModal = (props) => {
       return (
         <>
           <TabsWrapper>
-            <StyledTabs
+            <StyledTabs 
               defaultActiveKey="1"
-              style={{ overflow: "visible", width: "56vw", padding: "5px" }}
+              style={{ overflow: "visible", width: "52vw", padding: "5px" }}
               animated={false}
             >
               <TabPane
                 tab={
                   <span>
                    <i class="fas fa-phone-square"></i>&nbsp;
-                    Calls
+                   {translatedMenuItems[0]}
+                    {/* Calls */}
                   </span>
                 }
                 key="1"
               >
                 <Suspense fallback={"loading ..."}>
                   <InvestorCallActivityForm 
-                     translateText={props.translateText}
-                     selectedLanguage={props.selectedLanguage}
                    customerId={props. customerId }
                    customer={props.customer}
                        defaultInvestor={props.defaultInvestor}
@@ -86,15 +111,14 @@ const InvestorActivityModal = (props) => {
                 tab={
                   <span>
                     <i class="fas fa-tasks"></i>&nbsp;
-                    Events
+                    {translatedMenuItems[1]}
+                    {/* Events */}
                   </span>
                 }
                 key="2"
               >
                 <Suspense fallback={"loading ..."}>
                   <InvestorEventActivityForm 
-                     translateText={props.translateText}
-                     selectedLanguage={props.selectedLanguage}
                    customerId={props. customerId }
                    customer={props.customer}
                        defaultInvestor={props.defaultInvestor}
@@ -106,15 +130,14 @@ const InvestorActivityModal = (props) => {
                 tab={
                   <span>
                     <i class="far fa-calendar-check"></i>&nbsp;
-                    Tasks
+                    {translatedMenuItems[2]}
+                    {/* Tasks */}
                   </span>
                 }
                 key="3"
               >
                 <Suspense fallback={"loading ..."}>
                   <InvestorTaskActivityForm 
-                     translateText={props.translateText}
-                     selectedLanguage={props.selectedLanguage}
                    customerId={props. customerId }
                    customer={props.customer}
                       defaultInvestor={props.defaultInvestor}

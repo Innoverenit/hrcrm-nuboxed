@@ -3,8 +3,8 @@ import { Popconfirm, Switch } from "antd";
 import ViewEditCard from "../../../../Components/UI/Elements/ViewEditCard";
 import { Select } from "../../../../Components/UI/Elements";
 import Ecomimg from "../../../../Assets/Images/Ecomimg.jpg";
-import Cataloimg from "../../../../Assets/Images/Ecomimg.jpg";
-import Materialimg from "../../../../Assets/Images/Ecomimg.jpg";
+import Cataloimg from "../../../../Assets/Images/Cataloimg.jpg";
+import Materialimg from "../../../../Assets/Images/Materialimg.jpg";
 import Trading from "../../../../Assets/Images/Trading.jpeg";
 
 const { Option } = Select;

@@ -51,7 +51,7 @@ const TabPane = StyledTabs.TabPane;
     return (
       <>
         <TabsWrapper >
-          <StyledTabs className=" w-[56vw] p-2 h-[60rem] "
+          <StyledTabs className=" w-[52vw] p-2 h-[60rem] "
           // style={{height:"65rem"}}
             defaultActiveKey="1"            
             animated={false}
