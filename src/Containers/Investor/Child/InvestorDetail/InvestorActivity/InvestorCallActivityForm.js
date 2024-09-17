@@ -29,6 +29,7 @@ import SpeechRecognition, { } from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
 import { Fragment } from 'react'
 import { Listbox,  } from '@headlessui/react'
+import { BundleLoader } from "../../../../../Components/Placeholder";
 const ButtonGroup = Button.Group;
 const suffix = (
   <AudioOutlined
@@ -64,8 +65,8 @@ const CallSchema = Yup.object().shape({
 });
 function InvestorCallActivityForm(props) {
 
-
-  
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(false);
   const[category,setCategory] =useState(props.selectedCall ? props.selectedCall.callCategory : "New")
   const[reminder,setReminder] =useState(true)
   console.log("category",category);
@@ -102,6 +103,43 @@ function InvestorCallActivityForm(props) {
     // props.getAllOpportunityData(userId)
   }, []);
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "71", //  "Type",//0
+          "14", // "Category",//1
+         "26" , // "Mode",//2
+         "90" , // "Channel",//3
+         "72" , // "Subject",//4
+         "74" , // "Date",//5
+         "93" , // "Start Time",//6
+          "94" ,// "End Time",//7
+         "95" , // "Time Zone",//8
+         "76",  // "Assigned",//9
+         "75",  // "Include",//10
+         "316"  ,// "Notes"//11
+         "104", //Create 12
+        //  "",//Introductory 
+        //  "",//Interview
+        //  "",// closure
+         "100",//new 13
+         "101",// followup 14
+       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   
   const [defaultOption, setDefaultOption] = useState(props.fullName);
   const [selected, setSelected] = useState(defaultOption);
@@ -176,6 +214,10 @@ function InvestorCallActivityForm(props) {
     }
     const selectedOption = props.assignedToList.find((item) => item.empName === selected);
    console.log("bn",selectedOption,selected)
+   if (loading) {
+    return <div><BundleLoader/></div>;
+  }
+
    return (
       <>
         <Formik
@@ -332,7 +374,8 @@ function InvestorCallActivityForm(props) {
                     <div class=" w-2/6 max-sm:w-wk">
             
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <FormattedMessage id="app.type" defaultMessage="Type" />
+                 {/* Type */}
+                 {translatedMenuItems[0]}
                       </div>
                       <div class=" flex justify-between mt-3">
                         <Tooltip
@@ -402,11 +445,8 @@ function InvestorCallActivityForm(props) {
                     </div>
                     <div class=" w-1/2">
          
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <FormattedMessage
-                          id="app.category"
-                          defaultMessage="Category"
-                        />
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">{translatedMenuItems[1]}
+                      {/* Category */}
                       </div>
                       
                       <ButtonGroup>
@@ -414,15 +454,16 @@ function InvestorCallActivityForm(props) {
                          onClick={() => handleCategoryChange("New")}
                          className={`cursor-pointer ${category==="New" ? "bg-[orange] text-[white]" :"bg-[white] text-[black]"}`}>
                    
-                          <FormattedMessage id="app.new" defaultMessage="New" />
+                   <div class="font-bold font-poppins text-xs ">{translatedMenuItems[13]}
+                      {/* new */}
+                      </div>
                         </Button>
                         <Button
                           onClick={() => handleCategoryChange("Follow up")}
                           className={`cursor-pointer ${category==="Follow up" ? "bg-[orange] text-[white]" :"bg-[white] text-[black]"}`}>
-                 <FormattedMessage
-                            id="app.followup"
-                            defaultMessage="Follow up"
-                          />
+             <div class="font-bold font-poppins text-xs ">{translatedMenuItems[14]}
+                      </div>
+                     
                         </Button>
                       </ButtonGroup>
                     </div>
@@ -431,7 +472,8 @@ function InvestorCallActivityForm(props) {
                   <div class=" flex justify-between items-end max-sm:flex-col mt-3" >
                     <div class="self-start">
                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      Mode
+                      {translatedMenuItems[2]}
+                      {/* Mode */}
                       </div>
                       <Switch
                         name="mode"
@@ -439,10 +481,10 @@ function InvestorCallActivityForm(props) {
                         unCheckedChildren="Video"
                       />
                     </div>
-                    <div class=" w-1/3 self-baseline max-sm:w-wk">
+                    <div class=" w-1/3 self-baseline max-sm:w-wk font-bold font-poppins text-xs">{translatedMenuItems[3]}
                       <FastField
                         name="modeType"
-                        label="Channel"
+                        // label="Channel"
                         isColumn
                         options={[
                           "Zoom Call",
@@ -468,28 +510,20 @@ function InvestorCallActivityForm(props) {
                       />
                     </div>
                   </div>
+                  <div className="font-bold text-xs font-poppins "> {translatedMenuItems[4]}</div>
                   <Field
                     // isRequired
                     name="callPurpose"
-                    // label="Topic"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="Subject"
-                      />
-                    }
+                    // label="Topic"   
                     component={InputComponent}
                     isColumn
                     width={"100%"}
                     inlineLabel
                   />
-      
+ <div className="font-bold text-xs font-poppins "> {translatedMenuItems[5]}</div>
                   <Field
                     name="startDate"
-                    // label="Date"
-                    label={
-                      <FormattedMessage id="app.date" defaultMessage="Date" />
-                    }
+                    // label="Date"                  
                     component={DatePicker}
                     isColumn
                     width={"100%"}
@@ -498,16 +532,11 @@ function InvestorCallActivityForm(props) {
                   />
         
                   <div class=" flex justify-between max-sm:flex-col mt-3">
-                    <div class=" w-1/2 max-sm:w-wk">
+                    <div class="font-bold text-xs font-poppins  w-1/2 max-sm:w-wk">
+                    {translatedMenuItems[6]}
                       <Field
                         name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.starttime"
-                            defaultMessage="Start Time"
-                          />
-                        }
+                        // label="Start Time"                    
                         component={TimePicker}
                         isRequired
                         isColumn
@@ -519,16 +548,11 @@ function InvestorCallActivityForm(props) {
                         }}
                       />
                     </div>
-                    <div class=" w-2/5 max-sm:w-wk">
+                    <div class="font-bold text-xs font-poppins  w-2/5 max-sm:w-wk">
+                    {translatedMenuItems[7]}
                       <Field
                         name="endTime"
-                        // label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        // label="End Time"                   
                         component={TimePicker}
                         use12Hours
                         isRequired
@@ -541,19 +565,13 @@ function InvestorCallActivityForm(props) {
                       />
                     </div>
                   </div>
-             
+                  <div className="font-bold text-xs font-poppins "> {translatedMenuItems[8]}</div>
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
                     name="timeZone"
                     isColumnWithoutNoCreate
-                    //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="Time Zone"
-                      />
-                    }
+                    //label="TimeZone "                 
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -595,7 +613,8 @@ function InvestorCallActivityForm(props) {
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-semibold text-[0.75rem]">Assigned</Listbox.Label>
+         <div className="font-bold text-xs font-poppins "> {translatedMenuItems[9]}</div>
+         {/* Assigned */}
           <div className="relative mt-1">
               <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -659,15 +678,10 @@ function InvestorCallActivityForm(props) {
       )}
     </Listbox>
                    <div class="mt-3">
+                   <div className="font-bold text-xs font-poppins "> {translatedMenuItems[10]}</div>
                   <Field
                     name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="Include"
-                      />
-                    }
+                    // label="Include"              
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -703,12 +717,11 @@ function InvestorCallActivityForm(props) {
                    </div>
           */}
                   <div>
-                    <div class=" w-full mt-3"><Field
+                    <div class=" w-full mt-3">
+                    <div className="font-bold text-xs font-poppins "> {translatedMenuItems[11]}</div>
+                      <Field
                       name="callDescription"
-                      // label="Notes"
-                      label={
-                        <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                      }
+                      // label="Notes"                    
                       isColumn
                       width={"100%"}
                       component={TextareaComponent}
@@ -761,7 +774,7 @@ function InvestorCallActivityForm(props) {
                 </div>
               </div>
  
-              <div class=" flex justify-end mt-3">
+              <div class=" flex justify-end mt-3 mr-8">
                 {isEditing && (
                   <>
                     <StyledPopconfirm
@@ -797,7 +810,7 @@ function InvestorCallActivityForm(props) {
                     "Update"
                   ) : (
                     // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="Create" />
+                    <div className="font-bold text-xs font-poppins "> {translatedMenuItems[12]}</div>
                   )}
                 </Button>
               </div>

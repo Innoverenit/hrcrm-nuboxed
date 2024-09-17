@@ -886,6 +886,8 @@ investorDetails={props.investorDetails}
       </TabsWrapper>
       <Suspense fallback={null}>
       <AddInvestorContactModal
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
         investorDetails={props.investorDetails}
           openInvestorContactModal={openInvestorContactModal}
           defaultInvestor={[{ label: name, value: investorId }]}
@@ -907,13 +909,15 @@ investorDetails={props.investorDetails}
           investorId={investorId}
         />
         <CreateDealModal 
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
           investorDetails={props.investorDetails}
                      opencreateDealModal={opencreateDealModal}
                      handleDealModal={handleDealModal}
-                     translateText={props.translateText}
-                     selectedLanguage={props.selectedLanguage}   />
+                     />
            <InvestorActivityModal
-          
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
             customerId={props. customerId }
             customer={props.customer}
              defaultInvestor={[{ label: name, value: investorId }]}
