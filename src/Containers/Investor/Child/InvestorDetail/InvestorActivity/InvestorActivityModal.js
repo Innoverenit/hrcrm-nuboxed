@@ -40,7 +40,10 @@ const InvestorActivityModal = (props) => {
            customer={props.customer}
            defaultInvestor={props.defaultInvestor}
            investorId={props. investorId }
-           investorDetails={props.investorDetails}/>
+           investorDetails={props.investorDetails}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+           />
 
         </Suspense>
       </StyledDrawer>
@@ -69,6 +72,8 @@ const InvestorActivityModal = (props) => {
               >
                 <Suspense fallback={"loading ..."}>
                   <InvestorCallActivityForm 
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage}
                    customerId={props. customerId }
                    customer={props.customer}
                        defaultInvestor={props.defaultInvestor}
@@ -88,6 +93,8 @@ const InvestorActivityModal = (props) => {
               >
                 <Suspense fallback={"loading ..."}>
                   <InvestorEventActivityForm 
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage}
                    customerId={props. customerId }
                    customer={props.customer}
                        defaultInvestor={props.defaultInvestor}
@@ -106,6 +113,8 @@ const InvestorActivityModal = (props) => {
               >
                 <Suspense fallback={"loading ..."}>
                   <InvestorTaskActivityForm 
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage}
                    customerId={props. customerId }
                    customer={props.customer}
                       defaultInvestor={props.defaultInvestor}

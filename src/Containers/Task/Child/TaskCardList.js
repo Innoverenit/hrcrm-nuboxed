@@ -234,7 +234,7 @@ const TaskCardList = (props) => {
     
           <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
           <div className=" md:w-[4.54rem] bg-red-600 text-white">
           {translatedMenuItems[7]}</div>
         <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
@@ -247,17 +247,17 @@ const TaskCardList = (props) => {
              {translatedMenuItems[2]}
                         </div>
              <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        <div className=" w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div>
-                        <div className="w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
+                        <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
                         {translatedMenuItems[4]}
                          
                           </div>
-        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
+        <div className=" w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
         {translatedMenuItems[5]} 
                         </div>
-        <div className="w-[30.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <div className=" w-[30.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
         {translatedMenuItems[6]}
                         </div>
         
@@ -655,7 +655,7 @@ const TaskCardList = (props) => {
 
 <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
           <div className=" md:w-[4.54rem] bg-orange-600 text-white">
           {translatedMenuItems[8]}</div>
         <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
@@ -668,17 +668,17 @@ const TaskCardList = (props) => {
              {translatedMenuItems[2]}
                         </div>
              <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        <div className=" w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div>
-                        <div className="w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
+                        <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
                         {translatedMenuItems[4]}
                          
                           </div>
-        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
+        <div className=" text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
         {translatedMenuItems[5]} 
                         </div>
-        <div className="w-[30.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <div className=" w-[30.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
         {translatedMenuItems[6]}
                         </div>
         
@@ -1058,10 +1058,10 @@ const TaskCardList = (props) => {
 
 <div className=' flex sticky  z-auto'>
           <div class="rounded  m-1 max-sm:m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex max-sm:hidden justify-between w-[100%] font-poppins text-xs p-1 bg-transparent font-bold sticky  z-10">
           <div className=" md:w-[4.54rem] bg-teal-600 text-white">
           {translatedMenuItems[9]}</div>
-        <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
+        <div className=" text-xs w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         {translatedMenuItems[0]} 
                         </div>
         <div className=" w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
@@ -1071,17 +1071,17 @@ const TaskCardList = (props) => {
              {translatedMenuItems[2]}
                         </div>
              <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        <div className=" w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div>
-                        <div className="w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
+                        <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
                         {translatedMenuItems[4]}
                          
                           </div>
-        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
+        <div className=" w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
         {translatedMenuItems[5]} 
                         </div>
-        <div className="w-[30.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <div className=" w-[30.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
         {translatedMenuItems[6]}
                         </div>
         

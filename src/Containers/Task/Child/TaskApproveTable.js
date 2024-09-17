@@ -144,22 +144,22 @@ const TaskApproveTable = (props) => {
       
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]">{translatedMenuItems[0]} 
+          <div className="font-bold font-poppins text-xs w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]">{translatedMenuItems[0]} 
            {/* type */}
                     </div>
-        <div className=" w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]">{translatedMenuItems[1]} 
+        <div className="font-bold font-poppins text-xs w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]">{translatedMenuItems[1]} 
                         {/* name" */}
                       </div>
-             <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] ">{translatedMenuItems[2]} 
+             <div className="font-bold font-poppins text-xs w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] ">{translatedMenuItems[2]} 
               {/* submittedby */}
                         </div>
-        <div className="w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]">{translatedMenuItems[3]} 
+        <div className="font-bold font-poppins text-xs w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]">{translatedMenuItems[3]} 
        {/* Ageing */}
                         </div>
-                         <div className="w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">{translatedMenuItems[4]} 
+                         <div className="font-bold font-poppins text-xs w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">{translatedMenuItems[4]} 
                           {/* Info */}
                           </div>
-        <div className="w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]">
+        <div className="font-bold font-poppins text-xs w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]">
           {/* {translatedMenuItems[5]}  */}
           Assigned On
                         </div>

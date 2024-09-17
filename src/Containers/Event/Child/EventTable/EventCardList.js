@@ -314,7 +314,7 @@ function EventCardList (props) {
                                </div>
                                <div class="flex justify-end max-sm:w-wk items-center max-sm:justify-evenly"> 
                     
-                      <div class="flex  w-[4rem] max-sm:flex-row items-center justify-between max-sm:w-auto">
+                      <div class="flex  w-[4rem] max-sm:flex-row items-center justify-end max-sm:w-auto">
                     <div class="">
                     {item.rating === 0 ? (<StarBorderIcon
                      className="!text-icon cursor-pointer text-[#eeeedd]"
@@ -352,12 +352,7 @@ function EventCardList (props) {
     }>
       <EventNoteIcon className="!text-icon cursor-pointer" />
     </Tooltip>
-                   
-                 
-                    
-                    
-    
-       
+                                                                          
           <Tooltip title={translatedMenuItems[7]}>
               <BorderColorIcon
                 type="edit"
