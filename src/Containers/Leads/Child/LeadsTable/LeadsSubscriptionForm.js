@@ -306,6 +306,31 @@ function LeadsSubscriptionForm(props) {
     };
     fetchData();
   }, [props.orgId, props.item.leadsId]);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+ 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    '1588', // 0 Per Month Value
+'1589', // 1 10% discount on additional services
+'70', // 2 Calls
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     console.log("Checking if data is loaded", { isDataLoaded, subscriptionLeadsData: props.subscriptionLeadsData, compareSubscription: props.compareSubscription });
@@ -373,14 +398,14 @@ console.log(props.compareSubscription)
                   hoverable
                   onClick={() => handleClick(subscription, index)}
                 >
-                  <p>Per Month Value: ₹{subscription.perMonthValue}</p>
+                  <p>{translatedMenuItems[0]}: ₹{subscription.perMonthValue}</p>
                   {subscription.callInd && (
-                    <p>Calls: {subscription.noOfcalls}</p>
+                    <p>{translatedMenuItems[2]}: {subscription.noOfcalls}</p>
                   )}
 {subscription.ruleDto.map((item, index) => (
   <p key={index}>{item.ruleType}: {item.ruleValue}</p>
 ))}
-<p style={{fontWeight:"bolder"}}>10% discount on additional services</p>
+<p style={{fontWeight:"bolder"}}>{translatedMenuItems[1]}</p>
                 </Card>
               </Col>
             ))}

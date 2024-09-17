@@ -22,7 +22,39 @@ const AddressTable = (props) => {
   const [addresses, setAddresses] = useState(props.contactAddress);
   const [editingIndex, setEditingIndex] = useState(null);
   const [currentAddress, setCurrentAddress] = useState("");
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
  
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    '185', // 0 Address
+'1583', // 1 Switch
+'9', // 2 Action
+'1584', // 3 Are you sure you want to switch?
+'80', // 4"Yes"
+'81', // 5No"
+'1583', // 6"Confirm Address Delete?"
+'1079', // 7 Cancel
+'1370', // 8 Add Row
+"1586",// Search Address...
+"1587"// ok
+ 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getContactAddressData(props.uniqueId, props.type);
   }, []);
@@ -157,9 +189,9 @@ const AddressTable = (props) => {
       <table>
         <thead>
           <tr>
-            <th>Address</th>
-            <th>Switch</th>
-            <th>Action</th>
+            <th> {translatedMenuItems[0]}</th>
+            <th> {translatedMenuItems[1]}</th>
+            <th> {translatedMenuItems[2]}</th>
           </tr>
         </thead>
         <tbody>
@@ -181,7 +213,7 @@ const AddressTable = (props) => {
                       <div>
                         <input
                           {...getInputProps({
-                            placeholder: "Search Address...",
+                            placeholder: translatedMenuItems[9],
                             className: "location-search-input",
                           })}
                         />
@@ -224,14 +256,14 @@ const AddressTable = (props) => {
               </td>
               <td>
                 <Popconfirm
-                  title="Are you sure you want to switch?"
+                  title={translatedMenuItems[3]}
                   onConfirm={() => handleSwitchChange(index, !item.primaryInd, item)}
-                  okText="Yes"
-                  cancelText="No"
+                  okText={translatedMenuItems[4]}
+                  cancelText={translatedMenuItems[5]}
                 >
                   <Switch
-                    checkedChildren="Yes"
-                    unCheckedChildren="No"
+                    checkedChildren={translatedMenuItems[4]}
+                    unCheckedChildren={translatedMenuItems[5]}
                     checked={item.primaryInd}
                     disabled={
                       activeSwitchIndex !== null && activeSwitchIndex !== index
@@ -244,11 +276,11 @@ const AddressTable = (props) => {
                 {item.addressId  && (
                   <>
                    <Popconfirm
-              title="Confirm Address Delete?"
+              title={translatedMenuItems[6]}
               onConfirm={() => props.removeAddressData(item.addressId)}
               // onCancel={handleCancel}
-              okText="Ok"
-              cancelText="Cancel"
+              okText={translatedMenuItems[10]}
+              cancelText={translatedMenuItems[7]}
           >
                     <DeleteOutlined
                     style={{color:"tomato"}}

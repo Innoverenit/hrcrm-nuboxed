@@ -79,7 +79,11 @@ function OpportunityWonCard(props) {
           '218', // 4
           '219', // 5
           '220', // 6
-          '77' // 7
+          '77', // 7
+          "232", // 'Click to Open'
+          "170", // "Edit"
+           "1259",// "Do you want to delete?"
+           "316",// notes"
 
         ];
 
@@ -121,17 +125,18 @@ function OpportunityWonCard(props) {
   <>
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
   <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className="font-bold font-poppins text-xs w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]}</div>
-        <div className="font-bold font-poppins text-xs w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]}</div>
-        <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> {translatedMenuItems[2]}</div>
-        <div className="font-bold font-poppins text-xs w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]}</div>
-        <div className=" font-bold font-poppins text-xs w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
-        <div className="font-bold font-poppins text-xs w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
-        <div className=" font-bold font-poppins text-xs w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>
-        <div className="font-bold font-poppins text-xs w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>
+  <div className="   flex justify-between w-[92%] font-bold font-poppins text-xs">
+        <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]}</div>
+        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]}</div>
+        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> {translatedMenuItems[2]}</div>
+        <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]}</div>
+        <div className="  w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
+        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
+        <div className="  w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>
+        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>
         <div className="w-[4.1rem] "></div>
         <div className="w-12"></div>
-      </div>
+      </div></div>
       <InfiniteScroll
          dataLength={wonOpportunity.length}
         next={handleLoadMore}
@@ -311,7 +316,7 @@ function OpportunityWonCard(props) {
                   </div>
                   <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                     <div>
-                    <Tooltip title='Click to Open'><span
+                    <Tooltip title={translatedMenuItems[8]}><span
          onClick={() => {
           props.LinkClosedOpportunity(
             item.opportunityId,
@@ -343,12 +348,7 @@ function OpportunityWonCard(props) {
                       <div>
                          <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.edit"
-                            defaultMessage="Edit"
-                          />
-                        }
+                        title={translatedMenuItems[9]}
                       >
                         {user.opportunityUpdateInd ===true && (
               
@@ -371,7 +371,7 @@ function OpportunityWonCard(props) {
                     
                       <div>
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title={translatedMenuItems[10]}
                         onConfirm={() =>
                           deleteLostOpportunity(item.opportunityId)
                         }
@@ -415,12 +415,7 @@ function OpportunityWonCard(props) {
                         </div>
 <div><Tooltip
           placement="right"
-          title={
-            <FormattedMessage
-              id="app.notes"
-              defaultMessage="Notes"
-            />
-          }
+          title={translatedMenuItems[11]}
         >
          
               

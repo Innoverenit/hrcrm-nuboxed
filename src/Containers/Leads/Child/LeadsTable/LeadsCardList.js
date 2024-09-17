@@ -89,6 +89,14 @@ const LeadsCardList = (props) => {
 '140',// 18 email
 '170',//19 edit
 '1259',//20 "Do you want to delete?"
+"100",// New 21
+"1581",// Score 22
+"271",// "Hot"23
+"272",// "Warm"24
+"273",// "Cold"25
+"1454",// Company name is required to enable qualification action26
+"84",// Delete27
+ "1582",// Qualify? Lead will move to Prospect section!28
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -230,30 +238,31 @@ const LeadsCardList = (props) => {
       <>
      <div className=' flex  justify-center  sticky  z-auto'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
-      <div className="font-bold font-poppins text-xs ml-1 w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-white bg-red-600  justify-center "> 
+      <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
+        <div className="   flex justify-between w-[92%] font-bold font-poppins text-xs">
+      <div className=" ml-1 w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-white bg-red-600  justify-center "> 
         {translatedMenuItems[0]}</div>
-        <div className="font-bold font-poppins text-xs w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
-        <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        {/* <div className="font-bold font-poppins text-xs w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
+        {/* <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
           {translatedMenuItems[3]}
           </div> */}
-        <div className="font-bold font-poppins text-xs w-[10.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
-        <div className="font-bold font-poppins text-xs w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
-        <div className= "font-bold font-poppins text-xs w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
-        <div className= "font-bold font-poppins text-xs w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
-        <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
-        <div className="font-bold font-poppins text-xs w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className="font-bold font-poppins text-xs w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+        <div className=" w-[10.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
+        <div className=" w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
+        <div className= " w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
+        <div className= " w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
+        <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
+        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
+        <div className=" w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
         {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
+            {/* Score */}   {translatedMenuItems[22]}
           
             </div>
             )}
         <div className="w-12"></div>
-
+</div>
       </div>
       <InfiniteScroll
         dataLength={props.leadsAllDataHot.length}
@@ -308,12 +317,7 @@ const LeadsCardList = (props) => {
                           type="Hot"
                           iconType="fas fa-mug-hot"
                           // tooltip="Hot"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.hot"
-                              defaultMessage="Hot"
-                            />                        
-                          }
+                          tooltip=   {translatedMenuItems[23]}
                           role={item.type}
                           onClick={() => {
                             const typ = "Hot";
@@ -329,12 +333,7 @@ const LeadsCardList = (props) => {
                           type="Warm"
                           iconType="	fas fa-burn"
                           // tooltip="Warm"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.warm"
-                              defaultMessage="Warm"
-                            />
-                          }
+                          tooltip=   {translatedMenuItems[24]}
                           role={item.type}
                           onClick={() => {
                             const typ = "Warm";
@@ -350,12 +349,7 @@ const LeadsCardList = (props) => {
                           type="Cold"
                           iconType="far fa-snowflake"
                           // tooltip="Cold"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.cold"
-                              defaultMessage="Cold"
-                            />
-                          }
+                          tooltip=   {translatedMenuItems[25]}
                           role={item.type}
                           onClick={() => {
                             const typ = "Cold";
@@ -389,7 +383,7 @@ const LeadsCardList = (props) => {
                               {date === currentdate ? (
                                 <div class="text-[0.65rem]  text-[tomato] font-bold"  >                            
                                 
-                                  New
+                                {translatedMenuItems[21]}  {/* New */}
                                 </div>
                               ) : null}
                             </div>
@@ -505,7 +499,7 @@ const LeadsCardList = (props) => {
                     )}
                   </div>
                   {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex text-xs justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             Score
           
             </div>
@@ -514,7 +508,8 @@ const LeadsCardList = (props) => {
                     <div class=" text-xs  font-poppins"></div>
                     <div>
     {item.companyName ? (
-      <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Tooltip title={translatedMenuItems[28]}>
+           {/*  */}
         <ConnectWithoutContactIcon
           onClick={() => {
             handleRowData(item);
@@ -524,7 +519,8 @@ const LeadsCardList = (props) => {
         />
       </Tooltip>
     ) : (
-      <Tooltip title="Company name is required to enable qualification action">
+      <Tooltip title=   {translatedMenuItems[26]}>
+      {/* // "Company name is required to enable qualification action"> */}
         <ConnectWithoutContactIcon
           className="!text-icon cursor-not-allowed text-gray-400"
         />
@@ -618,7 +614,7 @@ const LeadsCardList = (props) => {
                         <StyledPopconfirm
                           title={translatedMenuItems[20]}
                           onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
-                     <Tooltip title="Delete">
+                     <Tooltip title={translatedMenuItems[27]}>
                           <DeleteOutlined
                             type="delete"
                             className=" !text-icon cursor-pointer text-[red]"
@@ -639,29 +635,30 @@ const LeadsCardList = (props) => {
 
       <div className=' flex  justify-center  sticky z-auto mt-1'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-     <div className="font-bold font-poppins text-xs flex  w-[92%] p-1 bg-transparent  sticky top-0 z-10 max-sm:hidden">
-      <div className="font-bold font-poppins text-xs w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-orange-400 text-white">{translatedMenuItems[12]}</div>
-        <div className="font-bold font-poppins text-xs  w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
-        <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        {/* <div className="font-bold font-poppins text-xs w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+     <div className=" flex  w-[100%] p-1 bg-transparent  sticky top-0 z-10 max-sm:hidden">
+      <div class="  flex justify-between font-bold font-poppins text-xs w-[92%]">
+      <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-orange-400 text-white">{translatedMenuItems[12]}</div>
+        <div className="  w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
+        {/* <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
           {translatedMenuItems[3]}
           </div> */}
-        <div className="font-bold font-poppins text-xs w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
-        <div className="font-bold font-poppins text-xs w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
-        <div className= "font-bold font-poppins text-xs w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
-        <div className= "font-bold font-poppins text-xs w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
-        <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
-        <div className="font-bold font-poppins text-xs w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className="font-bold font-poppins text-xs w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+        <div className=" w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
+        <div className=" w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
+        <div className= " w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
+        <div className= " w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
+        <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
+        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
+        <div className=" w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
+            <div className=" w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+          {translatedMenuItems[22]}  {/* Score */}
           
             </div>
             )}
         <div className="w-12"></div>
-
+            </div>
       </div>
       <InfiniteScroll
         dataLength={props.leadsAllDataWarm.length}
@@ -715,12 +712,7 @@ const LeadsCardList = (props) => {
                         type="Hot"
                         iconType="fas fa-mug-hot"
                         // tooltip="Hot"
-                        tooltip={
-                          <FormattedMessage
-                            id="app.hot"
-                            defaultMessage="Hot"
-                          />
-                        }
+                        tooltip={translatedMenuItems[23]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Hot";
@@ -735,12 +727,7 @@ const LeadsCardList = (props) => {
                         type="Warm"
                         iconType="	fas fa-burn"
                         // tooltip="Warm"
-                        tooltip={
-                          <FormattedMessage
-                            id="app.warm"
-                            defaultMessage="Warm"
-                          />
-                        }
+                        tooltip={translatedMenuItems[24]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Warm";
@@ -755,12 +742,7 @@ const LeadsCardList = (props) => {
                         type="Cold"
                         iconType="far fa-snowflake"
                         // tooltip="Cold"
-                        tooltip={
-                          <FormattedMessage
-                            id="app.cold"
-                            defaultMessage="Cold"
-                          />
-                        }
+                        tooltip={translatedMenuItems[25]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Cold";
@@ -794,7 +776,7 @@ const LeadsCardList = (props) => {
                             {date === currentdate ? (
                               <div class="text-[0.65rem] text-[tomato] font-bold"                                
                               >
-                                New
+                               {translatedMenuItems[21]} {/* New */}
                               </div>
                             ) : null}
                           </div>
@@ -913,7 +895,7 @@ const LeadsCardList = (props) => {
                   )}
                 </div>
                 {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex text-xs  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             Score
           
             </div>
@@ -922,7 +904,8 @@ const LeadsCardList = (props) => {
                   <div class=" text-xs  font-poppins"></div>
                   <div>
   {item.companyName ? (
-    <Tooltip title="Qualify? Lead will move to Prospect section!">
+    <Tooltip title={translatedMenuItems[28]}>
+      {/* {translatedMenuItems[28]} */}
       <ConnectWithoutContactIcon
         onClick={() => {
           handleRowData(item);
@@ -932,7 +915,7 @@ const LeadsCardList = (props) => {
       />
     </Tooltip>
   ) : (
-    <Tooltip title="Company name is required to enable qualification action">
+    <Tooltip title={translatedMenuItems[26]}>
       <ConnectWithoutContactIcon
         className="!text-icon cursor-not-allowed text-gray-400"
       />
@@ -1031,7 +1014,7 @@ const LeadsCardList = (props) => {
                       <StyledPopconfirm
                         title={translatedMenuItems[20]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
-                   <Tooltip title="Delete">
+                   <Tooltip title={translatedMenuItems[27]}>
                         <DeleteOutlined
                           type="delete"
                           className=" !text-icon cursor-pointer text-[red]"
@@ -1051,30 +1034,31 @@ const LeadsCardList = (props) => {
 
       <div className=' flex  justify-center  sticky  z-auto mt-1'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-     <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
-      <div className="font-bold font-poppins text-xs w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-blue-600 text-white">{translatedMenuItems[13]}</div>
-        <div className="font-bold font-poppins text-xs w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
-        <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        <div className="font-bold font-poppins text-xs w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+     <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
+       <div class=" flex justify-between font-bold font-poppins text-xs w-[92%]">
+      <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-blue-600 text-white">{translatedMenuItems[13]}</div>
+        <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
+        <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
           {/* {translatedMenuItems[3]} */}
           </div>
-        <div className="font-bold font-poppins text-xs w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
-        <div className="font-bold font-poppins text-xs w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
-        <div className= "font-bold font-poppins text-xs w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
-        <div className= "font-bold font-poppins text-xs w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
-        <div className="font-bold font-poppins text-xs w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
-        <div className="font-bold font-poppins text-xs w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
+        <div className=" w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
+        <div className=" w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
+        <div className= " w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
+        <div className= " w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
+        <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
+        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
 
-        <div className="font-bold font-poppins text-xs w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+        <div className=" w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
+            <div className=" w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+           {translatedMenuItems[22]} {/* Score */}
           
             </div>
             )}
         <div className="w-12"></div>
-
+        </div>
       </div>
       <InfiniteScroll
         dataLength={props.leadsAllDataCold.length}
@@ -1127,12 +1111,7 @@ const LeadsCardList = (props) => {
                         type="Hot"
                         iconType="fas fa-mug-hot"
                         // tooltip="Hot"
-                        tooltip={
-                          <FormattedMessage
-                            id="app.hot"
-                            defaultMessage="Hot"
-                          />
-                        }
+                        tooltip={translatedMenuItems[23]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Hot";
@@ -1147,12 +1126,7 @@ const LeadsCardList = (props) => {
                         type="Warm"
                         iconType="	fas fa-burn"
                         // tooltip="Warm"
-                        tooltip={
-                          <FormattedMessage
-                            id="app.warm"
-                            defaultMessage="Warm"
-                          />
-                        }
+                        tooltip={translatedMenuItems[24]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Warm";
@@ -1167,12 +1141,7 @@ const LeadsCardList = (props) => {
                         type="Cold"
                         iconType="far fa-snowflake"
                         // tooltip="Cold"
-                        tooltip={
-                          <FormattedMessage
-                            id="app.cold"
-                            defaultMessage="Cold"
-                          />
-                        }
+                        tooltip={translatedMenuItems[25]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Cold";
@@ -1207,7 +1176,7 @@ const LeadsCardList = (props) => {
                               <div class="text-[0.65rem]  text-[tomato] font-bold"
                                 
                               >
-                                New
+                               {translatedMenuItems[21]} {/* New */}
                               </div>
                             ) : null}
                           </div>
@@ -1324,7 +1293,7 @@ const LeadsCardList = (props) => {
                   )}
                 </div>
                 {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex text-xs  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             Score
           
             </div>
@@ -1333,7 +1302,8 @@ const LeadsCardList = (props) => {
                   <div class=" text-xs  font-poppins"></div>
                   <div>
   {item.companyName ? (
-    <Tooltip title="Qualify? Lead will move to Prospect section!">
+    <Tooltip title={translatedMenuItems[28]}>
+      {/* {translatedMenuItems[28]} */}
       <ConnectWithoutContactIcon
         onClick={() => {
           handleRowData(item);
@@ -1343,7 +1313,7 @@ const LeadsCardList = (props) => {
       />
     </Tooltip>
   ) : (
-    <Tooltip title="Company name is required to enable qualification action">
+    <Tooltip title={translatedMenuItems[26]}>
       <ConnectWithoutContactIcon
         className="!text-icon cursor-not-allowed text-gray-400"
       />
@@ -1433,7 +1403,7 @@ const LeadsCardList = (props) => {
                       <StyledPopconfirm
                         title={translatedMenuItems[20]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
-                   <Tooltip title="Delete">
+                   <Tooltip title={translatedMenuItems[27]}>
                         <DeleteOutlined
                           type="delete"
                           className=" !text-icon cursor-pointer text-[red]"
@@ -1468,6 +1438,8 @@ const LeadsCardList = (props) => {
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
         addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
         handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
       />
       <OpenCETmodal
         rowdata={rowdata}
@@ -1475,17 +1447,23 @@ const LeadsCardList = (props) => {
         // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
         openCETmodal={props.openCETmodal}
         handleCETmodal={props.handleCETmodal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
       />
       <AddLeadsNotesDrawerModal
         rowdata={rowdata}
         addDrawerLeadsNotesModal={props.addDrawerLeadsNotesModal}
         handleLeadsNotesDrawerModal={props.handleLeadsNotesDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
       />
           <AddConfirmLedsStatusModal
            rowdata={rowdata}
            handleRowData={handleRowData}
            addLeadsConfirmationModal={props.addLeadsConfirmationModal}
            handleLeadsConfirmationModal={props.handleLeadsConfirmationModal}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
            />
            <AddSubscriptionModal
              item={currentLeadsId}
@@ -1493,6 +1471,8 @@ const LeadsCardList = (props) => {
           //  handleRowData={handleRowData}
           addDrawerLeadsSubscriptionModal={props.addDrawerLeadsSubscriptionModal}
            handleLeadsSubscriptionModal={props.handleLeadsSubscriptionModal}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
            />
 
 <AddLeadsAddressModal
@@ -1502,6 +1482,8 @@ const LeadsCardList = (props) => {
           //  handleRowData={handleRowData}
           addDrawerLeadsAddressModal={props.addDrawerLeadsAddressModal}
           handleLeadsAddressDrawerModal={props.handleLeadsAddressDrawerModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
            />
     </div>
   );

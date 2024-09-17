@@ -14,7 +14,7 @@ import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
 import FWLogo from "../../Assets/Images/name.jpg";//ct
 import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nubox
 import DevelopTk from "../../Assets/Images/logo_22.png";// testhr
-import KPSSN from "../../Assets/Images/KAPSSNLogo.png";// KPSSN
+import KAPSSN from "../../Assets/Images/KAPSSNLogo.jpg";// KPSSN
 
 
 class Login extends Component {
@@ -82,7 +82,7 @@ class Login extends Component {
           >
             <img
               className="big-logo w-[13rem]"
-              src={KPSSN}
+              src={KAPSSN}
               alt="Tekorero logo"
             />
             <br />

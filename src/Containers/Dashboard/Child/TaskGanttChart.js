@@ -43,7 +43,7 @@ const tasks = props.tasksdashboardGantt.map(item => {
   }
 
   return (
-    <div>
+    <div class=" overflow-auto">
       {props.tasksdashboardGantt.length?
       <Gantt tasks={tasks} />:null}
     </div>
