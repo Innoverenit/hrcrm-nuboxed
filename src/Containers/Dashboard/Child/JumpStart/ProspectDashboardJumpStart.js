@@ -7,7 +7,7 @@ import CustomerPieChart from "./CustomerPieChart"
 import {getJumpDistributorDetail,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
   handleOrderClosedModal,getCustomerAddedList,getContactAddedList,getOrderAddedList,
-  getOrderClosedList
+  getOrderClosedList,
 } from "../../DashboardAction";
 // import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
@@ -22,6 +22,7 @@ import {base_url} from "../../../../Config/Auth";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import ProspectJumpStartDrawer from './ProspectJumpStartDrawer';
 
 function ProspectDashboardJumpStart (props) {
   
@@ -66,16 +67,53 @@ function ProspectDashboardJumpStart (props) {
           },
         });
         setcontactAdded(response.data);
-        setLoading1(false);
+        setLoading2(false);
       } catch (error) {
         setError(error);
-        setLoading1(false);
+        setLoading2(false);
       }
     };
     
+    const [quotationAdded, setquotationAdded] = useState([]);
+    const [loading3, setLoading3] = useState(false);
+
+    const fetchQuotationAdded = async () => {
+      // const type="Prospect";
+      try {
+        const response = await axios.get(`${base_url}/opportunity/openList/date-range/count/self/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setquotationAdded(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
+    const [quotationAddedCard, setquotationAddedCard] = useState([]);
+    const [loading4, setLoading4] = useState(false);
+
+    const fetchQuotationAddedCard = async () => {
+      try {
+        const response = await axios.get(`${base_url}/opportunity/List/date-range/self/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setquotationAdded(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
+
     useEffect(() => {
       fetchProspectAdded();
       fetchContacttAdded();
+      fetchQuotationAdded();
     }, [props.userId]);
 
   useEffect(() => {
@@ -93,7 +131,7 @@ function ProspectDashboardJumpStart (props) {
         '1536', // 0 "Prospect Added"
         '1297', // 1 "Contacts Added"
         '1537', // 2 "Quotation Added"
-        '1496'  // 3 "Quotation Won"
+        '1553'  // 3 "Quotation Won"
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -117,10 +155,10 @@ function ProspectDashboardJumpStart (props) {
   }, [props.customerAddedList]);
 
   useEffect(() => {
-    if (props.orderAddedList) {
-      setModalData(props.orderAddedList);
+    if (quotationAddedCard) {
+      setModalData(quotationAddedCard);
     }
-  }, [props.orderAddedList]);
+  }, [quotationAddedCard]);
 
   useEffect(() => {
     if (props.orderClosedList) {
@@ -143,10 +181,10 @@ function ProspectDashboardJumpStart (props) {
       case 'Contact Added':
         props.getContactAddedList(props.orgId,props.endDate,props.startDate);
         break;
-      case 'Orders Added':
-        props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
+      case 'Quotation Added':
+        fetchQuotationAddedCard(props.userId,props.endDate,props.startDate);
         break;
-      case 'Closed':
+      case 'Quotation Won':
         props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
         break;
       default:
@@ -187,8 +225,8 @@ function ProspectDashboardJumpStart (props) {
                   noProgress
                   bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
                   title={translatedMenuItems[1]}
-                  value={props.distributorinDashboard.totalContactPerson}
-                  jumpstartClick={() => props.handleContactAddedModal(true)}
+                  value={contactAdded.count}
+                  jumpstartClick={() => handleClick("Contact Added")}
                 />
               </div>
             </div>
@@ -204,7 +242,7 @@ function ProspectDashboardJumpStart (props) {
                   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                   title={translatedMenuItems[2]}
                   value={props.distributorinDashboard.totalOrder}
-                  jumpstartClick={() => props.handleOrderAddedModal(true)}
+                  jumpstartClick={() => handleClick("Quotation Added")}
                   cursorData="pointer"
                 />
               </div>
@@ -221,7 +259,7 @@ function ProspectDashboardJumpStart (props) {
                   bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                   title={translatedMenuItems[3]}
                   value={props.distributorinDashboard.completeOrder}
-                  jumpstartClick={() => props.handleOrderClosedModal(true)}
+                  jumpstartClick={() => handleClick("Quotation Won")}
                   cursorData="pointer"
                 />
               </div>
@@ -240,7 +278,7 @@ function ProspectDashboardJumpStart (props) {
         </div>
       </div>
       </div>
-<CustomerJumpStartDrawer
+<ProspectJumpStartDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
  isModalOpen={isModalOpen}

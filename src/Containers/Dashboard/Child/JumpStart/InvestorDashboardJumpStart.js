@@ -16,13 +16,11 @@ import OrdersAddedModal from "./OrdersAddedModal";
 import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 import axios from 'axios';
-import {base_url2} from "../../../../Config/Auth";
+import {base_url} from "../../../../Config/Auth";
 
 function InvestorDashboardJumpStart (props) {
   
   const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'));
-  const [startDate] = useState(dayjs().startOf('month'));
-  const [endDate] = useState(dayjs());
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalData, setModalData] = useState([]);
@@ -34,7 +32,7 @@ function InvestorDashboardJumpStart (props) {
 
     const fetchInvesortAdded = async () => {
       try {
-        const response = await axios.get(`${base_url2}/investor/report/all-investor/self/count/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+        const response = await axios.get(`${base_url}/investor/report/all-investor/self/count/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -46,11 +44,69 @@ function InvestorDashboardJumpStart (props) {
         setLoading1(false);
       }
     };
+    const [contactAdded, setcontactAdded] = useState([]);
+    const [loading2, setLoading2] = useState(false);
+
+    const fetchContacttAdded = async () => {
+      const type="Investor";
+      try {
+        const response = await axios.get(`${base_url}/contact/added/selfCount/date-wise/${props.userId}/${type}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setcontactAdded(response.data);
+        setLoading2(false);
+      } catch (error) {
+        setError(error);
+        setLoading2(false);
+      }
+    };
+
+    const [dealsAdded, setdealsAdded] = useState([]);
+    const [loading3, setLoading3] = useState(false);
+
+    const fetchDealsAdded = async () => {
+      const type="add";
+      try {
+        const response = await axios.get(`${base_url}/investorOpportunity/self/report/count/${props.userId}/${type}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setdealsAdded(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+          };
+          const [dealsWon, setdealsWon] = useState([]);
+          const [loading4, setLoading4] = useState(false);
+      
+          const fetchDealsWon = async () => {
+            const type="won";
+            try {
+              const response = await axios.get(`${base_url}/investorOpportunity/self/report/count/${props.userId}/${type}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+                headers: {
+                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                },
+              });
+              setdealsWon(response.data);
+              setLoading4(false);
+            } catch (error) {
+              setError(error);
+              setLoading4(false);
+            }
+                };
 
   useEffect(() => {
     props.getJumpDistributorDetail(props.timeRangeType);
     fetchMenuTranslations();
     fetchInvesortAdded();
+    fetchContacttAdded();
+    fetchDealsAdded();
+    fetchDealsWon();
   }, [props.timeRangeType]);
 
   useEffect(() => {
@@ -63,7 +119,7 @@ function InvestorDashboardJumpStart (props) {
         '1538', // 0 "Investor Added"
         '1297', // 1 "Contacts Added"
         '1539', // 2 "Deals Added"
-        '1540'  // 3 "Deals Completed"
+        '1554'  // 3 "Deals Won"
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -116,7 +172,7 @@ function InvestorDashboardJumpStart (props) {
       case 'Deals Added':
         props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
         break;
-      case 'Deals Completed':
+      case 'Deals Won':
         props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
         break;
       default:
@@ -139,7 +195,7 @@ function InvestorDashboardJumpStart (props) {
                   noProgress
                   bgColor="linear-gradient(270deg,#F15753,orange)"
                   title={translatedMenuItems[0]}
-                  value={props.distributorinDashboard.totalDistributor}
+                  value={invesortAdded.investorAdded}
                   jumpstartClick={()=> handleClick("Added")}
                   cursorData={"pointer"}
                 />
@@ -156,7 +212,7 @@ function InvestorDashboardJumpStart (props) {
                   noProgress
                   bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
                   title={translatedMenuItems[1]}
-                  value={props.distributorinDashboard.totalContactPerson}
+                  value={contactAdded.count}
                   jumpstartClick={() => props.handleContactAddedModal(true)}
                 />
               </div>
@@ -172,7 +228,7 @@ function InvestorDashboardJumpStart (props) {
                   noProgress
                   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                   title={translatedMenuItems[2]}
-                  value={props.distributorinDashboard.totalOrder}
+                  value={dealsAdded.investorOppAdded}
                   jumpstartClick={() => props.handleOrderAddedModal(true)}
                   cursorData="pointer"
                 />
@@ -189,7 +245,7 @@ function InvestorDashboardJumpStart (props) {
                   noProgress
                   bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                   title={translatedMenuItems[3]}
-                  value={props.distributorinDashboard.completeOrder}
+                  value={dealsWon.investorOppWon}
                   jumpstartClick={() => props.handleOrderClosedModal(true)}
                   cursorData="pointer"
                 />
@@ -256,7 +312,9 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
   contactAddedList:dashboard.contactAddedList,
   customerAddedList:dashboard.customerAddedList,
   orderAddedList:dashboard.orderAddedList,
-  orderClosedList:dashboard.orderClosedList
+  orderClosedList:dashboard.orderClosedList,
+  startDate: dashboard.startDate,
+  endDate:dashboard.endDate,
 
 });
 

@@ -2886,3 +2886,56 @@ export const getRepairDashboardOrderCancelled = (userId, startDate, endDate,page
       });
     });
 };
+
+export const getCountbyUserID = (userId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_COUNT_BY_USERID_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2}/distributor/distributorCount/${userId}/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_COUNT_BY_USERID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_COUNT_BY_USERID_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getDistributorbyUserID = (userId,endDate,startDate,page) => (dispatch) => {
+  dispatch({
+    type: types.GET_DISTRIBUTOR_BY_USERID_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2}/distributor/${userId}/${endDate}/${startDate}/${page}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_DISTRIBUTOR_BY_USERID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_DISTRIBUTOR_BY_USERID_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -309,9 +309,8 @@ const initialState = {
       startDate: dayjs().startOf("year").toISOString(),
       endDate: dayjs().endOf("year").toISOString(),
     },
-
-
   ],
+
   timeRangeType: "today",
   isCustomSelected: false,
 
@@ -487,6 +486,15 @@ const initialState = {
   fetchingRepairDashboardOrderCancelled: false,
   fetchingRepairDashboardOrderCancelledError:false,
   repairDashboardOrderCancelled:[],
+
+  fetchingCountByUserID: false,
+  fetchingCountByUserIDError:false,
+  countbyUserID:[],
+
+  fetchingDistributorByUserID: false,
+  fetchingDistributorByUserIDError:false,
+  distributorbyUserID:[],
+
 };
 
 export const dashboardReducer = (state = initialState, action) => {
@@ -2217,6 +2225,22 @@ export const dashboardReducer = (state = initialState, action) => {
                 fetchingRepairDashboardOrderCancelled: false,
                 fetchingRepairDashboardOrderCancelledError: true,
               };
+
+              case types.GET_DISTRIBUTOR_BY_USERID_REQUEST:
+                return { ...state, fetchingDistributorByUserID: true };
+              case types.GET_DISTRIBUTOR_BY_USERID_SUCCESS:
+                return {
+                  ...state,
+                  fetchingDistributorByUserID: false,
+                  distributorbyUserID:action.payload,
+                };
+              case types.GET_DISTRIBUTOR_BY_USERID_FAILURE:
+                return {
+                  ...state,
+                  fetchingDistributorByUserID: false,
+                  fetchingDistributorByUserIDError: true,
+                };  
+
 
     default:
       return state;
