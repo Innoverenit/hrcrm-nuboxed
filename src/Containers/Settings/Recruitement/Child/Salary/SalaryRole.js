@@ -18,10 +18,30 @@ class SalaryRole extends PureComponent {
         }
     }
 
+    // componentDidMount() {
+    //     this.props.getDepartmentRoleData(this.props.departmentId)
+    // }
     componentDidMount() {
-        this.props.getDepartmentRoleData(this.props.departmentId)
+      this.props.getDepartmentRoleData(this.props.departmentId)
+    
+      // Set the initial club data when departmentRoleData is available
+      if (this.props.departmentRoleData && this.props.departmentRoleData.length > 0) {
+        this.setState({
+          departmentData: this.props.departmentRoleData[0],
+        });
+      }
     }
-
+    
+    componentDidUpdate(prevProps) {
+      // Check if departmentRoleData has changed and set the initial state
+      if (prevProps.departmentRoleData !== this.props.departmentRoleData) {
+        if (this.props.departmentRoleData && this.props.departmentRoleData.length > 0) {
+          this.setState({
+            departmentData: this.props.departmentRoleData[0],
+          });
+        }
+      }
+    }
     handleOnClick = (data) => {
         console.log(data);
         debugger;

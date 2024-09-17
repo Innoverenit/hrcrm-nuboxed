@@ -2043,6 +2043,22 @@ export const suppliersReducer = (state = initialState, action) => {
             case types.HANDLE_SUPPLIERS_ADDRESS_MODAL:
               return { ...state, addSuppliersAddressModal: action.payload };
 
+              case types.INPUT_SEARCH_PO_REQUEST:
+                return { ...state, fetchingSearchPo: true };
+              case types.INPUT_SEARCH_PO_SUCCESS:
+                return {
+                  ...state,
+                  fetchingSearchPo: false,
+                  purchaseList: action.payload,
+                };
+              case types.INPUT_SEARCH_PO_FAILURE:
+                return { ...state, fetchingSearchPoError: true };
+        
+                case types.HANDLE_CLAER_PO_DATA_PROCESS:
+                  return { ...state, 
+                    purchaseList: [], 
+                  };
+
 
 
     default:

@@ -1,4 +1,4 @@
-import React, { useEffect, useState,lazy, Suspense } from "react";
+import React, { useEffect, useState,lazy, Suspense,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
@@ -10,10 +10,12 @@ import {
     handleTermsnConditionModal,
     addCurrencyInPo,
     updatePOContact,
-    getSupplierContactList
+    getSupplierContactList,getSearchPo,ClearPoData
 } from "../../../SuppliersAction"
-import { Button, Select, Tooltip } from 'antd';
+import { Button, Select, Tooltip,Input } from 'antd';
 import dayjs from "dayjs";
+import { AudioOutlined } from '@ant-design/icons';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import NodataFoundPage from '../../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
@@ -32,6 +34,13 @@ function PurchaseOrderTable(props) {
   const [editContactId, setEditContactId] = useState(null);
   const [contact, setContact] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false);
+  const [pageNo, setPageNo] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+const [isRecording, setIsRecording] = useState(false); //Code for Search
+const minRecordingTime = 3000; // 3 seconds
+const timerRef = useRef(null);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -124,9 +133,104 @@ function PurchaseOrderTable(props) {
     const handleLoadMore = () => {
         setPage(page + 1);
     };
+
+    const {
+      transcript,
+      listening,
+      resetTranscript,
+      browserSupportsSpeechRecognition
+    } = useSpeechRecognition();
+
+    useEffect(() => {
+      // props.getCustomerRecords();
+      if (transcript) {
+        console.log(">>>>>>>", transcript);
+        setCurrentData(transcript);
+      }
+      }, [ transcript]);
+  
+    const handleChange = (e) => {
+      setCurrentData(e.target.value);
+  
+      if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+        props.getPurchaseSuppliersList(props.supplier.supplierId);
+        props.ClearPoData()
+        setSearchOnEnter(false);
+      }
+    };
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        // Perform the search
+        props.getSearchPo(currentData);
+        setSearchOnEnter(true);  //Code for Search
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
+    const handleStartListening = () => {
+      setStartTime(Date.now());
+      setIsRecording(true);
+      SpeechRecognition.startListening();
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      timerRef.current = setTimeout(() => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+      }, minRecordingTime);
+    };
+    const suffix = (
+      <AudioOutlined
+        onClick={handleStartListening}
+        style={{
+          fontSize: 16,
+          color: '#1890ff',
+        }}
+  
+      />
+    );
+    const handleStopListening = () => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+      if (transcript.trim() !== "") {
+        setCurrentData(transcript);
+        props.getSearchPo(transcript);
+        setSearchOnEnter(true);
+      }
+    };
+    useEffect(() => {
+      if (!listening && isRecording) {
+        handleStopListening();
+      }
+    }, [listening]);
+    useEffect(() => {
+      if (isRecording && !listening) {
+        // If recording was stopped but less than 5 seconds have passed, restart listening
+        const elapsedTime = Date.now() - startTime;
+        if (elapsedTime < minRecordingTime) {
+          SpeechRecognition.startListening();
+        } else {
+          setIsRecording(false);
+        }
+      }
+    }, [listening, isRecording, startTime]);
+
+
+
+
     return (
         <>
-            <div className=' flex  sticky z-auto'>
+            <div className=' flex  sticky z-auto flex-col'>
+            <div class=" w-64 max-sm:w-40">
+        <Input
+          placeholder="Search By Po ID"
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+      </div>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=" w-[15.1rem]  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
@@ -404,7 +508,9 @@ const mapDispatchToProps = (dispatch) =>
             getCurrency,
             addCurrencyInPo,
             updatePOContact,
-            getSupplierContactList
+            getSupplierContactList,
+            getSearchPo,
+            ClearPoData
         },
         dispatch
     );
