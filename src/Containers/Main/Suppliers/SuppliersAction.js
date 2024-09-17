@@ -2494,4 +2494,31 @@ export const handleSuppliersAddress = (modalProps) => (dispatch) => {
 };
 
 
+export const getSearchPo =(name)=>(dispatch)=>{
+  dispatch({
+    type: types.INPUT_SEARCH_PO_REQUEST,
+  });
+  axios.get(`${base_url2}/po/search/${name}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  .then((res)=>{
+    dispatch({
+      type:types.INPUT_SEARCH_PO_SUCCESS,
+      payload:res.data,
+    });
+  })
+  .catch((err)=>{
+    dispatch({
+  type:types.INPUT_SEARCH_PO_FAILURE,
+  payload:err,
+    });
+  });
+};
 
+export const ClearPoData = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_PO_DATA_PROCESS,
+  });
+};
