@@ -11,6 +11,7 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import CampaignIcon from '@mui/icons-material/Campaign';
 import SummarizeIcon from '@mui/icons-material/Summarize';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
   handleDocumentUploadModal,
   getContactListByCustomerId,
@@ -302,7 +303,7 @@ class ContactDetailTab extends Component {
               tab={
                 <>
 
-<i class="fab fa-connectdevelop text-[#8332ac]"></i> 
+<HourglassFullIcon className="text-[#edf67d] !text-icon" />
                   <Badge
                 count={this.props.customerActivityCount.count}
                 overflowCount={999}

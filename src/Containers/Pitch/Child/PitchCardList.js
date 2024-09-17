@@ -12,6 +12,7 @@ import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
   getPitch,
   getPitchHot,
@@ -570,12 +571,12 @@ const countryCode = item.countryAlpha2Code
 <Tooltip
         title= {translatedMenuItems[18]} 
       >
-                  <i class="fab fa-connectdevelop text-[#8332ac] !text-icon cursor-pointer"
+                   <HourglassFullIcon className="text-[#edf67d] !text-icon cursor-pointer" 
                                    onClick={()=>{
                     props.handleAssimodal(true)
                     handleRowData(item)
                     }}
-                  ></i>
+              />
                   </Tooltip>
                   </div>
                   <div>
@@ -985,12 +986,12 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   <Tooltip
                     title= {translatedMenuItems[18]} 
                   >
-                  <i class="fab fa-connectdevelop text-[#8332ac] !text-icon cursor-pointer"
+                 <HourglassFullIcon className="text-[#edf67d] !text-icon cursor-pointer" 
                                    onClick={()=>{
                     props.handleAssimodal(true)
                     handleRowData(item)
                     }}
-                  ></i>
+                />
                   </Tooltip>
        </div>
       <div>
@@ -1385,12 +1386,12 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                 <Tooltip
                   title= {translatedMenuItems[18]} 
                 >
-               <i class="fab fa-connectdevelop text-[#8332ac] !text-icon cursor-pointer"
+              <HourglassFullIcon className="text-[#edf67d] !text-icon cursor-pointer"
                                    onClick={()=>{
                     props.handleAssimodal(true)
                     handleRowData(item)
                     }}
-                  ></i>
+              />
                 </Tooltip>
       </div>
          <div>

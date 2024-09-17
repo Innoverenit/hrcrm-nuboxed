@@ -62,7 +62,12 @@ function InvestorTeamCardList(props) {
             "279",//6 Source
             "76",//7 Assigned
             "77",//8  Owner
-           
+           "392", // pulse 9
+          "185", // 185ADDress 10
+          "316", // notes 11
+          "608",// investor contact 12
+          "170",// 170edit  13
+          "84", // 84delete 14
 
         ];
 
@@ -406,7 +411,7 @@ function InvestorTeamCardList(props) {
                                        
                                 <div >
                                 {/* {user.pulseAccessInd === true && */}
-                          <Tooltip title="Pulse">
+                          <Tooltip title= {translatedMenuItems[9]} >
          <MonitorHeartIcon
                   onClick={() => {
                     handleInvestorPulseDrawerModal(true);
@@ -418,6 +423,7 @@ function InvestorTeamCardList(props) {
         {/* } */}
                           </div>
                           <div>
+                          <Tooltip title= {translatedMenuItems[10]} >
                           <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
           onClick={() => {
@@ -426,9 +432,10 @@ function InvestorTeamCardList(props) {
           }}
           
         />   
+        </Tooltip>
         </div>  
                          <div>
-                   <Tooltip title="Notes">
+                   <Tooltip title={translatedMenuItems[11]}>
        <NoteAltIcon
                 onClick={() => {
                   props.handleInvestorNotesDrawerModal(true);
@@ -460,7 +467,7 @@ function InvestorTeamCardList(props) {
                         </div>                                              
                         <div>
           
-            <Tooltip title="Investor Contact">
+            <Tooltip title={translatedMenuItems[12]}>
               <ContactEmergencyIcon
               className=" !text-icon cursor-pointer  text-blue-500 max-sm:!text-xl"
                 onClick={() => {
@@ -472,7 +479,7 @@ function InvestorTeamCardList(props) {
             </div>                                                              
             <div>
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
-            <Tooltip title="Edit">
+            <Tooltip title={translatedMenuItems[13]}>
               <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
                 onClick={() => {
                     handleUpdateInvestorModal(true);
@@ -489,7 +496,7 @@ function InvestorTeamCardList(props) {
                           deleteInvestorData(item.investorId,props.userId)
                         }
                       >
-                         <Tooltip title="Delete">                      
+                         <Tooltip title={translatedMenuItems[14]}>                      
                           <DeleteOutlined
                             type="delete"
                             className="!text-icon text-[red] cursor-pointer max-sm:!text-xl"

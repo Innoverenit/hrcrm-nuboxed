@@ -64,7 +64,7 @@ return(
   ) : (
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className=" flex max-sm:hidden ml-4 justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+<div className=" flex max-sm:hidden ml-4 justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
             <div className=" w-[11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  {props.translatedMenuItems[0]}</div>
             <div className=" w-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
             {props.translatedMenuItems[1]}

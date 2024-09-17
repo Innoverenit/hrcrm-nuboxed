@@ -79,13 +79,13 @@ function InvestorCardList(props) {
             "592",//10Club
             "76",//11 Assigned
             "77",//12 Owner
-          138//  document
-          // 185ADDress
-          // pulse392
-          // notes 316
-          // investor contact 608
-          // 170edit
-          // 84delete
+          "138",//  document     13  
+          "392", // pulse14 
+          "185", // 185ADDress 15
+          "316", // notes 16
+          "608",// investor contact 17 
+          "170",// 170edit  18 
+          "84", // 84delete 19
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -452,7 +452,7 @@ function InvestorCardList(props) {
                   <div class=" flex w-wk justify-end items-center">
                                 <div class="flex cursor-pointer  max-sm:justify-evenly max-sm:w-wk max-sm:items-center">  
                                   <div>
-                                  <Tooltip title="Document">
+                                  <Tooltip title={translatedMenuItems[13]} >
                                     <ArticleIcon  className="!text-icon cursor-pointer  max-sm:!text-xl"
                                   onClick={() => {
                                     handleInvestorDocumentModal(true);
@@ -462,7 +462,7 @@ function InvestorCardList(props) {
                                   </Tooltip>
                                   </div>          
                                 <div >
-                          <Tooltip title="Pulse">
+                          <Tooltip title={translatedMenuItems[14]} >
                             <MonitorHeartIcon
                                       onClick={() => {
                                         handleInvestorPulseDrawerModal(true);
@@ -472,7 +472,7 @@ function InvestorCardList(props) {
                                     />
                                 </Tooltip>
                           </div>  
-                         < Tooltip title="Address">
+                         < Tooltip title={translatedMenuItems[15]} >
                           <AddLocationAltIcon
                             className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
                             onClick={() => {
@@ -482,7 +482,7 @@ function InvestorCardList(props) {
                              />   
                                   </Tooltip>                                                                        
                           <div >
-                   <Tooltip title="Notes">
+                   <Tooltip title={translatedMenuItems[16]} >
                        <NoteAltIcon
                 onClick={() => {
                   props.handleInvestorNotesDrawerModal(true);
@@ -519,7 +519,7 @@ function InvestorCardList(props) {
             </span> 
                         </div>      
                         <div >         
-            <Tooltip title="Investor Contact">
+            <Tooltip title={translatedMenuItems[17]} >
               <ContactEmergencyIcon
               className=" !text-icon cursor-pointer  text-blue-500 max-sm:!text-xl "
                 onClick={() => {
@@ -533,7 +533,7 @@ function InvestorCardList(props) {
           
             <div >
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
-            <Tooltip title="Edit">
+            <Tooltip title={translatedMenuItems[18]} >
               <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
                 onClick={() => {
                     handleUpdateInvestorModal(true);
@@ -550,7 +550,7 @@ function InvestorCardList(props) {
                           deleteInvestorData(item.investorId,props.userId)
                         }
                       >
-                         <Tooltip title="Delete">
+                         <Tooltip title={translatedMenuItems[19]} >
                        
                           <DeleteOutlined
                             type="delete"

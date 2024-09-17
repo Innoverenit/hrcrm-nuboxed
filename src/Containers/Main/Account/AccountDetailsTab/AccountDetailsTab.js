@@ -7,6 +7,7 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { PlusOutlined } from "@ant-design/icons";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
     handleLinkDistributorOrderConfigureModal,
     handleLinkCustomerProcurementModal,
@@ -467,7 +468,7 @@ function AccountDetailsTab(props) {
                             <>
 
                                 <span>
-                                    <i class="fab fa-connectdevelop text-[#8332ac]"></i>
+                                <HourglassFullIcon className="text-[#edf67d] !text-icon" />
                                     <span class="ml-1 !text-tab font-poppins ">
                                     {translatedMenuItems[4]}
                                     {/* Activity */}

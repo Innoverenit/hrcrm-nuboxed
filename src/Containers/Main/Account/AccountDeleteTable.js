@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 
 import {
     getDeletedDistributors,
@@ -144,14 +145,14 @@ function AccountDeleteTable(props) {
                    <div>
                    <Tooltip title="Activity">
                         <span>
-                            <i
-                                class="fab fa-connectdevelop"
+                        <HourglassFullIcon className="text-[#edf67d] !text-icon"
+                                                      
                                 style={{ cursor: "pointer" }}
                                 onClick={() => {
                                     props.handleDistributorActivityTableModal(true);
                                     handleSetCurrentDistributorId(item.distributorId);
                                 }}
-                            ></i>
+                            />
                         </span>
                     </Tooltip>
                    </div>

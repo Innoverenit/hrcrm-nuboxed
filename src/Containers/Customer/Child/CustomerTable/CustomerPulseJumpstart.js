@@ -23,7 +23,7 @@ import CustrContJumpstartCardList from "./CustrContJumpstartCardList";
 import CustrWonOpportunityJumpstartCardList from "./CustrWonOpportunityJumpstartCardList";
 import CustrActivityJumpstartCardList from "./CustrActivityJumpstartCardList";
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { FormattedMessage } from "react-intl";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 
 class CustomerPulseJumpStart extends React.Component{
   constructor(props) {
@@ -232,7 +232,9 @@ render() {
                         <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                             <div class="flex flex-row items-center">
                                 <div class="flex-shrink pr-4">
-                                    <div class="rounded-full p-1 bg-blue-600"><i class="fab fa-connectdevelop text-[#FFFF] !text-3xl"></i></div>
+                                    <div class="rounded-full p-1 bg-blue-600">
+                                    <HourglassFullIcon className="text-[#edf67d] !text-icon" />
+                                      </div>
                                 </div>
                                 <JumpStartBox
         noProgress

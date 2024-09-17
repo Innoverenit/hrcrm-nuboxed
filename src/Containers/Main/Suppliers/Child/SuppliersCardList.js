@@ -83,7 +83,7 @@ function SuppliersCardList(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex ml-4  justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+          <div className=" flex ml-4 font-poppins text-xs justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
             <div className=" w-[18.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
             {/* "Name" */}
             {props.translatedMenuItems[0]}
@@ -134,7 +134,7 @@ function SuppliersCardList(props) {
                             <div class="flex max-sm:justify-start items-center">
                               <div className="font-medium  flex items-center w-[14.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                                 <div>
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1  underline font-bold font-poppins text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1  underline font-bold font-poppins text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
                                     title={`${item.shipperName}`}
                                   >{item.name}</Link>

@@ -235,7 +235,7 @@
 //             <TabPane
 //               tab={
 //                 <>
-//                   <i class="fab fa-connectdevelop text-[#8332ac] !text-icon"></i>
+//                   <i class="fab fa-connectdevelop text-[#edf67d] !text-icon"></i>
 //                   <Badge
 //                 count={this.props.investorActivityCount.count}
 //                 overflowCount={999}
@@ -495,7 +495,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import {getContactListByInvestorId,handleInvestorContactModal,  handleActivityModal,  handleDealModal} from "../../../InvestorAction";
 import {  handleDocumentUploadModal,handleCustomerContactModal} from "../../../../Customer/CustomerAction";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 const InvestorActivityModal=lazy(()=>import("../InvestorActivity/InvestorActivityModal"));
 const InvestorTimeLine=lazy(()=>import("../InvestorActivity/InvestorTimeLine"));
 const CreateDealModal=lazy(()=>import("../../../../Deal/Child/CreateDealModal"));
@@ -720,16 +720,17 @@ const InvestorDetailTab = (props) => {
           <TabPane
             tab={
               <>
-                <i class="fab fa-connectdevelop text-[#8332ac] !text-icon"></i>
+               <HourglassFullIcon className="text-[#edf67d] !text-icon" />
                 <Badge
               count={props.investorActivityCount.count}
               overflowCount={999}
             > 
+             </Badge>
                 <span class="!text-tab font-poppins ml-1">
                 {translatedMenuItems[2]}  
-                  {/* Documents */}
+                  {/* Activity */}
                 </span>
-                </Badge>
+               
                 {activeKey === "3" && (
                   <>
                     <PlusOutlined
@@ -769,7 +770,7 @@ investorDetails={props.investorDetails}
                 <CurrencyExchangeIcon className="!text-icon text-[#fce762]"/>
                 <span class="!text-tab font-poppins ml-1">
                 {translatedMenuItems[3]}  
-                  {/* Documents */}
+                  {/* Deals */}
                 </span>
                 {activeKey === "4" && (
                   <>

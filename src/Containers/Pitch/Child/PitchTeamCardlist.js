@@ -12,6 +12,7 @@ import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
     getTeamPitch,
   deletePitchData,
@@ -436,13 +437,13 @@ serachedPitchData={props.serachedPitchData}
                                                                         <Tooltip
                                                                                 title= {translatedMenuItems[15]}
                                                                               >
-                                                                   <i class="fab fa-connectdevelop text-[#8332ac]"  
+                                                                    <HourglassFullIcon className="text-[#edf67d] !text-icon" 
 
                                                                         onClick={()=>{
                                                                           props.handleAssimodal(true)
                                                                           handleRowData(item)
                                                                           }}
-                                                                        ></i>
+                                                                        />
                                                                         </Tooltip>
                                                                             </div>                                                                               
                                                                                        <div>

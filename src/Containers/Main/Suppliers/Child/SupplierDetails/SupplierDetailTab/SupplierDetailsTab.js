@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import CategoryIcon from '@mui/icons-material/Category';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
   TabsWrapper,
 } from "../../../../../../Components/UI/Layout";
@@ -225,7 +226,7 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
                   <span>
-                  <i class="fab fa-connectdevelop text-[#e9d6ec]"></i>
+                  <HourglassFullIcon className="text-[#edf67d] !text-icon" />
                     <span className="max-xl:text-[0.65rem] ml-1 font-poppins text-sm ">{this.state.translatedMenuItems[5]}</span>
                   </span>
                   {activeKey === "6" && (

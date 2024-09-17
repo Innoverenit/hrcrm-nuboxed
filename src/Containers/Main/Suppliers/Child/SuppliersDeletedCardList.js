@@ -48,7 +48,7 @@ function SuppliersDeletedCardList(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex ml-4 max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex ml-4 max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
             <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  {props.translatedMenuItems[0]}
               </div>
             <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -85,7 +85,7 @@ function SuppliersDeletedCardList(props) {
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="font-medium  flex items-center w-[16.1rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
                               <div class=" font-semibold text-[0.85rem]  font-poppins">
-                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                   to={`supplier/${item.supplierId}`}
                                   title={`${item.shipperName}`}
                                 >{item.name}</Link>
