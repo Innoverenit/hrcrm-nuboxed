@@ -121,11 +121,12 @@ function InvestorCallActivityForm(props) {
          "75",  // "Include",//10
          "316"  ,// "Notes"//11
          "104", //Create 12
-        //  "",//Introductory 
-        //  "",//Interview
-        //  "",// closure
          "100",//new 13
          "101",// followup 14
+         "1599",//Introductory  15 
+         "1600",//Interview 16
+         "1601",// closure 17
+        
        
         ];
 
@@ -379,12 +380,7 @@ function InvestorCallActivityForm(props) {
                       </div>
                       <div class=" flex justify-between mt-3">
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.introductory"
-                              defaultMessage="Introductory"
-                            />
-                          }
+                          title= {translatedMenuItems[15]}
                         >
                            <div class="text-lg"
                             onClick={() => handleTypeChange("Inbound")} style={{
@@ -399,12 +395,7 @@ function InvestorCallActivityForm(props) {
                           </div>
                         </Tooltip>
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.interview"
-                              defaultMessage="Interview"
-                            />
-                          }
+                          title= {translatedMenuItems[16]}
                         >
                           <div class="text-lg"
                             onClick={() => handleTypeChange("Outbound")}  style={{
@@ -420,12 +411,7 @@ function InvestorCallActivityForm(props) {
                         </Tooltip>
     
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.closure"
-                              defaultMessage="Closure"
-                            />
-                          }
+                          title= {translatedMenuItems[17]}
                         >
                           <div class="text-lg"
                             onClick={() => handleTypeChange("Conference")}

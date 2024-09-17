@@ -23,10 +23,35 @@ const  OrderDetailModal = lazy(() => import('./OrderDetailModal'));
 
 const AccountOrder1Table = (props) => {
     const [page, setPage] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
     useEffect(() => {
         setPage(page + 1);
         props.getProductionOrder(props.distributorId, page)
     }, [])
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "660",//0 Order no
+              "679",//1 Created
+              "658",//2 Location
+              "260",//3 units
+              "73",//4 contact
+             
+     
+       
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     const [hasMore, setHasMore] = useState(true);
     const handleLoadMore = () => {
         setPage(page + 1);
@@ -42,36 +67,26 @@ const AccountOrder1Table = (props) => {
         <>
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
                         <div className=" md:w-[9.41rem]">
-                            <FormattedMessage
-                                id="app.orderno"
-                                defaultMessage="Order No"
-                            />
+                        {translatedMenuItems[0]} no
+                        {/* Order no */}
                         </div>
                         <div className=" md:w-[8.1rem]">
-                            <FormattedMessage
-                                id="app.created"
-                                defaultMessage="Created"
-                            />
+                        {translatedMenuItems[1]}
+                        {/* Created */}
                         </div>
                         <div className=" md:w-[11.2rem]">
-                            <FormattedMessage
-                                id="app.location"
-                                defaultMessage="Location"
-                            />
+                        {translatedMenuItems[2]}
+                        {/* location */}
                         </div>
                         <div className="md:w-[5.8rem]">
-                            <FormattedMessage
-                                id="app.units"
-                                defaultMessage="Units"
-                            />
+                        {translatedMenuItems[3]}
+                        {/* units */}
                         </div>
                         <div className="md:w-[5.9rem]">
-                            <FormattedMessage
-                                id="app.contact"
-                                defaultMessage="Contact"
-                            />
+                        {translatedMenuItems[4]}
+                        {/* Contact */}
                         </div>
 
                     </div>
