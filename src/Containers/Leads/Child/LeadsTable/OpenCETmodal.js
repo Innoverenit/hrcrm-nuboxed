@@ -29,7 +29,9 @@ function  OpenCETmodal(props)  {
         }}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LeadsCetTab rowdata={props.rowdata}/>
+          <LeadsCetTab rowdata={props.rowdata}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

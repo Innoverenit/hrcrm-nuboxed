@@ -50,14 +50,14 @@ function EmployeeCardView (props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          "",//0 Data Not AvailableData Not Available
+          "1547",//0 Data Not Available
           "118",//1 Not Available
            "995",//2Reports To:
-          "",//3Not Assigned 
+          "1548",//3Not Assigned 
            "392",//4 Pulse
-           "",//5Required Document
-           "",// "Assign as Admin"
-          "",//  Onboarding
+           "1549",//5Required Document
+           "1550",// "Assign as Admin"
+          "1551",//  Onboarding
           "170",//  "Edit" 
                  
         ];

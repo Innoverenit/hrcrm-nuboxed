@@ -24,6 +24,8 @@ const AddSubscriptionModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
        <LeadsSubscriptionForm
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
         item={props.item}
        />
         </Suspense>

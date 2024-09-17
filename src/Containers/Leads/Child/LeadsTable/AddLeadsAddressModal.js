@@ -2,10 +2,8 @@ import React, { Component, Suspense,lazy } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-//import ContactAddressData from "../ContactTable/ContactAddressData"
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import AddressData from "../../../Address/AddressData";
-//import MainNotes from "../../CustomNote/MainNotes";
 
 class AddLeadsAddressDrawerModal extends Component {
   render() {
@@ -28,6 +26,8 @@ class AddLeadsAddressDrawerModal extends Component {
            item={this.props.item}
           /> */}
           <AddressData
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
           uniqueId={this.props.item.leadsId}
           type={this.props.type}
           />

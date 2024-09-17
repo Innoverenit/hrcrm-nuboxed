@@ -1,4 +1,4 @@
-import React, { lazy, Suspense,useEffect } from "react";
+import React, { lazy, Suspense,useEffect , useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -16,6 +16,32 @@ const AddCallTaskModal = lazy(() => import("./AddCallTaskModal"));
 const TabPane = StyledTabs.TabPane;
 
  function LeadsCetTab (props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+ 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    '76', // 0  Activity
+'', // "Create"
+
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     props.getLeadsActivityRecords(props.rowdata.leadsId);
   }, []);
@@ -41,28 +67,18 @@ const TabPane = StyledTabs.TabPane;
                 </Badge>
                 <span>
                        <i class="fas fa-phone-square"></i>&nbsp;
-                  Activity
+                       {translatedMenuItems[0]} {/* Activity */}
                 
                   </span>
                 
                     <>
                       <Tooltip 
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title={translatedMenuItems[1]}
                       >
                        &nbsp;
                         <PlusOutlined className="text-blue-600 !text-icon"
                           type="plus"                    
-                          tooltiptitle={
-                            <FormattedMessage
-                              id="app.Create"
-                              defaultMessage="Create"
-                            />
-                          }
+                          tooltiptitle={translatedMenuItems[1]}
                           onClick={() => {
                             handleLeadCallModal(true);
                           }}

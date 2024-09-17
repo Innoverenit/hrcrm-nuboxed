@@ -195,13 +195,13 @@ class Dashboard extends Component {
        
         <MainWrapper style={{marginTop:"0.25rem",overflow:"hidden"}}>
       
-          <div class=" h-[45vh] max-sm:h-[19rem] max-sm:overflow-x-auto">
+          <div class=" h-[45vh] max-sm:h-[38vh] max-sm:overflow-x-auto">
          <div class="flex justify-around  max-sm:flex-col">
            <div class="w-[53%] max-sm:w-wk">
-           <div class=" flex flex-col h-[21rem] overflow-auto border box-border" >
+           <div class=" flex flex-col h-[44vh] overflow-auto border box-border" >
            {viewType==="ME" ?
            (
-            <h2>Me View</h2>
+            <div className=" text-base">Me View</div>
            && this.state.activeButton==="test" ?
             ( <DashboardJumpstart 
              selectedLanguage={this.props.selectedLanguage}
@@ -444,7 +444,7 @@ class Dashboard extends Component {
      </div>
 
      <div class="w-[47%] max-sm:w-wk border box-border">
-     <div class=" flex flex-col" >
+     <div class=" flex flex-col max-sm:flex-col" >
      <div className="flex justify-between">
     {/* {this.state.activeButton === "test" && viewType !== "ALL" && (
         <TodoDashboardTab viewType={viewType} />
@@ -545,9 +545,9 @@ class Dashboard extends Component {
     </div>
     </MainWrapper>
    
-    <MainWrapper style={{marginTop:"1rem",overflow:"none"}}
+    <MainWrapper style={{marginTop:"0.5rem",overflow:"none"}}
     >
-    <div class=" h-[21rem]   max-sm:h-[12rem] max-sm:overflow-x-auto">
+    <div class=" h-[44vh]   max-sm:h-[38vh] max-sm:overflow-x-auto">
          <div class="flex justify-between  max-sm:flex-col">
            <div class="w-[47.5%] max-sm:w-wk border box-border">
            <div class=" flex flex-col " >            

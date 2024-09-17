@@ -134,8 +134,14 @@ function ContactCardList(props) {
           '213', // 4
           '328', // 5
           '329', // 6
-      
-
+          "1581", // Score
+         "100", // New
+        "1592", // "Provided"
+         "1593", // Not Provided
+         "185", // Address"
+         "316", // Notes
+       "1165",   // Activity"
+        "170",  // "Edit
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -178,27 +184,29 @@ function ContactCardList(props) {
       
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[100%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className="font-bold font-poppins text-xs w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+      <div class=" flex justify-between w-[92%] font-bold  font-poppins text-xs  ">
+        <div className=" w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         {translatedMenuItems[0]}</div>
-        <div className="font-bold font-poppins text-xs w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[1]}</div>
-        <div className="font-bold font-poppins text-xs md:w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
+        <div className=" md:w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
         {translatedMenuItems[2]}</div>
-        <div className="font-bold font-poppins text-xs md:w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <div className=" md:w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         {translatedMenuItems[3]}</div>
-        <div className="font-bold font-poppins text-xs md:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <div className=" md:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         {translatedMenuItems[4]}</div>
-        <div className="font-bold font-poppins text-xs md:w-[3.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
+        <div className=" md:w-[3.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
         {translatedMenuItems[5]}</div>
-        <div className="font-bold font-poppins text-xs w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[6]}</div>   
         {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
+          {translatedMenuItems[7]}  {/* Score */}
           
             </div>
             )}   
         <div className="w-[4.2rem]"></div>
+        </div>
 
       </div>
           <InfiniteScroll
@@ -266,7 +274,7 @@ function ContactCardList(props) {
  <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
                             
  >
-      New
+      {/* New */}{translatedMenuItems[8]}
     </div>
   ) : null}
  
@@ -323,8 +331,8 @@ function ContactCardList(props) {
                               <div class="text-xs font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                               {item.thirdPartyAccessInd === true
-?<Tooltip title="Provided"><AlarmOnIcon   className=" !text-xl text-[green]"/></Tooltip> 
-:  <Tooltip title="Not Provided"> <DoNotDisturbOnTotalSilenceIcon  className=" !text-xl text-[red]"/></Tooltip>}
+?<Tooltip title={translatedMenuItems[9]}><AlarmOnIcon   className=" !text-xl text-[green]"/></Tooltip> 
+:  <Tooltip title={translatedMenuItems[10]}> <DoNotDisturbOnTotalSilenceIcon  className=" !text-xl text-[red]"/></Tooltip>}
 
                               </div>
                           </div>
@@ -334,7 +342,7 @@ function ContactCardList(props) {
           
              <div class="flex items-center max-sm:justify-evenly max-sm:w-wk">
              <div>
-              <Tooltip title="Address">
+              <Tooltip title={translatedMenuItems[11]}>
  <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
@@ -347,7 +355,7 @@ function ContactCardList(props) {
      </div>
            
               <div>
-              <Tooltip title="Notes">
+              <Tooltip title={translatedMenuItems[12]}>
  <NoteAltIcon
           className=" !text-icon cursor-pointer text-[#4bc076]"
           onClick={() => {
@@ -373,12 +381,7 @@ function ContactCardList(props) {
 </div> */}
 <div>
                 <Tooltip
-                  title={
-                    <FormattedMessage
-                      id="app.activity"
-                      defaultMessage="Activity"
-                    />
-                  }
+                  title={translatedMenuItems[13]}
                 >
                   <AddchartIcon
                   className="!text-icon cursor-pointer text-blue-500"
@@ -431,7 +434,7 @@ function ContactCardList(props) {
         {user.contactUpdateInd === true &&  user.crmInd === true && (
       <div>
      
-      <Tooltip title="Edit">
+      <Tooltip title={translatedMenuItems[14]}>
         <BorderColorIcon
           className=" !text-icon cursor-pointer text-[tomato]"
           onClick={() => {

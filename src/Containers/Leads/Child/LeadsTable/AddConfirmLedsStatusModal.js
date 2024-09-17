@@ -20,7 +20,9 @@ const AddConfirmLedsStatusModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           {/* helooo */}
-          <LeadsConfirmStatusForm  rowdata={props.rowdata}  />{" "}
+          <LeadsConfirmStatusForm  rowdata={props.rowdata} 
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage} />{" "}
         </Suspense>
       </StyledDrawer>
     </>
