@@ -7,6 +7,7 @@ import {handleContactInvestActivityModal} from "../../../ContactInvestAction"
 import { PlusOutlined } from "@ant-design/icons";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
   handleContactOpportunityModal,
   handleContactReactSpeechModal,
@@ -141,7 +142,7 @@ class ContactInvestDetailTab extends Component {
             <TabPane
               tab={
                 <>
-                   <i class="fab fa-connectdevelop text-[#8332ac] !text-icon"></i>
+               <HourglassFullIcon className="text-[#edf67d] !text-icon" />
                   <span class=" ml-1 !text-tab">
                     
                       {this.state.translatedMenuItems[3]}

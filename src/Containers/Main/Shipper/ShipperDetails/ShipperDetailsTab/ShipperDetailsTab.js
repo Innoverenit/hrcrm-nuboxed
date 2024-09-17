@@ -6,6 +6,7 @@ import {
   TabsWrapper,
 } from "../../../../../Components/UI/Layout";
 import { message, Tooltip } from "antd";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
   handleLinkShipperOrderConfigureModal,
   handleShipperSubscriptionConfigureModal,
@@ -168,7 +169,7 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span className="!text-tab">
-                    <i class="fab fa-connectdevelop text-[#e9d6ec]"></i>&nbsp;
+                  <HourglassFullIcon className="text-[#edf67d] !text-icon" />&nbsp;
                   {/* Activity */}
                     {this.state.translatedMenuItems[0]}
 

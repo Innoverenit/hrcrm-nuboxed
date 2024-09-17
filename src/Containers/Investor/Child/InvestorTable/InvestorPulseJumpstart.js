@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import CustomerPieChart from "../../../Dashboard/Child/JumpStart/CustomerPieChart"
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
  import {
   getInvestorWeightedValue,
   handleInvestorActivityJumpstartModal,
@@ -175,7 +176,7 @@ render() {
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center">
                               <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-1 bg-blue-600"><i class="fab fa-connectdevelop text-[#FFFF] !text-3xl"></i> </div>
+                                  <div class="rounded-full p-1 bg-blue-600">  <HourglassFullIcon className="text-[#edf67d] !text-3xl" /> </div>
                               </div>
                               <JumpStartBox
         noProgress
