@@ -27,7 +27,6 @@ import {
 } from "./RefurbishAction";
 import { withRouter } from "react-router";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BorderColorOutlined, PersonAddAlt1 } from "@mui/icons-material";
@@ -35,7 +34,6 @@ import AddLeadInRefurbish from "./AddLeadInRefurbish";
 import RefurbishRejectModal from "./RefurbishRejectModal";
 import SearchedDataRefurbish from "./SearchedDataRefurbish";
 import RefurbishNoteAll from "./RefurbishNoteAll";
-import PhoneScanner from "../Scan/PhoneScanner/PhoneScanner";
 const TechnicianModal = lazy(() => import("./TechnicianModal"));
 const AssignOrderModal = lazy(() => import("./AssignOrderModal"));
 const AddAssignRepairModal = lazy(() => import("./AddAssignRepairModal"));
@@ -185,60 +183,39 @@ const ProductionOrderList = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                 <div className=" flex max-sm:hidden  justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10 ">
+                 <div className=" flex max-sm:hidden  justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10 ">
                     <div className=" md:w-[3rem] text-[white] flex justify-center mr-1 bg-[red]"> {translatedMenuItems[6]} </div>
-                        <div className=" w-[4.2rem] flex justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.orderid"
-                            defaultMessage="orderid"
-                        /> */} {translatedMenuItems[0]}
+                        <div className=" w-[7.2rem] flex justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                         
+                        {/* orderid" */}
+                        {translatedMenuItems[0]}
                         </div>
                         {props.accountInfoInd &&(
                         <div className=" w-[3.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.customer"
-                            defaultMessage="customer"
-                        /> */} {translatedMenuItems[1]}
-                        </div>)}
-                        {/* <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
-                            id="app.contact"
-                            defaultMessage="contact"
-                        /></div> */}
-                       
-
-                        <div className="w-[2.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.quoted"
-                            defaultMessage="Quoted"
-                        /> */}  {translatedMenuItems[5]}
+                           {/* customer  */}
+                           {translatedMenuItems[1]}
+                        </div>)}                                      
+                        <div className="w-[2.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}
+                            {/* Quoted */}
                         </div>
                         <div className="w-[2.8rem]"> {translatedMenuItems[9]}
-                            {/* <FormattedMessage
-                            id="app.final"
-                            defaultMessage="Final"
-                        /> */}
+                           {/* final */}
                         </div>
                         <div className="w-[5.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
                             <div className="w-[23.2rem]"></div>
                             <div className="w-[2.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.lead"
-                            defaultMessage="Lead"
-                        />  */} {translatedMenuItems[2]}
+                                {/* lead */}
+                            {translatedMenuItems[2]}
                         </div>
                         <div className="w-[3.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.assigned"
-                            defaultMessage="Assigned"
-                        />  */} {translatedMenuItems[3]}
+                           {/* Assigned */}
+                            {translatedMenuItems[3]}
                         </div>
-                        <div className="w-[2.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.owner"
-                            defaultMessage="owner"
-                        /> */}  {translatedMenuItems[4]}
+                        <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           {/* Owner */}
+                            {translatedMenuItems[4]}
                          </div>
 
                         <div className="w-[4.2rem]"></div>
@@ -321,11 +298,7 @@ const ProductionOrderList = (props) => {
                                                     {dayjs(item.deliveryDate).format("DD-MM-YYYY")}
                                                 </div>
                                             </div>
-                                            {/* <div className=" flex font-medium  w-[4.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.suggestedPrice}
-                                                </div>
-                                            </div> */}
+                                          
                                         </div>
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  max-sm:items-center">
 
@@ -475,60 +448,40 @@ const ProductionOrderList = (props) => {
 
 <div className=' flex  sticky  z-auto'>
                 <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex max-sm:hidden  justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                <div className=" flex max-sm:hidden  justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
-                        <div className=" w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.orderid"
-                            defaultMessage="orderid"
-                        /> */} {translatedMenuItems[0]}
+                        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            {/* orderID */}
+                            {translatedMenuItems[0]}
                         </div>
                         {props.accountInfoInd &&(
                         <div className=" w-[3.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.customer"
-                            defaultMessage="customer"
-                        /> */} {translatedMenuItems[1]}
-                        </div>)}
-                        {/* <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
-                            id="app.contact"
-                            defaultMessage="contact"
-                        /></div> */}
-                       
-
+                            {/* customer */}
+                        {translatedMenuItems[1]}
+                        </div>)}                                    
                         <div className="w-[2.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.quoted"
-                            defaultMessage="Quoted"
-                        /> */}  {translatedMenuItems[5]}
+                            {/* Quoted */}
+                          {translatedMenuItems[5]}
                         </div>
                         <div className="md:w-[2.8rem]"> {translatedMenuItems[9]}
-                            {/* <FormattedMessage
-                            id="app.final"
-                            defaultMessage="Final"
-                        /> */}
+                        {/* final */}
                         </div>
                         <div className="w-[5.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
                             <div className="w-[23.2rem]"></div>
                             <div className="w-[2.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.lead"
-                            defaultMessage="Lead"
-                        />  */} {translatedMenuItems[2]}
+                          {/* lead */}
+                          {translatedMenuItems[2]}
                         </div>
                         <div className="w-[3.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.assigned"
-                            defaultMessage="Assigned"
-                        />  */} {translatedMenuItems[3]}
+                          {/* Assigned */}
+                           {translatedMenuItems[3]}
                         </div>
-                        <div className="w-[2.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.owner"
-                            defaultMessage="owner"
-                        /> */}  {translatedMenuItems[4]}
+                        <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           
+                           {/* Owner  */}
+                            {translatedMenuItems[4]}
                          </div>
                         <div className="w-[4.2rem]"></div>
                     </div>

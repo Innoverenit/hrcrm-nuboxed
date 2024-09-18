@@ -1,10 +1,9 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Tooltip, Button, Select } from "antd";
+import { Tooltip, Select } from "antd";
 import ItemHistoryInStockData from "./ItemHistoryInStockData"
 import { getRoomRackByLocId, getRackList } from "../../../InventoryAction";
 import { getMaterialUnitsData, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "../../../InventoryAction"
@@ -12,7 +11,7 @@ import StockItemClickModal from "./StockItemClickModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TheStockUsedDrawer from "./TheStockUsedDrawer";
 import { PlusOutlined } from "@ant-design/icons";
-import ItemHistoryInStock from "./ItemHistoryInStock";
+
 
 const { Option } = Select;
 
@@ -89,26 +88,29 @@ const GrnListOfPO = (props) => {
         <>
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                    <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                         <div className="w-[2.5rem]"></div>
-                        {/* <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div> */}
+                   {/* po # */}
                         <div className=" md:w-[9.21rem]">
-                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
+                   {/* name */}
                             {props.translatedMenuItems[15]}
                             </div>
                         <div className=" md:w-[3.82rem]">
-                            {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}   {props.translatedMenuItems[16]}
+                            {/* Category */}
+                    {props.translatedMenuItems[16]}
                             </div>
-                        {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
+                    {/* price */}
                         <div className=" md:w-[4.25rem]">
-                            {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */}   {props.translatedMenuItems[17]}
+                            {/* attribute */}
+                               {props.translatedMenuItems[17]}
                             </div>
                         <div className=" md:w-[4.25rem]">
-                            {/* <FormattedMessage id="app.cell" defaultMessage="Cell" /> */}   {props.translatedMenuItems[7]}
+                       {/* cell  {props.translatedMenuItems[7]} */}
                         </div>
                         <div className=" md:w-[6.10rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
                         <div className=" md:w-[6.10rem]">
-                            {/* <FormattedMessage id="app.instock" defaultMessage="In Stock" /> */}   {props.translatedMenuItems[29]}
+                            {/* in stock  */}
+                             {props.translatedMenuItems[29]}
                         </div>
                        
                         <div className=""></div>
@@ -208,8 +210,12 @@ const GrnListOfPO = (props) => {
                                     <div>
                                         {itemHistory && (row.suppliesId === item.suppliesId)
                                             && <ItemHistoryInStockData 
+                                            selectedLanguage={props.selectedLanguage}
+                                            translateText={props.translateText}
                                             row={row} 
                                             inventory={props.inventory}
+                                          
+
                                             />}
                                     </div>
                                 </div>

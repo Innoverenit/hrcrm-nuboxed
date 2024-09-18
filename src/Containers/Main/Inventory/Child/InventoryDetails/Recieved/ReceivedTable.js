@@ -55,8 +55,8 @@ const ReceivedTable = (props) => {
 '248', // 1
 '73', // 2
 '875', // 3
-'Inspected By', // 4
-'Pick up', // 5
+'1051', // 4 Inspected 
+'', // 5 Pick up
 '658', // 6
 
             
@@ -348,7 +348,7 @@ const ReceivedTable = (props) => {
                             <div>
                             <Tooltip title="Notes">
                                                         <NoteAltIcon
-                                                            className="!text-icon cursor-pointer"
+                                                            className="!text-icon text-[green] cursor-pointer"
                                                             // style={{ cursor: "pointer" }}
                                                             onClick={() => {
                                                                 handleRowData(item);
