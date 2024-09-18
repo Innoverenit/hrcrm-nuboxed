@@ -67,7 +67,7 @@ const PitchCardList = (props) => {
           "279",//3 source
           "278",//4 sector
           "14",//5 Category
-          "1158",//6 share
+          "1161",//6 shares
           "589",//7 First Meeting
           "218",//8Value
            "76",//9 Assigned
@@ -1067,15 +1067,15 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         {/* mobile# */}
                 </div>
         <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" font-bold font-poppins text-xs w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        <div className=" font-bold font-poppins text-xs w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
         {translatedMenuItems[2]} 
         {/* company */}
                 </div>
-                    <div className="font-bold font-poppins text-xs w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                     {translatedMenuItems[3]}   
                     {/* source */}
                 </div>
-                     <div className=" font-bold font-poppins text-xs w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     <div className=" font-bold font-poppins text-xs w-[6.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {translatedMenuItems[4]}  
                      {/* sector */}
                 </div>
@@ -1087,7 +1087,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
           {translatedMenuItems[6]}  
           {/* Shares # */}
           </div>
-          <div className="font-bold font-poppins text-xs w-[5.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className="font-bold font-poppins text-xs w-[10.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[7]}  
           {/* Value */}
           </div>
@@ -1096,11 +1096,15 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
           {/* Assigned */}
           </div>
           {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             Score
           
             </div>
             )}
+              <div className="font-bold font-poppins text-xs w-[4.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
+        {translatedMenuItems[9]}       
+        {/* owner */}
+                </div>
         <div className="font-bold font-poppins text-xs w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[10]} 
         {/* qualify */}
@@ -1145,7 +1149,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
           className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
         >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div class="flex flex-row items-center w-[5rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                <div class="flex flex-row items-center w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
 <div>
 <ButtonGroup>
 <RoleButton
@@ -1194,7 +1198,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>  
 
 
-                          <div className=" flex   w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                          <div className=" flex   w-[10rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
 <div>
 
@@ -1233,7 +1237,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           </div>
 </div>  
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex   w-[6rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* Phone #  */}
                      <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.countryDialCode && item.phoneNumber
@@ -1249,7 +1253,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                 {countryCode}
                               </div>
                         </div>
-                        <div className=" flex   w-[11.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex   w-[9.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Company */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "None"}
@@ -1265,32 +1269,32 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>
 
                  </div>
-                 <div className=" flex    w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex    w-[6.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                   {/* sector */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "None"}
 </div>
 
                  </div>
-                 <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                 <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             {/* #category */}
 
                               <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {Category}
                               </div>
                           </div>
-                          <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                              {/* #share */}
 
                               <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unitOfShare}
                               </div>
                           </div>
-                          <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                               {/* # Deals */}
 
                               <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.valueOfShare}
+                              {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                               </div>
                           </div>
                  <div className=" flex   w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">

@@ -143,7 +143,7 @@ class ContactInvestDetailTab extends Component {
               tab={
                 <>
                <HourglassFullIcon className="text-[#edf67d] !text-icon" />
-                  <span class=" ml-1 !text-tab">
+                  <span class=" !text-tab">
                     
                       {this.state.translatedMenuItems[3]}
                     

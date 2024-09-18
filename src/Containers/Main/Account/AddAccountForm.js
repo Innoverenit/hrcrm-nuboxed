@@ -79,7 +79,7 @@ const AddAccountForm = ({
                     "241",   // "Currency",10
                     "707",// "Payment Term Days",11
                     "14",  // "Category",12
-                    "",  // "Custom Payment",13
+                    "1466",  // "Custom Payment",13
                     "76",  // "Assigned",14
                     "147",  // "Description",`15
                     "104",  //    "Create"16
@@ -359,17 +359,11 @@ const AddAccountForm = ({
                 </div> */}
 
 
-                <div class="flex justify-between mt-4" >
-                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
+                <div class="flex justify-between mt-4 text-xs font-bold font-poppins" >
+                {translatedMenuItems[4]}
                   <div class="w-w47.5">
                     <FastField
-                      name="country"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.country"
-                      //     defaultMessage="country"
-                      //   />
-                      // }
+                      name="country"           
                       isColumn
                       placeholder="Select"
                       inlineLabel
@@ -381,7 +375,8 @@ const AddAccountForm = ({
                       }
                     />
                   </div>
-                  <div class="w-w47.5">
+                  </div>
+                  <div class="w-w45.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                     <FastField
                       // label="Tax Registration"
@@ -393,8 +388,8 @@ const AddAccountForm = ({
                       isColumn
                     />
                   </div>
-                </div>
-                <div class="flex justify-between mt-4" >
+               
+                <div class="flex justify-between mt-2" >
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
                   <div class="w-w47.5">
                     <Field

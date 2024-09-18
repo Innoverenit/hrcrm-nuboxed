@@ -152,31 +152,31 @@ function ContactInvestCardList(props) {
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex  justify-between max-sm:hidden w-[90%]  p-1 bg-transparent font-bold sticky z-10">
           <div className=" flex justify-between w-[93%]">
-        <div className=" font-bold font-poppins text-xs md:w-[15.32rem]">
+        <div className=" font-bold font-poppins w-[20.32rem] text-xs md:w-[17.32rem]">
         {translatedMenuItems[0]}
         {/* name" */}         
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[12.72rem]">
+        <div className="font-bold font-poppins text-xs w-[12.72rem] md:w-[12.72rem]">
         {translatedMenuItems[1]}
         {/* company */}             
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[9.6rem] ">
+        <div className="font-bold font-poppins text-xs w-[8.6rem] md:w-[8.6rem] ">
         {translatedMenuItems[2]} 
         {/* designation */}             
                 </div>
-        <div className=" font-bold font-poppins text-xs md:w-[11.3rem]">
+        <div className=" font-bold font-poppins text-xs w-[11.3rem] md:w-[11.3rem]">
         {translatedMenuItems[3]} 
         {/* department */}               
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[6.1rem]">
+        <div className="font-bold font-poppins text-xs w-[6.1rem] md:w-[6.1rem]">
         {translatedMenuItems[4]}
         {/* deals" */}           
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[7.21rem]"> 
+        <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[7.21rem]"> 
         {translatedMenuItems[5]}
          {/* dealValue" */}              
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[5.2rem]">
+        <div className="font-bold font-poppins text-xs w-[5.2rem] md:w-[5.2rem]">
         {translatedMenuItems[6]}
         {/* source" */}           
                 </div>
@@ -226,7 +226,7 @@ function ContactInvestCardList(props) {
                             <div
               className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-28 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium  md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                <div className=" flex font-medium md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
 <div>                             
             <MultiAvatar2
@@ -243,7 +243,7 @@ function ContactInvestCardList(props) {
                                           <div class=" flex  max-sm:w-full justify-between flex-row md:flex-col">
                                             
                                             <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
       {item.fullName}
   </Link>                                               
       
@@ -262,20 +262,20 @@ function ContactInvestCardList(props) {
                                 </div>                     
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center items-center">
-                                <div className=" flex max-sm:w-full max-sm:justify-between items-center flex-row  w-[14.01rem]">
+                                <div className=" flex max-sm:w-full max-sm:justify-between items-center flex-row  w-[11.01rem]">
                                    {/* Company  */}
                                     <div class=" text-xs  font-poppins">   
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.5rem] items-center">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[7.5rem] items-center">
                                {/* Designation */}
                                     <div class="text-xs  font-poppins">
                                          {item.designation}
                                     </div>
                                 </div>
                            
-                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[12.2rem] items-center">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[8.2rem] items-center">
                                 {/* Department */}
                                   <div class="text-xs  font-poppins">
                                        {item.department}

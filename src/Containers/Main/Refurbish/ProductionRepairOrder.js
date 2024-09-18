@@ -183,7 +183,7 @@ function ProductionRepairOrder(props) {
         value={currentData}
         />
       </div>
-                    <div className=" flex max-sm:hidden w-[100%] p-1 bg-transparent font-bold sticky  z-10">
+                    <div className=" flex max-sm:hidden w-[100%] p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                         <div className="w-[5.5rem]"></div>
                         <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[0]} ID {/* Order ID */}

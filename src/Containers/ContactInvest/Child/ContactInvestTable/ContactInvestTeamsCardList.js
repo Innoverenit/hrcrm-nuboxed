@@ -79,8 +79,9 @@ function ContactInvestTeamsCardList(props) {
            "326",//3Department
            "1160",//4 Deal
            "526",//5 Deal Value
-          "279",// Source
+          "279",// 6 Source
            "77",//7 Owner    
+           "1581"// Score 8
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -157,29 +158,29 @@ if (loading) {
     <>
       
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-      <div className=" flex justify-between w-[88%]">
-        <div className="font-bold font-poppins text-xs md:w-[15.32rem]">
+      <div className=" flex  justify-between max-sm:hidden w-[94%]  p-1 bg-transparent font-bold sticky  z-10">
+     
+        <div className="font-bold font-poppins w-[15.32rem] text-xs md:w-[15.32rem]">
         {translatedMenuItems[0]}  
         {/* name          */}
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[12.72rem]">
+        <div className="font-bold font-poppins w-[13.72rem] text-xs md:w-[12.72rem]">
         {translatedMenuItems[1]}
         {/* company */}          
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[9.6rem] ">
+        <div className="font-bold font-poppins  w-[10.6rem] text-xs md:w-[9.6rem] ">
         {translatedMenuItems[2]} 
         {/* designation */}           
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[11.3rem]">
+        <div className="font-bold font-poppins text-xs w-[9.3rem] md:w-[11.3rem]">
         {translatedMenuItems[3]} 
         {/* department  */}
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[6.1rem]">
+        <div className="font-bold font-poppins w-[7.1rem] text-xs md:w-[6.1rem]">
         {translatedMenuItems[4]}
          {/* deals              */}
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[7.21rem]">
+        <div className="font-bold font-poppins w-[10.21rem] text-xs md:w-[7.21rem]">
         {translatedMenuItems[5]}
         {/* dealValue" */}          
                 </div>
@@ -187,19 +188,20 @@ if (loading) {
         {translatedMenuItems[6]}
         {/* source */}          
                 </div>
+                {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {/* Score */}
+            {translatedMenuItems[8]}
+            </div>
+            )}
         <div className=" font-bold font-poppins text-xs md:w-[6.8rem]">
         {translatedMenuItems[7]}
         {/* owner             */}
                 </div>
-                {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
           
-            </div>
-            )}
         {/* <div className="w-12">Action</div> */}
 
-      </div>
+    
       </div>
           <InfiniteScroll
         dataLength={props.teamsContactInvestData.length}
@@ -234,7 +236,7 @@ if (loading) {
             item.address[0].postalCode} `;
                     return (
                       <div>
-                      <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                      <div className="flex rounded justify-between  bg-white mt-1 h-8  items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                           <div className=" flex font-medium  md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
@@ -269,7 +271,7 @@ if (loading) {
                           </div>       
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[14.01rem]">
+                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[13.01rem]">
                               {/* Company  */}
                               <div class=" text-xs  font-poppins">   
                               {item.tagWithCompany}
@@ -281,7 +283,7 @@ if (loading) {
                                    {item.designation}
                               </div>
                           </div>         
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[12.2rem] items-center">
+                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.2rem] items-center">
                           {/* Department */}
                             <div class="text-xs  font-poppins">
                                  {item.department}
@@ -289,7 +291,7 @@ if (loading) {
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
-                          <div className=" flex  md:w-[5.22rem] max-sm:flex-row w-full  items-center ">
+                          <div className=" flex  md:w-[6.22rem] max-sm:flex-row w-full  items-center ">
                               {/* # Deals */}
 
                               <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
@@ -301,7 +303,7 @@ if (loading) {
                                {item.oppNo}
                               </div>
                           </div>
-                          <div className=" flex   md:w-[5.05rem] max-sm:flex-row w-full items-center  ">
+                          <div className=" flex   md:w-[3.05rem] max-sm:flex-row w-full items-center  ">
                              {/* Deal Value */}
 
                               <div class=" text-xs  font-poppins">
@@ -314,7 +316,13 @@ if (loading) {
 
                               </div>
                           </div>
-                                              
+                          {/* Score */}
+                          {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}                   
                           <div className="flex  md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">             
                {/* Owner */}
              
@@ -331,12 +339,7 @@ if (loading) {
     </Tooltip>
              </div>   
              </div>   
-             {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            {item.noteScoreInd}
-          
-            </div>
-            )}                 
+                           
                   <div class=" flex justify-evenly items-center w-[7rem] max-sm:flex   max-sm:w-full">
                   <div>
      <Tooltip title="Pulse">

@@ -1,30 +1,86 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-import { PlusOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
 import { getItemHistoryDataInstock } from "../../../InventoryAction"
+import { BundleLoader } from '../../../../../../Components/Placeholder';
 
 function ItemHistoryInStockData(props) {
+
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    
+       "110", // 'Name', // 0
+       "378",// 'Work', // 1
+       "278",// 'Sector', // 2
+       "279",// 'Source', // 3
+       "213",// 'Quotation', // 4
+       "328",// 'PipeLine', // 5
+       "76",// 'Assigned', // 6 
+       "248",// 'Customer', // 7
+        "100",   // new 8
+        "1300" , //  Change status to Customer?"9
+        "213" ,  // "Opportunity"10
+        "392" ,  // Pulse 11
+        "316" ,  // "Notes"12
+        "170" ,  // "Edit" 13
+       "73", // Contact 14
+       "144" ,//In Progress 15
+       "387",//  Convert 16
+       "389",//   Converted 17    
+       "1092", //Order 18
+       "1085", //received 19
+       "1086",//damaged 20
+       "1093",//balance 21
+       "1087",//remark22
+
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+
     useEffect(() => {
         props.getItemHistoryDataInstock(props.inventory.locationDetailsId,props.row.suppliesId);
     }, [])
+    if (loading) {
+        return <div><BundleLoader/></div>;
+      }
+
   return (
     <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className="w-[2.5rem]"></div>
-                        <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>
-                        <div className=" md:w-[9.21rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
-                        {/* <div className=" md:w-[3.82rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div> */}
-                        {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
-                        <div className=" md:w-[4.25rem]"><FormattedMessage id="app.ordered" defaultMessage="Ordered" /></div>
-                        <div className=" md:w-[6.10rem]"><FormattedMessage id="app.received" defaultMessage="Receive" /></div>
-                        <div className=" md:w-[4.42rem]"><FormattedMessage id="app.damaged" defaultMessage="Damaged" /></div>
-                        <div className=" md:w-[5.01rem]"><FormattedMessage id="app.balance" defaultMessage="Balance" /></div>
-                        <div className=" md:w-[5.01rem]"><FormattedMessage id="app.remark" defaultMessage="Remark" /></div>
-            
+                        <div className=" md:w-[4.5rem]">  PO ID
+                            {/* po */}
+                        </div>
+                        <div className=" md:w-[9.21rem]">    {translatedMenuItems[0]}</div>
+                        {/* Name */}
+                        <div className=" md:w-[4.25rem]">    {translatedMenuItems[18]}</div>
+{/* ordered */}
+                        <div className=" md:w-[6.10rem]">    {translatedMenuItems[19]}</div>
+{/* received */}
+                        <div className=" md:w-[4.42rem]">    {translatedMenuItems[20]}</div>
+{/* damaged */}
+                        <div className=" md:w-[5.01rem]">    {translatedMenuItems[21]}</div>
+{/* balance */}
+                        <div className=" md:w-[5.01rem]">    {translatedMenuItems[22]}</div>
+            {/* remark */}
                         <div className=""></div>
                     </div>
                    
@@ -32,18 +88,7 @@ function ItemHistoryInStockData(props) {
                             return (
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
-                                        {/* <div class="flex">
-                                            <div className=" flex font-medium flex-col md:w-[2.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm  font-semibold  font-poppins ">
-                                                    <PlusOutlined
-                                                        onClick={() => {
-                                                            handleItemHistory()
-                                                            handleItemClick(item)
-                                                        }}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div> */}
+                                     
 
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
@@ -56,11 +101,7 @@ function ItemHistoryInStockData(props) {
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[11.12rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm  font-semibold font-poppins cursor-pointer underline text-blue-600">
-                                                    <span
-                                                        // onClick={() => {
-                                                        //     props.handleSTockItemModal(true)
-                                                        //     handleItemClick(item)
-                                                        // }}
+                                                    <span                                                 
                                                     >
                                                         {item.suppliesFullName.substring(0, 20)}
                                                     </span>
@@ -68,16 +109,7 @@ function ItemHistoryInStockData(props) {
                                             </div>
                                         </div>
 
-                                        {/* <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
-                                                {item.grnNumber}
-                                            </div>
-                                        </div> */}
-                                        {/* <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
-                                                {item.price}
-                                            </div>
-                                        </div> */}
+                                     
                                         <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unit}

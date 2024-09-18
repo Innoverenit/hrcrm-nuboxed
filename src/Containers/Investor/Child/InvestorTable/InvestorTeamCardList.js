@@ -68,7 +68,7 @@ function InvestorTeamCardList(props) {
           "608",// investor contact 12
           "170",// 170edit  13
           "84", // 84delete 14
-
+          "1581" //Score 15
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -189,15 +189,21 @@ function InvestorTeamCardList(props) {
           {translatedMenuItems[4]} 
           {/* "Signed" */}       
           </div>
-          <div className="font-bold font-poppins text-xs w-[7.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className="font-bold font-poppins text-xs w-[8.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[5]}
           {/* "Category */}
           </div>
-          <div className="font-bold font-poppins text-xs w-[8.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <div className="font-bold font-poppins text-xs w-[9.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
         {translatedMenuItems[6]}
          {/* Source" */}         
           </div>
-        <div className="font-bold font-poppins text-xs w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+          {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+             {translatedMenuItems[15]}
+          {/* Score */}
+            </div>
+            )}
+        <div className="font-bold font-poppins text-xs w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
         {translatedMenuItems[7]}
         {/* Assigned" */}
              
@@ -207,12 +213,7 @@ function InvestorTeamCardList(props) {
         {translatedMenuItems[8]}
         {/* owner" */}         
                 </div>
-                {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
-          
-            </div>
-            )}
+           
       </div>
         <InfiniteScroll
         dataLength={teamInvestor.length}
@@ -308,11 +309,19 @@ function InvestorTeamCardList(props) {
                      {item.countryAlpha2Code}
                                   </div>
                               </div>
-                                                                                                               
+                              <div className=" flex  items-center w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* Discussion */}
+
+                                    {item.totalProposalValue && (
+      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+         {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
+      </div>
+    )}
+                                </div>                                                                            
                            
                                
                                 <div className=" flex  items-center w-[7.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                     {/* Deals */}
+                                     {/*signed */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.totalWonOppProposalValue}
@@ -320,15 +329,7 @@ function InvestorTeamCardList(props) {
                                 </div>    
                                 </div>    
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* Pipeline Value */}
-
-                                    {item.totalProposalValue && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-         {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
-      </div>
-    )}
-                                </div>
+                             
                                 <div className=" flex  items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                      {/* Deals */}
 
@@ -353,6 +354,12 @@ function InvestorTeamCardList(props) {
                                 </div>
                             
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                                {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}
                                 <div className=" flex  items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Assigned */}
 
@@ -400,12 +407,7 @@ function InvestorTeamCardList(props) {
                    </div>
                   </div>
                   </div>
-                  {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            {item.noteScoreInd}
-          
-            </div>
-            )}
+            
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   
                                        
