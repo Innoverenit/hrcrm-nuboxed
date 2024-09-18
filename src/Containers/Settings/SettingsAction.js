@@ -6654,3 +6654,35 @@ export const addPaymentApi = (data,cb) => (dispatch) => {
       cb && cb("Failure");
     });
 };
+
+
+
+
+export const linkClubToggle = ( data,clubId) => (dispatch, getState) => {
+  //console.log(permissions, userId);
+  //const orgId = getState().auth.userDetails.organizationId;
+  dispatch({
+    type: types.LINK_CLUB_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url}/club/update/invToCusInd/${clubId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_CLUB_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_CLUB_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
