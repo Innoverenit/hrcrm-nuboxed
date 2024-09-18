@@ -60,8 +60,8 @@ function AccountDeleteTable(props) {
             <div className=' flex  sticky  z-auto'>
             <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex  text-xs font-poppins justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-         <div className=""></div>
-         <div className=" md:w-[7%]"> {translatedMenuItems[0]}
+        
+         <div className=" ml-2 md:w-[7%]"> {translatedMenuItems[0]}
             {/* Name */}
             </div>
         <div className=" md:w-[6.1rem]"> {translatedMenuItems[1]}

@@ -64,8 +64,8 @@ useEffect(() => {
       //  "",  // Change status to Accepted?11
       "80",   // Yes12
        "81",  // No113
-      //  "",  // Accepted14
-      // "",   // Accept15
+       "1534",  // Accepted14
+     "1535",   // Accept15
       "316",   // "Notes"16
       "1078",   // Save17
       "1079",   // Cancel18
@@ -164,7 +164,7 @@ const {handleProcureNotesDrawerModal,
     <>
    {/* <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div> */}
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]" >
-        <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+        <div className=" flex justify-between w-[90%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
         <div className=" md:w-[0.5rem]"></div>
                         <div className="font-bold font-poppins text-xs md:w-[11rem]">{translatedMenuItems[0]}</div>
                         <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[1]}</div>
@@ -381,6 +381,7 @@ const {handleProcureNotesDrawerModal,
                       />
                     </div>
                   </div>
+                  <div className=" flex   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                   <div >
                       <Tooltip title={translatedMenuItems[16]}>
                         <NoteAltIcon
@@ -394,7 +395,7 @@ const {handleProcureNotesDrawerModal,
                         />
                       </Tooltip>
                     </div>
-  <div className=" flex   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+
     {editsuppliesId === item.iteamId ? (
                         <>
                       <Button 
