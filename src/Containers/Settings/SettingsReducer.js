@@ -4581,6 +4581,13 @@ export const settingsReducer = (state = initialState, action) => {
                                                                     fetchingClubShareError: true,
                                                                   };
 
+                                                                  case types.HANDLE_CLAER_SETTING_DATA:
+                                                                    return { ...state, 
+                                                                      clubShareData: [], 
+
+                                                                    };
+                                                        
+
         case types.UPDATE_CLUB_REQUEST:
       return { ...state, updatingClub: true };
     case types.UPDATE_CLUB_SUCCESS:

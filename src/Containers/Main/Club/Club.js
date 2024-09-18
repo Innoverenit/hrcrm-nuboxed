@@ -5,7 +5,7 @@ import { setClubViewType } from "./ClubAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import ClubHeader from "./ClubHeader";
 import ClubTableAll from "./ClubTableAll";
-import {getclubShare} from "../../Settings/SettingsAction";
+import {getclubShare,clearSettingData} from "../../Settings/SettingsAction";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import ClubTableTeam from "./ClubTableTeam";
@@ -46,6 +46,8 @@ componentDidUpdate(prevProps) {
     }
   }
 }
+
+
   setCurrentData = (value) => {
     this.setState({ currentData: value });
   };
@@ -60,6 +62,9 @@ componentDidUpdate(prevProps) {
 
 
   render() {
+    if (this.props.fetchingClubShare) {
+      return <BundleLoader />;
+    }
     const { setClubViewType, viewType,clubShareData } = this.props;
     return (
       <React.Fragment>
@@ -85,7 +90,9 @@ componentDidUpdate(prevProps) {
                {this.state.departmentData.clubId && (
                  <Suspense fallback={"Loading..."}>
                    <div>
-                   <ClubTableAll clubId={this.state.departmentData.clubId} />
+                   <ClubTableAll clubId={this.state.departmentData.clubId}
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage} />
                    </div>
                  </Suspense>
                )}
@@ -143,17 +150,131 @@ componentDidUpdate(prevProps) {
 const mapStateToProps = ({ club, auth ,settings}) => ({
   viewType: club.viewType,
   userId: auth.userDetails.userId,
-  clubShareData: settings.clubShareData
+  clubShareData: settings.clubShareData,
+  fetchingClubShare:settings.fetchingClubShare
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       setClubViewType,
-      getclubShare
+      getclubShare,
+      clearSettingData
     
     },
     dispatch
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Club);
+
+
+// import React, { lazy,useState,Suspense,useEffect} from "react";
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+// import { setClubViewType } from "./ClubAction";
+// import { BundleLoader } from "../../../Components/Placeholder";
+// import ClubHeader from "./ClubHeader";
+// import { Tabs, Badge } from 'antd';
+// import ClubTableAll from "./ClubTableAll";
+// import {getclubShare} from "../../Settings/SettingsAction";
+// import { TabsWrapper } from "../../../Components/UI/Layout";
+// import { StyledTabs } from "../../../Components/UI/Antd";
+// import ClubTableTeam from "./ClubTableTeam";
+// import ClubTableForAll from "./ClubTableForAll";
+
+
+// const TabPane = StyledTabs.TabPane;
+
+
+// function Club(props) {
+//     const [activeKey, setActiveKey] = useState(" ")
+//     const tabData=props.clubShareData
+   
+//       useEffect(() => {
+        
+//         renderTabContent(activeKey);
+        
+//       }, [activeKey]);
+//       useEffect(() => {
+           
+            
+//         if (tabData.length > 0) {
+       
+//           setActiveKey(tabData[0]?.clubId);
+//         }
+//       }, [tabData]);
+//       useEffect(() => {
+//             props.getclubShare()
+//       }, []);
+//       const handleTabChange = (key) => {
+//         setActiveKey(key);
+       
+//       };
+ 
+
+//         const renderTabContent = (key) => {
+//             // const tab = tabData.find(tab => tab.clubId === key);
+//             // console.log(tab)
+//             // if (!tab) return null;
+        
+//             return <ClubTableForAll clubId={activeKey} 
+//             />;
+//           };
+       
+//       console.log(activeKey)  
+//       const { setClubViewType, viewType,clubShareData } = props;
+//     return (
+//         <>
+         
+//         <ClubHeader
+//           setClubViewType={setClubViewType}
+//           viewType={viewType}
+//           // handleClear={this.handleClear}
+//           // currentData={this.state.currentData}
+//           // setCurrentData={this.setCurrentData}
+//           clubShareData={clubShareData}
+//         />
+//             <TabsWrapper>
+               
+//  <Tabs type="card"  defaultActiveKey={activeKey}  onChange={handleTabChange}>
+//         {tabData.map(tab => (
+//           <TabPane
+//             tab={
+//               <>
+//                 <span className="ml-1">{tab.clubName}</span>
+                
+
+
+//               </>
+//             }
+//             key={tab.clubId}
+//           />
+//         ))}
+//       </Tabs>
+//       <Suspense fallback={<div className="flex justify-center">Loading...</div>}>
+//         {renderTabContent(activeKey)}
+//       </Suspense> 
+//             </TabsWrapper>
+//         </>
+//     );
+// }
+
+// const mapStateToProps = ({ club, auth ,settings}) => ({
+//   viewType: club.viewType,
+//   userId: auth.userDetails.userId,
+//   clubShareData: settings.clubShareData
+// });
+
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators(
+//     {
+//       setClubViewType,
+//       getclubShare
+    
+//     },
+//     dispatch
+//   );
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Club);
+
+

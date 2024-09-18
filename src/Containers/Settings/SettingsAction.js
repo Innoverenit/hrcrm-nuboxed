@@ -5638,6 +5638,11 @@ export const getclubShare = (investorId) => (dispatch) => {
       });
     });
 };
+export const clearSettingData = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SETTING_DATA,
+  });
+};
 
 export const updateClub = (data,clubId) => (dispatch) => {
   dispatch({ type: types.UPDATE_CLUB_REQUEST });

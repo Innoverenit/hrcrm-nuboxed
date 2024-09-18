@@ -642,6 +642,8 @@ function General(props) {
     repairProcessInd: props.requirementDuration.repairProcessInd,
     criticlDateRange: props.requirementDuration.criticlDateRange,
     processInd: props.requirementDuration.processInd,
+    userId: props.userId,
+    orgId: props.orgId,
   });
   const [anniversary, setAnniversary] = useState(props.requirementDuration.jobAniEmailInd);
   const [birthday, setBirthday] = useState(props.requirementDuration.birthdayEmailInd);
@@ -686,6 +688,8 @@ function General(props) {
     repairProcessInd: props.requirementDuration.repairProcessInd,
     criticlDateRange: props.requirementDuration.criticlDateRange || "",
     processInd: props.requirementDuration.processInd,
+    userId: props.userId,
+    orgId: props.orgId,
       });
     }
   }, [props.requirementDuration]);
@@ -697,7 +701,8 @@ function General(props) {
     const updatedValues = { ...formValues, [name]: value };
     console.log("Updated form values:", updatedValues); // Debugging
     setFormValues(updatedValues);
-     handleConfirm(name);
+    // handleConfirm(name);
+     props.updateRequirement(updatedValues, props.orgId);
   };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -718,7 +723,7 @@ function General(props) {
       timePeriod: props.requirementDuration.timePeriod === 0 ? "Not Applicable" : props.requirementDuration.timePeriod || "",
           oppTimePeriod: formValues.oppTimePeriod === 0 ? "Not Applicable" : props.requirementDuration.oppTimePeriod || "",
           userId: props.userId,
-          orgId: props.organizationId,
+          orgId: props.orgId,
           jobAniEmailInd: formValues.jobAniEmailInd,
           birthdayEmailInd: formValues.birthdayEmailInd,
           trnsfrEvthngToErpInd:formValues.trnsfrEvthngToErpInd,

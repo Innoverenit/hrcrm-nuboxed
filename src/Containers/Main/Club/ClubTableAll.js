@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import {
-    getClubAlllist  
+    getClubAlllist,
+    clearInitialData  
 } from "./ClubAction";
 import dayjs from "dayjs";
 import ReactCountryFlag from 'react-country-flag';
@@ -12,15 +13,50 @@ import { Button, Select, Tooltip } from 'antd';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const { Option } = Select;
 
 function ClubTableAll(props) {
     const [pageNo, setPageNo] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         setPageNo(pageNo + 1);
-        props.getClubAlllist(props.userId,pageNo,props.clubId)
+        props.getClubAlllist("All",pageNo,props.clubId)
+        props.clearInitialData()
     }, []);
+
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [         
+              
+"110", // 0
+"278", // 1
+"579", // 2
+"14",  // 3
+"589", // 4
+"1161", // 5
+"218", // 6
+"279", // 7
+"76",  // 8
+"77"   // 9
+
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
     const [rowData, setRowData] = useState({})
     const handleRowData = (item) => {
         setRowData(item)
@@ -52,7 +88,7 @@ function ClubTableAll(props) {
           {
             if (pageNo < callPageMapd) {
                 setPageNo(pageNo + 1);
-                getClubAlllist(props.userId,pageNo,props.clubId);
+                getClubAlllist("All",pageNo,props.clubId);
           }
           if (pageNo === callPageMapd){
             setHasMore(false)
@@ -61,72 +97,46 @@ function ClubTableAll(props) {
         }, 100);
       };
       console.log(props.clubName)
+      if (props.fetchingClub) {
+        return <BundleLoader />;
+      }
+      if (loading) {
+        return <div><BundleLoader/></div>;
+      }
     return (
         <>
              <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[11.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
-          <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
+        {translatedMenuItems[0]} </div>
         <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
-          <FormattedMessage
-                  id="app.sector"
-                  defaultMessage="Sector"
-                /></div>
+        {translatedMenuItems[1]} </div>
         <div className=" w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "></div>
-        <div className="w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># <FormattedMessage
-                  id="app.deals"
-                  defaultMessage="Deals"
-                /></div>
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
-                  id="app.inprogress"
-                  defaultMessage="In Progress"
-                />
-          </div>
           <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
-                  id="app.Signed"
-                  defaultMessage="Signed"
-                />
+          {translatedMenuItems[2]} 
           </div>
           <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
-                  id="app.Category"
-                  defaultMessage="Category"
-                />
+          {translatedMenuItems[3]} 
           </div>
           <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-      First Meeting
+          {translatedMenuItems[4]} 
           </div>
           <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-       Shares #
+          {translatedMenuItems[5]} 
           </div>
          
           <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        Value
-          </div>
-          <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        Club
+          {translatedMenuItems[6]} 
+          </div> 
+          <div className="w-[5.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          {translatedMenuItems[7]} 
           </div>
         <div className="w-[4.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
-        <FormattedMessage
-                  id="app.assigned"
-                  defaultMessage="Assigned"
-                />
+        {translatedMenuItems[8]} 
          </div>
-        <div className="w-[2.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]"><FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner"
-                /></div>
-        <div className="w-[5.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        <FormattedMessage
-                  id="app.source"
-                  defaultMessage="Source"
-                />
-          </div>
+        <div className="w-[2.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
+        {translatedMenuItems[9]} </div>
+      
         {/* <div className="w-12">Action</div> */}
 
       </div>
@@ -368,7 +378,8 @@ const mapStateToProps = ({ trade, auth,club }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getClubAlllist
+            getClubAlllist,
+            clearInitialData
             // getPurchaseSuppliersList,
             // handlePoLocationModal,
             // handlePoListModal,
