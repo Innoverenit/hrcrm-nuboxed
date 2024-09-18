@@ -174,7 +174,7 @@ function InvestorAllCardList(props) {
     />
   ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-  <div className=" flex justify-between max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+  <div className=" flex justify-between max-sm:hidden  w-[90%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className="font-bold font-poppins text-xs w-[11.6rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
         {translatedMenuItems[0]}
         {/* "Name" */}           
@@ -182,8 +182,7 @@ function InvestorAllCardList(props) {
         <div className="font-bold font-poppins text-xs w-[12.1rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
         {translatedMenuItems[1]} 
         {/* Sector" */}            
-                </div>
-        <div className=" w-[2.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "></div>
+                </div>     
         <div className=" font-bold font-poppins text-xs w-[5.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># 
         {translatedMenuItems[2]}
         {/* "Deals" */}          
@@ -193,11 +192,11 @@ function InvestorAllCardList(props) {
          {/* "Pipeline Value" */}
              
           </div>
-          <div className=" font-bold font-poppins text-xs w-[11.34rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <div className=" font-bold font-poppins text-xs w-[10.34rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
         {translatedMenuItems[5]} 
         {/* Source */}               
         </div>
-        <div className=" font-bold font-poppins text-xs w-[5.3rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+        <div className=" font-bold font-poppins text-xs w-[7.3rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
         {translatedMenuItems[4]}
          {/* Assigned" */}
               
@@ -295,10 +294,10 @@ function InvestorAllCardList(props) {
                                 </div>
                                                                                                             
                              
-                                <div className=" flex items-center w-[8.21rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                {/* <div className=" flex items-center w-[8.21rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "> */}
                                                                  {/* Country */}
 
-                                  <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
+                                  {/* <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                   <ReactCountryFlag
                         countryCode={item.countryAlpha2Code}
                         svg
@@ -309,8 +308,8 @@ function InvestorAllCardList(props) {
                       />
                       &nbsp;
                      {item.countryAlpha2Code}
-                                  </div>
-                              </div>
+                                  </div> */}
+                              {/* </div> */}
                            
                                 <div className=" flex  items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Deals */}
