@@ -207,7 +207,7 @@ function InvestorCardList(props) {
     />
   ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" flex justify-between max-sm:hidden  w-[90%]  p-1 bg-transparent font-bold sticky  z-10">
           <div className="w-2"></div>
         <div className="font-bold font-poppins text-xs w-[11.6rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
         {translatedMenuItems[0]} 
@@ -242,7 +242,7 @@ function InvestorCardList(props) {
           {translatedMenuItems[8]}
        {/* Shares # */}
           </div>         
-          <div className="font-bold font-poppins text-xs w-[5.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className="font-bold font-poppins text-xs w-[7.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[9]}
         {/* Value */}
           </div>
@@ -250,7 +250,7 @@ function InvestorCardList(props) {
           {translatedMenuItems[10]}
         {/* Club */}
           </div>
-        <div className="font-bold font-poppins text-xs w-[4.33rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+        <div className="font-bold font-poppins text-xs w-[6.33rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
         {translatedMenuItems[11]}
       {/* Assigned" */}         
          </div>
@@ -416,7 +416,7 @@ function InvestorCardList(props) {
                                    {item.club}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[3.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[2.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Assigned */}
                                     <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                                    
                                     <span>

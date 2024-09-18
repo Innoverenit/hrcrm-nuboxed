@@ -159,7 +159,7 @@ if (loading) {
   return (
     <>
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+      <div className=" flex  justify-between max-sm:hidden w-[90%]  p-1 bg-transparent font-bold sticky z-10">
       <div className=" flex justify-between w-[93%]">
         <div className="font-bold font-poppins text-xs md:w-[15.32rem]">
         {translatedMenuItems[0]} 
@@ -275,7 +275,7 @@ if (loading) {
                
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[14.01rem]">
+                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[9.01rem]">
                          {/* Company  */}
                               <div class=" text-xs  font-poppins">   
                               {item.tagWithCompany}
