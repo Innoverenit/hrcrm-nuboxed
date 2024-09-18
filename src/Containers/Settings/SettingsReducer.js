@@ -315,6 +315,9 @@ addingShipperCategoryError: false,
   fetchingDepartmentsError: false,
   departments: [],
 
+  addingClubToggle:false,
+  addingClubToggleError:false,
+
   fetchingLevels: false,
   fetchingLevelsError: false,
   levels: [],
@@ -3904,6 +3907,32 @@ export const settingsReducer = (state = initialState, action) => {
           fetchingProcessForSupplier: false,
           fetchingProcessForSupplierError: true,
         };
+
+
+
+
+
+        case types.LINK_CLUB_TOGGLE_REQUEST:
+          return { ...state, addingClubToggle: true };
+        case types.LINK_CLUB_TOGGLE_SUCCESS:
+          return {
+            ...state,
+            addingClubToggle: false,
+            clubShareData: state.clubShareData.map((item) => {
+              if (item.clubId === action.payload.clubId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
+          };
+        case types.LINK_CLUB_TOGGLE_FAILURE:
+          return {
+            ...state,
+            addingClubToggle: false,
+            addingClubToggleError: true,
+          };
+
 
         
     case types.UPDATE_PROCESS_NAME_FOR_SUPPLIER_REQUEST:

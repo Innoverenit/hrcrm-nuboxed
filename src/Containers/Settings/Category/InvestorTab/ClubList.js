@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ClubStatusToggle from "./ClubStatusToggle"
 import { Button, Input, Select,Tooltip } from "antd";
 import {clubShare,getclubShare,updateClub} from "../../SettingsAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -198,6 +199,8 @@ console.log(props.clubShareData)
                       />
                         {errors[`discount${index}`] && <span className="text-red-500">{errors[`discount${index}`]}</span>}
                 </div>
+
+
               </div>
             </div>
             <div class="mt-4">
@@ -270,10 +273,18 @@ console.log(props.clubShareData)
                     </div>
                      ):(
                       <div className="font-normal text-sm  font-poppins">
-                      <div> {item.discount}</div>
+                      <div> {item.discount} Hello</div>
                     </div>
                     )}
                   </div>
+                  
+                <div class="w-24">
+                <ClubStatusToggle
+                                  invToCusInd={item.invToCusInd}
+                                  clubId={item.clubId}
+                                  // suppliesId={item.suppliesId}
+                                />
+                </div>
 
                   <div class="flex md:items-center">
 
