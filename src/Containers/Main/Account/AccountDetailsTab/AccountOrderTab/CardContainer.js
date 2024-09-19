@@ -95,7 +95,7 @@ const QRCodeGenerator = ({ data }) => {
                 >
                     <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Product: {item.product}</div>
                     <div style={{ marginBottom: "10px" }}>IMEI: {item.imei}</div>
-                    <QRCode value={`scan/${item.phoneId}`} size={128} />
+                    <QRCode value={item.phoneId} size={128} />
                     <ReactToPrint
                         trigger={() => <button onClick={handlePrint}>Print</button>}
                         content={() => componentRefs.current[index]}

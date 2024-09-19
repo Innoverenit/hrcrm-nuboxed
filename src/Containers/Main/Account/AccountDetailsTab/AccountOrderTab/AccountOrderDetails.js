@@ -471,7 +471,7 @@ function DistributorPauseForm(props) {
                                                         >
                                                         
                                                             <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
-                                                                <QRCode size={150} value={`scan/${item.phoneId}`} />
+                                                                <QRCode size={150} value={item.phoneId} />
 
                                                             </div>
                                                             <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>

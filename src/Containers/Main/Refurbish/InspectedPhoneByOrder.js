@@ -376,7 +376,7 @@ function InspectedPhoneByOrder(props) {
                                                             <div style={{ marginBottom: "10px" }}> {translatedMenuItems[1]}: {item.model}</div>
                                                             <div style={{ marginBottom: "10px" }}> {translatedMenuItems[2]}: {item.imei}</div>
                                                             <div style={{ marginBottom: "10px" }}>
-                                                                <QRCode value={`scan/${item.phoneId}`} className="!text-icon" />
+                                                                <QRCode value={item.phoneId} className="!text-icon" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -406,7 +406,7 @@ function InspectedPhoneByOrder(props) {
                                                     ref={(el) => (componentBarRefs.current[index] = el)}>
                                                    
                                                     <div   className=" text-5xl mt-8">
-                                                    <Barcode value={`scan/${item.phoneId}` } displayValue={false}/>
+                                                    <Barcode value={item.phoneId } displayValue={false}/>
                                                        
                                                     </div>
                                                     <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
