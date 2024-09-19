@@ -35,7 +35,7 @@ console.log(props.data)
               onClose={props.stopScanning} />
                {typeof props.data === 'string' && props.data.trim() !== '' && props.data !== 'No result' ? (
               <span onClick={props.stopScanning}>
-                <Link to={props.data}>
+                <Link to={`scan/${props.data}`}>
                   Click here to Proceed
                 </Link>
               </span>
