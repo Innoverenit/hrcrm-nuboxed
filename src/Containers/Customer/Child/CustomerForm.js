@@ -725,7 +725,7 @@ country_dial_code
                 >
 {props.customerConfigure.assignedToInd===true&&
                   <div class=" flex justify-between mb-[0.35rem] mt-3">
-                    <div class=" flex flex-col">
+                    <div class=" flex flex-col w-wk">
                       <Listbox value={selected} onChange={setSelected}>
                         {({ open }) => (
                           <>

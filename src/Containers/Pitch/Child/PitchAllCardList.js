@@ -61,7 +61,8 @@ const PitchAllCardList = (props) => {
           "1165", // 14 Activity
           "170", // 15 Edit
           "1259",  // 16 Do you want to delete?
-          "84" 
+          "84" ,//Delete
+          "1581" //Score 18
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -124,40 +125,39 @@ serachedPitchData={props.serachedPitchData}
 />
 ) : (
  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className="font-bold font-poppins text-xs w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
+ <div className=" flex justify-between max-sm:hidden w-[99%]  p-1 bg-transparent font-bold sticky z-10">
+        <div className="font-bold font-poppins text-xs w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
         {translatedMenuItems[0]}
         {/* name */}
-                </div>
-        <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className="font-bold font-poppins text-xs  w-[5.3rem]  max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                </div>      
+        <div className="font-bold font-poppins text-xs  w-[0.3rem]  max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         {translatedMenuItems[1]} 
         {/* Mobile */}
-                </div>
-        <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" font-bold font-poppins text-xs w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+                </div>   
+        <div className=" font-bold font-poppins text-xs w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
         {translatedMenuItems[2]} 
         {/* company */}
                 </div>
-                    <div className="font-bold font-poppins text-xs w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div className="font-bold font-poppins text-xs w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                     {translatedMenuItems[3]}  
                     {/* source */}
                 </div>
-                     <div className="font-bold font-poppins text-xs w-[3.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     <div className="font-bold font-poppins text-xs w-[4.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {translatedMenuItems[4]} 
                      {/* sector */}
                 </div>
+                {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[2.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {/* Score */}
+            {translatedMenuItems[18]}
+            </div>
+            )}
         <div className="font-bold font-poppins text-xs w-[4.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
           {/* Assigned */}
         {translatedMenuItems[5]}
         </div>
-        {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
-          
-            </div>
-            )}
-        <div className="font-bold font-poppins text-xs w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+      
+        <div className="font-bold font-poppins text-xs w-[8.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[6]}
         {/* qualify */}
                 </div>
@@ -304,7 +304,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                             <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                     
                               </div>
                         </div>
-                        <div className=" flex  w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* country */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "None"}
@@ -319,12 +319,18 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                      {item.source || "None"}
 </div>
                  </div>
-                 <div className=" flex   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex   w-[10.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                {/* sector */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "None"}
 </div>
                  </div>
+                 {/* Score */}
+                 {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+            </div>
+            )}    
                  <div className=" flex  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                             {/* Assigned */}
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                             
@@ -353,11 +359,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           </div>
                           
                           </div>   
-                          {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            {item.noteScoreInd}
-            </div>
-            )}                                                                  
+                                                                         
 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
 <div class="flex justify-between items-center max-sm:w-[50%] ">                       
 

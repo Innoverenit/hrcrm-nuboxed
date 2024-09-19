@@ -86,14 +86,14 @@ const LeadsAllCardList = (props) => {
 '140',// 17 email
 '170',//18 edit
 '1259',//19 "Do you want to delete?"
-"100",// New 21
-"1581",// Score 22
-"271",// "Hot"23
-"272",// "Warm"24
-"273",// "Cold"25
-"1454",// Company name is required to enable qualification action26
-"84",// Delete27
- "1582",// Qualify? Lead will move to Prospect section!28
+"100",// New 20
+"271",// "Hot"21
+"272",// "Warm"22
+"273",// "Cold"23
+"1454",// Company name is required to enable qualification action24
+"84",// Delete25
+ "1582",// Qualify? Lead will move to Prospect section!26
+ "1581",// Score 27
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -223,26 +223,27 @@ const LeadsAllCardList = (props) => {
       <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
       <div className="   flex justify-between w-[92%] font-bold font-poppins text-xs">
       <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-white bg-red-600  justify-center "> {translatedMenuItems[0]}</div>
-        <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
-        <div className=" w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-          {/* {translatedMenuItems[3]} */}
-          </div>
-        <div className=" w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
-        <div className=" w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
-        <div className= " w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
-        <div className= " w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
-        <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
-        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className=" w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
-        <div className=" w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+        <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[7.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
+        {/* <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          {translatedMenuItems[3]}
+          </div> */}
+        <div className=" w-[17.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
+        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
+        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
+        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
-            <div className=" w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-          {translatedMenuItems[22]}  {/* Score */}
+            <div className=" w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+          {translatedMenuItems[27]}  {/* Score */}
           
             </div>
             )}
+        <div className=" w-[7.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
+        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
+        <div className=" w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
+        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+     
         <div className="w-12"></div>
         </div>
 
@@ -297,7 +298,7 @@ const LeadsAllCardList = (props) => {
                         type="Hot"
                         iconType="fas fa-mug-hot"
                         // tooltip="Hot"
-                        tooltip={translatedMenuItems[23]}
+                        tooltip={translatedMenuItems[21]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Hot";
@@ -313,7 +314,7 @@ const LeadsAllCardList = (props) => {
                         type="Warm"
                         iconType="	fas fa-burn"
                         // tooltip="Warm"
-                        tooltip={translatedMenuItems[24]}
+                        tooltip={translatedMenuItems[22]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Warm";
@@ -329,7 +330,7 @@ const LeadsAllCardList = (props) => {
                         type="Cold"
                         iconType="far fa-snowflake"
                         // tooltip="Cold"
-                        tooltip={translatedMenuItems[25]}
+                        tooltip={translatedMenuItems[23]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Cold";
@@ -364,7 +365,7 @@ const LeadsAllCardList = (props) => {
                               <div class="text-[0.65rem]  text-[tomato] font-bold"
                                 
                               >
-                               {translatedMenuItems[21]} {/* New */}
+                               {translatedMenuItems[20]} {/* New */}
                               </div>
                             ) : null}
                           </div>
@@ -438,6 +439,13 @@ const LeadsAllCardList = (props) => {
            {item.lob}
          </div>
        </div>
+       {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}
+
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 <div className=" flex  w-[2.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
@@ -498,19 +506,14 @@ const LeadsAllCardList = (props) => {
      
                   </div>
                 </div>
-                {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            Score
           
-            </div>
-            )}
                 <div className=" flex  w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                   <div class=" text-xs  font-poppins"></div>
                   <div>
   {item.companyName ? (
     <Tooltip title=
     // "Qualify? Lead will move to Prospect section!">
-      {translatedMenuItems[28]}>
+      {translatedMenuItems[26]}>
       <ConnectWithoutContactIcon
         onClick={() => {
           handleRowData(item);
@@ -623,26 +626,27 @@ const LeadsAllCardList = (props) => {
       <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
       <div className="   flex justify-between w-[92%] font-bold font-poppins text-xs">
       <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-orange-400 text-white">{translatedMenuItems[12]}</div>
-        <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
-        <div className=" w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-          {/* {translatedMenuItems[3]} */}
-          </div>
-        <div className=" w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
-        <div className=" w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
-        <div className= " w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
-        <div className= " w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
-        <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
-        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className=" w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
-        <div className=" w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+        <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[7.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
+        {/* <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          {translatedMenuItems[3]}
+          </div> */}
+        <div className=" w-[17.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
+        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
+        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
+        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
             <div className=" w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            {translatedMenuItems[22]} {/* Score */}
+            {translatedMenuItems[27]} {/* Score */}
           
             </div>
             )}
+        <div className=" w-[7.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
+        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
+        <div className=" w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
+        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+      
         <div className="w-12"></div>
         </div>
 
@@ -696,7 +700,7 @@ const LeadsAllCardList = (props) => {
                         type="Hot"
                         iconType="fas fa-mug-hot"
                         // tooltip="Hot"
-                        tooltip= {translatedMenuItems[23]}
+                        tooltip= {translatedMenuItems[21]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Hot";
@@ -711,7 +715,7 @@ const LeadsAllCardList = (props) => {
                         type="Warm"
                         iconType="	fas fa-burn"
                         // tooltip="Warm"
-                        tooltip= {translatedMenuItems[24]}
+                        tooltip= {translatedMenuItems[22]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Warm";
@@ -726,7 +730,7 @@ const LeadsAllCardList = (props) => {
                         type="Cold"
                         iconType="far fa-snowflake"
                         // tooltip="Cold"
-                        tooltip= {translatedMenuItems[25]}
+                        tooltip= {translatedMenuItems[23]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Cold";
@@ -760,7 +764,7 @@ const LeadsAllCardList = (props) => {
                             {date === currentdate ? (
                               <div class="text-[0.65rem]  text-[tomato] font-bold"                             
                               >
-                               {translatedMenuItems[21]}  {/* New */}
+                               {translatedMenuItems[20]}  {/* New */}
                               </div>
                             ) : null}
                           </div>
@@ -834,6 +838,14 @@ const LeadsAllCardList = (props) => {
            {item.lob}
          </div>
        </div>
+
+       {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}
+
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 <div className=" flex  w-[2.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
@@ -889,19 +901,14 @@ const LeadsAllCardList = (props) => {
           </div>  
                   </div>
                 </div>
-                {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            Score
-          
-            </div>
-            )}
+            
                 <div className=" flex  w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                   <div class=" text-xs  font-poppins"></div>
                   <div>
   {item.companyName ? (
     <Tooltip title=
     // "Qualify? Lead will move to Prospect section!">
-         {translatedMenuItems[28]} >
+         {translatedMenuItems[26]} >
       <ConnectWithoutContactIcon
         onClick={() => {
           handleRowData(item);
@@ -911,7 +918,7 @@ const LeadsAllCardList = (props) => {
       />
     </Tooltip>
   ) : (
-    <Tooltip title= {translatedMenuItems[26]}>
+    <Tooltip title= {translatedMenuItems[25]}>
       <ConnectWithoutContactIcon
         className="!text-icon cursor-not-allowed text-gray-400"
       />
@@ -1015,26 +1022,27 @@ const LeadsAllCardList = (props) => {
       <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
       <div className="   flex justify-between w-[92%] font-bold font-poppins text-xs">
       <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-blue-600 text-white">{translatedMenuItems[13]}</div>
-        <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
-        <div className=" w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-          {/* {translatedMenuItems[3]} */}
-          </div>
-        <div className=" w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
-        <div className=" w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
-        <div className= " w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
-        <div className= " w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
-        <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
-        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className=" w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
-        <div className=" w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+        <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[7.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
+        {/* <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          {translatedMenuItems[3]}
+          </div> */}
+        <div className=" w-[17.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
+        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
+        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
+        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
-            <div className=" w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            {translatedMenuItems[22]} {/* Score */}
+            <div className=" w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {translatedMenuItems[27]} {/* Score */}
           
             </div>
             )}
+        <div className=" w-[7.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
+        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
+        <div className=" w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
+        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+     
         <div className="w-12"></div>
         </div>
 
@@ -1088,7 +1096,7 @@ const LeadsAllCardList = (props) => {
                         type="Hot"
                         iconType="fas fa-mug-hot"
                         // tooltip="Hot"
-                        tooltip= {translatedMenuItems[23]}
+                        tooltip= {translatedMenuItems[21]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Hot";
@@ -1103,7 +1111,7 @@ const LeadsAllCardList = (props) => {
                         type="Warm"
                         iconType="	fas fa-burn"
                         // tooltip="Warm"
-                        tooltip= {translatedMenuItems[24]}
+                        tooltip= {translatedMenuItems[22]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Warm";
@@ -1118,7 +1126,7 @@ const LeadsAllCardList = (props) => {
                         type="Cold"
                         iconType="far fa-snowflake"
                         // tooltip="Cold"
-                        tooltip= {translatedMenuItems[25]}
+                        tooltip= {translatedMenuItems[23]}
                         role={item.type}
                         onClick={() => {
                           const typ = "Cold";
@@ -1153,7 +1161,7 @@ const LeadsAllCardList = (props) => {
                               <div class="text-[0.65rem]  text-[tomato] font-bold"
                                 
                               >
-                                {translatedMenuItems[21]} {/* New */}
+                                {translatedMenuItems[20]} {/* New */}
                               </div>
                             ) : null}
                           </div>
@@ -1227,6 +1235,13 @@ const LeadsAllCardList = (props) => {
            {item.lob}
          </div>
        </div>
+
+       {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 <div className=" flex  w-[2.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
@@ -1281,19 +1296,14 @@ const LeadsAllCardList = (props) => {
           </div>   
                   </div>
                 </div>
-                {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            Score
           
-            </div>
-            )}
                 <div className=" flex  w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                   <div class=" text-xs  font-poppins"></div>
                   <div>
   {item.companyName ? (
     <Tooltip title=
     // "Qualify? Lead will move to Prospect section!">
-       {translatedMenuItems[28]}>
+       {translatedMenuItems[26]}>
       <ConnectWithoutContactIcon
         onClick={() => {
           handleRowData(item);
@@ -1303,7 +1313,7 @@ const LeadsAllCardList = (props) => {
       />
     </Tooltip>
   ) : (
-    <Tooltip title= {translatedMenuItems[26]}>
+    <Tooltip title= {translatedMenuItems[25]}>
       <ConnectWithoutContactIcon
         className="!text-icon cursor-not-allowed text-gray-400"
       />
