@@ -184,18 +184,20 @@ const handleLoadMoreLow = () => {
     <>
       <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky  z-10 max-sm:hidden">
-                        <div className="font-bold font-poppins text-xs md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-                        <div className="font-bold font-poppins text-xs md:w-[10rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className="font-bold font-poppins text-xs md:w-[11.6rem]">{translatedMenuItems[2]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[12.018rem]">{translatedMenuItems[4]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[6.031rem]">{translatedMenuItems[8]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[8.73rem]">{translatedMenuItems[5]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[7.8rem]">{translatedMenuItems[6]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[9.8rem]">{translatedMenuItems[7]}</div>
+                    <div className=" flex  w-[100%]   bg-transparent  sticky  z-10 max-sm:hidden">
+                    <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
+                        <div className="w-[3.54rem] md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
+                        <div className=" w-[8rem] md:w-[8rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className=" w-[9.6rem] md:w-[9.6rem]">{translatedMenuItems[2]}</div>
+          <div className=" w-[4.051rem] md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className=" w-[8.018rem] md:w-[8.018rem]">{translatedMenuItems[4]}</div>
+          <div className=" w-[5.031rem] md:w-[5.031rem]">{translatedMenuItems[8]}</div>
+          <div className=" w-[5.73rem] md:w-[5.73rem]">{translatedMenuItems[5]}</div>
+          <div className="w-[5.8rem] md:w-[5.8rem]">{translatedMenuItems[6]}</div>
+          <div className=" w-[9.8rem] md:w-[9.8rem]">{translatedMenuItems[7]}</div>
          
-          <div className="md:w-24"></div>
+          
+          </div>
                     </div>
 
                     {/* <div class="overflow-x-auto h-[64vh]"> */}
@@ -221,11 +223,11 @@ const handleLoadMoreLow = () => {
                                          
                 <div className="flex rounded justify-between max-sm:rounded-lg
                max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500
-                bg-white mt-1 h-8 items-center  max-sm:h-24 max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                bg-white mt-1 h-8 items-center  max-sm:h-24 max-sm:   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                            <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                 <div class="  text-blue-500  font-poppins font-bold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -241,7 +243,7 @@ const handleLoadMoreLow = () => {
                                                     </div>
                     <div className=" flex  font-bold  w-wk   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[10.43rem]">
+                        <div class="w-[9.43rem]">
                           <Badge size="small" count={item.count}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
@@ -262,7 +264,7 @@ const handleLoadMoreLow = () => {
                               ) : null}
                         </div>
                         {props.user.accountInfoInd?
-                        <div class="max-sm:w-full md:w-[9.02rem] font-bold">
+                        <div class="max-sm:w-full md:w-[7.02rem] font-bold">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:text-xs">
                               {item.distributorName}
@@ -329,13 +331,13 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                  
-                  <div className=" flex   md:w-[0.01rem] items-center max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex   md:w-[4.01rem] items-center max-sm:flex-row w-full max-sm:justify-between ">
 
                   <div class=" text-xs  font-semibold items-center font-poppins">
                     {item.noOfownerPhones}
                   </div>
                   </div>
-                  <div class="rounded-full text-xs bg-white items-center  h-5 cursor-pointer w-8 justify-cente">
+                  <div class="  md:w-[6.01rem] rounded-full text-xs bg-white items-center  h-5 cursor-pointer w-8 justify-center">
                   {item.orderStatus}
                   </div>
                   </div>
@@ -434,18 +436,19 @@ const handleLoadMoreLow = () => {
             
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky  z-10 max-sm:hidden">
-           <div className="font-bold font-poppins text-xs md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">{translatedMenuItems[9]} </div>
-           <div className="font-bold font-poppins text-xs md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[6.031rem]">{translatedMenuItems[8]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[8.73rem]">{translatedMenuItems[5]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[7.8rem]">{translatedMenuItems[6]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[9.86rem]">{translatedMenuItems[7]}</div>
-         
-          <div className="md:w-24"></div>
+                    <div className=" flex  w-[100%]   bg-transparent  sticky  z-10 max-sm:hidden">
+                    <div class=" flex justify-between text-xs font-poppins  font-bold  w-[96%]  ">
+           <div className=" w-[3.54rem] md:w-[3.54rem] flex justify-center text-[white] bg-[teal] ">{translatedMenuItems[9]} </div>
+           <div className=" w-[8rem] md:w-[8rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className=" w-[9.6rem] md:w-[9.6rem]">{translatedMenuItems[2]}</div>
+          <div className=" w-[4.051rem] md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className=" w-[8.018rem] md:w-[8.018rem]">{translatedMenuItems[4]}</div>
+          <div className=" w-[5.031rem] md:w-[5.031rem]">{translatedMenuItems[8]}</div>
+          <div className=" w-[5.73rem] md:w-[5.73rem]">{translatedMenuItems[5]}</div>
+          <div className="w-[5.8rem] md:w-[5.8rem]">{translatedMenuItems[6]}</div>
+          <div className=" w-[9.8rem] md:w-[9.8rem]">{translatedMenuItems[7]}</div>
+          <div className="md:w-15"></div>
+          </div>
                     </div>
 
                     {/* <div class="overflow-x-auto h-[64vh]"> */}
@@ -467,12 +470,12 @@ const handleLoadMoreLow = () => {
                                     return (
                                       <div>
                                        
-                <div className="flex rounded justify-between max-sm:flex-col  mt-1 bg-white h-8 items-center p-1  max-sm:rounded-lg max-sm:h-[9rem]
+                <div className="flex rounded justify-between max-sm:  mt-1 bg-white h-8 items-center p-1  max-sm:rounded-lg max-sm:h-[9rem]
                 max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                  <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
                   <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
                          <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                            <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                 <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -488,7 +491,7 @@ const handleLoadMoreLow = () => {
                     </div>
                     <div className=" flex   w-wk   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[10.43rem]">
+                        <div class="w-[9.43rem]">
                           <Badge size="small" count={item.count}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
@@ -510,7 +513,7 @@ const handleLoadMoreLow = () => {
                               ) : null}
                         </div>
                         {props.user.accountInfoInd?
-                        <div class="max-sm:w-full md:w-[7.02rem]">
+                        <div class="max-sm:w-full md:w-[7.02rem] font-bold">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:text-xs font-bold">
                               {item.distributorName}
@@ -577,13 +580,13 @@ const handleLoadMoreLow = () => {
                     </div>
                     </div>
                   
-                  <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex   md:w-[4.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
+                    <div class="rounded-full  md:w-[6.01rem] text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
                     </div>

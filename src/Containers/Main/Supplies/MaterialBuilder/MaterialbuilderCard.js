@@ -129,17 +129,17 @@ return (
     {editlinkSuppliesId === item.linkSuppliesId ? (
                         <>
                       <Button onClick={() => handleUpdateSupplies(item.linkSuppliesId,item.supplySupplyLinkId,item.suppliesName,item.description,item.categoryName,item.subCategoryName)}>
-                        Save
+                      {props.translatedMenuItems[5]}  {/* Save */}
                       </Button>
                         <Button 
                         className="ml-2"
                         onClick={() => handleCancelClick(item.linkSuppliesId)}>
-                        Cancel
+                        {props.translatedMenuItems[6]}
                       </Button>
                       </>
                       
                     ) : (
-                      <Tooltip title="Edit">
+                      <Tooltip title= {props.translatedMenuItems[7]}>
                       <BorderColorIcon
                       className=" flex justify-items-center justify-center !text-icon cursor-pointer  text-[tomato] "
                         onClick={() => handleEditClick(item.linkSuppliesId)}
@@ -149,10 +149,10 @@ return (
     </div>
     <div>
       <StyledPopconfirm
-                          title="Do you want to delete?"
+                          title= {props.translatedMenuItems[8]}
                           onConfirm={() => props.removeMaterialBuilder({active:false},item.supplySupplyLinkId)}
                           >
-                     <Tooltip title="Delete">
+                     <Tooltip title= {props.translatedMenuItems[9]}>
                           <DeleteOutlined
                           className="!text-icon cursor-pointer "
                           style={{

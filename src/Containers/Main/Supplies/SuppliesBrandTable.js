@@ -70,6 +70,10 @@ function SuppliesBrandTable(props) {
    "1004",// 'Inactive', // 3
    "84",// 'Delete', // 4
    "154",// 'Submit', // 5
+  "1078",//  Save
+  "1079",//  Cancel
+ "170", //  "Edit"
+ "1259", //  "Do you want to delete?"
    
         ];
 
@@ -101,70 +105,7 @@ function SuppliesBrandTable(props) {
     setEditedFields((prevFields) => ({ ...prevFields, [brand]: undefined }));
     setEditsuppliesId(null);
   };
-//   useEffect(() => {
-//     const fetchMenuTranslations = async () => {
-//       try {
-//         setLoading(true); 
-//         const itemsToTranslate = [
 
-//    "110", // 'Name', // 0
-//    "378",// 'Work', // 1
-//    "278",// 'Sector', // 2
-//    "279",// 'Source', // 3
-//    "213",// 'Quotation', // 4
-//    "328",// 'PipeLine', // 5
-//    "76",// 'Assigned', // 6
-//    "77",// 'Owner', // 7
-//    "248",// 'Customer', // 8
-//        "100",   // new 9
-//     "1300" , //  Change status to Customer?"10
-//     "99" ,  // "Opportunity"11
-//     "392" ,  // Pulse 12
-//     "316" ,  // "Notes"13
-//     "170" ,  // "Edit" 14
-//    "73" // Contact 15
-//         ];
-
-//         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-//         setTranslatedMenuItems(translations);
-//         setLoading(false);
-//       } catch (error) {
-//         setLoading(false);
-//         console.error('Error translating menu items:', error);
-//       }
-//     };
-
-//     fetchMenuTranslations();
-//   }, [props.selectedLanguage]);
-
- 
-
-
- 
-
-  
-//   const handleLoadMore = () => {
-//     const callPageMapd = props.customerByUserId && props.customerByUserId.length &&props.customerByUserId[0].pageCount
-//     setTimeout(() => {
-
-//       if  (props.customerByUserId)
-//       {
-//         if (page < callPageMapd) {
-//           setPage(page + 1);
-//           props.getCustomerListByUserId(props.userId, page, "creationdate");
-//       }
-//       if (page === callPageMapd){
-//         setHasMore(false)
-//       }
-//     }
-//     }, 100);
-//   };
- 
-  
-  
-
-
-   
 const handleSave = (item) => {
   console.log(newbrandName)
   console.log(newimageId)
@@ -410,20 +351,20 @@ const handleSave = (item) => {
                     //   loading={props.updatingOrdrSuplrItems}
                     onClick={() => handleSave(item)}
                       >
-                        Save
+                         {translatedMenuItems[6]}{/* Save */}
                       </Button>
                         <Button 
                          type="primary"
                         onClick={() => handleCancelClick(item.brand)} className="ml-[0.5rem]"
                         >
-                        Cancel
+                         {translatedMenuItems[7]} {/* Cancel */}
                       </Button>
                       </>
                       
                     ) : (
                       <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
-                        tooltipTitle="Edit"
+                        tooltipTitle=  {translatedMenuItems[8]}
                         iconType="edit"
                         onClick={() => handleEditClick(item.brand,item.brandName)}
                       />
@@ -439,7 +380,7 @@ const handleSave = (item) => {
 
 <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 <StyledPopconfirm
-title="Do you want to delete?"
+title=  {translatedMenuItems[9]}
 onConfirm={() => props.deleteSuppliesBrandData({active:false},item.brand)}
 >
 

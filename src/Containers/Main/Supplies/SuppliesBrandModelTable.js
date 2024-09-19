@@ -1,9 +1,7 @@
-import React, { useEffect,lazy,useState  } from "react";
+import React, { useEffect,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm, message, Input } from "antd";
+import {  Input } from "antd";
 import { MainWrapper } from "../../../Components/UI/Layout";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
@@ -21,6 +19,41 @@ const SuppliesBrandModelList = (props) => {
     
     const [newModelName, setModelName] = useState('');
     const [newBrandModelName, setBrandModelName] = useState('');
+
+    const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+       
+          const itemsToTranslate = [
+  
+     "1238", // "Search by Name"', // 0
+     "265",//"model" // 1
+     "1078",// Save, // 2
+     "1079",// Cancel, // 3
+     "",// 'Add More', // 4
+     "100",// '  New', // 5
+    "",//  Updated on
+   "1335", // by
+   "264", // brand"
+
+     
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+        
+        } catch (error) {
+       
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+
     useEffect(() => {
         props.getBrandModel(props.orgId); 
         // props.getShipByCount(props.orgId) 
@@ -119,7 +152,7 @@ const SuppliesBrandModelList = (props) => {
        <div class="flex flex-row justify-between">
              <div class=" flex w-[18vw]" >
             <Input
-         placeholder="Search by Name"
+         placeholder={translatedMenuItems[0]}
         style={{width:"100%",marginLeft:"0.5rem"}}
             // suffix={suffix}
             onPressEnter={handleSearch}  
@@ -133,12 +166,12 @@ const SuppliesBrandModelList = (props) => {
                         <input 
                         style={{border:"2px solid black"}}
                             type="text" 
-                            placeholder="brand"
+                            placeholder={translatedMenuItems[8]}
                             value={newBrandModelName} 
                             onChange={(e) => setBrandModelName(e.target.value)} 
                         />
                           <input 
-                            placeholder="model"
+                            placeholder={translatedMenuItems[1]} 
                         style={{border:"2px solid black"}}
                             type="text" 
                             value={newModelName} 
@@ -146,12 +179,12 @@ const SuppliesBrandModelList = (props) => {
                         />
                         <button 
                            loading={props.addingItemTask}
-                        onClick={handleBrandModel}>Save</button>
-                        <button onClick={handleCancelAdd}>Cancel</button>
+                        onClick={handleBrandModel}>{translatedMenuItems[2]} </button>
+                        <button onClick={handleCancelAdd}>{translatedMenuItems[3]} </button>
                     </div>
                 ) : (
                     <button  style={{backgroundColor:"tomato",color:"white"}}
-                    onClick={handleAddBrandModel}> Add More</button>
+                    onClick={handleAddBrandModel}> {translatedMenuItems[4]} </button>
                 )}
             </div>
             </div>
@@ -164,7 +197,7 @@ const SuppliesBrandModelList = (props) => {
          <MainWrapper className="!h-[69vh] !mt-2" >
             {!props.fetchingBrandModel && brandModel.length === 0 ? <NodataFoundPage /> : brandModel.map((region, index) => (
      
-              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.phoneMasterListId}>
+              <div className="flex rounded ml-1 font-bold  font-poppins text-xs shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.phoneMasterListId}>
               {/* Region name display or input field */}
               
               {editingId === region.phoneMasterListId ? (
@@ -188,49 +221,18 @@ const SuppliesBrandModelList = (props) => {
                   <div style={{width:"39rem"}}>{region.model}&nbsp;&nbsp;&nbsp;
                   {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >
-                                          New
+                                         {translatedMenuItems[5]}  {/* New */}
                                         </span> : null}</div>
               )}
   
-              {/* Action buttons */}
-              <div >
-                  {/* Edit button */}
-                  {/* {editingId === region.phoneMasterListId ? (
-                      <div>
-                          <button onClick={() => handleUpdateBrandModel(region)}>Save</button>
-                          <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
-                      </div>
-                  ) : (
-                      <BorderColorIcon   style={{fontSize:"1rem"}} 
-                    //   onClick={() => editRegion(region.phoneMasterListId, region.name)} 
-                      />
-                  )} */}
-  
-                  {/* Delete button */}
-                  {/* <Popconfirm
-                          title="Do you want to delete?"
-                          okText="Yes"
-                          cancelText="No"
-                        //   onConfirm={() =>  props.removeShipBy(region.phoneMasterListId)}
-                        >
-                  <DeleteOutlined 
-                    style={{
-                    
-                      color: "red",
-                    }}
-                // onClick={() => 
-                //     props.removeServiceLine(item.phoneMasterListId)
-                //  }
-                   />
-                   </Popconfirm> */}
-              </div>
+             
           </div>
          ))}
 </MainWrapper>
             </div>
    
         </div>
-         <div class=" font-bold">Updated on {dayjs(props.brandModel && props.brandModel.length && props.brandModel[0].updationDate).format('YYYY-MM-DD')} by {props.brandModel && props.brandModel.length && props.brandModel[0].updatedBy}</div>
+         <div class=" font-bold">{translatedMenuItems[6]} {dayjs(props.brandModel && props.brandModel.length && props.brandModel[0].updationDate).format('YYYY-MM-DD')} {translatedMenuItems[7]}  {props.brandModel && props.brandModel.length && props.brandModel[0].updatedBy}</div>
     </>
          );
   };

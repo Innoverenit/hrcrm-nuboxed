@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { base_url } from "../../../../Config/Auth";
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
+import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 
 class ReportDocumentsView extends Component {
   render() {
@@ -24,52 +25,53 @@ class ReportDocumentsView extends Component {
                         style={{ padding: "0em 1.25em" }}
                     >
                         <Tooltip title={"Generate PDF"}>
-                            <Button
-                                style={{
-                                    color: "white",
-
-                                    border: "0.125em solid red",
-                                    fontSize: "1.125em",
-                                    backgroundColor: "red",
-                                    padding: "0.125em",
-                                }}
-                            >
-                                 <PictureAsPdfIcon />
-                            </Button>
+                            {/* <Button > */}
+                                 <PictureAsPdfIcon className=" !text-xl !text-red !text-tab"/>
+                            {/* </Button> */}
                         </Tooltip>
                      
                         <Tooltip title={"Generate XL"}>
-                            <Button
+                          <a href={`${base_url}/excel/export/user/${this.props.userId
+                                    }?type=${"expense"}&startDate=${this.props.startDate}&endDate=${this.props.endDate
+                                    }=${this.props.userId}
+                `}> <DownloadForOfflineIcon className="!text-xl text-green-500"/></a>
+                       
+                         
+    
+                            {/* <Button
                                 icon="file-excel"
                                 // type="primary"
                                 href={`${base_url}/excel/export/user/${this.props.userId
                                     }?type=${"expense"}&startDate=${this.props.startDate}&endDate=${this.props.endDate
                                     }=${this.props.userId}
                 `}
-                                style={{
-                                    color: "white",
-                                    border: "0.125em solid green",
-                                    fontSize: "1.125em",
-                                    marginLeft:"1rem",
-                                    // padding: "0.4375em",
-                                    backgroundColor: "green",
-                                }}
-                            ></Button>
+                className="!text-green-600 !text-tab" 
+                  // style={{
+                  //                   color: "white",
+                  //                   border: "0.125em solid green",
+                  //                   fontSize: "1.125em",
+                  //                   marginLeft:"1rem",
+                  //                   // padding: "0.4375em",
+                  //                   backgroundColor: "green",
+                  //               }}
+                            ></Button> */}
                         </Tooltip>
                     
-                        <Tooltip title={"Generate CSV"}>
-                            <Button
+                        <Tooltip title={"Generate CSV"}> 
+                        <SimCardDownloadIcon className=" !text-xl text-blue-500"/>
+                            {/* <Button
                                 icon="file-text"
                                 target="blank"
-                                style={{
-                                    color: "white",
-                                    marginLeft:"1rem",
-                                    border: "0.125em solid green",
-                                    fontSize: "1.125em",
-                                    // padding: "0.4375em",
-                                    backgroundColor: "blue",
-                                }}
-                            ></Button>
+                                className="!text-blue-600 !text-tab" 
+                                // style={{
+                                //     color: "white",
+                                //     marginLeft:"1rem",
+                                //     border: "0.125em solid green",
+                                //     fontSize: "1.125em",
+                                //     // padding: "0.4375em",
+                                //     backgroundColor: "blue",
+                                // }}
+                            ></Button> */}
                         </Tooltip>
                     </div>
 

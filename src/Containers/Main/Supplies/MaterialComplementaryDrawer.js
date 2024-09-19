@@ -18,6 +18,8 @@ const MaterialComplementaryDrawer = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           <MaterialComplementaryCard
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
             particularDiscountData={props.particularDiscountData}
             openComplementary={props.openComplementary}
             setopenComplementary={props.setopenComplementary}

@@ -59,8 +59,8 @@ function AccountDeleteTable(props) {
         <>
             <div className=' flex  sticky  z-auto'>
             <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-         <div className=" flex  text-xs font-poppins justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        
+         <div className=" flex justify-between w-[100%]  p-1 bg-transparent  sticky  z-10">
+         <div class=" flex justify-between text-xs font-poppins  font-bold  w-[90%]  ">
          <div className=" ml-2 md:w-[7%]"> {translatedMenuItems[0]}
             {/* Name */}
             </div>
@@ -82,6 +82,7 @@ function AccountDeleteTable(props) {
                 <div className="md:w-[2.2rem]"></div>
                 <div className="md:w-[2.2rem]"></div>
         <div className="w-12"></div>
+            </div>
             </div>
   
              {deletedDistributors.map((item) => {

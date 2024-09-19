@@ -153,6 +153,8 @@ function SuppliesActionLeft (props) {
                   "228",//1
                   "14",//2
                   "798",//3
+                  "264",// Brand
+                 "", // Brand Model
                  
         
                 ];
@@ -210,7 +212,7 @@ function SuppliesActionLeft (props) {
                 
 
 
-                <Tooltip title="Brand">
+                <Tooltip title={translatedMenuItems[4]}>
         <div
           class=" ml-2 text-xs cursor-pointer"
           style={{
@@ -227,7 +229,7 @@ function SuppliesActionLeft (props) {
       </Tooltip>
 
 
-      <Tooltip title="Brand Model">
+      <Tooltip title={translatedMenuItems[5]}>
         <div
           class=" ml-2 text-xs cursor-pointer"
           style={{

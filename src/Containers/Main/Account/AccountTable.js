@@ -146,8 +146,9 @@ function AccountTable(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  text-xs font-poppins w-[90%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
+          <div className=" flex max-sm:hidden   w-[90%]  justify-between p-1 bg-transparentsticky  z-10">
+           <div class=" flex justify-between text-xs font-poppins  font-bold  w-[100%]  ">
+            <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
             {translatedMenuItems[0]}
             {/* Name */}
             </div>
@@ -155,7 +156,7 @@ function AccountTable(props) {
             {translatedMenuItems[1]}
            {/* Work */}
             </div>
-            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
+            <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
             {translatedMenuItems[2]}
               {/* Category */}
               </div>
@@ -192,12 +193,13 @@ function AccountTable(props) {
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
             <div class="w-[2rem] max-xl:w-[3rem] max-lg:w-[2.8rem]"></div>
           </div>
+          </div>
           <InfiniteScroll
             dataLength={props.customerListByUser.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingCustomerByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-            height={"80vh"}
+            height={"82vh"}
             style={{ scrollbarWidth:"thin"}}
           >
             {props.customerListByUser.length ?
@@ -219,7 +221,7 @@ function AccountTable(props) {
             `;
                   return (
                     <div>
-                      <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
+                      <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-xl:p-1 max-sm:h-[9rem] max-sm: scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex w-[13rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
@@ -235,7 +237,7 @@ function AccountTable(props) {
                               <div class="w-[0.25rem]"></div>
                              
                                 <Tooltip>
-                                  <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                  <div class="flex max-sm:flex-row justify-between w-full md:">
                                   
 
                                       <Link
@@ -256,7 +258,7 @@ function AccountTable(props) {
                         
                             </div>
                           </div>
-                          <div className=" flex  items-center  w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
+                          <div className=" flex  items-center  w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
 
                             <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
                               {item.dialCode} {item.phoneNo}
@@ -279,7 +281,7 @@ function AccountTable(props) {
                             </div>
                           </div>
 
-                          <div className=" flex  max-sm:w-auto w-[11rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto w-[8rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.payment}
 
@@ -302,29 +304,25 @@ function AccountTable(props) {
 
                                                         {visible && (item.distributorId === particularRowData.distributorId) ? (
                                                             <>
-                                                                <div className=" flex justify-between flex-col">
+                                                                <div className=" flex justify-between ">
                                                                     <Button onClick={() => {
                                                                         handleSubmitPrice()
                                                                     }} >{translatedMenuItems[10]}
-                                                                        {/* <FormattedMessage
-                                                                            id="app.save"
-                                                                            defaultMessage="Save"
-                                                                        /> */}
+                                                                      
+                                                                            {/* defaultMessage="Save" */}
+                                                                        
                                                                     </Button>
                                                                     <Button onClick={() => handleUpdateRevisePrice(false)}>
-                                                                    {translatedMenuItems[15]} {/* <FormattedMessage
-                                                                        id="app.cancel"
-                                                                        defaultMessage="Cancel"
-                                                                    /> */}
+                                                                    {translatedMenuItems[15]} 
+                                                                        {/* defaultMessage="Cancel" */}
+                                                                   
                                                                     </Button>
                                                                 </div>
                                                             </>
                                                         ) : <Tooltip title={translatedMenuItems[16]}
-                                                        // {<FormattedMessage
-                                                        //     id="app.updaterevisedprice"
+                                                      
                                                         //     defaultMessage="Update Revised Price"
-                                                        // />}
-                                                        // 
+                                                         
                                                         >
                                                             <PublishedWithChangesIcon
                                                                 onClick={() => {
@@ -347,7 +345,7 @@ function AccountTable(props) {
                             </div>
 
                           </div>                       
-                          <div className=" flex  items-center max-sm:w-auto  flex-col w-[3rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  items-center max-sm:w-auto   w-[3rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
                         <div class=" text-xs  font-poppins max-sm:text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -373,7 +371,7 @@ function AccountTable(props) {
 
                         </div>
                       </div>
-                      {/* <div className=" flex  items-center max-sm:w-auto flex-col w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                      {/* <div className=" flex  items-center max-sm:w-auto  w-24 max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                           <div class="max-sm:flex justify-end">
                             <Tooltip title={item.salesExecutive}>
                               <MultiAvatar

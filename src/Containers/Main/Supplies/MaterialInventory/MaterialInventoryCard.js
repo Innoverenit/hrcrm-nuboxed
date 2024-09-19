@@ -12,9 +12,9 @@ function MaterialInventoryCard (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Location",//0
+      "658" , //  "Location",//0
          
-          "Unit",
+      "248",  //   "Unit",
           
         ];
 
@@ -101,7 +101,7 @@ return (
 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
        
     <div className=" flex font-medium flex-col md:w-[13.1rem] max-sm:w-full  ">
-    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
+    <div class="text-xs  font-semibold  font-poppins cursor-pointer">
                               {item.locationName}
                             </div>
     </div>
@@ -130,55 +130,13 @@ return (
                        />
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <span> {item.quantity}</span>
                       </div>
                     )}
                     </div>
   </div>
-  {/* <div class="flex flex-row justify-between max-sm:flex-row max-sm:w-[10%]">
-    <div>
-      
-    {editlinkSuppliesId === item.linkSuppliesId ? (
-                        <>
-                      <Button onClick={() => handleUpdateSupplies(item.linkSuppliesId,item.supplySupplyLinkId,item.suppliesName,item.description,item.categoryName,item.subCategoryName)}>
-                        Save
-                      </Button>
-                        <Button 
-                        className="ml-2"
-                        onClick={() => handleCancelClick(item.linkSuppliesId)}>
-                        Cancel
-                      </Button>
-                      </>
-                      
-                    ) : (
-                      <Tooltip title="Edit">
-                      <BorderColorIcon
-                      className=" flex justify-items-center justify-center !text-icon cursor-pointer  text-[tomato] "
-                        onClick={() => handleEditClick(item.linkSuppliesId)}
-                        // style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '0.75rem', marginTop: '0.25rem', marginLeft: '0.25rem' }}
-                      /></Tooltip>
-                    )}
-    </div>
-    <div>
-      <StyledPopconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => props.removeMaterialBuilder({active:false},item.supplySupplyLinkId)}
-                          >
-                     <Tooltip title="Delete">
-                          <DeleteOutlined
-                          className="!text-icon cursor-pointer "
-                          style={{
-                       
-                            color: "red",
-                          
-                          }}
-                           
-                          />
-                       </Tooltip>
-                       </StyledPopconfirm>
-                       </div>
-                        </div> */}
+
 </div>
 </div>
           );

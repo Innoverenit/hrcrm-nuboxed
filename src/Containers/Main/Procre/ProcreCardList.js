@@ -61,7 +61,7 @@ useEffect(() => {
         "856",// "Trade",8
         "794",// "Submitted By"9
        "100", // New110
-      //  "",  // Change status to Accepted?11
+       "1533",  // Change status to Accepted?11
       "80",   // Yes12
        "81",  // No113
        "1534",  // Accepted14
