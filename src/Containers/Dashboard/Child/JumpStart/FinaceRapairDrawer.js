@@ -4,7 +4,8 @@ import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import FinaceRapairDrawerCard from "./FinaceRapairDrawerCard";
 
-function FinaceRapairDrawer({ isVisible, closeModal, type, userId, startDate, endDate, ordersData, hasMore,setHasMore }) {
+function FinaceRapairDrawer({ isVisible, closeModal, type, userId, startDate, endDate, 
+  ordersData, hasMore,setHasMore,buttonName }) {
   
 
 
@@ -27,6 +28,7 @@ function FinaceRapairDrawer({ isVisible, closeModal, type, userId, startDate, en
         ordersData={ordersData}
         hasMore={hasMore}
         setHasMore={setHasMore}
+        buttonName={buttonName}
              />
     </StyledDrawer>
   );

@@ -15,7 +15,12 @@ getOrderCancelList
 import OrdersClosedModal from "./OrdersClosedModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import OrdersOpenDrawer from "./OrdersOpenDrawer";
+import axios from 'axios';
+import {base_url2} from "../../../../Config/Auth";
+
 const StackedClosureChart= lazy(()=>import("../../../Dashboard/StackedClosureChart"));
+
+
 function DashRepairOrdRightJumstartbox (props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -23,6 +28,63 @@ function DashRepairOrdRightJumstartbox (props) {
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
+
+  const [error, setError] = useState(null);
+
+  const [OrderPacked, setOrderPacked] = useState({});
+  const [loading1, setLoading1] = useState(false);
+
+    const fetchOrderPacked = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/order/orderpacked/${props.userId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setOrderPacked(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError(error);
+        setLoading1(false);
+      }
+    };
+
+    const [OrderDispatched, setOrderDispatched] = useState({});
+    const [loading2, setLoading2] = useState(false);
+  
+    const fetchOrderDispatched= async () => {
+      try {
+        const response = await axios.get(`${base_url2}/order/orderDispatched/${props.userId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setOrderDispatched(response.data);
+          setLoading2(false);
+        } catch (error) {
+          setError(error);
+          setLoading2(false);
+        }
+      };
+
+      const [ordFeedback, setordFeedback] = useState({});
+      const [loading3, setLoading3] = useState(false);
+
+        const fetchordFeedback = async () => {
+          try {
+            const response = await axios.get(`${base_url2}/order/feedback/${props.userId}`,{
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            });
+            setordFeedback(response.data);
+            setLoading3(false);
+          } catch (error) {
+            setError(error);
+            setLoading3(false);
+          }
+        };
+
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -49,6 +111,9 @@ function DashRepairOrdRightJumstartbox (props) {
   
   useEffect(() => {
     props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+    fetchOrderPacked();
+    fetchOrderDispatched();
+
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 

@@ -22,13 +22,23 @@ function FinaceRapairDrawerCard (props) {
 //   const [hasMore, setHasMore] = useState(true);
 
       useEffect(()=> {
+        if(props.buttonName==="My View"){
         if (props.timeRangeType === "today"){
           props.fetchOrdersData(props.userId,props.startDate,props.endDate,page);
         }
         else {
           props.fetchOrdersData(props.userId,props.startDate,props.endDate,page); 
+        }}
+        else if (props.buttonName==="Enterprise"){
+          if (props.timeRangeType === "today"){
+            props.fetchOrdersData(props.orgId,props.startDate,props.endDate,page);
+          }
+          else {
+            props.fetchOrdersData(props.orgId,props.startDate,props.endDate,page); 
+          }
         }
-      }, [props.userId,props.startDate,props.endDate,props.type]);
+
+      }, [props.userId,props.orgId,props.startDate,props.endDate,props.type]);
 
 
       const handleLoadMore = () => {
@@ -268,8 +278,8 @@ const mapStateToProps = ({ auth, dashboard }) => ({
     startDate: dashboard.startDate,
     endDate:dashboard.endDate,
     timeRangeType:dashboard.timeRangeType,
-    repairDashboardOrderAdded:dashboard.repairDashboardOrderAdded
-    
+    repairDashboardOrderAdded:dashboard.repairDashboardOrderAdded,
+    orgId: auth.userDetails.organizationId,
   
   });
   const mapDispatchToProps = (dispatch,ownProps) => {

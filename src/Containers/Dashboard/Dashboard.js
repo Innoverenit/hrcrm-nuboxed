@@ -11,6 +11,8 @@ const CustomerGoogleMap=lazy(()=>import("./Child/Chart/CustomerGoogleMap"));
 const CustomerViewGoogleMap=lazy(()=>import("./CustomerViewGoogleMap"));
 const CustomerAccountGoogleMap=lazy(()=> import("../Dashboard/CustomerAccountGoogleMap"));
 const CustomerDashboardJumpStart=lazy(()=>import("./Child/JumpStart/CustomerDashboardJumpStart"));
+const CustomerDashboardOrgJumpStart=lazy(()=>import("./Child/JumpStart/CustomerDashboardOrgJumpStart"));
+
 const DashboardProspectJumpstart=lazy(()=>import("./Child/JumpStart/DashboardProspectJumpstart"));
 const DashboardInvestorJumpstart=lazy(()=>import ("./Child/JumpStart/DashboardInvestorJumpstart"));
 const DashProcureQuotaJumpstartUser=lazy(()=>import ("./Child/JumpStart/DashProcureQuotaJumpstartUser"));
@@ -38,6 +40,7 @@ const StackedClosureChartAll= lazy(()=>import("./StackedClosureChartAll"));
 const TaskDashboardTab= lazy(()=>import("./TaskDashboardTab"));
 const SourceChart= lazy(()=>import("./Child/Chart/SourceChart"));
 const DashboardTaskOrganizationJumpstart= lazy(()=>import("./Child/JumpStart/DashboardTaskOrganizationJumpstart"));
+const DashboardTaskUserJumpstart= lazy(()=>import("./Child/JumpStart/DashboardTaskUserJumpstart"));
 const TaskOrganizationTab= lazy(()=>import("./TaskOrganizationTab"));
 const CustomerLeadsTab= lazy(()=>import("./CustomerLeadsTab"));
 const DashboardCustomerOrgJumpstart= lazy(()=>import("./Child/JumpStart/DashboardCustomerOrgJumpstart"));
@@ -224,7 +227,7 @@ class Dashboard extends Component {
              />)
              :this.state.activeButton==="Tasks" ?
              (<>
-             <DashboardTaskOrganizationJumpstart
+             <DashboardTaskUserJumpstart 
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}
              />
@@ -300,7 +303,7 @@ class Dashboard extends Component {
               translateText={this.props.translateText}
              />)
              : this.state.activeButton==="Accounts" ?
-             (<CustomerDashboardJumpStart
+             (<CustomerDashboardOrgJumpStart
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}/>)
 
