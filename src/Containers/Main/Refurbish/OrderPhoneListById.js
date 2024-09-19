@@ -705,7 +705,7 @@ function OrderPhoneListById(props) {
                                                     ref={(el) => (componentRefs.current[index] = el)}>
                                                    
                                                     <div   className=" text-5xl mt-8">
-                                                        <QRCode size={150} value={`scan/${item.phoneId}`} />
+                                                        <QRCode size={150} value={item.phoneId} />
                                                     </div>
                                                     <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
                                                 </div>
@@ -734,7 +734,7 @@ function OrderPhoneListById(props) {
                                                     ref={(el) => (componentBarRefs.current[index] = el)}>
                                                    
                                                     <div   className=" text-5xl mt-8">
-                                                    <Barcode value={`scan/${item.phoneId}` } displayValue={false}/>
+                                                    <Barcode value={item.phoneId} displayValue={false}/>
                                                        
                                                     </div>
                                                     <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
