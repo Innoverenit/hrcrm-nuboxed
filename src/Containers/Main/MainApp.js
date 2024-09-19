@@ -1089,7 +1089,7 @@ function MainApp(props) {
                     />  */}
                      <Route
                       exact
-                      path="/:phoneId"
+                      path="/scan/:phoneId"
                       render={(props) => (
                         <PhoneScanner
                           {...props}
@@ -1110,7 +1110,7 @@ function MainApp(props) {
                         />
                       )}
                     /> 
-
+{/* 
 <Route
                       exact
                       path="/production/:manufactureId"
@@ -1121,7 +1121,7 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    /> 
+                    />  */}
                     <Route
                       exact
                       path="/course/:courseId"
