@@ -34,8 +34,10 @@ import {
   handleCustomerPulseDrawerModal,
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
-  handleAddressCutomerModal
+  handleAddressCutomerModal,
+  // deleteCustomer
 } from "../../CustomerAction";
+import { DeleteOutlined} from "@ant-design/icons";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
@@ -615,17 +617,22 @@ if (loading) {
                               />
                             </Tooltip>
                           )}
-                          {/* <Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                style={{ cursor: "pointer",fontSize: "1rem" }}
-                onClick={() => {
-                  props.getCustomerById(item.customerId);
-                  props.handleCustomerEmailDrawerModal(true);
-                }}
-              />
-            </Tooltip> */}
-                        </div>                 
+                          
+                         
+                        </div>  
+                        <div class=" text-xs  font-poppins">
+                                <Popconfirm
+                                // loading={props.deletingDistributorById}
+                                  title="
+                                  Do you want to delete?"
+                                  //  onConfirm={() => props.deleteCustomer({}, item.customerId,props.userId)} 
+                                    >
+                                  <DeleteOutlined
+                                    className=" !text-icon cursor-pointer text-[red]"
+                                  />
+                                </Popconfirm>
+ 
+                              </div>               
                 
                   </div>
                 </div>
@@ -744,6 +751,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+
       getCustomerListByUserId,
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
@@ -762,7 +770,8 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerById,
       getCountries,
       getAllCustomerEmployeelist,
-      handleAddressCutomerModal
+      handleAddressCutomerModal,
+      // deleteCustomer
     },
     dispatch
   );

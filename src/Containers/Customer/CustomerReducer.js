@@ -1849,6 +1849,23 @@ export const customerReducer = (state = initialState, action) => {
         fetchingAllCustomerListError: true,
       };
 
+      case types.DELETE_CUSTOMER_REQUEST:
+      return { ...state, deletingCustomerById: true };
+    case types.DELETE_CUSTOMER_SUCCESS:
+      return {
+        ...state,
+        deletingCustomerById: false,
+        customerListByUser: state.customerListByUser.filter(
+          (item) => item.CustomerId !== action.payload.CustomerId
+        ),
+      };
+    case types.DELETE_CUSTOMER_FAILURE:
+      return {
+        ...state,
+        deletingCustomerById: false,
+        deletingCustomerByIdError: true,
+      };
+
     case types.ADD_CUSTOMER_ACTIVITY_CALL_REQUEST:
       return { ...state, addingCustomerActivityCall: true };
     case types.ADD_CUSTOMER_ACTIVITY_CALL_SUCCESS:

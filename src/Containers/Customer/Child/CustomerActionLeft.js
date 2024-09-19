@@ -8,7 +8,7 @@ import { Tooltip, Badge, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import { AudioOutlined } from "@ant-design/icons";
+import { DeleteOutlined, AudioOutlined } from "@ant-design/icons";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -324,43 +324,25 @@ const CustomerActionLeft = (props) => {
         </Tooltip>
       )}
 
-      {/* <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
-      >
-        <Badge
-          size="small"
-          // count={(props.viewType === "mapView" && props.recordData.customer) || 0}
-          overflowCount={999}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            onClick={() => props.setCustomerViewType("mapView")}
-            style={{
-              color: props.viewType === "mapView" && "#1890ff",
-            }}
-          >
-           <LanguageIcon />
-          </span>
-        </Badge>
-      </Tooltip> */}
-      {/* <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
-      >
-        <Badge
-          size="small"
-          count={(props.viewType === "map" && props.recordData.customer) || 0}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            style={{
-              color: props.viewType === "map" && "#1890ff",
-            }}
-            onClick={() => props.setCustomerViewType("map")}
-          >
-            <LanguageIcon />
-          </span>
-        </Badge>
-      </Tooltip> */}
+      
+         {user.teamsAccessInd === true && (
+       <Tooltip title="My Deleted-Prospect">
+                <Badge size="small"
+                // count={props.accountRecordData.distributor || 0}
+                >
+                    <span class=" mr-1 text-sm cursor-pointer"
+                        onClick={() => props.setCustomerViewType("dashboard1")}
+                        style={{
+                            color: props.viewType === "dashboard1" && "#1890ff",
+                        }}
+                    >
+                        <Avatar style={{ background: props.viewType === "dashboard1" ? "#f279ab" : "#4bc076" }}>
+                            <DeleteOutlined className="text-white !text-icon " /></Avatar>
+
+                    </span>
+                </Badge>
+            </Tooltip>
+             )}
       <div class=" flex items-center justify-between"
       >
         <div class=" w-72 max-sm:w-24">
