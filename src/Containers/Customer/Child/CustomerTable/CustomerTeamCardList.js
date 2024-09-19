@@ -112,8 +112,8 @@ function CustomerTeamCardList(props) {
    "73", // Contact 15
    "144" ,//In Progress 16
    "387",//  Convert 17
-   "389"//   Converted 18
-
+   "389",//   Converted 18
+"1581" //Score
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -210,12 +210,12 @@ const [rowdata, setrowdata] = useState("");
          <div className=' flex sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-         <div class=" flex justify-between w-[93%]">
-            <div className="font-poppins font-bold text-xs w-[17.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+         <div class=" flex justify-between w-[89%]">
+            <div className="font-poppins font-bold text-xs w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className="font-poppins font-bold text-xs w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className="font-poppins font-bold text-xs w-[8.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             {translatedMenuItems[1]}
              {/* work */}
 
@@ -225,29 +225,35 @@ const [rowdata, setrowdata] = useState("");
              {/* sector */}
 
             </div>
-            <div className="font-poppins font-bold text-xs w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className="font-poppins font-bold text-xs w-[1.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             {translatedMenuItems[3]}
            {/* source */}
 
             </div>
             <div className="font-poppins font-bold text-xs w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">           
             </div>
-            <div className="font-poppins font-bold text-xs w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className="font-poppins font-bold text-xs w-[4.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             {translatedMenuItems[4]}
              {/* quotation */}
 
             </div>
-            <div className=" font-poppins font-bold text-xs w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            <div className=" font-poppins font-bold text-xs w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
             {translatedMenuItems[5]}
              {/* Pipeline" */}
          
-            </div>           
-            <div className="font-poppins font-bold text-xs w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            </div>  
+            {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[1.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {/* Score */}
+            {translatedMenuItems[19]}
+            </div>
+            )}         
+            <div className="font-poppins font-bold text-xs w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             {translatedMenuItems[6]}
             {/* Assigned" */}
           
             </div>
-            <div className="font-poppins font-bold text-xs w-[4.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
+            <div className="font-poppins font-bold text-xs w-[1.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
             {translatedMenuItems[7]}
              {/* Owner" */}
          
@@ -257,12 +263,7 @@ const [rowdata, setrowdata] = useState("");
              {/* Customer" */}
           
             </div>
-            {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
-          
-            </div>
-            )}
+        
           </div>
 
           </div>
@@ -376,7 +377,15 @@ const [rowdata, setrowdata] = useState("");
                         </div>
 
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[5.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto items-center justify-center w-[2.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                       {/* Country */}
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          <CountryFlag1 countryCode={countryCode} />
+                          {/* &nbsp;
+                          {countryCode} */}
+                        </div>
+                      </div>
+                      <div className=" flex  items-center max-sm:w-auto  w-[7.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                        {/* Sector  */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -386,7 +395,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  items-center  w-[5.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  items-center  w-[7.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -394,17 +403,10 @@ const [rowdata, setrowdata] = useState("");
                         </div>
 
                       </div>
-                      <div className=" flex max-sm:w-auto  justify-center w-[7.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-                       {/* Country */}
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          <CountryFlag1 countryCode={countryCode} />
-                          {/* &nbsp;
-                          {countryCode} */}
-                        </div>
-                      </div>
+                    
 
 
-                      <div className=" flex items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center  max-sm:w-auto w-[4.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* >Pipeline Value */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -414,7 +416,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex  max-sm:w-auto w-[5.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex  max-sm:w-auto w-[2.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                        {/* Pipeline Value */}
 
                         {/* {item.totalProposalValue > 0 && (
@@ -428,7 +430,15 @@ const [rowdata, setrowdata] = useState("");
         {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
-                      </div>                    
+                      </div>     
+
+                      {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[7.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+         {item.noteScoreInd}
+          
+            </div>
+            )}
+{/* Score */}
                       <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                     {/* Assigned */}
 
@@ -470,12 +480,7 @@ const [rowdata, setrowdata] = useState("");
                         </Tooltip>
                       </div>
                   
-                      {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            Score
-          
-            </div>
-            )}
+           
 
                       <div className=" flexjustify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 

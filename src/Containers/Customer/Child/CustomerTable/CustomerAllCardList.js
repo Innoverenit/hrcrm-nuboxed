@@ -88,8 +88,8 @@ function CustomerAllCardList(props) {
    "73", // Contact 15
    "144" ,//In Progress 16
    "387",//  Convert 17
-   "389"//   Converted 18
-
+   "389",//   Converted 18
+"1581"//SCORE 19
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -205,59 +205,58 @@ const [rowdata, setrowdata] = useState("");
   ) : (
          <div className=' flex justify-end sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky text-xs  z-10">
         <div class=" flex justify-between font-poppins w-[93%]">
-            <div className="font-poppins w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
+            <div className="font-poppins w-[13.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
             {translatedMenuItems[0]}
               {/* name */}
             </div> 
-            <div className="font-poppins w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className="font-poppins w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             {translatedMenuItems[1]}          
                 {/* defaultMessage="Work" */}
             
             </div>
-            <div className="font-poppins w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
+            <div className="font-poppins w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
             {translatedMenuItems[2]}     
                 {/* defaultMessage="Sector" */}
             </div>
-            <div className="font-poppins w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className="font-poppins w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             {translatedMenuItems[3]}      
                 {/* defaultMessage="Source" */}
            
             </div>
-            <div className="font-poppins w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] max-lg:w-[3.35rem] ">
-             
-            </div>
-            <div className="font-poppins w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
+          
+            <div className="font-poppins w-[3.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
             {translatedMenuItems[4]}            
                 {/* defaultMessage="Quotation" */}
       
             </div>
-            <div className="font-poppins w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.8rem]">
+            <div className="font-poppins w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.8rem]">
             {translatedMenuItems[5]}            
                 {/* defaultMessage="Pipeline" */}
        
-            </div>      
-            <div className="font-poppins w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
+            </div>    
+            {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {/* Score */}
+            {translatedMenuItems[19]}  
+            </div>
+            )}  
+            <div className="font-poppins w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
             {translatedMenuItems[6]}            
            {/* ="Assigned" */}
              
             </div>
-            <div className="font-poppins w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.8rem] max-lg:w-[6.2rem]">
+            <div className="font-poppins w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.8rem] max-lg:w-[6.2rem]">
               {translatedMenuItems[7]}  
            {/* owner */}
 
             </div>
-            <div className="font-poppins w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {translatedMenuItems[8]}
              {/* customer */}
             </div>
-            {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
           
-            </div>
-            )}
             <div className="w-[3.8rem]"></div>
             </div>
       </div>
@@ -295,7 +294,7 @@ const [rowdata, setrowdata] = useState("");
                             <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
                                 >
                                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                   <div className=" flex  w-[18rem] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
+                                   <div className=" flex  w-[15rem] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
                                    <div className="flex max-sm:w-full">
                       <div>
                         
@@ -339,7 +338,7 @@ const [rowdata, setrowdata] = useState("");
                                     </div>
                                 
                                 </div> 
-                                <div className=" flex  max-sm:w-auto items-center  w-[7.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                                <div className=" flex  max-sm:w-auto items-center  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
             {/* sector */}
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.sector}
@@ -348,7 +347,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex items-center  max-sm:w-auto w-[15.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center  max-sm:w-auto w-[7.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
 <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -367,7 +366,7 @@ const [rowdata, setrowdata] = useState("");
 </div>
 </div>
                                 
-                                <div className=" flex w-full max-xl:w-[2.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex w-[30%] max-xl:w-[2.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    
 
                                 <div class=" text-xs  max-sm:text-sm font-poppins text-center">
@@ -395,6 +394,14 @@ const [rowdata, setrowdata] = useState("");
 
                           </div>
                                 </div>
+                                {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[8.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+        {item.noteScoreInd}
+          
+            </div>
+            )}
+{/* SCORE */}
+
                                 <div className=" flex items-center  flex-col w-[3rem] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
                                   
 
@@ -428,12 +435,7 @@ const [rowdata, setrowdata] = useState("");
      </Tooltip>
         
                                 </div>
-                                {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            Score
-          
-            </div>
-            )}
+            
                       
                       <div className=" flex  justify-center w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 

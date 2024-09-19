@@ -105,7 +105,8 @@ function CustomerCardList(props) {
    "73", // Contact 14
    "144" ,//In Progress 15
    "387",//  Convert 16
-   "389"//   Converted 17
+   "389",//   Converted 17
+   "1581" //Score 18
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -126,19 +127,6 @@ function CustomerCardList(props) {
       props.getCustomerListByUserId(props.userId, page, "creationdate");
    
   }, [props.viewType]);
-  // useEffect(() => {
-  //   if (props.viewType === "table") {
-  //     props.emptyCustomer()
-  //     props.getCustomerListByUserId(props.userId, page, "creationdate");
-  //   } else if (props.viewType === "teams") { 
-  //     props.emptyCustomer()
-  //     props.getCustomerListByUserId(props.viewType, page1, "creationdate");
-  //   } else {     
-  //     props.emptyCustomer()
-  //     props.getCustomerListByUserId(props.viewType, page2, "creationdate");
-  //   }
-  // }, [props.viewType,page,page1,page2]);
-
 
   useEffect(() => {
     window.addEventListener('error', e => {
@@ -157,21 +145,6 @@ function CustomerCardList(props) {
         }
       }
     })
-    //setPage(page + 1);
-    // props.getCustomerListByUserId(props.userId, page, "creationdate");
-    //   props.getSectors();
-    // props.getCountries();
-    //props.getAllCustomerEmployeelist();
-    // if (props.viewType === "table") {
-    //   props.emptyCustomer()
-    //   props.getCustomerListByUserId(props.userId, page, "creationdate");
-    // } else if (props.viewType === "teams") {
-    //   props.emptyCustomer()
-    //   props.getCustomerListByUserId(props.viewType, page1, "creationdate");
-    // } else {
-    //   props.emptyCustomer()
-    //   props.getCustomerListByUserId(props.viewType, page2, "creationdate");
-    // }
 
   }, []);
 
@@ -225,52 +198,6 @@ function CustomerCardList(props) {
     }
     }, 100);
   };
-  // const handleLoadMore = () => {
-  
-  //   if(props.viewType==="table"){
-  //     // setPage(page + 1)
-  //     setPage(prevPage => prevPage + 1)
-  //     props.getCustomerListByUserId(props.userId, page+1, "creationdate");
-  //   }else if (props.viewType==="teams"){
-  //     // setPage1(page1 + 1)
-  //     setPage1(prevPage => prevPage + 1)
-  //   props.getCustomerListByUserId(props.viewType, page1+1, "creationdate");
-  //   }else if (props.viewType==="all"){
-  //     // setPage2(page2 + 1)
-  //     setPage2(prevPage => prevPage + 1)
-  //   props.getCustomerListByUserId(props.viewType, page2+1, "creationdate");
-  //   }
-     
-  //   //  setPage(page + 1);
-  //   // setPage(prevPage => prevPage + 1);
-  //   //   props.getCustomerListByUserId(props.viewType === "table"?props.userId:props.viewType, page+1, "creationdate");
-    
-  // };
-
-
-  // const handleLoadMore = () => {
-  //   if (props.viewType === "table") {
-  //     setPage(prevPage => {
-  //       console.log("Previous page (table):", prevPage);
-  //       return prevPage + 1;
-  //     });
-  //     props.getCustomerListByUserId(props.userId, page + 1, "creationdate");
-  //   } else if (props.viewType === "teams") {
-  //     setPage1(prevPage => {
-  //       console.log("Previous page (teams):", prevPage);
-  //       return prevPage + 1;
-  //     });
-  //     props.getCustomerListByUserId(props.viewType, page1 + 1, "creationdate");
-  //   } else if (props.viewType === "all") {
-  //     setPage2(prevPage => {
-  //       console.log("Previous page (all):", prevPage);
-  //       return prevPage + 1;
-  //     });
-  //     props.getCustomerListByUserId(props.viewType, page2 + 1, "creationdate");
-  //   }
-  // };
-  
-  
 
   const {
     fetchingCustomers,
@@ -312,53 +239,50 @@ if (loading) {
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
-            <div class=" flex justify-between font-poppins w-[93%]">
-            <div className="font-poppins font-bold text-xs w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div class=" flex justify-between font-poppins w-[89%]">
+            <div className="font-poppins font-bold text-xs w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className="font-poppins  font-bold text-xs  w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className="font-poppins  font-bold text-xs  w-[8.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             {translatedMenuItems[1]}
              {/* work */}
             </div>
-            <div className="font-poppins font-bold text-xs  w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className="font-poppins font-bold text-xs  w-[9.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             {translatedMenuItems[2]}
               {/* "Sector" */}
           
             </div>
-            <div className="font-poppins font-bold text-xs  w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className="font-poppins font-bold text-xs  w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             {translatedMenuItems[3]}
              {/* "Source" */}
          
-            </div>
-            <div className="font-poppins font-bold text-xs w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
-              
-
-            </div>
-            <div className="font-poppins font-bold text-xs w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            </div>         
+            <div className="font-poppins font-bold text-xs w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             {translatedMenuItems[4]}
               {/* Quotation" */}
      
             </div>
-            <div className="font-poppins font-bold text-xs  w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            <div className="font-poppins font-bold text-xs  w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
             {translatedMenuItems[5]}
              {/* Pipeline" */}
-            </div>       
-            <div className="font-poppins font-bold text-xs w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            </div>   
+            {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {/* Score */}
+            {translatedMenuItems[18]}
+            </div>
+            )}    
+            <div className="font-poppins font-bold text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             {translatedMenuItems[6]}
             {/* Assigned */}
             </div>          
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {translatedMenuItems[7]}
               {/* Customer" */}
           
             </div>
-            {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
-          
-            </div>
-            )}
+         
             </div>
            
 
@@ -478,7 +402,7 @@ if (loading) {
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  items-center  w-[5.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -504,7 +428,7 @@ if (loading) {
                       </div>
                     
                    
-                      <div className=" flex max-sm:w-auto w-[4.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto w-[2.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                        {/* Pipeline Value */}
 
                         {/* {item.totalProposalValue > 0 && (
@@ -519,7 +443,13 @@ if (loading) {
     )}
                       </div> 
                       </div>
-                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">                 
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">  
+                      {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+         {item.noteScoreInd}
+          
+            </div>
+            )}               
                       <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
@@ -546,12 +476,7 @@ if (loading) {
 
                         </div>
                       </div>
-                      {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            Score
           
-            </div>
-            )}
               
                       <div className=" flex  justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 

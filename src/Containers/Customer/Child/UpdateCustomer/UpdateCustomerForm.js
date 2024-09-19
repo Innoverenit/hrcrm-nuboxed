@@ -71,20 +71,20 @@ function UpdateCustomerForm (props) {
         try {
           setLoading(true); 
           const itemsToTranslate = [
-     'Name', // 0
-'URL', // 1
-'Dial Code', // 2
-'Phone No', // 3
-'Sector', // 4
-'Source', // 5
-'Potential', // 6
-'Currency', // 7
-'Type', // 8
-'Notes', // 9
-'Assigned', // 10
-'Vat No', // 11
-'Registration', // 12
-   'Update'
+                '110', // 0 Name
+'302', // 1
+'357', // 2  dial
+'300', // 3 phn no
+'278', // 4 Sector
+'279', // 5 Source
+'407', // 6 Potential
+'241', // 7Currency
+'71', // 8 Type
+'316', // 9 Notes
+'76', // 10 Assigned
+'306', // 11 Vat No
+'307', // 12 Registration
+   '1246' //Update
           ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -529,26 +529,7 @@ function UpdateCustomerForm (props) {
                       />
                     </div>                    
                     </div>
-                
-                 
-                  <div class="mt-8" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
-                      <div>
-                 <div class=" text-[white] text-xs" >Corporate Address</div>
-                  </div>
-                    </div>
-                {/* <div class=" mt-3">
-                  <FieldArray
-                    name="address"
-                    label="Address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  />
-                  </div> */}
-                                        
+                                                                                  
                 </div>
               </div>
               <div class="flex justify-end w-wk mt-3 bottom-2 mr-2 md:absolute ">
