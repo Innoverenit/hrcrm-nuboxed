@@ -18,7 +18,9 @@ const UpdateAccountModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <UpdateAccountForm RowData={RowData} />
+                    <UpdateAccountForm RowData={RowData} 
+                    selectedLanguage={props.selectedLanguage}
+                    translateText={props.translateText}/>
                 </Suspense>
             </StyledDrawer>
         </>

@@ -28,6 +28,7 @@ function UpdateSuppliesForm (props) {
   },[]);
 
   const [availabilityDate, setAvailabilityDate] = useState('');
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   const handleChange = (event) => {
     const date = event.target.value;
@@ -63,6 +64,8 @@ function UpdateSuppliesForm (props) {
         "1242",//Length
         "1243",//Width
         "1244",//Height
+          "1275"
+
       
        
           
@@ -79,7 +82,7 @@ function UpdateSuppliesForm (props) {
   }, [props.selectedLanguage]);
 
   const [newimageId, setnewimageId] = useState("");
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
 
   function setImage(imageId) {
     setnewimageId(imageId);
@@ -433,7 +436,9 @@ function UpdateSuppliesForm (props) {
                     </div> */}
                   </div>
                   <div className="flex justify-between mt-4">
-                  <div class="font-bold text-xs font-poppins text-black">Availability Date</div>
+                  <div class="font-bold text-xs font-poppins text-black">
+                    {/* Availability Date */} {translatedMenuItems[17]}
+                    </div>
                   <div className="w-full">
                   <input
         type="date"

@@ -235,7 +235,7 @@ const TaskCardList = (props) => {
           <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[4.54rem] bg-red-600 text-white">
+          <div className=" w-[3.54] md:w-[4.54rem] bg-red-600 text-white">
           {translatedMenuItems[7]}</div>
         <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         {translatedMenuItems[0]} 
@@ -296,8 +296,8 @@ const TaskCardList = (props) => {
                     {item.priority === "Low" && (
                       <div class="border rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
-                    <div class=" w-9"></div>
-          <div class=" flex w-[8rem] max-sm:w-full">
+                    <div class=" w-5"></div>
+          <div class=" flex  max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
                                             {/* <div class="text-sm  font-poppins max-sm:hidden">
@@ -313,7 +313,7 @@ const TaskCardList = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex justify-center flex-col  w-[9.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex   w-[11.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -402,7 +402,7 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex justify-between w-[11.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
+                   <div className="flex justify-between w-[14.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}
@@ -656,7 +656,7 @@ const TaskCardList = (props) => {
 <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
-          <div className=" md:w-[4.54rem] bg-orange-600 text-white">
+          <div className="w-[3.54] md:w-[4.54rem] bg-orange-600 text-white">
           {translatedMenuItems[8]}</div>
         <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         {translatedMenuItems[0]} 
@@ -715,14 +715,14 @@ const TaskCardList = (props) => {
                     {item.priority === "Low" && (
                       <div class="border rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
-                    <div class=" w-9"></div>
-          <div class=" flex w-[8rem] max-sm:w-full">
+                    <div class=" w-5"></div>
+          <div class=" flex  max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
                                             {/* <div class="text-sm  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                             <div class="text-xs truncate max-w-[4rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                                                             
+                                             <div class="text-xs truncate max-w-[6rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                                                             
                                             {item.taskType}
        
                                             </div>
@@ -732,7 +732,7 @@ const TaskCardList = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex justify-center flex-col  w-[9.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex   w-[11.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -815,7 +815,7 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex justify-between w-[11.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
+                   <div className="flex justify-between w-[14.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}
@@ -1059,7 +1059,7 @@ const TaskCardList = (props) => {
 <div className=' flex sticky  z-auto'>
           <div class="rounded  m-1 max-sm:m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
           <div className=" flex max-sm:hidden justify-between w-[100%] font-poppins text-xs p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[4.54rem] bg-teal-600 text-white">
+          <div className=" w-[3.54] md:w-[4.54rem] bg-teal-600 text-white">
           {translatedMenuItems[9]}</div>
         <div className=" text-xs w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         {translatedMenuItems[0]} 
@@ -1118,14 +1118,14 @@ const TaskCardList = (props) => {
                     {item.priority === "Low" && (
                       <div class="border rounded-[50%] h-6 w-6 bg-[#0f0f0f]" ></div>
                     )}
-                    <div class=" w-9"></div>
-          <div class=" flex w-[8rem] max-sm:w-full">
+                    <div class=" w-5"></div>
+          <div class=" flex  max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
                                             {/* <div class="text-sm  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs truncate max-w-[4rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                                                    
+                                            <div class="text-xs truncate max-w-[6rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                                                    
                                             {item.taskType}
        
                                             </div>
@@ -1135,7 +1135,7 @@ const TaskCardList = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex justify-center flex-col  w-[9.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex justify-center flex-col  w-[11.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -1222,7 +1222,7 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex justify-between w-[11.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
+                   <div className="flex justify-between w-[14.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}

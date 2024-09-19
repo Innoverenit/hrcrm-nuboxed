@@ -128,8 +128,16 @@ function SuppliesTable(props) {
           "824",//12
           "880",//13
           "170",//14
-          "264",  // Brand
-          "265",// model
+          "264",  // Brand15
+          "265",// model16
+         "100", // New17
+        "",//  Updated18
+       "1247", // Material Builder19
+       "" , //  Tag Brand20
+       "1259" , //  "Do you want to delete?"21
+       "" , //  Complimentry22
+       "1252" , //  "Print"23
+       "880" ,// Supplies Id24
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -161,7 +169,7 @@ function SuppliesTable(props) {
             <div className=" w-[1rem] max-xl:w-[2rem]"></div>
             <div className="font-bold font-poppins text-xs w-[7.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* HSN */}
-              {translatedMenuItems[0]} / ID
+              {translatedMenuItems[0]} / {translatedMenuItems[24]}ID
               </div>
             {/* <div className="w-[6.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               Supplies ID 
@@ -175,10 +183,10 @@ function SuppliesTable(props) {
               {/* Category */}
               {translatedMenuItems[3]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[7.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            {/* <div className="font-bold font-poppins text-xs w-[7.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> */}
               {/* Sub Category */}
-              {translatedMenuItems[4]}
-              </div>
+              {/* {translatedMenuItems[4]}
+              </div> */}
               <div className="font-bold font-poppins text-xs w-[4.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Brand*/}
               {translatedMenuItems[15]}
@@ -260,7 +268,7 @@ function SuppliesTable(props) {
                                     
                                   </div><span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                         <span className="text-[0.55rem] text-[tomato] font-bold">
-                                          New
+                                          {translatedMenuItems[17]}  {/* New */}
                                         </span>
                                       ) : null} </span>
                                   {/* <div class=" max-sm:w-auto max-xl:w-[1.2rem] max-lg:w-[0.2rem]">
@@ -274,34 +282,30 @@ function SuppliesTable(props) {
                                 {item.newSuppliesNo}
                               </div>
                             <div>  <span className="text-[0.5rem] text-green-700 font-bold font-poppins">
-                                {item.modifiedAt ? "Updated" : null}
+                                {item.modifiedAt ? translatedMenuItems[18] : null}
                                         </span></div>
                             </div>
                           
                                 </div>
                               </div>
                             </div>
-                            <div className=" flex  w-[15rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[10rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.suppliesName}
                               </div>
                             </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex  w-[7.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[11.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs truncate max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                {item.categoryName}
+                                {item.categoryName} / {item.subCategoryName}
                               </div>
                             </div>
 
-                            <div className=" flex  w-[7.63rem] max-xl:w-[6.23rem] max-lg:w-[5.23rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                {item.subCategoryName}
-                              </div>
-                            </div>
+                            
                             <div className=" flex  w-[7.12rem] max-xl:w-[6.32rem] max-lg:w-[5.32rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                {item.attributeName} {item.subAttributeName}
+                                {item.attributeName} / {item.subAttributeName}
                               </div>
                             </div>
                           </div>
@@ -359,21 +363,8 @@ function SuppliesTable(props) {
 
                           </div>
 
-                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          {/* <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        <Tooltip title={<FormattedMessage
-                                                            id="app.Print"
-                                                            defaultMessage="Print"
-                                                        />}>
-                                                            
-                                                            <ReactToPrint
-                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon className="!text-icon"/></Button>}
-                                                                content={() => componentRefs.current[index]}
-                                                            />
-                                                        </Tooltip>
-
-                                                    </div> */}
-                                                     <div>
+                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                       <div>
                         <Tooltip title={translatedMenuItems[11]}>
                           <EuroIcon
                             className="!text-icon cursor-pointer text-[blue]"
@@ -385,7 +376,7 @@ function SuppliesTable(props) {
                         </Tooltip>
                       </div>
                             <div> 
-                              <Tooltip title="Material Builder">
+                              <Tooltip title={translatedMenuItems[19]}>
                                 <ViewQuiltIcon
                                   className="cursor-pointer !text-icon"
                                   onClick={() => {
@@ -396,7 +387,7 @@ function SuppliesTable(props) {
                               </Tooltip>
                             </div>
                             <div>
-                              {props.repairInd && <Tooltip title="Tag Brand">
+                              {props.repairInd && <Tooltip title={translatedMenuItems[20]}>
                                 <PhoneFilled
                                   onClick={() => {
                                     props.handleBrandModel(true);
@@ -438,27 +429,7 @@ function SuppliesTable(props) {
                         />
                         </Tooltip>
                       </div>
-                            {/* <div className=" flex font-medium ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                   
-                                                </div> */}
-                                                {/* <div style={{ display: "none", textAlign: "center" }}>
-
-<div
-    ref={(el) => (componentRefs.current[index] = el)}
-    style={{
-        fontSize: "16px",
-        marginBottom: "20px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-    }}
->
-    <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
-        <QRCode size={150} value={item.newSuppliesNo} />
-    </div>
-    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>ID:</span> {item.newSuppliesNo}</div>
-</div>
-</div> */}
+                           
                             <div>
                               <Tooltip title={translatedMenuItems[14]}>
                                 <BorderColorIcon
@@ -472,14 +443,14 @@ function SuppliesTable(props) {
                             </div>
                             <div>
                               <Popconfirm
-                                title="Do you want to delete?"
+                                title={translatedMenuItems[21]}
                                 onConfirm={() => props.deletePurchaseData(item.suppliesId)}
                               >
 
                                 <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
                               </Popconfirm>
                             </div>
-                            <Tooltip title="Complimentry">
+                            <Tooltip title={translatedMenuItems[22]}>
                             <div>
                              <FactCheckIcon
                              className="!text-icon cursor-pointer text-[pink]"
@@ -494,7 +465,7 @@ function SuppliesTable(props) {
 
                               <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        <Tooltip title="Print"
+                                                        <Tooltip title={translatedMenuItems[23]}
                                                         // {<FormattedMessage
                                                         //     id="app.Print"
                                                         //     defaultMessage="Print"
@@ -506,7 +477,7 @@ function SuppliesTable(props) {
                                                                         /> */}
                                                             <ReactToPrint
                                                               trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>
-                                                               Print 
+                                                            {translatedMenuItems[23]}   {/* Print  */}
                                                                 <QrCodeIcon className="!text-icon"/></Button>}
                                                                 content={() => componentRefs.current[index]}
                                                             />
@@ -523,7 +494,7 @@ function SuppliesTable(props) {
     <div   className=" text-5xl mt-8">
         <QRCode size={150} value={`material/${item.suppliesId}`} />
     </div>
-    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>Supplies Id:</span> {item.suppliesId}</div>
+    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>{translatedMenuItems[24]}:</span> {item.suppliesId}</div>
 </div>
 </div>
                           </div>

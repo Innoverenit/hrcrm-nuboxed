@@ -154,7 +154,7 @@ function EventCardList (props) {
                 /> */}
                 </div>
         <div className="w-24 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
-        {translatedMenuItems[0]} {/* <FormattedMessage
+       {/* <FormattedMessage
                   id="app.subject"
                   defaultMessage="subject"
                 /> */}
@@ -192,7 +192,7 @@ function EventCardList (props) {
                                     // borderBottom: "3px dotted #515050"
                                 }}>
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex w-[8.98rem] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
+                                <div className=" flex w-[10.98rem] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
                                     <div className="flex max-sm:w-full"> 
                                         <div class="max-sm:w-full">
                                         <Tooltip>
@@ -210,7 +210,7 @@ function EventCardList (props) {
                                         </div>
                                 </div>
 
-                                <div className=" flex  w-[12.26rem] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[15.26rem] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">   
                                     {item.eventSubject}
@@ -218,7 +218,7 @@ function EventCardList (props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex w-[8.9rem] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[11.9rem] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
@@ -235,7 +235,7 @@ function EventCardList (props) {
                                 <div className=" flex w-[9.32rem] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
                                    
                                 </div>
-                                <div className=" flex  w-[7.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[3.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
                                     <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
@@ -312,9 +312,9 @@ function EventCardList (props) {
           </div>
                    </div>
                                </div>
-                               <div class="flex justify-end max-sm:w-wk items-center max-sm:justify-evenly"> 
+                               <div class="flex  w-wk justify-end max-sm:w-wk items-center max-sm:justify-evenly"> 
                     
-                      <div class="flex  w-[4rem] max-sm:flex-row items-center justify-end max-sm:w-auto">
+                      <div class="flex max-sm:flex-row items-center justify-end max-sm:w-auto">
                     <div class="">
                     {item.rating === 0 ? (<StarBorderIcon
                      className="!text-icon cursor-pointer text-[#eeeedd]"

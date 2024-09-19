@@ -19,9 +19,33 @@ class AccountImportForm extends Component {
       ownerAbove: "Specific",
       selectedownerAbove: "Specific",
       data: [1],
+      translatedMenuItems: [],
     };
   }
- 
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "154",//0 Submit
+       
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
 
  
 
@@ -86,14 +110,9 @@ class AccountImportForm extends Component {
                 ...rest
               }) => (
                 <Form className="form-background">
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <div
-                      style={{
-                        height: "100%",
-                        width: "45%",
-                      }}
+                  <div className=" flex justify-between "  >
+                    <div className=" w-[45%] h-[100%] "
+                     
                     >
                        <Suspense fallback={<BundleLoader />}>
                       <Field
@@ -109,9 +128,9 @@ class AccountImportForm extends Component {
                       )}
                       <div class=" mt-3" />
                   
-                  <div class=" mt-3" />
-                   
-                    </div>
+                            <div class=" mt-3" />
+                            
+                              </div>
                     
                   </div>
 
@@ -122,7 +141,7 @@ class AccountImportForm extends Component {
                       type="primary"
             loading={this.props.addingAccountImportForm}
                     >
-                      Submit
+                     {this.state.translatedMenuItems[0]} {/* Submit */}
                     </Button>
                   </div>
                 </Form>

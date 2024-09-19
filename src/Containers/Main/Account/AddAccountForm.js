@@ -67,25 +67,26 @@ const AddAccountForm = ({
       try {
         setLoading(true); 
         const itemsToTranslate = [
-                "110",    // " Name",1
-                "357",   // "Dial Code",2
-                "102",   // "Phone",3
-                "700",    // "Website",4
-                    "1109",    // "Country",5
-                    "702",  // "Tax Registration",6
-                    "703",// "Insurancegrade",7
-                    "71",   // "Type",8
-                    "705",   // "Creditlimit",9
-                    "241",   // "Currency",10
-                    "707",// "Payment Term Days",11
-                    "14",  // "Category",12
-                    "1466",  // "Custom Payment",13
-                    "76",  // "Assigned",14
-                    "147",  // "Description",`15
-                    "104",  //    "Create"16
-                   "158" ,// Start17
-                   "5" ,// "Stop  18
-                   "194", // "Clear19
+                "110",    // " Name",0
+                "357",   // "Dial Code",1
+                "102",   // "Phone",2
+                "700",    // "Website",3
+                    "1109",    // "Country",4
+                    "702",  // "Tax Registration",5
+                    "703",// "Insurancegrade",6
+                    "71",   // "Type",7
+                    "705",   // "Creditlimit",8
+                    "241",   // "Currency",9
+                    "707",// "Payment Term Days",10
+                    "14",  // "Category",11
+                    "1466",  // "Custom Payment",12
+                    "76",  // "Assigned",13
+                    "147",  // "Description",`14
+                    "104",  //    "Create"15
+                   "158" ,// Start16
+                   "5" ,// "Stop  17
+                   "194", // "Clear18
+                   "710" // Billing address
                    
       ];
 
@@ -340,28 +341,14 @@ const AddAccountForm = ({
                   disable
                   inlineLabel
                 />
-                {/* <div class="flex  mt-4" >
-                  <div>
-                    <b><FormattedMessage
-                      id="app.vatvalidity"
-                      defaultMessage="vatvalidity"
-                    /></b>
-                    <Field
-                      name="vatInd"
-                      component={SwitchComponent}
-                      data={values.vatInd}
-                      checkedChildren={"Yes"}
-                      unCheckedChildren={"No"}
-                      width={"5em"}
-                    />
-
-                  </div>
-                </div> */}
+               
 
 
                 <div class="flex justify-between mt-4 text-xs font-bold font-poppins" >
-                {translatedMenuItems[4]}
+               
+           
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
                     <FastField
                       name="country"           
                       isColumn
@@ -376,7 +363,7 @@ const AddAccountForm = ({
                     />
                   </div>
                   </div>
-                  <div class="w-w45.5">
+                  <div class="w-w45.5 mt-2">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                     <FastField
                       // label="Tax Registration"
@@ -390,23 +377,25 @@ const AddAccountForm = ({
                   </div>
                
                 <div class="flex justify-between mt-2" >
-                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
-                  <div class="w-w47.5">
+                <div class="w-w47.5">
+
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
                     <Field
-                      name="insuranceGrade"
-                      type="text"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.insurancegrade"
-                      //     defaultMessage="insurancegrade"
-                      //   />
-                      // }
-                      width={"100%"}
-                      component={InputComponent}
+                      name="dcategory"
+                      // label="Category"
                       isColumn
-                      inlineLabel
+                      placeholder="Select"
+                      style={{ borderRight: "3px red solid" }}
+                      component={SelectComponent}
+                      options={
+                        Array.isArray(categoryOption)
+                          ? categoryOption
+                          : []
+                      }
+
                     />
                   </div>
+                 
                   <div class="w-w47.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                     <Field
@@ -418,7 +407,6 @@ const AddAccountForm = ({
                       //   />
                       // }
                       isColumn
-                      // style={{ borderRight: "3px red solid" }}
                       placeholder="Type"
                       component={SelectComponent}
                       options={
@@ -431,8 +419,9 @@ const AddAccountForm = ({
                   </div>
                 </div>
                 <div class="flex justify-between mt-4" >
-                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
+               
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                     <FastField
                       // label={
                       //   <FormattedMessage
@@ -472,8 +461,9 @@ const AddAccountForm = ({
                   </div>
                 </div>
                 <div class="flex justify-between mt-4" >
-                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
+               
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                     <FastField
                       // label={
                       //   <FormattedMessage
@@ -491,22 +481,23 @@ const AddAccountForm = ({
                     />
                   </div>
                   <div class="w-w47.5">
-                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
                     <Field
-                      name="dcategory"
-                      // label="Category"
+                      name="insuranceGrade"
+                      type="text"
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.insurancegrade"
+                      //     defaultMessage="insurancegrade"
+                      //   />
+                      // }
+                      width={"100%"}
+                      component={InputComponent}
                       isColumn
-                      placeholder="Select"
-                      style={{ borderRight: "3px red solid" }}
-                      component={SelectComponent}
-                      options={
-                        Array.isArray(categoryOption)
-                          ? categoryOption
-                          : []
-                      }
-
+                      inlineLabel
                     />
                   </div>
+                 
                   {values.payment === "Custom" && <div class="w-w47.5">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                     <FastField
@@ -532,15 +523,7 @@ const AddAccountForm = ({
                 <Listbox value={selected} onChange={setSelected}>
                         {({ open }) => (
                           <>
-                            {/* <Listbox.Label className="block font-semibold text-[0.75rem]  leading-lh1.2  "
-                            // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
-                            >
-                              <FormattedMessage
-                                id="app.assignedTo"
-                                defaultMessage="Assigned"
-                              />
-
-                            </Listbox.Label> */}
+                         
                             <div className="relative ">
                               <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                                 {selected}
@@ -602,7 +585,7 @@ const AddAccountForm = ({
                       </Listbox>
                 </div>
                 <div class="mt-4">
-                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</div>
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[19]}</div>
                 </div>
                 <div>
                   <FieldArray
@@ -616,39 +599,13 @@ const AddAccountForm = ({
                     )}
                   />
                 </div>
-                {/* <div class="flex items-center">
-        <div>Billing Address Same as Communication Address</div>
-        <div className="toggle mt-1 ml-2">
-          <input type="checkbox" checked={billingSameAsCommunication} onChange={handleToggleChange} />
-          <span className="slider round"></span>
-        </div>
-      </div>
-      {!billingSameAsCommunication && (
-        <div class="flex flex-col">
+                
                 <div class="mt-4">
-                  <div class=" text-xs font-bold font-poppins"> Billing Address</div>
-                </div>
-                 
-                <div>
-                  <FieldArray
-                    name="pickUpAddress"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray4
-                        singleAddress
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  />
-                </div>
-                </div>
-                )} */}
-                <div class="mt-4">
-                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[15]}</div>
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</div>
                     <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
+                      <Tooltip title= {translatedMenuItems[16]}>
                         <span  >
                           <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
                         </span>
@@ -656,7 +613,7 @@ const AddAccountForm = ({
                     </span>
 
                     <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
+                      <Tooltip title= {translatedMenuItems[17]}>
                         <span
                           
                             class="!text-icon ml-1 text-green-600">
@@ -666,7 +623,7 @@ const AddAccountForm = ({
                     </span>
 
                     <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
+                      <Tooltip title= {translatedMenuItems[18]}>
                         <span  class="!text-icon ml-1">
                           <RotateRightIcon />
                         </span>
@@ -695,7 +652,7 @@ const AddAccountForm = ({
                 className=" w-16 absolute top-3/4 right-0"
                 loading={addingDistributor}
               >
-              {translatedMenuItems[16]}
+              {translatedMenuItems[15]}
               </Button>
             </div>
           </Form>

@@ -34,13 +34,13 @@ class ReportDetailView extends Component {
 
     return (
       <>
-             <span class="cursor-pointer ml-2"
-             style={{display:"ruby-text"}}
+             <span class="cursor-pointer ml-2 "
+             style={{display:"ruby"}}
         //   onClick={() => handleIconClick("prospectTypes")}
       
         >
  {buttonData.map((button, index) => (
-        <div key={index} style={{ marginBottom: '20px' }}>
+        <div key={index} style={{ marginBottom: '10px' }}>
           <Button style={{backgroundColor:this.props.selectedCategory ===button.name?"tomato":""}}
           onClick={() => this.props.handleButtonClick(button.name)}>{button.name}</Button>
           {/* {this.props.selectedCategory === button.name && (

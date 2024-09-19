@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button} from "antd";
+import { Button, Tooltip} from "antd";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { Listbox, } from '@headlessui/react'
 import { getAllCustomerEmployeelist } from "../../Employees/EmployeeAction";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
 import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
 import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { updateDistributor ,setClearbitData} from "./AccountAction";
-import { FormattedMessage } from "react-intl";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { getCrm} from "../../Leads/LeadsAction";
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
+import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
+
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-])|(\\([0-9]{2,3}\\)[ \\-])|([0-9]{2,4})[ \\-])?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -50,10 +53,55 @@ const UpdateAccountForm = ({
   getCrm,
   getSaleCurrency,
   getCategory,
-  category
+  category,
+  translateText,
+  selectedLanguage,
 }) => {
   const [vatInd, setVatInd] = useState(setEditingDistributor.vatInd);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+                "110",    // " Name",0
+                "357",   // "Dial Code",1
+                "102",   // "Phone",2
+                "700",    // "Website",3
+                    "1109",    // "Country",4
+                    "702",  // "Tax Registration",5
+                    "703",// "Insurancegrade",6
+                    "71",   // "Type",7
+                    "705",   // "Creditlimit",8
+                    "241",   // "Currency",9
+                    "707",// "Payment Term Days",10
+                    "14",  // "Category",11
+                    "1466",  // "Custom Payment",12
+                    "76",  // "Assigned",13
+                    "147",  // "Description",`14
+                    "1246",  //    "update"15
+                   "158" ,// Start16
+                   "5" ,// "Stop  17
+                   "194", // "Clear18
+                   "710" ,//  Billing address
+                  "1"//  select
+      ];
+
+        const translations = await translateText(itemsToTranslate, selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [selectedLanguage]);
+
+ 
   useEffect(() => {
     getSaleCurrency();
     getCustomer(orgId);
@@ -103,6 +151,21 @@ const UpdateAccountForm = ({
   const [defaultOption, setDefaultOption] = useState(setEditingDistributor.assignedTo);
   const [selected, setSelected] = useState(defaultOption);
   const selectedOption = crmAllData.find((item) => item.fullName === selected);
+  const [text, setText] = useState("");
+  function handletext(e) {
+    setText(e.target.value);
+  }
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+  }
+
   return (
     <>
       <Formik
@@ -200,7 +263,9 @@ const UpdateAccountForm = ({
                     ) : null}
                   </div>
                 
-                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs  font-poppins flex flex-col mt-3">
+                   {translatedMenuItems[0]}  {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
+                    </div>
                   <Field
                       defaultValue={{
                         label: setEditingDistributor.name,
@@ -220,35 +285,35 @@ const UpdateAccountForm = ({
                 <div class=" mt-3" />
                 <div class=" flex justify-between">
                   <div class=" w-2/6">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[1]}</div>
                     <FastField
                       name="dialCode"
                       isColumnWithoutNoCreate
-                      label={
-                        <FormattedMessage
-                          id="app.dialCode"
-                          defaultMessage="Dial Code"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.dialCode"
+                      //     defaultMessage="Dial Code"
+                      //   />
+                      // }
                       isColumn
-                      // width={"100%"}
-                      // selectType="dialCode"
-                      // component={SearchSelect}
+                    
                       component={SelectComponent}
                       options={Array.isArray(dialCodeOptions) ? dialCodeOptions : []}
                       inlineLabel
                     />
                   </div>
                   <div class=" w-[60%]">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
                     <FastField
                       type="text"
                       // isRequired
                       name="phoneNo"
-                      label={
-                        <FormattedMessage
-                          id="app.phone"
-                          defaultMessage="phone"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.phone"
+                      //     defaultMessage="phone"
+                      //   />
+                      // }
                       placeholder="Phone #"
                       component={InputComponent}
                       inlineLabel
@@ -257,45 +322,35 @@ const UpdateAccountForm = ({
                     />
                   </div>
                 </div>
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
                 <Field
                   isRequired
                   name="url"
                   type="text"
-                  label={
-                    <FormattedMessage
-                      id="app.website"
-                      defaultMessage="website"
-                    />
-                  }
+                  // label={
+                  //   <FormattedMessage
+                  //     id="app.website"
+                  //     defaultMessage="website"
+                  //   />
+                  // }
                   width={"100%"}
                   component={InputComponent}
                   // placeholder="Start typing..."
                   isColumn
                   inlineLabel
                 />
-                {/* <div class=" mt-3" />
-                <div class=" flex justify-between mt-4">
-                  <div>
-                    <FormattedMessage
-                      id="app.vatvalidity"
-                      defaultMessage="vatvalidity"
-                    />
-                    <Checkbox
-                      checked={vatInd}
-                      onChange={handlevat}
-                    />
-                  </div>
-                </div> */}
+
                 <div class=" flex justify-between mt-4">
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
                     <FastField
                       name="country"
-                      label={
-                        <FormattedMessage
-                          id="app.country"
-                          defaultMessage="country"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.country"
+                      //     defaultMessage="country"
+                      //   />
+                      // }
                       isColumn
                       style={{ borderRight: "4px red solid" }}
                       inlineLabel
@@ -304,8 +359,9 @@ const UpdateAccountForm = ({
                     />
                   </div>
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                     <FastField
-                      label="Tax Registration"
+                      // label="Tax Registration"
                       name="countryValue"
                       placeholder="Value"
                       component={InputComponent}
@@ -317,15 +373,16 @@ const UpdateAccountForm = ({
                 </div>
                 <div class="flex justify-between mt-4" >
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
                     <Field
                       name="insuranceGrade"
                       type="text"
-                      label={
-                        <FormattedMessage
-                          id="app.insurancegrade"
-                          defaultMessage="insurancegrade"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.insurancegrade"
+                      //     defaultMessage="insurancegrade"
+                      //   />
+                      // }
                       width={"100%"}
                       component={InputComponent}
                       isColumn
@@ -333,14 +390,15 @@ const UpdateAccountForm = ({
                     />
                   </div>
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                     <Field
                       name="clientId"
-                      label={
-                        <FormattedMessage
-                          id="app.type"
-                          defaultMessage="Type"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.type"
+                      //     defaultMessage="Type"
+                      //   />
+                      // }
                       isColumn
                       placeholder="Type"
                       component={SelectComponent}
@@ -355,13 +413,14 @@ const UpdateAccountForm = ({
                 </div>
                 <div class="flex justify-between mt-4" >
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                     <FastField
-                      label={
-                        <FormattedMessage
-                          id="app.creditlimit"
-                          defaultMessage="creditlimit"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.creditlimit"
+                      //     defaultMessage="creditlimit"
+                      //   />
+                      // }
                       name="currencyPrice"
                       placeholder="Price"
                       component={InputComponent}
@@ -371,17 +430,18 @@ const UpdateAccountForm = ({
                     />
                   </div>
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                     <Field
                       name="currency"
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.currency"
+                      //     defaultMessage="Currency"
+                      //   />
+                      // }
                       style={{ borderRight: "4px red solid" }}
                       isColumn
-                      placeholder="Currency"
+                      placeholder={translatedMenuItems[9]}
                       component={SelectComponent}
                       options={
                         Array.isArray(currencyOption)
@@ -394,13 +454,14 @@ const UpdateAccountForm = ({
                 </div>
                 <div class="flex justify-between mt-4" >
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                     <FastField
-                      label={
-                        <FormattedMessage
-                          id="app.Paymenttermdays"
-                          defaultMessage="Paymenttermdays"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.Paymenttermdays"
+                      //     defaultMessage="Paymenttermdays"
+                      //   />
+                      // }
                       name="payment"
                       placeholder="Select"
                       component={SelectComponent}
@@ -411,11 +472,13 @@ const UpdateAccountForm = ({
                     />
                   </div>
                   <div class="w-w47.5">
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
                     <Field
                       name="dCategory"
-                      label="Category"
+                      // label="Category"
                       isColumn
-                      placeholder="Select"
+                      placeholder={translatedMenuItems[20]}
+                      // "Select"
                       component={SelectComponent}
                       options={
                         Array.isArray(categoryOption)
@@ -426,13 +489,14 @@ const UpdateAccountForm = ({
                     />
                   </div>
                   {values.payment === "Custom" && <div class="w-w47.5">
+                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                     <FastField
-                      label={
-                        <FormattedMessage
-                          id="app.Custom Payment"
-                          defaultMessage="Custom Payment"
-                        />
-                      }
+                      // label={
+                        // <FormattedMessage
+                        //   id="app.Custom Payment"
+                        //   defaultMessage="Custom Payment"
+                        // />
+                      // }
                       name="customPayment"
                       component={InputComponent}
                       inlineLabel
@@ -451,10 +515,11 @@ const UpdateAccountForm = ({
                             <Listbox.Label className="block font-semibold text-[0.75rem]  leading-lh1.2  "
                             // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
                             >
-                              <FormattedMessage
+                              <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</div>
+                              {/* <FormattedMessage
                                 id="app.assignedTo"
                                 defaultMessage="Assigned"
-                              />
+                              /> */}
 
                             </Listbox.Label>
                             <div className="relative ">
@@ -518,7 +583,9 @@ const UpdateAccountForm = ({
                       </Listbox>
                 </div>
                 <div class="mt-4">
-                  <div class=" text-xs text-black font-bold font-poppins" > Billing Address</div>
+                  <div class=" text-xs text-black font-bold font-poppins" > 
+                  {translatedMenuItems[19]}   {/* Billing Address */}
+                    </div>
                 </div>
                 <div>
                   <FieldArray
@@ -535,33 +602,60 @@ const UpdateAccountForm = ({
                 
 
                 <div class="mt-4">
-                  <Field
-                    name="description"
-                    label={
-                      <FormattedMessage
-                        id="app.description"
-                        defaultMessage="description"
-                      />
-                    }
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                  />
+                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</div>
+                    <div>
+                  <div>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title= {translatedMenuItems[16]}>
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title= {translatedMenuItems[17]}>
+                        <span
+                          
+                            class="!text-icon ml-1 text-green-600">
+                          <StopCircleIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title= {translatedMenuItems[18]}>
+                        <span  class="!text-icon ml-1">
+                          <RotateRightIcon />
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </div> 
+                   <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>
-            <div class="flex justify-end mt-4" >
+            <div class="flex justify-end mt-1" >
               <Button
                 type="primary"
                 htmlType="submit"
                 style={{ marginRight: "3rem", marginTop: "65px" }}
                 className=" w-16 absolute top-3/4 right-0"
                 loading={updateDisributorById}
-              >
-                <FormattedMessage
+              >{translatedMenuItems[15]}
+                {/* <FormattedMessage
                   id="app.update"
                   defaultMessage="update"
-                />
+                /> */}
               </Button>
             </div>
           </Form>

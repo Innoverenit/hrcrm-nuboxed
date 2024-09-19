@@ -5,19 +5,10 @@ import {
   getSuppliesList,
   getComplementaryList
 } from "./SuppliesAction";
-import EuroIcon from '@mui/icons-material/Euro';
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Tooltip, Popconfirm,Input } from "antd";
-import {
-  DeleteOutlined,
-  PhoneFilled,
-} from "@ant-design/icons";
-import CategoryIcon from '@mui/icons-material/Category'
+import { Input } from "antd";
+
 import dayjs from "dayjs";
-import InventoryIcon from '@mui/icons-material/Inventory';
 import { BundleLoader } from "../../../Components/Placeholder";
-import { MultiAvatar } from "../../../Components/UI/Elements";
-import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import ComplementaryToggle from "./ComplementaryToggle";
@@ -101,19 +92,8 @@ function MaterialComplementaryCard(props) {
          "799",//0
           "800",//1
           "110",//2
-          "14",//3
-          "1154",//4
-          "259",//5
-          "815",//6
-          "679",//7
-          "1068",//8
-          "1174",//9
-          "1173",//10
-          "742",//11
-          "824",//12
-          "880",//13
-          "170",//14
-
+          "1283",//3"Search by Name "
+          
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -221,7 +201,7 @@ function MaterialComplementaryCard(props) {
   return (
     <>
      <Input
-          placeholder="Search by Name "
+          placeholder= {translatedMenuItems[3]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -237,8 +217,8 @@ function MaterialComplementaryCard(props) {
             
             
             <div className=" w-[12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              Name
-              
+              {/* Name */}
+              {translatedMenuItems[2]}
               </div>
           </div>
 

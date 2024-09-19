@@ -85,22 +85,19 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
        <div className=' flex  justify-center sticky  z-auto'>
        <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
        <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" flex justify-between w-[97%] text-xs font-poppins">
+        <div className=" flex justify-between w-[84%] text-xs font-poppins">
         <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">            
         {props.translatedMenuItems[1]} 
         {/* Type */}
         </div>
         <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
         <div className=" w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[3]}</div>
-        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[4]}</div>
-        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[5]}</div>
+        <div className=" w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[4]}</div>
+        <div className="w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[5]}</div>
         <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div> 
         <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[7]} </div>
          {/* <div className="w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[8]}</div> */}
-       
-       
-        <div className="w-12"></div>
-        </div>    
+         </div>    
       </div>
       <InfiniteScroll
         dataLength={callListRangeByUserId.length}
@@ -130,7 +127,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
               <div class="flex  w-[8.9rem] text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
             <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callType}</div>
             </div>
-            <div class="flex w-[12.8rem] text-xs max-xl:w-[9.8rem] max-lg:w-[7.3rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+            <div class="flex w-[14.8rem] text-xs max-xl:w-[9.8rem] max-lg:w-[7.3rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
             <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callPurpose}</div>
               </div>
               <div class="flex w-[7.5rem] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
@@ -146,7 +143,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
               
-              <div class="flex  text-xs  justify-center w-[11.35rem] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-col max-sm:justify-between max-sm:w-auto">
+              <div class="flex  text-xs   w-[11.35rem] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-col max-sm:justify-between max-sm:w-auto">
               <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {dayjs(item.startDate).format('YYYY-MM-DD')}</div>
               </div>
              
