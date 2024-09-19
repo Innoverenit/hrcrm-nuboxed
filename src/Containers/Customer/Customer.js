@@ -12,10 +12,12 @@ import {
     getLatestCustomer,
     getCustomerCloser,
     handleCustomerImportModal,
-    getCustomerFilterData,   
+    getCustomerFilterData, 
+    deleteCustomer  
   } from "./CustomerAction";
 import CustomerMap from "./CustomerMap"
 import dayjs from "dayjs";
+
 const CustomerWhiteTable =lazy(()=> import("../Customer/Child/CustomerTable/CustomerWhiteTable"));
 const CustomerBlueTable =lazy(()=> import("../Customer/Child/CustomerTable/CustomerBlueTable"));
 const CustomerTeamCardList =lazy(()=> import("./Child/CustomerTable/CustomerTeamCardList"));
@@ -23,6 +25,7 @@ const AddCustomerModal = lazy(() => import( "./Child/AddCustomerModal"));
 const CustomerHeader = lazy(() => import("./Child/CustomerHeader"));
 const CustomerCardList=lazy(() => import("./Child/CustomerTable/CustomerCardList"));
 const CustomerAllCardList=lazy(() => import("./Child/CustomerTable/CustomerAllCardList"));
+const CustomerDeleteCard=lazy(() => import("./Child/CustomerTable/CustomerDeletecard"));
 class Customer extends Component {
   constructor(props) {
     super(props);
@@ -173,6 +176,11 @@ class Customer extends Component {
               selectedLanguage={this.props.selectedLanguage}
              translatedMenuItems={this.props.translatedMenuItems}
             /> }
+            { viewType === "dashboard1"  && <CustomerDeleteCard
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
+            />}
           </>
         )}
         {/* { this.props.viewType==="card"?

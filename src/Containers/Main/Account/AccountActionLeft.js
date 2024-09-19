@@ -188,7 +188,7 @@ const AccountActionLeft = (props) => {
                         }}
                     >
                         <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
-                            <DeleteOutlined className="text-white " /></Avatar>
+                            <DeleteOutlined className="text-white !text-icon" /></Avatar>
 
                     </span>
                 </Badge>
