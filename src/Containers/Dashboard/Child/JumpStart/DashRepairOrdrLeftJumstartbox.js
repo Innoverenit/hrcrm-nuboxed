@@ -16,6 +16,9 @@ import OrdersClosedModal from "./OrdersClosedModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import OrdersOpenDrawer from "./OrdersOpenDrawer";
 import CustomerPieChart from "./CustomerPieChart"
+import axios from 'axios';
+import {base_url2} from "../../../../Config/Auth";
+
 
 function DashRepairOrdrLeftJumstartbox(props) {
 
@@ -24,6 +27,60 @@ function DashRepairOrdrLeftJumstartbox(props) {
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
+  const [error, setError] = useState(null);
+
+  const [OrderInward, setOrderInward] = useState({});
+  const [loading1, setLoading1] = useState(false);
+
+    const fetchOrderInward = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/order/orderInward/${props.userId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setOrderInward(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError(error);
+        setLoading1(false);
+      }
+    };
+
+  const [QcApproved, setQcApproved] = useState({});
+  const [loading3, setLoading3] = useState(false);
+    const fetchQcApproved = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/order/QcApproved/${props.userId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setQcApproved(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
+
+    const [RepairApproved, setRepairApproved] = useState([]);
+    const [loading4, setLoading4] = useState(false);
+
+    const fetchRepairApproved = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/order/RepairApproved/${props.userId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setRepairApproved(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -33,7 +90,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
     "1520",  //  "Order Inward", // 0
      "1521", //  "Estimate Submitted", // 1
       "1522",//   "Qc Approved", // 2
-      "1520",//  "Repair Approved"//3
+      "1523",//  "Repair Approved"//3
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -48,8 +105,16 @@ function DashRepairOrdrLeftJumstartbox(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
   
+
+
+
   useEffect(() => {
     props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+
+    fetchQcApproved();
+    fetchOrderInward();
+    fetchRepairApproved();
+
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 

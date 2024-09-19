@@ -109,7 +109,7 @@ const DashboardActionLeft = (props) => {
           </Tag>
         )}
 
-        {viewType === "ALL" && showShareForm &&<Suspense fallback={<BundleLoader />}><DashboardShareForm /></Suspense> }
+        
 
 
         <div className="flex w-[22rem] ml-4 items-center">
@@ -316,8 +316,11 @@ const DashboardActionLeft = (props) => {
                   </Tooltip>
                 </span>
               </Badge>
+
+              {viewType === "ALL" && showShareForm &&<Suspense fallback={<BundleLoader />}><DashboardShareForm /></Suspense> }
             </>
-          ) : (
+         
+        ) : (
             <>
               {user.dashboardRegionalInd === true && (
                 <Badge

@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import dayjs from "dayjs";
 import CustomerPieChart from "./CustomerPieChart"
+import dayjs from "dayjs";
 import {getJumpDistributorDetail,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
   handleOrderClosedModal,getCustomerAddedList,getContactAddedList,getOrderAddedList,
-  getOrderClosedList,
+  getOrderClosedList
 } from "../../DashboardAction";
 // import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
@@ -16,15 +16,11 @@ import CustomerAddedModal from "./CustomerAddedModal";
 import ContactAddedModal from "./ContactAddedModal";
 import OrdersAddedModal from "./OrdersAddedModal";
 import OrdersClosedModal from "./OrdersClosedModal";
-// import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
-import axios from 'axios';
-import {base_url} from "../../../../Config/Auth";
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import ProspectJumpStartDrawer from './ProspectJumpStartDrawer';
 
-function ProspectDashboardJumpStart (props) {
+function CustomerDashboardJumpStart (props) {
   
   const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'));
   const [startDate] = useState(dayjs().startOf('month'));
@@ -34,87 +30,6 @@ function ProspectDashboardJumpStart (props) {
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
-
- const [error, setError] = useState(null);
-
-  const [prospectAdded, setprospectAdded] = useState([]);
-  const [loading1, setLoading1] = useState(false);
-
-    const fetchProspectAdded = async () => {
-      try {
-        const response = await axios.get(`${base_url}/customer/report/count/self/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-        });
-        setprospectAdded(response.data);
-        setLoading1(false);
-      } catch (error) {
-        setError(error);
-        setLoading1(false);
-      }
-    };
-
-    const [contactAdded, setcontactAdded] = useState([]);
-    const [loading2, setLoading2] = useState(false);
-
-    const fetchContacttAdded = async () => {
-      const type="Prospect";
-      try {
-        const response = await axios.get(`${base_url}/contact/added/selfCount/date-wise/${props.userId}/${type}?endDate=${props.endDate}&startDate=${props.startDate}`,{
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-        });
-        setcontactAdded(response.data);
-        setLoading2(false);
-      } catch (error) {
-        setError(error);
-        setLoading2(false);
-      }
-    };
-    
-    const [quotationAdded, setquotationAdded] = useState([]);
-    const [loading3, setLoading3] = useState(false);
-
-    const fetchQuotationAdded = async () => {
-      // const type="Prospect";
-      try {
-        const response = await axios.get(`${base_url}/opportunity/openList/date-range/count/self/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-        });
-        setquotationAdded(response.data);
-        setLoading3(false);
-      } catch (error) {
-        setError(error);
-        setLoading3(false);
-      }
-    };
-    const [quotationAddedCard, setquotationAddedCard] = useState([]);
-    const [loading4, setLoading4] = useState(false);
-
-    const fetchQuotationAddedCard = async () => {
-      try {
-        const response = await axios.get(`${base_url}/opportunity/List/date-range/self/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-        });
-        setquotationAddedCard(response.data);
-        setLoading3(false);
-      } catch (error) {
-        setError(error);
-        setLoading3(false);
-      }
-    };
-
-    useEffect(() => {
-      fetchProspectAdded();
-      fetchContacttAdded();
-      fetchQuotationAdded();
-    }, [props.userId]);
 
   useEffect(() => {
     props.getJumpDistributorDetail(props.timeRangeType);
@@ -128,10 +43,10 @@ function ProspectDashboardJumpStart (props) {
   const fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        '1536', // 0 "Prospect Added"
+        '1296', // 0 "Customer Added" 
         '1297', // 1 "Contacts Added"
-        '1537', // 2 "Quotation Added"
-        '1553'  // 3 "Quotation Won"
+        '1229', // 2 "Orders Added"
+        '1298'  // 3 "Orders Completed"
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -155,10 +70,10 @@ function ProspectDashboardJumpStart (props) {
   }, [props.customerAddedList]);
 
   useEffect(() => {
-    if (quotationAddedCard) {
-      setModalData(quotationAddedCard);
+    if (props.orderAddedList) {
+      setModalData(props.orderAddedList);
     }
-  }, [quotationAddedCard]);
+  }, [props.orderAddedList]);
 
   useEffect(() => {
     if (props.orderClosedList) {
@@ -181,10 +96,10 @@ function ProspectDashboardJumpStart (props) {
       case 'Contact Added':
         props.getContactAddedList(props.orgId,props.endDate,props.startDate);
         break;
-      case 'Quotation Added':
-        fetchQuotationAddedCard(props.userId,props.endDate,props.startDate);
+      case 'Orders Added':
+        props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
         break;
-      case 'Quotation Won':
+      case 'Closed':
         props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
         break;
       default:
@@ -195,20 +110,22 @@ function ProspectDashboardJumpStart (props) {
 
   return(
     <>
-    <div class=" flex flex-col">
+
+   <div class=" flex flex-col">
+
     <div className="flex flex-row w-full">
         <div className="flex w-full max-sm:flex-col">
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-green-600"><ApartmentIcon className='text-white'/></div>
+                  <div className="rounded-full p-2 bg-green-600"><AcUnitIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#F15753,orange)"
                   title={translatedMenuItems[0]}
-                  value={prospectAdded.count}
+                  value={props.distributorinDashboard.totalDistributor}
                   jumpstartClick={()=> handleClick("Added")}
                   cursorData={"pointer"}
                 />
@@ -225,8 +142,8 @@ function ProspectDashboardJumpStart (props) {
                   noProgress
                   bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
                   title={translatedMenuItems[1]}
-                  value={contactAdded.count}
-                  jumpstartClick={() => handleClick("Contact Added")}
+                  value={props.distributorinDashboard.totalContactPerson}
+                  jumpstartClick={()=> handleClick("Contact Added")}
                 />
               </div>
             </div>
@@ -235,14 +152,14 @@ function ProspectDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-yellow-600"><LightbulbIcon className='text-white'/></div>
+                  <div className="rounded-full p-2 bg-yellow-600"><DynamicFeedIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                   title={translatedMenuItems[2]}
                   value={props.distributorinDashboard.totalOrder}
-                  jumpstartClick={() => handleClick("Quotation Added")}
+                  jumpstartClick={()=> handleClick("Orders Added")}
                   cursorData="pointer"
                 />
               </div>
@@ -252,22 +169,23 @@ function ProspectDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-blue-600"><LightbulbIcon className='text-white'/></div>
+                  <div className="rounded-full p-2 bg-blue-600"><DynamicFeedIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                   title={translatedMenuItems[3]}
                   value={props.distributorinDashboard.completeOrder}
-                  jumpstartClick={() => handleClick("Quotation Won")}
+                  jumpstartClick={()=> handleClick("Closed")}
                   cursorData="pointer"
                 />
               </div>
             </div>
           </div>
         </div>
+        
       </div>
-      <div class=" mt-1 flex flex-row justify-between items-center" >
+      <div class=" mt-1 flex flex-row justify-between" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Sector</div>
         <CustomerPieChart/>
@@ -276,9 +194,9 @@ function ProspectDashboardJumpStart (props) {
         <div class=" font-poppins font-bold text-base ">By Source</div>
         <CustomerPieChart/>
         </div>
-      </div>
-      </div>
-<ProspectJumpStartDrawer
+        </div>
+</div>
+<CustomerJumpStartDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
  isModalOpen={isModalOpen}
@@ -335,9 +253,7 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
   contactAddedList:dashboard.contactAddedList,
   customerAddedList:dashboard.customerAddedList,
   orderAddedList:dashboard.orderAddedList,
-  orderClosedList:dashboard.orderClosedList,
-  startDate: dashboard.startDate,
-  endDate:dashboard.endDate,
+  orderClosedList:dashboard.orderClosedList
 
 });
 
@@ -357,4 +273,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 //   getleaveLeftSideDetails
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProspectDashboardJumpStart);
+export default connect(mapStateToProps, mapDispatchToProps)(CustomerDashboardJumpStart);

@@ -19,7 +19,11 @@ import OrdersClosedModal from "./OrdersClosedModal";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import axios from 'axios';
+import {base_url2} from "../../../../Config/Auth";
+
 function CustomerDashboardJumpStart (props) {
+
   
   const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'));
   const [startDate] = useState(dayjs().startOf('month'));
@@ -29,10 +33,46 @@ function CustomerDashboardJumpStart (props) {
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
+  const [error, setError] = useState(null);
 
+  const [cuOrdrAdded, setcuOrdrAdded] = useState({});
+  const [loading3, setLoading3] = useState(false);
+
+    const fetchcuOrdrAdded = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/distributor/ordersAdded/${props.userId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setcuOrdrAdded(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
+    const [cuOrdrComplete, setcuOrdrComplete] = useState([]);
+    const [loading4, setLoading4] = useState(false);
+
+    const fetchcuOrdrComplete = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/distributor/ordersCompleted/${props.userId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setcuOrdrComplete(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
   useEffect(() => {
     props.getJumpDistributorDetail(props.timeRangeType);
-    fetchMenuTranslations();
+    fetchcuOrdrAdded();
+    fetchcuOrdrComplete();
   }, [props.timeRangeType]);
 
   useEffect(() => {
@@ -90,16 +130,16 @@ function CustomerDashboardJumpStart (props) {
 
     switch(type) {
       case 'Added':
-        props.getCustomerAddedList(props.orgId,props.endDate,props.startDate);
+        props.getCustomerAddedList(props.userId,props.endDate,props.startDate);
         break;
       case 'Contact Added':
-        props.getContactAddedList(props.orgId,props.endDate,props.startDate);
+        props.getContactAddedList(props.userId,props.endDate,props.startDate);
         break;
       case 'Orders Added':
-        props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
+        props.getOrderAddedList(props.userId,props.endDate,props.startDate);
         break;
       case 'Closed':
-        props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
+        props.getOrderClosedList(props.userId,props.endDate,props.startDate);
         break;
       default:
         break;

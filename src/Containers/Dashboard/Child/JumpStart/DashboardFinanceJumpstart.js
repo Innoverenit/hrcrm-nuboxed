@@ -79,11 +79,18 @@ const openModal = (type) => {
       Cancelled: props.getRepairDashboardOrderCancelled
     }[type];
 
+    if(props.buttonName==="My View"){
     fetchOrders(props.userId, props.startDate, props.endDate, page)
       .then(data => {
         setOrdersData(data.orders);
         setHasMore(data.hasMore);
-      });
+      });}
+      else if(props.buttonName==="Enterprise") {
+        fetchOrders(props.orgId, props.startDate, props.endDate, page)
+        .then(data => {
+          setOrdersData(data.orders);
+          setHasMore(data.hasMore);
+        });}
   };
 
 
@@ -196,6 +203,7 @@ const openModal = (type) => {
         ordersData={ordersData}
         hasMore={hasMore}
         setHasMore={setHasMore}
+        buttonName={props.buttonName}
       />
     </>
 
