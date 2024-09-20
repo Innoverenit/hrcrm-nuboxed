@@ -42,9 +42,7 @@ class Productform extends Component {
     };
   }
  
-  componentDidMount() {
-    this.fetchMenuTranslations();
-  }
+
 
   componentDidUpdate(prevProps) {
     if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
@@ -135,6 +133,9 @@ class Productform extends Component {
   componentDidMount() {
     this.props.getCurrency()
     this.props.getWorkflowList(this.props.orgId)
+    this.fetchMenuTranslations();
+
+
   }
   render() {
     const { addingProduct, addProduct } = this.props;

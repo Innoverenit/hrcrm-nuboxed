@@ -154,7 +154,7 @@ function SuppliesActionLeft (props) {
                   "14",//2
                   "798",//3
                   "264",// Brand
-                 "", // Brand Model
+                 "1607", // Brand Model
                  
         
                 ];

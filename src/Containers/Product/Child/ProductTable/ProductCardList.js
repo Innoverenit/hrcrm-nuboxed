@@ -78,11 +78,14 @@ function ProductCardList(props) {
             "1203",//7 Feature
             "1204",//8 Warranty
               "1371",//9 year
-              // "",//Quality
-              // "",//Add Price
-              // "",//Product Builder
-              // "",//Cell
-              // "",//Edit
+              "654",//Quality10
+              "742",//Add Price11
+              "743",//Product Builder12
+              "744",//Cell13
+              "170",//Edit14
+              "1078", // Save15
+              "1079",// Cancel16
+             "1259", // Do you want to delete?"17
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -344,19 +347,19 @@ useEffect(() => {
                       <Button 
                       type="primary"
                       onClick={() => handleSave(item)}>
-                        Save
+                     {translatedMenuItems[15]}     {/* Save */}
                       </Button>
                         <Button 
                          type="primary"
                         onClick={() => handleCancelClick(item.productId)} className="ml-[0.5rem]">
-                        Cancel
+                     {translatedMenuItems[16]}     {/* Cancel */}
                       </Button>
                       </>
                       
                     ) : (
                       <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
-                        tooltipTitle="Edit"
+                        tooltipTitle={translatedMenuItems[14]}  
                         iconType="edit"
                         onClick={() => handleEditClick(item.productId)}
                       />
@@ -368,7 +371,7 @@ useEffect(() => {
 
 
                       <div>
-                        <Tooltip title="Quality">
+                        <Tooltip title={translatedMenuItems[10]}  >
                           <VerifiedUserIcon
                             className="!text-icon cursor-pointer text-[blue]"
                             onClick={() => {
@@ -380,7 +383,7 @@ useEffect(() => {
                       </div>
     
                       <div>
-                        <Tooltip title="Add Price">
+                        <Tooltip title={translatedMenuItems[11]}  >
                           <EuroIcon
                             className="!text-icon cursor-pointer text-[blue]"
                             onClick={() => {
@@ -392,7 +395,7 @@ useEffect(() => {
                       </div>
 
                       <div>
-                        <Tooltip title="Product Builder">
+                        <Tooltip title={translatedMenuItems[12]}  >
                           <ViewQuiltIcon
                             className="!text-icon cursor-pointer text-[#4bc076]"
                             onClick={() => {
@@ -415,7 +418,7 @@ useEffect(() => {
                         </Tooltip>
                       </div>
 <div>
-<Tooltip title="Cell">
+<Tooltip title={translatedMenuItems[13]}  >
                                                             <Token 
                                                             className=" !text-icon cursor-pointer text-[blue]"
                                                             onClick={()=>{
@@ -429,7 +432,7 @@ useEffect(() => {
                     
               
                       <div class=" text-xs  font-poppins mt-1">
-                        <Tooltip title="Edit">
+                        <Tooltip title={translatedMenuItems[14]}  >
                           <BorderColorIcon
                             className="!text-icon cursor-pointer text-[tomato]"
                             onClick={() => {
@@ -441,7 +444,7 @@ useEffect(() => {
                       </div>
                       <div className="mt-1">
                           <StyledPopconfirm
-                            title="Do you want to delete?"
+                            title={translatedMenuItems[17]}  
                             onConfirm={() => handleDelete(item)}
                             >
                             <DeleteOutlined

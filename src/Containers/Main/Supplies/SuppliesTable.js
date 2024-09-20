@@ -131,11 +131,11 @@ function SuppliesTable(props) {
           "264",  // Brand15
           "265",// model16
          "100", // New17
-        "",//  Updated18
+        "1608",//  Updated18
        "1247", // Material Builder19
-       "" , //  Tag Brand20
+       "1609" , //  Tag Brand20
        "1259" , //  "Do you want to delete?"21
-       "" , //  Complimentry22
+       "1610" , //  Complimentry22
        "1252" , //  "Print"23
        "880" ,// Supplies Id24
         ];
@@ -169,7 +169,7 @@ function SuppliesTable(props) {
             <div className=" w-[1rem] max-xl:w-[2rem]"></div>
             <div className="font-bold font-poppins text-xs w-[7.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* HSN */}
-              {translatedMenuItems[0]} / {translatedMenuItems[24]}ID
+              {translatedMenuItems[0]} / ID
               </div>
             {/* <div className="w-[6.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               Supplies ID 
