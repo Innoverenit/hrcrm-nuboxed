@@ -33,9 +33,9 @@ const SuppliesBrandModelList = (props) => {
      "265",//"model" // 1
      "1078",// Save, // 2
      "1079",// Cancel, // 3
-     "",// 'Add More', // 4
+     "1612",// 'Add More', // 4
      "100",// '  New', // 5
-    "",//  Updated on
+    "1611",//  Updated on
    "1335", // by
    "264", // brand"
 
