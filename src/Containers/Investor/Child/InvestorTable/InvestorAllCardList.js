@@ -67,8 +67,8 @@ function InvestorAllCardList(props) {
            "279",//4Source
            "76",//5 Assigned
            "77",//6  Owner
-           "1581" //Score 7
-
+           "1581", //Score 7
+           "592",//Club 8
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -202,6 +202,10 @@ function InvestorAllCardList(props) {
           {/* Score */}
             </div>
             )}
+               <div className="font-bold font-poppins text-xs w-[6.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[8]}
+        {/* Club */}
+          </div>
         <div className=" font-bold font-poppins text-xs w-[6.3rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
         {translatedMenuItems[5]}
          {/* Assigned" */}
@@ -337,6 +341,19 @@ function InvestorAllCardList(props) {
                                     {item.source}
                                     </div>
                                 </div>
+                                {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           {item.noteScoreInd}
+          
+            </div>
+            )}  
+
+<div className=" flex items-center w-[5.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Deals */}
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                   {item.club}
+                                    </div>
+                                </div>
                                 <div className=" flex  items-center w-[10.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Assigned */}
                                     <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -383,12 +400,7 @@ function InvestorAllCardList(props) {
                    
                   
                                 </div>
-                                {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-           {item.noteScoreInd}
-          
-            </div>
-            )}    
+           
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                                 <div class="flex items-center justify-evenly w-wk">            
                                 <div >

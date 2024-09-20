@@ -289,7 +289,7 @@ const LeadsActionLeft = (props) => {
 
 
       <div class="w-[35%]  ml-2">
-        <StyledSelect placeholder="Sort" defaultValue="CreationDate" onChange={(e) => props.handleFilterChange(e)}>
+        <StyledSelect placeholder="Sort" defaultValue="Creation Date" onChange={(e) => props.handleFilterChange(e)}>
         <Option value="" disabled hidden>
         Sort by :
     </Option>

@@ -415,7 +415,7 @@ const CandidateActionLeft = (props) => {
                <StyledSelect
   
   //style={{ width: '100%' }}
-  placeholder="Sort"
+  placeholder="Sort" 
  //  defaultValue={partners}
  onChange={(e) => handleChange(e)}
 >
