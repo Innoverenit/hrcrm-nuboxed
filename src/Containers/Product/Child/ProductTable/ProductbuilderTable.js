@@ -25,7 +25,8 @@ function ProductbuilderTable (props) {
       try {
         const itemsToTranslate = [
          
-          "HSN",//0 
+        "799",  // "HSN",//0 
+        "1",  // Select"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -79,7 +80,7 @@ function ProductbuilderTable (props) {
                 // value={selectedValue}
                 style={{ width: "100%" }}
                 onChange={handleChange}
-                placeholder="Select"
+                placeholder={translatedMenuItems[1]}
               >
         {prosb.map(option => {
           return <Option key={option.suppliesId} value={option.hsn}>{option.hsn}</Option>

@@ -28,7 +28,13 @@ const ProductActionLeft = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-  
+        "726" , // Active Products
+        "14" ,   // Category
+        "1607" ,   // "BrandModel
+        "728" ,  // Suspended Products
+        "264" , // Brand"
+        "1069" ,  // Reinstate
+        "1239" ,   // Search by Category Name 
 
         ];
 
@@ -136,7 +142,7 @@ const ProductActionLeft = (props) => {
       }, [listening, isRecording, startTime]);
   return (
     <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
-      <Tooltip title="Active Products">
+      <Tooltip title={translatedMenuItems[0]}>
       <Badge
           size="small"
            count={( props.recordData.product) || 0}
@@ -158,7 +164,7 @@ const ProductActionLeft = (props) => {
         </Badge>
       </Tooltip>
     
-      <Tooltip title="Category">
+      <Tooltip title={translatedMenuItems[1]}>
         <div
           class=" mr-2 text-xs cursor-pointer"
           style={{
@@ -174,7 +180,7 @@ const ProductActionLeft = (props) => {
         </div>
       </Tooltip>
 
-      <Tooltip title="BrandModel">
+      <Tooltip title={translatedMenuItems[2]}>
         <div
           class=" mr-2 text-xs cursor-pointer"
           style={{
@@ -184,17 +190,13 @@ const ProductActionLeft = (props) => {
           onClick={() => props.setProductViewType("brandModel")}
         >
           <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
-            <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
+            <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />  
           </Avatar>
 
         </div>
       </Tooltip>
 
-
-
-
-
-      <Tooltip title="Suspended Products">
+      <Tooltip title={translatedMenuItems[3]}>
 <Badge
     size="small"
      count={( props.deletedProductCount.deletedProduct) || 0}
@@ -213,7 +215,7 @@ const ProductActionLeft = (props) => {
   </Badge>
 </Tooltip>
 
-<Tooltip title="Brand">
+<Tooltip title={translatedMenuItems[4]}>
         <div
           class=" ml-2 text-xs cursor-pointer"
           style={{
@@ -230,7 +232,7 @@ const ProductActionLeft = (props) => {
       </Tooltip>
 
 
-      <Tooltip title="BrandModel">
+      <Tooltip title={translatedMenuItems[2]}>
         <div
           class=" ml-2 text-xs cursor-pointer"
           style={{
@@ -247,7 +249,7 @@ const ProductActionLeft = (props) => {
       </Tooltip>
 
 
-      <Tooltip title="Reinstate">
+      <Tooltip title={translatedMenuItems[5]}>
         <div
           class=" ml-2 text-xs cursor-pointer"
           style={{
@@ -266,7 +268,7 @@ const ProductActionLeft = (props) => {
                 
 {props.viewType === "category" &&
 <Input
-          placeholder="Search by Category Name "
+          placeholder={translatedMenuItems[6]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleCatSearch}

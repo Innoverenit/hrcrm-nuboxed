@@ -108,9 +108,12 @@ useEffect(() => {
       const fetchMenuTranslations = async () => {
         try {
           const itemsToTranslate = [
-           "Serial Nos",
-           "Step",
-            "Submit"
+       "1624",   //  "Serial Nos",
+       "1043",   //  "Step",
+       "154",   //   "Submit"
+       "1078",  //  Save
+       "1079",  //  Cancel
+       "1259",  //  Do you want to delete?
           ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -174,27 +177,7 @@ useEffect(() => {
                   
                 </div>
              
-                {/* {qualityProducts.map((item, index) => {
-                    return (
-                        <div key={index}>
-                            <div className="flex rounded-xl mt-2 bg-white h-12 items-center p-3">
-                                <div className="flex md:w-[36.1rem] max-sm:w-full">
-                                    <div className="flex justify-between text-sm  font-semibold font-poppins">
-                                        {item.qualityName}
-                                    </div>
-                                </div>
-
-                                <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="  text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
-                                        {item.steps}
-                                    </div>
-                                </div>
-
-                              
-                            </div>
-                        </div>
-                    );
-                })} */}
+               
 
 {isDragAndDropEnabled ? (
 <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -254,8 +237,8 @@ useEffect(() => {
 
                             {editingIndex === index ? (
                 <>
-                  <Button type="link" onClick={() => handleSaveClick(index,item)}>Save</Button>
-                  <Button type="link" onClick={handleCancelClick}>Cancel</Button>
+                  <Button type="link" onClick={() => handleSaveClick(index,item)}>{translatedMenuItems[3]}</Button>
+                  <Button type="link" onClick={handleCancelClick}>{translatedMenuItems[4]}</Button>
                 </>
               ) : (
                 <EditOutlined onClick={() => handleEditClick(index, item.qualityName)} />
@@ -269,7 +252,7 @@ useEffect(() => {
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
                             <StyledPopconfirm
-            title="Do you want to delete?"
+            title={translatedMenuItems[5]}
             onConfirm={() => props.deleteQualityProductData(item.qualityCheckBuilderId)}
           >
    <DeleteOutlined/>
@@ -343,8 +326,8 @@ useEffect(() => {
    {/* <EditOutlined/> */}
    {editingIndex === index ? (
                 <>
-                  <Button type="link" onClick={() => handleSaveClick(index,item)}>Save</Button>
-                  <Button type="link" onClick={handleCancelClick}>Cancel</Button>
+                  <Button type="link" onClick={() => handleSaveClick(index,item)}>{translatedMenuItems[3]}</Button>
+                  <Button type="link" onClick={handleCancelClick}>{translatedMenuItems[4]}</Button>
                 </>
               ) : (
                 <EditOutlined onClick={() => handleEditClick(index, item.qualityName)} />
@@ -358,7 +341,7 @@ useEffect(() => {
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
                             <StyledPopconfirm
-            title="Do you want to delete?"
+            title={translatedMenuItems[5]}
             onConfirm={() => props.deleteQualityProductData(item.qualityCheckBuilderId,props.particularDiscountData.productId)}
           >
    <DeleteOutlined className='!text-icon text-red-600'/>
