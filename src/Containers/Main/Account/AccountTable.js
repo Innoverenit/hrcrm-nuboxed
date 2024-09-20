@@ -30,9 +30,10 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
-import AccountSearchedData from "./AccountSearchedData";
-import AccountCreditToggle from "./AccountCreditToggle";
-import AddAccountAdressModal from "./AddAccountAdressModal";
+
+const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
+const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
+const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 const  AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const AccountModal = lazy(() => import("./AccountModal"));
@@ -142,9 +143,10 @@ function AccountTable(props) {
   return (
     <>
     {props.distributorSearch.length > 0 ? (
+       <Suspense fallback={<BundleLoader />}>
     <AccountSearchedData
     distributorSearch={props.distributorSearch}
-    />
+    /></Suspense>
   ) : (
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">

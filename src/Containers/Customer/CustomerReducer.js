@@ -42,6 +42,9 @@ const initialState = {
   fetchingFilterCustomers: false,
   fetchingFilterCustomersError: false,
 
+  deletingCustomerById: false,
+  deletingCustomerByIdError: false,
+
   addingCustomerActivityCall: false,
   addingCustomerActivityCallError: false,
 
@@ -1855,8 +1858,8 @@ export const customerReducer = (state = initialState, action) => {
       return {
         ...state,
         deletingCustomerById: false,
-        customerListByUser: state.customerListByUser.filter(
-          (item) => item.CustomerId !== action.payload.CustomerId
+        customerByUserId: state.customerByUserId.filter(
+          (item) => item.customerId !== action.payload.customerId
         ),
       };
     case types.DELETE_CUSTOMER_FAILURE:

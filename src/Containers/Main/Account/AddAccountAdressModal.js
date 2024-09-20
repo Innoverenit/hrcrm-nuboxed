@@ -2,13 +2,9 @@ import React, { Component, Suspense,lazy } from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import ErpAddressData from "../../Address/ErpAddressData";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 
-
-
-
-
+const ErpAddressData = lazy(() => import("../../Address/ErpAddressData"));
 class AddAccountAdressModal extends Component {
   render() {
     
@@ -28,6 +24,8 @@ class AddAccountAdressModal extends Component {
           
           
           <ErpAddressData
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           uniqueId={this.props.item.distributorId}
           type={this.props.type}
           />

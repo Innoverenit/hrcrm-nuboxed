@@ -1,6 +1,7 @@
 import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
@@ -35,7 +36,7 @@ import {
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
   handleAddressCutomerModal,
-  // deleteCustomer
+  deleteCustomer
 } from "../../CustomerAction";
 import { DeleteOutlined} from "@ant-design/icons";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
@@ -620,19 +621,31 @@ if (loading) {
                           
                          
                         </div>  
-                        <div class=" text-xs  font-poppins">
-                                <Popconfirm
+                        {/* <div class=" text-xs  font-poppins"> */}
+                        <div >                     
+                        <StyledPopconfirm
+                          title= "Do you want to delete?"
+                          onConfirm={() =>  props.deleteCustomer(item.customerId)}>
+                     <Tooltip title="Delete">
+                          <DeleteOutlined
+                            type="delete"
+                            className=" !text-icon cursor-pointer text-[red]"
+                          />
+                       </Tooltip>
+                        </StyledPopconfirm>
+                      </div>
+                                {/* <Popconfirm
                                 // loading={props.deletingDistributorById}
                                   title="
-                                  Do you want to delete?"
+                                 
                                   //  onConfirm={() => props.deleteCustomer({}, item.customerId,props.userId)} 
                                     >
                                   <DeleteOutlined
                                     className=" !text-icon cursor-pointer text-[red]"
                                   />
-                                </Popconfirm>
+                                </Popconfirm> */}
  
-                              </div>               
+                              {/* </div>                */}
                 
                   </div>
                 </div>
@@ -771,7 +784,7 @@ const mapDispatchToProps = (dispatch) =>
       getCountries,
       getAllCustomerEmployeelist,
       handleAddressCutomerModal,
-      // deleteCustomer
+      deleteCustomer
     },
     dispatch
   );
