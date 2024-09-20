@@ -279,7 +279,7 @@ const PitchActionLeft = (props) => {
       
         </Button> */}
           <div class=" w-2/5  ml-2">
-          <StyledSelect placeholder="Sort" value={props.filter} onChange={(e)  => props.handleFilterChange(e)}>
+          <StyledSelect placeholder="Sort" defaultValue="Creation Date" value={props.filter} onChange={(e)  => props.handleFilterChange(e)}>
            <Option value="CreationDate">Creation Date</Option> 
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>
