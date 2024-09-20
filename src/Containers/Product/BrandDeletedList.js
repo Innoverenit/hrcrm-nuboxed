@@ -1,42 +1,22 @@
-import React, { useEffect, useState, lazy,Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddProductBrandDetailsModal from "./AddProductBrandDetailsModal"
-//import BorderColorIcon from '@mui/icons-material/BorderColor';
-import EditUpload from "../../Components/Forms/Edit/EditUpload";
-import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
-import PostImageUpld from "../../Components/Forms/Formik/PostImageUpld";
-import { Formik, Form, FastField, Field, FieldArray } from "formik";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ExploreIcon from "@mui/icons-material/Explore";
 
-import dayjs from "dayjs";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import ContactsIcon from '@mui/icons-material/Contacts';
-//import { getCountries } from "../../../../Auth/AuthAction";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Input,Select,Switch, Button, Popconfirm } from "antd";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import NextPlanIcon from '@mui/icons-material/NextPlan';
+import { Select,Switch,  Popconfirm } from "antd";
+
 import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../Components/UI/Elements";
-//import ProductBrandModal from "./ProductBrandModal"
-import { Link } from 'react-router-dom';
+
 import {
   
     getBrandDeleteProduct,
     handleProductBrandDetailsModal
 
 } from "./ProductAction"
-import { StyledPopconfirm } from "../../Components/UI/Antd";
-import { BundleLoader } from "../../Components/Placeholder";
-import { DeleteOutlined } from "@ant-design/icons";
-
-
 
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -78,6 +58,9 @@ function BrandDeletedList(props) {
    "1004",// 'Inactive', // 3
    "84",// 'Delete', // 4
    "154",// 'Submit', // 5
+ "1584", //  Are you sure to switch?
+ "80", //  Yes
+ "81" //  "No"
    
         ];
 
@@ -233,18 +216,18 @@ function handleSetCurrentPhoneId(item) {
                       <div className="flex max-sm:w-auto items-center w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row max-sm:justify-between">
                     {/* Add the Popconfirm and Switch */}
                     <Popconfirm
-                      title="Are you sure to switch?"
+                      title={translatedMenuItems[6]}
                       onConfirm={() => {
                         props.handleProductBrandDetailsModal(true);
                         handleSetCurrentPhoneId(item);
                     }}
                       //onCancel={handleCancel}
-                      okText="Yes"
-                      cancelText="No"
+                      okText={translatedMenuItems[7]}
+                      cancelText={translatedMenuItems[8]}
                     >
                       <Switch 
-                        checkedChildren="Yes"
-                        unCheckedChildren="No"
+                        checkedChildren={translatedMenuItems[7]}
+                        unCheckedChildren={translatedMenuItems[8]}
                       />
                     </Popconfirm>
                   </div> 

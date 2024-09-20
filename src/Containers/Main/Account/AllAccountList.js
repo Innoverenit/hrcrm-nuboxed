@@ -50,6 +50,9 @@ const AllAccountList = (props) => {
           "76",// 'Assigned', // 10
    
           "1338",// "Credit",//11
+          "592",          // club
+
+      
       ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -100,6 +103,10 @@ const AllAccountList = (props) => {
             <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
             {translatedMenuItems[4]}
             {/* Paymentdays % */}</div>
+            <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
+            {/* Club */}{translatedMenuItems[12]}
+          {/*Club */}
+            </div>
             <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">
             {translatedMenuItems[5]}
               {/* Tax*/}</div>
@@ -210,6 +217,12 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                           </div>
                         </div>
+                        <div className=" flex  max-sm:w-auto w-[5rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                              {item.clubName}
+
+                            </div>
+                          </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 

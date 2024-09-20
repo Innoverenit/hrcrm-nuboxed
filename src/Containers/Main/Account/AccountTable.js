@@ -68,6 +68,8 @@ function AccountTable(props) {
             "1259", // "Do you want to delete?"14
              "1079",// cancel15
              "1339",// Update Revised Price 16
+             "592",          // club
+
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -167,6 +169,10 @@ function AccountTable(props) {
             <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
             {translatedMenuItems[4]}
           {/* Paymentdays   */}
+            </div>
+            <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
+            {/* Club */} {translatedMenuItems[17]}
+          {/*Club */}
             </div>
             <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
             {translatedMenuItems[5]}
@@ -284,6 +290,12 @@ function AccountTable(props) {
                           <div className=" flex  max-sm:w-auto w-[8rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.payment}
+
+                            </div>
+                          </div>
+                          <div className=" flex  max-sm:w-auto w-[5rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                              {item.clubName}
 
                             </div>
                           </div>

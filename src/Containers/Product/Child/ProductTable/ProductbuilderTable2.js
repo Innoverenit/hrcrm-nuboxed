@@ -30,13 +30,19 @@ function ProductbuilderTable2 (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Name",//0
-          "HSN",//1
-          "Category",//2
-          "Attribute",
-          "Unit",//3
-          "Step",
-          "Description"  
+      "110",  //  "Name",//0
+       "799", //   "HSN",//1
+      "14",  //   "Category",//2
+       "259", //   "Attribute",
+       "254", //   "Unit",//4
+      "1043",  //   "Step",5
+       "147", //   "Description"  6
+      "316",  // Notes
+      "1078",  // Save
+      "179",  // Cancel
+     "170",   // "Edit"
+     "1259",   // "Do you want to delete?"
+      "84",  // "Delete"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -227,7 +233,7 @@ return (
   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
  
                         <div>
-                          <Tooltip title="Notes">
+                          <Tooltip title={translatedMenuItems[7]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-[#4bc076]"
                               onClick={() => {
@@ -246,19 +252,19 @@ return (
                       <Button 
                       type="primary"
                       onClick={() => handleSave(item)}>
-                        Save
+                       {translatedMenuItems[8]} {/* Save */}
                       </Button>
                         <Button 
                          type="primary"
                         onClick={() => handleCancelClick(item.productionBuilderId)} className="ml-[0.5rem]">
-                        Cancel
+                        {translatedMenuItems[9]}{/* Cancel */}
                       </Button>
                       </>
                       
                     ) : (
                       <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
-                        tooltipTitle="Edit"
+                        tooltipTitle={translatedMenuItems[10]}
                         iconType="edit"
                         onClick={() => handleEditClick(item.productionBuilderId)}
                       />
@@ -268,11 +274,11 @@ return (
    
     <div>
       <Popconfirm
-                          title="Do you want to delete?"
+                          title={translatedMenuItems[11]}
                           onConfirm={() => props.removeProductBuilder(item.productionBuilderId,props.particularDiscountData.productId)}
 
                           >
-                     <Tooltip title="Delete">
+                     <Tooltip title={translatedMenuItems[12]}>
                           <DeleteOutlined
                            className=" !text-icon cursor-pointer !text-[red]"
                           />

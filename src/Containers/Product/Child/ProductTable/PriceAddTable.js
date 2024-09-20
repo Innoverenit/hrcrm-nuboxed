@@ -32,13 +32,16 @@ function ProductbuilderTable(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Add Row",//0
-          "Currency",//1
-          "Price",//2
-          "VAT",
-          "Submit",//3
-             " Save",
-             "Cancel"  
+      "1370",  //  "Add Row",//0
+       "241",  //   "Currency",//1
+      "657",   //   "Price",//2
+     "306",    //   "VAT",
+     "154",    //   "Submit",//4
+      "1078",   //      " Save",
+      "1079",   //      "Cancel"  
+      "170",   // "Edit"
+      "1259",   // Do you want to delete?"
+      "84",   // "Delete"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -203,7 +206,7 @@ function ProductbuilderTable(props) {
               </div>
 
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Price (B2B)</div>
+                <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[2]}  (B2B)</div>
                 <div class="w-24"></div>
                 <Input
                  inputMode="numeric"
@@ -225,7 +228,7 @@ function ProductbuilderTable(props) {
                        {errors[`priceB2C${index}`] && <span className="text-red-500">{errors[`priceB2C${index}`]}</span>}
                       </div></div>
               <div>
-                <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[0]}
+                <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[3]}
                    {/* VAT  */}
                    (in %)</div>
                 <div class="w-24">
@@ -364,18 +367,18 @@ function ProductbuilderTable(props) {
                     ) : (
                       <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
-                        tooltipTitle="Edit"
+                        tooltipTitle= {translatedMenuItems[7]}
                         iconType="edit"
                         onClick={() => handleEditClick(item.productCurrencyId)}
                       />
                     )}
  <div>
       <StyledPopconfirm
-                          title="Do you want to delete?"
+                          title={translatedMenuItems[8]}
                           onConfirm={() => props.removeProductPrice(item.productCurrencyId)}
 
                           >
-                     <Tooltip title="Delete">
+                     <Tooltip title={translatedMenuItems[9]}>
                      <DeleteOutlined
                       style={{ color: 'red' }}
                           className="!text-icon cursor-pointer  flex justify-center items-center mt-1 ml-1"

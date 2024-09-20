@@ -43,6 +43,9 @@ class ProductActionRight extends React.Component {
          
         "85",//Add
         "294",//upload
+       "104", // Create"
+       "731", // Export Product
+       "1625", // Upload Image
         
         
       ];
@@ -63,7 +66,7 @@ class ProductActionRight extends React.Component {
 
         <div class="items-center">
         &nbsp;
-          <Tooltip placement="left" title="Create">
+          <Tooltip placement="left" title= {this.state.translatedMenuItems[2]}>
             <Button
               type="primary"
               onClick={() => handleConfigureModal(true)}
@@ -73,7 +76,7 @@ class ProductActionRight extends React.Component {
             </Button>
           </Tooltip>
  &nbsp;
-          <Tooltip title="Export Product">
+          <Tooltip title= {this.state.translatedMenuItems[3]}>
             <Button
               className="export"
               default
@@ -84,20 +87,20 @@ class ProductActionRight extends React.Component {
 
 
 
-          <Tooltip title="Upload Image">
+          <Tooltip title= {this.state.translatedMenuItems[4]}>
             <Button
               className="export"
               onClick={() => this.props.handleImageProductModal(true)}
               //default
              // href={`${base_url}/export/product?orgId=${organizationId}`}
             >
-              Upload Image
+             {this.state.translatedMenuItems[4]} {/* Upload Image */}
             </Button>
           </Tooltip>
           
 
          
-          <Tooltip placement="left" title="Create">
+          <Tooltip placement="left" title= {this.state.translatedMenuItems[2]}>
             <Button
               type="primary"
               ghost
