@@ -110,25 +110,25 @@ function LinkedContact(props) {
      
       <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className="font-bold font-poppins text-xs  md:w-[17.5rem]">{translatedMenuItems[0]}
+        <div className="font-bold font-poppins text-xs w-[16.5rem]  md:w-[12.5rem]">{translatedMenuItems[0]}
           {/* Name */}
         </div>
-        <div className="font-bold font-poppins text-xs  md:w-[16.1rem]">{translatedMenuItems[1]}
+        <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[10.1rem]">{translatedMenuItems[1]}
 {/* Email */}
         </div>
-        <div className="font-bold font-poppins text-xs  md:w-[10.1rem]">{translatedMenuItems[2]}
+        <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[7.1rem]">{translatedMenuItems[2]}
           {/* Mobile */}
         </div>
-        <div className="font-bold font-poppins text-xs  md:w-[14.2rem]">{translatedMenuItems[3]}
+        <div className="font-bold font-poppins text-xs  w-[10.2rem] md:w-[8.2rem]">{translatedMenuItems[3]}
           {/* Department */}
         </div>
-                     <div className="font-bold font-poppins text-xs  md:w-[7.2rem]">{translatedMenuItems[4]}
+                     <div className="font-bold font-poppins text-xs  w-[7.2rem] md:w-[7.2rem]">{translatedMenuItems[4]}
                       {/* Designation */}
                      </div>
                 
         
         <div className="w-[4.21rem]"></div>
-        <div className="font-bold font-poppins text-xs  md:w-[7.21rem]">{translatedMenuItems[5]}
+        <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[7.21rem]">{translatedMenuItems[5]}
 {/* Portal */}
         </div>
 

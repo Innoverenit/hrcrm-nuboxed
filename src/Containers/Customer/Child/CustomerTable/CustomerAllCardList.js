@@ -206,7 +206,7 @@ const [rowdata, setrowdata] = useState("");
          <div className=' flex justify-end sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky text-xs  z-10">
-        <div class=" flex justify-between font-poppins w-[93%]">
+        <div class=" flex justify-between font-poppins w-[96%]">
             <div className="font-poppins w-[13.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
             {translatedMenuItems[0]}
               {/* name */}
@@ -216,11 +216,11 @@ const [rowdata, setrowdata] = useState("");
                 {/* defaultMessage="Work" */}
             
             </div>
-            <div className="font-poppins w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
+            <div className="font-poppins w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
             {translatedMenuItems[2]}     
                 {/* defaultMessage="Sector" */}
             </div>
-            <div className="font-poppins w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className="font-poppins w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             {translatedMenuItems[3]}      
                 {/* defaultMessage="Source" */}
            
@@ -330,7 +330,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                                     </div> 
-                                    <div className=" flex  max-sm:w-auto  items-center  w-[5.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                    <div className=" flex  max-sm:w-auto  items-center  w-[8.24rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
                            
                                    
                                     <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
