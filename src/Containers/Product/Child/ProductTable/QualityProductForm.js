@@ -108,7 +108,7 @@ useEffect(() => {
       const fetchMenuTranslations = async () => {
         try {
           const itemsToTranslate = [
-       "",   //  "Serial Nos",
+       "1624",   //  "Serial Nos",
        "1043",   //  "Step",
        "154",   //   "Submit"
        "1078",  //  Save

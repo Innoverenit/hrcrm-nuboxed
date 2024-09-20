@@ -41,8 +41,8 @@ const ProductCellCard = (props) => {
         try {
           const itemsToTranslate = [
         "744",  //  "Cell",//0
-         "", //   "Tag Production",//1
-         "", //   "Target Units/day",//2
+         "1622", //   "Tag Production",//1
+         "1623", //   "Target Units/day",//2
           "154",//   "Submit"
           ];
   

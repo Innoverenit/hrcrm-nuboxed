@@ -45,7 +45,7 @@ class ProductActionRight extends React.Component {
         "294",//upload
        "104", // Create"
        "731", // Export Product
-       "", // Upload Image
+       "1625", // Upload Image
         
         
       ];

@@ -74,12 +74,12 @@ class Productform extends Component {
         "265",//model 12
         "147",//Description 13
         "1246",//Update 14
-       "", // Article No
-       "", // Start typing...
-       "", // Start typing to search or create...
-        "",// subCategoryName
-       "", // "attributeName"
-       "", // subAttributeName"
+       "1613", // Article No
+       "1614", // Start typing...
+       "1615", // Start typing to search or create...
+        "1616",// subCategoryName
+       "1617", // "attributeName"
+       "1618", // subAttributeName"
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
