@@ -17,8 +17,8 @@ import { Link } from 'react-router-dom';
 import { Tooltip } from 'antd';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import AccountSearchedData from './AccountSearchedData';
-import AddAccountAdressModal from './AddAccountAdressModal';
+const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
+const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
 const AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 
@@ -79,9 +79,11 @@ const AllAccountList = (props) => {
   return (
     <>
      {props.distributorSearch.length > 0 ? (
+          <Suspense fallback={<BundleLoader />}>
     <AccountSearchedData
     distributorSearch={props.distributorSearch}
     />
+    </Suspense>
   ) : (
       <div className=' flex  sticky z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">

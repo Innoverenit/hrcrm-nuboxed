@@ -3105,42 +3105,42 @@ export const handleCustomerImportModal = (modalProps) => (dispatch) => {
 
 
 
-// export const deleteCustomer = (data, customerId, userId) => (
-//   dispatch
-// ) => {
-//   dispatch({
-//     type: types.DELETE_CUSTOMER_REQUEST,
-//   });
-//   axios
-//     .put(`${base_url2}/customer/deleteCustomer/${customerId}`, data,
-//       {
-//         headers: {
-//           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-//         },
-//       })
-//     .then((res) => {
-//       console.log(res);
-//       dispatch(getRecords(userId));
-//       dispatch({
-//         type: types.DELETE_CUSTOMER_SUCCESS,
-//         payload: res.data,
-//       });
-//       Swal.fire({
-//         icon: 'success',
-//         title: 'Deleted Successfully',
-//         showConfirmButton: false,
-//         timer: 1500,
+export const deleteCustomer = (data, customerId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.DELETE_CUSTOMER_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/customer/deleteCustomer/${customerId}`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+     
+      dispatch({
+        type: types.DELETE_CUSTOMER_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
 
-//       })
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       dispatch({
-//         type: types.DELETE_CUSTOMER_FAILURE,
-//         payload: err,
-//       });
-//     });
-// };
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_CUSTOMER_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 
 // export const deletetCustomerData = (id) => (dispatch, getState) => {
