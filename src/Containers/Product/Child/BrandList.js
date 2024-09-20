@@ -1,16 +1,16 @@
-import React, { useEffect, useState, lazy,Suspense } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import { Formik, Form, FastField, Field, FieldArray } from "formik";
+import { Formik, Form, FastField, } from "formik";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import {  Input,Select, Button } from "antd";
 import {
   MultiAvatar,
-  MultiAvatar2,
+ 
 } from "../../../Components/UI/Elements";
 import ProductBrandModal from "./ProductBrandModal"
 import {addProductBrand,getBrandProduct,
@@ -64,6 +64,10 @@ function BrandList(props) {
    "1004",// 'Inactive', // 3
    "84",// 'Delete', // 4
    "154",// 'Submit', // 5
+   "170",//Edit14
+   "1078", // Save15
+   "1079",// Cancel16
+  "1259", // Do you want to delete?"17
    
         ];
 
@@ -372,7 +376,7 @@ const handleSave = (item) => {
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <StyledPopconfirm
-            title="Do you want to delete?"
+            title= {translatedMenuItems[9]}
             onConfirm={() => props.deleteProductBrandData({active:false},item.brand)}
           >
            
@@ -394,20 +398,20 @@ const handleSave = (item) => {
                     //   loading={props.updatingOrdrSuplrItems}
                     onClick={() => handleSave(item)}
                       >
-                        Save
+                        {translatedMenuItems[7]} {/* Save */}
                       </Button>
                         <Button 
                          type="primary"
                         onClick={() => handleCancelClick(item.brand)} className="ml-[0.5rem]"
                         >
-                        Cancel
+                        {translatedMenuItems[8]} {/* Cancel */}
                       </Button>
                       </>
                       
                     ) : (
                       <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
-                        tooltipTitle="Edit"
+                        tooltipTitle= {translatedMenuItems[6]}
                         iconType="edit"
                         onClick={() => handleEditClick(item.brand,item.brandName)}
                       />

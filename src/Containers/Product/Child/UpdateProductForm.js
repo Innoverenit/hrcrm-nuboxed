@@ -74,6 +74,12 @@ class Productform extends Component {
         "265",//model 12
         "147",//Description 13
         "1246",//Update 14
+       "", // Article No
+       "", // Start typing...
+       "", // Start typing to search or create...
+        "",// subCategoryName
+       "", // "attributeName"
+       "", // subAttributeName"
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -186,7 +192,7 @@ class Productform extends Component {
                         <Field
                    name="articleNo"
                   //  label="Article #"
-                   placeholder="Article No"
+                   placeholder= {this.state.translatedMenuItems[15]}
                    width={"100%"}
                    isColumn
                    inlineLabel
@@ -220,7 +226,7 @@ class Productform extends Component {
                     isRequired
                     name="categoryName"
                     // label="Category"
-                    placeholder="Start typing..."
+                    placeholder={this.state.translatedMenuItems[16]}
                     optionLabel="categoryName"
                     optionValue="categoryName"
                     url={`${base_url2}/product/category`}
@@ -241,9 +247,9 @@ class Productform extends Component {
                     }}
                     name="subCategoryName"
                     // label="Sub Category"
-                    placeholder="Start typing to search or create..."
-                    optionLabel="subCategoryName"
-                    optionValue="subCategoryName"
+                    placeholder={this.state.translatedMenuItems[17]}
+                    optionLabel={this.state.translatedMenuItems[18]}
+                    optionValue={this.state.translatedMenuItems[18]}
                     url={`${base_url2}/product/subcategory`}
                     component={LazySelect}
                     isColumn
@@ -265,9 +271,9 @@ class Productform extends Component {
                         }}
                         name="attributeName"
                         // label="Attribute"
-                        placeholder="Start typing to search or create..."
-                        optionLabel="attributeName"
-                        optionValue="attributeName"
+                        placeholder={this.state.translatedMenuItems[17]}
+                        optionLabel={this.state.translatedMenuItems[19]}
+                        optionValue={this.state.translatedMenuItems[19]}
                         url={`${base_url2}/product/attribute`}
                         component={LazySelect}
                         isColumn
@@ -285,9 +291,9 @@ class Productform extends Component {
                         }}
                         name="subAttributeName"
                         // label="Sub Attribute"
-                        placeholder="Start typing to search or create..."
-                        optionLabel="subAttributeName"
-                        optionValue="subAttributeName"
+                        placeholder={this.state.translatedMenuItems[17]}
+                        optionLabel={this.state.translatedMenuItems[20]}
+                        optionValue={this.state.translatedMenuItems[20]}
                         url={`${base_url2}/product/subattribute`}
                         component={LazySelect}
                         isColumn
@@ -296,69 +302,7 @@ class Productform extends Component {
                       />
                     </div>
                   </div>
-                  {/* <div class="flex justify-between mt-4">
-                  <div class="w-[47%]">
-                    <Field
-                      label="Workflow"
-                      name="workflowId"
-                      placeholder="Value"
-                      component={SelectComponent}
-                      options={Array.isArray(workFlowOption) ? workFlowOption : []}
-                      inlineLabel
-                      width={"100%"}
-                      isColumn
-                    />
-                  </div>
-                  <div class="w-[47%]">
-                    <Field
-                      label="Stage"
-                      name="stage"
-                      placeholder="Value"
-                      component={InputComponent}
-                      // options={Array.isArray(workFlowOption) ? workFlowOption : []}
-
-                      inlineLabel
-                      width={"100%"}
-                      isColumn
-                    />
-                  </div>
-</div> */}
-                  {/* <div class="flex justify-between mt-4">
-                 <div class="w-[30%]">
-                    <Field
-                        name="expireDays"
-                        label="Expiry"
-                        width={"100%"}
-                        component={InputComponent}
-                        isColumn
-                        inlineLabel
-                        style={{ flexBasis: "30%" }}
-                      />
-                    </div>
-                    <div class=" mt-3" />
-                 <div class="w-[30%]">
-                    <Field
-                        name="bestBefore"
-                        label="Best Before"
-                        width={"100%"}
-                        component={InputComponent}
-                        isColumn
-                        inlineLabel
-                        style={{ flexBasis: "30%" }}
-                      />
-                    </div>
-                    <div class="w-[30%]">
-                    <Field
-                        name="alert"
-                        label="Alert(in days)"
-                        width={"100%"}
-                        component={InputComponent}
-                        isColumn
-                        inlineLabel
-                        style={{ flexBasis: "30%" }}
-                      />
-                    </div>
-                  </div> */}
+                
 <div class="flex justify-between">
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">

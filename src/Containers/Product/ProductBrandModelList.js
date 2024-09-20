@@ -19,6 +19,41 @@ const ProductBrandModelList = (props) => {
     
     const [newModelName, setModelName] = useState('');
     const [newBrandModelName, setBrandModelName] = useState('');
+
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+     
+            
+              "110",//Search by Name
+             "264",//Brand
+              "265",// Model
+               
+                "1078", // Save
+                "1079",// Cancel
+               "1612", // Add More
+             "100", //  New
+               "1611", // Updated on
+             "1335", //  by
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+
+
     useEffect(() => {
         props.getBrandModel(props.orgId); 
         // props.getShipByCount(props.orgId) 
@@ -117,7 +152,7 @@ const ProductBrandModelList = (props) => {
        <div class="flex flex-row justify-between">
              <div class=" flex w-[18vw]" >
             <Input
-         placeholder="Search by Name"
+         placeholder={translatedMenuItems[0]}
         style={{width:"100%",marginLeft:"0.5rem"}}
             // suffix={suffix}
             onPressEnter={handleSearch}  
@@ -131,12 +166,12 @@ const ProductBrandModelList = (props) => {
                         <input 
                         style={{border:"2px solid black"}}
                             type="text" 
-                            placeholder="brand"
+                            placeholder={translatedMenuItems[1]}
                             value={newBrandModelName} 
                             onChange={(e) => setBrandModelName(e.target.value)} 
                         />
                           <input 
-                            placeholder="model"
+                            placeholder={translatedMenuItems[2]}
                         style={{border:"2px solid black"}}
                             type="text" 
                             value={newModelName} 
@@ -144,12 +179,12 @@ const ProductBrandModelList = (props) => {
                         />
                         <button 
                            loading={props.addingItemTask}
-                        onClick={handleBrandModel}>Save</button>
-                        <button onClick={handleCancelAdd}>Cancel</button>
+                        onClick={handleBrandModel}>{translatedMenuItems[3]}</button>
+                        <button onClick={handleCancelAdd}>{translatedMenuItems[4]}</button>
                     </div>
                 ) : (
                     <button  style={{backgroundColor:"tomato",color:"white"}}
-                    onClick={handleAddBrandModel}> Add More</button>
+                    onClick={handleAddBrandModel}> {translatedMenuItems[5]}</button>
                 )}
             </div>
             </div>
@@ -186,7 +221,7 @@ const ProductBrandModelList = (props) => {
                   <div style={{width:"39rem"}}>{region.model}&nbsp;&nbsp;&nbsp;
                   {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >
-                                          New
+                                         {translatedMenuItems[6]} {/* New */}
                                         </span> : null}</div>
               )}
   
@@ -228,7 +263,7 @@ const ProductBrandModelList = (props) => {
             </div>
    
         </div>
-         <div class=" font-bold">Updated on {dayjs(props.brandModel && props.brandModel.length && props.brandModel[0].updationDate).format('YYYY-MM-DD')} by {props.brandModel && props.brandModel.length && props.brandModel[0].updatedBy}</div>
+         <div class=" font-bold">{translatedMenuItems[7]}{dayjs(props.brandModel && props.brandModel.length && props.brandModel[0].updationDate).format('YYYY-MM-DD')} {translatedMenuItems[8]} {props.brandModel && props.brandModel.length && props.brandModel[0].updatedBy}</div>
     </>
          );
   };

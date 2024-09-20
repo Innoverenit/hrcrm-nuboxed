@@ -40,10 +40,10 @@ const ProductCellCard = (props) => {
       const fetchMenuTranslations = async () => {
         try {
           const itemsToTranslate = [
-           "Cell",//0
-            "Tag Production",//1
-            "Target Units/day",//2
-            "Submit"
+        "744",  //  "Cell",//0
+         "", //   "Tag Production",//1
+         "", //   "Target Units/day",//2
+          "154",//   "Submit"
           ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
