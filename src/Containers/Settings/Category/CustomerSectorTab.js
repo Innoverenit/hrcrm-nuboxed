@@ -65,7 +65,7 @@ class CustomerSectorTab extends Component {
               case "5":
                 return    <Payment />       ;
                 case "6":
-                  return    <LOB />      ;
+                  return       <LOB />      ;
       default:
         return null;
     }
@@ -188,7 +188,6 @@ class CustomerSectorTab extends Component {
                     <Vat />
                   </Suspense>
                 </TabPane>
-
                 <TabPane
                   tab={
                     <>
@@ -211,7 +210,6 @@ class CustomerSectorTab extends Component {
                     <Payment />
                   </Suspense> */}
                 </TabPane>
-                
                 <TabPane
                   tab={
                     <>
