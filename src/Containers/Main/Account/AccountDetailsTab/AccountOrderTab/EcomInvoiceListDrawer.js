@@ -6,7 +6,7 @@ import { StyledDrawer } from "../../../../../Components/UI/Antd";
 
 const ProcureInvoiceList =lazy(()=> import("./ProcureInvoiceList"));
 
-const ProcureInvoiceListDrawer = (props) => {
+const EcomInvoiceListDrawer = (props) => {
     const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "70%";
     return (
@@ -24,7 +24,7 @@ const ProcureInvoiceListDrawer = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
          
-               <ProcureInvoiceList  orderPhoneId={props.particularRowData.orderPhoneId}
+               <ProcureInvoiceList  orderPhoneId={props.particularRowData.orderId}
                translatedMenuItems={props.translatedMenuItems}
                />                  
                 </Suspense>
@@ -41,4 +41,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(ProcureInvoiceListDrawer);
+export default connect(mapStateToProps, mapDispatchToProps)(EcomInvoiceListDrawer);

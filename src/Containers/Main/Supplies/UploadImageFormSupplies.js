@@ -5,7 +5,7 @@ import { base_url, base_url2 } from '../../../Config/Auth';
 //import 'antd/dist/antd.css';
 const token = sessionStorage.getItem("token");
 
-const AntdFileUpload = () => {
+const UploadImageFormSupplies = () => {
   const [fileList, setFileList] = useState([]);
 
   // Handle file upload event and update fileList
@@ -46,7 +46,7 @@ const AntdFileUpload = () => {
     // Make an API call to httpbin.org
     message.info('Uploading files...');
     try {
-      const response = await fetch(`${base_url2}/image/multipleFile/product`, {
+      const response = await fetch(`${base_url2}/image/multipleFile/material`, {
         method: 'POST',
         body: formData,
         headers: {
@@ -103,7 +103,7 @@ const AntdFileUpload = () => {
   );
 };
 
-export default AntdFileUpload;
+export default UploadImageFormSupplies;
 
 
 

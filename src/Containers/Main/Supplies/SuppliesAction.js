@@ -1417,3 +1417,9 @@ export const updateBrandMaterial = (data, suppliesBrandId, cb) => (dispatch) => 
     });
 };
 
+export const handleImageSuppliesModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_IMAGE_SUPPLIES_MODAL,
+    payload: modalProps,
+  });
+};
