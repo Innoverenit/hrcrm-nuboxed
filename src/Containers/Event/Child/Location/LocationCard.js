@@ -64,12 +64,12 @@ const LocationCard = (props) => {
         "1013",  // "Retail",//8
         "24" , // "Region"//9
        "1017", // "Shift"
-       "", // Customer-Virtual Location
+       "1627", // Customer-Virtual Location
        "744", // "Cell"
        "170", // "Edit"
        "1259", // "Do you want to delete?"
        "84",// "Delete"
-     "" //  "No address available"
+     "1626" //  "No address available"
          
         ];
 

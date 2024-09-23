@@ -33,14 +33,14 @@ const UsersCellCard = (props) => {
       try {
         const itemsToTranslate = [
        
-        "",  //Cell Code,//0
-         "", // Select a cell",//1
+        "1631",  //Cell Code,//0
+         "1630", // Select a cell",//1
          "326", // Department,//2
          "1590", // "Select a department",//3
          "1507",//  User 
-          "",//  "Select a user"
+          "1633",//  "Select a user"
           "154",//  Submit
-          "",//  Machine
+          "1628",//  Machine
           "1259",//  Do you want to delete?
          
        

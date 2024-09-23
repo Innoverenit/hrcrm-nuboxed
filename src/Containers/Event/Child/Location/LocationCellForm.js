@@ -26,18 +26,18 @@ const LocationCellForm = (props) => {
       try {
         const itemsToTranslate = [
        
-        "",  //Cell Code,//0
+        "1631",  //Cell Code,//0
          "744", //  cell",//1
          "326", // Department,//2
          "1590", // "Select a department",//3
          "1507",//  User 4
-          "",//  "Select a user"5
+          "1633",//  "Select a user"5
           "154",//  Submit6
-          "",//  Machine7
+          "1628",//  Machine7
           "1259",//  Do you want to delete?8
           "147",// "Description"9
-          "", // Add Multiple10
-          "",// Add Single11
+          "1634", // Add Multiple10
+          "1635",// Add Single11
          
        
         ];

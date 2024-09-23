@@ -19,7 +19,7 @@ const ReinstateCellTable = (props) => {
       try {
         const itemsToTranslate = [
        
-        "",  //Cell Code,//0
+        "1631",  //Cell Code,//0
          "744", // Cell,//1
          "147", // Description,//2
          "1069", // Reinstate,//3

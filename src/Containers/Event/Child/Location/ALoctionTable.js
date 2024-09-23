@@ -28,10 +28,10 @@ function ALoctionTable(props) {
             
            "110",  // name3
            "1017",   //  Shift4
-           "",  //  Effective5
+           "1639",  //  Effective5
            "1078", //  Save6
            "1079",//  Cancel7
-           "",//  "Sure to cancel?8
+           "1639",//  "Sure to cancel?8
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

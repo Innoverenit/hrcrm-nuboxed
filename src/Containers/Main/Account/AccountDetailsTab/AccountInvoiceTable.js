@@ -186,12 +186,6 @@ function AccountInvoiceTable(props) {
     const [price, setPrice] = useState(particularRowData.invoiceId)
     const handleChange = (val) => {
           setPrice(val)
-        // if (!isNaN(val) && val > 0 && val < 101) {
-        //   setPrice(val);
-        // } else {
-        //   setPrice(''); // Reset the input if the value is not valid
-        // }
-    
     }
     const handleSubmitPrice = () => {
         props.upadtePayment(
@@ -345,7 +339,7 @@ function AccountInvoiceTable(props) {
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:">
-                                                    <div className=" flex  justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins  font-bold flex items-center">
                                                           
                                                            <span
@@ -386,14 +380,6 @@ function AccountInvoiceTable(props) {
                                                     {item.remainingTotalValue} 
 
                           </div>
-                                                    {/* <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                      
-                            <PaidUnpaidAccountInvoiceToggle procureOrderInvoiceId={item.procureOrderInvoiceId} paymentInd={item.paymentInd}/>
-                          </div>
-                                                   
-                                                    </div> */}
                                                        <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {item.distributorCreditInd && (
@@ -408,9 +394,7 @@ function AccountInvoiceTable(props) {
                                                             </Tooltip>)}
                                                       
                           
-                          </div>       
-
-                                                                    
+                          </div>                  
                                                    
                                                     </div>
                                                     </div>
@@ -424,10 +408,7 @@ function AccountInvoiceTable(props) {
                                                                     }}
                                                                 > {translatedMenuItems[10]}</Button>
                                                             </Tooltip>
-                                                      
-                          
-                          </div>       
-                                   
+                                                          </div>      
                                                      <div className=" flex  items-center  w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="   ">
                                                         <Tooltip title="">

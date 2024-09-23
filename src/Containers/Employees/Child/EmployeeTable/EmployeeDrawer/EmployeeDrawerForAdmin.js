@@ -39,7 +39,7 @@ class EmployeeDrawerForAdmin extends Component {
     try {
       const itemsToTranslate = [
         "1024",//0   Functions
-        "",//1 Custom Function
+        "1643",//1 Custom Function
         "1078",//2Save"
         "1079",//3 Cancel"
         
