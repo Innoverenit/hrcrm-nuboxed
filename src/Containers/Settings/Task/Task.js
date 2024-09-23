@@ -22,7 +22,6 @@ import {
 } from "./TaskAction";
 import TaskConnetToggle from "./TaskConnetToggle";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { MainWrapper } from "../../../Components/UI/Layout";
 
 const Task = (props) => {
   const [currentData, setCurrentData] = useState("");
@@ -160,11 +159,13 @@ return <div><BundleLoader/></div>;
               )}
           </div>
           </div>
-          <div class=" flex flex-col" >
+          <div class=" flex flex-col w-wk" >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
+         <div className="!h-[69vh] !mt-2 rounded  shadow-[0em 0.25em 0.625em -0.125em] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto" >
+
+          
           {!props.fetchingTasks && tasks.length === 0 ? <NodataFoundPage /> : tasks.slice().sort((a, b) => a.taskType.localeCompare(b.taskType)).map((region, index) => (
-            <div className="flex rounded ml-1 w-7rem font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.taskTypeId}>
+            <div className="flex rounded ml-1  font-bold shadow shadow-gray-300 shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.taskTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.taskTypeId ? (
@@ -194,7 +195,7 @@ return <div><BundleLoader/></div>;
                     </div>
                     </div>
             {/* Action buttons */}
-            <div>
+            <div className="flex justify-end w-12">
                 {/* Edit button */}
                 {editingId === region.taskTypeId ? (
                     <div>
@@ -222,7 +223,7 @@ return <div><BundleLoader/></div>;
             </div>
         </div>
         ))}
-        </MainWrapper>
+        </div>
             </div>
   <div class=" font-bold">Updated on {dayjs(props.tasks && props.tasks.length && props.tasks[0].updationDate).format('YYYY-MM-DD')} by {props.tasks && props.tasks.length && props.tasks[0].name}</div>
       </div>
