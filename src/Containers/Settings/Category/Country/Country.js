@@ -58,8 +58,8 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
   return (
     <>
    <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw] mt-3"  >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mt-7px mr-2"  >
     <Input
             placeholder="Search by country"
             style={{ width: "100%", marginLeft: "0.5rem" }}
@@ -67,7 +67,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
             onChange={handleChangeDes}
           />
           </div>
-          <div className="flex w-[18rem]">
+          <div className="flex w-[4rem]">
           <Button 
             type="primary"
             onClick={handleSelectDeselect}
@@ -75,7 +75,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
             {selected ? "Clear All" : "Select All"}
           </Button>
         </div>
-        <div className="ml-4 w-[7rem]">
+        <div className="ml-4 w-[3rem]">
          
             <a href={`${base_url}/excel/export/country/All`}>
             <div className="circle-icon !text-base cursor-pointer text-[green]">

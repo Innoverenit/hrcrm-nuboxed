@@ -227,7 +227,7 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
+    <div class=" flex flex-row justify-end items-center">
  
             <div className="add-region">
               {addingRegion ? (

@@ -63,8 +63,8 @@ const Currency = ({ fetchingCurrencyList, currencyList, getCurrencyList, getCurr
   return (
     <>
    <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mr-2 mt-7px"  >
     <Input
             placeholder="Search by Currency"
             style={{ width: "100%", marginLeft: "0.5rem" }}
@@ -72,7 +72,7 @@ const Currency = ({ fetchingCurrencyList, currencyList, getCurrencyList, getCurr
             onChange={handleChangeDes}
           />
           </div>
-          <div className="flex w-[18rem]">
+          <div className="flex w-[4rem]">
           <Button 
             type="primary"
             onClick={handleSelectDeselect}
@@ -80,7 +80,7 @@ const Currency = ({ fetchingCurrencyList, currencyList, getCurrencyList, getCurr
             {selected ? "Clear All" : "Select All"}
           </Button>
         </div>
-        <div className="ml-4 w-[7rem]">
+        <div className="ml-4 w-[3rem]">
          
           <a href={`${base_url}/excel/export/currency/All`}>
           <div className="circle-icon !text-base cursor-pointer text-[green]">
