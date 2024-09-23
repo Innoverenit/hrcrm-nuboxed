@@ -1656,7 +1656,7 @@ const onCheckAllDownloadChange = (e) => {
         <TabsWrapper
           style={{ height: "146rem", width: "-webkit-fill-available" }}
         >
-          {props.departmentData.hrInd === true ? (
+          {/* {props.departmentData.hrInd === true ? ( */}
             <div class="flex flex-col">
               <div class="text-clr flex justify-center text-base font-bold  mt-6">
                 General & Self Service
@@ -1938,7 +1938,7 @@ const onCheckAllDownloadChange = (e) => {
                 </div>
               </div>
             </div>
-          ) : null}
+          {/* ) : null} */}
 
           {props.departmentData.hrInd === true ? (
             <div class="flex flex-col">

@@ -287,17 +287,6 @@ function InvesterForm(props) {
             assignedTo: selectedOption ? selectedOption.employeeId:userId,
             department: "",
             firstMeetingDate: endDate || null,
-            address: [
-              {
-                address1: "",
-                address2: "",
-                street: "",
-                city: "",
-                state: "",
-                postalCode: "",
-                country: props.user.countryName,
-              },
-            ],
             category: whiteblue ? "White" : "Blue" || "Both",
           }}
           validationSchema={InvestorSchema}
@@ -732,24 +721,9 @@ function InvesterForm(props) {
                      : ( null)}
                   </div>
                  
-                  <div class="mt-3 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
-                      <div>
-                      <div class="text-white font-medium m-[0.2rem_0_0.4rem_0.2rem] text-xs flex" >Corporate Address</div>
-                  </div>
-                    </div>
+                
                  
-                  <div class="mt-3">
-                  <FieldArray
-                    name="address"
-                    label="Address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  />
-              </div>
+                 
               <div class="mt-3">
                     <div>
                  <span class="font-bold font-poppins text-xs ">{translatedMenuItems[10]} </span> 

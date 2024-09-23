@@ -51,6 +51,7 @@ function UpdateInvestorForm (props) {
            "188",// "City",13
               "314",// "State",//14
               "1109",// "Country",//15
+              "1246",//Update
         
         ];
 
@@ -564,7 +565,7 @@ function UpdateInvestorForm (props) {
                   htmlType="submit"
                   Loading={updateInvestorById}
                 >
-                  {translatedMenuItems[1246]}
+                  {translatedMenuItems[16]}
                   {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
                   {/* Update */}
                 </Button>

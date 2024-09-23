@@ -80,7 +80,7 @@ function Recruitment(props) {
     //   component: <LeadsTab />,
     // },
     {
-      rulesName: "",
+      rulesName: "Skills & Certification",
       ruleId: "9",
       component: <SkillsTab/>,
     },
