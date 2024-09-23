@@ -24,9 +24,9 @@ const UserMachineCrd = (props) => {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-          "",//  Machine
-        "",  //>Machine  Code,//1
-         "", // Select a cell",//2
+          "1628",//  Machine
+        "1629",  //>Machine  Code,//1
+         "1630", // Select a cell",//2
          "1", //  Select     
           "154",//  Submit     
      

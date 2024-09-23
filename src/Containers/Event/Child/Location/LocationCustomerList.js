@@ -39,7 +39,7 @@ function LocationCustomerList(props) {
          "378", // " Work",//3
         "700",  // "Website",//4
         "71",  // " Type",//5
-         "", // "Invoice Address",//6
+         "1636", // "Invoice Address",//6
        "879",   // " Pin Code",//7
         "85",  // "Add"",//8
         "110",  // name9

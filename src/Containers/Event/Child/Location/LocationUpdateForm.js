@@ -74,7 +74,7 @@ fetchMenuTranslations = async () => {
      "326",  // Department11
      "1507",// User12
      "95", // Time Zone12
-     "", // Select Time Zone13
+     "1637", // Select Time Zone13
      "1246", // Update14
 
     ];
