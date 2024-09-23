@@ -14,6 +14,8 @@ getOrderCancelList
 } from "../../DashboardAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import CustomerPieChart from "./CustomerPieChart"
+import axios from 'axios';
+import {base_url2} from "../../../../Config/Auth";
 
 function DashInvPayProcureJumstartbox(props) {
 
@@ -22,6 +24,24 @@ function DashInvPayProcureJumstartbox(props) {
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
+  const [error, setError] = useState(null);
+
+  const [proInvoiceSent,setproInvoiceSent]=useState("");
+
+  const fetchProInvoiceCount = async () => {
+    try {
+      const response = await axios.get(`${base_url2}/invoice/invoiceCount/${props.userId}/${props.timeRangeType}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setproInvoiceSent(response.data);
+      setLoading(false);
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -47,6 +67,8 @@ function DashInvPayProcureJumstartbox(props) {
   
   useEffect(() => {
     // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+    fetchProInvoiceCount();
+
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 
@@ -95,10 +117,7 @@ function DashInvPayProcureJumstartbox(props) {
     }
   };
 
-  
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  } 
+
 
   return (
     <>
@@ -119,7 +138,7 @@ function DashInvPayProcureJumstartbox(props) {
               title= {translatedMenuItems[0]}
               jumpstartClick={()=> handleClick("Invoice Sent")}
               cursorData={"pointer"}
-              value={"0"}
+              value={proInvoiceSent.invoiceSentCount}
             // isLoading={props.fetchingorderDetails}
             />
                          </div>

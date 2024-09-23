@@ -28,7 +28,7 @@ function DashRepairOrdRightJumstartbox (props) {
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
-
+  const[dashRepairCount, setdashRepairCount] = useState("");
   const [error, setError] = useState(null);
 
   const [OrderPacked, setOrderPacked] = useState({});
@@ -85,6 +85,20 @@ function DashRepairOrdRightJumstartbox (props) {
           }
         };
 
+        const fetchDasRepairCount = async () => {
+          try {
+            const response = await axios.get(`${base_url2}/dashboard/approveCount/${props.userId}/${props.timeRangeType}`,{
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            });
+            setdashRepairCount(response.data);
+            setLoading(false);
+          } catch (error) {
+            setError(error);
+            setLoading(false);
+          }
+        };
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -113,6 +127,7 @@ function DashRepairOrdRightJumstartbox (props) {
     props.getJumpOrderDetail(props.timeRangeType, "Catalog")
     fetchOrderPacked();
     fetchOrderDispatched();
+fetchDasRepairCount();
 
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
@@ -188,7 +203,7 @@ function DashRepairOrdRightJumstartbox (props) {
             // title="Order Packed"
               jumpstartClick={()=> handleClick("Packed")}
               cursorData={"pointer"}
-              value={props.orderinDashboard.totalOrder}
+              value={dashRepairCount.orderPackedCount}
             isLoading={props.fetchingorderDetails}
             />
                          </div>
@@ -209,7 +224,7 @@ function DashRepairOrdRightJumstartbox (props) {
               // title="Estimate Submitted"
             jumpstartClick={()=> handleClick("Dispatched")}
               cursorData={"pointer"}
-            // value={ props.orderinDashboard.pendingOrder}
+              value={dashRepairCount.orderDispatchedCount}
             isLoading={props.fetchingorderDetails}
             />
                            </div>
@@ -231,7 +246,7 @@ function DashRepairOrdRightJumstartbox (props) {
           // title="Feedback"
               jumpstartClick={()=> handleClick("Feedback")}
               cursorData={"pointer"}
-            // value={props.orderinDashboard.completeOrder}
+            //    value={dashRepairCount.orderPackedCount}
             isLoading={props.fetchingorderDetails}
             />
                            </div>

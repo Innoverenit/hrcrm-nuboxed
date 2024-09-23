@@ -4,8 +4,10 @@ import { bindActionCreators } from "redux";
 import { MainWrapper } from "../../Components/UI/Layout";
 import Piechart1 from "../../Components/Charts/PieChart1";
 import { BundleLoader } from "../../Components/Placeholder";
-import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,getOpenQuotationThisYear,getRegionRecords,getMultiOrgRegionRecords} from "./DashboardAction";
-
+import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,
+  getOpenQuotationThisYear,getRegionRecords,getMultiOrgRegionRecords} from "./DashboardAction";
+import axios from 'axios';
+import {base_url2} from "../../Config/Auth";
 
 const CustomerGoogleMap=lazy(()=>import("./Child/Chart/CustomerGoogleMap"));
 const CustomerViewGoogleMap=lazy(()=>import("./CustomerViewGoogleMap"));
@@ -77,6 +79,9 @@ class Dashboard extends Component {
       selectedCountry: "",
       setInfoWindowPosition:null,
       showShareForm: false,
+      dashRepairCount: "",
+      error: null,
+      loading: true,
     };
     this.toggleShareForm = this.toggleShareForm.bind(this);
   }
@@ -162,6 +167,25 @@ class Dashboard extends Component {
     });
   };
 
+  
+  // componentDidMount() {
+  //   fetchDasRepairCount = async () => {
+  //     try {
+  //       const response = await axios.get(`${base_url2}/dashboard/approveCount/${this.props.userId}/${this.props.timeRangeType}`, {
+  //         headers: {
+  //           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+  //         },
+  //       });
+  //       this.setState({ dashRepairCount: response.data, loading: false });
+  //     } catch (error) {
+  //       this.setState({ error: error, loading: false });
+  //     }
+  //   };
+
+  //   this.fetchDasRepairCount();
+  // }
+
+  
   render() {
     const { activeTab, loading, tab } = this.state;
     console.log(this.props.prospectLifeTime)
@@ -677,7 +701,7 @@ class Dashboard extends Component {
      {viewType==="ME" && this.state.activeButton === "Finance" &&
              (<DashRepairOrdRightJumstartbox
               selectedLanguage={this.props.selectedLanguage}
-              translateText={this.props.translateText}
+              translateText={this.props.translateText} 
              />)}
 
                 <div class=" flex flex-col justify-between" >
@@ -718,8 +742,8 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   prospectQuotation:dashboard.prospectQuotation,
   openQuotationYear:dashboard.openQuotationYear,
   fetchingProspectQuotation:dashboard.fetchingProspectQuotation,
-  fetchingOpenQuotationYear:dashboard.fetchingOpenQuotationYear
-
+  fetchingOpenQuotationYear:dashboard.fetchingOpenQuotationYear,
+  timeRangeType: dashboard.timeRangeType,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   setDashboardViewType,

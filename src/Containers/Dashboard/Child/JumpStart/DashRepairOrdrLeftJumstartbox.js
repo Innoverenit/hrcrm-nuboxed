@@ -28,6 +28,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
   const [error, setError] = useState(null);
+  const[dashRepairCount, setdashRepairCount] = useState("");
 
   const [OrderInward, setOrderInward] = useState({});
   const [loading1, setLoading1] = useState(false);
@@ -82,6 +83,20 @@ function DashRepairOrdrLeftJumstartbox(props) {
       }
     };
 
+    const fetchDasRepairCount = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/dashboard/approveCount/${props.userId}/${props.timeRangeType}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setdashRepairCount(response.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -110,7 +125,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
 
   useEffect(() => {
     props.getJumpOrderDetail(props.timeRangeType, "Catalog")
-
+    fetchDasRepairCount()
     fetchQcApproved();
     fetchOrderInward();
     fetchRepairApproved();
@@ -167,9 +182,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
   };
 
   
-  if (loading) {
-    return <div><BundleLoader/></div>;
-  } 
+
 
   return (
     <>
@@ -192,7 +205,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
             // title="Order Inward"
               jumpstartClick={()=> handleClick("Inward")}
               cursorData={"pointer"}
-              value={props.orderinDashboard.totalOrder}
+              value={dashRepairCount.inwardCount}
             isLoading={props.fetchingorderDetails}
             />
                          </div>
@@ -213,7 +226,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
               // title="Estimate Submitted"
             jumpstartClick={()=> handleClick("Submitted")}
               cursorData={"pointer"}
-            // value={ props.orderinDashboard.pendingOrder}
+              // value={dashRepairCount.inwardCount}
             isLoading={props.fetchingorderDetails}
             />
                            </div>
@@ -235,7 +248,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
           // title="Qc Approved"
               jumpstartClick={()=> handleClick("QcApproved")}
               cursorData={"pointer"}
-            // value={props.orderinDashboard.completeOrder}
+              value={dashRepairCount.qcApproveCount}
             isLoading={props.fetchingorderDetails}
             />
                            </div>
@@ -257,7 +270,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
                             // title="Repair Approved"
                               jumpstartClick={()=> handleClick("RepairApproved")}
                               cursorData={"pointer"}
-                              value={props.orderinDashboard.cancelOrder}
+                              value={dashRepairCount.repairApproveCount}
                             isLoading={props.fetchingorderDetails}
                             />
                           </div>
