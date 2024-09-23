@@ -7,7 +7,7 @@ const AccountProcureDetails =lazy(()=> import("./AccountProcureDetails"));
 
 const AccountProcureDetailsModal = (props) => {
     const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "70%";
+    const drawerWidth = isSmallScreen ? "90%" : "90%";
 
     console.log("dddph",props.particularRowData)
     return (
