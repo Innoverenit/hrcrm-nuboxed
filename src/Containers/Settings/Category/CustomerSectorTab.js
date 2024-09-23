@@ -86,7 +86,7 @@ class CustomerSectorTab extends Component {
                     <>
                       <FactoryIcon  className=" !text-icon"/>
             
-                      <span class="font-poppins ml-1 text-sm">
+                      <span class="!text-tab font-poppins ml-1 text-sm">
                      Sector 
                          
                       </span>
@@ -107,7 +107,7 @@ class CustomerSectorTab extends Component {
                     <>
                       <SourceIcon  className=" !text-icon"/>
              
-                          <span class="font-poppins ml-1 text-sm">
+                          <span class=" !text-tab font-poppins ml-1 text-sm">
                           
                         Source
                       
@@ -129,7 +129,7 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <CameraIcon  className=" !text-icon"/>
-                        <span class="font-poppins ml-1 text-sm ">
+                        <span class=" !text-tab font-poppins ml-1 text-sm ">
                        
                       Type
                    
@@ -152,7 +152,7 @@ class CustomerSectorTab extends Component {
                   tab={
                     <>
                       <GavelIcon  className=" !text-icon" />
-                      <span class="font-poppins ml-1 text-sm">
+                      <span class=" !text-tab font-poppins ml-1 text-sm">
                         VAT
                       </span>
                     </>
@@ -168,7 +168,7 @@ class CustomerSectorTab extends Component {
                     <>
                       <PaymentIcon  className=" !text-icon"/>
             
-                         <span class="font-poppins ml-1 text-sm">
+                         <span class=" !text-tab font-poppins ml-1 text-sm">
                          
                          <FormattedMessage id="app.payment" defaultMessage="Payment" />
                       
@@ -190,7 +190,7 @@ class CustomerSectorTab extends Component {
                     <>
                       <FormatLineSpacingIcon  className=" !text-icon"/>
             
-                         <span class="font-poppins ml-1 text-sm">
+                         <span class=" !text-tab font-poppins ml-1 text-sm">
                         
                       <FormattedMessage id="app.lob" defaultMessage="LOB" /></span>
                       <Badge
@@ -212,7 +212,7 @@ class CustomerSectorTab extends Component {
                     <>
                       <PaymentIcon  className=" !text-icon" />
             
-                         <span class="font-poppins ml-1 text-sm">
+                         <span class=" !text-tab font-poppins ml-1 text-sm">
                          Category </span>
                          <Badge
                 count={this.props.categoryCount.categoryCount}
