@@ -53,19 +53,19 @@ class CustomerSectorTab extends Component {
   renderTabContent = (key) => {
     switch (key) {
       case "0":
-        return    <Sectors />;
+        return   <CategoryList />;
       case "1":
-        return  <Source />;
+        return  <Customer /> ;
       case "2":
-        return    <Customer />;
+        return  <Sectors />  ;
           case "3":
-            return            <Vat />;
+            return    <Source />     ;
             case "4":
-              return              <Payment />;
+              return     <Vat />    ;
               case "5":
-                return              <LOB />;
+                return    <Payment />       ;
                 case "6":
-                  return              <CategoryList />;
+                  return    <LOB />      ;
       default:
         return null;
     }
@@ -81,6 +81,51 @@ class CustomerSectorTab extends Component {
                 defaultActiveKey={activeKey}
                 onChange={this.handleTabChange}
               >
+                       <TabPane
+                  tab={
+                    <>
+                      <PaymentIcon  className=" !text-icon" />
+            
+                         <span class=" !text-tab font-poppins ml-1 text-sm">
+                         Category </span>
+                         <Badge
+                count={this.props.categoryCount.categoryCount}
+                overflowCount={999} offset={[ 0, -16]}
+              >
+             
+                      {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
+                      </Badge>
+                     
+                     
+                    </>
+                  }
+                  key="6"
+                >
+               
+                </TabPane>
+
+                <TabPane
+                  tab={
+                    <>
+                      <CameraIcon  className=" !text-icon"/>
+                        <span class=" !text-tab font-poppins ml-1 text-sm ">
+                       
+                      Type
+                   
+                      </span>
+                   <Badge
+                   count={this.props.customerCount.CustomerTypeCount}
+                   overflowCount={999} offset={[ 0, -16]}
+                 >   </Badge>
+                    </>
+                  }
+                  key="2"
+                >
+                  {/* <Suspense>
+                    <Customer />
+                  </Suspense> */}
+                </TabPane>
+
                 <TabPane
                   tab={
                     <>
@@ -125,27 +170,7 @@ class CustomerSectorTab extends Component {
                     <Source />
                   </Suspense> */}
                 </TabPane>
-                <TabPane
-                  tab={
-                    <>
-                      <CameraIcon  className=" !text-icon"/>
-                        <span class=" !text-tab font-poppins ml-1 text-sm ">
-                       
-                      Type
-                   
-                      </span>
-                   <Badge
-                   count={this.props.customerCount.CustomerTypeCount}
-                   overflowCount={999} offset={[ 0, -16]}
-                 >   </Badge>
-                    </>
-                  }
-                  key="2"
-                >
-                  {/* <Suspense>
-                    <Customer />
-                  </Suspense> */}
-                </TabPane>
+          
 
             
                 <TabPane
@@ -163,6 +188,7 @@ class CustomerSectorTab extends Component {
                     <Vat />
                   </Suspense>
                 </TabPane>
+
                 <TabPane
                   tab={
                     <>
@@ -185,6 +211,7 @@ class CustomerSectorTab extends Component {
                     <Payment />
                   </Suspense> */}
                 </TabPane>
+                
                 <TabPane
                   tab={
                     <>
@@ -207,28 +234,7 @@ class CustomerSectorTab extends Component {
                     <Payment />
                   </Suspense> */}
                 </TabPane>
-                <TabPane
-                  tab={
-                    <>
-                      <PaymentIcon  className=" !text-icon" />
-            
-                         <span class=" !text-tab font-poppins ml-1 text-sm">
-                         Category </span>
-                         <Badge
-                count={this.props.categoryCount.categoryCount}
-                overflowCount={999} offset={[ 0, -16]}
-              >
-             
-                      {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
-                      </Badge>
-                     
-                     
-                    </>
-                  }
-                  key="6"
-                >
-               
-                </TabPane>
+         
               </StyledTabs>
               <Suspense fallback={<div>Loading...</div>}>
                 {this.renderTabContent(activeKey)}

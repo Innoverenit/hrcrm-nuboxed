@@ -1,7 +1,6 @@
 import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import { getCountry, getCountryCount, searchCountryName, allCountryMandatory, ClearReducerDataOfCountry } from "../Country/CountryAction";
 import { Button, Input, Tooltip } from "antd";
@@ -87,9 +86,9 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
         
         </div>
           </div>
-          <div class=" flex flex-col" >
+          <div class=" flex flex-col " >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
+         <MainWrapper className="!h-[65vh] !mt-2" >
           {!fetchingCountry && country.length === 0 ? <NodataFoundPage /> : country.slice().sort((a, b) => a.country_name.localeCompare(b.country_name)).map((region, index) => (
             <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.country_id}>
             {/* Region name display or input field */}
@@ -142,7 +141,7 @@ Currency
 
 
 <div class=" font-normal text-sm  font-poppins">
-<div class=" w-[15rem]" >
+<div class=" w-[13rem]" >
 <div class=" font-semibold" >
 {region.country_currency_name}
 </div>
@@ -172,8 +171,8 @@ country_id={region.country_id}
 </div>
 
 </div>
-                  <div className=" w-[21rem]">
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                 
+                  <div className=" flex font-medium w-full flex-col md:w-44 max-sm:justify-between  max-sm:flex-row ">
 
 <div class=" text-sm  font-medium font-poppins">
 
@@ -194,8 +193,7 @@ country_id={region.country_id}
 
 </div>
                   </div>
-                 
-                </div>
+              
             {/* Action buttons */}
  
 
