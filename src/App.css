@@ -54,41 +54,10 @@
   }
 }
 
-/* .ant-picker {
-  box-sizing: border-box;
-  box-shadow: 0 0.25em 0.62em #aaa;
-  height: 1.48rem;
-  margin: 0 0 0.42rem 0;
-  width: -webkit-fill-available;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 0.75rem;
-  font-variant: tabular-nums;
-  line-height: 1.5715;
-  list-style: none;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  background: #fff;
-  border: 0.0625em solid #d9d9d9;
-  border-radius: 2px;
-  transition: border 0.3s, box-shadow 0.3s;
-} */
-/* 
-.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-  height: 1.48rem;
-} */
+
 .ant-select-selection.ant-select-selection--single {
   height: 1.48rem;
 }
-/* .stages {
-  box-shadow: 0 0.8125em 1.6875em -0.3125em rgba(118, 118, 184, 0.432);
-  background-color: #09bc8b;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: -0.3125em;
-} */
 
 .avatar {
   justify-content: "center";

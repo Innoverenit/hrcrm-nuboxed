@@ -40,6 +40,31 @@ function UserKpiList(props) {
       yearSelectRef.current.value = ""; // Reset the value of the select element
     }
   };
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "",//0 Yes"
+          "",//1 No
+           "",//2  Submit
+                 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+       
+      } catch (error) {
+   
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const handleTabClick = async (key) => {
     setActiveTab(key);
     setLoading(true); 

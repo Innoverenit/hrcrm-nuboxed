@@ -101,38 +101,38 @@ function handleSetCurrentPhoneId(item) {
  
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
+          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
             <div></div>
-            <div className="font-poppins w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className=" w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
            
             </div>
-            <div className="font-poppins w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             {translatedMenuItems[0]}
              {/* work */}
             </div>
-            <div className="font-poppins w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
         {/* Brand Id */}
         {`${translatedMenuItems[1]}Id`}
               {/* "Sector" */}
           
             </div>
-            <div className="font-poppins w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
           
             {/* Live */}
             {translatedMenuItems[2]}
          
             </div>
-            <div className="font-poppins w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
+            <div className=" w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
               
 
             </div>
-            <div className="font-poppins w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
            {/* Inactive */}
            {translatedMenuItems[3]}
               {/* Quotation" */}
      
             </div>
-            <div className="font-poppins w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
           {/* Delete */}
           {translatedMenuItems[4]}
              {/* Pipeline" */}
@@ -153,10 +153,10 @@ function handleSetCurrentPhoneId(item) {
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex  w-[13rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
-                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  max-sm:text-sm  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
 
-                      <div className=" text-xs  font-poppins">
+                      <div className=" text-xs  ">
                         <div> 
                            
                             <MultiAvatar
@@ -177,9 +177,9 @@ function handleSetCurrentPhoneId(item) {
                       </div>
                       <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  max-sm:text-sm  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                     
-                      <div className=" text-xs  font-poppins">
+                      <div className=" text-xs  ">
                         <div>  {item.brandName}</div>
                       </div>
                   
@@ -188,7 +188,7 @@ function handleSetCurrentPhoneId(item) {
                       </div>
                       <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                   
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                        <div class=" text-xs   max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
                         //  onClick={() => {
                         //   props.handleProductBrandModal(true);
                         //   handleSetCurrentBrandId(item);
@@ -203,7 +203,7 @@ function handleSetCurrentPhoneId(item) {
                       <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs   max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.brandCount}
                         </div>
 

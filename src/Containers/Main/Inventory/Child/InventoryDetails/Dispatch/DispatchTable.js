@@ -48,10 +48,10 @@ function DispatchTable(props) {
 '1408', // 3 Packed by
 '772', // 4
 '887', // 5
-'Pick up', // 6
+"1606",// 'Pick up', // 6
 '1486', // 6 Track
 '142', // 6 status
-'Pick up', // 6
+
 
             
              

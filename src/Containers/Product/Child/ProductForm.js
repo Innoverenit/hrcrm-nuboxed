@@ -114,6 +114,20 @@ class Productform extends Component {
       marginDistributor: checked,
     });
   };
+ // const [text, setText] = useState("");
+    // function handletext(e) {
+    //   setText(e.target.value);
+    // }
+    // const {
+    //   transcript,
+    //   listening,
+    //   resetTranscript,
+    //   browserSupportsSpeechRecognition,
+    // } = useSpeechRecognition();
+  
+    // if (!browserSupportsSpeechRecognition) {
+    //   return <span>Browser doesn't support speech recognition.</span>;
+    // }
 
   handleConsumerMarginChange = (checked) => {
     console.log(checked);
@@ -153,20 +167,7 @@ class Productform extends Component {
         <CurrencySymbol currencyType={"INR"} />
       </span>
     );
-    // const [text, setText] = useState("");
-    // function handletext(e) {
-    //   setText(e.target.value);
-    // }
-    // const {
-    //   transcript,
-    //   listening,
-    //   resetTranscript,
-    //   browserSupportsSpeechRecognition,
-    // } = useSpeechRecognition();
-  
-    // if (!browserSupportsSpeechRecognition) {
-    //   return <span>Browser doesn't support speech recognition.</span>;
-    // }
+   
     return (
       <>
         <Formik
@@ -386,33 +387,7 @@ brandName:"",
 
                       />
                     </div>
-                  {/* <div class="flex justify-between ">
-                  <div class="w-[47%]">
-                    <Field
-                      label="Workflow"
-                      name="workflowId"
-                      placeholder="Value"
-                      component={SelectComponent}
-                      options={Array.isArray(workFlowOption) ? workFlowOption : []}
-                      inlineLabel
-                      width={"100%"}
-                      isColumn
-                    />
-                  </div>
-                  <div class="w-[47%]">
-                    <Field
-                      label="Stage"
-                      name="stage"
-                      placeholder="Value"
-                      component={InputComponent}
-                      // options={Array.isArray(workFlowOption) ? workFlowOption : []}
-
-                      inlineLabel
-                      width={"100%"}
-                      isColumn
-                    />
-                  </div>
-</div> */}
+              
  <div class="flex justify-between">
                     <div class="w-[47%]">
                        <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[7]}</div>

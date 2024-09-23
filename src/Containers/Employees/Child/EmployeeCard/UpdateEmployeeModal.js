@@ -21,6 +21,8 @@ const UpdateEmployeeModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           <UpdateEmployeeForm 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
              currentEmployeeId={currentEmployeeId}
              userData={props.userData}
             />

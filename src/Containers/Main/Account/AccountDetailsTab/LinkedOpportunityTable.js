@@ -109,7 +109,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[7]}</div>
+                       
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
                        </div>
                         </div>
@@ -266,7 +266,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[7]}</div>
+                       
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
                    </div>
                      
