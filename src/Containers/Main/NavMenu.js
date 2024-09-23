@@ -446,7 +446,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.prospect" defaultMessage="Prospect" /> */}
               {/* {translatedMenuItems[9]} */}
-              Sold
+              Waranty
                 &nbsp;&nbsp;&nbsp;
                 {/* <Badge
                   count={props.opportunityRecord.CustomerNo}

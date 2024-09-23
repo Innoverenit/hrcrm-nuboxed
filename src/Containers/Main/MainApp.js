@@ -5,6 +5,7 @@ import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 import AssessmentData from "../AssessmentData/AssessmentData"
 import { login_url } from "../../Config/Auth";
+import Waranty from "../Waranty/Waranty"
 import ProductionPhoneScanner from "../Main/Scan/PhoneScanner/ProductionPhoneScanner"
 import {
   handleCandidateResumeModal,
@@ -1003,6 +1004,18 @@ function MainApp(props) {
                       path="/call"
                       render={(props) => (
                         <Call
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+
+<Route
+                      exact
+                      path="/Sold"
+                      render={(props) => (
+                        <Waranty
                           {...props}
                           translateText={translateText}
                            selectedLanguage={selectedLanguage}
