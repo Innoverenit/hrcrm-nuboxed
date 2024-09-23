@@ -282,9 +282,7 @@ const AddressTable = (props) => {
               okText={translatedMenuItems[10]}
               cancelText={translatedMenuItems[7]}
           >
-                    <DeleteOutlined
-                    style={{color:"tomato"}}
-                    />
+                    <DeleteOutlined className="text-[tomato]" />
                     </Popconfirm>
                   </>
                
@@ -295,7 +293,7 @@ const AddressTable = (props) => {
                   <>
                     <FaSave onClick={() => handleSave(index)} />
                    
-                        <Button onClick={() => handleCancel(index)}>Cancel</Button>
+                        <Button onClick={() => handleCancel(index)}>{translatedMenuItems[7]}</Button>
                   </>
                 ) : (
                   <FaEdit onClick={() => handleEdit(index)} />
@@ -306,7 +304,7 @@ const AddressTable = (props) => {
           ))}
         </tbody>
       </table>
-      <Button onClick={handleAddRow}>Add Row</Button>
+      <Button onClick={handleAddRow}>{translatedMenuItems[8]}</Button>
     </div>
   );
 };

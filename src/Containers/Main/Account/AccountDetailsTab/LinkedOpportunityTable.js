@@ -48,7 +48,7 @@ function LinkedOpportunityTable(props) {
            "142", //   "Status",7
           "1172", //   "To Order",8
            "666", //   "Procure",9
-           "1226", //   "Created Date"10
+           "679", //   "Created Date"10
         "100",  //  New11
         "1300",  //  Change status to Customer?12
           "387", //  Convert13
@@ -97,9 +97,10 @@ console.log(props.user.moduleMapper.ecomModInd)
     <>
      { props.user.repairInd === true &&(
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky text-xs font-poppins z-10">
-                        <div class=" w-[8.5rem]"> {translatedMenuItems[0]}</div>
-                        <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
+        <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
+        <div className='flex   justify-between w-[85%]  text-xs font-bold font-poppins'>
+             <div class=" w-[2.55rem]"> {translatedMenuItems[0]}</div>
+                        <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
                         <div className=" md:w-[7rem]">
                         {translatedMenuItems[10]}  
                           </div>
@@ -110,12 +111,8 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[7]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
-
-                        <div className="md:w-[6.12rem]"></div>
-                     
-
-
-                    </div>
+                       </div>
+                        </div>
     
                     <InfiniteScroll
                         dataLength={props.quotationRepairOrder.length}
@@ -136,7 +133,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                         <div class="flex">
                                           <div className=" flex   w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex  items-center  md:w-[8.56rem] max-sm:w-full  ">
+                                            <div className=" flex  items-center  md:w-[3.55rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                                       <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -153,9 +150,9 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                                               </Tooltip>
                                                                           </div>
                       
-                                              <div class="max-sm:w-full items-center  md:w-[10.02rem]">
+                                              <div class="max-sm:w-full items-center  md:w-[7.02rem]">
                                                 <Tooltip>
-                                                  <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
+                                                  <div class="max-sm:w-full   flex md:flex flex-row text-xs">
                                                   <span
                                                                                           class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                                           onClick={() => {
@@ -172,7 +169,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                   </div>
                                                 </Tooltip>
                                               </div>
-                                              <div className=" text-xs flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                              <div className="  ml-2 text-xs flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                             </div>
@@ -190,7 +187,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   md:w-[17.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -205,7 +202,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
@@ -215,13 +212,13 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                     />
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
                                         
-                  <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                   <Popconfirm
                           title={translatedMenuItems[12]}
@@ -257,9 +254,10 @@ console.log(props.user.moduleMapper.ecomModInd)
      )}
      { props.user.moduleMapper.ecomModInd === true &&(
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
-<div class=" w-[8.5rem]"> {translatedMenuItems[9]}</div>
-<div className=" md:w-[7.4rem]"> {translatedMenuItems[1]}ID</div>
+        <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
+        <div className='flex   justify-between w-[85%]  text-xs font-bold font-poppins'>
+<div class=" w-[2.55rem]"> {translatedMenuItems[9]}</div>
+<div className=" md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
 <div className=" md:w-[6rem]">
 {translatedMenuItems[10]}
                         </div>
@@ -270,8 +268,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[7]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
-
-                        <div className="md:w-[6.12rem]"></div>
+                   </div>
                      
 
 
@@ -296,7 +293,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                         <div class="flex">
                                           <div className=" flex  w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex items-center  md:w-[8.56rem] max-sm:w-full  ">
+                                            <div className=" flex items-center  md:w-[3.55rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                                       <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -313,9 +310,9 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                                               </Tooltip>
                                                                           </div>
                       
-                                              <div class="max-sm:w-full text-xs items-center  md:w-[10.02rem]">
+                                              <div class="max-sm:w-full text-xs items-center  md:w-[7.02rem]">
                                                 <Tooltip>
-                                                  <div class="font-bold max-sm:w-full  justify-between flex md:flex flex-row text-xs">
+                                                  <div class="font-bold max-sm:w-full   flex md:flex flex-row text-xs">
                                                   <span
                                                                                           class="underline font-bold cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
@@ -332,7 +329,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                   </div>
                                                 </Tooltip>
                                               </div>
-                                              <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
+                                              <div className=" ml-2 flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
                                                     {date}
                                                     </div>
                                             </div> 
@@ -349,7 +346,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   text-xs md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   text-xs md:w-[17.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -364,7 +361,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -375,12 +372,12 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                     />
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                   <Popconfirm
                           title={translatedMenuItems[14]}

@@ -70,12 +70,11 @@ const AccountOrderTable = (props) => {
                 "1085",  // "Received",8
                 "676",   // "Supervisor",9
                 "677",  // "Lead",10
-                "661",  // "Repair",11
-           
+                "661",  // "Repair",11           
                 "108",   // "Normal",12
                 "679",   // "Created "13
                 "100",   //     "New"14
-                "1377",                 // Ship15
+                "1377",  // Ship15
                 "1078",      // "Save"16
                 "1079",      // "Cancel"17
                 "1339",      // "Update Revised Price"18
@@ -179,10 +178,11 @@ const AccountOrderTable = (props) => {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  bg-transparent font-bold font-poppins sticky top-0 z-10">
+                        <div className='flex justify-between w-[85%]  text-xs font-bold font-poppins'>
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
                     {translatedMenuItems[0]}   {/* Urgent */}
                          </div>
-                        <div className=" md:w-[11.41rem] ml-2">
+                        <div className=" md:w-[9.41rem] ml-2">
                             {/* <FormattedMessage
                                 id="app.orderno"
                                 defaultMessage="Order ID"
@@ -208,7 +208,7 @@ const AccountOrderTable = (props) => {
                                 defaultMessage="Contact"
                             /> */}
                         </div>
-                        <div className="md:w-[8.11rem]">
+                        <div className="md:w-[6.11rem]">
                         {translatedMenuItems[5]}  {/* <FormattedMessage
                                 id="app.quoted"
                                 defaultMessage="Quoted"
@@ -251,7 +251,7 @@ const AccountOrderTable = (props) => {
                         {translatedMenuItems[11]}   
                         </div> */}
                     </div>
-
+             </div>
                     {/* <div class="overflow-x-auto h-[64vh]"> */}
                     <InfiniteScroll
                         dataLength={props.highDistributorOrder.length}
@@ -320,7 +320,7 @@ const AccountOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex md:w-[6.31rem] text-xs items-center max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex md:w-[4.81rem] text-xs items-center max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                                     <div className=" flex md:w-[6.31rem] text-xs max-sm:flex-row w-full max-sm:justify-between ">
@@ -360,7 +360,7 @@ const AccountOrderTable = (props) => {
                                                             </Badge>
                                                         </div>
                                                     </div>
-                                                    <div className=" flex md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex md:w-[5.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div >
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
@@ -388,7 +388,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex items-center  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} /> {visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input
@@ -441,7 +441,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex   md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
@@ -663,11 +663,12 @@ const AccountOrderTable = (props) => {
             
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  bg-transparent font-bold sticky z-10">
+                <div className=" flex  w-[100%]  bg-transparent  sticky z-10">
+                <div className='flex   justify-between w-[85%]  text-xs font-bold font-poppins'>
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
                     {translatedMenuItems[12]}   {/* Normal */}
                          </div>
-                        <div className=" md:w-[11.41rem] ml-2">
+                        <div className=" md:w-[9.41rem] ml-2">
                         
                              {translatedMenuItems[1]}ID
                         </div>
@@ -686,7 +687,7 @@ const AccountOrderTable = (props) => {
                         <div className="md:w-[7.91rem]">
                         {translatedMenuItems[4]}
                         </div>
-                        <div className="md:w-[8.11rem]">
+                        <div className="md:w-[6.11rem]">
                         {translatedMenuItems[5]}  
                         </div>
                         <div className="md:w-[5.09rem]">
@@ -705,6 +706,7 @@ const AccountOrderTable = (props) => {
                         </div>
                         <div className=" md:w-[8.12rem]">
                         {translatedMenuItems[10]}  
+                        </div>
                         </div>
                     </div>
 
@@ -776,7 +778,7 @@ const AccountOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex md:w-[6.31rem] text-xs items-center max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex md:w-[4.81rem] text-xs items-center max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                                     <div className=" flex   md:w-[6.31rem] text-xs max-sm:flex-row w-full max-sm:justify-between ">
@@ -815,7 +817,7 @@ const AccountOrderTable = (props) => {
                                                             > </Badge>
                                                         </div>
                                                     </div>
-                                                    <div className=" flex md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex md:w-[5.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
@@ -843,7 +845,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex   items-center  md:w-[4.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} /> {visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input
@@ -900,7 +902,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex  md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
