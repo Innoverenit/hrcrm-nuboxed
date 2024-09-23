@@ -122,8 +122,8 @@ const {
   return (
  
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end">
+    <div class=" flex w-[18vw] mt-7px mr-2" >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -133,7 +133,7 @@ const {
           // value={currentData}
         />
           </div>
-          <div class="w-[20rem]">
+          <div class="w-[2rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"eventType"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">

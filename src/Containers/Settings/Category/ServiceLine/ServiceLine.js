@@ -168,7 +168,7 @@ if (props.fetchingServiceLine) {
         </div>
       ))}
       </div>
-      <div class=" flex flex-row justify-end items-center">
+      <div class=" flex flex-row justify-end items-center mt-2">
       <div class=" flex w-[18vw] mr-2 mt-7px"  >
             <Input
          placeholder="Search by Name"
