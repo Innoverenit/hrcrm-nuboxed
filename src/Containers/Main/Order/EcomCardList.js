@@ -10,6 +10,8 @@ import dayjs from "dayjs";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import EcomStatusCardDrawer from "./EcomStatusCardDrawer";
 import EcomSearchedData from "./EcomSearchedData";
+import ProcureInvoiceListDrawer from "../Account/AccountDetailsTab/AccountOrderTab/ProcureInvoiceListDrawer";
+import EcomInvoiceListDrawer from "../Account/AccountDetailsTab/AccountOrderTab/EcomInvoiceListDrawer";
 
 function EcomCardList(props) {
   const [page, setPage] = useState(0);
@@ -26,7 +28,7 @@ function EcomCardList(props) {
     props.getEcomList(props.orgId, page);
     setPage(page + 1);
   }, []);
-
+  const [openInvoiceModal,setopenInvoiceModal] = useState(false);
   const [particularRowData, setParticularRowData] = useState({});
 
   function handleSetParticularOrderData(item) {
@@ -199,7 +201,9 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
 
 
                         <div className=" flex   md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
-                        <Button type="primary" >{translatedMenuItems[7]}</Button>
+                        <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
+                     handleSetParticularOrderData(item);
+                  }}>{translatedMenuItems[7]}</Button>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">                                                 
                         <div>
@@ -225,7 +229,12 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
           })}
         </InfiniteScroll>
       </div>
-
+      <EcomInvoiceListDrawer
+                    particularRowData={particularRowData}
+         openInvoiceModal={openInvoiceModal}
+         setopenInvoiceModal={setopenInvoiceModal}
+         translatedMenuItems={translatedMenuItems}
+         />
        <EcomStatusCardDrawer
        selectedLanguage={props.selectedLanguage}
        translateText={props.translateText}

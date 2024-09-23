@@ -39,7 +39,7 @@ function ProcureInvoiceList (props) {
 
       const fetchData = async () => {
         try {
-          const response = await axios.get(`${base_url2}/invoice/listOfInvoice/${props.particularRowData.orderPhoneId}`,{
+          const response = await axios.get(`${base_url2}/invoice/listOfInvoice/${props.orderPhoneId}`,{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
@@ -53,7 +53,7 @@ function ProcureInvoiceList (props) {
       };
       const invoiceDataCount = async () => {
         try {
-          const response = await axios.get(`${base_url2}/invoice/invoice/count/${props.particularRowData.orderPhoneId}`,{
+          const response = await axios.get(`${base_url2}/invoice/invoice/count/${props.orderPhoneId}`,{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
