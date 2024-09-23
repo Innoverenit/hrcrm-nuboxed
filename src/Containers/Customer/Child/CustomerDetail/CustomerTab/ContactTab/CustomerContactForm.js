@@ -13,7 +13,6 @@ import PostImageUpld from "../../../../../../Components/Forms/Formik/PostImageUp
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { getDesignations } from "../../../../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../../../../Settings/Department/DepartmentAction";
-import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 const { Option } = Select;
 

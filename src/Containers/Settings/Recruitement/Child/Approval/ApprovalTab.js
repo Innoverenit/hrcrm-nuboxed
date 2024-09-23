@@ -5,14 +5,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tabs, Badge } from 'antd';
 import { getApproveData } from "../../../SettingsAction";
-//import ProspectCustomerForm from "./ProspectCustomerForm";
-//import SupplierContactuserForm from "./SupplierContactuserForm";
-//import ProspectContactToUserForm from "./ProspectContactToUserForm"
 const ApproveForm = lazy(() => import("./ApproveForm"));
-//const MileageApproveForm = lazy(() => import("./MileageApproveForm"));
-//const ExpenseApproveForm = lazy(() => import("./ExpenseApproveForm"));
-//const ContactUserForm = lazy(() => import("./ContactUserForm"));
-//const PhonesPairApproveForm = lazy(() => import("./PhonesPairApproveForm"));
+
 
 
 

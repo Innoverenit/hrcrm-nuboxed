@@ -272,7 +272,7 @@ const Form = (props) => {
           tab={
             <>
               <span onClick={props.handleRecruitClick}>
-                <span className="ml-[0.25em]">Customer</span>
+                <span className=" !text-tab ml-[0.25em]">Customer</span>
               </span>
             </>
           }
@@ -284,7 +284,7 @@ const Form = (props) => {
           tab={
             <>
               <span onClick={props.handleRecruitClick}>
-                <span className="ml-[0.25em]">Leads</span>
+                <span className=" !text-tab ml-[0.25em]">Leads</span>
               </span>
             </>
           }
@@ -296,7 +296,7 @@ const Form = (props) => {
           tab={
             <>
               <span onClick={props.handleRecruitClick}>
-                <span className="ml-[0.25em]">Shipper</span>
+                <span className="!text-tab ml-[0.25em]">Shipper</span>
               </span>
             </>
           }
@@ -308,7 +308,7 @@ const Form = (props) => {
           tab={
             <>
               <span onClick={props.handleRecruitClick}>
-                <span className="ml-[0.25em]">Supplier</span>
+                <span className="!text-tab ml-[0.25em]">Supplier</span>
               </span>
             </>
           }
@@ -320,7 +320,7 @@ const Form = (props) => {
           tab={
             <>
               <span onClick={props.handleRecruitClick}>
-                <span className="ml-[0.25em]">Investor</span>
+                <span className="!text-tab ml-[0.25em]">Investor</span>
               </span>
             </>
           }
@@ -333,7 +333,7 @@ const Form = (props) => {
           tab={
             <>
               <span onClick={props.handleRecruitClick}>
-                <span className="ml-[0.25em]">Contact</span>
+                <span className="!text-tab ml-[0.25em]">Contact</span>
               </span>
             </>
           }

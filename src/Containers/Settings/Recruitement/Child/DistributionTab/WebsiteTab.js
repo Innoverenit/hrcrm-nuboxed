@@ -19,19 +19,19 @@ function WebsiteTab(props) {
             <TabsWrapper>
                 <StyledTabs defaultActiveKey="1" type="card">
                     <TabPane tab={`Distribution`} key="1">
-                        <div class=" mt-[10px]" >
+                        <div class="!text-tab mt-[10px]" >
                         <WebsiteForm/>
                         </div>
                         
                     </TabPane>
                     <TabPane tab={`Ageing`} key="2">
-            <div class=" mt-[10px]" >
+            <div class="!text-tab mt-[10px]" >
               <LeadsAgingForm />
             </div>
           </TabPane>
 
           <TabPane tab={`Outreach`} key="3">
-            <div class=" mt-[10px]" >
+            <div class="!text-tab mt-[10px]" >
               <OutreachForm />
             
             </div>

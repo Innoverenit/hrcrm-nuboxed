@@ -176,7 +176,7 @@ console.log(activeKey)
                                    
                                     tab={
                                         <>
-                                        <span >
+                                        <span className="!text-tab" >
                                        
                                             {member.country_name}
                                         </span>
