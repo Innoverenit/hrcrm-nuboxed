@@ -273,7 +273,7 @@ console.log(props.clubShareData)
                     </div>
                      ):(
                       <div className="font-normal text-sm  font-poppins">
-                      <div> {item.discount} Hello</div>
+                      <div> {item.discount} %</div>
                     </div>
                     )}
                   </div>

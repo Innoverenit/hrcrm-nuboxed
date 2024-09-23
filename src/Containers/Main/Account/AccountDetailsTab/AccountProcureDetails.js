@@ -373,15 +373,16 @@ const handleGenerateInvoice= async () => {
           <div className="md:w-[3.8rem]">
           {translatedMenuItems[7]} {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
           </div>
-          <div className="md:w-[5.8rem]">
-          {translatedMenuItems[9]}
-          </div>
           <div className="md:w-[5rem]">
           {translatedMenuItems[10]} 
           </div>
-          <div className="md:w-[4.8rem]">
-          {translatedMenuItems[11]} 
+          <div className="md:w-[5.8rem]">
+          {translatedMenuItems[9]}
           </div>
+          
+          {/* <div className="md:w-[4.8rem]">
+          {translatedMenuItems[11]} 
+          </div> */}
           <div className="md:w-[2rem]"></div>
         </div>
         <InfiniteScroll
@@ -577,7 +578,22 @@ const handleGenerateInvoice= async () => {
                  
                 </div>
               </div>
-
+              <div className="flex  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                {/* {item.reaminingInvoiceUnit === 0 ? `$` : */}
+                <input
+  placeholder="Invoice Units"
+  style={{ border: "1px solid grey",width:"5rem" }}
+  min="1"
+  value={inputValues[item.id] || ''}
+  onChange={(e) => handleInputChange(item.id, e.target.value)}
+  
+  // value={editedFields[item.id]?.RowInvoices || item.RowInvoices}
+  // onChange={(e) => setRowInvoices(item.id, e.target.value)}
+/>
+             
+                </div>
+              </div>
               <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {item.reaminingInvoiceUnit}
@@ -601,22 +617,7 @@ const handleGenerateInvoice= async () => {
                 </div>
               </div>
              
-            <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-xs  font-poppins">
-                {/* {item.reaminingInvoiceUnit === 0 ? `$` : */}
-                <input
-  placeholder="Update Unit"
-  style={{ border: "1px solid grey",width:"2.5rem" }}
-  min="1"
-  value={inputValues[item.id] || ''}
-  onChange={(e) => handleInputChange(item.id, e.target.value)}
-  
-  // value={editedFields[item.id]?.RowInvoices || item.RowInvoices}
-  // onChange={(e) => setRowInvoices(item.id, e.target.value)}
-/>
-             
-                </div>
-              </div>
+           
               <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
                 {/* <div className="flex">
                   {editContactId === item.id ? (
@@ -662,15 +663,16 @@ const handleGenerateInvoice= async () => {
                 <div className="text-xs  font-poppins">
                    <input
                    placeholder="invoice"
-                   style={{border:"1px solid grey"}}
+                   style={{border:"1px solid red",height:"1.5rem"}}
                    type="text"
                    value={invoices}
                    onChange={(e) => setInvoices(e.target.value)}
                  />
                 </div>
-                <div>
+                <div className="ml-2 mr-2">
                 <Select
                      style={{width:"10rem"}}
+                     placeholder="Apply Credit"
                       value={CreditMemo}
                       onChange={(value) => handleCreditMemo(value)}
                       mode="multiple" 
