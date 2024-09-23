@@ -75,7 +75,7 @@ function SettingsHolidayTab(props) {
                 >
                     <TabPane 
                      tab={
-                        <span onClick={() => handleOnClick()}>
+                        <span className="!text-tab" onClick={() => handleOnClick()}>
                     Holiday List
                         </span>
                     }
@@ -87,7 +87,7 @@ function SettingsHolidayTab(props) {
                     </TabPane>
                     <TabPane 
                        tab={
-                        <span >
+                        <span className="!text-tab">
                    Weekend
                         </span>
                     }
@@ -101,7 +101,7 @@ function SettingsHolidayTab(props) {
                     </TabPane>
                     <TabPane 
                        tab={
-                        <span >
+                        <span className="!text-tab" >
                    Leaves
                         </span>
                     }

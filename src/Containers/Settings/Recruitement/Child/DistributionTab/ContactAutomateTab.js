@@ -18,7 +18,7 @@ function ContactAutomateTab(props) {
             <TabsWrapper>
                 <StyledTabs defaultActiveKey="1" type="card">
                     <TabPane tab={`Outreach`} key="1">
-                        <div class=" mt-[10px]" >
+                        <div class="!text-tab mt-[10px]" >
                         <WebsiteContactForm/>
                         </div>
                         

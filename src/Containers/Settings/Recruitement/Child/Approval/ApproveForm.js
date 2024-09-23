@@ -139,7 +139,7 @@ const ApprovalSwitchComponent = (props) => {
         <>
           {departmentList.map((item, index) => (
             <div class="flex flex-row justify-center" gutter={16} key={index} >
-              <div className="ml-2 text-xs font-bold font-poppins w-[15vw]">
+              <div className="ml-2 text-xs font-bold font-poppins w-[17vw]">
                 <Form.Item label={`Level ${index + 1}`}>
                   <Select className='w-[41%]'
                     placeholder="Select Department"
@@ -157,7 +157,7 @@ const ApprovalSwitchComponent = (props) => {
                   </Select>
                 </Form.Item>
               </div>
-              <div className="ml-2 text-xs font-bold font-poppins w-[15vw]">
+              <div className="ml-2 text-xs font-bold font-poppins w-12vw]">
                 {item.department && item.department !== "ReportingManager" && item.department !== "ReportingManager+1" && (
                   <Form.Item label={""} >
                     <Select className='w-[41%]'
@@ -177,7 +177,7 @@ const ApprovalSwitchComponent = (props) => {
               </div>
 
               {["Leave", "Mileage", "Expense"].includes(props.activeKey) && (
-                 <div className="ml-2 text-xs font-bold font-poppins w-[15vw]">
+                 <div className="ml-2 text-xs font-bold font-poppins w-[12vw]">
                   <Form.Item label="" >
                     <Input  className='w-[41%]'
                       placeholder="Enter threshold"
@@ -191,7 +191,7 @@ const ApprovalSwitchComponent = (props) => {
           ))}
 
           <div className=' flex  mt-12 justify-start'>
-          <div className="ml-2 text-xs font-bold font-poppins w-[7vw]">
+          <div className="ml-2 text-xs font-bold font-poppins w-[10vw]">
               <Button type="dashed" onClick={addDepartmentField} icon={<PlusOutlined />}  >
                 Add Level
               </Button>

@@ -207,7 +207,7 @@ const [rowdata, setrowdata] = useState("");
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky text-xs  z-10">
         <div class=" flex justify-between font-poppins w-[96%]">
-            <div className="font-poppins w-[13.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
+            <div className="font-poppins w-[14.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
             {translatedMenuItems[0]}
               {/* name */}
             </div> 
@@ -242,12 +242,12 @@ const [rowdata, setrowdata] = useState("");
             {translatedMenuItems[19]}  
             </div>
             )}  
-            <div className="font-poppins w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
+            <div className="font-poppins w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
             {translatedMenuItems[6]}            
            {/* ="Assigned" */}
              
             </div>
-            <div className="font-poppins w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.8rem] max-lg:w-[6.2rem]">
+            <div className="font-poppins w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.8rem] max-lg:w-[6.2rem]">
               {translatedMenuItems[7]}  
            {/* owner */}
 
@@ -395,14 +395,14 @@ const [rowdata, setrowdata] = useState("");
                           </div>
                                 </div>
                                 {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[8.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center  w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
         {item.noteScoreInd}
           
             </div>
             )}
 {/* SCORE */}
 
-                                <div className=" flex items-center  flex-col w-[3rem] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
+                                <div className=" flex items-center  flex-col w-[6rem] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
                                   
 
                                     <div class=" text-xs  font-poppins">
@@ -421,7 +421,7 @@ const [rowdata, setrowdata] = useState("");
              
                                     </div>
                                 </div>
-                                <div className=" flex items-center  w-[6rem] max-xl:w-[5rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between mb-2 ">
+                                <div className=" flex items-center  w-[3rem] max-xl:w-[5rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between mb-2 ">
                        
                      
 
@@ -463,7 +463,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                       </div>
                       <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
+                      <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
                     
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
@@ -508,7 +508,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>                 
                    
                     
-                      <div class="flex  w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                      <div class="flex   max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                    
                           <Tooltip title= {translatedMenuItems[15]}>
                             <ContactsIcon
@@ -536,7 +536,7 @@ const [rowdata, setrowdata] = useState("");
                           </Tooltip>
                        
                      
-                      <div class="flex w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                      <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
            
                           <Tooltip title= {translatedMenuItems[12]}>
                             <MonitorHeartIcon
@@ -574,7 +574,7 @@ const [rowdata, setrowdata] = useState("");
                     
                     
 
-                      <div class="flex w-6 max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
+                      <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                       
                     
                           {props.user.customerUpdateInd === true && user.crmInd === true && (

@@ -185,28 +185,10 @@ class SettingsSingleHoliday extends Component {
                     checkedChildren="Optional"
                     unCheckedChildren="Mandatory"
                   />
-                  {/* <TextInput
-                                        name={newProbability}
-                                        defaultValue={probability}
-                                        // disabled={disabled}
-                                        // style={{ cursor: disabled ? "not-allowed" : "pointer" }}
-                                        onChange={this.handleChange}
-
-                                        width={"25%"}
-                                    /> */}
-                &nbsp;
-                  {/* <TextInput
-                                        name={newDays}
-                                        defaultValue={days}
-
-
-                                        // style={{ cursor: disabled ? "not-allowed" : "pointer" }}
-                                        onChange={this.handleChange}
-                                        placeholder="Days"
-                                        width={"24%"}
-                                    /> */}
-               
                  
+                &nbsp;
+                 
+                            
                   <div class=" flex justify-end mr-[0.3125em] mt-[0.625em] mb-[0.625em]"
                 
                   >
