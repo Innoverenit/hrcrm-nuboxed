@@ -1,25 +1,11 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-    getAccountInvoiveList,
-} from "../../AccountAction";
-import { FormattedMessage } from "react-intl";
-import { AudioOutlined } from '@ant-design/icons';
-import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
-import {  Select,Popconfirm, Tooltip,Input,Button } from 'antd';
+import {  Select,Input,Button } from 'antd';
 import dayjs from "dayjs";
-import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { BundleLoader } from "../../../../../Components/Placeholder";
-import PaidIcon from '@mui/icons-material/Paid';
 import { base_url2 } from "../../../../../Config/Auth";
 import axios from "axios";
-import Swal from 'sweetalert2';
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-
 const { Option } = Select;
 
 function ProcureInvoiceList (props) {
@@ -152,23 +138,23 @@ function ProcureInvoiceList (props) {
                                 </div>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold  font-poppins text-xs sticky z-10">
                    
                     <div class=" w-[8.5rem]">
                     {props.translatedMenuItems[10]} ID 
                         </div>
                         <div className=" md:w-[7.4rem]">
-                            {/* {translatedMenuItems[1]} ID */} Ship ID
+                            {props.translatedMenuItems[1]} ID 
                             </div>
                         <div className=" md:w-[7.1rem]">
-                            {/* {translatedMenuItems[2]} */} Ship On
+                            {props.translatedMenuItems[2]} 
                         </div>
                         <div className=" md:w-[8rem]">
                             {props.translatedMenuItems[7]} 
 
                         </div>
                     </div>
-                    <div class="h-[33vh]">
+                    <div class="h-[75vh]">
                             {data ? <>
                                 {data.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
@@ -191,7 +177,7 @@ function ProcureInvoiceList (props) {
                                                         </div>
                                                         {date === currentdate ? (
                                                                 <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
-                                                                    New
+                                                                    {/* New */}
                                                                 </div>
                                                             ) : null}
                                                     </div>
@@ -239,7 +225,7 @@ function ProcureInvoiceList (props) {
                                                     </div>
                                                                                                     </div>
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                            <div className=" flex w-20  md:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
     {editsuppliesId === item.procureOrderInvoiceId ? (
                         <>
                       <Button 

@@ -382,7 +382,7 @@ const handleLoadMoreLow = () => {
                                                                     className="!text-base cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatuShowDrawer(true);
-                                                                        handleSetParticularOrderData(item.status);
+                                                                        handleSetParticularOrderData(item);
                                                                     }}
                                                                 />
                                                             </Tooltip>
@@ -574,7 +574,7 @@ const handleLoadMoreLow = () => {
                                                                     className="!text-base cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatuShowDrawer(true);
-                                                                        handleSetParticularOrderData(item.status);
+                                                                        handleSetParticularOrderData(item);
                                                                     }}
                                                                 />
                                                             </Tooltip>

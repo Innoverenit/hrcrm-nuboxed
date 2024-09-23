@@ -49,6 +49,7 @@ class UpdateEmployeeForm extends Component {
       locations: [],
       selectedLocation: "",
       workType:this.props.userData.employee_type || "",
+      translatedMenuItems: [],
     };
   }
 
@@ -67,8 +68,62 @@ class UpdateEmployeeForm extends Component {
     getDepartments();
     getCurrency();
     this.props.getDepartmentwiserUser(this.state.department);
-    getDesignations()
+    getDesignations();
+    this.fetchMenuTranslations();
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "295",//0First Name"
+        "353",//1Middle Name"
+        "354",//2"Last Name"
+        "140",//3 Email"
+        "241",// Currency4
+        "357", // Dial Code"5
+        "964",// Personal"6
+        "685",// "Work #7
+        "967",// "Date of Joining"8
+        "968", // Date of Birth"9
+        "547", // LinkedIn"10
+        "95", // "time Zone"11
+        "326",// "Department"12
+        "979",// Level13
+        "980",// "Role"14
+        "981", // "Salary"15
+        "325",// Designation"16
+        "983",// Workplace"17
+        "658", // "Location"18
+        "985",// Job Type19
+        "986",// Full Time20
+        "987", // Part Time21
+        "14", // Category"22
+        "990", // External23
+        "989",// Internal"24
+        "991",// Employee Type"25
+        "992",// Employee26
+        "993", // Contractor27
+        "1270", // Intern28
+        "995", // Reports To29
+        "997", // Reporting Manager30
+        "998", // Secondary Department31
+        "999", // Secondary Reporting Manager32
+        "1246", // Update33
+      //  "", // input
+
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   handleReset = (resetForm) => {
     resetForm();
   };
@@ -312,18 +367,7 @@ class UpdateEmployeeForm extends Component {
             job_type: this.state.active ? "Full Time" : "Part Time",
             type: this.state.typeInd ? "true" : "false",
             employee_type: this.state.workType,
-            // address: [
-            //   {
-            //     addressId: userData.address.length ? userData.address[0].addressId : "",
-            //     address1: userData.address.length ? userData.address[0].address1 : "",
-            //     address2: userData.address.length ? userData.address[0].address2 : "",
-            //     street: userData.address.length ? userData.address[0].street : "",
-            //     city: userData.address.length ? userData.address[0].city : "",
-            //     state: userData.address.length ? userData.address[0].state : "",
-            //     postalCode: userData.address.length ? userData.address[0].postalCode : "",
-            //   },
-            // ],
-
+          
           }}
           validationSchema={EmployeeSchema}
           onSubmit={(values, { resetForm }) => {
@@ -373,31 +417,19 @@ class UpdateEmployeeForm extends Component {
                       <FastField name="imageId" component={PostImageUpld} />
                       <div>
                         <div class=" flex justify-between max-sm:flex-col" >
-                          {/* <div class=" w-1/3 max-sm:w-full">
-                      <FastField
-                        name="salutation"
-                        placeholder="Select"
-                        component={SelectComponent}
-                        options={["Mr", "Mrs", "Miss","None"]}
-                        
-                        label={<FormattedMessage
-                          id="app.salutation"
-                          defaultMessage="Salutation"
-                        />}
-                        isColumn
-                        />
-                    </div> */}
+                      
                           <div class=" w-wk max-sm:w-full">
+                          <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[0]}</div>
                             <Field
                               isRequired
                               name="firstName"
                               type="text"
                               isColumn
                               width={"100%"}
-                              label={<FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />}
+                              // label={<FormattedMessage
+                              //   id="app.firstName"
+                              //   defaultMessage="First Name"
+                              // />}
                               component={InputComponent}
                               inlineLabel
                             />
@@ -405,32 +437,32 @@ class UpdateEmployeeForm extends Component {
                         </div>
                         <div class=" flex justify-between max-sm:flex-col" >
                           <div class=" w-2/5 max-sm:w-full">
-                            {" "}
+                            {" "}  <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[1]}</div>
                             <Field
 
                               name="middleName"
                               type="text"
                               isColumn
                               width={"100%"}
-                              label={<FormattedMessage
-                                id="app.middleName"
-                                defaultMessage="Middle Name"
-                              />}
+                              // label={<FormattedMessage
+                              //   id="app.middleName"
+                              //   defaultMessage="Middle Name"
+                              // />}
                               component={InputComponent}
                               inlineLabel
                             />
                           </div>
                           <div class=" w-3/6 max-sm:w-full">
-                            {" "}
+                            {" "}  <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[2]}</div>
                             <Field
                               name="lastName"
                               type="text"
                               isColumn
                               width={"100%"}
-                              label={<FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />}
+                              // label={<FormattedMessage
+                              //   id="app.lastName"
+                              //   defaultMessage="Last Name"
+                              // />}
                               component={InputComponent}
                               inlineLabel
                             />
@@ -444,30 +476,32 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" flex justify-between" >
                       <div class=" w-[70%] flex flex-col max-sm:w-wk">
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[3]}</div>
                         <Field
                           isRequired
                           name="emailId"
                           type="text"
                           isColumn
                           width={"100%"}
-                          label={<FormattedMessage
-                            id="app.emailId"
-                            defaultMessage="Email" />}
+                          // label={<FormattedMessage
+                          //   id="app.emailId"
+                          //   defaultMessage="Email" />}
                           component={InputComponent}
                           inlineLabel
                         />
                       </div>
                       <div class=" max-sm:w-wk">
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[4]}</div>
                         <Field
                           name="currency"
                           isColumnWithoutNoCreate
-                          placeholder="Currency"
-                          label={<FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />}
+                          placeholder=  {this.state.translatedMenuItems[4]}
+                          // label={<FormattedMessage
+                          //   id="app.currency"
+                          //   defaultMessage="Currency"
+                          // />}
                           isColumn
-                          // selectType="currencyName"
+                        
                           isRequired
                           component={SelectComponent}
                           options={
@@ -482,15 +516,16 @@ class UpdateEmployeeForm extends Component {
                     <div class="flex justify-between max-sm:flex-col">
                       <div class=" flex  w-w47.5 justify-between max-sm:flex-col max-sm:w-wk " >
                         <div class=" w-w47.5 max-sm:w-wk ">
+                        <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[5]}</div>
                           <FastField
                             name="countryDialCode"
                             isColumnWithoutNoCreate
-                            label={
-                              <FormattedMessage
-                                id="app.dialCode"
-                                defaultMessage="Dial Code"
-                              />
-                            }
+                            // label={
+                            //   <FormattedMessage
+                            //     id="app.dialCode"
+                            //     defaultMessage="Dial Code"
+                            //   />
+                            // }
                             isColumn
                             // width={"100%"}
                             selectType="dialCode"
@@ -499,11 +534,12 @@ class UpdateEmployeeForm extends Component {
                           />
                         </div>
                         <div class=" w-w47.5 max-sm:w-wk">
+                        <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[6]}</div>
                           <Field
                             type="text"
                             name="mobileNo"
-                            label="Personal"
-                            placeholder="Input"
+                            // label="Personal"
+                            placeholder= {this.state.translatedMenuItems[34]}
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -515,15 +551,16 @@ class UpdateEmployeeForm extends Component {
                       </div>
                       <div class=" flex  w-w47.5 justify-between max-sm:flex-col max-sm:w-wk" >
                         <div class="w-w47.5 max-sm:w-wk">
+                        <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[5]}</div>
                           <FastField
                             name="countryDialCode1"
                             isColumnWithoutNoCreate
-                            label={
-                              <FormattedMessage
-                                id="app.dialCode"
-                                defaultMessage="Dial Code"
-                              />
-                            }
+                            // label={
+                            //   <FormattedMessage
+                            //     id="app.dialCode"
+                            //     defaultMessage="Dial Code"
+                            //   />
+                            // }
                             isColumn
                             // width={"100%"}
                             selectType="dialCode"
@@ -532,11 +569,12 @@ class UpdateEmployeeForm extends Component {
                           />
                         </div>
                         <div class="w-w47.5 max-sm:w-wk">
+                        <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[7]}</div>
                           <Field
                             type="text"
                             name="phoneNo"
-                            label="Work #"
-                            placeholder="Input"
+                            // label="Work #"
+                            placeholder= {this.state.translatedMenuItems[34]}
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -548,18 +586,12 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" flex justify-between max-sm:flex-col" >
                       <div class=" w-w48 max-sm:w-wk">
-                        {/*<div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                      id="app.dateofjoining"
-                      defaultMessage=" Date Of Joining"
-                    />
-                  </div> */}
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[8]}</div>
                         <Field
                           isRequired
                           name="dateOfJoining"
-                          label={<FormattedMessage
-                            id="app.dateOfJoining"
-                            defaultMessage="Date of Joining"
-                          />}
+                          // label= //  "Date of Joining"
+                         
                           isColumn
                           component={DatePicker}
                           value={values.dateOfJoining}
@@ -570,18 +602,14 @@ class UpdateEmployeeForm extends Component {
                         />
                       </div>
                       <div class=" w-w47.5 max-sm:w-wk">
-                        {/*<div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                      id="app.dateofbirth"
-                      defaultMessage=" Date Of Birth"
-                    />
-                  </div> */}
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[9]}</div>
                         <Field
                           isRequired
                           name="dob"
-                          label={<FormattedMessage
-                            id="app.dateOfBirth"
-                            defaultMessage="Date of Birth"
-                          />}
+                          // label={<FormattedMessage
+                          //   id="app.dateOfBirth"
+                          //   defaultMessage="Date of Birth"
+                          // />}
                           isColumn
                           component={DatePicker}
                           value={values.dob}
@@ -594,15 +622,16 @@ class UpdateEmployeeForm extends Component {
                     </div>
                     <div class=" flex justify-between" >
                       <div class=" w-full">
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[10]}</div>
                         <Field
                           name="linkedinPublicUrl"
                           type="text"
                           isColumn
                           width={"100%"}
-                          label={<FormattedMessage
-                            id="app.linkedIn"
-                            defaultMessage="LinkedIn"
-                          />}
+                          // label={<FormattedMessage
+                          //   id="app.linkedIn"
+                          //   defaultMessage="LinkedIn"
+                          // />}
                           component={InputComponent}
                           inlineLabel
                         />
@@ -610,40 +639,25 @@ class UpdateEmployeeForm extends Component {
                       </div>
 
                     </div>
-                    {/* <div style={{ width: "100%", backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)", marginTop: "0.5rem" }}>
-                      <div>
-                        <div class=" text-[white] text-xs" >
-                          Address for  Correspondence</div>
-                      </div>
-                    </div> */}
-{/* 
-                    <FieldArray
-                      name="address"
-                      label="Address"
-                      render={(arrayHelpers) => (
-                        <AddressFieldArray
-                          arrayHelpers={arrayHelpers}
-                          values={values}
-                        />
-                      )}
-                    /> */}
+                  
 
                   </div>
                   <div class="  w-[47.5%] max-sm:w-wk ">
                     <div class=" w-full mt-4" >
+                    <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[11]}</div>
                     <Field
                     isRequired
-                    // defaultValue={{ label: timeZone, value: userId }}
+                
                     name="timeZone"
                     isColumnWithoutNoCreate
-                    placeholder="timeZone"
+                    placeholder= {this.state.translatedMenuItems[11]}
                     //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="time Zone"
-                      />
-                    }
+                    // label={
+                      // <FormattedMessage
+                      //   id="app.timeZone"
+                      //   defaultMessage="time Zone"
+                      // />
+                    // }
                     options={
                       Array.isArray(timeZoneOption)
                         ? timeZoneOption
@@ -658,47 +672,37 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" flex justify-between max-sm:flex-col" >
                       <div class=" w-w48 flex flex-col max-sm:w-wk">
-                        {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</div>
-<select className="customize-select"
-name="departmentId"
-                       
-                      onChange={this.handleDeptChange}>
-          <option value="">Select </option>
-          {this.props.departments.map((item, index) => (
-            <option key={index} value={item.departmentId}>
-              {item.departmentName}
-            </option>
-          ))}
-        </select> */}
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[12]}</div>
                         <Field
                           name="departmentId"
                           isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.Department"
-                              defaultMessage="Department"
-                            />
-                          }
+                          // label={
+                          //   <FormattedMessage
+                          //     id="app.Department"
+                          //     defaultMessage="Department"
+                          //   />
+                          // }
                           component={SelectComponent}
                           options={
                             Array.isArray(DepartmentOptions)
                               ? DepartmentOptions
                               : []
                           }
-                          // value={values.departmentId}
+                         
                           isColumn
                           margintop={"0"}
                           inlineLabel
                         />
                       </div>
                       <div class="w-w47.5 max-sm:w-wk">
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[13]}</div>
                         <FastField
                           name="label"
                           type="level"
-                          label={<FormattedMessage
-                            id="app.level"
-                            defaultMessage="Level"
-                          />}
+                          // label={<FormattedMessage
+                          //   id="app.level"
+                          //   defaultMessage="Level"
+                          // />}
                           options={["L1", "L2", "L3"]}
                           component={SelectComponent}
                           inlineLabel
@@ -709,12 +713,13 @@ name="departmentId"
                     </div>
                     <div class=" flex justify-between mt-2" >
                     <div class=" w-w48 max-sm:w-wk">
+                    <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[14]}</div>
                       <Field
                         name="roleType"
-                        label={<FormattedMessage
-                          id="app.role"
-                          defaultMessage="Role"
-                        />}
+                        // label={<FormattedMessage
+                        //   id="app.role"
+                        //   defaultMessage="Role"
+                        // />}
                         isColumnWithoutNoCreate
                         component={SelectComponent}
                         options={
@@ -740,33 +745,32 @@ name="departmentId"
                         margintop={"0"}
                         inlineLabel
                         style={{ flexBasis: "80%" }}
-                      // value={values.roleTypeId}
-                      // width={"100%"}
-                      // isColumn
-                      // selectType="roleType"
+                 
                       />
                     </div>
                       <div class=" w-w48 flex flex-col max-sm:w-wk">
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[15]}</div>
                       <Field
                      
                         name="salary"
                         type="text"
                         isColumn
                         width={"100%"}
-                        label={<FormattedMessage
-                          id="app.salary"
-                          defaultMessage="Salary" />}
+                        // label={<FormattedMessage
+                        //   id="app.salary"
+                        //   defaultMessage="Salary" />}
                         component={InputComponent}
                         inlineLabel
                       />
                       </div>
                     </div>
                     <div class=" max-sm:w-wk">
+                    <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[16]}</div>
                       <Field
                         name="designationType"
                         isColumnWithoutNoCreate
-                        placeholder="Designation"
-                        label="Designation"
+                        placeholder= {this.state.translatedMenuItems[16]}
+                        // label="Designation"
                         isColumn
                         // selectType="currencyName"
                         isRequired
@@ -782,15 +786,16 @@ name="departmentId"
 
                     <div class=" flex justify-between mt-3 max-sm:flex-col" >
                       <div class=" w-w48 flex flex-col max-sm:w-wk">
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[17]}</div>
                         <Field
                           name="workplace"
                           isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.Workplace"
-                              defaultMessage="Workplace"
-                            />
-                          }
+                          // label={
+                          //   <FormattedMessage
+                          //     id="app.Workplace"
+                          //     defaultMessage="Workplace"
+                          //   />
+                          // }
                           component={SelectComponent}
                           options={
                             Array.isArray(WorkplaceOptions)
@@ -802,27 +807,17 @@ name="departmentId"
                           margintop={"0"}
                           inlineLabel
                         />
-                        {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</div>
-                    <select className="customize-select"
-                      
-                      onChange={this.handleCountryChange}>
-          <option value="">Select </option>
-          {this.props.countries.map((item, index) => (
-            <option key={index} value={item.country_name}>
-              {item.country_name}
-            </option>
-          ))}
-        </select> */}
+                       
                       </div>
 
                       <div class="w-w47.5 flex flex-col">
-
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[18]}</div>
                         <Field
                           name="location"
-                          label={<FormattedMessage
-                            id="app.location"
-                            defaultMessage="Location"
-                          />}
+                          // label={<FormattedMessage
+                          //   id="app.location"
+                          //   defaultMessage="Location"
+                          // />}
                           isColumnWithoutNoCreate
                           component={SelectComponent}
                           options={
@@ -848,72 +843,50 @@ name="departmentId"
                           margintop={"0"}
                           inlineLabel
                           style={{ flexBasis: "80%" }}
-                        // value={values.roleTypeId}
-                        // width={"100%"}
-                        // isColumn
-                        // selectType="roleType"
+                      
                         />
-                        {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Location</div>
-                    <select className="customize-select"
-             
-                      onChange={this.handleLocationChange}
-                    >
-          <option value="">Select </option>
-          {this.state.locations.map((item, index) => (
-            <option key={index}
-            // disabled={!values.country_name}
-             value={item.locationDetailsId}>
-              {item.locationName}
-            </option>
-          ))}
-        </select>  */}
-
-
-
-
-
                       </div>
                     </div>
 
                     <div class=" flex mt-2" >
                       <div>
                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                          <FormattedMessage
-                            id="app.jobtype"
-                            defaultMessage="Job Type"
-                          />
+                       
+                            {/* defaultMessage="Job Type" */}
+                          {this.state.translatedMenuItems[19]}
                         </div>
                         <Switch
                           checked={this.state.active}
                           onChange={this.handleJobType}
-                          checkedChildren="Full Time"
-                          unCheckedChildren="Part Time"
+                          checkedChildren= {this.state.translatedMenuItems[20]}
+                          unCheckedChildren= {this.state.translatedMenuItems[21]}
                         />
 
                       </div>
                       &nbsp;&nbsp;&nbsp;&nbsp;
                       <div>
                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                          <FormattedMessage
+                          {/* <FormattedMessage
                             id="app.category"
                             defaultMessage="Category"
-                          />
+                          /> */} {this.state.translatedMenuItems[22]}
                         </div>
                         <Switch
                           checked={this.state.typeInd}
                           onChange={this.handleType}
-                          checkedChildren="External"
-                          unCheckedChildren="Internal"
+                          checkedChildren= {this.state.translatedMenuItems[23]}
+                          unCheckedChildren= {this.state.translatedMenuItems[24]}
                         />
 
                       </div>
                     </div>
 
                     <div class=" mt-3">
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
+                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                        {/* <FormattedMessage
                         id="app.employeetype"
                         defaultMessage="Employee Type"
-                      />
+                      /> */}{this.state.translatedMenuItems[25]}
                       </div>
 
                       <Radio.Group
@@ -924,29 +897,29 @@ name="departmentId"
                           value={"Employee"}
                           onChange={() => this.radioClick("employee")}
                         >
-                          Employee
+                       {this.state.translatedMenuItems[26]}   {/* Employee */}
                         </Radio>
                         &nbsp;&nbsp;
                         <Radio
                           value={"contractor"}
                           onChange={() => this.radioClick("contractor")}
                         >
-                          Contractor
+                        {this.state.translatedMenuItems[27]}  {/* Contractor */}
                         </Radio>
                         &nbsp;&nbsp;
                         <Radio
                           value={"intern"}
                           onChange={() => this.radioClick("intern")}
                         >
-                          Intern
+                    {this.state.translatedMenuItems[28]}{/* Intern */}
                         </Radio>
                         &nbsp;&nbsp;
                       </Radio.Group>
                     </div>
-                    <div class="mt-2"><div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reports To</div></div>
+                    <div class="mt-2"><div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[29]}</div></div>
                     <div class=" flex justify-between  max-sm:flex-col" >
                       <div class=" w-w48 max-sm:w-wk">
-                        <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Department</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[12]}</div>
                         <Select
                           className="w-[250px]"
                           value={department}
@@ -959,7 +932,7 @@ name="departmentId"
                       </div>
 
                       <div class="w-w47.5 max-sm:w-wk">
-                        <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reporting Manager</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[30]}</div>
                         <Select
                           className="w-[250px]"
                           value={reportingManager}
@@ -974,7 +947,7 @@ name="departmentId"
 
                     <div class=" flex justify-between  max-sm:flex-col" >
                       <div class=" w-w48 max-sm:w-wk">
-                      <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Department</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[31]}</div>
                         <Select
                           className="w-[250px]"
                           value={secondatDepartment}
@@ -987,7 +960,7 @@ name="departmentId"
                       </div>
 
                       <div class="w-w47.5 max-sm:w-wk">
-                      <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Reporting Manager</div>
+                      <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[32]}</div>
                         <Select
                           className="w-[250px]"
                           value={secondaryReportingManager}
@@ -1007,7 +980,7 @@ name="departmentId"
                     type="primary"
                     loading={this.props.updatingEmployee}
                   >
-                    Update
+                  {this.state.translatedMenuItems[33]}  {/* Update */}
                   </Button>
                 </div>
               </Form>
@@ -1050,979 +1023,3 @@ const mapDispatchToProps = (dispatch) =>
 
   }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateEmployeeForm);
-
-
-
-
-
-
-// import React, { Component,useState,useEffect } from "react";
-// import { Button, Switch, Select } from "antd";
-// import { FormattedMessage } from "react-intl";
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import { Radio, message } from "antd";
-// import { getlocation } from "../../../Event/Child/Location/LocationAction";
-// import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
-// import { getDepartments } from "../../../Settings/Department/DepartmentAction";
-// import { getCurrency } from "../../../Auth/AuthAction"
-// import { 
-//   // getTimeZone,
-//    getCountries } from "../../../Auth/AuthAction"
-//    import { getDesignations } from "../../../Settings/Designation/DesignationAction";
-// import { getRoles } from "../../../Settings/Category/Role/RoleAction"
-// import { updateEmployee, } from "../../EmployeeAction";
-// import { Formik, Form, Field, FieldArray, FastField } from "formik";
-// import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-// import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-// import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
-// import dayjs from "dayjs";
-// import * as Yup from "yup";
-// import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
-// import PostImageUpld from "../../../../Components/Forms/Formik/PostImageUpld";
-// import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
-// const { Option } = Select;
-
-// const EmployeeSchema = Yup.object().shape({
-//   departmentId: Yup.string().required("Input needed!"),
-//   roleType: Yup.string().required("Input needed!"),
-//   workplace: Yup.string().required("Input needed!"),
-//   location: Yup.string().required("Input needed!"),
-//   workplace: Yup.string().required("Input needed!"),
-// });
-// const UpdateEmployeeForm = (props) => {
-//   const [active, setActive] = useState(false);
-//   const [checked, setChecked] = useState(true);
-//   const [typeInd, setTypeInd] = useState(props.userData.typeInd || "");
-//   const [role, setRole] = useState([]);
-//   const [reportingManager, setReportingManager] = useState(props.userData.reportingManager || "");
-//   const [department, setDepartment] = useState(props.userData.reportingManagerDeptId || "");
-//   const [secondatDepartment, setSecondatDepartment] = useState(props.userData.secondaryReptManagerDept || "");
-//   const [secondaryReportingManager, setSecondaryReportingManager] = useState(props.userData.secondaryReptManager || "");
-//   const [selectedRole, setSelectedRole] = useState("");
-//   const [selectedCountry, setSelectedCountry] = useState('');
-//   const [selectedDept, setSelectedDept] = useState("");
-//   const [locations, setLocations] = useState([]);
-//   const [selectedLocation, setSelectedLocation] = useState("");
-//   const [workType, setWorkType] = useState(props.userData.employee_type || "");
-
-//   useEffect(() => {
-//     const { getCountries, getEmployeelist, getDepartments, getDesignations, getCurrency, getRoles, getlocation } = props;
-//     getRoles(props.organizationId);
-//     getlocation(props.orgId);
-//     getCountries();
-//     getDepartments();
-//     getCurrency();
-//     props.getDepartmentwiserUser(department);
-//     getDesignations();
-
-//     setActive(props.userData.job_type === "Full Time");
-//     setChecked(props.userData.job_type === "Part Time" ? false : true);
-//   }, []);
-
-//   const handleReset = (resetForm) => {
-//     resetForm();
-//   };
-
-//   const handleJobType = (checked) => {
-//     setActive(checked);
-//   };
-
-//   const handleType = (checked) => {
-//     setTypeInd(checked);
-//   };
-
-//   const radioClick = (c) => {
-//     setWorkType(c);
-//   };
-
-//   const handleLocationChange = (event) => {
-//     setSelectedLocation(event.target.value);
-//   };
-
-//   const handleCountryChange = (event) => {
-//     const selectedCountry = event.target.value;
-//     const filteredLocations = props.showLocation.filter((item) => item.country_name === selectedCountry);
-//     setSelectedCountry(selectedCountry);
-//     setLocations(filteredLocations);
-//   };
-
-//   const getLocationNameOption = (filterOptionKey, filterOptionValue) => {
-//     return props.showLocation
-//       .filter(option => option.country_id === filterOptionValue && option.probability !== 0)
-//       .map(option => ({
-//         label: option.locationName || "",
-//         value: option.locationDetailsId,
-//       }));
-//   };
-
-//   const handleDepartment = (val) => {
-//     setDepartment(val);
-//     props.getDepartmentwiserUser(val);
-//   };
-
-//   const handleSecondaryDepartment = (val) => {
-//     setSecondatDepartment(val);
-//     props.getDepartmentwiserUser(val);
-//   };
-
-//   const handleSecondaryreportingManager = (val) => {
-//     setSecondaryReportingManager(val);
-//   };
-
-//   const handlereportingManager = (val) => {
-//     setReportingManager(val);
-//   };
-
-//   const handleDeptChange = (event) => {
-//     const selectedDept = event.target.value;
-//     const filteredRoles = props.roles.filter((item) => item.departmentId === selectedDept);
-//     setSelectedDept(selectedDept);
-//     setRole(filteredRoles);
-//   };
-
-//   const handleRoleChange = (event) => {
-//     setSelectedRole(event.target.value);
-//   };
-
-//   const getRoleOptions = (filterOptionKey, filterOptionValue) => {
-//     return props.roles
-//       .filter(option => option.departmentId === filterOptionValue && option.probability !== 0)
-//       .map(option => ({
-//         label: option.roleType || "",
-//         value: option.roleTypeId,
-//       }));
-//   };
-
-//   const getLocationOptions = (filterOptionKey, filterOptionValue) => {
-//     return props.showLocation
-//       .filter(option => option.country_name === filterOptionValue && option.probability !== 0)
-//       .map(option => ({
-//         label: option.locationName || "",
-//         value: option.locationDetailsId,
-//       }));
-//   };
-
-//   const getEmployeesbyDepartment = (filterOptionKey, filterOptionValue) => {
-//     return props.employees
-//       .filter(option => option.departmentId === filterOptionValue && option.probability !== 0)
-//       .sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
-//       .map(option => ({
-//         label: option.fullName || "",
-//         value: option.employeeId,
-//       }));
-//   };
-
-//   const timeZoneOption = props.timeZone.map(item => ({
-//     label: item.zone_name || null,
-//     value: item.timezone_id,
-//   }));
-
-//   const dialCodeNameOption = props.countries.map(item => ({
-//     label: item.country_dial_code || "",
-//     value: item.country_dial_code,
-//   }));
-
-//   const WorkflowOptions = props.departments.map(item => ({
-//     label: item.departmentName || "",
-//     value: item.departmentId,
-//   }));
-
-//   const sortedCurrency = props.currencies.sort((a, b) => a.currency_name.toLowerCase().localeCompare(b.currency_name.toLowerCase()));
-
-//   const currencyNameOption = sortedCurrency.map(item => ({
-//     label: item.currency_name,
-//     value: item.currency_id,
-//   }));
-
-//   const DepartmentOptions = props.departments.map(item => ({
-//     label: ` ${item.departmentName || ""}`,
-//     value: item.departmentId,
-//   }));
-
-//   const WorkplaceOptions = props.countries.map(item => ({
-//     label: `${item.country_name || ""}`,
-//     value: item.country_name,
-//   }));
-
-//   const designationNameOption = props.designations.map(item => ({
-//     label: `${item.designationType}`,
-//     value: item.designationTypeId,
-//   }));
-
-//   const { user: { firstName, empName, middleName, fullName, lastName, timeZone }, userId, clearbit, userData } = props;
-
-//   console.log(userData);
-//   console.log(props.userDetails);
- 
-//     return (
-//       <>
-//         <Formik
-//           initialValues={{
-//             salutation: userData.salutation || "",
-//             firstName: userData.firstName || "",
-//             lastName: userData.lastName || "",
-//             emailId: userData.emailId || "",
-//             salary: userData.salary || "",
-//             timeZone: userData.timeZone || "",
-//             // timeZone: timeZone,
-//             countryDialCode: userData.countryDialCode || "",
-//             countryDialCode1: userData.countryDialCode1 || "",
-//             phoneNo: userData.phoneNo || "",
-//             // location:this.state.selectedLocation,
-//             // workplace:this.state.selectedCountry,
-//             dateOfJoining: dayjs(),
-//             dob: dayjs(),
-//             mobileNo: userData.mobileNo || "",
-//             currency:userData.currency || "",
-//             country: userData.country || "",
-//             workplace: userData.workplace || "",
-//             location: userData.location || "",
-//             designationTypeId: userData.designationTypeId || "",
-//             departmentId: userData.departmentId,
-//             roleType: userData.roleType || "",
-//             roleTypeName: userData.roleTypeName || "",
-//             linkedinPublicUrl: userData.linkedinPublicUrl || "",
-//             label: userData.label || "",
-//             designationType:"",
-//             job_type: active ? "Full Time" : "Part Time",
-//             type: typeInd ? "true" : "false",
-//             employee_type: workType,
-//             // address: [
-//             //   {
-//             //     addressId: userData.address.length ? userData.address[0].addressId : "",
-//             //     address1: userData.address.length ? userData.address[0].address1 : "",
-//             //     address2: userData.address.length ? userData.address[0].address2 : "",
-//             //     street: userData.address.length ? userData.address[0].street : "",
-//             //     city: userData.address.length ? userData.address[0].city : "",
-//             //     state: userData.address.length ? userData.address[0].state : "",
-//             //     postalCode: userData.address.length ? userData.address[0].postalCode : "",
-//             //   },
-//             // ],
-
-//           }}
-//           validationSchema={EmployeeSchema}
-//           onSubmit={(values, { resetForm }) => {
-//             if (department && reportingManager) {
-//               props.updateEmployee(
-//                 {
-//                   ...values,
-//                   timeZone: timeZone,
-//                   // workplace: userData.country_name ,
-//                   // location: userData.locationDetailsId ,
-//                   reportingManagerDeptId: department,
-//                   secondaryReptManagerDept:secondatDepartment,
-//                   secondaryReptManager: secondaryReportingManager,
-//                   reportingManager: reportingManager,
-//                   job_type: active ? "Full Time" : "Part Time",
-//                   type: typeInd ? "true" : "false",
-//                   employee_type: workType,
-//                   employeeId: userData.employeeId,
-//                   // assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
-//                 },
-//                 userData.employeeId,
-//                 () => this.handleReset(resetForm)
-//               );
-//             }
-//             else {
-//               message.error("Please Provide Department And Reporting Manager ! ")
-//             }
-//           }}
-
-//         >
-//           {({
-//             errors,
-//             touched,
-//             isSubmitting,
-//             setFieldValue,
-//             setFieldTouched,
-//             values,
-//             ...rest
-//           }) => (
-//             <div class=" h-[32rem] max-sm:h-[30rem]">
-//               <Form className="form-background">
-//                 <div class="flex justify-between  pr-2 max-sm:flex-col">
-//                   <div class="  w-[47.5%] max-sm:w-wk">
-
-//                     <div class=" flex flex-nowrap justify-between mt-3" >
-//                       {/* <FastField name="imageId" component={Upload} /> */}
-//                       <FastField name="imageId" component={PostImageUpld} />
-//                       <div>
-//                         <div class=" flex justify-between max-sm:flex-col" >
-//                           {/* <div class=" w-1/3 max-sm:w-full">
-//                       <FastField
-//                         name="salutation"
-//                         placeholder="Select"
-//                         component={SelectComponent}
-//                         options={["Mr", "Mrs", "Miss","None"]}
-                        
-//                         label={<FormattedMessage
-//                           id="app.salutation"
-//                           defaultMessage="Salutation"
-//                         />}
-//                         isColumn
-//                         />
-//                     </div> */}
-//                           <div class=" w-wk max-sm:w-full">
-//                             <Field
-//                               isRequired
-//                               name="firstName"
-//                               type="text"
-//                               isColumn
-//                               width={"100%"}
-//                               label={<FormattedMessage
-//                                 id="app.firstName"
-//                                 defaultMessage="First Name"
-//                               />}
-//                               component={InputComponent}
-//                               inlineLabel
-//                             />
-//                           </div>
-//                         </div>
-//                         <div class=" flex justify-between max-sm:flex-col" >
-//                           <div class=" w-2/5 max-sm:w-full">
-//                             {" "}
-//                             <Field
-
-//                               name="middleName"
-//                               type="text"
-//                               isColumn
-//                               width={"100%"}
-//                               label={<FormattedMessage
-//                                 id="app.middleName"
-//                                 defaultMessage="Middle Name"
-//                               />}
-//                               component={InputComponent}
-//                               inlineLabel
-//                             />
-//                           </div>
-//                           <div class=" w-3/6 max-sm:w-full">
-//                             {" "}
-//                             <Field
-//                               name="lastName"
-//                               type="text"
-//                               isColumn
-//                               width={"100%"}
-//                               label={<FormattedMessage
-//                                 id="app.lastName"
-//                                 defaultMessage="Last Name"
-//                               />}
-//                               component={InputComponent}
-//                               inlineLabel
-//                             />
-//                           </div>
-//                         </div>
-
-//                       </div>
-//                     </div>
-
-
-
-//                     <div class=" flex justify-between" >
-//                       <div class=" w-[70%] flex flex-col max-sm:w-wk">
-//                         <Field
-//                           isRequired
-//                           name="emailId"
-//                           type="text"
-//                           isColumn
-//                           width={"100%"}
-//                           label={<FormattedMessage
-//                             id="app.emailId"
-//                             defaultMessage="Email" />}
-//                           component={InputComponent}
-//                           inlineLabel
-//                         />
-//                       </div>
-//                       <div class=" max-sm:w-wk">
-//                         <Field
-//                           name="currency"
-//                           isColumnWithoutNoCreate
-//                           placeholder="Currency"
-//                           label={<FormattedMessage
-//                             id="app.currency"
-//                             defaultMessage="Currency"
-//                           />}
-//                           isColumn
-//                           // selectType="currencyName"
-//                           isRequired
-//                           component={SelectComponent}
-//                           options={
-//                             Array.isArray(currencyNameOption)
-//                               ? currencyNameOption
-//                               : []
-//                           }
-
-//                         />
-//                       </div>
-//                     </div>
-//                     <div class="flex justify-between max-sm:flex-col">
-//                       <div class=" flex  w-w47.5 justify-between max-sm:flex-col max-sm:w-wk " >
-//                         <div class=" w-w47.5 max-sm:w-wk ">
-//                           <FastField
-//                             name="countryDialCode"
-//                             isColumnWithoutNoCreate
-//                             label={
-//                               <FormattedMessage
-//                                 id="app.dialCode"
-//                                 defaultMessage="Dial Code"
-//                               />
-//                             }
-//                             isColumn
-//                             // width={"100%"}
-//                             selectType="dialCode"
-//                             component={SearchSelect}
-//                             inlineLabel
-//                           />
-//                         </div>
-//                         <div class=" w-w47.5 max-sm:w-wk">
-//                           <Field
-//                             type="text"
-//                             name="mobileNo"
-//                             label="Personal"
-//                             placeholder="Input"
-//                             component={InputComponent}
-//                             inlineLabel
-//                             width={"100%"}
-//                             isColumn
-//                           />
-
-//                         </div>
-
-//                       </div>
-//                       <div class=" flex  w-w47.5 justify-between max-sm:flex-col max-sm:w-wk" >
-//                         <div class="w-w47.5 max-sm:w-wk">
-//                           <FastField
-//                             name="countryDialCode1"
-//                             isColumnWithoutNoCreate
-//                             label={
-//                               <FormattedMessage
-//                                 id="app.dialCode"
-//                                 defaultMessage="Dial Code"
-//                               />
-//                             }
-//                             isColumn
-//                             // width={"100%"}
-//                             selectType="dialCode"
-//                             component={SearchSelect}
-//                             inlineLabel
-//                           />
-//                         </div>
-//                         <div class="w-w47.5 max-sm:w-wk">
-//                           <Field
-//                             type="text"
-//                             name="phoneNo"
-//                             label="Work #"
-//                             placeholder="Input"
-//                             component={InputComponent}
-//                             inlineLabel
-//                             width={"100%"}
-//                             isColumn
-//                           />
-//                         </div>
-//                       </div>
-//                     </div>
-
-//                     <div class=" flex justify-between max-sm:flex-col" >
-//                       <div class=" w-w48 max-sm:w-wk">
-//                         {/*<div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-//                       id="app.dateofjoining"
-//                       defaultMessage=" Date Of Joining"
-//                     />
-//                   </div> */}
-//                         <Field
-//                           isRequired
-//                           name="dateOfJoining"
-//                           label={<FormattedMessage
-//                             id="app.dateOfJoining"
-//                             defaultMessage="Date of Joining"
-//                           />}
-//                           isColumn
-//                           component={DatePicker}
-//                           value={values.dateOfJoining}
-//                           // defaultValue={dayjs("2020-01-01")}
-//                           style={{
-//                             width: "100%",
-//                           }}
-//                         />
-//                       </div>
-//                       <div class=" w-w47.5 max-sm:w-wk">
-//                         {/*<div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-//                       id="app.dateofbirth"
-//                       defaultMessage=" Date Of Birth"
-//                     />
-//                   </div> */}
-//                         <Field
-//                           isRequired
-//                           name="dob"
-//                           label={<FormattedMessage
-//                             id="app.dateOfBirth"
-//                             defaultMessage="Date of Birth"
-//                           />}
-//                           isColumn
-//                           component={DatePicker}
-//                           value={values.dob}
-//                           // defaultValue={dayjs("2020-01-01")}
-//                           style={{
-//                             width: "100%",
-//                           }}
-//                         />
-//                       </div>
-//                     </div>
-//                     <div class=" flex justify-between" >
-//                       <div class=" w-full">
-//                         <Field
-//                           name="linkedinPublicUrl"
-//                           type="text"
-//                           isColumn
-//                           width={"100%"}
-//                           label={<FormattedMessage
-//                             id="app.linkedIn"
-//                             defaultMessage="LinkedIn"
-//                           />}
-//                           component={InputComponent}
-//                           inlineLabel
-//                         />
-
-//                       </div>
-
-//                     </div>
-//                     {/* <div style={{ width: "100%", backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)", marginTop: "0.5rem" }}>
-//                       <div>
-//                         <div class=" text-[white] text-xs" >
-//                           Address for  Correspondence</div>
-//                       </div>
-//                     </div> */}
-// {/* 
-//                     <FieldArray
-//                       name="address"
-//                       label="Address"
-//                       render={(arrayHelpers) => (
-//                         <AddressFieldArray
-//                           arrayHelpers={arrayHelpers}
-//                           values={values}
-//                         />
-//                       )}
-//                     /> */}
-
-//                   </div>
-//                   <div class="  w-[47.5%] max-sm:w-wk ">
-//                     <div class=" w-full mt-4" >
-//                     <Field
-//                     isRequired
-//                     // defaultValue={{ label: timeZone, value: userId }}
-//                     name="timeZone"
-//                     isColumnWithoutNoCreate
-//                     placeholder="timeZone"
-//                     //label="TimeZone "
-//                     label={
-//                       <FormattedMessage
-//                         id="app.timeZone"
-//                         defaultMessage="time Zone"
-//                       />
-//                     }
-//                     options={
-//                       Array.isArray(timeZoneOption)
-//                         ? timeZoneOption
-//                         : []
-//                     }
-//                     isColumn
-//                     value={values.timeZone}
-//                     component={SelectComponent}
-//                     inlineLabel
-//                   />
-//                     </div>
-
-//                     <div class=" flex justify-between max-sm:flex-col" >
-//                       <div class=" w-w48 flex flex-col max-sm:w-wk">
-//                         {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</div>
-// <select className="customize-select"
-// name="departmentId"
-                       
-//                       onChange={this.handleDeptChange}>
-//           <option value="">Select </option>
-//           {this.props.departments.map((item, index) => (
-//             <option key={index} value={item.departmentId}>
-//               {item.departmentName}
-//             </option>
-//           ))}
-//         </select> */}
-//                         <Field
-//                           name="departmentId"
-//                           isColumnWithoutNoCreate
-//                           label={
-//                             <FormattedMessage
-//                               id="app.Department"
-//                               defaultMessage="Department"
-//                             />
-//                           }
-//                           component={SelectComponent}
-//                           options={
-//                             Array.isArray(DepartmentOptions)
-//                               ? DepartmentOptions
-//                               : []
-//                           }
-//                           // value={values.departmentId}
-//                           isColumn
-//                           margintop={"0"}
-//                           inlineLabel
-//                         />
-//                       </div>
-//                       <div class="w-w47.5 max-sm:w-wk">
-//                         <FastField
-//                           name="label"
-//                           type="level"
-//                           label={<FormattedMessage
-//                             id="app.level"
-//                             defaultMessage="Level"
-//                           />}
-//                           options={["L1", "L2", "L3"]}
-//                           component={SelectComponent}
-//                           inlineLabel
-//                           className="field"
-//                           isColumn
-//                         />
-//                       </div>
-//                     </div>
-//                     <div class=" flex justify-between mt-2" >
-//                     <div class=" w-w48 max-sm:w-wk">
-//                       <Field
-//                         name="roleType"
-//                         label={<FormattedMessage
-//                           id="app.role"
-//                           defaultMessage="Role"
-//                         />}
-//                         isColumnWithoutNoCreate
-//                         component={SelectComponent}
-//                         options={
-//                           Array.isArray(
-//                           getRoleOptions(
-//                               "departmentId",
-//                               values.departmentId
-//                             )
-//                           )
-//                             ? getRoleOptions(
-//                               "departmentId",
-//                               values.departmentId
-//                             )
-//                             : []
-//                         }
-//                         value={values.roleTypeName}
-//                         filterOption={{
-//                           filterType: "departmentId",
-//                           filterValue: values.departmentId,
-//                         }}
-//                         disabled={!values.departmentId}
-//                         isColumn
-//                         margintop={"0"}
-//                         inlineLabel
-//                         style={{ flexBasis: "80%" }}
-//                       // value={values.roleTypeId}
-//                       // width={"100%"}
-//                       // isColumn
-//                       // selectType="roleType"
-//                       />
-//                     </div>
-//                       <div class=" w-w48 flex flex-col max-sm:w-wk">
-//                       <Field
-                     
-//                         name="salary"
-//                         type="text"
-//                         isColumn
-//                         width={"100%"}
-//                         label={<FormattedMessage
-//                           id="app.salary"
-//                           defaultMessage="Salary" />}
-//                         component={InputComponent}
-//                         inlineLabel
-//                       />
-//                       </div>
-//                     </div>
-//                     <div class=" max-sm:w-wk">
-//                       <Field
-//                         name="designationType"
-//                         isColumnWithoutNoCreate
-//                         placeholder="Designation"
-//                         label="Designation"
-//                         isColumn
-//                         // selectType="currencyName"
-//                         isRequired
-//                         component={SelectComponent}
-//                         options={
-//                           Array.isArray(designationNameOption)
-//                             ? designationNameOption
-//                             : []
-//                         }
-
-//                       />
-//                       </div>
-
-//                     <div class=" flex justify-between mt-3 max-sm:flex-col" >
-//                       <div class=" w-w48 flex flex-col max-sm:w-wk">
-//                         <Field
-//                           name="workplace"
-//                           isColumnWithoutNoCreate
-//                           label={
-//                             <FormattedMessage
-//                               id="app.Workplace"
-//                               defaultMessage="Workplace"
-//                             />
-//                           }
-//                           component={SelectComponent}
-//                           options={
-//                             Array.isArray(WorkplaceOptions)
-//                               ? WorkplaceOptions
-//                               : []
-//                           }
-//                           value={values.workplace}
-//                           isColumn
-//                           margintop={"0"}
-//                           inlineLabel
-//                         />
-//                         {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</div>
-//                     <select className="customize-select"
-                      
-//                       onChange={this.handleCountryChange}>
-//           <option value="">Select </option>
-//           {this.props.countries.map((item, index) => (
-//             <option key={index} value={item.country_name}>
-//               {item.country_name}
-//             </option>
-//           ))}
-//         </select> */}
-//                       </div>
-
-//                       <div class="w-w47.5 flex flex-col">
-
-//                         <Field
-//                           name="location"
-//                           label={<FormattedMessage
-//                             id="app.location"
-//                             defaultMessage="Location"
-//                           />}
-//                           isColumnWithoutNoCreate
-//                           component={SelectComponent}
-//                           options={
-//                             Array.isArray(
-//                               getLocationOptions(
-//                                 "workplace",
-//                                 values.workplace
-//                               )
-//                             )
-//                               ? getLocationOptions(
-//                                 "workplace",
-//                                 values.workplace
-//                               )
-//                               : []
-//                           }
-//                           // value={values.location}
-//                           filterOption={{
-//                             filterType: "workplace",
-//                             filterValue: values.workplace,
-//                           }}
-//                           disabled={!values.workplace}
-//                           isColumn
-//                           margintop={"0"}
-//                           inlineLabel
-//                           style={{ flexBasis: "80%" }}
-//                         // value={values.roleTypeId}
-//                         // width={"100%"}
-//                         // isColumn
-//                         // selectType="roleType"
-//                         />
-//                         {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Location</div>
-//                     <select className="customize-select"
-             
-//                       onChange={this.handleLocationChange}
-//                     >
-//           <option value="">Select </option>
-//           {this.state.locations.map((item, index) => (
-//             <option key={index}
-//             // disabled={!values.country_name}
-//              value={item.locationDetailsId}>
-//               {item.locationName}
-//             </option>
-//           ))}
-//         </select>  */}
-
-
-
-
-
-//                       </div>
-//                     </div>
-
-//                     <div class=" flex mt-2" >
-//                       <div>
-//                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-//                           <FormattedMessage
-//                             id="app.jobtype"
-//                             defaultMessage="Job Type"
-//                           />
-//                         </div>
-//                         <Switch
-//                           checked={active}
-//                           onChange={handleJobType}
-//                           checkedChildren="Full Time"
-//                           unCheckedChildren="Part Time"
-//                         />
-
-//                       </div>
-//                       &nbsp;&nbsp;&nbsp;&nbsp;
-//                       <div>
-//                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-//                           <FormattedMessage
-//                             id="app.category"
-//                             defaultMessage="Category"
-//                           />
-//                         </div>
-//                         <Switch
-//                           checked={typeInd}
-//                           onChange={handleType}
-//                           checkedChildren="External"
-//                           unCheckedChildren="Internal"
-//                         />
-
-//                       </div>
-//                     </div>
-
-//                     <div class=" mt-3">
-//                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-//                         id="app.employeetype"
-//                         defaultMessage="Employee Type"
-//                       />
-//                       </div>
-
-//                       <Radio.Group
-//                         name="radiogroup"
-//                         defaultValue={workType}
-//                       >
-//                         <Radio
-//                           value={"Employee"}
-//                           onChange={() => radioClick("employee")}
-//                         >
-//                           Employee
-//                         </Radio>
-//                         &nbsp;&nbsp;
-//                         <Radio
-//                           value={"contractor"}
-//                           onChange={() => radioClick("contractor")}
-//                         >
-//                           Contractor
-//                         </Radio>
-//                         &nbsp;&nbsp;
-//                         <Radio
-//                           value={"intern"}
-//                           onChange={() => radioClick("intern")}
-//                         >
-//                           Intern
-//                         </Radio>
-//                         &nbsp;&nbsp;
-//                       </Radio.Group>
-//                     </div>
-//                     <div class="mt-2"><div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reports To</div></div>
-//                     <div class=" flex justify-between  max-sm:flex-col" >
-//                       <div class=" w-w48 max-sm:w-wk">
-//                         <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Department</div>
-//                         <Select
-//                           className="w-[250px]"
-//                           value={department}
-//                           onChange={(value) => handleDepartment(value)}
-//                         >
-//                           {props.departments.map((a) => {
-//                             return <Option value={a.departmentId}>{a.departmentName}</Option>;
-//                           })}
-//                         </Select>
-//                       </div>
-
-//                       <div class="w-w47.5 max-sm:w-wk">
-//                         <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Reporting Manager</div>
-//                         <Select
-//                           className="w-[250px]"
-//                           value={reportingManager}
-//                           onChange={(value) =>handlereportingManager(value)}
-//                         >
-//                           {props.departmentwiseUser.map((a) => {
-//                             return <Option value={a.employeeId}>{a.empName}</Option>;
-//                           })}
-//                         </Select>
-//                       </div>
-//                     </div>
-
-//                     <div class=" flex justify-between  max-sm:flex-col" >
-//                       <div class=" w-w48 max-sm:w-wk">
-//                       <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Department</div>
-//                         <Select
-//                           className="w-[250px]"
-//                           value={secondatDepartment}
-//                           onChange={(value) => handleSecondaryDepartment(value)}
-//                         >
-//                           {props.departments.map((a) => {
-//                             return <Option value={a.departmentId}>{a.departmentName}</Option>;
-//                           })}
-//                         </Select>
-//                       </div>
-
-//                       <div class="w-w47.5 max-sm:w-wk">
-//                       <div style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Secondary Reporting Manager</div>
-//                         <Select
-//                           className="w-[250px]"
-//                           value={secondaryReportingManager}
-//                           onChange={(value) => handleSecondaryreportingManager(value)}
-//                         >
-//                           {props.departmentwiseUser.map((a) => {
-//                             return <Option value={a.employeeId}>{a.empName}</Option>;
-//                           })}
-//                         </Select>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </div>
-//                 <div class="flex justify-end w-wk bottom-2 mr-2 mt-3 md:absolute ">
-//                   <Button
-//                     htmlType="submit"
-//                     type="primary"
-//                     loading={props.updatingEmployee}
-//                   >
-//                     Update
-//                   </Button>
-//                 </div>
-//               </Form>
-//             </div>
-//           )}
-//         </Formik>
-//       </>
-//     );
-//   }
-
-// const mapStateToProps = ({ auth, role, settings, location, currency, employee, designations, departments }) => ({
-//   userDetails: auth.userDetails,
-//   roles: role.roles,
-//   timeZone: auth.timeZone,
-//   user: auth.userDetails,
-//   organizationId: auth.userDetails.organizationId,
-//   orgId: auth.userDetails.organizationId,
-//   countries: auth.countries,
-//   showLocation: location.showLocation,
-//   updatingEmployee: employee.updatingEmployee,
-//   departmentId: departments.departmentId,
-//   designationTypeId: designations.designationTypeId,
-//   employees: employee.employees,
-//   designations:designations.designations,
-//   departmentwiseUser: settings.departmentwiseUser,
-//   departments: departments.departments,
-//   currencies: auth.currencies,
-// });
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators({
-//     updateEmployee,
-//     // getTimeZone,
-//     getCurrency,
-//     getDepartments,
-//     getDepartmentwiserUser,
-//     getlocation,
-//     getCountries,
-//     getRoles,
-//     getDesignations
-
-//   }, dispatch);
-// export default connect(mapStateToProps, mapDispatchToProps)(UpdateEmployeeForm);

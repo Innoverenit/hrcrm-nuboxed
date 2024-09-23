@@ -71,26 +71,7 @@ function InvouiceSTable(props) {
     }
 
     const [hasMore, setHasMore] = useState(true);
-    
-    // const handleLoadMore = () => {
-    //     const callPageMapd = props.invoiceL && props.invoiceL.length &&props.invoiceL[0].pageCount
-    //     setTimeout(() => {
-    //       const {
-    //         getInvoiveL,
-    //        // userDetails: { employeeId },
-    //       } = props;
-    //       if  (props.invoiceL)
-    //       {
-    //         if (pageNo < callPageMapd) {
-    //             setPageNo(pageNo + 1);
-    //             getInvoiveL(props.orgId,pageNo); 
-    //       }
-    //       if (pageNo === callPageMapd){
-    //         setHasMore(false)
-    //       }
-    //     }
-    //     }, 100);
-    //   };
+  
     if (loading) {
         return <div><BundleLoader/></div>;
       }

@@ -140,7 +140,7 @@ function ProductListingTable(props) {
                 imgRadius={20}
               />
             ) : (
-              <span style={{ fontSize: "0.6em", fontWeight: "bold" }}>
+              <span className=" font bold text-[0.6rem]">
                 No Image
               </span>
             )}

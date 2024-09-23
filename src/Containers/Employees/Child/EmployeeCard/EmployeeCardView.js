@@ -165,7 +165,7 @@ function handleSetCurrentUser(item) {
                        
                         {/* <div class=" text-xs  font-medium font-poppins">Department   </div> */}
                       <div class="  text-xs  font-poppins">{item.department === null ?  translatedMenuItems[1] :item.department}</div>
-                      <div class="  text-xs  font-poppins">{item.roleTypeName  === null ?  translatedMenuItems[2] :item.roleTypeName}</div>
+                      <div class="  text-xs  font-poppins">{item.roleTypeName  === null ?  translatedMenuItems[1] :item.roleTypeName}</div>
           
                    
                       
@@ -194,7 +194,7 @@ function handleSetCurrentUser(item) {
           <div class="  text-xs mt-1  font-poppins "> {translatedMenuItems[2]}:    <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
-                        : <span class="text-[red]" >Not Assigned </span>}
+                        : <span class="text-[red]" > {translatedMenuItems[3]} </span>}
                       </span>
          </div>
           <div class=" flex flex-row justify-between mt-[0.5rem] w-full items-end">
@@ -221,7 +221,7 @@ function handleSetCurrentUser(item) {
                 handleSetCurrentEmployeeId(item)
               }}
             >
-               <Tooltip title="Pulse">
+               <Tooltip title= {translatedMenuItems[4]}>
               <MonitorHeartIcon className="!text-icon cursor-pointer text-[#df9697]" />
               </Tooltip>
      </span>
@@ -241,7 +241,7 @@ function handleSetCurrentUser(item) {
                 count={item.noOfDocPending}
                 overflowCount={999}
               > 
-                  <Tooltip title="Required Documents">
+                  <Tooltip title= {translatedMenuItems[5]}>
               <InsertDriveFileIcon  className="!text-base cursor-pointer"/>
               </Tooltip>
               </Badge>
@@ -260,7 +260,7 @@ function handleSetCurrentUser(item) {
      </Tooltip>
            </div>
            <div class="  text-xs  font-poppins ml-[0.15rem]">
-           <Tooltip title="Assign as Admin">
+           <Tooltip title= {translatedMenuItems[6]}>
            <CircleNotificationsIcon
           className=" !text-base cursor-pointer text-[gold]"
            onClick={() => {
@@ -272,7 +272,7 @@ function handleSetCurrentUser(item) {
             </div>
           
            <div class="  text-xs  font-poppins ml-[0.15rem]">
-            <Tooltip title="Onboarding">
+            <Tooltip title= {translatedMenuItems[7]}>
               <BadgeIcon   className=" !text-base cursor-pointer text-[#709ab3]"
                 onClick={() => {
                     props.handleOnboardingEmployeeModal(true);
@@ -284,7 +284,7 @@ function handleSetCurrentUser(item) {
            </div>
            <div class="  text-xs  font-poppins ml-[0.15rem]">
            {user.userUpdateInd === true || user.role === "ADMIN"  ? (
-            <Tooltip title="Edit">
+            <Tooltip title= {translatedMenuItems[8]}>
               <BorderColorIcon
                 className=" !text-base cursor-pointer text-[tomato]"
                 onClick={() => {
@@ -309,12 +309,16 @@ function handleSetCurrentUser(item) {
    )} 
      <Suspense fallback={<BundleLoader />}>
               <UpdateEmployeeModal
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
               userData={userData}
        currentEmployeeId={currentEmployeeId}
         updateEmployeeModal={props.updateEmployeeModal}
         handleUpdateEmployeeModal={props.handleUpdateEmployeeModal}
       />
                <StepperEmployeeModal
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
                userStageList={props.userStageList}
                currentEmployeeId={currentEmployeeId}
                employeeName={currentEmployeeId}
@@ -325,11 +329,15 @@ function handleSetCurrentUser(item) {
         handleSetCurrentEmployeeId={props.handleSetCurrentEmployeeId}
       />
               <EmployeeDrawerForAdmin
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
       employeeId={currentEmployeeId}
         handleEmployeeDrawerForAdmin={handleEmployeeDrawerForAdmin}
         employeeDrawerVisibleForAdmin={employeeDrawerVisibleForAdmin}
       />
             <EmployeePulseDrawerModal
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
          singleEmployee={props.singleEmployee}
          employeeTreeMap={props.employeeTreeMap}
         //  currentData={rowData}
@@ -340,14 +348,19 @@ function handleSetCurrentUser(item) {
         // candidateByUserId={this.props.candidateByUserId}
       />
                <EmployeeDocumentDrawerModal
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
          singleEmployee={props.singleEmployee}
         employeeName={currentEmployeeId}
         addDrawerEmployeeDocumentModal={props.addDrawerEmployeeDocumentModal}
         handleEmployeeDocumentDrawerModal={props.handleEmployeeDocumentDrawerModal}
       />
       <OpenNotifyDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
       currentEmployeeId={currentEmployeeId}
-       openNotifydrwr={props.openNotifydrwr} handleNotifyDrawer={props.handleNotifyDrawer}/>
+       openNotifydrwr={props.openNotifydrwr} 
+       handleNotifyDrawer={props.handleNotifyDrawer}/>
   </Suspense>
             </>
       

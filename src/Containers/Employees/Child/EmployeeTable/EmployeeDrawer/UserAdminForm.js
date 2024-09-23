@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
 import {addUserAdmin} from "../../../EmployeeAction"
-
-
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
 
@@ -15,8 +12,35 @@ class UserAdminForm extends Component {
         super(props);
         this.state = {
             convert: false,
+            translatedMenuItems: [],
         };
     }
+    componentDidMount() {
+      this.fetchMenuTranslations();
+    }
+  
+    componentDidUpdate(prevProps) {
+      if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+        this.fetchMenuTranslations();
+      }
+    }
+  
+    fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+          "10",//0Admin
+          "1507",//1User"
+          "74",//2Date
+          "1246",//3"Update
+          
+        ];
+  
+        const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+        this.setState({ translatedMenuItems: translations });
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
   handleReset = (resetForm) => {
     resetForm();
   };
@@ -66,30 +90,27 @@ class UserAdminForm extends Component {
             ...rest
           }) => (
             <Form className="form-background">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "45%",
-                  }}
-                >
+              <div className=" flex justify-between">
+                <div className=" h-[100%] w-[45%]" >
                  
                 
                  <Switch
                               checked={this.state.convert}
                               onChange={this.handleChange}
                               // disabled={this.state.availability}
-                              checkedChildren="Admin"
-                              unCheckedChildren="User"
+                              checkedChildren={this.state.translatedMenuItems[0]}
+                              unCheckedChildren={this.state.translatedMenuItems[1]}
                             />                                            
                 </div>                          
               </div>
+            
               <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                <div>{this.state.translatedMenuItems[2]}</div>
               {this.state.convert&&(
               <Field
                       isRequired
                       name="provideDate"
-                      label="Date"
+                      // label="Date"
                       component={DatePicker}
                     value={values.provideDate}
                       inlineLabel
@@ -110,8 +131,8 @@ class UserAdminForm extends Component {
                   htmlType="submit"
                    Loading={this.props.userAdmin}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Create */}
+                  {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
+                  {this.state.translatedMenuItems[3]}
                 </Button>
               </div>
             </Form>

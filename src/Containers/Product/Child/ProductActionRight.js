@@ -64,8 +64,8 @@ class ProductActionRight extends React.Component {
     return (
       <>
 
-        <div class="items-center">
-        &nbsp;
+        <div class=" flex items-center">
+ 
           <Tooltip placement="left" title= {this.state.translatedMenuItems[2]}>
             <Button
               type="primary"
@@ -75,7 +75,7 @@ class ProductActionRight extends React.Component {
             {this.state.translatedMenuItems[0]}
             </Button>
           </Tooltip>
- &nbsp;
+
           <Tooltip title= {this.state.translatedMenuItems[3]}>
             <Button
               className="export"

@@ -32,13 +32,6 @@ const QualityProductForm = (props) => {
 
   const handleOnDragEnd = (result) => {
     if (!result.destination) return;
-
-    // const items = Array.from(qualityProducts);
-    // const [reorderedItem] = items.splice(result.source.index, 1);
-    // items.splice(result.destination.index, 0, reorderedItem);
-    // console.log(items)
-
-    // setQualityProducts(items);
     const items = Array.from(qualityProducts);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
@@ -135,6 +128,7 @@ useEffect(() => {
 
   return (
     <>
+    <div className=' flex flex-row items-center'>
     <Form form={form} name="basic" onFinish={onFinish} layout="inline">
       <Form.Item
         label= {translatedMenuItems[1]}
@@ -167,6 +161,7 @@ useEffect(() => {
       >
         {isDragAndDropEnabled ? 'Disable Order Change' : 'Change Order'}
       </button>
+      </div>
     <div className='flex sticky z-auto'>
             <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky  z-10">

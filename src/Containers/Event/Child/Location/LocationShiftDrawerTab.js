@@ -35,7 +35,7 @@ class LocationShiftDrawerTab extends Component {
     try {
       const itemsToTranslate = [
         "1017",//0 Shift
-        "",//1 Allocation
+        "1638",//1 Allocation
         "104",//2 Create"
               
       ];
