@@ -127,7 +127,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[3rem]">
+          <div class="w-[2rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"sector"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
