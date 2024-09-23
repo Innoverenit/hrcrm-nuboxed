@@ -2,6 +2,7 @@ import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { Tooltip, Button, Input } from "antd";
 import { getDepartments } from "../../../../../Settings/Department/DepartmentAction";
 import { getDesignations } from "../../../../../Settings/Designation/DesignationAction";
@@ -13,11 +14,14 @@ import Highlighter from "react-highlight-words";
 import { SearchOutlined } from "@ant-design/icons";
 import { Link } from 'react-router-dom';
 import { ActionIcon } from "../../../../../../Components/Utils";
-import {getContactListByInvestorId,handleUpdateInvestorContactModal} from "../../../../InvestorAction";
+import {getContactListByInvestorId,handleUpdateInvestorContactModal,
+  handleInvestorAddressDrawerModal
+} from "../../../../InvestorAction";
 import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
+import AddInvestorAdressModal from "../../../InvestorTable/AddInvestorAdressModal";
 
 const InvestorUpdateContactModal = lazy(() =>
   import("../InvestorContact/InvestorUpdateContactModal")
@@ -271,13 +275,15 @@ const InvestorLinkedContact = (props) => {
                                   
 
                                   <div class=" text-xs  font-poppins text-center">
-                                  <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-            <span
-              className="!text-icon cursor-pointer text-[#960a0a]"
-            >
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-            </span>
-          </Tooltip>
+                                  < Tooltip title="Address" >
+                          <AddLocationAltIcon
+                            className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
+                            onClick={() => {
+                              props.handleInvestorAddressDrawerModal(true);
+                              handleRowData(item);
+                            }}
+                             />   
+                                  </Tooltip>             
 
                                   </div>
                               </div>
@@ -353,6 +359,14 @@ const InvestorLinkedContact = (props) => {
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
       />
+       <AddInvestorAdressModal   
+        item={props.investorDetails}
+         type="investor"
+         addInvestorAddressModal={props.addInvestorAddressModal}
+         handleInvestorAddressDrawerModal={props.handleInvestorAddressDrawerModal}
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
+      /> 
     </>
   );
 };
@@ -362,6 +376,7 @@ const mapStateToProps = ({ customer, investor,designations, departments, contact
   fetchingsInvestorContactError: investor.fetchingsInvestorContactError,
   designations: designations.designations,
   departments: departments.departments,
+  addInvestorAddressModal: investor.addInvestorAddressModal,
   invstrContactUpdateModal: investor.invstrContactUpdateModal,
   contactsbyInvestorId:investor.contactsbyInvestorId,
 
@@ -374,6 +389,7 @@ const mapDispatchToProps = (dispatch) =>
       getDesignations,
       getDepartments,
       handleUpdateInvestorContactModal,
+      handleInvestorAddressDrawerModal
     },
     dispatch
   );

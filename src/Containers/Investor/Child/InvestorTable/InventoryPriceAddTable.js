@@ -208,9 +208,9 @@ function InventoryPriceAddTable(props) {
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold  font-poppins sticky  z-10">         
-            <div className=" md:w-[21rem]">Quantity Of Share</div>
-            <div className=" md:w-[11.1rem]">Value per Share</div>
-            <div className=" md:w-[6.2rem] ">Purchase date</div>
+            <div className=" md:w-[12rem]">Shares</div>
+            <div className=" md:w-[14.1rem]">Value per Share</div>
+            <div className=" md:w-[10.2rem] ">Purchase date</div>
             <div className="w-12"></div>           
               </div>
 
@@ -236,7 +236,8 @@ function InventoryPriceAddTable(props) {
                     </div>
                     )}
                   </div>
-                  <div className=" flex  items-end  md:w-[9.1rem] max-sm:w-full  ">
+                  <div className="flex">
+                  <div className=" flex  items-end  md:w-[2.1rem] max-sm:w-full  ">
                     <div class="text-xs font-semibold  font-poppins cursor-pointer">
                     {editsuppliesId === item.investorId ? (
                       <Select
@@ -272,7 +273,7 @@ function InventoryPriceAddTable(props) {
 </div>
 )}
                   </div>
-
+</div>
 
 
                  
