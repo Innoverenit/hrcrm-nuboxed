@@ -105,7 +105,7 @@ function handleSetCurrentUser(item) {
             <div class=" h-h86 overflow-auto overflow-x-auto">
              {props.employees=="Data not Found" ? "Data not Found" :
             <div class="flex flex-wrap  justify-evenly w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">  
-              {props.filteredData.length === 0 ?<span class=" flex items-center mt-8">Data Not Available</span> :props.filteredData.map((item) => {
+              {props.filteredData.length === 0 ?<span class=" flex items-center mt-8"> {translatedMenuItems[0]}</span> :props.filteredData.map((item) => {
                
                 const handleCopyClick = () => {
                   const emailElement = document.createElement('textarea');
@@ -164,8 +164,8 @@ function handleSetCurrentUser(item) {
                         <div class=" flex flex-row justify-evenly  w-full items-end">
                        
                         {/* <div class=" text-xs  font-medium font-poppins">Department   </div> */}
-                      <div class="  text-xs  font-poppins">{item.department === null ? "Not Available" :item.department}</div>
-                      <div class="  text-xs  font-poppins">{item.roleTypeName  === null ? "Not Available" :item.roleTypeName}</div>
+                      <div class="  text-xs  font-poppins">{item.department === null ?  translatedMenuItems[1] :item.department}</div>
+                      <div class="  text-xs  font-poppins">{item.roleTypeName  === null ?  translatedMenuItems[2] :item.roleTypeName}</div>
           
                    
                       
@@ -191,7 +191,7 @@ function handleSetCurrentUser(item) {
       />
       </div>
           </div>
-          <div class="  text-xs mt-1  font-poppins ">Reports To:    <span>
+          <div class="  text-xs mt-1  font-poppins "> {translatedMenuItems[2]}:    <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
                         : <span class="text-[red]" >Not Assigned </span>}

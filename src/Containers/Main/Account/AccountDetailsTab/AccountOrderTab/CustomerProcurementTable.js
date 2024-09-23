@@ -229,7 +229,7 @@ const handleLoadMoreLow = () => {
         {translatedMenuItems[0]} {/* Urgent */}
            </div>
                         <div className=" md:w-[7.4rem] ml-2">
-                        {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
+                        {translatedMenuItems[1]} ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
                           <div className=" md:w-[6rem]">  
                           {translatedMenuItems[9]}
@@ -297,7 +297,7 @@ const handleLoadMoreLow = () => {
                                                                               </Tooltip>
                                                                           </div>
                       
-                                              <div class="max-sm:w-full items-center  md:w-[10.02rem]">
+                                              <div class="max-sm:w-full items-center  md:w-[7.02rem]">
                                                 <Tooltip>
                                                   <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                                                   <span
@@ -317,7 +317,7 @@ const handleLoadMoreLow = () => {
                                                 </Tooltip>
                                               </div>
                                             </div>
-                                            <div className=" flex md:w-[6.31rem] text-xs  max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex ml-2 md:w-[6.31rem] text-xs  max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                           </div>
@@ -403,7 +403,7 @@ const handleLoadMoreLow = () => {
         {translatedMenuItems[8]} {/* Normal */}
            </div>
                         <div className=" md:w-[7.4rem] ml-2">
-                        {translatedMenuItems[1]}ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
+                        {translatedMenuItems[1]} ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
                           <div className=" md:w-[6rem]">
                           {translatedMenuItems[9]}
@@ -473,7 +473,7 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
 
-                        <div class="max-sm:w-full items-center  md:w-[10.02rem]">
+                        <div class="max-sm:w-full items-center  md:w-[7.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                             <span
@@ -493,7 +493,7 @@ const handleLoadMoreLow = () => {
                           </Tooltip>
                         </div>
                       </div>
-                      <div className=" flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
+                      <div className=" flex ml-2 md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
                                                     {date}
                                                     </div>
                     </div>

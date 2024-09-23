@@ -88,9 +88,15 @@ function MaterialBuilder (props) {
                             
  <Suspense fallback={"Loading"}>
 {showCard &&
-<MaterialBuilderSearchedCard particularDiscountData={props.particularDiscountData} searchedMaterialBuilders={props.searchedMaterialBuilders}/>
+<MaterialBuilderSearchedCard 
+     translateText={props.translateText}
+     selectedLanguage={props.selectedLanguage}
+     particularDiscountData={props.particularDiscountData}
+      searchedMaterialBuilders={props.searchedMaterialBuilders}/>
 }
 <MaterialbuilderCard 
+   translateText={props.translateText}
+   selectedLanguage={props.selectedLanguage}
 particularDiscountData={props.particularDiscountData}
 translatedMenuItems={translatedMenuItems}
 />

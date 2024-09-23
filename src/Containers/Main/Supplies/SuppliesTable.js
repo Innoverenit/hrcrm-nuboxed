@@ -165,7 +165,7 @@ function SuppliesTable(props) {
     <>
       <div className=" flex sticky z-auto">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex max-sm:hidden  w-[83%] justify-between  p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[1rem] max-xl:w-[2rem]"></div>
             <div className="font-bold font-poppins text-xs w-[7.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* HSN */}
@@ -210,10 +210,7 @@ function SuppliesTable(props) {
               </div>
             {/* <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Unique ID</div> */}
             {/* <div className="md:w-[4.2rem]">Scan</div> */}
-            <div className="font-bold font-poppins text-xs w-[8.8rem]">
-              {/* Process */}
-              {translatedMenuItems[8]}
-              </div>
+           
               <div className="font-bold font-poppins text-xs w-[5rem]">
               {/* recommend */}
               {translatedMenuItems[9]}
@@ -241,12 +238,9 @@ function SuppliesTable(props) {
                   
                   return (
                     <>
-                      <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
-                        <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex  w-[7rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
-                              <div className="flex max-sm:w-wk max-sm:justify-between ">
-                                <div className=" flex items-center w-[3rem]">
+                      <div className="flex rounded  bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                     <div className="flex max-sm:w-wk max-sm:justify-between ">
+                                <div className=" flex items-center w-[2rem]">
                                   {item.imageId && (
                                     <span>
                                       <MultiAvatar
@@ -259,7 +253,7 @@ function SuppliesTable(props) {
                                 </div>
                                 
 
-                                <div class="max-sm:w-auto flex justify-start items-center flex-col w-[8rem]">
+                                <div class="max-sm:w-auto flex items-center  w-[8rem]">
 
                                   <div className=" flex  w-[6rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                                     <div class=" text-[0.65rem] max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -271,12 +265,7 @@ function SuppliesTable(props) {
                                           {translatedMenuItems[17]}  {/* New */}
                                         </span>
                                       ) : null} </span>
-                                  {/* <div class=" max-sm:w-auto max-xl:w-[1.2rem] max-lg:w-[0.2rem]">
-                                <div class="  text-green-700 text-[0.55rem] max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                {item.modifiedAt ? "Updated" : null}
-                                    {item.modifiedAt ? dayjs(item.modifiedAt).format("DD/MM/YYYY") : null}
-                                    </div>
-                                </div> */}
+                                 
                                 <div className=" flex  flex-row w-[10rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" w-[5.8rem] text-[0.65rem] max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.newSuppliesNo}
@@ -288,13 +277,13 @@ function SuppliesTable(props) {
                           
                                 </div>
                               </div>
-                            </div>
+                         
                             <div className=" flex  w-[10rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.suppliesName}
                               </div>
                             </div>
-                          </div>
+                          
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className=" flex  w-[11.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs truncate max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -310,14 +299,14 @@ function SuppliesTable(props) {
                             </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex w-[6.4rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex w-[4.4rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.reorder}
                               </div>
                             </div>
 
                            
-                            <div className=" flex  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[4.9rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MultiAvatar
                                   primaryTitle={item.userName}
@@ -328,7 +317,7 @@ function SuppliesTable(props) {
                                 {`${dayjs(item.creationDate).format("ll")}`}
                               </div>
                             </div>
-                            <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[4.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialStatusToggle
                                   publishInd={item.publishInd}
@@ -336,7 +325,7 @@ function SuppliesTable(props) {
                                 />
                               </div>
                             </div>
-                            <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between ml-2 max-sm:flex-row ">
+                            <div className=" flex  w-[4.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between ml-2 max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialRecommendToggle
                                   recomendInd={item.recomendInd}
@@ -363,107 +352,8 @@ function SuppliesTable(props) {
 
                           </div>
 
-                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                       <div>
-                        <Tooltip title={translatedMenuItems[11]}>
-                          <EuroIcon
-                            className="!text-icon cursor-pointer text-[blue]"
-                            onClick={() => {
-                              props.handlePriceModal(true);
-                              handleParticularRowData(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-                            <div> 
-                              <Tooltip title={translatedMenuItems[19]}>
-                                <ViewQuiltIcon
-                                  className="cursor-pointer !text-icon"
-                                  onClick={() => {
-                                    props.handleMaterialBuilderDrawer(true);
-                                    handleParticularRowData(item);
-                                  }}
-                                />
-                              </Tooltip>
-                            </div>
-                            <div>
-                              {props.repairInd && <Tooltip title={translatedMenuItems[20]}>
-                                <PhoneFilled
-                                  onClick={() => {
-                                    props.handleBrandModel(true);
-                                    handleParticularRowData(item);
-                                  }}
-                                  className=" !text-icon cursor-pointer text-[blue]"
-                                />
-                              </Tooltip>}
-                            </div>
-
-
-                            <div>
-                              <Tooltip title={translatedMenuItems[12]}>
-                                <CategoryIcon
-                                  onClick={() => {
-                                    props.handleSuppliersListDrawer(true);
-                                    handleParticularRowData(item);
-                                  }}
-                                  className="!text-icon cursor-pointer"
-                                />
-                              </Tooltip>
-                            </div>
-
-                            <div>
-                              <Tooltip title={translatedMenuItems[13]}>
-                                <InventoryIcon className=" !text-icon cursor-pointer"  onClick={() => {
-                                    props.handleMaterialInventory(true);
-                                    handleParticularRowData(item);
-                                  }}/>
-                              </Tooltip>
-                            </div>
-                          <div class=" text-xs  font-poppins">
-                        <Tooltip>
-                        <ContactSupportIcon className="!text-icon cursor-pointer"
-                        onClick={() => {
-                          openModal();
-                          handleParticularRowData(item);
-                        }}
-                        />
-                        </Tooltip>
-                      </div>
-                           
-                            <div>
-                              <Tooltip title={translatedMenuItems[14]}>
-                                <BorderColorIcon
-                                  onClick={() => {
-                                    handleUpdateSupplieDrawer(true);
-                                    handleParticularRowData(item);
-                                  }}
-                                  className=" !text-icon cursor-pointer text-[tomato]"
-                                />
-                              </Tooltip>
-                            </div>
-                            <div>
-                              <Popconfirm
-                                title={translatedMenuItems[21]}
-                                onConfirm={() => props.deletePurchaseData(item.suppliesId)}
-                              >
-
-                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
-                              </Popconfirm>
-                            </div>
-                            <Tooltip title={translatedMenuItems[22]}>
-                            <div>
-                             <FactCheckIcon
-                             className="!text-icon cursor-pointer text-[pink]"
-                              onClick={()=>{
-                                setopenComplementary(true);
-                                handleParticularRowData(item);
-                              }}
-                                
-                             />
-                              </div>
-                              </Tooltip>
-
-                              <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                     <div class="flex max-sm:justify-between max-sm:w-wk items-center justify-end w-wk">
+                     <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={translatedMenuItems[23]}
                                                         // {<FormattedMessage
@@ -497,9 +387,110 @@ function SuppliesTable(props) {
     <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>{translatedMenuItems[24]}:</span> {item.suppliesId}</div>
 </div>
 </div>
+                       <div>
+                        <Tooltip title={translatedMenuItems[11]}>
+                          <EuroIcon
+                            className="!text-icon cursor-pointer text-[#4c191b]"
+                            onClick={() => {
+                              props.handlePriceModal(true);
+                              handleParticularRowData(item);
+                            }}
+                          />
+                        </Tooltip>
+                      </div>
+                            <div> 
+                              <Tooltip title={translatedMenuItems[19]}>
+                                <ViewQuiltIcon
+                                  className="cursor-pointer !text-icon text-[#c589e8]"
+                                  onClick={() => {
+                                    props.handleMaterialBuilderDrawer(true);
+                                    handleParticularRowData(item);
+                                  }}
+                                />
+                              </Tooltip>
+                            </div>
+                            <div>
+                              {props.repairInd && <Tooltip title={translatedMenuItems[20]}>
+                                <PhoneFilled
+                                  onClick={() => {
+                                    props.handleBrandModel(true);
+                                    handleParticularRowData(item);
+                                  }}
+                                  className=" !text-icon cursor-pointer text-[#dc851f]"
+                                />
+                              </Tooltip>}
+                            </div>
+
+
+                            <div>
+                              <Tooltip title={translatedMenuItems[12]}>
+                                <CategoryIcon
+                                  onClick={() => {
+                                    props.handleSuppliersListDrawer(true);
+                                    handleParticularRowData(item);
+                                  }}
+                                  className="!text-icon cursor-pointer text-[#d3c0cd] "
+                                />
+                              </Tooltip>
+                            </div>
+
+                            <div>
+                              <Tooltip title={translatedMenuItems[13]}>
+                                <InventoryIcon className=" !text-icon cursor-pointer text-[#937666]"  onClick={() => {
+                                    props.handleMaterialInventory(true);
+                                    handleParticularRowData(item);
+                                  }}/>
+                              </Tooltip>
+                            </div>
+                          
+                          <div class=" text-xs  font-poppins">
+                        <Tooltip>
+                        <ContactSupportIcon className="!text-icon cursor-pointer text-[#ff4000]"
+                        onClick={() => {
+                          openModal();
+                          handleParticularRowData(item);
+                        }}
+                        />
+                        </Tooltip>
+                      </div>
+                      <Tooltip title={translatedMenuItems[22]}>
+                            <div>
+                             <FactCheckIcon
+                             className="!text-icon cursor-pointer text-[#50b2c0]"
+                              onClick={()=>{
+                                setopenComplementary(true);
+                                handleParticularRowData(item);
+                              }}
+                                
+                             />
+                              </div>
+                              </Tooltip>
+                            <div>
+                              <Tooltip title={translatedMenuItems[14]}>
+                                <BorderColorIcon
+                                  onClick={() => {
+                                    handleUpdateSupplieDrawer(true);
+                                    handleParticularRowData(item);
+                                  }}
+                                  className=" !text-icon cursor-pointer text-[tomato]"
+                                />
+                              </Tooltip>
+                            </div>
+                            <div>
+                              <Popconfirm
+                                title={translatedMenuItems[21]}
+                                onConfirm={() => props.deletePurchaseData(item.suppliesId)}
+                              >
+
+                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
+                              </Popconfirm>
+                            </div>
+                           
+
+                 
                           </div>
 
-                        </div>
+                        
                       </div>
                     </>
                   );
