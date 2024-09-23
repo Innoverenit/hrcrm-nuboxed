@@ -26,6 +26,36 @@ const UsersCellCard = (props) => {
     { value: '3', label: 'David Johnson' },
     { value: '4', label: 'Emily Brown' },
   ];
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       
+        "",  //Cell Code,//0
+         "", // Select a cell",//1
+         "326", // Department,//2
+         "1590", // "Select a department",//3
+         "1507",//  User 
+          "",//  "Select a user"
+          "154",//  Submit
+          "",//  Machine
+          "1259",//  Do you want to delete?
+         
+       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
     useEffect(()=>{
         props.getAlLoCell();
         props.getDepartments();
@@ -55,8 +85,7 @@ const UsersCellCard = (props) => {
       setDepartment(value)
       props.getUserListLocation(props.storedLoc.locationDetailsId,value)
       
-      // console.log(`Selected user: ${value}`);
-      // You can handle the selected user value here
+  
     }
 
 
@@ -64,10 +93,6 @@ const UsersCellCard = (props) => {
     const handleCellChange=(value)=> {
     
       setCell(value)
-      //props.getUserListLocation(props.storedLoc.locationDetailsId,value)
-      
-      // console.log(`Selected user: ${value}`);
-      // You can handle the selected user value here
     }
 
 
@@ -87,17 +112,11 @@ const UsersCellCard = (props) => {
       setCell("");
       setDepartment("");
       setUser("");
-      // console.log(`Selected user: ${value}`);
-      // You can handle the selected user value here
     }
 
 
     const handleDelete = (item) => {
-      // let data = {
-      // active:false,
-      //   reason: "",
-      //   productId:item.productId,
-      // };
+      
        props.deleteUserCell(item.cellChamberUserLinkId);
     };
 
@@ -105,9 +124,9 @@ const UsersCellCard = (props) => {
       <>
       <div class="flex justify-between" >
       <div class="ml-2">
-<div class="block" >Cell Code</div>
+<div class="block" >{translatedMenuItems[0]}</div>
     <Select
-      placeholder="Select a cell"
+      placeholder={translatedMenuItems[1]}
       style={{ width: 200 }}
       onChange={handleCellChange}
       value={cell} 
@@ -120,9 +139,9 @@ const UsersCellCard = (props) => {
     </Select>
     </div>
       <div >
-        <div style={{display: 'block'}}>Department</div>
+        <div style={{display: 'block'}}>{translatedMenuItems[2]}</div>
     <Select
-      placeholder="Select a department"
+      placeholder={translatedMenuItems[3]}
       style={{ width: 200 }}
       onChange={handleChangeDepartment}
       value={department} 
@@ -138,9 +157,9 @@ const UsersCellCard = (props) => {
 
 
     <div >
-    <div style={{display: 'block'}}>User </div>
+    <div style={{display: 'block'}}>{translatedMenuItems[4]}</div>
     <Select
-      placeholder="Select a user"
+      placeholder={translatedMenuItems[5]}
       style={{ width: 200 }}
       onChange={handleChange}
       value={user} 
@@ -164,7 +183,7 @@ const UsersCellCard = (props) => {
                                     //     marginLeft: "286px",
                                     // }}
                                 >
-                                    Submit
+                                   {translatedMenuItems[6]} {/* Submit */}
                                 </Button>
                                 </div>
     
@@ -173,9 +192,9 @@ const UsersCellCard = (props) => {
 <div className=' flex  sticky mt-1 h-[31rem] z-auto'>
         <div class="rounded m-1 p-1  w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">   
-          <div className=" md:w-[8.1rem]">User </div>
-          <div className=" md:w-[4.2rem] ">Department</div>
-            <div className=" md:w-[6rem]">Cell Code</div>
+          <div className=" md:w-[8.1rem]">{translatedMenuItems[4]} </div>
+          <div className=" md:w-[4.2rem] ">{translatedMenuItems[2]}</div>
+            <div className=" md:w-[6rem]">{translatedMenuItems[0]}</div>
             
          
            
@@ -217,7 +236,7 @@ const UsersCellCard = (props) => {
 
 
                  
-                  <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
+                  <div class="flex  w-20 max-sm:flex-row max-sm:w-[10%]">
                             <div>
                             
                           <Button
@@ -225,7 +244,7 @@ const UsersCellCard = (props) => {
                             props.handleUserCellModal(true);
                             handleSetCurrentItems(item);
                           }}
-                          >Machine</Button>
+                          >{translatedMenuItems[7]}</Button>
                             </div>
 
                           </div>
@@ -234,7 +253,7 @@ const UsersCellCard = (props) => {
                    
                       <div className=" text-xs  font-poppins">
                       <StyledPopconfirm
-                            title="Do you want to delete?"
+                            title={translatedMenuItems[8]}
                             onConfirm={() => handleDelete(item)}
 
                           >
@@ -249,7 +268,7 @@ const UsersCellCard = (props) => {
                   {/* <div class="flex md:items-center">
 
 
-                    <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
+                    <div class="flex  w-20 max-sm:flex-row max-sm:w-[10%]">
                    <div>
                     <ProductCellToggle item={item}  particularDiscountData={props.particularDiscountData}/>
                    </div>

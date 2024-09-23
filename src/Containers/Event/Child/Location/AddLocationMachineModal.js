@@ -13,20 +13,21 @@ class AddLocationMachineModal extends Component {
       <div>
         <StyledDrawer
           title="Machine"
-          width="55em"
-        //   style={{ marginTop: "5rem" }}
+          width="55%"
+       
           visible={this.props.addLocationMachineModal}
           closable
-        //   placement="right"
+     
           destroyOnClose
-         // maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
+       
           onClose={() => this.props.handleLocationMachineModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
           <UsersMachineCard
           currentItems={this.props.currentItems}
           locationId={this.props.locationId}
-                //storedLoc={this.props.storedLoc}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
                 />
           </Suspense>
         </StyledDrawer>
@@ -35,8 +36,7 @@ class AddLocationMachineModal extends Component {
   }
 }
 const mapStateToProps = ({ opportunity, candidate }) => ({
-//   opportunityId: opportunity.opportunity.opportunityId,
-//   candidate: candidate.candidate,
+
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);

@@ -2,15 +2,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import { Button } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
-import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-//import { CustomizeInputComponent } from "../../../../Components/Forms/Formik/CustomizeInputComponent";
-import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { Formik, Form, Field,} from "formik";
 import { Select } from "../../../../Components/UI/Elements";
-import * as Yup from "yup";
 import { getDeletedLoCell} from "./LocationAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import ReInstateLocCellToggle from "./ReInstateLocCellToggle";
@@ -20,6 +12,30 @@ const { Option } = Select;
 
 
 const ReinstateCellTable = (props) => {
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       
+        "",  //Cell Code,//0
+         "744", // Cell,//1
+         "147", // Description,//2
+         "1069", // Reinstate,//3
+       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
     useEffect(()=>{
         
         props.getDeletedLoCell(props.storedLoc.locationDetailsId,props.orgId);
@@ -38,10 +54,10 @@ const ReinstateCellTable = (props) => {
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
           
-            <div className=" md:w-[6rem]">Cell Code</div>
-            <div className=" md:w-[4.2rem] ">#Cell</div> 
-            <div className=" md:w-[5.1rem]">Description</div>
-            <div className="w-12">Reinstate</div>
+            <div className=" md:w-[6rem]">{translatedMenuItems[0]}</div>
+            <div className=" md:w-[4.2rem] ">#{translatedMenuItems[1]}</div> 
+            <div className=" md:w-[5.1rem]">{translatedMenuItems[2]}</div>
+            <div className="w-12">{translatedMenuItems[3]}</div>
                          </div>
                     <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky" }}>
            {props.deletedLoCell.map((item) => {

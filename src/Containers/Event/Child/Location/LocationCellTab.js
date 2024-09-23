@@ -5,7 +5,6 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { BundleLoader } from "../../../../Components/Placeholder";
 const ReinstateCellTable =lazy(()=>import("./ReinstateCellTable"));
 const UsersCellCard=lazy(()=>import("./UsersCellCard"));
 const LocationCellForm=lazy(()=>import("./LocationCellForm"));
@@ -27,6 +26,32 @@ class LocationCellTab extends Component {
 
 
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "744",//0
+       
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
 
   handleRecruitCarrierClick = () => {
     this.setState({ 
@@ -66,6 +91,7 @@ class LocationCellTab extends Component {
   componentDidMount() {
     //  this.props.clearReducerState();
     this.setState({ breadCumb: false });
+    this.fetchMenuTranslations();
   }
 
  
@@ -100,7 +126,7 @@ class LocationCellTab extends Component {
                               <span onClick={this.handleRecruitClick}>
                      
                       <span className="font-poppins ml-[0.25em]">
-                     Cell
+                      {this.state.translatedMenuItems[0]} {/* Cell */}
                       </span>
                       </span>
                       {activeKey === "1" && (
@@ -115,10 +141,8 @@ class LocationCellTab extends Component {
                           }}
                           size="0.875em"                         
                           >
-                          <DeleteIcon
-                            style={{ color: "red", fontSize: "1rem" }}
-                          
-                          />
+                          <DeleteIcon className=" text-red-600 !text-icon"
+                           />
                           </span>
                         </>
                       )}
@@ -131,12 +155,15 @@ class LocationCellTab extends Component {
                   {" "}
                   <ReinstateCellTable
                    storedLoc={this.props.storedLoc}
-                  />
+                   translateText={this.props.translateText}
+                   selectedLanguage={this.props.selectedLanguage} />
                 </Suspense>
               ) :(
                   <Suspense fallback={"Loading ..."}>
                     {" "}
-                    <LocationCellForm storedLoc={this.props.storedLoc} />
+                    <LocationCellForm storedLoc={this.props.storedLoc}
+                     translateText={this.props.translateText}
+                     selectedLanguage={this.props.selectedLanguage} />
                   </Suspense>
                   
                 )}
@@ -145,18 +172,12 @@ class LocationCellTab extends Component {
 
                 <TabPane tab="User" key="2">
                 <Suspense fallback={"Loading ..."}>
-                    <UsersCellCard storedLoc={this.props.storedLoc} />
+                    <UsersCellCard storedLoc={this.props.storedLoc}
+                     translateText={this.props.translateText}
+                     selectedLanguage={this.props.selectedLanguage} />
                     </Suspense>
                 </TabPane>
             
-
-                {/* <TabPane tab="Machinery" key="3">
-            
-                <UsersMachineCard
-                storedLoc={this.props.storedLoc}
-                />
-                   
-                </TabPane> */}
               </StyledTabs>
             </TabsWrapper>
           </div>
@@ -180,69 +201,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationCellTab);
-
-// import React,{lazy } from "react";
-// import { StyledTabs } from "../../../../Components/UI/Antd";
-// import { TabsWrapper } from "../../../../Components/UI/Layout";
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import { DeleteOutlined } from "@ant-design/icons";
-// const LocationCellForm=lazy(()=>import("./LocationCellForm"));
-// const UsersCellCard=lazy(()=>import("./UsersCellCard"));
-
-// const TabPane = StyledTabs.TabPane;
-
-// function LocationCellTab(props) {
-
-//     return (
-//         <>
-//             <TabsWrapper>
-//             <StyledTabs defaultActiveKey="1" type="card">
-              
-//                 <TabPane
-//                     tab={
-//                         <div>
-//                             Cell
-//                             <DeleteOutlined
-//                                 onClick={() => {
-                                 
-//                                     console.log("Delete button clicked");
-//                                 }}
-//                                 className="!text-base cursor-pointer text-[red] ml-2"
-//                             />
-//                         </div>
-//                     }
-//                     key="1"
-//                 >
-//                     <div>
-//                         <LocationCellForm storedLoc={props.storedLoc} />
-//                     </div>
-//                 </TabPane>
-
-//                 <TabPane tab="User" key="2">
-//                     <UsersCellCard storedLoc={props.storedLoc} />
-//                 </TabPane>
-//             </StyledTabs>
-//         </TabsWrapper>
-//         </>
-//     );
-// }
-
-// const mapStateToProps = ({ settings, auth }) => ({
-
-// });
-
-// const mapDispatchToProps = (dispatch) =>
-//     bindActionCreators({
-
-//     }, dispatch);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(LocationCellTab);
-
-
-
-
-
-
-
-

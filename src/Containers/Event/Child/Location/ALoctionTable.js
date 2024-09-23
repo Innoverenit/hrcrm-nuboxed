@@ -16,6 +16,33 @@ const { Option } = Select;
 const ButtonGroup = Button.Group;
 
 function ALoctionTable(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       
+            "1305",  // "Search",//0
+            "1307", // "Reset",//1
+            "1306", // " Filter",//2
+            
+           "110",  // name3
+           "1017",   //  Shift4
+           "",  //  Effective5
+           "1078", //  Save6
+           "1079",//  Cancel7
+           "",//  "Sure to cancel?8
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
     useEffect(() => {
         props.getAlLocshift(props.storedLoc.locationDetailsId);
         props.getShiftlocs(props.storedLoc.locationDetailsId);
@@ -66,14 +93,14 @@ function ALoctionTable(props) {
                             size="small"
                             style={{ width: 90 }}
                         >
-                            Search
+                           {translatedMenuItems[0]} {/* Search */}
                         </Button>
                         <Button
                             onClick={() => handleReset(clearFilters)}
                             size="small"
                             style={{ width: 90 }}
                         >
-                            Reset
+                          {translatedMenuItems[1]}  {/* Reset */}
                         </Button>
                         <Button
                             type="link"
@@ -84,7 +111,7 @@ function ALoctionTable(props) {
                                 setSearchedColumn(dataIndex);
                             }}
                         >
-                            Filter
+                        {translatedMenuItems[2]}    {/* Filter */}
                         </Button>
                     
                 </div>
@@ -178,22 +205,7 @@ function ALoctionTable(props) {
                   </Select>
                 </Form.Item>
                 ) :editing && inputType === "picker" ?(
-                //   <Form.Item
-                //   name={dataIndex}
-                //   style={{
-                //     margin: 0
-                //   }}
-                //   rules={[
-                //     {
-                //       required: true,
-                //       message: `Please Input ${title}!`
-                //     }
-                //   ]}
-                // >
-                  
-                // {inputNode}
-                //   </Form.Item>
-                <DatePicker format={dateFormat} 
+            <DatePicker format={dateFormat} 
                 onChange={(date,dateString)=>handleDatePickerCahnge(date,dateString)}/>
                         ) :(
                             children
@@ -257,9 +269,9 @@ function ALoctionTable(props) {
                         <div className=' flex  sticky  z-auto h-[35rem] overflow-auto'>
                         <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                                    <div className=" md:w-[12.1rem]">Name</div>
-                                    <div className=" md:w-[9.1rem]">Shift</div>
-                                    <div className="md:w-[7.7rem]">Effective</div>
+                                    <div className=" md:w-[12.1rem]">{translatedMenuItems[3]}</div>
+                                    <div className=" md:w-[9.1rem]">{translatedMenuItems[4]}</div>
+                                    <div className="md:w-[7.7rem]">{translatedMenuItems[5]}</div>
                                 </div>
                                 {props.alLocShift.map((item) => {
                                    const date1 = dayjs(item.endDate).format("DD/MM/YYYY");
@@ -287,20 +299,12 @@ function ALoctionTable(props) {
                                                     <div className="   md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
             
                                                     <span>
-                  <Typography.Link
-                    // onClick={() =>
-                    //   save(record.shiftId)
-                    //   // alert("Save success")
-                    // }
-                    // style={{
-                    //   marginRight: 8,
-                    // }}
-                  >
-                    Save
+                  <Typography.Link>
+                  {translatedMenuItems[6]}  {/* Save */}
                     </Typography.Link>
-                  <Popconfirm title="Sure to cancel?"
+                  <Popconfirm title={translatedMenuItems[8]}
                     onConfirm={cancel}>
-                    <a>Cancel</a>
+                    <a>{translatedMenuItems[7]}</a>
                   </Popconfirm>
                 </span>
 

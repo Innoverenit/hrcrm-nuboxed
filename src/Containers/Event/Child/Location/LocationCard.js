@@ -62,7 +62,14 @@ const LocationCard = (props) => {
          "1011", // "Corporate",//6
        "137",   // "Project",//7
         "1013",  // "Retail",//8
-        "24"  // "Region"//9
+        "24" , // "Region"//9
+       "1017", // "Shift"
+       "", // Customer-Virtual Location
+       "744", // "Cell"
+       "170", // "Edit"
+       "1259", // "Do you want to delete?"
+       "84",// "Delete"
+     "" //  "No address available"
          
         ];
 
@@ -138,35 +145,35 @@ const LocationCard = (props) => {
               return (
                 <div >
                   <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
-                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm: scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                     <div class="flex">
-                      <div className=" flex  flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex w-[25.12rem]   md:w-[25.12rem] max-sm:w-full max-sm:justify-between ">
 
 
-                        <div class=" text-[0.82rem] font-poppins md:w-[10.1rem]">
+                        <div class=" text-sm font-poppins md:w-[10.1rem]">
                           {item.locationName}
                         </div>
 
 
-                        <div className=" flex   md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                        <div className=" flex w-[7.25rem]  md:w-[7.25rem]  max-sm:w-full mt-1 max-sm:justify-between">
 
 
-                          <div class=" text-[0.82rem]  font-poppins">
+                          <div class=" text-sm  font-poppins">
                             <CountryFlag1 countryCode={item.countryAlpha2Code} />
                             &nbsp;
                             {item.countryAlpha2Code}
                           </div>
                         </div>
-                        <div className=" flex  flex-col md:w-[13rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                        <div className=" flex  w-[13rem] md:w-[13rem] max-sm:w-full mt-1 max-sm:justify-between">
 
 
-                          <div class=" text-[0.82rem]  font-poppins">
+                          <div class=" text-sm  font-poppins">
 
                             <span>
                               {item.address && item.address.length > 0 ? (
                                 `${(item.address[0].city || "")} ${(item.address[0].state || "")}`.slice(0, 20)
                               ) : (
-                                "No address available"
+                               translatedMenuItems[16] // "No address available"
                               )}
                             </span>            </div>
                         </div>
@@ -174,124 +181,90 @@ const LocationCard = (props) => {
                     </div>
 
 
-                    <div className=" flex  flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[7.22rem] md:w-[7.22rem] max-sm:w-full mt-1 max-sm:justify-between">
 
-                      <div class=" text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <ProductionToggle
                           locationDetailsId={item.locationDetailsId}
                           productionInd={item.productionInd}
                         />
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex w-[7.21rem]  md:w-[7.21rem] max-sm:w-full mt-1 max-sm:justify-between">
 
 
-                      <div class=" text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <RefurbishToggle
                           locationDetailsId={item.locationDetailsId}
                           refurbishInd={item.refurbishInd}
                         />
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex   w-[7.12rem] md:w-[7.12rem] max-smw-full mt-1 max-sm:justify-between">
 
 
-                      <div class=" text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <InventoryToggle
                           locationDetailsId={item.locationDetailsId}
                           inventoryInd={item.inventoryInd}
                         />
-                        {/* <Switch
-                          className="toggle-clr"
-                          checked={item.inventoryInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          disabled={!props.orderManagementInd}
-                        /> */}
+                   
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
+                    <div className=" flex  w-[7.1rem]  md:w-[7.1rem] max-sm:w-full mt-1 max-sm:justify-between ">
 
-                      <div class=" text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <BillingToggle
                           locationDetailsId={item.locationDetailsId}
                           billingInd={item.billingInd}
                         />
-                        {/* <Switch
-                          className="toggle-clr"
-                          checked={item.billingInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          disabled={!props.financeInd}
-                        /> */}
+                      
                       </div>
                     </div>
 
 
-                    <div className=" flex  flex-row md:w-[7.11rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[7.11rem] md:w-[7.11rem] max-sm:w-full mt-1 max-sm:justify-between">
 
-                      <div class=" text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
 
                         <CorporateToggle
                           locationDetailsId={item.locationDetailsId}
                           corporateInd={item.corporateInd}
                         />
-                        {/* <Switch
-                          className="toggle-clr"
-                          checked={item.corporateInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          
-                        /> */}
+                      
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[6.23rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[6.23rem]  md:w-[6.23rem] max-sm:w-full mt-1 max-sm:justify-between">
 
-                      <div class=" text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <ProjectToggle
                           locationDetailsId={item.locationDetailsId}
                           projectInd={item.projectInd}
                         />
-                        {/* <Switch
-                          className="toggle-clr"
-                          checked={item.projectInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          disabled={!props.recruitProInd}
-                        /> */}
+                        
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[11.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[11.41rem] md:w-[11.41rem] max-sm:w-full mt-1 max-sm:justify-between">
 
-                      <div class=" text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <RetailToggle
                           locationDetailsId={item.locationDetailsId}
                           retailInd={item.retailInd}
                         />
-                        {/* <Switch
-                          className="toggle-clr"
-                          checked={item.retailInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        /> */}
+                      
                       </div>
                     </div>
-                    <div className=" w-28  max-md:w-[4.41rem] max-sm:flex-row  mt-1 max-sm:justify-between">
+                    <div className=" w-28  max-md:w-[4.41rem]  mt-1 max-sm:justify-between">
 
-                      <div class=" text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         {item.regions}
                       </div>
                     </div>
-                    <div class="flex   max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                    <div class="flex   justify-end w-[6.2rem]  max-xl:w-[1.2rem] max-lg:w-[1rem]  max-sm:w-[10%] ">
                       <div>
-                        <Tooltip title="Shift">
+                        <Tooltip title={translatedMenuItems[10]} >
                           <FilterTiltShiftIcon
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer text-[#798071]"
                             onClick={() => {
                               handleStoredLocations(item);
                               props.handleLocationShiftDrawer(true);
@@ -301,9 +274,9 @@ const LocationCard = (props) => {
                         </Tooltip>
                       </div>
                       <div>
-                        <Tooltip title="Customer-Virtual Location">
+                        <Tooltip title={translatedMenuItems[11]} >
                           <AcUnitIcon
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer text-[#fecdaa]"
                             onClick={() => {
                               handleStoredLocations(item);
                               props.handleLocationCustomerDrawer(true);
@@ -311,14 +284,14 @@ const LocationCard = (props) => {
                           />
                         </Tooltip>
                       </div>
-                    </div>
+                   
 
-                    <div class="flex  max-sm:flex-row max-sm:w-[10%]">
+                    <div class="flex  max-sm:w-[10%]">
                       {item.productionInd ?
                         <div>
-                          <Tooltip title="Cell">
+                          <Tooltip title={translatedMenuItems[12]} >
                             <TokenIcon
-                              className=" !text-icon cursor-pointer text-[blue]"
+                              className=" !text-icon cursor-pointer text-[#755b69]"
                               onClick={() => {
                                 handleStoredLocations(item);
                                 props.handleLocnCellDrawer(true);
@@ -327,9 +300,9 @@ const LocationCard = (props) => {
                           </Tooltip>
                         </div> : null}
                     </div>
-                    <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                    
                       <div>
-                        <Tooltip title="Edit">
+                        <Tooltip title={translatedMenuItems[13]} >
                           <BorderColorIcon
                             className="!text-icon cursor-pointer text-[tomato]"
                             onClick={() => {
@@ -339,12 +312,12 @@ const LocationCard = (props) => {
                           />
                         </Tooltip>
                       </div>
-                      <div>
+                      
                         <StyledPopconfirm
-                          title="Do you want to delete?"
+                          title={translatedMenuItems[14]} 
                           onConfirm={() => props.deleteLocation(item.locationDetailsId, props.orgId)}
                         >
-                          <Tooltip title="Delete">
+                          <Tooltip title={translatedMenuItems[15]} >
                             <DeleteOutlined
                               type="delete"
                               className="!text-icon cursor-pointer text-red-500"
@@ -354,9 +327,8 @@ const LocationCard = (props) => {
 
                       </div>
                     </div>
-
-                  </div>
-                </div>
+</div>
+                 
               );
             })}
           </div>
@@ -364,27 +336,37 @@ const LocationCard = (props) => {
       </div>
       <Suspense fallback={<BundleLoader />}>
       <LocationShiftDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
         storedLoc={storedLoc}
         locShiftDrawer={props.locShiftDrawer}
         handleLocationShiftDrawer={props.handleLocationShiftDrawer}
         handleStoredLocations={handleStoredLocations}
       />
       <LocationUpdateDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
         storedLoc={storedLoc}
         locationUpdatedrawr={props.locationUpdatedrawr}
         handleUpdateLocationDrawer={props.handleUpdateLocationDrawer}
       />
       <LocationCustomerDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
         storedLoc={storedLoc}
         locationCustomerdrawr={props.locationCustomerdrawr}
         handleLocationCustomerDrawer={props.handleLocationCustomerDrawer}
       />
       <LocationSupplierDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
         storedLoc={storedLoc}
         locationSupplierdrawr={props.locationSupplierdrawr}
         handleLocationSupplierDrawer={props.handleLocationSupplierDrawer}
       />
       <LocationCellDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
         storedLoc={storedLoc}
         clickLocDrwr={props.clickLocDrwr}
         handleLocnCellDrawer={props.handleLocnCellDrawer}
