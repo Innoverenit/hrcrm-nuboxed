@@ -23,7 +23,9 @@ const LocationCustomerDrawer = (props) => {
         onClose={() => handleLocationCustomerDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LocationCustomerList   storedLoc={storedLoc}/>
+          <LocationCustomerList   storedLoc={storedLoc}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

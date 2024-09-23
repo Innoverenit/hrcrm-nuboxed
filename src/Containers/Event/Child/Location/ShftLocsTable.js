@@ -10,6 +10,30 @@ import {
 } from "./LocationAction";
 
 function ShftLocsTable(props) {
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       
+            "1305",  // "Search",//0
+            "1307", // "Reset",//1
+            "1306", // " Filter",//2
+            
+           "110",  // name9
+           "126",   //    Start Date
+           "176",  //    End Date
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
     useEffect(() => {
         props.getShiftlocs(props.storedLoc.locationDetailsId);
     }, []);
@@ -59,14 +83,14 @@ function ShftLocsTable(props) {
                             size="small"
                             style={{ width: 90 }}
                         >
-                            Search
+                          {translatedMenuItems[0]}  {/* Search */}
                         </Button>
                         <Button
                             onClick={() => handleReset(clearFilters)}
                             size="small"
                             style={{ width: 90 }}
                         >
-                            Reset
+                          {translatedMenuItems[1]}  {/* Reset */}
                         </Button>
                         <Button
                             type="link"
@@ -77,7 +101,7 @@ function ShftLocsTable(props) {
                                 setSearchedColumn(dataIndex);
                             }}
                         >
-                            Filter
+                           {translatedMenuItems[2]} {/* Filter */}
                         </Button>
                   
                 </div>
@@ -126,9 +150,9 @@ function ShftLocsTable(props) {
             <div className=' flex  sticky  z-auto h-[35rem] overflow-auto'>
             <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                        <div className=" md:w-[12.1rem]">Name</div>
-                        <div className=" md:w-[9.1rem]">Start Date</div>
-                        <div className="md:w-[7.7rem]">End Date</div>
+                        <div className=" md:w-[12.1rem]">{translatedMenuItems[3]}</div>
+                        <div className=" md:w-[9.1rem]">{translatedMenuItems[4]}</div>
+                        <div className="md:w-[7.7rem]">{translatedMenuItems[5]}</div>
                     </div>
                     {props.shiftLocs.map((item) => {
                        const date1 = dayjs(item.endDate).format("DD/MM/YYYY");
@@ -137,17 +161,17 @@ function ShftLocsTable(props) {
                             <div>
                                 <div className="flex rounded  mt-4 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
                                     <div class="flex">
-                                        <div className=" flex font-medium  md:w-[12.2rem] max-sm:w-full ">
+                                        <div className=" flex   md:w-[12.2rem] max-sm:w-full ">
                                            {item.shiftName}
                                         </div>
 
-                                        <div className=" flex font-medium   md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex    md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                             <span>{date}</span>
                                             </div>
 
                                         </div>
-                                        <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex   md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                                         <span>{date1}</span>
 

@@ -16,18 +16,45 @@ import {
   handleBillingAddressModal
 } from "../../../Main/Account/AccountAction";
 import Highlighter from "react-highlight-words";
-import { OnlyWrapCard } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+import { div } from "../../../../Components/UI/Layout";
 const AccountDetailsView = lazy(() => import("../../../Main/Account/AccountDetailsView"));
 
 function LocationCustomerList(props) {
   const [page, setPage] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   useEffect(() => {
     props.getDistributorsByUserId(props.userId,page);
     setPage(page + 1);
   }, []);
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       
+        "1305",  // "Search",//0
+         "1307", // "Reset",//1
+         "1306", // " Filter",//2
+         "378", // " Work",//3
+        "700",  // "Website",//4
+        "71",  // " Type",//5
+         "", // "Invoice Address",//6
+       "879",   // " Pin Code",//7
+        "85",  // "Add"",//8
+        "110",  // name9
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const handleLoadMore = () => {
     setPage(page + 1);
     props.getDistributorsByUserId(props.currentUser?props.currentUser:props.userId,page,
@@ -75,14 +102,14 @@ function LocationCustomerList(props) {
               size="small"
               style={{ width: 90 }}
             >
-              Search
+              {translatedMenuItems[0]}{/* Search */}
             </Button>
             <Button
               onClick={() => handleReset(clearFilters)}
               size="small"
               style={{ width: 90 }}
             >
-              Reset
+              {translatedMenuItems[1]}{/* Reset */}
             </Button>
             <Button
               type="link"
@@ -93,7 +120,7 @@ function LocationCustomerList(props) {
                 setSearchedColumn(dataIndex);
               }}
             >
-              Filter
+              {translatedMenuItems[2]}{/* Filter */}
             </Button>
           </Space>
         </div>
@@ -137,7 +164,7 @@ function LocationCustomerList(props) {
   }
   return (
     <>
-      <OnlyWrapCard style={{ height: "80vh" }}>
+      <div className=" overflow-auto w-wk p-2 m-5 shadow-[4px 0px 9px 3px rgba(163, 171, 185, 0.5)] rounded bg-white h-[80vh]" >
       <InfiniteScroll
         dataLength={props.distributorsByUserId.length}
         next={handleLoadMore}
@@ -160,7 +187,7 @@ function LocationCustomerList(props) {
 
                     <div class=" text-xs  font-poppins">
 
-                      Name
+                    {translatedMenuItems[9]} {/* Name */}
 
                     </div>
 
@@ -177,7 +204,7 @@ function LocationCustomerList(props) {
 
                     <div class=" text-xs  font-poppins">
 
-                      Work
+                    {translatedMenuItems[3]} {/* Work */}
 
                     </div>
 
@@ -191,7 +218,7 @@ function LocationCustomerList(props) {
 
                     <div class=" text-xs  font-poppins">
 
-                      Website
+                    {translatedMenuItems[4]}   {/* Website */}
 
                     </div>
 
@@ -206,7 +233,7 @@ function LocationCustomerList(props) {
 
                     <div class=" text-xs  font-poppins">
 
-                      Type
+                    {translatedMenuItems[5]}{/* Type */}
 
                     </div>
 
@@ -221,7 +248,7 @@ function LocationCustomerList(props) {
 
                     <div class=" text-xs  font-poppins">
 
-                      Invoice Address
+                    {translatedMenuItems[6]} {/* Invoice Address */}
 
                     </div>
 
@@ -237,7 +264,7 @@ function LocationCustomerList(props) {
 
                     <div class=" text-xs  font-poppins">
 
-                      Pin Code
+                    {translatedMenuItems[7]} {/* Pin Code */}
 
                     </div>
 
@@ -250,20 +277,9 @@ function LocationCustomerList(props) {
                   <div className=" flex  md:w-42 max-sm:justify-between  max-sm:flex-row ">
 
                   <Button type="primary">
-                     <span class="text-sm" >
-                     <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
-                     
-                      
-                      </span>
+                     {translatedMenuItems[8]} {/* add */}                      
                         </Button>
-
-
-
-
-</div>
+                   </div>
                 
 
                 </div>
@@ -276,24 +292,8 @@ function LocationCustomerList(props) {
           )
         })}
    </InfiniteScroll>
-      </OnlyWrapCard>
-      {/* <UpdateAccountModal
-        distributorId={currentDistributorId}
-        updateDistributorModal={updateDistributorModal}
-        handleSetCurrentDistributorId={handleSetCurrentDistributorId}
-        handleUpdateDistributorModal={handleUpdateDistributorModal}
-      /> */}
-
-      {/* <AddAccountActivityModal
-        addDistributorActivityTableModal={
-          props.addDistributorActivityTableModal
-        }
-        handleDistributorActivityTableModal={
-          props.handleDistributorActivityTableModal
-        }
-        distributorId={currentDistributorId}
-        handleSetCurrentDistributorId={handleSetCurrentDistributorId}
-      /> */}
+      </div>
+     
     </>
   )
 }
