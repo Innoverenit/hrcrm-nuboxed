@@ -27,6 +27,8 @@ const StepperEmployeeModal = (props) => {
            userStageList={props.userStageList}
           currentEmployeeId={currentEmployeeId}
           employeeName={props.employeeName}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
             //  employeeId={props.setEditingEmployee.employeeId}
             />
           </Suspense>

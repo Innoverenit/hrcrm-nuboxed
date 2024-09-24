@@ -42,7 +42,7 @@ function OrderActionLeft (props) {
         "663",   // My Repair Orders 4
         "661",   // Repair 5
         "664",   // my Repair Orders-Completed 6
-        "666",   // Procure 7 
+        "856",   // trade 7 
         "1518",   // Ecom 8
         "1212",  // Commerce 9
         "667",  // Completed Orders 10

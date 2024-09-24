@@ -27,7 +27,7 @@ function EcomStatusItemCard (props) {
               "1044",//3 Item ID
               "260",//4 Units
               "772",//5 Delivery
-            //   "",//6 Shipping
+               "1377",//6 Shipping
               "1486",//7  Track (AWB)
               "891",//8 Ship By
               "170",// 9Edit
@@ -94,44 +94,39 @@ const handleInputChange = (value, key, dataIndex) => {
         <>
              <div> 
                       
-             <div className=' flex justify-end w-[99%] sticky flex-col z-auto'>
+             <div className=' flex  w-[99%] sticky flex-col z-auto'>
              <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
              <div className=" flex rounded  max-sm:hidden w-[100%]  mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-                                    <div className="text-xs font-bold font-poppins md:w-[10rem]"> {translatedMenuItems[0]}
+                                    <div className="text-xs font-bold font-poppins md:w-[3rem]"> {translatedMenuItems[0]}
                                     {/* Name */}
                                     </div>
                                      <div className="text-xs font-bold font-poppins md:w-[4.5rem]"> {translatedMenuItems[1]}
                                      {/* Category */}
                                      </div>
-                                        <div className="text-xs font-bold font-poppins md:w-[4.5rem]"> {translatedMenuItems[2]}
+                                        <div className="text-xs font-bold font-poppins md:w-[6.5rem]"> {translatedMenuItems[2]}
                                         {/* Attribute */}
                                         </div>
-                                    <div className="text-xs font-bold font-poppins md:w-[4.5rem]"> {translatedMenuItems[3]}
+                                    <div className="text-xs font-bold font-poppins md:w-[6.5rem]"> {translatedMenuItems[3]}
                                     {/* Item ID */}
                                     </div>
-                                     <div className="text-xs font-bold font-poppins md:w-[5.1rem]"> {translatedMenuItems[4]}
+                                     <div className="text-xs font-bold font-poppins md:w-[6.1rem]"> {translatedMenuItems[4]}
                                      {/* Units */}
                                      </div>
-                                    <div className="text-xs font-bold font-poppins md:w-[5rem]"> {translatedMenuItems[5]}
+                                    <div className="text-xs font-bold font-poppins md:w-[6rem]"> {translatedMenuItems[5]}
                                     {/* Delivery */}
                                     </div>
                                     <div className=" text-xs font-bold font-poppins md:w-[6.2rem]"> {translatedMenuItems[6]}
                                     {/* Shipping */}
                                     </div>
-                                    <div className="text-xs font-bold font-poppins md:w-[5rem]"> {translatedMenuItems[7]}
+                                    <div className="text-xs font-bold font-poppins md:w-[6rem]"> {translatedMenuItems[7]}
                                      {/* AWB */}
                                     </div>
                                    
                                    <div className="text-xs font-bold font-poppins  md:w-[5rem]"> {translatedMenuItems[8]}
                                     {/* Ship By */}
                                    </div>
-                     
-                        
-                                   
-                                    <div className=" md:w-[2rem]"></div>
-                 
                                 </div>
-                               <div class="overflow-y-auto h-[65vh]">
+                               <div class="overflow-y-auto h-[55vh]">
 
                                         {data.map((item) => {
                                             return (
@@ -139,41 +134,41 @@ const handleInputChange = (value, key, dataIndex) => {
                                                     <div key={item.itemId}
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium   md:w-[6rem] max-sm:flex-row max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[6rem] max-sm:flex-row max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.productFullName}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.category}
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.attribute}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.newProductId}
                                                                 </div>
                                                             </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.unit}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
-                                                                {dayjs(item.deliveryDate).format("YYYY/MM/DD")} 
+                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
+                                                       {item.deliveryDate=== true ? dayjs(item.deliveryDate).format("YYYY/MM/DD"): "Not Available"}       
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                  {editsuppliesId === item.itemId ? (
                                                                 <input
           type="date"
@@ -182,20 +177,20 @@ const handleInputChange = (value, key, dataIndex) => {
           min={dayjs(item.deliveryDate).format("YYYY-MM-DD")}
           class="border border-black rounded"
         /> ) : (
-            <div className="font-normal text-sm  font-poppins">
+            <div className="font-normal text-xs  font-poppins">
               <div> 
               {dayjs(item.shippingDate).format("YYYY/MM/DD")}</div>
             </div>
           )}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                     {item.shippingNo} 
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
-                                                                <div class=" text-xs text-cardBody font-poppins">
+                                                            <div className=" flex   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                                <div class=" text-xs  font-poppins">
                                                                 {editsuppliesId === item.itemId ? (
                        <Input
                        style={{ width: "3rem" }}
@@ -212,7 +207,7 @@ const handleInputChange = (value, key, dataIndex) => {
                                                                 </div>
                                                             </div>
                                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                            <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.itemId ? (
                         <>
                       <Button 

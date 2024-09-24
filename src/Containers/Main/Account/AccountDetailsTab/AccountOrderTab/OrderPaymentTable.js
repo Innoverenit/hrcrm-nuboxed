@@ -23,7 +23,7 @@ function OrderPaymentTable(props) {
   '1424', // 1424Entry
     "929",    // Amount
     "86",   // Mode
-    "422",   // 422Reason
+    "1422",   // 422Reason
     "116",     // 116Approved
    "1078", // 1078 Save
    "1079", // 1079  Cancel

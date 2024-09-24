@@ -18,13 +18,14 @@ class EmployeesActionRight extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
   handleClicked = (value) => {
     this.setState({
-      isClicked: value,
-      
+      isClicked: value,    
     });
-    this.fetchMenuTranslations();
+    
   };
   componentDidUpdate(prevProps) {
     if (prevProps.selectedLanguage !== this.props.selectedLanguage) {

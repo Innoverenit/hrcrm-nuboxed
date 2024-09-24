@@ -23,8 +23,15 @@ class InvoicePaidModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                                <DistributorPaidForm particularRowData={this.props.particularRowData}  distributorId={this.props.distributorId} />
-                                <OrderPaymentTable particularRowData={this.props.particularRowData} />
+                                <DistributorPaidForm
+                                 particularRowData={this.props.particularRowData}  
+                                distributorId={this.props.distributorId}
+                                selectedLanguage={this.props.selectedLanguage}
+                                translateText={this.props.translateText}  />
+                                <OrderPaymentTable 
+                                particularRowData={this.props.particularRowData}
+                                   selectedLanguage={this.props.selectedLanguage}
+                                   translateText={this.props.translateText}  />
                     </Suspense>
                 </StyledDrawer>
             </>

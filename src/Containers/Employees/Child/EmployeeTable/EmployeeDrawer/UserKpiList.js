@@ -48,9 +48,18 @@ function UserKpiList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          "",//0 Yes"
-          "",//1 No
-           "",//2  Submit
+          "",//0 Fiscal Year
+          "",//1 Select Year
+           "154",//2  Submit
+        "76" , //  Assigned"3
+        "" ,//  Total4
+        "" , //  Achieved5
+        "" ,  //  "Actual6
+        "" ,  //  Weightage7
+        "66" , //  Month8
+        "1078" , //  Save9
+        "1079" ,  //  Cancel10
+          "170" , //  "Edit"11
                  
         ];
 
@@ -165,41 +174,41 @@ function UserKpiList(props) {
   <div className=' flex  justify-center  sticky  z-auto'>
   <div className="rounded m-1 p-1  w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className="flex justify-between  h-10 w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-      <div className="md:w-[8.5rem]">
-        <FormattedMessage id="app.kpi" defaultMessage="KPI" />
+      <div className="md:w-[8.5rem]"> KPI
+        {/* <FormattedMessage id="app.kpi" defaultMessage="KPI" /> */}
       </div>
-      <div className="md:w-[7.5rem]">
-        <FormattedMessage id="app.lob" defaultMessage="LOB" />
+      <div className="md:w-[7.5rem]"> LOB
+        {/* <FormattedMessage id="app.lob" defaultMessage="LOB" /> */}
       </div>
-      {/* <div className="md:w-[5.5rem]">
-         <FormattedMessage id="app.lob" defaultMessage="Currency" />
-       </div> */}
+     
       <div className="md:w-[11.1rem]">
-        <FormattedMessage id="app.assigned" defaultMessage="Assigned" />
+      {translatedMenuItems[3]}    {/* <FormattedMessage id="app.assigned" defaultMessage="Assigned" /> */}
       </div>
       <div className="md:w-[9.11rem]">
-        <FormattedMessage id="app.assigned" defaultMessage=" Total" />
+      {translatedMenuItems[4]}    {/* <FormattedMessage id="app.assigned" defaultMessage=" Total" /> */}
       </div>
   
       <div className="md:w-[7.11rem]">
-        <FormattedMessage id="app.achieved" defaultMessage="Achieved" />
+      {translatedMenuItems[5]}   {/* <FormattedMessage id="app.achieved" defaultMessage="Achieved" /> */}
       </div>
       <div className="md:w-[7.51rem]">
-        <FormattedMessage id="app.achieved" defaultMessage=" Total" />
+      {translatedMenuItems[4]}    {/* <FormattedMessage id="app.achieved" defaultMessage=" Total" /> */}
       </div>
       <div class="w-[2rem]"></div>
       <div className="md:w-[8.01rem]">
-        <FormattedMessage id="app.actual" defaultMessage="Actual" />
+      {translatedMenuItems[6]}   {/* <FormattedMessage id="app.actual" defaultMessage="Actual" /> */}
       </div>
       <div className="md:w-[3.1rem]">
-        <FormattedMessage id="app.actual" defaultMessage="Total" />
+      {translatedMenuItems[4]}  {/* <FormattedMessage id="app.actual" defaultMessage="Total" /> */}
 
       </div>
       <div class="w-[2rem]"></div>
-      <div className="md:w-[4.1rem]"><FormattedMessage
+       <div className="md:w-[4.1rem]">{translatedMenuItems[7]} 
+      {/* <FormattedMessage
          id="app.weightage"
          defaultMessage="Weightage"
-       /></div>
+       /> */}
+       </div>
         {/* <div className="w-[2rem]"></div> */}
     </div>
 
@@ -237,22 +246,14 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
             </>
           </div>
         </div>
-        {/* <div className="flex  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
-           <div className="text-xs  font-poppins">
-             <>
-   
-     {props.employeeName.currency}
-     
-             </>
-           </div>
-         </div> */}
+    
 
         <div className="flex  md:w-[26.32rem] max-sm:flex-row w-full max-sm:justify-between">
           <div className="text-xs  font-poppins">
           <>
 <div className=" flex flex-row text-xs  font-poppins">
  <div className="flex flex-col w-[4rem] items-center">
-   <span className="mr-2">M1</span>
+   <span className="mr-2  !text-tab">M1</span>
    <span className='ml-2 w-20'>
     {item.month1AssignedValue && (
 <span>
@@ -262,7 +263,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
 )}</span>
  </div>
  <div className="flex flex-col w-[4rem] items-center">
-   <span className="mr-2">M2</span>
+   <span className="mr-2  !text-tab">M2</span>
    <span className='ml-2 w-20'>{item.month2AssignedValue && (
 <span>
 {item.currencyInd && `${item.userCurrency} `}
@@ -271,7 +272,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
 )}</span>
  </div>
  <div className="flex flex-col w-[4rem] items-center">
-   <span className="mr-2 ">M3</span>
+   <span className="mr-2  !text-tab ">M3</span>
 
              <span className='ml-2 w-20'>{item.month3AssignedValue && (
 <span>
@@ -305,7 +306,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
      
             <div className=" flex flex-row text-xs  font-poppins">
               <div className="flex flex-col items-center">
-                <span className="mr-2">M1</span>
+                <span className="mr-2  !text-tab">M1</span>
                 <span className='ml-2 w-[4rem]'>   {item.month1CompletedValue && (
                               <span>
                                   {item.currencyInd && `${item.userCurrency} `}
@@ -314,7 +315,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
                           )}</span>
               </div>
               <div className="flex flex-col items-center">
-                <span className="mr-2">M2</span>
+                <span className="mr-2  !text-tab">M2</span>
                 <span className='ml-2 w-[4rem]'>   {item.month2CompletedValue && (
                               <span>
                                   {item.currencyInd && `${item.userCurrency} `}
@@ -323,7 +324,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
                           )}</span>
               </div>
               <div className="flex flex-col items-center">
-                <span className="mr-2">M3</span>
+                <span className="mr-2  !text-tab">M3</span>
                 <span className='ml-2 w-[4rem]'>   {item.month3CompletedValue && (
                               <span>
                                   {item.currencyInd && `${item.userCurrency} `}
@@ -510,16 +511,16 @@ width={30}
            {editContactId === item.userKpiLinkId ? (
                <>
               <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.month1ActualCompletedValue,item.month2ActualCompletedValue,item.month3ActualCompletedValue)}>
-               Save
+              {translatedMenuItems[9]}   {/* Save */}
              </Button>
                <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>
-               Cancel
+               {translatedMenuItems[10]}   {/* Cancel */}
              </Button>
              </>
              
            ) : (
              <BorderColorIcon
-               tooltipTitle="Edit"
+               tooltipTitle={translatedMenuItems[11]} 
                iconType="edit"
                 onClick={() => handleEditClick(item.userKpiLinkId)}
                style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem', }}

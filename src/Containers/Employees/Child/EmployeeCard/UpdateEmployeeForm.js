@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button, Switch, Select } from "antd";
-import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Radio, message } from "antd";

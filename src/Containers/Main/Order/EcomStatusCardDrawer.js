@@ -12,7 +12,7 @@ const EcomStatusCardDrawer = (props) => {
     return (
         <>
             <StyledDrawer
-                title={`Status:${props.particularRowData.newOrderNo}`}
+                title={`Status: ${props.particularRowData.newOrderNo}`}
                 width={drawerWidth}
                 visible={props.modalVisible}
                 closable
