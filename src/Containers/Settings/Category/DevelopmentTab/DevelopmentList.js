@@ -1,11 +1,9 @@
 import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Popconfirm,Tooltip, Input } from "antd";
+import { Popconfirm, Input } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { base_url } from "../../../../Config/Auth";
-import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import {
   getDevelopment,
@@ -154,15 +152,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          {/* <div class="w-[20rem]">
-  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"roleType"}`}>
-    <div className="circle-icon !text-base cursor-pointer text-[green]">
-      <Tooltip placement="top" title="Download XL">
-        <DownloadIcon />
-      </Tooltip>
-    </div>
-  </a>
-</div> */}
+       
 
             <div className="add-region" style={{width:"45vw"}}>
               {addingRegion ? (

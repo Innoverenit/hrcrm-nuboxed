@@ -1,15 +1,12 @@
-import React, { useEffect,lazy,useState } from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Button,Popconfirm,Tooltip, Input } from "antd";
-import { base_url } from "../../../../Config/Auth";
+import { Popconfirm,Input } from "antd";
 import dayjs from "dayjs";
-import DownloadIcon from '@mui/icons-material/Download';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { TextInput } from "../../../../Components/UI/Elements";
 import {
     getBrandCategoryData,
     getBrandCategoryCount,
@@ -106,8 +103,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mt-1 mr-3" >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -163,7 +160,7 @@ return <div><BundleLoader/></div>;
             )}
 
             {/* Action buttons */}
-            <div >
+            <div className=" flex flex-row" >
                 {/* Edit button */}
                 {editingId === region.shipById ? (
                     <div>

@@ -104,7 +104,7 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
+    <div class=" flex flex-row  justify-end items-center">
     {/* <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
           <Input
        placeholder="Search by Name"
@@ -115,7 +115,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div> */}
-          <div class="w-[18rem]">
+          <div class="w-[2rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"sector"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">

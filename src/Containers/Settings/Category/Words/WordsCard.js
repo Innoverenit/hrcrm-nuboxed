@@ -1,97 +1,3 @@
-// import React, { useEffect, useState, } from "react";
-// import { bindActionCreators } from "redux";
-// import { connect } from "react-redux";
-// import {getLangWords} from "../../SettingsAction";
-// // import AddWords from "./AddWords";
-// import { MainWrapper } from "../../../../Components/UI/Elements";
-// import { BundleLoader } from "../../../../Components/Placeholder";
-
-
-// function WordsCard(props) {
-
-  
-  
-
- 
-
-
-
-  
-//   useEffect(() => {
-//      props.getLangWords();
-//   },[]);
-
-//   const languages = Object.keys(props.langWords[0] || {});
-//   const newLanguages = languages.slice(1);
-
-//   if(props.fetchingLangWords) {
-//     return <BundleLoader/>
-//   };
-
-//     return (
-//         <>
-
-
-//             <div className="cwrapper" style={{ height: "89vh", overflowY: "auto" }}>
-//         {props.langWords.map((translations, index) => {
-        
-//           return (
-            
-//             <div key={index} className="w-full my-2 h-16 scale-98 hover:scale-100 ease-in duration-100 scroll-overflow ">
-//               <div className={`bg-white rounded-md  w-w95 h-16 p-1 max-sm:h-28  md:m-auto scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]`}>
-//                 <div className="flex max-sm:flex-col md:flex flex-row justify-around ">
-//                   <div className="w-full md:flex flex-col justify-center mb-auto">
-//                     <div className="flex justify-evenly">
-//                       {newLanguages.map((language) => (
-//                          language !== 'id' && (
-//                         <div className="Ccard__title w-40 grid" key={language}>
-                          
-//                             <div className="text-black-700 text-xs">
-//                               {language}
-//                             </div>
-                          
-                      
-//                            <div className={`text-gray-600 text-xs ${translations.baseLanguage === language ? 'green-text' : ''}`}>
-//                               {translations[language]}
-//                             </div>
-//                         </div>
-//                          )
-//                       ))}
-                  
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           )
-//         })}
-//       </div>
-
-//         </>
-//     );
-// }
-
-// const mapStateToProps = ({ settings}) => ({
-//   langWords:settings.langWords,
-//   fetchingLangWords:settings.fetchingLangWords,
-// });
-
-// const mapDispatchToProps = (dispatch) =>
-//     bindActionCreators(
-//         {
-//           getLangWords
-//         },
-//         dispatch
-//     );
-
-// export default connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(WordsCard);
-
-
-
-
 import React, { useEffect, useState } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -196,7 +102,7 @@ function WordsCard(props) {
             </div>
             <div
               className={`bg-white rounded-md w-w95 h-16 p-1 max-sm:h-28 md:m-auto scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid m-1 leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]`}
-              style={{width:"70em"}}
+              style={{width:"75em"}}
             >
               <div className="flex max-sm:flex-col md:flex flex-row justify-around">
                 <div className="w-full md:flex flex-col justify-center mb-auto">

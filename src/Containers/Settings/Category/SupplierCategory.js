@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
-import { DeleteOutlined } from "@ant-design/icons";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm, Input,Tooltip } from "antd";
+import { Tooltip } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
@@ -45,17 +43,6 @@ const SupplierCategory = (props) => {
       setAddingRegion(true);
       setCategoryName("")
   };
-
-//   const handleUpdateSector=(region)=>{
-//       console.log(region)
-//       let data={
-//         sectorId:region.sectorId,
-//         sectorName:newSectorName
-       
-//       }
-// props.updateSectors(data,region.sectorId)
-// setEditingId(null);
-//   }
 
   const handleSector = () => {
       let data={
@@ -106,18 +93,9 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    {/* <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
-          <Input
-       placeholder="Search by Name"
-      style={{width:"100%",marginLeft:"0.5rem"}}
-          // suffix={suffix}
-          onPressEnter={handleSearch}  
-          onChange={handleChange}
-          // value={currentData}
-        />
-          </div> */}
-          <div class="w-[18rem]">
+    <div class=" flex flex-row justify-end items-center">
+  
+          <div class="w-[2rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"sector"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -186,21 +164,7 @@ return <div><BundleLoader/></div>;
                 )}
 
                 {/* Delete button */}
-                {/* <Popconfirm
-                        title="Do you want to delete?"
-                        okText="Yes"
-                        cancelText="No"
-                        onConfirm={() =>  props.removeSectors(region.sectorId,props.orgId)}
-                      >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
-            
-                 />
-                 </Popconfirm> */}
+        
             </div>
         </div>
         ))}
