@@ -3,14 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-<<<<<<< HEAD
 import { Popconfirm, Input } from "antd";
 import dayjs from "dayjs";
-=======
-import { Popconfirm,Input } from "antd";
-import dayjs from "dayjs";
-import { BundleLoader } from "../../../../Components/Placeholder";
->>>>>>> fbd54c9c8756eb5b66afa4e494f4cf923a4a74fb
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import {
     getBrandCategoryData,
