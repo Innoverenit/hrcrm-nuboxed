@@ -165,7 +165,7 @@ const {
           </div>
           <div class=" flex flex-col" >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
+         <MainWrapper className="!h-[65vh] !mt-2" >
           {!props.fetchingEvents && events.length === 0 ? <NodataFoundPage /> : events.slice().sort((a, b) => a.eventType.localeCompare(b.eventType)).map((region, index) => (
             <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.eventTypeId}>
             {/* Region name display or input field */}
@@ -187,7 +187,7 @@ const {
             )}
 
             {/* Action buttons */}
-            <div >
+            <div className="flex items-center">
                 {/* Edit button */}
                 {editingId === region.eventTypeId ? (
                     <div>
@@ -195,7 +195,7 @@ const {
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    <BorderColorIcon   style={{fontSize:"1rem",cursor:"pointer"}} onClick={() => editRegion(region.eventTypeId, region.eventType)} />
+                    <BorderColorIcon    className=" !text-icon text-red-600 cursor-pointer " onClick={() => editRegion(region.eventTypeId, region.eventType)} />
                 )}
 
                 {/* Delete button */}
@@ -206,11 +206,7 @@ const {
                         onConfirm={() =>  props.removeEvents(region.eventTypeId,props.orgId)}
                       >
                 <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                  className=" !text-icon text-red-600 cursor-pointer "
               // onClick={() => 
               //     props.removeServiceLine(item.eventTypeId)
               //  }

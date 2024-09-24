@@ -217,7 +217,7 @@ return <div><BundleLoader/></div>;
                  
                 {/* </div> */}
             {/* Action buttons */}
-            <div className="actions w-12" >
+            <div className="actions w-12 justify-end" >
   {/* Edit button */}
   {editingId === region.documentTypeId ? (
     <div>

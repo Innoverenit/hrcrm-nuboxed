@@ -2,15 +2,17 @@ import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
+import { DeleteOutlined } from "@ant-design/icons";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { base_url } from "../../../Config/Auth";
-import { Tooltip } from "antd";
+import { Tooltip,Popconfirm } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getSupplierCategory,
-  //getSectorCount,
+  getSectorCount,
   addSupplierCategory,
-  //removeSectors,
+  // removeSectors,
   //updateSectors,
   //searchSectorName,
   ClearReducerDataOfSupplierCategory
@@ -36,6 +38,10 @@ const SupplierCategory = (props) => {
       setEditingId(sectorId);
       setCategoryName(name);
   };
+const handleUpdateSector =() =>{
+
+
+};
 
 
 
@@ -159,12 +165,21 @@ return <div><BundleLoader/></div>;
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    // <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.sectorId, region.sectorName)} />
-                    <></>
+                      <BorderColorIcon   className=" !text-icon text-red-600 cursor-pointer "
+                      //  onClick={() => editRegion(region.sectorId, region.sectorName)}
+                        />                   
                 )}
-
                 {/* Delete button */}
-        
+                <Popconfirm
+          title="Do you want to delete?"
+          okText="Yes"
+          cancelText="No"
+          // onConfirm={() => props.removeSectors(region.sectorId,props.orgId)}
+        >
+          <DeleteOutlined   className=" !text-icon text-red-600 cursor-pointer "
+          />
+        </Popconfirm>
+
             </div>
         </div>
         ))}
@@ -197,7 +212,7 @@ const mapDispatchToProps = (dispatch) =>
       //getSectorCount,
       getSupplierCategory,
       addSupplierCategory,
-      //removeSectors,
+      // removeSectors,
      // updateSectors,
       //searchSectorName,
       ClearReducerDataOfSupplierCategory
