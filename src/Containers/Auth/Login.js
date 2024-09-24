@@ -15,6 +15,8 @@ import FWLogo from "../../Assets/Images/name.jpg";//ct
 import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nubox
 import DevelopTk from "../../Assets/Images/logo_22.png";// testhr
 import KAPSSN from "../../Assets/Images/KAPSSNLogo.jpg";// KPSSN
+import OneDi from "../../Assets/Images/1DiLogo.jpg";//1Di 
+
 
 
 class Login extends Component {
