@@ -6,6 +6,7 @@ import { TabsWrapper } from "../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import {  Badge } from "antd";
 import LanguageIcon from '@mui/icons-material/Language';
+import PublicIcon from '@mui/icons-material/Public';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import RememberMeIcon from '@mui/icons-material/RememberMe';
@@ -17,8 +18,6 @@ import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import FactoryIcon from '@mui/icons-material/Factory';
-// import {getRegionCount} from "../Category/Region/RegionAction"
-// import {getServiceLineCount} from "../Category/ServiceLine/ServiceLineAction"
 import KpiMasterList from "./KpiMasterList/KpiMasterList";
 import IndustryTab from "./Industry/IndustryTab";
 import Machinary from "./Machinary/Machinary";
@@ -203,7 +202,8 @@ class OthersTab extends Component {
                <TabPane
                 tab={
                   <>
-                 <MonetizationOnIcon className="!text-icon"/>   <span class="!text-tab ml-1 text-sm">Region   </span>
+              
+                 <PublicIcon className="!text-icon"/>   <span class="!text-tab ml-1 text-sm">Region   </span>
                  <Badge
                 count={this.props.regionCount.RegionsCount}
                 overflowCount={999} offset={[ 0, -16]}

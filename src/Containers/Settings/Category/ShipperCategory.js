@@ -6,11 +6,13 @@ import { base_url } from "../../../Config/Auth";
 import { Popconfirm, Input,Tooltip } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { DeleteOutlined } from "@ant-design/icons";
 import {
   getShipperCategory,
   //getSectorCount,
   addShipperCategory,
-  //removeSectors,
+  // removeSectors,
   //updateSectors,
   //searchSectorName,
   //ClearReducerDataOfSupplierCategory
@@ -44,16 +46,16 @@ const ShipperCategory = (props) => {
       setCategoryName("")
   };
 
-//   const handleUpdateSector=(region)=>{
-//       console.log(region)
-//       let data={
-//         sectorId:region.sectorId,
-//         sectorName:newSectorName
+  const handleUpdateSector=(region)=>{
+      console.log(region)
+      let data={
+        sectorId:region.sectorId,
+        // sectorName:newSectorName
        
-//       }
-// props.updateSectors(data,region.sectorId)
-// setEditingId(null);
-//   }
+      }
+props.updateSectors(data,region.sectorId)
+setEditingId(null);
+  }
 
   const handleSector = () => {
       let data={
@@ -179,26 +181,24 @@ return <div><BundleLoader/></div>;
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    // <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.sectorId, region.sectorName)} />
-                    <></>
+                     <BorderColorIcon    className=" !text-icon text-red-600 cursor-pointer "
+                      // onClick={() => editRegion(region.sectorId, region.sectorName)}
+                       />
+                    
                 )}
 
                 {/* Delete button */}
-                {/* <Popconfirm
+                <Popconfirm
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeSectors(region.sectorId,props.orgId)}
+                        // onConfirm={() =>  props.removeSectors(region.sectorId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+                <DeleteOutlined   className=" !text-icon text-red-600 cursor-pointer "/>
+               
             
-                 />
-                 </Popconfirm> */}
+                
+                 </Popconfirm>
             </div>
         </div>
         ))}
@@ -231,7 +231,7 @@ const mapDispatchToProps = (dispatch) =>
       //getSectorCount,
       getShipperCategory,
       addShipperCategory,
-      //removeSectors,
+      // removeSectors,
      // updateSectors,
       //searchSectorName,
       //ClearReducerDataOfSupplierCategory

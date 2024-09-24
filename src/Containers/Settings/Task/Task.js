@@ -60,16 +60,7 @@ setEditingId(null);
   }
 
   const handleTask = () => {
-      // if (newRegionName.trim() !== '') {
-      //     console.log("New Region:", newRegionName);
-      //     const newRegion = {
-      //         id: Date.now(),
-      //         item: newRegionName
-      //     };
-      //     setRegions([...regions, newRegion]);
-      //     setNewRegionName('');
-      //     setAddingRegion(false);
-      // }
+     
       let data={
         taskType:newTaskName,
         orgId:props.orgId,
@@ -177,16 +168,16 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setTaskName(e.target.value)}
                 />
             ) : (
-                <div >{region.taskType}
+                <div className="flex w-1/4" >{region.taskType}
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
                                       </span> : null}</div>
             )}
-  <div class="flex w-60">
+  <div class="flex w-1/4">
                   <div class="w-20 items-center">Workflow</div>
                  
-                  <div class="ml-4 w-[17rem]">
+                  <div class="ml-4 w-1/6">
                     <TaskConnetToggle 
                         taskType={region.taskType}
                         taskTypeId={region.taskTypeId}
@@ -195,7 +186,7 @@ return <div><BundleLoader/></div>;
                     </div>
                     </div>
             {/* Action buttons */}
-            <div className="flex justify-end w-12">
+            <div className="flex justify-end w-12 items-center">
                 {/* Edit button */}
                 {editingId === region.taskTypeId ? (
                     <div>

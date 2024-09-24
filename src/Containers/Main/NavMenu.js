@@ -10,10 +10,8 @@ import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturi
 import ComputerIcon from '@mui/icons-material/Computer';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import { FormattedMessage } from "react-intl";
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import FilePresentIcon from '@mui/icons-material/FilePresent'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LocationCityIcon from '@mui/icons-material/LocationCity';

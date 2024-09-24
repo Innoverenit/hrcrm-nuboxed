@@ -8,7 +8,7 @@ import { Popconfirm,Tooltip, Input } from "antd";
 import dayjs from "dayjs";
 import DownloadIcon from '@mui/icons-material/Download';
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { MainWrapper, } from "../../../../Components/UI/Layout";
+
 
 import {
     getItemTask,
@@ -176,7 +176,7 @@ return <div><BundleLoader/></div>;
          
          <div className="!h-[65vh] !mt-2 rounded shadow-[0em 0.25em 0.625em -0.125em] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto"> 
           {!props.fetchingItemTask && itemTaskListData.length === 0 ? <NodataFoundPage /> : itemTaskListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.itemTaskId}>
+            <div className="flex rounded ml-1 w-7rem font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.itemTaskId}>
             {/* Region name display or input field */}
             {editingId === region.itemTaskId ? (
                 <input
@@ -187,7 +187,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setItemTaskName(e.target.value)}
                 />
             ) : (
-                <div className="w-7rem">{region.name}&nbsp;&nbsp;&nbsp;
+                <div className="flex w-1/4">{region.name}
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -206,12 +206,12 @@ return <div><BundleLoader/></div>;
         <Option value="L3">L3</Option>
       </Select>
             ) : (
-                <div className="w-5rem" >{region.level}
+                <div className="flex w-1/6">{region.level}
                
                                       </div>
             )}
 
-            <div className="w-3rem" >
+            <div className=" justify-end" >
                 {/* Edit button */}
                 {editingId === region.itemTaskId ? (
                     <div>
