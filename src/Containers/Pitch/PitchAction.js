@@ -212,6 +212,11 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
       .then((res) => {
         console.log(res);
          dispatch(getPitchCount(userId));
+         dispatch(getTeamPitch(userId,0));
+         dispatch(getPitchHot(userId,0,"creationdate","hot"));
+         dispatch(getPitchCold(userId,0,"creationdate","cold"));
+         dispatch(getPitchWarm(userId,0,"creationdate","warm"));
+         dispatch(getAllPitch(0,"creationdate"));
          Swal.fire({
           icon: 'success',
           title: 'Pitch deleted Succefully!',

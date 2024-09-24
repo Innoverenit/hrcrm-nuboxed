@@ -73,10 +73,7 @@ class AccountOpportunityStepper extends Component {
                     />
                     <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        description="Item Info"
                     />
 
                 </StyledSteps>

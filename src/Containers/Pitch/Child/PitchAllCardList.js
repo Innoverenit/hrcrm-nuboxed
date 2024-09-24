@@ -470,7 +470,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                             title={translatedMenuItems[16]}
                             onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
                           > <Tooltip title={translatedMenuItems[17]}>
-                            {user.imInd === true  &&  user.plantDeleteInd === true && ( 
+                            {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
                             <DeleteOutlined
                               type="delete"
                               className="!text-icon text-[red] cursor-pointer"                             

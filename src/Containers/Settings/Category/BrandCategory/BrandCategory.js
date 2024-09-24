@@ -3,13 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Button,Popconfirm,Tooltip, Input } from "antd";
-import { base_url } from "../../../../Config/Auth";
+import { Popconfirm, Input } from "antd";
 import dayjs from "dayjs";
-import DownloadIcon from '@mui/icons-material/Download';
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { TextInput } from "../../../../Components/UI/Elements";
 import {
     getBrandCategoryData,
     getBrandCategoryCount,
@@ -20,6 +16,7 @@ import {
   updateBrandCategory
 } from "../BrandCategory/BrandCategoryAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const BrandCategory = (props) => {
   const [currentData, setCurrentData] = useState("");

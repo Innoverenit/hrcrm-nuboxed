@@ -73,6 +73,7 @@ function CustomerProcurementTable(props) {
                 "1169",//10 invoice
                "100", // New11
                "142", // "Status"12
+               "14", //Category
 
           ];
     
@@ -253,7 +254,7 @@ const handleLoadMoreLow = () => {
                         {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
                           </div>
                           <div className="md:w-[3.8rem]">
-                   
+                          {translatedMenuItems[13]} 
                           </div>
                         <div className="md:w-[6.12rem]"></div>
                      
@@ -364,6 +365,11 @@ const handleLoadMoreLow = () => {
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
+                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs">
+                                              {item.shipById}
+                                            </div>
+                                        </div>
                                         <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
@@ -427,7 +433,7 @@ const handleLoadMoreLow = () => {
                         {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
                           </div>
                           <div className="md:w-[3.8rem]">
-                       
+                          {translatedMenuItems[13]}
                           </div>
                         <div className="md:w-[6.12rem]"></div>
                      
@@ -539,6 +545,11 @@ const handleLoadMoreLow = () => {
                         {item.paymentInTerms}
                       </div>
                   </div>
+                  <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs">
+                                              {item.shipById}
+                                            </div>
+                                        </div>
                   <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{
                     setopenInvoiceModal(true);

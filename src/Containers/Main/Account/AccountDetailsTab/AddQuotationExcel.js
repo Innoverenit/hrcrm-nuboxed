@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Input, Select } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { bindActionCreators } from "redux"; 
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
 import { addQuotationPhoneDetails, getBrand, getModel,getAllProductList,getLocationList } from "../AccountAction";
 import QuotationDetailsCardList from "./QuotationDetailsCardList";
@@ -18,7 +18,7 @@ function AddQuotationExcel(props) {
     props.getSupplierSuppliesQuality();
   }, []);
 
-  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '' }]);
+  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '',location:''  }]);
 
   const handleUnitChange = (index, key, value) => {
     const updatedRows = [...rows];
@@ -51,7 +51,7 @@ function AddQuotationExcel(props) {
   };
 
   const handleAddRow = () => {
-    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '' }]);
+    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '',location:'' }]);
   };
   const handleCategoryChange = (value, index) => {
     const updatedRows = [...rows];
@@ -91,7 +91,7 @@ function AddQuotationExcel(props) {
 
   const handleSubmit = () => {
     const dataToSend = rows.map((row) => ({
-      orderPhoneId: props.orderDetailsId.orderId,
+      orderPhoneId: props.orderDetailsId.quotationId,
       brandId: row.brand,
       modelId: row.model,
       orderType:"Procure",
@@ -99,13 +99,15 @@ function AddQuotationExcel(props) {
       specs: row.specs,
       category:row.category ,
       attribute:row.attribute,
-      location:row.locationId,
+      // location:row.locationId,
+      location: row.location,
       quality: row.quality,
+      price: row.price
     }));
 
     // Make the API call
-    props.addQuotationPhoneDetails(dataToSend, props.orderDetailsId.orderId);
-    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '' }]);
+    props.addQuotationPhoneDetails(dataToSend, props.orderDetailsId.quotationId);
+    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '',location:'' }]);
   };
 
   return (
@@ -123,7 +125,7 @@ function AddQuotationExcel(props) {
                     onChange={(value) => handleCategoryChange(value, index)}
                   >
                     {props.categoryList.map((a) => (
-                      <Option key={a.id} value={a.id}>{a.categoryName}</Option>
+                      <Option key={a.id} value={a.categoryId}>{a.categoryName}</Option>
                     ))}
                   </Select>
                 </div>
@@ -138,7 +140,7 @@ function AddQuotationExcel(props) {
                     onChange={(value) => handleBrandChange(value, index)}
                   >
                     {props.brand.map((a) => (
-                      <Option key={a.brand} value={a.brand}>{a.brand}</Option>
+                      <Option key={a.brand} value={a.brand}>{a.categoryName}</Option>
                     ))}
                   </Select>
                 </div>
@@ -188,7 +190,7 @@ function AddQuotationExcel(props) {
               <div class=" ml-4">
                 <div class="font-bold text-xs font-poppins text-black">Location</div>
                 <div className="w-[7rem]">
-                  <Select
+                  {/* <Select
                     style={{ width: 100 }}
                     value={row.locationId}
                     onChange={(value) => handleLocationChange(value, index)}
@@ -196,7 +198,13 @@ function AddQuotationExcel(props) {
                     {props.locationlist.map((a) => (
                       <Option key={a.locationDetailsId} value={a.locationDetailsId}>{a.locationName}</Option>
                     ))}
-                  </Select>
+                  </Select> */}
+                    <Input
+                    type="text"
+                    value={row.location}
+                     onChange={(e) => handleUnitChange(index, 'location', e.target.value)}
+                    placeholder="Enter Location"
+                  />
                 </div>
               </div>
               <div>
@@ -225,7 +233,17 @@ function AddQuotationExcel(props) {
                   />
                 </div>
               </div>
-             
+              <div class=" ml-4">
+                <div class="font-bold text-xs font-poppins text-black">Price per Unit</div>
+                <div className="w-24">
+                  <Input
+                    type="text"
+                    value={row.price}
+                     onChange={(e) => handleUnitChange(index, 'price', e.target.value)}
+                    placeholder="Enter price"
+                  />
+                </div>
+              </div>
               <div className="w-4 mt-[1.5rem]">
                 <CloseOutlined onClick={() => handleRemoveRow(index)} />
               </div>

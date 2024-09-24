@@ -36,7 +36,7 @@ function QuotationDetailsCardList(props) {
 
   useEffect(() => {
     props.getBrand();
-    props.getQuotationExcelDetails(props.orderDetailsId.orderId);
+    props.getQuotationExcelDetails(props.orderDetailsId.quotationId);
     props.getCategorylist();
     props.getAllProductList();
     props.getSupplierSuppliesQuality();
@@ -104,7 +104,7 @@ function QuotationDetailsCardList(props) {
   const handleUpdate = (id) => {
     const data = {
       model: brand,
-      orderPhoneId: props.orderDetailsId.orderId,
+      orderPhoneId: props.orderDetailsId.quotationId,
       brandId: model,
       unit: newUnitName,
       specs: specs,
