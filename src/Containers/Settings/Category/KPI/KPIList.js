@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getKpiName, getKpis, addKpi } from "../KPI/KPIAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { Checkbox, Button, Input } from "antd";
+import { Checkbox, Button } from "antd";
 
 class KPIList extends Component {
   constructor(props) {

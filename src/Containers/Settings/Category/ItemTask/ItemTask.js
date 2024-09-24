@@ -1,15 +1,15 @@
-import React, { useEffect,lazy,useState } from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import { base_url } from "../../../../Config/Auth";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Button,Popconfirm,Tooltip, Input } from "antd";
+import { Popconfirm,Tooltip, Input } from "antd";
 import dayjs from "dayjs";
 import DownloadIcon from '@mui/icons-material/Download';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MainWrapper, } from "../../../../Components/UI/Layout";
-import { TextInput, } from "../../../../Components/UI/Elements";
+
 import {
     getItemTask,
     getItemTaskCount,
@@ -64,16 +64,7 @@ setEditingId(null);
   }
 
   const handleItemTaskLine = () => {
-      // if (newRegionName.trim() !== '') {
-      //     console.log("New Region:", newRegionName);
-      //     const newRegion = {
-      //         id: Date.now(),
-      //         item: newRegionName
-      //     };
-      //     setRegions([...regions, newRegion]);
-      //     setNewRegionName('');
-      //     setAddingRegion(false);
-      // }
+   
       let data={
         name:newItemTaskName,
         orgId:props.orgId,
@@ -128,8 +119,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mt-1 mr-3" >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -139,7 +130,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[22rem]">
+          <div class="w-[3rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"itemTask"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -183,7 +174,7 @@ return <div><BundleLoader/></div>;
           </div>
           <div class=" flex flex-col" >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
+         <div className="!h-[65vh] !mt-2 rounded shadow-[0em 0.25em 0.625em -0.125em] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto"> 
           {!props.fetchingItemTask && itemTaskListData.length === 0 ? <NodataFoundPage /> : itemTaskListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
             <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.itemTaskId}>
             {/* Region name display or input field */}
@@ -196,7 +187,7 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setItemTaskName(e.target.value)}
                 />
             ) : (
-                <div >{region.name}&nbsp;&nbsp;&nbsp;
+                <div className="w-7rem">{region.name}&nbsp;&nbsp;&nbsp;
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
@@ -215,17 +206,17 @@ return <div><BundleLoader/></div>;
         <Option value="L3">L3</Option>
       </Select>
             ) : (
-                <div >{region.level}&nbsp;&nbsp;&nbsp;
+                <div className="w-5rem" >{region.level}
                
                                       </div>
             )}
 
-            <div >
+            <div className="w-3rem" >
                 {/* Edit button */}
                 {editingId === region.itemTaskId ? (
                     <div>
                         <button onClick={() => handleUpdateRegion(region)}>Save</button>
-                        <button className=" ml-4"   onClick={cancelEdit}>Cancel</button>
+                        <button   onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                     <BorderColorIcon   className=" !text-icon text-red-600 cursor-pointer " onClick={() => editRegion(region.itemTaskId, region.name,region.level)} />
@@ -248,7 +239,7 @@ return <div><BundleLoader/></div>;
             </div>
         </div>
           ))}
-          </MainWrapper>
+          </div>
             </div>
            <div class=" font-bold">Updated on {dayjs(props.itemTaskListData && props.itemTaskListData.length && props.itemTaskListData[0].updationDate).format('YYYY-MM-DD')} by {props.itemTaskListData && props.itemTaskListData.length && props.itemTaskListData[0].updatedBy}</div>
       </div>

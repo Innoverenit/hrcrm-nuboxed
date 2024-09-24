@@ -114,7 +114,7 @@ const FeedBack = (props) => {
       <>
       <div class="" >
        
-       <div class="flex flex-row justify-between">
+       <div class="flex flex-row justify-end items-center">
              {/* <div class=" flex w-[18vw]" >
             <Input
          placeholder="Search by Name"
@@ -215,7 +215,7 @@ const FeedBack = (props) => {
               )}
   
               {/* Action buttons */}
-              <div >
+              <div className=" flex flex-row" >
                   {/* Edit button */}
                   {editingId === region.feedbackId ? (
                       <div>

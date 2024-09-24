@@ -1,10 +1,16 @@
-import React, { useEffect,lazy,useState } from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+<<<<<<< HEAD
 import { Popconfirm, Input } from "antd";
 import dayjs from "dayjs";
+=======
+import { Popconfirm,Input } from "antd";
+import dayjs from "dayjs";
+import { BundleLoader } from "../../../../Components/Placeholder";
+>>>>>>> fbd54c9c8756eb5b66afa4e494f4cf923a4a74fb
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import {
     getBrandCategoryData,
@@ -103,8 +109,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mt-1 mr-3" >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -160,7 +166,7 @@ return <div><BundleLoader/></div>;
             )}
 
             {/* Action buttons */}
-            <div >
+            <div className=" flex flex-row" >
                 {/* Edit button */}
                 {editingId === region.shipById ? (
                     <div>
