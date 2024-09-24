@@ -9,6 +9,36 @@ import { UpdateAdminUser, getAdminUser } from "../../EmployeeAction";
 import dayjs from "dayjs";
 
 function NotifyDrawerForm(props) {
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "10",//0 "Admin"
+          "1507",//1  "User"
+           "176",//2 "Start Date"
+        "126" , //  "End Date"3
+        "154" ,//   Submit
+       "1611",// Updated on
+        "1335"// by
+       
+                 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+       
+      } catch (error) {
+   
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getAdminUser(props.currentEmployeeId.employeeId);
   }, []);
@@ -110,8 +140,8 @@ function NotifyDrawerForm(props) {
                   style={{ width: "6.25em" }}
                   checked={props.userAdminnoti.adminInd || admini}
                   onChange={handleAdmini}
-                  checkedChildren="Admin"
-                  unCheckedChildren="User"
+                  checkedChildren={translatedMenuItems[0]}
+                  unCheckedChildren={translatedMenuItems[1]}
                 />
               </div>
 
@@ -120,15 +150,16 @@ function NotifyDrawerForm(props) {
                   <div className="h-full w-[35%]">
                     <div className="justify-between">
                       <div className="w-1/2">
+                      <div className=" text-xs font-bold font-poppins text-black">{translatedMenuItems[2]}</div>
                         <Field
                           isRequired
                           name="startDate"
-                          label={
-                            <FormattedMessage
-                              id="app.startdate"
-                              defaultMessage="Start Date"
-                            />
-                          }
+                          // label={
+                          //   <FormattedMessage
+                          //     id="app.startdate"
+                          //     defaultMessage="Start Date"
+                          //   />
+                          // }
                           component={DatePicker}
                           value={values.startDate}
                           isColumn
@@ -140,15 +171,17 @@ function NotifyDrawerForm(props) {
                   <div className="h-full w-[35%]">
                     <div className="justify-between">
                       <div className="w-1/2">
+                      <div className=" text-xs font-bold font-poppins text-black">{translatedMenuItems[3]}</div>
+                    
                         <Field
                           isRequired
                           name="endDate"
-                          label={
-                            <FormattedMessage
-                              id="app.enddate"
-                              defaultMessage="End Date"
-                            />
-                          }
+                          // label={
+                          //   <FormattedMessage
+                          //     id="app.enddate"
+                          //     defaultMessage="End Date"
+                          //   />
+                          // }
                           component={DatePicker}
                           value={values.endDate || values.startDate}
                           isColumn
@@ -173,12 +206,12 @@ function NotifyDrawerForm(props) {
                   htmlType="submit"
                   loading={props.updateAdminUser}
                 >
-                  Submit
+                {translatedMenuItems[4]}  {/* Submit */}
                 </Button>
               </div>
               <h4 className="mt-4">
-                Updated on{" "}
-                {dayjs(props.userAdminnoti.updatedOn).format("ll")} by{" "}
+              {translatedMenuItems[5]}{" "}
+                {dayjs(props.userAdminnoti.updatedOn).format("ll")}  {translatedMenuItems[6]} {" "}
                 {props.userAdminnoti.updatedBy}
               </h4>
             </Form>

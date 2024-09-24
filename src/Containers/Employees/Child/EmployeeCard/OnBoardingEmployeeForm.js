@@ -67,6 +67,33 @@ const [selectedWork, setSelectedWork] = useState("");
 
   const [stage, setStage] = useState("")
   const [selectedStage, setSelectedStage] = useState("");
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "141",//0  Workflow
+          "154",//1  Submit
+           "",//2  Onboarding Completed
+    
+       
+                 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+       
+      } catch (error) {
+   
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getProcessForOnboarding(props.orgId);
     props.getUserStageList(props.employeeName.employeeId);
@@ -78,23 +105,9 @@ const [selectedWork, setSelectedWork] = useState("");
     // Check if data is available
     if (props.userStageList.length > 0) {
       setSelectedWork(props.userStageList[0]?.unboardingWorkflowDetailsName)
-      // Update activeTab when data is available
-      // setActiveTab(props.organizationDetailsList[0]?.organizationId);
     }
   }, [props.userStageList]);
 
-  // useEffect(() => {
-  //   if (
-  //     props.userStageList !== undefined 
-      
-  //   ) {
-  //     setSelectedWork( props.userStageList);
-      
-      
-  //     // Perform a null check before accessing substring
-      
-  //   }
-  // }, [props.userStageList, ]);
   console.log(props.userStageList)
   console.log(props.userStageList.unboardingWorkflowDetailsName)
 
@@ -109,12 +122,6 @@ const handleStages = (val) => {
   setSelectedStage(val); // Set the selected stage ID
 };
 
-  // const handleWorkflowChange = (event) => {
-  //   const selectedWork = event.target.value;
-  //   setSelectedWork(selectedWork);
-  //   //  setSelectedUser("");
-  //    props.getProcessStagesForOnboarding(selectedWork) // Assuming you want to pass the selected department and filtered roles to a parent component
-  // };
   console.log("cgdf",props.currentEmployeeId)
 
   function onDragEnd(result) {
@@ -178,52 +185,18 @@ const handleStages = (val) => {
                             return <Option value={a.unboardingWorkflowDetailsId}>{a.workflowName}</Option>;
                         })}
                     </Select>
-                                                    {/* <select className="customize-select" onChange={handleWorkflowChange}>
-            <option value="">Select Workflow</option>
-            {onboardingProcess.map((item, index) => (
-              <option key={index} value={item.unboardingWorkflowDetailsId}>
-                {item.workflowName}
-              </option>
-            ))}
-          </select> */}
+                
         </div>
-        {/* {selectedWork && (
-          <>                                           
-          <div class="bg-white">
-          <Steps direction="vertical" current={1}>
-                {props.onboardingProcessStages.map((user, index) => (
-                  <Steps.Item
-                  value={selectedStage}
-                  onChange={(value) => handleStages(value)}
-                   key={index}  title={user.stageName} 
-                   
-                   >
-                    <div>
-                     
-                      <Button value={user.UnboardingStagesId}> {user.stageName}</Button>
-                    </div>
-                  </Steps.Item>
-                ))}
-              </Steps>
-  
-
-    </div>              
-</> 
-        )}  */}
        
        <Button
                     type='primary'
                     onClick={() => props.addEmployeeWorkflow({
                       
                         employeeId: props.employeeName.employeeId,
-                        unboardingWorkflowDetailsId: selectedWork,
-                        // stageId: selectedStage,
-                    
-                    },
-                        // props.rowData.orderPhoneId,
-                        // props.locationId
+                        unboardingWorkflowDetailsId: selectedWork, },
+                     
                     )}>
-                    Submit
+                    {/* Submit */}
                 </Button>
       
        
@@ -287,6 +260,8 @@ const handleStages = (val) => {
                                       
                                       <Suspense fallback={<BundleLoader />}>
                                             <StageEmployeeColumns1
+                                             translateText={props.translateText}
+                                             selectedLanguage={props.selectedLanguage}
                                                key={index}
                                               employee={stage}
                                               index={index}

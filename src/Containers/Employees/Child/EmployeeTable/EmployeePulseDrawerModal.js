@@ -35,10 +35,10 @@ class EmployeePulseDrawerModal extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        "",//0  Performance
+        "1193",//0  Performance
         "",//1  360 View
-        "",//2 Salary
-        "",//3  Equipment
+        "981",//2 Salary
+        "1202",//3  Equipment
         
       ];
 
@@ -81,7 +81,7 @@ class EmployeePulseDrawerModal extends Component {
                 <>
                   <span>
  <ContactsIcon className="!text-icon"/>
-                    <span class=" ml-1">
+                    <span class=" ml-1 !text-tab">
                     {this.state.translatedMenuItems[0]}{/* Performance */}
                     </span>
                   </span>
@@ -107,7 +107,7 @@ class EmployeePulseDrawerModal extends Component {
                   <InsertDriveFileIcon 
                  className="!text-icon"
                   />
-                  <span class=" ml-1">
+                  <span class=" ml-1  !text-tab">
                   {this.state.translatedMenuItems[1]}   {/* 360 View */}
                     
                   </span>
@@ -133,7 +133,7 @@ class EmployeePulseDrawerModal extends Component {
                 <>
                   <span>
  <ContactsIcon  className="!text-icon"/>
-                    <span class=" ml-1">
+                    <span class=" ml-1  !text-tab">
                     {this.state.translatedMenuItems[2]} {/* Salary */}
                     </span>
                   </span>
@@ -157,7 +157,7 @@ class EmployeePulseDrawerModal extends Component {
                 <>
                   <span>
  <ContactsIcon className="!text-icon"/>
-                    <span class=" ml-1">
+                    <span class=" ml-1  !text-tab">
                     {this.state.translatedMenuItems[3]}       {/* Equipment */}
                     </span>
                   </span>

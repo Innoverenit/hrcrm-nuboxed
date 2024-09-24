@@ -64,7 +64,7 @@ function EcomStatuShower (props) {
                     description:
                         <>
 
-{props.statusEcomItems.paymentType} | {dayjs(props.statusEcomItems.paymentDate).format("DD-MM-YYYY")}
+{props.statusEcomItems.paymentType=== null ? "Not Available" : dayjs(props.statusEcomItems.paymentDate).format("DD-MM-YYYY") } 
 
                         </>
                 },

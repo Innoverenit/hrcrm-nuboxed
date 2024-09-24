@@ -1,6 +1,6 @@
 import React, { useEffect,useState, lazy, Suspense} from "react";
 import { MultiAvatar2, } from '../../../../Components/UI/Elements'
-import {  Tooltip, Badge } from 'antd'
+import {  Tooltip, Badge, Button } from 'antd'
 import { connect } from 'react-redux'
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { bindActionCreators } from 'redux'
@@ -57,7 +57,7 @@ function EmployeeCardView (props) {
           "1548",//3Not Assigned 
            "392",//4 Pulse
            "1549",//5Required Document
-           "1550",// "Assign as Admin"
+           "10",// "Admin"
           "1551",//  Onboarding
           "170",//  "Edit" 
                  
@@ -191,25 +191,50 @@ function handleSetCurrentUser(item) {
       />
       </div>
           </div>
-          <div class="  text-xs mt-1  font-poppins "> {translatedMenuItems[2]}:    <span>
+          <div className=" flex flex-row justify-between w-full items-center">
+          <div class=" flex justify-start text-xs mt-1  font-poppins "> {translatedMenuItems[2]}:    <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
                         : <span class="text-[red]" > {translatedMenuItems[3]} </span>}
                       </span>
          </div>
-          <div class=" flex flex-row justify-between mt-[0.5rem] w-full items-end">
-          <div class="  text-xs  font-poppins ">
+         <div class=" flex justify-end  text-xs  font-poppins ">
        
-          <span class=" cursor-pointer"
-            
-            >
-              
-              {item.locationName}
+       <span class=" cursor-pointer"
          
-     </span>
-   
-           </div>
-           <div class="flex">
+         >
+           
+           {item.locationName}
+      
+  </span>
+
+        </div>
+       </div>
+           <div className=" flex flex-row justify-between w-full">
+           <div class=" flex justify-start ">
+          
+           <Button
+                        type="delete"
+                       
+                        onClick={() => {
+                          handleSetCurrentEmployeeId(item);
+                          props.handleNotifyDrawer(true);
+                         }}
+                    >
+                       {translatedMenuItems[6]} {/* <FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /> */}
+                    </Button>
+           {/* <Tooltip title= {translatedMenuItems[6]}>
+           <CircleNotificationsIcon
+          className=" !text-base cursor-pointer text-[gold]"
+           onClick={() => {
+            handleSetCurrentEmployeeId(item);
+            props.handleNotifyDrawer(true);
+           }}
+           />
+           </Tooltip> */}
+            </div>
+          
+           <div class="flex justify-end">
           <div class="  text-xs  font-poppins ">
           <span class=" cursor-pointer"
          
@@ -259,18 +284,7 @@ function handleSetCurrentUser(item) {
      </span>
      </Tooltip>
            </div>
-           <div class="  text-xs  font-poppins ml-[0.15rem]">
-           <Tooltip title= {translatedMenuItems[6]}>
-           <CircleNotificationsIcon
-          className=" !text-base cursor-pointer text-[gold]"
-           onClick={() => {
-            handleSetCurrentEmployeeId(item);
-            props.handleNotifyDrawer(true);
-           }}
-           />
-           </Tooltip>
-            </div>
-          
+         
            <div class="  text-xs  font-poppins ml-[0.15rem]">
             <Tooltip title= {translatedMenuItems[7]}>
               <BadgeIcon   className=" !text-base cursor-pointer text-[#709ab3]"
@@ -299,8 +313,9 @@ function handleSetCurrentUser(item) {
            </div>
            </div>
            </div>
+           </div>
          
-                    </div>
+        
                  )  
             })}
               </div>

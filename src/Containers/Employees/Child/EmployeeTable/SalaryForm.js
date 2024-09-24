@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useMemo, lazy } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Select, Tooltip } from "antd"
 import {getUserSalary,} from "../../EmployeeAction"
 
-import { FormattedMessage } from "react-intl";
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -17,6 +16,34 @@ function SalaryForm(props) {
     const [submitted, setSubmitted] = useState(false);
   const [editedFields, setEditedFields] = useState({});
   const [editContactId, setEditContactId] = useState(null);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "",//0  Basic
+          "",//1   Housing
+           "",//2  Transportation
+        "" , //  Total salary"3
+        "103" ,//    Others4
+       
+                 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+       
+      } catch (error) {
+   
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     props.getUserSalary(props.employeeName.employeeId)
@@ -54,22 +81,22 @@ function SalaryForm(props) {
   <div class="rounded m-1 p-1 w-[100%]   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
           <div className=" md:w-[17.5rem]">
-       Basic
+          {translatedMenuItems[0]}  {/* Basic */}
                 </div>
  
         <div className="md:w-[21.1rem]">
-            Housing
+        {translatedMenuItems[1]}   {/* Housing */}
                 </div>
 
                 <div className="md:w-[10.1rem]">
-            Transportation
+                {translatedMenuItems[2]}  {/* Transportation */}
                 </div>
 
                 <div className="md:w-[10.1rem]">
-            Total salary
+                {translatedMenuItems[3]}   {/* Total salary */}
                 </div>
                 <div className="md:w-[10.1rem]">
-            Others
+          {translatedMenuItems[4]}  {/* Others */}
                 </div>
                
        

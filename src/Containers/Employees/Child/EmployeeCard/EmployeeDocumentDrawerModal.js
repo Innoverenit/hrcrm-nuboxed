@@ -28,7 +28,9 @@ class EmployeeDocumentDrawerModal extends Component {
           {/* <EmployeeTreeMap
           employeeTreeMap={this.props.employeeTreeMap}
           /> */}
-          <EmployeesPendingDocument employeeName={this.props.employeeName}/>
+          <EmployeesPendingDocument employeeName={this.props.employeeName}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}/>
           
         </Suspense>
          

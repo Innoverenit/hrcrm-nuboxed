@@ -22,7 +22,6 @@ import { getDesignations } from "../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../Settings/Department/DepartmentAction";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import { BundleLoader } from "../../../Components/Placeholder";
 
 const { Option } = Select;
 
@@ -423,21 +422,7 @@ function EmployeeForm(props) {
                     <FastField name="imageId" component={PostImageUpld} />
                     <div>
                       <div class=" flex justify-between max-sm:flex-col" >
-                        {/* <div class=" w-1/3 max-sm:w-full">
-                      <FastField
-                        name="salutation"
-                        placeholder="Select"
-                        component={SelectComponent}
-                        options={["Mr", "Mrs", "Miss","None"]}
-                        
-                        label={<FormattedMessage
-                          id="app.salutation"
-                          defaultMessage="Salutation"
-                        />}
-                        isColumn
-                        />
-                    </div> */}
-                       
+                      
                         <div class=" w-wk max-sm:w-full">
                         <div class=" text-xs font-bold font-poppins">{translatedMenuItems[1]}</div>
                           <Field

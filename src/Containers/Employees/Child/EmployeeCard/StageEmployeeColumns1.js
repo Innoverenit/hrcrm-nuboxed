@@ -26,6 +26,8 @@ class StageEmployeeColumns1 extends Component {
     {employee.onboardingEmpName===null?"":
     <Suspense fallback={<BundleLoader/>}>
             <EmployeeGroupCard
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
               isDragging={snapshot.isDragging}
             //   opportunityId={opportunity.opportunityId}
               primaryTitle={`${elipsize(employee.onboardingEmpName, 60)}`} 

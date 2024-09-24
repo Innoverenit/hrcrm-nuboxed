@@ -307,10 +307,8 @@ function AccountInvoiceTable(props) {
 
             <div className=' flex sticky  z-auto mt-1'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
-                    {/* <div className=" md:w-[6.54rem] text-[white] flex justify-center bg-[Green]">
-                   Generated
-                         </div> */}
+                    <div className=" flex justify-between w-[86%] p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
+                  
                     <div class=" w-[8.5rem]">{translatedMenuItems[0]} ID</div>
                         <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>
                         {/* <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} </div> */}
@@ -339,7 +337,7 @@ function AccountInvoiceTable(props) {
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:">
-                                                    <div className=" flex w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex w-[6.25rem] max-xl:w-[16.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins  font-bold flex items-center">
                                                           
                                                            <span
@@ -357,7 +355,7 @@ function AccountInvoiceTable(props) {
                                                                 </div>
                                                             ) : null}
                                                     </div>
-                                                    <div className=" flex  text-xs w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  text-xs w-[8.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         
                                                                 {item.newOrderNo}
@@ -379,12 +377,12 @@ function AccountInvoiceTable(props) {
 
                                                     {item.remainingTotalValue} 
 
-                          </div>
+                          </div> </div>
                                                        <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {item.distributorCreditInd && (
+                                                        {item.distributorCreditInd && item.remainingTotalValue===0 ? "" :(
                                                         <Tooltip title="">
-                                                                <Button
+                                                                <Button 
                                                                     className="cursor-pointer"
                                                                     onClick={() => {
                                                                         sendCreditMemo(item);
@@ -397,7 +395,9 @@ function AccountInvoiceTable(props) {
                           </div>                  
                                                    
                                                     </div>
-                                                    </div>
+                                                    
+                                                  
+
                                                     <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <Tooltip title="">
                                                                 <Button
@@ -408,9 +408,15 @@ function AccountInvoiceTable(props) {
                                                                     }}
                                                                 > {translatedMenuItems[10]}</Button>
                                                             </Tooltip>
-                                                          </div>      
-                                                     <div className=" flex  items-center  w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="   ">
+                                                          </div>   
+                                                          <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+
+                                                   {item.paidInd=== true ? "Paid":"Unpaid"}
+
+                                               </div> </div>   
+                                                     <div className=" flex  items-center justify-end  w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                       
                                                         <Tooltip title="">
                                                                 <PaidIcon
                                                                     className="!text-icon cursor-pointer text-[#e5625e]"
@@ -421,7 +427,7 @@ function AccountInvoiceTable(props) {
 
                                                                 />
                                                             </Tooltip>      
-                          </div>
+                       
                           <div>
                           <Tooltip title={translatedMenuItems[11]}>
                              <EventRepeatIcon
@@ -475,6 +481,8 @@ function AccountInvoiceTable(props) {
                     handlePaidModal={props.handlePaidModal}   
                 />
                 <InvoiceStatusDrawer
+                   selectedLanguage={props.selectedLanguage}
+                   translateText={props.translateText} 
                                   particularRowData={particularRowData}
                  openStatus={openStatus}
                  setopenStatus={setopenStatus}
