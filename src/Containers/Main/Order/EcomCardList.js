@@ -51,6 +51,7 @@ useEffect(() => {
       "1210",  // 'Invoices',7
        "1377",  // 'Ship',8
      "100", //  New 9
+     "71" //Type
 
 
       ];
@@ -132,7 +133,7 @@ const {handleProcureNotesDrawerModal,
                         <div className=" md:w-[4.4rem]">{translatedMenuItems[6]}</div>
                         {/* <div className=" md:w-[4.4rem]">{translatedMenuItems[7]}</div>  */}
                      
-                        <div className=" md:w-[5.4rem]"></div>
+                        <div className=" md:w-[5.4rem]"> {translatedMenuItems[10]}</div>
                         <div className=" md:w-[7rem]"></div>
                        
                         <div className="md:w-[1rem]"></div>
@@ -182,7 +183,12 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                             </div>
 
                         </div>
+                        <div className=" flex items-center  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs   font-poppins">
+                                {item.loadingAddress?.[0]?.city}
+                            </div>
 
+                        </div>
                         <div className=" flex items-center  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 {item.category}  {item.attribute}
@@ -203,7 +209,12 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                             </div>
 
                         </div>
+                        <div className=" flex items-center  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs   font-poppins">
+                                {item.orderSource}
+                            </div>
 
+                        </div>
 
                         <div className=" flex   md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
                         <Button type="primary" onClick={()=>{setopenInvoiceModal(true);

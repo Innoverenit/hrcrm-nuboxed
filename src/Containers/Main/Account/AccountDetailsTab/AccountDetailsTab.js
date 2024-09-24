@@ -413,6 +413,22 @@ function AccountDetailsTab(props) {
             <TabPane
                         tab={
                             <>
+                                <span class="!text-tab font-poppins ">
+                                <SummarizeIcon className="!text-icon text-[#55d6c2] mr-1"/>
+                                    
+                                    {translatedMenuItems[19]}
+                                    
+                                       
+                                </span>
+
+                            </>
+                        }
+                        key="13"
+                    >
+                    </TabPane>
+            <TabPane
+                        tab={
+                            <>
                             <span class= "!text-tab font-poppins " >
                                    <ReceiptIcon className="!text-icon text-[#a9d8b8] mr-1"/>
                                    {translatedMenuItems[10]}
@@ -666,22 +682,7 @@ function AccountDetailsTab(props) {
                             />
                         </Suspense> */}
                     </TabPane>
-                    <TabPane
-                        tab={
-                            <>
-                                <span class="!text-tab font-poppins ">
-                                <SummarizeIcon className="!text-icon text-[#55d6c2] mr-1"/>
-                                    
-                                    {translatedMenuItems[19]}
-                                    
-                                       
-                                </span>
-
-                            </>
-                        }
-                        key="13"
-                    >
-                    </TabPane>
+                  
                     
                   
                    

@@ -115,7 +115,7 @@ function AccountOpportunityForm(props) {
                 if (values.advancePayment < 100) {
                     props.addQuotationOrderForm({
                         ...values,
-                        orderSource: "erp",
+                        orderSource: "B2B ERP",
                         priority: priority || "",
                         orderType:values.orderType,
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
