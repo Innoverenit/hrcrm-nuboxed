@@ -15,6 +15,14 @@ export const handleSuppliesModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+export const handleUploadSuppliesModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPLOAD_SUPPLIES_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleUploadMaterialModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_UPLOAD_MATERIAL_MODAL,
@@ -1347,6 +1355,31 @@ export const getBrandProductList = (brandId) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_BRAND_PRODUCT_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const UpdateMaterialIamge = (data, partnerId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_MATERIAL_IMAGE_REQUEST });
+  axios
+    .put(`${base_url}/partner/${partnerId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_MATERIAL_IMAGE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_MATERIAL_IMAGE_FAILURE,
         payload: err,
       });
     });
