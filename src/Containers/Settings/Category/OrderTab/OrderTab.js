@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import {  Badge } from "antd";
 import HandymanIcon from '@mui/icons-material/Handyman';
 import SourceIcon from '@mui/icons-material/Source';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import Quality from "../Quality/Quality"
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import BrandCategory from "../BrandCategory/BrandCategory";
@@ -77,7 +76,7 @@ class OrderTab extends Component {
                     <>
                       < HandymanIcon  className=" !text-icon" />
                      
-                      <span class=" ml-1 text-sm" >
+                      <span class="!text-tab ml-1 text-sm" >
                       Repair Task
                       </span>
                       <Badge
@@ -96,7 +95,7 @@ class OrderTab extends Component {
                     <>
                      
                       
-                     <LocalShippingIcon className=" !text-icon"/> <span class=" ml-1 text-sm">
+                     <LocalShippingIcon className=" !text-icon"/> <span class="!text-tab ml-1 text-sm">
                         Ship By
                       </span>
                      
@@ -116,7 +115,7 @@ class OrderTab extends Component {
                   tab={
                     <>
                      
-                      <QuizIcon className=" !text-icon"/> <span class=" ml-1 text-sm">
+                      <QuizIcon className=" !text-icon"/> <span class="!text-tab ml-1 text-sm">
                         Brand Model
                       </span>
                     </>
@@ -131,7 +130,7 @@ class OrderTab extends Component {
                   tab={
                     <>
                       <SourceIcon  className=" !text-icon"/>
-                      <span class=" ml-1 text-sm">
+                      <span class="!text-tab ml-1 text-sm">
                      Category
                       </span>
                     </>
@@ -157,7 +156,7 @@ class OrderTab extends Component {
                   tab={
                     <>
                       <VerifiedUserIcon className=" !text-icon"/>
-                      <span class=" ml-1 text-sm">
+                      <span class="!text-tab ml-1 text-sm">
                        Quality
                       </span>
                       <Badge
@@ -176,7 +175,7 @@ class OrderTab extends Component {
                   tab={
                     <>
                       < FeedbackIcon className=" !text-icon"/>
-                      <span class=" ml-1 text-sm">
+                      <span class="!text-tab ml-1 text-sm">
                        FeedBack
                       </span>
                       <Badge

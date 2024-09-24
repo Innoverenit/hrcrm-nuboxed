@@ -55,7 +55,7 @@ class EmployeeTab extends Component {
                     <>
                       <SourceIcon className="!text-icon" />
                      
-                      <span class=" ml-1 text-sm">
+                      <span class="!text-tab ml-1 text-sm">
                       Development
                       </span>
                       <Badge
@@ -73,7 +73,7 @@ class EmployeeTab extends Component {
                     <>
                       <BuildCircleIcon className="!text-icon" />
                      
-                      <span class=" ml-1 text-sm">
+                      <span class="!text-tab ml-1 text-sm">
                 Equipment 
                       </span>
                       <Badge

@@ -1,9 +1,7 @@
-import React, { useEffect,lazy,useState  } from "react";
+import React, { useEffect,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm, message, Input } from "antd";
+import { Input } from "antd";
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {
@@ -54,16 +52,7 @@ const BrandModel = (props) => {
     }
   
     const handleBrandModel = () => {
-        // if (newRegionName.trim() !== '') {
-        //     console.log("New Region:", newRegionName);
-        //     const newRegion = {
-        //         id: Date.now(),
-        //         item: newRegionName
-        //     };
-        //     setRegions([...regions, newRegion]);
-        //     setNewRegionName('');
-        //     setAddingRegion(false);
-        // }
+      
         let data={
           brand:newBrandModelName,
           model:newModelName,
@@ -116,8 +105,8 @@ const BrandModel = (props) => {
       <>
       <div class="" >
        
-       <div class="flex flex-row justify-between">
-             <div class=" flex w-[18vw]" >
+       <div class="flex flex-row justify-end items-center">
+             <div class=" flex w-[18vw] mt-1 mr-3" >
             <Input
          placeholder="Search by Name"
         style={{width:"100%",marginLeft:"0.5rem"}}
@@ -195,34 +184,8 @@ const BrandModel = (props) => {
               {/* Action buttons */}
               <div >
                   {/* Edit button */}
-                  {/* {editingId === region.phoneMasterListId ? (
-                      <div>
-                          <button onClick={() => handleUpdateBrandModel(region)}>Save</button>
-                          <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
-                      </div>
-                  ) : (
-                      <BorderColorIcon   style={{fontSize:"1rem"}} 
-                    //   onClick={() => editRegion(region.phoneMasterListId, region.name)} 
-                      />
-                  )} */}
-  
-                  {/* Delete button */}
-                  {/* <Popconfirm
-                          title="Do you want to delete?"
-                          okText="Yes"
-                          cancelText="No"
-                        //   onConfirm={() =>  props.removeShipBy(region.phoneMasterListId)}
-                        >
-                  <DeleteOutlined 
-                    style={{
-                    
-                      color: "red",
-                    }}
-                // onClick={() => 
-                //     props.removeServiceLine(item.phoneMasterListId)
-                //  }
-                   />
-                   </Popconfirm> */}
+                 
+                 
               </div>
           </div>
          ))}
