@@ -3,6 +3,10 @@ import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { PlusOutlined,  
 } from '@ant-design/icons';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
@@ -90,6 +94,201 @@ class TemplateTab extends Component {
                   {" "}
                   {/* <EmailandNotificationPanel /> */}
                   <TemplateTable />
+               </Suspense>             
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span onClick={this.handleRecruitClick}>
+                  <ReceiptIcon className="!text-icon text-[#a9d8b8] mr-1"/>
+                    <span class=" ml-[0.25em]" >Invoice</span>
+                  </span>
+                  {}
+                  {activeKey === "2" && (
+                    <>
+                      <>                     
+                        {/* <Tooltip title="Create">
+                       
+                          <PlusOutlined
+                            type="plus"
+                            tooltipTitle="Create"
+                            onClick={() =>
+                              this.props.handleTemplateModal(true)
+                            }
+                            size="0.875em"
+                            style={{
+                              marginLeft: "0.125em",
+                              verticalAlign: "center",
+                            }}
+                          />
+                          </Tooltip>              */}
+                       
+                      </>
+                    </>
+                  )}
+                </>
+              }
+              key="2"
+            >
+              <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  {/* <TemplateTable /> */}
+               </Suspense>             
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span onClick={this.handleRecruitClick}>
+                  <LightbulbIcon className="!text-icon text-[#bfa89e]" />
+                    <span class=" ml-[0.25em]" >Quotation</span>
+                  </span>
+                  {}
+                  {activeKey === "3" && (
+                    <>
+                      <>                     
+                        {/* <Tooltip title="Create">
+                       
+                          <PlusOutlined
+                            type="plus"
+                            tooltipTitle="Create"
+                            onClick={() =>
+                              this.props.handleTemplateModal(true)
+                            }
+                            size="0.875em"
+                            style={{
+                              marginLeft: "0.125em",
+                              verticalAlign: "center",
+                            }}
+                          />
+                          </Tooltip>              */}
+                       
+                      </>
+                    </>
+                  )}
+                </>
+              }
+              key="3"
+            >
+              <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  {/* <TemplateTable /> */}
+               </Suspense>             
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span onClick={this.handleRecruitClick}>
+                  <DraftsIcon  />
+                    <span class=" ml-[0.25em]" >Order</span>
+                  </span>
+                  {}
+                  {activeKey === "4" && (
+                    <>
+                      <>                     
+                        {/* <Tooltip title="Create">
+                       
+                          <PlusOutlined
+                            type="plus"
+                            tooltipTitle="Create"
+                            onClick={() =>
+                              this.props.handleTemplateModal(true)
+                            }
+                            size="0.875em"
+                            style={{
+                              marginLeft: "0.125em",
+                              verticalAlign: "center",
+                            }}
+                          />
+                          </Tooltip>              */}
+                       
+                      </>
+                    </>
+                  )}
+                </>
+              }
+              key="4"
+            >
+              <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  {/* <TemplateTable /> */}
+               </Suspense>             
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span onClick={this.handleRecruitClick}>
+                  <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>
+                    <span class=" ml-[0.25em]" >Payment</span>
+                  </span>
+                  {}
+                  {activeKey === "5" && (
+                    <>
+                      <>                     
+                        {/* <Tooltip title="Create">
+                       
+                          <PlusOutlined
+                            type="plus"
+                            tooltipTitle="Create"
+                            onClick={() =>
+                              this.props.handleTemplateModal(true)
+                            }
+                            size="0.875em"
+                            style={{
+                              marginLeft: "0.125em",
+                              verticalAlign: "center",
+                            }}
+                          />
+                          </Tooltip>              */}
+                       
+                      </>
+                    </>
+                  )}
+                </>
+              }
+              key="5"
+            >
+              <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  {/* <TemplateTable /> */}
+               </Suspense>             
+            </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span onClick={this.handleRecruitClick}>
+                  <PrecisionManufacturingIcon className=" !text-icon text-[#049a8f]" />
+                    <span class=" ml-[0.25em]" >Purchase Order</span>
+                  </span>
+                  {}
+                  {activeKey === "6" && (
+                    <>
+                      <>                     
+                        {/* <Tooltip title="Create">
+                       
+                          <PlusOutlined
+                            type="plus"
+                            tooltipTitle="Create"
+                            onClick={() =>
+                              this.props.handleTemplateModal(true)
+                            }
+                            size="0.875em"
+                            style={{
+                              marginLeft: "0.125em",
+                              verticalAlign: "center",
+                            }}
+                          />
+                          </Tooltip>              */}
+                       
+                      </>
+                    </>
+                  )}
+                </>
+              }
+              key="6"
+            >
+              <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  {/* <TemplateTable /> */}
                </Suspense>             
             </TabPane>
             {/* <TabPane
