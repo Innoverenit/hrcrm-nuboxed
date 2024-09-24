@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import * as Yup from "yup";
+import {getBrandCategoryData} from "../../../../../Containers/Settings/Category/BrandCategory/BrandCategoryAction"
 import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
@@ -33,6 +34,7 @@ function AddProcurementInAccount(props) {
         props.getContactDistributorList(props.distributorId)
         props.getSaleCurrency()
         props.getLobList(props.orgId)
+        props.getBrandCategoryData(props.orgId);
     }, [])
 
     const [priority, setPriority] = useState("High")
@@ -53,6 +55,12 @@ function AddProcurementInAccount(props) {
             value: item.lobDetsilsId,
         };
     });
+    const categoryOption = props.BrandCategoryData.map((item) => {
+        return {
+            label: item.name || "",
+            value: item.shipById,
+        };
+    });
     const disabledDate = current => {
         // Disable past dates
         return current && current < dayjs().startOf('day');
@@ -66,6 +74,7 @@ function AddProcurementInAccount(props) {
                 paymentInTerms: "",
                 customPayment: "",
                 comments: "",
+                shipById:"",
                 orderType:"Procure",
                 orderCurrencyId: "",
                 totalPhoneCount: "",
@@ -280,6 +289,17 @@ function AddProcurementInAccount(props) {
                                     </div>
 
                                 </div>
+                                <div class="w-[45%]">
+                                        <Field
+                                            name="shipById"
+                                            label="Category"
+                                            isColumn
+                                            style={{ borderRight: "3px red solid" }}
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(categoryOption) ? categoryOption : []}
+                                        />
+                                    </div>
                                 <div class="justify-between flex mt-3">
 
                                     <div class="w-[46%]  ml-8 mt-2">
@@ -383,12 +403,13 @@ function AddProcurementInAccount(props) {
     );
 }
 
-const mapStateToProps = ({ homeStepper, auth, distributor, suppliers }) => ({
+const mapStateToProps = ({ homeStepper, auth, distributor,brandCategory, suppliers }) => ({
     contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     addingOrderProcurement: distributor.addingOrderProcurement,
     lobList: distributor.lobList,
+    BrandCategoryData: brandCategory.BrandCategoryData,
     orgId: auth.userDetails.organizationId,
 });
 
@@ -398,7 +419,8 @@ const mapDispatchToProps = (dispatch) =>
             addOrderProcurementForm,
             getSaleCurrency,
             getLobList,
-            getContactDistributorList
+            getContactDistributorList,
+            getBrandCategoryData
         },
         dispatch
     );

@@ -38,7 +38,7 @@ const AccountOrder1Table = (props) => {
               "658",//2 Location
               "260",//3 units
               "73",//4 contact
-             
+              "14", //Category
      
        
             ];
@@ -88,7 +88,7 @@ const AccountOrder1Table = (props) => {
                         {translatedMenuItems[4]}
                         {/* Contact */}
                         </div>
-
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
                     </div>
 
 
@@ -178,6 +178,11 @@ const AccountOrder1Table = (props) => {
 
                                                         </div>
                                                     </div>
+                                                    <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs">
+                                              {item.shipById}
+                                            </div>
+                                        </div>
                                                     <div className=" flex  items-center  md:w-[11.52rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                                                         <div class=" text-xs  font-poppins text-center">

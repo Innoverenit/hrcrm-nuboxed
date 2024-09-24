@@ -3,9 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm,Input } from "antd";
+import { Popconfirm, Input } from "antd";
 import dayjs from "dayjs";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import {
     getBrandCategoryData,
@@ -17,6 +16,7 @@ import {
   updateBrandCategory
 } from "../BrandCategory/BrandCategoryAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const BrandCategory = (props) => {
   const [currentData, setCurrentData] = useState("");

@@ -489,7 +489,7 @@ serachedPitchData={props.serachedPitchData}
                                                                                     title= {translatedMenuItems[17]}
                                                                                     onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
                                                                                   > <Tooltip title= {translatedMenuItems[18]}>
-                                                                                    {user.imInd === true  &&  user.plantDeleteInd === true && ( 
+                                                                                    {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
                                                                                     <DeleteOutlined
                                                                                       type="delete"
                                                                                       className="!text-icon text-[red] cursor-pointer"

@@ -67,7 +67,7 @@ function AddQuotationRepairExcel(props) {
                                 <div className="h-full w-[45%]">
                                     <Select defaultValue="Repair" onChange={handleFormTypeChange} className="w-full mb-3">
                                         <Option value="Repair">Repair</Option>
-                                        <Option value="Procure">Procure</Option>
+                                        <Option value="Procure">Commerce</Option>
                                     </Select>
                                     {formType === 'Repair' ? (
                                         <>

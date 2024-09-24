@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import * as Yup from "yup";
-
+import {getBrandCategoryData} from "../../../../Containers/Settings/Category/BrandCategory/BrandCategoryAction"
 import { SelectComponent } from '../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../Components/Forms/Formik/TextareaComponent';
@@ -38,6 +38,7 @@ function AccountOpportunityForm(props) {
         props.getContactDistributorList(props.distributorId)
         props.getSaleCurrency()
         props.getLobList(props.orgId)
+        props.getBrandCategoryData(props.orgId);
     }, [])
 
     const [priority, setPriority] = useState("High")
@@ -50,6 +51,12 @@ function AccountOpportunityForm(props) {
         return {
             label: item.currency_name || "",
             value: item.currency_id,
+        };
+    });
+    const categoryOption = props.BrandCategoryData.map((item) => {
+        return {
+            label: item.name || "",
+            value: item.shipById,
         };
     });
     const lobOption = props.lobList.map((item) => {
@@ -73,6 +80,7 @@ function AccountOpportunityForm(props) {
                 comments: "",
                 orderType:"Repair",
                 orderCurrencyId: "",
+                shipById:"",
                 totalPhoneCount: "",
                 advancePayment: 50,
                 distributorId: props.distributorId,
@@ -139,7 +147,7 @@ function AccountOpportunityForm(props) {
                                             component={SelectComponent}
                                             options={[
                                                 { label: "Repair", value: "Repair" },
-                                                { label: "Procure", value: "Procure" },
+                                                { label: "Commerce", value: "Procure" },
                                             ]}
                                         />
                                     </div>
@@ -173,7 +181,7 @@ function AccountOpportunityForm(props) {
                 />
             </Tooltip>
             &nbsp;
-            <Tooltip title={<FormattedMessage
+            {/* <Tooltip title={<FormattedMessage
                 id="app.medium"
                 defaultMessage="Medium"
             />}>
@@ -192,8 +200,8 @@ function AccountOpportunityForm(props) {
                         height: "31px"
                     }}
                 />
-            </Tooltip>
-            &nbsp;
+            </Tooltip> */}
+            
             <Tooltip title={<FormattedMessage
                 id="app.low"
                 defaultMessage="Low"
@@ -398,7 +406,17 @@ function AccountOpportunityForm(props) {
                                
 
                                 </div>
-                               
+                                <div class="w-[45%]">
+                                        <Field
+                                            name="shipById"
+                                            label="Category"
+                                            isColumn
+                                            style={{ borderRight: "3px red solid" }}
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(categoryOption) ? categoryOption : []}
+                                        />
+                                    </div>
 
                                 <div class=" mt-3 flex justify-between">
 
@@ -427,13 +445,14 @@ function AccountOpportunityForm(props) {
     );
 }
 
-const mapStateToProps = ({ homeStepper, auth, distributor, suppliers }) => ({
+const mapStateToProps = ({ homeStepper,brandCategory, auth, distributor, suppliers }) => ({
     contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     addingQuotationOrder: distributor.addingQuotationOrder,
     lobList: distributor.lobList,
     orgId: auth.userDetails.organizationId,
+    BrandCategoryData: brandCategory.BrandCategoryData,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -442,7 +461,8 @@ const mapDispatchToProps = (dispatch) =>
             addQuotationOrderForm,
             getSaleCurrency,
             getLobList,
-            getContactDistributorList
+            getContactDistributorList,
+            getBrandCategoryData
         },
         dispatch
     );

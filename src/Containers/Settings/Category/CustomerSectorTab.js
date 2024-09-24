@@ -53,19 +53,19 @@ class CustomerSectorTab extends Component {
   renderTabContent = (key) => {
     switch (key) {
       case "0":
-        return   <CategoryList />;
+        return    <Sectors />;
       case "1":
-        return  <Customer /> ;
+        return     <Source /> ;
       case "2":
-        return  <Sectors />  ;
+        return  <Customer />   ;
           case "3":
-            return    <Source />     ;
+            return       <Vat />     ;
             case "4":
-              return     <Vat />    ;
+              return      <Payment />   ;
               case "5":
-                return    <Payment />       ;
+                return     <LOB />         ;
                 case "6":
-                  return       <LOB />      ;
+                  return   <CategoryList />        ;
       default:
         return null;
     }
@@ -185,7 +185,7 @@ class CustomerSectorTab extends Component {
                   key="3"
                 >
                   <Suspense>
-                    <Vat />
+                    {/* <Vat /> */}
                   </Suspense>
                 </TabPane>
                 <TabPane

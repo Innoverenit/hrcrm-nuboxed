@@ -32,6 +32,7 @@ import { HistoryOutlined } from "@ant-design/icons";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import ShopIcon from '@mui/icons-material/Shop'
 import CreditCardIcon from '@mui/icons-material/CreditCard';
+import OrderTableC from "./OrderTableC";
 
 const CompleteOrderTable= lazy(() =>import("./AccountOrderTab/CompleteOrderTable"));
 const AddSupplierContactModal   = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal"));
@@ -86,6 +87,7 @@ function AccountDetailsTab(props) {
      "667",      //    Completed Orders
      "1475",       //    Add Order
  "1474",       //    Add Contact
+ "660"
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -183,6 +185,12 @@ function AccountDetailsTab(props) {
                             case "12":
                                 return  <div>  
                                  <AccountCreditMemos
+                            distributorId={props.distributorData.distributorId}
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText} /></div>;
+                            case "13":
+                                return  <div>  
+                                 <OrderTableC
                             distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText} /></div>;
@@ -658,7 +666,22 @@ function AccountDetailsTab(props) {
                             />
                         </Suspense> */}
                     </TabPane>
+                    <TabPane
+                        tab={
+                            <>
+                                <span class="!text-tab font-poppins ">
+                                <SummarizeIcon className="!text-icon text-[#55d6c2] mr-1"/>
+                                    
+                                    {translatedMenuItems[19]}
+                                    
+                                       
+                                </span>
 
+                            </>
+                        }
+                        key="13"
+                    >
+                    </TabPane>
                     
                   
                    

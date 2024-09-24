@@ -90,6 +90,7 @@ const AccountOrderTable = (props) => {
                "170",      // Edit28
                "84",      // Delete29
               "1380", // "Add Supervisor"
+              "14" //Category
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -247,9 +248,9 @@ const AccountOrderTable = (props) => {
                             /> */}
                         </div>
 
-                        {/* <div className=" md:w-[8.02rem]">
-                        {translatedMenuItems[11]}   
-                        </div> */}
+                        <div className=" md:w-[8.02rem]">
+                        {translatedMenuItems[31]}   
+                        </div>
                     </div>
              </div>
                     {/* <div class="overflow-x-auto h-[64vh]"> */}
@@ -462,6 +463,11 @@ const AccountOrderTable = (props) => {
                                                         </span> */}
                                                     </div>
                                                 </div>
+                                                <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs">
+                                              {item.shipById}
+                                            </div>
+                                        </div> 
                                                 <div className=" flex   md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.productionLocationName}
@@ -707,6 +713,9 @@ const AccountOrderTable = (props) => {
                         <div className=" md:w-[8.12rem]">
                         {translatedMenuItems[10]}  
                         </div>
+                        <div className=" md:w-[8.02rem]">
+                        {translatedMenuItems[31]}   
+                        </div>
                         </div>
                     </div>
 
@@ -923,6 +932,11 @@ const AccountOrderTable = (props) => {
                                                                 </div>}
                                                     </div>
                                                 </div>
+                                                <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs">
+                                              {item.shipById}
+                                            </div>
+                                        </div>
                                                 <div className=" flex   md:w-[17.05rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.productionLocationName}

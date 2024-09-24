@@ -13,7 +13,7 @@ const AddAccountOpportunityModal = (props) => {
         title={
           <FormattedMessage id="app.quotation" defaultMessage="Quotation" />
         }
-        width="80%"
+        width="90%"
         visible={props.addAccountOpportunityModal}
         onClose={() => props.handleAccountOpportunityModal(false)}
         footer={null}

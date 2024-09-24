@@ -619,7 +619,7 @@ const countryCode = item.countryAlpha2Code
             title= {translatedMenuItems[20]} 
             onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
           > <Tooltip title= {translatedMenuItems[21]} >
-             {user.imInd === true  &&  user.plantDeleteInd === true && ( 
+             {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
             <DeleteOutlined
               type="delete"
               className="!text-icon text-[red] cursor-pointer"
@@ -1036,7 +1036,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       title={translatedMenuItems[20]} 
       onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
     > <Tooltip title= {translatedMenuItems[21]} >
-       {user.imInd === true  &&  user.plantDeleteInd === true && ( 
+       {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
       <DeleteOutlined
         type="delete"
         className="!text-icon text-[red] cursor-pointer"
@@ -1435,7 +1435,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       title= {translatedMenuItems[20]} 
       onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
     > <Tooltip title= {translatedMenuItems[21]} >
-       {user.imInd === true  &&  user.plantDeleteInd === true && ( 
+       {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
       <DeleteOutlined
         type="delete"
         className="!text-icon text-[red] cursor-pointer"       

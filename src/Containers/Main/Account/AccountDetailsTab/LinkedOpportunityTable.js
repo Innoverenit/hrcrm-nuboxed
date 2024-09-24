@@ -53,6 +53,7 @@ function LinkedOpportunityTable(props) {
         "1300",  //  Change status to Customer?12
           "387", //  Convert13
          "1341",   // "Change status to Order?
+         "14", //Category
         ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -109,8 +110,9 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
-                       
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
+                        
                        </div>
                         </div>
     
@@ -217,13 +219,17 @@ console.log(props.user.moduleMapper.ecomModInd)
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
-                                        
+                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs">
+                                              {item.shipById}
+                                            </div>
+                                        </div>
                   <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                   <Popconfirm
                           title={translatedMenuItems[12]}
                           // "Change status to Customer?"
-                          onConfirm={() => handleConfirm(item.customerId)}
+                          onConfirm={() => handleConfirm(item.quotationId,props.userId)}
                           okText="Yes"
                           cancelText="No"
                         >
@@ -266,8 +272,9 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
-                       
+                        <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
+                      
                    </div>
                      
 
@@ -375,6 +382,11 @@ console.log(props.user.moduleMapper.ecomModInd)
                                         <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs">
+                                              {item.shipById}
                                             </div>
                                         </div>
                                         <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">

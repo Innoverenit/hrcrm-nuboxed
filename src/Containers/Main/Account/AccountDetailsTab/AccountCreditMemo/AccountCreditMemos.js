@@ -30,7 +30,7 @@ function AccountCreditMemos(props) {
              "929" ,  // Amount
              "86" ,  // "Mode
              "1085" , // Received
-             "77" , // Owner
+             "679" , // Created
 
           ];
     
@@ -48,7 +48,7 @@ function AccountCreditMemos(props) {
 
       const fetchData1 = async () => {
         try {
-          const response = await axios.get(`${base_url2}/creditmemo/creditMemoList/${props.distributorId}`,{
+          const response = await axios.get(`${base_url2}/creditMemo/creditMemoList/${props.distributorId}`,{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
@@ -70,15 +70,15 @@ function AccountCreditMemos(props) {
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
-            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}</div>
+            {/* <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}</div> */}
             <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]} #</div>
             <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[2]}</div>
-            <div className=" w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[3]} ID</div>
-            <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[4]}</div>
+            {/* <div className=" w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[3]} ID</div> */}
+            {/* <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[4]}</div> */}
             <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div>
             <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div>
-            <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div>
-            <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
+            {/* <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div>
+            <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div> */}
             <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
           </div>
           <div className=" overflow-scroll h-[67vh]">
@@ -89,14 +89,14 @@ function AccountCreditMemos(props) {
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex    w-[12.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
-                        {item.orderSourceName}
+                        {item.newOrderNo}
                       </div>
 
                     </div>
 
                     <div className=" flex    w-[10.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
-                        {item.orderId}
+                        {item.invoiceNum}
                       </div>
 
                     </div>
@@ -107,39 +107,23 @@ function AccountCreditMemos(props) {
 
 
                       <div class=" text-xs  font-poppins text-center">
-                        {item.transactionNumber}
+                      {` ${dayjs(item.creationDate).format("DD-MM-YY")}`}
 
                       </div>
                     </div>
                     <div className=" flex   w-[9.02rem] max-xl:w-[5.02rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                       <div class=" text-xs  font-poppins text-center">
-                        {item.paymentType}
+                        {item.creditMemo}
 
                       </div>
                     </div>
-                    <div className=" flex   w-[8.01rem]  max-xl:w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                    <div class=" text-xs  font-poppins text-center">
-                      {` ${dayjs(item.date).format("DD-MM-YY")}`}
-
-                    </div>
-                  </div>
+                  
                   </div>
                  
 
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                    
-                      <div className=" flex    w-[10.03rem] max-xl:w-[4.03rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                        <div class=" text-xs  font-poppins">
-                          {item.paymentAmount} &nbsp; {item.orderCurrencyName}
-                        </div>
-
-                      </div>
-                      <div className=" flex    w-[11.04rem] max-xl:w-[8.54rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                        <div class=" text-xs  font-poppins">
-                          {item.paymentModeName}
-                        </div>
-
-                      </div>
+                     
                    
 
                     
