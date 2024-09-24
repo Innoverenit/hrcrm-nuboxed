@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import { Select } from "../../../../Components/UI/Elements";
 import MaterialsDetailsCardViewId from "./MaterialsDetailsCardViewId";
-import {getMaterialsBySuppliesId} from "../SuppliesAction";
+import {getMaterialsBySuppliesId,UpdateMaterialIamge} from "../SuppliesAction";
 import "../Supplies.scss";
 import img from "../../../../Assets/Images/Erp.jpg";
 
@@ -102,6 +102,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getMaterialsBySuppliesId,
+      UpdateMaterialIamge
    
     },
     dispatch

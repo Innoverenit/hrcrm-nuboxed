@@ -21,6 +21,9 @@ const initialState = {
     fetchingMaterialCurrencyError: false,
     materialCurrency:[],
 
+
+    uploadSuppliesList:false,
+
     materialCpmplementary: false,
     materialCpmplementaryError: false,
 
@@ -98,6 +101,9 @@ const initialState = {
 
     reInstatedSuppliesById: false,
     reInstatedSuppliesByIdError: false,
+
+    updateMaterialImage:false,
+    updateMaterialImageError:false,
 
     updateToCatalogue: false,
     updateToCatalogueError: false,
@@ -713,6 +719,36 @@ export const suppliesReducer = (state = initialState, action) => {
                   addingMaterialToggle: false,
                   addingMaterialToggleError: true,
                 };
+
+
+
+                case types.HANDLE_UPLOAD_SUPPLIES_MODAL:
+                  return { ...state, uploadSuppliesList: action.payload };
+
+
+
+                  case types.UPDATE_MATERIAL_IMAGE_REQUEST:
+                    return { ...state, updateMaterialImage: true };
+                  case types.UPDATE_MATERIAL_IMAGE_SUCCESS:
+                    return {
+                      ...state,
+                      updateMaterialImage: false,
+                      //updatePartnerModal: false,
+                      // partnerByUserId: state.partnerByUserId.map((item) => {
+                      //   if (item.partnerId === action.payload.partnerId) {
+                      //     return action.payload;
+                      //   } else {
+                      //     return item;
+                      //   }
+                      // }),
+                    };
+                  case types.UPDATE_MATERIAL_IMAGE_FAILURE:
+                    return {
+                      ...state,
+                      updateMaterialImage: false,
+                      updateMaterialImageError: true,
+                    };
+              
 
 
                 

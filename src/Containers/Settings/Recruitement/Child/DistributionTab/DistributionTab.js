@@ -3,6 +3,7 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import DistributionAutomateTab from "../DistributionTab/DistributionAutomateTab"
 import ContactAutomateTab from "../DistributionTab/ContactAutomateTab"
 
 const WebsiteTab = lazy(() => import("./WebsiteTab"));
@@ -33,6 +34,12 @@ function DistributionTab(props) {
                     <TabPane tab={`Contact`} key="3">
                     <div class=" mt-[10px]" >
                         <ContactAutomateTab/>
+                        </div>
+                    </TabPane>
+
+                    <TabPane tab={`Distribution`} key="4">
+                    <div class=" mt-[10px]" >
+                        <DistributionAutomateTab/>
                         </div>
                     </TabPane>
                  

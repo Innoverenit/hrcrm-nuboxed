@@ -1,6 +1,7 @@
 import React, { useState, useEffect,Suspense, lazy,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddSuppliesRowImageModal from "./AddSuppliesRowImageModal"
 
 
 import QrCodeIcon from '@mui/icons-material/QrCode';
@@ -14,7 +15,8 @@ import {
   handleMaterialBuilderDrawer,
   handleSuppliersListDrawer,
   handleMaterialInventory,
-  handlePriceModal
+  handlePriceModal,
+  handleUploadSuppliesModal
 } from "./SuppliesAction";
 import EuroIcon from '@mui/icons-material/Euro';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -22,6 +24,7 @@ import { Tooltip, Popconfirm,Button } from "antd";
 import {
   DeleteOutlined,
   PhoneFilled,
+  UploadOutlined,
 } from "@ant-design/icons";
 import CategoryIcon from '@mui/icons-material/Category';
 import dayjs from "dayjs";
@@ -350,6 +353,17 @@ function SuppliesTable(props) {
                               </div>
                             </div>
 
+                            <div className=" flex w-[3.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <UploadOutlined
+                               onClick={() => {
+                                handleParticularRowData(item)
+                                props.handleUploadSuppliesModal(true)
+                               }}
+                              />
+                              </div>
+                            </div>
+
                           </div>
 
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center justify-end w-wk">
@@ -560,6 +574,11 @@ function SuppliesTable(props) {
       openComplementary={openComplementary}
       setopenComplementary={setopenComplementary}
       />
+      <AddSuppliesRowImageModal
+      particularDiscountData={particularDiscountData}
+      uploadSuppliesList={props.uploadSuppliesList}
+      handleUploadSuppliesModal={props.handleUploadSuppliesModal}
+      />
       
       </Suspense>
 
@@ -573,6 +592,7 @@ const mapStateToProps = ({ supplies, auth }) => ({
   purchaseList: supplies.purchaseList,
   updateSuppliesDrawer: supplies.updateSuppliesDrawer,
   addCurrencyValue: supplies.addCurrencyValue,
+  uploadSuppliesList:supplies.uploadSuppliesList,
   addBrandModel: supplies.addBrandModel,
   materialBuildrawer: supplies.materialBuildrawer,
   repairInd: auth.userDetails.repairInd,
@@ -586,6 +606,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       getSuppliesList,
       deletePurchaseData,
+      handleUploadSuppliesModal,
       handleUpdateSupplieDrawer,
       setEditSupplies,
       handleCurrencyPriceModal,
