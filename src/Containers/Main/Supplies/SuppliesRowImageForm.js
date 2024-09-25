@@ -43,12 +43,12 @@ const UploadImageRowFormSupplies = (props) => {
     fileList.forEach((file) => {
       formData.append('files', file.originFileObj);
     });
-    let type="Material"
+    // let type="Material"
 
     // Make an API call to httpbin.org
     message.info('Uploading files...');
     try {
-      const response = await fetch(`${base_url2}/image/multiple/${props.particularDiscountData.suppliesId}/${type}`, {
+      const response = await fetch(`${base_url2}/image/multiple/${props.particularDiscountData.suppliesId}/${"Material"}`, {
         method: 'POST',
         body: formData,
         headers: {

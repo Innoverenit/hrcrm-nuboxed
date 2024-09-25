@@ -1354,6 +1354,10 @@ export const settingsReducer = (state = initialState, action) => {
         fetchingSignatureInd: false,
         fetchingSignatureIndError: true,
       };
+
+
+      case types.EMPTY_DISTRIBUTION_AUTOMATION:
+        return { ...state, distributionAutomation: [] };
     case types.HANDLE_EMAIL_MODAL:
       return { ...state, addEmailModal: action.payload };
     case types.HANDLE_WEBSITE_MODAL:
