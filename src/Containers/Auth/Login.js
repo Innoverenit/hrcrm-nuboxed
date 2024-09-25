@@ -84,7 +84,7 @@ class Login extends Component {
           >
             <img
               className="big-logo w-[13rem]"
-              src={DevelopTk}
+              src={OneDi}
               alt="Tekorero logo"
             />
             <br />
