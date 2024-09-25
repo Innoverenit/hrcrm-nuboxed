@@ -211,7 +211,7 @@ const handleLoadMore2 = () => {
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-red-600  justify-center ">Hot</div>
-        <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
+        <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
        {translatedMenuItems[0]}  
                 {/* name */}           
                </div>
@@ -221,15 +221,15 @@ const handleLoadMore2 = () => {
         {/* Mobile */}
                 </div>
         <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
+        <div className="w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
         {translatedMenuItems[2]} 
         {/* company */}
                 </div>
-                    <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
+                    <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
                     {translatedMenuItems[3]} 
                      {/* source */}
                 </div>
-                     <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+                     <div className="w-[6.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
                      {translatedMenuItems[4]}  
                      {/* sector */}
                 </div>
@@ -240,13 +240,19 @@ const handleLoadMore2 = () => {
           <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
           {translatedMenuItems[6]}   {/* Shares # */}      
           </div>
-          <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
+          <div className="w-[6.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
           {translatedMenuItems[7]}  {/* First Meeting */}   
           </div>
-          <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
+          <div className="w-[5.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
           {translatedMenuItems[8]}  
          {/* Value */}  
           </div>
+          {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            Score
+          
+            </div>
+            )}
         <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
           {/* Assigned */}
         {translatedMenuItems[9]}
@@ -256,12 +262,7 @@ const handleLoadMore2 = () => {
         {translatedMenuItems[10]} 
            {/* qualify */}
                 </div>
-                {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
           
-            </div>
-            )}
       </div>
       <InfiniteScroll
         dataLength={props.pitchDataHot.length}
@@ -492,13 +493,11 @@ const countryCode = item.countryAlpha2Code
                         )}
                         </>
               )}
-                      </span>       
-                                    </div>
-                                </div>
-                               
-                   </div>
-                              
-                                                     
+                      </span>     
+
+                         </div>
+                      </div>                            
+                   </div>                                                                              
                    {props.user.aiInd && (
            <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
            {item.noteScoreInd}
@@ -671,7 +670,7 @@ const countryCode = item.countryAlpha2Code
           {translatedMenuItems[6]}
           {/* Shares # */}
           </div>
-          <div className="font-bold font-poppins text-xs w-[5.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className="font-bold font-poppins text-xs w-[7.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[7]}
           {/* Value */}
           </div>
@@ -679,7 +678,7 @@ const countryCode = item.countryAlpha2Code
         {translatedMenuItems[8]}
           {/* Assigned */}
           </div>
-        <div className="font-bold font-poppins text-xs w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
+        <div className="font-bold font-poppins text-xs w-[5.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
         {translatedMenuItems[9]}       
         {/* owner */}
                 </div>
@@ -924,8 +923,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
           
             </div>
             )}      
-                          <div class="flex justify-between items-center max-sm:w-[50%] "> 
-                  <div class="flex flex-col max-sm:justify-evenly max-sm:w-wk items-center">
+                            <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                            <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                               <div>
                               {item.companyName ? 
                               (
@@ -969,7 +968,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   </div>  
     
 
-                                             
+                  <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">                               
              <div >
                         <Tooltip title= {translatedMenuItems[17]} >
                         <NoteAltIcon
@@ -1047,7 +1046,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
     </StyledPopconfirm>
                   </div>                          
               </div>
-          
+          </div>
                 </div>
                       </div>                       
                     )
@@ -1333,7 +1332,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
             </div>
             )}       
                          <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                         <div class="flex justify-between items-center max-sm:w-[50%] ">
+                         <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                   <div>
                               {item.companyName ?   (
                     <Tooltip title= {translatedMenuItems[16]} >
@@ -1354,7 +1353,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       </Tooltip>
         )
                   }
-</div>    
+</div>  
+</div>  
 <div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
               {item.url !== null ? (
         <Tooltip title={item.url}>
@@ -1373,7 +1373,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         </Tooltip>
       ) : null}
                   </div>      
-
+                  <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">
                    <div >
                               <Tooltip title= {translatedMenuItems[17]} >
                         <NoteAltIcon
@@ -1445,6 +1445,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
     </StyledPopconfirm>
                   </div>               
               </div>
+             
               </div>
                 </div>
                       </div>                   

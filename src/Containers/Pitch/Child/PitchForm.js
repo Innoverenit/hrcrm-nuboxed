@@ -677,7 +677,7 @@ props.getInvestorCurrency();
         ></i>
       </Tooltip>
   
-      <Tooltip title="{translatedMenuItems[20]}">
+      <Tooltip title={translatedMenuItems[20]}>
         <i
           className={`far fa-snowflake${priority === "cold" ? " selected" : ""}`}
           onClick={() => handleIconClick("cold")}
