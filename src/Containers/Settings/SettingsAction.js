@@ -95,6 +95,13 @@ export const handledealStagesModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+export const emptyDistributionAutomation = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_DISTRIBUTION_AUTOMATION, 
+  });
+};
+
 export const handleTaskDrawer = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_TASK_DRAWER,

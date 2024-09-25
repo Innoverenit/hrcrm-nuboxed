@@ -61,6 +61,7 @@ import { connect } from "react-redux";
 import {
    
     getDistributionAutomation,
+    emptyDistributionAutomation
   
   } from "../../../../Settings/SettingsAction";
 import DistributedAutomatedForm from "../DistributionTab/DistributedAutomatedForm"
@@ -69,10 +70,10 @@ import { bindActionCreators } from "redux";
 const TabPane = StyledTabs.TabPane;
 
 function DistributionAutomateTab(props) {
-    const [activeKey, setActiveKey] = useState(" ")
+    const [activeKey, setActiveKey] = useState("Lead")
     // Dynamic tabs array, can be passed from props or defined here
     const tabData = [
-        { key: "1", label: "Leads", 
+        { key: "1", label: "Lead", 
             
             },
         { key: "2", label: "Prospect", 
@@ -88,18 +89,19 @@ function DistributionAutomateTab(props) {
         
       }, [activeKey]);
 
-    useEffect(() => {
+    // useEffect(() => {
            
             
-        if (tabData.length > 0) {
+    //     if (tabData.length > 0) {
        
-          setActiveKey(tabData[0]?.label);
-        }
-      }, [tabData]);
+    //       setActiveKey(tabData[0]?.label);
+    //     }
+    //   }, [tabData]);
 
 
     useEffect(() => {
         if (activeKey) {
+            props.emptyDistributionAutomation()
             props.getDistributionAutomation(props.orgId,activeKey);
         }
       }, [activeKey]);
@@ -154,7 +156,8 @@ const mapStateToProps = ({ settings, auth }) => ({
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators({
-        getDistributionAutomation
+        getDistributionAutomation,
+        emptyDistributionAutomation
 
     }, dispatch);
 
