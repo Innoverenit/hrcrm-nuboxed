@@ -927,7 +927,7 @@ const LeadsAllCardList = (props) => {
 </div>
                 </div>
                 </div>
-                <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
+                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
                 <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
@@ -1322,7 +1322,7 @@ const LeadsAllCardList = (props) => {
 </div>
                 </div>
                 </div>
-                <div class="flex max-sm:justify-end max-sm:w-wk items-center">      
+                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">      
                 <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {

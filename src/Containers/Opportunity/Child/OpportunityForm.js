@@ -116,6 +116,7 @@ const  handleEmailInd = (checked) => {
           '73', // 9
           '141', // 10
           '219', // 11
+          '104',//12
 
         ];
 
@@ -945,7 +946,7 @@ const handleStageChange=(value)=>{
                 htmlType="submit"
                 loading={addingOpportunity}
               >
-                <FormattedMessage id="app.create" defaultMessage="Create" />
+                <div class="font-bold font-poppins text-xs">{translatedMenuItems[12]}</div>
                 {/* Create */}
               </Button>
             </div>
