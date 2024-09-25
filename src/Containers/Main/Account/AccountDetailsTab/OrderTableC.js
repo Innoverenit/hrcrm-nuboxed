@@ -1,10 +1,13 @@
 import React, {  useEffect, useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {getCustomerOrder,handleStatuShowDrawer} from "../AccountAction"
 import { Tooltip,Button,Input ,Popconfirm} from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
+import { MultiAvatar2 } from "../../../../Components/UI/Elements";
+import ProcureStatusShowDrawer from "./AccountOrderTab/ProcureStatusShowDrawer";
 
 function OrderTableC(props) {
   const [page, setPage] = useState(0);
@@ -17,10 +20,10 @@ function OrderTableC(props) {
 //     setData(props.ecomList.map((item, index) => ({ ...item, key: String(index) })));
 //   }, [props.ecomList]);
 
-//   useEffect(() => {
-//     props.getEcomList(props.orgId, page);
-//     setPage(page + 1);
-//   }, []);
+  useEffect(() => {
+    props.getCustomerOrder(props.distributorId, page);
+    setPage(page + 1);
+  }, []);
   const [openInvoiceModal,setopenInvoiceModal] = useState(false);
   const [particularRowData, setParticularRowData] = useState({});
 
@@ -58,17 +61,17 @@ useEffect(() => {
 
  
   const handleLoadMore = () => {
-    const callPageMapd = props.ecomList && props.ecomList.length &&props.ecomList[0].pageCount
+    const callPageMapd = props.orderCustomerList && props.orderCustomerList.length &&props.orderCustomerList[0].pageCount
     setTimeout(() => {
       const {
-        getEcomList,
+        getCustomerOrder,
        // userDetails: { employeeId },
       } = props;
-      if  (props.ecomList)
+      if  (props.orderCustomerList)
       {
         if (page < callPageMapd) {
           setPage(page + 1);
-          getEcomList(props.orgId, page, );
+          getCustomerOrder(props.distributorId, page, );
       }
       if (page === callPageMapd){
         setHasMore(false)
@@ -107,16 +110,16 @@ const {handleProcureNotesDrawerModal,
                         <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[5]}</div>
                         <div className="md:w-[1rem]"></div>
         </div>
-        {/* <InfiniteScroll
+        <InfiniteScroll
             hasMore={hasMore}
-          dataLength={props.ecomList.length}
+          dataLength={props.orderCustomerList.length}
           next={handleLoadMore}
-          loader={props.fetchingEcomList?<div class="flex justify-center" >Loading...</div>:null}
+          loader={props.fetchingOrderCustomer?<div class="flex justify-center" >Loading...</div>:null}
           height={"79vh"}
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
-          {data.map((item) => {
+          {props.orderCustomerList.map((item) => {
             const currentDate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
            
@@ -129,7 +132,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex   md:w-[4rem] max-sm:flex-row max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
-                                {item.newOrderNo}
+                                {item.orderType}
                             </div>
                             {date === currentDate ? (
                                 <span className=" text-[0.65rem] text-[tomato] font-bold" >
@@ -141,7 +144,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                         </div>
                         <div className=" flex  items-center md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  items-center font-poppins">
-                            {date}
+                             {item.newOrderNo}
                             </div>
                     
                         </div>
@@ -150,7 +153,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
 
                         <div className=" flex items-center  md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
-                                {item.category}  {item.attribute}
+                            {date}
                             </div>
 
                         </div>
@@ -158,50 +161,54 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
 
                         <div className=" flex items-center  md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
-                                {item.itemCount}
+                                
+                                <MultiAvatar2
+                    primaryTitle={item.contactPersonName}
+                    imageURL={item.imageURL}
+                    imgWidth={"1.8em"}
+                    imgHeight={"1.8em"}
+                  />
                             </div>
 
                         </div>
                         <div className=" flex items-center  md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
-                                {item.status}
+                                {item.paymentAmount}
                             </div>
 
                         </div>
-
-
-                        <div className=" flex   md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
-                        <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
-                     handleSetParticularOrderData(item);
-                  }}>{translatedMenuItems[7]}</Button>
-                        </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">                                                 
-                        <div>
-                        <Tooltip title={translatedMenuItems[6]}
-                        
-                                                                
-                                                            >
+                        <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
+                                            <Tooltip title={translatedMenuItems[5]}>
+                                             
                                                                 <EventRepeatIcon
 
-                                                                    className="!text-base cursor-pointer text-[green]"
+                                                                    className="!text-base cursor-pointer"
                                                                     onClick={() => {
-                                                                       openModal();
+                                                                        props.handleStatuShowDrawer(true);
                                                                         handleSetParticularOrderData(item);
                                                                     }}
                                                                 />
                                                             </Tooltip>
-                        </div>
-                    </div>
+                                            </div> 
+
+                       
+                       
 
                 </div>
             </div>
             );
           })}
-        </InfiniteScroll> */}
+        </InfiniteScroll>
       </div>
     
     </>
-
+    <ProcureStatusShowDrawer
+selectedLanguage={props.selectedLanguage}
+translateText={props.translateText} 
+           particularRowData={particularRowData}
+           showStatusDrwr={props.showStatusDrwr}
+           handleStatuShowDrawer={props.handleStatuShowDrawer}
+           />
   </div>
   );
 
@@ -209,12 +216,12 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
 
 }
 
-const mapStateToProps = ({ order,procre,auth }) => ({
-  ecomList: order.ecomList,
-  fetchingEcomList: order.fetchingEcomList,
+const mapStateToProps = ({ distributor,procre,auth }) => ({
+  orderCustomerList: distributor.orderCustomerList,
   orgId: auth.userDetails.organizationId,
   userId: auth.userDetails.userId,
-  orderSearch:order.orderSearch
+  showStatusDrwr:distributor.showStatusDrwr,
+  fetchingOrderCustomer:distributor.fetchingOrderCustomer
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -222,7 +229,8 @@ const mapDispatchToProps = (dispatch) =>
 
     {
 
-
+      getCustomerOrder,
+      handleStatuShowDrawer
     },
     dispatch
   );

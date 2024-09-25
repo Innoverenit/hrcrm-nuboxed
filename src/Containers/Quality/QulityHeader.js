@@ -23,6 +23,7 @@ class QulityHeader extends Component {
                             setQualityViewType={setQualityViewType}
                             setCurrentData={setCurrentData}
                             currentData={currentData}
+                            handleViewChange={this.props.handleViewChange}
                             handleClear={handleClear}
                         />
                     }

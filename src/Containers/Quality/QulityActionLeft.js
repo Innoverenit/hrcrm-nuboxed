@@ -36,7 +36,7 @@ function QulityActionLeft (props) {
         const {
             user,
             viewType,
-            setQualityViewType,
+            handleViewChange,
         } = props;
 // const {
 //         transcript,
@@ -119,7 +119,7 @@ function QulityActionLeft (props) {
 
         return (
             <div class="flex items-center">
- {props.user.productionInd === true && props.user.repairInd === true && (
+ {props.user.moduleMapper.productionInd === true && (
                 <Tooltip
                     title="Production">
 {/* <Badge
@@ -128,7 +128,7 @@ function QulityActionLeft (props) {
           overflowCount={999}
         > */}
                     <span class=" mr-2 text-sm cursor-pointer"
-                        onClick={() => setQualityViewType("production")}
+                        onClick={() => handleViewChange("production")}
                         style={{
                             color: viewType === "production" && "#1890ff",
                         }}
@@ -141,7 +141,7 @@ function QulityActionLeft (props) {
                     {/* </Badge> */}
                 </Tooltip>
 )}
-{props.user.repairInd === true && (
+{props.user.qualityAccessInd === true && (
                 <Tooltip
                     title="Reapir">
 {/* <Badge
@@ -150,7 +150,7 @@ function QulityActionLeft (props) {
           overflowCount={999}
         > */}
                     <span class=" mr-2 text-sm cursor-pointer"
-                        onClick={() => setQualityViewType("repair")}
+                        onClick={() => handleViewChange("repair")}
                         style={{
                             color: viewType === "repair" && "#1890ff",
                         }}

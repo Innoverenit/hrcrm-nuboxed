@@ -2,7 +2,7 @@ import * as types from "./OrderActionTypes";
 import dayjs from "dayjs";
 
 const initialState = {
-  viewType: "",
+  viewType: "production",
 
   addOrderModal: false,
 
