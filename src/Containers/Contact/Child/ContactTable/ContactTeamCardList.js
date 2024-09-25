@@ -194,9 +194,9 @@ if (loading) {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[100%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent  sticky  z-10">
         <div class=" flex justify-between w-[92%] font-bold  font-poppins text-xs  ">
-        <div className=" w-[26.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div className=" w-[28.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         {translatedMenuItems[0]}</div>
-        <div className=" w-[24.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[25.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[1]}</div>
         <div className=" md:w-[22.1rem] w-[21.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
         {translatedMenuItems[2]}</div>
@@ -355,13 +355,14 @@ if (loading) {
     </Tooltip>
 
              </div>
-             </div>
+          
              {props.user.aiInd && (
            <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>
             )}
+               </div>
              <div class="flex items-center max-sm:justify-evenly max-sm:w-wk">
              <div>
               <Tooltip title={translatedMenuItems[12]}>

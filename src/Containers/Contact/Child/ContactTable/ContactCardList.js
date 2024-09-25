@@ -27,7 +27,6 @@ import {
   handleContactCETdrawer
 } from "../../ContactAction";
 import AddchartIcon from "@mui/icons-material/Addchart";
-import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
@@ -342,7 +341,7 @@ function ContactCardList(props) {
                           </div>
                        
           
-             <div class="flex items-center max-sm:justify-evenly max-sm:w-wk">
+             <div class="flex items-center max-sm:justify-between max-sm:w-wk">
              <div>
               <Tooltip title={translatedMenuItems[11]}>
  <AddLocationAltIcon

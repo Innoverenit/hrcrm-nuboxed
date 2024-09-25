@@ -61,7 +61,7 @@ function UpdateOpportunityForm (props) {
 '73', // 8
 '141', // 9
 '219', // 10
-// 'Update'
+'1246'//11 update
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

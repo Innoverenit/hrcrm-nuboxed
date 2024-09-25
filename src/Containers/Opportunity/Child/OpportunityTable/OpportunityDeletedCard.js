@@ -54,7 +54,7 @@ function OpportunityDeletedCard(props) {
                  var findProbability = 0;
                  return (
 
-                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[7.5rem] 
+                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[8.5rem] 
                   text-[#444444] m-3 p-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                       <div class="flex items-center  flex-no-wrap h-[2.81em] ">
                       <div class=" flex basis-[15%] mr-[0.2rem]" >
