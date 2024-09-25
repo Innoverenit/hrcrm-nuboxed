@@ -7,14 +7,32 @@ import QulityHeader from "./QulityHeader";
 import QulityProductionTable from "./QulityProductionTable";
 import { BundleLoader } from "../../Components/Placeholder";
 class Quality extends Component {
-  state = { currentData: "" };
+  state = { currentData: "" ,
+    viewType: this.props.viewType || 'production',
+
+  };
 
   setCurrentData = (value) => {
     this.setState({ currentData: value });
   };
+  componentDidMount() {
+    const {  productionInd } = this.props.user.moduleMapper;
+  const {qualityAccessInd} = this.props.user;
+    // If productionInd is false initially, switch to "repir"
+    if (!productionInd && qualityAccessInd ) {
+      this.setState({ viewType: 'repair' });
+    } else {
+      // Default case if none of the conditions match
+      this.setState({ viewType: 'production' });
+    }
+  }
+  handleViewChange = (type) => {
+    this.setState({ viewType: type });
+  };
   render() {
     console.log(this.props.viewType === "production")
-    const { setQualityViewType, viewType } = this.props;
+    const { setQualityViewType } = this.props;
+    const { viewType } = this.state;
     return (
       <React.Fragment>
          <Suspense fallback={<BundleLoader />}>
@@ -24,19 +42,20 @@ class Quality extends Component {
           translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}
           viewType={viewType}
+          handleViewChange={this.handleViewChange}
           handleClear={this.handleClear}
           currentData={this.state.currentData}
           setCurrentData={this.setCurrentData}
         />
 
        
-          {this.props.viewType === "production" ? (
+          {viewType === "production" && this.props.user.moduleMapper.productionInd === true ? (
             <QulityProductionTable 
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
             />
           )
-          :this.props.viewType === "repair" ? (
+          :viewType === "repair" && this.props.user.qualityAccessInd === true  ? (
             <QaCardList 
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
@@ -51,6 +70,7 @@ class Quality extends Component {
 
 const mapStateToProps = ({ qulity, auth }) => ({
   viewType: qulity.viewType,
+  user: auth.userDetails,
   userId: auth.userDetails.userId,
 });
 

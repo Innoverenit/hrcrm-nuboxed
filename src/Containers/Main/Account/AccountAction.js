@@ -150,6 +150,35 @@ export const getDistributorsByUserId = (userId, pageNo) => (dispatch) => {
 };
 
 
+export const getCustomerOrder = (distributorId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_CUSTOMER_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/all-phoneOrders/procure-repair/${distributorId}/${pageNo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CUSTOMER_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CUSTOMER_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 export const getPibyItem = (orderPhoneId) => (dispatch) => {
   dispatch({
     type: types.GET_PI_BY_ITEM_REQUEST,

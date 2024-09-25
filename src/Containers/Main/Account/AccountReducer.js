@@ -12,6 +12,10 @@ const initialState = {
   fetchingimeiSearchPhoneData: false,
   fetchingimeiSearchPhoneDataError: false,
 
+  fetchingOrderCustomer: false,
+  fetchingOrderCustomerError: false,
+  orderCustomerList:[],
+
   fetchingPiByItem: false,
   fetchingPiByItemError: false,
   piByItem: [],
@@ -765,6 +769,22 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingDistributorsByUserId: false,
         fetchingDistributorsByUserIdError: true,
       };
+
+      case types.GET_CUSTOMER_ORDER_REQUEST:
+        return { ...state, fetchingOrderCustomer: true };
+      case types.GET_CUSTOMER_ORDER_SUCCESS:
+        return {
+          ...state,
+          fetchingOrderCustomer: false,
+          orderCustomerList: [...state.orderCustomerList, ...action.payload],
+          //  orderCustomerList: action.payload,
+        };
+      case types.GET_CUSTOMER_ORDER_FAILURE:
+        return {
+          ...state,
+          fetchingOrderCustomer: false,
+          fetchingOrderCustomerError: true,
+        };
 
     case types.GET_PI_BY_ITEM_REQUEST:
       return { ...state, fetchingPiByItem: true };

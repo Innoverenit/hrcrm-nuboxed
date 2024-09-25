@@ -19,6 +19,7 @@ class OrderHeader extends Component {
                         translateText={this.props.translateText}
                             viewType={viewType}
                             setOrderViewType={setOrderViewType}
+                            handleViewChange={this.props.handleViewChange}
                             activeKey={activeKey}
                             activeKey1={activeKey1}
                         />

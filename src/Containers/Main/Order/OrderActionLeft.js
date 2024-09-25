@@ -168,7 +168,7 @@ function OrderActionLeft (props) {
   return (
     <FlexContainer alignItems="center">
       <>
-      {props.user.productionInd === true && (
+      {props.user.moduleMapper.productionInd === true && props.user.moduleMapper.orderManagementInd === true &&  (
       <div className="">
         <Tooltip title={translatedMenuItems[0]}>
           <Badge
@@ -179,7 +179,7 @@ function OrderActionLeft (props) {
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("production")}
+              onClick={() => props.handleViewChange("production")}
               style={{
                 color: props.viewType === "production" && "#1890ff",
               }}
@@ -199,7 +199,7 @@ function OrderActionLeft (props) {
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("complete")}
+              onClick={() => props.handleViewChange("complete")}
               style={{
                 color: props.viewType === "complete" && "#1890ff",
               }}
@@ -219,7 +219,7 @@ function OrderActionLeft (props) {
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("productionAll")}
+              onClick={() => props.handleViewChange("productionAll")}
               style={{
                 color: props.viewType === "productionAll" && "#1890ff",
               }}
@@ -236,7 +236,7 @@ function OrderActionLeft (props) {
 )}
 
       <div className=" cursor-pointer">
-      {props.user.repairInd === true && (
+      {props.user.moduleMapper.repairInd === true && props.user.moduleMapper.orderManagementInd === true && (
         <>
         <Tooltip title={translatedMenuItems[4]}>
           <Badge
@@ -247,7 +247,7 @@ function OrderActionLeft (props) {
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("list")}
+              onClick={() => props.handleViewChange("list")}
               style={{
                 color: props.viewType === "list" && "#1890ff",
               }}
@@ -271,7 +271,7 @@ function OrderActionLeft (props) {
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("allcomplete")}
+              onClick={() => props.handleViewChange("allcomplete")}
               style={{
                 color: props.viewType === "allcomplete" && "#1890ff",
               }}
@@ -289,7 +289,7 @@ function OrderActionLeft (props) {
           overflowCount={999}
         > */}
                     <span class=" mr-2 text-sm cursor-pointer"
-                        onClick={() => props.setOrderViewType("delete")}
+                        onClick={() => props.handleViewChange("delete")}
                         style={{
                             color: props.viewType === "delete" && "#1890ff",
                         }}
@@ -311,7 +311,7 @@ function OrderActionLeft (props) {
           >
 
             <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("all")}
+              onClick={() => props.handleViewChange("all")}
               style={{
                 color: props.viewType === "all" && "#1890ff",
               }}
@@ -326,33 +326,38 @@ function OrderActionLeft (props) {
       )}
                 </>
               )}
-         {props.user.moduleMapper.ecomModInd === true && (
+          {props.user.moduleMapper.tradingInd === true && props.user.moduleMapper.orderManagementInd === true &&  (
+            <>
+            <Tooltip title={translatedMenuItems[7]}>
+            {/* <Badge
+              size="small"
+              count={(props.viewType === "list" && props.orderCount.order) || 0}
+  
+              overflowCount={999}
+            > */}
+  
+              <span class=" mr-1 text-sm cursor-pointer"
+                onClick={() => props.handleViewChange("procure")}
+                style={{
+                  color: props.viewType === "procure" && "#1890ff",
+                }}
+              >         
+  <Button type={props.viewType === "procure" ? "primary" : ""} style={{ backgroundColor: props.viewType === "procure" ? "" : "tomato" }}>
+                  
+                  <div class="text-white ">{translatedMenuItems[7]}</div></Button>
+                  
+              </span>
+            {/* </Badge> */}
+          </Tooltip>
+          </>
+          )}     
+         {props.user.moduleMapper.ecomModInd === true && props.user.moduleMapper.orderManagementInd === true &&  (
           <>     
-        <Tooltip title={translatedMenuItems[7]}>
-          {/* <Badge
-            size="small"
-            count={(props.viewType === "list" && props.orderCount.order) || 0}
-
-            overflowCount={999}
-          > */}
-
-            <span class=" mr-1 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("procure")}
-              style={{
-                color: props.viewType === "procure" && "#1890ff",
-              }}
-            >         
-<Button type={props.viewType === "procure" ? "primary" : ""} style={{ backgroundColor: props.viewType === "procure" ? "" : "tomato" }}>
-                
-                <div class="text-white ">{translatedMenuItems[7]}</div></Button>
-                
-            </span>
-          {/* </Badge> */}
-        </Tooltip>
+        
         <Tooltip title={translatedMenuItems[8]}>
 
 <span class=" mr-1 text-sm cursor-pointer"
-  onClick={() => props.setOrderViewType("ecom")}
+  onClick={() => props.handleViewChange("ecom")}
   style={{
     color: props.viewType === "ecom" && "#1890ff",
   }}
@@ -373,7 +378,7 @@ function OrderActionLeft (props) {
           > */}
 
             <span class=" mr-2 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("completedorders")}
+              onClick={() => props.handleViewChange("completedorders")}
               style={{
                 color: props.viewType === "completedorders" && "#1890ff",
               }}
@@ -395,7 +400,7 @@ function OrderActionLeft (props) {
           > */}
 
             <span class=" mr-2 text-sm cursor-pointer"
-              onClick={() => props.setOrderViewType("cancelledorders")}
+              onClick={() => props.handleViewChange("cancelledorders")}
               style={{
                 color: props.viewType === "cancelledorders" && "#1890ff",
               }}
