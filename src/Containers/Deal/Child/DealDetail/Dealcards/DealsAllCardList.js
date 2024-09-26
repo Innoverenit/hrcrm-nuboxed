@@ -100,20 +100,20 @@ const DealsAllCardList = (props) => {
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
       <div className=" flex justify-between w-[95%]">
-          <div className=" font-bold font-poppins text-xs w-[14.5rem] md:w-[12.5rem]">
+          <div className=" font-bold font-poppins text-xs w-[14.5rem] md:w-[11.5rem]">
           {translatedMenuItems[0]}
           {/* name */}
           </div>
-          <div className=" font-bold font-poppins text-xs w-[13.13rem] md:w-[7.13rem]">
+          <div className=" font-bold font-poppins text-xs w-[13.13rem] md:w-[9.13rem]">
           {translatedMenuItems[1]}
            {/* investor */}
           </div>
-          <div className="font-bold font-poppins text-xs w-[9.2rem] md:w-[8.2rem] ">
+          <div className="font-bold font-poppins text-xs w-[9.2rem] md:w-[2.2rem] ">
           {translatedMenuItems[2]}
           {/* sponsor */}
          
           </div>
-          <div className=" font-bold font-poppins text-xs w-[6.12rem] md:w-[1.12rem]">
+          <div className=" font-bold font-poppins text-xs w-[6.12rem] md:w-[7.12rem]">
           {translatedMenuItems[3]}
                      {/* startdate   */}
           </div>

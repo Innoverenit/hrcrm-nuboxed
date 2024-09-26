@@ -152,15 +152,15 @@ function ContactInvestCardList(props) {
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex  justify-between max-sm:hidden w-[90%]  p-1 bg-transparent font-bold sticky z-10">
           <div className=" flex justify-between w-[93%]">
-        <div className=" font-bold font-poppins w-[20.32rem] text-xs md:w-[17.32rem]">
+        <div className=" font-bold font-poppins w-[20.32rem] text-xs md:w-[21.32rem]">
         {translatedMenuItems[0]}
         {/* name" */}         
                 </div>
-        <div className="font-bold font-poppins text-xs w-[12.72rem] md:w-[12.72rem]">
+        <div className="font-bold font-poppins text-xs w-[12.72rem] md:w-[13.72rem]">
         {translatedMenuItems[1]}
         {/* company */}             
                 </div>
-        <div className="font-bold font-poppins text-xs w-[8.6rem] md:w-[8.6rem] ">
+        <div className="font-bold font-poppins text-xs w-[8.6rem] md:w-[9.6rem] ">
         {translatedMenuItems[2]} 
         {/* designation */}             
                 </div>
@@ -168,20 +168,20 @@ function ContactInvestCardList(props) {
         {translatedMenuItems[3]} 
         {/* department */}               
                 </div>
-        <div className="font-bold font-poppins text-xs w-[6.1rem] md:w-[6.1rem]">
+        <div className="font-bold font-poppins text-xs w-[6.1rem] md:w-[9.1rem]">
         {translatedMenuItems[4]}
         {/* deals" */}           
                 </div>
-        <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[7.21rem]"> 
+        <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[11.21rem]"> 
         {translatedMenuItems[5]}
          {/* dealValue" */}              
                 </div>
-        <div className="font-bold font-poppins text-xs w-[5.2rem] md:w-[5.2rem]">
+        <div className="font-bold font-poppins text-xs w-[5.2rem] md:w-[11.2rem]">
         {translatedMenuItems[6]}
         {/* source" */}           
                 </div>
                 {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             Score
           
             </div>
@@ -283,7 +283,7 @@ function ContactInvestCardList(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
-                                <div className=" flex   md:w-[5.22rem] max-sm:flex-row w-full  ">
+                                <div className=" flex   md:w-[7.22rem] max-sm:flex-row w-full  ">
                                     {/* Deals */}
                                     <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
                                       onClick={() => {
@@ -301,22 +301,22 @@ function ContactInvestCardList(props) {
                                      {item.totalProposalValue}
                                     </div>
                                 </div>
-                                <div className="flex max-sm:justify-between  md:w-[6.81rem] max-sm:flex-row w-full ">
+                                <div className="flex max-sm:justify-between  md:w-[3.81rem] max-sm:flex-row w-full ">
                                      {/* Source */}
 
                                     <div class="text-xs  font-poppins">
 
                                     </div>
                                 </div>
-                                                          
-                               
-                   </div>
-                   {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                                {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[16.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>
-            )} 
+            )}                           
+                               
+                   </div>
+                 
       <div class=" flex  flex-row justify-evenly items-center w-[7rem] max-sm:flex   max-sm:w-full">                 
                   
                     <Tooltip title="Pulse">

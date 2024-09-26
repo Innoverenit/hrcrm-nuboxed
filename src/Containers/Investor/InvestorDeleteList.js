@@ -323,7 +323,8 @@ function InvestorDeleteList(props) {
                                     </div>
                                 </div>   
                                
-                               
+                               </div>
+                               <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Pipeline Value */}
 
@@ -333,8 +334,8 @@ function InvestorDeleteList(props) {
       </div>
     )}
                                 </div>
-                                </div>
-                                <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
+                              
+                             
                                 <div className=" flex items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* # Signed */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -436,7 +437,7 @@ function InvestorDeleteList(props) {
                 
                 </div>
                                             
-                                <div class="flex w-wk cursor-pointer justify-end items-center"> 
+                                <div class="flex w-wk cursor-pointer justify-between items-center"> 
                                 <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateInvestor investorId={item.investorId} />
                             </div> 
