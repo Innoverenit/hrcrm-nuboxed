@@ -133,7 +133,7 @@ serachedPitchData={props.serachedPitchData}
         {translatedMenuItems[1]} 
         {/* Mobile */}
                 </div>   
-        <div className=" font-bold font-poppins text-xs w-[17.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        <div className=" font-bold font-poppins text-xs w-[15.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
         {translatedMenuItems[2]} 
         {/* company */}
                 </div>

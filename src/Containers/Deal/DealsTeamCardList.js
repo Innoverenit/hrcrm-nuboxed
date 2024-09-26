@@ -119,23 +119,23 @@ const DealsTeamCardList = (props) => {
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
         <div className=" flex justify-between w-[100%]">
-          <div className=" md:w-[14.5rem]font-bold font-poppins text-xs">
+          <div className=" md:w-[13.5rem] w-[16rem]font-bold font-poppins text-xs">
           {translatedMenuItems[0]}
            {/* "name" */}    
           </div>
-          <div className=" md:w-[13.13rem] font-bold font-poppins text-xs">
+          <div className=" md:w-[8.13rem] w-[13.13rem] font-bold font-poppins text-xs">
           {translatedMenuItems[1]}
          {/* investor" */}     
           </div>
-          <div className=" md:w-[9.2rem] font-bold font-poppins text-xs">
+          <div className=" md:w-[1.2rem] w-[9.2rem] font-bold font-poppins text-xs">
           {translatedMenuItems[2]}
                     {/* sponsor */}     
           </div>
-          <div className="md:w-[6.12rem] font-bold font-poppins text-xs">
+          <div className="md:w-[4.12rem]  w-[6.12rem] font-bold font-poppins text-xs">
           {translatedMenuItems[3]}
                 {/* startdate" */}
           </div>
-          <div className="md:w-[7.2rem] font-bold font-poppins text-xs">
+          <div className="md:w-[2.2rem]  w-[7.2rem] font-bold font-poppins text-xs">
           {translatedMenuItems[4]}
          {/* Value */} 
           </div>

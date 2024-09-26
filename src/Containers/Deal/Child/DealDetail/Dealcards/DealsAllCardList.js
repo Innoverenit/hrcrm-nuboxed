@@ -99,25 +99,25 @@ const DealsAllCardList = (props) => {
   ) : (
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-      <div className=" flex justify-between w-[100%]">
-          <div className=" font-bold font-poppins text-xs md:w-[14.5rem]">
+      <div className=" flex justify-between w-[95%]">
+          <div className=" font-bold font-poppins text-xs w-[14.5rem] md:w-[12.5rem]">
           {translatedMenuItems[0]}
           {/* name */}
           </div>
-          <div className=" font-bold font-poppins text-xs md:w-[13.13rem]">
+          <div className=" font-bold font-poppins text-xs w-[13.13rem] md:w-[7.13rem]">
           {translatedMenuItems[1]}
            {/* investor */}
           </div>
-          <div className="font-bold font-poppins text-xs md:w-[9.2rem] ">
+          <div className="font-bold font-poppins text-xs w-[9.2rem] md:w-[8.2rem] ">
           {translatedMenuItems[2]}
           {/* sponsor */}
          
           </div>
-          <div className=" font-bold font-poppins text-xs md:w-[6.12rem]">
+          <div className=" font-bold font-poppins text-xs w-[6.12rem] md:w-[1.12rem]">
           {translatedMenuItems[3]}
                      {/* startdate   */}
           </div>
-          <div className="font-bold font-poppins text-xs md:w-[7.2rem]">
+          <div className="font-bold font-poppins text-xs md:w-[6.2rem]">
           {translatedMenuItems[4]}
            {/* Value */}       
           </div>
@@ -126,11 +126,11 @@ const DealsAllCardList = (props) => {
           {/* stages" */}
          
           </div>
-          <div className="font-bold font-poppins text-xs md:w-[5.26rem]">
+          <div className="font-bold font-poppins text-xs w-[5.26rem] md:w-[7.1rem]">
           {translatedMenuItems[6]}
             {/* Status */}
             </div>
-          <div className="font-bold font-poppins text-xs md:w-[7.21rem]">
+          <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[3rem]">
           {translatedMenuItems[7]}
           {/* Assign To" */}
        
@@ -179,7 +179,7 @@ const DealsAllCardList = (props) => {
            >
                <div class="flex max-sm:justify-start max-sm:w-wk max-sm:items-center">
                <div class="flex justify-between">
-                 <div className=" flex  w-[15rem]   max-sm:w-full">
+                 <div className=" flex  w-[12rem]   max-sm:w-full">
                    <div className="flex max-sm:w-full items-center">
                      <div>
                        <SubTitle>
@@ -249,14 +249,14 @@ const DealsAllCardList = (props) => {
                  </div>
               
              
-                 <div className=" flex  items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex  items-center  md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs justify-center  font-poppins">
                      {dayjs(item.startDate).format("DD/MM/YYYY")}
                    </div>
                  </div>
 </div>
-                 <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row  max-sm:justify-evenly w-wk ">
+                 <div className=" flex  items-center  md:w-36 max-sm:flex-row  max-sm:justify-evenly w-wk ">
 
                    <div class=" text-xs  font-poppins text-center">
                      <CurrencySymbol currencyType={item.currency} />
@@ -265,7 +265,7 @@ const DealsAllCardList = (props) => {
 
                    </div>
                 
-                 <div className=" flex items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-evenly  ">
+                 <div className=" flex items-center  md:w-36 max-sm:flex-row w-full max-sm:justify-evenly  ">
 
                    <div class=" text-xs  font-poppins text-center">
                      <Dropdown
@@ -299,7 +299,7 @@ const DealsAllCardList = (props) => {
                    </div>
                  </div>
                  </div>
-                 <div className=" flex items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex items-center  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
                  {myIndicator}
                  </div>
                  
