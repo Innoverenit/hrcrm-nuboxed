@@ -3,13 +3,19 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import InventoryHeader from "./InventoryHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { setInventoryViewType } from "./InventoryAction";
+import { setInventoryViewType,getInventoryById,setInventoryDetailViewType } from "./InventoryAction";
 import InventoryDetail from "./Child/InventoryDetails/InventoryDetail";
+import InventoryMaterialTab from "./Child/InventoryDetails/InventoryMaterialTab/InventoryMaterialTab";
+import InventoryDetailTab from "./Child/InventoryDetails/InventoryDetailTab/InventoryDetailTab";
+import InventoryMaterialTabO from "./InventoryMaterialTabO";
+import InventoryDetailTabO from "./InventoryDetailTabO";
 
 const InventoryCard = lazy(() => import("./InventoryCard"));
 
 function Inventory(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [tabData, setTabData] = useState("1");
+  const [isInitialLoad, setIsInitialLoad] = useState(true); 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -31,6 +37,10 @@ function Inventory(props) {
        "1079", //   'Cancel',//14
         "23",//   'My View',//15
        "658", //   'Location',//16
+       "1085", // 'Received',//17
+       "1063",// 'Dispatch',//18
+       "1082", // "Stock",//19
+       "744", // 'Cell',//20
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -42,7 +52,56 @@ function Inventory(props) {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
+  // useEffect(() => {
+  //   const { repairInd, materialAccessInd } = props.user;
 
+  //   if (repairInd) {
+  //     props.setInventoryViewType("repair");
+  //   } else if (materialAccessInd) {
+  //     props.setInventoryViewType("material");
+  //   } else {
+  //     props.setInventoryViewType("table");
+  //   }
+
+  //   props.getInventoryById(props.match.params.locationDetailsId || props.locationId);
+
+  //   // Set tabData based on URL params
+  //   if (props.match.params.data === "Receive") {
+  //     setTabData("4");
+  //   } else if (props.match.params.data === "Dispatch") {
+  //     setTabData("3");
+  //   }
+  // }, [props.match.params.locationDetailsId, props.inventory]);
+  useEffect(() => {
+    if (isInitialLoad) {
+      const { repairInd, materialAccessInd } = props.user;;
+
+      if (repairInd) {
+        props.setInventoryViewType("repair");
+      } else if (materialAccessInd) {
+        props.setInventoryViewType("material");
+      } else {
+        props.setInventoryViewType("table");
+      }
+
+      setIsInitialLoad(false);  // Mark as no longer the initial load
+    }
+
+    props.getInventoryById(props.match.params.locationDetailsId || props.locationId);
+
+    // Set tabData based on URL params
+    if (props.match.params.data === "Receive") {
+      setTabData("4");
+    } else if (props.match.params.data === "Dispatch") {
+      setTabData("3");
+    }
+  }, [props.match.params.locationDetailsId, props.inventory]);
+
+  const {
+    inventory = { inventory },
+    fetchingInventoryById,
+    viewType1,
+    setInventoryDetailViewType } = props;
   return (
     <div>
       <InventoryHeader
@@ -53,19 +112,28 @@ function Inventory(props) {
         selectedLanguage={props.selectedLanguage}
       />
       <Suspense fallback={<BundleLoader />}>
-        {props.viewType === "table" ? 
+        {props.viewType === "table" ?  
         <InventoryCard  
         translateText={props.translateText}
           translatedMenuItems={translatedMenuItems}
           selectedLanguage={props.selectedLanguage}
           /> 
-          :
-        props.viewType === "zone" ? 
-       <InventoryDetail
-       translateText={props.translateText}
+          : props.viewType === "material" ? 
+          <InventoryMaterialTabO inventory={inventory}  
+          translateText={props.translateText}
           translatedMenuItems={translatedMenuItems}
           selectedLanguage={props.selectedLanguage}
-       />
+          
+          />
+          : props.viewType === "repair" ? 
+          <InventoryDetailTabO
+          viewType1={viewType1}
+          inventory={inventory}
+          tabData={tabData}
+          translateText={props.translateText}
+          translatedMenuItems={translatedMenuItems}
+          selectedLanguage={props.selectedLanguage}
+        />
         // <InventoryLocation  translateText={props.translateText}
         // translatedMenuItems={translatedMenuItems}
         // selectedLanguage={props.selectedLanguage}/>
@@ -75,14 +143,19 @@ function Inventory(props) {
   );
 }
 
-const mapStateToProps = ({ inventory }) => ({
+const mapStateToProps = ({ inventory,auth }) => ({
   viewType: inventory.viewType,
+  inventory: inventory.inventory,
+  user: auth.userDetails,
+  viewType1: inventory.viewType1,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       setInventoryViewType,
+      getInventoryById,
+      setInventoryDetailViewType
     },
     dispatch
   );

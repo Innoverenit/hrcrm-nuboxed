@@ -61,9 +61,9 @@ const InventoryCard = (props) => {
             {filteredData.length ? <>
               {filteredData.map((item) => {
                 const currentdate = dayjs().format("DD/MM/YYYY");
-                const countryCode = item.address[0].country_alpha2_code
+                const countryCode = item.countryAlpha2Code
                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                console.log(countryCode)
+                //console.log(countryCode)
                 return (
                   <div>
                     <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col">
@@ -118,7 +118,7 @@ const InventoryCard = (props) => {
                         {/* <div class=" text-xs  font-poppins max-sm:hidden"># Opportunity</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                          {`${(item.address && item.address[0].city) || ""} ${" "}${(item.address && item.address[0].state) || ""}`}
+                          {/* {`${(item.address && item.address[0].city) || ""} ${" "}${(item.address && item.address[0].state) || ""}`} */}
 
                         </div>
                       </div>
@@ -126,7 +126,7 @@ const InventoryCard = (props) => {
                         {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                          {(item.address && item.address[0].postalCode) || ""}
+                          {/* {(item.address && item.address[0].postalCode) || ""} */}
 
                         </div>
                       </div>

@@ -1,7 +1,7 @@
 import * as types from "./InventoryActionType";
 
 const initialState = {
-  viewType: "zone",
+  viewType: "repair",
   addInventoryModal: false,
 
   addingInventory: false,
