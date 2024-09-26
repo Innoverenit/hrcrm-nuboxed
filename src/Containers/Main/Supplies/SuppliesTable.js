@@ -168,7 +168,7 @@ function SuppliesTable(props) {
     <>
       <div className=" flex sticky z-auto">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[83%] justify-between  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex max-sm:hidden  w-[81%] justify-between  p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[1rem] max-xl:w-[2rem]"></div>
             <div className="font-bold font-poppins text-xs w-[7.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* HSN */}
@@ -178,7 +178,7 @@ function SuppliesTable(props) {
               Supplies ID 
               {translatedMenuItems[1]}
               </div> */}
-            <div className="font-bold font-poppins text-xs w-[12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Name */}
               {translatedMenuItems[2]}
               </div>
@@ -190,19 +190,19 @@ function SuppliesTable(props) {
               {/* Sub Category */}
               {/* {translatedMenuItems[4]}
               </div> */}
-              <div className="font-bold font-poppins text-xs w-[4.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className="font-bold font-poppins text-xs w-[6.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Brand*/}
               {translatedMenuItems[15]}
               </div>
-              <div className="font-bold font-poppins text-xs w-[4.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className="font-bold font-poppins text-xs w-[6.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Model*/}
               {translatedMenuItems[16]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[5.0rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[6.0rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Attribute */}
               {translatedMenuItems[5]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[7.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[6.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Re-order level */}
               {translatedMenuItems[6]}
               </div>
@@ -281,35 +281,35 @@ function SuppliesTable(props) {
                                 </div>
                               </div>
                          
-                            <div className=" flex  w-[10rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[10rem] max-xl:w-[6.5rem] truncate max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.suppliesName}
                               </div>
                             </div>
                           
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex  w-[11.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[7.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs truncate max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                {item.categoryName} / {item.subCategoryName}
+                                {item.categoryName}  {item.subCategoryName}
                               </div>
                             </div>
 
                             
-                            <div className=" flex  w-[7.12rem] max-xl:w-[6.32rem] max-lg:w-[5.32rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[5.12rem] max-xl:w-[6.32rem] max-lg:w-[5.32rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                {item.attributeName} / {item.subAttributeName}
+                                {item.attributeName}  {item.subAttributeName}
                               </div>
                             </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex w-[4.4rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex w-[8.4rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.reorder}
                               </div>
                             </div>
 
                            
-                            <div className=" flex  w-[4.9rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[5.9rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MultiAvatar
                                   primaryTitle={item.userName}
@@ -320,7 +320,7 @@ function SuppliesTable(props) {
                                 {`${dayjs(item.creationDate).format("ll")}`}
                               </div>
                             </div>
-                            <div className=" flex  w-[4.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialStatusToggle
                                   publishInd={item.publishInd}
@@ -328,7 +328,7 @@ function SuppliesTable(props) {
                                 />
                               </div>
                             </div>
-                            <div className=" flex  w-[4.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between ml-2 max-sm:flex-row ">
+                            <div className=" flex  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between ml-2 max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialRecommendToggle
                                   recomendInd={item.recomendInd}
@@ -336,7 +336,7 @@ function SuppliesTable(props) {
                                 />
                               </div>
                             </div>
-                            <div className=" flex  w-[3.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialFifoToggle
                                   fifoInd={item.fifoInd}
@@ -344,7 +344,7 @@ function SuppliesTable(props) {
                                 />
                               </div>
                             </div>
-                            <div className=" flex w-[3.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialFeatureToggle
                                   featureInd={item.featureInd}
@@ -353,7 +353,7 @@ function SuppliesTable(props) {
                               </div>
                             </div>
 
-                            <div className=" flex w-[3.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <UploadOutlined
                                onClick={() => {
