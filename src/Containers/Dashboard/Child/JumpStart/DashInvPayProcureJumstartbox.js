@@ -16,6 +16,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import CustomerPieChart from "./CustomerPieChart"
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
+import DashProcurePayDrawer from "./DashProcurePayDrawer";
 
 function DashInvPayProcureJumstartbox(props) {
 
@@ -43,6 +44,62 @@ function DashInvPayProcureJumstartbox(props) {
     }
   };
 
+  const [procPaymentCount, setprocPaymentCount] = useState({});
+  const [loading2, setLoading2] = useState(false);
+
+  const fetchProPaymentCount= async () => {
+    try {
+      const response = await axios.get(`${base_url2}/orderPayment/invoiceOutstanding/payment/${props.userId}/${props.timeRangeType}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setprocPaymentCount(response.data);
+        setLoading2(false);
+      } catch (error) {
+        setError(error);
+        setLoading2(false);
+      }
+    };
+
+    const [proPaymentReceivedList, setproPaymentReceivedList] = useState([]);
+      const [loading3, setLoading3] = useState(false);
+
+      const fetchProPaymentReceivedList = async () => {
+          try {
+            const response = await axios.get(`${base_url2}/orderPayment/invoicePaymentReceived/${props.userId}/${props.startDate}/${props.endDate}`,{
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            });
+            setproPaymentReceivedList(response.data);
+            setLoading3(false);
+          } catch (error) {
+            setError(error);
+            setLoading3(false);
+          }
+        };
+        const [proPaymentReconciledList, setproPaymentReconciledList] = useState([]);
+        const [loading4, setLoading4] = useState(false);
+  
+        const fetchProPaymentReconciledList = async () => {
+            try {
+              const response = await axios.get(`${base_url2}/orderPayment/invoicePaymentReconciled/${props.userId}/${props.startDate}/${props.endDate}`,{
+                headers: {
+                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                },
+              });
+              setproPaymentReconciledList(response.data);
+              setLoading4(false);
+            } catch (error) {
+              setError(error);
+              setLoading4(false);
+            }
+          };
+        
+              
+      
+
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -68,6 +125,7 @@ function DashInvPayProcureJumstartbox(props) {
   useEffect(() => {
     // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
     fetchProInvoiceCount();
+    fetchProPaymentCount();
 
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
@@ -79,23 +137,16 @@ function DashInvPayProcureJumstartbox(props) {
   }, [props.orderAddedList]);
 
   useEffect(() => {
-    if (props.orderOpenList) {
-      setModalData(props.orderOpenList);
+    if (proPaymentReceivedList) {
+      setModalData(proPaymentReceivedList);
     }
-  }, [props.orderOpenList]);
+  }, [proPaymentReceivedList]);
 
   useEffect(() => {
-    if (props.orderClosedList) {
-      setModalData(props.orderClosedList);
+    if (proPaymentReconciledList) {
+      setModalData(proPaymentReconciledList);
     }
-  }, [props.orderClosedList]);
-
-  useEffect(() => {
-    if (props.orderCancelList) {
-      setModalData(props.orderCancelList);
-    }
-  }, [props.orderCancelList]);
-
+  }, [proPaymentReconciledList]);
 
 
   const handleClick = (type) => {
@@ -104,13 +155,13 @@ function DashInvPayProcureJumstartbox(props) {
 
     switch(type) {
       case 'Invoice Sent':
-        // props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
+        // fetchProPaymentList(props.userId,props.endDate,props.startDate);
         break;
       case 'Payment Received':
-        // props.getOrderOpenList(props.orgId,props.endDate,props.startDate);
+        fetchProPaymentReceivedList(props.userId,props.endDate,props.startDate);
         break;
       case 'Payment Reconciled':
-        // props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
+        fetchProPaymentReconciledList(props.userId,props.endDate,props.startDate);
         break;
       default:
         break;
@@ -138,8 +189,8 @@ function DashInvPayProcureJumstartbox(props) {
               title= {translatedMenuItems[0]}
               jumpstartClick={()=> handleClick("Invoice Sent")}
               cursorData={"pointer"}
-              value={proInvoiceSent.invoiceSentCount}
-            // isLoading={props.fetchingorderDetails}
+              value={proInvoiceSent.totalInvoice}
+            isLoading={loading}
             />
                          </div>
                      </div>
@@ -159,8 +210,8 @@ function DashInvPayProcureJumstartbox(props) {
              
             jumpstartClick={()=> handleClick("Payment Received")}
               cursorData={"pointer"}
-            // value={ pendingOrder}
-            // isLoading={props.fetchingorderDetails}
+            value={procPaymentCount.paymentReceived}
+            isLoading={loading2}
             />
                            </div>
                        </div>
@@ -179,8 +230,8 @@ function DashInvPayProcureJumstartbox(props) {
                               title= {translatedMenuItems[2]} 
                               jumpstartClick={()=> handleClick("Payment Reconciled")}
                               cursorData={"pointer"}
-                              value={"0"}
-                            // isLoading={props.fetchingorderDetails}
+                              value={procPaymentCount.paymentReconciled}
+                              isLoading={loading2}
                             />
                           </div>
                       </div>      
@@ -194,14 +245,14 @@ function DashInvPayProcureJumstartbox(props) {
         </div>
         </div>
   
-      {/* <DashProcureQuotaDrawer
+      <DashProcurePayDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
  isModalOpen={isModalOpen}
  setIsModalOpen={() => setIsModalOpen(false)}
  modalData={modalData}
  title={currentOrderType}
-      /> */}
+      />
    
     </>
 
