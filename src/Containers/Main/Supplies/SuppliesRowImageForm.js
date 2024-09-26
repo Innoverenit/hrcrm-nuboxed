@@ -32,6 +32,7 @@ const UploadImageRowFormSupplies = (props) => {
 
   // Function to handle the file upload process
   const handleUpload = async () => {
+    console.log(fileList)
     if (fileList.length === 0) {
       message.error('No files selected!');
       return;
@@ -41,6 +42,7 @@ const UploadImageRowFormSupplies = (props) => {
 
     // Append each file to the FormData object
     fileList.forEach((file) => {
+      console.log(file)
       formData.append('files', file.originFileObj);
     });
     // let type="Material"
@@ -48,10 +50,12 @@ const UploadImageRowFormSupplies = (props) => {
     // Make an API call to httpbin.org
     message.info('Uploading files...');
     try {
-      const response = await fetch(`${base_url2}/image/multiple/${props.particularDiscountData.suppliesId}/${"Material"}`, {
+       const response = await fetch(`${base_url2}/image/multiple/${props.particularDiscountData.suppliesId}/${"Material"}`, {
+        //const response = await fetch(`${base_url}/image/multipleFile`, {
         method: 'POST',
         body: formData,
         headers: {
+          // "Content-Type": "multipart/form-data",
             
             Authorization: `Bearer ${token}`, // Add your actual token here
             
