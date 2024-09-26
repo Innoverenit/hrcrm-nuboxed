@@ -37,9 +37,9 @@ function CollectionDistributorTab(props) {
         const itemsToTranslate = [
    
          "204", //  "Receivables",//0
-          "922",  // Archive",//1
+          "1680",  // Reconsile",//1
           "1357" , // "Credit Memo",//2
-                 // close
+               "1367"  // close
    
           
 
@@ -127,7 +127,7 @@ function CollectionDistributorTab(props) {
             tab={
               <>
                 <span className="!text-tab">
-                  <i class="fas fa-archive text-[#605770]"></i>&nbsp;
+                  <i class="fas fa-archive text-[#42bfdd]"></i>&nbsp;
                   {translatedMenuItems[1]}   {/* <FormattedMessage
                     id="app.archive"
                     defaultMessage="Archive"
@@ -162,8 +162,8 @@ function CollectionDistributorTab(props) {
       </span>
       {activeKey === "3" && (
         <>
-          <Tooltip title= "Close">
-          {/* {translatedMenuItems[3]}> */}
+          <Tooltip title= {translatedMenuItems[3]}>
+      
     
             <LockIcon
               onClick={() => setShowCloseCreditMemoList(true)}

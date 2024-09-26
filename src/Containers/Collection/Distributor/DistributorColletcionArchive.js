@@ -28,7 +28,7 @@ function DistributorColletcionArchive(props) {
            "929" ,// "Amount",6
            "86", // "Mode"7
         
-         "77", //  Owner"8
+         "1681", //  Paid by"8
            
         ];
 
