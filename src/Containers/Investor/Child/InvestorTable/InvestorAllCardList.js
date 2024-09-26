@@ -23,7 +23,6 @@ import {
   handleCustomerEmailDrawerModal,
   getCustomerById,
 } from "../../../Customer/CustomerAction";
-import ReactCountryFlag from 'react-country-flag';
 import {getAllInvestorsbyId,handleInvestorNotesDrawerModal,emptyInvestor,
   handleUpdateInvestorModal,
   handleInvestorPulseDrawerModal,
@@ -184,16 +183,16 @@ function InvestorAllCardList(props) {
         {translatedMenuItems[1]} 
         {/* Sector" */}            
                 </div>     
-        <div className=" font-bold font-poppins text-xs w-[5.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># 
+        <div className=" font-bold font-poppins text-xs w-[6.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># 
         {translatedMenuItems[2]}
         {/* "Deals" */}          
                 </div>
-        <div className="font-bold font-poppins text-xs w-[12.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
         {translatedMenuItems[3]}
          {/* "Pipeline Value" */}
              
           </div>
-          <div className=" font-bold font-poppins text-xs w-[6.34rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <div className=" font-bold font-poppins text-xs w-[8.34rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
         {translatedMenuItems[4]} 
         {/* Source */}               
         </div>
@@ -327,8 +326,7 @@ function InvestorAllCardList(props) {
                                     {item.oppNo}
                                     </div>
                                 </div>    
-                                </div>   
-                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">                    
+                                                    
                                 <div className=" flex items-center w-[6.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Pipeline Value */}
                                     {item.totalProposalValue && (
@@ -339,6 +337,8 @@ function InvestorAllCardList(props) {
                                 </div>
                                
                                 </div>
+                              
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center  w-[8.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Source */}
 
@@ -362,7 +362,8 @@ function InvestorAllCardList(props) {
           
             </div>
             )}  
-
+ </div>
+ <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
 <div className=" flex items-center w-[5.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -415,7 +416,7 @@ function InvestorAllCardList(props) {
                    
                   
                                 </div>
-           
+           </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                                 <div class="flex items-center justify-evenly w-wk">            
                                 <div >
@@ -529,12 +530,14 @@ function InvestorAllCardList(props) {
                   </div>
                   </div>
                       </div>   
-                            </div>
+                           
+                            </div> 
                         </div>
                     )
                 })}
      </InfiniteScroll> 
      </div>
+     
        )}     
 <Suspense fallback={<BundleLoader />}>
       <UpdateInvestorModal

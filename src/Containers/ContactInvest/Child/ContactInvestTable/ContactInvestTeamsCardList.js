@@ -164,7 +164,7 @@ if (loading) {
         {translatedMenuItems[0]}  
         {/* name          */}
                 </div>
-        <div className="font-bold font-poppins w-[13.72rem] text-xs md:w-[12.72rem]">
+        <div className="font-bold font-poppins w-[13.72rem] text-xs md:w-[11.72rem]">
         {translatedMenuItems[1]}
         {/* company */}          
                 </div>
@@ -172,7 +172,7 @@ if (loading) {
         {translatedMenuItems[2]} 
         {/* designation */}           
                 </div>
-        <div className="font-bold font-poppins text-xs w-[9.3rem] md:w-[11.3rem]">
+        <div className="font-bold font-poppins text-xs w-[9.3rem] md:w-[8.3rem]">
         {translatedMenuItems[3]} 
         {/* department  */}
                 </div>

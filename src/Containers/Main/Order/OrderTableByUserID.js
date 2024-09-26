@@ -9,6 +9,10 @@ import { DeleteOutlined } from "@ant-design/icons";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import InfiniteScroll from "react-infinite-scroll-component";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import { base_url } from "../../../Config/Auth";
 import { handleOrderDetailsModal, handleLeadModal,
  
    } from "../Account/AccountAction";
@@ -170,7 +174,78 @@ const handleLoadMoreLow = () => {
   }
   }, 100);
 };
+const exportPDFAnnexure = async () => {
+  var doc = new jsPDF();
+  // const {
+  //   userDetails:
+  //   {address},
+  //     imageId
+  // }=props
+ 
+  // let cityd=`${address.city}`
+  // let countryd=`${address.country}`
+  // let addressde=`${address.state}`
+  // let cityde=`${address.street}`
+  // var imageUrl = `${base_url}/image/${imageId || ""}`;
+  var name1 = `East Repair Inc `
+  var name2 =`1912 Harvest Lane New York ,NY 12210`
+  var name3 =`BILL TO`
+  var name4 = `SHIP TO`
+  var name5 = ` ORDER #`
+  var name6 = `ORDER DATE`
+  var name7 = `P.O.#`
+  var name8 = `Order Total`
+  var name9 = `QTY`
+  var name10 = `DESCRIPTION`
+  var name11 = `UNIT PRICE`
+  var name12 = `AMOUNT`
+  var name13= `TERM & CONDITIONS`
+  var name14= `Payement id due within 15 days`
+  var name15= `Please make checks payble to: East repair Inc. `
 
+
+  doc.setFont("Montserrat");
+  doc.setFillColor(62, 115, 185);
+  doc.rect(0, 0, 230, 13, 'F');
+  doc.setFontSize(25);
+  doc.setFontSize(14);
+  doc.setDrawColor(0, 0, 0)
+  // doc.addImage(imageUrl, 'JPEG', 20, 18, 165, 20);
+  doc.text(name1, 8, 25);
+  doc.setFontSize(10);
+  let yPosition = 32;
+//   address.forEach(item => {
+//     doc.text(` ${item.city}  ${item.country}  ${item.state}  ${item.street}`, 8, yPosition);
+//     yPosition += 4
+// });
+  // doc.text(name2, 8, 32);
+  doc.setFontSize(12);
+  doc.text(name3, 8, 50);
+  doc.text(name4, 60, 50);
+  doc.text(name5, 120, 50);
+  doc.text(name6, 120, 58);
+  doc.text(name7, 120, 66);
+  doc.line(8, 80, 200, 80);
+  doc.setFontSize(22);
+  doc.text(name8, 8, 90);
+  doc.line(8, 100, 200, 100);
+  doc.setFontSize(10);
+  doc.text(name9, 8, 110);
+  doc.text(name10, 30, 110);
+  doc.text(name11, 90, 110);
+  doc.text(name12, 140, 110);
+  doc.setFontSize(12);
+  doc.text(name13, 8, 250);
+  doc.setFontSize(9);
+  doc.text(name14, 8, 260);
+  doc.text(name15, 8, 270);
+  //footer
+  doc.setFillColor(62, 115, 185);
+  doc.rect(0, 276, 230, 15, 'F');
+
+  doc.save("Orders.pdf")
+
+}
   return (
     <div>
     {props.orderSearch.length > 0 ? (
@@ -343,7 +418,11 @@ const handleLoadMoreLow = () => {
                   </div>
                   <div class="flex justify-end items-center max-sm:justify-between max-sm:w-wk max-sm:items-center">
                    
-                    
+                  <div class="w-6">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon"/>
+                           </span>
+          </div>            
                       <div class=" text-xs  font-poppins">
                         {item.qcStartInd !== 0 && <Tooltip title={translatedMenuItems[11]}>
                           <PersonAddAlt1
@@ -591,7 +670,11 @@ const handleLoadMoreLow = () => {
                     </div>
                     </div>
                     <div class="flex justify-end max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                    
+                    <div class="w-6">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon"/>
+                           </span>
+          </div>            
                     <div className=" flex    max-sm:flex-row  max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         {item.qcStartInd !== 0 && <Tooltip title= {translatedMenuItems[11]}>

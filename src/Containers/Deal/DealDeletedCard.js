@@ -93,12 +93,12 @@ const DealDeletedCard = (props) => {
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
         <div className=" flex justify-between w-[95%]">
-          <div className=" font-bold font-poppins text-xs w-[15.5rem] md:w-[12.5rem]">
+          <div className=" font-bold font-poppins text-xs w-[15.5rem] md:w-[11.5rem]">
           {translatedMenuItems[0]} </div>
           {/* Name */}
           <div className=" font-bold font-poppins text-xs w-[9.1rem] md:w-[7.1rem]">  {translatedMenuItems[1]} </div>
           {/* investor */}
-          <div className="  font-bold font-poppins text-xs w-[15.2rem] md:w-[8.2rem] ">  {translatedMenuItems[2]}</div>
+          <div className="  font-bold font-poppins text-xs w-[15.2rem] md:w-[7.2rem] ">  {translatedMenuItems[2]}</div>
           {/* Sponsor */}
           <div className=" font-bold font-poppins text-xs w-[11.1rem] md:w-[8.1rem]">  {translatedMenuItems[3]}</div>
           {/* startDate */}

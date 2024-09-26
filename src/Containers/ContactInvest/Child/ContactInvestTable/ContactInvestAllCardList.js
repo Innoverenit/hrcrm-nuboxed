@@ -80,7 +80,8 @@ function ContactInvestAllCardList(props) {
            "1160",//4 Deal
            "526",//5 Deal Value
           "279",// Source
-           "77",//7     Owner          
+           "77",//7     Owner    
+           "1581",//Score      
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -159,17 +160,17 @@ if (loading) {
   return (
     <>
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  justify-between max-sm:hidden w-[90%]  p-1 bg-transparent font-bold sticky z-10">
-      <div className=" flex justify-between w-[93%]">
-        <div className="font-bold font-poppins text-xs md:w-[15.32rem]">
+      <div className=" flex  justify-between max-sm:hidden w-[93%]  p-1 bg-transparent font-bold sticky z-10">
+      <div className=" flex justify-between w-[100%]">
+        <div className="font-bold font-poppins text-xs md:w-[16.32rem]">
         {translatedMenuItems[0]} 
         {/* name */}
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[12.72rem]">
+        <div className="font-bold font-poppins text-xs md:w-[8.72rem]">
         {translatedMenuItems[1]}
         {/* company */}
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[9.6rem] ">
+        <div className="font-bold font-poppins text-xs md:w-[10.6rem] ">
         {translatedMenuItems[2]} 
         {/* designation */}
                 </div>
@@ -177,28 +178,29 @@ if (loading) {
         {translatedMenuItems[3]} 
         {/* department */}
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[6.1rem]"># 
+        <div className="font-bold font-poppins text-xs md:w-[5.1rem]"># 
         {translatedMenuItems[4]} 
         {/* deals */}
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[7.21rem]"> 
+        <div className="font-bold font-poppins text-xs md:w-[9.21rem]"> 
         {translatedMenuItems[5]} 
         {/* dealValue */}
                 </div>
-        <div className="font-bold font-poppins text-xs md:w-[5.2rem]">
+        <div className="font-bold font-poppins text-xs md:w-[7.2rem]">
         {translatedMenuItems[6]}
         {/* source */}
                 </div>
+                {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {/* Score */}
+            {translatedMenuItems[8]}
+            </div>
+            )}
         <div className=" font-bold font-poppins text-xs md:w-[6.8rem]">
         {translatedMenuItems[7]} 
         {/* owner */}
                 </div>
-                {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
-          
-            </div>
-            )}
+           
         {/* <div className="w-12">Action</div> */}
     </div>
       </div>
@@ -319,7 +321,13 @@ if (loading) {
                               <div class="text-xs  font-poppins">
                               </div>
                           </div>
-                         
+                          {/* Score */}
+                          {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+          {item.noteScoreInd}
+          
+            </div>
+            )}
                          
         <div className="flex   md:w-[3.2rem] items-center  max-sm:flex-row w-full max-sm:justify-between">       
         <Tooltip title={item.ownerName}>
@@ -335,12 +343,7 @@ if (loading) {
 
              </div>
              </div>
-             {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-          {item.noteScoreInd}
-          
-            </div>
-            )}
+           
              <div class=" flex justify-evenly items-center w-[7rem] max-sm:flex   max-sm:w-full">   
              <Tooltip title="Pulse">
  <MonitorHeartIcon
