@@ -257,8 +257,17 @@ const PaymentSwitches = (props) => {
   };
 
   return (
+    <>
+    <div className="border-4 border-black ">
+    <div className="flex w-wk border-b-4 border-black  p-2">
+    <div className="text-lg font-semibold w-1/2 flex justify-center">B2B</div>
+    <div className="text-lg font-semibold w-1/2 flex justify-center">B2C</div>
+  </div>
+  <div className="flex">
+   
+    <div className="w-1/2 p-4">
     <Space direction="vertical">
-      <div>
+    <div className='flex justify-between'>
         Credit
         <Popconfirm
           title={`Are you sure you want to ${
@@ -277,7 +286,7 @@ const PaymentSwitches = (props) => {
         </Popconfirm>
       </div>
 
-      <div>
+      <div className='flex justify-between'>
         Electronic Transfer
         <Popconfirm
           title={`Are you sure you want to ${
@@ -296,7 +305,7 @@ const PaymentSwitches = (props) => {
         </Popconfirm>
       </div>
 
-      <div>
+      <div className='flex justify-between'>
         Pay by Cash
         <Popconfirm
           title={`Are you sure you want to ${
@@ -315,7 +324,7 @@ const PaymentSwitches = (props) => {
         </Popconfirm>
       </div>
 
-      <div>
+      <div className='flex justify-between'>
         Pay by Check
         <Popconfirm
           title={`Are you sure you want to ${
@@ -334,7 +343,7 @@ const PaymentSwitches = (props) => {
         </Popconfirm>
       </div>
 
-      <div>
+      <div className='flex justify-between'>
         Razorpay
         <Popconfirm
           title={`Are you sure you want to ${
@@ -365,7 +374,7 @@ const PaymentSwitches = (props) => {
         )}
       </div>
 
-      <div>
+      <div className='flex justify-between'>
         Stripe
         <Popconfirm
           title={`Are you sure you want to ${
@@ -397,6 +406,153 @@ const PaymentSwitches = (props) => {
         )}
       </div>
     </Space>
+    </div>
+    <div className="border-2 border-black"></div>
+    <div className="w-1/2 p-4">
+    <Space direction="vertical">
+      <div className='flex justify-between'>
+        Credit
+        <Popconfirm
+          title={`Are you sure you want to ${
+            paymentMethods.creditInd ? 'disable' : 'enable'
+          } Credit?`}
+          onConfirm={() => confirmChange('creditInd', !paymentMethods.creditInd)}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Switch
+            checkedChildren="Yes"
+            unCheckedChildren="No"
+            checked={paymentMethods.creditInd}
+            onClick={(checked, event) => event.preventDefault()}
+          />
+        </Popconfirm>
+      </div>
+
+      <div className='flex justify-between'>
+        Electronic Transfer
+        <Popconfirm
+          title={`Are you sure you want to ${
+            paymentMethods.elecFormTransInd ? 'disable' : 'enable'
+          } Electronic Form Transfer?`}
+          onConfirm={() => confirmChange('elecFormTransInd', !paymentMethods.elecFormTransInd)}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Switch
+            checkedChildren="Yes"
+            unCheckedChildren="No"
+            checked={paymentMethods.elecFormTransInd}
+            onClick={(checked, event) => event.preventDefault()}
+          />
+        </Popconfirm>
+      </div>
+
+      <div className='flex justify-between'>
+        Pay by Cash
+        <Popconfirm
+          title={`Are you sure you want to ${
+            paymentMethods.payByCashInd ? 'disable' : 'enable'
+          } Pay by Cash?`}
+          onConfirm={() => confirmChange('payByCashInd', !paymentMethods.payByCashInd)}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Switch
+            checkedChildren="Yes"
+            unCheckedChildren="No"
+            checked={paymentMethods.payByCashInd}
+            onClick={(checked, event) => event.preventDefault()}
+          />
+        </Popconfirm>
+      </div>
+
+      <div className='flex justify-between'>
+        Pay by Check
+        <Popconfirm
+          title={`Are you sure you want to ${
+            paymentMethods.payByCheckInd ? 'disable' : 'enable'
+          } Pay by Check?`}
+          onConfirm={() => confirmChange('payByCheckInd', !paymentMethods.payByCheckInd)}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Switch
+            checkedChildren="Yes"
+            unCheckedChildren="No"
+            checked={paymentMethods.payByCheckInd}
+            onClick={(checked, event) => event.preventDefault()}
+          />
+        </Popconfirm>
+      </div>
+
+      <div className='flex justify-between'>
+        Razorpay
+        <Popconfirm
+          title={`Are you sure you want to ${
+            paymentMethods.razorpayInd ? 'disable' : 'enable'
+          } Razorpay?`}
+          onConfirm={() => confirmChange('razorpayInd', !paymentMethods.razorpayInd)}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Switch
+            checkedChildren="Yes"
+            unCheckedChildren="No"
+            checked={paymentMethods.razorpayInd}
+            onClick={(checked, event) => event.preventDefault()}
+          />
+        </Popconfirm>
+        {paymentMethods.razorpayInd && (
+          <div style={{ marginTop: '8px' }}>
+            <Input
+              placeholder="Enter Razorpay value"
+              value={inputValues.razorpay}
+              onChange={(e) => handleInputChange(e, 'razorpay')}
+            />
+            <Button type="primary" onClick={() => handleSubmit('razorpay')} style={{ marginTop: '8px' }}>
+              Submit
+            </Button>
+          </div>
+        )}
+      </div>
+
+      <div className='flex justify-between'>
+        Stripe
+        <Popconfirm
+          title={`Are you sure you want to ${
+            paymentMethods.stripeInd ? 'disable' : 'enable'
+          } Stripe?`}
+          onConfirm={() => confirmChange('stripeInd', !paymentMethods.stripeInd)}
+          okText="Yes"
+          cancelText="No"
+        >
+          <Switch
+            checkedChildren="Yes"
+            unCheckedChildren="No"
+            checked={paymentMethods.stripeInd}
+            onClick={(checked, event) => event.preventDefault()}
+          />
+        </Popconfirm>
+        {paymentMethods.stripeInd && (
+          <div style={{ marginTop: '8px' }}>
+            <Input
+              placeholder="Enter Stripe value"
+              style={{width:"59em"}}
+              value={inputValues.stripe}
+              onChange={(e) => handleInputChange(e, 'stripe')}
+            />
+            <Button type="primary" onClick={() => handleSubmit('stripe')} style={{ marginTop: '8px' }}>
+              Submit
+            </Button>
+          </div>
+        )}
+      </div>
+    </Space>
+    </div>
+    </div>
+    </div>
+    </>
   );
 };
 
