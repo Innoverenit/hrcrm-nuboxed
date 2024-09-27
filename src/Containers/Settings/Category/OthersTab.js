@@ -22,6 +22,7 @@ import KpiMasterList from "./KpiMasterList/KpiMasterList";
 import IndustryTab from "./Industry/IndustryTab";
 import Machinary from "./Machinary/Machinary";
 import WorkFlowC from "./WorkFlowC";
+import UOM from "./UOM";
 
 const Documents = lazy(() =>
   import("../Documents/Documents")
@@ -81,7 +82,9 @@ class OthersTab extends Component {
               return     <Machinary />;
               case "12":
                 return     <WorkFlowC />;
-        
+                case "13":
+                  return     <UOM />;
+          
       default:
         return null;
     }
@@ -299,6 +302,24 @@ class OthersTab extends Component {
                 >
          
                 </TabPane>
+                <TabPane
+                  tab={
+                    <>
+                      <MonetizationOnIcon className="!text-icon"/>
+                      <Badge
+                count={this.props.UOMCount.UOMCount}
+                overflowCount={999}
+              >
+                      <span class="!text-tab ml-1 text-sm" >
+                UOM
+                      </span>
+                      </Badge>
+                    </>
+                  }
+                  key="13"
+                >
+         
+                </TabPane>
             </StyledTabs>
             <Suspense fallback={<div className="flex justify-center">Loading...</div>}>
               {this.renderTabContent(activeKey)}
@@ -311,11 +332,12 @@ class OthersTab extends Component {
   }
 }
 const mapStateToProps = ({
-  region,auth,serviceLines,industry,masterKpi,currency,countrys,education,idProof,expenses,document,machinary
+  region,auth,settings,serviceLines,industry,masterKpi,currency,countrys,education,idProof,expenses,document,machinary
 }
 ) => ({
   industryCount:industry.industryCount,
   machinaryCount:machinary.machinaryCount,
+  UOMCount:settings.UOMCount,
   documentCount:document.documentCount,
   masterKpiCount:masterKpi.masterKpiCount,
   currencyCount:currency.currencyCount,

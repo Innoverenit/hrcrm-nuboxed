@@ -7,14 +7,18 @@ import {
     handlegrnlistmodal,
     getRoomRackByLocId, getRackList
 } from "./InventoryAction";
+import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
+import { TerminalSharp } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button } from "antd";
 import ReceivedDetailModal from "./Child/InventoryDetails/InventoryMaterialTab/ReceivedDetailModal";
 import GrnListOfPOModal from "./Child/InventoryDetails/InventoryMaterialTab/GrnListOfPOModal";
+import ReceivedDetailModalOut from "./ReceivedDetailModalOut";
+import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal";
 
 const { Option } = Select;
 
@@ -78,9 +82,9 @@ const MaterialReceivedTableOut = (props) => {
                         <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
                         <div className=" w-[13.52rem]">
                             {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
-                            {props.translatedMenuItems[11]}
+                            {props.translatedMenuItems[21]}
                         </div>
-                        <div className=" w-[11.122rem]">        {props.translatedMenuItems[12]} 
+                        <div className=" w-[11.122rem]">        {props.translatedMenuItems[22]} 
                             {/* Supplier */}
 
                         </div>
@@ -92,7 +96,7 @@ const MaterialReceivedTableOut = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]} ...</div> : null}
-                        height={"67vh"}
+                        height={"78vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
                         {props.materialReceiveData.map((item) => {
@@ -111,13 +115,14 @@ const MaterialReceivedTableOut = (props) => {
                                                             props.handleMaterialReceived(true);
                                                         }}
                                                     >{item.newPoNumber}</div>
-                                                    {date === currentdate ? (
-                                                        <div class="text-xs font-poppins font-bold text-[tomato]">
-                                                          {props.translatedMenuItems[13]}  
+                                                    
+                                                </div>
+                                                {date === currentdate ? (
+                                                        <div class="text-xs font-poppins font-bold text-[tomato] ml-1">
+                                                          {props.translatedMenuItems[4]}  
                                                           {/* New */}
                                                         </div>
                                                     ) : null}
-                                                </div>
                                             </div>
                                         </div>
                                         <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -156,7 +161,7 @@ const MaterialReceivedTableOut = (props) => {
                                                     }}
                                                     type="primary"
                                                 >
-                                                    {/* GRN To Stock */}    GRN {props.translatedMenuItems[14]}  
+                                                    {/* GRN To Stock */}    GRN {props.translatedMenuItems[23]}  
                                                 </Button>
                                                 {/* <ListAltOutlined
                                                     onClick={() => {
@@ -165,8 +170,20 @@ const MaterialReceivedTableOut = (props) => {
                                                     }}
                                                 /> */}
                                                 {/* </Tooltip> */}
+                                                
                                             </div>
-
+                                            <div className=" flex ml-4  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
+                                                            <Tooltip title="Terms and conditions">
+                                                                <TerminalSharp className="!text-icon text-[#c3b20b]"
+                                                                    onClick={() => {
+                                                                        handleRow(item)
+                                                                        props.handleTermsnConditionModal(true)
+                                                                    }}
+                                                                />
+                                                            </Tooltip>
+                                                        </div>
+                                                    </div>
                                         </div>
                                     </div>
 
@@ -176,11 +193,18 @@ const MaterialReceivedTableOut = (props) => {
                     </InfiniteScroll>
                 </div>
             </div>
-            <ReceivedDetailModal
+            <ReceivedDetailModalOut
                 row={row}
                 handleMaterialReceived={props.handleMaterialReceived}
                 addMaterialReceived={props.addMaterialReceived}
                 translatedMenuItems={props.translatedMenuItems}
+            />
+             <TermsnConditionModal
+                rowData={row}
+                addTermsnCondition={props.addTermsnCondition}
+                handleTermsnConditionModal={props.handleTermsnConditionModal}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
             />
             <GrnListOfPOModal
                 handlegrnlistmodal={props.handlegrnlistmodal}
@@ -193,10 +217,11 @@ const MaterialReceivedTableOut = (props) => {
 }
 
 
-const mapStateToProps = ({ inventory, auth }) => ({
+const mapStateToProps = ({ inventory, auth,suppliers }) => ({
     userId: auth.userDetails.userId,
     locationId: auth.userDetails.locationId,
     orgId: auth.userDetails.organizationId,
+    addTermsnCondition: suppliers.addTermsnCondition,
     // locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
     materialReceiveData: inventory.materialReceiveData,
     addMaterialReceived: inventory.addMaterialReceived,
@@ -214,6 +239,7 @@ const mapDispatchToProps = (dispatch) =>
             handlegrnlistmodal,
             getRackList,
             getRoomRackByLocId,
+            handleTermsnConditionModal
         },
         dispatch
     );

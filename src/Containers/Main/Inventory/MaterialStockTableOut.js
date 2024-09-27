@@ -93,16 +93,16 @@ const MaterialStockTableOut = (props) => {
                    {/* po # */}
                         <div className=" md:w-[9.21rem]">
                    {/* name */}
-                            {props.translatedMenuItems[15]}
+                            {props.translatedMenuItems[0]}
                             </div>
                         <div className=" md:w-[3.82rem]">
                             {/* Category */}
-                    {props.translatedMenuItems[16]}
+                    {props.translatedMenuItems[24]}
                             </div>
                     {/* price */}
                         <div className=" md:w-[4.25rem]">
                             {/* attribute */}
-                               {props.translatedMenuItems[17]}
+                               {props.translatedMenuItems[25]}
                             </div>
                         <div className=" md:w-[4.25rem]">
                        {/* cell  {props.translatedMenuItems[7]} */}
@@ -120,7 +120,7 @@ const MaterialStockTableOut = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialUnitsData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
-                        height={"67vh"}
+                        height={"75vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
                         {props.materialUnitsData.map((item, index) => {

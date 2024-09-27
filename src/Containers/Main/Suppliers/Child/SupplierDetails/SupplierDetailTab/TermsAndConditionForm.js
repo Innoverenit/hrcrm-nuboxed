@@ -43,7 +43,7 @@ function TermsAndConditionForm(props) {
     useEffect(() => {
         props.getTermsnConditionOfPo(props.poSupplierDetailsId)
     }, [])
-
+console.log(props.termsnconditionofpo)
     return (
         <>
             <Formik
@@ -61,7 +61,7 @@ function TermsAndConditionForm(props) {
                     props.addTermsnCondition({
                         ...values,
                         userId: props.userId,
-                        poSupplierDetailsId: props.poSupplierDetailsId
+                        poSupplierDetailsId: props.poSupplierDetailsId,
                     },
                         props.poSupplierDetailsId
                     );

@@ -91,7 +91,7 @@ const MaterialUnitsDataOut = (props) => {
                         <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
                         <div className=" md:w-[9.21rem]">
                             {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
-                            {props.translatedMenuItems[15]}
+                            {props.translatedMenuItems[0]}
                             </div>
                         {/* <div className=" md:w-[3.82rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div> */}
                         {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
@@ -100,17 +100,17 @@ const MaterialUnitsDataOut = (props) => {
 
                             </div>
                         <div className=" md:w-[6.10rem]">
-                            {/* <FormattedMessage id="app.received" defaultMessage="Receive" /> */}  {props.translatedMenuItems[5]}
+                            {/* <FormattedMessage id="app.received" defaultMessage="Receive" /> */}  {props.translatedMenuItems[17]}
 
                             </div>
                         <div className=" md:w-[4.42rem]">
-                            {/* <FormattedMessage id="app.damaged" defaultMessage="Damaged" /> */}  {props.translatedMenuItems[20]}
+                            {/* <FormattedMessage id="app.damaged" defaultMessage="Damaged" /> */}  {props.translatedMenuItems[27]}
                         </div>
                         <div className=" md:w-[5.01rem]">
                             {/* <FormattedMessage id="app.balance" defaultMessage="Balance" /> */}  {props.translatedMenuItems[31]}
                         </div>
                         <div className=" md:w-[5.01rem]">
-                            {/* <FormattedMessage id="app.remark" defaultMessage="Remark" /> */}  {props.translatedMenuItems[21]}
+                            {/* <FormattedMessage id="app.remark" defaultMessage="Remark" /> */}  {props.translatedMenuItems[28]}
                             </div>
                         <div className=" md:w-[4.51rem]">
                             {/* <FormattedMessage id="app.room" defaultMessage="Zone" /> */}  {props.translatedMenuItems[32]}

@@ -56,7 +56,7 @@ class Suppliesform extends Component {
         "818",//9
         "147",//10
         "104",//11
-        "1241",//Weight
+        "818",//Weight
         "1242",//Length
         "1243",//Width
         "1244",//Height
@@ -215,16 +215,7 @@ class Suppliesform extends Component {
                       />
                     
                   <div class="flex justify-between">
-                    <div class="w-[47%]">
-                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[12]}</div>
-                      <Field
-                        name="weight"
-                        isColumn
-                        width={"100%"}
-                        inlineLabel
-                        component={InputComponent}
-                      />
-                    </div>
+                   
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[13]}</div>
                       <Field
@@ -239,8 +230,6 @@ class Suppliesform extends Component {
                         }}
                       />
                     </div>
-                  </div>
-                  <div class="flex justify-between">
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[14]}</div>
                       <Field
@@ -251,6 +240,9 @@ class Suppliesform extends Component {
                         component={InputComponent}
                       />
                     </div>
+                  </div>
+                  <div class="flex justify-between">
+                   
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[15]}</div>
                       <Field
@@ -262,6 +254,16 @@ class Suppliesform extends Component {
                         style={{
                           width: "100%",
                         }}
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
+                      <Field
+                        name="weight"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
                       />
                     </div>
                   </div>

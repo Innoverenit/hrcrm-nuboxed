@@ -6693,3 +6693,182 @@ export const linkClubToggle = ( data,clubId) => (dispatch, getState) => {
       });
     })
 };
+
+export const getUOM = () => (dispatch) => {
+  dispatch({
+    type: types.GET_UOM_REQUEST,
+  });
+  axios
+  .get(`${base_url}/uom/all`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_UOM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_UOM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+// /**
+//  * add a new sector 
+//  */
+export const addUOM = (sectors,cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_UOM_REQUEST,
+  });
+  axios
+    .post(`${base_url}/uom/saveUOM`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Machinary added Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        });
+      }
+      dispatch(getUOMCount());
+      console.log(res);
+      dispatch({
+        type: types.ADD_UOM_SUCCESS,
+        payload: { ...sectors, },
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_UOM_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};
+
+/**
+* remove a new sector
+*/
+export const removeUOM = ( uomId,orgId) => (dispatch) => {
+  // console.log(typeId);
+  dispatch({
+    type: types.REMOVE_UOM_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/uom/deleteUom/${uomId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getUOMCount());
+      Swal.fire({
+        icon: 'success',
+        title: 'Machinary deleted Successfully!',
+      })
+      // message.success("MACHINARY has been deleted successfully!");
+      console.log(res);
+      dispatch({
+        type: types.REMOVE_UOM_SUCCESS,
+        payload:uomId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_UOM_FAILURE,
+      });
+    });
+};
+
+/**
+*update label of sector
+*/
+export const updateUOM = ( data,uomId,cb) => (dispatch) => {
+  
+  dispatch({
+    type: types.UPDATE_UOM_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/uom/uomId/${uomId}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Machinary updated Successfully!',
+      })
+      // message.success("MACHINARY has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_UOM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_UOM_FAILURE,
+      });
+    });
+};
+
+
+
+export const getUOMCount = () => (dispatch) => {
+  dispatch({
+    type: types.GET_UOM_COUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/uom/all/count`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_UOM_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_UOM_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+

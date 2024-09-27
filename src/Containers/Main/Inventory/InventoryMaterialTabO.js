@@ -4,7 +4,9 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { withRouter } from "react-router";
+import TokenIcon from '@mui/icons-material/Token';
 import DeleteIcon from '@mui/icons-material/Delete';
+import WarehouseIcon from '@mui/icons-material/Warehouse';
 import MaterialReceivedTableOut from "./MaterialReceivedTableOut";
 import MaterialStockTableOut from "./MaterialStockTableOut";
 import MaterialUnitsDataOut from "./MaterialUnitsDataOut";
@@ -66,6 +68,8 @@ class InventoryMaterialTabO extends PureComponent {
                             {" "}
                             <Suspense fallback={"Loading..."}>
                                 <MaterialReceivedTableOut  
+                                translateText={this.props.translateText}
+                                selectedLanguage={this.props.selectedLanguage}
                     translatedMenuItems={this.props.translatedMenuItems}
                     locationDetailsId={this.props.user.locationId}
              />
@@ -75,7 +79,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick}>
-                                        <i class="far fa-share-square"></i>&nbsp;
+                                    <i class="far fa-share-square"/>&nbsp;
                                         {/* Stock */} {this.props.translatedMenuItems[19]}
 
                                     </span>
@@ -91,7 +95,7 @@ class InventoryMaterialTabO extends PureComponent {
                           }}
                           size="0.875em"                         
                           >
-                          <DeleteIcon
+                          <WarehouseIcon
                             style={{ color: "red", fontSize: "1rem" }}
                           
                           />
@@ -118,6 +122,8 @@ class InventoryMaterialTabO extends PureComponent {
                                   {" "}
                                   <MaterialStockTableOut
                                    locationDetailsId={this.props.user.locationId}
+                                   selectedLanguage={this.props.selectedLanguage}
+                                   translateText={this.props.translateText}
                                 inventory={this.props.inventory}
                                 translatedMenuItems={this.props.translatedMenuItems}
                                 />
@@ -125,12 +131,12 @@ class InventoryMaterialTabO extends PureComponent {
                                 
                               )}
                         </TabPane>
-{/* {this.props.productionInd===true&&this.props.erpInd===true&&( */}
+{this.props.user.moduleMapper.productionInd===true && (
                         <TabPane
                             tab={
                                 <>
                                     <span>
-                                        <i class="far fa-share-square"></i>&nbsp;
+                                        <TokenIcon/>&nbsp;
                                         {/* Cell */}
                                         {this.props.translatedMenuItems[20]}
                                     </span>
@@ -148,7 +154,7 @@ class InventoryMaterialTabO extends PureComponent {
                                 />
                             </Suspense> 
                         </TabPane>
-    {/* )} */}
+    )}
                     </StyledTabs>
                 </TabsWrapper>
 
