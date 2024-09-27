@@ -128,10 +128,8 @@ function EventCardList (props) {
                 /> */}
                 </div>
         <div className=" w-[9.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] ">
-        {translatedMenuItems[2]} {/* <FormattedMessage
-                  id="app.subject"
-                  defaultMessage="subject"
-                /> */}
+        {translatedMenuItems[2]} 
+        {/* start */}
                 </div>
         <div className=" w-[13.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
         {translatedMenuItems[3]} {/* <FormattedMessage
@@ -235,7 +233,7 @@ function EventCardList (props) {
                                 <div className=" flex w-[9.32rem] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
                                    
                                 </div>
-                                <div className=" flex  w-[3.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[9.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
                                     <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
@@ -293,12 +291,10 @@ function EventCardList (props) {
              {/* </Tooltip> */}
                                     </div>
                                 </div>
-                                <div className="flex w-[6.12rem] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">
-                       
-                       {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Owner</div> */}
 
-                   <div class="max-sm:flex justify-end">
-              {/* <Tooltip title={item.woner}> */}
+                                <div className="flex w-[6.12rem] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">                                
+                   {/* <div class="max-sm:flex justify-end">
+              owner
             <SubTitle>
               <MultiAvatar
               primaryTitle={item.woner}
@@ -308,8 +304,8 @@ function EventCardList (props) {
                 imgHeight={"1.8rem"}
               />
             </SubTitle>
-          {/* </Tooltip> */}
-          </div>
+        
+          </div> */}
                    </div>
                                </div>
                                <div class="flex  w-wk justify-end max-sm:w-wk items-center max-sm:justify-evenly"> 

@@ -144,19 +144,19 @@ const TaskApproveTable = (props) => {
       
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-          <div className="font-bold font-poppins text-xs w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]">{translatedMenuItems[0]} 
+          <div className="font-bold font-poppins text-xs w-[12.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]">{translatedMenuItems[0]} 
            {/* type */}
                     </div>
-        <div className="font-bold font-poppins text-xs w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]">{translatedMenuItems[1]} 
+        <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]">{translatedMenuItems[1]} 
                         {/* name" */}
                       </div>
-             <div className="font-bold font-poppins text-xs w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] ">{translatedMenuItems[2]} 
+             <div className="font-bold font-poppins text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] ">{translatedMenuItems[2]} 
               {/* submittedby */}
                         </div>
-        <div className="font-bold font-poppins text-xs w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]">{translatedMenuItems[3]} 
+        <div className="font-bold font-poppins text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]">{translatedMenuItems[3]} 
        {/* Ageing */}
                         </div>
-                         <div className="font-bold font-poppins text-xs w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">{translatedMenuItems[4]} 
+                         <div className="font-bold font-poppins text-xs w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">{translatedMenuItems[4]} 
                           {/* Info */}
                           </div>
         <div className="font-bold font-poppins text-xs w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]">
@@ -244,7 +244,7 @@ const TaskApproveTable = (props) => {
                    
                         
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex  w-[5.35rem] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex  w-[7.35rem] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-poppins max-sm:hidden">Submitted By</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <MultiAvatar
@@ -266,7 +266,7 @@ const TaskApproveTable = (props) => {
                    </div>
                              </div>  
                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                     <div className="flex  justify-between w-[16.6rem] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                     <div className="flex  justify-between text-xs w-[17.6rem] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
                                   {item.customerName ? (
                                       <>{item.customerName}</>
                                     ) : null} 

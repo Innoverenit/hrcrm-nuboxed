@@ -10,7 +10,6 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url } from "../../../Config/Auth";
 import {
     getProductionAllOrder,
     handleNotesModalInOrder,
@@ -28,6 +27,33 @@ function ProductionAllCardList(props) {
     const [page, setPage] = useState(0);
     const [show, setshow] = useState(false);
     const [orderId, setorderId] = useState("");
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true); 
+
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+            '660', // 0  Order#
+            '679', // 1  Created(Name ANd Date)
+            '142', // 2Status
+            
+           
+   ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+
     useEffect(() => {
       props.getProductionAllOrder(props.orgId, page);
       setPage(page + 1);
@@ -139,26 +165,19 @@ console.log(page)
     <>
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[4.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-              <FormattedMessage
-                id="app.order#"
-                defaultMessage="Order#"
-              />
+          <div className=" flex max-sm:hidden  w-[100%] font-poppins text-xs   justify-between p-1 bg-transparent font-bold sticky  z-10">
+            <div className=" w-[8.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+                {/* Order */}
+                {translatedMenuItems[0]}
             </div>
-            <div className=" w-[9.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-              <FormattedMessage
-                id="app.created(name & date)"
-                defaultMessage="Created(Name & Date)"
-              />
+            <div className=" w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+               {/* Created(Name & Date) */}
+               {translatedMenuItems[1]}
 
             </div>
-            <div className=" w-[23.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-              <FormattedMessage
-                id="app.status"
-                defaultMessage="Status"
-              />
-
+            <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+                {/* Status */}
+           {translatedMenuItems[2]}
             </div>
             <div className="w-[3.8rem]"></div>
 
@@ -256,7 +275,7 @@ console.log(page)
                   <div class=" flex">
                   <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div>  
                     <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -279,27 +298,11 @@ console.log(page)
 
                         </div>
 
-
-                        {/* <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <div class=" text-xs  font-poppins">
-                            <Tooltip title="Status">
-                              <EventRepeatIcon
-                                style={{ cursor: "pointer", fontSize: "1rem", }}
-                                onClick={() => {
-                                  props.handleStatusOfOrder(true);
-                                  handleSetParticularOrderData(item);
-                                }}
-                              />
-                            </Tooltip>
-                          </div>
-                        
-
-
-                        </div> */}
+            
                         <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title="Collection">
-                              <PaidIcon className=" cursor-pointer !text-icon"
+                              <PaidIcon className=" cursor-pointer !text-icon text-[#e5625e]"
                               
                                 onClick={() => {
                                   props.handlePaidModal(true);

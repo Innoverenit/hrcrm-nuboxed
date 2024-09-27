@@ -9,7 +9,6 @@ import {
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url } from "../../../Config/Auth";
 import dayjs from "dayjs";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import EcomStatusCardDrawer from "./EcomStatusCardDrawer";
@@ -299,7 +298,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center"> 
                         <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div>                                                 
                         <div>                       

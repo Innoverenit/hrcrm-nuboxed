@@ -25,7 +25,31 @@ const EventActionLeft = (props) => {
     const [currentData, setCurrentData] = useState("");
     const [pageNo, setPage] = useState(0);
     const [searchOnEnter, setSearchOnEnter] = useState(false);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [         
+              // "",//0 Table View
+              "228",//1 All
+         
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
     const handleChange = (e) => {
       setCurrentData(e.target.value);
   
@@ -97,6 +121,7 @@ const EventActionLeft = (props) => {
       <div class=" flex  items-center">
         <Tooltip
           title="Table View"
+          // {translatedMenuItems[0]} 
         >
           <Badge
             size="small"
@@ -121,7 +146,9 @@ const EventActionLeft = (props) => {
         </Tooltip>
 
         <Tooltip
-        title="All"
+        title= "All"
+       
+       
       >
         <Badge
           size="small"

@@ -80,7 +80,10 @@ class Order extends Component {
               selectedLanguage={this.props.selectedLanguage}
               translateText={this.props.translateText} />
               ) : viewType === "complete" ? (
-                <ProductionHistoryCardList />
+                <ProductionHistoryCardList
+                selectedLanguage={this.props.selectedLanguage}
+                translateText={this.props.translateText}
+                />
                 ) : viewType === "productionAll" ? (
                   <ProductionAllCardList 
                   selectedLanguage={this.props.selectedLanguage}
