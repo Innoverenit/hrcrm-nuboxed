@@ -27,10 +27,8 @@ function OrderOpenList(props) {
           <div className=" md:w-[12rem]">Order ID</div>
           <div className=" md:w-[10.4rem]">Customer</div>
           <div className=" md:w-[12.01rem] ">Contact</div>
-          <div className="md:w-[8.12rem]">#Units</div>
-          <div className="md:w-[4rem]">Owner</div>
-          <div className="md:w-[7.1rem]">Creation Date</div>
-          <div className="md:w-[37rem]">Revised</div>
+          <div className="md:w-[7.1rem]">Created</div>
+          <div className="md:w-[37rem]">Location</div>
 
 
         </div>
