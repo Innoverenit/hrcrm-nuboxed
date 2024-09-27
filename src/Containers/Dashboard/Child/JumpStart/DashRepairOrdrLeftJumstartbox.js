@@ -35,7 +35,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
 
     const fetchOrderInward = async () => {
       try {
-        const response = await axios.get(`${base_url2}/order/orderInward/${props.userId}`,{
+        const response = await axios.get(`${base_url2}/phoneOrder/orderInward/${props.userId}/${props.startDate}/${props.endDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -52,7 +52,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
   const [loading3, setLoading3] = useState(false);
     const fetchQcApproved = async () => {
       try {
-        const response = await axios.get(`${base_url2}/order/QcApproved/${props.userId}`,{
+        const response = await axios.get(`${base_url2}/phoneOrder/qcApproved/${props.userId}/${props.startDate}/${props.endDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -70,7 +70,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
 
     const fetchRepairApproved = async () => {
       try {
-        const response = await axios.get(`${base_url2}/order/RepairApproved/${props.userId}`,{
+        const response = await axios.get(`${base_url2}/phoneOrder/repairApproved/${props.userId}/${props.startDate}/${props.endDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -97,6 +97,8 @@ function DashRepairOrdrLeftJumstartbox(props) {
         setLoading(false);
       }
     };
+
+    
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -125,19 +127,15 @@ function DashRepairOrdrLeftJumstartbox(props) {
 
   useEffect(() => {
     props.getJumpOrderDetail(props.timeRangeType, "Catalog")
-    fetchDasRepairCount()
-    fetchQcApproved();
-    fetchOrderInward();
-    fetchRepairApproved();
-
+    fetchDasRepairCount();
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 
   useEffect(() => {
-    if (props.orderAddedList) {
-      setModalData(props.orderAddedList);
+    if (OrderInward) {
+      setModalData(OrderInward);
     }
-  }, [props.orderAddedList]);
+  }, [OrderInward]);
 
   useEffect(() => {
     if (props.orderOpenList) {
@@ -146,16 +144,16 @@ function DashRepairOrdrLeftJumstartbox(props) {
   }, [props.orderOpenList]);
 
   useEffect(() => {
-    if (props.orderClosedList) {
-      setModalData(props.orderClosedList);
+    if (QcApproved) {
+      setModalData(QcApproved);
     }
-  }, [props.orderClosedList]);
+  }, [QcApproved]);
 
   useEffect(() => {
-    if (props.orderCancelList) {
-      setModalData(props.orderCancelList);
+    if (RepairApproved) {
+      setModalData(RepairApproved);
     }
-  }, [props.orderCancelList]);
+  }, [RepairApproved]);
 
 
 
@@ -165,16 +163,16 @@ function DashRepairOrdrLeftJumstartbox(props) {
 
     switch(type) {
       case 'Inward':
-        props.getOrderAddedList(props.userId,props.endDate,props.startDate);
+        fetchOrderInward();
         break;
       case 'Submitted':
         props.getOrderOpenList(props.userId,props.endDate,props.startDate);
         break;
       case 'QcApproved':
-        props.getOrderClosedList(props.userId,props.endDate,props.startDate);
+        fetchQcApproved();
         break;
       case 'RepairApproved':
-        props.getOrderCancelList(props.userId,props.endDate,props.startDate);
+        fetchRepairApproved();
         break;
       default:
         break;
