@@ -196,12 +196,12 @@ useEffect(() => {
 
       <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">  
+          <div className=" flex justify-between max-sm:hidden w-[94%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">  
           <div className="w-[7.01rem]"></div>        
             <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
             {translatedMenuItems[0]} {/* Article # */}
               </div>
-            <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
+            <div className=" w-[10.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
             {translatedMenuItems[1]}  {/* Name */}
               </div>
             <div className=" w-[9.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
@@ -214,23 +214,23 @@ useEffect(() => {
             <div className=" w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">
             {translatedMenuItems[4]}{/* Brand */}
               </div>
-            <div className=" w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
+            <div className=" w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
             {translatedMenuItems[5]} {/* Model */}
             
             </div>
-            <div className=" w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            <div className=" w-[10.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[6]}  {/* Website */}
               </div>
-              <div className=" w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              <div className=" w-[10.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[7]}  
               </div>
-              <div className=" w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              <div className=" w-[10.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[8]}  
               </div>
-              <div className=" w-[12.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              <div className=" w-[10.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[9]}  
               </div>
-            <div className="w-[7rem]"></div>
+            {/* <div className="w-[7rem]"></div> */}
           </div>
           <InfiniteScroll
             dataLength={data.length}
@@ -247,7 +247,7 @@ useEffect(() => {
                return (
                 <div>
                   <div key={item.productId} className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
                       <div className=" flex w-[4.5rem] max-sm:w-auto   ">
                         <SubTitle>
                           {item.imageId ? (
@@ -280,7 +280,7 @@ useEffect(() => {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex w-[6.1rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[6.1rem] max-xl:w-[7.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.categoryName}  {item.subCategoryName}

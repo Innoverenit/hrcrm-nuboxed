@@ -70,6 +70,8 @@ function AccountProcureDetails(props) {
   "1169",//10
   "1225",
   '1224',//12
+  "110",
+  
         ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -345,7 +347,14 @@ const handleGenerateInvoice= async () => {
   return (
     <>
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className="flex justify-between  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+        <div className="flex justify-between  w-[99%]  p-1 bg-transparent font-bold sticky z-10">
+        <div className="md:w-[2.5rem]">
+      {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
+          </div>
+          <div className="md:w-[10.4rem]">
+        {translatedMenuItems[13]} {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
+          </div>
+
         <div className="md:w-[7.4rem]">
         {translatedMenuItems[0]} {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
           </div>
@@ -358,19 +367,20 @@ const handleGenerateInvoice= async () => {
           <div className="md:w-[7.1rem]">
           {translatedMenuItems[3]} {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
+          <div className="md:w-[7rem]">
           {translatedMenuItems[4]} {/* <FormattedMessage id="app.quality" defaultMessage="Quality" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-          {translatedMenuItems[5]}{/* <FormattedMessage id="app.location" defaultMessage="Location" /> */}
-          </div>
-          <div className="md:w-[8.8rem]">
+          {/* <div className="md:w-[7.1rem]">
+          {translatedMenuItems[5]} */}
+          {/* <FormattedMessage id="app.location" defaultMessage="Location" /> */}
+          {/* </div> */}
+          <div className="md:w-[8rem]">
           {translatedMenuItems[6]}{/* <FormattedMessage id="app.specs" defaultMessage="Specs" /> */}
           </div>
           <div className="md:w-[4.8rem]">
           {translatedMenuItems[8]} {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}
           </div>
-          <div className="md:w-[3.8rem]">
+          <div className="md:w-[5rem]">
           {translatedMenuItems[7]} {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
           </div>
           <div className="md:w-[5rem]">
@@ -380,10 +390,8 @@ const handleGenerateInvoice= async () => {
           {translatedMenuItems[9]}
           </div>
           
-          {/* <div className="md:w-[4.8rem]">
-          {translatedMenuItems[11]} 
-          </div> */}
-          <div className="md:w-[2rem]"></div>
+      
+       
         </div>
         <InfiniteScroll
         dataLength={props.procureDetails.length}
@@ -397,188 +405,75 @@ const handleGenerateInvoice= async () => {
         {props.procureDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
+              <div className="flex  md:w-[2.5rem] max-sm:flex-row w-[2.5rem] max-sm:justify-between">
+              <div className="text-xs  font-poppins">
+           {item.imageId}</div>
+              </div>
+              <div className="flex  md:w-[7rem] max-sm:flex-row w-[7rem] max-sm:justify-between">
+              <div className="text-xs  font-poppins">
+           {item.productFullName}</div>
+              </div>
 
-<div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+<div className="flex  md:w-[5rem] max-sm:flex-row w-[5rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                {/* {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={category}
-                      onChange={(e) => handleCategoryChange(e.target.value)}
-                    >
-                      {props.categoryList.map((categoryItem, categoryIndex) => (
-                        <option key={categoryIndex} value={categoryItem.id}>
-                          {categoryItem.categoryName}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.category}</div>
-                  )} */}
-                                      <div className="font-normal text-xs  font-poppins">{item.category}</div>
+                
+                                      <div className=" text-xs  font-poppins">{item.category}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[5rem] max-sm:flex-row w-[5rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={brand}
-                      onChange={(e) => handleBrandChange(e.target.value)}
-                    >
-                      {props.brand.map((brandItem, brandIndex) => (
-                        <option key={brandIndex} value={brandItem.brand}>
-                          {brandItem.brand}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.brand}</div>
-                  )} */}
-                                   <div className="font-normal text-xs  font-poppins">{item.brand}</div>
+                 
+                                   <div className=" text-xs  font-poppins">{item.brand}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[15rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[8rem] max-sm:flex-row w-[8rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
-                    <Select
-                      className="w-32"
-                      value={model}
-                      onChange={handleModelChange}
-                    >
-                      {props.model.map((modelItem) => (
-                        <Option key={modelItem.id} value={modelItem.id}>
-                          {modelItem.model}
-                        </Option>
-                      ))}
-                    </Select>
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.model}</div>
-                  )} */}
-                             <div className="font-normal text-xs  font-poppins">{item.model}</div>
+                  
+                             <div className=" text-xs  font-poppins">{item.model}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[5rem] max-sm:flex-row w-[5rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={attribute}
-                      onChange={(e) => handleAttributeChange(e.target.value)}
-                    >
-                      {props.allProduct.map((attributeItem, attributeIndex) => (
-                        <option key={attributeIndex} value={attributeItem.productId}>
-                          {attributeItem.productFullName}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.attribute}</div>
-                  )} */}
-                   <div className="font-normal text-xs  font-poppins">{item.attribute}</div>
+                 
+                   <div className=" text-xs  font-poppins">{item.attribute}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[4rem] max-sm:flex-row w-[4rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={quality}
-                      onChange={(e) => handleQualityChange(e.target.value)}
-                    >
-                      {props.supplierSuppliesQuality.map((qualityItem, qualityIndex) => (
-                        <option key={qualityIndex} value={qualityItem.qualityId}>
-                          {qualityItem.code}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.quality}</div>
-                  )} */}
-                  <div className="font-normal text-xs  font-poppins">{item.quality}</div>
+                 
+                  <div className=" text-xs  font-poppins">{item.quality}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[5rem] max-sm:flex-row w-[5rem]max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={location}
-                      onChange={(e) => handleLocationChange(e.target.value)}
-                    >
-                      {props.locationlist.map((locationItem, locationIndex) => (
-                        <option key={locationIndex} value={locationItem.locationDetailsId}>
-                          {locationItem.locationName}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.location}</div>
-                  )} */}
-                  <div className="font-normal text-xs  font-poppins">{item.location}</div>
+                
+                 
+                  <div className=" text-xs  font-poppins">{item.location}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[6rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[10rem]  max-sm:flex-row w-[4rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
-                    <Select
-                      style={{ width: 100 }}
-                      value={specs}
-                      onChange={handleSpecsChange}
-                    >
-                      <Option value="US">US</Option>
-                      <Option value="CE">CE</Option>
-                      <Option value="IND">IND</Option>
-                      <Option value="HK">HK</Option>
-                    </Select>
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.specs}</div>
-                  )} */}
-            <div className="font-normal text-xs  font-poppins">{item.specs}</div>
+                  
+            <div className=" text-xs  font-poppins">{item.specs}</div>
                 </div>
               </div>
 
-            <div className="flex  ml-2 md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
+            <div className="flex   md:w-[4rem] max-sm:flex-row w-[5rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {/* {editContactId === item.id ? (
-                    <input
-                      placeholder="Update Price"
-                      style={{border:"2px solid black",width:"6rem"}}
-                      type="text"
-                      value={newPrice}
-                      onChange={(e) => setPrice(e.target.value)}
-                    />
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.price}{item.currency} </div>
-                  )} */}
-<div className="font-normal text-xs  font-poppins">{item.price}{item.currency} </div>
+                 
+<div className=" text-xs  font-poppins">{item.price}{item.currency} </div>
                 </div>
               </div>
-              <div className="flex  ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[4rem] max-sm:flex-row w-[5rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {item.unit}
                     
-                    {/* {item.reaminingInvoiceUnit === 0 ? `$` :
-                    <input
-  placeholder="Update Unit"
-  style={{ border: "2px solid black" }}
-  // type="number"
-  min="1"
-  value={editedFields[item.id]?.unit || item.unit}
-  onChange={(e) => handleUnitChange(item.id, e.target.value)}
-  onBlur={(e) => handleUnitChange(item.id, e.target.value)}
-/>
-        } */}
+                   
  
                  
                 </div>
               </div>
-              <div className="flex  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[6rem] max-sm:flex-row w-[6rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {/* {item.reaminingInvoiceUnit === 0 ? `$` : */}
                 <input
@@ -594,50 +489,16 @@ const handleGenerateInvoice= async () => {
              
                 </div>
               </div>
-              <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[4rem] max-sm:flex-row w-[4rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {item.reaminingInvoiceUnit}
-                  {/* {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={currency}
-                      onChange={(e) => handleCurrencyChange(e.target.value)}
-                    >
-                      {props.saleCurrencies.map((currencyItem, currencyIndex) => (
-                        <option key={currencyIndex} value={currencyItem.currency_id}>
-                          {currencyItem.currency_name}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                  
-                    <div className="font-normal text-xs  font-poppins"></div>
-                  )} */}
+                
                 </div>
               </div>
              
            
-              <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
-                {/* <div className="flex">
-                  {editContactId === item.id ? (
-                    <>
-                      <Button onClick={() => handleUpdate(item.id,)}>
-                        Save
-                      </Button>
-                      <Button onClick={() => handleCancelClick(item.id)} style={{ marginLeft: '0.5rem' }}>
-                        Cancel
-                      </Button>
-                    </>
-                  ) : (
-                    <BorderColorIcon
-                      tooltipTitle="Edit"
-                      iconType="edit"
-                      onClick={() => handleEditClick(item.id,item.category, item.brand, item.model,item.attribute,item.quality,item.location, item.unit, item.specs,item.price,item.currency,)}
-                      style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
-                    />
-                  )}
-                </div> */}
+              <div className="flex justify-end  max-sm:flex-row max-sm:w-auto">
+               
                 <div>
                   <StyledPopconfirm
                     title="Do you want to delete?"
@@ -660,16 +521,17 @@ const handleGenerateInvoice= async () => {
           );
         })}
          <div className="flex  md:w-[4rem] max-sm:flex-row mt-2">
-                <div className="text-xs  font-poppins">
+                <div className="text-xs  font-poppins shadow-sm">
                    <input
+                  //  className=" border-red-600 h-6 shadow-sm "
                    placeholder="invoice"
-                   style={{border:"1px solid red",height:"1.5rem"}}
+                   style={{border:"1px solid red",height:"1.5rem", }}
                    type="text"
                    value={invoices}
                    onChange={(e) => setInvoices(e.target.value)}
                  />
                 </div>
-                <div className="ml-2 mr-2">
+                <div className="ml-2 ">
                 <Select
                      style={{width:"10rem"}}
                      placeholder="Apply Credit"
@@ -685,14 +547,17 @@ const handleGenerateInvoice= async () => {
 
                     </Select>
                     </div>
-                    <div>
+                    <div className="ml-2 ">
+                    
+                
                     <Button
                         type='primary'
                         onClick={handleGenerateInvoice}
                     >
         {translatedMenuItems[12]}
                     </Button>
-                    </div>
+                   
+              </div>
               </div>
           
           </InfiniteScroll>
