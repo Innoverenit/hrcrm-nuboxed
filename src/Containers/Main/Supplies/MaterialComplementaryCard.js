@@ -92,7 +92,12 @@ function MaterialComplementaryCard(props) {
          "799",//0
           "800",//1
           "110",//2
-          "1283",//3"Search by Name "
+          "1283",//3"Search by HSN and Name "
+       
+         "14" , // category
+         "1154" , //  Sub category 
+         "259" ,//  Attribute 
+         "263" ,//  Sub Attribute 
           
         ];
 
@@ -202,7 +207,7 @@ function MaterialComplementaryCard(props) {
     <>
      <Input
           placeholder= {translatedMenuItems[3]}
-          width={"100%"}
+          width={"60%"}
           suffix={suffix}
           onPressEnter={handleSearch}
           onChange={handleChange}
@@ -212,14 +217,35 @@ function MaterialComplementaryCard(props) {
 
       <div className=" flex sticky z-auto">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
            
             
             
-            <div className=" w-[12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Hsn*/}
+              {translatedMenuItems[0]}
+              </div>
+              <div className=" w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Name */}
               {translatedMenuItems[2]}
               </div>
+              <div className=" w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* category*/}
+              {translatedMenuItems[4]}
+              </div>
+              <div className=" w-[6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Sub category */}
+              {translatedMenuItems[5]}
+              </div>
+              <div className=" w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Attribute */}
+              {translatedMenuItems[6]}
+              </div>
+              <div className=" w-[6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Sub Attribute */}
+              {translatedMenuItems[7]}
+              </div>
+
           </div>
 
           <InfiniteScroll
