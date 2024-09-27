@@ -495,6 +495,14 @@ const initialState = {
   fetchingDistributorByUserIDError:false,
   distributorbyUserID:[],
 
+  fetchingSourceCountAcc: false,
+                    sourceCountAcc: {},
+                    fetchingSourceCountError:false,
+
+                    fetchingCategoryCountAcc: false,
+                    fetchingCategoryCountError:false,
+                    categoryCountAcc:{},        
+
 };
 
 export const dashboardReducer = (state = initialState, action) => {
@@ -2240,6 +2248,37 @@ export const dashboardReducer = (state = initialState, action) => {
                   fetchingDistributorByUserID: false,
                   fetchingDistributorByUserIDError: true,
                 };  
+
+                case types.GET_SOURCE_COUNT_ACC_REQUEST:
+                  return { ...state, fetchingSourceCountAcc: true };
+                case types.GET_SOURCE_COUNT_ACC_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingSourceCountAcc: false,
+                    sourceCountAcc: action.payload,
+                  };
+                case types.GET_SOURCE_COUNT_ACC_FAILURE:
+                  return {
+                    ...state,
+                    fetchingSourceCountAcc: false,
+                    fetchingSourceCountError: true,
+                  };
+
+                  case types.GET_CATEGORY_COUNT_ACC_REQUEST:
+                    return { ...state, fetchingCategoryCountAcc: true };
+                  case types.GET_CATEGORY_COUNT_ACC_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingCategoryCountAcc: false,
+                      categoryCountAcc: action.payload,
+                    };
+                  case types.GET_CATEGORY_COUNT_ACC_FAILURE:
+                    return {
+                      ...state,
+                      fetchingCategoryCountAcc: false,
+                      fetchingCategoryCountError: true,
+                    };
+  
 
 
     default:

@@ -2939,3 +2939,54 @@ export const getDistributorbyUserID = (userId,endDate,startDate,page) => (dispat
       });
     });
 };
+
+export const getSourceCountAcc = (userId,type,countryName) => (dispatch) => {
+  dispatch({
+    type: types.GET_SOURCE_COUNT_ACC_REQUEST,
+  });
+  axios
+    .get(`${base_url}/dashboard/sourceCount/${userId}/${type}/${countryName}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SOURCE_COUNT_ACC_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_SOURCE_COUNT_ACC_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getCategoryCountAcc = (userId,type,countryName) => (dispatch) => {
+  dispatch({
+    type: types.GET_CATEGORY_COUNT_ACC_REQUEST,
+  });
+  axios
+    .get(`${base_url}/dashboard/categoryCount/${userId}/${type}/${countryName}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CATEGORY_COUNT_ACC_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CATEGORY_COUNT_ACC_FAILURE,
+        payload: err,
+      });
+    });
+};

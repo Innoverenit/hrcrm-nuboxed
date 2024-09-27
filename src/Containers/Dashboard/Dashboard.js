@@ -5,7 +5,10 @@ import { MainWrapper } from "../../Components/UI/Layout";
 import Piechart1 from "../../Components/Charts/PieChart1";
 import { BundleLoader } from "../../Components/Placeholder";
 import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotation,
-  getOpenQuotationThisYear,getRegionRecords,getMultiOrgRegionRecords} from "./DashboardAction";
+  getOpenQuotationThisYear,getRegionRecords,getMultiOrgRegionRecords,
+  getSourceCountAcc,
+  getCategoryCountAcc
+} from "./DashboardAction";
 import axios from 'axios';
 import {base_url2} from "../../Config/Auth";
 
@@ -76,12 +79,12 @@ class Dashboard extends Component {
       loading: false,
       tab: ["Q1", "Q2", "Q3", "Q4"],
       activeButton: "Tasks",
-      selectedCountry: "",
       setInfoWindowPosition:null,
       showShareForm: false,
       dashRepairCount: "",
       error: null,
       loading: true,
+      selectedCountry:null,
     };
     this.toggleShareForm = this.toggleShareForm.bind(this);
   }
@@ -139,35 +142,7 @@ class Dashboard extends Component {
       visible: false,
     });
   };
-  handleMapClick = (event) => {
-    console.log("event",event)
-    const geocoder = new window.google.maps.Geocoder();
-    const latlng = {
-      lat: event.latLng.lat(),
-      lng: event.latLng.lng(),
-    };
 
-    geocoder.geocode({ location: latlng }, (results, status) => {
-      if (status === 'OK' && results[0]) {
-        const country = results[0].address_components.find(
-          (component) => component.types.includes('country')
-        );
-
-        if (country) {
-          this.props.getProspectsData(country.long_name)
-          this.props.getProspectLifeTime(country.long_name)
-          this.props.getOpenQuotation(country.long_name)
-          this.props.getOpenQuotationThisYear(country.long_name)
-          // setSelectedCountry(country.long_name);
-          this.setState({selectedCountry:country.long_name});
-          this.setState({setInfoWindowPosition:latlng});
-          console.log(country.long_name)
-        }
-      }
-    });
-  };
-
-  
   // componentDidMount() {
   //   fetchDasRepairCount = async () => {
   //     try {
@@ -184,11 +159,38 @@ class Dashboard extends Component {
 
   //   this.fetchDasRepairCount();
   // }
+  handleMapClick = (event) => { 
+    console.log("event",event) 
+    const geocoder = new window.google.maps.Geocoder();
+    const latlng = {
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    };
 
+    geocoder.geocode({ location: latlng }, (results, status) => {
+      if (status === 'OK' && results[0]) {
+        const country = results[0].address_components.find(
+          (component) => component.types.includes('country')
+        );
+
+        if (country) {
+          // this.props.getProspectsData(country.long_name)
+          // this.props.getProspectLifeTime(country.long_name)
+          // this.props.getOpenQuotation(country.long_name)
+          // this.props.getOpenQuotationThisYear(country.long_name)
+          this.props.getSourceCountAcc(this.props.userId,this.props.timeRangeType,country.long_name);
+          this.props.getCategoryCountAcc(this.props.userId,this.props.timeRangeType,country.long_name);
+          this.setState({selectedCountry:country.long_name});
+          this.setState({setInfoWindowPosition:latlng});
+          console.log(country.long_name)
+        }
+      }
+    });
+  };
   
   render() {
-    const { activeTab, loading, tab } = this.state;
-    console.log(this.props.prospectLifeTime)
+    const { activeTab, loading, tab,selectedCountry,setInfoWindowPosition } = this.state;
+    console.log("222",selectedCountry)
     console.log(this.props.prospectChart.customerCountByCountry)
     const {
       viewType,
@@ -588,8 +590,8 @@ class Dashboard extends Component {
                        : this.state.activeButton === "Accounts" ? (
                         <CustomerAccountGoogleMap 
                         handleMapClick={this.handleMapClick}
-                        selectedCountry={this.state.selectedCountry}
-                        setInfoWindowPosition={this.state.setInfoWindowPosition}
+                        selectedCountry={selectedCountry}
+                        setInfoWindowPosition={setInfoWindowPosition}
                         />)
                         : this.state.activeButton === "Regional" && activeTab  ?
                         <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
@@ -655,7 +657,10 @@ class Dashboard extends Component {
        {this.state.activeButton==="Accounts"&&
        <CustomerDashJumpstart
        selectedLanguage={this.props.selectedLanguage}
-       translateText={this.props.translateText}/>
+       translateText={this.props.translateText}
+       sourceCountAcc={this.props.sourceCountAcc}
+        categoryCountAcc={this.props.categoryCountAcc}
+       />
              }
                   {this.state.activeButton==="Customer"&&
        <DashboardProspectJumpstart
@@ -733,6 +738,7 @@ class Dashboard extends Component {
 const mapStateToProps = ({ dashboard, auth }) => ({
   viewType:dashboard.viewType,
   emailId: auth.userDetails.emailId,
+  userId: auth.userDetails.userId,
   regionRecords:dashboard.regionRecords,
   multiOrgRecords:dashboard.multiOrgRecords,
   fetchingProspectData:dashboard.fetchingProspectData,
@@ -744,6 +750,9 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   fetchingProspectQuotation:dashboard.fetchingProspectQuotation,
   fetchingOpenQuotationYear:dashboard.fetchingOpenQuotationYear,
   timeRangeType: dashboard.timeRangeType,
+  sourceCountAcc:dashboard.sourceCountAcc,
+  categoryCountAcc:dashboard.categoryCountAcc
+
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   setDashboardViewType,
@@ -752,6 +761,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getMultiOrgRegionRecords,
   getOpenQuotationThisYear,
   getProspectsData,
-  getOpenQuotation
+  getOpenQuotation,
+  getSourceCountAcc,
+  getCategoryCountAcc
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

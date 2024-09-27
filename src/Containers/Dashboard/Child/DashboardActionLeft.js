@@ -445,7 +445,7 @@ const DashboardActionLeft = (props) => {
 
 
 
-              {user.orderManagementInd === true && (
+              {/* {user.orderManagementInd === true && ( */}
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -467,7 +467,7 @@ const DashboardActionLeft = (props) => {
                     </Tooltip>
                   </span>
                 </Badge>
-              )}
+              {/* )} */}
  { props.moduleMapper.orderManagementInd === true && (
                 <Badge
                   size="small"
