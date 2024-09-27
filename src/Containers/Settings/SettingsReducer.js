@@ -9,6 +9,23 @@ const initialState = {
   addProcessTaskModal: false,
   candidateSequenceModal: false,
 
+  fetchingUOM: false,
+  fetchingUOMError: false,
+  UOMListData:[],
+
+  addingUOM: false,
+  addingUOMError: false,
+
+  removingUOM: false,
+  removingUOMError: false,
+
+  updatingUOM: false,
+  updatingUOMError: false,
+
+  fetchingUOMCount: false,
+  fetchingUOMCountError: false,
+  UOMCount:[],
+ 
 
   addingPaymentApi:false,
   addingPaymentApiError:false,
@@ -4957,6 +4974,92 @@ case types.ADD_CONFIGURE_GLOBAL_TYPE_FAILURE:
   };
 
 
+
+  case types.GET_UOM_REQUEST:
+    return { ...state,  fetchingUOM: true };
+  case types.GET_UOM_SUCCESS:
+    return {
+      ...state,
+      fetchingUOM: false,
+      UOMListData: action.payload,
+    };
+  case types.GET_UOM_FAILURE:
+    return {
+      ...state,
+      fetchingUOM: false,
+      fetchingUOMError: true,
+    };
+
+ // add sector
+
+ case types.ADD_UOM_REQUEST:
+    return { ...state,  addingUOM: true };
+  case types.ADD_UOM_SUCCESS:
+    return {
+      ...state,
+      addingUOM: false,
+      UOMListData:[action.payload,...state.UOMListData], 
+    };
+  case types.ADD_UOM_FAILURE:
+    return {
+      ...state,
+      addingUOM: false,
+      addingUOMError: true,
+    };
+
+     // remove sector
+
+     case types.REMOVE_UOM_REQUEST:
+        return { ...state,  removingUOM: true };
+      case types.REMOVE_UOM_SUCCESS:
+        return {
+          ...state,
+          removingUOM: false,
+          UOMListData: state.UOMListData.filter(
+            (item) => item.uomId !== action.payload
+        ), 
+        };
+      case types.REMOVE_UOM_FAILURE:
+        return {
+          ...state,
+          removingUOM: false,
+          removingUOMError: true,
+        };
+
+      //   update an existing SECTOR 
+
+      case types.UPDATE_UOM_REQUEST:
+        return { ...state,   updatingUOM: true };
+      case types.UPDATE_UOM_SUCCESS:
+        // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
+        return {
+          ...state,
+          updatingUOM: false,
+          UOMListData: state.UOMListData.map((sector) =>
+            sector.uomId === action.payload.uomId
+              ? action.payload
+              : sector
+          ),
+        };
+      case types.UPDATE_UOM_FAILURE:
+        return {
+          ...state,
+          updatingUOM: false,
+          updatingUOMError: true,
+        };
+  
+            case types.GET_UOM_COUNT_REQUEST:
+              return { ...state, fetchingUOMCount: true };
+            case types.GET_UOM_COUNT_SUCCESS:
+              return { ...state, fetchingUOMCount: false, 
+                UOMCount: action.payload };
+            case types.GET_UOM_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingUOMCount: false,
+                fetchingUOMCountError: true,
+              };
+    
 
     default:
       return state;

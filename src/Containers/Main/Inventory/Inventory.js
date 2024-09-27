@@ -41,6 +41,19 @@ function Inventory(props) {
        "1063",// 'Dispatch',//18
        "1082", // "Stock",//19
        "744", // 'Cell',//20
+       "679", //created
+       "824", //Suppliers
+       "1256", // 'To Stock',//23
+       "14", // 'Category',//24
+       "259" ,// 'Attribute',//25
+       "260", // 'Units',//26
+       "1086", // 'Damaged',//27
+       "1087" ,// 'Remark',//28
+       "1091", // 'In Stock',//29
+       "1092", // 'Ordered',//30
+       "1093" ,// 'Balance',//31
+       "1077", // 'Zone',//32
+       "1073",  // 'Rack',//33
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

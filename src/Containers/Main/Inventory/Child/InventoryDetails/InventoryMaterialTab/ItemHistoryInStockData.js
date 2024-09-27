@@ -16,29 +16,8 @@ function ItemHistoryInStockData(props) {
             setLoading(true); 
             const itemsToTranslate = [
     
-       "110", // 'Name', // 0
-       "378",// 'Work', // 1
-       "278",// 'Sector', // 2
-       "279",// 'Source', // 3
-       "213",// 'Quotation', // 4
-       "328",// 'PipeLine', // 5
-       "76",// 'Assigned', // 6 
-       "248",// 'Customer', // 7
-        "100",   // new 8
-        "1300" , //  Change status to Customer?"9
-        "213" ,  // "Opportunity"10
-        "392" ,  // Pulse 11
-        "316" ,  // "Notes"12
-        "170" ,  // "Edit" 13
-       "73", // Contact 14
-       "144" ,//In Progress 15
-       "387",//  Convert 16
-       "389",//   Converted 17    
-       "1092", //Order 18
-       "1085", //received 19
-       "1086",//damaged 20
-       "1093",//balance 21
-       "1087",//remark22
+      "1077",//0
+      "1073",//1
 
             ];
     
@@ -67,21 +46,38 @@ function ItemHistoryInStockData(props) {
                     <div className=" flex justify-between  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className="w-[2.5rem]"></div>
                         <div className=" md:w-[4.5rem]">  PO ID
-                            {/* po */}
+                   
                         </div>
-                        <div className=" md:w-[9.21rem]">    {translatedMenuItems[0]}</div>
-                        {/* Name */}
-                        <div className=" md:w-[4.25rem]">    {translatedMenuItems[18]}</div>
-{/* ordered */}
-                        <div className=" md:w-[6.10rem]">    {translatedMenuItems[19]}</div>
-{/* received */}
-                        <div className=" md:w-[4.42rem]">    {translatedMenuItems[20]}</div>
-{/* damaged */}
-                        <div className=" md:w-[5.01rem]">    {translatedMenuItems[21]}</div>
-{/* balance */}
-                        <div className=" md:w-[5.01rem]">    {translatedMenuItems[22]}</div>
-            {/* remark */}
-                        <div className=""></div>
+                        <div className=" md:w-[9.21rem]">         Material Details  
+                             {/* {translatedMenuItems[0]} */}
+                             </div>
+                
+                        <div className=" md:w-[4.25rem]">
+                        {/* Zone  */}
+                               {translatedMenuItems[0]}
+                               </div>
+
+                        <div className=" md:w-[6.10rem]">  
+                            Room
+                              {/* {translatedMenuItems[19]} */}
+                              </div>
+
+                        <div className=" md:w-[4.42rem]">  
+                            {/* Rack */}
+                              {translatedMenuItems[1]}
+                              </div>
+
+                        <div className=" md:w-[10.01rem]"> 
+                            Best Before Use  
+                             {/* {translatedMenuItems[21]} */}
+                             </div>
+
+                        <div className=" md:w-[10.01rem]">   
+                            Batch Number
+                             {/* {translatedMenuItems[22]} */}
+                             </div>
+        
+                        <div className="w-40">Date Of manufacture</div> 
                     </div>
                    
                         {props.itemHistoryDataInStock.map((item, index) => {

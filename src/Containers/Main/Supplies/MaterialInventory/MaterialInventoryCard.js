@@ -13,7 +13,10 @@ function MaterialInventoryCard (props) {
       try {
         const itemsToTranslate = [
       "658" , //  "Location",//0
-         
+        "1077",
+        "1073",
+        "260",
+        "824" ,
       "248",  //   "Unit",
           
         ];
@@ -87,12 +90,23 @@ return (
           {/* {props.translatedMenuItems[2]} */}
           </div>
         <div className="md:w-[5.8rem]">
-         
+        {translatedMenuItems[2]}
+          </div>
+          <div className=" md:w-[4.2rem] ">
+      Batch
           </div>
         <div className=" md:w-[4.2rem] ">
-        
+        {translatedMenuItems[3]}
           </div>
-        <div className="w-12"></div>
+        <div className="w-40">
+          Best Use Before
+        </div>
+        <div className="w-12">
+        {translatedMenuItems[4]}
+        </div>
+        <div className="w-12">
+       Po#
+        </div>
             </div>
       
              {props.materialInventory.map((item) => {
