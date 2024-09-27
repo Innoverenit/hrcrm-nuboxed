@@ -70,6 +70,11 @@ const initialState = {
   fetchingLoginCountError: false,
   loginCount: {},
 
+
+  fetchingDistributorChartList:false,
+  fetchingDistributorChartListError:false,
+  distributorChartList:[],
+
   fetchingInvoiceL: false,
   fetchingInvoiceLError: true,
   invoiceL: [],
@@ -2200,6 +2205,26 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingChoosenCurrencyId: false,
         fetchingChoosenCurrencyIdError: true,
       };
+
+
+
+
+      case types.GET_DISTRIBUTION_BAR_CHART_REQUEST:
+        return { ...state, fetchingDistributorChartList: true };
+      case types.GET_DISTRIBUTION_BAR_CHART_SUCCESS:
+        return {
+          ...state,
+          fetchingDistributorChartList: false,
+          distributorChartList: action.payload,
+  
+          //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_DISTRIBUTION_BAR_CHART_FAILURE:
+        return {
+          ...state,
+          fetchingDistributorChartList: false,
+          fetchingDistributorChartListError: true,
+        };
 
     case types.GET_PRODUCT_BY_CURRENCY_REQUEST:
       return { ...state, fetchingProductByCurrency: true };

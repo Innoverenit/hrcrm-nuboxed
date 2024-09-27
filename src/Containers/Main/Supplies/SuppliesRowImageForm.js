@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Upload, Button, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import { base_url, base_url2 } from '../../../Config/Auth';
+import { base_url, base_url2, login_url } from '../../../Config/Auth';
 //import 'antd/dist/antd.css';
 const token = sessionStorage.getItem("token");
 
@@ -50,7 +50,7 @@ const UploadImageRowFormSupplies = (props) => {
     // Make an API call to httpbin.org
     message.info('Uploading files...');
     try {
-       const response = await fetch(`${base_url2}/image/multiple/${props.particularDiscountData.suppliesId}/${"Material"}`, {
+       const response = await fetch(`${base_url}/image/multiple/tag/${props.particularDiscountData.suppliesId}/${"Material"}`, {
         //const response = await fetch(`${base_url}/image/multipleFile`, {
         method: 'POST',
         body: formData,
