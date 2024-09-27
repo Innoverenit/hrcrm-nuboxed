@@ -20,7 +20,7 @@ function ContactInvest (props) {
     const [selectedCountry, setSelectedCountry] = useState('');
     const [filterText, setFilterText] = useState('');
   const [filteredData, setFilteredData] = useState(props.contactiNVESTbyId);
-  const [filter, setFilter] = useState("creationdate");
+  const [filter, setFilter] = useState("CreationDate");
   const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   const handleCountryChange = (event) => {

@@ -113,7 +113,8 @@ function CustomerTeamCardList(props) {
    "144" ,//In Progress 16
    "387",//  Convert 17
    "389",//   Converted 18
-"1581" //Score
+"1581", //Score
+"185"//Adress
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -395,7 +396,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  items-center  w-[7.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  items-center  w-[9.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -482,7 +483,7 @@ const [rowdata, setrowdata] = useState("");
                   
            
 
-                      <div className=" flexjustify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flex justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
@@ -582,6 +583,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>
+                        <Tooltip title= {translatedMenuItems[20]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
@@ -590,6 +592,7 @@ const [rowdata, setrowdata] = useState("");
           }}
           
         /> 
+        </Tooltip>
                         <div class="w-4">
                           <Tooltip title= {translatedMenuItems[13]}>
                             <NoteAltIcon

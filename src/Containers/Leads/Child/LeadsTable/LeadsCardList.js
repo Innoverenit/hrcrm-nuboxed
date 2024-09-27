@@ -241,10 +241,10 @@ const LeadsCardList = (props) => {
      <div className=' flex  justify-center  sticky  z-auto'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
-        <div className="   flex justify-between w-[94%] font-bold font-poppins text-xs">
+        <div className="   flex justify-between w-[90%] font-bold font-poppins text-xs">
       <div className=" ml-1 w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-white bg-red-600  justify-center "> 
         {translatedMenuItems[0]}</div>
-        <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
         <div className=" w-[7.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
         {/* 333333 */}
@@ -270,7 +270,7 @@ const LeadsCardList = (props) => {
         next={handleLoadMore}
       hasMore={hasMore}
         loader={props.fetchingLeadsHot?<div class="flex justify-center">Loading...</div>:null}
-        height={"22vh"}
+        height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
@@ -436,7 +436,7 @@ const LeadsCardList = (props) => {
                     ) : null}
                   </div>
 
-                  <div className=" flex   w-[5.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">         
+                  <div className=" flex   w-[4.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">         
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.sector}
                     </div>
@@ -460,7 +460,7 @@ const LeadsCardList = (props) => {
                 </div>
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 {props.user.aiInd && (
-           <div className=" flex text-xs justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex text-xs justify-center  w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
          {item.noteScoreInd}
           
             </div>
@@ -490,7 +490,7 @@ const LeadsCardList = (props) => {
                       </div>
                     </div>
                   </div>
-                     <div className=" flex  w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                     <div className=" flex  w-[8rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                       {item.assignedBy && (
                     <div>
                     {/* <Tooltip title={item.assignedBy}> */}
@@ -640,9 +640,9 @@ const LeadsCardList = (props) => {
       <div className=' flex  justify-center  sticky z-auto mt-1'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
      <div className=" flex  w-[100%] p-1 bg-transparent  sticky top-0 z-10 max-sm:hidden">
-      <div class="  flex justify-between font-bold font-poppins text-xs w-[94%]">
+      <div class="  flex justify-between font-bold font-poppins text-xs w-[90%]">
       <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-orange-400 text-white">{translatedMenuItems[12]}</div>
-        <div className="  w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className="  w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
         <div className=" w-[7.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
         {/* <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -670,7 +670,7 @@ const LeadsCardList = (props) => {
         next={handleLoadMore1}
       hasMore={hasMore}
         loader={props.fetchingLeadsWarm?<div class="flex justify-center">Loading...</div>:null}
-        height={"22vh"}
+        height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
@@ -707,10 +707,10 @@ const LeadsCardList = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+              className="flex rounded justify-between text-xs bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-             <div class="flex flex-row mr-1 items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+             <div class="flex flex-row mr-1 items-center w-[6.2rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                   <div>
                     <ButtonGroup>
                       <RoleButton
@@ -775,7 +775,7 @@ const LeadsCardList = (props) => {
                     <div class="max-sm:w-full md:flex items-center">
                       <Tooltip>
                         <div class="max-sm:w-full justify-between flex md:flex-col">
-                          <div class="text-sm flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                          <div class="text-xs flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                             {item.name}
                             &nbsp;&nbsp;
                             {date === currentdate ? (
@@ -837,7 +837,7 @@ const LeadsCardList = (props) => {
                   ) : null}
                 </div>
 
-                <div className=" flex   w-[5.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
+                <div className=" flex   w-[4.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
          
                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                     {item.sector}
@@ -859,7 +859,7 @@ const LeadsCardList = (props) => {
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
               {props.user.aiInd && (
-           <div className=" flex text-xs  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex text-xs  justify-center  w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
            {item.noteScoreInd}
           
             </div>
@@ -888,7 +888,7 @@ const LeadsCardList = (props) => {
                     </div>
                   </div>
                 </div>
-                   <div className=" flex  w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                   <div className=" flex  w-[8rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     {item.assignedBy && (
                   <div>
                   {/* <Tooltip title={item.assignedBy}> */}
@@ -1043,9 +1043,9 @@ const LeadsCardList = (props) => {
       <div className=' flex  justify-center  sticky  z-auto mt-1'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
      <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
-       <div class=" flex justify-between font-bold font-poppins text-xs w-[94%]">
+       <div class=" flex justify-between font-bold font-poppins text-xs w-[90%]">
       <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-blue-600 text-white">{translatedMenuItems[13]}</div>
-        <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
         <div className=" w-[7.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
         <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
         {/* <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -1074,7 +1074,7 @@ const LeadsCardList = (props) => {
         next={handleLoadMore2}
       hasMore={hasMore}
         loader={props.fetchingLeadsCold?<div class="flex justify-center">Loading...</div>:null}
-        height={"22vh"}
+        height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >    
@@ -1239,7 +1239,7 @@ const LeadsCardList = (props) => {
                   ) : null}
                 </div>
 
-                <div className=" flex   w-[5.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
+                <div className=" flex   w-[4.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
          
                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                     {item.sector}
@@ -1260,7 +1260,7 @@ const LeadsCardList = (props) => {
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               {props.user.aiInd && (
-           <div className=" flex text-xs  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex text-xs  justify-center  w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>
@@ -1291,7 +1291,7 @@ const LeadsCardList = (props) => {
                     </div>
                   </div>
                 </div>
-                   <div className=" flex  w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                   <div className=" flex  w-[8rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     {item.assignedBy && (
                   <div>
                   {/* <Tooltip title={item.assignedBy}> */}

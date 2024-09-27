@@ -21,7 +21,7 @@ const AddInvestorModal=lazy(()=>import("./Child/AddInvestorModal"));
 function Investor (props) {
 const [currentData,setcurrentData]=useState("");
 const [currentUser,setcurrentUser]=useState("");
-const [filter, setFilter] = useState("Creationdate");
+const [filter, setFilter] = useState("CreationDate");
 const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   const setInvestorViewType = (viewType) => {

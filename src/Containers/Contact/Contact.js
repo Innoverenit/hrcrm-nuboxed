@@ -31,9 +31,10 @@ function Contact(props) {
   // const [viewType, setViewType] = useState('table');
   const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
-  const [filter, setFilter] = useState("creationdate");
+  const [filter, setFilter] = useState("CreationDate");
 const [filteredData, setFilteredData] = useState(props.contactByUserId);
 const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+
 
 const setContactsViewType = (viewType) => {
   setViewType(viewType);
