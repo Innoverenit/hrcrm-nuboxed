@@ -15,11 +15,6 @@ class LeadsActionRight extends React.Component {
     translatedMenuItems: [],
   };
   
-  handleClicked = (value) => {
-    this.setState({
-      isClicked: value,
-    });
-  };
   componentDidMount() {
     this.fetchMenuTranslations();
   }
@@ -29,7 +24,11 @@ class LeadsActionRight extends React.Component {
       this.fetchMenuTranslations();
     }
   }
-
+  handleClicked = (value) => {
+    this.setState({
+      isClicked: value,
+    });
+  };
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [

@@ -9,9 +9,32 @@ import { BundleLoader } from "../../../Components/Placeholder";
 class EventActionRight extends React.Component {
   state = {
     isClicked: "import",
+    translatedMenuItems: [],
   };
   componentDidMount() {
+    this.fetchMenuTranslations();
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "85",//0 Add
+       
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   handleClicked = (value) => {
     this.setState({
       isClicked: value,
@@ -36,7 +59,9 @@ class EventActionRight extends React.Component {
         <Tooltip placement="left" title="Create">
           <Button type="primary"
             onClick={() => handleEventModal(true)}>
-          <DataSaverOnIcon className="!text-icon"/>Add
+          <DataSaverOnIcon className="!text-icon"/>
+          {this.state.translatedMenuItems[0]} 
+          {/* Add */}
           </Button>
         </Tooltip>
       </div>

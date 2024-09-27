@@ -425,7 +425,7 @@ const exportPDFAnnexure = async () => {
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div> 
                     <div class=" font-poppins">

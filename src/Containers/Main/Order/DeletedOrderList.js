@@ -406,7 +406,7 @@ const exportPDFAnnexure = async () => {
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
                     <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div>        
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
@@ -457,7 +457,7 @@ const exportPDFAnnexure = async () => {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                                  className=" !text-icon cursor-pointer"
+                                  className=" !text-icon cursor-pointer text-[#e5625e]"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -687,7 +687,7 @@ const exportPDFAnnexure = async () => {
                     </div>
                     <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div>        
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
@@ -740,7 +740,7 @@ const exportPDFAnnexure = async () => {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Collection">
                           <PaidIcon
-                             className=" !text-icon cursor-pointer max-sm:!text-2xl "
+                             className=" !text-icon cursor-pointer text-[#e5625e] max-sm:!text-2xl "
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);

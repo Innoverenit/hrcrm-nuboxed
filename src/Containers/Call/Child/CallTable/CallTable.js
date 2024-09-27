@@ -214,7 +214,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             
     
            </div>
-             <div class="flex max-sm:justify-evenly max-sm:w-wk ">
+             <div class="flex max-sm:justify-between max-sm:w-wk ">
               <div class="flex flex-row  w-[6%] max-sm:flex-row max-sm:w-auto">
                     <div>
                     <Tooltip title={props.translatedMenuItems[14]}>

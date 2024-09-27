@@ -240,14 +240,14 @@ const TaskCardList = (props) => {
         <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         {translatedMenuItems[0]} 
                         </div>
-        <div className=" w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <div className=" w-[12.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
                         {translatedMenuItems[1]}
                         </div>
              <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
              {translatedMenuItems[2]}
                         </div>
              <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className=" w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div>
                         <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
@@ -257,7 +257,7 @@ const TaskCardList = (props) => {
         <div className=" w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
         {translatedMenuItems[5]} 
                         </div>
-        <div className=" w-[30.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <div className=" w-[26.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
         {translatedMenuItems[6]}
                         </div>
         
@@ -267,7 +267,7 @@ const TaskCardList = (props) => {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingHighTaskList?<div class="flex justify-center" >Loading...</div>:null}
-        height={"22vh"}
+        height={"24vh"}
         style={{ scrollbarWidth:"thin"}}
         endMessage={ <p class="flex  text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
@@ -340,7 +340,7 @@ const TaskCardList = (props) => {
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
-                                <div class="flex  w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                                <div class="flex  w-[8.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
                     <ButtonGroup >
@@ -393,7 +393,7 @@ const TaskCardList = (props) => {
           
                     </div>
                    
-                    <div className="flex w-[4.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                    <div className="flex w-[7.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                   
                      <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -402,7 +402,7 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex justify-between w-[14.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
+                   <div className="flex justify-between text-xs w-[14.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}
@@ -661,14 +661,14 @@ const TaskCardList = (props) => {
         <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         {translatedMenuItems[0]} 
                         </div>
-        <div className=" w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <div className=" w-[12.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
                         {translatedMenuItems[1]}
                         </div>
              <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
              {translatedMenuItems[2]}
                         </div>
              <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className=" w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div>
                         <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
@@ -678,7 +678,7 @@ const TaskCardList = (props) => {
         <div className=" text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
         {translatedMenuItems[5]} 
                         </div>
-        <div className=" w-[30.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <div className=" w-[26.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
         {translatedMenuItems[6]}
                         </div>
         
@@ -688,7 +688,7 @@ const TaskCardList = (props) => {
         next={handleLoadMoreMedium}
       hasMore={hasMore}
         loader={fetchingMediumTaskList?<div class="flex justify-center" >Loading...</div>:null}
-        height={"22vh"}
+        height={"24vh"}
         style={{ scrollbarWidth:"thin"}}
         endMessage={ <p class="flex  text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
@@ -755,7 +755,7 @@ const TaskCardList = (props) => {
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
-                                <div class="flex  w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                                <div class="flex  w-[8.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
                     <ButtonGroup >
@@ -807,7 +807,7 @@ const TaskCardList = (props) => {
                         </div>               
                     </div>
                    
-                    <div className="flex w-[4.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                    <div className="flex w-[7.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                                           
                      <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
   {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
@@ -815,7 +815,7 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex justify-between w-[14.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
+                   <div className="flex justify-between text-xs w-[14.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}
@@ -1064,14 +1064,14 @@ const TaskCardList = (props) => {
         <div className=" text-xs w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         {translatedMenuItems[0]} 
                         </div>
-        <div className=" w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <div className=" w-[12.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
                         {translatedMenuItems[1]}
                         </div>
              <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
              {translatedMenuItems[2]}
                         </div>
              <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className=" w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div>
                         <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
@@ -1081,7 +1081,7 @@ const TaskCardList = (props) => {
         <div className=" w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
         {translatedMenuItems[5]} 
                         </div>
-        <div className=" w-[30.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <div className=" w-[26.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
         {translatedMenuItems[6]}
                         </div>
         
@@ -1092,7 +1092,7 @@ const TaskCardList = (props) => {
         style={{ scrollbarWidth:"thin"}}
       hasMore={hasMore}
         loader={fetchingLowTaskList?<div class="flex justify-center" >Loading...</div>:null}
-        height={"22vh"}
+        height={"24vh"}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {lowTaskList.map((item) => { 
@@ -1162,7 +1162,7 @@ const TaskCardList = (props) => {
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
-                                <div class="flex  w-[7.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                                <div class="flex  w-[8.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
                     <ButtonGroup >
@@ -1214,7 +1214,7 @@ const TaskCardList = (props) => {
                         </div>            
                     </div>
                    
-                    <div className="flex w-[4.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                    <div className="flex w-[7.23rem] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
                                          
                      <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
   {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
@@ -1222,7 +1222,7 @@ const TaskCardList = (props) => {
 </div>
                      
                    </div>
-                   <div className="flex justify-between w-[14.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
+                   <div className="flex justify-between  text-xs w-[14.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}

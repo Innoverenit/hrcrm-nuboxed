@@ -15,7 +15,7 @@ import {
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url } from "../../../Config/Auth";
+
 import dayjs from "dayjs";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -460,7 +460,7 @@ const {handleProcureNotesDrawerModal,
                   <div className=" flex   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                   <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div>          
                   <div >
