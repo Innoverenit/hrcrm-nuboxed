@@ -150,7 +150,7 @@ return(
                             <div>
 <Tooltip title={props.translatedMenuItems[18]}>
 <StoreIcon
-                            className="!text-icon cursor-pointer text-[red] max-sm:!text-2xl"
+                            className="!text-icon cursor-pointer text-[#ff66b3] max-sm:!text-2xl"
                             // onClick={() => {
                             //    props.setEditSuppliers(item);
                             //   handleRowData(item);

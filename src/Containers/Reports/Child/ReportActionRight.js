@@ -1,9 +1,6 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { Popover } from "antd";
-import { StyledSelect, StyledRangePicker } from "../../../Components/UI/Antd";
-import dayjs from "dayjs";
 import {
   setSelectedReportType,
   setSelectedTimeIntervalReport,

@@ -1,7 +1,4 @@
-import { Button } from "antd";
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
-import ReportActionLeft from "../ReportActionLeft";
 import ReportActionRight from "../ReportActionRight";
 
 class ReportTimeView extends Component {

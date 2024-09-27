@@ -13,18 +13,24 @@ const OrgRequirement =lazy(()=> import("./Child/OrganizationView/Requirement"));
 const Selected =lazy(()=> import("./Child/MyViewReports/Selected"));
 const buttonData = [
   { name: 'Task' },
-  { name: 'Prospect' },
-  { name: 'Investors' },
-  { name: 'Orders' },
-  { name: 'Production' },
-  { name: 'Receivables' },
-  { name: 'Productivity' },
-  { name: 'Invoice' },
-  { name: 'Deals' },
-  { name: 'Leads' },
   { name: 'Calls' },
   { name: 'Events'},
+  { name: 'Leads' },  
+  { name: 'Prospect' },
+  { name: 'Contact' },
   { name: 'Quotation'},
+  { name: 'Orders' },
+  { name: 'Customer'},
+  { name: 'Materials In Stock' },
+  { name: 'Goods In Stock' },
+  { name: 'Production' },  
+  { name: 'Productivity' },
+  { name: 'Receivables' },
+  { name: 'Invoice' },
+  { name: 'Credit Memo' },
+  { name: 'Investors' },
+  { name: 'Deals' },
+
 ];
 
 const dropdownOptions = {
