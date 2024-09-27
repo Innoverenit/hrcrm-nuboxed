@@ -114,7 +114,7 @@ function CustomerDashJumpstart(props) {
                          </div>
                      </div>
                  
-                 </div> 
+                 </div>  
          
         
         {/* Include PieChartComponent here */}
@@ -126,8 +126,8 @@ function CustomerDashJumpstart(props) {
   
       <div class=" mt-1 flex flex-row justify-between" >
         <div>
-        <div class=" font-poppins font-bold text-base ">By Sector</div>
-        <CustomerPieChart/>
+        <div class=" font-poppins font-bold text-base ">By Category</div>
+        <CustomerPieChart />
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Source</div>
