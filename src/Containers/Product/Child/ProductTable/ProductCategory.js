@@ -253,8 +253,8 @@ const DeleteOnClick = async (item) => {
 <ProductCategoryPUnblishToggle item={item}    publishInd={item.publishInd}  categoryId={item.categoryId}/>
               </div>
 
-                   <div class="flex justify-end   max-sm:justify-between max-sm:w-wk items-center">
-                   <div className=" flex  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                   <div class="flex justify-end text-center  max-sm:justify-between max-sm:w-wk items-center">
+                   <div className=" flex   max-sm:flex-row  max-sm:justify-between ">
     {editsuppliesId === item.categoryId ? (
                         <>
                       <Button 
@@ -274,7 +274,7 @@ const DeleteOnClick = async (item) => {
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-icon cursor-pointer text-[tomato] "
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.categoryId)}
