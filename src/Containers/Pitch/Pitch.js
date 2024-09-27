@@ -13,7 +13,7 @@ const PitchTeamCardlist =lazy(()=>import("./Child/PitchTeamCardlist"));
 function Pitch (props) {
   const [currentData,setcurrentData]=useState("");
   const [currentUser,setcurrentUser]=useState("");
-  const [filter, setFilter] = useState("creationdate");
+  const [filter, setFilter] = useState("CreationDate");
   const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   // const [filter, setFilter] = useState("creationdate");

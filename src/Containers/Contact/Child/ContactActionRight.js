@@ -89,16 +89,7 @@ class ContactActionRight extends React.Component {
          </a>
          </Tooltip>
        )}
-       </div>
-        {/* {user.userType !== "USER" && user.department !== "Partner" && ( 
-        <Button
-          type="primary"
-          default
-          onClick={() => this.props.history.push("/import/account")}
-        >
-          Import
-        </Button>
-        )} */}
+       </div>     
           {this.props.viewType === "table" &&   (
          <Tooltip placement="left" title="Create">
             {user.contactCreateInd === true &&  user.crmInd === true && (

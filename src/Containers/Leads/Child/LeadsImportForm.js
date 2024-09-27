@@ -116,7 +116,7 @@ class LeadsImportForm extends Component {
                       type="primary"
                     loading={this.props.addingLeadsImportForm}
                     >
-                      Submit
+                     Upload
                     </Button>
                   </div>
                 </Form>

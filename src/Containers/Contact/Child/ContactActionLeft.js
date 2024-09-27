@@ -38,7 +38,7 @@ const ContactActionLeft = (props) => {
     if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(pageNo + 1);
       if (props.viewType === "table") {
-      props.getContactListByUserId(props.userId, pageNo,"creationdate");
+      props.getContactListByUserId(props.userId, pageNo,"Creation Date");
       }
       else if (props.viewType === "teams") {
       props.getAllContact("0","Customer");

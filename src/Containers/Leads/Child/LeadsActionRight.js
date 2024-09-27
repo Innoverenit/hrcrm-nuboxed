@@ -9,14 +9,41 @@ import UploadIcon from '@mui/icons-material/Upload';
 const Option = StyledSelect.Option;
 
 class LeadsActionRight extends React.Component {
-  state = {
+
+   state = {
     isClicked: "import",
+    translatedMenuItems: [],
   };
-  componentDidMount() {}
+  
   handleClicked = (value) => {
     this.setState({
       isClicked: value,
     });
+  };
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       "85",//Add 0
+       "123",//Import 1
+       
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
   };
   render() {
     const { handleLeadsModal, user} = this.props;
@@ -30,7 +57,8 @@ class LeadsActionRight extends React.Component {
 
           <Button type="primary"  onClick={() => handleLeadsModal(true)}>
           <DataSaverOnIcon className="!text-icon"/>
-          Add
+          {this.state.translatedMenuItems[0]}
+          {/* Add */}
           </Button>
           
           </>
@@ -40,7 +68,8 @@ class LeadsActionRight extends React.Component {
         onClick={() => this.props.handleLeadsImportModal(true)}
         >
             <UploadIcon className=" !text-icon"/>
-            Import
+            {this.state.translatedMenuItems[1]}
+            {/* Import */}
           </Button>
           </div>
         </div>

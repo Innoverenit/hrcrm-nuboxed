@@ -206,7 +206,7 @@ const [rowdata, setrowdata] = useState("");
          <div className=' flex justify-end sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky text-xs  z-10">
-        <div class=" flex justify-between font-poppins w-[96%]">
+        <div class=" flex justify-between font-poppins w-[92%]">
             <div className="font-poppins w-[14.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
             {translatedMenuItems[0]}
               {/* name */}
@@ -216,7 +216,7 @@ const [rowdata, setrowdata] = useState("");
                 {/* defaultMessage="Work" */}
             
             </div>
-            <div className="font-poppins w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
+            <div className="font-poppins w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
             {translatedMenuItems[2]}     
                 {/* defaultMessage="Sector" */}
             </div>
@@ -231,7 +231,7 @@ const [rowdata, setrowdata] = useState("");
                 {/* defaultMessage="Quotation" */}
       
             </div>
-            <div className="font-poppins w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.8rem]">
+            <div className="font-poppins w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.8rem]">
             {translatedMenuItems[5]}            
                 {/* defaultMessage="Pipeline" */}
        
@@ -247,7 +247,7 @@ const [rowdata, setrowdata] = useState("");
            {/* ="Assigned" */}
              
             </div>
-            <div className="font-poppins w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.8rem] max-lg:w-[6.2rem]">
+            <div className="font-poppins w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.8rem] max-lg:w-[6.2rem]">
               {translatedMenuItems[7]}  
            {/* owner */}
 
