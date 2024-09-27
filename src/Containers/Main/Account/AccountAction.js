@@ -5164,3 +5164,34 @@ export const searchCustomerOrderNoData = (imei) => (dispatch) => {
       });
     });
 };
+
+
+
+
+
+
+export const getDistibutorBarChart = (distributorId,productId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DISTRIBUTION_BAR_CHART_REQUEST,
+  });
+  axios
+    .get(`${base_url}/phoneOrder/monthlyUnits/${distributorId}/${productId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISTRIBUTION_BAR_CHART_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DISTRIBUTION_BAR_CHART_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -20,6 +20,7 @@ import {
     handleAccountOpportunityModal,
 } from "../AccountAction";
 import LayersIcon from '@mui/icons-material/Layers';// salesmap
+import DistributorChart from "../AccountDetailsTab/DistributorChart"
 import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
@@ -191,6 +192,13 @@ function AccountDetailsTab(props) {
                             case "13":
                                 return  <div>  
                                  <OrderTableC
+                            distributorId={props.distributorData.distributorId}
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText} /></div>;
+
+                            case "14":
+                                return  <div>  
+                                 <DistributorChart
                             distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText} /></div>;
@@ -685,7 +693,31 @@ function AccountDetailsTab(props) {
                   
                     
                   
-                   
+                    <TabPane
+                        tab={
+                            <>
+                                <span class="!text-tab font-poppins ">
+                                <SummarizeIcon className="!text-icon text-[#55d6c2] mr-1"/>
+                                    
+                                   Bar Chart
+                                    {/* Summary */}
+                                       
+                                </span>
+
+                            </>
+                        }
+                        key="14"
+                    >
+                        {/* <Suspense fallback={"Loading ..."}>
+                            <SalesMapTable
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText}
+                            />
+                            <SummaryTable
+                               
+                            />
+                        </Suspense> */}
+                    </TabPane>
 
                 </StyledTabs>
                 <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
