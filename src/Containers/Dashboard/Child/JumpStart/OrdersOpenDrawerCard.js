@@ -24,11 +24,11 @@ function OrderOpenList(props) {
    
    <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[12rem]">Order ID</div>
-          <div className=" md:w-[10.4rem]">Customer</div>
-          <div className=" md:w-[12.01rem] ">Contact</div>
-          <div className="md:w-[7.1rem]">Created</div>
-          <div className="md:w-[37rem]">Location</div>
+          <div className="text-xs font-bold font-poppins md:w-[12rem]">Order ID</div>
+          <div className="text-xs font-bold font-poppins md:w-[10.4rem]">Customer</div>
+          <div className="text-xs font-bold font-poppins md:w-[12.01rem] ">Contact</div>
+          <div className="text-xs font-bold font-poppins md:w-[7.1rem]">Created</div>
+          <div className="text-xs font-bold font-poppins md:w-[37rem]">Location</div>
 
 
         </div>

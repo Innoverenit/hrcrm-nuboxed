@@ -44,15 +44,15 @@ function RepairDashboardOrderAddedList(props) {
      <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-      <div className=" md:w-[3.25rem] text-[white] flex justify-center bg-[red]">Urgent </div>
-          <div className=" md:w-[10.31rem] ml-2">Order ID</div>
-          <div className=" md:w-[8.6rem]">Customer</div>
-          <div className=" md:w-[4.051rem] ">Contact</div>
-          <div className="md:w-[5.01rem]">Units</div>
-          <div className="md:w-[5.031rem]">Owner</div>
-          <div className="md:w-[5.2rem]">Supervisor</div>
-          <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[9.73rem]">Created</div>
+      <div className="text-xs font-poppins font-bold md:w-[3.25rem] text-[white] flex justify-center bg-[red]">Urgent </div>
+          <div className="text-xs font-poppins font-bold md:w-[10.31rem] ml-2">Order ID</div>
+          <div className="text-xs font-poppins font-bold md:w-[8.6rem]">Customer</div>
+          <div className="text-xs font-poppins font-bold md:w-[4.051rem] ">Contact</div>
+          <div className="text-xs font-poppins font-bold md:w-[5.01rem]">Units</div>
+          <div className="text-xs font-poppins font-bold md:w-[5.031rem]">Owner</div>
+          <div className="text-xs font-poppins font-bold md:w-[5.2rem]">Supervisor</div>
+          <div className="text-xs font-poppins font-bold md:w-[5.06rem]">Lead</div>
+          <div className=" md:w-[9.73rem]">Created</div>
           <div className="md:w-24"></div>
         </div>
        

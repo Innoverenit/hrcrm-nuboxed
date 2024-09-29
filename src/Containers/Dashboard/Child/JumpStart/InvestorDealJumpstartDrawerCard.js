@@ -13,10 +13,9 @@ import { Tooltip ,Popconfirm,Button} from "antd";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+
 
 function InvestorDealJumpstartDrawerCard (props) {
 
@@ -25,21 +24,21 @@ function InvestorDealJumpstartDrawerCard (props) {
        <div className=' flex justify-end sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p bg-transparent font-bold sticky  z-10">
-            <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className=" text-xs font-poppins font-bold w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
               <FormattedMessage
                 id="app.name"
                 defaultMessage="Name"
               />
             </div>
             
-            <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
+            <div className="text-xs font-poppins font-bold w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
               <FormattedMessage
                 id="app.country"
                 defaultMessage="Country"
               />
 
             </div>
-            <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            <div className="text-xs font-poppins font-bold w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
               <FormattedMessage
                 id="app.pipeline"
                 defaultMessage="Pipeline"
@@ -53,20 +52,20 @@ function InvestorDealJumpstartDrawerCard (props) {
                       />
           
           </div> */}
-            <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className="text-xs font-poppins font-bold w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
               <FormattedMessage
                 id="app.assigned"
                 defaultMessage="Assigned"
               />
 
             </div>
-            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
+            <div className="text-xs font-poppins font-bold w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
               <FormattedMessage
                 id="app.owner"
                 defaultMessage="Owner"
               />
             </div>
-            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="text-xs font-poppins font-bold w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
               <FormattedMessage
                 id="app.customer"
                 defaultMessage="Customer"
