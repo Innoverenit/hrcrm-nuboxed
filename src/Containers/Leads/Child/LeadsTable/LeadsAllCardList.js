@@ -1427,26 +1427,36 @@ const LeadsAllCardList = (props) => {
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
         addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
         handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
       />
       <OpenCETmodal
         rowdata={rowdata}
         openCETmodal={props.openCETmodal}
         handleCETmodal={props.handleCETmodal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
       />
       <AddLeadsNotesDrawerModal
         rowdata={rowdata}
         addDrawerLeadsNotesModal={props.addDrawerLeadsNotesModal}
         handleLeadsNotesDrawerModal={props.handleLeadsNotesDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
       />
       <AddLeadsAddressModal
              item={rowdata}
               type="leads"
           addDrawerLeadsAddressModal={props.addDrawerLeadsAddressModal}
           handleLeadsAddressDrawerModal={props.handleLeadsAddressDrawerModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
            />
        <AddConfirmLedsStatusModal
            addLeadsConfirmationModal={props.addLeadsConfirmationModal}
            handleLeadsConfirmationModal={props.handleLeadsConfirmationModal}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
            />
       </Suspense>
     </>

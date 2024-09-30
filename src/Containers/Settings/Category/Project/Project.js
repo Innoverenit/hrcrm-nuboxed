@@ -116,7 +116,7 @@ class Project extends Component {
               color: "#FFFAFA",
             }}
           >
-                     <div style={ {width: "18vw",display:"flex"}} >
+                     <div class=" flex w-[18vw]" >
           <Input
             placeholder="Search by Name"
             width={"100%"}

@@ -6,7 +6,6 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { handleLeadCallModal,getLeadsActivityRecords } from "../../LeadsAction";
 import { PlusOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
 import { Tooltip,Badge } from "antd";
 
 const AddCallTaskModal = lazy(() => import("./AddCallTaskModal"));
@@ -24,8 +23,8 @@ const TabPane = StyledTabs.TabPane;
       try {
         setLoading(true); 
         const itemsToTranslate = [
-    '76', // 0  Activity
-'', // "Create"
+     '1165', // 0  Activity
+     '104', // "Create"
 
 
         ];
@@ -102,6 +101,9 @@ const TabPane = StyledTabs.TabPane;
         rowdata={props.rowdata}
           addCallTaskModal={addCallTaskModal}
           handleLeadCallModal={handleLeadCallModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
         />
         </Suspense>
       </>
