@@ -36,7 +36,10 @@ function LeadsActivityTab (props) {
                 key="1"
               >
                 <Suspense fallback={"loading ..."}>
-                  <CallForm {...formProps} />
+                  <CallForm {...formProps}
+                    translateText={props.translateText}
+                    selectedLanguage={props.selectedLanguage}
+                    translatedMenuItems={props.translatedMenuItems} />
                 </Suspense>
               </TabPane>
         
@@ -50,7 +53,11 @@ function LeadsActivityTab (props) {
                 key="2"
               >
                 <Suspense fallback={"loading ..."}>
-                  <EventForm {...formProps}/>
+                  <EventForm {...formProps}
+                    translateText={props.translateText}
+                    selectedLanguage={props.selectedLanguage}
+                    translatedMenuItems={props.translatedMenuItems}
+                  />
                 </Suspense>
               </TabPane>
               <TabPane
@@ -63,7 +70,11 @@ function LeadsActivityTab (props) {
                 key="3"
               >
                 <Suspense fallback={"loading ..."}>
-                  <TaskForm {...formProps}/>
+                  <TaskForm {...formProps}
+                    translateText={props.translateText}
+                    selectedLanguage={props.selectedLanguage}
+                    translatedMenuItems={props.translatedMenuItems}
+                  />
                 </Suspense>
               </TabPane>
             </StyledTabs>

@@ -3,7 +3,6 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import SearchedData from "./SearchedData"
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
@@ -450,14 +449,7 @@ const LeadsTeamHotcard = (props) => {
                   </div>
                  
                   <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
-                  <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleLeadsAddressDrawerModal(true);
-            handleRowData(item);
-          }}
-          
-        /> 
+                 
                     <div >
                       <Tooltip title={translatedMenuItems[15]}>
                         <NoteAltIcon
@@ -471,6 +463,16 @@ const LeadsTeamHotcard = (props) => {
                         />
                       </Tooltip>
                     </div>
+                    <Tooltip title="Address">
+                    <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleLeadsAddressDrawerModal(true);
+            handleRowData(item);
+          }}
+          
+        /> 
+        </Tooltip>
                     <div >
                       <Tooltip
                         title={translatedMenuItems[16]}
@@ -565,16 +567,24 @@ const LeadsTeamHotcard = (props) => {
         rowdata={rowdata}
         openCETmodal={props.openCETmodal}
         handleCETmodal={props.handleCETmodal}
-    
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <AddLeadsNotesDrawerModal
         rowdata={rowdata}
         addDrawerLeadsNotesModal={props.addDrawerLeadsNotesModal}
         handleLeadsNotesDrawerModal={props.handleLeadsNotesDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems} 
       />
           <AddConfirmLedsStatusModal
            addLeadsConfirmationModal={props.addLeadsConfirmationModal}
            handleLeadsConfirmationModal={props.handleLeadsConfirmationModal}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+         translatedMenuItems={props.translatedMenuItems}
            />
     </div>
   );

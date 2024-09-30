@@ -773,15 +773,11 @@ function CallForm(props) {
                   <div class=" flex mt-3 justify-between items-end max-sm:flex-col " >
                     <div class=" self-start">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
-                    {translatedMenuItems[2]}   {/* <FormattedMessage
-                            id="app.mode"
-                            defaultMessage="mode"
+                    {translatedMenuItems[2]}   {/* mode"
                           /> */}
                       </div>
                       <Switch
-                        // style={{
-                        //   marginLeft: "0.3125em"
-                        // }}
+                       
                         name="mode"
                         checkedChildren="Video"
                         unCheckedChildren="Audio"
@@ -848,23 +844,12 @@ function CallForm(props) {
                   </div>
                   <div class=" flex mt-3 justify-between max-sm:flex-col">
                     <div class=" w-5/12 max-sm:w-wk">
-                    {/* <input
-        type="time"
-        id="startTime"
-        name="startTime"
-        // value={startTime}
-        value={places.startTime}
-        onChange={(e) => handleStartTimeChange(e,  'startTime')}
+                    {/* start
       /> */}        <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>   
                     <Field
                         name="startTime"
                         // label="Start Time"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.starttime"
-                        //     defaultMessage="Start Time"
-                        //   />
-                        // }
+                       
                         component={TimePicker}
                         isRequired
                         isColumn
@@ -912,11 +897,7 @@ function CallForm(props) {
       {({ open }) => (
         <>
                   
-          {/* <Listbox.Label className="block font-semibold text-[0.75rem]"><FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="assignedto"
-                      />
-            </Listbox.Label> */}
+        
           <div className="relative mt-1">
               <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="  relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5  pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}

@@ -452,14 +452,7 @@ const LeadsTeamWarmcard = (props) => {
                 </div>
                 </div>
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
-                <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleLeadsAddressDrawerModal(true);
-            handleRowData(item);
-          }}
-          
-        /> 
+               
                   <div >
                     <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
@@ -473,6 +466,14 @@ const LeadsTeamWarmcard = (props) => {
                       />
                     </Tooltip>
                   </div>
+                  <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleLeadsAddressDrawerModal(true);
+            handleRowData(item);
+          }}
+          
+        /> 
                   <div >
                     <Tooltip
                       title={translatedMenuItems[16]}
@@ -564,19 +565,26 @@ const LeadsTeamWarmcard = (props) => {
       />
       <OpenCETmodal
         rowdata={rowdata}
-        // item={currentLeadsId}
-        // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
         openCETmodal={props.openCETmodal}
         handleCETmodal={props.handleCETmodal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <AddLeadsNotesDrawerModal
         rowdata={rowdata}
         addDrawerLeadsNotesModal={props.addDrawerLeadsNotesModal}
         handleLeadsNotesDrawerModal={props.handleLeadsNotesDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
           <AddConfirmLedsStatusModal
            addLeadsConfirmationModal={props.addLeadsConfirmationModal}
            handleLeadsConfirmationModal={props.handleLeadsConfirmationModal}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+         translatedMenuItems={props.translatedMenuItems}
            />
     </div>
   );
