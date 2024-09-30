@@ -441,18 +441,7 @@ function InvestorDeleteList(props) {
                                 <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateInvestor investorId={item.investorId} />
                             </div> 
-                                  <div>
-                                  <Tooltip title="Document">
-                                    <ArticleIcon 
-                                  onClick={() => {
-                                    handleInvestorDocumentModal(true);
-                                    handleCurrentRowData(item);
-                                  }}
-                                   className=" !text-icon cursor-pointer"
-                                  />
-                                  </Tooltip>
-                                  </div>          
-                                <div >
+                            <div >
                           <Tooltip title="Pulse">
          <MonitorHeartIcon
                   onClick={() => {
@@ -473,7 +462,19 @@ function InvestorDeleteList(props) {
                 className=" !text-icon cursor-pointer text-green-800 max-sm:!text-xl"
               />
            </Tooltip>
-                   </div>                 
+                   </div> 
+                                  <div>
+                                  <Tooltip title="Document">
+                                    <ArticleIcon 
+                                  onClick={() => {
+                                    handleInvestorDocumentModal(true);
+                                    handleCurrentRowData(item);
+                                  }}
+                                   className=" !text-icon cursor-pointer"
+                                  />
+                                  </Tooltip>
+                                  </div>          
+                                           
                    <div >
                     <Tooltip title={item.url}>
               {item.url !== "" ? (

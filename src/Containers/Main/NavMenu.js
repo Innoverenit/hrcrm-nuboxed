@@ -5,6 +5,7 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import GroupsIcon from '@mui/icons-material/Groups';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { Menu, Badge } from "antd";
+import CellTowerIcon from '@mui/icons-material/CellTower';
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import ComputerIcon from '@mui/icons-material/Computer';
@@ -41,8 +42,10 @@ import { BundleLoader } from '../../Components/Placeholder';
 import GolfCourseIcon from '@mui/icons-material/GolfCourse';
 import FactoryIcon from '@mui/icons-material/Factory';
 import AssessmentIcon from '@mui/icons-material/Assessment';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 
 const SubMenu = Menu.SubMenu;
 
@@ -106,7 +109,9 @@ function NavMenu(props) {
 '1152', //45
 '1153', //46
 '1164',//47
-"1204"
+"1204",
+"1010" ,//Billing 49
+"739",//Publish
             
              
         ];
@@ -177,11 +182,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
     className='!text-base'
     />
 
-    <span class="text-white text-ls ml-1">
-      {/* <FormattedMessage
-          id="app.dashboard"
-          defaultMessage="Dashboard"
-        /> */}
+    <span class="text-white text-ls ml-1">     
       {translatedMenuItems[0]}
       {/* Dashboard */}
       {/* RecruitProBoard */}
@@ -191,39 +192,31 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 
 )}
 
-
-      
+     
         {(user.imInd === true && user.basicAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
           <Menu.Item key="/planner" style={{ height: "1.45rem", 
           color: selectedMenuItem === '/planner' ? 'tomato' : '#4bc076', }}>
-            <Link to="/planner" onClick={() => handleSelect('/planner')}>
-              {/* <Icon type="calendar" style={{ color: "white" }} /> */}
+            <Link to="/planner" onClick={() => handleSelect('/planner')}>  
               <CalendarMonthIcon
               className='!text-base'
               />
 
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.planner" defaultMessage="Planner" /> */}
+              <span class="text-white text-ls ml-1">    
                 {/* Planner */}
                 {translatedMenuItems[1]}
               </span>
             </Link>
           </Menu.Item>
         )}
-     
-
-        
+             
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
           <Menu.Item key="/call" style={{ height: "1.45rem",
            color: selectedMenuItem === '/call' ? 'tomato' : '#4bc076', }}>
             <Link to="/call" onClick={() => handleSelect('/call')}>
-              {/* <Icon style={{ color: "white" }} type="phone" /> */}
-              <VolumeUpIcon
-                // icon={solid("phone-volume")}
+              <VolumeUpIcon        
               className='!text-base'
               />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.calls" defaultMessage="Calls" /> */}
+              <span class="text-white text-ls ml-1">        
                 {/* Calls */}
                 {translatedMenuItems[2]}
               </span>
@@ -238,13 +231,11 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
           <Menu.Item key="task" style={{ height: "1.45rem",
            color: selectedMenuItem === '/Task' ? 'tomato' : '#4bc076' }}>
-            <Link to="/Task" onClick={() => handleSelect('/Task')}>
-              {/* <Icon type="file-done" /> */}
+            <Link to="/Task" onClick={() => handleSelect('/Task')}>    
               <FactCheckIcon
               className='!text-base'
               />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.task" defaultMessage="Task" /> */}
+              <span class="text-white text-ls ml-1">    
                 {/* Task */}
                 {translatedMenuItems[3]}
               </span>
@@ -260,15 +251,10 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           <Menu.Item key="/event" style={{ height: "1.45rem",
            color: selectedMenuItem === '/event' ? 'tomato' : '#4bc076' }}>
             <Link to="/event" onClick={() => handleSelect('/event')}>
-              {/* <Icon type="schedule" /> */}
               <EventAvailableIcon
               className='!text-base'
               />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                  id="app.events"
-                  defaultMessage="Events"
-                /> */}
+              <span class="text-white text-ls ml-1">               
                 {/* Event */}
                 {translatedMenuItems[4]}
               </span>
@@ -288,8 +274,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               <PictureAsPdfIcon
               className='!text-base'
               />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.reports" defaultMessage="Reports" /> */}
+              <span class="text-white text-ls ml-1">      
                 {/* Reports */}
                 {translatedMenuItems[5]}
               </span>
@@ -326,8 +311,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 
               className='!text-base'
               />
-              <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.leads" defaultMessage="Leads" /> */}
+              <span class="text-white text-ls ml-1">  
                 {translatedMenuItems[6]}
                 {/* Leads */}
                 &nbsp;&nbsp;&nbsp;
@@ -350,7 +334,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.quotation" defaultMessage="Quotation" /> */}
+       {/* Quotation */}
                 {translatedMenuItems[7]}
                 
 
@@ -376,7 +360,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.contact" defaultMessage="Contact" /> */}
+              {/* Contact"*/}
                 {translatedMenuItems[8]}
                 
                 &nbsp;&nbsp;&nbsp;
@@ -402,7 +386,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.prospect" defaultMessage="Prospect" /> */}
+              {/* "Prospect */}
               {translatedMenuItems[9]}
                 &nbsp;&nbsp;&nbsp;
                 <Badge
@@ -425,7 +409,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.pitch" defaultMessage="Pitch" /> */}
+              {/* "Pitch" */}
                 {translatedMenuItems[10]}
                 &nbsp;&nbsp;&nbsp;
                 <Badge
@@ -448,7 +432,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.deals" defaultMessage="Deals" /> */}
+              {/* "Deals"*/}
                 {translatedMenuItems[12]}
                 <Badge
                   count={props.opportunityRecord.investorOpportunity}
@@ -468,7 +452,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.contactInvest" defaultMessage="Contact Invest" /> */}
+              {/* Contact Invest*/}
                 {translatedMenuItems[13]}
                 <Badge
                   count={props.opportunityRecord.investorcontact}
@@ -487,7 +471,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
 
               <LocationCityIcon className='!text-base'  />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.investor" defaultMessage="Investor" /> */}
+              {/* Investor */}
                 {translatedMenuItems[14]}
                 &nbsp;&nbsp;&nbsp;
                 <Badge
@@ -511,11 +495,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               <span class="text-white text-ls ml-1 ">
              {/* Club */}
                 {translatedMenuItems[15]}
-                &nbsp;&nbsp;&nbsp;
-                {/* <Badge
-                  count={props.opportunityRecord.investor}
-                  overflowCount={999}
-                ></Badge> */}
+                &nbsp;&nbsp;&nbsp;             
               </span>
             </Link>
           </Menu.Item>
@@ -538,29 +518,9 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                         </Link>
                       </Menu.Item>
             )}
-        {/* {user.userType !== "USER" && user.department !== "Customer" &&user.department == "VENDOR" && ( */}
-
-
-        {/*Requirement*/}
-        {/* {user.userType !== "USER" && user.department !== "VENDOR" && user.department !== "Recruiter" &&user.department !== "Customer"&&
-          ( */}
-
-
-        {/*Opportunity*/}
-
-        {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
-            user.department !== "VENDOR" && (  */}
-        {/* {user.talentCreateInd ===true && ( */}
-
-        {/* )}  */}
-        {/* {user.userType !== "USER" && props.department !== "Recruiter" &&user.department !== "VENDOR" &&user.department === "Customer" &&props.role !== "ADMIN" &&props.role !== "USER" &&(   */}
-
-
-        {/*Contact*/}
-        {/* )}  */}
+       
         <hr/>
-        {/* Talent */}
-      
+       
         {(user.orderAccessInd === true && user.erpInd === true 
         // || user.role === "ADMIN" && user.orderManagementInd === true
       ) &&  (
@@ -572,10 +532,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.order"
-                defaultMessage="Order"
-              /> */}
+                {/*Order"
+               */}
               {translatedMenuItems[16]}
               </span>
             </Link>
@@ -594,10 +552,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               />
               <span class="text-white text-ls ml-1">
               {translatedMenuItems[17]}
-                {/* <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              /> */}
+                {/* Customer"
+              */}
               </span>
             </Link>
           </Menu.Item>
@@ -612,10 +568,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             className='!text-base'
             />
             <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.catalogue"
-              defaultMessage="Catalogue"
-            /> */}
+              {/*Catalogue"
+           */}
             {translatedMenuItems[18]}
             </span>
           </Link>
@@ -628,10 +582,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             className='!text-base'
             />
             <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.quality"
-              defaultMessage="Quality"
-            /> */}
+              {/*Quality"
+            */}
              {translatedMenuItems[47]}
             </span>
           </Link>
@@ -646,10 +598,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             className='!text-base'
             />
             <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.subscription"
-              defaultMessage="Subscription"
-            /> */}
+              {/* Subscription"
+            */}
             {translatedMenuItems[39]}
             </span>
           </Link>
@@ -667,10 +617,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                  id="app.refurbish"
-                  defaultMessage="Refurbish"
-                /> */}
+                {/*Refurbish"
+                 */}
                  {translatedMenuItems[38]}
               </span>
             </Link>
@@ -686,10 +634,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             className='!text-base'
             />
             <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.production"
-              defaultMessage="Production"
-            /> */}
+              {/*Production"
+             */}
               {translatedMenuItems[37]}
             </span>
           </Link>
@@ -704,10 +650,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             className='!text-base'
             />
             <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.quality"
-              defaultMessage="Quality"
-            /> */}
+              {/* Quality"
+             */}
              {translatedMenuItems[19]}
             </span>
           </Link>
@@ -722,30 +666,13 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.prospect" defaultMessage="Prospect" /> */}
-              {/* {translatedMenuItems[9]} */}
+              {/* Prospect */}     
              {translatedMenuItems[48]} 
              {/* Waranty */}
-                &nbsp;&nbsp;&nbsp;
-                {/* <Badge
-                  count={props.opportunityRecord.CustomerNo}
-                  overflowCount={999}
-                ></Badge> */}
+                &nbsp;&nbsp;&nbsp;                
               </span>
             </Link>
           </Menu.Item>
-
-{/* <Menu.Item key="/procre" style={{ height: "1.45rem", 
- color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
-  <Link to="/procre" onClick={() => handleSelect('/procre')}>
-    <LocalMallIcon
-    className='!text-base'
-    />
-    <span class="text-white text-ls ml-1">
-      Procure
-    </span>
-  </Link>
-</Menu.Item> */}
 <hr/>
         {(user.materialAccessInd === true && user.erpInd === true 
         // || user.role === "ADMIN" && user.inventoryInd === true
@@ -758,10 +685,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.material"
-                defaultMessage="Material"
-              /> */}
+                {/*Material"
+            */}
                {translatedMenuItems[21]}
               </span>
             </Link>
@@ -778,10 +703,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
     className='!text-base'
     />
     <span class="text-white text-ls ml-1">
-      {/* <FormattedMessage
-      id="app.suppliers"
-      defaultMessage="Suppliers"
-    /> */}
+      {/* Suppliers"
+    */}
      {translatedMenuItems[22]}
     </span>
   </Link>
@@ -803,22 +726,6 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
   </Link>
 </Menu.Item>
       )}
-{/* {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && ( */}
-{/* {( user.erpInd === true &&
-<Menu.Item key="/vendor" style={{ height: "1.45rem", 
- color: selectedMenuItem === '/vendor' ? 'tomato' : '#4bc076'}}>
-  <Link to="/vendor" onClick={() => handleSelect('/vendor')}>
-    <CategoryIcon
-    className='!text-base'
-    />
-    <span class="text-white text-ls ml-1">
-      Vendor
-    </span>
-  </Link>
-</Menu.Item>
-)}  */} 
-{/* if any body want to use reuse this component */}
-
 
   {(user.procurementAccessInd === true && user.erpInd === true 
     // || user.role === "ADMIN" && user.procurementInd === true
@@ -830,10 +737,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.procurement"
-                defaultMessage="Procurement"
-              /> */}
+                {/* Procurement"
+               */}
                {translatedMenuItems[25]}
               </span>
             </Link>
@@ -850,10 +755,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
         className='!text-base'
         />
         <span className="text-white text-ls ml-1">
-          {/* <FormattedMessage
-            id="app.inventory"
-            defaultMessage="Inventory"
-          /> */}
+          {/* Inventory"
+           */}
            {translatedMenuItems[26]}
         </span>
       </Link>
@@ -873,10 +776,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.shipper"
-                defaultMessage="Shipper"
-              /> */}
+                {/* Shipper"
+              */}
                {translatedMenuItems[27]}
               </span>
             </Link>
@@ -897,10 +798,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
           <Link to="/collection" onClick={() => handleSelect('/collection')} >
             <ReceiptIcon style={{ fontSize: "large" }} />
             <span class="text-white text-ls ml-1">
-            {/* <FormattedMessage 
-                    id="app.collections"
-                   defaultMessage="Collections"
-               /> */}
+            {/* Collections"
+                */}
                {translatedMenuItems[36]}
             </span>
           </Link>
@@ -908,41 +807,38 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
 
   )}
 
-        
-        {/* {user.imInd === true  && ( */}
-        {/* <Menu.Item key="/report" style={{ height: "1.45rem", paddingLeft: "1rem" }}>
-          <Link to="/leave">
-            <i class="fas fa-luggage-cart"></i>
-            <span class="text-white text-ls ml-1"><FormattedMessage
-              id="app.leaves"
-              defaultMessage="Leaves"
-            />
-              &nbsp;&nbsp;&nbsp;
-              <Badge
-                count={props.opportunityRecord.leave}
-                overflowCount={999}
-              ></Badge>
-            </span>
-          </Link>
-        </Menu.Item> */}
-        {/* )} */}
-        {/* {user.userType !== "USER" && user.imInd === true  && user.department !== "VENDOR" && (  */}
-        {/* <Menu.Item key="/mileage" style={{ height: "1.45rem", paddingLeft: "1rem" }}>
-          <Link to="/mileage">
+ {/*Publish*/}
+        {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
+            user.department !== "VENDOR" && (  */}
+        {/* {(user.publishAccessInd === true  && user.recruitProInd === true) || (user.role === "ADMIN"  && user.recruitProInd === true) && ( */}
+          <Menu.Item key="/publish" style={{ height: "1.45rem", 
+          color: selectedMenuItem === '/publish' ? 'tomato' : '#4bc076' }}>
+            <Link to="/publish" onClick={() => handleSelect('/publish')}>
 
-            <i class="fas fa-tachometer-alt"></i>
-            <span class="text-white text-ls ml-[0.3rem]"><FormattedMessage
-              id="app.mileage"
-              defaultMessage="Mileage"
-            />
-              &nbsp;&nbsp;&nbsp;
-              <Badge
-                count={props.opportunityRecord.mileage}
-                overflowCount={999}
-              ></Badge>
-            </span>
-          </Link>
-        </Menu.Item> */}
+              <CellTowerIcon className='!text-base'/>
+              <span class="text-white text-ls ml-1">
+              {translatedMenuItems[50]}
+                 {/* publish */}
+                </span>
+            </Link>
+          </Menu.Item>
+        {/* )} */}
+
+        {/*Publish*/}
+              {user.department === "Management" && (
+            <Menu.Item key="/invoice" style={{height:"1.45rem"}}>
+              <Link to="/Invoice">
+                <TextSnippetIcon
+
+                  className='!text-base'
+                />
+               <span class="text-white text-ls ml-3">
+                
+                  {translatedMenuItems[17]}
+                </span>
+              </Link>
+            </Menu.Item>
+          )}     
         <hr />
         {(user.leaveAccessInd === true   
         // || user.role === "ADMIN"
@@ -952,10 +848,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
           <Link to="/leave" onClick={() => handleSelect('/report')}>
             <i class="fas fa-luggage-cart"></i>
             <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.leaves"
-              defaultMessage="Leaves"
-            /> */}
+              {/* Leaves"
+             */}
              {translatedMenuItems[28]}
               &nbsp;&nbsp;&nbsp;
               <Badge
@@ -976,10 +870,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
 
             <i class="fas fa-tachometer-alt"></i>
             <span class="text-white text-ls ml-[0.3rem]">
-              {/* <FormattedMessage
-              id="app.mileage"
-              defaultMessage="Mileage"
-            /> */}
+              {/*Mileage"
+             */}
              {translatedMenuItems[29]}
               &nbsp;&nbsp;&nbsp;
               <Badge
@@ -1000,10 +892,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
             className='!text-base'
             />
             <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.expense"
-              defaultMessage="Expense"
-            /> */}
+              {/* Expense"
+             */}
              {translatedMenuItems[30]}
               &nbsp;&nbsp;&nbsp;
               <Badge
@@ -1026,10 +916,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
             <i class="fas fa-holly-berry"></i>
             &nbsp;
             <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.holiday"
-              defaultMessage="Holiday"
-            /> */}
+              {/* Holiday"
+             */}
  {translatedMenuItems[31]}
             </span>
           </Link>
@@ -1057,9 +945,9 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
         {/* 
            </SubMenu> 
      )}  */}
-      {((user.talentAccessInd === true && user.recruitProInd === true) 
-      //  || (user.role === "ADMIN" && user.recruitProInd === true)
-      ) &&  (
+      {/* {((user.talentAccessInd === true && user.recruitProInd === true)  */}
+      {/* //  || (user.role === "ADMIN" && user.recruitProInd === true)
+      ) &&  ( */}
             <Menu.Item key="/candidate" style={{ height: "1.45rem", 
              color: selectedMenuItem === '/candidate' ? 'tomato' : '#4bc076' }}>
               <Link to="/candidate" onClick={() => handleSelect('/candidate')}>
@@ -1080,13 +968,13 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
                 </span>
               </Link>
             </Menu.Item>
-          )}  
+          {/* )}   */}
         {/*Talent*/}
         {/*Requirement*/}
-        {(user.requirementAccessInd === true && user.recruitProInd === true 
+        {/* {(user.requirementAccessInd === true && user.recruitProInd === true 
         // || user.role === "ADMIN" && user.recruitProInd === true
-      )
-         &&  (
+      ) */}
+         {/* &&  ( */}
           <Menu.Item key="/requirement" style={{ height: "1.45rem",
             color: selectedMenuItem === '/requirement' ? 'tomato' : '#4bc076' }}>
             <Link to="/requirement " onClick={() => handleSelect('/requirement')}>
@@ -1106,10 +994,10 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               </span>
             </Link>
           </Menu.Item>
-           )}
-          {(user.requirementAccessInd === true && user.recruitProInd === true 
+           {/* )} */}
+          {/* {(user.requirementAccessInd === true && user.recruitProInd === true 
           // || user.role === "ADMIN" && user.recruitProInd === true
-        ) &&  (
+        ) &&  ( */}
          <Menu.Item key="/project" style={{ height: "1.45rem",
            color: selectedMenuItem === '/project' ? 'tomato' : '#4bc076' }}>
               <Link to="/project" onClick={() => handleSelect('/project')}>
@@ -1117,19 +1005,19 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
                 className='!text-base'
                 />
                 <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.project" defaultMessage="Project" /> */}
+                {/* Project */}
                 
                   {translatedMenuItems[44]}
                 </span>
               </Link>
             </Menu.Item> 
- )}
+ {/* )} */}
           {/* <hr/> */}
         {/* )} */}
         {/*Demand*/}
-        {(user.userType === "USER" && user.department === "Customer" && user.recruitProInd === true 
+        {/* {(user.userType === "USER" && user.department === "Customer" && user.recruitProInd === true 
         // || user.role === "ADMIN" && user.recruitProInd === true
-      ) && (
+      ) && ( */}
           <Menu.Item key="/demand" style={{ height: "1.45rem", 
            color: selectedMenuItem === '/demand' ? 'tomato' : '#4bc076' }}>
             <Link to="/demand" onClick={() => handleSelect('/demand')}>
@@ -1138,14 +1026,14 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               className='!text-base' />
 
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.demand" defaultMessage="Demand" /> */}
+              {/*Demand */}
               {translatedMenuItems[43]} 
               
                 &nbsp;&nbsp;&nbsp;&nbsp;
               </span>
             </Link>
           </Menu.Item>
-        )}
+        {/* )} */}
         {/*Demand*/}
 
         {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
@@ -1154,29 +1042,10 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
         {/*Customer*/}
 
 
-        {/*Publish*/}
-        {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
-            user.department !== "VENDOR" && (  */}
-        {/* {(user.publishAccessInd === true  && user.recruitProInd === true) || (user.role === "ADMIN"  && user.recruitProInd === true) && (
-          <Menu.Item key="/publish" style={{ height: "1.45rem", 
-          color: selectedMenuItem === '/publish' ? 'tomato' : '#4bc076' }}>
-            <Link to="/publish" onClick={() => handleSelect('/publish')}>
-
-              <CellTowerIconclassName='!text-base'/>
-              <span class="text-white text-ls ml-1">
-                 <FormattedMessage
-                id="app.publish"
-                defaultMessage="Publish"
-              />
-                 
-                </span>
-            </Link>
-          </Menu.Item>)} */}
-
-        {/*Publish*/}
+       
  
         {/* {user.department === "Management" && ( */}
-        {/* <Menu.Item key="/billing" style={{height:"1.45rem"}}>
+        <Menu.Item key="/billing" style={{height:"1.45rem"}}>
             <Link to="/Billing">
               <AccessAlarmIcon
 
@@ -1184,26 +1053,13 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               />
              <span class="text-white text-ls ml-3">
             
-                {translatedMenuItems[16]}
+                {translatedMenuItems[49]}
               </span>
             </Link>
-          </Menu.Item> */}
+          </Menu.Item>
         {/* )} */}
 
-        {/* {user.department === "Management" && (
-            <Menu.Item key="/invoice" style={{height:"1.45rem"}}>
-              <Link to="/Invoice">
-                <TextSnippetIcon
-
-                  className='!text-base'
-                />
-               <span class="text-white text-ls ml-3">
-                
-                  {translatedMenuItems[17]}
-                </span>
-              </Link>
-            </Menu.Item>
-          )} */}
+      
 
         {/* {user.userType !== "USER" && user.department !== "VENDOR" && user.department !== "Customer" && user.department !== "Recruiter" &&( */}
         {/* VENDOR */}
@@ -1322,26 +1178,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
             </Link>
           </Menu.Item> */}
         {/* Employees */}
-
-        {/* {user.userType !== "USER" && user.department !== "VENDOR" && ( 
-          <SubMenu
-            key="sub2"
-          style={{ marginBottom: "-1.25em" }}
-         title={
-              <span>
-              
-                 <i class="fab fa-servicestack"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-               <span style={{ color: "white" }}>
-
-                  <FormattedMessage
-                 id="app.selfService"
-                    defaultMessage="Self Service"
-                  />
-                </span>
-              </span>
-            }
-          >
-           */}
+   
         <hr />
         {/* {user.userAccessInd === true || user.role === "ADMIN"  && ( */}
         { (user.teamsAccessInd === true &&  user.hrInd === true 
@@ -1411,10 +1248,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.location"
-                defaultMessage="Location"
-              /> */}
+              {/* Location */}
               {translatedMenuItems[34]}
               </span>
             </Link>

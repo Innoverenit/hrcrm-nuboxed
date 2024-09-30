@@ -81,7 +81,11 @@ function ContactInvestTeamsCardList(props) {
            "526",//5 Deal Value
           "279",// 6 Source
            "77",//7 Owner    
-           "1581"// Score 8
+           "1581",// Score 8
+           "392",//Pulse 9
+           "316",// Notes 10
+           "185",//Adress 11 
+           "170",//Edit 12
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -342,7 +346,7 @@ if (loading) {
                            
                   <div class=" flex justify-evenly items-center w-[7rem] max-sm:flex   max-sm:w-full">
                   <div>
-     <Tooltip title="Pulse">
+     <Tooltip title=     {translatedMenuItems[9]}>
  <MonitorHeartIcon
  className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl"
           onClick={() => {
@@ -352,6 +356,28 @@ if (loading) {
         />
      </Tooltip>
      </div>
+                                            
+                <div>
+              <Tooltip title=     {translatedMenuItems[10]}>
+ <NoteAltIcon
+          onClick={() => {
+            props.handleContactInvestNotesDrawerModal(true);
+            handleCurrentContactIdata(item);
+          }}
+          className="text-green-500 cursor-pointer !text-icon max-sm:!text-xl"
+        />
+     </Tooltip>
+     </div>
+     <Tooltip title=     {translatedMenuItems[11]}>
+     <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
+          onClick={() => {
+            props.handleContactAddressDrawerModal(true);
+            handleCurrentContactIdata(item);
+          }}
+          
+        />
+        </Tooltip>
                     <div>
                   <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
@@ -389,30 +415,11 @@ if (loading) {
       />
      </Tooltip>
      </div>      
-     <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
-          onClick={() => {
-            props.handleContactAddressDrawerModal(true);
-            handleCurrentContactIdata(item);
-          }}
-          
-        />               
-                           
-                <div>
-              <Tooltip title="Notes">
- <NoteAltIcon
-          onClick={() => {
-            props.handleContactInvestNotesDrawerModal(true);
-            handleCurrentContactIdata(item);
-          }}
-          className="text-green-500 cursor-pointer !text-icon max-sm:!text-xl"
-        />
-     </Tooltip>
-     </div>
+   
      
      <div>
       {user.imInd === true  && user.investorContactUpdateInd === true &&  (
-      <Tooltip title="Edit">
+      <Tooltip title=     {translatedMenuItems[12]}>
         <BorderColorIcon
           className="!text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
           onClick={() => {

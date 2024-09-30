@@ -30,14 +30,7 @@ function RecruitmentProfileView(props) {
                         "rgb(161, 185, 185)",
                     }}
                   >
-                    <StageName
-                      style={{
-                        color: "#444 "
-                          ,
-                        cursor:
-                         "pointer",
-                      }}
-                    >
+                    <StageName className="text-[#444] cursor-pointer">                    
                       {
                         item.rulesName
                       

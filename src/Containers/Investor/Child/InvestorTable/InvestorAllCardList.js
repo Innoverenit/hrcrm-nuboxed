@@ -357,7 +357,7 @@ function InvestorAllCardList(props) {
                                     </div>
                                 </div>
                                 {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center  items-center  font-poppins w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
            {item.noteScoreInd}
           
             </div>
@@ -430,14 +430,6 @@ function InvestorAllCardList(props) {
                 />
              </Tooltip>
                           </div>     
-                          <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
-          onClick={() => {
-            props.handleInvestorAddressDrawerModal(true);
-            handleCurrentRowData(item);
-          }}
-          
-        />                                                                                   
                           <div >
                    <Tooltip title="Notes">
        <NoteAltIcon
@@ -449,6 +441,15 @@ function InvestorAllCardList(props) {
               />
            </Tooltip>
                    </div>
+                          <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
+          onClick={() => {
+            props.handleInvestorAddressDrawerModal(true);
+            handleCurrentRowData(item);
+          }}
+          
+        />                                                                                   
+                        
                    
                    <div>
                     <Tooltip title={item.url}>

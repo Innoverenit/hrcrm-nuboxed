@@ -86,7 +86,8 @@ function InvestorCardList(props) {
           "608",// investor contact 17 
           "170",// 170edit  18 
           "84", // 84delete 19
-          "1581" //Score
+          "1581", //Score
+       
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -418,7 +419,7 @@ function InvestorCardList(props) {
                                     </div>
                                 </div>
                                 {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[7.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center items-center  font-poppins w-[7.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>
@@ -453,16 +454,7 @@ function InvestorCardList(props) {
             
                   <div class=" flex w-wk justify-end items-center">
                                 <div class="flex cursor-pointer  max-sm:justify-evenly max-sm:w-wk max-sm:items-center">  
-                                  <div>
-                                  <Tooltip title={translatedMenuItems[13]} >
-                                    <ArticleIcon  className="!text-icon cursor-pointer  max-sm:!text-xl"
-                                  onClick={() => {
-                                    handleInvestorDocumentModal(true);
-                                    handleCurrentRowData(item);
-                                  }}
-                                  />
-                                  </Tooltip>
-                                  </div>          
+                                          
                                 <div >
                           <Tooltip title={translatedMenuItems[14]} >
                             <MonitorHeartIcon
@@ -474,15 +466,6 @@ function InvestorCardList(props) {
                                     />
                                 </Tooltip>
                           </div>  
-                         < Tooltip title={translatedMenuItems[15]} >
-                          <AddLocationAltIcon
-                            className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
-                            onClick={() => {
-                              props.handleInvestorAddressDrawerModal(true);
-                              handleCurrentRowData(item);
-                            }}
-                             />   
-                                  </Tooltip>                                                                        
                           <div >
                    <Tooltip title={translatedMenuItems[16]} >
                        <NoteAltIcon
@@ -493,7 +476,27 @@ function InvestorCardList(props) {
                 className=" !text-icon cursor-pointer text-green-800 max-sm:!text-xl"
               />
            </Tooltip>
-                   </div>                 
+                   </div> 
+                         < Tooltip title={translatedMenuItems[15]} >
+                          <AddLocationAltIcon
+                            className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
+                            onClick={() => {
+                              props.handleInvestorAddressDrawerModal(true);
+                              handleCurrentRowData(item);
+                            }}
+                             />   
+                                  </Tooltip>                                                                        
+                         
+                   <div>
+                                  <Tooltip title={translatedMenuItems[13]} >
+                                    <ArticleIcon  className="!text-icon cursor-pointer  max-sm:!text-xl"
+                                  onClick={() => {
+                                    handleInvestorDocumentModal(true);
+                                    handleCurrentRowData(item);
+                                  }}
+                                  />
+                                  </Tooltip>
+                                  </div>              
                    <div >
                     <Tooltip title={item.url}>
               {item.url !== "" ? (

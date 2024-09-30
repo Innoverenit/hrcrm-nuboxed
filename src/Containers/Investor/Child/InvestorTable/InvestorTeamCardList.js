@@ -393,7 +393,7 @@ function InvestorTeamCardList(props) {
                           </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center  items-center  font-poppins w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>
@@ -462,18 +462,7 @@ function InvestorTeamCardList(props) {
              </Tooltip>
         {/* } */}
                           </div>
-                          <div>
-                          <Tooltip title= {translatedMenuItems[10]} >
-                          <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
-          onClick={() => {
-            props.handleInvestorAddressDrawerModal(true);
-            handleCurrentRowData(item);
-          }}
-          
-        />   
-        </Tooltip>
-        </div>  
+                        
                          <div>
                    <Tooltip title={translatedMenuItems[11]}>
        <NoteAltIcon
@@ -485,7 +474,18 @@ function InvestorTeamCardList(props) {
               />
            </Tooltip>
                    </div>
-                   
+                   <div>
+                          <Tooltip title= {translatedMenuItems[10]} >
+                          <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
+          onClick={() => {
+            props.handleInvestorAddressDrawerModal(true);
+            handleCurrentRowData(item);
+          }}
+          
+        />   
+        </Tooltip>
+        </div> 
                    <div>
                     <Tooltip title={item.url}>
               {item.url !== "" ? (

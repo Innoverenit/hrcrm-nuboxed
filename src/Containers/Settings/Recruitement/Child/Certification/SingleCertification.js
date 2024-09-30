@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import { FormattedMessage } from "react-intl";
 import { Button,Tooltip } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -35,16 +34,15 @@ class SingleCertification extends Component {
         const date = dayjs(creationDate).format("DD/MM/YYYY");
     // const disableDelete = linkedSources && linkedSources.includes(documentTypeId)
     return (
-      <CertificationWrapper>
+      <div>
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
               <div class=" flex justify-between" >
-                <CertificationName style={{ flexBasis: "85%" }}>{name} &nbsp;&nbsp;{date === currentdate ? <span className="blink">New</span> : null}</CertificationName>
+                <div className="font-semibold" >{name} &nbsp;&nbsp;{date === currentdate ? <span className="blink">New</span> : null}</div>
                 <div>
                   {this.props.certification.editInd ? (
-       <BorderColorIcon
-    style={{fontSize:"1rem"}}
+       <BorderColorIcon className="!text-icon  text-red-600"
        tooltipTitle="Edit"
        iconType="edit"
        onClick={toggleViewType}
@@ -58,15 +56,7 @@ class SingleCertification extends Component {
               title={<FormattedMessage id="app.doyouwanttodelete" defaultMessage="Do you want to delete" />}
               onConfirm={() => handleDeleteCertification(certificationId)}
             >
-                    <DeleteOutlined
-                     
-                      // onClick={() => handleDeleteCertification(certificationId)}
-                      size="14px"
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "5px",
-                        color: "red",
-                      }}
+                    <DeleteOutlined className="items-center ml-1 text-red-600 !text-icon"                 
                     />
                      </StyledPopconfirm>
                   </Tooltip>
@@ -84,7 +74,7 @@ class SingleCertification extends Component {
                 <br />
              
                 <div class=" flex justify-end" >
-                  <Button
+                  <Button              
                     type="primary"
                     htmlType="submit"
                    Loading={updatingCertifications}
@@ -106,41 +96,17 @@ class SingleCertification extends Component {
             )
           }
         </ViewEditCard>
-      </CertificationWrapper>
+      </div>
     );
   }
 }
 
 export default SingleCertification;
 
-const CertificationWrapper = styled.div`
-  width: 100%;
-  cursor: pointer;
-`;
-const CertificationName = styled.h3`
-  color: ${(props) => props.theme.color || "teal"};
-  font-weight: 600;
-`;
-const LibraryValue = styled.h3`
-  color: #999;
-  font-size: 1.3rem;
-`;
-
-
 const AppIcon1 = (props) => (
   
   <BorderColorIcon
-
   />
-
-
-
 );
 
-const EditIcon1 = styled(AppIcon1)`
-  color: black;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
+

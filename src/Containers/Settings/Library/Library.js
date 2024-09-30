@@ -121,8 +121,8 @@ const Library = ({
             color: "#FFFAFA",
           }}
         >
-             <div class=" flex flex-row justify-between">
-          <div className="flex w-[18vw]">
+             <div class=" flex flex-row justify-end">
+          <div className="flex w-[18vw] mr-1">
             <Input
               placeholder="Search by Name"
             
@@ -187,7 +187,7 @@ const Library = ({
           </div>
           <div className="flex flex-col">
             <div>
-            {/* <MainWrapper style={{ height: "34rem" }}> */}
+
               {librarys.length ? (
                 librarys
                   .slice()
