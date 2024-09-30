@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddOpportunityPulseModal from "../OpportunityTable/AddOpportunityPulseModal"
 import { DeleteOutlined } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroll-component"
 import { FormattedMessage } from "react-intl";
@@ -36,6 +37,7 @@ import {
          lostStatusRecruit,
          LinkStageOpportunity,
          getOpportunityForecast,
+         handleOpportunityPulseModal,
          handleOpportunityRowEmailModal
 } from "../../OpportunityAction";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
@@ -48,6 +50,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OpportunityRowEmailModal from "./OpportunityRowEmailModal";
 import { base_url } from "../../../../Config/Auth";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
+import { HeartBrokenOutlined } from "@mui/icons-material";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -490,6 +493,17 @@ imgHeight={"1.8rem"}
               />
   </div>
 
+  <div class="w-6">
+<HeartBrokenOutlined className="!text-icon"
+                type="mail"
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  props.handleOpportunityPulseModal(true);
+                  //handleSetCurrentOpportunityId(item);
+                }}
+              />
+  </div>
+
 <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon"/>
@@ -595,6 +609,18 @@ imgHeight={"1.8rem"}
         translatedMenuItems={props.translatedMenuItems}
       />
 
+<AddOpportunityPulseModal
+updatePulseModal={props.updatePulseModal}
+handleOpportunityPulseModal={props.handleOpportunityPulseModal}
+        // addDrawerOpportunityNotesModal={addDrawerOpportunityNotesModal}
+        // opportunityData={currentOpportunityId}
+        // handleOpportunityNotesDrawerModal={handleOpportunityNotesDrawerModal}
+        // handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        // translateText={props.translateText}
+        // selectedLanguage={props.selectedLanguage}
+        // translatedMenuItems={props.translatedMenuItems}
+      />
+
 <AddOpportunityDrawerModal
 
  opportunityData={currentOpportunityId}
@@ -624,6 +650,7 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
 const mapStateToProps = ({ auth, account, opportunity }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
+  updatePulseModal:opportunity.updatePulseModal,
   deleteOpportunityData:opportunity.deleteOpportunityData,
   addDrawerOpportunityNotesModal:opportunity.addDrawerOpportunityNotesModal,
   role: auth.userDetails.role,
@@ -675,6 +702,7 @@ const mapDispatchToProps = (dispatch) =>
          LinkClosedOpportunity,
          StatusRecruit,
          lostStatusRecruit,
+         handleOpportunityPulseModal,
          emptyOpportunity,
          LinkStageOpportunity,
          handleOpportunityRowEmailModal

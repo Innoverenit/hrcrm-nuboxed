@@ -6,6 +6,8 @@ const initialState = {
   addOpportunityModal: false,
   addRecruiterModal: false,
 
+  updatePulseModal:false,
+
   fetchingAllOpportunityData: false,
   fetchingAllOpportunityDataError: false,
   allOpportunityData: [],
@@ -599,6 +601,9 @@ export const OpportunityReducer = (state = initialState, action) => {
         addingOpportunityError: true,
         //addOpportunityModal: false,
       };
+
+      case types.HANDLE_OPPORTUNITY_PULSE_MODAL:
+        return { ...state, updatePulseModal: action.payload };
 
     /* Get a opportunity  */
     case types.GET_OPPORTUNITY_REQUEST:
