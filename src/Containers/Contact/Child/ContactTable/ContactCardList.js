@@ -342,25 +342,26 @@ function ContactCardList(props) {
                        
           
              <div class="flex items-center max-sm:justify-between max-sm:w-wk">
-             <div>
-              <Tooltip title={translatedMenuItems[11]}>
- <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          
+           
+              <div>
+              <Tooltip title={translatedMenuItems[12]}>
+ <NoteAltIcon
+          className=" !text-icon cursor-pointer text-green-800"
           onClick={() => {
-            props.handleContactAddressDrawerModal(true);
+            handleContactNotesDrawerModal(true);
             handleSetCurrentContact(item);
           }}
           
         />
      </Tooltip>
      </div>
-           
-              <div>
-              <Tooltip title={translatedMenuItems[12]}>
- <NoteAltIcon
-          className=" !text-icon cursor-pointer text-[#4bc076]"
+     <div>
+              <Tooltip title={translatedMenuItems[11]}>
+ <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
-            handleContactNotesDrawerModal(true);
+            props.handleContactAddressDrawerModal(true);
             handleSetCurrentContact(item);
           }}
           
