@@ -203,7 +203,7 @@ const StackedBarChart = () => {
   };
 
   return (
-    <div>
+    <div className=' w-[39vw] '>
       <ReactApexChart
         options={options}
         series={options.series}

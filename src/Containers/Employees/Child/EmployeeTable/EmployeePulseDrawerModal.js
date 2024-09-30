@@ -36,7 +36,7 @@ class EmployeePulseDrawerModal extends Component {
     try {
       const itemsToTranslate = [
         "1193",//0  Performance
-        "",//1  360 View
+        "1646",//1  360 View
         "981",//2 Salary
         "1202",//3  Equipment
         

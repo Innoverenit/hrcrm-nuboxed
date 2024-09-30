@@ -18,12 +18,12 @@ class ReportDocumentsView extends Component {
     return (
       <>
         
-        <div class=" flex items-center w-[90%] justify-between flex-no-wrap m-2">
+        {/* <div class=" flex items-center w-[90%] justify-between flex-no-wrap m-2"> */}
 
     
-        <div class=" flex justify-end mt-3"
-                        style={{ padding: "0em 1.25em" }}
-                    >
+        {/* <div class=" flex justify-end mt-3" */}
+                        
+                    {/* > */}
                         <Tooltip title={"Generate PDF"}>
                             {/* <Button > */}
                                  <PictureAsPdfIcon className=" !text-xl !text-red !text-tab"/>
@@ -73,9 +73,9 @@ class ReportDocumentsView extends Component {
                                 // }}
                             ></Button> */}
                         </Tooltip>
-                    </div>
+                    {/* </div> */}
 
-        </div>
+         {/* </div> */}
 
       </>
     );

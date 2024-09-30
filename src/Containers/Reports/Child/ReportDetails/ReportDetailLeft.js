@@ -1,5 +1,5 @@
 import React, { Component,lazy} from "react";
-import ReportDocumentsCard from "./ReportDocumentsCard";
+// import ReportDocumentsCard from "./ReportDocumentsCard";
 import ReportTimeCard from "./ReportTimeCard";
 const ReportDetailCard =lazy(()=> import("./ReportDetailCard"));
 class ReportDetailLeft extends Component {
@@ -33,7 +33,7 @@ class ReportDetailLeft extends Component {
                UserOrgFlipClick={this.props.UserOrgFlipClick}
                userorgflipClick={this.props.userorgflipClick}
           />
-          <ReportDocumentsCard customer={customer} />
+          {/* <ReportDocumentsCard customer={customer} /> */}
         </div>
       </>
     );

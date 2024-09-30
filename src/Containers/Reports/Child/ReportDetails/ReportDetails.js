@@ -24,6 +24,7 @@ class ReportDetails extends Component {
           ) : ( */}
               <div>
                 <Suspense fallback={"Loading..."}>
+                <div className=" flex  flex-row">
                   <div class=" flex  max-sm:flex-col max-sm:overflow-x-auto max-sm:h-[63vh]"
                 >
                     <div class=" w-1/5 max-sm:w-full">
@@ -59,6 +60,10 @@ class ReportDetails extends Component {
 
                       />
                     </div>
+                  </div>
+                  {/* <div className=" h-[85vh] w-[ ]">
+                  <div>click on the topic on the left pane to generate the report.</div>
+                  </div> */}
                   </div>
                 </Suspense>
               </div>
