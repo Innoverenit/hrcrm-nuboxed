@@ -43,8 +43,8 @@ class ReportActionLeft extends React.Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-      "",  // "Enterprise",
-       "" // "My View"
+      "198",  // "Enterprise",
+       "23" // "My View"
         
       ];
 

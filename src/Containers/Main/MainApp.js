@@ -81,6 +81,9 @@ const Holiday = lazy(() =>
 const Reports = lazy(() =>
   import("../Reports/Reports")
 );
+const Analytics = lazy(() =>
+  import("../Reports/Analytics")
+);
 const Partner = lazy(() =>
   import("../Partner/Partner")
 );
@@ -960,6 +963,17 @@ function MainApp(props) {
                       path="/reports"
                       render={(props) => (
                         <Reports
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/analytics"
+                      render={(props) => (
+                        <Analytics
                           {...props}
                           translateText={translateText}
                            selectedLanguage={selectedLanguage}
