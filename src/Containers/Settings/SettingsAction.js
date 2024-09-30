@@ -1763,6 +1763,7 @@ export const addDepartmentAccess = (data, roleTypeId) => (dispatch) => {
         type: types.ADDING_DEPARTMENT_ACCESS_FAILURE,
         payload: err,
       });
+      message.error("Privileges have been Not updated!!")
     });
 };
 
