@@ -64,7 +64,7 @@ class Access extends PureComponent {
       
         return (
             <>
-                <TabsWrapper style={{height:"150vh" }}>
+                <TabsWrapper className="h-[150vh]">
                     <StyledTabs type="card">
                         {departmentList.map((member, i) => {
                             return (

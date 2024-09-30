@@ -1,21 +1,16 @@
 import { Badge } from "antd";
-import React, { lazy,Suspense ,useEffect,useState} from "react";
+import React, { lazy,Suspense ,useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-// import {getLibraryRecords,getCertificationRecords} from "../Library/LibraryAction"
 const Certification = lazy(() => import("../Recruitement/Child/Certification/Certification"));
 const Library = lazy(() => import("./Library"));
 const TabPane = StyledTabs.TabPane;
 
 function SkillsTab(props) {
     const [activeKey, setActiveKey] = useState('1');
-    // useEffect(() => {
-    //    props.getLibraryRecords(props.orgId);
-    //    props.getCertificationRecords(props.orgId)
-    //   }, []);
       function handleTabChange(key){
         setActiveKey(key)
       }
@@ -31,13 +26,14 @@ function SkillsTab(props) {
   count={props.libraryRecordData.definationCount}
   overflowCount={999}
 >
+</Badge>
                     <span style={{ marginLeft: "0.25em" }}>
                       <FormattedMessage
                         id="app.Skills"
                         defaultMessage="Skills"
                       />
                   </span>
-                  </Badge>
+                
                 </>
               }
               key="1"
@@ -54,13 +50,14 @@ function SkillsTab(props) {
   count={props.certificationRecordData.certificationLibraryCount}
   overflowCount={999}
 >
+</Badge>
                     <span style={{ marginLeft: "0.25em" }}>
                       <FormattedMessage
                         id="app.Certifications"
                         defaultMessage="Certifications"
                       />
                   </span>
-                  </Badge>
+               
                 </>
               }
               key="2"

@@ -14,7 +14,7 @@ function RecruitTab(props) {
       <TabsWrapper>
         <StyledTabs defaultActiveKey="1" type="card">
         <TabPane tab={`Sourcing`} key="1">
-            <div style={{ marginTop: 10 }}>
+            <div className="mt-10">
               <RecruitSourcingTab />
             </div>
           </TabPane>
