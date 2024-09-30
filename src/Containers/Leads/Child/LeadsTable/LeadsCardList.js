@@ -934,20 +934,7 @@ const LeadsCardList = (props) => {
                 </div>
                 </div>
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
-               
-                <div>
-              <Tooltip title={translatedMenuItems[14]}>
- <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleLeadsAddressDrawerModal(true);
-            // handleSetCurrentContact(item);
-            handleSetCurrentLeadsId(item);
-          }}
-          
-        />
-     </Tooltip>
-     </div>
+             
      <div>
                       <Tooltip title={translatedMenuItems[15]}>
                       
@@ -976,6 +963,20 @@ const LeadsCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
+                    
+                <div>
+              <Tooltip title={translatedMenuItems[14]}>
+ <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleLeadsAddressDrawerModal(true);
+            // handleSetCurrentContact(item);
+            handleSetCurrentLeadsId(item);
+          }}
+          
+        />
+     </Tooltip>
+     </div>
                   <div >
                     <Tooltip
                       title={translatedMenuItems[17]}

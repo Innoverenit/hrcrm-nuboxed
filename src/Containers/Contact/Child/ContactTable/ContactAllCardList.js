@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
 import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import { Link } from 'react-router-dom';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -346,24 +345,25 @@ if (loading) {
             )}
              </div>
              <div class="flex items-center max-sm:justify-evenly max-sm:w-wk">
-             <div>
-              <Tooltip title={translatedMenuItems[12]}>
- <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+         
+              <div>
+              <Tooltip title={translatedMenuItems[13]}>
+ <NoteAltIcon
+          className=" !text-icon cursor-pointer text-green-800"
           onClick={() => {
-            props.handleContactAddressDrawerModal(true);
+            handleContactNotesDrawerModal(true);
             handleSetCurrentContact(item);
           }}
           
         />
      </Tooltip>
      </div>
-              <div>
-              <Tooltip title={translatedMenuItems[13]}>
- <NoteAltIcon
-          className=" !text-icon cursor-pointer text-[#4bc076]"
+     <div>
+              <Tooltip title={translatedMenuItems[12]}>
+ <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
-            handleContactNotesDrawerModal(true);
+            props.handleContactAddressDrawerModal(true);
             handleSetCurrentContact(item);
           }}
           

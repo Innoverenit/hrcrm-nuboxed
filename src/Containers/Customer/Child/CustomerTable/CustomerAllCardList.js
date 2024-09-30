@@ -89,7 +89,8 @@ function CustomerAllCardList(props) {
    "144" ,//In Progress 16
    "387",//  Convert 17
    "389",//   Converted 18
-"1581"//SCORE 19
+"1581",//SCORE 19
+"185"//Address 20
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -463,6 +464,44 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                       </div>
                       <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                      <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+           
+           <Tooltip title= {translatedMenuItems[12]}>
+             <MonitorHeartIcon
+               className=" !text-icon cursor-pointer text-[#df9697]"
+               onClick={() => {
+                 handleCustomerPulseDrawerModal(true);
+                 handleSetCurrentCustomer(item);
+               }}
+
+             />
+           </Tooltip>
+   
+         </div>
+        
+
+           <Tooltip title= {translatedMenuItems[13]}>
+             <NoteAltIcon
+               className=" !text-icon cursor-pointer text-green-800"
+               onClick={() => {
+                 handleCustomerNotesDrawerModal(true);
+                 handleSetCurrentCustomer(item);
+                 handleRowData(item);
+               }}
+
+             />
+           </Tooltip>
+           <Tooltip title= {translatedMenuItems[20]}>
+           <AddLocationAltIcon
+className=" !text-icon cursor-pointer text-[#8e4bc0]"
+onClick={() => {
+props.handleAddressCutomerModal(true);
+handleRowData(item);
+}}
+
+/> 
+</Tooltip>
+
                       <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
                     
                           <Tooltip title={item.url}>
@@ -536,41 +575,7 @@ const [rowdata, setrowdata] = useState("");
                           </Tooltip>
                        
                      
-                      <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-           
-                          <Tooltip title= {translatedMenuItems[12]}>
-                            <MonitorHeartIcon
-                              className=" !text-icon cursor-pointer text-[#df9697]"
-                              onClick={() => {
-                                handleCustomerPulseDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                              }}
-
-                            />
-                          </Tooltip>
-                  
-                        </div>
-                        <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleAddressCutomerModal(true);
-            handleRowData(item);
-          }}
-          
-        /> 
-              
-                          <Tooltip title= {translatedMenuItems[13]}>
-                            <NoteAltIcon
-                              className=" !text-icon cursor-pointer text-[#4bc076]"
-                              onClick={() => {
-                                handleCustomerNotesDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
-
-                            />
-                          </Tooltip>
-
+                    
                     
                     
 

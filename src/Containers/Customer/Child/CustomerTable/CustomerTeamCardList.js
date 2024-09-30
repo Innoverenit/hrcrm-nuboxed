@@ -510,6 +510,41 @@ const [rowdata, setrowdata] = useState("");
 </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                      
+                      <div class="w-4">
+                          <Tooltip title= {translatedMenuItems[12]}>
+                            <MonitorHeartIcon
+                              className=" !text-icon cursor-pointer text-[#df9697]"
+                              onClick={() => {
+                                handleCustomerPulseDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                              }}
+                            />
+                          </Tooltip>
+                        </div>
+                      
+                        <div class="w-4">
+                          <Tooltip title= {translatedMenuItems[13]}>
+                            <NoteAltIcon
+                              className=" !text-icon cursor-pointer text-green-800"
+                              onClick={() => {
+                                handleCustomerNotesDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                                handleRowData(item);
+                              }}
+
+                            />
+                          </Tooltip>
+                        </div> 
+                        <Tooltip title= {translatedMenuItems[20]}>
+                        <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddressCutomerModal(true);
+            handleRowData(item);
+          }}
+          
+        /> 
+        </Tooltip>  
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -572,40 +607,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>                                      
-                        <div class="w-4">
-                          <Tooltip title= {translatedMenuItems[12]}>
-                            <MonitorHeartIcon
-                              className=" !text-icon cursor-pointer text-[#df9697]"
-                              onClick={() => {
-                                handleCustomerPulseDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                              }}
-                            />
-                          </Tooltip>
-                        </div>
-                        <Tooltip title= {translatedMenuItems[20]}>
-                        <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleAddressCutomerModal(true);
-            handleRowData(item);
-          }}
-          
-        /> 
-        </Tooltip>
-                        <div class="w-4">
-                          <Tooltip title= {translatedMenuItems[13]}>
-                            <NoteAltIcon
-                              className=" !text-icon cursor-pointer text-[#4bc076]"
-                              onClick={() => {
-                                handleCustomerNotesDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
-
-                            />
-                          </Tooltip>
-                        </div>                               
+                                               
                       
                         <div class="w-4">
                           {props.user.customerUpdateInd === true && user.crmInd === true && (

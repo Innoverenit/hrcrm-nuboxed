@@ -533,14 +533,7 @@ const LeadsAllCardList = (props) => {
                 </div>
                 </div>
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
-                <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleLeadsAddressDrawerModal(true);
-            handleRowData(item);
-          }}
           
-        /> 
                   <div >
                     <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
@@ -554,6 +547,14 @@ const LeadsAllCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
+                  <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleLeadsAddressDrawerModal(true);
+            handleRowData(item);
+          }}
+          
+        /> 
                   <div >
                     <Tooltip
                       title={translatedMenuItems[16]}
@@ -928,14 +929,7 @@ const LeadsAllCardList = (props) => {
                 </div>
                 </div>
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
-                <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleLeadsAddressDrawerModal(true);
-            handleRowData(item);
-          }}
-          
-        /> 
+             
                   <div >
                     <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
@@ -949,6 +943,14 @@ const LeadsAllCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
+                  <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleLeadsAddressDrawerModal(true);
+            handleRowData(item);
+          }}
+          
+        /> 
                   <div >
                     <Tooltip
                       title={translatedMenuItems[16]}
@@ -1323,14 +1325,7 @@ const LeadsAllCardList = (props) => {
                 </div>
                 </div>
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">      
-                <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleLeadsAddressDrawerModal(true);
-            handleRowData(item);
-          }}
-          
-        />         
+                 
                   <div >
                     <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
@@ -1342,6 +1337,14 @@ const LeadsAllCardList = (props) => {
                       />
                     </Tooltip>
                   </div>
+                  <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleLeadsAddressDrawerModal(true);
+            handleRowData(item);
+          }}
+          
+        />   
                   <div >
                     <Tooltip
                       title={translatedMenuItems[16]}

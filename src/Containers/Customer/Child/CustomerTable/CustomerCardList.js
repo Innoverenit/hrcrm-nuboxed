@@ -109,7 +109,8 @@ function CustomerCardList(props) {
    "144" ,//In Progress 15
    "387",//  Convert 16
    "389",//   Converted 17
-   "1581" //Score 18
+   "1581", //Score 18
+   "185"//Address 19
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -505,7 +506,40 @@ if (loading) {
                       </div>
                       </div>
                       <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
+                      <div >
+                          <Tooltip title={translatedMenuItems[11]}>
+                            <MonitorHeartIcon
+                              className=" !text-icon cursor-pointer text-[#df9697]"
+                              onClick={() => {
+                                handleCustomerPulseDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                              }}
+                            />
+                          </Tooltip>
+                        </div>
                      
+                        <div >
+                          <Tooltip title={translatedMenuItems[12]}>
+                            <NoteAltIcon
+                              className=" !text-icon cursor-pointer text-green-800"
+                              onClick={() => {
+                                handleCustomerNotesDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                                handleRowData(item);
+                              }}
+                            />
+                          </Tooltip>
+                        </div> 
+                        <Tooltip title={translatedMenuItems[19]}>
+                        <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddressCutomerModal(true);
+            handleRowData(item);
+          }}
+          
+        />   
+            </Tooltip>        
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -571,37 +605,7 @@ if (loading) {
                           </Tooltip>
 
                         </div>                                       
-                        <div >
-                          <Tooltip title={translatedMenuItems[11]}>
-                            <MonitorHeartIcon
-                              className=" !text-icon cursor-pointer text-[#df9697]"
-                              onClick={() => {
-                                handleCustomerPulseDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                              }}
-                            />
-                          </Tooltip>
-                        </div>
-                        <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleAddressCutomerModal(true);
-            handleRowData(item);
-          }}
-          
-        /> 
-                        <div >
-                          <Tooltip title={translatedMenuItems[12]}>
-                            <NoteAltIcon
-                              className=" !text-icon cursor-pointer text-[#4bc076]"
-                              onClick={() => {
-                                handleCustomerNotesDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
-                            />
-                          </Tooltip>
-                        </div>                                     
+                                                
                        
                         <div >
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
