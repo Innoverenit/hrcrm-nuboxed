@@ -45,6 +45,14 @@ export const handleSentimentModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+export const handleOpportunityPulseModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_OPPORTUNITY_PULSE_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleBarChartOrderModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_BAR_CHART_ORDER_MODAL,

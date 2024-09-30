@@ -327,7 +327,7 @@ function handleSetCurrentUser(item) {
 
 {props.employees=="Data not Found" ? "Data not Found" :
             <div class="flex flex-wrap  justify-evenly w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">  
-              {props.filteredData.length === 0 ?<span class=" flex items-center mt-8"> {translatedMenuItems[0]}</span> :props.filteredData.filter(item => item.employee_type !== 'emmployee').map((item) => {
+              {props.filteredData.length === 0 ?<span class=" flex items-center mt-8"> {translatedMenuItems[0]}</span> :props.filteredData.filter(item => item.employee_type !== 'employee').map((item) => {
                
                 const handleCopyClick = () => {
                   const emailElement = document.createElement('textarea');
