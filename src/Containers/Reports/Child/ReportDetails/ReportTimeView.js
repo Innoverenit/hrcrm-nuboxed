@@ -5,6 +5,7 @@ class ReportTimeView extends Component {
   render() {
     return (
       <>
+     <div className=" flex flex-row">
         <div class=" flex items-center w-[90%] justify-between flex-no-wrap m-2">
           <ReportActionRight 
              handleButtonTask={this.props.handleButtonTask}
@@ -16,7 +17,7 @@ class ReportTimeView extends Component {
         <div>
         <ReportDocumentsCard  />
         </div>
-
+        </div>
       </>
     );
   }
