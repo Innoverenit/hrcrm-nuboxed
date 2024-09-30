@@ -122,42 +122,7 @@ function NavMenu(props) {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
-  // useEffect(() => {
-  //   const fetchMenuTranslations = async () => {
-  //     try {
-  //       const translations = await Promise.all([
-  //         translateText('Dashboard', props.selectedLanguage),
-  //         translateText('Planner', props.selectedLanguage),
-  //         translateText('Calls', props.selectedLanguage),
-  //         translateText('Tasks', props.selectedLanguage),
-  //         translateText('Events', props.selectedLanguage),
-  //         translateText('Reports', props.selectedLanguage),
-  //         translateText('Users', props.selectedLanguage),
-  //         translateText('Opportunity', props.selectedLanguage),
-  //         translateText('Contact', props.selectedLanguage),
-  //         translateText('Customer', props.selectedLanguage),
-  //         translateText('Talent', props.selectedLanguage),
-  //         translateText('Requirement', props.selectedLanguage),
-  //         translateText('Demand', props.selectedLanguage),
-  //         translateText('Leads', props.selectedLanguage),
-  //         translateText('Post', props.selectedLanguage),
-  //         translateText('Project', props.selectedLanguage),
-  //         translateText('Hours', props.selectedLanguage),
-  //         translateText('Invoice', props.selectedLanguage),
-  //         translateText('Vendor', props.selectedLanguage),
-  //         translateText('Test', props.selectedLanguage),
-  //         translateText('Courses', props.selectedLanguage),
-  //         translateText('Program', props.selectedLanguage),
-  //       ]);
 
-  //       setTranslatedMenuItems(translations);
-  //     } catch (error) {
-  //       console.error('Error translating menu items:', error);
-  //     }
-  //   };
-
-  //   fetchMenuTranslations();
-  // }, [props.selectedLanguage]);
 
    const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
   // const [selectedMenuItem, setSelectedMenuItem] = useState(user.dashboardRegionalInd ? "/dashboardRegional" : "/dashboard");
@@ -332,6 +297,21 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
 
+{(user.basicAccessInd === true || user.role === "ADMIN") && (
+          <Menu.Item key="/Analytics" style={{ height: "1.45rem", 
+          color: selectedMenuItem === '/Analytics' ? 'tomato' : '#4bc076' }}>
+            <Link to="/Analytics"onClick={() => handleSelect('/Analytics')}>
+              <PictureAsPdfIcon
+              className='!text-base'
+              />
+              <span class="text-white text-ls ml-1">
+                {/* <FormattedMessage id="app.reports" defaultMessage="Reports" /> */}
+                Analytics
+                {/* {translatedMenuItems[5]} */}
+              </span>
+            </Link>
+          </Menu.Item>
+        )}
 
 
 

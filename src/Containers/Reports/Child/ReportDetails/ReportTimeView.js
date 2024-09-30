@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReportActionRight from "../ReportActionRight";
-
+import ReportDocumentsCard from "./ReportDocumentsCard";
 class ReportTimeView extends Component {
   render() {
     return (
@@ -12,6 +12,9 @@ class ReportTimeView extends Component {
            selectedCategory={this.props.selectedCategory}
           />
 
+        </div>
+        <div>
+        <ReportDocumentsCard  />
         </div>
 
       </>
