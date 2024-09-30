@@ -9,11 +9,12 @@ import UploadIcon from '@mui/icons-material/Upload';
 const Option = StyledSelect.Option;
 
 class LeadsActionRight extends React.Component {
-
-   state = {
-    isClicked: "import",
-    translatedMenuItems: [],
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   
   componentDidMount() {
     this.fetchMenuTranslations();
