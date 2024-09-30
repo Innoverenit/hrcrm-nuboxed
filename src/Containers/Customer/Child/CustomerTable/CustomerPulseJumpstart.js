@@ -1,6 +1,7 @@
 import React, {Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import CustomerTimeLineChart from "../CustomerTable/CustomerTimeLineChart"
 import dayjs from "dayjs";
 import {getProspectWeightedValue,
   getCustomerActivityRecords,
@@ -389,6 +390,9 @@ render() {
           translatedMenuItems={this.props.translatedMenuItems} />}       
         </Suspense>
 
+  </div>
+  <div>
+    <CustomerTimeLineChart/>
   </div>
   <AddCustomerContactJumpstartModal
        customer={this.props.customer}

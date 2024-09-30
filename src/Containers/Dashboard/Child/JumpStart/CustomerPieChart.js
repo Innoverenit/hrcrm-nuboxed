@@ -34,82 +34,140 @@
 // export default PieChartComponent;
 
 
-import React,{useEffect} from 'react';
-import Chart from 'react-apexcharts';
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import {getCustomerChart} from "../../DashboardAction";
-import { BundleLoader } from '../../../../Components/Placeholder';
+// import React,{useEffect} from 'react';
+// import Chart from 'react-apexcharts';
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+// import {getCustomerChart} from "../../DashboardAction";
+// import { BundleLoader } from '../../../../Components/Placeholder';
 
-// const data = {
-//   series: [400, 300, 300, 200],
-//   options: {
+// // const data = {
+// //   series: [400, 300, 300, 200],
+// //   options: {
+// //     chart: {
+// //       type: 'pie',
+// //     },
+// //     labels: ['A', 'B', 'C', 'D'],
+// //     colors: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'],
+// //   },
+// // };
+
+// const PieChartComponent = (props) => {
+//     useEffect(()=> {
+       
+//        props.getCustomerChart(props.orgId);
+
+      
+//       },[props.orgId,]);
+//       if(props.gettingCustomerChart){
+//         return <BundleLoader/>
+//       }
+//       const labels = props.customerDashboardChart.map(item => item.type);
+//   const counts = props.customerDashboardChart.map(item => item.count);
+//   const series = counts;
+//   const options = {
 //     chart: {
 //       type: 'pie',
 //     },
-//     labels: ['A', 'B', 'C', 'D'],
-//     colors: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'],
-//   },
+//     labels: labels,
+//     colors: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'], // You can customize colors here
+//   };
+//   return (
+//     <div className="pie-chart">
+//       {/* <Chart
+//         options={data.options}
+//         series={data.series}
+//         type="pie"
+//         // width="400"
+//         height={300} // Adjust height here
+//         width={300}
+//       /> */}
+
+// <Chart options={options} series={series} type="pie" height={300} width={300} />
+//     </div>
+//   );
 // };
 
-const PieChartComponent = (props) => {
-    useEffect(()=> {
-       
-       props.getCustomerChart(props.orgId);
+// const mapStateToProps = ({ dashboard,auth }) => ({
+//     // showHotColdWarm:dashboard.showHotColdWarm,
+//     orgId:auth.userDetails.organizationId,
+//     timeRangeType:dashboard.timeRangeType,
+//     customerDashboardChart:dashboard.customerDashboardChart,
+//     startDate: dashboard.startDate,
+//     endDate: dashboard.endDate,
+//     gettingCustomerChart:dashboard.gettingCustomerChart,
+//     // gettingHotColdWarm:dashboard.gettingHotColdWarm,
+//     // showHotColdWarm:dashboard.showHotColdWarm,
+//     // openLeadHCWdrawer:dashboard.openLeadHCWdrawer
+//   });
+//   const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators(
+//     {
+//         getCustomerChart
+//     //   getHotColdWarm,
+//     //   handleLeadHCWdrawer
+//     },
+//     dispatch
+//   );
+//   export default connect(mapStateToProps, mapDispatchToProps)(PieChartComponent);
 
-      
-      },[props.orgId,]);
-      if(props.gettingCustomerChart){
-        return <BundleLoader/>
-      }
-      const labels = props.customerDashboardChart.map(item => item.type);
-  const counts = props.customerDashboardChart.map(item => item.count);
-  const series = counts;
+// export default PieChartComponent;
+
+
+
+
+import React from 'react';
+import ReactApexChart from 'react-apexcharts';
+
+const GradientDonutChart = () => {
   const options = {
+    series: [44, 55, 41, 17, 15],  // Data for the chart
     chart: {
-      type: 'pie',
+      width: 380,  // Chart width
+      type: 'donut',  // Chart type
     },
-    labels: labels,
-    colors: ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'], // You can customize colors here
+    plotOptions: {
+      pie: {
+        startAngle: -90,  // Custom start angle
+        endAngle: 270     // Custom end angle
+      }
+    },
+    dataLabels: {
+      enabled: false  // Disable data labels
+    },
+    fill: {
+      type: 'gradient'  // Gradient fill
+    },
+    legend: {
+      formatter: function(val, opts) {
+        return val + " - " + opts.w.globals.series[opts.seriesIndex];  // Custom legend text
+      }
+    },
+    // title: {
+    //   text: 'Gradient Donut with custom Start-angle'  // Title for the chart
+    // },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200  // Responsive chart width for smaller screens
+          },
+          legend: {
+            position: 'bottom'  // Legend position for smaller screens
+          }
+        }
+      }
+    ]
   };
-  return (
-    <div className="pie-chart">
-      {/* <Chart
-        options={data.options}
-        series={data.series}
-        type="pie"
-        // width="400"
-        height={300} // Adjust height here
-        width={300}
-      /> */}
 
-<Chart options={options} series={series} type="pie" height={300} width={300} />
+  const series = [44, 55, 41, 17, 15];  // Data for the donut chart
+
+  return (
+    <div>
+      <ReactApexChart options={options} series={series} type="donut" width={options.chart.width} />
     </div>
   );
 };
 
-const mapStateToProps = ({ dashboard,auth }) => ({
-    // showHotColdWarm:dashboard.showHotColdWarm,
-    orgId:auth.userDetails.organizationId,
-    timeRangeType:dashboard.timeRangeType,
-    customerDashboardChart:dashboard.customerDashboardChart,
-    startDate: dashboard.startDate,
-    endDate: dashboard.endDate,
-    gettingCustomerChart:dashboard.gettingCustomerChart,
-    // gettingHotColdWarm:dashboard.gettingHotColdWarm,
-    // showHotColdWarm:dashboard.showHotColdWarm,
-    // openLeadHCWdrawer:dashboard.openLeadHCWdrawer
-  });
-  const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-        getCustomerChart
-    //   getHotColdWarm,
-    //   handleLeadHCWdrawer
-    },
-    dispatch
-  );
-  export default connect(mapStateToProps, mapDispatchToProps)(PieChartComponent);
-
-// export default PieChartComponent;
-
+export default GradientDonutChart;
