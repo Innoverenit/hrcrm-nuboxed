@@ -13,6 +13,7 @@ getOrderOpenList,
 getOrderClosedList,
 getOrderCancelList
 } from "../../DashboardAction";
+import ProcureLineChart from "../ProcureLineChart"
 import { BundleLoader } from "../../../../Components/Placeholder";
 const StackedClosureChart= lazy(()=>import("../../../Dashboard/StackedClosureChart"));
 
@@ -150,10 +151,12 @@ function DashOrdrProcureJumstartbox(props) {
           </div>
           
         </div>
-        <div class="mt-1">
-      <StackedClosureChart />
-      </div>
+       
   </div>
+  <div class="mt-1">
+      {/* <StackedClosureChart /> */}
+      <ProcureLineChart/>
+      </div>
       {/* <DashProcureQuotaDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}

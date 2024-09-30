@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
@@ -17,6 +17,7 @@ import { base_url2 } from "../../../../Config/Auth";
 import axios from 'axios';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import OrdersOpenDrawer from "./OrdersOpenDrawer";
+const StackedClosureChart= lazy(()=>import("../../../Dashboard/StackedClosureChart"));
 
 function DashProcureQuotaJumpstartUser(props) {
 
@@ -169,8 +170,9 @@ function DashProcureQuotaJumpstartUser(props) {
 
   return (
     <>
-      <div class=" flex flex-row w-full" >
-        <div class=" flex w-full max-sm:flex-col" >
+    <div className=" flex flex-col">
+      <div class=" flex w-full" >
+       
           
           <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
@@ -231,9 +233,13 @@ function DashProcureQuotaJumpstartUser(props) {
                             />
                           </div>
                       </div>      
-                  </div>
+                  
           </div>
-          
+    
+        </div>
+        <div class="mt-1">
+      <StackedClosureChart />
+      </div>
         </div>
   
       {/* <DashProcureQuotaDrawer

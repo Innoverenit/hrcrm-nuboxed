@@ -1,5 +1,6 @@
 import React, { useEffect,useState, lazy } from "react";
 import { connect } from "react-redux";
+import ProcureLineChart from "../ProcureLineChart"
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
@@ -259,7 +260,7 @@ fetchDasRepairCount();
           
         </div>
         <div class="mt-1">
-      <StackedClosureChart />
+      <ProcureLineChart />
       </div>
       </div>
         {/* <OrdersCancelModal

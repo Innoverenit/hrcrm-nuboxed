@@ -5,6 +5,7 @@ import { Button, Tooltip } from "antd";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import {getDataRoom} from "./DataRoomAction";
+import InventoryTreeMap from "./InventoryTreeMap"
 import CountryFlag1 from "../Settings/Category/Country/CountryFlag1";
 
 const DataRoomCard = (props) => {
@@ -61,6 +62,7 @@ const DataRoomCard = (props) => {
   return (
     <>
        <div className=' flex  sticky z-auto'>
+        
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
             <div className=" font-poppins text-xs font-bold w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">
