@@ -58,7 +58,7 @@ class CandidateActionRight extends React.Component {
        
         <Tooltip placement="left" title="XL">
         <a href={`${base_url}/excel/export/user/candidate/${userId}`}>
-        <InsertDriveFileIcon icon={solid('file-excel')} className=" !text-icon "/>
+        <InsertDriveFileIcon className=" text-xl "/>
         {/* // icon={solid('file-excel')}
         //  style={{fontSize: "x-large",verticalAlign: "bottom"}}/> */}
         </a> 
