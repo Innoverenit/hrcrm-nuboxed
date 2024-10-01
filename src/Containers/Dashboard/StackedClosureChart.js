@@ -217,124 +217,133 @@
 // export default StackedBarChart;
 
 
-import React, { useState, useEffect } from 'react';
-import ReactApexChart from 'react-apexcharts';
+// import React, { useState, useEffect } from 'react';
+// import ReactApexChart from 'react-apexcharts';
 
-const StackedBarChart = () => {
-  // Given JSON data
-  const jsonData = {
-    "2011 Q1": {
-      "PRODUCT A": 44,
-      "PRODUCT B": 13,
-      "PRODUCT C": 11
-    },
-    "2011 Q2": {
-      "PRODUCT A": 55,
-      "PRODUCT B": 23,
-      "PRODUCT C": 17
-    },
-    "2011 Q3": {
-      "PRODUCT A": 41,
-      "PRODUCT B": 20,
-      "PRODUCT C": 15
-    },
-    "2011 Q4": {
-      "PRODUCT A": 67,
-      "PRODUCT B": 15,
-      "PRODUCT C": 8
-    },
-    "2012 Q1": {
-      "PRODUCT A": 22,
-      "PRODUCT B": 21,
-      "PRODUCT C": 15
-    },
-    "2012 Q2": {
-      "PRODUCT A": 43,
-      "PRODUCT B": 27,
-      "PRODUCT C": 14
-    },
-    "2012 Q3": {
-      "PRODUCT A": 21,
-      "PRODUCT B": 33,
-      "PRODUCT C": 15
-    },
-    "2012 Q4": {
-      "PRODUCT A": 49,
-      "PRODUCT B": 13,
-      "PRODUCT C": 12
-    }
-  };
+// const StackedBarChart = () => {
+//   // Given JSON data
+//   const jsonData = {
+//     "2011 Q1": {
+//       "PRODUCT A": 44,
+//       "PRODUCT B": 13,
+//       "PRODUCT C": 11
+//     },
+//     "2011 Q2": {
+//       "PRODUCT A": 55,
+//       "PRODUCT B": 23,
+//       "PRODUCT C": 17
+//     },
+//     "2011 Q3": {
+//       "PRODUCT A": 41,
+//       "PRODUCT B": 20,
+//       "PRODUCT C": 15
+//     },
+//     "2011 Q4": {
+//       "PRODUCT A": 67,
+//       "PRODUCT B": 15,
+//       "PRODUCT C": 8
+//     },
+//     "2012 Q1": {
+//       "PRODUCT A": 22,
+//       "PRODUCT B": 21,
+//       "PRODUCT C": 15
+//     },
+//     "2012 Q2": {
+//       "PRODUCT A": 43,
+//       "PRODUCT B": 27,
+//       "PRODUCT C": 14
+//     },
+//     "2012 Q3": {
+//       "PRODUCT A": 21,
+//       "PRODUCT B": 33,
+//       "PRODUCT C": 15
+//     },
+//     "2012 Q4": {
+//       "PRODUCT A": 49,
+//       "PRODUCT B": 13,
+//       "PRODUCT C": 12
+//     }
+//   };
 
-  // Prepare data dynamically from the JSON
-  const [chartOptions, setChartOptions] = useState({
-    series: [],
-    options: {
-      chart: {
-        type: 'bar',
-        height: 350,
-        stacked: true,
-        toolbar: {
-          show: true
-        },
-        zoom: {
-          enabled: true
-        }
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          borderRadius: 10,
-        }
-      },
-      xaxis: {
-        categories: [] // This will be dynamically filled
-      },
-      legend: {
-        position: 'right',
-        offsetY: 40
-      },
-      fill: {
-        opacity: 1
-      }
-    }
-  });
+//   // Prepare data dynamically from the JSON
+//   const [chartOptions, setChartOptions] = useState({
+//     series: [],
+//     options: {
+//       chart: {
+//         type: 'bar',
+//         height: 350,
+//         stacked: true,
+//         toolbar: {
+//           show: true
+//         },
+//         zoom: {
+//           enabled: true
+//         }
+//       },
+//       plotOptions: {
+//         bar: {
+//           horizontal: false,
+//           borderRadius: 10,
+//         }
+//       },
+//       xaxis: {
+//         categories: [] // This will be dynamically filled
+//       },
+//       legend: {
+//         position: 'right',
+//         offsetY: 40
+//       },
+//       fill: {
+//         opacity: 1
+//       }
+//     }
+//   });
 
-  useEffect(() => {
-    // Extract categories (x-axis) and series (data for each product)
-    const categories = Object.keys(jsonData);
-    const products = Object.keys(jsonData[categories[0]]); // Assuming all categories have the same products
+//   useEffect(() => {
+//     // Extract categories (x-axis) and series (data for each product)
+//     const categories = Object.keys(jsonData);
+//     const products = Object.keys(jsonData[categories[0]]); // Assuming all categories have the same products
 
-    const series = products.map((product) => ({
-      name: product,
-      data: categories.map((category) => jsonData[category][product] || 0) // Get data for each product in each quarter
-    }));
+//     const series = products.map((product) => ({
+//       name: product,
+//       data: categories.map((category) => jsonData[category][product] || 0) // Get data for each product in each quarter
+//     }));
 
-    // Update chart options with dynamic data
-    setChartOptions((prevOptions) => ({
-      ...prevOptions,
-      series: series,
-      options: {
-        ...prevOptions.options,
-        xaxis: {
-          categories: categories // Set the categories dynamically
-        }
-      }
-    }));
-  }, [jsonData]);
+//     // Update chart options with dynamic data
+//     setChartOptions((prevOptions) => ({
+//       ...prevOptions,
+//       series: series,
+//       options: {
+//         ...prevOptions.options,
+//         xaxis: {
+//           categories: categories // Set the categories dynamically
+//         }
+//       }
+//     }));
+//   }, [jsonData]);
 
+//   return (
+//     <div>
+//       <ReactApexChart
+//         options={chartOptions.options}
+//         series={chartOptions.series}
+//         type="bar"
+//         height={350}
+//       />
+//     </div>
+//   );
+// };
+
+// export default StackedBarChart;
+
+import React from 'react'
+
+export default function StackedClosureChart() {
   return (
-    <div className=' w-[39vw] '>
-      <ReactApexChart
-        options={chartOptions.options}
-        series={chartOptions.series}
-        type="bar"
-        height={350}
-      />
-    </div>
-  );
-};
+    <div>StackedClosureChart</div>
+  )
+}
 
-export default StackedBarChart;
 
 
 
