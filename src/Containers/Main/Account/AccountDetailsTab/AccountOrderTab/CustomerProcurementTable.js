@@ -229,31 +229,31 @@ const handleLoadMoreLow = () => {
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
            </div>
-                        <div className=" md:w-[7.4rem] ml-2">
+                        <div className=" md:w-[3.4rem] ml-2">
                         {translatedMenuItems[1]} ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
-                          <div className=" md:w-[6rem]">  
+                          <div className=" md:w-[2rem]">  
                           {translatedMenuItems[9]}
                           </div>
-                        <div className=" md:w-[7.1rem]">
+                        <div className=" md:w-[4.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
                           </div>
                         <div className=" md:w-[8.8rem] ">
                         {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
                           </div>
-                        <div className="md:w-[3.8rem]">
+                        <div className="md:w-[0.8rem]">
                         {translatedMenuItems[4]} {/* <FormattedMessage id="app.budget" defaultMessage="Budget"/> */}
                           </div>
-                        <div className="md:w-[3.8rem]">
+                        <div className="md:w-[1.8rem]">
                         {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
                           </div>
-                        <div className="md:w-[3.8rem]">
+                        <div className="md:w-[1.8rem]">
                         {translatedMenuItems[6]}{/* <FormattedMessage id="app.payment" defaultMessage="Payment"/> */}
                           </div>
-                        <div className="md:w-[3.8rem]">
+                        <div className="md:w-[1.8rem]">
                         {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
                           </div>
-                          <div className="md:w-[3.8rem]">
+                          <div className="md:w-[1.8rem]">
                           {translatedMenuItems[13]} 
                           </div>
                         <div className="md:w-[6.12rem]"></div>
@@ -281,7 +281,7 @@ const handleLoadMoreLow = () => {
                                         <div class="flex">
                                           <div className=" flex  w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex  items-center  md:w-[8.56rem] max-sm:w-full  ">
+                                            <div className=" flex  items-center  md:w-[7.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                                       <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -334,7 +334,7 @@ const handleLoadMoreLow = () => {
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   md:w-[18.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -343,13 +343,13 @@ const handleLoadMoreLow = () => {
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[14.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -370,7 +370,7 @@ const handleLoadMoreLow = () => {
                                               {item.shipById}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[16.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
                   }}>
@@ -408,31 +408,31 @@ const handleLoadMoreLow = () => {
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
         {translatedMenuItems[8]} {/* Normal */}
            </div>
-                        <div className=" md:w-[7.4rem] ml-2">
+                        <div className=" md:w-[3.4rem] ml-2">
                         {translatedMenuItems[1]} ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
-                          <div className=" md:w-[6rem]">
+                          <div className=" md:w-[2rem]">
                           {translatedMenuItems[9]}
                           </div>
-                        <div className=" md:w-[7.1rem]">
+                        <div className=" md:w-[4.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
                           </div>
                         <div className=" md:w-[8.8rem] ">
                         {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
                           </div>
-                        <div className="md:w-[3.8rem]">
+                        <div className="md:w-[0.8rem]">
                         {translatedMenuItems[4]} {/* <FormattedMessage id="app.budget" defaultMessage="Budget"/> */}
                           </div>
-                        <div className="md:w-[3.8rem]">
+                        <div className="md:w-[1.8rem]">
                         {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
                           </div>
-                        <div className="md:w-[3.8rem]">
+                        <div className="md:w-[1.8rem]">
                         {translatedMenuItems[6]}{/* <FormattedMessage id="app.payment" defaultMessage="Payment"/> */}
                           </div>
-                        <div className="md:w-[3.8rem]">
+                        <div className="md:w-[1.8rem]">
                         {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
                           </div>
-                          <div className="md:w-[3.8rem]">
+                          <div className="md:w-[1.8rem]">
                           {translatedMenuItems[13]}
                           </div>
                         <div className="md:w-[6.12rem]"></div>
@@ -460,7 +460,7 @@ const handleLoadMoreLow = () => {
                   <div class="flex">
                     <div className=" flex w-wk items-center   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                      <div className=" flex  items-center  md:w-[8.56rem] max-sm:w-full  ">
+                      <div className=" flex  items-center  md:w-[7.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -514,7 +514,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex  md:w-[21.01rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
+                    <div className=" flex  md:w-[18.01rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
                       <div class=" font-poppins text-xs">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -523,13 +523,13 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                         {item.budget}
                       </div>
                   </div>
                
-                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[14.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                         {/* {item.contactPersonName} */}
                         <MultiAvatar
@@ -550,7 +550,7 @@ const handleLoadMoreLow = () => {
                                               {item.shipById}
                                             </div>
                                         </div>
-                  <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[16.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{
                     setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);

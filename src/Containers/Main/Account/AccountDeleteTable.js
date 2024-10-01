@@ -61,10 +61,10 @@ function AccountDeleteTable(props) {
             <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex justify-between w-[100%]  p-1 bg-transparent  sticky  z-10">
          <div class=" flex justify-between text-xs font-poppins  font-bold  w-[90%]  ">
-         <div className=" ml-2 md:w-[7%]"> {translatedMenuItems[0]}
+         <div className="w-[10%] ml-2 md:w-[13%]"> {translatedMenuItems[0]}
             {/* Name */}
             </div>
-        <div className=" md:w-[6.1rem]"> {translatedMenuItems[1]}
+        <div className=" md:w-[11.1rem]"> {translatedMenuItems[1]}
             {/* Mobile */}
             </div>
         <div className=" md:w-[4.2rem] "> {translatedMenuItems[2]}
@@ -94,7 +94,7 @@ function AccountDeleteTable(props) {
     >
        <div class="flex">
    
-    <div className=" flex  md:w-[6.1rem] max-sm:w-full  ">
+    <div className=" flex  md:w-[12.1rem] max-sm:w-full  ">
     <div class="text-xs  font-semibold  font-poppins cursor-pointer">
 
         {item.name}

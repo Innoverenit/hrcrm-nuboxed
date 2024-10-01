@@ -12,6 +12,7 @@ import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import AddchartIcon from "@mui/icons-material/Addchart";
 import DoNotDisturbOnTotalSilenceIcon from '@mui/icons-material/DoNotDisturbOnTotalSilence';
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
     getTeamContact,
   handleUpdateContactModal,
@@ -406,8 +407,8 @@ if (loading) {
                 <Tooltip
                   title={translatedMenuItems[14]}
                 >
-                  <AddchartIcon
-                  className="!text-icon cursor-pointer text-blue-500"
+                  <HourglassFullIcon
+                  className="!text-icon cursor-pointer text-[#edf67d]"
                     onClick={() => {
                       props.handleContactCETdrawer(true);
                       handleSetCurrentContact(item);

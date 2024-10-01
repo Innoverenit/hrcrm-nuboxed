@@ -5,6 +5,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import { Link } from 'react-router-dom';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -30,7 +31,6 @@ import {
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import DoNotDisturbOnTotalSilenceIcon from '@mui/icons-material/DoNotDisturbOnTotalSilence';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
-import AddchartIcon from "@mui/icons-material/Addchart";
 import ReactContactSpeechModal from "../ContactDetail/ReactContactSpeechModal";
 import AddContactDrawerModal from "../UpdateContact/AddContactDrawerModal";
 import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerModal";
@@ -387,8 +387,8 @@ if (loading) {
                 <Tooltip
                   title={translatedMenuItems[14]}
                 >
-                  <AddchartIcon
-                  className="!text-icon cursor-pointer text-blue-500"
+                  <HourglassFullIcon
+                  className="!text-icon cursor-pointer text-[#edf67d]"
                     onClick={() => {
                       props.handleContactCETdrawer(true);
                       handleSetCurrentContact(item);

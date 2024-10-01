@@ -10,7 +10,7 @@ const StyledInput = styled.input.attrs({
   type: "text",
   size: (props) => (props.small ? 4 : undefined),
 })`
- // border: 0.0625em solid ${(props) => props.theme.inputBorderColor};
+
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.color};
   display: block;
@@ -38,7 +38,6 @@ const StyledDropDownContainer = styled.div`
   box-shadow: 0em 0.25em 0.625em -0.25em ${(props) => props.theme.boxShadowColor};
   position: absolute;
   top: 2.5em;
-  width: 21.875em;
   z-index: 1000;
   .suggestion-item {
     background-color: ${(props) => props.theme.backgroundColor};
@@ -66,16 +65,16 @@ class FormikPlacesAutoComplete extends Component {
   }
   handleChange = (address) => {
     this.setState(() => {
-      // this.props.form.setFieldTouched(`${this.state.name}.value`);
+
       this.props.form.setFieldTouched(`${this.props.field.name}.country`);
-      // this.props.form.setFieldValue(this.state.name, { value: address });
+
       return { address };
     });
   };
 
   handleSelect = (address) => {
     this.setState({ address });
-    // this.props.form.resetForm({ country: '',})
+    
     this.props.form.setFieldValue(`${this.props.field.name}.latitude`, "");
     this.props.form.setFieldValue(`${this.props.field.name}.longitude`, "");
     this.props.form.setFieldValue(`${this.props.field.name}.address1`, "");
@@ -112,10 +111,7 @@ class FormikPlacesAutoComplete extends Component {
             locality1
           );
         }
-        // if (_.includes(types, 'sublocality_level_1')) {
-        //   locality2 = _.get(component, 'long_name');
-        //   this.props.form.setFieldValue(`${this.props.field.name}.address2`, locality2);
-        // }
+     
         if (_.includes(types, "route")) {
           street = _.get(component, "long_name");
           this.props.form.setFieldValue(
@@ -169,7 +165,7 @@ class FormikPlacesAutoComplete extends Component {
     if (isColumn) {
       return (
         <>
-          {/* <div class=" text-xs font-bold font-poppins style={{ marginTop: "0.75em" }}>{label}</div> */}
+         
           <PlacesAutocomplete
             name={name}
             id={name}
@@ -199,7 +195,7 @@ class FormikPlacesAutoComplete extends Component {
                       const className = suggestion.active
                         ? "suggestion-item--active"
                         : "suggestion-item";
-                      // inline style for demonstration purpose
+                   
                       const style = suggestion.active
                         ? { cursor: "pointer" }
                         : { cursor: "pointer" };
@@ -255,7 +251,7 @@ class FormikPlacesAutoComplete extends Component {
                     const className = suggestion.active
                       ? "suggestion-item--active"
                       : "suggestion-item";
-                    // inline style for demonstration purpose
+               
                     const style = suggestion.active
                       ? { cursor: "pointer" }
                       : { cursor: "pointer" };

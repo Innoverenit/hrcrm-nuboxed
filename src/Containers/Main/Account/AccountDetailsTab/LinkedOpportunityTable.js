@@ -100,14 +100,14 @@ console.log(props.user.moduleMapper.ecomModInd)
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
         <div className='flex   justify-between w-[85%]  text-xs font-bold font-poppins'>
-             <div class=" w-[2.55rem]"> {translatedMenuItems[0]}</div>
-                        <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
-                        <div className=" md:w-[7rem]">
+             <div class=" w-[6.55rem]"> {translatedMenuItems[0]}</div>
+                        <div className="w-[3.4rem] md:w-[5.4rem]"> {translatedMenuItems[1]} ID</div>
+                        <div className=" md:w-[5rem]">
                         {translatedMenuItems[10]}  
                           </div>
-                        <div className=" md:w-[7.1rem]"> {translatedMenuItems[2]}</div>
-                        <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[4]}</div>
+                        <div className=" md:w-[6.1rem]"> {translatedMenuItems[2]}</div>
+                        <div className=" md:w-[10.8rem] "> {translatedMenuItems[3]}</div>
+                        <div className="md:w-[6.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div>
@@ -135,7 +135,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                         <div class="flex">
                                           <div className=" flex   w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex  items-center  md:w-[3.55rem] max-sm:w-full  ">
+                                            <div className=" flex  items-center  md:w-[7.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                                       <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -189,7 +189,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   md:w-[17.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   md:w-[18.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -198,13 +198,13 @@ console.log(props.user.moduleMapper.ecomModInd)
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[9.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
@@ -219,7 +219,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[16.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.shipById}
                                             </div>
@@ -262,14 +262,14 @@ console.log(props.user.moduleMapper.ecomModInd)
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
         <div className='flex   justify-between w-[85%]  text-xs font-bold font-poppins'>
-<div class=" w-[2.55rem]"> {translatedMenuItems[9]}</div>
-<div className=" md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
-<div className=" md:w-[6rem]">
+<div class=" w-[6.55rem]"> {translatedMenuItems[9]}</div>
+<div className=" md:w-[5.4rem]"> {translatedMenuItems[1]} ID</div>
+<div className=" md:w-[5rem]">
 {translatedMenuItems[10]}
                         </div>
-                        <div className=" md:w-[7.1rem]"> {translatedMenuItems[2]}</div>
-                        <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[4]}</div>
+                        <div className=" md:w-[6.1rem]"> {translatedMenuItems[2]}</div>
+                        <div className=" md:w-[10.8rem] "> {translatedMenuItems[3]}</div>
+                        <div className="md:w-[6.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div>
@@ -300,7 +300,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                         <div class="flex">
                                           <div className=" flex  w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex items-center  md:w-[3.55rem] max-sm:w-full  ">
+                                            <div className=" flex items-center  md:w-[7.56rem] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                                       <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -353,7 +353,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   text-xs md:w-[17.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   text-xs md:w-[18.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -362,13 +362,13 @@ console.log(props.user.moduleMapper.ecomModInd)
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[9.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -384,7 +384,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[16.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.shipById}
                                             </div>
