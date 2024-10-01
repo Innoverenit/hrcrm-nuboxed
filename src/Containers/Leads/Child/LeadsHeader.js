@@ -39,6 +39,7 @@ class LeadsHeader extends Component {
             currentUser={this.props.currentUser} 
             handleDropChange={this.props.handleDropChange}
             handleLeadsModal={handleLeadsModal}
+            translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
             translatedMenuItems={this.props.translatedMenuItems}
              />

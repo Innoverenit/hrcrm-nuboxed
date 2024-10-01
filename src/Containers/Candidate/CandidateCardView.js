@@ -36,24 +36,12 @@ import { Select } from "antd";
 import { StyledPopconfirm  } from '../../Components/UI/Antd';
 import { UpCircleOutlined } from '@ant-design/icons';
 import { BundleLoader } from "../../Components/Placeholder";
-const AddCandidatesTasksDrawerModal = lazy(() =>
-  import("./AddCandidatesTasksDrawerModal")
-);
-const AddPlayerModal = lazy(() =>
-  import("./Child/CandidateTable/AddPlayerModal")
-);
-const SkillsLoadMore = lazy(() =>
-  import("../../Containers/Candidate/Child/CandidateTable/SkillsLoadMore")
-);
-const UpdateCandidateResumeModal = lazy(() =>
-  import("./Child/CandidateTable/UpdateCandidateResumeModal")
-);
-const UpdateCandidateModal = lazy(() =>
-  import("./Child/UpdateCandidate/UpdateCandidateModal")
-);
-const AddCandidateDrawerModal = lazy(() =>
-  import("../Candidate/AddCandidateDrawerModal")
-);
+const AddCandidatesTasksDrawerModal = lazy(() =>import("./AddCandidatesTasksDrawerModal"));
+const AddPlayerModal = lazy(() =>import("./Child/CandidateTable/AddPlayerModal"));
+const SkillsLoadMore = lazy(() =>import("../../Containers/Candidate/Child/CandidateTable/SkillsLoadMore"));
+const UpdateCandidateResumeModal = lazy(() =>import("./Child/CandidateTable/UpdateCandidateResumeModal"));
+const UpdateCandidateModal = lazy(() =>import("./Child/UpdateCandidate/UpdateCandidateModal"));
+const AddCandidateDrawerModal = lazy(() =>import("../Candidate/AddCandidateDrawerModal"));
 
 const { Option } = Select;
 function CandidateCardView (props) {
@@ -98,8 +86,8 @@ function handleSetCurrentCandidateId(candidateId) {
     return (   
             <>
          
-              <div class=" h-h72 overflow-auto overflow-x-auto">
-              <div class="flex">      
+              <div class=" h-h86 overflow-auto overflow-x-auto">
+              <div class="flex  flex-wrap justify-evenly w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">      
               {props.candidateByUserId.map((item) => {
                 console.log("found",item.skillList);
                 const data =
@@ -124,13 +112,14 @@ function handleSetCurrentCandidateId(candidateId) {
                        item.address[0].postalCode} `;
       
                  return (
-                  <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
-                     <div class="w-7 h-7" >
+                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[9rem] 
+                  text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                     <div class="flex" >
                    <Tooltip 
                    title={item.country}
                    >               
                    </Tooltip>              
-                   <div class=" flex flex-row flex-wrap items-start self-start  justify-around grow shrink h-auto mr-auto ">              
+                   <div class="flex flex-row max-sm:justify-start items-center ">              
                    <div >
                           <MultiAvatar2
 
@@ -143,22 +132,18 @@ function handleSetCurrentCandidateId(candidateId) {
                          </div>
                   
                       <div>
-                      <div class="h-8 overflow-hidden whitespace-nowrap text-lg font-poppins font-bold overflow-ellipsis text-center">
+                      {/* <div class="h-8 overflow-hidden whitespace-nowrap text-lg font-poppins font-bold overflow-ellipsis text-center"> */}
                         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`candidate/${item.candidateId}`} title={item.fullName}>
       {item.fullName}
     </Link>                     
-                        </div> 
+                        {/* </div>  */}
                         </div>
                         {/* {item.Video !== null?( */}
-                        <div class=" flex flex-row flex-wrap items-start self-start  justify-end grow shrink h-auto mr-auto ">  
+                        <div class=" flex flex-row justify-evenly  w-full items-end ">  
                            <div >
                            {item.videoClipsId!==null&&( 
                         <Tooltip title="Video">
-             
-                {/* <FontAwesomeIcon icon={solid("wallet")} /> */}
-                <PlayCircleIcon
-                
-                style={{ color: "grey",fontSize:"0.8rem",cursor: "pointer"}}
+                <PlayCircleIcon    className=" cursor-pointer !text-icon text-gray-600"
                 onClick={() => {
                   props.handlePlayerModal(true);             
                 }}
@@ -169,33 +154,31 @@ function handleSetCurrentCandidateId(candidateId) {
                         {/* ):(null
                           )}
                        */}
-             <div style={{ cursor: "pointer",padding:"2px"}}
-              // style={{ cursor: "pointer" }}
+             <div className=" cursor-pointer p-[0.125rem]"
               onClick={() => {
                      props.setEditCandidate(item);
                    handleupdateCandidateResumeModal(true);
                      handleSetCurrentCandidateId(item.candidateId);
                    }}
               >
-                <BorderColorIcon
-              style={{ color: "grey",fontSize:"1.2rem",padding:"2px" }}/>
+                <BorderColorIcon className="text-gray-600 !text-icon"/>
               </div>
             
               </div>
           </div>                  
                         </div>                    
-                        <div class=" flex flex-row flex-wrap items-baseline self-start  justify-around grow shrink h-auto mr-auto ">                        
+                        <div class=" flex flex-row  ">                        
                         <div class=" text-xs font-bold font-poppins text-black"> <SkillsLoadMore 
                         skillList={data} 
                         viewType={props.viewType}
                         /></div>
                         
                         <Tooltip  title={item.skillList}>
-                        <BuildCircleIcon   style={{fontSize:"1.1rem",color:"#24d8a7",padding:"2px"}}  /> 
+                        <BuildCircleIcon className="text-[#24d8a7] !text-icon"/> 
                         </Tooltip>            
                         </div>                             
                         <div class=" flex flex-row justify-around w-full items-end">
-                        <div style={{alignItems:"center"}}>
+                        <div className=" items-center">
               <Tooltip title={item.category}>
               <CircleIcon
              style={{ borderRadius: "45%", backgroundColor:
@@ -204,29 +187,20 @@ function handleSetCurrentCandidateId(candidateId) {
               </div>     
                      <span>
                         <Tooltip  title={item.mobileNumber}>
-                        <VolumeUpIcon  style={{fontSize:"0.8rem",color:"#24d8a7"}}  />
+                        <VolumeUpIcon className="text-[#24d8a7] !text-icon" />
                         </Tooltip> 
                         </span>
                         <span>
                         <Tooltip  title={item.emailId}>
-                   <DraftsIcon 
-                   style={{fontSize:"0.8rem",color:"#24d8a7"}}
-                  // icon={regular("envelope")}  
-                  />
+                   <DraftsIcon className=" !text-icon text-[#24d8a7] "  />
           </Tooltip> 
           </span>
           <Tooltip
             overlayStyle={{ maxWidth: "300px" }}
             title={dataLoc}
           >
-            <span
-              style={{
-                cursor: "pointer",                
-              }}
-            >
-              <LocationOnIcon  style={{fontSize:"0.8rem",color:"grey"}} 
-              //  icon={solid("location-dot")}
-                />
+            <span className=" cursor-pointer" >
+              <LocationOnIcon className=" !text-icon text-gray-600" />
             </span>
           </Tooltip>         
                         <span 
@@ -242,9 +216,8 @@ function handleSetCurrentCandidateId(candidateId) {
                         }}
                    
                         >{user.pulseAccessInd ===true && ( 
-                          <MonitorHeartIcon 
-                          // icon={solid('heart-pulse')} 
-                          style={{color:"#993333",fontSize:"0.8rem",cursor: "pointer"}} />
+                          <MonitorHeartIcon className=" cursor-pointer !text-icon text-[#993333]"
+                        />
                            )}                       
                         </span>
                         <span 
@@ -255,9 +228,7 @@ function handleSetCurrentCandidateId(candidateId) {
                           props.handleCandidatesTasksDrawerModal(true);
                         }}                  
                         >                      
-                          <FactCheckIcon
-               style={{ fontSize: "large" }}
-              />
+                          <FactCheckIcon className=" cursor-pointer !text-icon"     />
                         
                         
                         </span>
@@ -269,8 +240,7 @@ function handleSetCurrentCandidateId(candidateId) {
             <UpCircleOutlined
               type="up-circle"
               theme="filled"
-              style={{ cursor: "pointer",fontSize:"0.8rem",color:"grey" }}
-            />
+              className=" cursor-pointer !text-icon text-gray-600"  />
           </StyledPopconfirm>
           </span>
           <Tooltip title={item.ownerName}>

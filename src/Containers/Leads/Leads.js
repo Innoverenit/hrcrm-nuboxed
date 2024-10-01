@@ -79,7 +79,7 @@ class Leads extends Component {
         <LeadsHeader
          translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}
-         translatedMenuItems={this.props.translatedMenuItems}
+        //  translatedMenuItems={this.props.translatedMenuItems}
           handleFilterChange={this.handleFilterChange}
           filter={this.state.filter}
           handleDropChange={this.handleDropChange}
@@ -100,11 +100,12 @@ class Leads extends Component {
           handleLeadsModal={handleLeadsModal}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
-        translatedMenuItems={this.props.translatedMenuItems}
+        // translatedMenuItems={this.props.translatedMenuItems}
         />
         <AddLeadsImportModal
+          translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}
-         translatedMenuItems={this.props.translatedMenuItems}
+        //  translatedMenuItems={this.props.translatedMenuItems}
         handleLeadsImportModal={this.props.handleLeadsImportModal}
         addLeadsImportModal={this.props.addLeadsImportModal}
         />

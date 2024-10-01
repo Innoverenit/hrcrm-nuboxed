@@ -6,6 +6,8 @@ import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip } from "antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { StyledSelect } from "../../../Components/UI/Antd";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import UploadIcon from '@mui/icons-material/Upload';
 const CandidateShareForm =lazy(()=>import("./CandidateShareForm"));
 
 const Option = StyledSelect.Option;
@@ -56,9 +58,9 @@ class CandidateActionRight extends React.Component {
        
         <Tooltip placement="left" title="XL">
         <a href={`${base_url}/excel/export/user/candidate/${userId}`}>
-        <InsertDriveFileIcon 
-        // icon={solid('file-excel')}
-         style={{fontSize: "x-large",verticalAlign: "bottom"}}/>
+        <InsertDriveFileIcon icon={solid('file-excel')} className=" !text-icon "/>
+        {/* // icon={solid('file-excel')}
+        //  style={{fontSize: "x-large",verticalAlign: "bottom"}}/> */}
         </a> 
          </Tooltip>
       )}
@@ -68,7 +70,7 @@ class CandidateActionRight extends React.Component {
           default
           onClick={() => this.props.history.push("/import/account")}
         >
-          Import
+           <UploadIcon className=" !text-icon"/> Import
         </Button>
         )}
         {/* {user.userType !== "USER" && user.department !== "Partner" && (  */}
@@ -80,7 +82,7 @@ class CandidateActionRight extends React.Component {
             onClick={() => handleCandidateResumeModal(true)}
           >
              
-             Add
+             <DataSaverOnIcon className="!text-icon"/>   Add
             
           </Button>
         </Tooltip>

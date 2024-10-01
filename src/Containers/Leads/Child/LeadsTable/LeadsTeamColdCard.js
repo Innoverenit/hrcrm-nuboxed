@@ -24,8 +24,8 @@ import {
   handleLeadsConfirmationModal
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import AddchartIcon from "@mui/icons-material/Addchart";
 import { Button, Tooltip } from "antd";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import { FormattedMessage } from "react-intl";
 import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
 import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";
@@ -154,28 +154,28 @@ const LeadsTeamColdCard = (props) => {
 
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
-      <div className="font-bold font-poppins text-xs w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-blue-600 text-white">{translatedMenuItems[13]}</div>
-        <div className="font-bold font-poppins text-xs w-[2.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
-        <div className="font-bold font-poppins text-xs w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="font-bold font-poppins text-xs w-[4.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        <div className="font-bold font-poppins text-xs w-[5.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> </div>
-        <div className="font-bold font-poppins text-xs w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
-        <div className="font-bold font-poppins text-xs w-[5.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
-        <div className= "font-bold font-poppins text-xs w-[7.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
-        <div className= "font-bold font-poppins text-xs w-[7.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
+      <div className=" flex  w-[96%] max-sm:hidden p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
+      <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-blue-600 text-white">{translatedMenuItems[13]}</div>
+        <div className="ml-2 w-[10.2rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[3.8rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" w-[6.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
+
+        <div className=" w-[8.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
+        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
+        <div className= " w-[5.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
+        <div className= " w-[7.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[12.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className=" w-[6.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {/* Score */}
             {translatedMenuItems[20]}
             </div>
             )}
-        <div className="font-bold font-poppins text-xs w-[5.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
-        <div className="font-bold font-poppins text-xs w-[1.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className="font-bold font-poppins text-xs w-[4.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
-        <div className="font-bold font-poppins text-xs w-[2.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+        <div className=" w-[4.23rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
+        <div className=" w-[2.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
+        <div className=" w-[3.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
+        <div className=" w-[5.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
        
-        <div className="w-12"></div>
+  
 
       </div>
       <InfiniteScroll
@@ -274,7 +274,7 @@ const LeadsTeamColdCard = (props) => {
                             imgHeight={"1.8rem"}
                           />
                       </div>
-                       <div class="max-sm:w-full md:flex items-center">
+                       <div class="max-sm:w-full md:flex items-center ml-1">
                         <Tooltip>
                           <div class="max-sm:w-full justify-between flex md:flex-col">
                             <div class="text-xs flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
@@ -296,6 +296,15 @@ const LeadsTeamColdCard = (props) => {
                   
                 </div>
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                <div className=" flex w-[3.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
+                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                     
+                       <CountryFlag1 countryCode={countryCode} />
+                      &nbsp;
+                      {countryCode}
+                     
+                    </div>
+                  </div>
                   <div className=" flex w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
          
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -305,16 +314,8 @@ const LeadsTeamColdCard = (props) => {
                  
                     </div>
                   </div>
-                  <div className=" flex w-[4.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
-                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                     
-                       <CountryFlag1 countryCode={countryCode} />
-                      &nbsp;
-                      {countryCode}
-                     
-                    </div>
-                  </div>
-                  <div className=" flex w-[5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
+                  
+                  <div className=" flex w-[7rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
                     <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                       {item.companyName || "None"}
                     </div>
@@ -478,7 +479,7 @@ const LeadsTeamColdCard = (props) => {
                         title={translatedMenuItems[16]}
                       >
                         {/* activity */}
-                        <AddchartIcon
+                        <HourglassFullIcon
                          className="!text-icon cursor-pointer text-blue-500"
                           onClick={() => {
                                 handleRowData(item);

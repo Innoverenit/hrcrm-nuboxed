@@ -656,7 +656,7 @@ class MainNoteForm extends Component {
                 type="primary"
                 htmlType="submit"
                 disabled={this.state.edit}
-                style={{ marginRight: "1.3125em", marginTop: "1.3125em" }}
+                style={{ marginTop: "1.3125em" }}
               >
                 <FormattedMessage id="app.post" defaultMessage="Post" />
               </Button>
@@ -664,8 +664,9 @@ class MainNoteForm extends Component {
                 type="default"
                 onClick={recognizing ? this.stopRecognition : this.startRecognition}
                 style={{ marginLeft: "1.3125em", marginTop: "1.3125em" }}
+                // class=" !text-icon items-center  "
               >
-                {recognizing ? <VoiceOverOffIcon /> : <RadioButtonCheckedIcon />}
+                {recognizing ? <VoiceOverOffIcon className="!text-icon text-red-600 " /> : <RadioButtonCheckedIcon className="!text-icon text-red-600"/>}
               </Button>
             </div>
           </Form>
