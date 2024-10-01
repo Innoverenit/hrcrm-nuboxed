@@ -68,7 +68,7 @@ const AccountOrder1Table = (props) => {
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
-                        <div className=" md:w-[9.41rem]">
+                        <div className="w-[10.41rem] md:w-[10.41rem]">
                         {translatedMenuItems[0]} no
                         {/* Order no */}
                         </div>
@@ -76,7 +76,7 @@ const AccountOrder1Table = (props) => {
                         {translatedMenuItems[1]}
                         {/* Created */}
                         </div>
-                        <div className=" md:w-[11.2rem]">
+                        <div className="w-[12.2rem] md:w-[12.2rem]">
                         {translatedMenuItems[2]}
                         {/* location */}
                         </div>
@@ -84,7 +84,7 @@ const AccountOrder1Table = (props) => {
                         {translatedMenuItems[3]}
                         {/* units */}
                         </div>
-                        <div className="md:w-[5.9rem]">
+                        <div className="w-[5.9rem] md:w-[7.9rem]">
                         {translatedMenuItems[4]}
                         {/* Contact */}
                         </div>

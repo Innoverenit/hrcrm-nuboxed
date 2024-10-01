@@ -24,19 +24,14 @@ class AddressFieldArray extends Component {
           values.address.map((address, index) => (
             <div>             
               <div key={index} style={{ display: "flex", width: "100%"}}>
-                <EnvironmentOutlined
+                <EnvironmentOutlined className="!text-icon m-[0px 0.68em 0.42rem] self-center"
                   // type="environment"
-                  style={{                   
-                    fontSize: "1.2em",
-                    margin: "0px 0.68em 0.42rem",
-                    placeSelf: "center",
-                  }}
+                
                 />
                 <Field
                   name={`address[${index}]`}
                   // label="Location"
-                  component={FormikPlacesAutoComplete}
-                  isColumn
+                  component={FormikPlacesAutoComplete}             
                   options={{}}                               
                 />      
                 <div              

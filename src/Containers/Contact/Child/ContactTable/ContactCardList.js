@@ -40,6 +40,7 @@ import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactAddressDrawerModal from "../ContactTable/AddContactAddressDrawerModal"
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 const ContactCETdrawer =lazy(()=>import("./ContactCETdrawer"));
  
 const Option = Select;
@@ -385,8 +386,8 @@ function ContactCardList(props) {
                 <Tooltip
                   title={translatedMenuItems[13]}
                 >
-                  <AddchartIcon
-                  className="!text-icon cursor-pointer text-blue-500"
+                  <HourglassFullIcon
+                 className="text-[#edf67d] cursor-pointer !text-icon"
                     onClick={() => {
                       props.handleContactCETdrawer(true);
                       handleSetCurrentContact(item);

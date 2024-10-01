@@ -81,7 +81,7 @@ const AddAccountForm = ({
                     "14",  // "Category",11
                     "1466",  // "Custom Payment",12
                     "76",  // "Assigned",13
-                    "147",  // "Description",`14
+                    "316",  // "Notes",`14
                     "104",  //    "Create"15
                    "158" ,// Start16
                    "5" ,// "Stop  17
@@ -237,7 +237,7 @@ const AddAccountForm = ({
           ...rest
         }) => (
           // <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
-          <Form class="form-background">
+          <Form class="form-background h-[77vh]">
             <div class=" flex justify-between max-sm:flex-col ">
               <div class=" h-full w-w47.5 max-sm:w-wk">
                 <div>
@@ -601,9 +601,10 @@ const AddAccountForm = ({
                 </div>
                 
                 <div class="mt-4">
-                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</div>
-                    <div>
                   <div>
+                <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</span>
+                  
+                  <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title= {translatedMenuItems[16]}>
                         <span  >
@@ -614,22 +615,21 @@ const AddAccountForm = ({
 
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title= {translatedMenuItems[17]}>
-                        <span
+                        <span>
                           
-                            class="!text-icon ml-1 text-green-600">
-                          <StopCircleIcon />
+                      <StopCircleIcon  className="!text-icon ml-1 text-green-600" />
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title= {translatedMenuItems[18]}>
-                        <span  class="!text-icon ml-1">
-                          <RotateRightIcon />
+                        <span >
+                          <RotateRightIcon className="!text-icon  ml-1" />
                         </span>
                       </Tooltip>
                     </span>
-                  </div> 
+                  </span> 
                    <div>
                     <textarea
                       name="description"
@@ -640,6 +640,7 @@ const AddAccountForm = ({
                     ></textarea>
                   </div>
                 </div>
+              
                 </div>
               </div>
             </div>
