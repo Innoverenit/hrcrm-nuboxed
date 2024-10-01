@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCustomerData } from "../../Customer/CustomerAction";
 import { getContactData } from "../../Contact/ContactAction";
-import { FormattedMessage } from "react-intl";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -109,14 +108,14 @@ const  handleEmailInd = (checked) => {
           '126', // 2
           '218', // 3
           '241', // 4
-          "147",//5
+          "316",//5
           '76', // 6
           '75', // 7
           '248', // 8
           '73', // 9
           '141', // 10
           '219', // 11
-          '104',//12
+          '46',//12
 
         ];
 
@@ -924,7 +923,7 @@ const handleStageChange=(value)=>{
                                     <div class=" flex">
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">
-                       Email Ind 
+                     Auto Email Quotation to receipient?
                     </div>
                       <div>
                       <Switch               
@@ -940,16 +939,16 @@ const handleStageChange=(value)=>{
              
             </div>
           
-            <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
+            {/* <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
               <Button
                 type="primary"
                 htmlType="submit"
                 loading={addingOpportunity}
               >
                 <div class="font-bold font-poppins text-xs">{translatedMenuItems[12]}</div>
-                {/* Create */}
+                Create
               </Button>
-            </div>
+            </div> */}
           </Form>
           </div>
         )}

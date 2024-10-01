@@ -113,7 +113,8 @@ handleEmailInd = (checked) => {
                     id="app.order"
                     defaultMessage="Order"
                 />,
-                icon: <UserOutlined />,
+                icon: <UserOutlined className=" text-green-600" 
+                style={{ backgroundColor:"green"}} />,
                 content: <OpportunityForm {...formProps}/>,
             },
             {
@@ -121,9 +122,7 @@ handleEmailInd = (checked) => {
                     id="app.catalogue"
                     defaultMessage="Catalogue List"
                 />,
-                icon: <PhoneOutlined
-                    style={{ color: "blue" }}
-                />,
+                icon: <PhoneOutlined className=" text-green-500"/>,
                 content: <AddCatalogueForm
                 // handleChooseCatalogue={this.handleChooseCatalogue}
                 // catalogueId={this.state.catalogueId}
@@ -143,14 +142,14 @@ handleEmailInd = (checked) => {
             <>
                 <StyledSteps current={current}>
                     <Step
-                        title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
+                        title={<AddShoppingCartIcon className=" !text-icon"  />}
                         description={<FormattedMessage
                             id="app.oderdetails"
                             defaultMessage="Order Details"
                         />}
                     />
                     <Step
-                        title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
+                        title={<ControlPointDuplicateIcon className=" !text-icon" />}
                         description={<FormattedMessage
                             id="app.unitsinfo"
                             defaultMessage="Units Info"

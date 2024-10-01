@@ -1,7 +1,7 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect, useRef} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Select} from "antd";
+import { Tooltip, Button, Select} from "antd";
 import ProgressiveImage from "../../../../Components/Utils/ProgressiveImage";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
@@ -17,6 +17,9 @@ import {
 
     getCrm
 } from "../../../Leads/LeadsAction";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
 import PostImageUpld from "../../../../Components/Forms/Formik/PostImageUpld";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
@@ -24,6 +27,7 @@ import { SelectComponent } from "../../../../Components/Forms/Formik/SelectCompo
 import { Listbox } from '@headlessui/react'
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {base_url} from "../../../../Config/Auth";
+  
 const { Option } = Select; 
 
 // yup validation scheme for creating a account
@@ -35,6 +39,103 @@ const UpdateLeadsSchema = Yup.object().shape({
 });
 
 function UpdateLeadsForm (props) {
+
+  const [transcript, setTranscript] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
+  const [text, setText] = useState("");
+  console.log(text)
+  function handletext(e) {
+    setText(e.target.value);
+  }
+
+  useEffect(() => {
+    if (!('webkitSpeechRecognition' in window)) {
+      console.log('Browser does not support speech recognition.');
+      return;
+    }
+
+  //   const recognition = new window.webkitSpeechRecognition();
+  //   recognition.continuous = true;
+  //   recognition.interimResults = true;
+  //   recognition.lang = 'en-US';
+
+  //   recognition.onresult = (event) => {
+  //     let finalTranscript = '';
+  //     for (let i = event.resultIndex; i < event.results.length; ++i) {
+  //       if (event.results[i].isFinal) {
+  //         finalTranscript += event.results[i][0].transcript;
+  //       }
+  //     }
+  //     setTranscript(finalTranscript);
+  //   };
+
+  //   recognition.onend = () => {
+  //     setIsListening(false);
+  //   };
+
+  //   recognitionRef.current = recognition;
+
+  //   return () => {
+  //     recognition.stop();
+  //   };
+  // }, []);
+
+  const recognition = new window.webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+
+  recognition.onresult = (event) => {
+    let finalTranscript = '';
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        finalTranscript += event.results[i][0].transcript;
+      }
+    }
+    finalTranscript = finalTranscript.trim(); // Trim spaces around the transcript
+
+    // Ensure the final transcript is appended only once
+    setTranscript((prevTranscript) => {
+      setText((prevText) => (prevText + ' ' + finalTranscript).trim());
+      return prevTranscript + ' ' + finalTranscript;
+    });
+  };
+
+  recognition.onend = () => {
+    setIsListening(false);
+  };
+
+  recognitionRef.current = recognition;
+
+  return () => {
+    recognition.stop();
+  };
+}, []);
+
+  const startListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.start();
+      setIsListening(true);
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    }
+  };
+
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+    setTranscript('');
+  };
+
+  const resetTranscript = () => {
+    setTranscript('');
+    setText('');
+  };
  
   const handleReset = (resetForm) => {
     resetForm();
@@ -676,16 +777,49 @@ function UpdateLeadsForm (props) {
                                   
                 </div>
                 )}
-                 <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
-                 <div class="font-bold text-xs">{translatedMenuItems[14]}</div>
-                  <Field
-                    name="notes"
-                    // label="Notes"                 
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                    /> 
-                    </div>                 
+                 <div class="mt-3">
+                <div>
+                  {/* Notes */}
+                    <span class=" font-bold text-xs font-poppins">{translatedMenuItems[14]}</span>
+                  <span>
+                    <span onClick={startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={stopListening}>
+                      <Tooltip title="Stop">
+                        <span >
+                          <StopCircleIcon  className="!text-icon ml-1 text-green-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span>
+                          <RotateRightIcon   className="!text-icon ml-1" />
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </span>
+
+                  <div>                  
+        <textarea
+        name="description"
+        className="textarea"
+        type="text"
+        value={text}
+        onChange={handleTextChange}
+      ></textarea>
+
+                  </div>
+                  </div>
+          
+                  </div>               
                 </div>
               </div>
              

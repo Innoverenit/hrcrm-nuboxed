@@ -231,12 +231,13 @@ class Dashboard extends Component {
            {viewType==="ME" ?
            (
             <div className=" text-base">Me View</div>
-           && this.state.activeButton==="test" ?
-            ( <DashboardJumpstart 
-             selectedLanguage={this.props.selectedLanguage}
-             translateText={this.props.translateText}/>)
+           && 
+          //  this.state.activeButton==="test" ?
+            // ( <DashboardJumpstart 
+            //  selectedLanguage={this.props.selectedLanguage}
+            //  translateText={this.props.translateText}/>)
  
-             : this.state.activeButton==="Procure" ?
+              this.state.activeButton==="Procure" ?
              (<DashboardProcureJumpstartUser
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}

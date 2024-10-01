@@ -8,10 +8,33 @@ import {
   getJumpBulblist3, getavgHour, getJumpTasklist, getTasklist, getJumpTask2list
 } from "../../DashboardAction";
 import FactCheckIcon from '@mui/icons-material/FactCheck';
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import axios from 'axios'; 
+import {base_url} from "../../../../Config/Auth"; 
 
 const DashboardTaskUserJumpstart = (props) => {
-  
+  const [error, setError] = useState(null);
+  const { 
+    role, 
+    user, 
+    getDateWiseList, 
+    getSalesDateWiseList, 
+    getTasklist, 
+    getavgHour, 
+    getleaveLeftSideDetails, 
+    userId, 
+    recruiterId, 
+    orgId, 
+    dateOfJoining, 
+    // fetchingDatewiseReport, 
+    fetchingSalesDatewiseReport, 
+    fetchingAvgHour, 
+    // fetchingTaskper, 
+    // taskperCount, 
+    avgHour, 
+    leaveFetching 
+  } = props;
   const [date, setDate] = useState(() => {
     const today = new Date();
     return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
@@ -43,8 +66,8 @@ const DashboardTaskUserJumpstart = (props) => {
         const itemsToTranslate = [
           '31', // 'Open Tasks', // 0
           '1477', // 'Deadline', // 1
-          '1476', // 'High Priority Tasks', // 2
-          '142', // 3
+          '70', // 'calls', // 2
+          '35', // 3
         ];
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -57,6 +80,118 @@ const DashboardTaskUserJumpstart = (props) => {
 
     fetchMenuTranslations();
   }, [props.translateText, props.selectedLanguage]);
+
+  const formattedDate = dayjs(dateOfJoining).format('DD-MM-YYYY');
+  
+
+  const [data1, setData1] = useState({});
+  const [loading1, setLoading1] = useState(false);
+    const fetchData1 = async () => {
+      try {
+        const response = await axios.get(`${base_url}/call/record/count/List/user/${props.userId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setData1(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError(error);
+        setLoading1(false);
+      }
+    };
+    const [data2, setData2] = useState({});
+    const [loading2, setLoading2] = useState(false);
+      const fetchData2 = async () => {
+        try {
+          const response = await axios.get(`${base_url}/call/record/count/today/user/${userId}`,{
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+          setData2(response.data);
+          setLoading2(false);
+        } catch (error) {
+          setError(error);
+          setLoading2(false);
+        }
+      };
+      const [data3, setData3] = useState({});
+      const [loading3, setLoading3] = useState(false);
+        const fetchData3 = async () => {
+          try {
+            const response = await axios.get(`${base_url}/call/record/count/List/${orgId}`,{
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            });
+            setData3(response.data);
+            setLoading3(false);
+          } catch (error) {
+            setError(error);
+            setLoading3(false);
+          }
+        };
+        const [data4, setData4] = useState({});
+        const [loading4, setLoading4] = useState(false);
+          const fetchData4 = async () => {
+            try {
+              const response = await axios.get(`${base_url}/call/record/count/today/${orgId}`,{
+                headers: {
+                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                },
+              });
+              setData4(response.data);
+              setLoading4(false);
+            } catch (error) {
+              setError(error);
+              setLoading4(false);
+            }
+          };
+          const [data5, setData5] = useState({});
+          const [loading5, setLoading5] = useState(false);
+            const fetchData5 = async () => {
+              try {
+                const response = await axios.get(`${base_url}/event/record/count/today/user/${userId}`,{
+                  headers: {
+                    Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                  },
+                });
+                setData5(response.data);
+                setLoading5(false);
+              } catch (error) {
+                setError(error);
+                setLoading5(false);
+              }
+            };
+            const [data6, setData6] = useState({});
+            const [loading6, setLoading6] = useState(false);
+              const fetchData6 = async () => {
+                try {
+                  const response = await axios.get(`${base_url}/event/record/count/today/${orgId}`,{
+                    headers: {
+                      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                    },
+                  });
+                  setData6(response.data);
+                  setLoading6(false);
+                } catch (error) {
+                  setError(error);
+                  setLoading6(false);
+                }
+              };
+              useEffect(()=>{
+                if (props.timeRangeType === "today") {
+                  fetchData2();
+                  fetchData4();
+                  fetchData5();
+                  fetchData6();
+              }
+              else {
+                fetchData1();
+                fetchData3();
+              }
+              },[props.userId,props.startDate,props.endDate]);
 
   useEffect(() => {
     if (
@@ -127,15 +262,15 @@ const DashboardTaskUserJumpstart = (props) => {
                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center text-xs">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-yellow-600">< FactCheckIcon className=" text-white"/></div>
+                                   <div class="rounded-full p-2 bg-yellow-600"><VolumeUpIcon className="text-white"/></div>
                                </div>
                                <JumpStartBox
-              bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-              noProgress
-              title={translatedMenuItems[2]}
-              value={jumpstartTasklistCount.no}
-              isLoading={fetchingJumpstartTasklist}
-            />
+            noProgress
+            title={translatedMenuItems[2]}
+            bgColor="linear-gradient(270deg,#F15753,orange)"
+            value={`${data2.TodayCompletedCall}`}
+            isLoading={loading2 || loading4}
+          />
                            </div>
                        </div>
                    
@@ -145,14 +280,16 @@ const DashboardTaskUserJumpstart = (props) => {
                        <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-blue-600 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center text-xs">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-blue-600"><EventRepeatIcon className='text-white'/></div>
+                                   <div class="rounded-full p-2 bg-blue-600"><EventAvailableIcon className="text-white"/></div>
                                </div>
                                <JumpStartBox
-              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-              noProgress
-              title={translatedMenuItems[3]}
-
-            />
+            noProgress
+            title={translatedMenuItems[3]}
+            bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+            value={`${data5.TodayCompletedEvent}`}
+            isLoading={loading5}
+          />
+                      
                            </div>
                        </div>
                    

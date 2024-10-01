@@ -2,8 +2,6 @@ import React, { useEffect,useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select, Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
-import { CheckOutlined } from "@ant-design/icons";
 import { base_url } from "../../../Config/Auth";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -118,7 +116,11 @@ props.emptyClearbit();
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
-  
+
+  const handleIconClick = (type) => {
+    setpriority(type);
+  };
+
     const fetchSource = async () => {
       setIsLoading(true);
       try {
@@ -629,51 +631,51 @@ props.emptyClearbit();
                     {props.customerConfigure.typeInd===true&&
                     <div class="flex">
                        <Tooltip title="Hot">
-                         <Button
-                           
-                            shape="circle"
-                           onClick={() => handleButtonClick("hot")}
-                           style={{
-                             backgroundColor:"red",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px"
-                           }}
-                         >
-                          {priority === "hot" && <CheckOutlined style={{ color: "white" }} />}
-                          </Button>
+                       <i
+          className={`fas fa-mug-hot${priority === "hot" ? " selected" : ""}`}
+          onClick={() => handleIconClick("hot")}
+          style={{
+            color: priority === "hot" ? "red" : "red",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+        ></i>
                        </Tooltip>
                        &nbsp;
                        <Tooltip title="Warm">
-                         <Button
-                           
-                            shape="circle"
-             
-                           onClick={() => handleButtonClick("warm")}
-                           style={{
-                             backgroundColor:"orange",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px",
-                           }}
-                         >
-                          {priority === "warm" && <CheckOutlined style={{ color: "white" }} />}
-                          </Button>
+                       <i
+          className={`fas fa-burn${priority === "warm" ? " selected" : ""}`}
+          onClick={() => handleIconClick("warm")}
+          style={{
+            color: priority === "warm" ? "white" : "orange",
+            backgroundColor: priority === "warm" ? "orange" : "transparent",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+        ></i>
                        </Tooltip>
                        &nbsp;
                        <Tooltip title="Cold">
-                         <Button
-                            shape="circle"
-                           onClick={() => handleButtonClick("cold")}
-                           style={{
-                             backgroundColor:"teal",
-                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
-                                 width: "31px", // Adjust the width as needed
-                                 height: "31px"
-                           }}
-                           >
-                           {priority === "cold" && <CheckOutlined style={{ color: "white" }} />}
-                           </Button>
+                       <i
+          className={`far fa-snowflake${priority === "cold" ? " selected" : ""}`}
+          onClick={() => handleIconClick("cold")}
+          style={{
+            color: priority === "cold" ? "white" : "teal",
+            backgroundColor: priority === "cold" ? "teal" : "transparent",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+         
+        ></i>
                        </Tooltip>
                      </div>
 }

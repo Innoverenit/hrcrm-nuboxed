@@ -163,7 +163,7 @@ const CandidateActionLeft = (props) => {
          color: props.viewType === "card" && "#1890ff",
        }}
      >
-      <TableViewIcon 
+      <TableViewIcon className="!text-icon"
        />
        </span>
        </Badge>
@@ -182,7 +182,7 @@ const CandidateActionLeft = (props) => {
               color: props.viewType === "billable" && "#1890ff",
             }}
           >
-            <ReceiptIcon style={{fontSize:"1.4rem"}}  />
+            <ReceiptIcon className="!text-icon"  />
           </span>
        
       </Tooltip>
@@ -198,7 +198,7 @@ const CandidateActionLeft = (props) => {
 
             }}
           >
-            <GroupsIcon 
+            <GroupsIcon className="!text-icon"
             // icon={solid('users')}
              />
           </span>
@@ -217,7 +217,7 @@ const CandidateActionLeft = (props) => {
             }}
           >
 
-            <PermIdentityIcon />
+            <PermIdentityIcon className="!text-icon" />
           </span>
         </Badge>
       </Tooltip>
@@ -235,7 +235,7 @@ const CandidateActionLeft = (props) => {
             {/* <i class="fa-solid fa-user-helmet-safety"></i> */}
             {/* <i class="fa-solid fa-user-tie"></i> */}
             {/* <i class="fa-solid fa-user-gear"></i> */}
-            <ManageAccountsIcon 
+            <ManageAccountsIcon className="!text-icon"
             // icon={solid("user-gear")}
              />
           </span>
@@ -261,7 +261,7 @@ const CandidateActionLeft = (props) => {
          
        
         >
-          <LanguageIcon 
+          <LanguageIcon className="!text-icon"
           />
         </span>
         </Badge>
@@ -272,7 +272,7 @@ const CandidateActionLeft = (props) => {
        onClick={() => props.setCandidateViewType("black")}
 
      >
-       <CircleIcon 
+       <CircleIcon className="!text-icon"
       //  icon={solid("circle")}
         />
        </span>
@@ -288,7 +288,7 @@ const CandidateActionLeft = (props) => {
               color: props.viewType === "dollar" && "#1890ff",
             }}
           >
-            <LocalAtmIcon />
+            <LocalAtmIcon className="!text-icon" />
           </span>
        
       </Tooltip>
@@ -350,7 +350,7 @@ const CandidateActionLeft = (props) => {
         onClick={() => props.handleCandidateFilterModal(true)}
      
       >
-        <FilterAltIcon 
+        <FilterAltIcon className="!text-icon"
         // icon={solid("filter")}
          />
       </Button>

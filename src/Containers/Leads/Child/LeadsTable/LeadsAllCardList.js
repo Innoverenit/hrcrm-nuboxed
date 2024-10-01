@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import "jspdf-autotable";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
@@ -30,7 +31,6 @@ import {
   handleLeadsAddressDrawerModal
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import AddchartIcon from "@mui/icons-material/Addchart";
 import { Button, Tooltip } from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -560,7 +560,7 @@ const LeadsAllCardList = (props) => {
                       title={translatedMenuItems[16]}
                     >
                       {/* Activity */}
-                      <AddchartIcon
+                      <HourglassFullIcon
                        className="!text-icon cursor-pointer text-blue-500"
                         onClick={() => {
                               handleRowData(item);
@@ -956,7 +956,7 @@ const LeadsAllCardList = (props) => {
                       title={translatedMenuItems[16]}
                     >
                       {/* Activity */}
-                      <AddchartIcon
+                      <HourglassFullIcon
                        className="!text-icon cursor-pointer text-blue-500"
                         onClick={() => {
                               handleRowData(item);
@@ -1350,7 +1350,7 @@ const LeadsAllCardList = (props) => {
                       title={translatedMenuItems[16]}
                     >
                       {/* Activity */}
-                      <AddchartIcon
+                      <HourglassFullIcon
                        className="!text-icon cursor-pointer text-blue-500"
                         onClick={() => {
                               handleRowData(item);

@@ -1,16 +1,12 @@
 import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader, GridLoader } from "../../Components/Placeholder";
-import { setBillingViewType } from "../Billing/BillingAction"
-import BillingJumpStartBox from "./BillingJumpStart/BillingJumpStartBox";
-import BillingListTable from "./BillingTable/BillingListTable";
-import BillingTable from "./BillingTable/BillingTable";
-import BillingHeader from "./Child/BillingHeader";
+import { BundleLoader} from "../../Components/Placeholder";
+import { setBillingViewType } from "../Billing/BillingAction";
 
-
-
-
+const BillingHeader=lazy(()=>import ("./Child/BillingHeader"));
+const BillingListTable=lazy(()=>import ("./BillingTable/BillingListTable"));
+const BillingJumpStartBox=lazy(()=>import ("./BillingJumpStart/BillingJumpStartBox"));
 class Billing extends Component {
 
   state = { currentData: "" };
@@ -31,8 +27,10 @@ class Billing extends Component {
     } = this.props;
     return (
       <React.Fragment>
+         <Suspense fallback={<BundleLoader />}>
         <BillingHeader
-
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
           setBillingViewType={setBillingViewType}
           viewType={viewType}
           handleClear={this.handleClear}
@@ -40,23 +38,15 @@ class Billing extends Component {
           setCurrentData={this.setCurrentData}
         />
          <BillingJumpStartBox/>
-        <Suspense fallback={<BundleLoader />}>
-          {/* {
-
-            this.props.viewType === "table" ?
-              <BillingTable
-              //    handleResponseData={this.handleResponseData}
-              //    responseData={this.state.responseData}
-              //    currentUser={this.state.currentUser}
-              /> : viewType === "list" ? */}
+       
+        
           <BillingListTable
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             departmentType={departmentType}
             currentUser={this.state.currentUser}
           />
-          {/* : null */}
-
-          {/* } */}
-
+         
         </Suspense>
 
       </React.Fragment>

@@ -368,7 +368,7 @@ const DashboardActionLeft = (props) => {
                   </span>
                 </Badge>
               )}
-              <Badge size="small">
+              {/* <Badge size="small">
                 <span
                   className="cursor-pointer mr-1"
                   onClick={() => handleButtonClick("test")}
@@ -382,7 +382,7 @@ const DashboardActionLeft = (props) => {
                     </Avatar>
                   </Tooltip>
                 </span>
-              </Badge>
+              </Badge> */}
 
               {/* <Badge size="small">
                 <span
