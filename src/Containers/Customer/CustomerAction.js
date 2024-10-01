@@ -2846,6 +2846,35 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       });
   };
 
+
+
+
+  export const getCustomerDonut = (customerId) => (dispatch) => {
+    dispatch({
+      type: types.GET_CUSTOMER_DONUT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/opportunity/customer/record/count/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_CUSTOMER_DONUT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_CUSTOMER_DONUT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
   export const getOpenOppListOfJumpstart = (customerId,pageNo,filter) => (dispatch) => {
     // let api_url = "";
     // if (userId) {

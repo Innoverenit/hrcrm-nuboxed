@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { Upload, Button, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { base_url, base_url2, login_url } from '../../../Config/Auth';
@@ -50,14 +52,15 @@ const UploadImageRowFormSupplies = (props) => {
     // Make an API call to httpbin.org
     message.info('Uploading files...');
     try {
-       const response = await fetch(`${base_url}/image/multiple/tag/${props.particularDiscountData.suppliesId}/${"Material"}`, {
+      //  const response = await fetch(`${base_url}/image/multiple/tag/${props.particularDiscountData.suppliesId}/${"Material"}`, {
+        const response = await fetch(`${base_url2}/image/multiple/${props.particularDiscountData.suppliesId}/${"material"}/${props.userId}/${props.orgId}`, {
         //const response = await fetch(`${base_url}/image/multipleFile`, {
         method: 'POST',
         body: formData,
         headers: {
-          // "Content-Type": "multipart/form-data",
+          "Content-Type": "multipart/form-data",
             
-            Authorization: `Bearer ${token}`, // Add your actual token here
+           // Authorization: `Bearer ${token}`, // Add your actual token here
             
           },
       });
@@ -109,7 +112,38 @@ const UploadImageRowFormSupplies = (props) => {
   );
 };
 
-export default UploadImageRowFormSupplies;
+const mapStateToProps = ({
+  auth,
+  theme,
+  refurbish,
+  call,
+  task,
+  event,
+  candidate,
+  partner,
+  opportunity,
+  contact,
+  language,
+  message,
+  subscription
+}) => ({
+
+  userId: auth.userDetails.employeeId,
+ 
+  orgId: auth.userDetails.organizationId,
+
+  
+});
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      
+    },
+    dispatch
+  );
+export default connect(mapStateToProps, mapDispatchToProps)(UploadImageRowFormSupplies);
+
+
 
 
 

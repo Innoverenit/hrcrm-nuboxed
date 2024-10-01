@@ -99,52 +99,66 @@
 // export default TimelineChart;
 
 
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import {getCustomerDonut} from "../../CustomerAction"
+import { bindActionCreators } from "redux";
 import ReactApexChart from 'react-apexcharts';
 
-const GradientDonutChart = () => {
+const GradientDonutChart = (props) => {
+
+  useEffect(() => {
+ props.getCustomerDonut( props.customer.customerId)
+  }, []);
+  // Your chartData object
+  const chartData = {
+    open: 5,
+    closed: 2,
+    won: 3,
+    lost: 1
+  };
+
+  // Extracting the values from chartData
+  const series = Object.values(props.customerDonut);
+
+  // Chart options
   const options = {
-    series: [44, 55, 41, 17, 15],  // Data for the chart
+    labels: Object.keys(props.customerDonut),  // Use keys from chartData as labels
     chart: {
-      width: 380,  // Chart width
-      type: 'donut',  // Chart type
+      width: 380,
+      type: 'donut',
     },
     plotOptions: {
       pie: {
-        startAngle: -90,  // Custom start angle
-        endAngle: 270     // Custom end angle
+        startAngle: -90,
+        endAngle: 270
       }
     },
     dataLabels: {
-      enabled: false  // Disable data labels
+      enabled: false
     },
     fill: {
-      type: 'gradient'  // Gradient fill
+      type: 'gradient'
     },
     legend: {
-      formatter: function(val, opts) {
-        return val + " - " + opts.w.globals.series[opts.seriesIndex];  // Custom legend text
+      formatter: function (val, opts) {
+        return val + " - " + opts.w.globals.series[opts.seriesIndex];
       }
     },
-    // title: {
-    //   text: 'Gradient Donut with custom Start-angle'  // Title for the chart
-    // },
     responsive: [
       {
         breakpoint: 480,
         options: {
           chart: {
-            width: 200  // Responsive chart width for smaller screens
+            width: 200
           },
           legend: {
-            position: 'bottom'  // Legend position for smaller screens
+            position: 'bottom'
           }
         }
       }
     ]
   };
-
-  const series = [44, 55, 41, 17, 15];  // Data for the donut chart
 
   return (
     <div>
@@ -153,4 +167,19 @@ const GradientDonutChart = () => {
   );
 };
 
-export default GradientDonutChart;
+
+
+const mapStateToProps = ({ auth, account, customer,opportunity }) => ({
+  customerDonut:customer.customerDonut
+});
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      getCustomerDonut
+    },
+    dispatch
+  );
+export default connect(mapStateToProps, mapDispatchToProps)(GradientDonutChart);
+
+
+

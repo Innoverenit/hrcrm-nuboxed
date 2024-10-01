@@ -392,7 +392,9 @@ render() {
 
   </div>
   <div>
-    <CustomerTimeLineChart/>
+    <CustomerTimeLineChart
+     customer={this.props.customer}
+    />
   </div>
   <AddCustomerContactJumpstartModal
        customer={this.props.customer}

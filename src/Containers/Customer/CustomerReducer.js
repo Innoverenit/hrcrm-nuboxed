@@ -326,6 +326,12 @@ const initialState = {
   fetchingContactValueError: false,
   contactValue: {},
 
+
+  fetchingCustomerDonut:false,
+  fetchingCustomerDonutError:false,
+
+  customerDonut:{},
+
   updatingActivityEventForm: false,
   updatingActivityEventFormError: false,
 
@@ -1057,6 +1063,27 @@ export const customerReducer = (state = initialState, action) => {
         addingRecruitmentProfile: false,
         addingRecruitmentProfileError: true,
       };
+
+
+
+
+      case types.GET_CUSTOMER_DONUT_REQUEST:
+        return { ...state, fetchingCustomerDonut: true };
+      case types.GET_CUSTOMER_DONUT_SUCCESS:
+        return {
+          ...state,
+          fetchingCustomerDonut: false,
+        customerDonut: action.payload,
+  
+          //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_CUSTOMER_DONUT_FAILURE:
+        return {
+          ...state,
+          fetchingCustomerDonut: false,
+          fetchingCustomerDonutError: true,
+        };
+  
 
     case types.SET_CURRENT_RECRUITMENT_DATA:
       return { ...state, currentRecruitmentData: action.payload };

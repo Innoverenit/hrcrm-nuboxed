@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
+import CustomerPieLineChart from "../InvestorTable/CustomerPieLineChart"
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import CustomerPieChart from "../../../Dashboard/Child/JumpStart/CustomerPieChart"
@@ -332,6 +333,18 @@ render() {
         <div className="font-bold font-poppins text-lg">Activity</div>
         <CustomerPieChart/>
         </div> 
+
+
+
+
+
+        <div class=" mt-1 flex flex-col w-1/2 h-[83vh] items-center" > 
+      <div className="font-bold font-poppins  text-lg">Line Chart</div>
+        <CustomerPieLineChart/>
+       
+       
+        </div> 
+        
         </div>
           <AddInvestorActivityJumpstartModal
        RowData={this.props.RowData}
