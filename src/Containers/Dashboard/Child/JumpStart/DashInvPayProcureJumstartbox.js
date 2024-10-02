@@ -26,6 +26,7 @@ function DashInvPayProcureJumstartbox(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
   const [error, setError] = useState(null);
+  const [loading1, setLoading1] = useState(true);
 
   const [proInvoiceSent,setproInvoiceSent]=useState("");
 
@@ -41,6 +42,22 @@ function DashInvPayProcureJumstartbox(props) {
     } catch (error) {
       setError(error);
       setLoading(false);
+    }
+  };
+  const [proInvoiceSentList,setproInvoiceSentList]=useState("");
+
+  const fetchProInvoiceSentList = async () => {
+    try {
+      const response = await axios.get(`${base_url2}/invoice/invoiceSend/${props.userId}/${props.startDate}/${props.endDate}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setproInvoiceSent(response.data);
+      setLoading1(false);
+    } catch (error) {
+      setError(error);
+      setLoading1(false);
     }
   };
 
@@ -131,10 +148,10 @@ function DashInvPayProcureJumstartbox(props) {
   console.log(props.timeRangeType)
 
   useEffect(() => {
-    if (props.orderAddedList) {
-      setModalData(props.orderAddedList);
+    if (proInvoiceSentList) {
+      setModalData(proInvoiceSentList);
     }
-  }, [props.orderAddedList]);
+  }, [proInvoiceSentList]);
 
   useEffect(() => {
     if (proPaymentReceivedList) {
@@ -155,7 +172,7 @@ function DashInvPayProcureJumstartbox(props) {
 
     switch(type) {
       case 'Invoice Sent':
-        // fetchProPaymentList(props.userId,props.endDate,props.startDate);
+        fetchProInvoiceSentList(props.userId,props.endDate,props.startDate);
         break;
       case 'Payment Received':
         fetchProPaymentReceivedList(props.userId,props.endDate,props.startDate);
