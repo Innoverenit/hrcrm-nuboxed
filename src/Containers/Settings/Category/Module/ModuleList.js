@@ -158,6 +158,22 @@ const handleFinanceClick = (checked) => {
     props.addingModules(data, props.orgId);
   };
 
+  const { timeTrackInd } = props.moduleList;
+  console.log(timeTrackInd);
+  const [timeTrackStatus, setTimeTrackStatus] = useState(timeTrackInd);
+  useEffect(() => {
+    setTimeTrackStatus(timeTrackInd);
+  }, [timeTrackInd]);
+  const handleTimetrackClick = (checked) => {
+    setTimeTrackStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "erp",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
   const { imInd } = props.moduleList;
   console.log(imInd);
   const [imStatus, setImStatus] = useState(imInd);
@@ -580,6 +596,8 @@ logisticsStatus={logisticsStatus}
                     catalogueStatus={catalogueStatus}
                     handleMaterialClick={handleMaterialClick}
                     materialStatus={materialStatus}
+                    handleTimetrackClick={handleTimetrackClick}
+                    timeTrackStatus={timeTrackStatus}
                     />              
               </MainWrapper>
             </div>

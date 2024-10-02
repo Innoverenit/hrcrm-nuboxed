@@ -54,14 +54,34 @@ function AllCustomerForm(props) {
                     isColumn
                     width={"100%"}
                     component={SelectComponent}
-                    options={[ "Requirment", "Selected"] }  
+                    options={[ 
+                      "Task",
+                      "Calls",
+                      "Events",
+                      "Leads",
+                      "Prospect",
+                      "Contact",
+                      "Quotation",
+                      "Orders",
+                      "Customer",
+                      "Materials In Stock",
+                      "Goods In Stock",
+                      "Production",
+                      "Productivity",
+                      "Receivables",
+                      "Invoice",
+                      "Credit Memo",
+                      "Investors",
+                      "Deals",
+                      "Requirment",
+                      ] }  
                     inlineLabel
                   />
                 </div>
                 <div class=" w-[20%]"  >   
                   <Field
                     name="frequency"
-                    label="Frequency"
+                    label="Frequency & Range"
                     type="text"
                     isColumn
                     width={"100%"}

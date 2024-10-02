@@ -6,6 +6,16 @@ const initialState = {
 
   addOrderModal: false,
 
+  viewItemDrwr: false,
+
+  fetchingProcureOrderDetails: false,
+  fetchingProcureOrderDetailsError: false,
+  orderProcureDetails: [],
+
+  fetchingOrdrSuplrDetails: false,
+  fetchingOrdrSuplrDetailsError:false,
+  ordrSuplrItem:[],
+
   fetchingAllHighOrderList: false,
   fetchingAllHighOrderListError: false,
   allHighCompleteOrder:[],
@@ -787,7 +797,42 @@ export const orderReducer = (state = initialState, action) => {
                               ...state,
                               fetchingEcomStatusItem: false,
                               fetchingEcomStatusItemError: true,
-                            };                 
+                            };  
+                            
+
+                            case types.GET_PROCURE_ORDER_DETAILS_REQUEST:
+                              return { ...state, fetchingProcureOrderDetails: true };
+                            case types.GET_PROCURE_ORDER_DETAILS_SUCCESS:
+                              return {
+                                ...state,
+                                fetchingProcureOrderDetails: false,
+                                orderProcureDetails: action.payload,
+                              };
+                            case types.GET_PROCURE_ORDER_DETAILS_FAILURE:
+                              return {
+                                ...state,
+                                fetchingProcureOrderDetails: false,
+                                fetchingProcureOrderDetailsError: true,
+                              };
+
+                              case types.GET_ORDR_SUPLR_DETAILS_REQUEST:
+                                return { ...state, fetchingOrdrSuplrDetails: true };
+                              case types.GET_ORDR_SUPLR_DETAILS_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingOrdrSuplrDetails: false,
+                                  ordrSuplrItem: action.payload,
+                                };
+                              case types.GET_ORDR_SUPLR_DETAILS_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingOrdrSuplrDetails: false,
+                                  fetchingOrdrSuplrDetailsError: true,
+                                };
+                          
+                            
+    case types.HANDLE_ITEM_VIEW_DRAWER:
+      return { ...state, viewItemDrwr: action.payload };
     
     default:
       return state;

@@ -4,8 +4,10 @@ import { bindActionCreators } from "redux";
 import { Tooltip,Button,Input ,Popconfirm} from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
-    getEcomList
+    getEcomList,
+    handleItemViewDrawer
 } from "./OrderAction";
+import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -14,12 +16,15 @@ import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import EcomStatusCardDrawer from "./EcomStatusCardDrawer";
 import EcomSearchedData from "./EcomSearchedData";
 import EcomInvoiceListDrawer from "../Account/AccountDetailsTab/AccountOrderTab/EcomInvoiceListDrawer";
+import ProcureItemViewDrawer from "./ProcureItemViewDrawer";
+import CBMdrawer from "./CBMdrawer";
 
 function EcomCardList(props) {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [editedFields, setEditedFields] = useState({});
   const [editsuppliesId, setEditsuppliesId] = useState(null);
+  const [cbmDrawer, setcbmDrawer] = useState(false)
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -97,6 +102,9 @@ useEffect(() => {
 
   const openModal = () => {
     setModalVisible(true);
+  };
+  const openCBM = () => {
+    setcbmDrawer(true)
   };
 
   const closeModal = () => {
@@ -272,7 +280,11 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
 
 
                         <div className=" flex items-center  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs   font-poppins">
+                            <div class=" text-xs cursor-pointer text-blue-500 font-poppins"
+                              onClick={() => {
+                                handleSetParticularOrderData(item);
+                                props.handleItemViewDrawer(true);                               
+                            }}>
                                 {item.itemCount}
                             </div>
 
@@ -316,6 +328,14 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                                                                 />
                                                             </Tooltip>
                         </div>
+                        <Tooltip title="CBM">
+                        <StackedBarChartIcon
+                         onClick={() => {
+                          openCBM();
+                           handleSetParticularOrderData(item);
+                       }}
+                        />
+                        </Tooltip>
                     </div>
 
                 </div>
@@ -330,6 +350,16 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
          setopenInvoiceModal={setopenInvoiceModal}
          translatedMenuItems={translatedMenuItems}
          />
+          <ProcureItemViewDrawer
+           particularRowData={particularRowData}
+           viewItemDrwr={props.viewItemDrwr}
+           handleItemViewDrawer={props.handleItemViewDrawer}
+           />
+           <CBMdrawer
+           particularRowData={particularRowData}
+           cbmDrawer={cbmDrawer}
+           setcbmDrawer={setcbmDrawer}
+           />
        <EcomStatusCardDrawer
        selectedLanguage={props.selectedLanguage}
        translateText={props.translateText}
@@ -355,6 +385,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
 
 const mapStateToProps = ({ order,procre,auth }) => ({
   ecomList: order.ecomList,
+  viewItemDrwr: order.viewItemDrwr,
   fetchingEcomList: order.fetchingEcomList,
   orgId: auth.userDetails.organizationId,
   userId: auth.userDetails.userId,
@@ -366,6 +397,7 @@ const mapDispatchToProps = (dispatch) =>
 
     {
 getEcomList,
+handleItemViewDrawer
 
     },
     dispatch

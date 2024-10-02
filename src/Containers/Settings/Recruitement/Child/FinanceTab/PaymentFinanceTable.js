@@ -258,14 +258,11 @@ const PaymentSwitches = (props) => {
 
   return (
     <>
-    <div className="border-4 border-black ">
-    <div className="flex w-wk border-b-4 border-black  p-2">
-    <div className="text-lg font-semibold w-1/2 flex justify-center">B2B</div>
-    <div className="text-lg font-semibold w-1/2 flex justify-center">B2C</div>
-  </div>
-  <div className="flex">
-   
-    <div className="w-1/2 p-4">
+    <div className="w-wk ">
+  <div className="flex items-center ">
+  <div className="flex  flex-col w-wk items-center">
+  <div className="text-lg font-semibold w-1/2 flex justify-center">B2B</div>
+    <div className="w-1/2 p-4 flex justify-center">
     <Space direction="vertical">
     <div className='flex justify-between'>
         Credit
@@ -407,8 +404,12 @@ const PaymentSwitches = (props) => {
       </div>
     </Space>
     </div>
-    <div className="border-2 border-black"></div>
-    <div className="w-1/2 p-4">
+    </div>
+    <div className="border-2 h-[17rem] border-black"></div>
+    <div className="flex  flex-col w-wk items-center">
+    
+    <div className="text-lg font-semibold w-1/2 flex justify-center">B2C</div>
+    <div className="w-1/2 p-4 flex justify-center">
     <Space direction="vertical">
       <div className='flex justify-between'>
         Credit
@@ -549,6 +550,7 @@ const PaymentSwitches = (props) => {
         )}
       </div>
     </Space>
+    </div>
     </div>
     </div>
     </div>
