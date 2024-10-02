@@ -60,7 +60,7 @@ class DepartmentRole extends PureComponent {
         // console.log(this.state.departmentData.roleTypeId)
         return (
             <>
-                <TabsWrapper >
+                <div className="h-[83vh] border-2 bg-white shadow-2xl" >
                   
                     <StyledTabs type="card">
   {departmentRoleData ? (
@@ -95,7 +95,7 @@ class DepartmentRole extends PureComponent {
     <div>None available</div>
   )}
 </StyledTabs>
-                </TabsWrapper>
+                </div>
             </>
         )
     }

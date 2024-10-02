@@ -2904,6 +2904,8 @@ const callCheckedList = ["Access"];
 const eventCheckedList = ["Access"];
 const plannerCheckedList = ["Access"];
 const downloadCheckedList = ["All"];
+const calculateCheckedList = ["Calculate"];
+const warrentyCheckedList = ["Access" , "Update"]
 
 const AccessForm = (props) => {
   const [checkedCustomerList, setCheckedCustomerList] = useState(
@@ -3313,6 +3315,25 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
   const [indeterminateVendor, setIndeterminateVendor] = useState(true);
   const [checkAllVendor, setCheckAllVendor] = useState(false);
 
+//Calculate
+
+  const [checkedCalculateList, setCheckedCalculateList] = useState(
+    props.departmentAcces.calculate || []
+  );
+  const [indeterminateCalculate, setIndeterminateCalculate] = useState(true);
+  const [checkAllCalculate, setCheckAllCalculate] = useState(false);
+
+
+//Warrenty
+
+const [checkedWarrentyList, setCheckedWarrentyList] = useState(
+  props.departmentAcces.warranty || []
+);
+const [indeterminateWarrenty, setIndeterminateWarrenty] = useState(true);
+const [checkAllWarrenty, setCheckAllWarrenty] = useState(false);
+
+
+
   useEffect(() => {
     console.log(props.roleTypeId);
     props.getDepartmentAccess(props.roleTypeId);
@@ -3382,7 +3403,8 @@ useEffect(() => {
     setCheckedAccessmentList(props.departmentAcces.assessment || []);
     setCheckedCatalogList(props.departmentAcces.catalog || []);
     setCheckedVendorList( props.departmentAcces.vendor || []);
-
+    setCheckedCalculateList(props.departmentAcces.calculate || [])
+    setCheckedWarrentyList(props.departmentAcces.warranty || [])
 }, [props.departmentAcces]);
 
   const updateAccessForCategory = (category, selectedList) => {
@@ -3450,6 +3472,8 @@ useEffect(() => {
       download: downloadCheckedList || [],
       event: eventCheckedList || [],
       planner: plannerCheckedList || [],
+      calculate : calculateCheckedList || [],
+      warranty : warrentyCheckedList || []
     };
   
     // Update only the specified category with the selectedList
@@ -4604,6 +4628,47 @@ const onCheckAllDownloadChange = (e) => {
     updateAccessForCategory('planner', checked);
   };
 
+  //Calculate
+
+
+  const onCalculateChange = (list) => {
+    setCheckedCalculateList(list);
+    setIndeterminateCalculate(
+      !!list.length && list.length < calculateCheckedList.length
+    );
+    setCheckAllCalculate(list.length === calculateCheckedList.length);
+    updateAccessForCategory('calculate', list);
+  };
+
+  const onCheckAllCalculateChange = (e) => {
+    const checked = e.target.checked ? calculateCheckedList : [];
+    setCheckedCalculateList(checked);
+    setIndeterminateCalculate(false);
+    setCheckAllCalculate(e.target.checked);
+    updateAccessForCategory('calculate', checked);
+  };
+
+ //Warrenty
+
+
+ const onWarrentyChange = (list) => {
+  setCheckedWarrentyList(list);
+  setIndeterminateWarrenty(
+    !!list.length && list.length < warrentyCheckedList.length
+  );
+  setCheckAllWarrenty(list.length === warrentyCheckedList.length);
+  updateAccessForCategory('warranty', list);
+};
+
+const onCheckAllWarrentyChange = (e) => {
+  const checked = e.target.checked ? warrentyCheckedList : [];
+  setCheckedWarrentyList(checked);
+  setIndeterminateWarrenty(false);
+  setCheckAllWarrenty(e.target.checked);
+  updateAccessForCategory('warranty', checked);
+};
+
+
   console.log(checkedMaterialList)
   console.log("departmentData", props.departmentData);
   console.log(props.departmentAcces.vendor);
@@ -4615,13 +4680,13 @@ const onCheckAllDownloadChange = (e) => {
   }
   return (
     <>
+    <div className="flex flex-col">
       <div
-        class=" flex justify-between h-[75vh]  overflow-y-auto"
+        class=" flex justify-between h-[70vh]  overflow-y-auto"
         style={{ scrollbarWidth: "thin" }}
       >
-        <TabsWrapper
-          style={{ height: "146rem", width: "-webkit-fill-available" }}
-        >
+       
+          <div>
           {/* {props.departmentData.hrInd === true ? ( */}
             <div class="flex flex-col">
               <div class="text-clr flex justify-center text-base font-bold  mt-6">
@@ -5225,6 +5290,22 @@ const onCheckAllDownloadChange = (e) => {
                           onChange={onProductionChange}
                         />
                       </div>
+                      <div>
+                        <div class="text-sm font-semibold">Warranty</div>
+                        <Checkbox
+                          indeterminate={indeterminateWarrenty}
+                          onChange={onCheckAllWarrentyChange}
+                          checked={checkAllWarrenty}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        <Divider />
+                        <CheckboxGroup
+                          options={warrentyCheckedList}
+                          value={checkedWarrentyList}
+                          onChange={onWarrentyChange}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -5387,6 +5468,22 @@ const onCheckAllDownloadChange = (e) => {
                           options={collectionCheckedList}
                           value={checkedCollectionList}
                           onChange={onCollectionChange}
+                        />
+                      </div>
+                      <div>
+                        <div class="text-sm font-semibold">BTW / VAT / GST</div>
+                        <Checkbox
+                          indeterminate={indeterminateCalculate}
+                          onChange={onCheckAllCalculateChange}
+                          checked={checkAllCalculate}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        <Divider />
+                        <CheckboxGroup
+                          options={calculateCheckedList}
+                          value={checkedCalculateList}
+                          onChange={onCalculateChange}
                         />
                       </div>
                     </div>
@@ -5753,14 +5850,18 @@ const onCheckAllDownloadChange = (e) => {
             </div>
           ) : null}
 
-          <div class="mt-2">
+</div>
+
+        
+        
+      </div> 
+      <hr/>
+      <div class="mt-2">
             Updated on{" "}
             {dayjs(props.departmentAcces.lastUpdatedOn).format("DD/MM/YYYY")} by{" "}
             {props.departmentAcces.name}
           </div>
-
-        </TabsWrapper>
-      </div>
+          </div>
     </>
   );
 };

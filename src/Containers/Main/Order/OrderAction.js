@@ -914,3 +914,59 @@ export const getEcomStatusItem = (orderId) => (dispatch) => {
       });
     });
 };
+
+export const handleItemViewDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ITEM_VIEW_DRAWER,
+    payload: modalProps
+  })
+};
+
+export const getProcureOrderDetails = (orderPhoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PROCURE_ORDER_DETAILS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/procure/order/${orderPhoneId}`, 
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PROCURE_ORDER_DETAILS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_PROCURE_ORDER_DETAILS_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getOrdrSuppierDetails = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ORDR_SUPLR_DETAILS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/suppliersOrderItems/${orderId}`, 
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ORDR_SUPLR_DETAILS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_ORDR_SUPLR_DETAILS_FAILURE,
+        payload: err,
+      });
+    });
+};
