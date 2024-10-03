@@ -189,6 +189,9 @@ const AccountContactTable = (props) => {
 
                               
 
+                             
+
+                                <div className="flex justify-end items-center max-sm:flex-row w-full max-sm:justify-between">
                                 <div className="flex md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <Select
@@ -217,7 +220,7 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[6.01rem] max-sm:flex-row  max-sm:justify-between">
+                                <div className="flex md:w-[8.01rem] max-sm:flex-row  max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <Select
                                             style={{ width: "6rem" }}
@@ -231,8 +234,6 @@ const AccountContactTable = (props) => {
                                         </Select>
                                     </div>
                                 </div>
-
-                                <div className="flex justify-end items-center max-sm:flex-row w-full max-sm:justify-between">
             {item.accessInd === 0 ? (
                 <div className="text-xs font-poppins">
                     <Button
