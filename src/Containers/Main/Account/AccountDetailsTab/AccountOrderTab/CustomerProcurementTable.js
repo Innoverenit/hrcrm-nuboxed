@@ -225,11 +225,11 @@ const handleLoadMoreLow = () => {
       </div>
 
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
+        <div className=" flex justify-between w-[78%] p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
            </div>
-                        <div className=" md:w-[3.4rem] ml-2">
+                        <div className=" md:w-[5.4rem] ml-2">
                         {translatedMenuItems[1]} ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
                           <div className=" md:w-[2rem]">  
@@ -238,12 +238,10 @@ const handleLoadMoreLow = () => {
                         <div className=" md:w-[4.1rem]">
                         {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
                           </div>
-                        <div className=" md:w-[8.8rem] ">
+                        <div className=" md:w-[11.8rem] ">
                         {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
                           </div>
-                        <div className="md:w-[0.8rem]">
-                        {translatedMenuItems[4]} {/* <FormattedMessage id="app.budget" defaultMessage="Budget"/> */}
-                          </div>
+                        
                         <div className="md:w-[1.8rem]">
                         {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
                           </div>
@@ -253,10 +251,8 @@ const handleLoadMoreLow = () => {
                         <div className="md:w-[1.8rem]">
                         {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
                           </div>
-                          <div className="md:w-[1.8rem]">
-                          {translatedMenuItems[13]} 
-                          </div>
-                        <div className="md:w-[6.12rem]"></div>
+                      
+                
                      
 
 
@@ -298,7 +294,7 @@ const handleLoadMoreLow = () => {
                                                                               </Tooltip>
                                                                           </div>
                       
-                                              <div class="max-sm:w-full items-center  md:w-[7.02rem]">
+                                              <div class="max-sm:w-full items-center  md:w-[10.02rem]">
                                                 <Tooltip>
                                                   <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                                                   <span
@@ -318,12 +314,12 @@ const handleLoadMoreLow = () => {
                                                 </Tooltip>
                                               </div>
                                             </div>
-                                            <div className=" flex ml-2 md:w-[6.31rem] text-xs  max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex ml-2 md:w-[4.31rem] text-xs  max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                           </div>
                                         
-                                          <div class="flex flex-row text-xs items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+                                          <div class="flex flex-row text-xs items-center md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md:text-xs">
@@ -343,13 +339,13 @@ const handleLoadMoreLow = () => {
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        {/* <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
-                                        </div>
+                                        </div> */}
                                      
-                                        <div class="flex flex-row items-center md:w-[14.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -360,17 +356,17 @@ const handleLoadMoreLow = () => {
                                                     />
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
-                                              {item.shipById}
+                                              {item.status}                                              
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[16.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
                   }}>
@@ -408,7 +404,7 @@ const handleLoadMoreLow = () => {
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
         {translatedMenuItems[8]} {/* Normal */}
            </div>
-                        <div className=" md:w-[3.4rem] ml-2">
+                        <div className=" md:w-[4.4rem] ml-2">
                         {translatedMenuItems[1]} ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
                           </div>
                           <div className=" md:w-[2rem]">
@@ -420,9 +416,7 @@ const handleLoadMoreLow = () => {
                         <div className=" md:w-[8.8rem] ">
                         {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
                           </div>
-                        <div className="md:w-[0.8rem]">
-                        {translatedMenuItems[4]} {/* <FormattedMessage id="app.budget" defaultMessage="Budget"/> */}
-                          </div>
+                      
                         <div className="md:w-[1.8rem]">
                         {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
                           </div>
@@ -432,10 +426,8 @@ const handleLoadMoreLow = () => {
                         <div className="md:w-[1.8rem]">
                         {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
                           </div>
-                          <div className="md:w-[1.8rem]">
-                          {translatedMenuItems[13]}
-                          </div>
-                        <div className="md:w-[6.12rem]"></div>
+                       
+                     
                      
 
 
@@ -479,7 +471,7 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
 
-                        <div class="max-sm:w-full items-center  md:w-[7.02rem]">
+                        <div class="max-sm:w-full items-center  md:w-[10.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                             <span
@@ -499,12 +491,12 @@ const handleLoadMoreLow = () => {
                           </Tooltip>
                         </div>
                       </div>
-                      <div className=" flex ml-2 md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
+                      <div className=" flex ml-2 md:w-[4.31rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
                                                     {date}
                                                     </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full text-xs max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[11rem] max-sm:flex-row w-full text-xs max-sm:justify-between">
                   
                       
                       <div class="max-sm:w-full justify-between flex md:text-xs">
@@ -523,13 +515,13 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  {/* <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                         {item.budget}
                       </div>
-                  </div>
+                  </div> */}
                
-                  <div class="flex flex-row items-center md:w-[14.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                         {/* {item.contactPersonName} */}
                         <MultiAvatar
@@ -540,17 +532,17 @@ const handleLoadMoreLow = () => {
                               />
                       </div>
                   </div>
-                  <div class="flex flex-row items-center md:w-[13.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                         {item.paymentInTerms}
                       </div>
                   </div>
-                  <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.shipById}
                                             </div>
                                         </div>
-                  <div class="flex flex-row items-center md:w-[16.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{
                     setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);

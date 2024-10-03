@@ -43,8 +43,9 @@ const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 // // 1DI
 //  const login_url = "http://1DiWeb-env.eba-5ivfdpyc.us-east-2.elasticbeanstalk.com";
 //  const base_url = "http://1DiWeb-env.eba-5ivfdpyc.us-east-2.elasticbeanstalk.com/api/v1";
-//  const base_url2 = "http://1DiWeb-env.eba-5ivfdpyc.us-east-2.elasticbeanstalk.com/Erp";
+//  const base_url2 = "http://1dierp-env.eba-ed4pbxag.us-east-2.elasticbeanstalk.com";
 //  const asses_url = "http://1DiWeb-env.eba-5ivfdpyc.us-east-2.elasticbeanstalk.com/Assessment-0.0.1-SNAPSHOT"
 //  const sub_url = "http://develop.tekorero.com/Subscription/api/v2";
+
 
 export { base_url, sub_url,login_url, asses_url, base_url2 };

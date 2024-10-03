@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   getProcureDetails,
@@ -18,8 +17,6 @@ import {
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
 import { DeleteOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import Swal from 'sweetalert2';
@@ -42,7 +39,7 @@ function AccountProcureDetails(props) {
   const [newPrice, setPrice] = useState('');
   const [invoices, setInvoices] = useState('');
   const [RowInvoices, setRowInvoices] = useState('');
-  // const [particularRowData, setParticularRowData] = useState({});
+
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [CreditMemo, setCreditMemo] = useState([]);
 
@@ -288,7 +285,7 @@ const handleGenerateInvoice= async () => {
     try {
       const response = await axios.post(`${base_url2}/invoice/procureInvoice`,{
       //   paymentMode: "Cash",
-      //   remarks: "",
+      //   %arks: "",
       //   invoiceId:invoices,
       //   userId: props.userId,
       //   orderPaymentType: "Repair",
@@ -346,47 +343,45 @@ const handleGenerateInvoice= async () => {
   
   return (
     <>
-      <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className="flex justify-between  w-[99%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className="md:w-[2.5rem]">
-      {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
-          </div>
-          <div className="md:w-[10.4rem]">
-        {translatedMenuItems[13]} {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
+      <div className="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[83vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className="flex justify-between font-bold font-poppins text-xs w-[99%]   p-1 bg-transparent  sticky z-10">
+      
+          <div className="w-[10.4%] md:w-[10.4%]">
+        {translatedMenuItems[13]}
           </div>
 
-        <div className="md:w-[7.4rem]">
-        {translatedMenuItems[0]} {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
+        <div className=" w-[7.4%] md:w-[7.4%]">
+        {translatedMenuItems[0]} {/* Category" /> */}
           </div>
-          <div className="md:w-[7.4rem]">
-          {translatedMenuItems[1]}{/* <FormattedMessage id="app.brand" defaultMessage="Brand" /> */}
+          <div className="w-[7.4%] md:w-[7.4%]">
+          {translatedMenuItems[1]}{/* Brand" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-          {translatedMenuItems[2]} {/* <FormattedMessage id="app.model" defaultMessage="Model" /> */}
+          <div className="w-[7.1%] md:w-[7.1%]">
+          {translatedMenuItems[2]} {/* Model" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-          {translatedMenuItems[3]} {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */}
+          <div className="w-[7.1%] md:w-[7.1%]">
+          {translatedMenuItems[3]} {/* Attribute" /> */}
           </div>
-          <div className="md:w-[7rem]">
-          {translatedMenuItems[4]} {/* <FormattedMessage id="app.quality" defaultMessage="Quality" /> */}
+          <div className=" w-[7%] md:w-[7%]">
+          {translatedMenuItems[4]} {/*Quality" /> */}
           </div>
-          {/* <div className="md:w-[7.1rem]">
+          {/* <div className="md:w-[7.1%]">
           {translatedMenuItems[5]} */}
-          {/* <FormattedMessage id="app.location" defaultMessage="Location" /> */}
+          {/* Location" /> */}
           {/* </div> */}
-          <div className="md:w-[8rem]">
-          {translatedMenuItems[6]}{/* <FormattedMessage id="app.specs" defaultMessage="Specs" /> */}
+          <div className=" w-[8%] md:w-[8%]">
+          {translatedMenuItems[6]}{/* Specs" /> */}
           </div>
-          <div className="md:w-[4.8rem]">
-          {translatedMenuItems[8]} {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}
+          <div className="w-[4.8%] md:w-[5.8%]">
+          {translatedMenuItems[8]} {/*Price" /> */}
           </div>
-          <div className="md:w-[5rem]">
-          {translatedMenuItems[7]} {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
+          <div className="w-[5%] md:w-[5%]">
+          {translatedMenuItems[7]} {/* Units" /> */}
           </div>
-          <div className="md:w-[5rem]">
+          <div className="w-[5%] md:w-[5%]">
           {translatedMenuItems[10]} 
           </div>
-          <div className="md:w-[5.8rem]">
+          <div className=" w-[5.8%] md:w-[5.8%]">
           {translatedMenuItems[9]}
           </div>
           
@@ -405,66 +400,63 @@ const handleGenerateInvoice= async () => {
         {props.procureDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
-              <div className="flex  md:w-[2.5rem] max-sm:flex-row w-[2.5rem] max-sm:justify-between">
+              <div className="flex  md:w-[0.5%] max-sm:flex-row w-[2.5%] max-sm:justify-between">
               <div className="text-xs  font-poppins">
            {item.imageId}</div>
               </div>
-              <div className="flex  md:w-[7rem] max-sm:flex-row w-[7rem] max-sm:justify-between">
+              <div className="flex  md:w-[4%] ml-1 max-sm:flex-row w-[4%] max-sm:justify-between">
               <div className="text-xs  font-poppins">
            {item.productFullName}</div>
               </div>
 
-<div className="flex  md:w-[5rem] max-sm:flex-row w-[5rem] max-sm:justify-between">
+<div className="flex  md:w-[10%] max-sm:flex-row w-[10%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 
                                       <div className=" text-xs  font-poppins">{item.category}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[5rem] max-sm:flex-row w-[5rem] max-sm:justify-between">
+              <div className="flex  md:w-[5%] max-sm:flex-row w-[5%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                  
                                    <div className=" text-xs  font-poppins">{item.brand}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[8rem] max-sm:flex-row w-[8rem] max-sm:justify-between">
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   
                              <div className=" text-xs  font-poppins">{item.model}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[5rem] max-sm:flex-row w-[5rem] max-sm:justify-between">
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                  
                    <div className=" text-xs  font-poppins">{item.attribute}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[4rem] max-sm:flex-row w-[4rem] max-sm:justify-between">
-                <div className="text-xs  font-poppins">
-                 
-                  <div className=" text-xs  font-poppins">{item.quality}</div>
-                </div>
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[5%] max-sm:justify-between">                          
+                  <div className=" text-xs  font-poppins">{item.quality}</div>      
               </div>
-              <div className="flex  md:w-[5rem] max-sm:flex-row w-[5rem]max-sm:justify-between">
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 
                  
                   <div className=" text-xs  font-poppins">{item.location}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[10rem]  max-sm:flex-row w-[4rem] max-sm:justify-between">
+              <div className="flex  md:w-[4%]  max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   
             <div className=" text-xs  font-poppins">{item.specs}</div>
                 </div>
               </div>
 
-            <div className="flex   md:w-[4rem] max-sm:flex-row w-[5rem] max-sm:justify-between">
+            <div className="flex   md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                  
 <div className=" text-xs  font-poppins">{item.price}{item.currency} </div>
                 </div>
               </div>
-              <div className="flex  md:w-[4rem] max-sm:flex-row w-[5rem] max-sm:justify-between">
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {item.unit}
                     
@@ -473,12 +465,12 @@ const handleGenerateInvoice= async () => {
                  
                 </div>
               </div>
-              <div className="flex  md:w-[6rem] max-sm:flex-row w-[6rem] max-sm:justify-between">
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {/* {item.reaminingInvoiceUnit === 0 ? `$` : */}
                 <input
   placeholder="Invoice Units"
-  style={{ border: "1px solid grey",width:"5rem" }}
+  style={{ border: "1px solid grey",width:"5%" }}
   min="1"
   value={inputValues[item.id] || ''}
   onChange={(e) => handleInputChange(item.id, e.target.value)}
@@ -489,7 +481,7 @@ const handleGenerateInvoice= async () => {
              
                 </div>
               </div>
-              <div className="flex  md:w-[4rem] max-sm:flex-row w-[4rem] max-sm:justify-between">
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {item.reaminingInvoiceUnit}
                 
@@ -510,7 +502,7 @@ const handleGenerateInvoice= async () => {
                         style={{
                           cursor: "pointer",
                           color: "red",
-                          fontSize: "1rem",
+                          fontSize: "1%",
                         }}
                       />
                     </Tooltip>
@@ -520,12 +512,12 @@ const handleGenerateInvoice= async () => {
             </div>
           );
         })}
-         <div className="flex  md:w-[4rem] max-sm:flex-row mt-2">
+         <div className="flex  md:w-[4%] max-sm:flex-row mt-2">
                 <div className="text-xs  font-poppins shadow-sm">
                    <input
                   //  className=" border-red-600 h-6 shadow-sm "
                    placeholder="invoice"
-                   style={{border:"1px solid red",height:"1.5rem", }}
+                   style={{border:"1px solid red",height:"1.5%", }}
                    type="text"
                    value={invoices}
                    onChange={(e) => setInvoices(e.target.value)}
@@ -533,7 +525,7 @@ const handleGenerateInvoice= async () => {
                 </div>
                 <div className="ml-2 ">
                 <Select
-                     style={{width:"10rem"}}
+                     style={{width:"10%"}}
                      placeholder="Apply Credit"
                       value={CreditMemo}
                       onChange={(value) => handleCreditMemo(value)}

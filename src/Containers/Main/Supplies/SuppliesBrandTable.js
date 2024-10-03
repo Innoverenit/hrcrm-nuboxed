@@ -205,43 +205,32 @@ const handleSave = (item) => {
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
             <div></div>
-            <div className="font-poppins w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-            {/* {translatedMenuItems[0]} */}
-           {/* name */}
+            <div className="font-poppins font-bold text-xs w-[8.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+             {/* Name */}
+             {translatedMenuItems[0]}
             </div>
             <div className="font-bold font-poppins text-xs w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-            {/* Name */}
-            {translatedMenuItems[0]}
-             {/* work */}
+          {/* Brand Id */}
+          {`${translatedMenuItems[1]} Id`}
             </div>
-            <div className="font-bold font-poppins text-xs w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-        {/* Brand Id */}
-        {`${translatedMenuItems[1]} Id`}
-              {/* "Sector" */}
+            <div className="font-bold font-poppins text-xs w-[6.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+       
+           {/* Live */}
+           {translatedMenuItems[2]}
           
             </div>
             <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
           
-            {/* Live */}
-            {translatedMenuItems[2]}
+             {/* Inactive */}
+             {translatedMenuItems[3]}
          
             </div>
-            <div className="font-bold font-poppins text-xs w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
+            <div className="font-bold font-poppins text-xs w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
               
-
+   {/* Delete */}
+   {translatedMenuItems[4]}
             </div>
-            <div className="font-bold font-poppins text-xs w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-           {/* Inactive */}
-           {translatedMenuItems[3]}
-              {/* Quotation" */}
-     
-            </div>
-            <div className="font-bold font-poppins text-xs w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-          {/* Delete */}
-          {translatedMenuItems[4]}
-             {/* Pipeline" */}
-            </div>       
-          
+               
             <div className="w-[4.12rem]"></div>
 
           </div>
@@ -255,8 +244,8 @@ const handleSave = (item) => {
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex  w-[13rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
-                        <div className="flex max-sm:w-auto">
+                      <div className=" flex  w-[14rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                        <div className="flex w-[10rem] max-sm:w-auto">
                           <div>
                             
                           {editsuppliesId === item.brand ? (
@@ -278,7 +267,7 @@ const handleSave = (item) => {
                               imgWidth={"1.8rem"}
                             />
                           ) : (
-                            <div class="font-bold text-xs" >
+                            <div class="font-poppins text-xs" >
                               No Image
                             </div>
                           )}
@@ -287,7 +276,8 @@ const handleSave = (item) => {
                     )}
                      
                           </div>
-                          <div class="w-[4%]"></div>
+                          </div>
+                          <div className=" flex  w-[13rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
 
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
@@ -333,17 +323,34 @@ const handleSave = (item) => {
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  items-center  w-[15.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.brandCount}
+                          {item.liveCount}
                         </div>
 
                       </div>
+                      <div className=" flex max-sm:w-auto  items-center  w-[13.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                      <div className=" flex  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+  {item.inactiveCount}
+</div>
+
+</div>
+<div className=" flex max-sm:w-auto  items-center  w-[13.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+
+
+<div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+  {item.deleteCount}
+</div>
+
+</div>
+
+<div class="flex justify-end max-sm:justify-end max-sm:w-wk items-center">
+
+                      <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.brand ? (
                         <>
                       <Button 
@@ -370,12 +377,8 @@ const handleSave = (item) => {
                       />
                     )}
     </div> 
-                     
-                    </div>
-
-
-
-                    <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                                    
+                    <div className=" flex max-sm:w-auto  items-center  w-[1.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
 <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -393,7 +396,8 @@ type="delete" className="!text-icon cursor-pointer text-[red]" />
 </div>
 
 </div>
-                  
+</div>
+             </div>     
                   </div>
                 </div>
               )
