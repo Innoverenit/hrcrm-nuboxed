@@ -499,7 +499,7 @@ imgHeight={"1.8rem"}
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   props.handleOpportunityPulseModal(true);
-                  //handleSetCurrentOpportunityId(item);
+                  handleSetCurrentOpportunityId(item);
                 }}
               />
   </div>
@@ -610,6 +610,7 @@ imgHeight={"1.8rem"}
       />
 
 <AddOpportunityPulseModal
+currentOpportunityId={currentOpportunityId}
 updatePulseModal={props.updatePulseModal}
 handleOpportunityPulseModal={props.handleOpportunityPulseModal}
         // addDrawerOpportunityNotesModal={addDrawerOpportunityNotesModal}

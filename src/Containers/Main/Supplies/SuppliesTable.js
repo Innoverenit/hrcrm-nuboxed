@@ -1,12 +1,14 @@
 import React, { useState, useEffect,Suspense, lazy,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddLocationSuppliesModal from "./AddLocationSuppliesModal"
 import AddSuppliesRowImageModal from "./AddSuppliesRowImageModal"
 
 
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import {
   getSuppliesList,
+  handleLocationuppliesModal,
   deletePurchaseData,
   handleUpdateSupplieDrawer,
   setEditSupplies,
@@ -43,6 +45,7 @@ import FactCheckIcon from '@mui/icons-material/FactCheck';
 import MaterialComplementaryDrawer from "./MaterialComplementaryDrawer";
 import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
+import { LocationCityOutlined } from "@mui/icons-material";
 const PriceModal = lazy(() => import("./PriceModal"));
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
@@ -364,6 +367,9 @@ function SuppliesTable(props) {
                               </div>
                             </div>
 
+
+                           
+
                           </div>
 
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center justify-end w-wk">
@@ -504,6 +510,17 @@ function SuppliesTable(props) {
                  
                           </div>
 
+                          <div className=" flex w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <LocationCityOutlined
+                               onClick={() => {
+                                // handleParticularRowData(item)
+                                props.handleLocationuppliesModal(true)
+                               }}
+                              />
+                              </div>
+                            </div>
+
                         
                       </div>
                     </>
@@ -579,6 +596,14 @@ function SuppliesTable(props) {
       uploadSuppliesList={props.uploadSuppliesList}
       handleUploadSuppliesModal={props.handleUploadSuppliesModal}
       />
+
+<AddLocationSuppliesModal
+handleLocationuppliesModal={props.handleLocationuppliesModal}
+locationSuppliesModal={props.locationSuppliesModal}
+      // particularDiscountData={particularDiscountData}
+      // uploadSuppliesList={props.uploadSuppliesList}
+      // handleUploadSuppliesModal={props.handleUploadSuppliesModal}
+      />
       
       </Suspense>
 
@@ -598,7 +623,8 @@ const mapStateToProps = ({ supplies, auth }) => ({
   repairInd: auth.userDetails.repairInd,
   suppliersListDrwr: supplies.suppliersListDrwr,
   materialInveDawer:supplies.materialInveDawer,
-  priceOpenModal: supplies.priceOpenModal
+  priceOpenModal: supplies.priceOpenModal,
+  locationSuppliesModal:supplies.locationSuppliesModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -609,6 +635,7 @@ const mapDispatchToProps = (dispatch) =>
       handleUploadSuppliesModal,
       handleUpdateSupplieDrawer,
       setEditSupplies,
+      handleLocationuppliesModal,
       handleCurrencyPriceModal,
       handleBrandModel,
       handleMaterialBuilderDrawer,

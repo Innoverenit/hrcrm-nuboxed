@@ -7,6 +7,9 @@ const initialState = {
     uploadingMaterialList:false,
     uploadingMaterialListError:false,
 
+
+    locationSuppliesModal:false,
+
     uploadImageListSupplies:false,
 
     addBrandModel: false,
@@ -721,7 +724,8 @@ export const suppliesReducer = (state = initialState, action) => {
                 };
 
 
-
+                case types.HANDLE_LOCATION_SUPPLIES_MODAL:
+                  return { ...state, locationSuppliesModal: action.payload };
                 case types.HANDLE_UPLOAD_SUPPLIES_MODAL:
                   return { ...state, uploadSuppliesList: action.payload };
 

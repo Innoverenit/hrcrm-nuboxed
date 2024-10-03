@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Upload, Button, message } from 'antd';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { UploadOutlined } from '@ant-design/icons';
-import { base_url, base_url2 } from '../../../Config/Auth';
+import { base_url, base_url2, login_url } from '../../../Config/Auth';
 //import 'antd/dist/antd.css';
 const token = sessionStorage.getItem("token");
 
-const UploadImageFormSupplies = () => {
+const UploadImageFormSupplies = (props) => {
   const [fileList, setFileList] = useState([]);
 
   // Handle file upload event and update fileList
@@ -46,14 +48,14 @@ const UploadImageFormSupplies = () => {
     // Make an API call to httpbin.org
     message.info('Uploading files...');
     try {
-      const response = await fetch(`${base_url2}/image/multipleFile/material`, {
+      const response = await fetch(`${login_url}/image/multipleFile/material/${props.userId}/${props.orgId}`, {
         method: 'POST',
         body: formData,
-        headers: {
+        // headers: {
             
-            Authorization: `Bearer ${token}`, // Add your actual token here
+        //     Authorization: `Bearer ${token}`, // Add your actual token here
             
-          },
+        //   },
       });
 
       const data = await response.json();
@@ -103,7 +105,23 @@ const UploadImageFormSupplies = () => {
   );
 };
 
-export default UploadImageFormSupplies;
+
+const mapStateToProps = ({ supplies, auth }) => ({
+  orgId: auth.userDetails.organizationId,
+  userId: auth.userDetails.userId,
+});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps, mapDispatchToProps)(UploadImageFormSupplies);
+
+
 
 
 

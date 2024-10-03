@@ -117,7 +117,7 @@ class Suppliesform extends Component {
             this.props.addSupplies(
               {
                 ...values,
-    
+                
                 fifoInd: values.fifoInd ? true : false,
                 availabilityDate: this.convertToUTC(values.availabilityDate),
               },
@@ -402,6 +402,8 @@ class Suppliesform extends Component {
                       />
                     </div>
                   </div>
+
+               
                   <div className="flex justify-between mt-4">
                     <div className="w-full">
                       <div class="font-bold text-xs font-poppins text-black">

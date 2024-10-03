@@ -3420,3 +3420,34 @@ export const ClearSearchedDataOfOpportunity = () => (dispatch) => {
     type: types.HANDLE_CLAER_SEARCHED_DATA_OPPORTUNITY,
   });
 };
+
+
+
+
+
+export const getOppPulseData = (oppId,workflowId) => (dispatch) => {
+  
+  dispatch({
+    type: types.GET_OPP_PULSE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/stage/record/details/${oppId}/${workflowId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_OPP_PULSE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_OPP_PULSE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
