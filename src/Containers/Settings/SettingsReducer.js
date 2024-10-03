@@ -781,6 +781,9 @@ addingShipperCategoryError: false,
   creatingCurrencyConversion: false,
   creatingCurrencyConversionError: false,
 
+  creatingVat: false,
+  creatingVatError: false,
+
   fetchingCurrencyConversion: false,
   fetchingCurrencyConversionError: false,
   conversionCurrencies:[],
@@ -3839,6 +3842,22 @@ export const settingsReducer = (state = initialState, action) => {
             creatingCurrencyConversionError: true,
             // conversionCurrencies:[action.payload,...state.conversionCurrencies]   
         };
+
+        case types.CREATE_VAT_REQUEST:
+          return { ...state, creatingVat: true };
+      case types.CREATE_VAT_SUCCESS:
+          return {
+              ...state,
+              creatingVat: false,
+  
+          };
+      case types.CREATE_VAT_FAILURE:
+          return {
+              ...state,
+              creatingVat: false,
+              creatingVatError: true,
+              
+          };
 
         case types.GET_CURRENCY_CONVERSION_REQUEST:
           return {

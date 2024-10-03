@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCustomerData } from "../../Customer/CustomerAction";
@@ -88,7 +88,9 @@ const [selectedStage, setSelectedStage] = useState(null);
   const [selectedContact, setSelectedContact] = useState(null);
   const [touchedCustomer, setTouchedCustomer] = useState(false);
   const [emailInd, setEmailInd] = useState(false);
-
+  const [transcript, setTranscript] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
 
   // useEffect(() => {
   //   fetchCustomers();
@@ -445,16 +447,70 @@ const handleStageChange=(value)=>{
   function handletext(e) {
     setText(e.target.value);
   }
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
+
+  useEffect(() => {
+    if (!('webkitSpeechRecognition' in window)) {
+      console.log('Browser does not support speech recognition.');
+      return;
+    }
+  const recognition = new window.webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+
+  recognition.onresult = (event) => {
+    let finalTranscript = '';
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        finalTranscript += event.results[i][0].transcript;
+      }
+    }
+    finalTranscript = finalTranscript.trim(); // Trim spaces around the transcript
+
+    // Ensure the final transcript is appended only once
+    setTranscript((prevTranscript) => {
+      setText((prevText) => (prevText + ' ' + finalTranscript).trim());
+      return prevTranscript + ' ' + finalTranscript;
+    });
+  };
+
+  recognition.onend = () => {
+    setIsListening(false);
+  };
+
+  recognitionRef.current = recognition;
+
+  return () => {
+    recognition.stop();
+  };
+}, []);
+
+  const startListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.start();
+      setIsListening(true);
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    }
+  };
+
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+    setTranscript('');
+  };
+
+  const resetTranscript = () => {
+    setTranscript('');
+    setText('');
+  };
+ 
+ 
 
   const {
     user: { userId,empName, },
@@ -578,7 +634,7 @@ const handleStageChange=(value)=>{
               startDate: `${newStartDate}T20:00:00Z`,
               endDate: `${newEndDate}T20:00:00Z`,
               included: selectedValues,
-              description: transcript ? transcript : text,
+              description: text,
               salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
               emialInd:emailInd ? "true" : "false",
             },
@@ -686,7 +742,7 @@ const handleStageChange=(value)=>{
                 <span class="font-bold text-xs">{translatedMenuItems[5]}</span>
                 {/* Description */}
                    <span>
-                    <span onClick={SpeechRecognition.startListening}>
+                    <span onClick={startListening}>
                       <Tooltip title="Start">
                         <span >
                           <RadioButtonCheckedIcon  className="!text-icon ml-1 text-red-600" />
@@ -694,7 +750,7 @@ const handleStageChange=(value)=>{
                       </Tooltip>
                     </span>
 
-                    <span onClick={SpeechRecognition.stopListening}>
+                    <span onClick={stopListening}>
                       <Tooltip title="Stop">
                         <span>
                           <StopCircleIcon   className="!text-icon ml-1 text-green-600" />
@@ -717,7 +773,7 @@ const handleStageChange=(value)=>{
                       className="textarea"
                       type="text"
                       value={transcript ? transcript : text}
-                      onChange={handletext}
+                      onChange={handleTextChange}
                     ></textarea>
                   </div>
                   </div>

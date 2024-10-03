@@ -58,8 +58,8 @@ class CustomerSectorTab extends Component {
         return     <Source /> ;
       case "2":
         return  <Customer />   ;
-          case "3":
-            return       <Vat />     ;
+          // case "3":
+          //   return       <Vat />     ;
             case "4":
               return      <Payment />   ;
               case "5":
@@ -173,7 +173,7 @@ class CustomerSectorTab extends Component {
           
 
             
-                <TabPane
+                {/* <TabPane
                   tab={
                     <>
                       <GavelIcon  className=" !text-icon" />
@@ -185,9 +185,9 @@ class CustomerSectorTab extends Component {
                   key="3"
                 >
                   <Suspense>
-                    {/* <Vat /> */}
+                 
                   </Suspense>
-                </TabPane>
+                </TabPane> */}
                 <TabPane
                   tab={
                     <>

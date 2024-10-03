@@ -4504,6 +4504,36 @@ export const createCurrencyConversion = (data,orgId,cb) => (dispatch) => {
     });
 };
 
+export const creatVat = (data,orgId,cb) => (dispatch) => {
+    
+  dispatch({
+    type: types.CREATE_VAT_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/vat`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getAllVat())
+      dispatch({
+        type: types.CREATE_VAT_SUCCESS,
+        payload: res.data,
+      });
+     // cb && cb("Success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREATE_VAT_FAILURE,
+        payload: err,
+      });
+     // cb && cb("Failure");
+    });
+};
+
 export const getCurrencyConversion = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_CURRENCY_CONVERSION_REQUEST,
