@@ -9,7 +9,7 @@ import {getBrandCategoryData} from "../../../../../Containers/Settings/Category/
 import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
-import { Button, Tooltip, message, Switch } from 'antd';
+import { Button, Tooltip, message} from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
@@ -17,6 +17,7 @@ import { addOrderProcurementForm, getLobList } from '../../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
 import dayjs from "dayjs";
+import { BundleLoader } from '../../../../../Components/Placeholder';
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
     advancePayment: Yup.string().required("Input needed!"),
@@ -24,12 +25,50 @@ const FormSchema = Yup.object().shape({
     orderCurrencyId: Yup.string().required("Input needed!"),
 })
 function AddProcurementInAccount(props) {
+    const [loading, setLoading] = useState(true);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const contactOption = props.contactDistributor.map((item) => {
         return {
             value: item.contactPersonId,
             label: `${item.firstName || ""} ${item.lastName || ""}`
         }
     })
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+              '707', // 0 Payment terms
+    '73', // 1 contact
+    '', // 2Advance Payment
+    '241', // 3 currency
+    '280', // 4 lob
+    '', // 5 Delivery Date
+    '14', // 6 Category
+    '124', // 7 priority
+    '107',//High 8
+    '1603',//low 9
+    '1078', // 10 save
+     '',  // 11'Delivery Address',9
+     '316'   ,// 12  'Notes'
+  
+    
+    
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+
     useEffect(() => {
         props.getContactDistributorList(props.distributorId)
         props.getSaleCurrency()
@@ -65,6 +104,9 @@ function AddProcurementInAccount(props) {
         // Disable past dates
         return current && current < dayjs().startOf('day');
     };
+    if (loading) {
+        return <div><BundleLoader/></div>;
+      }
     return (
         <Formik
             initialValues={{
@@ -138,10 +180,9 @@ function AddProcurementInAccount(props) {
                         <div class=" flex justify-between">
                             <div class=" w-[47%] flex-col flex">
                                 <div class="mt-3">
-                                    <div class=" text-xs font-bold font-poppins text-black"><h3> <FormattedMessage
-                                        id="app.deliveryaddress"
-                                        defaultMessage="Delivery Address"
-                                    /></h3></div>
+                                    <div class=" text-xs font-bold font-poppins text-black">
+                                    {translatedMenuItems[11]}
+                                       </div>
 
                                     <FieldArray
                                         name="loadingAddress"
@@ -154,10 +195,11 @@ function AddProcurementInAccount(props) {
                                         )}
                                     />
                                 </div>
-                                <div class="mt-3">
+                                <div class="mt-3">  
+                                       <div class=" text-xs font-bold font-poppins text-black">      {translatedMenuItems[12]}</div>
                                     <Field
                                         name="comments"
-                                        label="Notes"
+                                        // label="Notes"
                                         width={"100%"}
                                         isColumn
                                         component={TextareaComponent}
@@ -167,10 +209,11 @@ function AddProcurementInAccount(props) {
                             </div>
                             <div class=" w-[47%]">
                                 <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
+                                    <div class="w-[45%] font-bold font-poppins text-xs">
+                                    {translatedMenuItems[0]}
                                         <Field
                                             name="paymentInTerms"
-                                            label="Payment Terms (in Days)"
+                                            // label="Payment Terms (in Days)"
                                             isColumn
                                             inlineLabel
                                             component={SelectComponent}
@@ -178,14 +221,11 @@ function AddProcurementInAccount(props) {
                                         />
                                     </div>
                                     {values.paymentInTerms === "Custom" &&
-                                        <div class="w-[45%]">
-                                            <Field
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.Custom Payment"
-                                                        defaultMessage="Custom Payment"
-                                                    />
-                                                }
+                                        <div class="w-[45%] font-bold font-poppins text-xs">
+                                             
+                                            <Field  
+
+                                                label= "customPayment"                                  
                                                 name="customPayment"
                                                 component={InputComponent}
                                                 inlineLabel
@@ -196,9 +236,10 @@ function AddProcurementInAccount(props) {
 
                                 </div>
                                 <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
+                                <div class="w-[45%] font-bold font-poppins text-xs">
+                                {translatedMenuItems[1]}
                                         <Field
-                                            label="Contact"
+                                            // label="Contact"
                                             style={{ borderRight: "3px red solid" }}
                                             name="contactPersonId"
                                             placeholder="Value"
@@ -209,12 +250,13 @@ function AddProcurementInAccount(props) {
                                             isColumn
                                         />
                                     </div>
-                                    <div class="w-[45%]">
+                                    <div class="w-[45%] font-bold font-poppins text-xs">
+                                {translatedMenuItems[2]}
                                         <Field
                                             width={"100%"}
                                             style={{ borderRight: "3px red solid" }}
                                             name="advancePayment"
-                                            label="Advance Payment(%)"
+                                            // label="Advance Payment(%)"
                                             isColumn
                                             inlineLabel
                                             component={InputComponent}
@@ -222,10 +264,11 @@ function AddProcurementInAccount(props) {
                                     </div>
                                 </div>
                                 <div class="justify-between flex mt-3">
-                                    <div class="w-[45%]">
+                                <div class="w-[45%] font-bold font-poppins text-xs">
+                                {translatedMenuItems[3]}
                                         <Field
                                             name="orderCurrencyId"
-                                            label="Currency"
+                                            // label="Currency"
                                             isColumn
                                             style={{ borderRight: "3px red solid" }}
                                             inlineLabel
@@ -233,9 +276,10 @@ function AddProcurementInAccount(props) {
                                             options={Array.isArray(currencyOption) ? currencyOption : []}
                                         />
                                     </div>
-                                    <div class="w-[45%]">
+                                    <div class="w-[45%] font-bold font-poppins text-xs">
+                                    {translatedMenuItems[4]}
                                         <Field
-                                            label="LOB"
+                                            // ="LOB"
                                             name="lobDetsilsId"
                                             component={SelectComponent}
                                             options={Array.isArray(lobOption) ? lobOption : []}
@@ -261,10 +305,11 @@ function AddProcurementInAccount(props) {
 
                                         />
                                     </div> */}
-                                    <div class="w-[45%]">
+                                  <div class="w-[45%] font-bold font-poppins text-xs">
+                                  {translatedMenuItems[5]}
                                         <Field
                                             name="deliveryDate"
-                                            label="Delivery Date "
+                                        // Delivery Date "
                                             isColumn
                                             inlineLabel
                                             width={"100%"}
@@ -289,10 +334,11 @@ function AddProcurementInAccount(props) {
                                     </div>
 
                                 </div>
-                                <div class="w-[45%]">
+                                <div class="w-[45%] font-bold font-poppins text-xs">
+                                {translatedMenuItems[6]}
                                         <Field
                                             name="shipById"
-                                            label="Category"
+                                            // label="Category"
                                             isColumn
                                             style={{ borderRight: "3px red solid" }}
                                             inlineLabel
@@ -303,16 +349,12 @@ function AddProcurementInAccount(props) {
                                 <div class="justify-between flex mt-3">
 
                                     <div class="w-[46%]  ml-8 mt-2">
-                                        <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
-                                            id="app.priority"
-                                            defaultMessage="Priority"
-                                        /></div>
+                                        <div class=" text-xs font-bold font-poppins text-black">     {translatedMenuItems[7]}</div>
+                                        {/* Priority */}
                                         <div class="justify-between flex">
                                             <div>
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.high"
-                                                    defaultMessage="High"
-                                                />}>
+                                                <Tooltip title= {translatedMenuItems[8]}
+                                                >
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -351,10 +393,8 @@ function AddProcurementInAccount(props) {
                                                     />
                                                 </Tooltip> */}
                                                 &nbsp;
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.low"
-                                                    defaultMessage="Low"
-                                                />}>
+                                                <Tooltip title= {translatedMenuItems[9]}
+                                                >
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -384,10 +424,7 @@ function AddProcurementInAccount(props) {
                                             htmlType="Submit"
                                             loading={props.addingOrderProcurement}
                                         >
-                                            <FormattedMessage
-                                                id="app.save"
-                                                defaultMessage="Save"
-                                            />
+                                <div class=" text-xs font-bold font-poppins ">     {translatedMenuItems[10]}</div>
 
                                         </Button>
 

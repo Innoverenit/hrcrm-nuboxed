@@ -4,8 +4,6 @@ import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
 import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
-import AddOrderInAccount from "./AddOrderInAccount";
-import AccountOrderSecondStep from "./AccountOrderSecondStep";
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
@@ -47,7 +45,10 @@ class ProcurementStepper extends Component {
                     defaultMessage="Order"
                 />,
                 icon: <UserOutlined />,
-                content: <AddProcurementInAccount distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+                content: <AddProcurementInAccount distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd}
+                selectedLanguage={this.props.selectedLanguage}
+                translateText={this.props.translateText}
+                />,
             },
             {
                 title: <FormattedMessage
@@ -57,7 +58,10 @@ class ProcurementStepper extends Component {
                 icon: <PhoneOutlined
                     style={{ color: "blue" }}
                 />,
-                content: <AccountProcureSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+                content: <AccountProcureSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd}
+                selectedLanguage={this.props.selectedLanguage}
+                translateText={this.props.translateText}
+                />,
             },
 
 

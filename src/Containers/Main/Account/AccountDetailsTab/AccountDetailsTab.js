@@ -314,7 +314,7 @@ function AccountDetailsTab(props) {
                                             <ShopIcon
                                                 className="!text-icon text-[#78a1bb] cursor-pointer"
                                             />
-                                            <span class="ml-1 !text-tab font-poppins ">
+                                            <span class=" ml-1 !text-tab font-poppins ">
                                             {translatedMenuItems[12]}
                                             {/* Procure */}
                                                 </span>
@@ -326,7 +326,7 @@ function AccountDetailsTab(props) {
                                     offset={[ 0, -16]}
                                 >
                               </Badge>
-                                &nbsp;  &nbsp;
+                                {/* &nbsp;  &nbsp; */}
                             
                               
                                 {activeKey === "4" && (

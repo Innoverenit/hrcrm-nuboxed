@@ -72,9 +72,9 @@ fetchMenuTranslations = async () => {
      "1010", // Billing9
      "1030", // 3rd Party Location10
      "326",  // Department11
-     "1507",// User12
+     "95",// Time Zone
      "95", // Time Zone12
-     "1637", // Select Time Zone13
+     "154", // Submit
      "1246", // Update14
 
     ];
@@ -366,7 +366,7 @@ handleInventory = () => {
 
         <div className="w-w48 max-sm:w-wk">
         <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[12]}</div>
-            {/* User */}
+            {/* Time Zone */}
           
           <Select
             className="w-[250px]"

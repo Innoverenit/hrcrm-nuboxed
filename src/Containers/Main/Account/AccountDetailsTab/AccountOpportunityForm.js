@@ -181,26 +181,7 @@ function AccountOpportunityForm(props) {
                 />
             </Tooltip>
             &nbsp;
-            {/* <Tooltip title={<FormattedMessage
-                id="app.medium"
-                defaultMessage="Medium"
-            />}>
-                <Button
-                    // type="primary"
-                    shape="circle"
-                    icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
-                    onClick={() => handleButtonClick("Medium")}
-                    style={{
-                        backgroundColor:
-                            priority === "Medium"
-                                ? "Orange"
-                                : "white",
-                        borderRadius: "50%",
-                        width: "31px",
-                        height: "31px"
-                    }}
-                />
-            </Tooltip> */}
+       
             
             <Tooltip title={<FormattedMessage
                 id="app.low"
