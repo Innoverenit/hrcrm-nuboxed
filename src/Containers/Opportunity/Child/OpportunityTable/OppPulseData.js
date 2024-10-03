@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import ReactApexChart from 'react-apexcharts';
+import {getOppPulseData} from "../../OpportunityAction"
 
-const TimelineChart = () => {
+const TimelineChart = (props) => {
+
+
+  useEffect(() => {
+    props.getOppPulseData(props.currentOpportunityId.opportunityId,props.currentOpportunityId.oppWorkflowId)
+  }, []);
   const options = {
     series: [
       {
@@ -96,4 +104,22 @@ const TimelineChart = () => {
   );
 };
 
-export default TimelineChart;
+
+const mapStateToProps = ({ auth, account, opportunity }) => ({
+  userId: auth.userDetails.userId,
+  user: auth.userDetails,
+ 
+
+ 
+
+});
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      getOppPulseData
+    },
+    dispatch
+  );
+export default connect(mapStateToProps, mapDispatchToProps)(TimelineChart);
+
+

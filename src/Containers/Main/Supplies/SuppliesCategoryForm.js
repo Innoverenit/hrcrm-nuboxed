@@ -77,6 +77,7 @@ function SuppliesCategoryForm (props) {
             props.addMaterialCategory(
               {
                 ...values,
+                alert:(parseInt(values.alert, 10) || 0),
                 
               },
               setLoading, 
@@ -114,6 +115,17 @@ function SuppliesCategoryForm (props) {
 
                           />
                         </div>
+                        <div class="w-[47%]">
+                  <div class="font-bold text-xs font-poppins text-black">Alert</div>
+                      <Field
+                        name="alert"
+                        //label="HSN"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
                        
                       </div>
                     </div>

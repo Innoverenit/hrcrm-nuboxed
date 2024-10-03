@@ -53,16 +53,16 @@ const UploadImageRowFormSupplies = (props) => {
     message.info('Uploading files...');
     try {
       //  const response = await fetch(`${base_url}/image/multiple/tag/${props.particularDiscountData.suppliesId}/${"Material"}`, {
-        const response = await fetch(`${base_url2}/image/multiple/${props.particularDiscountData.suppliesId}/${"material"}/${props.userId}/${props.orgId}`, {
+        const response = await fetch(`${login_url}/image/multiple/${props.particularDiscountData.suppliesId}/${"material"}/${props.userId}/${props.orgId}`, {
         //const response = await fetch(`${base_url}/image/multipleFile`, {
         method: 'POST',
         body: formData,
-        headers: {
-          "Content-Type": "multipart/form-data",
+        // headers: {
+        //   "Content-Type": "multipart/form-data",
             
-           // Authorization: `Bearer ${token}`, // Add your actual token here
+        //     Authorization: `Bearer ${token}`, // Add your actual token here
             
-          },
+        //   },
       });
 
       const data = await response.json();

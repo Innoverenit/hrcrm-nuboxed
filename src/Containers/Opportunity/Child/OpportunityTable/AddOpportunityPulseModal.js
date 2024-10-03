@@ -17,6 +17,7 @@ class AddOppPulseModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
             <OppPulseData 
+            currentOpportunityId={this.props.currentOpportunityId}
             />
           </Suspense>
         </StyledDrawer>
