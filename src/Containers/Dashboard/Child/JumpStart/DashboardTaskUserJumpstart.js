@@ -268,7 +268,7 @@ const DashboardTaskUserJumpstart = (props) => {
             noProgress
             title={translatedMenuItems[2]}
             bgColor="linear-gradient(270deg,#F15753,orange)"
-            value={`${data2.TodayCompletedCall}`}
+            // value={`${data2.TodayCompletedCall}`}
             isLoading={loading2 || loading4}
           />
                            </div>
@@ -286,7 +286,7 @@ const DashboardTaskUserJumpstart = (props) => {
             noProgress
             title={translatedMenuItems[3]}
             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-            value={`${data5.TodayCompletedEvent}`}
+            // value={`${data5.TodayCompletedEvent}`}
             isLoading={loading5}
           />
                       

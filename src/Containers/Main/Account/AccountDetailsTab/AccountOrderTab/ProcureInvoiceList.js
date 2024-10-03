@@ -144,7 +144,8 @@ function ProcureInvoiceList (props) {
                     {props.translatedMenuItems[10]} ID 
                         </div>
                         <div className=" md:w-[7.4rem]">
-                            {props.translatedMenuItems[1]} ID 
+                            {/* {props.translatedMenuItems[1]} */}
+                             Track ID 
                             </div>
                         <div className=" md:w-[7.1rem]">
                             {props.translatedMenuItems[2]} 
@@ -188,7 +189,7 @@ function ProcureInvoiceList (props) {
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {editsuppliesId === item.procureOrderInvoiceId ? (
                        <Input
-                       style={{ width: "3rem" }}
+                       style={{ width: "5rem" }}
                        value={item.trackId}
                        onChange={(e) => handleInputChange(e.target.value, item.procureOrderInvoiceId, 'trackId')}
                      />
@@ -203,6 +204,7 @@ function ProcureInvoiceList (props) {
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {editsuppliesId === item.procureOrderInvoiceId ? (
+                                                         
                                                                 <input
           type="date"
           // value={date}
@@ -212,8 +214,10 @@ function ProcureInvoiceList (props) {
           class="border border-black rounded"
         /> ) : (
             <div className="font-normal text-sm  font-poppins">
+               {item.shippingDate === null ? "" :
               <div> 
-              {dayjs(item.shippingDate).format("YYYY/MM/DD")} </div>
+              {dayjs(item.shippingDate).format("YYYY/MM/DD")} 
+              </div>}
             </div>
           )}
                                                         </div>
@@ -242,11 +246,14 @@ function ProcureInvoiceList (props) {
                       </>
                       
                     ) : (
+                      <>
+                      {item.paidInd===true &&
                       <Button
                       type="primary"
-                  
                         onClick={() => handleEditClick(item.procureOrderInvoiceId)}
                       >Ship</Button>
+                    }
+                    </>
                     )}
     </div>
     </div>

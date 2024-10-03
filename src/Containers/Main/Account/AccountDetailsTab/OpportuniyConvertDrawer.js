@@ -1,34 +1,36 @@
 import React, { lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-const AccountProcureDetails =lazy(()=> import("./AccountProcureDetails"));
+import { BundleLoader } from "../../../../Components/Placeholder";
 
-const AccountProcureDetailsModal = (props) => {
+const OpportuniyConvertDrawerCard =lazy(()=> import("./OpportuniyConvertDrawerCard"));
+
+const OpportuniyConvertDrawer = (props) => {
     const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "90%";
+    const drawerWidth = isSmallScreen ? "90%" : "70%";
 
-    console.log("dddph",props.particularRowData)
     return (
         <>
             <StyledDrawer  
-                title={`Order : ${props.particularRowData.newOrderNo}`}
+                title={`Pay : ${props.particularRowItem.newOrderNo}`}
                 width={drawerWidth}
-                visible={props.addProcureDetailsModal}
+                visible={props.openConvertModal}
                 closable
                 destroyOnClose
                 maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-                onClose={() => props.handleProcureDetailsModal(false)}
+                onClose={() => props.setopenConvertModal(false)}
                 placement="right"
             >
-                <Suspense fallback={<BundleLoader />}>
+                <Suspense fallback={<BundleLoader/>}>
                 
-               <AccountProcureDetails  
-               particularRowData={props.particularRowData}
+               <OpportuniyConvertDrawerCard  
+               particularRowItem={props.particularRowItem}
                selectedLanguage={props.selectedLanguage}
                translateText={props.translateText}
-               handleProcureDetailsModal={props.handleProcureDetailsModal}
+               openConvertModal={props.openConvertModal}
+               setopenConvertModal={props.setopenConvertModal}
+               
                />                  
                 </Suspense>
             </StyledDrawer>
@@ -44,4 +46,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
 }, dispatch);
-export default connect(mapStateToProps, mapDispatchToProps)(AccountProcureDetailsModal);
+export default connect(mapStateToProps, mapDispatchToProps)(OpportuniyConvertDrawer);

@@ -25,6 +25,10 @@ function InvoiceOrderTable(props) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
+    const [date, setDate] = useState('');
+    const [trackId, settrackId] = useState('');
+    const [editedFields, setEditedFields] = useState({});
+    const [editsuppliesId, setEditsuppliesId] = useState(null);
 
     useEffect(() => {
         const fetchMenuTranslations = async () => {
@@ -36,9 +40,6 @@ function InvoiceOrderTable(props) {
    "218" ,// 'Value', // 2
    "71" ,// 'Type', // 3
  "660"   // ' Status', // 4
-   
-
-
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -68,6 +69,70 @@ function InvoiceOrderTable(props) {
         }
       };
   
+ const handleInputChange = (value, key, dataIndex) => {
+        const updatedData = data.map((item) =>
+            item.procureOrderInvoiceId === key ? { ...item, [dataIndex]: value } : item
+        );
+        setData(updatedData);
+        const updatedTrackId = updatedData.find(item => item.procureOrderInvoiceId === key)?.trackId;
+    settrackId(updatedTrackId);
+    };
+    
+      const handleDateChange = (e, item) => {
+        const selectedDate = new Date(e.target.value);
+        const deliveryDate = new Date(item.deliveryDate);
+    setDate(e.target.value);
+
+        // if (selectedDate >= deliveryDate) {
+        //     setDate(e.target.value);
+        // } else {   
+        //     alert('Shipping date cannot be earlier than delivery date');
+        // }
+    };
+    
+    
+      const handleEditClick = (procureOrderInvoiceId) => {
+        setEditsuppliesId(procureOrderInvoiceId);
+      };
+      const handleCancelClick = (procureOrderInvoiceId) => {
+        setEditedFields((prevFields) => ({ ...prevFields, [procureOrderInvoiceId]: undefined }));
+        setEditsuppliesId(null);
+      };
+    
+   
+    
+
+    const handlePostChange =  async (item) => {
+        let updatedItem={
+            shippingDate: new Date(date).toISOString(),
+          trackId:trackId?trackId:item.trackId,
+          procureOrderInvoiceId:item.procureOrderInvoiceId,
+        }
+        // props.updateOrdrSuplrItems(data);
+        try {
+          const headers = {
+            'Content-Type': 'application/json',
+            'Authorization':  `Bearer ${props.token}`  // Replace with your actual token if required
+          };
+
+            const response = await axios.put(`${base_url2}/invoice/order/ship`, updatedItem, { headers });
+            console.log("API Response:", response.data);
+        setData(prevData => 
+              prevData.map(cat =>
+                cat.procureOrderInvoiceId === item.procureOrderInvoiceId ? response.data : cat
+              )
+            );
+        
+            setEditsuppliesId(null);
+        
+          } catch (error) {
+            // Handle errors
+            console.error("Error updating item:", error);
+            setEditsuppliesId(null);
+          }
+      };
+
+
  useEffect(()=> {
     fetchData();
  },[]);
@@ -94,13 +159,13 @@ function InvoiceOrderTable(props) {
     const [hasMore, setHasMore] = useState(true);
     
     // const handleLoadMore = () => {
-    //     const callPageMapd = props.orderInvoice && props.orderInvoice.length &&props.orderInvoice[0].pageCount
+    //     const callPageMapd = data && data.length &&data[0].pageCount
     //     setTimeout(() => {
     //       const {
     //         getOrderInvoiveList,
     //        // userDetails: { employeeId },
     //       } = props;
-    //       if  (props.orderInvoice)
+    //       if  (data)
     //       {
     //         if (pageNo < callPageMapd) {
     //             setPageNo(pageNo + 1);
@@ -136,11 +201,11 @@ function InvoiceOrderTable(props) {
                             height={"79vh"}
                             style={{scrollbarWidth:"thin"}}
                         > */}
-                            {/* {props.orderInvoice.length ? <>
-                                {props.orderInvoice.map((item) => {
+                            {data.length ? <>
+                                {data.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-                                    return ( */}
+                                    return (
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
@@ -164,20 +229,20 @@ function InvoiceOrderTable(props) {
                                                                        // handleRowData(item);
                                                                         props.handleInvoiceModal(true);
                                                                     }}
-                                                                > INV123
-                                                                {/* {item.orderId} */}
+                                                                > 
+                                                                {item.newOrderNo}
                                                                 </span>
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {/* {item.categoryName} */}
+                                                         {item.category}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                            {/* {item.brand} */}
+                                                            {item.brand}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
@@ -190,11 +255,11 @@ function InvoiceOrderTable(props) {
                                                 </div>
                                             </div>
                                          </>
-                                    {/* )
+                                   )
                                 })}
                             </>
-                                : !props.orderInvoice.length
-                                    && !props.fetchingOrderInvoice ? <NodataFoundPage /> : null}  */}
+                                : !data.length
+                                    && !props.fetchingOrderInvoice ? <NodataFoundPage /> : null}  
                         {/* </InfiniteScroll> */}
                     </div>
                 </div>

@@ -426,11 +426,12 @@ function AccountInvoiceTable(props) {
                                                                 > {item.invoiceId} </span>
 
                                                         </div>
+                                                        <div class="ml-1">
                                                         {date === currentdate ? (
                                                                 <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
                                                                  {translatedMenuItems[8]}   {/* New */}
                                                                 </div>
-                                                            ) : null}
+                                                            ) : null}</div>
                                                     </div>
                                                     <div className=" flex  text-xs w-[8.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
