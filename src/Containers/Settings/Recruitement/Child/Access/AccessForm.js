@@ -5333,7 +5333,7 @@ const onCheckAllWarrentyChange = (e) => {
                     </div>
                     <div class="flex justify-between mt-4">
                       <div>
-                        <div class="text-sm font-semibold">Catalog</div>
+                        <div class="text-sm font-semibold">Catalogue</div>
                         <Checkbox
                           indeterminate={indeterminateCatalog}
                           onChange={onCheckAllCatalogChange}

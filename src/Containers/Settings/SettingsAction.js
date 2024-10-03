@@ -48,8 +48,90 @@ export const LinkStagePublish = (data, cb) => (dispatch) => {
       cb && cb("Failure");
     });
 };
+// remove supplies
 
+export const removeSuppliers = ( data,supplierCategoryId) => (dispatch) => {
+  // console.log(typeId);
+  dispatch({
+    type: types.REMOVE_SUPPLIERS_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/SupplierS/delete/${supplierCategoryId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+     
+      dispatch({
+        type: types.DELETE_SUPPLIERS_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
 
+      })
+    })
+    // .then((res) => {
+    //   dispatch(getCategoryCount(orgId));
+    //   Swal.fire({
+    //     icon: 'success',
+    //     title: 'Suppliers deleted Successfully!',
+    //   })
+    //   // message.success("CATEGORY has been deleted successfully!");
+    //   console.log(res);
+    //   dispatch({
+    //     type: types.REMOVE_SUPPLIERS_SUCCESS,
+    //     payload:supplierCategoryId,
+    //   });
+    // })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_SUPPLIERS_FAILURE,
+      });
+    });
+};
+
+// update suppliers
+export const updateSuppliers = ( data,supplierCategoryId) => (dispatch) => {
+    
+  dispatch({
+    type: types.UPDATE_SUPPLIERS_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/supplier/update/${supplierCategoryId}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Suppliers updated Successfully!',
+      })
+      // message.success("CATEGORY has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_SUPPLIERS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SUPPLIERS_FAILURE,
+      });
+    });
+};
 
 export const LinkOpportunityStagePublish = (data, cb) => (dispatch) => {
   dispatch({ type: types.LINK_OPPORTUNITY_STAGES_PUBLISH_REQUEST });
