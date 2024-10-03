@@ -1,11 +1,14 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Select } from "antd";
+import { Button,Select,Tooltip } from "antd";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import {getSaleCurrency} from "../../../Auth/AuthAction"
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { updateOpportunity, getAllSalesList } from "../../OpportunityAction";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
@@ -44,6 +47,9 @@ function UpdateOpportunityForm (props) {
   const [touchedCustomer, setTouchedCustomer] = useState(false);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [transcript, setTranscript] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -294,6 +300,74 @@ function UpdateOpportunityForm (props) {
       const [selected, setSelected] = useState(defaultOption);
       const selectedOption = props.crmAllData.find((item) => item.empName === selected);
 
+      const [text, setText] = useState("");
+      function handletext(e) {
+        setText(e.target.value);
+      }
+    
+      useEffect(() => {
+        if (!('webkitSpeechRecognition' in window)) {
+          console.log('Browser does not support speech recognition.');
+          return;
+        }
+      const recognition = new window.webkitSpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+    
+      recognition.onresult = (event) => {
+        let finalTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          }
+        }
+        finalTranscript = finalTranscript.trim(); // Trim spaces around the transcript
+    
+        // Ensure the final transcript is appended only once
+        setTranscript((prevTranscript) => {
+          setText((prevText) => (prevText + ' ' + finalTranscript).trim());
+          return prevTranscript + ' ' + finalTranscript;
+        });
+      };
+    
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+    
+      recognitionRef.current = recognition;
+    
+      return () => {
+        recognition.stop();
+      };
+    }, []);
+    
+      const startListening = () => {
+        if (recognitionRef.current) {
+          recognitionRef.current.start();
+          setIsListening(true);
+        }
+      };
+    
+      const stopListening = () => {
+        if (recognitionRef.current) {
+          recognitionRef.current.stop();
+          setIsListening(false);
+        }
+      };
+    
+      const handleTextChange = (event) => {
+        setText(event.target.value);
+        setTranscript('');
+      };
+    
+      const resetTranscript = () => {
+        setTranscript('');
+        setText('');
+      };
+     
+
+
       if (loading) {
         return <div><BundleLoader/></div>;
       }
@@ -311,7 +385,7 @@ function UpdateOpportunityForm (props) {
             oppStage:"",
             // oppWorkflow: props.setEditingOpportunity.oppWorkflow || "",
             // oppStage: props.setEditingOpportunity.oppStage || "",
-            
+           
             // description: props.setEditingOpportunity.description || "",
             proposalAmount:
               props.setEditingOpportunity.proposalAmount || "",
@@ -405,6 +479,7 @@ function UpdateOpportunityForm (props) {
                 orgId: props.organizationId,
                 customerId:selectedCustomer,
                 contactId:selectedContact,
+                description: text,
                 // description: transcript ? transcript : text,
                 // customerId: props.customerId,
                 userId: props.userId,
@@ -523,28 +598,22 @@ function UpdateOpportunityForm (props) {
                     
                     </div>
                   </div>
-                  {/* 
+                  
                 <div class=" text-xs font-bold font-poppins text-black">Description</div>
                 <div>
                   <div>
-                    <span onClick={SpeechRecognition.startListening}>
+                    <span onClick={startListening}>
                       <Tooltip title="Start">
-                        <span style={{ fontSize: "1.5em", color: "red" }}>
-                          <PlayCircleFilledIcon />
+                      <span >
+                          <RadioButtonCheckedIcon  className="!text-icon ml-1 text-red-600" />
                         </span>
                       </Tooltip>
                     </span>
 
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span
-                          style={{
-                            fontSize: "1.5em",
-                            color: "green",
-                            marginLeft: "3px",
-                          }}
-                        >
-                          <StopCircleIcon />
+                    <span onClick={stopListening}>
+                    <Tooltip title="Stop">
+                        <span>
+                          <StopCircleIcon   className="!text-icon ml-1 text-green-600" />
                         </span>
                       </Tooltip>
                     </span>
@@ -566,7 +635,7 @@ function UpdateOpportunityForm (props) {
                       onChange={handletext}
                     ></textarea>
                   </div>
-                </div> */}
+                </div>
                 </div>
                 <div class=" h-full w-[47.5%] max-sm:w-wk mr-1">
                 <Listbox value={selected} onChange={setSelected}>

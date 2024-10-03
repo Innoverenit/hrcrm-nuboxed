@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button,Select } from "antd";
@@ -176,6 +176,9 @@ function CustomerForm(props) {
   const [touchedCurrency, setTouchedCurrency] = useState(false);
   const [defaultOption, setDefaultOption] = useState(props.fullName);
   const [selected, setSelected] = useState(defaultOption);
+  const [transcript, setTranscript] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
   const selectedOption = props.crmAllData.find((item) => item.empName === selected);
   const fetchSource = async () => {
     setIsLoading(true);
@@ -376,16 +379,72 @@ console.log(selectedSource)
   function handletext(e) {
     setText(e.target.value);
   }
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
+ 
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
+  useEffect(() => {
+    if (!('webkitSpeechRecognition' in window)) {
+      console.log('Browser does not support speech recognition.');
+      return;
+    }
+  const recognition = new window.webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+
+  recognition.onresult = (event) => {
+    let finalTranscript = '';
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        finalTranscript += event.results[i][0].transcript;
+      }
+    }
+    finalTranscript = finalTranscript.trim(); // Trim spaces around the transcript
+
+    // Ensure the final transcript is appended only once
+    setTranscript((prevTranscript) => {
+      setText((prevText) => (prevText + ' ' + finalTranscript).trim());
+      return prevTranscript + ' ' + finalTranscript;
+    });
+  };
+
+  recognition.onend = () => {
+    setIsListening(false);
+  };
+
+  recognitionRef.current = recognition;
+
+  return () => {
+    recognition.stop();
+  };
+}, []);
+
+  const startListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.start();
+      setIsListening(true);
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    }
+  };
+
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+    setTranscript('');
+  };
+
+  const resetTranscript = () => {
+    setTranscript('');
+    setText('');
+  };
+ 
+ 
+
+
 
   console.log(selectedSector)
   if (loading) {
@@ -442,6 +501,7 @@ console.log(selectedSource)
               currencyId:selectedCurrency,
               source: selectedSource,
               sectorId: selectedSector,
+              description: text,
               currencyId:selectedCurrency,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
              
@@ -677,12 +737,12 @@ country_dial_code
   </div>
 </div>
 
-{props.customerConfigure.noteInd===true&&
+{/* {props.customerConfigure.noteInd===true&& */}
 <div class="mt-3">
                     <div> {translatedMenuItems[12]}</div>
                     <div>
                   <div>
-                    <span onClick={SpeechRecognition.startListening}>
+                    <span onClick={startListening}>
                       <Tooltip title= {translatedMenuItems[13]}>
                         <span  >
                           <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
@@ -690,7 +750,7 @@ country_dial_code
                       </Tooltip>
                     </span>
 
-                    <span onClick={SpeechRecognition.stopListening}>
+                    <span onClick={stopListening}>
                       <Tooltip title= {translatedMenuItems[14]}>
                         <span
                           
@@ -714,12 +774,12 @@ country_dial_code
                       className="textarea"
                       type="text"
                       value={transcript ? transcript : text}
-                      onChange={handletext}
+                      onChange={handleTextChange}
                     ></textarea>
                   </div>
                 </div>
                   </div>
-}
+{/* } */}
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 >
