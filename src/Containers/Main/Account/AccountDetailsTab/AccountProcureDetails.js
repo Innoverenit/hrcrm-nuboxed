@@ -318,6 +318,8 @@ const handleGenerateInvoice= async () => {
         icon: 'success',
         confirmButtonText: 'OK'
     });
+
+    props.handleProcureDetailsModal(false);
     } 
     
     catch (err) {
@@ -470,7 +472,7 @@ const handleGenerateInvoice= async () => {
                 {/* {item.reaminingInvoiceUnit === 0 ? `$` : */}
                 <input
   placeholder="Invoice Units"
-  style={{ border: "1px solid grey",width:"5%" }}
+  style={{ border: "1px solid grey",width:"4rem" }}
   min="1"
   value={inputValues[item.id] || ''}
   onChange={(e) => handleInputChange(item.id, e.target.value)}
@@ -517,7 +519,7 @@ const handleGenerateInvoice= async () => {
                    <input
                   //  className=" border-red-600 h-6 shadow-sm "
                    placeholder="invoice"
-                   style={{border:"1px solid red",height:"1.5%", }}
+                   style={{border:"1px solid red",height:"1.5rem", }}
                    type="text"
                    value={invoices}
                    onChange={(e) => setInvoices(e.target.value)}

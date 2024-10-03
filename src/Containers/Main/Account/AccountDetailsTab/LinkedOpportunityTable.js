@@ -18,8 +18,11 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OpportunitytProcureDetailsModal from "./OpportunitytProcureDetailsModal";
+import OpportuniyConvertDrawer from "./OpportuniyConvertDrawer";
 const AccountProcureDetailsModal = lazy(() => import('../AccountDetailsTab/AccountProcureDetailsModal'));
+
 function LinkedOpportunityTable(props) {
+
   const [page, setPage] = useState(0);
   useEffect(() => {
     // props.getProcureRecords(props.distributorData.distributorId,"Quotation");
@@ -30,6 +33,7 @@ function LinkedOpportunityTable(props) {
     setPage(page + 1);
   }, []);
 
+  const [openConvertModal,setopenConvertModal]=useState(false);
   const [particularRowItem, setParticularRowItem] = useState({});
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -47,7 +51,7 @@ function LinkedOpportunityTable(props) {
          "1171",   //  "Payment",6
            "142", //   "Status",7
           "1172", //   "To Order",8
-           "666", //   "Procure",9
+           "1212", //   "Commerce",9
            "679", //   "Created Date"10
         "100",  //  New11
         "1300",  //  Change status to Customer?12
@@ -67,9 +71,8 @@ function LinkedOpportunityTable(props) {
   
       fetchMenuTranslations();
     }, [props.selectedLanguage]);
-  // useEffect(() => {
-  //   return () => props.emptyOrders();
-  // }, []);
+ 
+    
   const [hasMore, setHasMore] = useState(true);
 
   function handleRowItem(item) {
@@ -110,7 +113,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div className="md:w-[6.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div>
+                        {/* <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div> */}
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
                         
                        </div>
@@ -214,11 +217,11 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                     />
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        {/* <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div class="flex flex-row items-center md:w-[16.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.shipById}
@@ -226,17 +229,18 @@ console.log(props.user.moduleMapper.ecomModInd)
                                         </div>
                   <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
-                  <Popconfirm
+                  {/* <Popconfirm
                           title={translatedMenuItems[12]}
                           // "Change status to Customer?"
                           onConfirm={() => handleConfirm(item.quotationId,props.userId)}
                           okText="Yes"
                           cancelText="No"
-                        >
+                        > */}
                           
                             <Button type="primary"
                               style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}
-                             
+                             onClick={()=> { handleRowItem(item);
+                              setopenConvertModal(true)}}
                               >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
                               {translatedMenuItems[13]} {/* Convert */}
@@ -244,7 +248,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                               </div>
                             </Button>
                           
-                        </Popconfirm>
+                        {/* </Popconfirm> */}
                       </div>
                   </div>
                                      
@@ -272,7 +276,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div className="md:w-[6.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div>
+                        {/* <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div> */}
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
                       
                    </div>
@@ -379,11 +383,11 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                     />
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        {/* <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div class="flex flex-row items-center md:w-[16.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.shipById}
@@ -391,20 +395,22 @@ console.log(props.user.moduleMapper.ecomModInd)
                                         </div>
                                         <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
-                  <Popconfirm
+                  {/* <Popconfirm
                           title={translatedMenuItems[14]}
                           // "Change status to Order?"
                           onConfirm={() => handleConfirm(item.quotationId,props.userId)}
                           okText="Yes"
                           cancelText="No"
-                        >
-                  <Button type="primary"  style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}>
+                        > */}
+                  <Button type="primary"  style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }} 
+                  onClick={()=>{  handleRowItem(item); setopenConvertModal(true)}}
+                  >
                   <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
                   {translatedMenuItems[13]}  {/* Convert */}
                               <NextPlanIcon  className="!text-icon"/>
                               </div>
                      </Button>
-                  </Popconfirm>
+                  {/* </Popconfirm> */}
                       </div>
                   </div>
                          </div>
@@ -421,6 +427,12 @@ console.log(props.user.moduleMapper.ecomModInd)
                 particularRowItem={particularRowItem}
                 handleProcureDetailsModal={props.handleProcureDetailsModal}
                 addProcureDetailsModal={props.addProcureDetailsModal} />
+
+                <OpportuniyConvertDrawer
+                particularRowItem={particularRowItem}
+                openConvertModal={openConvertModal}
+                setopenConvertModal={setopenConvertModal}
+                />
                 </Suspense>
     </>
   );

@@ -15,6 +15,7 @@ import OrdeRepairOrgTab from "./OrdeRepairOrgTab";
 import InvoiceReportUserTab from "./InvoiceReportUserTab";
 import InvoiceReportOrgTab from "./InvoiceReportOrgTab";
 import ProductionReportOrgTab from "./ProductionReportOrgTab";
+import GSTReportUser from "./GSTReportUser";
 class ReportDetailRight extends Component {
 
     state = {
@@ -76,6 +77,12 @@ class ReportDetailRight extends Component {
 
   {this.props.selectedCategory === "Invoice" && (
   <InvoiceReportUserTab
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
+    {this.props.selectedCategory === "GST" && (
+  <GSTReportUser
   selectedButtonIcon={this.props.selectedButtonIcon}
   selectedCategory={this.props.selectedCategory}
   />

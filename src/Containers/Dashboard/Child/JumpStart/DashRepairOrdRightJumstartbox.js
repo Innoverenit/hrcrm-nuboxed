@@ -37,7 +37,7 @@ function DashRepairOrdRightJumstartbox (props) {
 
     const fetchOrderPacked = async () => {
       try {
-        const response = await axios.get(`${base_url2}/order/orderpacked/${props.userId}`,{
+        const response = await axios.get(`${base_url2}/phoneOrder/orderPacked/${props.userId}/${props.startDate}/${props.endDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -55,7 +55,7 @@ function DashRepairOrdRightJumstartbox (props) {
   
     const fetchOrderDispatched= async () => {
       try {
-        const response = await axios.get(`${base_url2}/order/orderDispatched/${props.userId}`,{
+        const response = await axios.get(`${base_url2}/phoneOrder/orderDispatched/${props.userId}/${props.startDate}/${props.endDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -126,24 +126,24 @@ function DashRepairOrdRightJumstartbox (props) {
   
   useEffect(() => {
     props.getJumpOrderDetail(props.timeRangeType, "Catalog")
-    fetchOrderPacked();
-    fetchOrderDispatched();
+    
+    
 fetchDasRepairCount();
 
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 
   useEffect(() => {
-    if (props.orderAddedList) {
-      setModalData(props.orderAddedList);
+    if (OrderPacked) {
+      setModalData(OrderPacked);
     }
-  }, [props.orderAddedList]);
+  }, [OrderPacked]);
 
   useEffect(() => {
-    if (props.orderOpenList) {
-      setModalData(props.orderOpenList);
+    if (OrderDispatched) {
+      setModalData(OrderDispatched);
     }
-  }, [props.orderOpenList]);
+  }, [OrderDispatched]);
 
   useEffect(() => {
     if (props.orderClosedList) {
@@ -165,10 +165,10 @@ fetchDasRepairCount();
 
     switch(type) {
       case 'Packed':
-        props.getOrderAddedList(props.userId,props.endDate,props.startDate);
+        fetchOrderPacked();
         break;
       case 'Dispatched':
-        props.getOrderOpenList(props.userId,props.endDate,props.startDate);
+        fetchOrderDispatched();
         break;
       case 'Feedback':
         props.getOrderClosedList(props.userId,props.endDate,props.startDate);

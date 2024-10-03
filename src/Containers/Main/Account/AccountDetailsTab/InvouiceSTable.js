@@ -5,19 +5,26 @@ import {
     getInvoiveL,
    // handleInvoiceModal
 } from "../AccountAction";
-import {  Select } from 'antd';
+import {  Select,Input,Button } from 'antd';
 import dayjs from "dayjs";
-
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-
+import { base_url2 } from "../../../../Config/Auth";
+import axios from "axios";
 import { BundleLoader } from "../../../../Components/Placeholder";
+
 const { Option } = Select;
 
 function InvouiceSTable(props) {
     const [pageNo, setPageNo] = useState(0);
-    
+    const [data, setData] = useState([]);
+    const [date, setDate] = useState('');
+    const [trackId, settrackId] = useState('');
+    const [editedFields, setEditedFields] = useState({});
+    const [editsuppliesId, setEditsuppliesId] = useState(null);
+    const [hasMore, setHasMore] = useState(true);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -69,12 +76,74 @@ function InvouiceSTable(props) {
         setShowIcon(false)
         setCurrency("")
     }
+    useEffect(() => {
+        setData(props.invoiceL);
+    }, [props.invoiceL]);
 
-    const [hasMore, setHasMore] = useState(true);
+    const handleInputChange = (value, key, dataIndex) => {
+        const updatedData = data.map((item) =>
+            item.procureOrderInvoiceId === key ? { ...item, [dataIndex]: value } : item
+        );
+        setData(updatedData);
+        const updatedTrackId = updatedData.find(item => item.procureOrderInvoiceId === key)?.trackId;
+    settrackId(updatedTrackId);
+    };
+    
+      const handleDateChange = (e, item) => {
+        const selectedDate = new Date(e.target.value);
+        const deliveryDate = new Date(item.deliveryDate);
+    setDate(e.target.value);
+
+        // if (selectedDate >= deliveryDate) {
+        //     setDate(e.target.value);
+        // } else {   
+        //     alert('Shipping date cannot be earlier than delivery date');
+        // }
+    };
+    
+    
+      const handleEditClick = (procureOrderInvoiceId) => {
+        setEditsuppliesId(procureOrderInvoiceId);
+      };
+      const handleCancelClick = (procureOrderInvoiceId) => {
+        setEditedFields((prevFields) => ({ ...prevFields, [procureOrderInvoiceId]: undefined }));
+        setEditsuppliesId(null);
+      };
+    
+   
+    
+
+    const handlePostChange =  async (item) => {
+        let updatedItem={
+            shippingDate: new Date(date).toISOString(),
+          trackId:trackId?trackId:item.trackId,
+          procureOrderInvoiceId:item.procureOrderInvoiceId,
+        }
+        // props.updateOrdrSuplrItems(data);
+        try {
+          const headers = {
+            'Content-Type': 'application/json',
+            'Authorization':  `Bearer ${props.token}`  // Replace with your actual token if required
+          };
+
+            const response = await axios.put(`${base_url2}/invoice/order/ship`, updatedItem, { headers });
+            console.log("API Response:", response.data);
+        setData(prevData => 
+              prevData.map(cat =>
+                cat.procureOrderInvoiceId === item.procureOrderInvoiceId ? response.data : cat
+              )
+            );
+        
+            setEditsuppliesId(null);
+        
+          } catch (error) {
+            // Handle errors
+            console.error("Error updating item:", error);
+            setEditsuppliesId(null);
+          }
+      };
   
-    if (loading) {
-        return <div><BundleLoader/></div>;
-      }
+
     return (
         <>
             <div className=' flex sticky  z-auto'>
@@ -86,8 +155,8 @@ function InvouiceSTable(props) {
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
                         <div className="md:w-[5rem]">{translatedMenuItems[7]}</div>
                         <div className=" md:w-[7rem] ">{translatedMenuItems[4]}</div>
-                        <div className="md:w-[3.8rem]">{translatedMenuItems[8]}</div>
                         <div className="md:w-[3.8rem]">{translatedMenuItems[9]} ID</div>
+                        <div className="md:w-[3.8rem]">{translatedMenuItems[8]}</div>
                     </div>
                     <div class="">
                         {/* <InfiniteScroll
@@ -140,8 +209,75 @@ function InvouiceSTable(props) {
                                                             {item.unit}
                                                         </div>
                                                     </div>
-                                                    
-                                                </div>
+                                                    <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        {editsuppliesId === item.procureOrderInvoiceId ? (
+                       <Input
+                       style={{ width: "5rem" }}
+                       value={item.trackId}
+                       onChange={(e) => handleInputChange(e.target.value, item.procureOrderInvoiceId, 'trackId')}
+                     />
+                       
+                    ) : (
+                      <div className="font-normal text-sm  font-poppins">
+                        <div> {item.trackId}</div>
+                      </div>
+                    )}
+                                                        </div>
+                                                    </div>
+                                                    <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        {editsuppliesId === item.procureOrderInvoiceId ? (
+                                                         
+                                                                <input
+          type="date"
+          // value={date}
+          value={dayjs(item.shippingDate).format("YYYY-MM-DD")}
+          onChange={(e) => handleDateChange(e,item)}
+        //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
+          class="border border-black rounded"
+        /> ) : (
+            <div className="font-normal text-sm  font-poppins">
+               {item.shippingDate === null ? "" :
+              <div> 
+              {dayjs(item.shippingDate).format("YYYY/MM/DD")} 
+              </div>}
+            </div>
+          )}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                            <div className=" flex w-20  md:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+    {editsuppliesId === item.procureOrderInvoiceId ? (
+                        <>
+                      <Button 
+                      type="primary"
+                      loading={props.updatingOrdrSuplrItems}
+                      onClick={() => handlePostChange(item)}>
+                        Save
+                      </Button>
+                        <Button 
+                         type="primary"
+                        onClick={() => handleCancelClick(item.procureOrderInvoiceId)} className="ml-[0.5rem]">
+                        Cancel
+                      </Button>
+                      </>
+                      
+                    ) : (
+                      <>
+                      {/* {item.paidInd===true && */}
+                      <Button
+                      type="primary"
+                        onClick={() => handleEditClick(item.procureOrderInvoiceId)}
+                      >Ship</Button>
+                    {/* } */}
+                    </>
+                    )}
+    </div>
+                                                </div>   </div>
+
+
                                             </div>
                                          </>
                                      )

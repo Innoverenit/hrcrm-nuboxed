@@ -45,7 +45,7 @@ class ReportDetails extends Component {
                userorgflipClick={this.props.userorgflipClick}
                />
                     </div>
-                    <div class=" w-4/5 max-sm:w-full">
+                    <div class=" w-[70%] max-sm:w-full">
                       <ReportDetailRight 
                       gettingReportProspect={this.props.gettingReportProspect}
                       reportProspect={this.props.reportProspect}

@@ -30,6 +30,7 @@ const buttonData = [
   { name: 'Credit Memo' },
   { name: 'Investors' },
   { name: 'Deals' },
+  { name: 'GST' },
 
 ];
 
