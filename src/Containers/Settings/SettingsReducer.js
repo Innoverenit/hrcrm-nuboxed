@@ -26,6 +26,11 @@ const initialState = {
   fetchingUOMCountError: false,
   UOMCount:[],
  
+  removingSuppliers: false,
+  removingSuppliersError: false,
+
+  updatingSuppliers: false,
+  updatingSuppliersError: false,
 
   addingPaymentApi:false,
   addingPaymentApiError:false,
@@ -2454,6 +2459,49 @@ export const settingsReducer = (state = initialState, action) => {
         fetchingNotificationAccess: false,
         fetchingNotificationAccessError: true,
       };
+        // remove suppliers
+
+     case types.REMOVE_SUPPLIERS_REQUEST:
+      return { ...state,  removingSuppliers: true };
+    case types.DELETE_SUPPLIERS_SUCCESS:
+      return {
+        ...state,
+        removingSuppliers: false,
+        removingSuppliersData: state. removingSuppliersData.filter(
+          (item) => item.supplierCategoryId !== action.payload.supplierCategoryId
+      ), 
+      };
+    case types.REMOVE_SUPPLIERS_FAILURE:
+      return {
+        ...state,
+        removingSuppliers: false,
+        removingSuppliersError: true,
+      };
+
+      // update suppliers
+      case types.UPDATE_SUPPLIERS_REQUEST:
+        return { ...state,   updatingSuppliers: true };
+        
+      case types.UPDATE_SUPPLIERS_SUCCESS:
+       
+       
+  
+        return {
+          ...state,
+          updatingSuppliers: false,
+          supplyCategory: state. supplyCategory.map((sector) =>
+            (item) => item.supplierCategoryId !== action.payload.supplierCategoryId
+              ? action.payload
+              : sector
+          ),
+        }
+      case types.UPDATE_SUPPLIERS_FAILURE:
+        return {
+          ...state,
+          updatingCategory: false,
+          updatingCategoryError: true,
+        };
+
 
     case types.DELETE_REPORT_SCHEDULER_INTERNAL_DATA_REQUEST:
       return { ...state, deleteReportSchedulerInternalData: true };

@@ -10,10 +10,10 @@ import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getSupplierCategory,
-  getSectorCount,
+
   addSupplierCategory,
-  // removeSectors,
-  //updateSectors,
+  removeSuppliers,
+  updateSuppliers,
   //searchSectorName,
   ClearReducerDataOfSupplierCategory
 } from "../SettingsAction";
@@ -38,10 +38,16 @@ const SupplierCategory = (props) => {
       setEditingId(sectorId);
       setCategoryName(name);
   };
-const handleUpdateSector =() =>{
-
-
-};
+  const handleUpdateSupplier=(region)=>{
+    console.log(region)
+    let data={
+      supplierCategoryId:region.supplierCategoryId,
+      name:newCategoryName
+     
+    }
+props.updateSuppliers(data,region.categoryId)
+setEditingId(null);
+}
 
 
 
@@ -159,14 +165,14 @@ return <div><BundleLoader/></div>;
             {/* Action buttons */}
             <div >
                 {/* Edit button */}
-                {editingId === region.sectorId ? (
+                {editingId === region.upplierCategoryId ? (
                     <div>
-                        {/* <button onClick={() => handleUpdateSector(region)}>Save</button> */}
+                        <button onClick={() => handleUpdateSupplier(region)}>Save</button>
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
                       <BorderColorIcon   className=" !text-icon text-red-600 cursor-pointer "
-                      //  onClick={() => editRegion(region.sectorId, region.sectorName)}
+                       onClick={() => editRegion(region.supplierCategoryId, region.supplierCatName)}
                         />                   
                 )}
                 {/* Delete button */}
@@ -174,7 +180,7 @@ return <div><BundleLoader/></div>;
           title="Do you want to delete?"
           okText="Yes"
           cancelText="No"
-          // onConfirm={() => props.removeSectors(region.sectorId,props.orgId)}
+          onConfirm={() => props.removeSuppliers(region.supplierCategoryId)}
         >
           <DeleteOutlined   className=" !text-icon text-red-600 cursor-pointer "
           />
@@ -212,8 +218,8 @@ const mapDispatchToProps = (dispatch) =>
       //getSectorCount,
       getSupplierCategory,
       addSupplierCategory,
-      // removeSectors,
-     // updateSectors,
+      removeSuppliers,
+      updateSuppliers,
       //searchSectorName,
       ClearReducerDataOfSupplierCategory
     },
