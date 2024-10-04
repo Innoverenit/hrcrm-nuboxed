@@ -199,31 +199,6 @@ export const deletePurchaseData = (suppliesId) => (dispatch) => {
     });
 };
 
-export const deleteSuppliesData = (documentId) => (dispatch) => {
-  dispatch({
-    type: types.DELETE_SUPPLIES_DATA_REQUEST,
-  });
-  axios
-    .delete(`${base_url2}/supplies/document/${documentId}`)
-    .then((res) => {
-      console.log(res);
-      // dispatch(getDeletedPurchaseById());
-      dispatch({
-        type: types.DELETE_SUPPLIES_DATA_SUCCESS,
-        payload: documentId,
-      });
-      message.success("Supplies deleted Successfully");
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.DELETE_SUPPLIES_DATA_FAILURE,
-        payload: err,
-      });
-      message.error("Something went wrong")
-    });
-};
-
 export const getDeleteHistory = () => (dispatch) => {
   dispatch({
     type: types.GET_DELETE_HISTORY_REQUEST,
