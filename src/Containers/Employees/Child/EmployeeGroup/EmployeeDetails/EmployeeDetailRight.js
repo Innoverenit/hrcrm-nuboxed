@@ -10,7 +10,9 @@ class EmployeeDetailRight extends Component {
   render() {
     return (
       <div class="w-full">
-        <EmployeeDetailTab singleEmployee={this.props.singleEmployee}/>
+        <EmployeeDetailTab singleEmployee={this.props.singleEmployee}
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}/>
       </div>
     );
   }

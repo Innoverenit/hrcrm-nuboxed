@@ -80,7 +80,7 @@ function OpportunityWonCard(props) {
           '176', // 3
           '218', // 4
           '219', // 5
-          '220', // 6
+          '76', // 6
           '77', // 7
           "232", // 'Click to Open'
           "170", // "Edit"

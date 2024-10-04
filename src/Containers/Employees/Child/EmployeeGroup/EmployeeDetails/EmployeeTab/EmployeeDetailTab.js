@@ -61,11 +61,49 @@ class EmployeeDetailTab extends Component {
     super(props);
     this.state = {
       activeKey: "1",
+      translatedMenuItems: [],
     };
   }
 componentDidMount(){
-  
+  this.fetchMenuTranslations();
 }
+componentDidUpdate(prevProps) {
+  if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+    this.fetchMenuTranslations();
+  }
+}
+
+fetchMenuTranslations = async () => {
+  try {
+    const itemsToTranslate = [
+      "85",//0Performance
+      "294",//1 Education
+      "104",//2Training
+      "796",//3Employment
+   "", //  4 "Emergency"
+   "",//  5 Bank Details
+   "",  //  6 Personal Details
+   "", //   7Notes"
+    "",  //  8 Salary
+    "", // 9  Documents"
+    "", //   10"Contract"
+    "",  //  11 "Talent"
+    "", //  12 Opportunity"
+    "", // 13  "Customer"
+    "",  //  14 Requirement"
+    "", //  15 "Vendor"
+    "", //   16 Experience
+    "", //   17 Visa
+    "", // add
+    ];
+
+    const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+    this.setState({ translatedMenuItems: translations });
+  } catch (error) {
+    console.error('Error translating menu items:', error);
+  }
+};
+
   handleTabChange = (key) => this.setState({ activeKey: key });
 
  
@@ -104,13 +142,10 @@ componentDidMount(){
               tab={
                 <>
                  <DirectionsRunIcon className=" !text-icon"/>
-                <span class="  ml-1">
-                    
-                    Performance
-                  </span>
-                 
-                   
-                </>
+                <span class="  ml-1"> 
+                {this.state.translatedMenuItems[0]}   {/* Performance  */}
+                   </span>
+                  </>
               }
               key="1"
             >
@@ -118,6 +153,8 @@ componentDidMount(){
                 {" "}
                 <EmployeePerformanceTable 
                 singleEmployee={this.props.singleEmployee}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
                 />
               </Suspense>
             </TabPane>
@@ -133,7 +170,7 @@ componentDidMount(){
                     <>
                        <PlusOutlined
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleEducationModal(true)}
                         size="14px"
                         style={{ marginLeft: "0.25", verticalAlign: "center" }}
@@ -146,7 +183,9 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <EducationTable />
+                <EducationTable 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
             <TabPane
@@ -156,14 +195,15 @@ componentDidMount(){
                   {/* <HeadphonesIcon   style={{fontSize:"1.1rem"}}
                   /> */}
                   < ModelTrainingIcon className=" !text-icon" />
-                   <span class=" font-poppins ml-1" >Training
+                   <span class=" font-poppins ml-1" >
+                   {this.state.translatedMenuItems[2]} {/* Training */}
                     
                   </span>
                   {activeKey === "3" &&  user.userCreateInd === true && (
                     <>
                       <PlusOutlined
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleTrainingModal(true)}
                         size="14px"
                         style={{ marginLeft:"0.25", verticalAlign: "center" }}
@@ -176,7 +216,9 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <TrainingTable />
+                <TrainingTable 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
 
@@ -186,17 +228,17 @@ componentDidMount(){
                   {/* <AccountBalanceIcon   style={{fontSize:"1.1rem"}} /> */}
                   <AccountBalanceIcon className=" !text-icon"/>
                   <span class=" font-poppins ml-1" >
-                    
-                    <FormattedMessage
+                  {this.state.translatedMenuItems[3]}
+                    {/* <FormattedMessage
                       id="app.employment"
                       defaultMessage="Employment"
-                    />
+                    /> */}
                   </span>
-                  {activeKey === "4" && user.userCreateInd === true &&(
+                  {activeKey === "4" &&  user.userCreateInd === true &&(
                     <>
                       <PlusOutlined
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleEmploymentModal(true)}
                         size="14px"
                         style={{ marginLeft:"0.25em", verticalAlign: "center" }}
@@ -209,7 +251,9 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <EmploymentTable />
+                <EmploymentTable 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
 
@@ -221,17 +265,17 @@ componentDidMount(){
                  className=" !text-icon"
                  />
                   <span class=" font-poppins ml-1">
-                    
-                    <FormattedMessage
+                  {this.state.translatedMenuItems[4]}
+                    {/* <FormattedMessage
                       id="app.emergency"
                       defaultMessage="Emergency"
-                    />
+                    /> */}
                   </span>
                   {activeKey === "5" && user.userCreateInd === true && (
                     <>
                        <PlusOutlined
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handlePersonalModal(true)}
                         size="14px"
                         class="ml-1"
@@ -246,7 +290,9 @@ componentDidMount(){
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 {/* <PersonalTable /> */}
-                <PersonalTable2 />
+                <PersonalTable2
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage} />
               </Suspense>
             </TabPane>
 {user.userAccessInd === true ?(
@@ -254,13 +300,14 @@ componentDidMount(){
               tab={
                 <>
                 <AccountBalanceIcon  className=" !text-icon"/>
-                  <span class=" font-poppins ml-1">Bank Details
+                  <span class=" font-poppins ml-1">
+                  {this.state.translatedMenuItems[5]}  {/* Bank Details */}
                   </span>
                   {activeKey === "6" && user.userCreateInd === true && (
                     <>
                        <PlusOutlined
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleBankModal(true)}
                         size="14px"
                         style={{ marginLeft: "0.25em", verticalAlign: "center" }}
@@ -273,7 +320,9 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <BankTable />
+                <BankTable 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage} />
               </Suspense>
             </TabPane>
 ):null}
@@ -282,13 +331,14 @@ componentDidMount(){
               tab={
                 <>
                 <RecentActorsIcon className=" !text-icon"/>
-                  <span class=" font-poppins ml-1">Personal Details
+                  <span class=" font-poppins ml-1">
+                  {this.state.translatedMenuItems[6]}  {/* Personal Details */}
                   </span>
                   {activeKey === "7" && user.userCreateInd === true && (
                     <>
                        <PlusOutlined
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handlePersonalDetailsModal(true)}
                         size="14px"
                         style={{ marginLeft:"0.25em", verticalAlign: "center" }}
@@ -301,7 +351,9 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <PersonalDetailsTable />
+                <PersonalDetailsTable
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage} />
               </Suspense>
             </TabPane>
             ):null}
@@ -310,7 +362,7 @@ componentDidMount(){
                 <>
                 <NoteAltIcon  className=" !text-icon"/>
                   <span class="ml-1">  
-                    <FormattedMessage id="app.notes" defaultMessage="Notes" />
+                  {this.state.translatedMenuItems[7]}  {/* <FormattedMessage id="app.notes" defaultMessage="Notes" /> */}
                   </span>
                   {activeKey === "8" && (
                     <>
@@ -332,13 +384,14 @@ componentDidMount(){
               tab={
                 <>
                  <PaymentIcon  className=" !text-icon"/>
-                  <span class=" font-poppins ml-1">Salary
+                  <span class=" font-poppins ml-1">
+                  {this.state.translatedMenuItems[8]} {/* Salary */}
                   </span>
                   {activeKey === "9" && user.userCreateInd === true && (
                     <>
                        <PlusOutlined
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleSalaryModal(true)}
                         size="14px"
                         style={{ marginLeft: "0.25em", verticalAlign: "center" }}
@@ -351,7 +404,9 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <SalaryTable />
+                <SalaryTable 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
             {user.userAccessPlusInd === true ? (
@@ -361,10 +416,10 @@ componentDidMount(){
                 <FileCopyIcon   className=" !text-icon" />
                   <span class=" font-poppins ml-1">
                     
-                    <FormattedMessage
+                  {this.state.translatedMenuItems[9]}    {/* <FormattedMessage
                       id="app.documents"
                       defaultMessage="Documents"
-                    />
+                    /> */}
                   </span>
                   {/* {activeKey === "9" && user.userCreateInd === true && (
                     <>
@@ -386,7 +441,9 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments />
+                <LinkedDocuments 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
             ):null}
@@ -397,16 +454,16 @@ componentDidMount(){
                   <span class=" font-poppins ml-1">
                     
                    
-                    <FormattedMessage
+                  {this.state.translatedMenuItems[10]} {/* <FormattedMessage
                       id="app.contract"
                       defaultMessage="Contract"
-                    />
+                    /> */}
                   </span>
                   {activeKey === "11" && user.userCreateInd === true && (
                     <>
                       <PlusOutlined
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleContractModal(true)}
                         size="14px"
                         style={{ marginLeft:"0.25em", verticalAlign: "center" }}
@@ -419,7 +476,9 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <ContractTable />
+                <ContractTable 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
             
@@ -430,11 +489,11 @@ componentDidMount(){
                <i class="fas fa-portrait" aria-hidden="true"></i>
                   <span class=" font-poppins ml-1">
                     
-                   
-                    <FormattedMessage
+                  {this.state.translatedMenuItems[11]}
+                    {/* <FormattedMessage
                       id="app.talent"
                       defaultMessage="Talent"
-                    />
+                    /> */}
                   </span>
                   {activeKey === "12" && (
                     <>
@@ -455,16 +514,16 @@ componentDidMount(){
                 <>
                  <i class="far fa-lightbulb" aria-hidden="true"></i>
                   <span class=" font-poppins ml-1" >
-                  <FormattedMessage
+                  {/* <FormattedMessage
                 id="app.opportunity"
                 defaultMessage="Opportunity"
-              />
+              /> */}{this.state.translatedMenuItems[12]}
                   </span>
                   {activeKey === "13" && (
                     <>
                       {/* <ActionIcon
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         handleIconClick={() => handleTalentModal(true)}
                         size="14px"
                         style={{ marginLeft:"0.25em", verticalAlign: "center" }}
@@ -483,16 +542,16 @@ componentDidMount(){
                 <>
                  <i class="far fa-building" aria-hidden="true"></i>
                   <span class=" font-poppins ml-1">
-                  <FormattedMessage
+                  {/* <FormattedMessage
                 id="app.customer"
                 defaultMessage="Customer"
-              />
+              /> */}{this.state.translatedMenuItems[13]}
                   </span>
                   {activeKey === "14" && (
                     <>
                       {/* <ActionIcon
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         handleIconClick={() => handleTalentModal(true)}
                         size="14px"
                         style={{ marginLeft:"0.25em", verticalAlign: "center" }}
@@ -514,10 +573,10 @@ componentDidMount(){
                 <>
                 <ContactsIcon className=" !text-icon"/>
                   <span class=" font-poppins ml-1">
-                  <FormattedMessage
+                  {this.state.translatedMenuItems[14]} {/* <FormattedMessage
                   id="app.requirement"
                   defaultMessage="Requirement"
-                />
+                /> */}
                   </span>
                   {activeKey === "15" && (
                     <>
@@ -536,16 +595,16 @@ componentDidMount(){
                 <>
                  <i class="far fa-handshake" aria-hidden="true"></i>
                   <span class=" font-poppins ml-1">
-                  <FormattedMessage
+                  {this.state.translatedMenuItems[15]}    {/* <FormattedMessage
                 id="app.vendor"
                 defaultMessage="Vendor"
-              />
+              /> */}
                   </span>
                   {activeKey === "16" && (
                     <>
                       {/* <ActionIcon
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         handleIconClick={() => handleTalentModal(true)}
                         size="14px"
                         style={{ marginLeft:"0.25em", verticalAlign: "center" }}
@@ -565,7 +624,7 @@ componentDidMount(){
                 
                <WorkspacePremiumIcon className=" !text-icon"/>
                   <span class=" font-poppins ml-1">                  
-                Experience
+                  {this.state.translatedMenuItems[16]} {/* Experience */}
                   </span>                 
                 </>
               }
@@ -575,7 +634,9 @@ componentDidMount(){
               {/* <LinkedExperience/> */}
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <EmployeeExperienceForm/>
+                <EmployeeExperienceForm
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
 
@@ -585,13 +646,13 @@ componentDidMount(){
                 <SchoolIcon  className=" !text-icon"/>
                   <span class=" font-poppins ml-1">
                     
-                 Visa
+               {this.state.translatedMenuItems[17]}  {/* Visa */}
                   </span>
                   {activeKey === "18" && user.userCreateInd === true && (
                     <>
                        <PlusOutlined
                         type="plus"
-                        tooltipTitle="Add"
+                        tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleVisaModal(true)}
                         size="14px"
                         style={{ marginLeft: "0.25", verticalAlign: "center" }}
@@ -604,7 +665,9 @@ componentDidMount(){
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <VisaTable />
+                <VisaTable 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
       
@@ -613,46 +676,66 @@ componentDidMount(){
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
           <AddEmploymentModal
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
             addEmploymentModal={addEmploymentModal}
             handleEmploymentModal={handleEmploymentModal}
           />
           <AddPersonalModal
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
             addPersonalModal={addPersonalModal}
             handlePersonalModal={handlePersonalModal}
           />
           <AddEducationModal
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
             addEducationModal={addEducationModal}
             handleEducationModal={handleEducationModal}
           />
            <AddVisaModal
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             addVisaModal={addVisaModal}
             handleVisaModal={handleVisaModal}
           />
 
 
           <AddTrainingModal
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
             addTrainingModal={addTrainingModal}
             handleTrainingModal={handleTrainingModal}
           />
 
           <AddBankModal
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
             addBankModal={addBankModal}
             handleBankModal={handleBankModal}
           />
           <AddPersonalDetailsModal
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
             addPersonalDetailsModal={addPersonalDetailsModal}
             handlePersonalDetailsModal={handlePersonalDetailsModal}
           />
           <AddSalaryModal
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
             addSalaryModal={addSalaryModal}
             handleSalaryModal={handleSalaryModal}
           />
 
           <AddDocumentModal
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
           />
           <AddContractModal
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
             addContractModal={addContractModal}
             handleContractModal={handleContractModal}
           />

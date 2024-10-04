@@ -355,8 +355,8 @@ export const addOpportunity = (opportunity, cb) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Opportunity created Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
       console.log(res);
       const startDate = dayjs()
@@ -587,8 +587,8 @@ export const setEditOpportunity = (name) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Opportunity Info updated Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
       console.log(res);
       //  dispatch(getOpportunityListByUserId(userId,0));
@@ -805,8 +805,8 @@ export const deleteOpportunityData = (id) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Opportunity Deleted Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 2000
       })
       // if (res.data) {
       //   Swal.fire({
@@ -2911,8 +2911,8 @@ export const reinstateToggleForLost = (data, opportunityId,userId) => (dispatch)
         Swal.fire({
           icon: 'error',
           title: 'Not updated',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500
         });
       }
       console.log(res);
