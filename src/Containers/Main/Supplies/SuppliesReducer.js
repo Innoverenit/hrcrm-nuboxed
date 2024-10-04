@@ -7,6 +7,14 @@ const initialState = {
     uploadingMaterialList:false,
     uploadingMaterialListError:false,
 
+    erpDocumentUploadModal:false,
+
+    deletingSuppliesDocumentData: false,
+    deletingSuppliesDocumentDataError: false,
+
+    fetchingDocumentsBySupplies: false,
+    fetchingDocumentsBySuppliesError: false,
+    documentsBySuppliesId:[],
 
     locationSuppliesModal:false,
 
@@ -338,6 +346,25 @@ export const suppliesReducer = (state = initialState, action) => {
                 deletingSuppliesDataError: true,
                 addDeleteSuppliesModal: false,
             };
+
+            case types.DELETE_SUPPLIES_DATA_REQUEST:
+              return { ...state, deletingSuppliesDocumentData: true };
+          case types.DELETE_SUPPLIES_DATA_SUCCESS:
+              return {
+                  ...state,
+                  deletingSuppliesDocumentData: false,
+                  //addDeleteSuppliesModal: false,
+                  documentsBySuppliesId: state.documentsBySuppliesId.filter(
+                      (item) => item.documentId !== action.payload
+                  ),
+              };
+          case types.DELETE_SUPPLIES_DATA_FAILURE:
+              return {
+                  ...state,
+                  deletingSuppliesDocumentData: false,
+                  deletingSuppliesDocumentDataError: true,
+                  //addDeleteSuppliesModal: false,
+              };
 
         case types.GET_DELETE_HISTORY_REQUEST:
             return { ...state, fetchingDeletedSuppliesHistory: true };
@@ -1150,11 +1177,29 @@ export const suppliesReducer = (state = initialState, action) => {
           updatingBrandMaterialError: true,
         };
 
+        case types.GET_SUPPLIES_DOCUMENTS_REQUEST:
+          return {
+            ...state,
+            fetchingDocumentsBySupplies: true,
+                   };
+        case types.GET_SUPPLIES_DOCUMENTS_SUCCESS:
+          return {
+            ...state,
+            fetchingDocumentsBySupplies: false,
+            documentsBySuppliesId: action.payload,
+          };
+        case types.GET_SUPPLIES_DOCUMENTS_FAILURE:
+          return {
+            ...state,
+            fetchingDocumentsBySupplies: false,
+            fetchingDocumentsBySuppliesError: true,
+          };
 
         case types.HANDLE_IMAGE_SUPPLIES_MODAL:
           return { ...state, uploadImageListSupplies: action.payload };
   
-
+          case types.HANDLE_ERP_DOCUMENT_UPLOAD_MODAL:
+            return { ...state, erpDocumentUploadModal: action.payload };
         default:
             return state;
     }

@@ -29,6 +29,9 @@ const initialState = {
   removingSuppliers: false,
   removingSuppliersError: false,
 
+  removingShipper: false,
+  removingShippersError: false,
+
   updatingSuppliers: false,
   updatingSuppliersError: false,
 
@@ -2470,7 +2473,7 @@ export const settingsReducer = (state = initialState, action) => {
       return {
         ...state,
         removingSuppliers: false,
-        removingSuppliersData: state. removingSuppliersData.filter(
+        removingSuppliersData: state.removingSuppliersData.filter(
           (item) => item.supplierCategoryId !== action.payload.supplierCategoryId
       ), 
       };
@@ -2501,10 +2504,29 @@ export const settingsReducer = (state = initialState, action) => {
       case types.UPDATE_SUPPLIERS_FAILURE:
         return {
           ...state,
-          updatingCategory: false,
-          updatingCategoryError: true,
+          updatingSuppliers: false,
+          updatingSuppliersError: true,
         };
 
+
+  // remove shipper
+
+  case types.DELETE_SHIPPER_REQUEST:
+    return { ...state,  removingShipper: true };
+  case types.DELETE_SHIPPER_SUCCESS:
+    return {
+      ...state,
+      removingShipper: false,
+      removingShipperData: state.removingShipperData.filter(
+        (item) => item.shipperCategoryId !== action.payload.shipperCategoryId
+    ), 
+    };
+  case types.DELETE_SHIPPER_FAILURE:
+    return {
+      ...state,
+      removingShipper: false,
+      removingShipperError: true,
+    };
 
     case types.DELETE_REPORT_SCHEDULER_INTERNAL_DATA_REQUEST:
       return { ...state, deleteReportSchedulerInternalData: true };
