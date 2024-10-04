@@ -2,6 +2,7 @@ import React, { Component,lazy} from "react";
 // import ReportDocumentsCard from "./ReportDocumentsCard";
 import ReportTimeCard from "./ReportTimeCard";
 const ReportDetailCard =lazy(()=> import("./ReportDetailCard"));
+
 class ReportDetailLeft extends Component {
   render() {
     const { customer } = this.props;
@@ -13,6 +14,7 @@ class ReportDetailLeft extends Component {
           <ReportDetailCard   handleIconClick={this.props.handleIconClick}
             activeIcon={this.props.activeIcon}
             buttonData={this.props.buttonData}
+            visibilityConditions={this.props.visibilityConditions}
             selectedCategory={this.props.selectedCategory}
             dropdownOptions={this.props.dropdownOptions}
             handleSelectChange={this.props.handleSelectChange}

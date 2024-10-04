@@ -38,6 +38,7 @@ class ReportDetails extends Component {
             handleSelectChange={this.props.handleSelectChange}
             handleButtonClick={this.props.handleButtonClick}
             buttonData={this.props.buttonData}
+            visibilityConditions={this.props.visibilityConditions}
                handleDropChange={this.props.handleDropChange} 
                selectedButtonIcon={this.props.selectedButtonIcon}
                handleButtonIcon={this.props.handleButtonIcon}
