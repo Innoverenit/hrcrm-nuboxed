@@ -194,6 +194,7 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
+              
                
               )}
 
@@ -213,7 +214,7 @@ const DashboardActionLeft = (props) => {
                     </Tooltip>
                   </span>
                
-             )}
+                  )}
 
               {user.repairInd === true &&  (
                
