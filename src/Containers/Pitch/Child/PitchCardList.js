@@ -68,7 +68,7 @@ const PitchCardList = (props) => {
           "278",//4 sector
           "14",//5 Category
           "1161",//6 shares
-          "589",//7 First Meeting
+          "164",//7 First Meeting
           "218",//8Value
            "76",//9 Assigned
            "1114",//10 qualify
@@ -210,40 +210,39 @@ const handleLoadMore2 = () => {
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-    <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-red-600  justify-center ">Hot</div>
-        <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
+    <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-red-600  justify-center ">Hot</div>
+        <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
        {translatedMenuItems[0]}  
                 {/* name */}           
                </div>
-        <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+        <div className=" w-[4.1rem] max-xl:w-[3rem]"></div>
+        <div className=" w-[6.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
         {translatedMenuItems[1]}
         {/* Mobile */}
-                </div>
-        <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
+                </div>      
+        <div className="w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
         {translatedMenuItems[2]} 
         {/* company */}
                 </div>
-                    <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
+                    <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
                     {translatedMenuItems[3]} 
                      {/* source */}
                 </div>
-                     <div className="w-[6.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+                     <div className="w-[7.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
                      {translatedMenuItems[4]}  
                      {/* sector */}
                 </div>
-                 <div className="w-[5.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
+                 <div className="w-[6.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
                  {translatedMenuItems[5]} 
                  {/* Category */}
           </div>
-          <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
+          <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
           {translatedMenuItems[6]}   {/* Shares # */}      
           </div>
-          <div className="w-[6.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
-          {translatedMenuItems[7]}  {/* First Meeting */}   
+          <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
+          1st {translatedMenuItems[7]}  {/* First Meeting */}   
           </div>
-          <div className="w-[5.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
+          <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
           {translatedMenuItems[8]}  
          {/* Value */}  
           </div>
@@ -269,7 +268,7 @@ const handleLoadMore2 = () => {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
-        height={"22vh"}
+        height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
@@ -302,7 +301,7 @@ const countryCode = item.countryAlpha2Code
                         <div>
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                       <div class="flex flex-row items-center w-[5rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                       <div class="flex flex-row items-center w-[3rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                         <div>
                                               <ButtonGroup>
                                               <RoleButton
@@ -350,7 +349,7 @@ const countryCode = item.countryAlpha2Code
                                                 </div>  
 
                                                 </div>  
-                                <div className=" flex   w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div className=" flex   w-[7rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                                 <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
                                             <div>
 
@@ -377,11 +376,9 @@ const countryCode = item.countryAlpha2Code
                                                &nbsp;
                                                {item.middleName}
                                                &nbsp;
-                                               {item.lastName}
-                                               {/* </Link> */}
-                                               &nbsp;&nbsp;
+                                               {item.lastName}                  
                                                {date === currentdate ? (
-                                                 <span class="text-[tomato] mt-[0.4rem] font-bold text-[0.65rem]" >
+                                                 <span class="text-[tomato] ml-1 font-bold text-[0.65rem]" >
                                                  {translatedMenuItems[14]}    {/* New */}
                                                  </span>
                                                ) : null}
@@ -397,6 +394,14 @@ const countryCode = item.countryAlpha2Code
       
     
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                <div className=" flex   w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
+                                  {/* Country */}
+                                  <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                  <CountryFlag1 countryCode={countryCode} />
+                      &nbsp;
+                      {countryCode}
+                                    </div>
+                              </div>
                 <div className=" flex   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* Phone #  */}
 
@@ -407,15 +412,8 @@ const countryCode = item.countryAlpha2Code
                 </div>
 
                        </div>
-                       <div className=" flex   w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
-                                  {/* Country */}
-                                  <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                  <CountryFlag1 countryCode={countryCode} />
-                      &nbsp;
-                      {countryCode}
-                                    </div>
-                              </div>
-                              <div className=" flex   w-[11.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                      
+                              <div className=" flex   w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                           {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "None"}
@@ -432,7 +430,7 @@ const countryCode = item.countryAlpha2Code
 </div>
 
                        </div>
-                       <div className=" flex   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex   w-[3.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                         {/*sector  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.sector || "None"}
@@ -440,14 +438,14 @@ const countryCode = item.countryAlpha2Code
 </div>
                        </div>
                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                       <div className=" flex  items-center w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                       <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Category */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {Category}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[5rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[4rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Share */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -462,14 +460,14 @@ const countryCode = item.countryAlpha2Code
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.shareCurrency} {item.valueOfShare}
                                     </div>
                                 </div>
-                       <div className=" flex   w-[4.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex   w-[2.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                    {/* Assigned */}
 
                                     <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -543,7 +541,7 @@ const countryCode = item.countryAlpha2Code
                   {" "}
                   <a href={`item.url`} target="_blank">
                     <ExploreIcon
-                    className="!text-icon cursor-pointer text-[green]"
+                    className="!text-icon cursor-pointer text-green-800"
                     />
                   </a>
                 </span>
@@ -560,7 +558,7 @@ const countryCode = item.countryAlpha2Code
                   props.handlePitchNotesDrawerModal(true);
                   handleSetCurrentLeadsId(item);
                 }}
-                className="!text-icon cursor-pointer text-[green]"
+                className="!text-icon cursor-pointer text-green-800"
               />
            </Tooltip>
 
@@ -589,7 +587,7 @@ const countryCode = item.countryAlpha2Code
           <Tooltip title={item.email}>
               <MailOutlineIcon
                 type="mail"
-                className="!text-icon cursor-pointer text-green-400"
+                className="!text-icon cursor-pointer text-green-800"
                 // onClick={() => {
                 //   handleSetCurrentLeadsId(item);
                 //   props.handleLeadsEmailDrawerModal(true);
@@ -638,77 +636,75 @@ const countryCode = item.countryAlpha2Code
       </div>
 
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-    <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] bg-orange-600 text-white  justify-center ">Warm</div>
-        <div className=" font-bold font-poppins text-xs w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] ">
-        {translatedMenuItems[0]}
-        {/* Name */}
-                </div>
-        <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className=" font-bold font-poppins text-xs w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[1]} 
-        {/* mobile# */}
-                </div>
-        <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="font-bold font-poppins text-xs w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
-        {translatedMenuItems[2]}
+    <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+    <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-orange-600  justify-center ">Warm</div>
+        <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
+       {translatedMenuItems[0]}  
+                {/* name */}           
+               </div>
+        <div className=" w-[4.1rem] max-xl:w-[3rem]"></div>
+        <div className=" w-[6.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+        {translatedMenuItems[1]}
+        {/* Mobile */}
+                </div>      
+        <div className="w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
+        {translatedMenuItems[2]} 
         {/* company */}
                 </div>
-                    <div className="font-bold font-poppins text-xs w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                    {translatedMenuItems[3]}
-                    {/* source */}
+                    <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
+                    {translatedMenuItems[3]} 
+                     {/* source */}
                 </div>
-                     <div className="font-bold font-poppins text-xs w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {translatedMenuItems[4]}
-                   {/* sector */}
+                     <div className="w-[7.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+                     {translatedMenuItems[4]}  
+                     {/* sector */}
                 </div>
-                 <div className="font-bold font-poppins text-xs w-[5.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+                 <div className="w-[6.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
                  {translatedMenuItems[5]} 
                  {/* Category */}
           </div>
-          <div className="font-bold font-poppins text-xs w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[6]}
-          {/* Shares # */}
+          <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
+          {translatedMenuItems[6]}   {/* Shares # */}      
           </div>
-          <div className="font-bold font-poppins text-xs w-[7.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[7]}
-          {/* Value */}
+          <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
+          1st {translatedMenuItems[7]}  {/* First Meeting */}   
           </div>
-        <div className="font-bold font-poppins text-xs w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[8]}
-          {/* Assigned */}
+          <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
+          {translatedMenuItems[8]}  
+         {/* Value */}  
           </div>
-        <div className="font-bold font-poppins text-xs w-[5.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[9]}       
-        {/* owner */}
-                </div>
-                {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+          {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             Score
           
             </div>
             )}
-        <div className="font-bold font-poppins text-xs w-[10.6rem] ml-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
+          {/* Assigned */}
+        {translatedMenuItems[9]}
+        </div> 
+       
+        <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem] font-bold font-poppins text-xs">
         {translatedMenuItems[10]} 
-        {/* qualify */}
+           {/* qualify */}
                 </div>
-
-
+          
       </div>
       <InfiniteScroll
-        dataLength={props.pitchDataWarm.length}
-        next={handleLoadMore1}
+        dataLength={props.pitchDataHot.length}
+        next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingPitchWarm?<div class="flex justify-center" >Loading...</div>:null}
-        height={"22vh"}
+        loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
+        height={"24vh"}
         style={{scrollbarWidth:"thin"}}
-         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-    { !props.fetchingPitchWarm && props.pitchDataWarm.length === 0 ?<NodataFoundPage />:props.pitchDataWarm.map((item,index) =>  {
+    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<NodataFoundPage />:props.pitchDataHot.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
- const countryCode = item.countryAlpha2Code 
+//  const countryCode = item.address[0].country_alpha2_code  
+const countryCode = item.countryAlpha2Code  
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -729,400 +725,412 @@ const countryCode = item.countryAlpha2Code
                  item.address && item.address.length && item.address[0].postalCode
                } `;
                     return (
-                      <div>
-                      <div
-          className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-        >
-                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                        <div>
+                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                       <div class="flex flex-row items-center w-[3rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                        <div>
+                                              <ButtonGroup>
+                                              <RoleButton
+                                              type="Hot"
+                                              iconType="fas fa-mug-hot"
+                                              // tooltip="Hot"
+                                              tooltip= {translatedMenuItems[11]} 
+                                              role={item.type}
+                                              onClick={() =>{
+                                              const typ="Hot"
+                                              props.updateTypeForPitch(item.investorLeadsId,typ)
+                                              }}
+                                                />
+                                                </ButtonGroup>
+                                                </div>
+                                                <div><ButtonGroup>
+                                                <RoleButton1
+                                                type="Warm"
+                                                iconType="	fas fa-burn"
+                                                // tooltip="Warm"
+                                                tooltip= {translatedMenuItems[12]} 
+                                                role={item.type}
+                                                onClick={() =>{
+                                                const typ="Warm"
+                                                props.updateTypeForPitch(item.investorLeadsId,typ)
+                                                }}
+                                                />
+                                                </ButtonGroup></div>
+                                                <div>
+                                                <ButtonGroup>
+                                                <RoleButton2
+                                                type="Cold"
+                                                iconType="far fa-snowflake"
+                                                // tooltip="Cold"
+                                                tooltip= {translatedMenuItems[13]} 
+                                                role={item.type}
+                                                onClick={() => {
+                                                const typ="Cold"
+                                                props.updateTypeForPitch(item.investorLeadsId,typ)
+                                                }}
+                                                />
+                                                </ButtonGroup>
+                                                </div>
 
-                                <div class="flex flex-row items-center w-[5.rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                                </div>  
 
-<div>
-<ButtonGroup>
-<RoleButton
-type="Hot"
-iconType="fas fa-mug-hot"
-// tooltip="Hot"
-tooltip= {translatedMenuItems[11]} 
-role={item.type}
-onClick={() =>{
-const typ="Hot"
-props.updateTypeForPitch(item.investorLeadsId,typ)
-}}
-/>
-</ButtonGroup>
+                                                </div>  
+                                <div className=" flex   w-[7rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+                                            <div>
+
+                                                        <MultiAvatar
+                                                          primaryTitle={item.name}
+                                                          imageId={item.imageId}
+                                                          imageURL={item.imageURL}
+                                                          imgWidth={"1.8rem"}
+                                                          imgHeight={"1.8rem"}
+                                                        />
+                                                      
+                                            </div>
+                                  
+                                   <div class="flex max-sm:justify-start max-sm:w-wk items-center">
+                                        <div class="max-sm:w-full ml-1" >
+                                        <Tooltip>
+                                          <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
+                                                                {/* Name
+                                          */}
+                                            <div class=" text-xs max-sm:text-xs flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
+                                                      {/* {/* <Link */}
+                                              
+                                               {item.firstName}
+                                               &nbsp;
+                                               {item.middleName}
+                                               &nbsp;
+                                               {item.lastName}                  
+                                               {date === currentdate ? (
+                                                 <span class="text-[tomato] ml-1 font-bold text-[0.65rem]" >
+                                                 {translatedMenuItems[14]}    {/* New */}
+                                                 </span>
+                                               ) : null}
+                                              
+                                                    </div>
+                                            </div>
+                                        </Tooltip>
+                                        </div>
 </div>
-<div><ButtonGroup>
-<RoleButton1
-type="Warm"
-iconType="	fas fa-burn"
-// tooltip="Warm"
-tooltip= {translatedMenuItems[12]} 
-role={item.type}
-onClick={() =>{
-const typ="Warm"
-props.updateTypeForPitch(item.investorLeadsId,typ)
-}}
-/>
-</ButtonGroup></div>
-<div>
-<ButtonGroup>
-<RoleButton2
-type="Cold"
-iconType="far fa-snowflake"
-// tooltip="Cold"
-tooltip= {translatedMenuItems[13]} 
-role={item.type}
-onClick={() => {
-const typ="Cold"
-props.updateTypeForPitch(item.investorLeadsId,typ)
-}}
-/>
-</ButtonGroup>
-</div>
 
-</div>  
-
-
-                          <div className=" flex   w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
-                          <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
-<div>
-
-      <MultiAvatar
-        primaryTitle={item.name}
-        imageId={item.imageId}
-        imageURL={item.imageURL}
-        imgWidth={"1.8rem"}
-        imgHeight={"1.8rem"}
-      />
+                                        </div>
+                                </div>
+      
     
+                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                <div className=" flex   w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
+                                  {/* Country */}
+                                  <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                  <CountryFlag1 countryCode={countryCode} />
+                      &nbsp;
+                      {countryCode}
+                                    </div>
+                              </div>
+                <div className=" flex   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                           {/* Phone #  */}
+
+                <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                  {item.countryDialCode && item.phoneNumber
+                    ? `${item.countryDialCode} ${item.phoneNumber}`
+                    : 'None'}
+                </div>
+
+                       </div>
+                      
+                              <div className=" flex   w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                          {/* Company  */}
+                           <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           {item.companyName || "None"}
 </div>
-          <div class="max-sm:w-full ml-1" >
-                                  <Tooltip>
-                                    <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
+
+                       </div>
+                             
+                            
+                      
+                       <div className=" flex   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                            {/* Source */}
+                           <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           {item.source || "None"}
+</div>
+
+                       </div>
+                       <div className=" flex   w-[3.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                        {/*sector  */}
+                           <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           {item.sector || "None"}
+</div>
+</div>
+                       </div>
+                       <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                       <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* # Category */}
+
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {Category}
+                                    </div>
+                                </div>
+                                <div className=" flex  items-center w-[4rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* # Share */}
+
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.unitOfShare}
+                                    </div>
+                                </div>
+                                <div className=" flex  items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                  {/* # Value */}
+
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                   
+                                    {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
+                                    </div>
+                                </div>
+                                <div className=" flex  items-center w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* # Deals */}
+
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.shareCurrency} {item.valueOfShare}
+                                    </div>
+                                </div>
+                       <div className=" flex   w-[2.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                                   {/* Assigned */}
+
+                                    <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     
-                                      <div class=" text-xs max-sm:text-xs flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
-                                          
-                                       
-                                         {item.firstName}
-                                         &nbsp;
-                                         {item.middleName}
-                                         &nbsp;
-                                         {item.lastName}
-                                         {/* </Link> */}
-                                         &nbsp;&nbsp;
-                                         {date === currentdate ? (
-                                           <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold" >
-                                           {translatedMenuItems[14]}    {/* New */}
-                                           </span>
-                                         ) : null}
-                                        
-                                                                             </div>
-                                      </div>
-                                  </Tooltip>
-                                  </div>
-                                  </div>
-                          </div>
+                                    <span>
+                      {item.assignedTo === null ? (
+                "None"
+              ) : (
+                <>
+                {item.assignedTo === item.ownerName ? (
+                  
+                  null
+                ) : (
+                  <Tooltip title={item.assignedTo}> 
+                          <MultiAvatar
+                            primaryTitle={item.assignedTo}
+                            imgWidth={"1.8rem"}
+                            imgHeight={"1.8rem"}
+                          />
+                              </Tooltip>
+                        )}
+                        </>
+              )}
+                      </span>     
 
-</div>  
-                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
-                   {/* Phone #  */}
-
-                     <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-{item.countryDialCode && item.phoneNumber
-? `${item.countryDialCode} ${item.phoneNumber}`
-: 'None'}
-</div>
-                 </div>
-                 <div className=" flex   w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                           
-                           {/* Country */}
-                            <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <CountryFlag1 countryCode={countryCode} />
-                &nbsp;
-                {countryCode}
-                              </div>
-                        </div>
-                        <div className=" flex   w-[11.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
-                  {/* Company  */}
-                     <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.companyName || "None"}
-</div>
-                 </div>
-                        </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                
-                 <div className=" flex    w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      {/* Company  */}
-                     <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.source || "None"}
-</div>
-                 </div>
-                 <div className=" flex   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                     {/* Company  */}
-                     <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.sector || "None"}
-</div>
-
-                 </div>
-                 <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                         {/* Deals */}
-                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {Category}
-                              </div>
-                          </div>
-                          <div className=" flex items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                               {/* Deals */}
-
-                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.unitOfShare}
-                              </div>
-                          </div>
-                          <div className=" flex  items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                             {/* # Deals */}
-
-                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.valueOfShare}
-                              </div>
-                          </div>
-                 <div className=" flex w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
-                           {/* Assigned */}
-
-                              <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                              
-                              <span>
-                {item.assignedTo === null ? (
-          "None"
-        ) : (
-          <>
-          {item.assignedTo === item.ownerName ? (
-            
-            null
-          ) : (
-            <Tooltip title={item.assignedTo}> 
-                    <MultiAvatar
-                      primaryTitle={item.assignedTo}
-                      imgWidth={"1.8rem"}
-                      imgHeight={"1.8rem"}
-                    />
-                        </Tooltip>
-                  )}
-                  </>
-        )}
-                </span>
-       
-                              </div>
-                          </div>
-                          
-                          </div>
-                          
-                          
-                          {props.user.aiInd && (
+                         </div>
+                      </div>                            
+                   </div>                                                                              
+                   {props.user.aiInd && (
            <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            {item.noteScoreInd}
+           {item.noteScoreInd}
           
             </div>
-            )}      
-                            <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                            <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                              <div>
-                              {item.companyName ? 
-                              (
-                                <Tooltip title= {translatedMenuItems[16]} >
-                                  <ConnectWithoutContactIcon
-                                    className="!text-icon cursor-not-allowed text-gray-400"
-                                  />
-                                </Tooltip>
-                              ):
-                              (
-                              <Tooltip title= {translatedMenuItems[15]} >
-                  <ConnectWithoutContactIcon
-                    onClick={() => {
-                      handleRowData(item);
-                      props.handlePitchConvertModal(true);
-                   
-                    }}
-                    className="!text-icon cursor-pointer text-[blue]"
-                  />
-                </Tooltip>
-                  )  }
-</div>   
-</div>    
-<div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
-              {item.url !== null ? (
-        <Tooltip title={item.url}>
-          <span className=" cursor-pointer"
-            //type="edit"
-           
-            onClick={() => {}}
-          >
-            {" "}
-            <a href={`item.url`} target="_blank">
-              <ExploreIcon
-              className="!text-icon cursor-pointer text-[green]"
-              />
-            </a>
-          </span>
-        </Tooltip>
-      ) : null}
-                  </div>  
-    
+            )}
+                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                   <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                                  {/* Qualif */}                                                      
+                                    <div>
+                                    {item.companyName ?
+                                     (
+                                      <Tooltip title= {translatedMenuItems[16]} >
+                                        <ConnectWithoutContactIcon
+                                          className="!text-icon cursor-not-allowed text-gray-400"
+                                        />
+                                      </Tooltip>
+                                    ):
+                                    
+                                    (
+                                      
+                                    <Tooltip title= {translatedMenuItems[15]} >
+                        <ConnectWithoutContactIcon
+                          onClick={() => {
+                            handleRowData(item);
+                            props.handlePitchConvertModal(true);
+                         
+                          }}
+                          className="!text-icon cursor-pointer text-[blue]"
+                        />
+                      </Tooltip>
+                        ) }
 
-                  <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">                               
-             <div >
-                        <Tooltip title= {translatedMenuItems[17]} >
-                        <NoteAltIcon
-                    onClick={() => {
-                      props.handlePitchNotesDrawerModal(true);
-                      handleSetCurrentLeadsId(item);
-                    }}
-                    className="!text-icon cursor-pointer text-[green]"
-                  />
+</div>
+                                </div>  
+                                <div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
+                    {item.url !== null ? (
+              <Tooltip title={item.url}>
+                <span className=" cursor-pointer"
+                  //type="edit"             
+                  onClick={() => {}}
+                >
+                  {" "}
+                  <a href={`item.url`} target="_blank">
+                    <ExploreIcon
+                    className="!text-icon cursor-pointer text-green-800"
+                    />
+                  </a>
+                </span>
               </Tooltip>
-      </div>
-    
-      <div>
-                  <Tooltip
-                    title= {translatedMenuItems[18]} 
-                  >
-                 <HourglassFullIcon className="text-[#edf67d] !text-icon cursor-pointer" 
+            ) : null}
+                        </div>  
+                              
+          
+     <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">
+    <div >
+                    <Tooltip title= {translatedMenuItems[17]} >
+       <NoteAltIcon
+                onClick={() => {
+                  props.handlePitchNotesDrawerModal(true);
+                  handleSetCurrentLeadsId(item);
+                }}
+                className="!text-icon cursor-pointer text-green-800"
+              />
+           </Tooltip>
+
+            </div>
+            
+            <div>
+<Tooltip
+        title= {translatedMenuItems[18]} 
+      >
+                   <HourglassFullIcon className="text-[#edf67d] !text-icon cursor-pointer" 
                                    onClick={()=>{
                     props.handleAssimodal(true)
                     handleRowData(item)
                     }}
-                />
+              />
                   </Tooltip>
-       </div>
-      <div>
-                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-            <span class="cursor-pointer" >
-            <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
-            </span>
-          </Tooltip>
-      </div>
-    <div>
-    <Tooltip title={item.email}>
-        <MailOutlineIcon
-          type="mail"
-          className="!text-icon cursor-pointer text-green-400"
-          // onClick={() => {
-          //   handleSetCurrentLeadsId(item);
-          //   props.handleLeadsEmailDrawerModal(true);
-          // }}
-        />
-      </Tooltip>
-      </div>
-     
-      {user.imInd === true  &&  user.pitchUpdateInd === true && (  
-                          <div>
-      <Tooltip title= {translatedMenuItems[19]} >
-        <BorderColorIcon
-          className="!text-icon cursor-pointer text-[tomato]"
-          onClick={() => {
-             props.setEditPitch(item);
-             props.handleUpdatePitchModal(true);
-          handleSetCurrentLeadsId(item);
-            
-          }}
-        />
-      </Tooltip>
-  
-      </div>
-                          )}                   
+                  </div>
                   <div>
+                                <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
+                        <span class="cursor-pointer" >
+                        <AddLocationAltIcon   className="!text-icon cursor-pointer text-[#8e4bc0]"/>
+                        </span>
+                      </Tooltip>
+                      </div>
+          <div>
+          <Tooltip title={item.email}>
+              <MailOutlineIcon
+                type="mail"
+                className="!text-icon cursor-pointer text-green-800"
+                // onClick={() => {
+                //   handleSetCurrentLeadsId(item);
+                //   props.handleLeadsEmailDrawerModal(true);
+                // }}
+              />
+            </Tooltip> </div>
+           
+            {user.imInd === true  &&  user.pitchUpdateInd === true && (  
+                                <div>
+            <Tooltip title= {translatedMenuItems[19]} >
+              <BorderColorIcon
+                className="!text-icon cursor-pointer text-[tomato]"
+                onClick={() => {
+                   props.setEditPitch(item);
+                   props.handleUpdatePitchModal(true);
+                handleSetCurrentLeadsId(item);
+                  
+                }}
+              />
+            </Tooltip>      
+            </div>
+                                )}                         
+                        <div>
 
-                  <StyledPopconfirm
-      title={translatedMenuItems[20]} 
-      onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
-    > <Tooltip title= {translatedMenuItems[21]} >
-       {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
-      <DeleteOutlined
-        type="delete"
-        className="!text-icon text-[red] cursor-pointer"
-        
-      />
-       )} 
-       </Tooltip>
-    </StyledPopconfirm>
-                  </div>                          
-              </div>
-          </div>
-                </div>
-                      </div>                       
+                        <StyledPopconfirm
+            title= {translatedMenuItems[20]} 
+            onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
+          > <Tooltip title= {translatedMenuItems[21]} >
+             {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
+            <DeleteOutlined
+              type="delete"
+              className="!text-icon text-[red] cursor-pointer"
+              
+            />
+             )} 
+             </Tooltip>
+          </StyledPopconfirm>
+                        </div>
+                        </div>     
+                      </div>
+                   </div>
+                    </div>
                     )
                 })}
                   </InfiniteScroll>
       </div>
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-    <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] bg-blue-600 text-white justify-center ">Cold</div>
-        <div className="font-bold font-poppins text-xs w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] ">
-        {translatedMenuItems[0]} 
-        {/* name */}
-                </div>
-        <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className="font-bold font-poppins text-xs w-[7.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[1]} 
-        {/* mobile# */}
-                </div>
-        <div className="w-[1.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" font-bold font-poppins text-xs w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+    <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-blue-600  justify-center ">Cold</div>
+        <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
+       {translatedMenuItems[0]}  
+                {/* name */}           
+               </div>
+        <div className=" w-[4.1rem] max-xl:w-[3rem]"></div>
+        <div className=" w-[6.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+        {translatedMenuItems[1]}
+        {/* Mobile */}
+                </div>      
+        <div className="w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
         {translatedMenuItems[2]} 
         {/* company */}
                 </div>
-                    <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                    {translatedMenuItems[3]}   
-                    {/* source */}
+                    <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
+                    {translatedMenuItems[3]} 
+                     {/* source */}
                 </div>
-                     <div className=" font-bold font-poppins text-xs w-[6.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     <div className="w-[7.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
                      {translatedMenuItems[4]}  
                      {/* sector */}
                 </div>
-                 <div className=" font-bold font-poppins text-xs w-[5.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                 {translatedMenuItems[5]}  
-                 {/* category */}
+                 <div className="w-[6.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
+                 {translatedMenuItems[5]} 
+                 {/* Category */}
           </div>
-          <div className="font-bold font-poppins text-xs w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[6]}  
-          {/* Shares # */}
+          <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
+          {translatedMenuItems[6]}   {/* Shares # */}      
           </div>
-          <div className="font-bold font-poppins text-xs w-[10.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[7]}  
-          {/* Value */}
+          <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
+          1st {translatedMenuItems[7]}  {/* First Meeting */}   
           </div>
-        <div className="font-bold font-poppins text-xs w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[8]}  
-          {/* Assigned */}
+          <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
+          {translatedMenuItems[8]}  
+         {/* Value */}  
           </div>
           {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             Score
           
             </div>
             )}
-              <div className="font-bold font-poppins text-xs w-[4.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[9]}       
-        {/* owner */}
-                </div>
-        <div className="font-bold font-poppins text-xs w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
+          {/* Assigned */}
+        {translatedMenuItems[9]}
+        </div> 
+       
+        <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem] font-bold font-poppins text-xs">
         {translatedMenuItems[10]} 
-        {/* qualify */}
+           {/* qualify */}
                 </div>
+          
       </div>
       <InfiniteScroll
-        dataLength={props.pitchDataCold.length}
-        next={handleLoadMore2}
+        dataLength={props.pitchDataHot.length}
+        next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingPitchCold?<div class="flex justify-center" >Loading...</div>:null}
-        height={"22vh"}
+        loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
+        height={"24vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-    { !props.fetchingPitchCold && props.pitchDataCold.length === 0 ?<NodataFoundPage />:props.pitchDataCold.map((item,index) =>  {
+    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<NodataFoundPage />:props.pitchDataHot.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
- const countryCode = item.countryAlpha2Code 
+//  const countryCode = item.address[0].country_alpha2_code  
+const countryCode = item.countryAlpha2Code  
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
@@ -1143,312 +1151,338 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                  item.address && item.address.length && item.address[0].postalCode
                } `;
                     return (
-                      <div>
-                      <div
-          className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-        >
-                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div class="flex flex-row items-center w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
-<div>
-<ButtonGroup>
-<RoleButton
-type="Hot"
-iconType="fas fa-mug-hot"
-// tooltip="Hot"
-tooltip= {translatedMenuItems[11]} 
-role={item.type}
-onClick={() =>{
-const typ="Hot"
-props.updateTypeForPitch(item.investorLeadsId,typ)
-}}
-/>
-</ButtonGroup>
-</div>
-<div><ButtonGroup>
-<RoleButton1
-type="Warm"
-iconType="	fas fa-burn"
-// tooltip="Warm"
-tooltip= {translatedMenuItems[12]} 
-role={item.type}
-onClick={() =>{
-const typ="Warm"
-props.updateTypeForPitch(item.investorLeadsId,typ)
-}}
-/>
-</ButtonGroup></div>
-<div>
-<ButtonGroup>
-<RoleButton2
-type="Cold"
-iconType="far fa-snowflake"
-// tooltip="Cold"
-tooltip= {translatedMenuItems[13]}
- 
-role={item.type}
-onClick={() => {
-const typ="Cold"
-props.updateTypeForPitch(item.investorLeadsId,typ)
-}}
-/>
-</ButtonGroup>
+                        <div>
+                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                       <div class="flex flex-row items-center w-[3rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                        <div>
+                                              <ButtonGroup>
+                                              <RoleButton
+                                              type="Hot"
+                                              iconType="fas fa-mug-hot"
+                                              // tooltip="Hot"
+                                              tooltip= {translatedMenuItems[11]} 
+                                              role={item.type}
+                                              onClick={() =>{
+                                              const typ="Hot"
+                                              props.updateTypeForPitch(item.investorLeadsId,typ)
+                                              }}
+                                                />
+                                                </ButtonGroup>
+                                                </div>
+                                                <div><ButtonGroup>
+                                                <RoleButton1
+                                                type="Warm"
+                                                iconType="	fas fa-burn"
+                                                // tooltip="Warm"
+                                                tooltip= {translatedMenuItems[12]} 
+                                                role={item.type}
+                                                onClick={() =>{
+                                                const typ="Warm"
+                                                props.updateTypeForPitch(item.investorLeadsId,typ)
+                                                }}
+                                                />
+                                                </ButtonGroup></div>
+                                                <div>
+                                                <ButtonGroup>
+                                                <RoleButton2
+                                                type="Cold"
+                                                iconType="far fa-snowflake"
+                                                // tooltip="Cold"
+                                                tooltip= {translatedMenuItems[13]} 
+                                                role={item.type}
+                                                onClick={() => {
+                                                const typ="Cold"
+                                                props.updateTypeForPitch(item.investorLeadsId,typ)
+                                                }}
+                                                />
+                                                </ButtonGroup>
+                                                </div>
+
+                                                </div>  
+
+                                                </div>  
+                                <div className=" flex   w-[7rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+                                            <div>
+
+                                                        <MultiAvatar
+                                                          primaryTitle={item.name}
+                                                          imageId={item.imageId}
+                                                          imageURL={item.imageURL}
+                                                          imgWidth={"1.8rem"}
+                                                          imgHeight={"1.8rem"}
+                                                        />
+                                                      
+                                            </div>
+                                  
+                                   <div class="flex max-sm:justify-start max-sm:w-wk items-center">
+                                        <div class="max-sm:w-full ml-1" >
+                                        <Tooltip>
+                                          <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
+                                                                {/* Name
+                                          */}
+                                            <div class=" text-xs max-sm:text-xs flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
+                                                      {/* {/* <Link */}
+                                              
+                                               {item.firstName}
+                                               &nbsp;
+                                               {item.middleName}
+                                               &nbsp;
+                                               {item.lastName}                  
+                                               {date === currentdate ? (
+                                                 <span class="text-[tomato] ml-1 font-bold text-[0.65rem]" >
+                                                 {translatedMenuItems[14]}    {/* New */}
+                                                 </span>
+                                               ) : null}
+                                              
+                                                    </div>
+                                            </div>
+                                        </Tooltip>
+                                        </div>
 </div>
 
-</div>  
-
-
-                          <div className=" flex   w-[10rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
-                          <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
-<div>
-
-      <MultiAvatar
-        primaryTitle={item.name}
-        imageId={item.imageId}
-        imageURL={item.imageURL}
-        imgWidth={"1.8rem"}
-        imgHeight={"1.8rem"}
-      /> 
-</div>
-                             <div >
-                             </div>
-                                  <div class="max-sm:w-full ml-1" >
-                                  <Tooltip>
-                                    <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">                           
-                                      {/* Name   */}
-                                      <div class=" text-xs max-sm:text-xs flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">                                                  
-                                         {item.firstName}
-                                         &nbsp;
-                                         {item.middleName}
-                                         &nbsp;
-                                         {item.lastName}
-                                         {/* </Link> */}
-                                         &nbsp;&nbsp;
-                                         {date === currentdate ? (
-                                           <span class="text-[tomato]  text-[0.65rem ]mt-[0.4rem] font-bold" >
-                                             {translatedMenuItems[14]}  {/* New */}
-                                           </span>
-                                         ) : null}          
-                                                      </div>
-                                      </div>
-                                  </Tooltip>
-                                  </div>
-                                  </div>
-                          </div>
-</div>  
-                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex   w-[6rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
-                  {/* Phone #  */}
-                     <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-{item.countryDialCode && item.phoneNumber
-? `${item.countryDialCode} ${item.phoneNumber}`
-: 'None'}
-</div>
-                 </div>
-                 <div className=" flex  w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                      
-                         {/* Country */}
-                            <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <CountryFlag1 countryCode={countryCode} />
-                &nbsp;
-                {countryCode}
+                                        </div>
+                                </div>
+      
+    
+                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                <div className=" flex   w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
+                                  {/* Country */}
+                                  <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                  <CountryFlag1 countryCode={countryCode} />
+                      &nbsp;
+                      {countryCode}
+                                    </div>
                               </div>
-                        </div>
-                        <div className=" flex   w-[9.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
-                     {/* Company */}
-                     <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.companyName || "None"}
-</div>
-                 </div>
-                        </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                
-                 <div className=" flex  w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-{/* source  */}
-                     <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.source || "None"}
-</div>
+                <div className=" flex   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                           {/* Phone #  */}
 
-                 </div>
-                 <div className=" flex    w-[6.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                  {/* sector */}
-                     <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {item.sector || "None"}
+                <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                  {item.countryDialCode && item.phoneNumber
+                    ? `${item.countryDialCode} ${item.phoneNumber}`
+                    : 'None'}
+                </div>
+
+                       </div>
+                      
+                              <div className=" flex   w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                          {/* Company  */}
+                           <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           {item.companyName || "None"}
 </div>
 
-                 </div>
-                 <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            {/* #category */}
+                       </div>
+                             
+                            
+                      
+                       <div className=" flex   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                            {/* Source */}
+                           <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           {item.source || "None"}
+</div>
 
-                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {Category}
-                              </div>
-                          </div>
-                          <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                             {/* #share */}
+                       </div>
+                       <div className=" flex   w-[3.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                        {/*sector  */}
+                           <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           {item.sector || "None"}
+</div>
+</div>
+                       </div>
+                       <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                       <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* # Category */}
 
-                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.unitOfShare}
-                              </div>
-                          </div>
-                          <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                              {/* # Deals */}
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {Category}
+                                    </div>
+                                </div>
+                                <div className=" flex  items-center w-[4rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* # Share */}
 
-                              <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
-                              </div>
-                          </div>
-                 <div className=" flex   w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
-                             {/* Assigned */}
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.unitOfShare}
+                                    </div>
+                                </div>
+                                <div className=" flex  items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                  {/* # Value */}
 
-                              <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                              
-                              <span>
-                {item.assignedTo === null ? (
-          "None"
-        ) : (
-          <>
-          {item.assignedTo === item.ownerName ? (
-            
-            null
-          ) : (
-            <Tooltip title={item.assignedTo}> 
-                    <MultiAvatar
-                      primaryTitle={item.assignedTo}
-                      imgWidth={"1.8rem"}
-                      imgHeight={"1.8rem"}
-                    />
-                        </Tooltip>
-                  )}
-                  </>
-        )}
-                </span>
-       
-                              </div>
-                          </div>
-                         </div>   
-                         {props.user.aiInd && (
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                   
+                                    {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
+                                    </div>
+                                </div>
+                                <div className=" flex  items-center w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* # Deals */}
+
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.shareCurrency} {item.valueOfShare}
+                                    </div>
+                                </div>
+                       <div className=" flex   w-[2.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                                   {/* Assigned */}
+
+                                    <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    
+                                    <span>
+                      {item.assignedTo === null ? (
+                "None"
+              ) : (
+                <>
+                {item.assignedTo === item.ownerName ? (
+                  
+                  null
+                ) : (
+                  <Tooltip title={item.assignedTo}> 
+                          <MultiAvatar
+                            primaryTitle={item.assignedTo}
+                            imgWidth={"1.8rem"}
+                            imgHeight={"1.8rem"}
+                          />
+                              </Tooltip>
+                        )}
+                        </>
+              )}
+                      </span>     
+
+                         </div>
+                      </div>                            
+                   </div>                                                                              
+                   {props.user.aiInd && (
            <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            {item.noteScoreInd}
+           {item.noteScoreInd}
           
             </div>
-            )}       
-                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                         <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                  <div>
-                              {item.companyName ?   (
-                    <Tooltip title= {translatedMenuItems[16]} >
-                      <ConnectWithoutContactIcon
-                        className="!text-icon cursor-not-allowed text-gray-400"
-                      />
-                    </Tooltip>
-                  ):(
-                    <Tooltip title= {translatedMenuItems[15]} >
-        <ConnectWithoutContactIcon
-          onClick={() => {
-            handleRowData(item);
-            props.handlePitchConvertModal(true);
-         
-          }}
-          className="!text-icon cursor-pointer text-[blue]"
-        />
-      </Tooltip>
-        )
-                  }
-</div>  
-</div>  
-<div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
-              {item.url !== null ? (
-        <Tooltip title={item.url}>
-          <span className=" cursor-pointer"
-            //type="edit"
-           
-            onClick={() => {}}
-          >
-            {" "}
-            <a href={`item.url`} target="_blank">
-              <ExploreIcon
-              className="!text-icon cursor-pointer text-[green]"
-              />
-            </a>
-          </span>
-        </Tooltip>
-      ) : null}
-                  </div>      
-                  <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">
-                   <div >
-                              <Tooltip title= {translatedMenuItems[17]} >
-                        <NoteAltIcon
+            )}
+                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                   <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                                  {/* Qualif */}                                                      
+                                    <div>
+                                    {item.companyName ?
+                                     (
+                                      <Tooltip title= {translatedMenuItems[16]} >
+                                        <ConnectWithoutContactIcon
+                                          className="!text-icon cursor-not-allowed text-gray-400"
+                                        />
+                                      </Tooltip>
+                                    ):
+                                    
+                                    (
+                                      
+                                    <Tooltip title= {translatedMenuItems[15]} >
+                        <ConnectWithoutContactIcon
                           onClick={() => {
-                            props.handlePitchNotesDrawerModal(true);
-                            handleSetCurrentLeadsId(item);
+                            handleRowData(item);
+                            props.handlePitchConvertModal(true);
+                         
                           }}
-                          className="!text-icon cursor-pointer text-[green]"
+                          className="!text-icon cursor-pointer text-[blue]"
                         />
-                    </Tooltip>
-                    </div>
-                    
-      <div>
-                <Tooltip
-                  title= {translatedMenuItems[18]} 
+                      </Tooltip>
+                        ) }
+
+</div>
+                                </div>  
+                                <div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
+                    {item.url !== null ? (
+              <Tooltip title={item.url}>
+                <span className=" cursor-pointer"
+                  //type="edit"             
+                  onClick={() => {}}
                 >
-              <HourglassFullIcon className="text-[#edf67d] !text-icon cursor-pointer"
+                  {" "}
+                  <a href={`item.url`} target="_blank">
+                    <ExploreIcon
+                    className="!text-icon cursor-pointer text-green-800"
+                    />
+                  </a>
+                </span>
+              </Tooltip>
+            ) : null}
+                        </div>  
+                              
+          
+     <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">
+    <div >
+                    <Tooltip title= {translatedMenuItems[17]} >
+       <NoteAltIcon
+                onClick={() => {
+                  props.handlePitchNotesDrawerModal(true);
+                  handleSetCurrentLeadsId(item);
+                }}
+                className="!text-icon cursor-pointer text-green-800"
+              />
+           </Tooltip>
+
+            </div>
+            
+            <div>
+<Tooltip
+        title= {translatedMenuItems[18]} 
+      >
+                   <HourglassFullIcon className="text-[#edf67d] !text-icon cursor-pointer" 
                                    onClick={()=>{
                     props.handleAssimodal(true)
                     handleRowData(item)
                     }}
               />
-                </Tooltip>
-      </div>
-         <div>
-              <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-      <span class="cursor-pointer" >
-      <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
-      </span>
-    </Tooltip>
-    </div>
-    <div>
-    <Tooltip title={item.email}>
-        <MailOutlineIcon
-          type="mail"
-          className="!text-icon cursor-pointer text-green-400"
-          // onClick={() => {
-          //   handleSetCurrentLeadsId(item);
-          //   props.handleLeadsEmailDrawerModal(true);
-          // }}
-        />
-      </Tooltip> </div>   
-      {user.imInd === true  &&  user.pitchUpdateInd === true && (  
-                          <div>
-      <Tooltip title= {translatedMenuItems[19]} >
-        <BorderColorIcon
-          className="!text-icon cursor-pointer text-[tomato]"
-          onClick={() => {
-             props.setEditPitch(item);
-             props.handleUpdatePitchModal(true);
-          handleSetCurrentLeadsId(item);       
-          }}
-        />
-      </Tooltip>
-      </div>
-                          )}                        
+                  </Tooltip>
+                  </div>
                   <div>
-                  <StyledPopconfirm
-      title= {translatedMenuItems[20]} 
-      onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
-    > <Tooltip title= {translatedMenuItems[21]} >
-       {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
-      <DeleteOutlined
-        type="delete"
-        className="!text-icon text-[red] cursor-pointer"       
-      />
-       )} 
-       </Tooltip>
-    </StyledPopconfirm>
-                  </div>               
-              </div>
-             
-              </div>
-                </div>
-                      </div>                   
+                                <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
+                        <span class="cursor-pointer" >
+                        <AddLocationAltIcon   className="!text-icon cursor-pointer text-[#8e4bc0]"/>
+                        </span>
+                      </Tooltip>
+                      </div>
+          <div>
+          <Tooltip title={item.email}>
+              <MailOutlineIcon
+                type="mail"
+                className="!text-icon cursor-pointer text-green-800"
+                // onClick={() => {
+                //   handleSetCurrentLeadsId(item);
+                //   props.handleLeadsEmailDrawerModal(true);
+                // }}
+              />
+            </Tooltip> </div>
+           
+            {user.imInd === true  &&  user.pitchUpdateInd === true && (  
+                                <div>
+            <Tooltip title= {translatedMenuItems[19]} >
+              <BorderColorIcon
+                className="!text-icon cursor-pointer text-[tomato]"
+                onClick={() => {
+                   props.setEditPitch(item);
+                   props.handleUpdatePitchModal(true);
+                handleSetCurrentLeadsId(item);
+                  
+                }}
+              />
+            </Tooltip>      
+            </div>
+                                )}                         
+                        <div>
+
+                        <StyledPopconfirm
+            title= {translatedMenuItems[20]} 
+            onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
+          > <Tooltip title= {translatedMenuItems[21]} >
+             {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
+            <DeleteOutlined
+              type="delete"
+              className="!text-icon text-[red] cursor-pointer"
+              
+            />
+             )} 
+             </Tooltip>
+          </StyledPopconfirm>
+                        </div>
+                        </div>     
+                      </div>
+                   </div>
+                    </div>
                     )
                 })}
                   </InfiniteScroll>

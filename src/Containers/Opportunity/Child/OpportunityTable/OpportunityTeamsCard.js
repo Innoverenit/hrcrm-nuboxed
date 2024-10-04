@@ -243,7 +243,7 @@ function OpportunityTeamsCard(props) {
         hasMore={hasMore}
         loader={fetchingTeamOpportunity?<div class="flex justify-center" >Loading...</div> :null}
         style={{scrollbarWidth:"thin"}}
-        height={"80vh"}
+        height={"83vh"}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
      
@@ -470,7 +470,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                
                   <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div> 
                  

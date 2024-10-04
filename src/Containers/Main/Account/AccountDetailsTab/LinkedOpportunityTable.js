@@ -124,7 +124,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingQuotationRepairOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"33vh"}
+                        height={"34vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
                         {props.quotationRepairOrder.length ?
@@ -201,7 +201,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
@@ -290,7 +290,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                         next={handleLoadMoreMedium}
                         hasMore={hasMore}
                         loader={props.fetchingQuotationProcureOrder ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"33vh"}
+                        height={"34vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
                         {props.quotationProcureOrder.length ?
@@ -366,7 +366,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>

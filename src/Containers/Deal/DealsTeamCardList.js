@@ -161,7 +161,7 @@ const DealsTeamCardList = (props) => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={fetchingTeamsDealsData ? <div class="flex justify-center">Loading...</div> : null}
-          height={"80vh"}
+          height={"83vh"}
           endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
           style={{scrollbarWidth:"thin"}}
         >

@@ -296,7 +296,7 @@ if (loading) {
             next={handleLoadMore}
             hasMore={hasMore}
             loader={fetchingCustomers || fetchingCustomerPagination ? <div class="flex justify-center">Loading...</div> : null}
-            height={"80vh"}
+            height={"83vh"}
             style={{ scrollbarWidth:"thin"}}
           >
 

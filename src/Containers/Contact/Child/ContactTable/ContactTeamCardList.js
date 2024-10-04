@@ -194,29 +194,30 @@ if (loading) {
        
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[100%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent  sticky  z-10">
-        <div class=" flex justify-between w-[92%] font-bold  font-poppins text-xs  ">
-        <div className=" w-[28.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div class=" flex justify-between w-[93%] font-bold  font-poppins text-xs  ">
+        <div className=" w-[33.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         {translatedMenuItems[0]}</div>
         <div className=" w-[25.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[1]}</div>
-        <div className=" md:w-[22.1rem] w-[21.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
+        <div className=" md:w-[22.1rem] w-[23.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
         {translatedMenuItems[2]}</div>
-        <div className="  md:w-[14.1rem] w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <div className="  md:w-[14.1rem] w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         {translatedMenuItems[3]}</div>
-        <div className=" md:w-[13.2rem] w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <div className=" md:w-[13.2rem] w-[15.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         {translatedMenuItems[4]}</div>
-        <div className=" md:w-[8.3rem]  w-[7.3rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
+        <div className=" md:w-[8.3rem]  w-[13.3rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
         {translatedMenuItems[5]}</div>
-        <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[17.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[6]}</div>
-        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
-        {translatedMenuItems[7]}</div>
         {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
          {translatedMenuItems[8]}   {/* Score */}
           
             </div>
             )}
+        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
+        {translatedMenuItems[7]}</div>
+      
         <div className="w-[4.2rem]"></div>
         </div>
       </div>
@@ -225,7 +226,7 @@ if (loading) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingTeamContact?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
         
@@ -341,6 +342,12 @@ if (loading) {
                           </div>
                           </div>
                           <div class="flex items-center max-sm:justify-between max-sm:w-wk">
+                          {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[7.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}
                           <div className="flex w-[3.01rem] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
         <Tooltip title={item.ownerName}>
           <div class="max-sm:flex justify-end">
@@ -357,12 +364,7 @@ if (loading) {
 
              </div>
           
-             {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-            {item.noteScoreInd}
           
-            </div>
-            )}
                </div>
              <div class="flex items-center max-sm:justify-evenly max-sm:w-wk">
           

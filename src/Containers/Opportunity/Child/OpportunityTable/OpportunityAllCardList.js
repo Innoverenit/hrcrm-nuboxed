@@ -425,7 +425,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
          
                       <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div> 
                  

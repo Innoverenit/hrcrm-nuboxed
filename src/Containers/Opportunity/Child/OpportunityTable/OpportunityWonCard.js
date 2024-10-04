@@ -216,7 +216,7 @@ function OpportunityWonCard(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingWonOpportunity ?<div class="flex justify-center">Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
       >
 { !fetchingWonOpportunity && wonOpportunity.length === 0 ?<NodataFoundPage />:wonOpportunity.map((item,index) =>  {
@@ -489,7 +489,7 @@ function OpportunityWonCard(props) {
                         </div>
                         <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div> 
 <div><Tooltip
