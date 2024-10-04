@@ -191,7 +191,7 @@ const DashboardActionLeft = (props) => {
 
 
 
-              {user.orderManagementInd === true && (
+              {/* {user.orderManagementInd === true && ( */}
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -211,10 +211,10 @@ const DashboardActionLeft = (props) => {
                     </Tooltip>
                   </span>
                 </Badge>
-              )}
+              {/* )} */}
 
 
-              {props.moduleMapper.orderManagementInd === true && (
+              {/* {props.moduleMapper.orderManagementInd === true && ( */}
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -233,7 +233,7 @@ const DashboardActionLeft = (props) => {
                     </Tooltip>
                   </span>
                 </Badge>
-             )}
+             {/* )} */}
 
               {user.repairInd === true && (
                 <Badge
@@ -468,7 +468,7 @@ const DashboardActionLeft = (props) => {
                   </span>
                 </Badge>
               {/* )} */}
- { props.moduleMapper.orderManagementInd === true && (
+ {/* { props.moduleMapper.orderManagementInd === true && ( */}
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -493,7 +493,7 @@ const DashboardActionLeft = (props) => {
                     </Tooltip>
                   </span>
                 </Badge>
-              )}
+              {/* )} */}
               {user.repairInd === true && (
                 <Badge
                   size="small"
@@ -516,7 +516,7 @@ const DashboardActionLeft = (props) => {
                   </span>
                 </Badge>
               )}
-                {props.moduleMapper.ecomModInd === true && props.moduleMapper.erpInd === true &&
+                {/* {props.moduleMapper.ecomModInd === true && props.moduleMapper.erpInd === true && */}
                 <Badge
                   size="small"
                 // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
@@ -537,7 +537,7 @@ const DashboardActionLeft = (props) => {
 
                   </span>
                 </Badge>
-}
+{/* } */}
               {user.imInd === true && (
                 <Badge
                   size="small"

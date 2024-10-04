@@ -19,6 +19,8 @@ import OrdersClosedModal from "./OrdersClosedModal";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import axios from 'axios';
+import {base_url2} from "../../../../Config/Auth";
 
 function CustomerDashboardJumpStart (props) {
   
@@ -30,10 +32,46 @@ function CustomerDashboardJumpStart (props) {
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
+  const [error, setError] = useState(null);
 
+  const [cuOrdrAdded, setcuOrdrAdded] = useState({});
+  const [loading3, setLoading3] = useState(false);
+
+    const fetchcuOrdrAdded = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/distributor/ordersAdded/${props.orgId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setcuOrdrAdded(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
+    const [cuOrdrComplete, setcuOrdrComplete] = useState([]);
+    const [loading4, setLoading4] = useState(false);
+
+    const fetchcuOrdrComplete = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/distributor/ordersCompleted/${props.orgId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setcuOrdrComplete(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
   useEffect(() => {
     props.getJumpDistributorDetail(props.timeRangeType);
-    fetchMenuTranslations();
+    fetchcuOrdrAdded();
+    fetchcuOrdrComplete();
   }, [props.timeRangeType]);
 
   useEffect(() => {
