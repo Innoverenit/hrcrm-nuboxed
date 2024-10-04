@@ -1,6 +1,7 @@
 import React, { Component, lazy, PureComponent, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import MaterialIntransitList from "../Inventory/MaterialIntransitList"
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { withRouter } from "react-router";
@@ -75,12 +76,16 @@ class InventoryMaterialTabO extends PureComponent {
              />
                             </Suspense>
                         </TabPane>
+
+
                         <TabPane
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick}>
                                     <i class="far fa-share-square"/>&nbsp;
-                                        {/* Stock */} {this.props.translatedMenuItems[19]}
+                                        {/* Stock */} 
+                                        In transit
+                                        {/* {this.props.translatedMenuItems[19]} */}
 
                                     </span>
                                     {activeKey === "2" && (
@@ -106,6 +111,54 @@ class InventoryMaterialTabO extends PureComponent {
                                 </>
                             }
                             key="2"
+                        >
+                            
+                                <Suspense fallback={"Loading ..."}>
+                                  {" "}
+                                 
+                                  <MaterialIntransitList
+                                   locationDetailsId={this.props.user.locationId}
+                                selectedLanguage={this.props.selectedLanguage}
+                                  translateText={this.props.translateText}
+                                inventory={this.props.inventory}
+                                 translatedMenuItems={this.props.translatedMenuItems}
+                                />
+                                </Suspense>
+                                
+                             
+                        </TabPane>
+                        <TabPane
+                            tab={
+                                <>
+                                    <span onClick={this.handleRecruitClick}>
+                                    <i class="far fa-share-square"/>&nbsp;
+                                        {/* Stock */} 
+                                        {this.props.translatedMenuItems[19]}
+
+                                    </span>
+                                    {activeKey === "3" && (
+                        <>
+                         
+                             <span
+                    className="ml-4"
+                          type="area-chart"
+                         
+                          onClick={() => {
+                            this.handleSubscr();
+                          }}
+                          size="0.875em"                         
+                          >
+                          <WarehouseIcon
+                            style={{ color: "red", fontSize: "1rem" }}
+                          
+                          />
+                          </span>
+                        </>
+                      )}
+
+                                </>
+                            }
+                            key="3"
                         >
                              {this.state.shipperPopover ? (
                             <Suspense fallback={"Loading..."}>
@@ -143,7 +196,7 @@ class InventoryMaterialTabO extends PureComponent {
 
                                 </>
                             }
-                            key="3"
+                            key="4"
                         >
                             <Suspense fallback={"Loading..."}>
                                 {/* <MaterialCellStock /> */}
@@ -155,6 +208,107 @@ class InventoryMaterialTabO extends PureComponent {
                             </Suspense> 
                         </TabPane>
     )}
+
+<TabPane
+                            tab={
+                                <>
+                                    <span onClick={this.handleRecruitClick}>
+                                    <i class="far fa-share-square"/>&nbsp;
+                                        {/* Stock */} 
+                                      Damage
+                                        {/* {this.props.translatedMenuItems[19]} */}
+
+                                    </span>
+                                    {activeKey === "4" && (
+                        <>
+                         
+                             <span
+                    className="ml-4"
+                          type="area-chart"
+                         
+                          onClick={() => {
+                            this.handleSubscr();
+                          }}
+                          size="0.875em"                         
+                          >
+                          <WarehouseIcon
+                            style={{ color: "red", fontSize: "1rem" }}
+                          
+                          />
+                          </span>
+                        </>
+                      )}
+
+                                </>
+                            }
+                            key="4"
+                        >
+                            
+                                <Suspense fallback={"Loading ..."}>
+                                  {" "}
+                                 Hello
+                                  {/* <MaterialIntransitList
+                                   locationDetailsId={this.props.user.locationId}
+                                selectedLanguage={this.props.selectedLanguage}
+                                  translateText={this.props.translateText}
+                                inventory={this.props.inventory}
+                                 translatedMenuItems={this.props.translatedMenuItems}
+                                /> */}
+                                </Suspense>
+                                
+                             
+                        </TabPane>
+
+
+                        <TabPane
+                            tab={
+                                <>
+                                    <span onClick={this.handleRecruitClick}>
+                                    <i class="far fa-share-square"/>&nbsp;
+                                        {/* Stock */} 
+                                      Best Before
+                                        {/* {this.props.translatedMenuItems[19]} */}
+
+                                    </span>
+                                    {activeKey === "5" && (
+                        <>
+                         
+                             <span
+                    className="ml-4"
+                          type="area-chart"
+                         
+                          onClick={() => {
+                            this.handleSubscr();
+                          }}
+                          size="0.875em"                         
+                          >
+                          <WarehouseIcon
+                            style={{ color: "red", fontSize: "1rem" }}
+                          
+                          />
+                          </span>
+                        </>
+                      )}
+
+                                </>
+                            }
+                            key="5"
+                        >
+                            
+                                <Suspense fallback={"Loading ..."}>
+                                  {" "}
+                                 Hello
+                                  {/* <MaterialIntransitList
+                                   locationDetailsId={this.props.user.locationId}
+                                selectedLanguage={this.props.selectedLanguage}
+                                  translateText={this.props.translateText}
+                                inventory={this.props.inventory}
+                                 translatedMenuItems={this.props.translatedMenuItems}
+                                /> */}
+                                </Suspense>
+                                
+                             
+                        </TabPane>
                     </StyledTabs>
                 </TabsWrapper>
 

@@ -8,8 +8,9 @@ import {
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Button, Input, Modal, Select, Switch, Tooltip, message } from 'antd';
+import { Button, DatePicker, Input, Modal, Select, Switch, Tooltip, message } from 'antd';
 import PoReceiveToggle from './PoReceiveToggle';
+import dayjs from 'dayjs'; 
 import { trnasferGrnItemToStock } from "../../../InventoryAction"
 import AllowGrnToggle from './AllowGrnToggle';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -22,7 +23,20 @@ const ReceivedDetailCardOut = (props) => {
         props.getMaterialReceivedDetailData(props.row.poSupplierDetailsId)
         props.getGrnNoByPoId(props.row.poSupplierDetailsId)
     }, [])
+
+
+    useEffect(() => {
+        // Check if data is available
+        if (props.receivedDetailData.length > 0) {
+          // Update activeTab when data is available
+          setReceivedData(props.receivedDetailData);
+        }
+      }, [props.receivedDetailData]);
+      const [receivedData, setReceivedData] = useState(props.receivedDetailData);
     const [existGrn, setExistGrn] = useState(false)
+    const [formData, setFormData] = useState({ unitReceived: "", unitDamaged: "", remark: "", bestBeforeUse:"",
+        batchNo:"",
+         });
     const handleChange = () => {
         setExistGrn(!existGrn)
     }
@@ -57,8 +71,13 @@ const ReceivedDetailCardOut = (props) => {
         setRowData(item)
     }
     const [showEdit, setShowEdit] = useState(false)
-    const handleEditicon = () => {
+    const handleEditicon = (index) => {
         setShowEdit(!showEdit)
+        setFormData({
+            ...receivedData[index],
+            // bestBeforeUse: dayjs(receivedData[index].bestBeforeUse).format('YYYY-MM-DD')
+            bestBeforeUse: receivedData[index].bestBeforeUse ? dayjs(receivedData[index].bestBeforeUse) : null, 
+          });
     }
     const [unitReceived, setUnitReceived] = useState("")
     const handleUnitReceived = (value) => {
@@ -96,6 +115,57 @@ const ReceivedDetailCardOut = (props) => {
     const handleLoadMore = () => {
         setPage(page + 1);
     };
+
+    const handleChangeData = (e) => {
+        setFormData({
+          ...formData,
+          [e.target.name]: e.target.value,
+        });
+      };
+
+
+      const handleDateChange = (date) => {
+        console.log("Selected date:", date ? date.format('YYYY-MM-DD') : "No Date Selected"); // Log formatted date
+        setFormData({
+          ...formData,
+          bestBeforeUse: date,
+        });
+        console.log("Form data after date change:", {
+          ...formData,
+          bestBeforeUse: date ? date.format('YYYY-MM-DD') : null, // Format date for better logging
+        });
+      };
+console.log(formData)
+      const handleSave = (index,item) => {
+      
+        setShowEdit(null);
+        let data={
+            unitReceived: formData.unitReceived,
+            unitDamaged: formData.unitDamaged,
+            remark:formData.remark,
+            poReceivedInd: true,
+            unitReceiveInd: true,
+            userId: props.userId,
+            bestBeforeUse:formData?`${formData.bestBeforeUse.format('YYYY-MM-DD')}T00:00:00Z`:null,
+            batchNo:formData.batchNo,
+            
+            poSupplierSuppliesId: item.poSupplierSuppliesId
+
+      
+        }
+
+        props.updateReceivedDamagedUnit(data,props.row.poSupplierDetailsId,item.suppliesId)
+    
+       
+        
+        // // Logging only name, age, and availableDate with userId
+        // console.log({
+        //   userId,
+        //   name: formData.name,
+        //   age: formData.age,
+        //   availableDate: formData.availableDate
+        // });
+      };
     return (
         <>
             <div className=' flex  sticky z-auto'>
@@ -141,12 +211,12 @@ const ReceivedDetailCardOut = (props) => {
                     <InfiniteScroll
                         dataLength={props.receivedDetailData.length}
                         next={handleLoadMore}
-                        hasMore={hasMore}
+                        hasMore={hasMore} 
                         loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
                         height={"79vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
-                        {props.receivedDetailData.map((item) => {
+                        {receivedData.map((item,index) => {
 
                             return (
                                 <div>
@@ -204,12 +274,12 @@ const ReceivedDetailCardOut = (props) => {
                                         <div className=" flex  w-[7.12rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
-                                                    <Input
-                                                        value={unitReceived}
-                                                        type="text"
-                                                        placeholder='Received'
-                                                        onChange={(e) => handleUnitReceived(e.target.value)}
-                                                    />
+                                                     <Input
+                                                     name="unitReceived"
+                                                     value={formData.unitReceived}
+                                                     onChange={handleChangeData}
+                                                     placeholder="unitReceived"
+                                                   />
                                                     : item.unitReceived}
                                             </div>
                                         </div>
@@ -217,11 +287,11 @@ const ReceivedDetailCardOut = (props) => {
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <Input
-                                                        value={unitDamaged}
-                                                        type="text"
-                                                        placeholder='Damaged'
-                                                        onChange={(e) => handleUnitDamaged(e.target.value)}
-                                                    />
+                                                    name="unitDamaged"
+                                                    value={formData.unitDamaged}
+                                                    onChange={handleChangeData}
+                                                    placeholder="unitDamaged"
+                                                  />
                                                     : item.unitDamaged}
                                             </div>
                                         </div>
@@ -229,12 +299,50 @@ const ReceivedDetailCardOut = (props) => {
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <Input
-                                                        value={remark}
-                                                        type="text"
-                                                        placeholder='Remark'
-                                                        onChange={(e) => handleRemark(e.target.value)}
-                                                    />
+                                                    name="remark"
+                                                    value={formData.remark}
+                                                    onChange={handleChangeData}
+                                                    placeholder="remark"
+                                                  />
                                                     : item.remark}
+                                            </div>
+                                        </div>
+
+
+
+                                        <div className=" flex w-[6.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                            <div class=" text-xs  font-poppins">
+                                                {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
+                                                    <Input
+                                                    name="batchNo"
+                                                    value={formData.batchNo}
+                                                    onChange={handleChangeData}
+                                                    placeholder="batchNo"
+                                                  />
+                                                    : item.batchNo}
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div className=" flex w-[6.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                            <div class=" text-xs  font-poppins">
+                                                {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
+                                                    //   <DatePicker
+                                                    //   type="date"
+                                                    //   name="bestBeforeUse"
+                                                    //   //value={formData.bestBeforeUse}
+                                                    //   onChange={handleChangeData}
+                                                    // />
+                                                    <DatePicker
+                                                    value={formData.bestBeforeUse}
+                                                    onChange={handleDateChange}
+                                                    format="YYYY-MM-DD"
+                                                    style={{ width: '100%' }}
+                                                  />
+                                                    : dayjs(item.bestBeforeUse).format('YYYY-MM-DD')}
+                                                   
                                             </div>
                                         </div>
 
@@ -244,26 +352,29 @@ const ReceivedDetailCardOut = (props) => {
                                                     <>
                                                         <Button
                                                             type="primary"
-                                                            onClick={() => {
-                                                                if ((unitReceived <= item.unit && unitReceived >= 0) && (unitDamaged <= item.unit && unitDamaged >= 0)) {
-                                                                    props.updateReceivedDamagedUnit({
-                                                                        unitReceived: unitReceived,
-                                                                        unitDamaged: unitDamaged,
-                                                                        remark: remark,
-                                                                        userId: props.userId,
-                                                                        poSupplierSuppliesId: item.poSupplierSuppliesId,
-                                                                        poReceivedInd: true,
-                                                                        unitReceiveInd: true,
+                                                            // onClick={() => {
+                                                            //     if ((unitReceived <= item.unit && unitReceived >= 0) && (unitDamaged <= item.unit && unitDamaged >= 0)) {
+                                                            //         props.updateReceivedDamagedUnit({
+                                                            //             unitReceived: unitReceived,
+                                                            //             unitDamaged: unitDamaged,
+                                                            //             remark: remark,
+                                                            //             userId: props.userId,
+                                                            //             poSupplierSuppliesId: item.poSupplierSuppliesId,
+                                                            //             poReceivedInd: true,
+                                                            //             unitReceiveInd: true,
 
-                                                                    },
-                                                                        props.row.poSupplierDetailsId,
-                                                                        item.suppliesId,
-                                                                        handleCallback())
-                                                                } else {
-                                                                    message.error("Receive and damage unit should be less than unit !")
-                                                                }
-                                                            }}>
-                                                                Add {props.translatedMenuItems[23]}
+                                                            //         },
+                                                            //             props.row.poSupplierDetailsId,
+                                                            //             item.suppliesId,
+                                                            //             handleCallback())
+                                                            //     } else {
+                                                            //         message.error("Receive and damage unit should be less than unit !")
+                                                            //     }
+                                                            // }}
+
+                                                            onClick={() => handleSave(index,item)}
+                                                            >
+                                                                Update {props.translatedMenuItems[23]}
                                                                 </Button>
                                                         <Button onClick={handleCancel}>
                                                             Cancel 
@@ -276,7 +387,7 @@ const ReceivedDetailCardOut = (props) => {
                                                                 className=" !text-icon cursor-pointer text-[tomato]"
                                                                 onClick={() => {
                                                                     handleRowData(item);
-                                                                    handleEditicon()
+                                                                    handleEditicon(index)
                                                                 }}
                                                             /> : null
                                                 }

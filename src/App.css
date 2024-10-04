@@ -765,3 +765,31 @@ scrollbar-width: thin;
 .flip {
   transform: rotateY(180deg);
 }
+
+
+
+.custom-image-gallery {
+  display: flex;
+  flex-wrap: wrap; /* Allow the images to wrap if they don't fit on one line */
+  gap: 10px; /* Add space between the images */
+}
+
+.gallery-item {
+  width: 120px;  /* Set the size of each image */
+  height: 120px; /* Keep the images square */
+  overflow: hidden;
+  border: 2px solid transparent; /* Default border for images */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Make sure the images fit properly */
+}
+
+.highlight {
+  border: 2px solid red; /* Highlight the primary image with a red border */
+  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5); /* Optional: Add a shadow effect to the highlighted image */
+}
+
+

@@ -47,7 +47,7 @@ function Inventory(props) {
        "14", // 'Category',//24
        "259" ,// 'Attribute',//25
        "260", // 'Units',//26
-       "1086", // 'Damaged',//27
+       "1086", // '',//27
        "1087" ,// 'Remark',//28
        "1091", // 'In Stock',//29
        "1092", // 'Ordered',//30

@@ -84,7 +84,8 @@ const MaterialReceivedTableOut = (props) => {
                             {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
                             {props.translatedMenuItems[21]}
                         </div>
-                        <div className=" w-[11.122rem]">        {props.translatedMenuItems[22]} 
+                        <div className=" w-[11.122rem]">       
+                             {props.translatedMenuItems[22]} 
                             {/* Supplier */}
 
                         </div>

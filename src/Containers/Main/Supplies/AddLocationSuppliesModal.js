@@ -23,7 +23,9 @@ class AddLocationSuppliesModal extends Component {
                      translateText={this.props.translateText}
                      selectedLanguage={this.props.selectedLanguage}
                      /> */}
-                <LocationSuppliesList/>
+                <LocationSuppliesList
+                particularDiscountData={this.props.particularDiscountData}
+                />
                     </Suspense>
                 </StyledDrawer>
             </div>

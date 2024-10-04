@@ -8,6 +8,10 @@ const initialState = {
     uploadingMaterialListError:false,
 
 
+    addingLocationSuppliesValue:false,
+    addingLocationSuppliesValueError:false,
+
+
     locationSuppliesModal:false,
 
     uploadImageListSupplies:false,
@@ -160,6 +164,11 @@ const initialState = {
 
     removingMaterialBuilder: false,
     removingMaterialBuilderError: false,
+
+
+    fetchingLocationSupplies:false,
+    fetchingLocationSuppliesError:false,
+    locationSupplies:[],
 
     updatingMaterialBuilder: false,
     updatingMaterialBuilderError: false,
@@ -398,7 +407,26 @@ export const suppliesReducer = (state = initialState, action) => {
                 ...state,
                 updateToCatalogue: false,
                 updateToCatalogueError: true,
+
             };
+
+
+
+
+            case types.GET_LOCATION_SUPPLIES_REQUEST:
+              return { ...state, fetchingLocationSupplies: true };
+            case types.GET_LOCATION_SUPPLIES_SUCCESS:
+              return {
+                ...state,
+                fetchingLocationSupplies: false,
+                locationSupplies: action.payload,
+              };
+            case types.GET_LOCATION_SUPPLIES_FAILURE:
+              return {
+                ...state,
+                fetchingLocationSupplies: false,
+                fetchingLocationSuppliesError: true,
+              };
 
         case types.HANDLE_CURENCY_PRICE_MODAL:
             return { ...state, addCurrencyValue: action.payload };
@@ -789,6 +817,21 @@ export const suppliesReducer = (state = initialState, action) => {
                     };
                   case types.INPUT_SUPPLIES_SEARCH_DATA_FAILURE:
                     return { ...state, fetchingSuppliesInputSearchDataError: true };
+
+
+
+                    case types.ADD_LOCATION_SUPPLIES_VALUE_REQUEST:
+                      return { ...state, addingLocationSuppliesValue: true };
+                    case types.ADD_LOCATION_SUPPLIES_VALUE_SUCCESS:
+                      return {
+                        ...state,
+                        addingLocationSuppliesValue: false,
+                        // regiondata:action.payload,
+                        //regions:[action.payload,...state.regions],
+                        // documents: [...state.documents, action.payload],
+                      };
+                    case types.ADD_LOCATION_SUPPLIES_VALUE_FAILURE:
+                      return { ...state, addingLocationSuppliesValue: false, addingLocationSuppliesValueError: true };
                   
                     case types.HANDLE_CLAER_REDUCER_DATA_MATERIAL:
                         return {
