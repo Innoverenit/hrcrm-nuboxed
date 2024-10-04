@@ -199,6 +199,31 @@ export const deletePurchaseData = (suppliesId) => (dispatch) => {
     });
 };
 
+export const deleteSuppliesData = (documentId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_SUPPLIES_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/supplies/document/${documentId}`)
+    .then((res) => {
+      console.log(res);
+      // dispatch(getDeletedPurchaseById());
+      dispatch({
+        type: types.DELETE_SUPPLIES_DATA_SUCCESS,
+        payload: documentId,
+      });
+      message.success("Supplies deleted Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SUPPLIES_DATA_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
+    });
+};
+
 export const getDeleteHistory = () => (dispatch) => {
   dispatch({
     type: types.GET_DELETE_HISTORY_REQUEST,
@@ -1466,8 +1491,6 @@ export const handleImageSuppliesModal = (modalProps) => (dispatch) => {
   });
 };
 
-
-
 export const getLocationSupplies = (orgId,suppliesId) => (dispatch) => {
   dispatch({
     type: types.GET_LOCATION_SUPPLIES_REQUEST,
@@ -1493,6 +1516,17 @@ export const getLocationSupplies = (orgId,suppliesId) => (dispatch) => {
       });
     });
 };
+
+
+
+export const handleErpDocumentUploadModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ERP_DOCUMENT_UPLOAD_MODAL,
+    payload: modalProps,
+  });
+};
+
+
 
 
 
@@ -1527,4 +1561,7 @@ export const addLocationSuppliesValue = (documents,suppliesId, cb) => (dispatch)
       });
       cb();
     });
+
+     
+
 };

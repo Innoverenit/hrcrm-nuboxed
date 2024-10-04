@@ -194,7 +194,7 @@ function ContactInvestCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingContactsInvest?<div  class="flex justify-center">Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         style={{scrollbarWidth:"thin"}}
       >
@@ -333,7 +333,7 @@ function ContactInvestCardList(props) {
                   props.handleContactInvestNotesDrawerModal(true);
                   handleCurrentContactIdata(item);
                 }}
-                className="text-green-500 cursor-pointer !text-icon max-sm:!text-xl "
+                className="text-green-800 cursor-pointer !text-icon max-sm:!text-xl "
               />
            </Tooltip> 
            <Tooltip title= {translatedMenuItems[9]}>
@@ -371,7 +371,7 @@ function ContactInvestCardList(props) {
           </Tooltip>                                             
                         <Tooltip title={item.emailId}>
            
-            <MailOutlineIcon className="!text-icon cursor-pointer text-green-400 max-sm:!text-xl"
+            <MailOutlineIcon className="!text-icon cursor-pointer text-green-800 max-sm:!text-xl"
               type="mail"
              
               onClick={() => {

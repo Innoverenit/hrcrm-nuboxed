@@ -150,7 +150,8 @@ const AccountContactTable = (props) => {
                                 <div className="flex md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">{item.departmentId}</div>
                                 </div>
-
+                                                    
+                                <div className="flex justify-end items-center max-sm:flex-row w-full max-sm:justify-between">
                                 <div className="flex md:w-[7.27rem] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <div className="flex justify-evenly">
@@ -186,12 +187,6 @@ const AccountContactTable = (props) => {
                                         </div>
                                     </div>
                                 </div>
-
-                              
-
-                             
-
-                                <div className="flex justify-end items-center max-sm:flex-row w-full max-sm:justify-between">
                                 <div className="flex md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <Select
@@ -207,7 +202,7 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ml-2 mr-2">
                                     <div className="text-xs font-poppins text-center">
                                         <Input
                                             onPressEnter={(e) => handleKeyPress(item.contactPersonId, e)}

@@ -117,7 +117,7 @@ const DealDeletedCard = (props) => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={fetchingDeletedDeal ? <div class="flex justify-center">Loading...</div> : null}
-          height={"80vh"}
+          height={"83vh"}
           style={{scrollbarWidth:"thin"}}
         >
           {!fetchingDeletedDeal && props.deletedDeal.length === 0 ? <NodataFoundPage /> : props.deletedDeal.map((item, index) => {

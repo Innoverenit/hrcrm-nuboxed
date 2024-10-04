@@ -124,6 +124,28 @@ export const DistributorDeliveryDate = (payment) => (dispatch) => {
     });
 };
 
+export const creatCBM = (payment) => (dispatch) => {
+  dispatch({
+    type: types.CREAT_CBM_REQUEST,
+  });
+  axios
+    .post(`${base_url}/calculator/calculate`, payment)
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.CREAT_CBM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREAT_CBM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const CustomerDeliveryDate = (payment) => (dispatch) => {
   dispatch({
     type: types.CUSTOMER_DELIVERY_DATE_REQUEST,

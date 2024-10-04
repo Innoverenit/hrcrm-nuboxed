@@ -25,7 +25,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 const ButtonGroup = Button.Group;
 
-const GSTReportUser = (props) => {
+const GSTReportOrg = (props) => {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const tab = document.querySelector('.ant-layout-sider-children');
   const tableHeight = tab && tab.offsetHeight * 0.75;
@@ -43,7 +43,7 @@ const GSTReportUser = (props) => {
         const end = `${endDate.format("YYYY-MM-DD")}T20:00:00Z`;
 
       try {
-        const response = await axios.get(`${base_url2}/invoice/gst/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+        const response = await axios.get(`${base_url2}/invoice/gst/${props.orgId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -303,7 +303,7 @@ const GSTReportUser = (props) => {
   const mapStateToProps = ({ auth, task, report }) => ({
     userDetails: auth.userDetails,
     userId: auth.userDetails.userId,
-    employeeId: auth.userDetails.employeeId,
+    orgId:auth.userDetails.organizationId,
     startDate: report.startDate,
     endDate: report.endDate,
   });
@@ -315,7 +315,7 @@ const GSTReportUser = (props) => {
       },
       dispatch
     );
-    export default connect(mapStateToProps, mapDispatchToProps)(GSTReportUser);
+    export default connect(mapStateToProps, mapDispatchToProps)(GSTReportOrg);
    
     
     
