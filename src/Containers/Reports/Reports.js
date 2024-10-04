@@ -97,6 +97,29 @@ console.log(selectedTask)
  
     // const { reportViewType, selectedReportType, selectedSubReportType } = this.props;
     // console.log("selectedSubReportType", selectedSubReportType, selectedReportType)
+   
+    const visibilityConditions = {
+      Task: props.user.basicAccessInd || props.user.role === "ADMIN",
+      Calls: props.user.basicAccessInd || props.user.role === "ADMIN",
+      Events: props.user.basicAccessInd || props.user.role === "ADMIN",
+      Leads: props.user.leadsAccessInd && props.user.crmInd,  
+      Prospect: props.user.customerAccessInd && props.user.crmInd, 
+      Contact: props.user.contactAccessInd && props.user.crmInd,
+      Quotation: props.user.opportunityAccessInd && props.user.crmInd,
+      Orders: props.user.orderAccessInd && props.user.erpInd,
+      Customer: props.user.accountAccessInd && props.user.erpInd,
+      'Materials In Stock': props.user.materialAccessInd && props.user.erpInd,
+      'Goods In Stock': true,
+      Production: props.user.productionAccessInd && props.user.productionInd,
+      Productivity: true,
+      Receivables: true,
+      Invoice: props.user.department === "Management",
+      'Credit Memo': true,
+      Investors: props.user.investorContactAccessInd && props.user.imInd,
+      Deals: props.user.dealAccessInd && props.user.imInd,
+      GST: true,
+    };
+   
     return (
       <React.Fragment>
          <Suspense fallback={<BundleLoader />}>
@@ -120,6 +143,7 @@ console.log(selectedTask)
           reportProspect={props.reportProspect}
           gettingReportProspect={props.gettingReportProspect}
           buttonData={buttonData}
+          visibilityConditions={visibilityConditions}
           selectedCategory={selectedCategory}
           handleButtonTask={handleButtonTask}
           taskData={props.taskData}
@@ -144,7 +168,7 @@ const mapStateToProps = ({ auth, report }) => ({
   reportProspect:report.reportProspect,
   taskData:report.taskData,
   gettingReportProspect:report.gettingReportProspect,
-
+  user: auth.userDetails,
   userId:auth.userDetails.userId,
   organizationId:auth.userDetails.organizationId,
   gettingReportTask:report.gettingReportTask,

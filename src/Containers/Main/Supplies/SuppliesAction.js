@@ -1466,8 +1466,6 @@ export const handleImageSuppliesModal = (modalProps) => (dispatch) => {
   });
 };
 
-
-
 export const getLocationSupplies = (orgId,suppliesId) => (dispatch) => {
   dispatch({
     type: types.GET_LOCATION_SUPPLIES_REQUEST,
@@ -1493,6 +1491,17 @@ export const getLocationSupplies = (orgId,suppliesId) => (dispatch) => {
       });
     });
 };
+
+
+
+export const handleErpDocumentUploadModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ERP_DOCUMENT_UPLOAD_MODAL,
+    payload: modalProps,
+  });
+};
+
+
 
 
 
@@ -1527,4 +1536,7 @@ export const addLocationSuppliesValue = (documents,suppliesId, cb) => (dispatch)
       });
       cb();
     });
+
+     
+
 };
