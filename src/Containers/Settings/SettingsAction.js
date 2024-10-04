@@ -56,7 +56,7 @@ export const removeSuppliers = ( data,supplierCategoryId) => (dispatch) => {
     type: types.REMOVE_SUPPLIERS_REQUEST,
   });
   axios
-    .delete(`${base_url}/SupplierS/delete/${supplierCategoryId}`, {
+    .delete(`${base_url}/supplier/delete/${supplierCategoryId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -132,6 +132,57 @@ export const updateSuppliers = ( data,supplierCategoryId) => (dispatch) => {
       });
     });
 };
+
+
+// remove shipper
+
+export const removeShipper = ( data,shipperCategoryId) => (dispatch) => {
+  // console.log(typeId);
+  dispatch({
+    type: types.DELETE_SHIPPER_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/shipper/delete/${shipperCategoryId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+     
+      dispatch({
+        type: types.DELETE_SHIPPER_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+
+      })
+    })
+    // .then((res) => {
+    //   dispatch(getCategoryCount(orgId));
+    //   Swal.fire({
+    //     icon: 'success',
+    //     title: 'Suppliers deleted Successfully!',
+    //   })
+    //   // message.success("CATEGORY has been deleted successfully!");
+    //   console.log(res);
+    //   dispatch({
+    //     type: types.REMOVE_SUPPLIERS_SUCCESS,
+    //     payload:supplierCategoryId,
+    //   });
+    // })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SHIPPER_FAILURE,
+      });
+    });
+};
+
 
 export const LinkOpportunityStagePublish = (data, cb) => (dispatch) => {
   dispatch({ type: types.LINK_OPPORTUNITY_STAGES_PUBLISH_REQUEST });
