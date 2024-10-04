@@ -79,7 +79,7 @@ function OpportunityLostCard(props) {
           '176', // 3
           '218', // 4
           '219', // 5
-          '220', // 6
+          '76', // 6
           '77', // 7
           "232", // 'Click to Open'
 "170", // "Edit"
@@ -218,7 +218,7 @@ function OpportunityLostCard(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchinglostOpportunity?<div class="flex justify-center">Loading...</div> :null}
-        height={"80vh"}
+        height={"83vh"}
         style={{overflowX:"hidden",scroll:"thin"}}
       >
     
