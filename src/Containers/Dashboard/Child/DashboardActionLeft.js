@@ -120,11 +120,7 @@ const DashboardActionLeft = (props) => {
               {/* Example: */}
 
               {user.dashboardRegionalInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+               
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Regional")}
                     style={{
@@ -140,15 +136,11 @@ const DashboardActionLeft = (props) => {
                       </Button>
                     </Tooltip>
                   </span>
-                </Badge>
+                
               )}
 
               {user.multyOrgAccessInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+                
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("multiOrg")}
                     style={{
@@ -164,16 +156,12 @@ const DashboardActionLeft = (props) => {
                       </Button>
                     </Tooltip>
                   </span>
-                </Badge>
+               
               )}
 
 
-              {props.moduleMapper.crmInd === true && user.customerAccessInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+              {props.moduleMapper.crmInd === true && user.customerAccessInd === true && user.crmInd === true  && (
+               
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Customer")}
                     style={{
@@ -186,17 +174,13 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>
+               
               )}
 
 
 
-              {/* {user.orderManagementInd === true && ( */}
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+              {user.orderManagementInd === true && user.accountAccessInd === true && user.erpInd === true && (
+                
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Accounts")}
                     style={{
@@ -210,16 +194,13 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>
-              {/* )} */}
+              
+               
+              )}
 
 
-              {/* {props.moduleMapper.orderManagementInd === true && ( */}
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+              {props.moduleMapper.orderManagementInd === true && user.orderAccessInd === true && (
+                
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Order")}
                     style={{
@@ -232,15 +213,11 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>
-             {/* )} */}
+               
+                  )}
 
-              {user.repairInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+              {user.repairInd === true &&  (
+               
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Finance")}
                     style={{
@@ -255,14 +232,10 @@ const DashboardActionLeft = (props) => {
                     </Tooltip>
 
                   </span>
-                </Badge>
+               
               )}
-              {props.moduleMapper.imInd === true && user.investorAccessInd && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+              {props.moduleMapper.imInd === true && user.investorAccessInd && user.imInd === true && (
+               
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Investors")}
                     style={{
@@ -276,15 +249,11 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>
+              
               )}
 
               {user.recruitProInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+               
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("RecruitPro")}
                     style={{
@@ -298,10 +267,10 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>
+               
               )}
-
-              <Badge size="small">
+  {(user.taskAccessInd === true || user.role === "ADMIN") && (
+            
                 <span
                   className="cursor-pointer mr-1"
                   onClick={() => handleButtonClick("Tasks")}
@@ -315,19 +284,15 @@ const DashboardActionLeft = (props) => {
                     </Avatar>
                   </Tooltip>
                 </span>
-              </Badge>
-
+              
+  )}
               {viewType === "ALL" && showShareForm &&<Suspense fallback={<BundleLoader />}><DashboardShareForm /></Suspense> }
             </>
          
         ) : (
             <>
               {user.dashboardRegionalInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+                
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Regional")}
                     style={{
@@ -342,15 +307,10 @@ const DashboardActionLeft = (props) => {
                         <span class=" text-white ">{translatedMenuItems[0]}</span>
                       </Button>
                     </Tooltip>
-                  </span>
-                </Badge>
+                  </span>                
               )}
               {user.multyOrgAccessInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+               
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("multiOrg")}
                     style={{
@@ -366,44 +326,11 @@ const DashboardActionLeft = (props) => {
                       </Button>
                     </Tooltip>
                   </span>
-                </Badge>
+              
               )}
-              {/* <Badge size="small">
-                <span
-                  className="cursor-pointer mr-1"
-                  onClick={() => handleButtonClick("test")}
-                  style={{
-                    color: activeButton === "test" && "tomato",
-                  }}
-                >
-                  <Tooltip title={translatedMenuItems[10]}>
-                    <Avatar style={{ background: activeButton === "test" ? "#f279ab" : "#4bc076" }}>
-                      <PersonIcon className="text-white !text-icon" />
-                    </Avatar>
-                  </Tooltip>
-                </span>
-              </Badge> */}
-
-              {/* <Badge size="small">
-                <span
-                  className="cursor-pointer mr-1"
-                  onClick={() => handleButtonClick("Tasks")}
-                  style={{
-                    color: activeButton === "Tasks" && "tomato",
-                  }}
-                >
-                  <Tooltip title="Tasks">
-                    <Avatar style={{ background: activeButton === "Tasks" ? "#f279ab" : "#4bc076" }}>
-                      <FactCheckIcon className="text-white" />
-                    </Avatar>
-                  </Tooltip>
-                </span>
-              </Badge> */}
-              <Badge
-                size="small"
-              // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-              // overflowCount={999}
-              >
+            
+              {(user.taskAccessInd === true || user.role === "ADMIN") && (
+              
                 <span class="cursor-pointer mr-1"
                   onClick={() => handleButtonClick("Tasks")}
                   style={{
@@ -419,14 +346,10 @@ const DashboardActionLeft = (props) => {
                     </Avatar>
                   </Tooltip>
                 </span>
-              </Badge>
- 
-              {user.crmInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+             
+              )}
+              {user.crmInd === true && user.customerAccessInd === true && (
+                
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Customer")}
                     style={{
@@ -440,17 +363,14 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>
+              
               )}
 
 
-
-              {/* {user.orderManagementInd === true && ( */}
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+{(user.accountAccessInd === true && user.erpInd === true 
+     
+      ) &&  (
+             
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Accounts")}
                     style={{
@@ -466,14 +386,11 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>
-              {/* )} */}
- {/* { props.moduleMapper.orderManagementInd === true && ( */}
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+                
+             
+                  )}
+ { props.moduleMapper.orderManagementInd === true && user.orderAccessInd === true && (
+                
                   <span class="cursor-pointer mr-1"
                     onClick={() => 
                       handleButtonClick("Order")
@@ -492,14 +409,10 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>
-              {/* )} */}
+               
+              )}
               {user.repairInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+                
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Finance")}
                     style={{
@@ -514,14 +427,10 @@ const DashboardActionLeft = (props) => {
                     </Tooltip>
 
                   </span>
-                </Badge>
+               
               )}
-                {/* {props.moduleMapper.ecomModInd === true && props.moduleMapper.erpInd === true && */}
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+                {props.moduleMapper.ecomModInd === true && props.moduleMapper.erpInd === true &&
+                
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Procure")}
                     style={{
@@ -536,14 +445,10 @@ const DashboardActionLeft = (props) => {
                     </Tooltip>
 
                   </span>
-                </Badge>
-{/* } */}
-              {user.imInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+                
+}
+              {props.moduleMapper.imInd === true && user.investorAccessInd && user.imInd === true && (
+                
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("Investors")}
                     style={{
@@ -558,15 +463,11 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>
+               
               )}
 
               {user.recruitProInd === true && (
-                <Badge
-                  size="small"
-                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-                // overflowCount={999}
-                >
+               
                   <span class="cursor-pointer mr-1"
                     onClick={() => handleButtonClick("RecruitPro")}
                     style={{
@@ -581,7 +482,7 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-                </Badge>
+               
               )}
 
             </>

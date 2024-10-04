@@ -147,7 +147,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Deleted Successfully',
           showConfirmButton: false,
-          timer: 4000
+          timer: 2000
         })
       })
       .catch((err) => {

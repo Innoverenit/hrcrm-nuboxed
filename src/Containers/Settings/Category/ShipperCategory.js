@@ -12,7 +12,7 @@ import {
   getShipperCategory,
   //getSectorCount,
   addShipperCategory,
-  // removeSectors,
+  removeShipper,
   //updateSectors,
   //searchSectorName,
   //ClearReducerDataOfSupplierCategory
@@ -192,7 +192,7 @@ return <div><BundleLoader/></div>;
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        // onConfirm={() =>  props.removeSectors(region.sectorId,props.orgId)}
+                        onConfirm={() =>  props.removeShipper(region.shipperCategoryId)}
                       >
                 <DeleteOutlined   className=" !text-icon text-red-600 cursor-pointer "/>
                
@@ -231,7 +231,7 @@ const mapDispatchToProps = (dispatch) =>
       //getSectorCount,
       getShipperCategory,
       addShipperCategory,
-      // removeSectors,
+      removeShipper,
      // updateSectors,
       //searchSectorName,
       //ClearReducerDataOfSupplierCategory

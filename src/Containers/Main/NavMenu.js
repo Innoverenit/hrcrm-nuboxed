@@ -575,6 +575,10 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Link>
         </Menu.Item>
         )}
+
+          {(user.promotionAccessInd === true && user.erpInd === true 
+        // || user.role === "ADMIN" && user.productionInd === true
+      ) &&  (
         <Menu.Item key="/promotion" style={{ height: "1.45rem", 
         color: selectedMenuItem === '/promotion' ? 'tomato' : '#4bc076' }}>
           <Link to="/promotion" onClick={() => handleSelect('/promotion')}>
@@ -588,6 +592,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </span>
           </Link>
         </Menu.Item>
+         )}
+
          {(user.subscriptionAccessInd === true && user.erpInd === true 
         //  || user.role === "ADMIN" && user.subscriptionAccessInd === true
         ) &&  (
@@ -657,6 +663,10 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Link>
         </Menu.Item>
  )}
+  {(user.warAccInd === true &&  user.erpInd === true 
+  || user.productionInd === true &&  user.repairInd === true 
+       
+      ) &&  (
 <Menu.Item key="/sold" style={{ height: "1.45rem",
             color: selectedMenuItem === '/sold' ? 'tomato' : '#4bc076' }}>
             <Link to="/sold" onClick={() => handleSelect('/sold')}>
@@ -673,6 +683,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               </span>
             </Link>
           </Menu.Item>
+           )}
 <hr/>
         {(user.materialAccessInd === true && user.erpInd === true 
         // || user.role === "ADMIN" && user.inventoryInd === true

@@ -3,16 +3,39 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {getEmployeeKpiList} from "../../../../../../Main/Teams/TeamsAction"
 const EmployeePerformanceTable = (props) => {
-  const { translatedMenuItems } = props;
-
+ 
   const [editedFields, setEditedFields] = useState({});
   const [editContactId, setEditContactId] = useState(null);
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     props.getEmployeeKpiList(props.singleEmployee.employeeId)
   }, []);
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+         "", //None Available,//0
+          "",  //  Assigned Value,//1
+          "" , //  Completed Value,//2
+         
 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
  
   
 
@@ -20,7 +43,7 @@ const EmployeePerformanceTable = (props) => {
     <>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       {props.employeeKpiList.length === 0 ? (
-          <p>None Available</p>
+          <p>{translatedMenuItems[0]}</p>
         ) : (
           props.employeeKpiList.map((item) => (
             <div key={item.id}>
@@ -52,7 +75,7 @@ const EmployeePerformanceTable = (props) => {
                   </div> */}
                   <div className="Ccard__title w-36">
                     <div className="text-base   font-poppins">
-                    Assigned Value
+                    {translatedMenuItems[1]} {/* Assigned Value */}
                     </div>
                    
                       <div className="text-xsfont-poppins">{item.assignedValue}</div>
@@ -60,7 +83,7 @@ const EmployeePerformanceTable = (props) => {
                   </div>
                   <div className="Ccard__title w-[9rem]">
                     <div className="text-base   font-poppins">
-                    Completed Value
+                    {translatedMenuItems[2]}{/* Completed Value */}
                     </div>
                   
                       <div className="text-xsfont-poppins">
