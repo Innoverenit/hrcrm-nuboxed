@@ -165,7 +165,7 @@ function DealWonCard(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingWonDeals ?<div class="flex justify-center">Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
          {wonDeals.map((item) => {

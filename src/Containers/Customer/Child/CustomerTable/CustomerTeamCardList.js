@@ -273,7 +273,7 @@ const [rowdata, setrowdata] = useState("");
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingTeamCustomer?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
       >
       

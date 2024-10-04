@@ -148,7 +148,7 @@ function DealCardList(props) {
             <div class="flex justify-center">Loading...</div>
           ) : null
         }
-        height={"80vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
     <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center ">

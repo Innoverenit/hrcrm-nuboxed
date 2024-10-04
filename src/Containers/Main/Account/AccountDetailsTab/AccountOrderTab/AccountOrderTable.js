@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense, lazy } from 'react'
+import React, { useEffect, useState,  lazy } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import dayjs from "dayjs";
@@ -89,8 +89,9 @@ const AccountOrderTable = (props) => {
                "1389",      // "Feedback"27
                "170",      // Edit28
                "84",      // Delete29
-              "1380", // "Add Supervisor"
-              "14" //Category
+              "1380", // "Add Supervisor" 30
+              "14", //Category 31
+              "142"//Status 32
           ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -136,11 +137,7 @@ const AccountOrderTable = (props) => {
         props.getDistributorOrderOfHigh(props.distributorId, page, "repair","High")
     };
 
-    // const handleLoadMoreMedium = () => {
-    //     setPage(page + 1);
-    //     // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
-    //     props.getDistributorOrderOfMedium(props.distributorId, page, "repair","Medium")
-    // };
+
     const handleLoadMoreLow = () => {
         setPage(page + 1);
         // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
@@ -183,17 +180,15 @@ const AccountOrderTable = (props) => {
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
                     {translatedMenuItems[0]}   {/* Urgent */}
                          </div>
-                        <div className=" md:w-[9.41rem] ml-2">
-                            {/* <FormattedMessage
-                                id="app.orderno"
-                                defaultMessage="Order ID"
-                            /> */}
+                        <div className=" md:w-[10.41rem] ml-2">
+                            {/* Order ID"
+                             */}
                              {translatedMenuItems[1]} ID
                         </div>
-                        <div className=" md:w-[5.012rem]">
+                        <div className=" md:w-[9.012rem]">
                         {translatedMenuItems[13]}
                         </div>
-                        <div className=" md:w-[5.012rem]">
+                        <div className=" md:w-[9.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
                         </div>
                         {/* <div className=" md:w-[5.08rem]">
@@ -201,55 +196,41 @@ const AccountOrderTable = (props) => {
                            
                         </div> */}
 
-                        <div className="md:w-[5.81rem]">
+                        <div className="md:w-[2.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                        {translatedMenuItems[4]}   {/* <FormattedMessage
-                                id="app.contact"
-                                defaultMessage="Contact"
+                        {translatedMenuItems[4]}   {/*Contact"
                             /> */}
                         </div>
                         <div className="md:w-[6.11rem]">
-                        {translatedMenuItems[5]}  {/* <FormattedMessage
-                                id="app.quoted"
-                                defaultMessage="Quoted"
+                        {translatedMenuItems[5]}  {/* Quoted"
                             /> */}
                         </div>
                         <div className="md:w-[5.09rem]">
-                        {translatedMenuItems[6]}  {/* <FormattedMessage
-                                id="app.finalprice"
-                                defaultMessage="Final"
+                        {translatedMenuItems[6]}  {/*"Final"
                             /> */}
                         </div>
                         <div className="w-[5.076rem]">
-                        {translatedMenuItems[7]}    {/* <FormattedMessage
-                                id="app.revisedprice"
-                                defaultMessage="Revised"
+                        {translatedMenuItems[7]}    {/*Revised"
                             /> */}
                         </div>
                         <div className=" md:w-[5.063rem]">
                         </div>
                         <div className=" md:w-[8.10rem]">
-                        {translatedMenuItems[8]}  {/* <FormattedMessage
-                                id="app.received"
-                                defaultMessage="Received"
+                        {translatedMenuItems[8]}  {/* Received"
                             /> */}
                         </div>
                         <div className=" md:w-[8.03rem]">
-                        {translatedMenuItems[9]}   {/* <FormattedMessage
-                                id="app.supervisor"
-                                defaultMessage="Supervisor"
+                        {translatedMenuItems[9]}   {/*Supervisor"
                             /> */}
                         </div>
                         <div className=" md:w-[8.12rem]">
-                        {translatedMenuItems[10]}  {/* <FormattedMessage
-                                id="app.lead"
-                                defaultMessage="Lead"
+                        {translatedMenuItems[10]}  {/*Lead"
                             /> */}
                         </div>
 
                         <div className=" md:w-[8.02rem]">
-                        {translatedMenuItems[31]}   
+                        {translatedMenuItems[32]}   
                         </div>
                     </div>
              </div>
@@ -259,7 +240,7 @@ const AccountOrderTable = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfHigh ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"33vh"}
+                        height={"35vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
                         {props.highDistributorOrder.length ?
@@ -313,10 +294,7 @@ const AccountOrderTable = (props) => {
                                                             {date === currentdate ? (
                                                                 <span
                                                                     class="text-[tomato] text-[0.65rem] font-bold">
-                                                                    {/* {<FormattedMessage
-                                                                        id="app.new"
-                                                                        defaultMessage="New"
-                                                                    />} */}{translatedMenuItems[14]}
+                                                                    {/* New*/}{translatedMenuItems[14]}
                                                                 </span>
                                                             ) : null}
                                                         </div>
@@ -327,16 +305,7 @@ const AccountOrderTable = (props) => {
                                                     <div className=" flex md:w-[6.31rem] text-xs max-sm:flex-row w-full max-sm:justify-between ">
                                                     
                                                     </div>
-                                                    {/* <div className=" flex   md:w-[4.02rem] text-xs max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div >
-                                                            <MultiAvatar2
-                                                                primaryTitle={item.userName}
-                                                                imageURL={item.imageURL}
-                                                                imgWidth={"1.8rem"}
-                                                                imgHeight={"1.8rem"}
-                                                            />
-                                                        </div>
-                                                    </div> */}
+                                                    
 
                                                     <div className=" flex md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" font-poppins ">
@@ -374,13 +343,13 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex  items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex  items-center  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex  items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex  items-center  md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.finalPrice / 1000).toFixed(2)}k
@@ -411,15 +380,11 @@ const AccountOrderTable = (props) => {
                                                                     <Button onClick={() => {
                                                                         handleSubmitPrice()
                                                                     }} >
-                                                                       {translatedMenuItems[16]} {/* <FormattedMessage
-                                                                            id="app.save"
-                                                                            defaultMessage="Save"
+                                                                       {translatedMenuItems[16]} {/*Save"
                                                                         /> */}
                                                                     </Button>
                                                                     <Button onClick={() => handleUpdateRevisePrice(false)}>
-                                                                    {translatedMenuItems[17]}  {/* <FormattedMessage
-                                                                        id="app.cancel"
-                                                                        defaultMessage="Cancel"
+                                                                    {translatedMenuItems[17]}  {/*Cancel"
                                                                     /> */}
                                                                     </Button>
                                                                 </div>
@@ -477,10 +442,9 @@ const AccountOrderTable = (props) => {
                                                     {item.inventoryReceiveInd ? null
                                                         :
                                                         <Tooltip title={translatedMenuItems[20]}
-                                                        // {<FormattedMessage
-                                                        //     id="app.selectinventorylocation"
-                                                        //     defaultMessage="Select Inventory Location"
-                                                        // />}
+                                                   
+                                                        //  Select Inventory Location"
+                                                     
                                                         >
                                                             <Button
                                                                 type='primary'
@@ -490,9 +454,8 @@ const AccountOrderTable = (props) => {
                                                                     props.handleOrderPickupModal(true);
                                                                 }}
                                                             >{translatedMenuItems[21]}
-                                                                {/* <FormattedMessage
-                                                                    id="app.orderpickup"
-                                                                    defaultMessage="Pickup"
+                                                                {/*
+                                                                    Pickup"
                                                                 /> */}
 
                                                             </Button>
@@ -516,9 +479,8 @@ const AccountOrderTable = (props) => {
                                                         </div>
                                                         <div>
                                                             <Tooltip title={translatedMenuItems[23]}
-                                                            // {<FormattedMessage
-                                                            //     id="app.notes"
-                                                            //     defaultMessage="Notes"
+                                                         
+                                                            //     Notes"
                                                             // />}
                                                             >
                                                                 <NoteAltIcon
@@ -534,9 +496,8 @@ const AccountOrderTable = (props) => {
 
                                                         <div>
                                                             <Tooltip title={translatedMenuItems[24]}
-                                                            // {<FormattedMessage
-                                                            //     id="app.status"
-                                                            //     defaultMessage="Status"
+                                                         
+                                                            //     Status"
                                                             // />}
                                                             >
                                                                 <EventRepeatIcon
@@ -588,8 +549,7 @@ const AccountOrderTable = (props) => {
                                                    
                                                         <div>
                                                             <Tooltip title={translatedMenuItems[26]}
-                                                            // {<FormattedMessage
-                                                            //     id="app.rating"
+                                                        
                                                             //     defaultMessage="Rating"
                                                             // />}
                                                             >
@@ -601,10 +561,9 @@ const AccountOrderTable = (props) => {
                                                         </div>
                                                         <div>
                                                             <Tooltip title={translatedMenuItems[27]}
-                                                            // {<FormattedMessage
-                                                            //     id="app.feedback"
+                                                           
                                                             //     defaultMessage="Feedback"
-                                                            // />}
+                                                       
                                                             >
                                                                 <FeedbackIcon
                                                                     className="!text-icon cursor-pointer text-[#10d512] "
@@ -674,21 +633,21 @@ const AccountOrderTable = (props) => {
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
                     {translatedMenuItems[12]}   {/* Normal */}
                          </div>
-                        <div className=" md:w-[9.41rem] ml-2">
+                        <div className=" md:w-[10.41rem] ml-2">
                         
                              {translatedMenuItems[1]}ID
                         </div>
-                        <div className=" md:w-[5.012rem]">
+                        <div className=" md:w-[9.012rem]">
                         {translatedMenuItems[13]}
                         </div>
-                        <div className=" md:w-[5.012rem]">
+                        <div className=" md:w-[9.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
                         </div>
                         {/* <div className=" md:w-[5.08rem]">
                         {translatedMenuItems[3]}   
                         </div> */}
 
-                        <div className="md:w-[5.81rem]">
+                        <div className="md:w-[2.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
                         {translatedMenuItems[4]}
@@ -714,7 +673,7 @@ const AccountOrderTable = (props) => {
                         {translatedMenuItems[10]}  
                         </div>
                         <div className=" md:w-[8.02rem]">
-                        {translatedMenuItems[31]}   
+                        {translatedMenuItems[32]}   
                         </div>
                         </div>
                     </div>
@@ -725,7 +684,7 @@ const AccountOrderTable = (props) => {
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
                         loader={props.fetchingDistributorOfLow ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"33vh"}
+                        height={"35vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
                         {props.lowDistributorOrder.length ?
@@ -839,13 +798,13 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex   items-center  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                         <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex   items-center  md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex   items-center  md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
                                                         <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.finalPrice / 1000).toFixed(2)}k

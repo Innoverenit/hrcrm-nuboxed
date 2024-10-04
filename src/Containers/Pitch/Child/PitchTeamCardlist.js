@@ -124,46 +124,46 @@ serachedPitchData={props.serachedPitchData}
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div class="w-[90%]">
  <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" text-xs font-bold font-poppins w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
+        <div className=" text-xs font-bold font-poppins w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
         {translatedMenuItems[0]}
         {/* Name */}
                 </div>
-        <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className="  text-xs font-bold font-poppins w-[3.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className=" w-[6.1rem] max-xl:w-[3rem]"></div>
+        <div className="  text-xs font-bold font-poppins w-[6.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         {translatedMenuItems[1]} 
         {/* Mobile */}
                 </div>
         <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="text-xs font-bold font-poppins w-[14.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        <div className="text-xs font-bold font-poppins w-[16.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
         {translatedMenuItems[2]}
         {/* Company */}
            </div>
-         <div className="text-xs font-bold font-poppins w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+         <div className="text-xs font-bold font-poppins w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {translatedMenuItems[3]}
                {/* Source */}
            </div>
-          <div className="text-xs font-bold font-poppins w-[3.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          <div className="text-xs font-bold font-poppins w-[6.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                 {translatedMenuItems[4]} 
                      {/* Sector */}
                 </div>
 
                 {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
                {translatedMenuItems[19]} 
             {/* Score */}
           
             </div>
             )}
-        <div className="text-xs font-bold font-poppins w-[2.521rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className="text-xs font-bold font-poppins w-[3.522rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         {translatedMenuItems[5]}
           {/* Assigned */}
           </div>
-          <div className="text-xs font-bold font-poppins w-[2.521rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          <div className="text-xs font-bold font-poppins w-[3.521rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         {translatedMenuItems[6]}
           {/* Owner */}
           </div>
          
-        <div className="text-xs font-bold font-poppins w-[3.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        <div className="text-xs font-bold font-poppins w-[4.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
         {translatedMenuItems[7]}
         {/* Qualify */}
                 </div>
@@ -174,7 +174,7 @@ serachedPitchData={props.serachedPitchData}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingTeamPitch?<div class="flex justify-center" >Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{overflowX:"hidden",scrollbarWidth:"thin"}}
       >
   { !fetchingTeamPitch && props.teamPitch.length === 0 ?<NodataFoundPage />:props.teamPitch.map((item,index) =>  {
@@ -244,7 +244,7 @@ serachedPitchData={props.serachedPitchData}
                                         </div>
                                         </div>
                                 </div>
-                                <div class="flex flex-row items-center w-[4.8rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                <div class="flex flex-row items-center w-[2.8rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                                   <div>
                                                   <ButtonGroup>
                                               <RoleButton
@@ -292,7 +292,7 @@ serachedPitchData={props.serachedPitchData}
                                       </div>  
                                           </div>  
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                      <div className=" flex  w-[8rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                                                      <div className=" flex  w-[9rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                                                              
                                                                 <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                         {item.countryDialCode && item.phoneNumber
@@ -303,7 +303,7 @@ serachedPitchData={props.serachedPitchData}
                                                             </div>
                                                             <div className=" flex   w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                          
                                                                     </div>
-                                                                    <div className=" flex  w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                                                                    <div className=" flex  w-[2.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                                                                 {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.companyName || "None"}
@@ -313,14 +313,14 @@ serachedPitchData={props.serachedPitchData}
                                                                     </div>
                                                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             
-                                                            <div className=" flex  w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex  w-[6.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                              {/* Company  */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.source || "None"}
                                       </div>
 
                                                             </div>
-                                                            <div className=" flex  w-[3.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex  w-[8.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                               {/* Company */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.sector || "None"}
@@ -329,12 +329,12 @@ serachedPitchData={props.serachedPitchData}
                                                             </div>
                                                             {/* Score */}
                                                             {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center  w-[3.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>
             )}    
-                                                            <div className=" flex w-[2.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex w-[4.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                                                       {/* Assigned */}
 
                                                                           <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -432,7 +432,7 @@ serachedPitchData={props.serachedPitchData}
                                                                                           props.handlePitchNotesDrawerModal(true);
                                                                                           handleSetCurrentLeadsId(item);
                                                                                         }}
-                                                                                        className="!text-icon cursor-pointer text-[green]"
+                                                                                        className="!text-icon cursor-pointer text-green-800"
                                                                                       />
                                                                                   </Tooltip>
 
@@ -462,7 +462,7 @@ serachedPitchData={props.serachedPitchData}
                                                                                   <Tooltip title={item.email}>
                                                                                       <MailOutlineIcon
                                                                                         type="mail"
-                                                                                        className="!text-icon cursor-pointer text-green-400"
+                                                                                        className="!text-icon cursor-pointer text-[#4bc076]"
                                                                                         // onClick={() => {
                                                                                         //   handleSetCurrentLeadsId(item);
                                                                                         //   props.handleLeadsEmailDrawerModal(true);
