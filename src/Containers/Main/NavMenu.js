@@ -217,7 +217,6 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               className='!text-base'
               />
               <span class="text-white text-ls ml-1">        
-                {/* Calls */}
                 {translatedMenuItems[2]}
               </span>
               &nbsp;&nbsp;&nbsp;

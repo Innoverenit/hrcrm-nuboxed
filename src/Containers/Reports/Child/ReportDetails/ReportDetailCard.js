@@ -12,6 +12,7 @@ class ReportDetailCard extends Component {
             viewType === "view" ? (
               <ReportDetailView
               buttonData={this.props.buttonData}
+              visibilityConditions={this.props.visibilityConditions}
               selectedCategory={this.props.selectedCategory}
               dropdownOptions={this.props.ComponentdropdownOptions}
               handleSelectChange={this.props.ComponenthandleSelectChange}
