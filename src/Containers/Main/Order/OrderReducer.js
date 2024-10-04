@@ -132,6 +132,10 @@ const initialState = {
   DistributorDeliveryDateError: false,
   disDeliveryDate: [],
 
+  creatCBM: false,
+  creatCBMError: false,
+  cBMData:{},
+
   CustomerDeliveryDate: false,
   CustomerDeliveryDateError: false,
   cusDeliveryDate: [],
@@ -276,6 +280,24 @@ export const orderReducer = (state = initialState, action) => {
         DistributorDeliveryDate: false,
         DistributorDeliveryDateError: true,
       };
+
+      case types.CREAT_CBM_REQUEST:
+        return {
+          ...state,
+          creatCBM: true,
+        };
+      case types.CREAT_CBM_SUCCESS:
+        return {
+          ...state,
+          creatCBM: false,
+          cBMData: action.payload,
+        };
+      case types.CREAT_CBM_FAILURE:
+        return {
+          ...state,
+          creatCBM: false,
+          creatCBMError: true,
+        };
 
     //CUSTOMER
     case types.CUSTOMER_DELIVERY_DATE_REQUEST:

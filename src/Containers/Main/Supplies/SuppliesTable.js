@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddLocationSuppliesModal from "./AddLocationSuppliesModal"
 import AddSuppliesRowImageModal from "./AddSuppliesRowImageModal"
-
+import DescriptionIcon from '@mui/icons-material/Description';
 
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import {
@@ -18,7 +18,8 @@ import {
   handleSuppliersListDrawer,
   handleMaterialInventory,
   handlePriceModal,
-  handleUploadSuppliesModal
+  handleUploadSuppliesModal,
+  handleErpDocumentUploadModal
 } from "./SuppliesAction";
 import EuroIcon from '@mui/icons-material/Euro';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -46,6 +47,8 @@ import MaterialComplementaryDrawer from "./MaterialComplementaryDrawer";
 import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
 import { LocationCityOutlined } from "@mui/icons-material";
+import AddDocumentErpModals from "./AddDocumentErpModals";
+import { FormattedMessage } from "react-intl";
 const PriceModal = lazy(() => import("./PriceModal"));
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
@@ -166,7 +169,9 @@ function SuppliesTable(props) {
      handleUpdateSupplieDrawer,
       materialBuildrawer, 
       handleMaterialBuilderDrawer,
-      handlePriceModal } = props;
+      handlePriceModal,
+      erpDocumentUploadModal,
+      handleErpDocumentUploadModal } = props;
   return (
     <>
       <div className=" flex sticky z-auto">
@@ -486,6 +491,25 @@ function SuppliesTable(props) {
                               </div>
                               </Tooltip>
                             <div>
+                              <div>
+                              <DescriptionIcon
+                      type="plus"
+                      title={
+                        <FormattedMessage
+                          id="app.uploaddocument"
+                          defaultMessage="Upload Document"
+                        />
+                      }
+                      onClick={() => {handleErpDocumentUploadModal(true);
+                        handleParticularRowData(item);
+                      }}
+                      size="0.875em"
+                      style={{
+                        marginLeft: "0.3125em",
+                        verticalAlign: "center",
+                      }}
+                    />
+                              </div>
                               <Tooltip title={translatedMenuItems[14]}>
                                 <BorderColorIcon
                                   onClick={() => {
@@ -547,6 +571,13 @@ function SuppliesTable(props) {
           particularDiscountData={particularDiscountData}
           updateSuppliesDrawer={updateSuppliesDrawer}
           handleUpdateSupplieDrawer={handleUpdateSupplieDrawer}
+        />
+         <AddDocumentErpModals
+        suppliesId={particularDiscountData.suppliesId}
+          erpDocumentUploadModal={erpDocumentUploadModal}
+          handleErpDocumentUploadModal={handleErpDocumentUploadModal}
+          translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
         />
         <MaterialBuilderDrawer
           translateText={props.translateText}
@@ -617,6 +648,7 @@ const mapStateToProps = ({ supplies, auth }) => ({
   purchaseList: supplies.purchaseList,
   updateSuppliesDrawer: supplies.updateSuppliesDrawer,
   addCurrencyValue: supplies.addCurrencyValue,
+  erpDocumentUploadModal:supplies.erpDocumentUploadModal,
   uploadSuppliesList:supplies.uploadSuppliesList,
   addBrandModel: supplies.addBrandModel,
   materialBuildrawer: supplies.materialBuildrawer,
@@ -641,6 +673,7 @@ const mapDispatchToProps = (dispatch) =>
       handleMaterialBuilderDrawer,
       handleSuppliersListDrawer,
       handleMaterialInventory,
+      handleErpDocumentUploadModal,
       handlePriceModal
     },
     dispatch
