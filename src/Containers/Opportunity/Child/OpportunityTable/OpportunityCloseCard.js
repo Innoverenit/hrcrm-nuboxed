@@ -79,8 +79,8 @@ function OpportunityCloseCard(props) {
                  var findProbability = 0;
                  return (
 
-                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[16rem] 
-                  text-[#444444] m-3 p-1 w-[20vw] flex flex-col max-sm:w-wk scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[16rem] 
+                  text-[#444444] w-[20vw] flex flex-col max-sm:w-wk scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
 
                       <div class="flex items-center justify-between ">
                       <div>Name</div>
@@ -89,15 +89,8 @@ function OpportunityCloseCard(props) {
       {item.opportunityName}
     </Link>
                         </div> 
-                       
-               
-            
-                          
-            
           </div>                  
                  
-                     
-           
                         <div class="flex  justify-between">
                             <h3>Customer</h3>
                             <div>{item.customer}</div>

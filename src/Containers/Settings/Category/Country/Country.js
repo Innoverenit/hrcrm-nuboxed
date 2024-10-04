@@ -88,22 +88,22 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
           </div>
           <div class=" flex flex-col " >
          
-         <MainWrapper className="!h-[65vh] !mt-2" >
+         <MainWrapper className="!h-[77vh] !mt-2" >
           {!fetchingCountry && country.length === 0 ? <NodataFoundPage /> : country.slice().sort((a, b) => a.country_name.localeCompare(b.country_name)).map((region, index) => (
             <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.country_id}>
             {/* Region name display or input field */}
             
             
-            <div className=" flex font-medium flex-col md:w-[20rem] max-sm:justify-between w-full max-sm:flex-row ">
+            <div className=" flex  md:w-[20rem] max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs  font-poppins">
 
                       Name
 
                     </div>
 
 
-                    <div class=" font-normal text-sm  font-poppins">
+                    <div class=" font-normal text-xs font-poppins">
                     <div class=" w-[20rem]" >
   <div class=" basis-11/12 font-semibold">
   <CountryFlag1 countryCode={region.country_alpha2_code} />
@@ -114,16 +114,16 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[12rem] max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-[12rem] max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm  font-medium font-poppins">
+<div class=" text-xs  font-poppins">
 
  Dial Code
 
 </div>
 
 
-<div class=" font-normal text-sm  font-poppins">
+<div class=" font-normal text-xs font-poppins">
 <div class=" w-[7rem]" >
 <div class=" font-semibold" >
 +{region.country_dial_code}
@@ -132,15 +132,15 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
 </div>
 
 </div>
-<div className=" flex font-medium flex-col md:w-[15rem] max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex  md:w-[15rem] max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm  font-medium font-poppins">
+<div class=" text-xs  font-poppins">
 
 Currency
 </div>
 
 
-<div class=" font-normal text-sm  font-poppins">
+<div class=" font-normal text-xs font-poppins">
 <div class=" w-[13rem]" >
 <div class=" font-semibold" >
 {region.country_currency_name}
@@ -150,16 +150,16 @@ Currency
 
 </div>
  <div className="flex justify-between w-[34rem]">
- <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+ <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm  font-medium font-poppins">
+<div class=" text-xs  font-poppins">
 
 Operations
 
 </div>
 
 
-<div class=" font-normal text-sm  font-poppins">
+<div class=" font-normal text-xs font-poppins">
 <div class=" w-2/6">
 <CountryStatusToggle
 editInd={region.editInd}
@@ -172,15 +172,15 @@ country_id={region.country_id}
 
 </div>
                  
-                  <div className=" flex font-medium w-full flex-col md:w-44 max-sm:justify-between  max-sm:flex-row ">
+                  <div className=" flex  w-full flex-col md:w-44 max-sm:justify-between  max-sm:flex-row ">
 
-<div class=" text-sm  font-medium font-poppins">
+<div class=" text-xs  font-poppins">
 
 Sales
 </div>
 
 
-<div class=" font-normal text-sm  font-poppins">
+<div class=" font-normal text-xs font-poppins">
 <div class=" w-2/6">
 <CountrySalesToggle
 editInd={region.editInd}

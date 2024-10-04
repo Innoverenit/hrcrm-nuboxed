@@ -46,7 +46,7 @@ function OpportunityDeletedCard(props) {
         hasMore={hasMore}
         loader={fetchingDeletedOpportunity?<div class="flex justify-center">Loading...</div>:null}
         style={{ scrollbarWidth:"thin"}}
-        height={"86vh"}
+        height={"83vh"}
       >
 <div class="flex  justify-center flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">       
 { !fetchingDeletedOpportunity && deletedOpportunity.length === 0 ?<NodataFoundPage/>:deletedOpportunity.map((item,index) =>  {
