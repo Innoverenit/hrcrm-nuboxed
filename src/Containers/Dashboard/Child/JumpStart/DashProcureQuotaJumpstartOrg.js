@@ -17,9 +17,9 @@ import { base_url2 } from "../../../../Config/Auth";
 import axios from 'axios';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import OrdersOpenDrawer from "./OrdersOpenDrawer";
-const StackedClosureChart= lazy(()=>import("../../../Dashboard/StackedClosureChart"));
+const StackedClosureChart= lazy(()=>import("../../StackedClosureChart"));
 
-function DashProcureQuotaJumpstartUser(props) {
+function DashProcureQuotaJumpstartOrg(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,7 +35,7 @@ function DashProcureQuotaJumpstartUser(props) {
     const fetchData1 = async () => {
       const status="Created";
       try {
-        const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
+        const response = await axios.get(`${base_url2}/quotation/dashboard/${props.orgId}/${status}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -53,7 +53,7 @@ function DashProcureQuotaJumpstartUser(props) {
       const fetchData2 = async () => {
         const status="Converted";
         try {
-          const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
+          const response = await axios.get(`${base_url2}/quotation/dashboard/${props.orgId}/${status}`,{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
@@ -72,7 +72,7 @@ function DashProcureQuotaJumpstartUser(props) {
         const fetchData3 = async () => {
           const status="Cancelled";
           try {
-            const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
+            const response = await axios.get(`${base_url2}/quotation/dashboard/${props.orgId}/${status}`,{
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
@@ -88,7 +88,7 @@ function DashProcureQuotaJumpstartUser(props) {
         fetchData1();
         fetchData2();
         fetchData3();
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.orgId,props.startDate,props.endDate]);
 
 
   useEffect(() => {
@@ -288,4 +288,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashProcureQuotaJumpstartUser);
+)(DashProcureQuotaJumpstartOrg);
