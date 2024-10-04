@@ -145,7 +145,7 @@ const DealsAllCardList = (props) => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={fetchingAllDealsData ? <div class="flex justify-center">Loading...</div> : null}
-          height={"80vh"}
+          height={"83vh"}
           style={{ scrollbarWidth: "thin"}}
         >
           {!fetchingAllDealsData && props.allDealsData.length === 0 ? <NodataFoundPage /> : props.allDealsData.map((item, index) => {

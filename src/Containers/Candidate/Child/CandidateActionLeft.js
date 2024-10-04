@@ -11,7 +11,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { FormattedMessage } from "react-intl";
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { Input, Menu, Button, Tooltip, Radio,  Badge } from "antd";
+import { Input, Menu, Button, Tooltip, Radio,  Badge, Avatar } from "antd";
 import {
   inputCandidateDataSearch,
   inputCandidateSkillDataSearch,
@@ -110,7 +110,9 @@ const CandidateActionLeft = (props) => {
   console.log(props.currentData, props.text)
   console.log(props.recordData.candidateDetails || 0)
 
-  const { user } = props;
+  const { 
+    activeButton,
+    user } = props;
 
   const menu = (
     <Menu>
@@ -157,14 +159,18 @@ const CandidateActionLeft = (props) => {
       )}
      <Tooltip title={<FormattedMessage id="app.tile" defaultMessage="Tile" />}>
       <Badge size="small" count={ props.viewType === "card" &&props.recordData.candidateDetails || 0} overflowCount={5000}>
-     <span class=" mr-2 cursor-pointer text-4"
+     <span class="mr-1 cursor-pointer "
        onClick={() => props.setCandidateViewType("card")}
        style={{
-         color: props.viewType === "card" && "#1890ff",
+         color: props.viewType === "card" && "tomato",
+        //  "#1890ff",
        }}
      >
-      <TableViewIcon className="!text-icon"
-       />
+      <Avatar style={{ background:props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
+                    <TableViewIcon className="!text-icon text-white "/>
+                    </Avatar>
+      
+       
        </span>
        </Badge>
  </Tooltip>  
@@ -176,13 +182,16 @@ const CandidateActionLeft = (props) => {
         title={<FormattedMessage id="app.billableCandidate" defaultMessage="Billable Candidate" />}
       >
        
-       <span class=" mr-2 cursor-pointer text-4"
+       <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("billable")}
             style={{
               color: props.viewType === "billable" && "#1890ff",
             }}
           >
-            <ReceiptIcon className="!text-icon"  />
+            <Avatar style={{ background:props.viewType === "billable" ? "#f279ab" : "#4bc076" }}>
+            <ReceiptIcon className="!text-icon text-white "/>
+                    </Avatar>
+            
           </span>
        
       </Tooltip>
@@ -191,16 +200,19 @@ const CandidateActionLeft = (props) => {
         title={<FormattedMessage id="app.all" defaultMessage="All" />}
       >
         <Badge size="small" count={ props.viewType === "table" &&props.recordData.candidateDetails || 0} overflowCount={5000}>
-        <span class=" mr-2 cursor-pointer text-4"
+        <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("table")}
             style={{
               color: props.viewType === "table" && "#1890ff",
 
             }}
           >
-            <GroupsIcon className="!text-icon"
-            // icon={solid('users')}
-             />
+
+<Avatar style={{ background:props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+             <GroupsIcon className="!text-icon text-white"/>
+            </Avatar>
+           
+            
           </span>
         </Badge>
       </Tooltip>
@@ -210,14 +222,18 @@ const CandidateActionLeft = (props) => {
         title={<FormattedMessage id="app.white" defaultMessage="White" />}
       >
         <Badge size="small" count={ props.viewType === "list" &&props.recordCandidateCategoryData.candidateDetails || 0} overflowCount={5000}>
-        <span class=" mr-2 cursor-pointer text-4"
+        <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("list")}
             style={{
               color: props.viewType === "list" && "#1890ff",
             }}
           >
 
-            <PermIdentityIcon className="!text-icon" />
+<Avatar style={{ background:props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+<PermIdentityIcon className="!text-icon text-white" />
+            </Avatar>
+           
+           
           </span>
         </Badge>
       </Tooltip>
@@ -226,34 +242,26 @@ const CandidateActionLeft = (props) => {
         title={<FormattedMessage id="app.blue" defaultMessage="Blue" />}
       >
         <Badge size="small" count={ props.viewType === "dashboard" &&props.recordCandidateCategoryDataBlue.candidateDetails || 0} overflowCount={5000}>
-        <span class=" mr-2 cursor-pointer text-4"
+        <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("dashboard")}
             style={{
               color: props.viewType === "dashboard" && "#1890ff",
             }}
           >
-            {/* <i class="fa-solid fa-user-helmet-safety"></i> */}
-            {/* <i class="fa-solid fa-user-tie"></i> */}
-            {/* <i class="fa-solid fa-user-gear"></i> */}
-            <ManageAccountsIcon className="!text-icon"
-            // icon={solid("user-gear")}
-             />
+            <Avatar style={{ background:props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
+            <ManageAccountsIcon className="!text-icon text-white"  />
+           </Avatar>
+          
+           
           </span>
         </Badge>
       </Tooltip>
-
-
-
-     
-
-     
- 
 
  <Tooltip
         title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
       >
           <Badge size="small"count={ props.viewType === "map" &&props.recordData.candidateDetails || 0}>
-          <span class=" mr-2 cursor-pointer text-4"
+          <span class="mr-1 cursor-pointer "
            onClick={() => props.setCandidateViewType("map")}
           style={{
             color: props.viewType === "map" && "#1890ff",
@@ -261,20 +269,25 @@ const CandidateActionLeft = (props) => {
          
        
         >
-          <LanguageIcon className="!text-icon"
-          />
+          <Avatar style={{ background:props.viewType ===  "map" ? "#f279ab" : "#4bc076" }}>
+          <LanguageIcon className="!text-icon text-white"/>
+           </Avatar>
+          
+         
         </span>
         </Badge>
       </Tooltip>
       <Tooltip>
      
-      <span class=" mr-2 cursor-pointer text-4"
+      <span class="mr-1 cursor-pointer "
        onClick={() => props.setCandidateViewType("black")}
 
      >
-       <CircleIcon className="!text-icon"
-      //  icon={solid("circle")}
-        />
+      <Avatar style={{ background:props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+      <CircleIcon className="!text-icon text-white"  />  
+           </Avatar>
+          
+    
        </span>
 
  </Tooltip>
@@ -282,13 +295,17 @@ const CandidateActionLeft = (props) => {
         title={<FormattedMessage id="app.dollar" defaultMessage="Dollar" />}
       >
        
-       <span class=" mr-2 cursor-pointer text-4"
+       <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("dollar")}
             style={{
               color: props.viewType === "dollar" && "#1890ff",
             }}
           >
-            <LocalAtmIcon className="!text-icon" />
+            <Avatar style={{ background:props.viewType === "dollar" ? "#f279ab" : "#4bc076" }}>
+            <LocalAtmIcon className="!text-icon text-white" />
+           </Avatar>
+          
+           
           </span>
        
       </Tooltip>

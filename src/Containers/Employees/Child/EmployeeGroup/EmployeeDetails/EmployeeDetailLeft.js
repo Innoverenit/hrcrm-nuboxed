@@ -14,15 +14,27 @@ class EmployeeDetailLeft extends Component {
     
     return (
       <div class=" flex flex-col display-block" >
-        <EmployeeOverviewCard singleEmployee={singleEmployee} />
-        <EmployeeTopicOfInterest singleEmployee={singleEmployee} />
+        <EmployeeOverviewCard singleEmployee={singleEmployee}
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage} />
+        <EmployeeTopicOfInterest singleEmployee={singleEmployee} 
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}/>
         <EmployeeCertificationLibrary 
         singleEmployee={singleEmployee} 
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
         />
-        <EmployeeStatusCard singleEmployee={singleEmployee} />
-        <EmployeeAboutCard singleEmployee={singleEmployee} />
+        <EmployeeStatusCard singleEmployee={singleEmployee} 
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}/>
+        <EmployeeAboutCard singleEmployee={singleEmployee}
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage} />
         {/* <EmployeeDetailMap singleEmployee={singleEmployee} /> */}
-        <EmployeePersonalCard singleEmployee={singleEmployee} />
+        <EmployeePersonalCard singleEmployee={singleEmployee} 
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}/>
       </div>
     );
   }

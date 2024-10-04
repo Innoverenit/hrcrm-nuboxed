@@ -165,7 +165,7 @@ return <div><BundleLoader/></div>;
             {/* Action buttons */}
             <div >
                 {/* Edit button */}
-                {editingId === region.upplierCategoryId ? (
+                {editingId === region.supplierCategoryId ? (
                     <div>
                         <button onClick={() => handleUpdateSupplier(region)}>Save</button>
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>

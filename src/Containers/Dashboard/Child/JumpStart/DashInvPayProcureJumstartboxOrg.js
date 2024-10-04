@@ -1,4 +1,4 @@
-import React, { useEffect,useState,lazy } from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
@@ -13,92 +13,118 @@ getOrderClosedList,
 getOrderCancelList
 } from "../../DashboardAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { base_url2 } from "../../../../Config/Auth";
+import CustomerPieChart from "./CustomerPieChart"
 import axios from 'axios';
-import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import OrdersOpenDrawer from "./OrdersOpenDrawer";
-const StackedClosureChart= lazy(()=>import("../../../Dashboard/StackedClosureChart"));
+import {base_url2} from "../../../../Config/Auth";
+import DashProcurePayDrawer from "./DashProcurePayDrawer";
 
-function DashProcureQuotaJumpstartUser(props) {
+function DashInvPayProcureJumstartboxOrg(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentOrderType, setCurrentOrderType] = useState("");
-
   const [error, setError] = useState(null);
+  const [loading1, setLoading1] = useState(true);
 
-  const [data1, setData1] = useState([]);
-  const [loading1, setLoading1] = useState(false);
+  const [proInvoiceSent,setproInvoiceSent]=useState("");
 
-    const fetchData1 = async () => {
-      const status="Created";
-      try {
-        const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
-          headers: {
-            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-          },
-        });
-        setData1(response.data);
-        setLoading1(false);
+  const fetchProInvoiceCount = async () => {
+    try {
+      const response = await axios.get(`${base_url2}/invoice/invoiceCount/${props.orgId}/${props.timeRangeType}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setproInvoiceSent(response.data);
+      setLoading(false);
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    }
+  };
+  const [proInvoiceSentList,setproInvoiceSentList]=useState("");
+
+  const fetchProInvoiceSentList = async () => {
+    try {
+      const response = await axios.get(`${base_url2}/invoice/invoiceSend/${props.orgId}/${props.startDate}/${props.endDate}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setproInvoiceSent(response.data);
+      setLoading1(false);
+    } catch (error) {
+      setError(error);
+      setLoading1(false);
+    }
+  };
+
+  const [procPaymentCount, setprocPaymentCount] = useState({});
+  const [loading2, setLoading2] = useState(false);
+
+  const fetchProPaymentCount= async () => {
+    try {
+      const response = await axios.get(`${base_url2}/orderPayment/invoiceOutstanding/payment/${props.orgId}/${props.timeRangeType}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setprocPaymentCount(response.data);
+        setLoading2(false);
       } catch (error) {
         setError(error);
-        setLoading1(false);
+        setLoading2(false);
       }
     };
-    const [data2, setData2] = useState([]);
-    const [loading2, setLoading2] = useState(false);
-  
-      const fetchData2 = async () => {
-        const status="Converted";
-        try {
-          const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
-            headers: {
-              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-            },
-          });
-          setData2(response.data);
-          setLoading2(false);
-        } catch (error) {
-          setError(error);
-          setLoading2(false);
-        }
-      };
 
-      const [data3, setData3] = useState([]);
+    const [proPaymentReceivedList, setproPaymentReceivedList] = useState([]);
       const [loading3, setLoading3] = useState(false);
-    
-        const fetchData3 = async () => {
-          const status="Cancelled";
+
+      const fetchProPaymentReceivedList = async () => {
           try {
-            const response = await axios.get(`${base_url2}/quotation/dashboard/${props.userId}/${status}`,{
+            const response = await axios.get(`${base_url2}/orderPayment/invoicePaymentReceived/${props.orgId}/${props.startDate}/${props.endDate}`,{
               headers: {
                 Authorization: "Bearer " + sessionStorage.getItem("token") || "",
               },
             });
-            setData3(response.data);
+            setproPaymentReceivedList(response.data);
             setLoading3(false);
           } catch (error) {
             setError(error);
             setLoading3(false);
           }
         };
-    useEffect(() => {
-        fetchData1();
-        fetchData2();
-        fetchData3();
-    }, [props.userId,props.startDate,props.endDate]);
-
+        const [proPaymentReconciledList, setproPaymentReconciledList] = useState([]);
+        const [loading4, setLoading4] = useState(false);
+  
+        const fetchProPaymentReconciledList = async () => {
+            try {
+              const response = await axios.get(`${base_url2}/orderPayment/invoicePaymentReconciled/${props.orgId}/${props.startDate}/${props.endDate}`,{
+                headers: {
+                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                },
+              });
+              setproPaymentReconciledList(response.data);
+              setLoading4(false);
+            } catch (error) {
+              setError(error);
+              setLoading4(false);
+            }
+          };
+        
+              
+      
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-    "1495",  //  "Quotation Created", // 0
-     "1496", //  "Quotation Converted", // 1
-      "1497",//   "Quotation Cancelled", // 2
+    "1498",  //  "Invoice Sent", // 0
+     "1499", //  "Payment Received", // 1
+      "1500",//   "Payment Reconciled", // 2
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -115,33 +141,29 @@ function DashProcureQuotaJumpstartUser(props) {
   
   useEffect(() => {
     // props.getJumpOrderDetail(props.timeRangeType, "Catalog")
+    fetchProInvoiceCount();
+    fetchProPaymentCount();
+
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 
   useEffect(() => {
-    if (props.orderAddedList) {
-      setModalData(props.orderAddedList);
+    if (proInvoiceSentList) {
+      setModalData(proInvoiceSentList);
     }
-  }, [props.orderAddedList]);
+  }, [proInvoiceSentList]);
 
   useEffect(() => {
-    if (props.orderOpenList) {
-      setModalData(props.orderOpenList);
+    if (proPaymentReceivedList) {
+      setModalData(proPaymentReceivedList);
     }
-  }, [props.orderOpenList]);
+  }, [proPaymentReceivedList]);
 
   useEffect(() => {
-    if (props.orderClosedList) {
-      setModalData(props.orderClosedList);
+    if (proPaymentReconciledList) {
+      setModalData(proPaymentReconciledList);
     }
-  }, [props.orderClosedList]);
-
-  useEffect(() => {
-    if (props.orderCancelList) {
-      setModalData(props.orderCancelList);
-    }
-  }, [props.orderCancelList]);
-
+  }, [proPaymentReconciledList]);
 
 
   const handleClick = (type) => {
@@ -149,43 +171,43 @@ function DashProcureQuotaJumpstartUser(props) {
     setIsModalOpen(true);
 
     switch(type) {
-      case 'Quotation Created':
-        // props.getOrderAddedList(props.orgId,props.endDate,props.startDate);
+      case 'Invoice Sent':
+        fetchProInvoiceSentList(props.orgId,props.endDate,props.startDate);
         break;
-      case 'Quotation Converted':
-        // props.getOrderOpenList(props.orgId,props.endDate,props.startDate);
+      case 'Payment Received':
+        fetchProPaymentReceivedList(props.orgId,props.endDate,props.startDate);
         break;
-      case 'Quotation Cancelled':
-        // props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
+      case 'Payment Reconciled':
+        fetchProPaymentReconciledList(props.orgId,props.endDate,props.startDate);
         break;
       default:
         break;
     }
   };
 
-  
+
 
   return (
     <>
     <div className=" flex flex-col">
-      <div class=" flex w-full" >
-       
+      <div class=" flex flex-row w-full" >
+        <div class=" flex w-full max-sm:flex-col" >
           
           <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center text-xs">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><LightbulbIcon className=" text-white"/></div>
+                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
                              </div>
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title= {translatedMenuItems[0]}
-              jumpstartClick={()=> handleClick("Quotation Created")}
+              jumpstartClick={()=> handleClick("Invoice Sent")}
               cursorData={"pointer"}
-              value={"0"}
-            // isLoading={props.fetchingorderDetails}
+              value={proInvoiceSent.totalInvoice}
+            isLoading={loading}
             />
                          </div>
                      </div>
@@ -196,16 +218,17 @@ function DashProcureQuotaJumpstartUser(props) {
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center text-xs">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-pink-600"><LightbulbIcon className=" text-white"/></div>
+                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
                                </div>
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
               title= {translatedMenuItems[1]} 
-            jumpstartClick={()=> handleClick("Open")}
+             
+            jumpstartClick={()=> handleClick("Payment Received")}
               cursorData={"pointer"}
-            // value={ pendingOrder}
-            // isLoading={props.fetchingorderDetails}
+            value={procPaymentCount.paymentReceived}
+            isLoading={loading2}
             />
                            </div>
                        </div>
@@ -216,37 +239,37 @@ function DashProcureQuotaJumpstartUser(props) {
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center text-xs">
                               <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-2 bg-blue-600"><LightbulbIcon className=" text-white"/></div>
+                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
                               </div>
                               <JumpStartBox
                              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                               noProgress
                               title= {translatedMenuItems[2]} 
-                            
-                              jumpstartClick={()=> handleClick("Cancelled")}
+                              jumpstartClick={()=> handleClick("Payment Reconciled")}
                               cursorData={"pointer"}
-                              value={"0"}
-                            // isLoading={props.fetchingorderDetails}
+                              value={procPaymentCount.paymentReconciled}
+                              isLoading={loading2}
                             />
                           </div>
                       </div>      
-                  
+                  </div>
           </div>
-    
+          
         </div>
-        <div class="mt-1">
-      <StackedClosureChart />
-      </div>
+        <div>
+        <div class=" font-poppins font-bold text-base mt-1">By Process</div>
+        <CustomerPieChart/>
+        </div>
         </div>
   
-      {/* <DashProcureQuotaDrawer
+      <DashProcurePayDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
  isModalOpen={isModalOpen}
  setIsModalOpen={() => setIsModalOpen(false)}
  modalData={modalData}
  title={currentOrderType}
-      /> */}
+      />
    
     </>
 
@@ -288,4 +311,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DashProcureQuotaJumpstartUser);
+)(DashInvPayProcureJumstartboxOrg);

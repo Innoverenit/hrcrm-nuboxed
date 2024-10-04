@@ -130,7 +130,7 @@ function DealLostCard(props) {
                 next={handleLoadMore}
                 hasMore={hasMore}
                 loader={fetchingLostDeals ?<div class="flex justify-center">Loading...</div>:null}
-                height={"75vh"}
+                height={"83vh"}
                 style={{scrollbarWidth:"thin"}}
               >
                 { !fetchingLostDeals && lostDeals.length === 0 ?<NodataFoundPage />:lostDeals.map((item,index) =>  {
@@ -380,7 +380,7 @@ function DealLostCard(props) {
   <>   
 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-      <div className=" flex justify-between w-[100%]">
+      <div className=" flex justify-between font-bold font-poppins text-xs w-[100%]">
         <div className=" md:w-[13.12rem]">
          {translatedMenuItems[0]} 
           {/* name"  */}              

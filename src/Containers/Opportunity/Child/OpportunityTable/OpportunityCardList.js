@@ -50,7 +50,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OpportunityRowEmailModal from "./OpportunityRowEmailModal";
 import { base_url } from "../../../../Config/Auth";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
-import { HeartBrokenOutlined } from "@mui/icons-material";
+import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -494,7 +494,7 @@ imgHeight={"1.8rem"}
   </div>
 
   <div class="w-6">
-<HeartBrokenOutlined className="!text-icon"
+<MonitorHeartIcon className="!text-icon"
                 type="mail"
                 style={{ cursor: "pointer" }}
                 onClick={() => {
@@ -506,7 +506,7 @@ imgHeight={"1.8rem"}
 
 <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div>
 <div class="flex items-center">

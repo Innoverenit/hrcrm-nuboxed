@@ -234,7 +234,7 @@ function InvestorTeamCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingTeamInvestor?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
-        height={"82vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >

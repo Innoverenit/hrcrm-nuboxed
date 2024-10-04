@@ -125,19 +125,19 @@ serachedPitchData={props.serachedPitchData}
 ) : (
  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className=" flex justify-between max-sm:hidden w-[98%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className="font-bold font-poppins text-xs w-[18.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
+        <div className="font-bold font-poppins text-xs w-[23.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
         {translatedMenuItems[0]}
         {/* name */}
                 </div>      
-        <div className="font-bold font-poppins text-xs  w-[4.3rem]  max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className="font-bold font-poppins text-xs  w-[9.3rem]  max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         {translatedMenuItems[1]} 
         {/* Mobile */}
                 </div>   
-        <div className=" font-bold font-poppins text-xs w-[15.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        <div className=" font-bold font-poppins text-xs w-[17.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
         {translatedMenuItems[2]} 
         {/* company */}
                 </div>
-                    <div className="font-bold font-poppins text-xs w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div className="font-bold font-poppins text-xs w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                     {translatedMenuItems[3]}  
                     {/* source */}
                 </div>
@@ -146,12 +146,12 @@ serachedPitchData={props.serachedPitchData}
                      {/* sector */}
                 </div>
                 {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[1.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[6.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {/* Score */}
             {translatedMenuItems[18]}
             </div>
             )}
-        <div className="font-bold font-poppins text-xs w-[4.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className="font-bold font-poppins text-xs w-[7.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
           {/* Assigned */}
         {translatedMenuItems[5]}
         </div>
@@ -166,7 +166,7 @@ serachedPitchData={props.serachedPitchData}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllPitch?<div class="flex justify-center">Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{overflowX:"hidden",scrollbarWidth:"thin"}}
     
       >
@@ -291,7 +291,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>  
 </div>  
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex    w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex    w-[9rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                      <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.countryDialCode && item.phoneNumber
 ? `${item.countryDialCode} ${item.phoneNumber}`
@@ -303,7 +303,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                             <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                     
                               </div>
                         </div> */}
-                        <div className=" flex  w-[15.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  w-[13.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* country */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "None"}
@@ -312,13 +312,13 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
-                 <div className=" flex   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex   w-[6.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                      {/* Company  */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source || "None"}
 </div>
                  </div>
-                 <div className=" flex   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex   w-[7.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                {/* sector */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "None"}
@@ -414,7 +414,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                   props.handlePitchNotesDrawerModal(true);
                                   handleSetCurrentLeadsId(item);
                                 }}
-                                className="!text-icon cursor-pointer text-[green]"
+                                className="!text-icon cursor-pointer text-green-800"
                               />
                           </Tooltip>
                             </div>

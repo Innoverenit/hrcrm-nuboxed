@@ -77,7 +77,7 @@ function OpportunityAllCardList(props) {
           '176', // 3
           '218', // 4
           '219', // 5
-          '220', // 6
+          '76', // 6
           '77', // 7
          "232", // 'Click to Open'
          "170", // "Edit"
@@ -222,7 +222,7 @@ function OpportunityAllCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllOpportunity?<div class="flex justify-center" >Loading...</div> :null}
-        height={"82vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
  { !fetchingAllOpportunity && allOpportunity.length === 0 ?<NodataFoundPage />:allOpportunity.map((item,index) =>  {
@@ -425,7 +425,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
          
                       <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div> 
                  

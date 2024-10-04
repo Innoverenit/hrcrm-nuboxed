@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
+import CustomerPieChart from "./CustomerPieChart"
 import {getJumpDistributorDetail,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
   handleOrderClosedModal,getCustomerAddedList,getContactAddedList,getOrderAddedList,
-  getOrderClosedList
+  getOrderClosedList,
 } from "../../DashboardAction";
 // import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
@@ -17,40 +19,49 @@ import OrdersClosedModal from "./OrdersClosedModal";
 // import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 import axios from 'axios';
 import {base_url} from "../../../../Config/Auth";
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import ProspectJumpStartDrawer from './ProspectJumpStartDrawer';
 
-function InvestorDashboardJumpStart (props) {
+function ProspectDashboardJumpStart (props) {
   
   const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'));
+  const [startDate] = useState(dayjs().startOf('month'));
+  const [endDate] = useState(dayjs());
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalData, setModalData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentOrderType, setCurrentOrderType,setError] = useState("");
+  const [currentOrderType, setCurrentOrderType] = useState("");
 
-  const [invesortAdded, setinvesortAdded] = useState([]);
+ const [error, setError] = useState(null);
+
+  const [prospectAdded, setprospectAdded] = useState([]);
   const [loading1, setLoading1] = useState(false);
 
-    const fetchInvesortAdded = async () => {
+    const fetchProspectAdded = async () => {
       try {
-        const response = await axios.get(`${base_url}/investor/report/all-investor/self/count/${props.userId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+        const response = await axios.get(`${base_url}/customer/report/count/self/${props.orgId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
         });
-        setinvesortAdded(response.data);
+        setprospectAdded(response.data);
         setLoading1(false);
       } catch (error) {
         setError(error);
         setLoading1(false);
       }
     };
+
     const [contactAdded, setcontactAdded] = useState([]);
     const [loading2, setLoading2] = useState(false);
 
     const fetchContacttAdded = async () => {
-      const type="Investor";
+      const type="Prospect";
       try {
-        const response = await axios.get(`${base_url}/contact/added/selfCount/date-wise/${props.userId}/${type}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+        const response = await axios.get(`${base_url}/contact/added/selfCount/date-wise/${props.orgId}/${type}?endDate=${props.endDate}&startDate=${props.startDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -62,51 +73,52 @@ function InvestorDashboardJumpStart (props) {
         setLoading2(false);
       }
     };
-
-    const [dealsAdded, setdealsAdded] = useState([]);
+    
+    const [quotationAdded, setquotationAdded] = useState([]);
     const [loading3, setLoading3] = useState(false);
 
-    const fetchDealsAdded = async () => {
-      const type="add";
+    const fetchQuotationAdded = async () => {
+      // const type="Prospect";
       try {
-        const response = await axios.get(`${base_url}/investorOpportunity/self/report/count/${props.userId}/${type}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+        const response = await axios.get(`${base_url}/opportunity/openList/date-range/count/self/${props.orgId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
         });
-        setdealsAdded(response.data);
+        setquotationAdded(response.data);
         setLoading3(false);
       } catch (error) {
         setError(error);
         setLoading3(false);
       }
-          };
-          const [dealsWon, setdealsWon] = useState([]);
-          const [loading4, setLoading4] = useState(false);
-      
-          const fetchDealsWon = async () => {
-            const type="won";
-            try {
-              const response = await axios.get(`${base_url}/investorOpportunity/self/report/count/${props.userId}/${type}?endDate=${props.endDate}&startDate=${props.startDate}`,{
-                headers: {
-                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-                },
-              });
-              setdealsWon(response.data);
-              setLoading4(false);
-            } catch (error) {
-              setError(error);
-              setLoading4(false);
-            }
-                };
+    };
+    const [quotationAddedCard, setquotationAddedCard] = useState([]);
+    const [loading4, setLoading4] = useState(false);
+
+    const fetchQuotationAddedCard = async () => {
+      try {
+        const response = await axios.get(`${base_url}/opportunity/List/date-range/self/${props.orgId}?endDate=${props.endDate}&startDate=${props.startDate}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setquotationAddedCard(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
+
+    useEffect(() => {
+      fetchProspectAdded();
+      fetchContacttAdded();
+      fetchQuotationAdded();
+    }, [props.orgId]);
 
   useEffect(() => {
     props.getJumpDistributorDetail(props.timeRangeType);
     fetchMenuTranslations();
-    fetchInvesortAdded();
-    fetchContacttAdded();
-    fetchDealsAdded();
-    fetchDealsWon();
   }, [props.timeRangeType]);
 
   useEffect(() => {
@@ -116,10 +128,10 @@ function InvestorDashboardJumpStart (props) {
   const fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        '1538', // 0 "Investor Added"
+        '1536', // 0 "Prospect Added"
         '1297', // 1 "Contacts Added"
-        '1539', // 2 "Deals Added"
-        '1554'  // 3 "Deals Won"
+        '1537', // 2 "Quotation Added"
+        '1553'  // 3 "Quotation Won"
       ];
 
       const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -143,10 +155,10 @@ function InvestorDashboardJumpStart (props) {
   }, [props.customerAddedList]);
 
   useEffect(() => {
-    if (props.orderAddedList) {
-      setModalData(props.orderAddedList);
+    if (quotationAddedCard) {
+      setModalData(quotationAddedCard);
     }
-  }, [props.orderAddedList]);
+  }, [quotationAddedCard]);
 
   useEffect(() => {
     if (props.orderClosedList) {
@@ -164,16 +176,16 @@ function InvestorDashboardJumpStart (props) {
 
     switch(type) {
       case 'Added':
-        props.getCustomerAddedList(props.userId,props.endDate,props.startDate);
+        props.getCustomerAddedList(props.orgId,props.endDate,props.startDate);
         break;
       case 'Contact Added':
-        props.getContactAddedList(props.userId,props.endDate,props.startDate);
+        props.getContactAddedList(props.orgId,props.endDate,props.startDate);
         break;
-      case 'Deals Added':
-        props.getOrderAddedList(props.userId,props.endDate,props.startDate);
+      case 'Quotation Added':
+        fetchQuotationAddedCard(props.orgId,props.endDate,props.startDate);
         break;
-      case 'Deals Won':
-        props.getOrderClosedList(props.userId,props.endDate,props.startDate);
+      case 'Quotation Won':
+        props.getOrderClosedList(props.orgId,props.endDate,props.startDate);
         break;
       default:
         break;
@@ -183,19 +195,20 @@ function InvestorDashboardJumpStart (props) {
 
   return(
     <>
+    <div class=" flex flex-col">
     <div className="flex flex-row w-full">
         <div className="flex w-full max-sm:flex-col">
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-green-600"><i className="fa fa-wallet fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-green-600"><ApartmentIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#F15753,orange)"
                   title={translatedMenuItems[0]}
-                  value={invesortAdded.investorAdded}
+                  value={prospectAdded.count}
                   jumpstartClick={()=> handleClick("Added")}
                   cursorData={"pointer"}
                 />
@@ -206,14 +219,14 @@ function InvestorDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-pink-600"><i className="fas fa-users fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-pink-600"><ContactsIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
                   title={translatedMenuItems[1]}
                   value={contactAdded.count}
-                  jumpstartClick={()=> handleClick("Contact Added")}
+                  jumpstartClick={() => handleClick("Contact Added")}
                 />
               </div>
             </div>
@@ -222,14 +235,14 @@ function InvestorDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-yellow-600"><i className="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-yellow-600"><LightbulbIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                   title={translatedMenuItems[2]}
-                  value={dealsAdded.investorOppAdded}
-                  jumpstartClick={()=> handleClick("Deals Added")}
+                  value={props.distributorinDashboard.totalOrder}
+                  jumpstartClick={() => handleClick("Quotation Added")}
                   cursorData="pointer"
                 />
               </div>
@@ -239,14 +252,14 @@ function InvestorDashboardJumpStart (props) {
             <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
                 <div className="flex-shrink pr-3">
-                  <div className="rounded-full p-2 bg-blue-600"><i className="fas fa-server fa-2x fa-inverse"></i></div>
+                  <div className="rounded-full p-2 bg-blue-600"><LightbulbIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
                   noProgress
                   bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                   title={translatedMenuItems[3]}
-                  value={dealsWon.investorOppWon}
-                  jumpstartClick={()=> handleClick("Deals Won")}
+                  value={props.distributorinDashboard.completeOrder}
+                  jumpstartClick={() => handleClick("Quotation Won")}
                   cursorData="pointer"
                 />
               </div>
@@ -254,8 +267,18 @@ function InvestorDashboardJumpStart (props) {
           </div>
         </div>
       </div>
-
-<CustomerJumpStartDrawer
+      <div class=" mt-1 flex flex-row justify-between items-center" >
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Sector</div>
+        <CustomerPieChart/>
+        </div>
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Source</div>
+        <CustomerPieChart/>
+        </div>
+      </div>
+      </div>
+<ProspectJumpStartDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
  isModalOpen={isModalOpen}
@@ -296,9 +319,8 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
   fetchingSalesDatewiseReportError:dashboard.fetchingSalesDatewiseReportError,
   fetchingDatewiseReport:dashboard.fetchingDatewiseReport,
   fetchingDatewiseReportError:dashboard.fetchingDatewiseReportError,
-  recruiterId:auth.userDetails.userId,
+  recruiterId:auth.userDetails.orgId,
   fetchingTaskper:dashboard.fetchingTaskper,
-  userId: auth.userDetails.employeeId,
   dateOfJoining: auth.userDetails && auth.userDetails.dateOfJoining,
   taskperCount:dashboard.taskperCount,
   avgHour:dashboard.avgHour,
@@ -328,6 +350,10 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getContactAddedList,
   getOrderAddedList,
   getOrderClosedList
+//   getSalesDateWiseList,
+//   getTasklist,
+//   getavgHour,
+//   getleaveLeftSideDetails
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(InvestorDashboardJumpStart);
+export default connect(mapStateToProps, mapDispatchToProps)(ProspectDashboardJumpStart);
