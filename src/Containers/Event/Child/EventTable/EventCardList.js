@@ -7,7 +7,7 @@ import { FormattedMessage } from "react-intl";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { DeleteOutlined } from "@ant-design/icons";
-import { Tooltip,  Avatar } from "antd";
+import { Tooltip,  Avatar,Button,message } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   deleteEvent, getEventListRangeByUserId,
@@ -23,6 +23,7 @@ const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
 
 function EventCardList (props) {
   const [page, setPage] = useState(0);
+  const [location, setLocation] = useState({ lat: null, lng: null });
   const [hasMore, setHasMore] = useState(true);
   const [isCopied, setIsCopied] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
@@ -89,6 +90,26 @@ function EventCardList (props) {
          getEventListRangeByUserId(employeeId,page);
         setPage(page + 1);
 }
+
+
+const getLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setLocation({ lat: latitude, lng: longitude });
+        console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+        message.success('Location fetched successfully!');
+      },
+      (error) => {
+        console.error('Error fetching location:', error);
+        message.error('Error fetching location. Please try again.');
+      }
+    );
+  } else {
+    message.error('Geolocation is not supported by your browser.');
+  }
+};
 
 
     const {
@@ -293,19 +314,10 @@ function EventCardList (props) {
                                 </div>
 
                                 <div className="flex w-[6.12rem] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">                                
-                   {/* <div class="max-sm:flex justify-end">
-              owner
-            <SubTitle>
-              <MultiAvatar
-              primaryTitle={item.woner}
-              imageId={item.ownerImageId}
-              imageURL={item.imageURL}
-                imgWidth={"1.8rem"}
-                imgHeight={"1.8rem"}
-              />
-            </SubTitle>
+                   <div class="max-sm:flex justify-end">
+          <Button onClick={getLocation}>Complete</Button>
         
-          </div> */}
+          </div>
                    </div>
                                </div>
                                <div class="flex  w-wk justify-end max-sm:w-wk items-center max-sm:justify-evenly"> 

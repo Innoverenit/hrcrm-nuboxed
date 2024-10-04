@@ -30,19 +30,19 @@ class ReportDetailView extends Component {
         setSubSelectedReportType,
         reportTaskSubTypes,
         reportMileageSubTypes,
+        visibilityConditions,
       } = this.props;
 
     return (
       <>
-             <span class="cursor-pointer ml-2 "
-             style={{display:"ruby"}}
-      
-        >
- {buttonData.map((button, index) => (
+             <span class="cursor-pointer ml-2"
+             style={{display:"ruby"}}>
+ {buttonData.filter(button => visibilityConditions[button.name])
+ .map((button, index) => (
 
         <div key={index} style={{ marginBottom: '10px' }}>
 
-          <Button style={{backgroundColor:this.props.selectedCategory ===button.name?"tomato":""}}
+          <Button style={{backgroundColor:this.props.selectedCategory === button.name ? "tomato":""}}
           onClick={() => this.props.handleButtonClick(button.name)}>
             {button.name}
             </Button>

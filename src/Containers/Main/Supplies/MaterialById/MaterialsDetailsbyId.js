@@ -81,6 +81,7 @@ const breakPoints = [
     
     <div className="cardDs-bottom">
       <MaterialsDetailsCardViewId 
+      UpdateMaterialIamge={props.UpdateMaterialIamge}
    materialsBySuppliesId={props.materialsBySuppliesId}
       />
     
