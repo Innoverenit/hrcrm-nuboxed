@@ -1394,16 +1394,17 @@ export const getBrandProductList = (brandId) => (dispatch) => {
 };
 
 
-export const UpdateMaterialIamge = (data, partnerId) => (dispatch) => {
+export const UpdateMaterialIamge = (data, itemId) => (dispatch) => {
   dispatch({ type: types.UPDATE_MATERIAL_IMAGE_REQUEST });
   axios
-    .put(`${base_url}/partner/${partnerId}`, data, {
+    .put(`${base_url2}/supplies/leadImage/${itemId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
       console.log(res);
+      dispatch(getMaterialsBySuppliesId(itemId));
       dispatch({
         type: types.UPDATE_MATERIAL_IMAGE_SUCCESS,
         payload: res.data,
@@ -1490,17 +1491,12 @@ export const handleImageSuppliesModal = (modalProps) => (dispatch) => {
   });
 };
 
-export const handleErpDocumentUploadModal = (modalProps) => (dispatch) => {
+export const getLocationSupplies = (orgId,suppliesId) => (dispatch) => {
   dispatch({
-    type: types.HANDLE_ERP_DOCUMENT_UPLOAD_MODAL,
-    payload: modalProps,
+    type: types.GET_LOCATION_SUPPLIES_REQUEST,
   });
-};
-
-export const getSuppliesDocument = (suppliesId) => (dispatch) => {
-  dispatch({ type: types.GET_SUPPLIES_DOCUMENTS_REQUEST });
   axios
-    .get(`${base_url2}/supplies/document/${suppliesId}`, {
+    .get(`${base_url}/locationDetails/getLocationDetailsList/${orgId}/${suppliesId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1508,16 +1504,64 @@ export const getSuppliesDocument = (suppliesId) => (dispatch) => {
     .then((res) => {
       console.log(res);
       dispatch({
-        type: types.GET_SUPPLIES_DOCUMENTS_SUCCESS,
+        type: types.GET_LOCATION_SUPPLIES_SUCCESS,
         payload: res.data,
       });
-      // cb();
     })
     .catch((err) => {
       console.log(err);
       dispatch({
-        type: types.GET_SUPPLIES_DOCUMENTS_FAILURE,
+        type: types.GET_LOCATION_SUPPLIES_FAILURE,
         payload: err,
       });
     });
+};
+
+
+
+export const handleErpDocumentUploadModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ERP_DOCUMENT_UPLOAD_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+
+
+
+export const addLocationSuppliesValue = (documents,suppliesId, cb) => (dispatch) => {
+  console.log(documents);
+  dispatch({
+    type: types.ADD_LOCATION_SUPPLIES_VALUE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplies/location/reOrderLevel/${suppliesId}`, documents, {
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    })
+    .then((res) => {
+    
+      
+      // dispatch(getDocuments());
+      //dispatch(getRegionCount(orgId));
+      console.log(res);
+      dispatch({
+        type: types.ADD_LOCATION_SUPPLIES_VALUE_SUCCESS,
+        payload: res.data
+        
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_LOCATION_SUPPLIES_VALUE_FAILURE,
+      });
+      cb();
+    });
+
+     
+
 };

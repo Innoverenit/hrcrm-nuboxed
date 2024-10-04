@@ -538,7 +538,7 @@ function SuppliesTable(props) {
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <LocationCityOutlined
                                onClick={() => {
-                                // handleParticularRowData(item)
+                                 handleParticularRowData(item)
                                 props.handleLocationuppliesModal(true)
                                }}
                               />
@@ -631,7 +631,7 @@ function SuppliesTable(props) {
 <AddLocationSuppliesModal
 handleLocationuppliesModal={props.handleLocationuppliesModal}
 locationSuppliesModal={props.locationSuppliesModal}
-      // particularDiscountData={particularDiscountData}
+    particularDiscountData={particularDiscountData}
       // uploadSuppliesList={props.uploadSuppliesList}
       // handleUploadSuppliesModal={props.handleUploadSuppliesModal}
       />
