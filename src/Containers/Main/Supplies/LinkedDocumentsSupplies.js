@@ -19,7 +19,9 @@ import {
   MultiAvatar,
   SubTitle,
 } from "../../../Components/UI/Elements";
-import { getSuppliesDocument,deleteSuppliesData } from "./SuppliesAction";
+import {
+  //  getSuppliesDocument,
+  deleteSuppliesData } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { base_url } from "../../../Config/Auth";
@@ -32,7 +34,7 @@ const LinkedDocumentsSupplies = (props) => {
   const searchInput = useRef(null);
 
   useEffect(() => {
-    props.getSuppliesDocument(props.suppliesId);
+    // props.getSuppliesDocument(props.suppliesId);
     props.getDocuments();
   }, []);
 
@@ -127,9 +129,9 @@ const LinkedDocumentsSupplies = (props) => {
     setSearchText("");
   };
 
-  if (loading || props.fetchingDocumentsBySupplies) {
-    return <BundleLoader />;
-  }
+  // if (loading || props.fetchingDocumentsBySupplies) {
+  //   return <BundleLoader />;
+  // }
 
   return (
     <>
@@ -160,7 +162,7 @@ const LinkedDocumentsSupplies = (props) => {
                    
                 </div>
                 <div class="overflow-y-auto h-[69vh]">
-                { !props.fetchingDocumentsBySupplies && props.documentsBySuppliesId.length === 0 ?<NodataFoundPage />:props.documentsBySuppliesId.map((item,index) =>  {
+                {/* { !props.fetchingDocumentsBySupplies && props.documentsBySuppliesId.length === 0 ?<NodataFoundPage />:props.documentsBySuppliesId.map((item,index) =>  {
                     
                     return (
                         <div >
@@ -228,7 +230,7 @@ const LinkedDocumentsSupplies = (props) => {
                             </div>
                         </div>
                     )
-                })}
+                })} */}
                 </div>
             </div>                          
         </div>
@@ -246,7 +248,7 @@ const mapStateToProps = ({ customer,supplies, document }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getSuppliesDocument,
+      // getSuppliesDocument,
       deleteSuppliesData,
       getDocuments,
     },
