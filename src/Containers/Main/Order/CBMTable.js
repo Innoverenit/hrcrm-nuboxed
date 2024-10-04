@@ -177,17 +177,20 @@
 
 
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {creatCBM} from "./OrderAction";
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
 
-const CbmCalculator = () => {
-  const [length, setLength] = useState("");
-  const [width, setWidth] = useState("");
-  const [height, setHeight] = useState("");
+const CbmCalculator = (props) => {
+  const [length, setLength] = useState("0");
+  const [width, setWidth] = useState("0");
+  const [height, setHeight] = useState("0");
   const [lengthUnit, setLengthUnit] = useState("cm");
-  const [weight, setWeight] = useState("");
-  const [weightUnit, setWeightUnit] = useState("Kg");
-  const [quantity, setQuantity] = useState("");
+  const [weight, setWeight] = useState("0");
+  const [weightUnit, setWeightUnit] = useState("kg");
+  const [quantity, setQuantity] = useState("1");
   const [pkgEfficiency, setPkgEfficiency] = useState("100");
   const [results, setResults] = useState({
     volumeM3: 0,
@@ -209,6 +212,21 @@ const CbmCalculator = () => {
     container40FtHc:0
   });
 
+//   const handleSubmit = async () => {
+//     const payload = {
+//       length: parseFloat(length),
+//       width: parseFloat(width),
+//       height: parseFloat(height),
+//       lengthUnit,
+//       weight: parseFloat(weight),
+//       weightUnit,
+//       quantity: parseInt(quantity, 10),
+//       pkgEfficiency: parseInt(pkgEfficiency, 10),
+//     };
+
+    
+//     props.creatCBM(payload)
+//   };
   const handleSubmit = async () => {
     const payload = {
       length: parseFloat(length),
@@ -328,7 +346,7 @@ const CbmCalculator = () => {
             onChange={(e) => setWeightUnit(e.target.value)}
             className="mt-1 p-2 border rounded w-full shadow-[0_0.15em_0.3em] shadow-[#aaa]"
           >
-            <option value="Kg">Kg</option>
+            <option value="kg">kg</option>
             <option value="gm">gm</option>
           </select>
           </div>
@@ -425,4 +443,18 @@ const CbmCalculator = () => {
   );
 };
 
-export default CbmCalculator;
+
+const mapStateToProps = ({order  }) => ({
+    cBMData:order.cBMData 
+  });
+  
+  const mapDispatchToProps = (dispatch) =>
+    bindActionCreators(
+      {
+        creatCBM
+      },
+      dispatch
+    );
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(CbmCalculator);
+  

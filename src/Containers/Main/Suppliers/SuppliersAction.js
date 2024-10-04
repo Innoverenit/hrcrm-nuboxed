@@ -824,7 +824,7 @@ export const addSupplierDocument = (data, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.ADD_SUPPLIER_DOCUMENT_REQUEST });
   axios
-    .post(`${base_url2}/supplier/suppliers/document/`, data, {
+    .post(`${base_url2}/document/save`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
