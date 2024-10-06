@@ -19,9 +19,9 @@ import {
   MultiAvatar,
   SubTitle,
 } from "../../../Components/UI/Elements";
-import {
-  //  getSuppliesDocument,
-  deleteSuppliesData } from "./SuppliesAction";
+// import {
+//   //  getSuppliesDocument,
+//   deleteSuppliesData } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { base_url } from "../../../Config/Auth";
@@ -249,7 +249,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       // getSuppliesDocument,
-      deleteSuppliesData,
+      //deleteSuppliesData,
       getDocuments,
     },
     dispatch
