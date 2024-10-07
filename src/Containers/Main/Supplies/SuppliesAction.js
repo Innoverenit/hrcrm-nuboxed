@@ -1492,7 +1492,56 @@ export const getLocationSupplies = (orgId,suppliesId) => (dispatch) => {
     });
 };
 
+export const getSuppliesDocument = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_DOCUMENTS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/supplies/document/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIES_DOCUMENTS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIES_DOCUMENTS_FAILURE,
+        payload: err,
+      });
+    });
+};
 
+export const deleteSuppliesData = (documentId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_SUPPLIES_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/supplies/document/${documentId}`)
+    .then((res) => {
+      console.log(res);
+      // dispatch(getDeletedPurchaseById());
+      dispatch({
+        type: types.DELETE_SUPPLIES_DATA_SUCCESS,
+        payload: documentId,
+      });
+      message.success("Supplies deleted Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SUPPLIES_DATA_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
+    });
+};
 
 export const handleErpDocumentUploadModal = (modalProps) => (dispatch) => {
   dispatch({
