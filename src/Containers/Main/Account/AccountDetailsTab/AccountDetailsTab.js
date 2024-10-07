@@ -212,7 +212,7 @@ function AccountDetailsTab(props) {
             <TabsWrapper>
                 <StyledTabs defaultActiveKey="1" onChange={handleTabChange}>
 
-                    {/* {props.productionInd &&  */}
+                    {props.productionAccessInd &&  props.user.moduleMapper.productionInd &&
                     <TabPane
                         tab={
                             <>
@@ -244,7 +244,9 @@ function AccountDetailsTab(props) {
                             translateText={props.translateText} />
                         </Suspense> */}
                     </TabPane>
-                    {props.user.repairInd && <TabPane
+}
+
+                    {props.user.repairInd && props.user.moduleMapper.repairInd && <TabPane
                         tab={
                             <>
                              <span onClick={() => handleOrderClick(false)}>
@@ -306,7 +308,7 @@ function AccountDetailsTab(props) {
                             }
                         </Suspense> */}
                     </TabPane>}
-
+                    { props.user.moduleMapper.ecomModInd &&
                    <TabPane
                         tab={
                             <>
@@ -359,6 +361,7 @@ function AccountDetailsTab(props) {
                           
                         </Suspense>
                     </TabPane>
+}
                     <TabPane
               tab={
                 <>

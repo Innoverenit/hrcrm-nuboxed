@@ -225,7 +225,7 @@ function ProcureInvoiceList (props) {
                                                    
                                                        <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                        
-                                                   
+                                                   {item.paidInd ? "Paid":"Unpaid"}
                                                     </div>
                                                                                                     </div>
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">

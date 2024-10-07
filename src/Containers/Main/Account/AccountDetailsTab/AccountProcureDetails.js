@@ -527,7 +527,7 @@ const handleGenerateInvoice= async () => {
                 </div>
                 <div className="ml-2 ">
                 <Select
-                     style={{width:"10%"}}
+                     style={{width:"10rem"}}
                      placeholder="Apply Credit"
                       value={CreditMemo}
                       onChange={(value) => handleCreditMemo(value)}

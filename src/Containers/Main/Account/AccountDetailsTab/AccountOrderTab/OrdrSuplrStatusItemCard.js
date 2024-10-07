@@ -173,6 +173,10 @@ const handleSelectChange = (value, key, dataIndex) => {
                                <div class="overflow-y-auto h-[65vh]">
 
                                         {data.map((item) => {
+                                            const date=  item && item.deliveryDate ? 
+                                                dayjs(item.deliveryDate).format("YYYY/MM/DD") :  ""
+                                             const date1=   item && item.shippingDate ? 
+                                                dayjs(item.shippingDate).format("YYYY/MM/DD") :  ""
                                             return (
                                                 <div>
                                                     <div key={item.itemId}
@@ -208,7 +212,8 @@ const handleSelectChange = (value, key, dataIndex) => {
                                                             </div>
                                                             <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                {dayjs(item.deliveryDate).format("YYYY/MM/DD")} 
+                                                                {date}
+                                                             
                                                                 </div>
                                                             </div>
                                                             <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -218,12 +223,12 @@ const handleSelectChange = (value, key, dataIndex) => {
           type="date"
           value={date}
           onChange={(e) => handleDateChange(e,item)}
-          min={dayjs(item.deliveryDate).format("YYYY-MM-DD")}
+          min={date}
           class="border border-black rounded"
         /> ) : (
             <div className="font-normal text-sm  font-poppins">
               <div> 
-              {dayjs(item.shippingDate).format("YYYY/MM/DD")}</div>
+              {date1}</div>
             </div>
           )}
                                                                 </div>

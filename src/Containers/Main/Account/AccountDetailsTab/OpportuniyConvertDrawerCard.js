@@ -5,12 +5,13 @@ import { Link,withRouter } from "react-router-dom";
 import { Radio, Input, Space, message,Button } from "antd";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {codInventoryOrder} from "../AccountAction";
 // import stripe from "../../Assests/Images/Stripe-Emblem.png";
 // import Razorpay from "../../../../../Assests/Images/razorpay.png";
 // import pay from "../../../../../../../../Assests/Images/cashShake.svg";
 import axios from 'axios';
 
-const OpportuniyConvertDrawerCard = ({ userId,stripeNo, invencartItem, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
+const OpportuniyConvertDrawerCard = ({ props,userId,stripeNo,particularRowItem, invencartItem, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
   const [value, setValue] = useState(1);
   const history = useHistory();
 
@@ -35,45 +36,56 @@ const OpportuniyConvertDrawerCard = ({ userId,stripeNo, invencartItem, addiNVESt
   };
 
   const handleAddPlaceOrder = (status) => {
-    // history.push("/shopName/invOrdersuccess");
+   // history.push("/shopName/invOrdersuccess");
     let data = {
-      amount: 0,
-      quotationId:null,
-      type: "Cod",
+      amount: particularRowItem.paymentAmount ? particularRowItem.paymentAmount : 0,
+      quotationId: particularRowItem.quotationId ,
+      type: "Cash on Delivery",
       orderProcess:"checkout",
     };
-    // codInventoryOrder(data);
+    codInventoryOrder(data);
   };
   const handleEFTOrder = () => {
     // history.push("/shopName/invOrdersuccess");
     let data = {
-    //   amount: invencartItem.cartSummary.grandTotal ? invencartItem.cartSummary.grandTotal : 0,
-    //   quotationId: invencartItem.orderPhoneId ? invencartItem.orderPhoneId:null,
+      amount: particularRowItem.paymentAmount ? particularRowItem.paymentAmount : 0,
+       quotationId: particularRowItem.quotationId ,
       type: "EFT",
       orderProcess:"checkout",
     };
-    // codInventoryOrder(data);
+     codInventoryOrder(data);
   };
 
   const handleCreditOrder = () => {
     // history.push("/shopName/invOrdersuccess");
     let data = {
-    //   amount: invencartItem.cartSummary.grandTotal ? invencartItem.cartSummary.grandTotal : 0,
-    //   quotationId: invencartItem.orderPhoneId ? invencartItem.orderPhoneId:null,
+      amount: particularRowItem.paymentAmount ? particularRowItem.paymentAmount : 0,
+       quotationId: particularRowItem.quotationId ,
       type: "Credit",
       orderProcess:"checkout",
     };
-    // codInventoryOrder(data);
+     codInventoryOrder(data);
   };
+  const handlePaybyOrder = () => {
+    // history.push("/shopName/invOrdersuccess");
+    let data = {
+      amount: particularRowItem.paymentAmount ? particularRowItem.paymentAmount : 0,
+       quotationId: particularRowItem.quotationId ,
+      type: "PayByCheqe",
+      orderProcess:"checkout",
+    };
+     codInventoryOrder(data);
+  };
+  console.log(particularRowItem)
   return (
     <>
-      <br />
-      <Radio.Group onChange={onChange} value={value}>
      
+      <Radio.Group onChange={onChange} value={value}>
+      <div className="flex flex-col">
           <Radio value={"EFT"}>
           <div className="flex justify-between mt-2"> 
-            <div>
-          <h3> Electronics Fund Transfer (EFT) - </h3> send remittance to sales@1Di.ca
+            <div className="flex">
+          <label> Electronics Fund Transfer (EFT) - </label> send remittance to sales@1Di.ca
           </div>
             <div className="flex justify-center ml-2 mr-2">
             {value === "EFT" && (
@@ -91,7 +103,10 @@ const OpportuniyConvertDrawerCard = ({ userId,stripeNo, invencartItem, addiNVESt
        
           <Radio value={"Cash on Delivery"}>
           <div className="flex items-center">
-          <img className="w-[4.25rem]"  alt="pay"  />
+          <div>
+              <h3>pay in cash or pay in per at the time of delivery</h3>
+            </div>
+          {/* <img className="w-[4.25rem]"  alt="pay"  /> */}
               {value === "Cash on Delivery" && (
               <Button
               type="primary"
@@ -103,16 +118,9 @@ const OpportuniyConvertDrawerCard = ({ userId,stripeNo, invencartItem, addiNVESt
                      )}
             </div>
  
-            <div>
-              <h3>pay in cash or pay in per at the time of delivery</h3>
-            </div>
+          
          
           </Radio>
-
-          
- 
-         <div class="flex justify-between items-center mt-2" >
-          
           <Radio.Group onChange={handlePaymentChange} value={paymentMethod}>
       <Radio value="pay by check">
         <div className=" flex font-semibold mt-2">      
@@ -127,22 +135,28 @@ const OpportuniyConvertDrawerCard = ({ userId,stripeNo, invencartItem, addiNVESt
                 //onBlur={handlePayByBlur}
                 placeholder="Enter check No"
               /> */}
-               <Button type="primary" 
+               {/* <Button type="primary" 
             //    onClick={handlePayByBlur} 
                style={{marginLeft:"1rem"}}>
                 Checkout
+              </Button> */}
+              
+              <Button
+              type="primary"
+              onClick={() => handlePaybyOrder()}
+              loading={addingCODinventory}
+            >
+                Checkout
               </Button>
+                  
             </div>
           )}
         </div>
       </Radio>
       
     </Radio.Group>
-        </div>
-
-
-        <div className="flex justify-between mt-2">
-          <Radio value={"Creditors"}>
+          
+    <Radio value={"Creditors"}>
             <div className="flex justify-between mt-2"> 
             <div>
             <h3>Credit - Net 30 </h3>
@@ -159,25 +173,25 @@ const OpportuniyConvertDrawerCard = ({ userId,stripeNo, invencartItem, addiNVESt
             </div>
         </div>
           </Radio>
+        
+
           </div>
-
-        <br />
-        <br />
       </Radio.Group>
-
+   
 
     </>
   );
 };
 
-const mapStateToProps = ({ auth }) => ({
+const mapStateToProps = ({ auth,distributor }) => ({
   userId: auth.userDetails.userId,
+  addingCODinventory:distributor.addingCODinventory
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   codInventoryOrder,
+       codInventoryOrder,
     },
     dispatch
   );
