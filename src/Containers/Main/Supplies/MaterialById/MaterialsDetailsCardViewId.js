@@ -1,5 +1,6 @@
 import React from 'react';
 import ImageGallery from 'react-image-gallery';
+import { Carousel } from 'antd';
 import { base_url } from '../../../../Config/Auth';
 const initialFlow = {
   imgIds: [
@@ -72,15 +73,22 @@ function MaterialsDetailsCardViewId (props) {
       ))}
     </div> */}
      <div className="custom-image-gallery">
+    
+
       {imageGalleryItems.map((item, index) => (
         <div 
           key={index} 
           onClick={() => handleImageClick(index,item)}
           className={`gallery-item ${item.primaryInd ? 'highlight' : ''}`} // Add 'highlight' class conditionally
         >
-          <img src={item.thumbnail} alt={`Thumbnail-${index}`} />
+          <img src={item.thumbnail} alt={`Thumbnail-${index}`} 
+         />
         </div>
       ))}
+
+
+     
+     
     </div>
           <tr  className="bg-gray-50 odd:bg-white">
             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Age group</th>

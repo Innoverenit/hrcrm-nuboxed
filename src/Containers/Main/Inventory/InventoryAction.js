@@ -2317,3 +2317,31 @@ export const ClearReducerData= () => (dispatch) => {
     type: types.CLAER_REDUCERS_DATA,
   });
 }
+
+
+
+
+export const getMaterialDamagedData = (locationDetailsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_DAMAGE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderInventory/getDamage/${locationDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_MATERIAL_DAMAGE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_DAMAGE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -210,10 +210,10 @@ function SuppliesTable(props) {
               {/* Attribute */}
               {translatedMenuItems[5]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[6.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {/* Re-order level */}
+            {/* <div className="font-bold font-poppins text-xs w-[6.14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+             
               {translatedMenuItems[6]}
-              </div>
+              </div> */}
             
             <div className="font-bold font-poppins text-xs w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Created */}
@@ -309,12 +309,12 @@ function SuppliesTable(props) {
                               </div>
                             </div>
                           </div>
-                          <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex w-[8.4rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                            {/* <div className=" flex w-[8.4rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.reorder}
                               </div>
-                            </div>
+                            </div> */}
 
                            
                             <div className=" flex  w-[5.9rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
@@ -375,7 +375,7 @@ function SuppliesTable(props) {
 
                            
 
-                          </div>
+                          </div> 
 
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center justify-end w-wk">
                      <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
