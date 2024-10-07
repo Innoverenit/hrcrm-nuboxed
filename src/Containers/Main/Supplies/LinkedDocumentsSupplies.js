@@ -19,9 +19,9 @@ import {
   MultiAvatar,
   SubTitle,
 } from "../../../Components/UI/Elements";
-// import {
-//   //  getSuppliesDocument,
-//   deleteSuppliesData } from "./SuppliesAction";
+import {
+    getSuppliesDocument,
+  deleteSuppliesData } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { base_url } from "../../../Config/Auth";
@@ -34,7 +34,7 @@ const LinkedDocumentsSupplies = (props) => {
   const searchInput = useRef(null);
 
   useEffect(() => {
-    // props.getSuppliesDocument(props.suppliesId);
+     props.getSuppliesDocument(props.suppliesId);
     props.getDocuments();
   }, []);
 
@@ -248,8 +248,8 @@ const mapStateToProps = ({ customer,supplies, document }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      // getSuppliesDocument,
-      //deleteSuppliesData,
+      getSuppliesDocument,
+      deleteSuppliesData,
       getDocuments,
     },
     dispatch
