@@ -9,6 +9,7 @@ import {materialCategorySearch,getMaterialCategory, getSuppliesCount,getSupplies
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import CategoryIcon from '@mui/icons-material/Category';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import { LocalActivityOutlined } from "@mui/icons-material";
 
 function SuppliesActionLeft (props) {
 
@@ -259,6 +260,29 @@ function SuppliesActionLeft (props) {
                         >
                             <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
                                 <DeleteOutlined className="text-white" /></Avatar>
+
+                        </span>
+                    </Badge>
+                </Tooltip>
+
+
+
+                <Tooltip 
+                title="Location"
+                >
+                <Badge size="small"
+                        //count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
+                        //overflowCount={999}
+                    >
+                        <span class=" md:mr-2 text-sm cursor-pointer"
+                            onClick={() => setSuppliesViewType("suppliesLocation")}
+                            style={{
+                                color: "#1890ff",
+                            }}
+                        >
+                            {/* <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#4bc076" }}> */}
+                                <LocalActivityOutlined className="text-white" />
+                                {/* </Avatar> */}
 
                         </span>
                     </Badge>

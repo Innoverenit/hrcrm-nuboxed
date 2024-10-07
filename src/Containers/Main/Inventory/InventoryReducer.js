@@ -4,6 +4,10 @@ const initialState = {
   viewType: "repair",
   addInventoryModal: false,
 
+  fetchingMaterialDamageData:false,
+  fetchingMaterialDamageDataError:false,
+  materialDamageData:[],
+
   addingInventory: false,
   addingInventoryError: false,
 
@@ -431,6 +435,24 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingInventoryList: false,
         fetchingInventoryListError: true,
       };
+
+
+
+
+      case types.GET_MATERIAL_DAMAGE_DATA_REQUEST:
+        return { ...state, fetchingMaterialDamageData: true };
+      case types.GET_MATERIAL_DAMAGE_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingMaterialDamageData: false,
+          materialDamageData: action.payload
+        };
+      case types.GET_MATERIAL_DAMAGE_DATA_FAILURE:
+        return {
+          ...state,
+          fetchingMaterialDamageData: false,
+          fetchingMaterialDamageDataError: true,
+        };
 
     //inventory by id
     case types.GET_INVENTORY_BY_ID_REQUEST:
