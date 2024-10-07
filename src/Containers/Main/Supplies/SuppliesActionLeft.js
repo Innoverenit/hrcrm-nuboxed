@@ -277,11 +277,13 @@ function SuppliesActionLeft (props) {
                         <span class=" md:mr-2 text-sm cursor-pointer"
                             onClick={() => setSuppliesViewType("suppliesLocation")}
                             style={{
-                                color: "#1890ff",
+                                color: "blue",
                             }}
                         >
                             {/* <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#4bc076" }}> */}
-                                <LocalActivityOutlined className="text-white" />
+                                <LocalActivityOutlined 
+                                // className="text-white" 
+                                />
                                 {/* </Avatar> */}
 
                         </span>

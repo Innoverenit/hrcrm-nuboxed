@@ -71,10 +71,10 @@ const breakPoints = [
         </div>
       
       </div>
-      <div >
+      {/* <div >
       <img  src={img}  className="w-[20rem]" />
       
-      </div>
+      </div> */}
  
     </div>
     <div dangerouslySetInnerHTML={{ __html: `<p>${props.materialsBySuppliesId.description}</p>` }} />

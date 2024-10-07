@@ -157,6 +157,10 @@ const initialState = {
   addingDamagedItem: false,
   addingDamagedItemError: false,
 
+  fetchingMaterialBestBefore:false,
+  fetchingMaterialBestBeforeError:false,
+  materialBestBefore:[],
+
   //pickupdatemodal
   openPickupDateModal: false,
   //add dispatch modal
@@ -1507,6 +1511,24 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingMaterialReceiveData: false,
         fetchingMaterialReceiveDataError: true,
       };
+
+
+
+      case types.GET_MATERIAL_BEST_BEFORE_REQUEST:
+        return { ...state, fetchingMaterialBestBefore: true };
+      case types.GET_MATERIAL_BEST_BEFORE_SUCCESS:
+        return {
+          ...state,
+          fetchingMaterialBestBefore: false,
+          materialBestBefore: action.payload
+        };
+      case types.GET_MATERIAL_BEST_BEFORE_FAILURE:
+        return {
+          ...state,
+          fetchingMaterialBestBefore: false,
+          fetchingMaterialBestBeforeError: true,
+        };
+
 
     case types.GET_MATERIAL_RECEIVE_DETAIL_DATA_REQUEST:
       return { ...state, fetchingMaterialReceiveDetailData: true };

@@ -2320,6 +2320,33 @@ export const ClearReducerData= () => (dispatch) => {
 
 
 
+export const getMaterialBestBefore = (locationDetailsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_BEST_BEFORE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderInventory/getDamageData`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_MATERIAL_BEST_BEFORE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_BEST_BEFORE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
 
 export const getMaterialDamagedData = (locationDetailsId) => (dispatch) => {
   dispatch({

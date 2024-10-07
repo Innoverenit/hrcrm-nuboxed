@@ -1,6 +1,11 @@
 import React, { useEffect, useState,  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {
+    getMaterialBestBefore,
+    // handleMaterialReceived,
+    // handlegrnlistmodal
+} from "../Inventory/InventoryAction";
 // import {
 //     getMaterialReceiveData,
 //     handleMaterialReceived,
@@ -19,10 +24,10 @@ import { Tooltip, Select, Button } from "antd";
 const { Option } = Select;
 
 const InventoryMaterialBestBefore = (props) => {
-    // useEffect(() => {
-    //     props.getMaterialReceiveData(props.locationDetailsId);
-    //     props.getRoomRackByLocId(props.locationId, props.orgId);
-    // }, [])
+    useEffect(() => {
+        props.getMaterialBestBefore(props.locationDetailsId);
+        //props.getRoomRackByLocId(props.locationId, props.orgId);
+    }, [])
    
 
 
@@ -156,17 +161,13 @@ const mapStateToProps = ({ inventory, auth }) => ({
     locationId: auth.userDetails.locationId,
     orgId: auth.userDetails.organizationId,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
-    materialReceiveData: inventory.materialReceiveData,
-    addMaterialReceived: inventory.addMaterialReceived,
-    showGrnListOfPo: inventory.showGrnListOfPo,
-    fetchingMaterialReceiveData: inventory.fetchingMaterialReceiveData,
-    roomRackbyLoc: inventory.roomRackbyLoc,
-    rackList: inventory.rackList
+    materialBestBefore:inventory.materialBestBefore,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
+            getMaterialBestBefore
             // getMaterialReceiveData,
             // handleMaterialReceived,
             // handlegrnlistmodal,
