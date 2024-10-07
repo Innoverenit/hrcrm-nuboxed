@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
 import { getInventory } from "../Inventory/InventoryAction"
 import { FormattedMessage } from "react-intl";
+import {handleSuppliesLocationModal} from "../Supplies/SuppliesAction"
 //import {getLocationSupplies,addLocationSuppliesValue} from "../../Main/Supplies/SuppliesAction"
 //import AddWarantyDrawerModal from "../Waranty/AddWarantyDrawerModal"
 import ButtonGroup from "antd/lib/button/button-group";
@@ -10,6 +11,7 @@ import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import { Tooltip, Button,Input,message, Popconfirm, Select,Switch } from "antd";
 import dayjs from "dayjs";
 import { bindActionCreators } from "redux";
+import AddSuppliesLocationModal from "./AddSuppliesLocationModal"
 
 
 
@@ -98,14 +100,18 @@ console.log(inputValues)
                                 <div className="flex  md:w-[12.1rem] max-sm:w-full ">
                                     <div 
                                     className="flex justify-between text-xs text-[#1890ff] underline font-semibold font-poppins cursor-pointer"
-                                   
+                                    onClick={() => {
+              
+                                        props.handleSuppliesLocationModal(true);
+                                        //handleSetCurrentOpportunityId(item);
+                                      }}
                                     >
                                         {item.locationName}
                                     </div>
                                 </div>
 
                               
-        
+             
 
 
 
@@ -133,6 +139,10 @@ console.log(inputValues)
              
             </div>
         </div>
+        <AddSuppliesLocationModal
+        addSuppliesLocationModal={props.addSuppliesLocationModal}
+        handleSuppliesLocationModal={props.handleSuppliesLocationModal}
+        />
 
         </>
   )
@@ -144,11 +154,13 @@ const mapStateToProps = ({ waranty, inventory,auth,production,supplies }) => ({
     locationSupplies: supplies.locationSupplies,
     orgId: auth.userDetails.organizationId,
     inventory: inventory.inventory,
+    addSuppliesLocationModal:supplies.addSuppliesLocationModal
 });
 const mapDispatchToProps = (dispatch) =>
 bindActionCreators(
   {
-    getInventory
+    getInventory,
+    handleSuppliesLocationModal
     // getLocationSupplies,
     // addLocationSuppliesValue
     // handleWarantyDrawerModal

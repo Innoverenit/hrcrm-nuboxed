@@ -38,6 +38,15 @@ export const handleUploadMaterialModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+export const handleSuppliesLocationModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIES_LOCATION_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleBrandModel = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_BRAND_MODEL,

@@ -19,8 +19,9 @@ import { Tooltip, Select, Button } from "antd";
 const { Option } = Select;
 
 const InventoryMaterialDamagedData = (props) => {
+    console.log(props.locationDetailsId)
     useEffect(() => {
-        props.getMaterialDamagedData(props.locationDetailsId);
+        props.getMaterialDamagedData(props.locationId);
         //props.getRoomRackByLocId(props.locationId, props.orgId);
     }, [])
    

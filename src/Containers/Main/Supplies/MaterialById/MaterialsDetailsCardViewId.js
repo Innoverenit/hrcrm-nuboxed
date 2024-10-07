@@ -1,6 +1,7 @@
 import React from 'react';
 import ImageGallery from 'react-image-gallery';
-import { Carousel } from 'antd';
+import Carousel from "react-elastic-carousel";
+
 import { base_url } from '../../../../Config/Auth';
 const initialFlow = {
   imgIds: [
@@ -58,6 +59,13 @@ function MaterialsDetailsCardViewId (props) {
     };
 
 
+    const breakPoints = [
+      { width: 1, itemsToShow: 1 },
+      { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+      { width: 768, itemsToShow: 3 },
+      { width: 1200, itemsToShow: 4 }
+    ];
+
     
  
 
@@ -73,7 +81,7 @@ function MaterialsDetailsCardViewId (props) {
       ))}
     </div> */}
      <div className="custom-image-gallery">
-    
+     <Carousel breakPoints={breakPoints}>
 
       {imageGalleryItems.map((item, index) => (
         <div 
@@ -85,6 +93,7 @@ function MaterialsDetailsCardViewId (props) {
          />
         </div>
       ))}
+      </Carousel>   
 
 
      

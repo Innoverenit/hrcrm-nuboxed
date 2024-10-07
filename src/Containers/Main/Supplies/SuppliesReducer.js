@@ -98,6 +98,9 @@ const initialState = {
     fetchingSuppliesHistoryError: false,
     suppliesHistory: [],
 
+
+    addSuppliesLocationModal:false,
+
     addingMaterialFifoToggle: false,
     addingMaterialFifoToggleError: false,
 
@@ -562,6 +565,10 @@ export const suppliesReducer = (state = initialState, action) => {
             return { ...state, fetchingBrandModel: false, brandModel: action.payload };
         case types.GET_BRAND_MODEL_FAILURE:
             return { ...state, fetchingBrandModel: false, fetchingBrandModelError: true };
+
+
+            case types.HANDLE_SUPPLIES_LOCATION_MODAL:
+              return { ...state, addSuppliesLocationModal: action.payload };
 
         case types.GET_SUPPLIES_COUNT_REQUEST:
             return { ...state, fetchingSuppliescount: true };
