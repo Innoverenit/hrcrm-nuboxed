@@ -2325,7 +2325,7 @@ export const getMaterialBestBefore = (locationDetailsId) => (dispatch) => {
     type: types.GET_MATERIAL_BEST_BEFORE_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderInventory/getDamageData`, {
+    .get(`${base_url2}/po/getBestBeforeItemlist/${locationDetailsId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2353,7 +2353,7 @@ export const getMaterialDamagedData = (locationDetailsId) => (dispatch) => {
     type: types.GET_MATERIAL_DAMAGE_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderInventory/getDamage/${locationDetailsId}`, {
+    .get(`${base_url2}/po/dameged/supplies/${locationDetailsId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

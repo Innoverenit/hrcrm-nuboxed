@@ -109,6 +109,11 @@ const initialState = {
     deletingSuppliesData: false,
     deletingSuppliesDataError: false,
 
+
+    fetchingSuppliesLocationItem:false,
+    fetchingSuppliesLocationItemError:false,
+    suppliesLocationItem:[],
+
     fetchingDeletedSuppliesHistory: false,
     fetchingDeletedSuppliesHistoryError: true,
     deleteSuppliesHistory: [],
@@ -286,6 +291,23 @@ export const suppliesReducer = (state = initialState, action) => {
 
         case types.SET_EDIT_SUPPLIES:
             return { ...state, setEditingSupplies: action.payload };
+
+
+            case types.GET_SUPPLIES_LOCATION_ITEM_REQUEST:
+        return { ...state, fetchingSuppliesLocationItem: true };
+      case types.GET_SUPPLIES_LOCATION_ITEM_SUCCESS:
+        return {
+          ...state,
+          fetchingSuppliesLocationItem: false,
+        suppliesLocationItem: action.payload
+        };
+      case types.GET_SUPPLIES_LOCATION_ITEM_FAILURE:
+        return {
+          ...state,
+          fetchingSuppliesLocationItem: false,
+          fetchingSuppliesLocationItemError: true,
+        };
+
 
         case types.UPDATE_SUPPLIES_BY_ID_REQUEST:
             return { ...state, updateSuppliesById: true };

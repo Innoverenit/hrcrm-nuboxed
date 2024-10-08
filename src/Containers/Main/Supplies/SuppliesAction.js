@@ -1562,6 +1562,33 @@ export const handleErpDocumentUploadModal = (modalProps) => (dispatch) => {
 
 
 
+export const getSuppliesLocationItem = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_LOCATION_ITEM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getReorder/material/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SUPPLIES_LOCATION_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIES_LOCATION_ITEM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
 
 export const addLocationSuppliesValue = (documents,suppliesId, cb) => (dispatch) => {
   console.log(documents);

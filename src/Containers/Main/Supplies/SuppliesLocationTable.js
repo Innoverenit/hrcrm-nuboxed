@@ -26,6 +26,7 @@ export const SuppliesLocationTable = (props) => {
   const [rack, setRack] = useState([]);
   const [inputValues, setInputValues] = useState({});
   const [submitted, setSubmitted] = useState({});
+  const [currentLocationId, setCurrentLocationId] = useState("");
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 console.log(inputValues)
   const handleInputChange = (id, value) => {
@@ -59,6 +60,11 @@ console.log(inputValues)
 //       [id]: true,
 //     });
 //   };
+
+function handleSetCurrentLocationId(item) {
+  setCurrentLocationId(item);
+  // console.log("opp",item);
+}
 
   useEffect(() => {
     props.getInventory(props.orgId)
@@ -103,7 +109,7 @@ console.log(inputValues)
                                     onClick={() => {
               
                                         props.handleSuppliesLocationModal(true);
-                                        //handleSetCurrentOpportunityId(item);
+                                        handleSetCurrentLocationId(item);
                                       }}
                                     >
                                         {item.locationName}
@@ -140,6 +146,7 @@ console.log(inputValues)
             </div>
         </div>
         <AddSuppliesLocationModal
+        currentLocationId={currentLocationId}
         addSuppliesLocationModal={props.addSuppliesLocationModal}
         handleSuppliesLocationModal={props.handleSuppliesLocationModal}
         />
