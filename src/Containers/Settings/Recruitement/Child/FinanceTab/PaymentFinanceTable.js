@@ -213,6 +213,12 @@ const PaymentSwitches = (props) => {
         payByCheckInd: props.paymentFinance.payByCheckInd,
         razorpayInd: props.paymentFinance.razorpayInd,
         stripeInd: props.paymentFinance.stripeInd,
+        b2cStripeInd:props.paymentFinance.b2cStripeInd,
+        b2cRazorpayInd:props.paymentFinance.b2cRazorpayInd,
+        b2cPayByCheckInd:props.paymentFinance.b2cPayByCheckInd,
+        b2cPayByCashInd:props.paymentFinance.b2cPayByCashInd,
+        b2cCreditInd:props.paymentFinance.b2cCreditInd,
+        b2cElecTransferInd:props.paymentFinance.b2cElecTransferInd
       });
     }
   }, [props.paymentFinance]);
@@ -231,6 +237,12 @@ const PaymentSwitches = (props) => {
       payByCheckInd: newPaymentMethods.payByCheckInd,
       razorpayInd: newPaymentMethods.razorpayInd,
       stripeInd: newPaymentMethods.stripeInd,
+      b2cStripeInd:newPaymentMethods.b2cStripeInd,
+      b2cRazorpayInd:newPaymentMethods.b2cRazorpayInd,
+      b2cPayByCheckInd:newPaymentMethods.b2cPayByCheckInd,
+      b2cPayByCashInd:newPaymentMethods.b2cPayByCashInd,
+      b2cCreditInd:newPaymentMethods.b2cCreditInd,
+      b2cElecTransferInd:newPaymentMethods.b2cElecTransferInd
     };
 
     console.log(`paymentMode: ${method}, liveInd: ${checked}`);
@@ -358,10 +370,11 @@ const PaymentSwitches = (props) => {
           />
         </Popconfirm>
         {paymentMethods.razorpayInd && (
-          <div style={{ marginTop: '8px' }}>
+            <div style={{ marginLeft: '0.25rem' }}>
             <Input
               placeholder="Enter Razorpay value"
               value={inputValues.razorpay}
+              style={{width:"-webkit-fill-available"}} 
               onChange={(e) => handleInputChange(e, 'razorpay')}
             />
             <Button type="primary" onClick={() => handleSubmit('razorpay')} style={{ marginTop: '8px' }}>
@@ -389,10 +402,10 @@ const PaymentSwitches = (props) => {
           />
         </Popconfirm>
         {paymentMethods.stripeInd && (
-          <div style={{ marginTop: '8px' }}>
+          <div style={{ marginLeft: '0.25rem' }}>
             <Input
               placeholder="Enter Stripe value"
-              style={{width:"59em"}}
+              style={{width:"-webkit-fill-available"}} 
               value={inputValues.stripe}
               onChange={(e) => handleInputChange(e, 'stripe')}
             />
@@ -415,16 +428,16 @@ const PaymentSwitches = (props) => {
         Credit
         <Popconfirm
           title={`Are you sure you want to ${
-            paymentMethods.creditInd ? 'disable' : 'enable'
+            paymentMethods.b2cCreditInd ? 'disable' : 'enable'
           } Credit?`}
-          onConfirm={() => confirmChange('creditInd', !paymentMethods.creditInd)}
+          onConfirm={() => confirmChange('b2cCreditInd', !paymentMethods.b2cCreditInd)}
           okText="Yes"
           cancelText="No"
         >
           <Switch
             checkedChildren="Yes"
             unCheckedChildren="No"
-            checked={paymentMethods.creditInd}
+            checked={paymentMethods.b2cCreditInd}
             onClick={(checked, event) => event.preventDefault()}
           />
         </Popconfirm>
@@ -434,16 +447,16 @@ const PaymentSwitches = (props) => {
         Electronic Transfer
         <Popconfirm
           title={`Are you sure you want to ${
-            paymentMethods.elecFormTransInd ? 'disable' : 'enable'
+            paymentMethods.b2cElecTransferInd ? 'disable' : 'enable'
           } Electronic Form Transfer?`}
-          onConfirm={() => confirmChange('elecFormTransInd', !paymentMethods.elecFormTransInd)}
+          onConfirm={() => confirmChange('b2cElecTransferInd', !paymentMethods.b2cElecTransferInd)}
           okText="Yes"
           cancelText="No"
         >
           <Switch
             checkedChildren="Yes"
             unCheckedChildren="No"
-            checked={paymentMethods.elecFormTransInd}
+            checked={paymentMethods.b2cElecTransferInd}
             onClick={(checked, event) => event.preventDefault()}
           />
         </Popconfirm>
@@ -453,16 +466,16 @@ const PaymentSwitches = (props) => {
         Pay by Cash
         <Popconfirm
           title={`Are you sure you want to ${
-            paymentMethods.payByCashInd ? 'disable' : 'enable'
+            paymentMethods.b2cPayByCashInd ? 'disable' : 'enable'
           } Pay by Cash?`}
-          onConfirm={() => confirmChange('payByCashInd', !paymentMethods.payByCashInd)}
+          onConfirm={() => confirmChange('b2cPayByCashInd', !paymentMethods.b2cPayByCashInd)}
           okText="Yes"
           cancelText="No"
         >
           <Switch
             checkedChildren="Yes"
             unCheckedChildren="No"
-            checked={paymentMethods.payByCashInd}
+            checked={paymentMethods.b2cPayByCashInd}
             onClick={(checked, event) => event.preventDefault()}
           />
         </Popconfirm>
@@ -472,16 +485,16 @@ const PaymentSwitches = (props) => {
         Pay by Check
         <Popconfirm
           title={`Are you sure you want to ${
-            paymentMethods.payByCheckInd ? 'disable' : 'enable'
+            paymentMethods.b2cPayByCheckInd ? 'disable' : 'enable'
           } Pay by Check?`}
-          onConfirm={() => confirmChange('payByCheckInd', !paymentMethods.payByCheckInd)}
+          onConfirm={() => confirmChange('b2cPayByCheckInd', !paymentMethods.b2cPayByCheckInd)}
           okText="Yes"
           cancelText="No"
         >
           <Switch
             checkedChildren="Yes"
             unCheckedChildren="No"
-            checked={paymentMethods.payByCheckInd}
+            checked={paymentMethods.b2cPayByCheckInd}
             onClick={(checked, event) => event.preventDefault()}
           />
         </Popconfirm>
@@ -491,24 +504,25 @@ const PaymentSwitches = (props) => {
         Razorpay
         <Popconfirm
           title={`Are you sure you want to ${
-            paymentMethods.razorpayInd ? 'disable' : 'enable'
+            paymentMethods.b2cRazorpayInd ? 'disable' : 'enable'
           } Razorpay?`}
-          onConfirm={() => confirmChange('razorpayInd', !paymentMethods.razorpayInd)}
+          onConfirm={() => confirmChange('b2cRazorpayInd', !paymentMethods.b2cRazorpayInd)}
           okText="Yes"
           cancelText="No"
         >
           <Switch
             checkedChildren="Yes"
             unCheckedChildren="No"
-            checked={paymentMethods.razorpayInd}
+            checked={paymentMethods.b2cRazorpayInd}
             onClick={(checked, event) => event.preventDefault()}
           />
         </Popconfirm>
-        {paymentMethods.razorpayInd && (
-          <div style={{ marginTop: '8px' }}>
+        {paymentMethods.b2cRazorpayInd && (
+           <div style={{ marginLeft: '0.25rem' }}>
             <Input
               placeholder="Enter Razorpay value"
               value={inputValues.razorpay}
+              style={{width:"-webkit-fill-available"}} 
               onChange={(e) => handleInputChange(e, 'razorpay')}
             />
             <Button type="primary" onClick={() => handleSubmit('razorpay')} style={{ marginTop: '8px' }}>
@@ -522,24 +536,24 @@ const PaymentSwitches = (props) => {
         Stripe
         <Popconfirm
           title={`Are you sure you want to ${
-            paymentMethods.stripeInd ? 'disable' : 'enable'
+            paymentMethods.b2cStripeInd ? 'disable' : 'enable'
           } Stripe?`}
-          onConfirm={() => confirmChange('stripeInd', !paymentMethods.stripeInd)}
+          onConfirm={() => confirmChange('b2cStripeInd', !paymentMethods.b2cStripeInd)}
           okText="Yes"
           cancelText="No"
         >
           <Switch
             checkedChildren="Yes"
             unCheckedChildren="No"
-            checked={paymentMethods.stripeInd}
+            checked={paymentMethods.b2cStripeInd}
             onClick={(checked, event) => event.preventDefault()}
           />
         </Popconfirm>
-        {paymentMethods.stripeInd && (
-          <div style={{ marginTop: '8px' }}>
+        {paymentMethods.b2cStripeInd && (
+          <div style={{ marginLeft: '0.25rem' }}>
             <Input
               placeholder="Enter Stripe value"
-              style={{width:"59em"}}
+              style={{width:"-webkit-fill-available"}} 
               value={inputValues.stripe}
               onChange={(e) => handleInputChange(e, 'stripe')}
             />

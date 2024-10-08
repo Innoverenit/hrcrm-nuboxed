@@ -207,7 +207,7 @@ function MaterialComplementaryCard(props) {
     <>
      <Input
           placeholder= {translatedMenuItems[3]}
-          width={"60%"}
+          style={{width:"30%"}}
           suffix={suffix}
           onPressEnter={handleSearch}
           onChange={handleChange}

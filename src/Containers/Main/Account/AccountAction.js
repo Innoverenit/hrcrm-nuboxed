@@ -4198,7 +4198,7 @@ export const getProcureDetails = (orderPhoneId) => (dispatch) => {
       type: types.GET_PROCURE_DETAILS_REQUEST,
   });
   axios
-      .get(`${base_url2}/phoneOrder/procure/order/${orderPhoneId}`, {
+      .get(`${base_url2}/quotation/procure/order/${orderPhoneId}`, {
           headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
