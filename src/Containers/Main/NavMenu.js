@@ -817,38 +817,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
 
   )}
 
- {/*Publish*/}
-        {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
-            user.department !== "VENDOR" && (  */}
-        {/* {(user.publishAccessInd === true  && user.recruitProInd === true) || (user.role === "ADMIN"  && user.recruitProInd === true) && ( */}
-          <Menu.Item key="/publish" style={{ height: "1.45rem", 
-          color: selectedMenuItem === '/publish' ? 'tomato' : '#4bc076' }}>
-            <Link to="/publish" onClick={() => handleSelect('/publish')}>
-
-              <CellTowerIcon className='!text-base'/>
-              <span class="text-white text-ls ml-1">
-              {translatedMenuItems[50]}
-                 {/* publish */}
-                </span>
-            </Link>
-          </Menu.Item>
-        {/* )} */}
-
-        {/*Publish*/}
-              {user.department === "Management" && (
-            <Menu.Item key="/invoice" style={{height:"1.45rem"}}>
-              <Link to="/Invoice">
-                <TextSnippetIcon
-
-                  className='!text-base'
-                />
-               <span class="text-white text-ls ml-3">
-                
-                  {translatedMenuItems[17]}
-                </span>
-              </Link>
-            </Menu.Item>
-          )}     
+    
         <hr />
         {(user.leaveAccessInd === true   
         // || user.role === "ADMIN"
@@ -936,7 +905,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
 
 
 {(user.hrInd === true   
- && user.role === "ADMIN"
+ && user.role === "ADMIN" && user.moduleMapper.recruitProInd === true
 ) && ( 
         <Menu.Item key="/assessment" style={{ height: "1.45rem", 
         color: selectedMenuItem === '/assessment' ? 'tomato' : '#4bc076' }}>
@@ -955,9 +924,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
         {/* 
            </SubMenu> 
      )}  */}
-      {/* {((user.talentAccessInd === true && user.recruitProInd === true)  */}
-      {/* //  || (user.role === "ADMIN" && user.recruitProInd === true)
-      ) &&  ( */}
+      {((user.talentAccessInd === true && user.moduleMapper.recruitProInd === true) 
+      ) && ( 
             <Menu.Item key="/candidate" style={{ height: "1.45rem", 
              color: selectedMenuItem === '/candidate' ? 'tomato' : '#4bc076' }}>
               <Link to="/candidate" onClick={() => handleSelect('/candidate')}>
@@ -978,13 +946,11 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
                 </span>
               </Link>
             </Menu.Item>
-          {/* )}   */}
+          )}   
         {/*Talent*/}
         {/*Requirement*/}
-        {/* {(user.requirementAccessInd === true && user.recruitProInd === true 
-        // || user.role === "ADMIN" && user.recruitProInd === true
-      ) */}
-         {/* &&  ( */}
+        {((user.requirementAccessInd === true && user.moduleMapper.recruitProInd === true )
+    ) &&  ( 
           <Menu.Item key="/requirement" style={{ height: "1.45rem",
             color: selectedMenuItem === '/requirement' ? 'tomato' : '#4bc076' }}>
             <Link to="/requirement " onClick={() => handleSelect('/requirement')}>
@@ -1004,10 +970,10 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               </span>
             </Link>
           </Menu.Item>
-           {/* )} */}
-          {/* {(user.requirementAccessInd === true && user.recruitProInd === true 
+          )} 
+          {((user.requirementAccessInd === true && user.moduleMapper.recruitProInd === true)
           // || user.role === "ADMIN" && user.recruitProInd === true
-        ) &&  ( */}
+        ) &&  (
          <Menu.Item key="/project" style={{ height: "1.45rem",
            color: selectedMenuItem === '/project' ? 'tomato' : '#4bc076' }}>
               <Link to="/project" onClick={() => handleSelect('/project')}>
@@ -1021,13 +987,11 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
                 </span>
               </Link>
             </Menu.Item> 
- {/* )} */}
+ )}
           {/* <hr/> */}
         {/* )} */}
         {/*Demand*/}
-        {/* {(user.userType === "USER" && user.department === "Customer" && user.recruitProInd === true 
-        // || user.role === "ADMIN" && user.recruitProInd === true
-      ) && ( */}
+        {(user.moduleMapper.recruitProInd === true &&  
           <Menu.Item key="/demand" style={{ height: "1.45rem", 
            color: selectedMenuItem === '/demand' ? 'tomato' : '#4bc076' }}>
             <Link to="/demand" onClick={() => handleSelect('/demand')}>
@@ -1043,7 +1007,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               </span>
             </Link>
           </Menu.Item>
-        {/* )} */}
+         )}
         {/*Demand*/}
 
         {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
@@ -1054,7 +1018,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
 
        
  
-        {/* {user.department === "Management" && ( */}
+        {(user.moduleMapper.recruitProInd === true &&  
         <Menu.Item key="/billing" style={{height:"1.45rem"}}>
             <Link to="/Billing">
               <AccessAlarmIcon
@@ -1067,8 +1031,39 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
               </span>
             </Link>
           </Menu.Item>
-        {/* )} */}
+       )} 
+{/*Publish*/}
+        {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
+            user.department !== "VENDOR" && (  */}
+        {((user.publishAccessInd === true  && user.moduleMapper.recruitProInd === true))  && (
+        <Menu.Item key="/publish" style={{ height: "1.45rem", 
+          color: selectedMenuItem === '/publish' ? 'tomato' : '#4bc076' }}>
+            <Link to="/publish" onClick={() => handleSelect('/publish')}>
 
+              <CellTowerIcon className='!text-base'/>
+              <span class="text-white text-ls ml-1">
+              {translatedMenuItems[50]}
+                 {/* publish */}
+                </span>
+            </Link>
+          </Menu.Item>
+        )} 
+
+        {/*Publish*/}
+              {user.department === "Management" && user.moduleMapper.recruitProInd === true && (
+            <Menu.Item key="/invoice" style={{height:"1.45rem"}}>
+              <Link to="/Invoice">
+                <TextSnippetIcon
+
+                  className='!text-base'
+                />
+               <span class="text-white text-ls ml-3">
+                
+                  {translatedMenuItems[17]}
+                </span>
+              </Link>
+            </Menu.Item>
+          )}  
       
 
         {/* {user.userType !== "USER" && user.department !== "VENDOR" && user.department !== "Customer" && user.department !== "Recruiter" &&( */}

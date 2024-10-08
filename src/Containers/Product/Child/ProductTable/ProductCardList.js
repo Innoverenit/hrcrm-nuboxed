@@ -265,14 +265,23 @@ useEffect(() => {
                         </SubTitle>
                       </div>
                       <div className=" flex w-[4.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                        <div class="text-xs   max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class="text-xs  text-blue-600   max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                        onClick={() => {
+                          openModal();
+                          handleParticularRowData(item);
+                        }}
+                        >
                           {item.articleNo}
                         </div>
                       </div>
 
                       <div className=" flex  w-[14.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs text-blue-600 cursor-pointer max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                        onClick={() => {
+                          openModal();
+                          handleParticularRowData(item);
+                        }}>
                           {`${item.productFullName ? `${item.productFullName}`:`${item.name}`}`}
                         </div>
 
@@ -407,7 +416,7 @@ useEffect(() => {
                       </div>
                  
                    
-                      <div class=" text-xs  font-poppins">
+                      {/* <div class=" text-xs  font-poppins">
                         <Tooltip title={item.description}>
                         <ContactSupportIcon className="!text-icon"
                         onClick={() => {
@@ -416,7 +425,7 @@ useEffect(() => {
                         }}
                         />
                         </Tooltip>
-                      </div>
+                      </div> */}
 <div>
 <Tooltip title={translatedMenuItems[13]}  >
                                                             <Token 

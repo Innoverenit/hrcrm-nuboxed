@@ -1,8 +1,14 @@
 
-import React, { lazy, Component, Suspense } from "react";
-import { StyledDrawer } from "../../../../Components/UI/Antd";
+import React, { lazy, Component, Suspense,useState } from "react";
+import { StyledDrawer, StyledTabs } from "../../../../Components/UI/Antd";
 import { FormattedMessage } from "react-intl";
+import TabPane from 'antd/lib/tabs/TabPane';
 import { BundleLoader } from "../../../../Components/Placeholder";
+import LocationSuppliesList from "../LocationSuppliesList";
+import MaterialComplementaryCard from "../MaterialComplementaryCard";
+import PriceDiscountCardB2C from "../PriceDiscountCardB2C";
+import PriceDiscountCard from "../PriceDiscountCard";
+import PriceAddCard from "../PriceAddCard";
 const MaterialsDetailsbyId = lazy(() => import("./MaterialsDetailsbyId"));
 
 function MaterialDetailsDrawer(props) {
@@ -10,6 +16,51 @@ function MaterialDetailsDrawer(props) {
     const { modalVisible,closeModal,particularDiscountData, ...formProps } = props;
     const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "60%";
+    const [activeKey, setActiveKey] = useState("1");
+    const handleTabChange = (key) => setActiveKey(key);
+    const renderTabContent = (key) => {
+      switch (key) {
+        case "1":
+          return     <div> 
+              <MaterialsDetailsbyId 
+          particularDiscountData={particularDiscountData}
+          recomendInd={particularDiscountData.recomendInd}
+          suppliesId={particularDiscountData.suppliesId}
+          fifoInd={particularDiscountData.fifoInd}
+          featureInd={particularDiscountData.featureInd}
+          /> 
+              </div>;
+        case "2":
+          return  <div> <div class="font-semibold ">Price</div>
+          <PriceAddCard particularDiscountData={particularDiscountData}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage} />  
+          <div class="font-semibold ">Discount B2B</div>
+          <PriceDiscountCard particularDiscountData={particularDiscountData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage} /> 
+          <div class="font-semibold ">Discount B2C</div>
+          <PriceDiscountCardB2C particularDiscountData={particularDiscountData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage} /></div>;
+      
+          case "3":
+          return  <div>  <LocationSuppliesList
+          particularDiscountData={props.particularDiscountData}
+          /></div>;
+          case "4":
+          return  <div><MaterialComplementaryCard
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+            particularDiscountData={props.particularDiscountData}
+            openComplementary={props.openComplementary}
+            setopenComplementary={props.setopenComplementary}
+          /></div>;
+        default:
+          return null;
+      }
+    };
+
     return (
       <>
         <StyledDrawer
@@ -24,7 +75,78 @@ function MaterialDetailsDrawer(props) {
 
 
           <Suspense fallback={<BundleLoader />}>
-          <MaterialsDetailsbyId  particularDiscountData={particularDiscountData}/> 
+          <div>
+            <StyledTabs
+           defaultActiveKey={activeKey} onChange={handleTabChange}
+            >
+               
+                    <TabPane
+                        tab={
+                            <>
+                                <span >
+                                    Info
+                                </span>
+                               
+                               
+
+                            </>
+                        }
+                        key="1">
+                       
+                    </TabPane>
+                <TabPane
+                    tab={
+                        <>
+                            <span >
+
+                           Pricing
+                            </span>
+                          
+                           
+
+                        </>
+                    }
+                    key="2">
+                    <Suspense fallback={<BundleLoader />}>
+                       
+                    </Suspense>
+                </TabPane>
+
+                    <TabPane
+                        tab={
+                            <>
+                                <span>
+
+                               ReOrder
+                                </span>
+                            </>
+                        }
+                        key="3">
+                        
+
+
+                    </TabPane>
+                    
+                    <TabPane
+                        tab={
+                            <>
+                                <span>
+
+                                Complementary
+                                </span>
+                            </>
+                        }
+                        key="4">
+                        
+
+
+                    </TabPane>
+              
+            </StyledTabs>
+            <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
+        </div>
           </Suspense>
 
 
