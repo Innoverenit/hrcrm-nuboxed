@@ -1,16 +1,15 @@
 import React, { useEffect, useState,  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-    getMaterialBestBefore,
-    // handleMaterialReceived,
-    // handlegrnlistmodal
-} from "../Inventory/InventoryAction";
 // import {
-//     getMaterialReceiveData,
-//     handleMaterialReceived,
-//     handlegrnlistmodal
-// } from "../../../InventoryAction";
+//     getMaterialBestBefore,
+//     // handleMaterialReceived,
+//     // handlegrnlistmodal
+// } from "../Inventory/InventoryAction";
+import {
+    getSuppliesLocationItem,
+   
+} from "./SuppliesAction";
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
@@ -23,10 +22,11 @@ import { Tooltip, Select, Button } from "antd";
 
 const { Option } = Select;
 
-const InventoryMaterialBestBefore = (props) => {
+const SuppliesLocationItem = (props) => {
+    console.log(props.currentLocationId)
     useEffect(() => {
-        props.getMaterialBestBefore(props.locationId);
-        //props.getRoomRackByLocId(props.locationId, props.orgId);
+        props.getSuppliesLocationItem(props.currentLocationId.locationDetailsId);
+        
     }, [])
    
 
@@ -156,10 +156,11 @@ const InventoryMaterialBestBefore = (props) => {
 }
 
 
-const mapStateToProps = ({ inventory, auth }) => ({
+const mapStateToProps = ({ inventory,supplies, auth }) => ({
     userId: auth.userDetails.userId,
     locationId: auth.userDetails.locationId,
     orgId: auth.userDetails.organizationId,
+    suppliesLocationItem:supplies.suppliesLocationItem,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
     materialBestBefore:inventory.materialBestBefore,
 });
@@ -167,7 +168,8 @@ const mapStateToProps = ({ inventory, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getMaterialBestBefore
+            getSuppliesLocationItem
+            //getMaterialBestBefore
             // getMaterialReceiveData,
             // handleMaterialReceived,
             // handlegrnlistmodal,
@@ -178,5 +180,5 @@ const mapDispatchToProps = (dispatch) =>
     );
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialBestBefore)
+    connect(mapStateToProps, mapDispatchToProps)(SuppliesLocationItem)
 );

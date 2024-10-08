@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
+import SuppliesLocationItem from "../Supplies/SuppliesLocationItem"
 import { BundleLoader } from "../../../Components/Placeholder";
 import { FormattedMessage } from 'react-intl';
 
@@ -19,7 +20,9 @@ const AddSuppliesLocationModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-        Hello
+     <SuppliesLocationItem
+      currentLocationId={props.currentLocationId}
+     />
         </Suspense>
       </StyledDrawer>
     </>
