@@ -58,6 +58,30 @@ const InventoryActionLeft = (props) => {
          
         </Tooltip>
         )}
+
+
+        <Tooltip title="Commerce">
+         
+
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setInventoryViewType("commerce")}
+              style={{
+                color: props.viewType === "commerce" && "#1890ff",
+              }}
+            >
+              
+              <Button 
+              // type={props.viewType === "repair" ? "primary" : ""} 
+              style={{ backgroundColor:  "tomato" }}
+              >
+             <div class="text-white ">
+             Commerce
+              </div>
+             </Button>
+            </span>
+         
+        </Tooltip>
+       
         {/* <Tooltip title={props.translatedMenuItems[15]}>
           
             <span class=" mr-[0.5rem] cursor-pointer"

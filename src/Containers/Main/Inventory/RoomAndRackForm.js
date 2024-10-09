@@ -333,7 +333,7 @@ const RoomAndRackForm = (props) => {
   const [validationErrors, setValidationErrors] = useState({});
 
   const handleAddRow = () => {
-    const newRow = { zone: '', rack: '', zoneType: '', description: '' };
+    const newRow = { zone: '', rack: '', zoneType: '', description: '',aisle:"" };
     setRows([...rows, newRow]);
   };
 
@@ -365,6 +365,9 @@ const RoomAndRackForm = (props) => {
 
     if (!row.rack) {
       errors[`${index}-rack`] = 'Input required';
+    }
+    if (!row.aisle) {
+      errors[`${index}-aisle`] = 'Input required';
     }
 
     if (Object.keys(errors).length > 0) {
@@ -449,24 +452,54 @@ const RoomAndRackForm = (props) => {
                 </div>
               </div>
 
+
+
               <div>
                 <div class="font-bold text-xs font-poppins text-black">
-                  {/* #Rack */} #{props.translatedMenuItems[8]}
+                 Aisle
                   </div>
                 <div className="w-24">
                   <Input
-                    value={row.rack}
-                    onChange={(e) => handleChange(index, 'rack', e.target.value)}
-                    placeholder="# Number"
-                    type="number"
+                    value={row.aisle}
+                    onChange={(e) => handleChange(index, 'aisle', e.target.value)}
+                    placeholder="# Aisle"
+                    type="text"
                     min="0"
                     step="1"
                     required
                     style={{ borderColor: validationErrors[`${index}-rack`] ? 'red' : undefined }}
                   />
-                  {validationErrors[`${index}-rack`] && <span style={{ color: 'red' }}>{validationErrors[`${index}-rack`]}</span>}
+                  {validationErrors[`${index}-aisle`] && <span style={{ color: 'red' }}>{validationErrors[`${index}-aisle`]}</span>}
                 </div>
               </div>
+
+              <div>
+  {row.aisle && ( // Check if row.aisle exists
+    <div>
+      <div className="font-bold text-xs font-poppins text-black">
+        {/* #Rack */} #{props.translatedMenuItems[8]}
+      </div>
+      <div className="w-24">
+        <Input
+          value={row.rack}
+          onChange={(e) => handleChange(index, 'rack', e.target.value)}
+          placeholder="# Number"
+          type="number"
+          min="0"
+          step="1"
+          required
+          style={{ borderColor: validationErrors[`${index}-rack`] ? 'red' : undefined }}
+        />
+        {validationErrors[`${index}-rack`] && (
+          <span style={{ color: 'red' }}>
+            {validationErrors[`${index}-rack`]}
+          </span>
+        )}
+      </div>
+    </div>
+  )}
+</div>
+
 
               <div>
                 <div class="font-bold text-xs font-poppins text-black">
