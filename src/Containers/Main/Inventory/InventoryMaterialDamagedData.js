@@ -39,10 +39,7 @@ const InventoryMaterialDamagedData = (props) => {
                             {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
                          Item Name
                         </div>
-                        <div className=" w-[11.122rem]">       
-                       Po Id
 
-                        </div>
                         <div className=" w-[11.122rem]">       
                        Supplier Name
 
@@ -69,10 +66,10 @@ const InventoryMaterialDamagedData = (props) => {
                     Units
 
                         </div>
-                        <div className=" w-[11.122rem]">       
+                        {/* <div className=" w-[11.122rem]">       
                     Terms and Condition
 
-                        </div>
+                        </div> */}
 
                         <div className=" w-[11.322rem]"></div>
                     </div>
@@ -84,7 +81,7 @@ const InventoryMaterialDamagedData = (props) => {
                         height={"67vh"}
                         style={{ scrollbarWidth:"thin"}}
                     > */}
-                        {/* {props.materialReceiveData.map((item) => {
+                     {props.materialDamageData.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
@@ -95,54 +92,59 @@ const InventoryMaterialDamagedData = (props) => {
                                             <div className=" flex  w-[16.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
-                                                        onClick={() => {
-                                                            handleRow(item);
-                                                            props.handleMaterialReceived(true);
-                                                        }}
+                                                        // onClick={() => {
+                                                        //     handleRow(item);
+                                                        //     props.handleMaterialReceived(true);
+                                                        // }}
                                                     >
                                                         {item.newPoNumber}
                                                     </div>
-                                                    {date === currentdate ? (
+                                                    {/* {date === currentdate ? (
                                                         <div class="text-xs font-poppins font-bold text-[tomato]">
                                                           {props.translatedMenuItems[13]}  
                                                          
                                                         </div>
-                                                    ) : null}
+                                                    ) : null} */}
                                                 </div>
                                             </div>
                                         </div>
                                         <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
-                                                <MultiAvatar
-                                                    primaryTitle={item.userName}
-                                                    imgWidth={"1.8rem"}
-                                                    imgHeight={"1.8rem"}
-                                                />
+                                              {item.suppliesFullName}
                                             </div>
 
                                         </div>
                                         <div className=" flex  w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            {date}
+                                            {item.supplierName}
 
                                         </div>
                                         <div className=" flex   w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
-                                                {item.supplierName}
+                                              {item.hsn}
                                             </div>
                                         </div>
                                       
                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                          
+                                          {item.suppliesId}
                                         </div>
+                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                         
+                                        </div>
+                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                         
+                                         </div>
+                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                         {item.unitDamaged}
+                                         </div>
                                        
                                     </div>
 
                                 </div>
                             );
-                        })} */}
+                        })}
                     {/* </InfiniteScroll> */}
                 </div>
             </div>
