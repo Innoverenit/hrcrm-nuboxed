@@ -6,6 +6,9 @@ import {
     // handleMaterialReceived,
     // handlegrnlistmodal
 } from "../Inventory/InventoryAction";
+import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"
+import { TerminalSharp } from "@mui/icons-material";
+import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
 // import {
 //     getMaterialReceiveData,
 //     handleMaterialReceived,
@@ -19,15 +22,93 @@ import { MultiAvatar } from "../../../Components/UI/Elements";
 // import GrnListOfPOModal from "./GrnListOfPOModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button } from "antd";
+import { base_url2 } from "../../../Config/Auth";
 //import { getRoomRackByLocId, getRackList } from "../../../../Inventory/InventoryAction";
 
 const { Option } = Select;
 
 const InventoryMaterialBestBefore = (props) => {
+    const [zone, setZone] = useState([]);
+    const [rack, setRack] = useState([]);
+    const [isLoadingZone, setIsLoadingZone] = useState(false);
+    const [isLoadingRack, setIsLoadingRack] = useState(false);
+    const [selectedRack, setSelectedRack] = useState(null);
+    const [selectedZone, setSelectedZone] = useState(null);
+    const [touchedZone, setTouchedZone] = useState(false)
+    const [row, setRow] = useState({})
     useEffect(() => {
         props.getMaterialBestBefore(props.locationId);
         //props.getRoomRackByLocId(props.locationId, props.orgId);
     }, [])
+
+
+
+    const handleRow = (item) => {
+        setRow(item)
+    }
+
+
+    const handleZoneChange = (roomRackId) => {
+        setSelectedZone(roomRackId);
+        fetchRack(roomRackId);
+      };
+
+      const handleSelectZoneFocus = () => {
+        if (!touchedZone) {
+          fetchZone();
+          // fetchSector();
+    
+          setTouchedZone(true);
+        }
+      };
+      const fetchZone = async () => {
+        setIsLoadingZone(true);
+        try {
+       
+          const apiEndpoint = `${base_url2}/roomrack/roomAndRackDetails/quality/${props.locationId}/${props.orgId}`;
+          const response = await fetch(apiEndpoint,{
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${props.token}`,
+              'Content-Type': 'application/json',
+              // Add any other headers if needed
+            },
+          });
+          const data = await response.json();
+          setZone(data);
+        } catch (error) {
+          console.error('Error fetching customers:', error);
+        } finally {
+          setIsLoadingZone(false);
+        }
+      };
+
+
+      const handleRackChange=(value)=>{
+        setSelectedRack(value);
+      }
+
+      const fetchRack = async (roomRackId) => {
+        setIsLoadingRack(true);
+        try {
+         
+          const apiEndpoint = `${base_url2}/roomrack/${roomRackId}`;
+          const response = await fetch(apiEndpoint,{
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${props.token}`,
+              'Content-Type': 'application/json',
+              // Add any other headers if needed
+            },
+          });
+          const data = await response.json();
+          setRack(data);
+        } catch (error) {
+          console.error('Error fetching contacts:', error);
+        } finally {
+          setIsLoadingRack(false);
+        }
+      };
    
 
 
@@ -43,10 +124,7 @@ const InventoryMaterialBestBefore = (props) => {
                             {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
                          Item Name
                         </div>
-                        <div className=" w-[11.122rem]">       
-                       Po Id
-
-                        </div>
+               
                         <div className=" w-[11.122rem]">       
                        Supplier Name
 
@@ -73,10 +151,7 @@ const InventoryMaterialBestBefore = (props) => {
                     Units
 
                         </div>
-                        <div className=" w-[11.122rem]">       
-                    Terms and Condition
-
-                        </div>
+                   
 
                         <div className=" w-[11.322rem]"></div>
                     </div>
@@ -88,7 +163,7 @@ const InventoryMaterialBestBefore = (props) => {
                         height={"67vh"}
                         style={{ scrollbarWidth:"thin"}}
                     > */}
-                        {/* {props.materialReceiveData.map((item) => {
+                         {props.materialBestBefore.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
@@ -99,75 +174,140 @@ const InventoryMaterialBestBefore = (props) => {
                                             <div className=" flex  w-[16.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
-                                                        onClick={() => {
-                                                            handleRow(item);
-                                                            props.handleMaterialReceived(true);
-                                                        }}
+                                                        // onClick={() => {
+                                                        //     handleRow(item);
+                                                        //     props.handleMaterialReceived(true);
+                                                        // }}
                                                     >
                                                         {item.newPoNumber}
                                                     </div>
-                                                    {date === currentdate ? (
+                                                    {/* {date === currentdate ? (
                                                         <div class="text-xs font-poppins font-bold text-[tomato]">
                                                           {props.translatedMenuItems[13]}  
                                                          
                                                         </div>
-                                                    ) : null}
+                                                    ) : null} */}
                                                 </div>
                                             </div>
                                         </div>
                                         <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
-                                                <MultiAvatar
+                                                {/* <MultiAvatar
                                                     primaryTitle={item.userName}
                                                     imgWidth={"1.8rem"}
                                                     imgHeight={"1.8rem"}
-                                                />
+                                                /> */}
+                                                {item.suppliesFullName}
                                             </div>
 
                                         </div>
                                         <div className=" flex  w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            {date}
+                                            {/* {item.suppliesFullName} */}
 
                                         </div>
                                         <div className=" flex   w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
-                                                {item.supplierName}
+                                                {/* {item.supplierName} */}
                                             </div>
                                         </div>
                                       
                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                          
+                                          {/* {item.supplierId} */}
                                         </div>
+                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          {item.remainingCorrectUnit}
+                                        </div>
+
+                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <Button>To Waste</Button>
+                                        </div>
+                                        <div className=" flex font-medium  items-center md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-13em"}} >
+                                                        
+                                                    <Select placeholder="Select zone" 
+                                                    style={{ width: 146 }}
+                                                    loading={isLoadingZone}
+                                                    onFocus={handleSelectZoneFocus}
+                                                    onChange={handleZoneChange}
+                                                    >
+      
+        {zone.map((zone) => (
+          <Option key={zone.roomRackId} value={zone.roomRackId}>
+            {zone.zone}
+          </Option>
+        ))}
+      </Select>
+                                                    
+
+      <Select placeholder="Select rack" 
+      style={{ width: 146,marginLeft:"1em" }}
+      loading={isLoadingRack}
+      onChange={handleRackChange}
+      disabled={!selectedZone} 
+      >
+      
+      {rack.map((rack) => (
+        <Option key={rack.roomRackChamberLinkId} value={rack.roomRackChamberLinkId}>
+          {rack.chamber}
+        </Option>
+      ))}
+    </Select>
+
+                                                    </div>
+                                                </div>
+
+
+                                        <div className=" flex ml-4  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
+                                                            <Tooltip title="Terms and conditions">
+                                                                <TerminalSharp className="!text-icon text-[#c3b20b]"
+                                                                    onClick={() => {
+                                                                    handleRow(item)
+                                                                        props.handleTermsnConditionModal(true)
+                                                                    }}
+                                                                />
+                                                            </Tooltip>
+                                                        </div>
+                                                    </div>
                                        
                                     </div>
 
                                 </div>
                             );
-                        })} */}
+                        })} 
                     {/* </InfiniteScroll> */}
                 </div>
             </div>
-           
+            <TermsnConditionModal
+                rowData={row}
+                addTermsnCondition={props.addTermsnCondition}
+                handleTermsnConditionModal={props.handleTermsnConditionModal}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
+            />
         </>
     );
 }
 
 
-const mapStateToProps = ({ inventory, auth }) => ({
+const mapStateToProps = ({ inventory,suppliers, auth }) => ({
     userId: auth.userDetails.userId,
     locationId: auth.userDetails.locationId,
     orgId: auth.userDetails.organizationId,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
     materialBestBefore:inventory.materialBestBefore,
+    addTermsnCondition: suppliers.addTermsnCondition,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getMaterialBestBefore
+            getMaterialBestBefore,
+            handleTermsnConditionModal
+            
             // getMaterialReceiveData,
             // handleMaterialReceived,
             // handlegrnlistmodal,

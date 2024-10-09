@@ -1,6 +1,7 @@
 import React, { Suspense, lazy,useState,useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
+import InventoryCommerceTabO from "./InventoryCommerceTabO"
 import InventoryHeader from "./InventoryHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { setInventoryViewType,getInventoryById,setInventoryDetailViewType } from "./InventoryAction";
@@ -140,6 +141,16 @@ function Inventory(props) {
           />
           : props.viewType === "repair" ? 
           <InventoryDetailTabO
+          viewType1={viewType1}
+          inventory={inventory}
+          tabData={tabData}
+          translateText={props.translateText}
+          translatedMenuItems={translatedMenuItems}
+          selectedLanguage={props.selectedLanguage}
+        />
+
+        : props.viewType === "commerce" ? 
+          <InventoryCommerceTabO
           viewType1={viewType1}
           inventory={inventory}
           tabData={tabData}

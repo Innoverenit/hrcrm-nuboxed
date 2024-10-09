@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 
 import styled from "styled-components";
 import { Select } from "../../../../Components/UI/Elements";
+import MaterialFastMovingToggle from "../MaterialById/MaterialFastMovingToggle"
 import MaterialsDetailsCardViewId from "./MaterialsDetailsCardViewId";
 import {getMaterialsBySuppliesId,UpdateMaterialIamge} from "../SuppliesAction";
 import "../Supplies.scss";
@@ -106,6 +107,17 @@ const breakPoints = [
                                 <MaterialFeatureToggle
                                   featureInd={props.featureInd}
                                   suppliesId={props.suppliesId}
+                                />
+                              </div>
+                            </div>
+
+
+                            <div className=" flex flex-col w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className="text-base">Fast Moving</div>
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <MaterialFastMovingToggle
+                                  // featureInd={props.featureInd}
+                                  // suppliesId={props.suppliesId}
                                 />
                               </div>
                             </div>
