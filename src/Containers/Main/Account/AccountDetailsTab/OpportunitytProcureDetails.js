@@ -209,6 +209,9 @@ function OpportunitytProcureDetails(props) {
           {/* <div className="md:w-[8.8rem]">
           {translatedMenuItems[6]}<FormattedMessage id="app.specs" defaultMessage="Specs" />
           </div> */}
+            <div className="w-[5rem] md:w-[5%]">
+          Supplies ID
+          </div>
           <div className="md:w-[2.8rem]">
           {translatedMenuItems[7]} {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
           </div>
