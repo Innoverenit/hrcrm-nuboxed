@@ -350,6 +350,10 @@ const initialState = {
   fetchingArchieveProductionLocIdError: true,
   archieveInProduction: [],
 
+
+  addingToWaste:false,
+  addingToWasteError:false,
+
   roomRackbyLoc: [],
   fetchingRoomRack: false,
   fetchingRoomRackByIdError: false,
@@ -1528,6 +1532,29 @@ export const inventoryReducer = (state = initialState, action) => {
           fetchingMaterialBestBefore: false,
           fetchingMaterialBestBeforeError: true,
         };
+
+
+
+
+
+        case types.ADD_TO_WASTE_REQUEST:
+      return { ...state, addingToWaste: true };
+    case types.ADD_TO_WASTE_SUCCESS:
+      return {
+        ...state,
+        addingToWaste: false,
+       // addCustomerModal: false,
+       
+        // customerByUserId: state.customerByUserId.map((item) => {
+        //   if (item.customerId === action.payload.customerId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+    case types.ADD_TO_WASTE_FAILURE:
+      return { ...state,addingToWaste : false, addingToWasteError: false };
 
 
     case types.GET_MATERIAL_RECEIVE_DETAIL_DATA_REQUEST:

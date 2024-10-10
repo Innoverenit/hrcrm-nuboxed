@@ -2372,3 +2372,55 @@ export const getMaterialDamagedData = (locationDetailsId) => (dispatch) => {
       });
     });
 };
+
+
+
+export const addToWaste = (customer) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_TO_WASTE_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/waste/moveToWaste`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      // })
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      //   showConfirmButton: false,
+      //   // timer: 1500
+      // })
+      console.log(res);
+      // dispatch(
+      //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
+      // );
+      // message.success(res.data.message)
+   
+
+      dispatch({
+        type: types.ADD_TO_WASTE_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_TO_WASTE_FAILURE,
+        payload: err,
+      });
+      message.error(err.data.message)
+      // cb && cb();
+    });
+};
