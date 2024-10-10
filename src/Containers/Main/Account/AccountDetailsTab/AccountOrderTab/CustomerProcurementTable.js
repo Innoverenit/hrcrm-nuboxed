@@ -48,7 +48,7 @@ function CustomerProcurementTable(props) {
     const [data, setData] = useState([]);
     const [editedFields, setEditedFields] = useState({});
     const [editsuppliesId, setEditsuppliesId] = useState(null);
-    const [dispatchedDate, setdispatchedDate] = useState("");
+    const [date, setDate] = useState('');
 
   useEffect(() => {
     props.getProcureRecords(props.distributorId,"procure");
@@ -228,10 +228,19 @@ const handleLoadMoreLow = () => {
   // settrackId(updatedTrackId);
   };
   
-  const handleDateChange = (e, item) => {
-    const selectedDate = e.target.value; 
-    setdispatchedDate(selectedDate); 
+    const handleDateChange = (e, item) => {
+      const selectedDate = new Date(e.target.value);
+      const deliveryDate = new Date(item.deliveryDate);
+  setDate(e.target.value);
+
+      // if (selectedDate >= deliveryDate) {
+      //     setDate(e.target.value);
+      // } else {   
+      //     alert('Shipping date cannot be earlier than delivery date');
+      // }
   };
+  
+  
     const handleEditClick = (orderId) => {
       setEditsuppliesId(orderId);
     };
@@ -240,26 +249,23 @@ const handleLoadMoreLow = () => {
       setEditsuppliesId(null);
     };
   
+ 
+  
+
   const handlePostChange =  async (item) => {
-    const currentDate = new Date().toISOString();
-    const dispatchReceivedDate = item.dispatchReceivedDate 
-      ? new Date(item.dispatchReceivedDate).toISOString() 
-      : dispatchedDate 
-      ? new Date(dispatchedDate).toISOString() 
-      : currentDate;
-
-
       let updatedItem={
-        dispatchReceivedDate: dispatchReceivedDate,
+          packingDate: new Date(date).toISOString(),
+        // trackId:trackId?trackId:item.trackId,
         orderId:item.orderId,
       }
+      // props.updateOrdrSuplrItems(data);
       try {
         const headers = {
           'Content-Type': 'application/json',
           'Authorization':  `Bearer ${props.token}`  // Replace with your actual token if required
         };
 
-          const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch/tst`, updatedItem, { headers });
+          const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch/${item.orderId}`, updatedItem, { headers });
           console.log("API Response:", response.data);
       setData(prevData => 
             prevData.map(cat =>
@@ -444,16 +450,18 @@ const handleLoadMoreLow = () => {
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {editsuppliesId === item.orderId ? (
                                                          
-                                                         <input
-                                                         type="date"
-                                                         value={dispatchedDate || dayjs(item.dispatchReceivedDate).format("YYYY-MM-DD")} 
-                                                         onChange={(e) => handleDateChange(e, item)}
-                                                         className="border border-black rounded"
-                                                       />) : (
+                                                                <input
+          type="date"
+          // value={date}
+          value={dayjs(item.packingDate).format("YYYY-MM-DD")}
+          onChange={(e) => handleDateChange(e,item)}
+        //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
+          class="border border-black rounded"
+        /> ) : (
             <div className="font-normal text-sm  font-poppins">
-               {item.dispatchReceivedDate === null ? "" :
+               {item.packingDate === null ? "" :
               <div> 
-              {dayjs(item.dispatchReceivedDate).format("YYYY/MM/DD")} 
+              {dayjs(item.packingDate).format("YYYY/MM/DD")} 
               </div>}
             </div>
           )}
