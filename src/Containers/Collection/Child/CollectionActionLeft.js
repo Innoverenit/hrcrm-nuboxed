@@ -84,7 +84,7 @@ const CollectionActionLeft = (props) => {
             color: props.viewType === "distributor" && "#1890ff",
           }}
         >
-          <Avatar style={{ background: props.viewType === "distributor" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "distributor" ? "#f279ab" : "#28a355" }}>
           {translatedMenuItems[1]} {/* ALL */}
           </Avatar>
         </span>

@@ -129,7 +129,7 @@ const Component2 = (props) => {
                                             </Button>
 
                                             <ControlCameraIcon
-                              className=" !text-icon cursor-pointer text-[#4bc076]"
+                              className=" !text-icon cursor-pointer text-[#28a355]"
                               onClick={() => {
                                 props.addSpareNotesModal(true);
                                 handleSteps(step);

@@ -462,7 +462,7 @@ serachedPitchData={props.serachedPitchData}
                                                                                   <Tooltip title={item.email}>
                                                                                       <MailOutlineIcon
                                                                                         type="mail"
-                                                                                        className="!text-icon cursor-pointer text-[#4bc076]"
+                                                                                        className="!text-icon cursor-pointer text-[#28a355]"
                                                                                         // onClick={() => {
                                                                                         //   handleSetCurrentLeadsId(item);
                                                                                         //   props.handleLeadsEmailDrawerModal(true);

@@ -410,7 +410,7 @@ function InvestorJumpstartDrawerCard (props) {
                         <div>
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              className=" !text-xl cursor-pointer text-[#28a355]"
                               // onClick={() => {
                               //   handleCustomerNotesDrawerModal(true);
                               //   handleSetCurrentCustomer(item);

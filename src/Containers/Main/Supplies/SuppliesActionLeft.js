@@ -188,7 +188,7 @@ function SuppliesActionLeft (props) {
                                 color: viewType === "all" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                                 <div className="text-white">{translatedMenuItems[1]}</div></Avatar>
 
                         </span>
@@ -203,7 +203,7 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("category")}
         >
-          <Avatar style={{ background: viewType === "category" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: viewType === "category" ? "#f279ab" : "#28a355" }}>
             <CategoryIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
@@ -222,7 +222,7 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("brand")}
         >
-          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#28a355" }}>
             <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
@@ -239,7 +239,7 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("brandModel")}
         >
-          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#28a355" }}>
           <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
        
@@ -258,7 +258,7 @@ function SuppliesActionLeft (props) {
                                 color: viewType === "dashboard" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#28a355" }}>
                                 <DeleteOutlined className="text-white" /></Avatar>
 
                         </span>
@@ -280,7 +280,7 @@ function SuppliesActionLeft (props) {
                                 color: "blue",
                             }}
                         >
-                            {/* <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#4bc076" }}> */}
+                            {/* <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#28a355" }}> */}
                                 <LocalActivityOutlined 
                                 // className="text-white" 
                                 />

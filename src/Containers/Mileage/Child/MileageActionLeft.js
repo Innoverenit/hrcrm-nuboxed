@@ -93,7 +93,7 @@ setSearchOnEnter(true);
               color: props.viewType === "card" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
               <GridViewIcon className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -112,7 +112,7 @@ setSearchOnEnter(true);
               color: props.viewType === "list" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355" }}>
               <ViewWeekIcon className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -133,7 +133,7 @@ setSearchOnEnter(true);
                 color: props.viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
                 <FormattedMessage id="app.all" defaultMessage="ALL" />
               </Avatar>
             </span>

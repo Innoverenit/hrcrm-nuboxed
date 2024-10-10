@@ -570,7 +570,7 @@ const [rowdata, setrowdata] = useState("");
                         <div class="w-5">
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              className=" !text-icon cursor-pointer text-[#4bc076]"
+                              className=" !text-icon cursor-pointer text-[#28a355]"
                               onClick={() => {
                                 handleCustomerNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);

@@ -198,7 +198,7 @@ const DealActionLeft = (props) => {
               color: viewType === "table" && "#1890ff",
             }}
           >          
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
             <CurrencyExchangeIcon  className="text-white !text-icon"/>
             </Avatar>
           </span>
@@ -222,7 +222,7 @@ const DealActionLeft = (props) => {
           
             onClick={() => props.setDealViewType("stage")}
           >
-             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#28a355" }}>
            <TableOutlined  className="text-white !text-icon cursor:pointer"/>
            </Avatar>
           </span>
@@ -247,7 +247,7 @@ const DealActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#28a355" }}>
             <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7"  className=" !text-icon cursor:pointer" />
             </Avatar>
           </span>
@@ -278,7 +278,7 @@ const DealActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#28a355" }}>
             <StopTwoTone type="stop" theme="twoTone" twoToneColor="red"  className=" !text-icon cursor:pointer" />
             </Avatar>
           </span>
@@ -310,7 +310,7 @@ const DealActionLeft = (props) => {
             }}
             onClick={() => props.setDealViewType("teams")}
           >
-            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
          <PeopleIcon  className="text-white !text-icon cursor:pointer"/>
          </Avatar>
           </span>
@@ -339,7 +339,7 @@ const DealActionLeft = (props) => {
             tooltipTitle="All"
             onClick={() => props.setDealViewType("all")}
           >
-             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
             <FormattedMessage
                         id="app.all"
                         defaultMessage="ALL" className="text-white !text-icon cursor:pointer"
@@ -376,7 +376,7 @@ const DealActionLeft = (props) => {
             
             }}
           >
-             <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#28a355" }}>
             <DeleteOutlined  className="text-white !text-icon"/>
             </Avatar>
           </span>

@@ -65,6 +65,11 @@ function AccountDetailsTab(props) {
     const [openOrder, setOpenOrder] = useState(false)
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedHistory, setSelectedHistory] = useState("completed");
+
+    const [clickSideIcon,setclickSideIcon]=useState(false);
+
+    
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -114,15 +119,29 @@ function AccountDetailsTab(props) {
 
     const handleOpenOrder = () => {
         setBreadCumb(false);
-        setOpenOrder(true)
+        setOpenOrder(true);
     };
-    const handleClosedOrder = () => {
-        setBreadCumb(false);
-        setOpenOrder(false)
+    const handleClickSideIcon = (type) => {
+        setclickSideIcon(true);
+        setSelectedHistory(type);
     };
-    const handleTabChange = (key) => setactiveKey(key);
-    console.log(props.productionInd)
-    console.log(props.activeKey)
+    // const handleTabChange = (key) => setactiveKey(key);
+    // console.log(props.productionInd)
+    // console.log(props.activeKey)
+
+    const handleTabChange = (key) => {
+        setactiveKey(key);
+    
+        if (key === "4") {
+            // Resetting states for the commerce tab
+            setclickSideIcon(false);
+            setSelectedHistory("completed"); // Set to a default history type if needed
+        } else {
+            // Reset states when leaving commerce tab
+            setclickSideIcon(false);
+            setSelectedHistory(null); // Or whatever default you want when leaving the commerce tab
+        }
+    };
 
     const renderTabContent = (key) => {
         switch (key) {
@@ -150,13 +169,19 @@ function AccountDetailsTab(props) {
                 }</div>;
                 case "4":
                     return  <div>  
-                        {openOrder === true &&
-                        <ProcureCommerceShippedOrder/> }
-                         {openOrder === false &&  
-                        <CustomerProcurementTable distributorId={props.distributorData.distributorId} 
+                        {clickSideIcon  && selectedHistory === "shipped" ? (
+                <ProcureCommerceShippedOrder 
+                    distributorId={props.distributorData.distributorId} 
                     selectedLanguage={props.selectedLanguage}
                     translateText={props.translateText}
-                     />}</div>;
+                />
+            ) : (
+                <CustomerProcurementTable 
+                    distributorId={props.distributorData.distributorId} 
+                    selectedLanguage={props.selectedLanguage}
+                    translateText={props.translateText}
+                />
+            )}</div>;
                      case "5":
                         return  <div><AccountActivityTable distributorId={props.distributorData.distributorId} 
                         selectedLanguage={props.selectedLanguage}
@@ -219,7 +244,7 @@ function AccountDetailsTab(props) {
       };
 
 
-    console.log("opIND",openOrder)  
+    console.log("opIND",clickSideIcon)  
     return (
         <>
             <TabsWrapper>
@@ -329,7 +354,10 @@ function AccountDetailsTab(props) {
                                             <ShopIcon
                                                 className="!text-icon text-[#78a1bb] cursor-pointer"
                                             />
-                                            <span class=" ml-1 !text-tab font-poppins ">
+                                            <span class=" ml-1 !text-tab font-poppins " onClick={() => {
+                                                    setclickSideIcon(false); 
+                                                    setSelectedHistory("completed"); 
+                                                   }}>
                                             {translatedMenuItems[12]}
                                             {/* Procure */}
                                                 </span>
@@ -348,7 +376,7 @@ function AccountDetailsTab(props) {
                                      <Tooltip title="Shipped Order">
                                         <HistoryOutlined
                                             fontSize="small"
-                                            onClick={handleOpenOrder}
+                                            onClick={() => handleClickSideIcon("shipped")}
                                         />
                                     </Tooltip>
                                         <Tooltip title={translatedMenuItems[13]}>
@@ -357,7 +385,6 @@ function AccountDetailsTab(props) {
                                                 tooltipTitle={translatedMenuItems[11]}
                                                 onClick={() => {
                                                     props.handleLinkCustomerProcurementModal(true);
-                                                    setOpenOrder(true);
                                                 }}
                                                 className="!text-icon cursor-pointer "
                                             />
