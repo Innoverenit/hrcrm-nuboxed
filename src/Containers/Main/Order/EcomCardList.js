@@ -1,6 +1,7 @@
 import React, {  useEffect, useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { getInventory,  } from "../Inventory/InventoryAction";
 import { Tooltip,Button,Input ,Popconfirm} from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
@@ -12,12 +13,14 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import dayjs from "dayjs";
+import relativeTime from 'dayjs/plugin/relativeTime';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import EcomStatusCardDrawer from "./EcomStatusCardDrawer";
 import EcomSearchedData from "./EcomSearchedData";
 import EcomInvoiceListDrawer from "../Account/AccountDetailsTab/AccountOrderTab/EcomInvoiceListDrawer";
 import ProcureItemViewDrawer from "./ProcureItemViewDrawer";
 import CBMdrawer from "./CBMdrawer";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 
 function EcomCardList(props) {
   const [page, setPage] = useState(0);
@@ -30,6 +33,11 @@ function EcomCardList(props) {
   useEffect(() => {
     setData(props.ecomList.map((item, index) => ({ ...item, key: String(index) })));
   }, [props.ecomList]);
+
+
+  useEffect(() => {
+    props.getInventory(props.orgId);
+  }, [props.orgId]);
 
   useEffect(() => {
     props.getEcomList(props.orgId, page);
@@ -106,6 +114,19 @@ useEffect(() => {
   const openCBM = () => {
     setcbmDrawer(true)
   };
+
+  dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+    const now = dayjs();
+    const creationDay = dayjs(creationDate);
+
+    if (creationDay.isSame(now, 'day')) {
+        return 'Today';
+    } else {
+        return creationDay.from(now); // e.g., "2 days ago"
+    }
+};
 
   const closeModal = () => {
     setModalVisible(false);
@@ -215,7 +236,14 @@ const {handleProcureNotesDrawerModal,
                         <div className=" md:w-[4.4rem]">{translatedMenuItems[6]}</div>
                         {/* <div className=" md:w-[4.4rem]">{translatedMenuItems[7]}</div>  */}
                      
-                        <div className=" md:w-[5.4rem]"> {translatedMenuItems[10]}</div>
+                        <div className=" md:w-[5.4rem]"> 
+                          {translatedMenuItems[10]}
+                          
+                          </div>
+                          <div className=" md:w-[5.4rem]"> 
+                        Inventory
+                          
+                          </div>
                         <div className=" md:w-[7rem]"></div>
                        
                         <div className="md:w-[1rem]"></div>
@@ -225,7 +253,7 @@ const {handleProcureNotesDrawerModal,
           dataLength={props.ecomList.length}
           next={handleLoadMore}
           loader={props.fetchingEcomList?<div class="flex justify-center" >Loading...</div>:null}
-          height={"79vh"}
+          height={"83vh"}
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
@@ -254,7 +282,22 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                         </div>
                         <div className=" flex  items-center md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  items-center font-poppins">
-                            {date}
+                            {/* {date} */}
+                            <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span>
+                            </div>
+                            <div class=" text-xs  items-center font-poppins">
+                            <MultiAvatar
+                  primaryTitle={item.contactPersonName}
+                  // imageId={item.ownerImageId}
+                  // imageURL={item.imageURL}
+                  imgWidth={"2.1em"}
+                  imgHeight={"2.1em"}
+                />
                             </div>
                     
                         </div>
@@ -383,13 +426,14 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
 
 }
 
-const mapStateToProps = ({ order,procre,auth }) => ({
+const mapStateToProps = ({ order,procre,inventory,auth }) => ({
   ecomList: order.ecomList,
   viewItemDrwr: order.viewItemDrwr,
   fetchingEcomList: order.fetchingEcomList,
   orgId: auth.userDetails.organizationId,
   userId: auth.userDetails.userId,
-  orderSearch:order.orderSearch
+  orderSearch:order.orderSearch,
+  inventory: inventory.inventory,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -397,7 +441,8 @@ const mapDispatchToProps = (dispatch) =>
 
     {
 getEcomList,
-handleItemViewDrawer
+handleItemViewDrawer,
+getInventory
 
     },
     dispatch

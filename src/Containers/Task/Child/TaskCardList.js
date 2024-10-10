@@ -1,6 +1,8 @@
 import React, { useState,lazy,Suspense,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { FormattedMessage } from "react-intl";
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import {
@@ -70,6 +72,19 @@ const TaskCardList = (props) => {
 
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+
+  dayjs.extend(relativeTime);
+
+  const getRelativeTime = (creationDate) => {
+      const now = dayjs();
+      const creationDay = dayjs(creationDate);
+  
+      if (creationDay.isSame(now, 'day')) {
+          return 'Today';
+      } else {
+          return creationDay.from(now); // e.g., "2 days ago"
+      }
+  };
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -710,7 +725,7 @@ const TaskCardList = (props) => {
                       <div class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="border rounded-[50%] h-6 w-6 bg-[orange]" ></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-orange-600" ></div>
                     )}
                     {item.priority === "Low" && (
                       <div class="border rounded-[50%] h-6 w-6 bg-[teal]" ></div>
@@ -1116,7 +1131,7 @@ const TaskCardList = (props) => {
                       <div class="border rounded-[50%] h-6 w-6 bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
-                      <div class="border rounded-[50%] h-6 w-6 bg-[#0f0f0f]" ></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-teal-600" ></div>
                     )}
                     <div class=" w-5"></div>
           <div class=" flex  max-sm:w-full">
@@ -1218,7 +1233,10 @@ const TaskCardList = (props) => {
                                          
                      <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
   {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
-   (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">{incompleteDeviationDate} Days</span>)}
+   (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">
+    {incompleteDeviationDate} Days
+    
+    </span>)}
 </div>
                      
                    </div>
