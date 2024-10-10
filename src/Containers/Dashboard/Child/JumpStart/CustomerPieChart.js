@@ -164,7 +164,7 @@ const GradientDonutChart = () => {
   const series = [44, 55, 41, 17, 15];  // Data for the donut chart
 
   return (
-    <div className=' w-[25vw]'>
+    <div className=' w-[23vw]'>
       <ReactApexChart options={options} series={series} type="donut" width={options.chart.width} />
     </div>
   );

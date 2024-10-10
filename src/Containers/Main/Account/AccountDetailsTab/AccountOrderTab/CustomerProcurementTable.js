@@ -265,7 +265,7 @@ const handleLoadMoreLow = () => {
           'Authorization':  `Bearer ${props.token}`  // Replace with your actual token if required
         };
 
-          const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch/${item.orderId}`, updatedItem, { headers });
+          const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch`, updatedItem, { headers });
           console.log("API Response:", response.data);
       setData(prevData => 
             prevData.map(cat =>

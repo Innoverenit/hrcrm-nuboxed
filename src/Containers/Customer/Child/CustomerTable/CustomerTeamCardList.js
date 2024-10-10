@@ -12,7 +12,6 @@ import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
-
 import { Link } from 'react-router-dom';
 import {
     getTeamCustomer,
@@ -43,6 +42,9 @@ import CustomerOpportunityDrawerModal from "./CustomerOpportunityDrawerModal";
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { CurrencySymbol } from "../../../../Components/Common";
+
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
@@ -54,6 +56,20 @@ const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
+
+
+dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+    const now = dayjs();
+    const creationDay = dayjs(creationDate);
+
+    if (creationDay.isSame(now, 'day')) {
+        return 'Today';
+    } else {
+        return creationDay.from(now); 
+    }
+};
 
 function CustomerTeamCardList(props) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -211,7 +227,7 @@ const [rowdata, setrowdata] = useState("");
          <div className=' flex sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-         <div class=" flex justify-between w-[89%]">
+         <div class=" flex justify-between w-[99%]">
             <div className="font-poppins font-bold text-xs w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             {translatedMenuItems[0]}
            {/* name */}
@@ -221,17 +237,17 @@ const [rowdata, setrowdata] = useState("");
              {/* work */}
 
             </div>
-            <div className="font-poppins font-bold text-xs w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className="font-poppins font-bold text-xs w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             {translatedMenuItems[2]}
              {/* sector */}
 
             </div>
-            <div className="font-poppins font-bold text-xs w-[1.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className="font-poppins font-bold text-xs w-[2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             {translatedMenuItems[3]}
            {/* source */}
 
             </div>
-            <div className="font-poppins font-bold text-xs w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">           
+            <div className="font-poppins font-bold text-xs w-[1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">           
             </div>
             <div className="font-poppins font-bold text-xs w-[4.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             {translatedMenuItems[4]}
@@ -244,17 +260,17 @@ const [rowdata, setrowdata] = useState("");
          
             </div>  
             {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[1.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[2.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {/* Score */}
             {translatedMenuItems[19]}
             </div>
             )}         
-            <div className="font-poppins font-bold text-xs w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className="font-poppins font-bold text-xs w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             {translatedMenuItems[6]}
             {/* Assigned" */}
           
             </div>
-            <div className="font-poppins font-bold text-xs w-[1.82rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
+            <div className="font-poppins font-bold text-xs w-[3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
             {translatedMenuItems[7]}
              {/* Owner" */}
          
@@ -264,7 +280,9 @@ const [rowdata, setrowdata] = useState("");
              {/* Customer" */}
           
             </div>
-        
+            <div className="font-poppins font-bold text-xs w-[5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {/* {translatedMenuItems[8]} ago*/}
+            </div>
           </div>
 
           </div>
@@ -305,8 +323,8 @@ const [rowdata, setrowdata] = useState("");
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex   w-[15rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
-                          <div>
-                            {/* <Tooltip title={item.name}> */}
+                          <div class="flex items-center">
+
                             <MultiAvatar
                               primaryTitle={item.name}
                               imageId={item.imageId}
@@ -396,7 +414,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  items-center  w-[9.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  items-center  w-[6rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -426,9 +444,12 @@ const [rowdata, setrowdata] = useState("");
       </div>
     )} */}
                             {item.totalProposalValue && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {/* {`${item.userCurrency} ${item.totalProposalValue/1000}K`} */}
-        {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
+      <div class="text-xs flex font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div>
+        <CurrencySymbol currencyType={item.userCurrency}/>     </div> 
+        <div>
+        {`${Math.floor(item.totalProposalValue / 1000)}K`}
+        </div>
       </div>
     )}
                       </div>     
@@ -481,7 +502,7 @@ const [rowdata, setrowdata] = useState("");
                         </Tooltip>
                       </div>
                   
-           
+                      
 
                       <div className=" flex justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
@@ -507,6 +528,13 @@ const [rowdata, setrowdata] = useState("");
                           )}
                         </Popconfirm>
                       </div>
+                      <div className=" flex items-center w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
 </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                      
