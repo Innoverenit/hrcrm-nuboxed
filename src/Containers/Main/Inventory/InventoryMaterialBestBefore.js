@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
     getMaterialBestBefore,
+    addToWaste
     // handleMaterialReceived,
     // handlegrnlistmodal
 } from "../Inventory/InventoryAction";
@@ -204,25 +205,38 @@ const InventoryMaterialBestBefore = (props) => {
                                         </div>
                                         <div className=" flex  w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            {/* {item.suppliesFullName} */}
+                                            {item.supplierName}
 
                                         </div>
                                         <div className=" flex   w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
-                                                {/* {item.supplierName} */}
+                                                {item.hsn}
                                             </div>
                                         </div>
                                       
                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                          {/* {item.supplierId} */}
+                                          {item.newSuppliesNo}
                                         </div>
                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           {item.remainingCorrectUnit}
                                         </div>
 
                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <Button>To Waste</Button>
+                                        <Button
+                                        onClick={() => {
+                                          props.addToWaste({
+                                            poSupplierSuppliesId:item.poSupplierSuppliesId,
+                                            poSupplierDetailsId:item.poSupplierDetailsId,
+                                            suppliesId:"",
+                                            userId:item.userId,
+                                            locationId:item.locationId,
+                                            orgId:props.orgId,
+                                          });
+                                          
+                                        }}
+                                        style={{marginLeft:"-30px"}}
+                                        >To Waste</Button>
                                         </div>
                                         <div className=" flex font-medium  items-center md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-13em"}} >
@@ -306,7 +320,8 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getMaterialBestBefore,
-            handleTermsnConditionModal
+            handleTermsnConditionModal,
+            addToWaste
             
             // getMaterialReceiveData,
             // handleMaterialReceived,

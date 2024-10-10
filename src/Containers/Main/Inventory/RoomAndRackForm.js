@@ -383,6 +383,7 @@ const RoomAndRackForm = (props) => {
       zone: row.zone,
       rack: row.rack,
       zoneType: row.zoneType,
+      aisle:row.aisle,
       description: row.description,
       orgId: props.orgId,
     };
@@ -547,9 +548,12 @@ const RoomAndRackForm = (props) => {
           <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
               <div className="md:w-[6rem]">{props.translatedMenuItems[12]} </div>
-              <div className="md:w-[4.2rem]">#{props.translatedMenuItems[13]}</div>
-              <div className="md:w-[5.2rem]">{props.translatedMenuItems[14]}</div>
-              <div className="md:w-[9.1rem]">{props.translatedMenuItems[15]}</div>
+              <div className="md:w-[4.2rem]">Asile</div>
+              <div className="md:w-[5.2rem]">Rack</div>
+              <div className="md:w-[9.1rem]">Length</div>
+              <div className="md:w-[9.1rem]">Width</div>
+              <div className="md:w-[9.1rem]">Height</div>
+              <div className="md:w-[9.1rem]">UOM</div>
               <div className="w-12"></div>
             </div>
 
