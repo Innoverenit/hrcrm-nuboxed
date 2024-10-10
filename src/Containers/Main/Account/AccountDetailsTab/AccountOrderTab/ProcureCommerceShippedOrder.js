@@ -4,6 +4,10 @@ import { bindActionCreators } from "redux";
 import { Tooltip,Button,Input,Select } from "antd";
 import dayjs from "dayjs";
 import {
+  // getOrderProcurement,
+  getDistributorOrderOfHigh,
+  getDistributorOrderOfMedium,
+  getDistributorOrderOfLow,
   handleUpdateProcureDetailModal,
   setEditProcure,
   getProcureRecords,
@@ -46,30 +50,12 @@ function ProcureCommerceShippedOrder(props) {
     const [editsuppliesId, setEditsuppliesId] = useState(null);
     const [date, setDate] = useState('');
 
-    const fetchShippedData = async () => {
-      setLoading(true); 
-      try {
-          const response = await axios.get(`${base_url2}/phoneOrder/all-procure-dispatch/${props.orgId}/${page}`,{
-              headers: {
-                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-              },
-            }); 
-          if (response.data.length === 0) {
-              setHasMore(false); 
-          }
-          setData(prevData => [...prevData, ...response.data]); 
-      } catch (error) {
-          setError(error); 
-          console.error('Error fetching data:', error);
-      } finally {
-          setLoading(false); 
-      }
-  };
-
-
   useEffect(() => {
     props.getProcureRecords(props.distributorId,"procure");
-    fetchShippedData();
+    props.getDistributorOrderOfHigh(props.distributorId, page, "procure","High");
+    // props.getDistributorOrderOfMedium(props.distributorId, page, "procure","Medium");
+    // props.getDistributorOrderOfLow(props.distributorId, page, "procure","Low")
+    // props.getOrderProcurement(props.distributorId, page,"procure");
     setPage(page + 1);
   }, []);
 
@@ -94,9 +80,7 @@ function ProcureCommerceShippedOrder(props) {
                 "1169",//10 invoice
                "100", // New11
                "142", // "Status"12
-               "14", //Category-13
-               "253",//14-items
-               "1552",//15-Shipped
+               "14", //Category
 
           ];
     
@@ -120,10 +104,29 @@ function ProcureCommerceShippedOrder(props) {
   function handleSetParticularOrderData(item) {
     setParticularRowData(item);
 }
-const handleInfiniteScroll = () => {
-  setPage(prevPageNo => prevPageNo + 1);
+const handleLoadMore = () => {
+  setPage(page + 1);
+  // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
+  props.getDistributorOrderOfHigh(props.distributorId, page, "procure","High")
 };
 
+// const handleLoadMoreMedium = () => {
+//   setPage(page + 1);
+//   props.getDistributorOrderOfMedium(props.distributorId, page, "procure","Medium")
+// };
+const handleLoadMoreLow = () => {
+  setPage(page + 1);
+  // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
+  props.getDistributorOrderOfLow(props.distributorId, page, "procure","Low")
+};
+  // const handleLoadMore = () => {
+  //   setPage(page + 1);
+  //   props.getOrderProcurement(props.currentUser ? props.currentUser : props.distributorId, page,"procure"
+  //   );
+  // }
+  //  if (props.fetchingOrderProcurement) {
+  //   return <BundleLoader />;
+  // }
 
 
   const {
@@ -143,10 +146,10 @@ const handleInfiniteScroll = () => {
     const handleChange = (e) => {
       setCurrentData(e.target.value);
       if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
-        fetchShippedData(props.orgId,page);
+        props.getDistributorOrderOfHigh(props.distributorId, "0", "procure","High")
+        props.getDistributorOrderOfLow(props.distributorId, "0", "procure","Low")
         props.ClearReducerData();
         setSearchOnEnter(false);
-        setData([]);
       }
     };
 
@@ -207,12 +210,22 @@ const handleInfiniteScroll = () => {
       }
     }, [listening, isRecording, startTime]);
 
+    useEffect(() => {
+      setData(props.highDistributorOrder);
+  }, [props.highDistributorOrder]);
+
+//   useEffect(() => {
+//     setData(props.highDistributorOrder);
+// }, [props.highDistributorOrder]);
+
 
     const handleInputChange = (value, key, dataIndex) => {
       const updatedData = data.map((item) =>
           item.orderId === key ? { ...item, [dataIndex]: value } : item
       );
       setData(updatedData);
+  //     const updatedTrackId = updatedData.find(item => item.orderId === key)?.trackId;
+  // settrackId(updatedTrackId);
   };
   
     const handleDateChange = (e, item) => {
@@ -220,7 +233,11 @@ const handleInfiniteScroll = () => {
       const deliveryDate = new Date(item.deliveryDate);
   setDate(e.target.value);
 
-     
+      // if (selectedDate >= deliveryDate) {
+      //     setDate(e.target.value);
+      // } else {   
+      //     alert('Shipping date cannot be earlier than delivery date');
+      // }
   };
   
   
@@ -288,8 +305,8 @@ const handleInfiniteScroll = () => {
 
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-[92%%] p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
-        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[#e100ff]">
-        {translatedMenuItems[15]} {/* Shipped */}
+        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+        {translatedMenuItems[0]} {/* Urgent */}
            </div>
                         <div className=" md:w-[5.4rem] ml-2">
                         {translatedMenuItems[1]} ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
@@ -304,7 +321,7 @@ const handleInfiniteScroll = () => {
                         {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
                           </div>
                           <div className=" md:w-[4.1rem]">
-                          {translatedMenuItems[14]} {/*  Items */}
+                        {/* {translatedMenuItems[2]}  */} Items
                           </div>
                         <div className="md:w-[1.8rem]">
                         {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
@@ -323,9 +340,9 @@ const handleInfiniteScroll = () => {
     
                     <InfiniteScroll
                         dataLength={data.length}
-                        next={handleInfiniteScroll}
+                        next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={loading ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingDistributorOfHigh ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"33vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
@@ -522,7 +539,7 @@ const handleInfiniteScroll = () => {
 
 }
 
-const mapStateToProps = ({ distributor,auth }) => ({
+const mapStateToProps = ({ distributor }) => ({
   addProcureDetailsModal:distributor.addProcureDetailsModal,
   procurementOrder: distributor.procurementOrder,
   updateProcureDetailModal:distributor.updateProcureDetailModal,
@@ -535,13 +552,16 @@ const mapStateToProps = ({ distributor,auth }) => ({
     lowDistributorOrder:distributor.lowDistributorOrder,
     fetchingDistributorOfLow:distributor.fetchingDistributorOfLow,
     showStatusDrwr:distributor.showStatusDrwr,
-    orgId:auth.userDetails.organizationId,
 
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      getDistributorOrderOfHigh,
+      getDistributorOrderOfMedium,
+      getDistributorOrderOfLow,
+      // getOrderProcurement,
       handleUpdateProcureDetailModal,
       setEditProcure,
       getProcureRecords,
