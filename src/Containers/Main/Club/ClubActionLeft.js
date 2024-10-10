@@ -155,7 +155,7 @@ console.log(departmentData.clubName)
                         }}
                     >
 
-<Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
+<Avatar style={{ background: viewType === "table" ? "#f279ab" : "#28a355" }}>
                 <FormattedMessage id="app.all" defaultMessage="ALL" class=" text-white !text-icon"/>
               </Avatar>
                     </span>
@@ -172,7 +172,7 @@ console.log(departmentData.clubName)
                 color: viewType === "teams" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: viewType === "teams" ? "#f279ab" : "#28a355" }}>
                 <PeopleIcon  className="text-white !text-icon" />
               </Avatar>
             </span>
@@ -187,7 +187,7 @@ console.log(departmentData.clubName)
                 color: viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                 <FormattedMessage id="app.all" defaultMessage="ALL" class=" text-white !text-icon"/>
               </Avatar>
             </span>

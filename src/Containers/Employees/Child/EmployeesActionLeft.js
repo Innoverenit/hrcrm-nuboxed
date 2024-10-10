@@ -146,7 +146,7 @@ const EmployeesActionLeft = (props) => {
               color: props.viewType === "tile" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#28a355" }}>
             <GridViewIcon className="text-white !text-icon"/>
             </Avatar>
           </span>
@@ -170,7 +170,7 @@ const EmployeesActionLeft = (props) => {
               color: props.viewType === "table" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
             <div class="text-white ">ALL</div>
             </Avatar>
           </span>

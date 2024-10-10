@@ -159,7 +159,7 @@ const ContactActionLeft = (props) => {
               color: props.viewType === "table" && "#1890ff",
             }}
           >
-           <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+           <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
              <AccountBalanceIcon className="text-white !text-icon" /></Avatar>
           </span>
         </Badge>
@@ -181,7 +181,7 @@ const ContactActionLeft = (props) => {
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setContactsViewType("teams")}
           >
-            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
          <PeopleIcon className="text-white !text-icon"/>
          </Avatar>
           </span>
@@ -208,7 +208,7 @@ const ContactActionLeft = (props) => {
               color: props.viewType === "all" && "#1890ff",
             }}
           >
-             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
           <div className="text-white "> ALL</div>
            </Avatar>
           </span>

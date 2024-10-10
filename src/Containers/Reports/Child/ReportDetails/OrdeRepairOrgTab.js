@@ -29,7 +29,7 @@ function OrdeRepairOrgTab (props) {
                     }}
                   >
                     <Tooltip title="Repair">
-                      <Avatar style={{ background: selectedButtonIcon === "repair" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: selectedButtonIcon === "repair" ? "#f279ab" : "#28a355" }}>
                       <OnDeviceTrainingIcon  className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
@@ -42,7 +42,7 @@ style={{
 }}
 >
 <Tooltip title="Procure">
-  <Avatar style={{ background: selectedButtonIcon === "Procure" ? "#f279ab" : "#4bc076" }}>
+  <Avatar style={{ background: selectedButtonIcon === "Procure" ? "#f279ab" : "#28a355" }}>
     <ShopIcon className="text-white !text-icon" />
   </Avatar>
 </Tooltip>
@@ -54,7 +54,7 @@ style={{
 }}
 >
 <Tooltip title="Production">
-  <Avatar style={{ background: selectedButtonIcon === "production" ? "#f279ab" : "#4bc076" }}>
+  <Avatar style={{ background: selectedButtonIcon === "production" ? "#f279ab" : "#28a355" }}>
     <DynamicFeedIcon className="text-white !text-icon" />
   </Avatar>
 </Tooltip>

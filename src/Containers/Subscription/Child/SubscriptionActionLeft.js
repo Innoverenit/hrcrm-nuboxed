@@ -36,7 +36,7 @@ const SubscriptionActionLeft = (props) => {
             // }}
           >
             <Avatar 
-            style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}
+            style={{ background: props.viewType === "tile" ? "#f279ab" : "#28a355" }}
             >
             <GridViewIcon className="text-white"/>
             </Avatar>

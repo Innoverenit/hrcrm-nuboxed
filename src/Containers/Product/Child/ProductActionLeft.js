@@ -156,7 +156,7 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("table")}
         >
-          <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
             <MenuIcon className="text-white !text-icon" />
           </Avatar>
 
@@ -173,7 +173,7 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("category")}
         >
-          <Avatar style={{ background: props.viewType === "category" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "category" ? "#f279ab" : "#28a355" }}>
             <CategoryIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
@@ -189,7 +189,7 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("brandModel")}
         >
-          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#28a355" }}>
             <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />  
           </Avatar>
 
@@ -202,7 +202,7 @@ const ProductActionLeft = (props) => {
      count={( props.deletedProductCount.deletedProduct) || 0}
     overflowCount={999}
   >
-  <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
+  <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#28a355" }}>
     <DeleteOutlined
       className="!text-icon cursor-pointer "
       style={{
@@ -224,7 +224,7 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("brand")}
         >
-          <Avatar style={{ background: props.viewType === "brand" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "brand" ? "#f279ab" : "#28a355" }}>
             <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
@@ -241,7 +241,7 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("brandModel")}
         >
-          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#28a355" }}>
             <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
@@ -258,7 +258,7 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("instate")}
         >
-          <Avatar style={{ background: props.viewType === "instate" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "instate" ? "#f279ab" : "#28a355" }}>
             <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 

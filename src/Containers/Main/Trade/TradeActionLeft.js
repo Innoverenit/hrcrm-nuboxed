@@ -134,7 +134,7 @@ const {
                         }}
                     >
 
-                        <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#28a355" }}>
                         {/*   <TocIcon className="text-white" />*/}
                         <div className="text-white">ALL</div>
                             </Avatar>

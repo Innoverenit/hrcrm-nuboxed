@@ -139,7 +139,7 @@ const EventActionLeft = (props) => {
                 color: props.clickView === "table" && "#1890ff",
               }}
             >
-             <Avatar style={{ background: props.clickView === "table" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.clickView === "table" ? "#f279ab" : "#28a355" }}>
                <AccountBalanceIcon className="text-white !text-icon" /></Avatar>
             </span>
           </Badge>
@@ -166,7 +166,7 @@ const EventActionLeft = (props) => {
               color: props.viewType === "all" && "#1890ff",
             }}
           >
-             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
           <div className="text-white "> ALL</div>
            </Avatar>
           </span>

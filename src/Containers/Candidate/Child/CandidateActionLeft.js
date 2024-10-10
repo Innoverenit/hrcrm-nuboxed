@@ -166,7 +166,7 @@ const CandidateActionLeft = (props) => {
         //  "#1890ff",
        }}
      >
-      <Avatar style={{ background:props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
+      <Avatar style={{ background:props.viewType === "card" ? "#f279ab" : "#28a355" }}>
                     <TableViewIcon className="!text-icon text-white "/>
                     </Avatar>
       
@@ -188,7 +188,7 @@ const CandidateActionLeft = (props) => {
               color: props.viewType === "billable" && "#1890ff",
             }}
           >
-            <Avatar style={{ background:props.viewType === "billable" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.viewType === "billable" ? "#f279ab" : "#28a355" }}>
             <ReceiptIcon className="!text-icon text-white "/>
                     </Avatar>
             
@@ -208,7 +208,7 @@ const CandidateActionLeft = (props) => {
             }}
           >
 
-<Avatar style={{ background:props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+<Avatar style={{ background:props.viewType === "table" ? "#f279ab" : "#28a355" }}>
              <GroupsIcon className="!text-icon text-white"/>
             </Avatar>
            
@@ -229,7 +229,7 @@ const CandidateActionLeft = (props) => {
             }}
           >
 
-<Avatar style={{ background:props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+<Avatar style={{ background:props.viewType === "list" ? "#f279ab" : "#28a355" }}>
 <PermIdentityIcon className="!text-icon text-white" />
             </Avatar>
            
@@ -248,7 +248,7 @@ const CandidateActionLeft = (props) => {
               color: props.viewType === "dashboard" && "#1890ff",
             }}
           >
-            <Avatar style={{ background:props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.viewType === "dashboard" ? "#f279ab" : "#28a355" }}>
             <ManageAccountsIcon className="!text-icon text-white"  />
            </Avatar>
           
@@ -269,7 +269,7 @@ const CandidateActionLeft = (props) => {
          
        
         >
-          <Avatar style={{ background:props.viewType ===  "map" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background:props.viewType ===  "map" ? "#f279ab" : "#28a355" }}>
           <LanguageIcon className="!text-icon text-white"/>
            </Avatar>
           
@@ -283,7 +283,7 @@ const CandidateActionLeft = (props) => {
        onClick={() => props.setCandidateViewType("black")}
 
      >
-      <Avatar style={{ background:props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+      <Avatar style={{ background:props.viewType === "table" ? "#f279ab" : "#28a355" }}>
       <CircleIcon className="!text-icon text-white"  />  
            </Avatar>
           
@@ -301,7 +301,7 @@ const CandidateActionLeft = (props) => {
               color: props.viewType === "dollar" && "#1890ff",
             }}
           >
-            <Avatar style={{ background:props.viewType === "dollar" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.viewType === "dollar" ? "#f279ab" : "#28a355" }}>
             <LocalAtmIcon className="!text-icon text-white" />
            </Avatar>
           

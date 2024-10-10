@@ -34,7 +34,7 @@ class TeamsActionLeft extends React.Component {
                 color: viewType === "client" && "#1890ff",
               }}
             >
-               <Avatar style={{ background: this.props.viewType === "client" ? "#f279ab" : "#4bc076" }}>
+               <Avatar style={{ background: this.props.viewType === "client" ? "#f279ab" : "#28a355" }}>
             <div className="text-white !text-icon"> <ManageAccountsIcon className="!text-2xl cursor-pointern  " /></div>
             </Avatar>
               
@@ -49,7 +49,7 @@ class TeamsActionLeft extends React.Component {
                     color: viewType === "table" && "#1890ff",
                   }}
                   onClick={() => setTeamsViewType("table")}>
-                    <Avatar style={{ background: this.props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+                    <Avatar style={{ background: this.props.viewType === "table" ? "#f279ab" : "#28a355" }}>
             <div className="text-white !text-icon"> <TocIcon className="!text-2xl cursor-pointer "/></div>
             </Avatar>
                   
@@ -67,7 +67,7 @@ class TeamsActionLeft extends React.Component {
                   color: viewType === "teams" && "#1890ff",
                 }}
               >
-                  <Avatar style={{ background: this.props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+                  <Avatar style={{ background: this.props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
             <div className="text-white !text-icon"> <PeopleIcon className="!text-2xl cursor-pointer"/></div>
             </Avatar>
             

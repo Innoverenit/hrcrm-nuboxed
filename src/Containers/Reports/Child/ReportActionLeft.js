@@ -130,7 +130,7 @@ class ReportActionLeft extends React.Component {
                     }}
                   >
                     <Tooltip title="Repair">
-                      <Avatar style={{ background: this.props.selectedButtonIcon === "repair" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "repair" ? "#f279ab" : "#28a355" }}>
                         <OnDeviceTrainingIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
@@ -153,7 +153,7 @@ class ReportActionLeft extends React.Component {
                     }}
                   >
                     <Tooltip title="Procure">
-                      <Avatar style={{ background: this.props.selectedButtonIcon === "Procure" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "Procure" ? "#f279ab" : "#28a355" }}>
                         <ShopIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
@@ -174,7 +174,7 @@ class ReportActionLeft extends React.Component {
 
                     }}
                   >  <Tooltip title="Production">
-                      <Avatar style={{ background: this.props.selectedButtonIcon === "production" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "production" ? "#f279ab" : "#28a355" }}>
                         <DynamicFeedIcon className="text-white !text-icon"
 
                         />
@@ -191,7 +191,7 @@ class ReportActionLeft extends React.Component {
                     }}
                   >
                     <Tooltip title="Location">
-                      <Avatar style={{ background: this.props.selectedButtonIcon === "location" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "location" ? "#f279ab" : "#28a355" }}>
                         <LocationOnIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>

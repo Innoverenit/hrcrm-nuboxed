@@ -93,7 +93,7 @@ function VendorActionLeft (props) {
                         }}
                     >
 
-                        <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#28a355" }}>
                             <TocIcon className="text-white" /></Avatar>
 
                     </span>
@@ -112,7 +112,7 @@ function VendorActionLeft (props) {
                             color: viewType === "all" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                             <div className="text-white">ALL</div></Avatar>
 
                     </span>
@@ -130,7 +130,7 @@ function VendorActionLeft (props) {
                             color: viewType === "delete" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#28a355" }}>
                         <DeleteOutlined className="text-white" /></Avatar>
 
                     </span>

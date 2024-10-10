@@ -252,7 +252,7 @@ const CustomerActionLeft = (props) => {
               color: props.viewType === "table" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
               <TocIcon className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -271,7 +271,7 @@ const CustomerActionLeft = (props) => {
               color: props.viewType === "card" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
             <GridViewIcon className="text-white"/>
             </Avatar>
           </span>
@@ -291,7 +291,7 @@ const CustomerActionLeft = (props) => {
                 color: props.viewType === "teams" && "#1890ff",
               }}
             >
-              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
                 <PeopleIcon className="text-white !text-icon" />
               </Avatar>
             </span>
@@ -312,7 +312,7 @@ const CustomerActionLeft = (props) => {
                 color: props.viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
               {translatedMenuItems[3]} {/* <FormattedMessage
                   id="app.all"
                   defaultMessage="ALL"
@@ -336,7 +336,7 @@ const CustomerActionLeft = (props) => {
                             color: props.viewType === "dashboard1" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: props.viewType === "dashboard1" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: props.viewType === "dashboard1" ? "#f279ab" : "#28a355" }}>
                             <DeleteOutlined className="text-white !text-icon " /></Avatar>
 
                     </span>

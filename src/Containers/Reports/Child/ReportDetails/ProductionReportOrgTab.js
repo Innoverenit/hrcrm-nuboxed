@@ -28,7 +28,7 @@ function ProductionReportOrgTab (props) {
                     }}
                   >
                     <Tooltip title="Location">
-                      <Avatar style={{ background: selectedButtonIcon === "location" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: selectedButtonIcon === "location" ? "#f279ab" : "#28a355" }}>
                         <LocationOnIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
@@ -41,7 +41,7 @@ style={{
 }}
 >
 <Tooltip title="Catalogue">
-  <Avatar style={{ background: selectedButtonIcon === "catalogue" ? "#f279ab" : "#4bc076" }}>
+  <Avatar style={{ background: selectedButtonIcon === "catalogue" ? "#f279ab" : "#28a355" }}>
     <ViewInArIcon className="text-white !text-icon" />
   </Avatar>
 </Tooltip>

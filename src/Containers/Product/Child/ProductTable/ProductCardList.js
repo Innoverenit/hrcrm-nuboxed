@@ -406,7 +406,7 @@ useEffect(() => {
                       <div>
                         <Tooltip title={translatedMenuItems[12]}  >
                           <ViewQuiltIcon
-                            className="!text-icon cursor-pointer text-[#4bc076]"
+                            className="!text-icon cursor-pointer text-[#28a355]"
                             onClick={() => {
                               props.handleProductBuilderDrawer(true);
                               handleParticularRowData(item);
