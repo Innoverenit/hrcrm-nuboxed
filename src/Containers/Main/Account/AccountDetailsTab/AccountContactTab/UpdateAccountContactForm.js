@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, FastField, FieldArray } from "formik";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
-import { updateDistributorContact } from "../../AccountAction"
+import { updateDistributorContact } from "../../../Suppliers/SuppliersAction";
 import * as Yup from "yup";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
@@ -111,6 +111,7 @@ class UpdateAccountContactForm extends Component {
                             this.props.setEditingDistributorContact.contactPersonId,
                             this.props.distributorId,
                         );
+                        this.props.handleUpdateDistributorContactModal(false)
                     }}
                 >
                     {({

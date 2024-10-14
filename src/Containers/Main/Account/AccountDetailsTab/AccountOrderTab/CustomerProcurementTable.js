@@ -26,6 +26,10 @@ import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition
 import { AudioOutlined } from '@ant-design/icons';
 import { base_url2 } from "../../../../../Config/Auth";
 import axios from "axios";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
 const { Option } = Select;
 const { Search } = Input;
 const UpdateProcureModal = lazy(() => import('./UpdateProcureModal'));
@@ -272,16 +276,128 @@ const handleLoadMoreLow = () => {
               cat.orderId === item.orderId ? response.data : cat
             )
           );
-      
           setEditsuppliesId(null);
-      
         } catch (error) {
-          // Handle errors
           console.error("Error updating item:", error);
           setEditsuppliesId(null);
         }
     };
 
+
+    const exportPDFAnnexure = async () => {
+      var doc = new jsPDF();
+  
+      // Define the static text
+      var companyName = `1 Di Inc.`;
+      var companyAddress = `21A-81 Northern Heights Drive\nRichmond Hill ON L4B 4C9\n+14162780878\nsales@1di.ca\nGST/HST Registration No.: 71265570`;
+      var billTo = `BILL TO\nRobert Cowman\nFG Bradley's Fairview\n1800 Sheppard Ave E. Fairview Mall\nUnit 2045\nToronto Ontario M2J 5A7`;
+      var shipTo = `SHIP TO\nRobert Cowman\nFG Bradley's Fairview\n1800 Sheppard Ave E. Fairview Mall\nUnit 2045\nToronto Ontario M2J 5A7`;
+  
+      // Invoice details
+      var invoiceDetails = `INVOICE # 1361\nDATE: 30/08/2024\nDUE DATE: 29/09/2024\nTERMS: Net 30`;
+      var purchaseOrder = `PURCHASE ORDER #: BO-TM9456525`;
+  
+      // Product table headers
+      var skuHeader = "SKU";
+      var descriptionHeader = "DESCRIPTION";
+      var qtyHeader = "QTY";
+      var rateHeader = "RATE";
+      var amountHeader = "AMOUNT";
+  
+      // Product details
+      var productDetails = [
+          { sku: "KES477", description: "477 | Jumbo Foam D20", qty: 36, rate: "12.50", amount: "450.00" }
+      ];
+  
+      // Tax summary
+      var subtotal = `450.00`;
+      var hst = `58.50`;
+      var total = `508.50`;
+  
+      // Set document font and colors
+      doc.setFont("Helvetica");
+  
+      // Header background color (light blue)
+      doc.setFillColor(62, 115, 185);
+      doc.rect(0, 0, 210, 13, 'F');  // Full-width top blue bar
+  
+      // Company Info
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(12);
+      doc.text(companyName, 10, 20);
+      doc.setFontSize(10);
+      doc.text(companyAddress, 10, 25);
+  
+      // Order Information
+      doc.setFontSize(12);
+      doc.text("ORDER", 10, 50);
+      doc.setFontSize(10);
+      doc.text(billTo, 10, 60);
+      doc.text(shipTo, 80, 60);
+  
+      // Invoice Details (right-hand side)
+      doc.text(invoiceDetails, 140, 50);
+      doc.text(purchaseOrder, 140, 80);
+  
+      // Table Headers
+      doc.setFontSize(10);
+      doc.text(skuHeader, 10, 100);
+      doc.text(descriptionHeader, 40, 100);
+      doc.text(qtyHeader, 100, 100);
+      doc.text(rateHeader, 120, 100);
+      doc.text(amountHeader, 150, 100);
+  
+      // Draw product details inside the table
+      let yPosition = 110;
+      productDetails.forEach(item => {
+          doc.text(item.sku, 10, yPosition);
+          doc.text(item.description, 40, yPosition);
+          doc.text(item.qty.toString(), 100, yPosition);
+          doc.text(item.rate, 120, yPosition);
+          doc.text(item.amount, 150, yPosition);
+          yPosition += 10;
+      });
+  
+      // Horizontal line below the product details
+      doc.line(10, yPosition, 200, yPosition);
+      yPosition += 10;
+  
+      // Subtotal, Tax, and Total
+      doc.text(`Subtotal: ${subtotal}`, 140, yPosition);
+      yPosition += 10;
+      doc.text(`HST (ON) @ 13%: ${hst}`, 140, yPosition);
+      yPosition += 10;
+      doc.text(`TOTAL: CAD ${total}`, 140, yPosition);
+  
+      // Footer Section
+      yPosition += 20;
+      doc.setFontSize(12);
+      doc.text("TAX SUMMARY", 10, yPosition);
+      yPosition += 10;
+      doc.setFontSize(10);
+      doc.text(`HST (ON) @ 13%: ${hst}`, 10, yPosition);
+      doc.text(`TOTAL: CAD ${total}`, 140, yPosition);
+  
+      // Terms and Conditions
+      yPosition += 40;
+      doc.setFontSize(12);
+      doc.text("TERM & CONDITIONS", 10, yPosition);
+      yPosition += 10;
+      doc.setFontSize(9);
+      doc.text("Payment is due within 30 days.", 10, yPosition);
+      doc.text("Please make checks payable to: 1 Di Inc.", 10, yPosition + 10);
+  
+      // Footer background color (blue)
+      doc.setFillColor(62, 115, 185);
+      doc.rect(0, 276, 210, 15, 'F');  // Footer bar
+      doc.setTextColor(255, 255, 255);
+      doc.text("Thank you for your business!", 10, 285);
+  
+      // Save the PDF
+      doc.save("Commerce.pdf");
+  };
+  
+  // Commerce
   return (
     <>
  <div class=" flex justify-between">
@@ -489,6 +605,12 @@ const handleLoadMoreLow = () => {
                                                                     }}
                                                                 />
                                                             </Tooltip>
+                                                            
+                                                            <div class="w-6">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon text-[red]"/>
+                           </span>
+          </div>
                                             </div> 
 
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
@@ -716,6 +838,12 @@ const handleLoadMoreLow = () => {
                                                                     }}
                                                                 />
                                                             </Tooltip>
+                                                            
+                                                            <div class="w-6">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon text-[red]"/>
+                           </span>
+          </div>
                                             </div> 
                                                         </div>
                                                      

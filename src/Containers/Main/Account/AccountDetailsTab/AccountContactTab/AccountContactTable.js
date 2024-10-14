@@ -13,9 +13,12 @@ import { Tooltip, Button, Input, Select } from "antd";
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../../../Components/Placeholder";
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import ContactHistoryDrawer from "./ContactHistoryDrawer";
 
 const UpdateAccountContactModal = lazy(() => import('./UpdateAccountContactModal'));
 const AccountContactJumpstartBoxDrawer = lazy(() => import('./AccountContactJumpstartBoxDrawer'));
+
 const ButtonGroup = Button.Group;
 const { Option } = Select;
 
@@ -23,6 +26,8 @@ const AccountContactTable = (props) => {
     const [visible, setVisible] = useState(false);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [rowData, setRowData] = useState("");
+
+    const [modalContactHistory, setmodalContactHistory] =useState(false);
 
     useEffect(() => {
         props.getContactDistributorList(props.distributorId);
@@ -107,8 +112,8 @@ const AccountContactTable = (props) => {
         setVisible(false);
     };
 
-    if (props.fetchingContactDistributorsById) {
-        return <BundleLoader />;
+    if (props.fetchingContactDistributorsById || props.updateDisributorContactById) {
+        return <BundleLoader/>;
     }
 
     return (
@@ -283,6 +288,18 @@ const AccountContactTable = (props) => {
                                             />
                                         </Tooltip>
                                     </div>
+                                    <div className="!text-icon font-poppins">
+                                        <Tooltip title={translatedMenuItems[7]}>
+                                       
+                                            <EditNoteIcon
+                                                className="!text-icon cursor-pointer text-red-600"
+                                                onClick={() => {
+                                                    handleChangeRow(item);
+                                                    setmodalContactHistory(true);
+                                                }}
+                                            />
+                                        </Tooltip>
+                                    </div>
                                 </div>
         </div>
                             </div>
@@ -306,6 +323,12 @@ const AccountContactTable = (props) => {
         handleCancel={handleCancel}
         visible={visible}
     />
+
+    <ContactHistoryDrawer
+     rowData={rowData}
+     modalContactHistory={modalContactHistory}
+     setmodalContactHistory={setmodalContactHistory}
+    />
 </Suspense>
         </>
     );
@@ -320,7 +343,8 @@ const mapStateToProps = ({ distributor, suppliers, auth }) => ({
         setEditingDistributorContact: distributor.setEditingDistributorContact,
         orgId: auth.userDetails.organizationId,
         lobList: distributor.lobList,
-        saleCurrencies: auth.saleCurrencies
+        saleCurrencies: auth.saleCurrencies,
+        updateDisributorContactById: distributor.updateDisributorContactById,
 });
 
 const mapDispatchToProps = (dispatch) =>

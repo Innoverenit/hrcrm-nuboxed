@@ -44,7 +44,7 @@ function AddProcurementInAccount(props) {
     '', // 2Advance Payment
     '241', // 3 currency
     '280', // 4 lob
-    '', // 5 Delivery Date
+    '772', // 5 Delivery Date
     '14', // 6 Category
     '124', // 7 priority
     '107',//High 8
@@ -52,14 +52,13 @@ function AddProcurementInAccount(props) {
     '1078', // 10 save
      '',  // 11'Delivery Address',9
      '316'   ,// 12  'Notes'
-  
     
     
             ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
             setTranslatedMenuItems(translations);
-            setLoading(false);
+           setLoading(false);
           } catch (error) {
             setLoading(false);
             console.error('Error translating menu items:', error);
