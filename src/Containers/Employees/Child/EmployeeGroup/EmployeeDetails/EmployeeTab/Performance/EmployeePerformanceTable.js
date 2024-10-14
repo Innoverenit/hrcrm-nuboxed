@@ -18,7 +18,7 @@ const EmployeePerformanceTable = (props) => {
         setLoading(true); 
         const itemsToTranslate = [
    
-         "", //None Available,//0
+         "118", //None Available,//0
           "",  //  Assigned Value,//1
           "" , //  Completed Value,//2
          

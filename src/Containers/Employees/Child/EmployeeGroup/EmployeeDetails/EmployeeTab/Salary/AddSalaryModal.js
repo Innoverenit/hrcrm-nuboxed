@@ -21,7 +21,10 @@ class AddSalaryModal extends Component {
                     onClose={() => handleSalaryModal(false)}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <SalaryDocumentForm />
+                        <SalaryDocumentForm
+                             translateText={this.props.translateText}
+                             selectedLanguage={this.props.selectedLanguage} 
+                         />
                     </Suspense>
                 </StyledDrawer>
             </>

@@ -1,6 +1,5 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { PlusOutlined } from "@ant-design/icons";
@@ -16,8 +15,6 @@ import SchoolIcon from '@mui/icons-material/School';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-
-
 import {
   handlePersonalModal,
   handleEmploymentModal,
@@ -76,25 +73,25 @@ componentDidUpdate(prevProps) {
 fetchMenuTranslations = async () => {
   try {
     const itemsToTranslate = [
-      "85",//0Performance
-      "294",//1 Education
-      "104",//2Training
-      "796",//3Employment
-   "", //  4 "Emergency"
-   "",//  5 Bank Details
-   "",  //  6 Personal Details
-   "", //   7Notes"
-    "",  //  8 Salary
-    "", // 9  Documents"
-    "", //   10"Contract"
-    "",  //  11 "Talent"
-    "", //  12 Opportunity"
-    "", // 13  "Customer"
-    "",  //  14 Requirement"
-    "", //  15 "Vendor"
+      "1139",//0Performance
+      "1195",//1 Education
+      "1194",//2Training
+      "992",//3Employment
+   "1197", //  4 "Emergency"
+   "1198",//  5 Bank Details
+   "1199",  //  6 Personal Details
+   "316", //   7Notes"
+    "981",  //  8 Salary
+    "1166", // 9  Documents"
+    "1205", //   10"Contract"
+    "1153",  //  11 "Talent"
+    "99", //  12 Opportunity"
+    "248", // 13  "Customer"
+    "1152",  //  14 Requirement"
+    "870", //  15 "Vendor"
     "", //   16 Experience
     "", //   17 Visa
-    "", // add
+    "85", // add
     ];
 
     const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -161,7 +158,7 @@ fetchMenuTranslations = async () => {
             <TabPane
               tab={
                 <>
-                <SchoolIcon   style={{fontSize:"1.1rem"}}/>
+                <SchoolIcon  className=" !text-icon" />
                   <span class=" font-poppins ml-1" >
                     
                   Education
@@ -192,7 +189,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                   
-                  {/* <HeadphonesIcon   style={{fontSize:"1.1rem"}}
+                  {/* <HeadphonesIcon   className=" !text-icon" 
                   /> */}
                   < ModelTrainingIcon className=" !text-icon" />
                    <span class=" font-poppins ml-1" >
@@ -225,7 +222,7 @@ fetchMenuTranslations = async () => {
             <TabPane
               tab={
                 <>
-                  {/* <AccountBalanceIcon   style={{fontSize:"1.1rem"}} /> */}
+                  {/* <AccountBalanceIcon   className=" !text-icon"  /> */}
                   <AccountBalanceIcon className=" !text-icon"/>
                   <span class=" font-poppins ml-1" >
                   {this.state.translatedMenuItems[3]}
