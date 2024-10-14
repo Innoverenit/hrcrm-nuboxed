@@ -11,7 +11,6 @@ import { handleSuppliesModal,handleUploadMaterialModal,handleImageSuppliesModal 
 import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
-import UploadImageModal from "../../Product/Child/UploadImageModal";
 import UploadImageModalSupplies from "./UploadImageModalSupplies";
 
 const SuppliesAddModal=lazy(()=>import("./SuppliesAddModal"));

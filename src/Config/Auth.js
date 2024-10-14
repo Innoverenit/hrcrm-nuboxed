@@ -19,7 +19,7 @@
 // const asses_url = "https://crm.celltechnologies.nl/Assessment-0.0.1-SNAPSHOT";
 // const sub_url = "https://crm.celltechnologies.nl/Assessment-0.0.1-SNAPSHOT";
 
-//Sumash
+//Sumash 
 // const login_url = "https://develop.tekorero.com/sumashHr";
 // const base_url = "https://develop.tekorero.com/sumashHr/api/v1";
 // const base_url2 = "https://develop.tekorero.com/testErp";
@@ -27,7 +27,7 @@
 // const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
 //TestHr//hrweb( dkorekologo)
-const login_url = "https://develop.tekorero.com/testHr";
+const login_url = "https://develop.tekorero.com/testHr"; 
 const base_url = "https://develop.tekorero.com/testHr/api/v1";
 const base_url2 = "https://develop.tekorero.com/testErp";
 const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";

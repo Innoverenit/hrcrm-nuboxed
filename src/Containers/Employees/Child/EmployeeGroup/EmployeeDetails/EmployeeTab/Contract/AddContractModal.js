@@ -27,7 +27,9 @@ class AddContractModal extends Component {
           onClose={() => handleContractModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <ContractDocumentForm />
+            <ContractDocumentForm 
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>

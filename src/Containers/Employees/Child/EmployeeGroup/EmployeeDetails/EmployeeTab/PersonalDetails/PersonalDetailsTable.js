@@ -45,10 +45,10 @@ class EducationTable extends Component {
     try {
       const itemsToTranslate = [
         "110",//0 "Name"
-        "",//1  type
+        "71",//1  type
         "",//2Document ID number
-        "",//3Description
-       "" //  "Do you want to delete?"
+        "147",//3Description
+       "1259" //  "Do you want to delete?"
         
       ];
 
@@ -238,6 +238,8 @@ class EducationTable extends Component {
         /> */}
 
         <UpdatePersonalDetailsModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           updatePersonalDetailsModal={updatePersonalDetailsModal}
           handleUpdatePersonalDetailsModal={handleUpdatePersonalDetailsModal}
         />

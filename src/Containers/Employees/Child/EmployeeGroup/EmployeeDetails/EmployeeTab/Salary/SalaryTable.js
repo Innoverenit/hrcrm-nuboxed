@@ -76,7 +76,7 @@ class SalaryTable extends Component {
         
                     return (
                         <div>
-                            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
                                 >
                                      
                                      <div className=" flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -132,7 +132,7 @@ class SalaryTable extends Component {
                                     
 
                                     <div class=" text-sm  font-poppins text-center">
-                                    <BorderColorIcon 
+                                    <BorderColorIcon  
             style={{ cursor: "pointer", fontSize: "1rem" }}
             onClick={() => {
               //debugger

@@ -5,6 +5,7 @@ import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 const PersonalDocumentForm =lazy(()=>import("./PersonalDocumentForm"));
 
 class AddPersonalModal extends Component {
+  
   render() {
     const { addPersonalModal, handlePersonalModal, ...formProps } = this.props;
     return (
@@ -20,7 +21,10 @@ class AddPersonalModal extends Component {
           onClose={() => handlePersonalModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <PersonalDocumentForm />
+            <PersonalDocumentForm
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+             />
           </Suspense>
         </StyledDrawer>
       </>

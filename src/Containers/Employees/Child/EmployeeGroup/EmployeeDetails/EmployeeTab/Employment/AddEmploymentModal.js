@@ -24,7 +24,9 @@ class AddEmploymentModal extends Component {
           
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <EmploymentDocumentForm />
+                        <EmploymentDocumentForm 
+                                 translateText={this.props.translateText}
+                                 selectedLanguage={this.props.selectedLanguage}/>
                     </Suspense>
                 </StyledDrawer>
             </>

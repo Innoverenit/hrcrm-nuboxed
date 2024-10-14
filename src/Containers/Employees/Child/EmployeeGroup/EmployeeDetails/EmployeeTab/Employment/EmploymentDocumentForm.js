@@ -19,12 +19,52 @@ const documentSchema = Yup.object().shape({
   documentId: Yup.string().required("Input needed !"),
 });
 class EmploymentDocumentForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: "Full Time",
+      translatedMenuItems: [],
+    };
+  }
+
   componentDidMount() {
     const { getLinkedUsersDocument ,orgId} = this.props;
     this.props.getLinkedUsersDocument(this.props.orgId);
     // getLinkedUsersDocument(orgId);
+    this.fetchMenuTranslations();
    
 }
+componentDidUpdate(prevProps) {
+  if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+    this.fetchMenuTranslations();
+  }
+}
+fetchMenuTranslations = async () => {
+  try {
+    const itemsToTranslate = [
+      "76",//0Type
+      "1195",//1Organization Name"
+      "325",//2"Designation"
+      "1179",//3 Start Date"
+      "986",//4End Date"
+      "987",// "Salary"5
+      "241",//Currency"6
+      "1180",// Salary Type7
+      "",//Describe your role8
+  
+      "138",// Document Id9
+      "1181",// Name of Document10
+     "1182", // Description of document11
+     "154", // submit12
+    ];
+
+    const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+    this.setState({ translatedMenuItems: translations });
+  } catch (error) {
+    console.error('Error translating menu items:', error);
+  }
+};
+
   render() {
     const { addingEmploymentDetails,startDate,endDate ,employeeId} = this.props;
     console.log(employeeId);
@@ -159,16 +199,14 @@ class EmploymentDocumentForm extends Component {
             <Form className="form-background">
               <div class=" flex w-full h-full justify-between"
               >
-                <div class=" w-[45%]"
-                >
+                <div class=" w-[45%]"  >
+                <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[0]}</div>
                   <div>
                   <FastField
                     name="documentTypeId"
                     type="text"
                     //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                   
                     // options={[
                     //   "Aadhar Card",
                     //   "Voter-Id Card",
@@ -189,6 +227,7 @@ class EmploymentDocumentForm extends Component {
                 
                   </div>
                   <div>
+                  <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[1]}</div>
                     <Field
                       isRequired
                       name="companyName"
@@ -196,27 +235,28 @@ class EmploymentDocumentForm extends Component {
                       isColumn
                       width={"100%"}
                       // label="Organization Name"
-                      label={
-                        <FormattedMessage
-                          id="app.companyName"
-                          defaultMessage="Organization Name"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.companyName"
+                      //     defaultMessage="Organization Name"
+                      //   />
+                      // }
                       component={InputComponent}
                       inlineLabel
                       />
                   </div>
                  
                   <div class=" mt-3">
+                  <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[2]}</div>
                     <FastField
                       name="designationTypeId"
                       //label="Designation"
-                      label={
-                        <FormattedMessage
-                          id="app.designation"
-                          defaultMessage="Designation"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.designation"
+                      //     defaultMessage="Designation"
+                      //   />
+                      // }
                       selectType="designationType"
                       isColumn
                       isColumnWithoutNoCreate
@@ -229,15 +269,16 @@ class EmploymentDocumentForm extends Component {
                  
                   <div class=" flex justify-between mt-3" >
                     <div class=" w-[47%]">
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[3]}</div>
                       <Field
                         name="startDate"
                         //label="Start Date"
-                        label={
-                          <FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.startDate"
+                        //     defaultMessage="Start Date"
+                        //   />
+                        // }
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -247,15 +288,16 @@ class EmploymentDocumentForm extends Component {
                         />
                     </div>
                     <div class=" w-[47%]">
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[4]}</div>
                       <Field
                         name="endDate"
                         // label="End Date "
-                        label={
-                          <FormattedMessage
-                            id="app.endDate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.endDate"
+                        //     defaultMessage="End Date"
+                        //   />
+                        // }
                         isRequired
                         isColumn
                         width={"100%"}
@@ -282,6 +324,7 @@ class EmploymentDocumentForm extends Component {
               
                   <div class=" flex mt-3">
                     <div class=" w-[35%]" >
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[5]}</div>
                       <Field
                         isRequired
                         name="salary"
@@ -289,12 +332,12 @@ class EmploymentDocumentForm extends Component {
                         isColumn
                         width="47%"
                         //label="Salary"
-                        label={
-                          <FormattedMessage
-                            id="app.salary"
-                            defaultMessage="Salary"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.salary"
+                        //     defaultMessage="Salary"
+                        //   />
+                        // }
                         component={InputComponent}
                         inlineLabel
                          style={{
@@ -304,17 +347,19 @@ class EmploymentDocumentForm extends Component {
                     </div>
                    
                     <div class=" w-[30%] ml-4" >
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[6]}</div>
+
                       <Field
                         name="currency"
                         isColumnWithoutNoCreate
-                        placeholder="Curr"
+                        placeholder={this.state.translatedMenuItems[6]}
                         // label="Curr"
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.currency"
+                        //     defaultMessage="Currency"
+                        //   />
+                        // }
                         width="100%"
                         isColumn
                         selectType="currencyName"
@@ -325,6 +370,7 @@ class EmploymentDocumentForm extends Component {
                     </div>
                                  
                     <div class=" w-[27%] ml-4" >
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[7]}</div>
                       <Field
                         isRequired
                         name="salaryType"
@@ -332,12 +378,12 @@ class EmploymentDocumentForm extends Component {
                         isColumn
                         width="47%"
                         //label="Salary Type"
-                        label={
-                          <FormattedMessage
-                            id="app.salaryType"
-                            defaultMessage="Salary Type"
-                          />
-                        }
+                        // label={
+                        //   <FormattedMessage
+                        //     id="app.salaryType"
+                        //     defaultMessage="Salary Type"
+                        //   />
+                        // }
                         component={SelectComponent}
                         options={["Daily", "Monthly", "Annual"]}
                         inlineLabel
@@ -347,15 +393,16 @@ class EmploymentDocumentForm extends Component {
 
                 
                   <div class=" mt-3">
+                  <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[8]}</div>
                     <Field
                       name="description"
                       //label="Describe your role"
-                      label={
-                        <FormattedMessage
-                          id="app.description"
-                          defaultMessage="Describe your role"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.description"
+                      //     defaultMessage="Describe your role"
+                      //   />
+                      // }
                       isRequired
                       isColumn
                       width={"100%"}
@@ -374,16 +421,16 @@ class EmploymentDocumentForm extends Component {
                     component={DragableUpload}
                   />
                <div class=" mt-3">
-
+               <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[10]}</div>
                   <Field
                     name="documentTitle"
                     // label="Name of Document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentTitle"
-                        defaultMessage="Name of Document"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.documentTitle"
+                    //     defaultMessage="Name of Document"
+                    //   />
+                    // }
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -391,15 +438,16 @@ class EmploymentDocumentForm extends Component {
                   />
                   </div>
                   <div class=" mt-3">
+                  <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[11]}</div>
                   <Field
                     name="documentDescription"
                     //label="Description of Document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentDescription"
-                        defaultMessage="Description of Document"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.documentDescription"
+                    //     defaultMessage="Description of Document"
+                    //   />
+                    // }
                     isRequired
                     isColumn
                     width={"100%"}
@@ -415,7 +463,7 @@ class EmploymentDocumentForm extends Component {
                   type="primary"
                   Loading={addingEmploymentDetails}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                   {this.state.translatedMenuItems[12]}{/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
                 </Button>
               </div>
             </Form>
