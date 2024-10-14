@@ -1872,12 +1872,12 @@ export const handleStockUsedDrawer = (modalProps) => (dispatch) => {
   });
 };
 
-export const getRoomRackByLocId = (locationId, orgId) => (dispatch) => {
+export const getRoomRackByLocId = (locationDetailsId, orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ROOM_RACK_BY_LOCID_REQUEST,
   });
   axios
-    .get(`${base_url2}/roomrack/roomAndRackDetails/${locationId}/${orgId}`, {
+    .get(`${base_url2}/roomrack/allChamberDetails/${locationDetailsId}/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1896,12 +1896,12 @@ export const getRoomRackByLocId = (locationId, orgId) => (dispatch) => {
       });
     });
 };
-export const updateRoomRackId = (data, roomRackId) => (dispatch) => {
+export const updateRoomRackId = (data, roomRackChamberLinkId) => (dispatch) => {
   dispatch({
     type: types.UPDATE_ROOM_RACK_ID_REQUEST,
   });
   axios
-    .put(`${base_url2}/roomrack/update/${roomRackId}`, data, {
+    .put(`${base_url2}/roomrack/update/roomRackChamberLink/${roomRackChamberLinkId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2422,5 +2422,76 @@ export const addToWaste = (customer) => (dispatch, getState) => {
       });
       message.error(err.data.message)
       // cb && cb();
+    });
+};
+
+
+
+
+export const addRepairData = (documents,poSupplierSuppliesId, cb) => (dispatch) => {
+  console.log(documents);
+  dispatch({
+    type: types.ADD_REPAIR_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/po/rePacked/damagedItem/${poSupplierSuppliesId}`, documents, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+    
+      
+      // dispatch(getDocuments());
+      //dispatch(getRegionCount(orgId));
+      console.log(res);
+      dispatch({
+        type: types.ADD_REPAIR_DATA_SUCCESS,
+        payload: res.data
+        
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_REPAIR_DATA_FAILURE,
+      });
+      cb();
+    });
+};
+
+
+
+export const addDamagedCredit = (documents,poSupplierSuppliesId, cb) => (dispatch) => {
+  console.log(documents);
+  dispatch({
+    type: types.ADD_DAMAGED_CREDIT_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/po/creditNote/${poSupplierSuppliesId}`, documents, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+    
+      
+      // dispatch(getDocuments());
+      //dispatch(getRegionCount(orgId));
+      console.log(res);
+      dispatch({
+        type: types.ADD_DAMAGED_CREDIT_SUCCESS,
+        payload: res.data
+        
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_DAMAGED_CREDIT_FAILURE,
+      });
+      cb();
     });
 };

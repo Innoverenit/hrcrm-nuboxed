@@ -6863,7 +6863,7 @@ export const getUOM = () => (dispatch) => {
     type: types.GET_UOM_REQUEST,
   });
   axios
-  .get(`${base_url}/uom/all`, {
+  .get(`${login_url}/uom/all`, {
     headers: {
       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
     },
@@ -6894,7 +6894,7 @@ export const addUOM = (sectors,cb) => (dispatch) => {
     type: types.ADD_UOM_REQUEST,
   });
   axios
-    .post(`${base_url}/uom/saveUOM`, sectors, {
+    .post(`${login_url}/uom/saveUOM`, sectors, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -7015,7 +7015,7 @@ export const getUOMCount = () => (dispatch) => {
     type: types.GET_UOM_COUNT_REQUEST,
   });
   axios
-    .get(`${base_url}/uom/all/count`, {
+    .get(`${login_url}/uom/all/count`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
