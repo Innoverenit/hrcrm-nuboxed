@@ -4,6 +4,10 @@ const initialState = {
   viewType: "repair",
   addInventoryModal: false,
 
+  fetchingMaterialDamageData:false,
+  fetchingMaterialDamageDataError:false,
+  materialDamageData:[],
+
   addingInventory: false,
   addingInventoryError: false,
 
@@ -152,6 +156,10 @@ const initialState = {
   //damagedItem
   addingDamagedItem: false,
   addingDamagedItemError: false,
+
+  fetchingMaterialBestBefore:false,
+  fetchingMaterialBestBeforeError:false,
+  materialBestBefore:[],
 
   //pickupdatemodal
   openPickupDateModal: false,
@@ -342,6 +350,10 @@ const initialState = {
   fetchingArchieveProductionLocIdError: true,
   archieveInProduction: [],
 
+
+  addingToWaste:false,
+  addingToWasteError:false,
+
   roomRackbyLoc: [],
   fetchingRoomRack: false,
   fetchingRoomRackByIdError: false,
@@ -431,6 +443,24 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingInventoryList: false,
         fetchingInventoryListError: true,
       };
+
+
+
+
+      case types.GET_MATERIAL_DAMAGE_DATA_REQUEST:
+        return { ...state, fetchingMaterialDamageData: true };
+      case types.GET_MATERIAL_DAMAGE_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingMaterialDamageData: false,
+          materialDamageData: action.payload
+        };
+      case types.GET_MATERIAL_DAMAGE_DATA_FAILURE:
+        return {
+          ...state,
+          fetchingMaterialDamageData: false,
+          fetchingMaterialDamageDataError: true,
+        };
 
     //inventory by id
     case types.GET_INVENTORY_BY_ID_REQUEST:
@@ -1485,6 +1515,47 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingMaterialReceiveData: false,
         fetchingMaterialReceiveDataError: true,
       };
+
+
+
+      case types.GET_MATERIAL_BEST_BEFORE_REQUEST:
+        return { ...state, fetchingMaterialBestBefore: true };
+      case types.GET_MATERIAL_BEST_BEFORE_SUCCESS:
+        return {
+          ...state,
+          fetchingMaterialBestBefore: false,
+          materialBestBefore: action.payload
+        };
+      case types.GET_MATERIAL_BEST_BEFORE_FAILURE:
+        return {
+          ...state,
+          fetchingMaterialBestBefore: false,
+          fetchingMaterialBestBeforeError: true,
+        };
+
+
+
+
+
+        case types.ADD_TO_WASTE_REQUEST:
+      return { ...state, addingToWaste: true };
+    case types.ADD_TO_WASTE_SUCCESS:
+      return {
+        ...state,
+        addingToWaste: false,
+       // addCustomerModal: false,
+       
+        // customerByUserId: state.customerByUserId.map((item) => {
+        //   if (item.customerId === action.payload.customerId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+    case types.ADD_TO_WASTE_FAILURE:
+      return { ...state,addingToWaste : false, addingToWasteError: false };
+
 
     case types.GET_MATERIAL_RECEIVE_DETAIL_DATA_REQUEST:
       return { ...state, fetchingMaterialReceiveDetailData: true };

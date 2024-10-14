@@ -44,7 +44,12 @@ function OrderSupplierStatuShower (props) {
                     description:
                         <>
 
-{props.statusItems.paymentType} | {dayjs(props.statusItems.paymentDate).format("DD-MM-YYYY")}
+{props.statusItems.paymentType} |{props.statusItems && props.statusItems.paymentDate ? 
+  dayjs(props.statusItems.paymentDate).format("DD-MM-YYYY") : 
+  ""
+}
+
+ {/* {dayjs(props.statusItems.paymentDate).format("DD-MM-YYYY")} */}
 
                         </>
                 },

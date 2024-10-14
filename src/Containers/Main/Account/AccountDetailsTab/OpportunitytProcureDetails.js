@@ -203,18 +203,21 @@ function OpportunitytProcureDetails(props) {
           <div className="md:w-[7.1rem]">
           {translatedMenuItems[4]} {/* <FormattedMessage id="app.quality" defaultMessage="Quality" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-          {translatedMenuItems[5]}{/* <FormattedMessage id="app.location" defaultMessage="Location" /> */}
-          </div>
-          <div className="md:w-[8.8rem]">
-          {translatedMenuItems[6]}{/* <FormattedMessage id="app.specs" defaultMessage="Specs" /> */}
+          {/* <div className="md:w-[7.1rem]">
+          {translatedMenuItems[5]}<FormattedMessage id="app.location" defaultMessage="Location" />
+          </div> */}
+          {/* <div className="md:w-[8.8rem]">
+          {translatedMenuItems[6]}<FormattedMessage id="app.specs" defaultMessage="Specs" />
+          </div> */}
+            <div className="w-[5rem] md:w-[5%]">
+          Supplies ID
           </div>
           <div className="md:w-[2.8rem]">
           {translatedMenuItems[7]} {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
           </div>
-          <div className="md:w-[4.8rem]">
-          {translatedMenuItems[8]} {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}
-          </div>
+          {/* <div className="md:w-[4.8rem]">
+          {translatedMenuItems[8]} <FormattedMessage id="app.price" defaultMessage="Price" />
+          </div> */}
         
         
           <div className="md:w-[2rem]"></div>

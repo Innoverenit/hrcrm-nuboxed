@@ -572,6 +572,33 @@ const AWBtst=[
                                                         </div>
                                                     </div>
 
+
+
+
+
+                                                    <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                        <div class=" text-xs  font-poppins text-center">
+                                                            {/* <Badge
+                                                                class=" ml-2"
+                                                                size="small"
+                                                                count={item.awbCount || 0}
+                                                                overflowCount={999}
+                                                            > */}
+                                                                <Button
+                                                                    style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
+                                                                    class=" bg-green-500"
+                                                                    // onClick={() => {
+                                                                    //     handleCheckAwb();
+                                                                    //     handleSetParticularOrderData(item)
+                                                                    // }
+                                                                    // }
+                                                                ><span className='!text-[#faad14]'>
+                                                                  Add Pack
+                                                                  </span></Button>
+                                                           
+                                                        </div>
+                                                    </div>
+
                         </div>
 
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">

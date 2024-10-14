@@ -260,7 +260,7 @@ function ProductDeleteList(props) {
                       <div>
                         <Tooltip title="Product Builder">
                           <ViewQuiltIcon
-                            className="!text-icon cursor-pointer text-[#4bc076]"
+                            className="!text-icon cursor-pointer text-[#28a355]"
                             onClick={() => {
                               props.handleProductBuilderDrawer(true);
                               handleParticularRowData(item);

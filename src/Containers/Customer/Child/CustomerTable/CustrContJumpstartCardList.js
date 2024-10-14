@@ -251,7 +251,7 @@ function CustrContJumpstartCardList(props) {
                     <div>
                     <Tooltip title="Notes">
        <NoteAltIcon
-                className=" !text-base cursor-pointer text-[#4bc076]"
+                className=" !text-base cursor-pointer text-[#28a355]"
                 onClick={() => {
                   handleContactNotesDrawerModal(true);
                   handleSetCurrentContact(item);

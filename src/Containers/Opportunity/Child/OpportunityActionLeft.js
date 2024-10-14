@@ -219,7 +219,7 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
             <LightbulbIcon className="text-white !text-icon"/>
             </Avatar>
           </span>
@@ -247,7 +247,7 @@ const OpportunityActionLeft = (props) => {
             // tooltipTitle="Stage View"
             onClick={() => props.setOpportunityViewType("stage")}
           >
-             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#28a355" }}>
            <TableOutlined className="text-white !text-icon"/>
            </Avatar>
           </span>
@@ -272,7 +272,7 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#28a355" }}>
             <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7" className="text-white !text-icon"/>
             </Avatar>
           </span>
@@ -298,7 +298,7 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "close" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "close" ? "#f279ab" : "#28a355" }}>
             <LockOpenIcon className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -323,7 +323,7 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#28a355" }}>
             <StopTwoTone type="stop" theme="twoTone" twoToneColor="red" className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -349,7 +349,7 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background:props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
             <PeopleIcon className="text-white !text-icon"/>
             </Avatar>
           </span>
@@ -375,7 +375,7 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
            ALL
            </Avatar>
           </span>
@@ -407,7 +407,7 @@ const OpportunityActionLeft = (props) => {
               color: props.viewType === "dashboard" && "#1890ff",
             }}
           >
-             <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#28a355" }}>
             <DeleteOutlined className="text-white !text-icon" />
             </Avatar>
           </span>

@@ -153,7 +153,7 @@ function RefurbishActionLeft (props) {
                     color: viewType === "list" && "#1890ff",
                   }}
                 >
-                  <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
+                  <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#28a355" }}>
                     <HomeRepairServiceIcon className="text-white cursor-pointer !text-icon" /></Avatar>
     
                 </span>
@@ -170,7 +170,7 @@ function RefurbishActionLeft (props) {
                   color: viewType === "all" && "#1890ff",
                 }}
               >
-                <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                   <div className="text-white">{translatedMenuItems[1]}</div></Avatar>  
                   {/* ALL */}
     

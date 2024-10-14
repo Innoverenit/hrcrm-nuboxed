@@ -21,7 +21,6 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; 
 import ShopIcon from '@mui/icons-material/Shop';
 const DashboardShareForm=lazy(()=>import("./DashboardShareForm"));
-
 const { TabPane } = Tabs;
 
 const DashboardActionLeft = (props) => {
@@ -129,7 +128,7 @@ const DashboardActionLeft = (props) => {
                   >
                     <Tooltip title={translatedMenuItems[0]}>
                       <Button
-                        style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
+                        style={{ background: activeButton === "Regional" ? "#f279ab" : "#28a355" }}
 
                       >
                         <div class=" text-white  ">{translatedMenuItems[0]}</div>
@@ -149,7 +148,7 @@ const DashboardActionLeft = (props) => {
                   >
                     <Tooltip title={translatedMenuItems[1]}>
                       <Button
-                        style={{ background: activeButton === "multiOrg" ? "#f279ab" : "#4bc076" }}
+                        style={{ background: activeButton === "multiOrg" ? "#f279ab" : "#28a355" }}
 
                       >
                         <span class=" text-white !text-icon">{translatedMenuItems[1]}</span>
@@ -169,7 +168,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[2]}>
-                      <Avatar style={{ background: activeButton === "Customer" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Customer" ? "#f279ab" : "#28a355" }}>
                         <ApartmentIcon className="text-white !text-icon"/>
                       </Avatar>
                     </Tooltip>
@@ -189,7 +188,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[3]}>
-                      <Avatar style={{ background: activeButton === "Accounts" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Accounts" ? "#f279ab" : "#28a355" }}>
                         <AcUnitIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
@@ -208,7 +207,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >  <Tooltip title={translatedMenuItems[4]}>
-                      <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#28a355" }}>
                         <PrecisionManufacturingIcon className="text-white !text-icon"/>
                       </Avatar>
                     </Tooltip>
@@ -226,7 +225,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[5]}>
-                      <Avatar style={{ background: activeButton === "Finance" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Finance" ? "#f279ab" : "#28a355" }}>
                         <OnDeviceTrainingIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
@@ -244,7 +243,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[6]}>
-                      <Avatar style={{ background: activeButton === "Investors" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Investors" ? "#f279ab" : "#28a355" }}>
                         <LocationCityIcon className="text-white !text-icon"/>
                       </Avatar>
                     </Tooltip>
@@ -262,7 +261,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[7]}>
-                      <Avatar style={{ background: activeButton === "RecruitPro" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "RecruitPro" ? "#f279ab" : "#28a355" }}>
                         <RecentActorsIcon className="text-white !text-icon"  />
                       </Avatar>
                     </Tooltip>
@@ -279,7 +278,7 @@ const DashboardActionLeft = (props) => {
                   }}
                 >
                   <Tooltip title={translatedMenuItems[8]}>
-                    <Avatar style={{ background: activeButton === "Tasks" ? "#f279ab" : "#4bc076" }}>
+                    <Avatar style={{ background: activeButton === "Tasks" ? "#f279ab" : "#28a355" }}>
                       <FactCheckIcon className="text-white !text-icon" />
                     </Avatar>
                   </Tooltip>
@@ -301,7 +300,7 @@ const DashboardActionLeft = (props) => {
                   >
                     <Tooltip title={translatedMenuItems[0]}>
                       <Button
-                        style={{ background: activeButton === "Regional" ? "#f279ab" : "#4bc076" }}
+                        style={{ background: activeButton === "Regional" ? "#f279ab" : "#28a355" }}
                         type="primary"
                       >
                         <span class=" text-white ">{translatedMenuItems[0]}</span>
@@ -319,7 +318,7 @@ const DashboardActionLeft = (props) => {
                   >
                     <Tooltip title={translatedMenuItems[1]}>
                       <Button
-                        style={{ background: activeButton === "multiOrg" ? "#f279ab" : "#4bc076" }}
+                        style={{ background: activeButton === "multiOrg" ? "#f279ab" : "#28a355" }}
 
                       >
                         <span class=" text-white !text-icon">{translatedMenuItems[1]}</span>
@@ -339,7 +338,7 @@ const DashboardActionLeft = (props) => {
                   }}
                 >
                   <Tooltip title={translatedMenuItems[8]}>
-                    <Avatar style={{ background: activeButton === "Tasks" ? "#f279ab" : "#4bc076" }}>
+                    <Avatar style={{ background: activeButton === "Tasks" ? "#f279ab" : "#28a355" }}>
                       <FactCheckIcon className="text-white !text-icon"
 
                       />
@@ -358,7 +357,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[2]}>
-                      <Avatar style={{ background: activeButton === "Customer" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Customer" ? "#f279ab" : "#28a355" }}>
                         <ApartmentIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
@@ -379,7 +378,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[3]}>
-                      <Avatar style={{ background: activeButton === "Accounts" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Accounts" ? "#f279ab" : "#28a355" }}>
                         <AcUnitIcon className="text-white !text-icon"
 
                         />
@@ -402,7 +401,7 @@ const DashboardActionLeft = (props) => {
 
                     }}
                   >  <Tooltip title={translatedMenuItems[4]}>
-                      <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Order" ? "#f279ab" : "#28a355" }}>
                         <PrecisionManufacturingIcon className="text-white !text-icon"
 
                         />
@@ -421,7 +420,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[5]}>
-                      <Avatar style={{ background: activeButton === "Finance" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Finance" ? "#f279ab" : "#28a355" }}>
                         <OnDeviceTrainingIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
@@ -439,7 +438,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[11]}>
-                      <Avatar style={{ background: activeButton === "Procure" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Procure" ? "#f279ab" : "#28a355" }}>
                         <ShopIcon className="text-white !text-icon" />
                       </Avatar>
                     </Tooltip>
@@ -457,7 +456,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[6]}>
-                      <Avatar style={{ background: activeButton === "Investors" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "Investors" ? "#f279ab" : "#28a355" }}>
                         <LocationCityIcon className="text-white !text-icon"
                         />
                       </Avatar>
@@ -476,7 +475,7 @@ const DashboardActionLeft = (props) => {
                     }}
                   >
                     <Tooltip title={translatedMenuItems[7]}>
-                      <Avatar style={{ background: activeButton === "RecruitPro" ? "#f279ab" : "#4bc076" }}>
+                      <Avatar style={{ background: activeButton === "RecruitPro" ? "#f279ab" : "#28a355" }}>
                         <RecentActorsIcon className="text-white !text-icon"
                         />
                       </Avatar>

@@ -161,7 +161,7 @@ const {
                             color: viewType === "card" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#28a355" }}>
                             < ChecklistIcon className="text-white !text-icon" /></Avatar>
 
                     </span></Badge>
@@ -179,7 +179,7 @@ const {
                             color: viewType === "not approved" && "#1890ff",
                         }}
                     >
-                       <Avatar style={{ background: viewType === "not approved" ? "#f279ab" : "#4bc076" }}>
+                       <Avatar style={{ background: viewType === "not approved" ? "#f279ab" : "#28a355" }}>
                        <TocIcon className="text-white !text-icon" />
                             </Avatar> 
                     </span>
@@ -198,7 +198,7 @@ const {
                             color: viewType === "all" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                             <div className="text-white">
                               {/* ALL */}{props.translatedMenuItems[6]}
                               </div></Avatar>
@@ -217,7 +217,7 @@ const {
                             color: viewType === "delete" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#28a355" }}>
                         <DeleteOutlined className="text-white" /></Avatar>
                     </span>
                     </Badge>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState,useRef } from "react";
 import { connect } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { bindActionCreators } from "redux";
 import {
     handlenvoiceOrderModal,
@@ -34,6 +35,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 const { Option } = Select;
 
 function AccountInvoiceTable(props) {
+  const dispatch = useDispatch();
     const [pageNo, setPageNo] = useState(0);
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
@@ -279,6 +281,7 @@ function AccountInvoiceTable(props) {
     
    
       const sendCreditMemo= async (item) => {
+       
         setLoading(true);
         setError(null);
         try {
@@ -296,6 +299,7 @@ function AccountInvoiceTable(props) {
               },
             }  
           );
+          dispatch(getGeneratedInvoiveList(props.distributorId));
           setData(response.data);
           Swal.fire({
             title: 'Success!',
@@ -458,7 +462,7 @@ function AccountInvoiceTable(props) {
                           </div> </div>
                                                        <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {item.distributorCreditInd && item.remainingTotalValue===0 ? "" :(
+                                                        {item.creditInd  ? "" :(
                                                         <Tooltip title="">
                                                                 <Button 
                                                                     className="cursor-pointer"

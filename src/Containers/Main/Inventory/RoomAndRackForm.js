@@ -333,7 +333,7 @@ const RoomAndRackForm = (props) => {
   const [validationErrors, setValidationErrors] = useState({});
 
   const handleAddRow = () => {
-    const newRow = { zone: '', rack: '', zoneType: '', description: '' };
+    const newRow = { zone: '', rack: '', zoneType: '', description: '',aisle:"" };
     setRows([...rows, newRow]);
   };
 
@@ -366,6 +366,9 @@ const RoomAndRackForm = (props) => {
     if (!row.rack) {
       errors[`${index}-rack`] = 'Input required';
     }
+    if (!row.aisle) {
+      errors[`${index}-aisle`] = 'Input required';
+    }
 
     if (Object.keys(errors).length > 0) {
       setValidationErrors(errors);
@@ -380,6 +383,7 @@ const RoomAndRackForm = (props) => {
       zone: row.zone,
       rack: row.rack,
       zoneType: row.zoneType,
+      aisle:row.aisle,
       description: row.description,
       orgId: props.orgId,
     };
@@ -449,24 +453,54 @@ const RoomAndRackForm = (props) => {
                 </div>
               </div>
 
+
+
               <div>
                 <div class="font-bold text-xs font-poppins text-black">
-                  {/* #Rack */} #{props.translatedMenuItems[8]}
+                 Aisle
                   </div>
                 <div className="w-24">
                   <Input
-                    value={row.rack}
-                    onChange={(e) => handleChange(index, 'rack', e.target.value)}
-                    placeholder="# Number"
-                    type="number"
+                    value={row.aisle}
+                    onChange={(e) => handleChange(index, 'aisle', e.target.value)}
+                    placeholder="# Aisle"
+                    type="text"
                     min="0"
                     step="1"
                     required
                     style={{ borderColor: validationErrors[`${index}-rack`] ? 'red' : undefined }}
                   />
-                  {validationErrors[`${index}-rack`] && <span style={{ color: 'red' }}>{validationErrors[`${index}-rack`]}</span>}
+                  {validationErrors[`${index}-aisle`] && <span style={{ color: 'red' }}>{validationErrors[`${index}-aisle`]}</span>}
                 </div>
               </div>
+
+              <div>
+  {row.aisle && ( // Check if row.aisle exists
+    <div>
+      <div className="font-bold text-xs font-poppins text-black">
+        {/* #Rack */} #{props.translatedMenuItems[8]}
+      </div>
+      <div className="w-24">
+        <Input
+          value={row.rack}
+          onChange={(e) => handleChange(index, 'rack', e.target.value)}
+          placeholder="# Number"
+          type="number"
+          min="0"
+          step="1"
+          required
+          style={{ borderColor: validationErrors[`${index}-rack`] ? 'red' : undefined }}
+        />
+        {validationErrors[`${index}-rack`] && (
+          <span style={{ color: 'red' }}>
+            {validationErrors[`${index}-rack`]}
+          </span>
+        )}
+      </div>
+    </div>
+  )}
+</div>
+
 
               <div>
                 <div class="font-bold text-xs font-poppins text-black">
@@ -514,9 +548,12 @@ const RoomAndRackForm = (props) => {
           <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
               <div className="md:w-[6rem]">{props.translatedMenuItems[12]} </div>
-              <div className="md:w-[4.2rem]">#{props.translatedMenuItems[13]}</div>
-              <div className="md:w-[5.2rem]">{props.translatedMenuItems[14]}</div>
-              <div className="md:w-[9.1rem]">{props.translatedMenuItems[15]}</div>
+              <div className="md:w-[4.2rem]">Asile</div>
+              <div className="md:w-[5.2rem]">Rack</div>
+              <div className="md:w-[9.1rem]">Length</div>
+              <div className="md:w-[9.1rem]">Width</div>
+              <div className="md:w-[9.1rem]">Height</div>
+              <div className="md:w-[9.1rem]">UOM</div>
               <div className="w-12"></div>
             </div>
 

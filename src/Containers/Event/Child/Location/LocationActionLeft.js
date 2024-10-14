@@ -58,7 +58,7 @@ const LocationActionLeft = (props) => {
               color: props.viewType === "card" && "#1890ff",            
             }}
           >
-             <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
   
             <div className="text-white ">{translatedMenuItems[0]}</div>
             </Avatar>
@@ -81,7 +81,7 @@ const LocationActionLeft = (props) => {
               color: props.viewType === "map" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "map" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "map" ? "#f279ab" : "#28a355" }}>
             <LanguageIcon  className="text-white !text-icon"
             // icon={solid('users')}
              />
@@ -102,7 +102,7 @@ const LocationActionLeft = (props) => {
                                 color: props.viewType === "delete" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#28a355" }}>
                                 <DeleteOutlined className="text-white !text-icon " /></Avatar>
 
                         </span>

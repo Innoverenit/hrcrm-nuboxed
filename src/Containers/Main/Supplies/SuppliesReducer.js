@@ -98,6 +98,9 @@ const initialState = {
     fetchingSuppliesHistoryError: false,
     suppliesHistory: [],
 
+
+    addSuppliesLocationModal:false,
+
     addingMaterialFifoToggle: false,
     addingMaterialFifoToggleError: false,
 
@@ -105,6 +108,11 @@ const initialState = {
 
     deletingSuppliesData: false,
     deletingSuppliesDataError: false,
+
+
+    fetchingSuppliesLocationItem:false,
+    fetchingSuppliesLocationItemError:false,
+    suppliesLocationItem:[],
 
     fetchingDeletedSuppliesHistory: false,
     fetchingDeletedSuppliesHistoryError: true,
@@ -283,6 +291,23 @@ export const suppliesReducer = (state = initialState, action) => {
 
         case types.SET_EDIT_SUPPLIES:
             return { ...state, setEditingSupplies: action.payload };
+
+
+            case types.GET_SUPPLIES_LOCATION_ITEM_REQUEST:
+        return { ...state, fetchingSuppliesLocationItem: true };
+      case types.GET_SUPPLIES_LOCATION_ITEM_SUCCESS:
+        return {
+          ...state,
+          fetchingSuppliesLocationItem: false,
+        suppliesLocationItem: action.payload
+        };
+      case types.GET_SUPPLIES_LOCATION_ITEM_FAILURE:
+        return {
+          ...state,
+          fetchingSuppliesLocationItem: false,
+          fetchingSuppliesLocationItemError: true,
+        };
+
 
         case types.UPDATE_SUPPLIES_BY_ID_REQUEST:
             return { ...state, updateSuppliesById: true };
@@ -562,6 +587,10 @@ export const suppliesReducer = (state = initialState, action) => {
             return { ...state, fetchingBrandModel: false, brandModel: action.payload };
         case types.GET_BRAND_MODEL_FAILURE:
             return { ...state, fetchingBrandModel: false, fetchingBrandModelError: true };
+
+
+            case types.HANDLE_SUPPLIES_LOCATION_MODAL:
+              return { ...state, addSuppliesLocationModal: action.payload };
 
         case types.GET_SUPPLIES_COUNT_REQUEST:
             return { ...state, fetchingSuppliescount: true };

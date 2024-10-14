@@ -38,6 +38,15 @@ export const handleUploadMaterialModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+export const handleSuppliesLocationModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIES_LOCATION_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleBrandModel = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_BRAND_MODEL,
@@ -1492,7 +1501,56 @@ export const getLocationSupplies = (orgId,suppliesId) => (dispatch) => {
     });
 };
 
+export const getSuppliesDocument = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_DOCUMENTS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/supplies/document/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIES_DOCUMENTS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIES_DOCUMENTS_FAILURE,
+        payload: err,
+      });
+    });
+};
 
+export const deleteSuppliesData = (documentId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_SUPPLIES_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/supplies/document/${documentId}`)
+    .then((res) => {
+      console.log(res);
+      // dispatch(getDeletedPurchaseById());
+      dispatch({
+        type: types.DELETE_SUPPLIES_DATA_SUCCESS,
+        payload: documentId,
+      });
+      message.success("Supplies deleted Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SUPPLIES_DATA_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
+    });
+};
 
 export const handleErpDocumentUploadModal = (modalProps) => (dispatch) => {
   dispatch({
@@ -1501,6 +1559,33 @@ export const handleErpDocumentUploadModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+
+
+export const getSuppliesLocationItem = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_LOCATION_ITEM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getReorder/material/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SUPPLIES_LOCATION_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIES_LOCATION_ITEM_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 
 

@@ -34,6 +34,7 @@ import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturi
 import ShopIcon from '@mui/icons-material/Shop'
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import OrderTableC from "./OrderTableC";
+import ProcureCommerceShippedOrder from "./AccountOrderTab/ProcureCommerceShippedOrder";
 
 const CompleteOrderTable= lazy(() =>import("./AccountOrderTab/CompleteOrderTable"));
 const AddSupplierContactModal   = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal"));
@@ -115,6 +116,10 @@ function AccountDetailsTab(props) {
         setBreadCumb(false);
         setOpenOrder(true)
     };
+    const handleClosedOrder = () => {
+        setBreadCumb(false);
+        setOpenOrder(false)
+    };
     const handleTabChange = (key) => setactiveKey(key);
     console.log(props.productionInd)
     console.log(props.activeKey)
@@ -132,10 +137,11 @@ function AccountDetailsTab(props) {
             selectedLanguage={props.selectedLanguage}
             translateText={props.translateText} /></div>;
             case "3":
-                return  <div>  {openOrder ?
+                return  <div>  {openOrder === true &&
                     <CompleteOrderTable distributorId={props.distributorData.distributorId} type="complete" 
                     selectedLanguage={props.selectedLanguage}
-                  translateText={props.translateText} /> :
+                  translateText={props.translateText} /> }
+                  {openOrder === false &&
                     <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" 
                     selectedLanguage={props.selectedLanguage}
                   translateText={props.translateText}
@@ -143,10 +149,14 @@ function AccountDetailsTab(props) {
                   />
                 }</div>;
                 case "4":
-                    return  <div>   <CustomerProcurementTable distributorId={props.distributorData.distributorId} 
+                    return  <div>  
+                        {openOrder === true &&
+                        <ProcureCommerceShippedOrder/> }
+                         {openOrder === false &&  
+                        <CustomerProcurementTable distributorId={props.distributorData.distributorId} 
                     selectedLanguage={props.selectedLanguage}
                     translateText={props.translateText}
-                     /></div>;
+                     />}</div>;
                      case "5":
                         return  <div><AccountActivityTable distributorId={props.distributorData.distributorId} 
                         selectedLanguage={props.selectedLanguage}
@@ -207,12 +217,15 @@ function AccountDetailsTab(props) {
             return null;
         }
       };
+
+
+    console.log("opIND",openOrder)  
     return (
         <>
             <TabsWrapper>
                 <StyledTabs defaultActiveKey="1" onChange={handleTabChange}>
 
-                    {/* {props.productionInd &&  */}
+                    {props.productionAccessInd &&  props.user.moduleMapper.productionInd &&
                     <TabPane
                         tab={
                             <>
@@ -244,7 +257,9 @@ function AccountDetailsTab(props) {
                             translateText={props.translateText} />
                         </Suspense> */}
                     </TabPane>
-                    {props.user.repairInd && <TabPane
+}
+
+                    {props.user.repairInd && props.user.moduleMapper.repairInd && <TabPane
                         tab={
                             <>
                              <span onClick={() => handleOrderClick(false)}>
@@ -306,7 +321,7 @@ function AccountDetailsTab(props) {
                             }
                         </Suspense> */}
                     </TabPane>}
-
+                    { props.user.moduleMapper.ecomModInd &&
                    <TabPane
                         tab={
                             <>
@@ -326,19 +341,25 @@ function AccountDetailsTab(props) {
                                     offset={[ 0, -16]}
                                 >
                               </Badge>
-                                {/* &nbsp;  &nbsp; */}
-                            
-                              
+                                &nbsp;  
+                             
                                 {activeKey === "4" && (
                                     <>
+                                     <Tooltip title="Shipped Order">
+                                        <HistoryOutlined
+                                            fontSize="small"
+                                            onClick={handleOpenOrder}
+                                        />
+                                    </Tooltip>
                                         <Tooltip title={translatedMenuItems[13]}>
                                             <AddShoppingCartIcon
                                                 type="plus"
                                                 tooltipTitle={translatedMenuItems[11]}
                                                 onClick={() => {
                                                     props.handleLinkCustomerProcurementModal(true);
+                                                    setOpenOrder(true);
                                                 }}
-                                                className="!text-icon  ml-3 cursor-pointer "
+                                                className="!text-icon cursor-pointer "
                                             />
                                         </Tooltip>
                                     </>
@@ -359,6 +380,7 @@ function AccountDetailsTab(props) {
                           
                         </Suspense>
                     </TabPane>
+}
                     <TabPane
               tab={
                 <>

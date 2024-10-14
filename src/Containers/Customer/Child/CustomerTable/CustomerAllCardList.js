@@ -42,6 +42,9 @@ import NextPlanIcon from '@mui/icons-material/NextPlan';
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { CurrencySymbol } from "../../../../Components/Common";
+
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
 const CustomerOpportunityDrawerModal =lazy(()=> import("./CustomerOpportunityDrawerModal"));
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
@@ -56,6 +59,18 @@ function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
+dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+    const now = dayjs();
+    const creationDay = dayjs(creationDate);
+
+    if (creationDay.isSame(now, 'day')) {
+        return 'Today';
+    } else {
+        return creationDay.from(now);
+    }
+};
 function CustomerAllCardList(props) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -212,22 +227,22 @@ const [rowdata, setrowdata] = useState("");
             {translatedMenuItems[0]}
               {/* name */}
             </div> 
-            <div className="font-poppins w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className="font-poppins w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             {translatedMenuItems[1]}          
                 {/* defaultMessage="Work" */}
             
             </div>
-            <div className="font-poppins w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
+            <div className="font-poppins w-[5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
             {translatedMenuItems[2]}     
                 {/* defaultMessage="Sector" */}
             </div>
-            <div className="font-poppins w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className="font-poppins w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             {translatedMenuItems[3]}      
                 {/* defaultMessage="Source" */}
            
             </div>
           
-            <div className="font-poppins w-[3.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
+            <div className="font-poppins w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
             {translatedMenuItems[4]}            
                 {/* defaultMessage="Quotation" */}
       
@@ -243,7 +258,7 @@ const [rowdata, setrowdata] = useState("");
             {translatedMenuItems[19]}  
             </div>
             )}  
-            <div className="font-poppins w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
+            <div className="font-poppins w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
             {translatedMenuItems[6]}            
            {/* ="Assigned" */}
              
@@ -257,7 +272,9 @@ const [rowdata, setrowdata] = useState("");
             {translatedMenuItems[8]}
              {/* customer */}
             </div>
-          
+            <div className="font-poppins font-bold text-xs w-[5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {/* {translatedMenuItems[8]} ago*/}
+            </div>
             <div className="w-[3.8rem]"></div>
             </div>
       </div>
@@ -292,12 +309,12 @@ const [rowdata, setrowdata] = useState("");
            } `;
                     return (
                         <div>
-                            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+                            <div className="flex rounded justify-between bg-white h-8 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
                                 >
                                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                    <div className=" flex  w-[15rem] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
                                    <div className="flex max-sm:w-full">
-                      <div>
+                      <div class="flex items-center">
                         
                           <MultiAvatar
                             primaryTitle={item.name}
@@ -339,7 +356,7 @@ const [rowdata, setrowdata] = useState("");
                                     </div>
                                 
                                 </div> 
-                                <div className=" flex  max-sm:w-auto items-center  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                                <div className=" flex  max-sm:w-auto items-center  w-[7rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
             {/* sector */}
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.sector}
@@ -348,7 +365,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex items-center  max-sm:w-auto w-[7.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center  max-sm:w-auto w-[5rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
 <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -356,52 +373,42 @@ const [rowdata, setrowdata] = useState("");
 </div>
 
 </div>
-<div className=" flex justify-center w-[5.1rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-
-
-{/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+<div className=" flex justify-center w-[2rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
   <CountryFlag1 countryCode={item.countryAlpha2Code} />
   &nbsp;
   {item.countryAlpha2Code}
 </div>
-</div>
-                                
-                                <div className=" flex w-[30%] max-xl:w-[2.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   
-
-                                <div class=" text-xs  max-sm:text-sm font-poppins text-center">
+<div class=" text-xs  max-sm:text-sm font-poppins text-center">
                             {item.oppNo}
 
                           </div>
-                                </div>
-                            
-                              
-                                <div className=" flex  w-[4.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
-                                  
+</div>
 
-                                <div class=" text-xs  max-sm:text-sm font-poppins text-center">
-                            {item.totalProposalValue}
-
+<div className=" flex justify-center w-[4rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+<div class=" text-xs flex max-sm:text-sm font-poppins text-center">
+                                <div>
+        <CurrencySymbol currencyType={item.userCurrency}/>     </div> 
+        <div>
+        {`${Math.floor(item.totalProposalValue / 1000)}K`}
+        </div>
                           </div>
                                 </div>
-                                </div>
-                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex w-[1rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between ">
-                                    
-
-                                <div class=" text-xs  max-sm:text-sm font-poppins text-center">
+</div>     
+<div className=" flex justify-center w-[4rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+<div class=" text-xs  max-sm:text-sm font-poppins text-center">
                             {item.weight}
 
-                          </div>
-                                </div>
+                          </div>                       
+</div>                         
+                            
+                                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center  w-[4rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
         {item.noteScoreInd}
-          
             </div>
             )}
-{/* SCORE */}
+
 
                                 <div className=" flex items-center  flex-col w-[6rem] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
                                   
@@ -422,10 +429,7 @@ const [rowdata, setrowdata] = useState("");
              
                                     </div>
                                 </div>
-                                <div className=" flex items-center  w-[3rem] max-xl:w-[5rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between mb-2 ">
-                       
-                     
-
+                                <div className=" flex items-center  w-[3rem] max-xl:w-[5rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between">
                        <Tooltip title={item.ownerName}>
        <MultiAvatar
          primaryTitle={item.ownerName}
@@ -434,10 +438,8 @@ const [rowdata, setrowdata] = useState("");
          imgHeight={"1.8rem"}
        />
      </Tooltip>
-        
                                 </div>
-            
-                      
+                               
                       <div className=" flex  justify-center w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-xs  font-poppins"></div>
@@ -462,6 +464,13 @@ const [rowdata, setrowdata] = useState("");
                           )}
                         </Popconfirm>
                       </div>
+                       <div className=" flex items-center w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
                       </div>
                       <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                       <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
@@ -502,7 +511,7 @@ handleRowData(item);
 /> 
 </Tooltip>
 
-                      <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] ml-1 max-sm:flex-row max-sm:w-[10%]">
+                      <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                     
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (

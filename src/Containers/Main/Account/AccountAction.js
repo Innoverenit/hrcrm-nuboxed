@@ -4198,7 +4198,7 @@ export const getProcureDetails = (orderPhoneId) => (dispatch) => {
       type: types.GET_PROCURE_DETAILS_REQUEST,
   });
   axios
-      .get(`${base_url2}/phoneOrder/procure/order/${orderPhoneId}`, {
+      .get(`${base_url2}/quotation/procure/order/${orderPhoneId}`, {
           headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -5195,3 +5195,42 @@ export const getDistibutorBarChart = (distributorId,productId) => (dispatch) => 
       });
     });
 };
+
+export const codInventoryOrder = (data,cb) => (dispatch) => {
+  dispatch({ type: types.ADD_COD_INVENTORY_REQUEST });
+
+  axios
+    .post(`${base_url2}/payment/protal/prosess `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+  
+Swal.fire({
+  icon: 'success',
+  title: `${res.data.orderId} - Order placed successfully`,
+  showConfirmButton: false,
+  timer: 1500,
+})
+
+      console.log("resp",res)
+  // if(res.data){
+  //   const orderPhoneId = localStorage.getItem("orderPhoneId");
+  //   localStorage.removeItem('orderPhoneId') 
+  // }      
+  dispatch({
+        type: types.ADD_COD_INVENTORY_SUCCESS,
+        payload: res.data,
+      });
+      //cb && cb ("success")
+    })
+    .catch((err) => {
+      console.log("errr",err,err && err.response && err.response.data.error)
+      dispatch({
+        type: types.ADD_COD_INVENTORY_FAILURE,
+      });
+    //  cb && cb ("error",err && err.response && err.response.data.error)
+    });
+};       

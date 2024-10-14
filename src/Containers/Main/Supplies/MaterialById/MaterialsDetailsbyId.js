@@ -6,10 +6,14 @@ import { bindActionCreators } from "redux";
 
 import styled from "styled-components";
 import { Select } from "../../../../Components/UI/Elements";
+import MaterialFastMovingToggle from "../MaterialById/MaterialFastMovingToggle"
 import MaterialsDetailsCardViewId from "./MaterialsDetailsCardViewId";
 import {getMaterialsBySuppliesId,UpdateMaterialIamge} from "../SuppliesAction";
 import "../Supplies.scss";
 import img from "../../../../Assets/Images/Erp.jpg";
+import MaterialRecommendToggle from "../MaterialRecommendToggle";
+import MaterialFifoToggle from "../MaterialFifoToggle";
+import MaterialFeatureToggle from "../MaterialFeatureToggle";
 
 const { Option } = Select;
 
@@ -43,6 +47,7 @@ const breakPoints = [
   return (
     
     <div className="bg-[#F7F8FC]">
+      <div className="flex justify-between">
  <div className="flex justify-between items-center w-[44rem]">
       <div >
         <div>
@@ -71,12 +76,53 @@ const breakPoints = [
         </div>
       
       </div>
-      <div >
+      {/* <div >
       <img  src={img}  className="w-[20rem]" />
       
-      </div>
+      </div> */}
  
     </div>
+    <div className="flex">
+    <div className=" flex flex-col  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between ml-2 max-sm:flex-row ">
+     <div className="text-base">Recommend</div>
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <MaterialRecommendToggle
+                                  recomendInd={props.recomendInd}
+                                  suppliesId={props.suppliesId}
+                                />
+                              </div>
+                            </div>
+                            <div className=" flex flex-col  w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className="text-base">Fifo</div>
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <MaterialFifoToggle
+                                  fifoInd={props.fifoInd}
+                                  suppliesId={props.suppliesId}
+                                />
+                              </div>
+                            </div>
+                            <div className=" flex flex-col w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className="text-base">Featured</div>
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <MaterialFeatureToggle
+                                  featureInd={props.featureInd}
+                                  suppliesId={props.suppliesId}
+                                />
+                              </div>
+                            </div>
+
+
+                            <div className=" flex flex-col w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className="text-base">Fast Moving</div>
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <MaterialFastMovingToggle
+                                  // featureInd={props.featureInd}
+                                  // suppliesId={props.suppliesId}
+                                />
+                              </div>
+                            </div>
+                            </div>
+                            </div>
     <div dangerouslySetInnerHTML={{ __html: `<p>${props.materialsBySuppliesId.description}</p>` }} />
     
     <div className="cardDs-bottom">
@@ -86,10 +132,10 @@ const breakPoints = [
       />
     
       </div>
-      <hr class=" mt-4 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
+      {/* <hr class=" mt-4 w-auto ml-0 h-1 mx-auto  bg-black border-0 rounded " />
       <div class="text-sm flex justify-center  text-gray-700 bottom-0 absolute w-wk items-center" >
-         © {new Date().getFullYear()} {` `}  1Di inc
-      </div>
+         © {new Date().getFullYear()} {` `}  HR Tekorero
+      </div> */}
    </div>
   
   );

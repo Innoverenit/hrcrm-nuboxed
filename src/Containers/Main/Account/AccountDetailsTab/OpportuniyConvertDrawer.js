@@ -13,7 +13,7 @@ const OpportuniyConvertDrawer = (props) => {
     return (
         <>
             <StyledDrawer  
-                title={`Pay : ${props.particularRowItem.newOrderNo}`}
+                title={`Order : ${props.particularRowItem.newOrderNo}`}
                 width={drawerWidth}
                 visible={props.openConvertModal}
                 closable

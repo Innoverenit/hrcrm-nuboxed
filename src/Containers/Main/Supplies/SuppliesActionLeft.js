@@ -9,6 +9,7 @@ import {materialCategorySearch,getMaterialCategory, getSuppliesCount,getSupplies
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import CategoryIcon from '@mui/icons-material/Category';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import { LocalActivityOutlined } from "@mui/icons-material";
 
 function SuppliesActionLeft (props) {
 
@@ -187,7 +188,7 @@ function SuppliesActionLeft (props) {
                                 color: viewType === "all" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                                 <div className="text-white">{translatedMenuItems[1]}</div></Avatar>
 
                         </span>
@@ -202,7 +203,7 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("category")}
         >
-          <Avatar style={{ background: viewType === "category" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: viewType === "category" ? "#f279ab" : "#28a355" }}>
             <CategoryIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
@@ -221,7 +222,7 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("brand")}
         >
-          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#28a355" }}>
             <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
@@ -238,7 +239,7 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("brandModel")}
         >
-          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#28a355" }}>
           <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
        
@@ -257,8 +258,33 @@ function SuppliesActionLeft (props) {
                                 color: viewType === "dashboard" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#28a355" }}>
                                 <DeleteOutlined className="text-white" /></Avatar>
+
+                        </span>
+                    </Badge>
+                </Tooltip>
+
+
+
+                <Tooltip 
+                title="Location"
+                >
+                <Badge size="small"
+                        //count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
+                        //overflowCount={999}
+                    >
+                        <span class=" md:mr-2 text-sm cursor-pointer"
+                            onClick={() => setSuppliesViewType("suppliesLocation")}
+                            style={{
+                                color: "blue",
+                            }}
+                        >
+                            {/* <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#28a355" }}> */}
+                                <LocalActivityOutlined 
+                                // className="text-white" 
+                                />
+                                {/* </Avatar> */}
 
                         </span>
                     </Badge>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from "dayjs";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Avatar } from "antd";
@@ -46,6 +47,21 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+
+
+  dayjs.extend(relativeTime);
+
+  const getRelativeTime = (creationDate) => {
+      const now = dayjs();
+      const creationDay = dayjs(creationDate);
+  
+      if (creationDay.isSame(now, 'day')) {
+          return 'Today';
+      } else {
+          return creationDay.from(now); // e.g., "2 days ago"
+      }
+  };
 
   const handleLoadMore = () => {
     const callPageMapd = props.callListRangeByUserId && props.callListRangeByUserId.length &&props.callListRangeByUserId[0].pageCount
@@ -104,7 +120,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
         next={handleLoadMore}
       hasMore={hasMore}
         loader={fetchingCallListRangeByUserId?<div class="flex justify-center">{props.translatedMenuItems[9]}...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <div class="flex text-center font-bold text-xs text-red-500">{props.translatedMenuItems[10]}. </div>}
       >
@@ -121,7 +137,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             }));
              return (
               <div>
-            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+            <div className="flex rounded justify-between bg-white  h-8  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               <div class="flex  w-[8.9rem] text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
@@ -214,6 +230,19 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             
     
            </div>
+           <div className=" flex  items-center md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs  items-center font-poppins">
+                            {/* {date} */}
+                            <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span>
+                            </div>
+                          
+                    
+                        </div>
              <div class="flex max-sm:justify-between max-sm:w-wk ">
               <div class="flex flex-row  w-[6%] max-sm:flex-row max-sm:w-auto">
                     <div>

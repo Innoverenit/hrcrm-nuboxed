@@ -33,7 +33,7 @@ function RefurbishActionLeft (props) {
                     color: viewType === "list" && "#1890ff",
                   }}
                 >
-                  <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
+                  <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#28a355" }}>
                     <HomeRepairServiceIcon className="!text-icon cursor-pointer" /></Avatar>  
                 </span>
               </Tooltip>             

@@ -235,7 +235,7 @@ return (
                         <div>
                           <Tooltip title={translatedMenuItems[7]}>
                             <NoteAltIcon
-                              className=" !text-icon cursor-pointer text-[#4bc076]"
+                              className=" !text-icon cursor-pointer text-[#28a355]"
                               onClick={() => {
                                 handleProductNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);

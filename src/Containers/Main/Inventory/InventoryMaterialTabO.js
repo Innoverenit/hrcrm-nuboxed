@@ -4,11 +4,13 @@ import { bindActionCreators } from "redux";
 import MaterialIntransitList from "../Inventory/MaterialIntransitList"
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
+import InventoryMaterialBestBefore from "../Inventory/InventoryMaterialBestBefore"
 import { withRouter } from "react-router";
 import TokenIcon from '@mui/icons-material/Token';
 import DeleteIcon from '@mui/icons-material/Delete';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import MaterialReceivedTableOut from "./MaterialReceivedTableOut";
+import InventoryMaterialDamagedData from "../Inventory/InventoryMaterialDamagedData"
 import MaterialStockTableOut from "./MaterialStockTableOut";
 import MaterialUnitsDataOut from "./MaterialUnitsDataOut";
 import MaterialCellCardViewOut from "./MaterialCellCardViewOut";
@@ -215,7 +217,7 @@ class InventoryMaterialTabO extends PureComponent {
                                     <span onClick={this.handleRecruitClick}>
                                     <i class="far fa-share-square"/>&nbsp;
                                         {/* Stock */} 
-                                      Damage
+                                      Damaged
                                         {/* {this.props.translatedMenuItems[19]} */}
 
                                     </span>
@@ -246,7 +248,9 @@ class InventoryMaterialTabO extends PureComponent {
                             
                                 <Suspense fallback={"Loading ..."}>
                                   {" "}
-                                 Hello
+                               <InventoryMaterialDamagedData
+                               locationDetailsId={this.props.user.locationId}
+                               />
                                   {/* <MaterialIntransitList
                                    locationDetailsId={this.props.user.locationId}
                                 selectedLanguage={this.props.selectedLanguage}
@@ -265,9 +269,9 @@ class InventoryMaterialTabO extends PureComponent {
                                 <>
                                     <span onClick={this.handleRecruitClick}>
                                     <i class="far fa-share-square"/>&nbsp;
-                                        {/* Stock */} 
                                       Best Before
-                                        {/* {this.props.translatedMenuItems[19]} */}
+                                     
+                                       
 
                                     </span>
                                     {activeKey === "5" && (
@@ -297,7 +301,9 @@ class InventoryMaterialTabO extends PureComponent {
                             
                                 <Suspense fallback={"Loading ..."}>
                                   {" "}
-                                 Hello
+                                  <InventoryMaterialBestBefore
+                                   locationDetailsId={this.props.user.locationId}
+                                  />
                                   {/* <MaterialIntransitList
                                    locationDetailsId={this.props.user.locationId}
                                 selectedLanguage={this.props.selectedLanguage}

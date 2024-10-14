@@ -46,7 +46,7 @@ function LinkedOpportunityTable(props) {
           "213",  //   "Quotation",1
            "772", //   "Delivery",2
           "658",  //   "Location",3
-           "1170", //  "Budget",4
+           "218", //  "Value",4
           "73",  //   "Contact",5
          "1171",   //  "Payment",6
            "142", //   "Status",7
@@ -112,7 +112,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div className=" md:w-[10.8rem] "> {translatedMenuItems[3]}</div>
                         <div className="md:w-[6.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
+                        {/* <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div> */}
                         {/* <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div> */}
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
                         
@@ -275,7 +275,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                         <div className=" md:w-[10.8rem] "> {translatedMenuItems[3]}</div>
                         <div className="md:w-[6.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div>
+                        {/* <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div> */}
                         {/* <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div> */}
                         <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
                       
@@ -298,9 +298,10 @@ console.log(props.user.moduleMapper.ecomModInd)
                                 {props.quotationProcureOrder.map((item) => {
                                  const currentDate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                    const date1 =  dayjs(item.deliveryDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                      <div className="flex rounded  mt-3 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
                                           <div className=" flex  w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
@@ -350,7 +351,7 @@ console.log(props.user.moduleMapper.ecomModInd)
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md: text-xs">
-                                            {` ${dayjs(item.deliveryDate).format("ll")}`}
+                                            {date1}
                                                   </div>
                       
                                          

@@ -84,12 +84,12 @@ function AccountProcureDetails(props) {
     }, [props.selectedLanguage]);
 
   useEffect(() => {
-    props.getBrand();
-    props.getCategorylist();
-    props.getAllProductList();
-    props.getSupplierSuppliesQuality();
-    props.getLocationList(props.orgId);
-    props.getSaleCurrency()
+    // props.getBrand();
+    // props.getCategorylist();
+    // props.getAllProductList();
+    // props.getSupplierSuppliesQuality();
+    // props.getLocationList(props.orgId);
+    // props.getSaleCurrency()
     props.getProcureDetails(props.particularRowData.orderPhoneId);
     fetchCreditMemoData();
   }, []);
@@ -364,6 +364,7 @@ const handleGenerateInvoice= async () => {
           <div className="w-[7.1%] md:w-[7.1%]">
           {translatedMenuItems[3]} {/* Attribute" /> */}
           </div>
+
           <div className=" w-[7%] md:w-[7%]">
           {translatedMenuItems[4]} {/*Quality" /> */}
           </div>
@@ -386,7 +387,9 @@ const handleGenerateInvoice= async () => {
           <div className=" w-[5.8%] md:w-[5.8%]">
           {translatedMenuItems[9]}
           </div>
-          
+              <div className="w-[5%] md:w-[5%]">
+          Supplies ID
+          </div>
       
        
         </div>
@@ -527,7 +530,7 @@ const handleGenerateInvoice= async () => {
                 </div>
                 <div className="ml-2 ">
                 <Select
-                     style={{width:"10%"}}
+                     style={{width:"10rem"}}
                      placeholder="Apply Credit"
                       value={CreditMemo}
                       onChange={(value) => handleCreditMemo(value)}

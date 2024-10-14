@@ -171,7 +171,7 @@ const InvestorActionLeft = (props) => {
               color: props.viewType === "list" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355" }}>
               <TocIcon  className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -194,7 +194,7 @@ const InvestorActionLeft = (props) => {
                 color: props.viewType === "teams" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
                 <PeopleIcon  className="text-white !text-icon" />
               </Avatar>
             </span>
@@ -215,7 +215,7 @@ const InvestorActionLeft = (props) => {
                 color: props.viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
                 <FormattedMessage id="app.all" defaultMessage="ALL" class=" text-white !text-icon"/>
               </Avatar>
             </span>
@@ -234,7 +234,7 @@ const InvestorActionLeft = (props) => {
                             color: props.viewType === "delete" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#28a355" }}>
                         <DeleteOutlined className="text-white" /></Avatar>
                     </span>
                     {/* </Badge> */}

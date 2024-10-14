@@ -5,6 +5,10 @@ const initialState = {
 
   clearbit: {},
 
+  addingCODinventory: false, 
+  addingCODinventoryError: false,
+  codInventryorDr:{},
+
   updateAccountModal: false,
 
   addAccountAddressModal: false,
@@ -3957,6 +3961,13 @@ export const distributorReducer = (state = initialState, action) => {
       };
     case types.SEARCH_CUSTOMER_ORDERNO_DATA_FAILURE:
       return { ...state, fetchingCustomerOrderNoError: true };
+
+      case types.ADD_COD_INVENTORY_REQUEST:
+        return { ...state, addingCODinventory: true };
+      case types.ADD_COD_INVENTORY_SUCCESS:
+        return { ...state, addingCODinventory: false, codInventryorDr: action.payload };
+      case types.ADD_COD_INVENTORY_FAILURE:
+        return { ...state, addingCODinventory: false, addingCODinventoryError: true };
 
     default:
       return state;

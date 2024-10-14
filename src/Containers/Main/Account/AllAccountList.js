@@ -6,7 +6,6 @@ import {
   handleUpdateAccountModal,
   handleAccountAddress
 } from "./AccountAction"
-import dayjs from "dayjs";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -17,11 +16,29 @@ import { Link } from 'react-router-dom';
 import { Tooltip } from 'antd';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
 const AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
+
+
+
+dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+    const now = dayjs();
+    const creationDay = dayjs(creationDate);
+
+    if (creationDay.isSame(now, 'day')) {
+        return 'Today';
+    } else {
+        return creationDay.from(now);
+    }
+};
 
 const AllAccountList = (props) => {
   const [page, setPage] = useState(0);
@@ -51,7 +68,8 @@ const AllAccountList = (props) => {
           "76",// 'Assigned', // 10  
           "1338",// "Credit",//11
           "592",          // club    12
-          "185",//Address
+          "185",//Address13
+          "679",//Created14
       ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -116,11 +134,14 @@ const AllAccountList = (props) => {
             {translatedMenuItems[11]}
            {/* Owner */}        
             </div>
-            <div className="w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
           {translatedMenuItems[10]}
             {/* Assigned */}          
             </div>
-               
+            <div className="w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+          {translatedMenuItems[14]}
+            {/* Created */}          
+            </div>
             </div>
           </div>
          <InfiniteScroll
@@ -248,7 +269,16 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </Tooltip>
                           </div>                      
                       </div>     
-                             
+                      <div className=" flex items-center w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+<span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span>
+
+                        
+                          </div>  
 
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 

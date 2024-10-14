@@ -47,9 +47,9 @@ function SuppliersCardTable(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Supplier",//0
+         "824",//0
           
-          "Tag with Supplier",//1
+          "1276",//1
               
        ];
 
@@ -86,7 +86,7 @@ function SuppliersCardTable(props) {
               next={handleLoadMore}
               hasMore={hasMore}
               loader={props.fetchingSupplieSupplerList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-              height={"67vh"}
+              height={"80vh"}
               style={{scrollbarWidth:"thin"}}
             >
               {props.supplieSupplerList.length ?

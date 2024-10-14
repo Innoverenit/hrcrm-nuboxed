@@ -1,6 +1,7 @@
 import React, { Suspense,useState, useEffect,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import SuppliesLocationTable from "./SuppliesLocationTable"
 import SuppliesBrandModelTable from "./SuppliesBrandModelTable"
 import { setSuppliesViewType, handleSuppliesModal } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -64,6 +65,12 @@ function Supplies(props) {
                     ) : viewType === "brandModel" ? (
                    
                         <SuppliesBrandModelTable 
+                        translateText={props.translateText}
+                        selectedLanguage={props.selectedLanguage}
+                        /> 
+                    ) : viewType === "suppliesLocation" ? (
+                   
+                        <SuppliesLocationTable 
                         translateText={props.translateText}
                         selectedLanguage={props.selectedLanguage}
                         /> 

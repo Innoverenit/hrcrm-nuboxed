@@ -168,7 +168,7 @@ const ShipperActionLeft = (props) => {
             }}
             onClick={() => props.setShipperViewType("table")}
           >
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
               <TocIcon className="text-white" />
             </Avatar>
           </span>
@@ -187,7 +187,7 @@ const ShipperActionLeft = (props) => {
               }}
               onClick={() => props.setShipperViewType("all")}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
                 {/* ALL */}{props.translatedMenuItems[18]}
               </Avatar>
             </span>
@@ -198,7 +198,7 @@ const ShipperActionLeft = (props) => {
         <Badge size="small"
           count={props.recordDeletedData.deletedShipper || 0}
         >
-          <Avatar style={{ background: props.viewType === "grid" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "grid" ? "#f279ab" : "#28a355" }}>
             <DeleteOutlined
               className="!text-sm text-white cursor-pointer"
               style={{
