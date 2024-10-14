@@ -118,24 +118,7 @@ function CustomerForm(props) {
     function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
     }
-    // const sortedSector =props.sectors.sort((a, b) => {
-    //   const nameA = a.sectorName.toLowerCase();
-    //   const nameB = b.sectorName.toLowerCase();
-    //   // Compare department names
-    //   if (nameA < nameB) {
-    //     return -1;
-    //   }
-    //   if (nameA > nameB) {
-    //     return 1;
-    //   }
-    //   return 0;
-    // });
-    // const sectorOption = sortedSector.map((item) => {
-    //   return {
-    //     label: item.sectorName || "",
-    //     value: item.sectorId,
-    //   };
-    // });
+  
     const sortedCurrency =props.currencies.sort((a, b) => {
       const nameA = a.currency_name.toLowerCase();
       const nameB = b.currency_name.toLowerCase();
@@ -739,9 +722,10 @@ country_dial_code
 
 {/* {props.customerConfigure.noteInd===true&& */}
 <div class="mt-3">
-                    <div> {translatedMenuItems[12]}</div>
-                    <div>
-                  <div>
+<div>
+                    <span class="font-bold font-poppins text-xs"> {translatedMenuItems[12]}</span>
+                    
+                  <span>
                     <span onClick={startListening}>
                       <Tooltip title= {translatedMenuItems[13]}>
                         <span  >
@@ -767,7 +751,7 @@ country_dial_code
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span>
                   <div>
                     <textarea
                       name="description"

@@ -227,7 +227,7 @@ const [rowdata, setrowdata] = useState("");
          <div className=' flex sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-         <div class=" flex justify-between w-[99%]">
+         <div class=" flex justify-between w-[92%]">
             <div className="font-poppins font-bold text-xs w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             {translatedMenuItems[0]}
            {/* name */}
@@ -339,33 +339,20 @@ const [rowdata, setrowdata] = useState("");
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                <div class="flex text-xs text-blue-500 ml-1 font-poppins font-semibold  cursor-pointer">
 
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                  <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
                                   </Link>
 
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
-                                    <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
+                                    <div class="text-[0.65rem]  text-[tomato] font-bold"
                                     >
                                     {translatedMenuItems[9]}   {/* New */}
                                     </div>
                                   ) : null}
-                                  {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
-                            href={`customer/${item.customerId}`}>{item.name} </a>
-                              &nbsp;&nbsp;
-        {date === currentdate ? (
-          <div class="text-xs"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </div>
-        ) : null}
-        */}
+                              
                                 </div>
                               </div>
                             </Tooltip>
@@ -437,12 +424,7 @@ const [rowdata, setrowdata] = useState("");
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex  max-sm:w-auto w-[2.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                        {/* Pipeline Value */}
-
-                        {/* {item.totalProposalValue > 0 && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {`${item.userCurrency} ${item.totalProposalValue}`}
-      </div>
-    )} */}
+                       
                             {item.totalProposalValue && (
       <div class="text-xs flex font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 <div>

@@ -330,14 +330,14 @@ const [rowdata, setrowdata] = useState("");
                       <div class="max-sm:w-full md:flex items-center">
                       <Tooltip>
                                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                            <div class=" text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                            <div class=" text-xs flex text-blue-500 ml-1 font-poppins font-semibold  cursor-pointer">
+                                            <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
       {item.name}
     </Link>                                   
        
-             
+    &nbsp;&nbsp;   
         {date === currentdate ? (
-    <div class="text-xs text-[tomato] mt-[0.4rem] font-bold"
+    <div class="text-[0.65rem] text-[tomato] font-bold"
     >
             {translatedMenuItems[9]}
           </div>

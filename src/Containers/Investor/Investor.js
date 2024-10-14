@@ -103,15 +103,7 @@ const handleChange = (e) => {
             />}
           </>
         )}
- {/* {  viewType === "list" ?
-          <InvestorCardList/> 
- 
-  :viewType==="all" ?
- <InvestorAllCardList  filter={filter}/> 
- :viewType==="teams" ? (<InvestorTeamCardList/>)
-// <CustomerCardView/>  
 
-          :null} */}
  </Suspense>
             </React.Fragment>
         )
