@@ -1,29 +1,33 @@
 import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
-const UpdateAccountContactForm = lazy(() => import("./UpdateAccountContactForm"));
 
-const UpdateAccountContactModal = (props) => {
+
+const ContactHistoryDrawerCard = lazy(() => import("./ContactHistoryDrawerCard"));
+
+const ContactHistoryDrawer = (props) => {
+
     const { ...formProps } = props;
+
     return (
         <>
             <StyledDrawer
-                title="Update Contact"
+                title="Contact"
                 width="60%"
-                visible={props.updateDistributorContactModal}
+                visible={props.modalContactHistory}
                 maskClosable={false}
                 destroyOnClose
-                maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
+                maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)"}}
                 style={{marginTop:"3rem"}}
-                onClose={() => props.handleUpdateDistributorContactModal(false)}
+                onClose={() => props.setmodalContactHistory(false)}
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <UpdateAccountContactForm handleUpdateDistributorContactModal={props.handleUpdateDistributorContactModal}/>
+                    <ContactHistoryDrawerCard modalContactHistory={props.modalContactHistory} rowData={props.rowData}/>
                 </Suspense>
             </StyledDrawer>
         </>
     );
 };
 
-export default UpdateAccountContactModal;
+export default ContactHistoryDrawer;

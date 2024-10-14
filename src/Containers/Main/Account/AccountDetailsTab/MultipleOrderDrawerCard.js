@@ -38,18 +38,13 @@ const { Option } = Select;
 function AccountInvoiceTable(props) {
   const dispatch = useDispatch();
     const [pageNo, setPageNo] = useState(0);
-    const [currentData, setCurrentData] = useState("");
-    const [searchOnEnter, setSearchOnEnter] = useState(false); 
-    const [startTime, setStartTime] = useState(null);
-    const [isRecording, setIsRecording] = useState(false); //Code for Search
-    const minRecordingTime = 3000; // 3 seconds
-    const timerRef = useRef(null);
+ 
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
-    const [openStatus,setopenStatus] = useState(false);
+   
 
     useEffect(() => {
         const fetchMenuTranslations = async () => {
@@ -84,24 +79,12 @@ function AccountInvoiceTable(props) {
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
     useEffect(() => {
-      props.getInvoiceCount(props.distributorId)
-        // props.getAccountInvoiveList(props.distributorId)
-        props.getGeneratedInvoiveList(props.distributorId);
+        // props.getGeneratedInvoiveList(props.distributorId);
     }, []);
 
     const exportPDFAnnexure = async () => {
       var doc = new jsPDF();
-      // const {
-      //   userDetails:
-      //   {address},
-      //     imageId
-      // }=props
-     
-      // let cityd=`${address.city}`
-      // let countryd=`${address.country}`
-      // let addressde=`${address.state}`
-      // let cityde=`${address.street}`
-      // var imageUrl = `${base_url}/image/${imageId || ""}`;
+    
       var name1 = `East Repair Inc `
       var name2 =`1912 Harvest Lane New York ,NY 12210 `
       var name3 =`BILL TO`
@@ -162,235 +145,19 @@ function AccountInvoiceTable(props) {
     
     }
 
-    const {
-        transcript,
-        listening,
-        resetTranscript,
-        browserSupportsSpeechRecognition
-      } = useSpeechRecognition();
-    
-      useEffect(() => {
-        // props.getCustomerRecords();
-        if (transcript) {
-          console.log(">>>>>>>", transcript);
-          setCurrentData(transcript);
-        }
-        }, [ transcript]);
-        const handleChanges = (e) => {
-            setCurrentData(e.target.value);
-        
-            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search  
-                props.getGeneratedInvoiveList(props.distributorId)       
-              props.ClearSearchedInvoice()
-              setSearchOnEnter(false);
-            }
-          };
-          const handleSearch = () => {
-            if (currentData.trim() !== "") {
-                props.searchInoice(currentData);
-              setSearchOnEnter(true);  // Code for Search
-            } else {
-              console.error("Input is empty. Please provide a value.");
-            }
-          };
-          const handleStartListening = () => {
-            setStartTime(Date.now());
-            setIsRecording(true);
-            SpeechRecognition.startListening();
-            if (timerRef.current) {
-              clearTimeout(timerRef.current);
-            }
-            timerRef.current = setTimeout(() => {
-              SpeechRecognition.stopListening();
-              setIsRecording(false);
-            }, minRecordingTime);
-          };
-          const suffix = (
-            <AudioOutlined
-              onClick={handleStartListening}
-              style={{
-                fontSize: 16,
-                color: '#1890ff',
-              }}
-        
-            />
-          );
-          const handleStopListening = () => {
-            SpeechRecognition.stopListening();
-            setIsRecording(false);
-            if (transcript.trim() !== "") {
-              setCurrentData(transcript);
-             
-              props.searchInoice(transcript);
-              setSearchOnEnter(true);
-            }
-          };
-          useEffect(() => {
-            if (!listening && isRecording) {
-              handleStopListening();
-            }
-          }, [listening]);
-          useEffect(() => {
-            if (isRecording && !listening) {
-              // If recording was stopped but less than 5 seconds have passed, restart listening
-              const elapsedTime = Date.now() - startTime;
-              if (elapsedTime < minRecordingTime) {
-                SpeechRecognition.startListening();
-              } else {
-                setIsRecording(false);
-              }
-            }
-          }, [listening, isRecording, startTime]);
 
-    const [currency, setCurrency] = useState("")
-    const [showIcon, setShowIcon] = useState(false)
-    const handleCurrencyField = () => {
-        setShowIcon(!showIcon)
+     
+         
+          
 
-    }
-    const handleChangeCurrency = (val) => {
-        setCurrency(val)
-    }
-    const handleCallback = () => {
-        setShowIcon(false)
-        setCurrency("")
-    }
-    const [particularRowData, setParticularRowData] = useState({});
-    function handleSetParticularOrderData(item) {
-        setParticularRowData(item);
-    }
-    const [visible, setVisible] = useState(false)
-    const handleUpdateRevisePrice = () => {
-        setVisible(!visible)
-    }
-    const [price, setPrice] = useState(particularRowData.invoiceId)
-    const handleChange = (val) => {
-          setPrice(val)
-    }
-    const handleSubmitPrice = () => {
-        props.upadtePayment(
-            {
-                invoiceId: price,
-                
-            },
-            particularRowData.paymentId,props.distributorId
-  
-        );
-        setVisible(false)
-    }
-    const [hasMore, setHasMore] = useState(true);
-    
-   const [modalMultiple,setmodalMultiple]=useState(false);
-
-      const sendCreditMemo= async (item) => {
-       
-        setLoading(true);
-        setError(null);
-        try {
-          const response = await axios.post(`${base_url2}/creditMemo/creditInd`,{
-          userId: props.userId,
-          distributorId:item.distributorId,
-          orgId: props.orgId,
-          invoiceId:item.procureOrderInvoiceId,
-          creditInd:true,
-          orderId:item.orderPhoneId,
-          },
-            {
-              headers: {
-                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-              },
-            }  
-          );
-          dispatch(getGeneratedInvoiveList(props.distributorId));
-          setData(response.data);
-          Swal.fire({
-            title: 'Success!',
-            text: 'Generated successfully!',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        });
-        } 
-        
-        catch (err) {
-          setError(err);
-          Swal.fire({
-            title: 'Error!',
-            text: 'There was an issue generating the invoice.',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-        } finally {
-          setLoading(false);
-        }
-      }; 
+   
       
-      const executePayementLink= async () => {
-        setLoading(true);
-        setError(null);
-        try {
-          const response = await axios.post(`${base_url2}/invoice/paylinkDummy `,{
-          userId: props.userId,
-          distributorId:props.distributorId,
-            paylink: "",
-            orgId: props.orgId,
-          },
-            {
-              headers: {
-                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-              },
-            }  
-          );
-          setData(response.data);
-          Swal.fire({
-            title: 'Success!',
-            text: 'Payment successfull',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        });
-        } 
-        
-        catch (err) {
-          setError(err);
-          Swal.fire({
-            title: 'Error!',
-            text: 'There was an issue generating the invoice.',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      if (loading) {
-        return <div><BundleLoader/></div>;
-      }
+     
+   
     return (
         <>
-         <div class=" w-64 max-sm:w-24">
-        <Input
-          placeholder={translatedMenuItems[5]}
-          width={"100%"}
-          suffix={suffix}
-          onPressEnter={handleSearch}
-          onChange={handleChanges}
-        value={currentData}
-        />
-
-<Button type="primary" onClick={()=> setmodalMultiple(true)}>
-      Create from multipule orders 
-    </Button>
-        </div>
-
-        {props.invoiceSearch.length > 0 ? (
-    <Invoicesearch
-    invoiceSearch={props.invoiceSearch}
-    translateText={props.translateText}
-    selectedLanguage={props.selectedLanguage}
-  translatedMenuItems={props.translatedMenuItems}
-    />
-    
-  ) : (
+       
+        
         <>
         
 
@@ -431,10 +198,10 @@ function AccountInvoiceTable(props) {
                                                           
                                                            <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
-                                                                    onClick={() => {
-                                                                        handleSetParticularOrderData(item);
-                                                                        props.handleInvoiceModal(true);
-                                                                    }}
+                                                                    // onClick={() => {
+                                                                    //     handleSetParticularOrderData(item);
+                                                                    //     props.handleInvoiceModal(true);
+                                                                    // }}
                                                                 > {item.invoiceId} </span>
 
                                                         </div>
@@ -470,16 +237,7 @@ function AccountInvoiceTable(props) {
                           </div> </div>
                                                        <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {item.creditInd  ? "" :(
-                                                        <Tooltip title="">
-                                                                <Button 
-                                                                    className="cursor-pointer"
-                                                                    onClick={() => {
-                                                                        sendCreditMemo(item);
-                                                                        handleSetParticularOrderData(item);
-                                                                    }}
-                                                                >{translatedMenuItems[9]}</Button>
-                                                            </Tooltip>)}
+                                                       
                                                       
                           
                           </div>                  
@@ -494,20 +252,15 @@ function AccountInvoiceTable(props) {
                                                                     className="cursor-pointer"
                                                                     onClick={() => {
                                                                         // executePayementLink();
-                                                                        handleSetParticularOrderData(item);
+                                                                        // handleSetParticularOrderData(item);
                                                                     }}
                                                                 > {translatedMenuItems[10]}</Button>
                                                             </Tooltip>
                                                           </div>   
-                                                          <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                   {item.paidInd=== true ? "Paid":"Unpaid"}
-
-                                               </div> </div>   
+                                                          
                                                      <div className=" flex  items-center justify-end  w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                        
-                                                        <Tooltip title="">
+                                                        {/* <Tooltip title="">
                                                                 <PaidIcon
                                                                     className="!text-icon cursor-pointer text-[#e5625e]"
                                                                     onClick={() => {
@@ -516,10 +269,10 @@ function AccountInvoiceTable(props) {
                                                                     }}
 
                                                                 />
-                                                            </Tooltip>      
+                                                            </Tooltip>       */}
                        
                           <div>
-                          <Tooltip title={translatedMenuItems[11]}>
+                          {/* <Tooltip title={translatedMenuItems[11]}>
                              <EventRepeatIcon
                              className="!text-icon cursor-pointer text-[green]"
                               onClick={()=>{
@@ -527,12 +280,12 @@ function AccountInvoiceTable(props) {
                                 handleSetParticularOrderData(item);
                               }}
                              />
-                                  </Tooltip>
+                                  </Tooltip> */}
                               </div>
                               <div class="w-6">
-        <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </span>
+        {/* <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon"/>
+                           </span> */}
           </div>
                          
                           
@@ -551,45 +304,8 @@ function AccountInvoiceTable(props) {
                 </div>
             </div>
             </>
-              )}
-            <InvoiceOrderModal
-                    particularRowData={particularRowData}
-                    handlenvoiceOrderModal={props.handlenvoiceOrderModal}
-                    invoiceOrders={props.invoiceOrders}
-                    selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText}
-                />  
-                 <InvoiceModal
-                    particularRowData={particularRowData}
-                    handleInvoiceModal={props.handleInvoiceModal}
-                    invoiceO={props.invoiceO}
-                    selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText}
-                /> 
-                 <InvoicePaidModal
-                  particularRowData={particularRowData}
-                distributorId={props.distributorId}
-                selectedLanguage={props.selectedLanguage}
-                translateText={props.translateText} 
-                    type={props.type}
-                    addPaidButtonModal={props.addPaidButtonModal}
-                    handlePaidModal={props.handlePaidModal}   
-                />
-                <InvoiceStatusDrawer
-                   selectedLanguage={props.selectedLanguage}
-                   translateText={props.translateText} 
-                                  particularRowData={particularRowData}
-                 openStatus={openStatus}
-                 setopenStatus={setopenStatus}
-                />
-
-                <MultipleOrderDrawer
-                       particularRowData={particularRowData}
-                modalMultiple={modalMultiple}
-                setmodalMultiple={setmodalMultiple}
-                selectedLanguage={props.selectedLanguage}
-                translateText={props.translateText} 
-                />
+             
+          
         </>
     )
 }
@@ -598,13 +314,9 @@ const mapStateToProps = ({ distributor, auth }) => ({
     orgId: auth.userDetails.organizationId,
     currencies: auth.currencies,
     fetchingAccountInvoice:distributor.fetchingAccountInvoice,
-    accountInvoice:distributor.accountInvoice,
-    invoiceOrders:distributor.invoiceOrders,
     fetchingGeneratedInvoice: distributor.fetchingGeneratedInvoice,
     generatedInvoice: distributor.generatedInvoice,
-    invoiceO: distributor.invoiceO,
-    invoiceSearch: distributor.invoiceSearch,
-    addPaidButtonModal: distributor.addPaidButtonModal,
+ 
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -612,13 +324,7 @@ const mapDispatchToProps = (dispatch) =>
         {
        
             getGeneratedInvoiveList,
-            handlenvoiceOrderModal,
-            upadtePayment,
-            handleInvoiceModal,
-            searchInoice,
-            ClearSearchedInvoice,
-            handlePaidModal,
-            getInvoiceCount
+ 
         },
         dispatch
     );

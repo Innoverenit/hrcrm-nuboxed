@@ -2016,29 +2016,6 @@ export const distributorReducer = (state = initialState, action) => {
     case types.HANDLE_UPDATE_DISTRIBUTOR_CONTACT_MODAL:
       return { ...state, updateDistributorContactModal: action.payload };
 
-    case types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_REQUEST:
-      return { ...state, updateDisributorContactById: true };
-    case types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_SUCCESS:
-      return {
-        ...state,
-        updateDisributorContactById: false,
-        updateDistributorContactModal: false,
-        contactDistributor: state.contactDistributor.map((item) => {
-          if (item.contactPersonId == action.payload.contactPersonId) {
-            return action.payload;
-          } else {
-            return item;
-          }
-        }),
-      };
-    case types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_FAILURE:
-      return {
-        ...state,
-        updateDisributorContactById: false,
-        updateDisributorContactByIdError: true,
-        updateDistributorContactModal: false,
-      };
-
     case types.SET_EDIT_PAYMENT_DATA:
       return { ...state, setEditingPayment: action.payload };
 

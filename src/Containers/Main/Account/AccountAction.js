@@ -2136,34 +2136,7 @@ export const handleUpdateDistributorContactModal = (modalProps) => (
   });
 };
 
-export const updateDistributorContact = (data, contactPersonId) => (
-  dispatch
-) => {
-  dispatch({
-    type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_REQUEST,
-  });
-  axios
-    .put(`${base_url2}/contactPerson/${contactPersonId}`, data, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      // dispatch(getDistributorsByUserId(userId));
-      dispatch({
-        type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_FAILURE,
-        payload: err,
-      });
-    });
-};
+
 export const setEditPaymentData = (name) => (dispatch) => {
   dispatch({
     type: types.SET_EDIT_PAYMENT_DATA,
