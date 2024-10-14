@@ -119,21 +119,21 @@ props.emptyClearbit();
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          'First Name', // 0
-'Middle ', // 1
-'Last Name', // 2
-'Email', // 3
-'Mobile', // 4
-'Phone No', // 5
-'Company', // 6
-'URL', // 7
-'Sector', // 8
-'Source', // 9
-'LOB', // 10
-'VAT Number', // 11
-'Registration', // 12
-'Assigned', // 13
-'Notes', // 14
+          '295', //First Name 0
+'353', // 1 middle
+'354', // 2 last
+'140', // 3Email
+'299', // 4Mobile
+'300', // 5 Phone No
+'277', // 6
+'302', // 7 URL
+'278', // 8 Sector
+'279', // 9Source
+'280', // 10
+'306', // 11 VAT Number
+'307', // 12 Registration
+'76', // 13 Assigned
+'316', // 14 Notes
 
 
         ];
