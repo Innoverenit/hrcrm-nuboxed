@@ -189,7 +189,7 @@ function InvestorAllCardList(props) {
     />
   ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-  <div className=" flex justify-between max-sm:hidden  w-[88%]  p-1 bg-transparent font-bold sticky  z-10">
+  <div className=" flex justify-between max-sm:hidden  w-[91%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className="font-bold font-poppins text-xs w-[16.6rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
         {translatedMenuItems[0]}
         {/* "Name" */}           
@@ -326,7 +326,7 @@ function InvestorAllCardList(props) {
                                     </div>
                                 </div>    
                                                     
-                                <div className=" flex justify-center w-[5.124rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex justify-center w-[7.124rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs flex max-sm:text-sm font-poppins text-center">
                                 <div>
         <CurrencySymbol currencyType={item.userCurrency}/>     </div> 
@@ -395,7 +395,7 @@ function InvestorAllCardList(props) {
             </span>          
                                </div>
                                 </div>
-                                <div className=" flex  w-[4.12rem] items-center max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
+                                <div className=" flex  w-[3.12rem] items-center max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                           {/* Owner */}
                        <span>
                        <Tooltip title={item.ownerName}>
@@ -413,7 +413,7 @@ function InvestorAllCardList(props) {
             </span>                                                             
               </div>
               <div className=" flex items-center w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
 </svg>
