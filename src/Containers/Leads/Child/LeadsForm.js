@@ -340,6 +340,7 @@ props.emptyClearbit();
             partnerName: "",
             // price:"",
             source: selectedSource,
+            leadType:"",
             url: "",
             sectorId: selectedSector,
             email: "",
@@ -529,7 +530,22 @@ props.emptyClearbit();
                       </div>
 }
                     </div>
-                  </div>            
+                  
+                  </div> 
+                  <div class=" mt-3">
+                  <Field
+                  
+                    name="leadType"
+                    // type="text"
+                    label="Lead Type"
+                    isColumn
+                    width={"100%"}
+                    options={["BtoB","BtoC" ]}
+                        component={SelectComponent}
+                    inlineLabel
+                  />
+                  </div> 
+                  {values.leadType === "BtoB" && (          
                   <div class=" mt-1">
                   <div className="font-bold text-xs">{translatedMenuItems[6]}</div>
                   <Field                  
@@ -543,6 +559,8 @@ props.emptyClearbit();
                     inlineLabel
                   />
                   </div>
+                  )}
+                   {values.leadType === "BtoB" && (
                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
                   <div className="font-bold text-xs">{translatedMenuItems[7]}</div>
                   {props.customerConfigure.urlInd===true&&               
@@ -556,6 +574,7 @@ props.emptyClearbit();
                   />
 }
                   </div>
+                   )}
                                         
                   <div class=" flex  justify-between mt-1">
                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
@@ -682,6 +701,7 @@ props.emptyClearbit();
                       </div>
                   </div>                            
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
+                    {values.leadType === "BtoB" && (
                     <div class=" w-w47.5 max-sm:w-wk">
                     {props.customerConfigure.vatNoInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
@@ -697,6 +717,8 @@ props.emptyClearbit();
                       </div>
 }
                     </div>
+                    )}
+                     {values.leadType === "BtoB" && (
                     <div class="w-w47.5">
                     {props.customerConfigure.businessRegInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
@@ -713,6 +735,7 @@ props.emptyClearbit();
                       </div>
 }
                     </div>
+                     )}
                   </div>               
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " 

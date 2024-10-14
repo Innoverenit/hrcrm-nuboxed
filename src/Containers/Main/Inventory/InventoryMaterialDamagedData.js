@@ -3,10 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
     getMaterialDamagedData,
+    addRepairData,
+    addDamagedCredit
     // handleMaterialReceived,
     // handlegrnlistmodal
 } from "../Inventory/InventoryAction";
 import dayjs from "dayjs";
+import { Card, Switch, Input, message } from 'antd';
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../Components/UI/Elements";
@@ -19,14 +22,52 @@ import { Tooltip, Select, Button } from "antd";
 const { Option } = Select;
 
 const InventoryMaterialDamagedData = (props) => {
+    const [materialDamage, setMaterialDamage] = useState(props.materialDamageData);
     console.log(props.locationDetailsId)
     useEffect(() => {
         props.getMaterialDamagedData(props.locationId);
         //props.getRoomRackByLocId(props.locationId, props.orgId);
     }, [])
+
+
+    useEffect(() => {
+        // Check if data is available
+        if (props.materialDamageData.length > 0) {
+          // Update activeTab when data is available
+          setMaterialDamage(props.materialDamageData);
+        }
+      }, [props.materialDamageData]);
+
+
+      const handleSwitchChange = (checked, index) => {
+        const newData = [...materialDamage];
+        newData[index].repackedInd = checked; // Update the repackedInd value
+        setMaterialDamage(newData);
+      };
+
+      const handleInputChange = (e, index, unitDamaged) => {
+        const value = e.target.value;
+        // Ensure input value is within the limit
+        if (value <= unitDamaged) {
+          const newData = [...materialDamage];
+          newData[index].repackedUnit = value; // Update the unitData value
+          setMaterialDamage(newData);
+        } else {
+          message.error(`Value exceeds the limit of ${unitDamaged}`);
+        }
+      };
    
 
-
+      const handleKeyPress = (e, index,poSupplierSuppliesId) => {
+        if (e.key === 'Enter') {
+            let data={
+                repackedUnit:materialDamage[index].repackedUnit,
+                repackedInd:materialDamage[index].repackedInd
+            }
+            props.addRepairData(data,poSupplierSuppliesId)
+          console.log(`Unit data for ${materialDamage[index].name}: ${materialDamage[index].repackedUnit}`);
+        }
+      };
    
     return (
         <>
@@ -59,7 +100,7 @@ const InventoryMaterialDamagedData = (props) => {
 
                         </div>
                         <div className=" w-[11.122rem]">       
-                     Credit Note
+                   
 
                         </div>
                         <div className=" w-[11.122rem]">       
@@ -81,7 +122,7 @@ const InventoryMaterialDamagedData = (props) => {
                         height={"67vh"}
                         style={{ scrollbarWidth:"thin"}}
                     > */}
-                     {props.materialDamageData.map((item) => {
+                     {materialDamage.map((item,index) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
@@ -131,8 +172,40 @@ const InventoryMaterialDamagedData = (props) => {
                                           {item.suppliesId}
                                         </div>
                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                         
+                                        <Switch
+                                           checkedChildren="Yes"
+                        unCheckedChildren="No"
+             checked={item.repackedInd} 
+            onChange={(checked) => handleSwitchChange(checked, index)}
+          />
+           {item.repackedInd && (
+            <Input
+              placeholder={`Enter value (limit: ${item.unitDamaged})`}
+              value={item.repackedUnit} // Display unitData as the input value
+              onChange={(e) => handleInputChange(e, index, item.unitDamaged)}
+              onKeyPress={(e) => handleKeyPress(e, index,item.poSupplierSuppliesId)}
+              style={{ marginTop: 10 }}
+              type="number"
+            />
+         )} 
                                         </div>
+
+                                        <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
+
+<div class=" text-xs  font-poppins">
+  <Button
+    onClick={() => {
+        props.addDamagedCredit({
+            creditNoteInd:true
+        },
+        item.poSupplierSuppliesId
+    );
+      
+      }}
+  >Credit Note</Button>
+</div>
+
+</div>
                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                          
                                          </div>
@@ -171,7 +244,9 @@ const mapStateToProps = ({ inventory, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getMaterialDamagedData
+            getMaterialDamagedData,
+            addRepairData,
+            addDamagedCredit
             // getMaterialReceiveData,
             // handleMaterialReceived,
             // handlegrnlistmodal,

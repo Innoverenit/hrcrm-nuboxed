@@ -128,6 +128,10 @@ const initialState = {
   updatingInspection: false,
   updatingInspectionError: false,
 
+
+  addingRepairData:false,
+  addingRepairDataError:false,
+
   //get DispatchList
   fetchingDispatchList: false,
   fetchingDispatchListError: false,
@@ -265,6 +269,11 @@ const initialState = {
   searchingDispatchItem: false,
   searchingDispatchItemError: false,
   updatedShipper: [],
+
+
+
+  addingDamagedCredit:false,
+  addingDamagedCreditError:false,
 
   updatingDispatchReceivePhone: false,
   updatingDispatchReceivePhoneError: false,
@@ -1468,6 +1477,30 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingDispatchReceivePhoneError: true,
       };
 
+
+
+
+
+      case types.ADD_DAMAGED_CREDIT_REQUEST:
+        return { ...state, addingDamagedCredit: true };
+      case types.ADD_DAMAGED_CREDIT_SUCCESS:
+        return {
+          ...state,
+          addingDamagedCredit: false,
+          materialDamageData: state.materialDamageData.map((item) => {
+            if (item.poSupplierSuppliesId === action.payload.poSupplierSuppliesId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+          // regiondata:action.payload,
+          //regions:[action.payload,...state.regions],
+          // documents: [...state.documents, action.payload],
+        };
+      case types.ADD_DAMAGED_CREDIT_FAILURE:
+        return { ...state, addingDamagedCredit: false, addingDamagedCreditError: true };
+
     case types.HANDLE_DISPATCH_RECEIVE_PHONE_MODAL:
       return { ...state, dispatchMismatchData: action.payload };
 
@@ -1835,7 +1868,7 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         updatingRoomRackId: false,
         roomRackbyLoc: state.roomRackbyLoc.map((item) =>
-          item.roomRackId === action.payload.roomRackId
+          item.roomRackChamberLinkId === action.payload.roomRackChamberLinkId
             ? action.payload : item
         ),
       };
@@ -1845,6 +1878,30 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingRoomRackId: false,
         updatingRoomRackIdError: true,
       };
+
+
+
+
+
+      case types.ADD_REPAIR_DATA_REQUEST:
+        return { ...state, addingRepairData: true };
+      case types.ADD_REPAIR_DATA_SUCCESS:
+        return {
+          ...state,
+          addingRepairData: false,
+          materialDamageData: state.materialDamageData.map((item) => {
+            if (item.poSupplierSuppliesId === action.payload.poSupplierSuppliesId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+          // regiondata:action.payload,
+          //regions:[action.payload,...state.regions],
+          // documents: [...state.documents, action.payload],
+        };
+      case types.ADD_REPAIR_DATA_FAILURE:
+        return { ...state, addingRepairData: false, addingRepairDataError: true };
 
     case types.GET_RACK_LIST_REQUEST:
       return { ...state, fetchingRacklist: true };
