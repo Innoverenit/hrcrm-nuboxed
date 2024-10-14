@@ -386,13 +386,13 @@ function InvestorDeleteList(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex items-center w-[3.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center w-[4.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                    {item.club}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[3.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Assigned */}
                                     <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                                    
                                     <span>
@@ -417,7 +417,7 @@ function InvestorDeleteList(props) {
             </span>          
                                     </div>
                                 </div>
-                                <div className=" flex  w-[2.32rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex  w-[3.32rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                                 {/* Owner */}                    
                        <span>
                        <Tooltip title={item.ownerName}>

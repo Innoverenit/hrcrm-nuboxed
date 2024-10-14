@@ -9,6 +9,8 @@ import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, } from "antd";
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { CurrencySymbol } from "../../../../Components/Common";
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -46,6 +48,19 @@ function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
+dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+  const now = dayjs();
+  const creationDay = dayjs(creationDate);
+
+  if (creationDay.isSame(now, 'day')) {
+      return 'Today';
+  } else {
+      return creationDay.from(now); 
+  }
+};
+
 function InvestorAllCardList(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -62,7 +77,7 @@ function InvestorAllCardList(props) {
           "110",//0 Name
           "278",//1Sector
           "490",//2Deals
-           "1162",//3Pipeline Value
+           "328",//3Pipeline
            "279",//4Source
            "76",//5 Assigned
            "77",//6  Owner
@@ -174,20 +189,20 @@ function InvestorAllCardList(props) {
     />
   ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-  <div className=" flex justify-between max-sm:hidden  w-[93%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className="font-bold font-poppins text-xs w-[17.6rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
+  <div className=" flex justify-between max-sm:hidden  w-[88%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div className="font-bold font-poppins text-xs w-[16.6rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
         {translatedMenuItems[0]}
         {/* "Name" */}           
                 </div>
-        <div className="font-bold font-poppins text-xs w-[14.1rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <div className="font-bold font-poppins text-xs w-[11.1rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
         {translatedMenuItems[1]} 
         {/* Sector" */}            
                 </div>     
-        <div className=" font-bold font-poppins text-xs w-[6.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># 
+        <div className=" font-bold font-poppins text-xs w-[5.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># 
         {translatedMenuItems[2]}
         {/* "Deals" */}          
                 </div>
-        <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        <div className="font-bold font-poppins text-xs w-[6.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
         {translatedMenuItems[3]}
          {/* "Pipeline Value" */}
              
@@ -196,17 +211,17 @@ function InvestorAllCardList(props) {
         {translatedMenuItems[4]} 
         {/* Source */}               
         </div>
-        <div className=" font-bold font-poppins text-xs w-[8.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        <div className=" font-bold font-poppins text-xs w-[6.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[9]}
        {/* Shares # */}
           </div> 
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
          {translatedMenuItems[7]}
           {/* Score */}
             </div>
             )}
-               <div className="font-bold font-poppins text-xs w-[8.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+               <div className="font-bold font-poppins text-xs w-[5.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[8]}
         {/* Club */}
           </div>
@@ -303,22 +318,6 @@ function InvestorAllCardList(props) {
                                 </div>
                                                                                                             
                              
-                                {/* <div className=" flex items-center w-[8.21rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "> */}
-                                                                 {/* Country */}
-
-                                  {/* <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
-                                  <ReactCountryFlag
-                        countryCode={item.countryAlpha2Code}
-                        svg
-                        style={{
-                          width: '1rem',
-                          height: '1rem',
-                        }}
-                      />
-                      &nbsp;
-                     {item.countryAlpha2Code}
-                                  </div> */}
-                              {/* </div> */}
                            
                                 <div className=" flex  items-center w-[4.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Deals */}
@@ -327,14 +326,15 @@ function InvestorAllCardList(props) {
                                     </div>
                                 </div>    
                                                     
-                                <div className=" flex items-center w-[6.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* Pipeline Value */}
-                                    {item.totalProposalValue && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-xs max-lg:text-[0.45rem]">
-       {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
-      </div>
-    )}
-                                </div>
+                                <div className=" flex justify-center w-[5.124rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+<div class=" text-xs flex max-sm:text-sm font-poppins text-center">
+                                <div>
+        <CurrencySymbol currencyType={item.userCurrency}/>     </div> 
+        <div>
+        {`${Math.floor(item.totalProposalValue / 1000)}K`}
+        </div>
+                          </div>
+                                </div>                    
                                
                                 </div>
                               
@@ -395,7 +395,7 @@ function InvestorAllCardList(props) {
             </span>          
                                </div>
                                 </div>
-                                <div className=" flex  w-[4.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex  w-[4.12rem] items-center max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                           {/* Owner */}
                        <span>
                        <Tooltip title={item.ownerName}>
@@ -410,12 +410,15 @@ function InvestorAllCardList(props) {
             </Tooltip>
             </div>
           </Tooltip>
-            </span>
-                 
-               
-                   
-                  
-                                </div>
+            </span>                                                             
+              </div>
+              <div className=" flex items-center w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
            </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                                 <div class="flex items-center justify-evenly w-wk">            
@@ -474,13 +477,7 @@ function InvestorAllCardList(props) {
                     <div >
                         <span 
               className=" !text-icon cursor-pointer max-sm:!text-xl "
-            //   onClick={() => {
-            //     props.getCustomerDetailsById(item.customerId);
-            //     props.getCustomerKeySkill(item.customerId);
-            //     //   this.props.getCustomerDocument(item.customerId );
-
-            //     props.handleCustomerDrawerModal(item, true);
-            //   }}
+        
             >
               {" "}
               {user.pulseAccessInd === true && <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl" />}

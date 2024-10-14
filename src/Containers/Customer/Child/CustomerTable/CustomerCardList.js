@@ -340,7 +340,7 @@ if (loading) {
                           <div class="max-sm:w-full flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                <div class="flex text-xs ml-1 text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                   <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
@@ -348,25 +348,11 @@ if (loading) {
 
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
-                                    <div class="text-[0.65rem] mt-[0.4rem] text-[tomato] font-bold"
+                                    <div class="text-[0.65rem] text-[tomato] font-bold"
                                     >
                                       {translatedMenuItems[8]}
                                     </div>
-                                  ) : null}
-                                  {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
-                            href={`customer/${item.customerId}`}>{item.name} </a>
-                              &nbsp;&nbsp;
-        {date === currentdate ? (
-          <div class="text-xs"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </div>
-        ) : null}
-        */}
+                                  ) : null}                              
                                 </div>
                               </div>
                             </Tooltip>
