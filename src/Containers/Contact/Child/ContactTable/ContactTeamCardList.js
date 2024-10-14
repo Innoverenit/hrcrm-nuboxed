@@ -206,23 +206,23 @@ if (loading) {
        
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[100%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent  sticky  z-10">
-        <div class=" flex justify-between w-[93%] font-bold  font-poppins text-xs  ">
-        <div className=" w-[33.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div class=" flex justify-between w-[89%] font-bold  font-poppins text-xs  ">
+        <div className=" w-[31.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         {translatedMenuItems[0]}</div>
-        <div className=" w-[25.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[33.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[1]}</div>
-        <div className=" md:w-[22.1rem] w-[23.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
+        <div className=" md:w-[22.1rem] w-[24.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
         {translatedMenuItems[2]}</div>
-        <div className="  md:w-[14.1rem] w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <div className="  md:w-[18.1rem] w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         {translatedMenuItems[3]}</div>
-        <div className=" md:w-[13.2rem] w-[15.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <div className=" md:w-[17.2rem] w-[15.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         {translatedMenuItems[4]}</div>
-        <div className=" md:w-[8.3rem]  w-[13.3rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
+        <div className=" md:w-[14.3rem]  w-[13.3rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
         {translatedMenuItems[5]}</div>
-        <div className=" w-[17.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[22.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[6]}</div>
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
          {translatedMenuItems[8]}   {/* Score */}
           
             </div>
@@ -361,13 +361,7 @@ if (loading) {
           
             </div>
             )}
-                        <div className=" flex items-center w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
-</svg>
-{getRelativeTime(item.creationDate)}
-</span></div>
+                      
 
                           <div className="flex w-[3.01rem] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
         <Tooltip title={item.ownerName}>
@@ -384,9 +378,16 @@ if (loading) {
     </Tooltip>
 
              </div>
-          
+             <div className=" flex items-center w-[5rem] mr-1 max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
           
                </div>
+
              <div class="flex items-center max-sm:justify-evenly max-sm:w-wk">
           
               <div>
@@ -413,19 +414,7 @@ if (loading) {
         />
      </Tooltip>
      </div>
-     {/* <div>
-     <Tooltip title="Pulse">
- <MonitorHeartIcon
- className=" !text-xl cursor-pointer text-[#df9697]"
-          onClick={() => {
-            handleContactPulseDrawerModal(true);
-            handleSetCurrentContact(item);
-          }}
-          
-        />
-     </Tooltip>
-
-</div> */}
+  
 <div>
                 <Tooltip
                   title={translatedMenuItems[14]}
@@ -488,17 +477,7 @@ if (loading) {
       )}
       </span>
                                                    
-                
-    {/* <div><Tooltip title={item.email}>
-        <MailOutlineIcon
-          type="mail"
-          style={{ cursor: "pointer",fontSize: "1rem" }}
-          onClick={() => {
-            props.getCustomerById(item.customerId);
-            props.handleCustomerEmailDrawerModal(true);
-          }}
-        />
-      </Tooltip> </div> */}
+
       <div><PlusOutlined
                         type="plus"
                         // tooltipTitle="Upload Document"
