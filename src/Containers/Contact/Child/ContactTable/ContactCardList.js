@@ -26,7 +26,6 @@ import {
   handleContactPulseDrawerModal,
   handleContactCETdrawer
 } from "../../ContactAction";
-import AddchartIcon from "@mui/icons-material/Addchart";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
@@ -387,7 +386,7 @@ function ContactCardList(props) {
                   title={translatedMenuItems[13]}
                 >
                   <HourglassFullIcon
-                 className="text-[#edf67d] cursor-pointer !text-icon"
+                 className="text-blue-500 cursor-pointer !text-icon"
                     onClick={() => {
                       props.handleContactCETdrawer(true);
                       handleSetCurrentContact(item);

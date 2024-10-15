@@ -442,7 +442,7 @@ serachedPitchData={props.serachedPitchData}
                                                                         <Tooltip
                                                                                 title= {translatedMenuItems[15]}
                                                                               >
-                                                                    <HourglassFullIcon className="text-[#edf67d] !text-icon" 
+                                                                    <HourglassFullIcon className="text-blue-500 !text-icon" 
 
                                                                         onClick={()=>{
                                                                           props.handleAssimodal(true)

@@ -400,9 +400,9 @@ function AccountInvoiceTable(props) {
                   
                     <div class=" w-[8.5rem]">{translatedMenuItems[0]} ID</div>
                         <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>
-                        {/* <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} </div> */}
+           
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
-                        {/* <div className="md:w-[3.8rem]">{translatedMenuItems[3]}</div> */}
+               
                         <div className=" md:w-[8rem]">{translatedMenuItems[6]}</div>
                         <div className=" md:w-[8rem]">{translatedMenuItems[7]}</div>
                        
@@ -410,14 +410,7 @@ function AccountInvoiceTable(props) {
                         <div className=" md:w-[8rem]">{translatedMenuItems[4]}</div>
                     </div>
                     <div class="h-[69vh]" style={{scrollbarWidth:"thin"}}>
-                        {/* <InfiniteScroll
-                            dataLength={props.accountInvoice.length}
-                            next={handleLoadMore}
-                            hasMore={hasMore}
-                            loader={props.fetchingAccountInvoice ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"33vh"}
-                            style={{scrollbarWidth:"thin"}}
-                        > */}
+                      
                             {props.generatedInvoice.length ? <>
                                 {props.generatedInvoice.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
@@ -451,11 +444,7 @@ function AccountInvoiceTable(props) {
                                                                 {item.newOrderNo}
                                                         </div>
                                                     </div>
-                                                    {/* <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {item.orderPaymentType}
-                                                        </div>
-                                                    </div> */}
+                                                 
                                                     <div className=" flex text-xs w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 

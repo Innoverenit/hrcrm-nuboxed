@@ -403,7 +403,7 @@ if (loading) {
                   title={translatedMenuItems[14]}
                 >
                   <HourglassFullIcon
-                  className="!text-icon cursor-pointer text-[#edf67d]"
+                  className="!text-icon cursor-pointer text-blue-500"
                     onClick={() => {
                       props.handleContactCETdrawer(true);
                       handleSetCurrentContact(item);

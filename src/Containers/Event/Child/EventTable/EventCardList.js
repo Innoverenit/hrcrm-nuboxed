@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip,  Avatar,Button,message } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
+import relativeTime from 'dayjs/plugin/relativeTime';
 import {
   deleteEvent, getEventListRangeByUserId,
   handleUpdateEventModal,
@@ -21,6 +21,19 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { BundleLoader } from "../../../../Components/Placeholder";
 const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
 
+
+dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+    const now = dayjs();
+    const creationDay = dayjs(creationDate);
+
+    if (creationDay.isSame(now, 'day')) {
+        return 'Today';
+    } else {
+        return creationDay.from(now); 
+    }
+};
 function EventCardList (props) {
   const [page, setPage] = useState(0);
   const [location, setLocation] = useState({ lat: null, lng: null });
@@ -284,7 +297,7 @@ const getLocation = () => {
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex  w-[7.69rem] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex  w-[3.69rem] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
@@ -320,6 +333,18 @@ const getLocation = () => {
           </div>
                    </div>
                                </div>
+
+                               <div className=" flex items-center w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
+
+
+
+
                                <div class="flex  w-wk justify-end max-sm:w-wk items-center max-sm:justify-evenly"> 
                     
                       <div class="flex max-sm:flex-row items-center justify-end max-sm:w-auto">
