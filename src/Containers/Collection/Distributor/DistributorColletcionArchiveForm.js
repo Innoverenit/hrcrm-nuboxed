@@ -1,6 +1,5 @@
 import React, { useEffect, useState }  from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, } from "formik";
@@ -18,9 +17,9 @@ function EventForm(props) {
         setLoading(true); 
         const itemsToTranslate = [
    
-         "176", //    startDate,//0
+           "176", //    startDate,//0
            "126",      //  enddate"
-          "154",  // "Submit",//1
+           "154",  // "Submit",//1
          
            
         ];
@@ -195,7 +194,7 @@ function EventForm(props) {
                 loading={props.DistributorCollectionArchive}
               >
 
-{translatedMenuItems[2]}   {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                        <div class="text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>    {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
 
               </Button>
             </div>
