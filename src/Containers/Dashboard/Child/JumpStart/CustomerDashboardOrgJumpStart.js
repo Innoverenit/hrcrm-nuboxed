@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import CustomerPieChart from "./CustomerPieChart"
 import dayjs from "dayjs";
 import {getJumpDistributorDetail,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
   handleOrderClosedModal,getCustomerAddedList,getContactAddedList,getOrderAddedList,
   getOrderClosedList
 } from "../../DashboardAction";
-// import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
-import CustomerJumpStartDrawer from "./CustomerJumpStartDrawer";
-import CustomerAddedModal from "./CustomerAddedModal";
-import ContactAddedModal from "./ContactAddedModal";
-import OrdersAddedModal from "./OrdersAddedModal";
-import OrdersClosedModal from "./OrdersClosedModal";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
+import { BundleLoader } from "../../../../Components/Placeholder";
+
+const OrdersClosedModal=lazy(()=>import("./OrdersClosedModal"));
+const OrdersAddedModal=lazy(()=>import("./OrdersAddedModal"));
+const ContactAddedModal=lazy(()=>import("./ContactAddedModal"));
+const CustomerAddedModal=lazy(()=>import("./CustomerAddedModal"));
+const CustomerJumpStartDrawer=lazy(()=>import("./CustomerJumpStartDrawer"));
+const CustomerPieChart=lazy(()=>import("./CustomerPieChart"));
 
 function CustomerDashboardJumpStart (props) {
   
@@ -226,14 +226,19 @@ function CustomerDashboardJumpStart (props) {
       <div class=" mt-1 flex flex-row justify-between" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Sector</div>
+        <Suspense fallback={<BundleLoader />}>
         <CustomerPieChart/>
+        </Suspense>
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Source</div>
+        <Suspense fallback={<BundleLoader />}>
         <CustomerPieChart/>
+        </Suspense>
         </div>
         </div>
-</div>
+</div><Suspense fallback={<BundleLoader />}>
+
 <CustomerJumpStartDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
@@ -260,7 +265,7 @@ function CustomerDashboardJumpStart (props) {
        orderClosedModal={props.orderClosedModal}
        handleOrderClosedModal={props.handleOrderClosedModal}
       />
-     
+     </Suspense>
    </>
   ); 
 }

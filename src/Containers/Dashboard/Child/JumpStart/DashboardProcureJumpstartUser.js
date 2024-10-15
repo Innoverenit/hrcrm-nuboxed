@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState , lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
@@ -13,12 +13,12 @@ getOrderOpenList,
 getOrderClosedList,
 getOrderCancelList
 } from "../../DashboardAction";
-import CustomerPieChart from "./CustomerPieChart"
-import OrdersClosedModal from "./OrdersClosedModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { base_url2 } from "../../../../Config/Auth";
-import axios from 'axios';
-import OrdersOpenDrawer from "./OrdersOpenDrawer";
+const OrdersOpenDrawer=lazy(()=>import("./OrdersOpenDrawer"));
+const  OrdersClosedModal=lazy(()=>import("./OrdersClosedModal"));
+const CustomerPieChart=lazy(()=>import("./CustomerPieChart"));
+
+
 
 function DashboardOrderJumpstart(props) {
 
@@ -203,11 +203,17 @@ function DashboardOrderJumpstart(props) {
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Value</div>
+        <Suspense fallback={<BundleLoader />}>
+        
         <CustomerPieChart/>
+</Suspense>
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Volume</div>
+        <Suspense fallback={<BundleLoader />}>
+        
         <CustomerPieChart/>
+        </Suspense>
         </div>
       </div>
       </div>
@@ -217,13 +223,14 @@ function DashboardOrderJumpstart(props) {
        orderCancelModal={props.orderCancelModal}
        handleOrderCancelModal={props.handleOrderCancelModal}
       /> */}
+       <Suspense fallback={<BundleLoader />}>
        <OrdersClosedModal
         selectedLanguage={props.selectedLanguage}
         translateText={props.translateText}
        orderClosedModal={props.orderClosedModal}
        handleOrderClosedModal={props.handleOrderClosedModal}
       />
-
+</Suspense>
 {/* <OrdersOpenModal
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}

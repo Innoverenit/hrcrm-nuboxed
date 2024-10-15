@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -135,20 +135,7 @@ function InvestorDealJumpstartDrawerCard (props) {
                                       New
                                     </div>
                                   ) : null}
-                                  {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
-                            href={`customer/${item.customerId}`}>{item.name} </a>
-                              &nbsp;&nbsp;
-        {date === currentdate ? (
-          <div class="text-xs"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </div>
-        ) : null}
-        */}
+                                 
                                 </div>
                               </div>
                             </Tooltip>

@@ -1,4 +1,4 @@
-import React, { useEffect,useState,lazy } from "react";
+import React, { useEffect,useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
@@ -12,11 +12,10 @@ getOrderOpenList,
 getOrderClosedList,
 getOrderCancelList
 } from "../../DashboardAction";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from 'axios';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import OrdersOpenDrawer from "./OrdersOpenDrawer";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const StackedClosureChart= lazy(()=>import("../../../Dashboard/StackedClosureChart"));
 
 function DashProcureQuotaJumpstartUser(props) {
@@ -235,7 +234,9 @@ function DashProcureQuotaJumpstartUser(props) {
     
         </div>
         <div class="mt-1">
+        <Suspense fallback={<BundleLoader />}> 
       <StackedClosureChart />
+      </Suspense>
       </div>
         </div>
   

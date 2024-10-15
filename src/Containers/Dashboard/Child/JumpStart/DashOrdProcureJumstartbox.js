@@ -1,4 +1,4 @@
-import React, { useEffect,useState, lazy } from "react";
+import React, { useEffect,useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
@@ -13,9 +13,8 @@ getOrderOpenList,
 getOrderClosedList,
 getOrderCancelList
 } from "../../DashboardAction";
-import ProcureLineChart from "../ProcureLineChart"
 import { BundleLoader } from "../../../../Components/Placeholder";
-const StackedClosureChart= lazy(()=>import("../../../Dashboard/StackedClosureChart"));
+const ProcureLineChart= lazy(()=>import("../ProcureLineChart"));
 
 function DashOrdrProcureJumstartbox(props) {
 
@@ -154,8 +153,10 @@ function DashOrdrProcureJumstartbox(props) {
        
   </div>
   <div class="mt-1">
-      {/* <StackedClosureChart /> */}
+  <Suspense fallback={<BundleLoader />}> 
+    
       <ProcureLineChart/>
+      </Suspense>
       </div>
       {/* <DashProcureQuotaDrawer
  selectedLanguage={props.selectedLanguage}

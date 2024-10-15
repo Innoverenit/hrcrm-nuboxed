@@ -1,4 +1,4 @@
-import { Badge, Tag, Tooltip, Avatar, Button } from "antd";
+import {Tag, Tooltip, Avatar, Button } from "antd";
 import React, { useState, lazy, Suspense ,useEffect} from "react";
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 import { connect } from "react-redux";
@@ -10,13 +10,11 @@ import {
   setDashboardViewType
 } from "../DashboardAction";
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
-import PersonIcon from '@mui/icons-material/Person';
 import { bindActionCreators } from "redux";
 import TimeInterval from "../../../Utils/TimeInterval";
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; 
 import ShopIcon from '@mui/icons-material/Shop';
@@ -339,9 +337,7 @@ const DashboardActionLeft = (props) => {
                 >
                   <Tooltip title={translatedMenuItems[8]}>
                     <Avatar style={{ background: activeButton === "Tasks" ? "#f279ab" : "#28a355" }}>
-                      <FactCheckIcon className="text-white !text-icon"
-
-                      />
+                      <FactCheckIcon className="text-white !text-icon"  />
                     </Avatar>
                   </Tooltip>
                 </span>

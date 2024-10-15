@@ -16,7 +16,7 @@ const StyledInput = styled.input.attrs({
   display: block;
   margin: 0 0 0.42rem 0;  
   outline: none;
-  height: 1.48rem;
+  height: 1.88rem;
   position: relative !important;
   box-shadow: 0em 0.25em 0.625em -0.25em ${(props) => props.theme.boxShadowColor};
   padding: 0.3rem 1rem;

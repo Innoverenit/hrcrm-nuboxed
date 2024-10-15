@@ -1,12 +1,11 @@
-import React, { useEffect,useState } from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useEffect,useState, lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {handleSalesModal} from "../RegionalDashAction"
-
+import { BundleLoader } from "../../../Components/Placeholder";
  import { getRegions } from "../../Settings/Category/Region/RegionAction";
 import { JumpStartBox } from "../../../Components/UI/Elements";
-import AddSalesDrawerModal from "./AddSalesDrawerModal";
+const AddSalesDrawerModal=lazy(()=>import("./AddSalesDrawerModal"));
 
 function RegionalSales(props) {
 
@@ -65,6 +64,7 @@ function RegionalSales(props) {
         ))}
       </div>
     </div>
+    <Suspense fallback={<BundleLoader />}>
     <AddSalesDrawerModal
       rowdata={rowdata}
       regionRecords={props.regionRecords}
@@ -74,6 +74,7 @@ function RegionalSales(props) {
         addSalesModal={addSalesModal}
         handleSalesModal={handleSalesModal}
       />
+      </Suspense>
     </>
   );
 }

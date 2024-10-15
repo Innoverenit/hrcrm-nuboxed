@@ -1,9 +1,9 @@
-import React, { Component,Suspense,lazy } from "react";
+import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import DashProcurePayDrawerCard from "./DashProcurePayDrawerCard";
+const  DashProcurePayDrawerCard= lazy(()=>import("./DashProcurePayDrawerCard"));
 
 function DashProcurePayDrawer (props) {
 

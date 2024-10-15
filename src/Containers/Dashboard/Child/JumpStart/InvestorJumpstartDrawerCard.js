@@ -13,10 +13,8 @@ import { Tooltip ,Popconfirm,Button} from "antd";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 function InvestorJumpstartDrawerCard (props) {
 

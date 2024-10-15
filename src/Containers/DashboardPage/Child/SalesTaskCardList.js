@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { Tabs,Tooltip,Button } from 'antd';
 import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
-import StageTaskColumns1 from "../../DashboardPage/Child/StageTaskColumns1"
 import styled from "styled-components";
 import {getRegionTaskList,updateTaskdragstage} from "../RegionalDashAction"
 import StarBorderIcon from '@mui/icons-material/StarBorder';

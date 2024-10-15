@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy } from "react";
 import {handleFullFillmentModal} from "../DashboardPage/RegionalDashAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getRegions } from "../Settings/Category/Region/RegionAction";
 import { JumpStartBox } from "../../Components/UI/Elements";
-import AddFullFillmentDrawerModal from "./AddFullFillmentDrawerModal";
+
+const  AddFullFillmentDrawerModal=lazy(()=>import("./AddFullFillmentDrawerModal"));
 
 function FullFillMentJumpstartBox(props) {
   const {
