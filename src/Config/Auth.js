@@ -36,7 +36,7 @@ const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 // KAPSSN
 //  const login_url = "http://Hrweb-env.eba-dg22wwp8.ap-south-1.elasticbeanstalk.com";
 //  const base_url = "http://Hrweb-env.eba-dg22wwp8.ap-south-1.elasticbeanstalk.com/api/v1";
-//  const base_url2 = "http://http://erp-env.eba-7espr2mu.ap-south-1.elasticbeanstalk.com";
+//  const base_url2 = "http://erp-env.eba-7espr2mu.ap-south-1.elasticbeanstalk.com";
 //  const asses_url = "http://Hrweb-env.eba-dg22wwp8.ap-south-1.elasticbeanstalk.com/Assessment-0.0.1-SNAPSHOT"
 //  const sub_url = "http://develop.tekorero.com/Subscription/api/v2";
 

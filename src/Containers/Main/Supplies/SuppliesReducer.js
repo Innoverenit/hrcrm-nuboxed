@@ -24,6 +24,8 @@ const initialState = {
 
     uploadImageListSupplies:false,
 
+    newArivalmodal:false,
+
     addBrandModel: false,
 
     priceOpenModal:false,
@@ -1269,6 +1271,9 @@ export const suppliesReducer = (state = initialState, action) => {
 
         case types.HANDLE_IMAGE_SUPPLIES_MODAL:
           return { ...state, uploadImageListSupplies: action.payload };
+
+          case types.HANDLE_NEWARRIVAL_MODAL:
+            return { ...state, newArivalmodal: action.payload };
   
           case types.HANDLE_ERP_DOCUMENT_UPLOAD_MODAL:
             return { ...state, erpDocumentUploadModal: action.payload };

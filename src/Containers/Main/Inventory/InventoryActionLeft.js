@@ -59,7 +59,23 @@ const InventoryActionLeft = (props) => {
         </Tooltip>
         )}
 
+{/* {props.user.repairInd === true &&   ( */}
+        <Tooltip title="Supplier">
+         
 
+            <span class=" mr-1 text-sm cursor-pointer"
+              onClick={() => props.setInventoryViewType("supplier")}
+              style={{
+                color: props.viewType === "supplier" && "#1890ff",
+              }}
+            >
+              
+              <Button type={props.viewType === "supplier" ? "primary" : ""} style={{ backgroundColor: props.viewType === "supplier" ? "" : "tomato" }}>
+             <div class="text-white ">Supplier</div></Button>
+            </span>
+         
+        </Tooltip>
+         {/* )} */}
         <Tooltip title="Commerce">
          
 

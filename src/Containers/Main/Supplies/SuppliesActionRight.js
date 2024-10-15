@@ -7,11 +7,13 @@ import { withRouter } from "react-router";
 import UploadMaterialModal from "./UploadMaterialModal"
 import UploadIcon from '@mui/icons-material/Upload';
 import { Tooltip } from "antd";
-import { handleSuppliesModal,handleUploadMaterialModal,handleImageSuppliesModal } from "./SuppliesAction";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import { handleSuppliesModal,handleUploadMaterialModal,handleImageSuppliesModal,handleNewAriival } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import UploadImageModalSupplies from "./UploadImageModalSupplies";
+import NewArrivalAddModal from "./NewArrivalAddModal";
 
 const SuppliesAddModal=lazy(()=>import("./SuppliesAddModal"));
 
@@ -51,11 +53,22 @@ class SuppliesActionRight extends React.Component {
     }
   };
   render() {
-    const { handleSuppliesModal, addSuppliesModal, user, viewType } = this.props;
+    const { handleSuppliesModal, addSuppliesModal, user, viewType,handleNewAriival,newArivalmodal } = this.props;
 
     return (
       <>
       <div className="flex">
+      <Tooltip title="New Arrivals">
+        <Button
+         type="primary"
+         onClick={() => handleNewAriival(true)}>
+            <DateRangeIcon
+            className="cursor-pointer !text-base"
+             
+            />   
+            New Arrivals
+            </Button>  
+          </Tooltip>
         {
           viewType === "all" ?
           <Tooltip title="Export Supplies">
@@ -107,6 +120,13 @@ class SuppliesActionRight extends React.Component {
           addSuppliesModal={addSuppliesModal}
           translatedMenuItems={this.state.translatedMenuItems}
         />
+         <NewArrivalAddModal
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
+         handleNewAriival={handleNewAriival}
+         newArivalmodal={newArivalmodal}
+          translatedMenuItems={this.state.translatedMenuItems}
+        />
          <UploadImageModalSupplies
         uploadImageListSupplies={this.props.uploadImageListSupplies}
         handleImageSuppliesModal={this.props.handleImageSuppliesModal}
@@ -126,7 +146,8 @@ const mapStateToProps = ({ supplies, auth }) => ({
   addSuppliesModal: supplies.addSuppliesModal,
   user: auth.userDetails,
   uploadMaterialModal:supplies.uploadMaterialModal,
-  uploadImageListSupplies:supplies.uploadImageListSupplies
+  uploadImageListSupplies:supplies.uploadImageListSupplies,
+  newArivalmodal: supplies.newArivalmodal
 
 });
 const mapDispatchToProps = (dispatch) =>
@@ -134,7 +155,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       handleSuppliesModal,
       handleUploadMaterialModal,
-      handleImageSuppliesModal
+      handleImageSuppliesModal,
+      handleNewAriival
     },
     dispatch
   );

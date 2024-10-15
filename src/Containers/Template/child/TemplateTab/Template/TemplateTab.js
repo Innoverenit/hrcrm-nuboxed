@@ -14,6 +14,9 @@ import { handleTemplateModal,handleTemplateNotificatonModal } from "../../../../
 import TemplateTable from "./TemplateTable";
 import { Tooltip } from "antd";
 import DraftsIcon from '@mui/icons-material/Drafts';
+import TemplateOrderTable from "./TemplateOrderTable";
+import QuotationTemplate from "./QuotationTemplate";
+import InvoiceTemplateTable from "./InvoiceTemplateTable";
 const AddTemplateModal = lazy(() => import("./AddTemplateModal"));
 const AddTemplateNotificatonModal = lazy(() => import("../AddTemplateNotificatonModal"));
 
@@ -132,7 +135,7 @@ class TemplateTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                   {" "}
-                  {/* <TemplateTable /> */}
+                  <InvoiceTemplateTable />
                </Suspense>             
             </TabPane>
             <TabPane
@@ -171,7 +174,7 @@ class TemplateTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                   {" "}
-                  {/* <TemplateTable /> */}
+                  <QuotationTemplate/>
                </Suspense>             
             </TabPane>
             <TabPane
@@ -210,7 +213,7 @@ class TemplateTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                   {" "}
-                  {/* <TemplateTable /> */}
+                  <TemplateOrderTable />
                </Suspense>             
             </TabPane>
             <TabPane

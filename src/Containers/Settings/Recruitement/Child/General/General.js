@@ -641,6 +641,7 @@ function General(props) {
     proInd: props.requirementDuration.proInd,
     repairProcessInd: props.requirementDuration.repairProcessInd,
     criticlDateRange: props.requirementDuration.criticlDateRange,
+    newArrDay: props.requirementDuration.newArrDay,
     processInd: props.requirementDuration.processInd,
     userId: props.userId,
     orgId: props.orgId,
@@ -687,6 +688,7 @@ function General(props) {
     proInd: props.requirementDuration.proInd,
     repairProcessInd: props.requirementDuration.repairProcessInd,
     criticlDateRange: props.requirementDuration.criticlDateRange || "",
+    newArrDay: props.requirementDuration.newArrDay || "",
     processInd: props.requirementDuration.processInd,
     userId: props.userId,
     orgId: props.orgId,
@@ -751,6 +753,7 @@ function General(props) {
           
           repairProcessInd: formValues.repairProcessInd,
           criticlDateRange:formValues.criticlDateRange,
+          newArrDay:formValues.newArrDay,
           processInd: formValues.processInd,
 
     };
@@ -1078,6 +1081,19 @@ function General(props) {
                       type="number"
                       name="criticlDateRange"
                       value={formValues.criticlDateRange}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between mt-2">
+                  <div className="text-xs">New Arrival Date Range (Days)</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="newArrDay"
+                      value={formValues.newArrDay}
                       onChange={handleInputChange}
                       onBlur={handleInputBlur}
                       className="input-component" // Add styling or class as needed
