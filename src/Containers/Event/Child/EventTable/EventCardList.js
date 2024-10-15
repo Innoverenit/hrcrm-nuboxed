@@ -186,19 +186,9 @@ const getLocation = () => {
                 /> */}
                 </div>
         <div className="w-24 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
-       {/* <FormattedMessage
-                  id="app.subject"
-                  defaultMessage="subject"
-                /> */}
+  
                 </div>
-                   {/* <div className="md:w-[5%]"><FormattedMessage
-                  id="app.rating"
-                  defaultMessage="rating"
-                /></div>
-        <div className="w-12"><FormattedMessage
-                  id="app.action"
-                  defaultMessage="action"
-                /></div> */}
+                
                 </div>
       </div>
       <InfiniteScroll

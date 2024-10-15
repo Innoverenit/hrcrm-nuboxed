@@ -46,7 +46,10 @@ function DistributorColletcionArchive(props) {
   return (
     <>
       <Suspense fallback={<BundleLoader />}>
-        <DistributorColletcionArchiveForm />
+        <DistributorColletcionArchiveForm 
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+        />
       </Suspense>
 
       <div className=' flex  sticky  z-auto'>
