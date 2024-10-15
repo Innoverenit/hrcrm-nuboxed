@@ -410,6 +410,38 @@ case types.HANDLE_LEADS_MODAL:
           leadsAllData: state.leadsAllData.filter(
             (item) => item.leadsId !== action.payload
           ),
+          leadsAllDataCold: state.leadsAllDataCold.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+          leadsAllDataWarm: state.leadsAllDataWarm.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+          teamLeadsHot: state.teamLeadsHot.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+
+          teamLeadsCold: state.teamLeadsCold.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+
+          leadsAllDataWarm: state.leadsAllDataWarm.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+
+          teamLeadsWarm: state.teamLeadsWarm.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+
+          allleadsInfoHot: state.allleadsInfoHot.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+
+          allleadsInfoCold: state.allleadsInfoCold.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+          allleadsInfoWarm: state.allleadsInfoWarm.filter(
+            (item) => item.leadsId !== action.payload
+          ),
         };
       case types.CONVERT_CUSTOMER_STATUS_FAILURE:
         return {

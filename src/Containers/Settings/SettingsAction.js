@@ -4119,7 +4119,7 @@ export const getAllVat = () => (
     });
 };
 
-export const websiteSingleMultiple = (process,orgId,type, cb) => (dispatch) => {
+export const websiteSingleMultiple = (process,orgId,activeKey,type, cb) => (dispatch) => {
   dispatch({ type: types.UPDATE_WEBSITE_SINGLE_REQUEST });
 
   axios
@@ -4129,7 +4129,7 @@ export const websiteSingleMultiple = (process,orgId,type, cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      dispatch(getDistributionAutomation(orgId,"lead"));
+      dispatch(getDistributionAutomation(orgId,activeKey));
       console.log(res);
       dispatch({
         type: types.UPDATE_WEBSITE_SINGLE_SUCCESS,

@@ -66,7 +66,7 @@ const InventoryMaterialBestBefore = (props) => {
         setIsLoadingZone(true);
         try {
        
-          const apiEndpoint = `${base_url2}/roomrack/roomAndRackDetails/quality/${props.locationId}/${props.orgId}`;
+          const apiEndpoint = `${base_url2}/roomrack/roomAndRackDetails/${props.locationId}/${props.orgId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
             headers: {
@@ -121,12 +121,12 @@ const InventoryMaterialBestBefore = (props) => {
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=""></div>
                         <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
-                        <div className=" w-[13.52rem]">
+                        <div className=" w-[13.52rem]" style={{marginLeft:"-132px"}}>
                             {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
                          Item Name
                         </div>
                
-                        <div className=" w-[11.122rem]">       
+                        <div className=" w-[11.122rem]" style={{marginLeft:"-104px"}}>       
                        Supplier Name
 
                         </div>
@@ -148,7 +148,7 @@ const InventoryMaterialBestBefore = (props) => {
                      Credit Note
 
                         </div> */}
-                        <div className=" w-[11.122rem]">       
+                        <div className=" w-[11.122rem]" style={{marginLeft:"-52px"}}>       
                     Units
 
                         </div>
@@ -193,7 +193,7 @@ const InventoryMaterialBestBefore = (props) => {
                                         </div>
                                         <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            <div class=" text-xs  font-poppins">
+                                            <div class=" text-xs  font-poppins" style={{marginLeft:"-141px"}}>
                                                 {/* <MultiAvatar
                                                     primaryTitle={item.userName}
                                                     imgWidth={"1.8rem"}
@@ -203,7 +203,7 @@ const InventoryMaterialBestBefore = (props) => {
                                             </div>
 
                                         </div>
-                                        <div className=" flex  w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[16.32rem] max-sm:flex-row  max-sm:justify-between  " style={{marginLeft:"-76px"}}>
 
                                             {item.supplierName}
 
@@ -218,7 +218,7 @@ const InventoryMaterialBestBefore = (props) => {
                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           {item.newSuppliesNo}
                                         </div>
-                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between " style={{marginLeft:"-68px"}}>
                                           {item.remainingCorrectUnit}
                                         </div>
 
@@ -235,11 +235,11 @@ const InventoryMaterialBestBefore = (props) => {
                                           });
                                           
                                         }}
-                                        style={{marginLeft:"-30px"}}
+                                        style={{marginLeft:"-202px"}}
                                         >To Waste</Button>
                                         </div>
                                         <div className=" flex font-medium  items-center md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-13em"}} >
+                                                    <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-29em"}} >
                                                         
                                                     <Select placeholder="Select zone" 
                                                     style={{ width: 146 }}
@@ -257,6 +257,22 @@ const InventoryMaterialBestBefore = (props) => {
                                                     
 
       <Select placeholder="Select rack" 
+      style={{ width: 146,marginLeft:"1em" }}
+      loading={isLoadingRack}
+      onChange={handleRackChange}
+      disabled={!selectedZone} 
+      >
+      
+      {rack.map((rack) => (
+        <Option key={rack.roomRackChamberLinkId} value={rack.roomRackChamberLinkId}>
+          {rack.chamber}
+        </Option>
+      ))}
+    </Select>
+
+
+
+    <Select placeholder="Select aisle" 
       style={{ width: 146,marginLeft:"1em" }}
       loading={isLoadingRack}
       onChange={handleRackChange}
