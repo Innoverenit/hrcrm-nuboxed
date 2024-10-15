@@ -339,6 +339,9 @@ const RoomAndRackForm = (props) => {
 
 
   const [newUom, setNewUom] = useState("");
+  const [newChWt, setNewChWt] = useState("");
+  const [newStockUnit, setNewStockUnit] = useState("");
+  const [newWtUom, setNewWtUom] = useState("");
   const [newChbhth, setNewChbhth] = useState("");
   const [newChbWdh, setNewChbWdh] = useState("");
   const [newChbLth, setNewChbLth] = useState("");
@@ -429,12 +432,15 @@ const RoomAndRackForm = (props) => {
     }));
   };
 
-  const handleEditClick = (roomRackChamberLinkId,chbrLth,chbrWdh,chbrhth,chbrUom) => {
+  const handleEditClick = (roomRackChamberLinkId,chbrLth,chbrWdh,chbrhth,chbrUom,chbrWt,wtUom,stockData) => {
     setEditroomRackId(roomRackChamberLinkId);
     setNewChbLth(chbrLth);
     setNewChbWdh(chbrWdh);
     setNewChbhth(chbrhth);
     setNewUom(chbrUom)
+    setNewChWt(chbrWt)
+    setNewWtUom(wtUom)
+    setNewStockUnit(stockData)
   };
 
   const handleCancelClick = (roomRackId) => {
@@ -448,6 +454,9 @@ const RoomAndRackForm = (props) => {
     chbrUom:newUom,
     chbrWdh:newChbWdh,
     chbrhth:newChbhth,
+    chbrWt:newChWt,
+    wtUom:newWtUom,
+    restock:newStockUnit
     };
     props.updateRoomRackId(updatedData, roomRackChamberLinkId);
     setEditroomRackId(null);
@@ -583,12 +592,13 @@ const RoomAndRackForm = (props) => {
               <div className="md:w-[9.1rem]">Weight</div>
               <div className="md:w-[9.1rem]">UOM</div>
               <div className="md:w-[9.1rem]">Zone Type</div>
-              <div className="md:w-[9.1rem]">Description</div>
+              <div className="md:w-[9.1rem]">Restock Unit</div>
               
               <div className="w-12"></div>
             </div>
 
             {asileRack.map((item) => {
+              const stockData=item.restock===0?50:item.restock
               return (
                 <div key={item.roomRackChamberLinkId}>
                   <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1">
@@ -606,7 +616,7 @@ const RoomAndRackForm = (props) => {
                       <div className="text-xs  font-poppins">
                       
                           <div className="font-normal text-sm  font-poppins">
-                            <div>{item.aisle}</div>
+                            <div style={{marginLeft:"-2em"}}>{item.aisle}</div>
                           </div>
                        
                       </div>
@@ -619,7 +629,7 @@ const RoomAndRackForm = (props) => {
                       <div className="text-xs  font-poppins">
                       
                           <div className="font-normal text-sm  font-poppins">
-                            <div>{item.chamber}</div>
+                            <div style={{marginLeft:"-4em"}}>{item.chamber}</div>
                           </div>
                      
                       </div>
@@ -637,7 +647,7 @@ const RoomAndRackForm = (props) => {
                           />
                         ) : (
                           <div className="font-normal text-sm  font-poppins">
-                            <div>{item.chbrLth}</div>
+                            <div style={{marginLeft:"-5em"}}>{item.chbrLth}</div>
                           </div>
                         )}
                       </div>
@@ -655,7 +665,7 @@ const RoomAndRackForm = (props) => {
                           />
                         ) : (
                           <div className="font-normal text-sm  font-poppins">
-                            <div>{item.chbrWdh}</div>
+                            <div style={{marginLeft:"-4em"}}>{item.chbrWdh}</div>
                           </div>
                         )}
                       </div>
@@ -674,7 +684,7 @@ const RoomAndRackForm = (props) => {
                           />
                         ) : (
                           <div className="font-normal text-sm  font-poppins">
-                            <div>{item.chbrhth}</div>
+                            <div style={{marginLeft:"-2em"}}>{item.chbrhth}</div>
                           </div>
                         )}
                       </div>
@@ -696,7 +706,7 @@ const RoomAndRackForm = (props) => {
                       </Select>
                         ) : (
                           <div className="font-normal text-sm  font-poppins">
-                            <div>
+                            <div style={{marginLeft:"-1em"}}>
                            {item.chbrUom}
                               {/* {item.zoneType} */}
                               </div>
@@ -711,12 +721,12 @@ const RoomAndRackForm = (props) => {
                         {editroomRackId === item.roomRackChamberLinkId ? (
                           <Input
                             className="border-[2px] border-black w-12"
-                    // value={newChbhth}
-                    // onChange={(e) => setNewChbhth(e.target.value)}
+                    value={newChWt}
+                    onChange={(e) => setNewChWt(e.target.value)}
                           />
                         ) : (
                           <div className="font-normal text-sm  font-poppins">
-                            {/* <div>{item.chbrhth}</div> */}
+                            <div style={{marginLeft:"1em"}}>{item.chbrWt}</div>
                           </div>
                         )}
                       </div>
@@ -726,8 +736,8 @@ const RoomAndRackForm = (props) => {
                         {editroomRackId === item.roomRackChamberLinkId ? (
                         <Select
                         className="w-32"
-                      value={newUom}
-                        onChange={(value) => setNewUom(value)} // `value` is passed directly by Select's onChange handler
+                      value={newWtUom}
+                        onChange={(value) => setNewWtUom(value)} // `value` is passed directly by Select's onChange handler
                       >
                         {props.UOMListData.map((item) => (
                           <Option key={item.unitName} value={item.unitName}>
@@ -737,8 +747,8 @@ const RoomAndRackForm = (props) => {
                       </Select>
                         ) : (
                           <div className="font-normal text-sm  font-poppins">
-                            <div>
-                           {item.chbrUom}
+                            <div style={{marginLeft:"2em"}}>
+                           {item.wtUom}
                               {/* {item.zoneType} */}
                               </div>
                           </div>
@@ -748,7 +758,7 @@ const RoomAndRackForm = (props) => {
 
 
                     <div className="flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div className="text-xs  font-poppins">
+                      <div style={{marginLeft:'44px'}} className="text-xs  font-poppins">
                         {/* {editroomRackId === item.roomRackChamberLinkId ? (
                           <Select
                             className="w-32"
@@ -760,24 +770,28 @@ const RoomAndRackForm = (props) => {
                           </Select>
                         ) : ( */}
                           <div className="font-normal text-sm  font-poppins">
-                            <div>{item.zoneType}</div>
+                            <div >{item.zoneType}</div>
                           </div>
                         {/* )} */}
                       </div>
                     </div>
 
                     <div className="flex font-medium flex-col md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between">
-                      {/* {editroomRackId === item.roomRackChamberLinkId ? (
+                      {editroomRackId === item.roomRackChamberLinkId ? (
                         <Input
                           className="border-[2px] border-black w-12"
-                          value={editedFields[item.roomRackId]?.description !== undefined ? editedFields[item.roomRackId].description : item.description}
-                          onChange={(e) => handleUpChange(item.roomRackId, 'description', e.target.value)}
+                          value={newStockUnit}
+                          onChange={(e) => setNewStockUnit(e.target.value)}
+                          // value={editedFields[item.roomRackId]?.description !== undefined ? editedFields[item.roomRackId].description : item.description}
+                          //onChange={(e) => handleUpChange(item.roomRackId, 'description', e.target.value)}
                         />
-                      ) : ( */}
+                      ) : (
                         <div className="font-normal text-sm  font-poppins">
-                          <div>{item.description}</div>
+                          <div style={{marginLeft:"2em"}}>
+                            {stockData}
+                            </div>
                         </div>
-                      {/* )} */}
+                    )}
                     </div>
 
                  
@@ -799,7 +813,7 @@ const RoomAndRackForm = (props) => {
                               className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                               tooltipTitle="Edit"
                               iconType="edit"
-                              onClick={() => handleEditClick(item.roomRackChamberLinkId,item.chbrLth,item.chbrWdh,item.chbrhth,item.chbrUom)}
+                              onClick={() => handleEditClick(item.roomRackChamberLinkId,item.chbrLth,item.chbrWdh,item.chbrhth,item.chbrUom,item.chbrWt,item.wtUom,stockData)}
                             />
                           )}
                         </div>

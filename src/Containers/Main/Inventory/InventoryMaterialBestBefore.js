@@ -22,13 +22,16 @@ import { MultiAvatar } from "../../../Components/UI/Elements";
 // import ReceivedDetailModal from "./ReceivedDetailModal";
 // import GrnListOfPOModal from "./GrnListOfPOModal";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button } from "antd";
+import { Tooltip, Select, Button,Input } from "antd";
 import { base_url2 } from "../../../Config/Auth";
 //import { getRoomRackByLocId, getRackList } from "../../../../Inventory/InventoryAction";
 
 const { Option } = Select;
 
 const InventoryMaterialBestBefore = (props) => {
+
+  const [selectedZones, setSelectedZones] = useState(null);
+  const [asile, setAsile] = useState("");
     const [zone, setZone] = useState([]);
     const [rack, setRack] = useState([]);
     const [isLoadingZone, setIsLoadingZone] = useState(false);
@@ -49,9 +52,17 @@ const InventoryMaterialBestBefore = (props) => {
     }
 
 
-    const handleZoneChange = (roomRackId) => {
-        setSelectedZone(roomRackId);
-        fetchRack(roomRackId);
+    const handleZoneChange = (value) => {
+      const selectedZoneData = zone.find(zone => zone.zone === value);
+      console.log(selectedZoneData)
+      if (selectedZoneData) {
+        setAsile(selectedZoneData.aisle);
+        setSelectedZones(value);
+      } else {
+        setAsile("");
+      }
+        // setSelectedZone(roomRackId);
+        fetchRack(value);
       };
 
       const handleSelectZoneFocus = () => {
@@ -111,7 +122,7 @@ const InventoryMaterialBestBefore = (props) => {
         }
       };
    
-
+console.log(selectedZones)
 
    
     return (
@@ -244,6 +255,7 @@ const InventoryMaterialBestBefore = (props) => {
                                                     <Select placeholder="Select zone" 
                                                     style={{ width: 146 }}
                                                     loading={isLoadingZone}
+                                                    value={selectedZones}
                                                     onFocus={handleSelectZoneFocus}
                                                     onChange={handleZoneChange}
                                                     >
@@ -256,7 +268,11 @@ const InventoryMaterialBestBefore = (props) => {
       </Select>
                                                     
 
-      <Select placeholder="Select rack" 
+    
+
+
+
+    {/* <Select placeholder="Select aisle" 
       style={{ width: 146,marginLeft:"1em" }}
       loading={isLoadingRack}
       onChange={handleRackChange}
@@ -268,11 +284,15 @@ const InventoryMaterialBestBefore = (props) => {
           {rack.chamber}
         </Option>
       ))}
-    </Select>
+    </Select> */}
+    <Input
+        placeholder="Aisle"
+        style={{ width: 200 }}
+        value={asile}
+        disabled
+      />
 
-
-
-    <Select placeholder="Select aisle" 
+    <Select placeholder="Select rack" 
       style={{ width: 146,marginLeft:"1em" }}
       loading={isLoadingRack}
       onChange={handleRackChange}
@@ -327,6 +347,7 @@ const mapStateToProps = ({ inventory,suppliers, auth }) => ({
     userId: auth.userDetails.userId,
     locationId: auth.userDetails.locationId,
     orgId: auth.userDetails.organizationId,
+    token: auth.token,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
     materialBestBefore:inventory.materialBestBefore,
     addTermsnCondition: suppliers.addTermsnCondition,
