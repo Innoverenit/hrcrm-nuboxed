@@ -5,6 +5,7 @@ import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Badge, Avatar,Input } from "antd";
 import { AudioOutlined } from '@ant-design/icons';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {materialCategorySearch,getMaterialCategory, getSuppliesCount,getSuppliesDeletedCount,getSuppliesList,ClearReducerDataOfMaterial,inputSuppliesDataSearch } from "./SuppliesAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -280,11 +281,11 @@ function SuppliesActionLeft (props) {
                                 color: "blue",
                             }}
                         >
-                            {/* <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#28a355" }}> */}
-                                <LocalActivityOutlined 
-                                // className="text-white" 
+                            <Avatar style={{ background: viewType === "suppliesLocation" ? "#f279ab" : "#28a355" }}>
+                                <LocationOnIcon 
+                                className="text-white cursor-pointer !text-icon"
                                 />
-                                {/* </Avatar> */}
+                                </Avatar>
 
                         </span>
                     </Badge>

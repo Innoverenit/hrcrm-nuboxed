@@ -10,6 +10,7 @@ import InventoryMaterialTab from "./Child/InventoryDetails/InventoryMaterialTab/
 import InventoryDetailTab from "./Child/InventoryDetails/InventoryDetailTab/InventoryDetailTab";
 import InventoryMaterialTabO from "./InventoryMaterialTabO";
 import InventoryDetailTabO from "./InventoryDetailTabO";
+import InventorySupplierTable from "./InventorySupplierTable";
 
 const InventoryCard = lazy(() => import("./InventoryCard"));
 
@@ -151,6 +152,15 @@ function Inventory(props) {
 
         : props.viewType === "commerce" ? 
           <InventoryCommerceTabO
+          viewType1={viewType1}
+          inventory={inventory}
+          tabData={tabData}
+          translateText={props.translateText}
+          translatedMenuItems={translatedMenuItems}
+          selectedLanguage={props.selectedLanguage}
+        />
+        : props.viewType === "supplier" ? 
+          <InventorySupplierTable
           viewType1={viewType1}
           inventory={inventory}
           tabData={tabData}

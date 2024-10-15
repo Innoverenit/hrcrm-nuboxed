@@ -1475,6 +1475,13 @@ export const handleImageSuppliesModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleNewAriival = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_NEWARRIVAL_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const getLocationSupplies = (orgId,suppliesId) => (dispatch) => {
   dispatch({
     type: types.GET_LOCATION_SUPPLIES_REQUEST,
