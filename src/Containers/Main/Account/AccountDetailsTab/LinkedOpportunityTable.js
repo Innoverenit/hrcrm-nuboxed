@@ -19,6 +19,10 @@ import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OpportunitytProcureDetailsModal from "./OpportunitytProcureDetailsModal";
 import OpportuniyConvertDrawer from "./OpportuniyConvertDrawer";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
 const AccountProcureDetailsModal = lazy(() => import('../AccountDetailsTab/AccountProcureDetailsModal'));
 
 function LinkedOpportunityTable(props) {
@@ -96,7 +100,112 @@ const handleConfirm = (quotationId) => {
   // Call the function to change the status to "Lost" here
   props.quotationToOrder(quotationId,props.userId);
 };
-console.log(props.user.moduleMapper.ecomModInd)
+
+
+
+
+  const exportPDFAnnexure = () => {
+    const doc = new jsPDF();
+
+    // Add the header details
+    doc.text('1 Di Inc.', 20, 20);
+    doc.text('21A-81 Northern Heights Drive', 20, 30);
+    doc.text('Richmond Hill ON L4B 4C9', 20, 40);
+    doc.text('+14162780878', 20, 50);
+    doc.text('sales@1di.ca', 20, 60);
+    doc.text('GST/HST Registration No.: 71265570', 20, 70);
+
+    // Add title
+    doc.setFontSize(26);
+    doc.setTextColor(0, 128, 128); // Teal color
+    doc.text('ORDER', 105, 90, { align: 'center' });
+
+    // Billing & Shipping Info
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0); // Black color
+    doc.text('BILL TO', 20, 110);
+    doc.text('Robert Cowman', 20, 120);
+    doc.text('FG Bradley\'s Fairview', 20, 130);
+    doc.text('1800 Sheppard Ave E. Fairview', 20, 140);
+    doc.text('Mall, Unit 2045', 20, 150);
+    doc.text('Toronto Ontario M2J 5A7', 20, 160);
+
+    doc.text('SHIP TO', 105, 110);
+    doc.text('Robert Cowman', 105, 120);
+    doc.text('FG Bradley\'s Fairview', 105, 130);
+    doc.text('1800 Sheppard Ave E. Fairview', 105, 140);
+    doc.text('Avenue E', 105, 150);
+    doc.text('Mall, Unit 2045', 105, 160);
+    doc.text('Toronto Ontario M2J 5A7', 105, 170);
+
+    // Invoice Details
+    doc.text('INVOICE', 160, 110);
+    doc.text('1361', 160, 120);
+    doc.text('DATE', 160, 130);
+    doc.text('30/08/2024', 160, 140);
+    doc.text('DUE DATE', 160, 150);
+    doc.text('29/09/2024', 160, 160);
+    doc.text('TERMS Net', 160, 170);
+    doc.text('30', 160, 180);
+
+    // Ship Details
+    doc.text('SHIP DATE', 20, 190);
+    doc.text('30/08/2024', 20, 200);
+    doc.text('SHIP VIA', 60, 190);
+    doc.text('MIKE DROPOFF', 60, 200);
+    doc.text('SALES REP', 120, 190);
+    doc.text('Tracy Sales', 120, 200);
+    doc.text('PURCHASE ORDER #', 170, 190);
+    doc.text('BO-TM9456525', 170, 200);
+
+    // Order Table
+    doc.autoTable({
+      head: [['SKU', 'DESCRIPTION', 'QTY', 'RATE', 'AMOUNT']],
+      body: [
+        ['KES477', '477 | Jumbo Foam D20', '36', '12.50', '450.00'],
+      ],
+      startY: 210,
+      theme: 'striped',
+      headStyles: { fillColor: [140, 190, 230], textColor: [0, 128, 128] },
+    });
+
+    // Subtotal, Tax, Total
+    doc.text('SUBTOTAL', 130, doc.previousAutoTable.finalY + 20);
+    doc.text('450.00', 180, doc.previousAutoTable.finalY + 20);
+    doc.text('HST (ON) @ 13%', 130, doc.previousAutoTable.finalY + 30);
+    doc.text('58.50', 180, doc.previousAutoTable.finalY + 30);
+    doc.text('TOTAL', 130, doc.previousAutoTable.finalY + 40);
+    doc.text('508.50', 180, doc.previousAutoTable.finalY + 40);
+    doc.text('BALANCE DUE', 130, doc.previousAutoTable.finalY + 50);
+    doc.setFontSize(22);
+    doc.setFont('bold');
+    doc.text('CAD 508.50', 180, doc.previousAutoTable.finalY + 50);
+
+    // Tax Summary
+    doc.setFontSize(14);
+    doc.setFont('normal');
+    doc.text('TAX SUMMARY', 20, doc.previousAutoTable.finalY + 70);
+    doc.autoTable({
+      head: [['RATE', 'TAX', 'NET']],
+      body: [['HST (ON) @ 13%', '58.50', '450.00']],
+      startY: doc.previousAutoTable.finalY + 80,
+      theme: 'striped',
+      headStyles: { fillColor: [140, 190, 230], textColor: [0, 128, 128] },
+    });
+
+    // Footer
+    doc.text(
+      'Please send all EFT remittance to Sales@1Di.ca',
+      105,
+      280,
+      { align: 'center' }
+    );
+
+    doc.save('invoice.pdf');
+  };
+
+
+// Quotation
   return (
     <>
      { props.user.repairInd === true &&(
@@ -235,6 +344,12 @@ console.log(props.user.moduleMapper.ecomModInd)
                           
                         {/* </Popconfirm> */}
                       </div>
+
+                      <div class="w-6">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon text-[red]"/>
+                           </span>
+          </div>
                   </div>
                                      
                                       </div>
@@ -380,7 +495,14 @@ console.log(props.user.moduleMapper.ecomModInd)
                               </div>
                      </Button>
                   {/* </Popconfirm> */}
+                
                       </div>
+
+                      <div class="w-6">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon text-[red]"/>
+                           </span>
+          </div>
                   </div>
                          </div>
                           </div>  )

@@ -28,6 +28,7 @@ const MultipleOrderDrawer = (props) => {
                particularRowItem={props.particularRowItem}
                selectedLanguage={props.selectedLanguage}
                translateText={props.translateText}
+               distributorId={props.distributorId}
                modalMultiple={props.modalMultiple}
                 setmodalMultiple={props.setmodalMultiple}
                
