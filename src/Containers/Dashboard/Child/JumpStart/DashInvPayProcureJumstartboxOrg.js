@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
@@ -13,11 +13,11 @@ getOrderClosedList,
 getOrderCancelList
 } from "../../DashboardAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import CustomerPieChart from "./CustomerPieChart"
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
-import DashProcurePayDrawer from "./DashProcurePayDrawer";
 
+const DashProcurePayDrawer= lazy(()=>import("./DashProcurePayDrawer"));
+const  CustomerPieChart= lazy(()=>import("./CustomerPieChart"));
 function DashInvPayProcureJumstartboxOrg(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -258,10 +258,12 @@ function DashInvPayProcureJumstartboxOrg(props) {
         </div>
         <div>
         <div class=" font-poppins font-bold text-base mt-1">By Process</div>
+        <Suspense fallback={<BundleLoader />}> 
         <CustomerPieChart/>
+        </Suspense>
         </div>
         </div>
-  
+        <Suspense fallback={<BundleLoader />}> 
       <DashProcurePayDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
@@ -270,7 +272,7 @@ function DashInvPayProcureJumstartboxOrg(props) {
  modalData={modalData}
  title={currentOrderType}
       />
-   
+   </Suspense>
     </>
 
   );

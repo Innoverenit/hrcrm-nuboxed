@@ -1,14 +1,10 @@
 import React, { Component,Suspense ,lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import OrderPlanList from "../Child/OrderPlanList"
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-//import SalesTaskCardList from "./SalesTaskCardList";
 
-// const CustomerContactCardList = lazy(() =>
-//   import("./CustomerContactCardList")
-// );
+const OrderPlanList = lazy(() =>import("../Child/OrderPlanList"));
 
 class OrderPlanDrawerModal extends Component {
   render() {

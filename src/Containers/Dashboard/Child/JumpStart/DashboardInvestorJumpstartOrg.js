@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useEffect, useState, lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import InvestorJumpstartDrawer from "./InvestorJumpstartDrawer";
 import { getJumpFinanceDetail,
   getOrderAddedList,
 getOrderOpenList,
@@ -12,6 +10,8 @@ getOrderCancelList
 import { JumpStartBox } from "../../../../Components/UI/Elements";
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
+import { BundleLoader } from "../../../../Components/Placeholder";
+const InvestorJumpstartDrawer =lazy(()=>import("./InvestorJumpstartDrawer"));
 
 function DashboardInvestorJumpstartOrg(props) {
 
@@ -222,7 +222,7 @@ const handleClick = (type) => {
           
         </div>
       </div>
-
+      <Suspense fallback={<BundleLoader />}> 
 <InvestorJumpstartDrawer
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
@@ -231,6 +231,7 @@ const handleClick = (type) => {
  modalData={modalData}
  title={currentOrderType}
 />
+</Suspense > 
     </>
 
   );

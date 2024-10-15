@@ -3,11 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import SalesTaskCardList from "./SalesTaskCardList";
 
-// const CustomerContactCardList = lazy(() =>
-//   import("./CustomerContactCardList")
-// );
+const SalesTaskCardList = lazy(() =>import("./SalesTaskCardList"));
 
 class SalesPlanDrawerModal extends Component {
   render() {

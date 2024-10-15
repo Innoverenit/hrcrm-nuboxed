@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useEffect, useState , lazy, Suspense,} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import CustomerPieChart from "./CustomerPieChart"
-import AddProspectDrawerModal from "../JumpStart/AddProspectDrawerModal"
 import { getJumpFinanceDetail ,getProspectTableData,
   getQuotationTableData,handleProspectDrawer} from "../../DashboardAction"
+import { BundleLoader } from "../../../../Components/Placeholder";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
+
+const AddProspectDrawerModal =lazy(()=>import("../JumpStart/AddProspectDrawerModal"));
+const CustomerPieChart=lazy(()=>import("./CustomerPieChart"));
 
 function DashboardProspectJumpstart(props) {
 
@@ -190,14 +191,14 @@ console.log(props.prospectChart)
       <div class=" mt-1 flex flex-row justify-between" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Sector</div>
-        <CustomerPieChart/>
+        <Suspense fallback={<BundleLoader />}> <CustomerPieChart/></Suspense>       
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Source</div>
-        <CustomerPieChart/>
-        </div>
+        <Suspense fallback={<BundleLoader />}> <CustomerPieChart/></Suspense> </div>
       </div>
       </div>
+      <Suspense fallback={<BundleLoader />}>
 <AddProspectDrawerModal
 selectedCountry={props.selectedCountry}
 selectedLanguage={props.selectedLanguage}
@@ -207,6 +208,7 @@ setIsModalOpen={() => setIsModalOpen(false)}
 modalData={modalData}
 title={currentOrderType}
 />
+</Suspense>
  </>
 
   );

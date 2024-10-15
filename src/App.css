@@ -56,7 +56,7 @@
 
 
 .ant-select-selection.ant-select-selection--single {
-  height: 1.48rem;
+  height: 1.88rem;
 }
 
 .avatar {
@@ -173,7 +173,7 @@
   border: 1px solid #d9d9d9;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  height: 1.48rem;
+  height: 1.88rem;
 }
 
 .ant-avatar-lg {
@@ -333,20 +333,20 @@
 }
 
 .ant-select-selection__rendered {
-  height: 1.48rem;
+  height: 1.88rem;
 }
 .ant-select-selection {
-  height: 1.48rem;
+  height: 1.88rem;
 }
 
 
 .ant-select-selection--multiple {
-  height: 1.48rem;
+  height: 1.88rem;
 }
 .ant-select {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  height: 1.48rem;
+  height: 1.88rem;
   width: 100%;
   font-size: 0.75rem;
   box-shadow: 0em 0.25em 0.625em -0.25em #aaa;
@@ -390,7 +390,7 @@ style attribute {
 
 .ant-select:not(.ant-select-customize-input) .ant-select-selector {
   position: relative;
-  height: 1.48rem;
+  height: 1.88rem;
   font-family: "Poppins";
   margin: 0 0 0.42rem 0.1rem;
   box-shadow: 0 0.25em 0.62em #aaa;
@@ -402,7 +402,7 @@ style attribute {
 
 .ant-select-selectors {
   position: relative;
-  height: 1.48rem;
+  height: 1.88rem;
   font-family: "Poppins";
   font-size: 0.75rem;
   margin: 0 0 0.42rem 0.1rem;
@@ -423,7 +423,7 @@ style attribute {
 }
 .customize-select {
   position: relative;
-  height: 1.48rem;
+  height: 1.88rem;
   font-family: "Poppins";
   font-size: 0.75rem;
   margin: 0 0 0.42rem 0.1rem;

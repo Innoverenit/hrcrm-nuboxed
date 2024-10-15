@@ -1,30 +1,16 @@
 
 
-import React, { useEffect, useMemo, useState, } from "react";
+import React, { useEffect,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import {updateOpportunitydragstage,getRegionSalesQuotationList} from "../../Opportunity/OpportunityAction"
 import styled from "styled-components";
-import OrderPlanColumn from "../Child/OrderPlanColumn"
 import {getOrderPlanList,emptyOrderPlan} from "../RegionalDashAction"
-// import {
-//     getRegionSalesQuotationList,
-  
-// } from "../RegionalDashAction";
-import {
-    getProcessForOpportunity,
-    getProcessStagesForOpportunity,
-} from "../../Settings/SettingsAction";
-import StageQuotationColumn from "../Child/StageQuotationColumns"
-// import StageColumns1 from "./StageColumns1";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { StyledTabs, } from "../../../Components/UI/Antd";
 import { MainWrapper } from "../../../Components/UI/Layout";
-
-
-import { Spin} from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
+
+const  OrderPlanColumn = lazy(() =>import("../Child/OrderPlanColumn"));
 const TabPane = StyledTabs.TabPane;
 
 
@@ -144,13 +130,13 @@ function OrderPlanList(props) {
                                         )
                                         .map((opp, index) => {
                                           return (
-                                           
+                                            <Suspense fallback={<BundleLoader />}>
                                             <OrderPlanColumn
                                               key={index}
                                               order={opp}
                                               index={index}
                                             //   history={props.history}
-                                            />
+                                            /></Suspense>
                                           );
                                         })}
                                     </StageColumn>

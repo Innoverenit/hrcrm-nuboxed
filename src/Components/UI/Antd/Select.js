@@ -8,7 +8,7 @@ const StyledSelect = styled(Select)`
     background-color: ${props => props.theme.backgroundColor};
     color: ${props => props.theme.color};
     display: block;
-    height: 1.48rem;
+    height: 1.88rem;
     outline: none;
     box-shadow: 0em 0.25em 0.625em -0.25em ${props => props.theme.boxShadowColor};
   }

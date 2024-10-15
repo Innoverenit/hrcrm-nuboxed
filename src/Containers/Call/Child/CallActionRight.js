@@ -7,9 +7,6 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import { handleCallModal } from "../CallAction";
 
-
-
-
 const CallActionRight = (props) => {
   const {
     userId,

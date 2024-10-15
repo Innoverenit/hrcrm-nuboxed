@@ -9,15 +9,12 @@ import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotati
   getSourceCountAcc,
   getCategoryCountAcc
 } from "./DashboardAction";
-import axios from 'axios';
-import {base_url2} from "../../Config/Auth";
 
 const CustomerGoogleMap=lazy(()=>import("./Child/Chart/CustomerGoogleMap"));
 const CustomerViewGoogleMap=lazy(()=>import("./CustomerViewGoogleMap"));
 const CustomerAccountGoogleMap=lazy(()=> import("../Dashboard/CustomerAccountGoogleMap"));
 const CustomerDashboardJumpStart=lazy(()=>import("./Child/JumpStart/CustomerDashboardJumpStart"));
 const CustomerDashboardOrgJumpStart=lazy(()=>import("./Child/JumpStart/CustomerDashboardOrgJumpStart"));
-
 const DashboardProspectJumpstart=lazy(()=>import("./Child/JumpStart/DashboardProspectJumpstart"));
 const DashboardInvestorJumpstart=lazy(()=>import ("./Child/JumpStart/DashboardInvestorJumpstart"));
 const DashboardInvestorJumpstartOrg=lazy(()=>import ("./Child/JumpStart/DashboardInvestorJumpstartOrg"));
@@ -44,29 +41,20 @@ const DashboardJumpstart= lazy(()=>import("../Dashboard/Child/JumpStart/Dashboar
 const DashboardBulbJumpstart= lazy(()=>import("../Dashboard/Child/JumpStart/DashboardBulbJumpstart"));
 const StackedClosureChart= lazy(()=>import("../Dashboard/StackedClosureChart"));
 const Dashboardheader= lazy(()=>import("./Child/DashboardHeader"));
-const TodoDashboardTab= lazy(()=>import("../Dashboard/TodoDashboardTab"));
-const StackedClosureChartAll= lazy(()=>import("./StackedClosureChartAll"));
-const TaskDashboardTab= lazy(()=>import("./TaskDashboardTab"));
 const SourceChart= lazy(()=>import("./Child/Chart/SourceChart"));
 const DashboardTaskOrganizationJumpstart= lazy(()=>import("./Child/JumpStart/DashboardTaskOrganizationJumpstart"));
 const DashboardTaskUserJumpstart= lazy(()=>import("./Child/JumpStart/DashboardTaskUserJumpstart"));
 const TaskOrganizationTab= lazy(()=>import("./TaskOrganizationTab"));
-const CustomerLeadsTab= lazy(()=>import("./CustomerLeadsTab"));
-const DashboardCustomerOrgJumpstart= lazy(()=>import("./Child/JumpStart/DashboardCustomerOrgJumpstart"));
-const DashCustomerChartTab= lazy(()=>import("./DashCustomerChartTab"));
 const ProspectDashboardJumpStart= lazy(()=>import("./Child/JumpStart/ProspectDashboardJumpStart"));
 const ProspectDashboardJumpStartOrg= lazy(()=>import("./Child/JumpStart/ProspectDashboardJumpStartOrg"));
 const DashboardInvestorsOrgJumpstart= lazy(()=>import("./Child/JumpStart/DashboardInvestorsOrgJumpstart"));
-const InvestorsPitchTab= lazy(()=>import("./InvestorsPitchTab"));
 const GantChartTab= lazy(()=>import("./Child/GantChartTab"));
-const DashInvestorsChartTab= lazy(()=>import("./DashInvestorsChartTab"));
 const FunnelTab= lazy(()=>import("./Child/FunnelTab"));
 const DashboardDetailsTab= lazy(()=>import("./DashboardDetailsTab"));
 const DashboardOrderJumpstart= lazy(()=>import("./Child/JumpStart/DashboardOrderJumpstart"));
 const DashboardOrderJumpstartOrg = lazy(()=>import("./Child/JumpStart/DashboardOrderJumpstartOrg"));
 const DashboardProcureJumpstartUser= lazy(()=>import("./Child/JumpStart/DashboardProcureJumpstartUser"));
 const DashboardProcureJumpstartOrg= lazy(()=>import("./Child/JumpStart/DashboardProcureJumpstartOrg"));
-const OrdersDashTab=lazy(()=>import("./OrdersDashTab"));
 const DashboardFinanceJumpstart= lazy(()=>import("./Child/JumpStart/DashboardFinanceJumpstart"));
 const FinanceDashTab=lazy(()=>import("./FinanceDashTab"));
 const DashRepairOrdrLeftJumstartbox =lazy(()=>import("./Child/JumpStart/DashRepairOrdrLeftJumstartbox"));

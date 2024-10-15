@@ -1,9 +1,8 @@
-import React, { useEffect,lazy, useState } from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useEffect,lazy, useState, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getJumpFinanceDetail } from "../../DashboardAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const DashRepairBarClousreJumpstartUser =lazy(()=>import("./DashRepairBarClousreJumpstartUser"));
 
@@ -112,9 +111,11 @@ function DashOrderFinanceJumpstart(props) {
         </div>
 
 <div class="mt-1">
+<Suspense fallback={<BundleLoader />}> 
 <DashRepairBarClousreJumpstartUser 
         selectedLanguage={props.selectedLanguage}
         translateText={props.translateText}/>
+        </Suspense>
 </div>
       </div>
 

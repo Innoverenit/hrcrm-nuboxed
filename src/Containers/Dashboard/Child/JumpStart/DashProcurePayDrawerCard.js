@@ -1,11 +1,9 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { MultiAvatar} from "../../../../Components/UI/Elements";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-
 
 function DashProcurePayDrawerCard (props) {
  

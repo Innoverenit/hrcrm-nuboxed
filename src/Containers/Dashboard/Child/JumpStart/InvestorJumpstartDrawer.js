@@ -3,9 +3,9 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import InvestorJumpstartDrawerCard from "./InvestorJumpstartDrawerCard";
-import InvestorDealJumpstartDrawerCard from "./InvestorDealJumpstartDrawerCard";
- 
+
+const InvestorJumpstartDrawerCard =lazy(()=>import("./InvestorJumpstartDrawerCard"));
+const  InvestorDealJumpstartDrawerCard=lazy(()=>import("./InvestorDealJumpstartDrawerCard"));
 function InvestorJumpstartDrawer (props) {
 
     return (

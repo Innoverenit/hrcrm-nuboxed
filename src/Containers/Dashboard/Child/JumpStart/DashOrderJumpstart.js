@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy} from "react";
+import React, { useEffect, useState, lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
@@ -117,7 +117,9 @@ function DashOrderJumpstart(props) {
         </div>
       </div>
       <div class="mt-1">
+      <Suspense fallback={<BundleLoader />}> 
       <StackedClosureChart />
+      </Suspense>
       </div>
       </div>
     </>
