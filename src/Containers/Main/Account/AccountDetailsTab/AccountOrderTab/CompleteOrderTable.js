@@ -30,14 +30,13 @@ import {
     deleteDistributorData,
      updateSubOrderAwb,
 } from "../../AccountAction";
-import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input, Select, Tooltip } from 'antd';
-import { MultiAvatar, MultiAvatar2 } from '../../../../../Components/UI/Elements';
+import { MultiAvatar } from '../../../../../Components/UI/Elements';
 import { BundleLoader } from '../../../../../Components/Placeholder';
 import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import { PersonAddAlt1 } from '@mui/icons-material';
+
 
 const SubOrderList = lazy(() => import('./SubOrderList'));
 const AddPickupModal = lazy(() => import('./AddPickupModal'));

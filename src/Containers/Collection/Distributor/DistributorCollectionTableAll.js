@@ -157,7 +157,7 @@ class AllDistributorList extends Component {
 
                         <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
-                          {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                          {/*  Sector </div> */}
                           <div class=" text-xs  font-poppins">
                             {item.phoneNo}
                           </div>
@@ -167,7 +167,7 @@ class AllDistributorList extends Component {
                       </div>
                       <div class="flex">
                         <div className=" flex font-medium flex-col md:w-full max-sm:flex-row w-full max-sm:justify-between ">
-                          {/* <div class=" text-sm  font-poppins max-sm:hidden"># Opportunity</div> */}
+                          {/* # Opportunity</div> */}
 
                           <div class=" text-xs  font-poppins text-center">
                             {item.url}
@@ -175,26 +175,19 @@ class AllDistributorList extends Component {
                           </div>
                         </div>
                         <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
-                          {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                          {/* Pipeline Value</div> */}
 
                           <div class=" text-xs  font-poppins text-center">
-                            {/* { `${item.addresses[0].address1 || ""} ${item.addresses[0]
-                                      .address2 || ""} ${item.addresses[0].street || ""} 
-                                          ${item.addresses[0].city || ""},
-                                              `} */}
+                       
 
                           </div>
                         </div>
                       </div>
                       <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Weighted Value</div> */}
+                        {/* </div> */}
 
                         <div class=" text-xs  font-poppins text-center">
-                          {/* {`${(item.addresses &&
-                                    item.addresses.length &&
-                                    item.addresses[0].city) ||
-                                    ""} 
-                                          `}  */}
+                   
 
                         </div>
                       </div>
@@ -203,7 +196,7 @@ class AllDistributorList extends Component {
                         <div class="flex">
                           <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
-                            {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                            {/* Sector </div> */}
                             <div class=" text-xs  font-poppins">
                               <span>
                                 <CurrencySymbol currencyType={"INR"} />
@@ -214,7 +207,7 @@ class AllDistributorList extends Component {
                           </div>
                           <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
-                            {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                            {/*  Sector </div> */}
                             <div class=" text-xs  font-poppins">
                               <span>
                                 <CurrencySymbol currencyType={"INR"} />

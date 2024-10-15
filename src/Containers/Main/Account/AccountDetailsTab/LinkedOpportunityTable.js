@@ -1,7 +1,7 @@
 import React, { useEffect, useState,lazy ,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Tooltip,Popconfirm } from "antd";
+import { Button, Tooltip} from "antd";
 import dayjs from "dayjs";
 import {
   getQuotationRepairOrder,
@@ -102,19 +102,18 @@ console.log(props.user.moduleMapper.ecomModInd)
      { props.user.repairInd === true &&(
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
-        <div className='flex   justify-between w-[85%]  text-xs font-bold font-poppins'>
-             <div class=" w-[6.55rem]"> {translatedMenuItems[0]}</div>
-                        <div className="w-[3.4rem] md:w-[5.4rem]"> {translatedMenuItems[1]} ID</div>
+        <div className='flex   justify-between w-[81%]  text-xs font-bold font-poppins'>
+             <div class=" w-[7.55rem]"> {translatedMenuItems[0]}</div>
+                        <div className="w-[7.4rem] md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
                         <div className=" md:w-[5rem]">
                         {translatedMenuItems[10]}  
                           </div>
-                        <div className=" md:w-[6.1rem]"> {translatedMenuItems[2]}</div>
-                        <div className=" md:w-[10.8rem] "> {translatedMenuItems[3]}</div>
+                        <div className=" md:w-[8.1rem]"> {translatedMenuItems[2]}</div>
+                        <div className=" md:w-[16.8rem] "> {translatedMenuItems[3]}</div>
                         <div className="md:w-[6.8rem]"> {translatedMenuItems[4]}</div>
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
-                        {/* <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div> */}
-                        {/* <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div> */}
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
+                        <div className="md:w-[5.8rem]"> {translatedMenuItems[5]}</div>
+                    
+                        <div className="md:w-[5.8rem]"> {translatedMenuItems[8]}</div>
                         
                        </div>
                         </div>
@@ -181,18 +180,18 @@ console.log(props.user.moduleMapper.ecomModInd)
                                             
                                           </div>
                       
-                                          <div class="flex flex-row items-center md:w-[9rem] text-xs max-sm:flex-row w-full max-sm:justify-between">
+                                          <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between text-xs">
                                         
                                             
-                                            <div class="max-sm:w-full justify-between flex md: text-xs">
-                                            {` ${dayjs(item.deliveryDate).format("ll")}`}
-                                                  </div>
-                      
-                                         
-                                          </div>
+                                        <div class="max-sm:w-full justify-between flex md: text-xs">
+                                        {date}
+                                              </div>
+                  
+                                     
+                                      </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   md:w-[18.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   text-xs md:w-[18.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -201,13 +200,13 @@ console.log(props.user.moduleMapper.ecomModInd)
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[9.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
@@ -217,25 +216,11 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                     />
                                             </div>
                                         </div>
-                                        {/* <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-xs">
-                                              {item.paymentInTerms}
-                                            </div>
-                                        </div> */}
-                                        <div class="flex flex-row items-center md:w-[16.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-xs">
-                                              {item.shipById}
-                                            </div>
-                                        </div>
-                  <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                   
+                                      
+                  <div class="flex flex-row items-center md:w-[11.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
-                  {/* <Popconfirm
-                          title={translatedMenuItems[12]}
-                          // "Change status to Customer?"
-                          onConfirm={() => handleConfirm(item.quotationId,props.userId)}
-                          okText="Yes"
-                          cancelText="No"
-                        > */}
+               
                           
                             <Button type="primary"
                               style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}
@@ -265,19 +250,17 @@ console.log(props.user.moduleMapper.ecomModInd)
      { props.user.moduleMapper.ecomModInd === true &&(
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
-        <div className='flex   justify-between w-[85%]  text-xs font-bold font-poppins'>
-<div class=" w-[6.55rem]"> {translatedMenuItems[9]}</div>
-<div className=" md:w-[5.4rem]"> {translatedMenuItems[1]} ID</div>
-<div className=" md:w-[5rem]">
+        <div className='flex   justify-between w-[81%]  text-xs font-bold font-poppins'>
+<div class=" w-[7.55rem]"> {translatedMenuItems[9]}</div>
+<div className=" md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
+<div className=" md:w-[8rem]">
 {translatedMenuItems[10]}
                         </div>
                         <div className=" md:w-[6.1rem]"> {translatedMenuItems[2]}</div>
-                        <div className=" md:w-[10.8rem] "> {translatedMenuItems[3]}</div>
+                        <div className=" md:w-[16.8rem] "> {translatedMenuItems[3]}</div>
                         <div className="md:w-[6.8rem]"> {translatedMenuItems[4]}</div>
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[5]}</div>
-                        {/* <div className="md:w-[3.8rem]"> {translatedMenuItems[6]}</div> */}
-                        {/* <div className="md:w-[3.8rem]"> {translatedMenuItems[15]}</div> */}
-                        <div className="md:w-[3.8rem]"> {translatedMenuItems[8]}</div>
+                        <div className="md:w-[5.8rem]"> {translatedMenuItems[5]}</div>           
+                        <div className="md:w-[5.8rem]"> {translatedMenuItems[8]}</div>
                       
                    </div>
                      
@@ -367,13 +350,13 @@ console.log(props.user.moduleMapper.ecomModInd)
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[9.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -384,25 +367,10 @@ console.log(props.user.moduleMapper.ecomModInd)
                                                     />
                                             </div>
                                         </div>
-                                        {/* <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-xs">
-                                              {item.paymentInTerms}
-                                            </div>
-                                        </div> */}
-                                        <div class="flex flex-row items-center md:w-[16.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-xs">
-                                              {item.shipById}
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                    
+                                        <div class="flex flex-row items-center md:w-[11.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
-                  {/* <Popconfirm
-                          title={translatedMenuItems[14]}
-                          // "Change status to Order?"
-                          onConfirm={() => handleConfirm(item.quotationId,props.userId)}
-                          okText="Yes"
-                          cancelText="No"
-                        > */}
+             
                   <Button type="primary"  style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }} 
                   onClick={()=>{  handleRowItem(item); setopenConvertModal(true)}}
                   >

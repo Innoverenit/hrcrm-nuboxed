@@ -96,9 +96,9 @@ function DistributorColletcionArchive(props) {
           ...rest
         }) => (
           <Form>
-            <div class="flex justify-evenly h-full w-[52%] items-end max-sm:w-wk">
+            <div class="flex justify-evenly h-full w-[52%]  items-center max-sm:w-wk">
               <div class="w-[52%] max-sm:w-wk">
-                <div class=" font-bold font-poppins text-xs flex flex-row">
+                <div class=" font-bold font-poppins mb-2 text-xs  flex flex-row">
                 {translatedMenuItems[0]}   {/* Search by Payment Date */}
 
                   <Field
@@ -111,7 +111,7 @@ function DistributorColletcionArchive(props) {
                 </div>
 
               </div>
-              <div class="md:w-[0%] mb-[0.35rem] font-bold font-poppins text-xs">
+              <div class="md:w-[0%] mb-2 font-bold font-poppins text-xs">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -119,10 +119,10 @@ function DistributorColletcionArchive(props) {
                   disabled={values.date ? false : true}
 
                 >
-                 {translatedMenuItems[1]}   {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                 {translatedMenuItems[1]}   {/* "Submit" /> */}
                 </Button>
               </div>
-              <div class="font-bold font-poppins text-xs mb-[0.35rem]">
+              <div class="font-bold font-poppins text-xs mb-2">
                 <Button
                   type="primary"
                   disabled={values.date ? false : true}
@@ -132,7 +132,7 @@ function DistributorColletcionArchive(props) {
                     handleClear();
                   }}
                 >
-                   {translatedMenuItems[12]} {/* <FormattedMessage id="app.clear" defaultMessage="Clear" /> */}
+                   {translatedMenuItems[12]} {/*"Clear" /> */}
                 </Button>
               </div>
             </div>
@@ -147,38 +147,39 @@ function DistributorColletcionArchive(props) {
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className="font-bold font-poppins text-xs w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            {translatedMenuItems[2]}   {/* <FormattedMessage id="app.customer" defaultMessage="Customer" /> */}
+            <div className="font-bold font-poppins text-xs w-[8.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            {translatedMenuItems[2]}   {/* Customer" /> */}
               </div>
             <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]} #
-              {/* <FormattedMessage id="app.order" defaultMessage="Order #" /> */}
+              {/* Order #" /> */}
               </div>
-            <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Invoice */} {translatedMenuItems[4]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  {translatedMenuItems[5]} ID
-              {/* <FormattedMessage id="app.transaction" defaultMessage="Transaction ID" /> */}
+            <div className="font-bold font-poppins text-xs w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  {translatedMenuItems[5]} ID
+              {/* Transaction ID" /> */}
               </div>
-            <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {/* /<FormattedMessage id="app.type" defaultMessage="Type" /> */} {translatedMenuItems[6]}
+              <div className="font-bold font-poppins text-xs w-[6.12rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* "Date" /> */} {translatedMenuItems[7]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {/* <FormattedMessage id="app.date" defaultMessage="Date" /> */} {translatedMenuItems[7]}
+            <div className="font-bold font-poppins text-xs w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* "Type" /> */} {translatedMenuItems[6]}
               </div>
+          
             <div className="font-bold font-poppins text-xs w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {/* <FormattedMessage id="app.amount" defaultMessage="Amount" /> */} {translatedMenuItems[8]}
+              {/* "Amount" /> */} {translatedMenuItems[8]}
               </div>
             <div className="font-bold font-poppins text-xs w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {/* <FormattedMessage id="app.mode" defaultMessage="Mode" /> */} {translatedMenuItems[9]}
+              {/* Mode" /> */} {translatedMenuItems[9]}
               </div>
             <div className="font-bold font-poppins text-xs w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[10]}?
-              {/* <FormattedMessage id="app.received" defaultMessage="Received ?" /> */}
+              {/*"Received ?" /> */}
               </div>
-            <div className="font-bold font-poppins text-xs w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {/* <FormattedMessage id="app.owner" defaultMessage="Owner" /> */} {translatedMenuItems[11]}
+            <div className="font-bold font-poppins text-xs w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {/* Owner" /> */} {translatedMenuItems[11]}
               </div>
           </div>
-          <div className="overflow-scroll h-[67vh]">
+          <div className="overflow-scroll h-[72vh]">
       
             {props.todayDistributor.map((item) => {
 
@@ -193,7 +194,7 @@ function DistributorColletcionArchive(props) {
 
                       </div>
 
-                      <div className=" flex font-medium flex-col  w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex font-medium flex-col  w-[2.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.newOrderNo}
                         </div>
@@ -202,7 +203,7 @@ function DistributorColletcionArchive(props) {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col w-[7.8rem] max-xl:w-[7.8rem] max-lg:w-[4.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium flex-col w-[5.8rem] max-xl:w-[7.8rem] max-lg:w-[4.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -210,7 +211,7 @@ function DistributorColletcionArchive(props) {
 
                         </div>
                       </div>
-                      <div className=" flex font-medium flex-col w-[7.15rem] max-xl:w-[2.15rem] max-lg:w-[3.15rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex font-medium flex-col w-[10.15rem] max-xl:w-[2.15rem] max-lg:w-[3.15rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                         {item.transactionNumber}
 
@@ -229,7 +230,7 @@ function DistributorColletcionArchive(props) {
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex font-medium flex-col  w-[9.2rem] max-xl:w-[5.9rem] max-lg:w-[4.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                          {item.paymentAmount} &nbsp; {item.orderCurrencyName}
+                        {item.orderCurrencyName} &nbsp;  {item.paymentAmount} 
                         </div>
 
                       </div>

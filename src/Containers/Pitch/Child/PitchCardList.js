@@ -568,7 +568,7 @@ const countryCode = item.countryAlpha2Code
 <Tooltip
         title= {translatedMenuItems[18]} 
       >
-                   <HourglassFullIcon className="text-[#edf67d] !text-icon cursor-pointer" 
+                   <HourglassFullIcon className="text-blue-500 !text-icon cursor-pointer" 
                                    onClick={()=>{
                     props.handleAssimodal(true)
                     handleRowData(item)
@@ -995,7 +995,7 @@ const countryCode = item.countryAlpha2Code
 <Tooltip
         title= {translatedMenuItems[18]} 
       >
-                   <HourglassFullIcon className="text-[#edf67d] !text-icon cursor-pointer" 
+                   <HourglassFullIcon className="text-blue-500 !text-icon cursor-pointer" 
                                    onClick={()=>{
                     props.handleAssimodal(true)
                     handleRowData(item)
@@ -1421,7 +1421,7 @@ const countryCode = item.countryAlpha2Code
 <Tooltip
         title= {translatedMenuItems[18]} 
       >
-                   <HourglassFullIcon className="text-[#edf67d] !text-icon cursor-pointer" 
+                   <HourglassFullIcon className="text-blue-500 !text-icon cursor-pointer" 
                                    onClick={()=>{
                     props.handleAssimodal(true)
                     handleRowData(item)

@@ -100,9 +100,6 @@ function CustomerProcurementTable(props) {
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
 
-  // useEffect(() => {
-  //   return () => props.emptyOrders();
-  // }, []);
   const [hasMore, setHasMore] = useState(true);
 
   function handleSetParticularOrderData(item) {
@@ -110,27 +107,16 @@ function CustomerProcurementTable(props) {
 }
 const handleLoadMore = () => {
   setPage(page + 1);
-  // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
+
   props.getDistributorOrderOfHigh(props.distributorId, page, "procure","High")
 };
 
-// const handleLoadMoreMedium = () => {
-//   setPage(page + 1);
-//   props.getDistributorOrderOfMedium(props.distributorId, page, "procure","Medium")
-// };
 const handleLoadMoreLow = () => {
   setPage(page + 1);
-  // props.getDistributorOrderByDistributorId(props.distributorId, page, "repair")
+
   props.getDistributorOrderOfLow(props.distributorId, page, "procure","Low")
 };
-  // const handleLoadMore = () => {
-  //   setPage(page + 1);
-  //   props.getOrderProcurement(props.currentUser ? props.currentUser : props.distributorId, page,"procure"
-  //   );
-  // }
-  //  if (props.fetchingOrderProcurement) {
-  //   return <BundleLoader />;
-  // }
+ 
 
 
   const {
@@ -218,9 +204,6 @@ const handleLoadMoreLow = () => {
       setData(props.highDistributorOrder);
   }, [props.highDistributorOrder]);
 
-//   useEffect(() => {
-//     setData(props.highDistributorOrder);
-// }, [props.highDistributorOrder]);
 
 
     const handleInputChange = (value, key, dataIndex) => {
@@ -228,8 +211,7 @@ const handleLoadMoreLow = () => {
           item.orderId === key ? { ...item, [dataIndex]: value } : item
       );
       setData(updatedData);
-  //     const updatedTrackId = updatedData.find(item => item.orderId === key)?.trackId;
-  // settrackId(updatedTrackId);
+
   };
   
     const handleDateChange = (e, item) => {
@@ -237,11 +219,7 @@ const handleLoadMoreLow = () => {
       const deliveryDate = new Date(item.deliveryDate);
   setDate(e.target.value);
 
-      // if (selectedDate >= deliveryDate) {
-      //     setDate(e.target.value);
-      // } else {   
-      //     alert('Shipping date cannot be earlier than delivery date');
-      // }
+   
   };
   
   
@@ -420,34 +398,35 @@ const handleLoadMoreLow = () => {
       </div>
 
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-[92%%] p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
+        <div className=" flex justify-between w-[84%] p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
            </div>
-                        <div className=" md:w-[5.4rem] ml-2">
-                        {translatedMenuItems[1]} ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
+                        <div className="w-[7.3rem] md:w-[7.4rem] ml-2">
+                        {translatedMenuItems[1]} ID{/*Order ID"/> */}
                           </div>
-                          <div className=" md:w-[2rem]">  
+                          <div className="w-[5.5rem] md:w-[5rem]">  
                           {translatedMenuItems[9]}
                           </div>
-                        <div className=" md:w-[4.1rem]">
-                        {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
+                        <div className="w-[3.5rem] md:w-[4.1rem]">
+                        {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
-                        <div className=" md:w-[11.8rem] ">
-                        {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
+                        <div className="w-[11.12rem] md:w-[12.8rem] ">
+                        {translatedMenuItems[3]} {/* Location"/> */}
                           </div>
-                          <div className=" md:w-[4.1rem]">
+                          <div className="w-[2.1rem] md:w-[2.8rem]">
+                        {translatedMenuItems[5]} {/* Contact"/> */}
+                          </div>
+                          <div className="w-[4.8rem] md:w-[4.1rem]">
                         {/* {translatedMenuItems[2]}  */} Items
                           </div>
-                        <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
+                          <div className="w-[2.2rem] md:w-[2.8rem]">
+                        {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
-                        <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[6]}{/* <FormattedMessage id="app.payment" defaultMessage="Payment"/> */}
+                        <div className="w-[2rem] md:w-[2.8rem]">
+                        {translatedMenuItems[6]}{/* "Payment"/> */}
                           </div>
-                        <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
-                          </div>
+                       
                       
                         
 
@@ -526,7 +505,7 @@ const handleLoadMoreLow = () => {
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   md:w-[18.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   md:w-[16.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -535,13 +514,9 @@ const handleLoadMoreLow = () => {
                                             </div>
                                           </div>
                                         </div>
-                                        {/* <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-xs">
-                                              {item.budget}
-                                            </div>
-                                        </div> */}
                                      
-                                        <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                     
+                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -552,12 +527,12 @@ const handleLoadMoreLow = () => {
                                                     />
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.status}                                              
                                             </div>
@@ -574,7 +549,7 @@ const handleLoadMoreLow = () => {
         //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
           class="border border-black rounded"
         /> ) : (
-            <div className="font-normal text-sm  font-poppins">
+            <div className="font-normal text-xs  font-poppins">
                {item.packingDate === null ? "" :
               <div> 
               {dayjs(item.packingDate).format("YYYY/MM/DD")} 
@@ -590,28 +565,7 @@ const handleLoadMoreLow = () => {
                     {translatedMenuItems[10]}
                     </Button>
                   </div>
-                                        <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
-                                            <Tooltip title= {translatedMenuItems[12]}>
-                                            {/* // {<FormattedMessage
-                                            //                     id="app.status"
-                                            //                     defaultMessage="Status"
-                                            //                 />}> */}
-                                                                <EventRepeatIcon
-
-                                                                    className="!text-base cursor-pointer"
-                                                                    onClick={() => {
-                                                                        props.handleStatuShowDrawer(true);
-                                                                        handleSetParticularOrderData(item);
-                                                                    }}
-                                                                />
-                                                            </Tooltip>
-                                                            
-                                                            <div class="w-6">
-        <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </span>
-          </div>
-                                            </div> 
+                                       
 
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             <div className=" flex w-20  md:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
@@ -641,7 +595,27 @@ const handleLoadMoreLow = () => {
                     </>
                     )}
     </div>
-    </div>
+       <div class="flex w-7 justify-end max-sm:flex-row max-sm:w-[10%]">                                                                                              
+                                                       <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
+                                            <Tooltip title={translatedMenuItems[12]}>
+                                      
+                                                                <EventRepeatIcon className="!text-base cursor-pointer"
+                                                                    onClick={() => {
+                                                                        props.handleStatuShowDrawer(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+                                                                />
+                                                            </Tooltip>
+                                                            </div> 
+                                                           
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon text-[red]"/>
+                           </span>
+                                    
+                  
+                                                        </div>
+                                            </div>
+
 
                                       </div>
                                     
@@ -655,34 +629,35 @@ const handleLoadMoreLow = () => {
       </div>
      
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky text-xs font-poppins z-10">
+      <div className=" flex justify-between w-[84%] p-1 bg-transparent font-bold sticky text-xs font-poppins z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
         {translatedMenuItems[8]} {/* Normal */}
            </div>
-                        <div className=" md:w-[4.4rem] ml-2">
-                        {translatedMenuItems[1]} ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
+                        <div className="w-[7.3rem] md:w-[7.4rem] ml-2">
+                        {translatedMenuItems[1]} ID{/* Order ID"/> */}
                           </div>
-                          <div className=" md:w-[2rem]">
+                          <div className="w-[5.5rem] md:w-[5rem]">  
                           {translatedMenuItems[9]}
                           </div>
-                        <div className=" md:w-[4.1rem]">
-                        {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
+                          <div className="w-[3.5rem] md:w-[4.1rem]">
+                        {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
-                        <div className=" md:w-[8.8rem] ">
-                        {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
+                          <div className="w-[11.12rem] md:w-[12.8rem] ">
+                        {translatedMenuItems[3]} {/* Location"/> */}
                           </div>
-                          <div className=" md:w-[4.1rem]">
+                          <div className="w-[2.1rem] md:w-[2.8rem]">
+                        {translatedMenuItems[5]} {/* Contact"/> */}
+                          </div>
+                          <div className="w-[4.8rem] md:w-[4.1rem]">
                         {/* {translatedMenuItems[2]}  */} Items
                           </div>
-                        <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
+                          <div className="w-[2.2rem] md:w-[2.8rem]">
+                        {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
-                        <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[6]}{/* <FormattedMessage id="app.payment" defaultMessage="Payment"/> */}
+                        <div className="w-[2rem] md:w-[2.8rem]">
+                        {translatedMenuItems[6]}{/* "Payment"/> */}
                           </div>
-                        <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
-                          </div>
+                      
                        
                      
                      
@@ -763,7 +738,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex  md:w-[18.01rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
+                    <div className=" flex  md:w-[16.01rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
                       <div class=" font-poppins text-xs">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -772,15 +747,11 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                   </div>
-                  {/* <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                  <div class=" font-poppins text-xs">
-                        {item.budget}
-                      </div>
-                  </div> */}
                
-                  <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
+               
+                  <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
-                        {/* {item.contactPersonName} */}
+                    
                         <MultiAvatar
                                 primaryTitle={item.contactPersonName}
                             
@@ -789,66 +760,69 @@ const handleLoadMoreLow = () => {
                               />
                       </div>
                   </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                         {item.paymentInTerms}
                       </div>
                   </div>
-                  <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[10.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
-                                              {item.shipById}
+                                              {item.status}
                                             </div>
                                         </div>
-                  <div class="flex flex-row items-center md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        {editsuppliesId === item.orderId ? (
+                                                         
+                                                                <input
+          type="date"
+          // value={date}
+          value={dayjs(item.packingDate).format("YYYY-MM-DD")}
+          onChange={(e) => handleDateChange(e,item)}
+        //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
+          class="border border-black rounded"
+        /> ) : (
+            <div className="font-normal text-xs  font-poppins">
+               {item.packingDate === null ? "" :
+              <div> 
+              {dayjs(item.packingDate).format("YYYY/MM/DD")} 
+              </div>}
+            </div>
+          )}
+                                                        </div>
+                                                    </div>
+                  <div class="flex flex-row items-center md:w-[11.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{
                     setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
                   }}>
                     {translatedMenuItems[10]}
                     </Button>
-                    
-                  </div>
-                  <div class="flex w-6 max-sm:flex-row max-sm:w-[10%]">
-                                                        <div>
-                                                        {/* <Tooltip title={<FormattedMessage
-                                                                id="app.edit"
-                                                                defaultMessage="Edit"
-                                                            />}>
-                                                                <BorderColorIcon 
-                                                                    className=" !text-icon cursor-pointer text-[tomato]"
-                                                                    onClick={() => {
-                                                                        props.setEditProcure(item)
-                                                                        props.handleUpdateProcureDetailModal(true)
-                                                                        handleSetParticularOrderData(item)
-                                                                    }}
-                                                                />
-                                                                </Tooltip> */}
+                    </div>
+                 
+                  <div class="flex w-7 justify-end max-sm:flex-row max-sm:w-[10%]">                                                                                              
                                                        <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
                                             <Tooltip title={translatedMenuItems[12]}>
-                                             {/* {<FormattedMessage
-                                                                id="app.status"
-                                                                defaultMessage="Status"
-                                                            />}> */}
-                                                                <EventRepeatIcon
-
-                                                                    className="!text-base cursor-pointer"
+                                      
+                                                                <EventRepeatIcon className="!text-base cursor-pointer"
                                                                     onClick={() => {
                                                                         props.handleStatuShowDrawer(true);
                                                                         handleSetParticularOrderData(item);
                                                                     }}
                                                                 />
                                                             </Tooltip>
-                                                            
-                                                            <div class="w-6">
+                                                            </div> 
+                                                           
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>
-          </div>
-                                            </div> 
+                                    
+                  
                                                         </div>
                                                      
 
-                                                    </div>
+                                                 
+                                                  
                 </div>
               </div>
 

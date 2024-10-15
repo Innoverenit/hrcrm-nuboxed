@@ -423,7 +423,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                 <Tooltip
                                   title={translatedMenuItems[14]}
                                 >
-                                  <HourglassFullIcon className="text-[#edf67d] !text-icon"                                                  
+                                  <HourglassFullIcon className="text-blue-500 !text-icon"                                                  
                                 onClick={()=>{
                                 props.handleAssimodal(true)
                                 handleRowData(item)
