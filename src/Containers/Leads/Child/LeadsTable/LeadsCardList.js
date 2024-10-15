@@ -15,6 +15,7 @@ import { DeleteOutlined, Html5Outlined } from "@ant-design/icons";
 import {
   getLeadsCold,
   getLeadsWarm,
+  convertCustomerStatus,
   getLeadsHot,
   deleteLeadsData,
   setEditLeads,
@@ -30,7 +31,7 @@ import {
   handleLeadsAddressDrawerModal
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Button, Tooltip } from "antd";
+import { Button, Tooltip,Popconfirm } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
@@ -510,26 +511,55 @@ const LeadsCardList = (props) => {
                   <div className=" flex w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
-    {item.companyName ? (
-      <Tooltip title={translatedMenuItems[28]}>
-           {/*  */}
-        <ConnectWithoutContactIcon
-          onClick={() => {
-            handleRowData(item);
+  {!item.companyName && item.leadType === "BtoC" ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Popconfirm
+        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+        onConfirm={() => {
+          handleRowData(item);
+          if (item.leadType === "BtoB") {
             props.handleLeadsConfirmationModal(true);
-          }}
+          } else {
+            props.convertCustomerStatus(item.leadsId,props.userId);
+          }
+        }}
+        okText="Yes"
+        cancelText="No"
+      >
+        <ConnectWithoutContactIcon
           className="!text-icon cursor-pointer text-[blue]"
         />
-      </Tooltip>
-    ) : (
-      <Tooltip title=   {translatedMenuItems[26]}>
-      {/* // "Company name is required to enable qualification action"> */}
+      </Popconfirm>
+    </Tooltip>
+  ) : item.companyName ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Popconfirm
+        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+        onConfirm={() => {
+          handleRowData(item);
+          if (item.leadType === "BtoB") {
+            props.handleLeadsConfirmationModal(true);
+          } else {
+            props.convertCustomerStatus(item.leadsId,props.userId);
+          }
+        }}
+        okText="Yes"
+        cancelText="No"
+      >
         <ConnectWithoutContactIcon
-          className="!text-icon cursor-not-allowed text-gray-400"
+          className="!text-icon cursor-pointer text-[blue]"
         />
-      </Tooltip>
-    )}
-  </div>
+      </Popconfirm>
+    </Tooltip>
+  ) : (
+    <Tooltip title="Company name is required to enable qualification action">
+      <ConnectWithoutContactIcon
+        className="!text-icon cursor-not-allowed text-gray-400"
+      />
+    </Tooltip>
+  )}
+</div>
+
                   </div>
                   </div>
                   <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
@@ -908,29 +938,59 @@ const LeadsCardList = (props) => {
                   )}
                 </div>
          
-                <div className=" flex f w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
-                  <div class=" text-xs  font-poppins"></div>
-                  <div>
-  {item.companyName ? (
-    <Tooltip title={translatedMenuItems[28]}>
-      {/* {translatedMenuItems[28]} */}
-      <ConnectWithoutContactIcon
-        onClick={() => {
+                <div className=" flex w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                    <div class=" text-xs  font-poppins"></div>
+                    <div>
+  {!item.companyName && item.leadType === "BtoC" ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Popconfirm
+        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+        onConfirm={() => {
           handleRowData(item);
-          props.handleLeadsConfirmationModal(true);
+          if (item.leadType === "BtoB") {
+            props.handleLeadsConfirmationModal(true);
+          } else {
+            props.convertCustomerStatus(item.leadsId,props.userId);
+          }
         }}
-        className="!text-icon cursor-pointer text-[blue]"
-      />
+        okText="Yes"
+        cancelText="No"
+      >
+        <ConnectWithoutContactIcon
+          className="!text-icon cursor-pointer text-[blue]"
+        />
+      </Popconfirm>
+    </Tooltip>
+  ) : item.companyName ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Popconfirm
+        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+        onConfirm={() => {
+          handleRowData(item);
+          if (item.leadType === "BtoB") {
+            props.handleLeadsConfirmationModal(true);
+          } else {
+            props.convertCustomerStatus(item.leadsId,props.userId);
+          }
+        }}
+        okText="Yes"
+        cancelText="No"
+      >
+        <ConnectWithoutContactIcon
+          className="!text-icon cursor-pointer text-[blue]"
+        />
+      </Popconfirm>
     </Tooltip>
   ) : (
-    <Tooltip title={translatedMenuItems[26]}>
+    <Tooltip title="Company name is required to enable qualification action">
       <ConnectWithoutContactIcon
         className="!text-icon cursor-not-allowed text-gray-400"
       />
     </Tooltip>
   )}
 </div>
-                </div>
+
+                  </div>
                 </div>
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
              
@@ -1312,29 +1372,59 @@ const LeadsCardList = (props) => {
                   )}
                 </div>
          
-                <div className=" flex  w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
-                  <div class=" text-xs  font-poppins"></div>
-                  <div>
-  {item.companyName ? (
-    <Tooltip title={translatedMenuItems[28]}>
-      {/* {translatedMenuItems[28]} */}
-      <ConnectWithoutContactIcon
-        onClick={() => {
+                <div className=" flex w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                    <div class=" text-xs  font-poppins"></div>
+                    <div>
+  {!item.companyName && item.leadType === "BtoC" ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Popconfirm
+        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+        onConfirm={() => {
           handleRowData(item);
-          props.handleLeadsConfirmationModal(true);
+          if (item.leadType === "BtoB") {
+            props.handleLeadsConfirmationModal(true);
+          } else {
+            props.convertCustomerStatus(item.leadsId,props.userId);
+          }
         }}
-        className="!text-icon cursor-pointer text-[blue]"
-      />
+        okText="Yes"
+        cancelText="No"
+      >
+        <ConnectWithoutContactIcon
+          className="!text-icon cursor-pointer text-[blue]"
+        />
+      </Popconfirm>
+    </Tooltip>
+  ) : item.companyName ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Popconfirm
+        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+        onConfirm={() => {
+          handleRowData(item);
+          if (item.leadType === "BtoB") {
+            props.handleLeadsConfirmationModal(true);
+          } else {
+            props.convertCustomerStatus(item.leadsId,props.userId);
+          }
+        }}
+        okText="Yes"
+        cancelText="No"
+      >
+        <ConnectWithoutContactIcon
+          className="!text-icon cursor-pointer text-[blue]"
+        />
+      </Popconfirm>
     </Tooltip>
   ) : (
-    <Tooltip title={translatedMenuItems[26]}>
+    <Tooltip title="Company name is required to enable qualification action">
       <ConnectWithoutContactIcon
         className="!text-icon cursor-not-allowed text-gray-400"
       />
     </Tooltip>
   )}
 </div>
-                </div>
+
+                  </div>
                 </div>
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                 <AddLocationAltIcon
@@ -1531,6 +1621,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       //getLeads,
+      convertCustomerStatus,
       emptyLeads,
       handleLeadsConfirmationModal,
       handleLeadsSubscriptionModal,

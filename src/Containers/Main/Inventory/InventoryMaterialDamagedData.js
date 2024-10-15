@@ -194,6 +194,7 @@ const InventoryMaterialDamagedData = (props) => {
 
 <div class=" text-xs  font-poppins">
   <Button
+   disabled={item.creditNoteInd === true || item.unitDamaged === 0}
     onClick={() => {
         props.addDamagedCredit({
             creditNoteInd:true

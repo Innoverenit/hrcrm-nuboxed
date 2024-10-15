@@ -233,7 +233,7 @@ const [items, setItems] = useState([])
   const addMore = () => {
     setItems([
       ...items,
-      { url: "", singleMultiInd: false, departmentId: null, asignedTOId: null, multyAsignedTOId: [],type:"lead", },
+      { url: "", singleMultiInd: false, departmentId: null, asignedTOId: null, multyAsignedTOId: [],type:props.activeKey, },
     ]);
   };
 
@@ -259,7 +259,7 @@ const [items, setItems] = useState([])
   // Function to log updated values
   const handleUpdate = (index) => {
     console.log("Updated item:", items[index]);
-    props.websiteSingleMultiple(items[index])
+    props.websiteSingleMultiple(items[index],props.orgId,props.activeKey)
   };
 
   return (

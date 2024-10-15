@@ -429,12 +429,12 @@ const RoomAndRackForm = (props) => {
     }));
   };
 
-  const handleEditClick = (roomRackChamberLinkId,chbrLth,chbrWdh,chbrhth) => {
+  const handleEditClick = (roomRackChamberLinkId,chbrLth,chbrWdh,chbrhth,chbrUom) => {
     setEditroomRackId(roomRackChamberLinkId);
     setNewChbLth(chbrLth);
     setNewChbWdh(chbrWdh);
     setNewChbhth(chbrhth);
-    setNewUom()
+    setNewUom(chbrUom)
   };
 
   const handleCancelClick = (roomRackId) => {
@@ -574,14 +574,17 @@ const RoomAndRackForm = (props) => {
           <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
               <div className="md:w-[6rem]">{props.translatedMenuItems[12]} </div>
-              <div className="md:w-[4.2rem]">Asile</div>
+              <div className="md:w-[4.2rem]">Aisle</div>
               <div className="md:w-[5.2rem]">Rack</div>
               <div className="md:w-[9.1rem]">Length</div>
               <div className="md:w-[9.1rem]">Width</div>
               <div className="md:w-[9.1rem]">Height</div>
+              <div className="md:w-[9.1rem]">UOM</div>
+              <div className="md:w-[9.1rem]">Weight</div>
+              <div className="md:w-[9.1rem]">UOM</div>
               <div className="md:w-[9.1rem]">Zone Type</div>
               <div className="md:w-[9.1rem]">Description</div>
-              <div className="md:w-[9.1rem]">UOM</div>
+              
               <div className="w-12"></div>
             </div>
 
@@ -679,6 +682,73 @@ const RoomAndRackForm = (props) => {
 
                     <div className="flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div className="text-xs  font-poppins">
+                        {editroomRackId === item.roomRackChamberLinkId ? (
+                        <Select
+                        className="w-32"
+                      value={newUom}
+                        onChange={(value) => setNewUom(value)} // `value` is passed directly by Select's onChange handler
+                      >
+                        {props.UOMListData.map((item) => (
+                          <Option key={item.unitName} value={item.unitName}>
+                            {item.unitName}
+                          </Option>
+                        ))}
+                      </Select>
+                        ) : (
+                          <div className="font-normal text-sm  font-poppins">
+                            <div>
+                           {item.chbrUom}
+                              {/* {item.zoneType} */}
+                              </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+
+                    <div className="flex font-medium flex-col md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div className="text-xs  font-poppins">
+                        {editroomRackId === item.roomRackChamberLinkId ? (
+                          <Input
+                            className="border-[2px] border-black w-12"
+                    // value={newChbhth}
+                    // onChange={(e) => setNewChbhth(e.target.value)}
+                          />
+                        ) : (
+                          <div className="font-normal text-sm  font-poppins">
+                            {/* <div>{item.chbrhth}</div> */}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div className="text-xs  font-poppins">
+                        {editroomRackId === item.roomRackChamberLinkId ? (
+                        <Select
+                        className="w-32"
+                      value={newUom}
+                        onChange={(value) => setNewUom(value)} // `value` is passed directly by Select's onChange handler
+                      >
+                        {props.UOMListData.map((item) => (
+                          <Option key={item.unitName} value={item.unitName}>
+                            {item.unitName}
+                          </Option>
+                        ))}
+                      </Select>
+                        ) : (
+                          <div className="font-normal text-sm  font-poppins">
+                            <div>
+                           {item.chbrUom}
+                              {/* {item.zoneType} */}
+                              </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+
+                    <div className="flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div className="text-xs  font-poppins">
                         {/* {editroomRackId === item.roomRackChamberLinkId ? (
                           <Select
                             className="w-32"
@@ -710,30 +780,7 @@ const RoomAndRackForm = (props) => {
                       {/* )} */}
                     </div>
 
-                    <div className="flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div className="text-xs  font-poppins">
-                        {editroomRackId === item.roomRackChamberLinkId ? (
-                        <Select
-                        className="w-32"
-                        // value={editedFields[item.roomRackId]?.zoneType !== undefined ? editedFields[item.roomRackId].zoneType : item.zoneType}
-                        onChange={(value) => setNewUom(value)} // `value` is passed directly by Select's onChange handler
-                      >
-                        {props.UOMListData.map((item) => (
-                          <Option key={item.unitName} value={item.unitName}>
-                            {item.unitName}
-                          </Option>
-                        ))}
-                      </Select>
-                        ) : (
-                          <div className="font-normal text-sm  font-poppins">
-                            <div>
-                              cm
-                              {/* {item.zoneType} */}
-                              </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                 
 
                     <div className="flex   md:items-center">
                       <div className="flex w-28 justify-end max-sm:flex-row max-sm:w-[10%]">
@@ -752,7 +799,7 @@ const RoomAndRackForm = (props) => {
                               className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                               tooltipTitle="Edit"
                               iconType="edit"
-                              onClick={() => handleEditClick(item.roomRackChamberLinkId,item.chbrLth,item.chbrWdh,item.chbrhth)}
+                              onClick={() => handleEditClick(item.roomRackChamberLinkId,item.chbrLth,item.chbrWdh,item.chbrhth,item.chbrUom)}
                             />
                           )}
                         </div>

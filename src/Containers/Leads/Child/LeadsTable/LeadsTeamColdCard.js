@@ -21,10 +21,11 @@ import {
   getLeadDetailsById,
   updateTypeForLead,
   handleCETmodal,
-  handleLeadsConfirmationModal
+  handleLeadsConfirmationModal,
+  convertCustomerStatus
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Button, Tooltip } from "antd";
+import { Button, Tooltip,Popconfirm } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import { FormattedMessage } from "react-intl";
 import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
@@ -426,27 +427,58 @@ const LeadsTeamColdCard = (props) => {
                    </div>
                       </div>
          
-                  <div className=" flex w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                      <div className=" flex w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
-    {item.companyName ? (
-      <Tooltip title="Qualify? Lead will move to Prospect section!">
-        <ConnectWithoutContactIcon
-          onClick={() => {
-            handleRowData(item);
+  {!item.companyName && item.leadType === "BtoC" ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Popconfirm
+        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+        onConfirm={() => {
+          handleRowData(item);
+          if (item.leadType === "BtoB") {
             props.handleLeadsConfirmationModal(true);
-          }}
+          } else {
+            props.convertCustomerStatus(item.leadsId,props.userId);
+          }
+        }}
+        okText="Yes"
+        cancelText="No"
+      >
+        <ConnectWithoutContactIcon
           className="!text-icon cursor-pointer text-[blue]"
         />
-      </Tooltip>
-    ) : (
-      <Tooltip title="Company name is required to enable qualification action">
+      </Popconfirm>
+    </Tooltip>
+  ) : item.companyName ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Popconfirm
+        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+        onConfirm={() => {
+          handleRowData(item);
+          if (item.leadType === "BtoB") {
+            props.handleLeadsConfirmationModal(true);
+          } else {
+            props.convertCustomerStatus(item.leadsId,props.userId);
+          }
+        }}
+        okText="Yes"
+        cancelText="No"
+      >
         <ConnectWithoutContactIcon
-          className="!text-icon cursor-not-allowed text-gray-400"
+          className="!text-icon cursor-pointer text-[blue]"
         />
-      </Tooltip>
-    )}
-  </div>
+      </Popconfirm>
+    </Tooltip>
+  ) : (
+    <Tooltip title="Company name is required to enable qualification action">
+      <ConnectWithoutContactIcon
+        className="!text-icon cursor-not-allowed text-gray-400"
+      />
+    </Tooltip>
+  )}
+</div>
+
                   </div>
                   </div>
                   <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
@@ -620,7 +652,8 @@ const mapDispatchToProps = (dispatch) =>
       getLeadDetailsById,
       updateTypeForLead,
       handleCETmodal,
-    getTeamLeadsCold
+    getTeamLeadsCold,
+    convertCustomerStatus
     },
     dispatch
   );

@@ -241,7 +241,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       payload: data,
     });
   };
-  export const convertCustomerStatus = (data, leadsId,assignedToId) => (
+  export const convertCustomerStatus = ( leadsId,assignedToId) => (
     dispatch,
     getState
   ) => {
@@ -251,7 +251,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       type: types.CONVERT_CUSTOMER_STATUS_REQUEST,
     });
     axios
-      .put(`${base_url}/leads/convert/${leadsId}/${assignedToId}`, data, {
+      .put(`${base_url}/leads/convert/${leadsId}/${assignedToId}`, {}, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
