@@ -576,6 +576,7 @@ function AccountInvoiceTable(props) {
                        particularRowData={particularRowData}
                 modalMultiple={modalMultiple}
                 setmodalMultiple={setmodalMultiple}
+                distributorId={props.distributorId}
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText} 
                 />

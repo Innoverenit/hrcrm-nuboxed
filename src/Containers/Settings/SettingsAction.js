@@ -50,7 +50,7 @@ export const LinkStagePublish = (data, cb) => (dispatch) => {
 };
 // remove supplies
 
-export const removeSuppliers = ( data,supplierCategoryId) => (dispatch) => {
+export const removeSuppliers = ( supplierCategoryId,data) => (dispatch) => {
   // console.log(typeId);
   dispatch({
     type: types.REMOVE_SUPPLIERS_REQUEST,

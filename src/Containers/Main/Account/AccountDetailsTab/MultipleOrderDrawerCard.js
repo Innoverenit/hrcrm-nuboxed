@@ -31,20 +31,41 @@ import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import MultipleOrderDrawer from "./MultipleOrderDrawer";
 
 const { Option } = Select;
 
 function AccountInvoiceTable(props) {
   const dispatch = useDispatch();
-    const [pageNo, setPageNo] = useState(0);
+  const [page, setPage] = useState(0);
  
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [data, setData] = useState(null);
-   
+    const [data, setData] = useState([]);
+    const [hasMore, setHasMore] = useState(true);
+
+    const fetchMultipleOrdersData = async () => {
+        const type="invoice"
+        setLoading(true); 
+        try {
+            const response = await axios.get(`${base_url2}/phoneOrder/invoiceNotCreated/${props.distributorId}/${type}/${page}`,{
+                headers: {
+                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                },
+              }); 
+            if (response.data.length === 0) {
+                setHasMore(false); 
+            }
+            setData(prevData => [...prevData, ...response.data]); 
+        } catch (error) {
+            setError(error); 
+            console.error('Error fetching data:', error);
+        } finally {
+            setLoading(false); 
+        }
+    };
+
 
     useEffect(() => {
         const fetchMenuTranslations = async () => {
@@ -79,7 +100,7 @@ function AccountInvoiceTable(props) {
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
     useEffect(() => {
-        // props.getGeneratedInvoiveList(props.distributorId);
+        fetchMultipleOrdersData();
     }, []);
 
     const exportPDFAnnexure = async () => {
@@ -145,14 +166,7 @@ function AccountInvoiceTable(props) {
     
     }
 
-
-     
-         
-          
-
-   
-      
-     
+    
    
     return (
         <>
@@ -185,8 +199,8 @@ function AccountInvoiceTable(props) {
                             height={"33vh"}
                             style={{scrollbarWidth:"thin"}}
                         > */}
-                            {props.generatedInvoice.length ? <>
-                                {props.generatedInvoice.map((item) => {
+                            {data.length ? <>
+                                {data.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
@@ -297,8 +311,8 @@ function AccountInvoiceTable(props) {
                                     )
                                 })}
                             </>
-                                : !props.generatedInvoice.length
-                                    && !props.fetchingGeneratedInvoice ? <NodataFoundPage /> : null}
+                                : !data.length 
+                                    && !loading ? <NodataFoundPage /> : null}
                         {/* </InfiniteScroll> */}
                     </div>
                 </div>
