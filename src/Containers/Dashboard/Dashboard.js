@@ -9,6 +9,7 @@ import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotati
   getSourceCountAcc,
   getCategoryCountAcc
 } from "./DashboardAction";
+import DashBoardCommissionTable from "./Child/DashBoardCommissionTable";
 
 const CustomerGoogleMap=lazy(()=>import("./Child/Chart/CustomerGoogleMap"));
 const CustomerViewGoogleMap=lazy(()=>import("./CustomerViewGoogleMap"));
@@ -62,7 +63,7 @@ const DashRepairOrdrLeftJumstartboxOrg =lazy(()=>import("./Child/JumpStart/DashR
 const DashRepairOrdRightJumstartbox =lazy(()=>import("./Child/JumpStart/DashRepairOrdRightJumstartbox"));
 const DashRepairOrdRightJumstartboxOrg =lazy(()=>import("./Child/JumpStart/DashRepairOrdRightJumstartboxOrg"));
 const InvestorDashboardJumpStart= lazy(()=>import("./Child/JumpStart/InvestorDashboardJumpStart"));
-
+const DashBoardSummary= lazy(()=>import("./Child/DashBoardSummary"));
 class Dashboard extends Component {
 
 
@@ -243,6 +244,12 @@ class Dashboard extends Component {
              translateText={this.props.translateText}/>)
              : this.state.activeButton==="Finance" ?
              (<DashboardFinanceJumpstart
+              buttonName={buttonName} 
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
+             />)
+             : this.state.activeButton==="Summary" ?
+             (<DashBoardSummary
               buttonName={buttonName} 
               selectedLanguage={this.props.selectedLanguage}
               translateText={this.props.translateText}

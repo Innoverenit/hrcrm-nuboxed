@@ -551,7 +551,7 @@ const AWBtst=[
                               ) : null}
                             </div>
                           </div>
-                          <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                         
                                                                 <Button
@@ -577,7 +577,7 @@ const AWBtst=[
 
 
 
-                                                    <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             {/* <Badge
                                                                 class=" ml-2"

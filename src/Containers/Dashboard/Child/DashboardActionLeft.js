@@ -18,6 +18,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; 
 import ShopIcon from '@mui/icons-material/Shop';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 const DashboardShareForm=lazy(()=>import("./DashboardShareForm"));
 const { TabPane } = Tabs;
 
@@ -155,7 +156,18 @@ const DashboardActionLeft = (props) => {
                   </span>
                
               )}
-
+               <span class="cursor-pointer mr-1"
+                    onClick={() => handleButtonClick("Summary")}
+                    style={{
+                      color: activeButton === "Summary" ? activeButton === "Summary" && "tomato" && viewType === "ALL" && "#444" : viewType === "ALL" && "tomato",
+                    }}
+                  >
+                    <Tooltip title="Summary">
+                      <Avatar style={{ background: activeButton === "Summary" ? "#f279ab" : "#28a355" }}>
+                        <SummarizeIcon className="text-white !text-icon"/>
+                      </Avatar>
+                    </Tooltip>
+                  </span>
 
               {props.moduleMapper.crmInd === true && user.customerAccessInd === true && user.crmInd === true  && (
                
@@ -325,7 +337,18 @@ const DashboardActionLeft = (props) => {
                   </span>
               
               )}
-            
+             <span class="cursor-pointer mr-1"
+                    onClick={() => handleButtonClick("Summary")}
+                    style={{
+                      color: activeButton === "Summary" ? activeButton === "Summary" && "tomato" && viewType === "ALL" && "#444" : viewType === "ALL" && "tomato",
+                    }}
+                  >
+                    <Tooltip title="Summary">
+                      <Avatar style={{ background: activeButton === "Summary" ? "#f279ab" : "#28a355" }}>
+                        <SummarizeIcon className="text-white !text-icon"/>
+                      </Avatar>
+                    </Tooltip>
+                  </span>
               {(user.taskAccessInd === true || user.role === "ADMIN") && (
               
                 <span class="cursor-pointer mr-1"
