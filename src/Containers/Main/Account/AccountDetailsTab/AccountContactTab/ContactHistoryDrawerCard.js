@@ -42,7 +42,7 @@ const fetchContactHistotryList = async () => {
   if (loading) return <BundleLoader/>;
 
   return (
-    <div className="mt-4 ml-4 ">
+    <div className="mt-4 ml-4 flex text-center">
    
       <Timeline>
         {contactHistotryList &&
@@ -58,7 +58,7 @@ const fetchContactHistotryList = async () => {
                       New
                     </span>
                   ) : null}{status.email}</div>
-                  Completion by {dayjs(status.modifyDate).format('DD/MM/YYYY')}
+                  Updated on {dayjs(status.modifyDate).format('DD/MM/YYYY')}
                  
                 </div>
           <div class="flex  items-end  justify-end">

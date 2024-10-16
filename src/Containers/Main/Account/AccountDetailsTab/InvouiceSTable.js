@@ -11,7 +11,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import { BundleLoader } from "../../../../Components/Placeholder";
-
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const { Option } = Select;
 
 function InvouiceSTable(props) {
@@ -155,8 +155,8 @@ function InvouiceSTable(props) {
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
                         <div className="md:w-[5rem]">{translatedMenuItems[7]}</div>
                         <div className=" md:w-[7rem] ">{translatedMenuItems[4]}</div>
-                        <div className="md:w-[3.8rem]">{translatedMenuItems[9]} ID</div>
-                        <div className="md:w-[3.8rem]">{translatedMenuItems[8]}</div>
+                        {/* <div className="md:w-[3.8rem]">{translatedMenuItems[9]} ID</div>
+                        <div className="md:w-[3.8rem]">{translatedMenuItems[8]}</div> */}
                     </div>
                     <div class="">
                         {/* <InfiniteScroll
@@ -210,7 +210,7 @@ function InvouiceSTable(props) {
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        {/* <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {editsuppliesId === item.procureOrderInvoiceId ? (
                        <Input
                        style={{ width: "5rem" }}
@@ -223,11 +223,11 @@ function InvouiceSTable(props) {
                         <div> {item.trackId}</div>
                       </div>
                     )}
-                                                        </div>
+                                                        </div> */}
                                                     </div>
                                                     <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {editsuppliesId === item.procureOrderInvoiceId ? (
+                                                        {/* {editsuppliesId === item.procureOrderInvoiceId ? (
                                                          
                                                                 <input
           type="date"
@@ -243,11 +243,11 @@ function InvouiceSTable(props) {
               {dayjs(item.shippingDate).format("YYYY/MM/DD")} 
               </div>}
             </div>
-          )}
+          )} */}
                                                         </div>
                                                     </div>
 
-                                                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                                    {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             <div className=" flex w-20  md:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
     {editsuppliesId === item.procureOrderInvoiceId ? (
                         <>
@@ -266,16 +266,17 @@ function InvouiceSTable(props) {
                       
                     ) : (
                       <>
-                      {/* {item.paidInd===true && */}
+              
                       <Button
                       type="primary"
                         onClick={() => handleEditClick(item.procureOrderInvoiceId)}
                       >Ship</Button>
-                    {/* } */}
+          
                     </>
                     )}
     </div>
-                                                </div>   </div>
+                                                </div>   */}
+                                                 </div>
 
 
                                             </div>

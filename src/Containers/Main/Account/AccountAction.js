@@ -519,7 +519,7 @@ export const addQuotationOrderForm = (customer) => (dispatch, getState) => {
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Order Created',
+        title: 'Quotation Saved',
         showConfirmButton: false,
         timer: 1500,
       })
@@ -5180,10 +5180,10 @@ export const codInventoryOrder = (data,cb) => (dispatch) => {
     })
 
     .then((res) => {
-  
+  console.log(res);
 Swal.fire({
   icon: 'success',
-  title: `${res.data.orderId} - Order placed successfully`,
+  title: `${res.data.orderId} - Quotation converted successfully`,
   showConfirmButton: false,
   timer: 1500,
 })
