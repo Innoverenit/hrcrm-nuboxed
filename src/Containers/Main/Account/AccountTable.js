@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import InfiniteScroll from "react-infinite-scroll-component";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import {
   getCustomerByUser,
@@ -22,7 +23,8 @@ import {
   emptyDistributor,
   handleAccountPulse,
   updateAccountPrice,
-  handleAccountAddress
+  handleAccountAddress,
+  handleAccountOpportunityModal
 } from "./AccountAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import dayjs from "dayjs";
@@ -37,6 +39,7 @@ const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 const  AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const AccountModal = lazy(() => import("./AccountModal"));
+const AccountQuotationDrawer =lazy(()=>import("./AccountDetailsTab/AccountQuotationDrawer"));
 
 function AccountTable(props) {
   const [page, setPage] = useState(0);
@@ -160,6 +163,8 @@ function AccountTable(props) {
     {props.distributorSearch.length > 0 ? (
        <Suspense fallback={<BundleLoader />}>
     <AccountSearchedData
+     selectedLanguage={props.selectedLanguage}
+     translateText={props.translateText}
     distributorSearch={props.distributorSearch}
     /></Suspense>
   ) : (
@@ -484,8 +489,20 @@ function AccountTable(props) {
                                 </Tooltip>
 
                               </div>
-                           
-                        
+                              <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
+                                <Tooltip title="Quotation">
+                                  
+                                      <LightbulbIcon className="!text-icon text-[#bfa89e]"
+                                      onClick={() => {
+                                        props.setEditDistributor(item)
+                                        props.handleAccountOpportunityModal(true);
+                                        handleCurrentRowData(item);
+                                      }}
+                                    />
+                                </Tooltip>
+
+                              </div>
+                              
 
                             <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
@@ -566,6 +583,12 @@ function AccountTable(props) {
          addAccountAddressModal={props.addAccountAddressModal}
          handleAccountAddress={props.handleAccountAddress}
       /> 
+      <AccountQuotationDrawer
+       RowData={RowData}
+                 selectedLanguage={props.selectedLanguage}
+                 translateText={props.translateText}
+            addAccountOpportunityModal={props.addAccountOpportunityModal}
+            handleAccountOpportunityModal={props.handleAccountOpportunityModal}/>
 </Suspense>
     </>  );
 }
@@ -586,6 +609,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
   deletingDistributorById:distributor.deletingDistributorById,
   distributorSearch:distributor.distributorSearch,
   addAccountAddressModal:distributor.addAccountAddressModal,
+  addAccountOpportunityModal: distributor.addAccountOpportunityModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -603,7 +627,8 @@ const mapDispatchToProps = (dispatch) =>
       emptyDistributor,
       handleAccountPulse,
       updateAccountPrice,
-      handleAccountAddress
+      handleAccountAddress,
+      handleAccountOpportunityModal,
     },
     dispatch
   );

@@ -157,7 +157,7 @@ function ProcureInvoiceList (props) {
                     </div>
                     <div class="h-[75vh]">
                           
-                    { data.length === 0 ? (
+                    {data.length === 0 ? (
     <div className="text-center text-gray-500">Data not available</div>
   ) : data.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");

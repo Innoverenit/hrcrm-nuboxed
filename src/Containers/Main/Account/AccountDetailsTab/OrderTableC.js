@@ -211,11 +211,12 @@ const {handleProcureNotesDrawerModal,
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
-          {props.orderCustomerList.map((item) => {
+          {props.orderCustomerList.length === 0 ? (
+    <div className="text-center text-gray-500">Data not available</div>
+  ) : props.orderCustomerList.map((item) => {
             const currentDate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-           
-           
+             
             return (
                 <div>
                 <div

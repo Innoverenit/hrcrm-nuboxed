@@ -63,9 +63,9 @@ function AddQuotationRepairExcel(props) {
                 }) => (
                     <div className="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
                         <Form className="form-background">
-                            <div className="justify-between flex mt-3">
-                                <div className="h-full w-[45%]">
-                                    <Select defaultValue="Repair" onChange={handleFormTypeChange} className="w-full mb-3">
+                            <div className="">
+                                <div className="h-full">
+                                    <Select defaultValue="Repair" onChange={handleFormTypeChange} className="w-[18rem] mb-3">
                                         <Option value="Repair">Repair</Option>
                                         <Option value="Procure">Commerce</Option>
                                     </Select>

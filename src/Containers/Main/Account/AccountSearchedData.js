@@ -135,10 +135,11 @@ function AccountSearchedData(props) {
   return (
     <>
     
-      <div className=' flex  sticky  z-auto'>
-      <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex max-sm:hidden   w-[96%]  justify-between p-1 bg-transparentsticky  z-10">
-           <div class=" flex justify-between text-xs font-poppins  font-bold  w-[100%]  ">
+    <div className=' flex  sticky  z-auto'>
+      <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-white" >
+          <div className=" flex max-sm:hidden   w-[96%]  justify-between p-1 bg-transparentsticky  z-10">
+         
+            <div className="w-1"></div>
             <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
             {translatedMenuItems[0]}
             {/* Name */}
@@ -183,9 +184,8 @@ function AccountSearchedData(props) {
             {/* <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] "> */}
             {/* {translatedMenuItems[8]} */}
            {/* Owner */}        
-            {/* </div> */}
-                 
-          </div>
+            {/* </div> */}   
+            </div> 
           {/* <InfiniteScroll
             dataLength={props.customerListByUser.length}
             next={handleLoadMore}
@@ -195,6 +195,7 @@ function AccountSearchedData(props) {
           > */}
           
               <>
+              <div> 
                 {props.distributorSearch.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -479,10 +480,11 @@ function AccountSearchedData(props) {
 
                   )
                 })}
+                 </div>
               </>
              
           {/* </InfiniteScroll> */}
-        </div>
+       
       </div>
       </div>
       <UpdateAccountModal

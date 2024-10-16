@@ -168,7 +168,7 @@ function InvouiceSTable(props) {
                             style={{scrollbarWidth:"thin"}}
                         > */}
                             {props.invoiceL.length ? <>
-                                {props.invoiceL.map((item) => {
+                                {props.invoiceL.length === 0 ? "No data available" : props.invoiceL.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
