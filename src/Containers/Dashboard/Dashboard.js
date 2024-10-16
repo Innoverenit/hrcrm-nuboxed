@@ -64,6 +64,7 @@ const DashRepairOrdRightJumstartbox =lazy(()=>import("./Child/JumpStart/DashRepa
 const DashRepairOrdRightJumstartboxOrg =lazy(()=>import("./Child/JumpStart/DashRepairOrdRightJumstartboxOrg"));
 const InvestorDashboardJumpStart= lazy(()=>import("./Child/JumpStart/InvestorDashboardJumpStart"));
 const DashBoardSummary= lazy(()=>import("./Child/DashBoardSummary"));
+
 class Dashboard extends Component {
 
 
@@ -203,6 +204,7 @@ class Dashboard extends Component {
     return (
       <React.Fragment>
          <Suspense fallback={<BundleLoader />}>
+
         <Dashboardheader
         buttonName={buttonName} 
         activeTab={activeTab}
@@ -217,7 +219,14 @@ class Dashboard extends Component {
         selectedLanguage={this.props.selectedLanguage}
         translateText={this.props.translateText}
         />
-       
+     
+            {this.state.activeButton==="Summary" && 
+             <DashBoardSummary
+              buttonName={buttonName} 
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
+             />}
+             
         <MainWrapper style={{marginTop:"0.25rem",overflow:"hidden"}}>
       
           <div class=" h-[45vh] max-sm:h-[38vh] max-sm:overflow-x-auto">
@@ -244,12 +253,6 @@ class Dashboard extends Component {
              translateText={this.props.translateText}/>)
              : this.state.activeButton==="Finance" ?
              (<DashboardFinanceJumpstart
-              buttonName={buttonName} 
-              selectedLanguage={this.props.selectedLanguage}
-              translateText={this.props.translateText}
-             />)
-             : this.state.activeButton==="Summary" ?
-             (<DashBoardSummary
               buttonName={buttonName} 
               selectedLanguage={this.props.selectedLanguage}
               translateText={this.props.translateText}
@@ -760,7 +763,10 @@ class Dashboard extends Component {
   
     </div>
     </MainWrapper>
+ 
     
+
+            
     </Suspense>
       </React.Fragment>
     );

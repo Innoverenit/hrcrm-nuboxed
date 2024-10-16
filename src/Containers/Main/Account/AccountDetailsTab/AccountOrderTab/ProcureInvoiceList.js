@@ -156,8 +156,10 @@ function ProcureInvoiceList (props) {
                         </div>
                     </div>
                     <div class="h-[75vh]">
-                            {data ? <>
-                                {data.map((item) => {
+                          
+                    { data.length === 0 ? (
+    <div className="text-center text-gray-500">Data not available</div>
+  ) : data.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
@@ -261,10 +263,7 @@ function ProcureInvoiceList (props) {
                                         </>
                                     )
                                 })}
-                            </>
-                                : !data.length
-                                    && !data ? <NodataFoundPage /> : null}
-                    
+                          
                     </div>
                 </div>
             </div>
