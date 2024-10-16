@@ -71,19 +71,20 @@ const OrderPhoneTab = (props) => {
         switch (key) {
           case "1":
             return     <div> 
-                {openQc ? <OpenQcTable 
+                {props.user.qcInd && (
+                openQc ? <OpenQcTable 
                   translateText={props.translateText}
                   selectedLanguage={props.selectedLanguage} /> : qcMain ? <ProductionOrderListById 
                   translateText={props.translateText}
-                  selectedLanguage={props.selectedLanguage} /> : null}
+                  selectedLanguage={props.selectedLanguage} /> : null)}
                 </div>;
           case "2":
-            return  <div>{repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} 
+            return  <div>{props.user.repairProcessInd && (repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} 
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}/> :
             openRepair ? <OpenRepairTable 
             translateText={props.translateText}
-            selectedLanguage={props.selectedLanguage}/> : null}</div>;
+            selectedLanguage={props.selectedLanguage}/> : null)}</div>;
         
             
           default:
@@ -96,7 +97,7 @@ const OrderPhoneTab = (props) => {
             <StyledTabs
            defaultActiveKey={activeKey} onChange={handleTabChange}
             >
-                {!props.inspectionRequiredInd &&
+                {!props.inspectionRequiredInd && props.user.qcInd &&
                     <TabPane
                         tab={
                             <>
@@ -115,6 +116,7 @@ const OrderPhoneTab = (props) => {
                             {openQc ? <OpenQcTable /> : qcMain ? <ProductionOrderListById /> : null}
                         </Suspense> */}
                     </TabPane>}
+                    { props.user.repairProcessInd &&
                 <TabPane
                     tab={
                         <>
@@ -134,7 +136,7 @@ const OrderPhoneTab = (props) => {
                         {/* {repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} /> :
                             openRepair ? <OpenRepairTable /> : null} */}
                     </Suspense>
-                </TabPane>
+                </TabPane>}
                 
                 
                 {props.inspectionRequiredInd &&
@@ -170,6 +172,7 @@ const OrderPhoneTab = (props) => {
 
 const mapStateToProps = ({ auth }) => ({
     inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
+     user: auth.userDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -3,13 +3,15 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
+import { base_url2 } from "../../../../../Config/Auth";
 
 const InvoiceTemplateTable = ({ props }) => {
     const [selectedInvoice, setSelectedInvoice] = useState(null);
 const invoiceData =  [
 {
   
-        name: "1 Di Inc.",
+        name: "ABCD.",
+        style:"Canadian",
         address: "21A-81 Northern Heights Drive, Richmond Hill ON L4B 4C9",
         phone: "+14162780878",
         email: "sales@1di.ca",
@@ -48,17 +50,22 @@ useEffect(() => {
     if (invoiceData.length > 0) {
       const firstInvoice = invoiceData[0];
       setSelectedInvoice(firstInvoice); // Set the first invoice as selected
-      sendInvoiceData(firstInvoice); // Post the data of the first invoice
     }
   }, []);
-  const sendInvoiceData = (name) => {
+  const sendInvoiceData = (style) => {
     const payload = {
-       // orgId: props.orgId,
-      type: name.name,
+     // orgId: props.organizationId,
+       type: style.style,
     };
 
     axios
-      .post("https://dummyurl.com/invoice", payload)
+    .post(`${base_url2}/template`,payload, 
+      {
+        headers: {
+          Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+        },
+      }
+    )
       .then((response) => {
         console.log("POST successful", response.data);
       })
@@ -78,10 +85,12 @@ useEffect(() => {
           <h3 className="text-xl font-bold mb-3">Invoice</h3>
           <ul>
             {invoiceData.map((invoice) => (
+              <>
+              <div className="font-semibold text-sm">{invoice.style}</div>
               <li
                 key={invoice.id}
                 className={`p-3 mb-2 cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-lg ${
-                  selectedInvoice?.id === invoice.id ? "bg-blue-200" : ""
+                   selectedInvoice?.id === invoice.id ? "bg-green-100" : "bg-gray-100"
                 }`}
                 onClick={() => setSelectedInvoice(invoice)}
               >
@@ -89,6 +98,7 @@ useEffect(() => {
                 <div>Date: {invoice.date}</div>
                 <div>Due Date: {invoice.dueDate}</div>
               </li>
+              </>
             ))}
           </ul>
         </div>
@@ -230,7 +240,7 @@ useEffect(() => {
 };
 
 const mapStateToProps = ({ settings, auth }) => ({
-    orgId: auth.userDetails.organizationId,
+  organizationId: auth.userDetails.organizationId,
   });
   
   const mapDispatchToProps = (dispatch) =>

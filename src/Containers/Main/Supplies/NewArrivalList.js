@@ -132,7 +132,9 @@ import { bindActionCreators } from "redux";
 import { getContactData } from "../../Contact/ContactAction";
 import { Checkbox, Button, Tooltip } from "antd";
 import dayjs from "dayjs";
-import axios from "axios"; // Import axios for the POST request
+import Swal from "sweetalert2";
+import axios from "axios"; 
+import { base_url2 } from "../../../Config/Auth";
 
 function NewArrivalList(props) {
   const [particularRowData, setParticularRowData] = useState({});
@@ -186,14 +188,23 @@ function NewArrivalList(props) {
   // Send the selected data to the dummy POST URL
   const sendSelectedData = async () => {
     try {
-      const payload = selectedItems.map((item) => ({
-        name: item.fullName,
-        contactId: item.contactId,
-        customerId: item.customerId,
-      }));
-
-      const response = await axios.post("https://dummyurl.com/api/submit", payload);
+      // const payload = selectedItems.map((item) => ({
+      //   contcts:item.contactId,
+      // }));
+      const payload = selectedItems.map((item) => item.contactId);
+      const response = await axios
+      .post(`${base_url2}/newArrivalsMaterials/sendEmail/${props.orgId}`, payload, {
+        headers: {
+          Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+        },
+      })
       console.log("Response:", response.data);
+      Swal.fire({
+        icon: 'success',
+        title: 'Email sent Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
     } catch (error) {
       console.error("Error sending selected data:", error);
     }
