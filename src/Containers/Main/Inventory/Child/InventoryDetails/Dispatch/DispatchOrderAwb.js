@@ -116,7 +116,7 @@ const DispatchOrderAwb = (props) => {
                         <div>
                             <div class="flex justify-between">
                                 <div class="w-[47%]">
-                                    <div class=" text-xs font-bold font-poppins text-black"><h3> Pickup Address</h3></div>
+                                    <div class=" text-xs font-bold font-poppins text-black"> Pickup Address</div>
                                     <FieldArray
                                         disabled
                                         name="pickUpAddress"
@@ -130,7 +130,7 @@ const DispatchOrderAwb = (props) => {
                                     />
                                 </div>
                                 <div class="w-[47%]">
-                                    <div class=" text-xs font-bold font-poppins text-black"><h3> Delivery Address</h3></div>
+                                    <div class=" text-xs font-bold font-poppins text-black"> Delivery Address</div>
                                     <FieldArray
                                         name="loadingAddress"
                                         disabled
@@ -252,6 +252,8 @@ const DispatchOrderAwb = (props) => {
                 )}
             </Formik>
             <APIAwbNoModal
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
                 rowData={props.rowData}
                 formValue={formValue}
                 addAwbNo={props.addAwbNo}

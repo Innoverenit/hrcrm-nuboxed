@@ -137,7 +137,7 @@ const GrnListOfPO = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingGrnListOfAPo ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
-                        height={"67vh"}
+                        height={"73vh"}
                     >
                         {props.poGrnList.map((item, index) => {
                             return (

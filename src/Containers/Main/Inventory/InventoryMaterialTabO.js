@@ -7,7 +7,6 @@ import { TabsWrapper } from "../../../Components/UI/Layout";
 import InventoryMaterialBestBefore from "../Inventory/InventoryMaterialBestBefore"
 import { withRouter } from "react-router";
 import TokenIcon from '@mui/icons-material/Token';
-import DeleteIcon from '@mui/icons-material/Delete';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import MaterialReceivedTableOut from "./MaterialReceivedTableOut";
 import InventoryMaterialDamagedData from "../Inventory/InventoryMaterialDamagedData"
@@ -102,10 +101,7 @@ class InventoryMaterialTabO extends PureComponent {
                           }}
                           size="0.875em"                         
                           >
-                          <WarehouseIcon
-                            style={{ color: "red", fontSize: "1rem" }}
-                          
-                          />
+                          <WarehouseIcon className=" !text-icon text-red-600"/>
                           </span>
                         </>
                       )}
@@ -150,10 +146,7 @@ class InventoryMaterialTabO extends PureComponent {
                           }}
                           size="0.875em"                         
                           >
-                          <WarehouseIcon
-                            style={{ color: "red", fontSize: "1rem" }}
-                          
-                          />
+                          <WarehouseIcon className=" !text-icon text-red-600"/>
                           </span>
                         </>
                       )}
@@ -191,7 +184,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span>
-                                        <TokenIcon/>&nbsp;
+                                        <TokenIcon className=" !text-icon "/>&nbsp;
                                         {/* Cell */}
                                         {this.props.translatedMenuItems[20]}
                                     </span>

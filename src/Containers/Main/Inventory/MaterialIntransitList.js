@@ -65,7 +65,7 @@ const MaterialIntransitList = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]} ...</div> : null}
-                        height={"78vh"}
+                        height={"73vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
                         {props.materialReceiveData.map((item) => {
