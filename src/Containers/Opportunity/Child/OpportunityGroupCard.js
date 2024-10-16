@@ -27,16 +27,17 @@ const BussinessCard = (props) => {
   
   return (
     <div class="flex-col rounded-[3px]">
-      <div className="h-24 m-1 p- shadow-[0 0.5em 0.375em -0.375em rgb(46, 44, 44)] border-2 border-gray-400 bg-white ">
+      <div className="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[7.5rem] 
+                  text-[#444444] m-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
       <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-[3rem] mr-auto ">
-      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto m-[0.3rem] ">       
+      {/* <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto m-[0.3rem] ">       
             <MultiAvatar
               primaryTitle={primaryTitle}
               imgHeight={"1.56em"}
               imgWidth={"1.56em"}
             />
-          </div>
-          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto  overflow-hidden">
+          </div> */}
+          <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto  overflow-hidden">
             <div
               fontSize="0.875em"
               overflow="hidden"
@@ -44,14 +45,18 @@ const BussinessCard = (props) => {
               style={{ color: "#337df4", cursor: "pointer",display:"flex",justifyContent:"flex-start" }}
               onClick={handleClick}
             >
-              {primaryTitle || ""}
+                {/* {item.newOppId}  */}
+                {primaryTitle || ""}
             </div>
+            <div>
             <div class="text-xs">
               {customerName || ""} 
               </div>
               <div class="text-xs">          
               {contactName || ""} 
               </div>
+            </div>
+           
             <div>
               &nbsp;&nbsp;
               {currencyType && <CurrencySymbol currencyType={currencyType} />}

@@ -214,7 +214,7 @@ const getLocation = () => {
                                     // borderBottom: "3px dotted #515050"
                                 }}>
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex w-[10.98rem] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
+                                <div className=" flex w-[10.98rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
                                     <div className="flex max-sm:w-full"> 
                                         <div class="max-sm:w-full">
                                         <Tooltip>
@@ -232,7 +232,7 @@ const getLocation = () => {
                                         </div>
                                 </div>
 
-                                <div className=" flex  w-[15.26rem] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[15.26rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">   
                                     {item.eventSubject}
@@ -240,13 +240,13 @@ const getLocation = () => {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex w-[11.9rem] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[11.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex w-[5.32rem] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[5.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
@@ -254,10 +254,10 @@ const getLocation = () => {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex w-[9.32rem] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[9.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
                                    
                                 </div>
-                                <div className=" flex  w-[9.31rem] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[9.31rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
                                     <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
@@ -287,7 +287,7 @@ const getLocation = () => {
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex  w-[3.69rem] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex  w-[3.69rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
@@ -316,7 +316,7 @@ const getLocation = () => {
                                     </div>
                                 </div>
 
-                                <div className="flex w-[6.12rem] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">                                
+                                <div className="flex w-[6.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">                                
                    <div class="max-sm:flex justify-end">
           <Button onClick={getLocation}>Complete</Button>
         
@@ -324,7 +324,7 @@ const getLocation = () => {
                    </div>
                                </div>
 
-                               <div className=" flex items-center w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                               <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -335,7 +335,7 @@ const getLocation = () => {
 
 
 
-                               <div class="flex  w-wk justify-end max-sm:w-wk items-center max-sm:justify-evenly"> 
+                               <div class="flex  w-wk justify-end max-sm:w-wk items-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-evenly"> 
                     
                       <div class="flex max-sm:flex-row items-center justify-end max-sm:w-auto">
                     <div class="">
