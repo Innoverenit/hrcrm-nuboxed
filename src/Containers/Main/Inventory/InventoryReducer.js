@@ -292,6 +292,11 @@ const initialState = {
   invenReceivedNoteOrderModal: false,
   phoNoteReceivedOrderIdModal: false,
 
+
+
+  addingAsileInBest:false,
+  addingAsileInBestError:false,
+
   updatingDispatchInspectionButton: false,
   updatingDispatchInspectionButtonError: false,
 
@@ -1548,6 +1553,28 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingMaterialReceiveData: false,
         fetchingMaterialReceiveDataError: true,
       };
+
+
+
+
+      case types.ADD_ASILE_IN_BEST_REQUEST:
+        return { ...state, addingAsileInBest: true };
+      case types.ADD_ASILE_IN_BEST_SUCCESS:
+        return {
+          ...state,
+          addingAsileInBest: false,
+         // addCustomerModal: false,
+         
+          // customerByUserId: state.customerByUserId.map((item) => {
+          //   if (item.customerId === action.payload.customerId) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
+        };
+      case types.ADD_ASILE_IN_BEST_FAILURE:
+        return { ...state,addingAsileInBest : false, addingAsileInBestError: false };
 
 
 
