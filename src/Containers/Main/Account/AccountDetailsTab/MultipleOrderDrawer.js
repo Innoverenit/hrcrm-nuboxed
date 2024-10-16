@@ -13,7 +13,7 @@ const MultipleOrderDrawer = (props) => {
     return (
         <>
             <StyledDrawer  
-                title={`Order`}
+                title={`Invoice`}
                 width={drawerWidth}
                 visible={props.modalMultiple}
                 closable

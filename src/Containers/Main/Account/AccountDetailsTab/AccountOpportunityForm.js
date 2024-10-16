@@ -36,6 +36,13 @@ const FormSchema = Yup.object().shape({
 
 })
 function AccountOpportunityForm(props) {
+
+const [selectOnType,setselectOnType]=useState("Commerce");
+
+const handleOnSelectType =(ontype)=> {
+    setselectOnType(ontype)
+}
+
     const contactOption = props.contactDistributor.map((item) => {
         return {
             value: item.contactPersonId,
@@ -86,7 +93,7 @@ function AccountOpportunityForm(props) {
                 paymentInTerms: "",
                 customPayment: "0",
                 comments: "",
-                orderType:"Repair",
+                orderType:selectOnType,
                 orderCurrencyId: "",
                 shipById:"",
                 totalPhoneCount: "",
@@ -126,7 +133,7 @@ function AccountOpportunityForm(props) {
                         ...values,
                         orderSource: "B2B ERP",
                         priority: priority || "",
-                        orderType:values.orderType,
+                        orderType:selectOnType,
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
 
                     }, props.distributorId,);
@@ -148,7 +155,7 @@ function AccountOpportunityForm(props) {
                           
                             <div class=" flex justify-between">
  <div class="w-[45%]">
-                                        <Field
+                                        {/* <Field
                                             name="orderType"
                                             label="Type"
                                             isColumn
@@ -158,7 +165,23 @@ function AccountOpportunityForm(props) {
                                                 { label: "Repair", value: "Repair" },
                                                 { label: "Commerce", value: "Procure" },
                                             ]}
-                                        />
+                                        /> */}
+                                       
+                                        <button className={`${props.moduleMapper.procurementInd === true || props.moduleMapper.procurementInd === false && 
+                                        selectOnType === "Commerce" ? 
+                                        "bg-green-400 text-white border rounded-md":"bg-purple-400 text-black border rounded-md"}`}
+                                        onClick={() => handleOnSelectType("Commerce")}
+                                        >
+                                            Commerce
+                                        </button>
+                                        &nbsp;
+                                        <button className={`${selectOnType==="Repair" ? 
+                                        "bg-green-400 text-white rounded-md":"bg-purple-400 text-black border rounded-md"}`}
+                                        onClick={() => handleOnSelectType("Repair")}
+                                        >
+                                            Repair
+                                        </button>
+                                       
                                     </div>
 
 
@@ -440,6 +463,7 @@ const mapStateToProps = ({ homeStepper,brandCategory, auth, distributor, supplie
     lobList: distributor.lobList,
     orgId: auth.userDetails.organizationId,
     BrandCategoryData: brandCategory.BrandCategoryData,
+    moduleMapper:auth.userDetails.moduleMapper
 });
 
 const mapDispatchToProps = (dispatch) =>

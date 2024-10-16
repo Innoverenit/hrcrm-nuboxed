@@ -112,15 +112,17 @@ function AddQuotationExcel(props) {
 
   return (
     <>
-      <div>
+    <div class="flex justify-between">
+      <div class="w-[18rem]">
         {rows.map((row, index) => (
           <div key={index}>
-            <div className="flex justify-around w-[30rem]">
+            <div className="flex-col">
+
             <div>
                 <div class="font-bold text-xs font-poppins text-black">Category</div>
                 <div className="w-[9rem]">
                   <Select
-                    style={{ width: 120 }}
+                    style={{ width: 200 }}
                     value={row.category}
                     onChange={(value) => handleCategoryChange(value, index)}
                   >
@@ -130,7 +132,7 @@ function AddQuotationExcel(props) {
                   </Select>
                 </div>
               </div>
-           
+           <div class="mt-1" />
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Brand</div>
                 <div className="w-[13rem]">
@@ -145,6 +147,7 @@ function AddQuotationExcel(props) {
                   </Select>
                 </div>
               </div>
+              <div class="mt-1" />
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Model</div>
                 <div className="w-[13rem]">
@@ -159,11 +162,12 @@ function AddQuotationExcel(props) {
                   </Select>
                 </div>
               </div>
+              <div class="mt-1" />
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Attribute</div>
                 <div className="w-[7rem]">
                   <Select
-                    style={{ width: 100 }}
+                    style={{ width: 200 }}
                     value={row.attribute}
                     onChange={(value) => handleAttributeChange(value, index)}
                   >
@@ -173,11 +177,12 @@ function AddQuotationExcel(props) {
                   </Select>
                 </div>
               </div>
+              <div class="mt-1" />
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Quality</div>
                 <div className="w-[9rem]">
                   <Select
-                    style={{ width: 120 }}
+                    style={{ width: 200 }}
                     value={row.quality}
                     onChange={(value) => handleQualityChange(value, index)}
                   >
@@ -187,6 +192,7 @@ function AddQuotationExcel(props) {
                   </Select>
                 </div>
               </div>
+              <div class="mt-1" />
               <div class=" ml-4">
                 <div class="font-bold text-xs font-poppins text-black">Location</div>
                 <div className="w-[7rem]">
@@ -207,11 +213,12 @@ function AddQuotationExcel(props) {
                   />
                 </div>
               </div>
+              <div class="mt-1" />
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Specs</div>
                 <div className="w-24 ml-2">
                   <Select
-                    style={{ width: 100 }}
+                    style={{ width: 200 }}
                     value={row.specs}
                     onChange={(value) => handleSpecsChange(value, index)}
                   >
@@ -222,6 +229,7 @@ function AddQuotationExcel(props) {
                   </Select>
                 </div>
               </div>
+              <div class="mt-1" />
               <div class=" ml-4">
                 <div class="font-bold text-xs font-poppins text-black">Unit</div>
                 <div className="w-24">
@@ -233,6 +241,7 @@ function AddQuotationExcel(props) {
                   />
                 </div>
               </div>
+              <div class="mt-1" />
               <div class=" ml-4">
                 <div class="font-bold text-xs font-poppins text-black">Price per Unit</div>
                 <div className="w-24">
@@ -253,7 +262,10 @@ function AddQuotationExcel(props) {
         <Button type="primary" onClick={handleAddRow}>Add</Button>
         <Button type="primary" loading={props.addingQuotationPhoneDetails} onClick={handleSubmit}>Submit</Button>
       </div>
+      <div class="w-[55rem]">
       <QuotationDetailsCardList />
+      </div>
+      </div>
     </>
   );
 }
