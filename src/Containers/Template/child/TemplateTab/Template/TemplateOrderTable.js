@@ -11,7 +11,8 @@ const InvoiceTemplate = (props) => {
   const invoices = [
     {
       id: 1361,
-      type:"1 Di Inc Order",
+      style:"American",
+      type:"ABCD Order",
       date: "30/08/2024",
       dueDate: "29/09/2024",
       shipDate: "30/08/2024",
@@ -28,7 +29,8 @@ const InvoiceTemplate = (props) => {
     },
     {
       id: 1362,
-      type:"1 Di Inc Quation",
+      style:"Canadian",
+      type:"ABCD Quation",
       date: "05/09/2024",
       dueDate: "05/10/2024",
       shipDate: "05/09/2024",
@@ -52,10 +54,10 @@ const InvoiceTemplate = (props) => {
     }
   }, []);
 
-  const sendInvoiceData = (type) => {
+  const sendInvoiceData = (style) => {
     const payload = {
         orgId: props.orgId,
-      type: type.type,
+      type: style.style,
     };
 
     axios
@@ -92,10 +94,12 @@ const handleTemplateSelection = () => {
           <h3 className="text-xl font-bold mb-3">ORDER</h3>
           <ul>
             {invoices.map((invoice) => (
-              <li
+              <>
+              <div className="font-semibold text-sm">{invoice.style}</div>
+              <li 
                 key={invoice.id}
-                className={`p-3 mb-2 cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-lg ${
-                  selectedInvoice?.id === invoice.id ? "bg-blue-200" : ""
+                className={`p-3 mb-2 cursor-pointer hover:bg-gray-200 rounded-lg ${
+                  selectedInvoice?.id === invoice.id ? "bg-green-100" : "bg-gray-100"
                 }`}
                 onClick={() => setSelectedInvoice(invoice)}
               >
@@ -103,6 +107,7 @@ const handleTemplateSelection = () => {
                 <div>Date: {invoice.date}</div>
                 <div>Due Date: {invoice.dueDate}</div>
               </li>
+              </>
             ))}
           </ul>
         </div>
@@ -114,7 +119,7 @@ const handleTemplateSelection = () => {
               {/* Header */}
               <div className="flex justify-between">
                 <div className="flex flex-col text-sm">
-                  <div className="font-bold">{invoices.type}</div>
+                  <div className="font-bold">{selectedInvoice.type}</div>
                   <div>21A-81 Northern Heights Drive</div>
                   <div>Richmond Hill ON L4B 4C9</div>
                   <div>+14162780878</div>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Button } from "antd";
+import { base_url2 } from "../../../../../Config/Auth";
 
 const QuotationTemplate = (props) => {
   const [selectedInvoice, setSelectedInvoice] = useState(null);
@@ -9,6 +11,7 @@ const QuotationTemplate = (props) => {
   const invoices = [
     {
       id: 1361,
+      style:"American",
       date: "30/08/2024",
       dueDate: "29/09/2024",
       shipDate: "30/08/2024",
@@ -25,6 +28,7 @@ const QuotationTemplate = (props) => {
     },
     {
       id: 1362,
+      style:"Canadian",
       date: "05/09/2024",
       dueDate: "05/10/2024",
       shipDate: "05/09/2024",
@@ -45,18 +49,24 @@ const QuotationTemplate = (props) => {
     if (invoices.length > 0) {
       const firstInvoice = invoices[0];
       setSelectedInvoice(firstInvoice); // Set the first invoice as selected
-      sendInvoiceData(firstInvoice); // Post the data of the first invoice
+     // Post the data of the first invoice
     }
   }, []);
 
-  const sendInvoiceData = (invoice) => {
+  const sendInvoiceData = (style) => {
     const payload = {
         orgId: props.orgId,
-        type: "Opportunity",
+        type: style.style,
     };
 
     axios
-      .post("https://dummyurl.com/invoice", payload)
+    .post(`${base_url2}/template`,payload, 
+      {
+        headers: {
+          Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+        },
+      }
+    )
       .then((response) => {
         console.log("POST successful", response.data);
       })
@@ -64,9 +74,10 @@ const QuotationTemplate = (props) => {
         console.error("POST failed", error);
       });
   };
-  const handleInvoiceSelect = (invoice) => {
-    setSelectedInvoice(invoice);
-    sendInvoiceData(invoice); // Post data when invoice is selected
+  const handleTemplateSelection = () => {
+    if (selectedInvoice) {
+      sendInvoiceData(selectedInvoice);
+    }
   };
 
   return (
@@ -76,18 +87,22 @@ const QuotationTemplate = (props) => {
         <div className="w-1/4 bg-white p-4 h-[80vh] overflow-auto">
           <h3 className="text-xl font-bold mb-3">Quotation</h3>
           <ul>
+          
             {invoices.map((invoice) => (
+                <>
+                   <div className="font-semibold text-sm">{invoice.style}</div>
               <li
                 key={invoice.id}
                 className={`p-3 mb-2 cursor-pointer bg-gray-100 hover:bg-gray-200 rounded-lg ${
-                  selectedInvoice?.id === invoice.id ? "bg-blue-200" : ""
+                   selectedInvoice?.id === invoice.id ? "bg-green-100" : "bg-gray-100"
                 }`}
-                onClick={() => handleInvoiceSelect(invoice)}
+                onClick={() => setSelectedInvoice(invoice)}
               >
                 <div className="font-bold">Invoice #{invoice.id}</div>
                 <div>Date: {invoice.date}</div>
                 <div>Due Date: {invoice.dueDate}</div>
               </li>
+              </>
             ))}
           </ul>
         </div>
@@ -234,6 +249,13 @@ const QuotationTemplate = (props) => {
           )}
         </div>
       </div>
+      <Button
+            type="Primary"
+        onClick={handleTemplateSelection}
+        className="fixed bottom-10 right-10 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700"
+      >
+        Select Template
+      </Button>
     </div>
   );
 };
