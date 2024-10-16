@@ -188,7 +188,7 @@ const TaskApproveTable = (props) => {
                         <div>
                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex  w-[13.3rem] max-xl:w-[10.3rem] max-lg:w-[10.3rem] max-sm:w-auto max-sm:flex-row justify-between ">
+                                <div className=" flex  border-l-2 border-green-500 h-8 bg-[#eef2f9] w-[13.3rem] max-xl:w-[10.3rem] max-lg:w-[10.3rem] max-sm:w-auto max-sm:flex-row justify-between ">
 <div className="flex max-sm:w-full"> 
 {item.priority === "High" && (
                       <div
@@ -206,7 +206,7 @@ const TaskApproveTable = (props) => {
                       ></div>
                     )}
                     <div class=" w-1"></div>
-          <div class=" flex w-[7.1rem] items-center max-sm:w-full">
+          <div class=" flex w-[7.1rem]   justify-center h-8 ml-gap bg-[#eef2f9] items-center max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
                                             {/* <div class="text-sm  font-poppins max-sm:hidden">
@@ -222,7 +222,7 @@ const TaskApproveTable = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex   items-center  w-[15.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[15.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm   font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -244,7 +244,7 @@ const TaskApproveTable = (props) => {
                    
                         
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex  w-[7.35rem] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                                <div className=" flex  w-[7.35rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.35rem] max-lg:w-[3.35rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-poppins max-sm:hidden">Submitted By</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <MultiAvatar
@@ -255,7 +255,7 @@ const TaskApproveTable = (props) => {
                 />
                                     </div>
                                 </div>
-                                <div className="flex w-[4.23rem] max-xl:w-[4.23rem] max-lg:w-[3.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex w-[4.23rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.23rem] max-lg:w-[3.23rem]  max-sm:flex-row  max-sm:w-auto ">
                        
                        
                      <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -266,7 +266,7 @@ const TaskApproveTable = (props) => {
                    </div>
                              </div>  
                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                     <div className="flex  justify-between text-xs w-[17.6rem] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                     <div className="flex  text-xs w-[17.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
                                   {item.customerName ? (
                                       <>{item.customerName}</>
                                     ) : null} 
@@ -274,7 +274,7 @@ const TaskApproveTable = (props) => {
                                       <>{item.contact}</>
                                     ) : null}        
                    </div>                                            
-                                <div className=" flex  w-[5.9rem] ml-3 max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex  w-[5.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned On</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <span>{` ${dayjs(item.assignedOn).format("ll")}`}</span>
@@ -284,7 +284,7 @@ const TaskApproveTable = (props) => {
                          </div>
 
   
-                         <div class="flex  max-sm:justify-end max-sm:w-wk items-center">  
+                         <div class="flex  max-sm:justify-end max-sm:w-wk items-center justify-center h-8 ml-gap bg-[#eef2f9]">  
                   
                    <div class="flex flex-col w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
                    <div class="w-36 max-sm:w-auto">

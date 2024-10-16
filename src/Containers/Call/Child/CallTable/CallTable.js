@@ -140,13 +140,13 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             <div className="flex rounded justify-between bg-white  h-8  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-              <div class="flex  w-[8.9rem] text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+              <div class="flex  w-[8.9rem]  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
             <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callType}</div>
             </div>
-            <div class="flex w-[14.8rem] text-xs max-xl:w-[9.8rem] max-lg:w-[7.3rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+            <div class="flex w-[14.8rem] items-center justify-center h-8 bg-[#eef2f9] ml-gap text-xs max-xl:w-[9.8rem] max-lg:w-[7.3rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
             <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callPurpose}</div>
               </div>
-              <div class="flex w-[7.5rem] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+              <div class="flex w-[7.5rem]  items-center justify-center h-8 bg-[#eef2f9] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
       
               <MultiAvatar2
                     primaryTitle={item.contactName}
@@ -159,18 +159,18 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
               
-              <div class="flex  text-xs   w-[11.35rem] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-col max-sm:justify-between max-sm:w-auto">
+              <div class="flex  text-xs   w-[11.35rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-col max-sm:justify-between max-sm:w-auto">
               <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {dayjs(item.startDate).format('YYYY-MM-DD')}</div>
               </div>
              
-              <div class="flex w-[11.35rem] text-xs max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+              <div class="flex w-[11.35rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] text-xs max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
            
            <div className="max-xl:text-[0.65rem]  text-xs  max-lg:text-[0.45rem] max-sm:text-sm"> {item.completionInd ? `${props.translatedMenuItems[13]}` : `${props.translatedMenuItems[13]}`} </div>
            </div>
            </div>
 
            {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center "> */}
-           <div class="flex w-full max-xl:w-[6.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:justify-evenly max-sm:w-auto">
+           <div class="flex w-full  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:justify-evenly max-sm:w-auto">
               <Avatar.Group
                    maxCount={7}
                   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -230,7 +230,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             
     
            </div>
-           <div className=" flex  items-center md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+           <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  items-center font-poppins">
                             {/* {date} */}
                             <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
@@ -243,7 +243,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                           
                     
                         </div>
-             <div class="flex max-sm:justify-between max-sm:w-wk ">
+             <div class="flex max-sm:justify-between max-sm:w-wk ml-gap  items-center justify-center h-8 bg-[#eef2f9] ">
               <div class="flex flex-row  w-[6%] max-sm:flex-row max-sm:w-auto">
                     <div>
                     <Tooltip title={props.translatedMenuItems[14]}>

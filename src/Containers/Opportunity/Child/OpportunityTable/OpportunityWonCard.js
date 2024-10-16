@@ -234,7 +234,7 @@ function OpportunityWonCard(props) {
               >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex  w-[13rem] items-center  border-l-2 border-green-500 bg-[#eef2f9] max-lg:w-[10rem] max-sm:flex-row  max-sm:w-auto ">
-                                <div>
+                       {/* <div>
 
             <MultiAvatar
               primaryTitle={item.opportunityName}
@@ -244,10 +244,10 @@ function OpportunityWonCard(props) {
               imgHeight={"1.8rem"}
             />
           
-</div>
-                                   <div class="w-[4%]">
+</div> */}
+                                   {/* <div class="w-[4%]">
 
-                                   </div>
+                                   </div> */}
                                    
                                         <Tooltip>
                                         <div class=" flex max-sm:w-full items-center  flex-row ">
@@ -255,11 +255,10 @@ function OpportunityWonCard(props) {
                                             Name
                                             </div> */}
                                             <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
-                                                
-                                            <Link class="overflow-ellipsis whitespace-nowrap max-sm:text-sm h-8 text-xs p-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
-      {item.opportunityName}
-    </Link>
-       
+                                           
+     <Link class="overflow-ellipsis whitespace-nowrap max-sm:text-sm h-8 text-xs p-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`opportunity/${item.newOppId}`} title={item.newOppId}>
+    {item.newOppId}  
+    </Link>{item.opportunityName} 
                                             </div>
 </div>
                                         </Tooltip>
@@ -370,7 +369,7 @@ function OpportunityWonCard(props) {
                              
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex  w-8 items-center  h-8 ml-gap bg-[#eef2f9]max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-8 max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 
@@ -487,7 +486,7 @@ function OpportunityWonCard(props) {
            )}
          </span>
                         </div>
-                        <div class="w-6 items-center  h-8 ml-gap bg-[#eef2f9]">
+                        <div >
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
