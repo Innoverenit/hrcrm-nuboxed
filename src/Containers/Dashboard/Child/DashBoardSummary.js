@@ -2,8 +2,21 @@ import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+import { getQuotationDashboard,getQuotationDashboardCount } from "../../Dashboard/DashboardAction";
 
-const DashBoardSummary=() =>{
+
+const DashBoardSummary=(props) =>{
+
+
+  useEffect(() => {
+
+
+    props.getQuotationDashboard(props.userId);
+    props.getQuotationDashboardCount(props.userId)
+
+
+   
+  }, []);
   const data = {
     deals: [
       { name: "David Miller", description: "Request for Sample logo", date: "Yesterday", amount: "$ 5,000.00" },
@@ -42,7 +55,7 @@ const DashBoardSummary=() =>{
     <div className="container mx-auto p-4 grid grid-cols-4 gap-6">
       {/* TASK */}
       <div>
-        <h2 className="text-xl font-bold mb-4">Task</h2>
+        <h2 className="text-xl font-bold mb-4">Task-(5)</h2>
         {data.deals.map((deal, index) => (
           <div key={index} className="mb-4">
             <div className="flex justify-between">
@@ -59,21 +72,30 @@ const DashBoardSummary=() =>{
 
       {/* QUOTATION */}
       <div>
-        <h2 className="text-xl font-bold mb-4">Quotation</h2>
-        {data.contactsLeads.map((lead, index) => (
-          <div key={index} className="mb-4">
-            <div className="flex justify-between">
-              <p className="font-semibold">{lead.name}</p>
-              <p className="text-sm text-gray-500">{lead.time}</p>
-            </div>
-            <p className="text-sm text-gray-500">{lead.description}</p>
-          </div>
-        ))}
+  <h2 className="text-xl font-bold mb-4">
+  Quotation - (1)
+  {/* ({`${props.quotationDashboardCount.} `}) */}
+</h2>
+  {props.quotationDashboard.length === 0 ? (
+    <p>No data found</p>
+  ) : (
+    props.quotationDashboard.map((lead, index) => (
+      <div key={index} className="mb-4">
+        <div className="flex justify-between">
+          <p className="font-semibold">{lead.quotationId}</p>
+          <p className="text-sm text-gray-500">{lead.time}</p>
+        </div>
+        <p className="text-sm text-gray-500">{lead.amount}</p>
+        <p className="text-sm text-gray-500">{lead.contactPersonName}</p>
       </div>
+    ))
+  )}
+</div>
+
 
       {/* ORDER */}
       <div>
-        <h2 className="text-xl font-bold mb-4">Order</h2>
+        <h2 className="text-xl font-bold mb-4">Order-(6)</h2>
         {data.notInCrm.map((contact, index) => (
           <div key={index} className="mb-4">
             <div className="flex justify-between">
@@ -81,13 +103,14 @@ const DashBoardSummary=() =>{
               <p className="text-sm text-gray-500">{contact.time}</p>
             </div>
             <p className="text-sm text-gray-500">{contact.description}</p>
+            
           </div>
         ))}
       </div>
 
       {/* DEALS */}
       <div>
-        <h2 className="text-xl font-bold mb-4"> Deals </h2>
+        <h2 className="text-xl font-bold mb-4"> Deals-(5) </h2>
         {data.colleagues.map((colleague, index) => (
           <div key={index} className="mb-4">
             <div className="flex justify-between">
@@ -102,8 +125,13 @@ const DashBoardSummary=() =>{
   );
 };
 const mapStateToProps = ({ dashboard, auth }) => ({
+  userId: auth.userDetails.userId,
+  quotationDashboard:dashboard.quotationDashboard,
+  quotationDashboardCount:dashboard.quotationDashboardCount
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getQuotationDashboard,
+  getQuotationDashboardCount
 
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoardSummary);
