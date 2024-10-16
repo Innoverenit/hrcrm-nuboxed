@@ -90,9 +90,10 @@ function AccountTable(props) {
 
 
   useEffect(() => {
+        setPage(page + 1);
     props.getCustomerByUser(props.userId, page);
-    // setPage(page + 1);
-  }, []);
+  }, [props.userId]);
+
   function handleCurrentRowData(datas) {
     setRowData(datas);
   }
@@ -128,8 +129,19 @@ function AccountTable(props) {
   }
 
   const handleLoadMore = () => {
-    setPage(page + 1);
-    props.getCustomerByUser(props.userId, page);
+    const PageMapd = props.customerListByUser && props.customerListByUser.length && props.customerListByUser[0].pageCount
+    setTimeout(() => {  
+      if  (props.customerListByUser)
+      {
+        if (page < PageMapd) {    
+          setPage(page + 1);
+          props.getCustomerByUser(props.userId, page);
+            }
+              if (page === PageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
   };
 
   const {
@@ -218,8 +230,9 @@ function AccountTable(props) {
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingCustomerByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-            height={"82vh"}
+            height={"83vh"}
             style={{ scrollbarWidth:"thin"}}
+            endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
           >
             {props.customerListByUser.length ?
               <>
@@ -299,8 +312,18 @@ function AccountTable(props) {
 
                             </div>
                           </div>
+                          <div className=" flex items-center justify-center  max-sm:w-auto w-[4.2rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                             
 
-                         
+                            </div>
+                          </div>
+                          <div className=" flex items-center justify-center  max-sm:w-auto w-[5.21rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                             
+
+                            </div>
+                          </div>
                           <div className=" flex items-center justify-center  max-sm:w-auto w-[5rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[cadetblue] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clubName}
@@ -373,6 +396,7 @@ function AccountTable(props) {
                           </div>                        */}
                                         
                       <div className=" flex items-center justify-center bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[6.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto w-[7rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;
                             
                           </div>
@@ -382,13 +406,14 @@ function AccountTable(props) {
                             </div>
                           <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {/* Assigned */}
+                                  {item.assignToUser?
                                   <span>
                                   <MultiAvatar2
             primaryTitle={item.assignToUser}
             imgWidth={"1.8rem"}
             imgHeight={"1.8rem"}
           />
-          </span>
+          </span>:""}
            
                                   </div>
 
@@ -502,12 +527,12 @@ function AccountTable(props) {
                        
                       </div>
                     </div>
-
+                  </div>
 
                   )
                 })}
               </>
-              : !props.customerListByUser.length && !props.fetchingCustomerByUser ? <NodataFoundPage /> : null}
+              : !props.customerListByUser.length && !props.fetchingCustomerByUser ? <NodataFoundPage /> : ""}
           </InfiniteScroll>
         </div>
       </div>

@@ -34,7 +34,9 @@ function StatusCardView (props) {
                     </span>
                   ) : null} </div>
                 <div class="flex flex-row"> 
-                  <div class="mr-2">{status.transactionNumber} </div>
+                {status.approveByName ?
+                  <div class="mr-2 bg-green-600 text-white">{status.transactionNumber} </div>:
+                  <div class="mr-2">{status.transactionNumber} </div>}
                   {status.paymentModeName}</div>
                   {status.approveByName ?
                     `Approved by ${status.approveByName} - ${dayjs(status.approveDate).format('DD/MM/YYYY')} `:""}

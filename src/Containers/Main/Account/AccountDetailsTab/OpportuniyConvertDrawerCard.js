@@ -11,7 +11,7 @@ import {codInventoryOrder} from "../AccountAction";
 // import pay from "../../../../../../../../Assests/Images/cashShake.svg";
 import axios from 'axios';
 
-const OpportuniyConvertDrawerCard = ({ props,userId,stripeNo,particularRowItem, invencartItem, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
+const OpportuniyConvertDrawerCard = ({ props,userId,setopenConvertModal,stripeNo,particularRowItem, invencartItem, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
   const [value, setValue] = useState(1);
   const history = useHistory();
 
@@ -44,6 +44,7 @@ const OpportuniyConvertDrawerCard = ({ props,userId,stripeNo,particularRowItem, 
       orderProcess:"checkout",
     };
     codInventoryOrder(data);
+    setopenConvertModal(false);
   };
   const handleEFTOrder = () => {
     // history.push("/shopName/invOrdersuccess");
@@ -54,6 +55,7 @@ const OpportuniyConvertDrawerCard = ({ props,userId,stripeNo,particularRowItem, 
       orderProcess:"checkout",
     };
      codInventoryOrder(data);
+     setopenConvertModal(false)
   };
 
   const handleCreditOrder = () => {
@@ -65,6 +67,7 @@ const OpportuniyConvertDrawerCard = ({ props,userId,stripeNo,particularRowItem, 
       orderProcess:"checkout",
     };
      codInventoryOrder(data);
+     setopenConvertModal(false);
   };
   const handlePaybyOrder = () => {
     // history.push("/shopName/invOrdersuccess");
@@ -75,6 +78,7 @@ const OpportuniyConvertDrawerCard = ({ props,userId,stripeNo,particularRowItem, 
       orderProcess:"checkout",
     };
      codInventoryOrder(data);
+    setopenConvertModal(false);
   };
   console.log(particularRowItem)
   return (

@@ -21,7 +21,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
-
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import LogoutIcon from '@mui/icons-material/Logout';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
 import { base_url2 } from "../../../../../Config/Auth";
@@ -29,6 +30,7 @@ import axios from "axios";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 const { Option } = Select;
 const { Search } = Input;
@@ -36,6 +38,20 @@ const UpdateProcureModal = lazy(() => import('./UpdateProcureModal'));
 const AccountProcureDetailsModal = lazy(() => import('../AccountProcureDetailsModal'));
 const ProcureStatusShowDrawer = lazy(() => import('./ProcureStatusShowDrawer'));
 const ProcureInvoiceListDrawer = lazy(() => import('./ProcureInvoiceListDrawer'));
+
+
+dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+    const now = dayjs();
+    const creationDay = dayjs(creationDate);
+
+    if (creationDay.isSame(now, 'day')) {
+        return 'Today';
+    } else {
+        return creationDay.from(now);
+    }
+};
 
 
 function CustomerProcurementTable(props) {
@@ -84,7 +100,7 @@ function CustomerProcurementTable(props) {
                 "1169",//10 invoice
                "100", // New11
                "142", // "Status"12
-               "14", //Category
+               "14", //Category/13
 
           ];
     
@@ -481,7 +497,7 @@ const handleLoadMoreLow = () => {
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-[0.65rem] text-[tomato] font-bold">
-                                            {/* New */}
+                                            {translatedMenuItems[11]}
                                           </span>
                                         ) : null} </span>
                                                    
@@ -489,9 +505,13 @@ const handleLoadMoreLow = () => {
                                                 </Tooltip>
                                               </div>
                                             </div>
-                                            <div className=" flex ml-2 md:w-[4.31rem] text-xs  max-sm:flex-row w-full max-sm:justify-between ">
-                                                    {date}
-                                                    </div>
+                                            <div className=" flex items-center w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
                                           </div>
                                         
                                           <div class="flex flex-row text-xs items-center md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
@@ -562,6 +582,7 @@ const handleLoadMoreLow = () => {
                   <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
                   }}>
+          <DataSaverOnIcon className=" !text-icon" /> 
                     {translatedMenuItems[10]}
                     </Button>
                   </div>
@@ -590,7 +611,9 @@ const handleLoadMoreLow = () => {
                       <Button
                       type="primary"
                         onClick={() => handleEditClick(item.orderId)}
-                      >Pack</Button>
+                      >
+                  <LogoutIcon className=" !text-icon" /> 
+                        Pack</Button>
                   
                     </>
                     )}
@@ -723,9 +746,13 @@ const handleLoadMoreLow = () => {
                           </Tooltip>
                         </div>
                       </div>
-                      <div className=" flex ml-2 md:w-[4.31rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
-                                                    {date}
-                                                    </div>
+                      <div className=" flex items-center w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
                     </div>
 
                     <div class="flex flex-row items-center md:w-[11rem] max-sm:flex-row w-full text-xs max-sm:justify-between">
@@ -796,6 +823,7 @@ const handleLoadMoreLow = () => {
                     setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
                   }}>
+                     <DataSaverOnIcon className=" !text-icon" /> 
                     {translatedMenuItems[10]}
                     </Button>
                     </div>

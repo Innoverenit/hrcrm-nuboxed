@@ -51,7 +51,6 @@ const AccountContactTable = (props) => {
                "1347", // Login Applied9
                "1348",  // Login Approved10
                "392",  // "Pulse"11
-          
                "1342",  // "Mid-Level"12
                "1343",  // "Strategic"13
                "1344", // "C-Level"14

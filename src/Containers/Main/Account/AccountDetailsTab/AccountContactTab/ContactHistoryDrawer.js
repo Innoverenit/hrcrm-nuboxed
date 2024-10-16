@@ -12,13 +12,12 @@ const ContactHistoryDrawer = (props) => {
     return (
         <>
             <StyledDrawer
-                title="Contact"
+                title={`${props.rowData.firstName || ""} ${props.rowData.middleName || ""} ${props.rowData.lastName || ""}`}
                 width="60%"
                 visible={props.modalContactHistory}
                 maskClosable={false}
                 destroyOnClose
                 maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)"}}
-                style={{marginTop:"3rem"}}
                 onClose={() => props.setmodalContactHistory(false)}
                 footer={null}
             >
