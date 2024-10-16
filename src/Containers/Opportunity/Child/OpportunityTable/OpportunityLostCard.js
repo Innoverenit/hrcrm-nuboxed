@@ -237,7 +237,7 @@ function OpportunityLostCard(props) {
                 className="flex  items-center rounded justify-between  bg-white mt-1 h-8  p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium w-[14.5rem] max-xl:w-[9.5rem] max-lg:w-[6.5rem] max-sm:flex-row  ">
+                    <div className=" flex font-medium w-[14.5rem] items-center  border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[9.5rem] max-lg:w-[6.5rem] max-sm:flex-row  ">
                               <div>
 <div>
           <MultiAvatar
@@ -267,7 +267,7 @@ function OpportunityLostCard(props) {
                             
                               </div>
 
-                              <div className=" flex   w-[9.4rem] max-xl:w-[5.7rem]   max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[9.4rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.7rem]   max-sm:flex-row  max-sm:justify-between ">
                          
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
                                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
@@ -280,7 +280,7 @@ function OpportunityLostCard(props) {
                              
                               
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex w-[6.9rem] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex w-[6.9rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                                 
 
                                 {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
@@ -298,7 +298,7 @@ function OpportunityLostCard(props) {
         
                                 </div>
                             </div>
-                              <div className=" flex  w-[11.01rem] max-xl:w-[5.91rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  w-[11.01rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.91rem] max-sm:flex-row  max-sm:justify-between ">
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
                                   <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -306,7 +306,7 @@ function OpportunityLostCard(props) {
                                   </div>
                               </div>
                            
-                              <div className=" flex items-center  w-[7rem] max-xl:w-[5.81rem] max-lg:w-[2.81rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex items-center  w-[7rem]   h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.81rem] max-lg:w-[2.81rem] max-sm:flex-row  max-sm:justify-between ">
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                   <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -318,7 +318,7 @@ function OpportunityLostCard(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex  items-center  w-[11rem] max-xl:w-[3.9rem] max-lg:w-[3.2rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[11rem] max-xl:w-[3.9rem] max-lg:w-[3.2rem] max-sm:flex-row  max-sm:justify-between ">
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                   <div class=" text-xs  font-poppins text-center max-sm:text-sm">
@@ -354,7 +354,7 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex items-center w-[7.01rem] max-xl:w-[4rem] max-lg:w-[3rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex items-center   h-8 ml-gap bg-[#eef2f9] w-[7.01rem] max-xl:w-[4rem] max-lg:w-[3rem] max-sm:flex-row  max-sm:justify-between ">
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
                                   <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -369,7 +369,7 @@ strokeColor={"#005075"}
            
                                   </div>
                               </div>
-                              <div className=" flex items-center w-[7rem] max-sm:flex-row max-lg:w-[3rem]  mb-1 max-sm:justify-between ">
+                              <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[7rem] max-sm:flex-row max-lg:w-[3rem]  mb-1 max-sm:justify-between ">
                      
                      {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 
@@ -387,7 +387,7 @@ strokeColor={"#005075"}
                  </div>
                  </div>
                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                 <div className=" flex  w-[5.01rem] max-xl:w-[5rem] max-sm:justify-between max-lg:w-[4rem] max-sm:flex-row ">
+                 <div className=" flex  w-[5.01rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-sm:justify-between max-lg:w-[4rem] max-sm:flex-row ">
           
                   <ReinstateToggleForLost 
           opportunityId={item.opportunityId} 
@@ -396,7 +396,7 @@ strokeColor={"#005075"}
           />
                   </div>
                 
-                 <div class="flex w-[1rem] max-sm:flex-row max-sm:w-[10%]">
+                 <div class="flex w-[1rem] items-center  h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-[10%]">
                  <div>
                  <span
        
@@ -425,7 +425,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
           </div>
        
                 
-                  <div>
+                  <div className="items-center  h-8 ml-gap bg-[#eef2f9]">
                   <Tooltip title={translatedMenuItems[8]}><span
        onClick={() => {
         props.LinkClosedOpportunity(
@@ -444,7 +444,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
           </span>
    </Tooltip> 
                   </div>
-                  <div class="w-6">
+                  <div class="w-6 items-center  h-8 ml-gap bg-[#eef2f9]">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
