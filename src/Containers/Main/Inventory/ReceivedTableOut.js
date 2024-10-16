@@ -130,8 +130,8 @@ const ReceivedTableOut = (props) => {
       
         <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold  z-10">
-              <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" flex justify-between max-sm:hidden  w-[88%]  p-1 bg-transparent font-bold text-xs font-poppins  z-10">
+              <div className=" w-[16.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {translatedMenuItems[0]}
                 </div>
               {props.accountInfoInd && (
@@ -151,23 +151,21 @@ const ReceivedTableOut = (props) => {
               <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {translatedMenuItems[4]}
                 </div>
-              <div className="w-[11.2rem]"></div>
+         
               <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {translatedMenuItems[5]}
                 </div>
               <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {translatedMenuItems[6]}
                 </div>
-              <div className="w-[2.31rem]"></div>
-              <div className="w-[2.1rem]"></div>
-              <div className="w-[2.01rem]"></div>
+          
             </div>
             <InfiniteScroll
               dataLength={props.allReceivedUser.length}
               next={handleLoadMore}
               hasMore={hasMore}
               loader={props.fetchingReceivedUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"67vh"}
+              height={"73vh"}
               style={{overflowX:"hidden", scrollbarWidth:"thin"}}
               endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
             >
@@ -179,19 +177,18 @@ const ReceivedTableOut = (props) => {
                   const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                   return (
                     <div>
-                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div className="flex justify-between rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex w-[9.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto  ">
-                            <div class="text-xs  font-bold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                              <div class=" flex ">
-                              <Badge size="small" count={`${item.phoneReceiveCount} / ${item.phoneCount}`} overflowCount={5000}>
-                                <span
+                          <div className=" flex w-[9.62rem] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto   ">
+                          <span className="text-xs  font-bold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
                                   onClick={() => {
                                     handleRowData(item);
                                     props.handleReceivedOrderIdModal(true);
                                   }}
                                 >{item.newOrderNo}
                                 </span>
+                              <Badge size="small" count={`${item.phoneReceiveCount} / ${item.phoneCount}`} overflowCount={999} offset={[0,-11]}>
+                            
                                 </Badge>
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (
@@ -199,8 +196,8 @@ const ReceivedTableOut = (props) => {
                                     New
                                   </div>
                                 ) : null}
-                              </div>
-                            </div>
+                              
+                            
                           </div>
 {props.accountInfoInd &&
 <>
@@ -338,7 +335,7 @@ const ReceivedTableOut = (props) => {
                                   </Button> :
                                   item.inspectionInd === 1 && item.inventoryReceiveInd ?
                                     <Button
-                                      className="w-28 text-base"
+                                      className="w-28 text-xs"
                                       type="primary"
                                       onClick={handlePauseResume}>
                                       {pause ? "Resume Inspection" : "Pause Inspection"}

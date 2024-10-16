@@ -120,7 +120,7 @@ const MaterialStockTableOut = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialUnitsData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
-                        height={"75vh"}
+                        height={"73vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
                         {props.materialUnitsData.map((item, index) => {

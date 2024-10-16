@@ -78,7 +78,7 @@ const MaterialReceivedTableOut = (props) => {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-                        <div className=""></div>
+                       
                         <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
                         <div className=" w-[13.52rem]">
                             {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
@@ -90,14 +90,14 @@ const MaterialReceivedTableOut = (props) => {
 
                         </div>
 
-                        <div className=" w-[11.322rem]"></div>
+                       
                     </div>
                     <InfiniteScroll
                         dataLength={props.materialReceiveData.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]} ...</div> : null}
-                        height={"78vh"}
+                        height={"73vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
                         {props.materialReceiveData.map((item) => {

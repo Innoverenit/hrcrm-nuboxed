@@ -466,9 +466,9 @@ const AWBtst=[
   return (
     <>
     
-        <div className=' flex justify-end sticky  z-auto'>
+        <div className=' flex  sticky  z-auto'>
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+            <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
               <div className=" w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
               {translatedMenuItems[0]}
                 </div>
@@ -509,7 +509,7 @@ const AWBtst=[
                 {/* <FormattedMessage id="app.pickup" defaultMessage="Pick Up" /> */}
                 {translatedMenuItems[9]}
                 </div>
-              <div className="w-[0.5%]"></div>
+             
             </div>
             <InfiniteScroll
               dataLength={props.allDispatchList.length}
@@ -517,7 +517,7 @@ const AWBtst=[
                next={handleLoadMore}
                hasMore={hasMore}
                loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"67vh"}
+              height={"73vh"}
               style={{ overflowX: "hidden", scrollbarWidth:"thin" }}
               endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
             >
@@ -537,7 +537,7 @@ const AWBtst=[
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                           <div className=" flex  w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                            <div class="text-sm flex  font-bold underline font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
+                            <div class="text-xs flex  font-bold underline font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
                               <div
                                 onClick={() => {
                                   handleRowData(item);
@@ -553,12 +553,7 @@ const AWBtst=[
                           </div>
                           <div className=" flex font-medium  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
-                                                            <Badge
-                                                                class=" ml-2"
-                                                                size="small"
-                                                                count={item.awbCount || 0}
-                                                                overflowCount={999}
-                                                            >
+                                                        
                                                                 <Button
                                                                     style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
                                                                     class=" bg-green-500"
@@ -568,7 +563,13 @@ const AWBtst=[
                                                                     }
                                                                     }
                                                                 ><span className='!text-[#faad14]'>AWB</span></Button>
-                                                            </Badge>
+                                                              <Badge
+                                                                class=" ml-2"
+                                                                size="small"
+                                                                count={item.awbCount || 0}
+                                                                overflowCount={999}
+                                                                offset={[0,-11]}
+                                                            >  </Badge>
                                                         </div>
                                                     </div>
 
@@ -721,16 +722,22 @@ const AWBtst=[
 
 
         <RefurbishNoteAll
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
                      rowData={rowData}
                      productioNoteModal={props.productioNoteModal}
                     handleProductionNotesModal={props.handleProductionNotesModal}
                     />
       <DispatchPhoneListModalInventory
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
         rowData={rowData}
         handleInventoryDispatchModal={props.handleInventoryDispatchModal}
         inventoryDispatchModal={props.inventoryDispatchModal}
       />
       <DispatchOrderAwbModal
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
         rowData={rowData}
         addCreateAwb={props.addCreateAwb}
         handleCreateAWB={props.handleCreateAWB}
