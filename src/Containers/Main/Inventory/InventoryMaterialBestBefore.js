@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
     getMaterialBestBefore,
-    addToWaste
+    addToWaste,
+    addAsileInbest
     // handleMaterialReceived,
     // handlegrnlistmodal
 } from "../Inventory/InventoryAction";
@@ -29,9 +30,10 @@ import { base_url2 } from "../../../Config/Auth";
 const { Option } = Select;
 
 const InventoryMaterialBestBefore = (props) => {
-
+  const [rowsBest, setRowBest] = useState(props.materialBestBefore)
   const [selectedZones, setSelectedZones] = useState(null);
   const [asile, setAsile] = useState("");
+  const [rowDetails, setRowDetails] = useState({}); 
     const [zone, setZone] = useState([]);
     const [rack, setRack] = useState([]);
     const [isLoadingZone, setIsLoadingZone] = useState(false);
@@ -46,25 +48,67 @@ const InventoryMaterialBestBefore = (props) => {
     }, [])
 
 
+    useEffect(() => {
+      // Check if data is available
+      if (props.materialBestBefore.length > 0) {
+        // Update activeTab when data is available
+        setRowBest(props.materialBestBefore);
+      }
+    }, [props.materialBestBefore]);
+
+
 
     const handleRow = (item) => {
         setRow(item)
     }
 
 
-    const handleZoneChange = (value) => {
-      const selectedZoneData = zone.find(zone => zone.zone === value);
-      console.log(selectedZoneData)
-      if (selectedZoneData) {
-        setAsile(selectedZoneData.aisle);
-        setSelectedZones(value);
-      } else {
-        setAsile("");
-      }
-        // setSelectedZone(roomRackId);
-        fetchRack(value);
-      };
+    // const handleZoneChange = (value) => {
+    //   console.log(zone)
+    //   console.log(value)
+    //   const selectedZoneData = zone.find(zone => zone.roomRackId === value);
+    //   console.log(selectedZoneData)
+    //   if (selectedZoneData) {
+    //     setAsile(selectedZoneData.aisle);
+    //     setSelectedZones(value);
+    //   } else {
+    //     setAsile("");
+    //   }
+    //     // setSelectedZone(roomRackId);
+    //     fetchRack(value);
+    //   };
+    const handleZoneChange = (value, index) => {
+      const selectedZone = value;
+  
+      // Find the corresponding aisle for the selected zone
+      const selectedZoneData = zone.find((zone) => zone.roomRackId === selectedZone);
+      fetchRack(value)
+      // Update the rows state for the specific row at index
+      const updatedRows = rowsBest.map((row, i) => {
+        console.log(row)
+        if (i === index) {
+          const updatedRow = {
+            ...row,
+            zone: selectedZone,
+            aisle: selectedZoneData ? selectedZoneData.aisle : '',
+            roomRackId:selectedZoneData ? selectedZoneData.roomRackId : '',
+          };
 
+          setRowDetails((prevDetails) => ({
+            ...prevDetails,
+            
+              roomRackId: updatedRow.roomRackId,
+              aisle: updatedRow.aisle,
+            
+          }));
+          return updatedRow;
+        }
+        
+        return row;
+      });
+  
+      setRowBest(updatedRows);
+    };
       const handleSelectZoneFocus = () => {
         if (!touchedZone) {
           fetchZone();
@@ -96,8 +140,15 @@ const InventoryMaterialBestBefore = (props) => {
       };
 
 
-      const handleRackChange=(value)=>{
+      const handleRackChange=(value,poSupplierSuppliesId)=>{
         setSelectedRack(value);
+        console.log(rowsBest)
+        console.log(rowDetails)
+        let data={
+          roomRackId:rowDetails.roomRackId,
+          roomRackChamberLinkId:value
+        }
+        props.addAsileInbest(data,poSupplierSuppliesId)
       }
 
       const fetchRack = async (roomRackId) => {
@@ -175,7 +226,7 @@ console.log(selectedZones)
                         height={"67vh"}
                         style={{ scrollbarWidth:"thin"}}
                     > */}
-                         {props.materialBestBefore.map((item) => {
+                         {rowsBest.map((item,index) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
@@ -255,9 +306,9 @@ console.log(selectedZones)
                                                     <Select placeholder="Select zone" 
                                                     style={{ width: 146 }}
                                                     loading={isLoadingZone}
-                                                    value={selectedZones}
+                                                    value={item.zone}
                                                     onFocus={handleSelectZoneFocus}
-                                                    onChange={handleZoneChange}
+                                                    onChange={(value) => handleZoneChange(value, index)}
                                                     >
       
         {zone.map((zone) => (
@@ -288,15 +339,16 @@ console.log(selectedZones)
     <Input
         placeholder="Aisle"
         style={{ width: 200 }}
-        value={asile}
+        value={item.aisle}
         disabled
       />
 
     <Select placeholder="Select rack" 
       style={{ width: 146,marginLeft:"1em" }}
       loading={isLoadingRack}
-      onChange={handleRackChange}
-      disabled={!selectedZone} 
+   
+      onChange={(value) => handleRackChange(value, item.poSupplierSuppliesId)}
+      // disabled={!selectedZone} 
       >
       
       {rack.map((rack) => (
@@ -358,7 +410,8 @@ const mapDispatchToProps = (dispatch) =>
         {
             getMaterialBestBefore,
             handleTermsnConditionModal,
-            addToWaste
+            addToWaste,
+            addAsileInbest
             
             // getMaterialReceiveData,
             // handleMaterialReceived,
