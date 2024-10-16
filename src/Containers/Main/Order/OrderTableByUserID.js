@@ -262,11 +262,11 @@ const exportPDFAnnexure = async () => {
                     <div className=" flex  w-[100%]   bg-transparent  sticky  z-10 max-sm:hidden">
                     <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
                         <div className="w-[3.54rem] md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-                        <div className=" w-[8rem] md:w-[8rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className=" w-[9.6rem] md:w-[9.6rem]">{translatedMenuItems[2]}</div>
-          <div className=" w-[4.051rem] md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className=" w-[8.018rem] md:w-[8.018rem]">{translatedMenuItems[4]}</div>
-          <div className=" w-[5.031rem] md:w-[5.031rem]">{translatedMenuItems[8]}</div>
+                        <div className=" w-[4rem] md:w-[8rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className=" w-[10.6rem] md:w-[9.6rem]">{translatedMenuItems[2]}</div>
+          <div className=" w-[2.051rem] md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className=" w-[2.018rem] md:w-[8.018rem]">{translatedMenuItems[4]}</div>
+          <div className=" w-[8.031rem] md:w-[5.031rem]">{translatedMenuItems[8]}</div>
           <div className=" w-[5.73rem] md:w-[5.73rem]">{translatedMenuItems[5]}</div>
           <div className="w-[5.8rem] md:w-[5.8rem]">{translatedMenuItems[6]}</div>
           <div className=" w-[9.8rem] md:w-[9.8rem]">{translatedMenuItems[7]}</div>

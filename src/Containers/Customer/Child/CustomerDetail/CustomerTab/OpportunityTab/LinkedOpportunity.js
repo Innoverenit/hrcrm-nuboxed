@@ -171,14 +171,14 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
     <>
     <div className=' flex  sticky z-auto'>
     <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className="font-bold font-poppins text-xs md:w-[16rem]">{translatedMenuItems[0]} ID</div>
+      <div className=" flex justify-between w-[100%] h-[79vh] p-1 bg-transparent font-bold sticky  z-10">
+        <div className="font-bold font-poppins  text-[#00A2E8] text-base md:w-[14rem]">{translatedMenuItems[0]} ID</div>
         {/* Quotation ID */}
-        <div className="font-bold font-poppins text-xs md:w-[5.1rem]">{translatedMenuItems[1]}</div>
+        <div className="font-bold font-poppins text-xs md:w-[7.1rem]">{translatedMenuItems[1]}</div>
         {/* Start Date         */}
         <div className="font-bold font-poppins text-xs md:w-[6.21rem] ">{translatedMenuItems[2]}</div>
         {/* End Date */}   
-        <div className="font-bold font-poppins text-xs md:w-[4.2rem]">{translatedMenuItems[3]}</div>
+        <div className="font-bold font-poppins text-xs md:w-[6.2rem]">{translatedMenuItems[3]}</div>
         {/* Value */}  
         <div className="font-bold font-poppins text-xs md:w-[5.51rem]">{translatedMenuItems[4]}</div>
           {/* Status */}      
@@ -224,10 +224,10 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
           return (
             <div>
                <div
-                className="flex rounded justify-between items-center bg-white mt-1 h-8  p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between items-center bg-white mt-1 h-8  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                 <div class="flex ">
-                <div className=" flex font-medium flex-col md:w-[15.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                <div className=" flex font-medium flex-col border-l-2 border-green-500 bg-[#eef2f9] md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
           &nbsp;
           <div class="max-sm:w-full">
@@ -236,7 +236,9 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                                           
                                             <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.newOppId}`} title={item.opportunityName}>
-      {item.opportunityName}
+                                            {item.opportunityName} 
+                                            {/* {item.newOppId} */}
+
     </Link>                                     
          {/* <Link
           toUrl={`/opportunity/${item.opportunityId}`}
@@ -262,14 +264,14 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                                 </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs  font-poppins">
                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                  
                     </div>
                   </div>
-                  <div className=" flex md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
          
          <div class=" text-xs  font-poppins">
          {dayjs(item.endDate).format("DD/MM/YYYY")}
@@ -279,7 +281,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex justify-center  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs  font-poppins">
                     <span>
@@ -289,7 +291,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                  
                     </div>
                   </div>
-                  <div className=" flex  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
          <div class=" text-xs  font-poppins">
          <Tooltip title={item.oppStage}>
@@ -310,7 +312,7 @@ width={30}
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex md:w-14 max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.75rem] max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs  font-poppins">
                     <Tooltip title={item.contactName}>
@@ -331,7 +333,7 @@ width={30}
                 </div>
               
                 <div class="flex md:items-center ">
-                  <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                       <Tooltip title={item.description}>
            
@@ -341,7 +343,7 @@ width={30}
           </Tooltip>
                     </div>
                   </div>
-                  <div className=" flex md:w-[2rem]  max-sm:flex-row w-full max-sm:justify-between">
+                  <div className=" flex md:w-[3rem] items-center justify-center h-8  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                   <Tooltip title="Edit">
              {user.opportunityUpdateInd ===true && (
           <BorderColorIcon 

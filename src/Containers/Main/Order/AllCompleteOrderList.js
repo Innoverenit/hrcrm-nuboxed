@@ -217,18 +217,18 @@ const exportPDFAnnexure = async () => {
               <div className=' flex sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               
-                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+                <div className=" flex justify-between w-[94%] p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
                   
                 <div className="font-bold font-poppins text-xs md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-                        <div className="font-bold font-poppins text-xs md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+                        <div className="font-bold font-poppins text-xs md:w-[5.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className="font-bold font-poppins text-xs md:w-[9.6rem]">{translatedMenuItems[2]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[3.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[4.018rem]">{translatedMenuItems[4]}</div>
           <div className="font-bold font-poppins text-xs md:w-[5.031rem]">{translatedMenuItems[8]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[6.2rem]">{translatedMenuItems[6]}</div>
           <div className="font-bold font-poppins text-xs md:w-[5.06rem]">{translatedMenuItems[7]}</div>
           <div className="font-bold font-poppins text-xs md:w-[9.73rem]">{translatedMenuItems[5]}</div>
-          <div className="md:w-24"></div>
+         
         </div>
                     <InfiniteScroll
                         dataLength={props.completedHighOrder.length}
@@ -249,9 +249,7 @@ const exportPDFAnnexure = async () => {
                                         <div>
                 <div
                   className="flex rounded justify-between mt-1 bg-white h-8 items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
-                // style={{
-                //   borderBottom: "3px dotted #515050",
-                // }}
+           
                 >
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
@@ -297,7 +295,7 @@ const exportPDFAnnexure = async () => {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[9.02rem]">
+                        <div class="max-sm:w-full md:w-[6.02rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
@@ -308,7 +306,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[3.23rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[9.23rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -334,10 +332,10 @@ const exportPDFAnnexure = async () => {
 
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                  <div className=" flex text-xs md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex text-xs md:w-[8.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[9.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -352,7 +350,7 @@ const exportPDFAnnexure = async () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[8.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -366,7 +364,7 @@ const exportPDFAnnexure = async () => {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[2.02rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -510,7 +508,7 @@ const exportPDFAnnexure = async () => {
           <div className="font-bold font-poppins text-xs md:w-[5.031rem]">{translatedMenuItems[8]}</div>
           <div className="font-bold font-poppins text-xs md:w-[6.06rem]">{translatedMenuItems[5]}</div>
           <div className="font-bold font-poppins text-xs md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[9.73rem]">{translatedMenuItems[7]}</div>
+ 
         
           <div className="md:w-24"></div>
         </div>

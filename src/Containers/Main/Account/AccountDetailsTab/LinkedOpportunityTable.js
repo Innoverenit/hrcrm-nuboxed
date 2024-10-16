@@ -315,7 +315,7 @@ const handleConfirm = (quotationId) => {
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
@@ -327,7 +327,7 @@ const handleConfirm = (quotationId) => {
                                         </div>
                                    
                                       
-                  <div class="flex flex-row items-center md:w-[11.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[20.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                
                           
@@ -345,13 +345,13 @@ const handleConfirm = (quotationId) => {
                         {/* </Popconfirm> */}
                       </div>
 
-                      <div class="w-6">
+                     
+                  </div>
+                  <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>
-          </div>
-                  </div>
-                                     
+          </div>            
                                       </div>
                                     </div>
 
@@ -471,7 +471,7 @@ const handleConfirm = (quotationId) => {
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -483,7 +483,7 @@ const handleConfirm = (quotationId) => {
                                             </div>
                                         </div>
                                     
-                                        <div class="flex flex-row items-center md:w-[11.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[20.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
              
                   <Button type="primary"  style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }} 
@@ -498,12 +498,13 @@ const handleConfirm = (quotationId) => {
                 
                       </div>
 
-                      <div class="w-6">
+                      
+                  </div>
+                  <div class="w-5">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>
           </div>
-                  </div>
                          </div>
                           </div>  )
                                 })}

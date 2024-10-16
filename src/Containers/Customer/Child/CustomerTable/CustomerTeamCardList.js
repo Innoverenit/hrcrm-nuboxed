@@ -227,8 +227,8 @@ const [rowdata, setrowdata] = useState("");
          <div className=' flex sticky  z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-         <div class=" flex justify-between w-[92%]">
-            <div className="font-poppins font-bold text-xs w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+         <div class=" flex justify-between w-[94%]">
+            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             {translatedMenuItems[0]}
            {/* name */}
             </div>
@@ -318,10 +318,10 @@ const [rowdata, setrowdata] = useState("");
                     return (
                       <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex   w-[15rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex   w-[15rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                           <div class="flex items-center">
 
@@ -359,7 +359,7 @@ const [rowdata, setrowdata] = useState("");
                           </div>
                         </div>
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -383,7 +383,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>
 
                       </div>
-                      <div className=" flex max-sm:w-auto items-center justify-center w-[2.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                        {/* Country */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
@@ -391,7 +391,7 @@ const [rowdata, setrowdata] = useState("");
                           {countryCode} */}
                         </div>
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[7.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[7.21rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                        {/* Sector  */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -401,7 +401,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  items-center  w-[6rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto    w-[8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -412,7 +412,7 @@ const [rowdata, setrowdata] = useState("");
                     
 
 
-                      <div className=" flex items-center  max-sm:w-auto w-[4.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto w-[4.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* >Pipeline Value */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -422,7 +422,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex  max-sm:w-auto w-[2.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex  max-sm:w-auto w-[2.82rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                        {/* Pipeline Value */}
                        
                             {item.totalProposalValue && (
@@ -437,13 +437,13 @@ const [rowdata, setrowdata] = useState("");
                       </div>     
 
                       {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[7.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  w-[7.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
          {item.noteScoreInd}
           
             </div>
             )}
 {/* Score */}
-                      <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex  max-sm:w-auto   w-[4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                     {/* Assigned */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -469,7 +469,7 @@ const [rowdata, setrowdata] = useState("");
 
                         </div>
                       </div>
-                      <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                      <div className=" flex  max-sm:w-auto w-[2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                         <Tooltip title={item.ownerName}>
                           <div class="max-sm:flex justify-end">
                             <Tooltip title={item.ownerName}>
@@ -486,7 +486,7 @@ const [rowdata, setrowdata] = useState("");
                   
                       
 
-                      <div className=" flex justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flex justify-center  w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
@@ -510,7 +510,7 @@ const [rowdata, setrowdata] = useState("");
                           )}
                         </Popconfirm>
                       </div>
-                      <div className=" flex items-center w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex  w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -520,7 +520,7 @@ const [rowdata, setrowdata] = useState("");
 </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                      
-                      <div class="w-4">
+                      <div class="w-4 items-center justify-center h-8 bg-[#eef2f9]">
                           <Tooltip title= {translatedMenuItems[12]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
@@ -532,7 +532,7 @@ const [rowdata, setrowdata] = useState("");
                           </Tooltip>
                         </div>
                       
-                        <div class="w-4">
+                        <div class="w-4 items-center justify-center h-8 bg-[#eef2f9]">
                           <Tooltip title= {translatedMenuItems[13]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800"
@@ -545,6 +545,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div> 
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]">
                         <Tooltip title= {translatedMenuItems[20]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
@@ -555,6 +556,8 @@ const [rowdata, setrowdata] = useState("");
           
         /> 
         </Tooltip>  
+        </div>
+        <div class="items-center justify-center h-8 bg-[#eef2f9]">
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -576,8 +579,9 @@ const [rowdata, setrowdata] = useState("");
                               </div>
                             }
                           </Tooltip>
+                          </div>
            
-                          <div
+                          <div class=" items-center justify-center h-8 bg-[#eef2f9]"
                             style={{ fontSize: "0.8rem" }}
                             onClick={() => {
                               props.getCustomerDetailsById(item.customerId);
@@ -593,7 +597,7 @@ const [rowdata, setrowdata] = useState("");
                             />}
                           </div>
                                                        
-                        <div class="w-4">
+                          <div class="w-4 items-center justify-center h-8 bg-[#eef2f9]">
                           <Tooltip title= {translatedMenuItems[15]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
@@ -605,7 +609,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>
-                        <div class="w-4">
+                        <div class="w-4 items-center justify-center h-8 bg-[#eef2f9]">
                           <Tooltip title= {translatedMenuItems[11]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -619,7 +623,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>                                      
                                                
                       
-                        <div class="w-4">
+                        <div class="w-4 items-center justify-center h-8 bg-[#eef2f9]">
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title= {translatedMenuItems[14]}>
                               <BorderColorIcon

@@ -177,20 +177,20 @@ class LinkedDocuments extends Component {
     return (
       <>
         <div class="rounded m-1 p-1 w-[100%]    shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex justify-between w-[100%] h-[79vh] p-1 bg-transparent font-bold sticky  z-10">
           
-        <div className="font-bold font-poppins text-xs md:w-[6rem]">
+        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[16.1rem]">
         {this.state.translatedMenuItems[0]}</div>
         {/* Date */}
-                <div className="font-bold font-poppins text-xs  md:w-[8.1rem]">{this.state.translatedMenuItems[1]}</div>
+                <div className="font-bold font-poppins text-xs  md:w-[16.2rem]">{this.state.translatedMenuItems[1]}</div>
                 {/* Name */}
-        <div className="font-bold font-poppins text-xs  md:w-[9.13rem]">{this.state.translatedMenuItems[2]}</div>
+        <div className="font-bold font-poppins text-xs  md:w-[13.13rem]">{this.state.translatedMenuItems[2]}</div>
         {/* Description */}
-        <div className="font-bold font-poppins text-xs  md:w-[5.1rem]">{this.state.translatedMenuItems[3]}</div>
+        <div className="font-bold font-poppins text-xs  md:w-[15.1rem]">{this.state.translatedMenuItems[3]}</div>
         {/* uploadedBy */}
-        <div className="font-bold font-poppins text-xs  md:w-[10.2rem]">{this.state.translatedMenuItems[4]}</div>
+        <div className="font-bold font-poppins text-xs  md:w-[12.2rem]">{this.state.translatedMenuItems[4]}</div>
         {/* fileName */}
-                     <div className="font-bold font-poppins text-xs  md:w-[8.2rem]">{this.state.translatedMenuItems[5]}</div>
+                     <div className="font-bold font-poppins text-xs  md:w-[9.2rem]">{this.state.translatedMenuItems[5]}</div>
                      {/* Contract */}
         
         
@@ -204,10 +204,10 @@ class LinkedDocuments extends Component {
                     return (
                       <div>
                        <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9.1rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
-                          <div className=" flex  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex  md:w-[9rem] h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 
     <div class="max-sm:w-full">
@@ -228,7 +228,7 @@ class LinkedDocuments extends Component {
                           <div class="flex">
 
                        
-                          <div className=" flex  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex  md:w-[12.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                              
                               <div class="text-xs  font-poppins">
                                    {item.documentTitle}
@@ -241,14 +241,14 @@ class LinkedDocuments extends Component {
         ) : null} 
                               </div>
                           </div>
-                          <div className=" flex   md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                          <div className=" flex   md:w-[12.4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
                           
                             <div class="text-xs  font-poppins">
                             {elipsize(item.documentDescription || "", 15)}
                             </div>
                         </div>
                         </div>
-                        <div className="flex   md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className="flex   md:w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
 <div className="text-xs  font-poppins text-center">
 <div className="font-normal text-xs font-poppins">
@@ -264,13 +264,13 @@ class LinkedDocuments extends Component {
                      </div>
 </div>
 </div>
-<div className=" flex   md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex   md:w-[12.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                               <div class=" text-xs  font-poppins text-center">
                               {item.fileName}
 
                               </div>
                           </div>
-                          <div className=" flex   md:w-[4.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex   md:w-[5.22rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                               <div class=" text-xs  font-poppins text-center">
                               <ContractToggle
           contractInd={item.contractInd}
@@ -282,7 +282,7 @@ class LinkedDocuments extends Component {
                        
                               
 
-                              <div>
+                              <div class="items-center justify-center h-8 bg-[#eef2f9]">
                               <a
             href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
@@ -292,7 +292,7 @@ class LinkedDocuments extends Component {
             /></Tooltip>
           </a>  
                  </div>
-          <div>
+                 <div class="items-center justify-center h-8 bg-[#eef2f9]">
             
           <Popconfirm
                         title= {this.state.translatedMenuItems[10]}
