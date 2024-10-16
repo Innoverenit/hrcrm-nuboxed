@@ -23,6 +23,11 @@ const initialState = {
   fetchingFinaceorderDetailsError: false,
   finaceOrderinDashboard:[],
 
+  fetchingQuotationDashboardCount:false,
+  fetchingQuotationDashboardCountError:false,
+
+  quotationDashboardCount:{},
+
   fetchingEnterPriseorderDetails: false,
   fetchingEnterPriseorderDetailsError: false,
   enterpriseOrderinDashboard:[],
@@ -442,6 +447,10 @@ const initialState = {
   fetchingColdestPitchError: false,
   showColdestPitch: [],
 
+  fetchingQuotationDashboard:false,
+  fetchingQuotationDashboardError:false,
+  quotationDashboard:[],
+
   fetchingWarmedPitch: false,
   fetchingWarmedPitchError: false,
   showWarmedPitch: [],
@@ -758,6 +767,25 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingdashBoardSummaryChart: false,
         fetchingdashBoardSummaryChartError: true,
       };
+
+
+
+
+
+      case types.GET_QUOTATION_DASHBOARD_REQUEST:
+        return { ...state, fetchingQuotationDashboard: true };
+      case types.GET_QUOTATION_DASHBOARD_SUCCESS:
+        return {
+          ...state,
+          fetchingQuotationDashboard: false,
+          quotationDashboard: action.payload,
+        };
+      case types.GET_QUOTATION_DASHBOARD_FAILURE:
+        return {
+          ...state,
+          fetchingQuotationDashboard: false,
+          fetchingQuotationDashboardError: true,
+        };
 
     // case types.CHANGE_SELECTED_TODO_TIME_INTERVAL_REPORT:
     //   return {
@@ -1376,6 +1404,23 @@ export const dashboardReducer = (state = initialState, action) => {
         gettingHotColdWarm: false,
         gettingHotColdWarmError: true,
       };
+
+
+
+      case types.GET_QUOTATION_DASHBOARD_COUNT_REQUEST:
+        return { ...state, fetchingQuotationDashboardCount: true };
+      case types.GET_QUOTATION_DASHBOARD_COUNT_SUCCESS:
+        return {
+          ...state,
+          fetchingQuotationDashboardCount: false,
+          quotationDashboardCount: action.payload,
+        };
+      case types.GET_QUOTATION_DASHBOARD_COUNT_FAILURE:
+        return {
+          ...state,
+          fetchingQuotationDashboardCount: false,
+          fetchingQuotationDashboardCountError: true,
+        };
 
     case types.GET_JUMPSTART_CUSTOMER_LIST_REQUEST:
       return {

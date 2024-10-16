@@ -2990,3 +2990,65 @@ export const getCategoryCountAcc = (userId,type,countryName) => (dispatch) => {
       });
     });
 };
+
+
+
+
+
+export const getQuotationDashboard = (userId) => (dispatch) => {
+  dispatch({
+      type: types.GET_QUOTATION_DASHBOARD_REQUEST,
+  });
+
+  axios
+      .get(`${base_url2}/quotation/notConverted/toOrder/user/${userId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_QUOTATION_DASHBOARD_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_QUOTATION_DASHBOARD_FAILURE,
+              payload: err,
+          });
+      });
+};
+
+
+
+
+
+export const getQuotationDashboardCount = (userId) => (dispatch) => {
+  dispatch({
+      type: types.GET_QUOTATION_DASHBOARD_COUNT_REQUEST,
+  });
+
+  axios
+      .get(`${base_url2}/quotation/notConverted/toOrder/count/user/${userId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_QUOTATION_DASHBOARD_COUNT_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_QUOTATION_DASHBOARD_COUNT_FAILURE,
+              payload: err,
+          });
+      });
+};
