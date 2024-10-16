@@ -232,10 +232,10 @@ console.log(selectedZones)
                             return (
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
-                                        <div class="flex">
+                                        <div class="flex border-l-2 ">
 
                                             <div className=" flex  w-[16.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
+                                                <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600 border-l-2 border-green-500 bg-[#eef2f9]">
                                                     <div
                                                         // onClick={() => {
                                                         //     handleRow(item);
@@ -256,15 +256,13 @@ console.log(selectedZones)
                                         <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins" style={{marginLeft:"-141px"}}>
-                                                {/* <MultiAvatar
-                                                    primaryTitle={item.userName}
-                                                    imgWidth={"1.8rem"}
-                                                    imgHeight={"1.8rem"}
-                                                /> */}
+                                               
                                                 {item.suppliesFullName}
                                             </div>
 
                                         </div>
+
+
                                         <div className=" flex  w-[16.32rem] max-sm:flex-row  max-sm:justify-between  " style={{marginLeft:"-76px"}}>
 
                                             {item.supplierName}
