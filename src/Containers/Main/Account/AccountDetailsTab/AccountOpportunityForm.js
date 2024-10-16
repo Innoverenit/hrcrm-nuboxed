@@ -15,8 +15,14 @@ import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../Suppliers/SuppliersAction"
 import { addQuotationOrderForm, getLobList } from '../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import AddressFieldArray1 from '../../../../Components/Forms/Formik/AddressFieldArray1';
+import ValidationAddressField from '../../../../Components/Forms/Formik/ValidationAddressField';
 import dayjs from "dayjs";
+
+const addressSchema = Yup.object().shape({
+    address1: Yup.string().required('Address is required'),
+    street: Yup.string().required('Street is required'), 
+  });
+
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
     advancePayment: Yup.number()
@@ -26,6 +32,8 @@ const FormSchema = Yup.object().shape({
     orderCurrencyId: Yup.string().required("Input needed!"),
     customPayment: Yup.number()
     .typeError('Number Required!'),
+    loadingAddress: Yup.array().of(addressSchema).min(1, 'At least one address is required'),
+
 })
 function AccountOpportunityForm(props) {
     const contactOption = props.contactDistributor.map((item) => {
@@ -93,6 +101,7 @@ function AccountOpportunityForm(props) {
                 loadingAddress: [
                     {
                         address1: "",
+                        street:"",
                         addressId: "",
                         state: "",
                         city: "",
@@ -160,10 +169,7 @@ function AccountOpportunityForm(props) {
     /></div>
     <div class="justify-between flex">
         <div>
-            <Tooltip title={<FormattedMessage
-                id="app.high"
-                defaultMessage="High"
-            />}>
+            <Tooltip title="Urgent">
                 <Button
                     // type="primary"
                     shape="circle"
@@ -220,7 +226,7 @@ function AccountOpportunityForm(props) {
                                         <FieldArray
                                             name="loadingAddress"
                                             render={(arrayHelpers) => (
-                                                <AddressFieldArray1
+                                                <ValidationAddressField
                                                     singleAddress
                                                     arrayHelpers={arrayHelpers}
                                                     values={values}
@@ -238,7 +244,7 @@ function AccountOpportunityForm(props) {
                                         <FieldArray
                                             name="loadingAddress"
                                             render={(arrayHelpers) => (
-                                                <AddressFieldArray1
+                                                <ValidationAddressField
                                                     singleAddress
                                                     arrayHelpers={arrayHelpers}
                                                     values={values}

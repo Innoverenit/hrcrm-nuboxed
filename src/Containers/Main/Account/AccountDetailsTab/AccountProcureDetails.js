@@ -20,6 +20,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import IosShareIcon from '@mui/icons-material/IosShare'; 
 
 const { Option } = Select;
 
@@ -256,7 +257,16 @@ const handleGenerateInvoice= async () => {
         setLoading(false);
         return null; 
       }
-  
+      if (selectedData < 1) {
+        Swal.fire({
+          title: 'Validation Error!',
+          text: 'Credit memo has not valid amount',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        setLoading(false);
+        return null; 
+      }
       return {
         price: item.price,
         procureOrderProductId: item.id,
@@ -365,16 +375,16 @@ const handleGenerateInvoice= async () => {
           {translatedMenuItems[3]} {/* Attribute" /> */}
           </div>
 
-          <div className=" w-[7%] md:w-[7%]">
-          {translatedMenuItems[4]} {/*Quality" /> */}
-          </div>
+          {/* <div className=" w-[7%] md:w-[7%]">
+          {translatedMenuItems[4]}  /> Quality
+          </div> */}
           {/* <div className="md:w-[7.1%]">
           {translatedMenuItems[5]} */}
           {/* Location" /> */}
           {/* </div> */}
-          <div className=" w-[8%] md:w-[8%]">
-          {translatedMenuItems[6]}{/* Specs" /> */}
-          </div>
+          {/* <div className=" w-[8%] md:w-[8%]">
+          {translatedMenuItems[6]}  Specs  
+          </div> */}
           <div className="w-[4.8%] md:w-[5.8%]">
           {translatedMenuItems[8]} {/*Price" /> */}
           </div>
@@ -402,7 +412,8 @@ const handleGenerateInvoice= async () => {
         style={{scrollbarWidth:"thin"}}
         // endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-        {props.procureDetails.map((item, index) => {
+        {props.procureDetails.length > 0 ? 
+        props.procureDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
               <div className="flex  md:w-[0.5%] max-sm:flex-row w-[2.5%] max-sm:justify-between">
@@ -438,9 +449,9 @@ const handleGenerateInvoice= async () => {
                    <div className=" text-xs  font-poppins">{item.attribute}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[4%] max-sm:flex-row w-[5%] max-sm:justify-between">                          
+              {/* <div className="flex  md:w-[4%] max-sm:flex-row w-[5%] max-sm:justify-between">                          
                   <div className=" text-xs  font-poppins">{item.quality}</div>      
-              </div>
+              </div> */}
               <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 
@@ -448,12 +459,12 @@ const handleGenerateInvoice= async () => {
                   <div className=" text-xs  font-poppins">{item.location}</div>
                 </div>
               </div>
-              <div className="flex  md:w-[4%]  max-sm:flex-row w-[4%] max-sm:justify-between">
+              {/* <div className="flex  md:w-[4%]  max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   
             <div className=" text-xs  font-poppins">{item.specs}</div>
                 </div>
-              </div>
+              </div> */}
 
             <div className="flex   md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
@@ -516,8 +527,8 @@ const handleGenerateInvoice= async () => {
               </div>
             </div>
           );
-        })}
-         <div className="flex  md:w-[4%] max-sm:flex-row mt-2">
+        }):"No Invoices have been created"}
+         <div className="flex max-sm:flex-row mt-2 justify-end">
                 <div className="text-xs  font-poppins shadow-sm">
                    <input
                   //  className=" border-red-600 h-6 shadow-sm "
@@ -538,7 +549,7 @@ const handleGenerateInvoice= async () => {
                     >
    {creditmemoData.map((critem, crindex) => (
       <option  key={critem.creditMemoId} value={critem.creditMemo}>
-        {critem.creditMemo}
+       {critem.creditMemoId} {critem.creditMemo}
       </option>
     ))}
 
@@ -551,6 +562,7 @@ const handleGenerateInvoice= async () => {
                         type='primary'
                         onClick={handleGenerateInvoice}
                     >
+                      <IosShareIcon className=" !text-icon" />
         {translatedMenuItems[12]}
                     </Button>
                    
