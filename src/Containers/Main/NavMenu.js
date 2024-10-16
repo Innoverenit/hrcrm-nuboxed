@@ -46,6 +46,7 @@ import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import DonutSmallIcon from '@mui/icons-material/DonutSmall';
 
 const SubMenu = Menu.SubMenu;
 
@@ -179,7 +180,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
   <Link to="/dashboard" onClick={() => handleSelect('/dashboard')}>
     <DashboardIcon
 
-    className='!text-base'
+    className='!text-base  text-[#e4eb2f] '
     />
 
     <span class="text-white text-ls ml-1">     
@@ -198,7 +199,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
           color: selectedMenuItem === '/planner' ? 'tomato' : '#28a355', }}>
             <Link to="/planner" onClick={() => handleSelect('/planner')}>  
               <CalendarMonthIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f] '
               />
 
               <span class="text-white text-ls ml-1">    
@@ -214,7 +215,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
            color: selectedMenuItem === '/call' ? 'tomato' : '#28a355', }}>
             <Link to="/call" onClick={() => handleSelect('/call')}>
               <VolumeUpIcon        
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">        
                 {translatedMenuItems[2]}
@@ -232,7 +233,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
            color: selectedMenuItem === '/Task' ? 'tomato' : '#28a355' }}>
             <Link to="/Task" onClick={() => handleSelect('/Task')}>    
               <FactCheckIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">    
                 {/* Task */}
@@ -251,7 +252,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
            color: selectedMenuItem === '/event' ? 'tomato' : '#28a355' }}>
             <Link to="/event" onClick={() => handleSelect('/event')}>
               <EventAvailableIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">               
                 {/* Event */}
@@ -271,7 +272,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
           color: selectedMenuItem === '/reports' ? 'tomato' : '#28a355' }}>
             <Link to="/reports"onClick={() => handleSelect('/reports')}>
               <PictureAsPdfIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">      
                 {/* Reports */}
@@ -285,8 +286,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
           <Menu.Item key="/Analytics" style={{ height: "1.45rem", 
           color: selectedMenuItem === '/Analytics' ? 'tomato' : '#28a355' }}>
             <Link to="/Analytics"onClick={() => handleSelect('/Analytics')}>
-              <PictureAsPdfIcon
-              className='!text-base'
+              <DonutSmallIcon
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
                 {/* <FormattedMessage id="app.reports" defaultMessage="Reports" /> */}
@@ -308,7 +309,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
             <Link to="/leads" onClick={() => handleSelect('/leads')}>
               <GroupsIcon
 
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">  
                 {translatedMenuItems[6]}
@@ -330,7 +331,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
             color: selectedMenuItem === '/opportunity' ? 'tomato' : '#28a355' }}>
             <Link to="/opportunity" onClick={() => handleSelect('/opportunity')}>
             <LightbulbIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
        {/* Quotation */}
@@ -356,7 +357,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
             <Link to="/contact" onClick={() => handleSelect('/contact')}>
 
               <ContactsIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
               {/* Contact"*/}
@@ -382,7 +383,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
 
               <ApartmentIcon
 
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
               {/* "Prospect */}
@@ -405,7 +406,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
             color: selectedMenuItem === '/pitch' ? 'tomato' : '#28a355' }}>
             <Link to="/pitch" onClick={() => handleSelect('/pitch')}>
               <FilePresentIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
               {/* "Pitch" */}
@@ -428,7 +429,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
             color: selectedMenuItem === '/deal' ? 'tomato' : '#28a355' }}>
             <Link to="/deal" onClick={() => handleSelect('/deal')}>
               <CurrencyExchangeIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
               {/* "Deals"*/}
@@ -448,7 +449,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
             color: selectedMenuItem === '/contactInvest' ? 'tomato' : '#28a355' }}>
             <Link to="/contactInvest"  onClick={() => handleSelect('/contactInvest')}>
               <ContactEmergencyIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
               {/* Contact Invest*/}
@@ -468,7 +469,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
           color: selectedMenuItem === '/investor' ? 'tomato' : '#28a355' }}>
             <Link to="/investor" onClick={() => handleSelect('/investor')}>
 
-              <LocationCityIcon className='!text-base'  />
+              <LocationCityIcon className='!text-base  text-[#e4eb2f]'  />
               <span class="text-white text-ls ml-1">
               {/* Investor */}
                 {translatedMenuItems[14]}
@@ -487,7 +488,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
           color: selectedMenuItem === '/club' ? 'tomato' : '#28a355' }}>
             <Link to="/club" onClick={() => handleSelect('/club')}>
 
-              <GolfCourseIcon className='!text-base'
+              <GolfCourseIcon className='!text-base  text-[#e4eb2f]'
 
                
               />
@@ -506,7 +507,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
                         color: selectedMenuItem === '/dataroom' ? 'tomato' : '#28a355' }}>
                         <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
                           <MarkUnreadChatAltIcon
-                          className='!text-base'
+                          className='!text-base  text-[#e4eb2f]'
                           />
                           <span class="text-white text-ls ml-1">
                           {/* Data Room */}
@@ -528,7 +529,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
           color: selectedMenuItem === '/order' ? 'tomato' : '#28a355' }}>
             <Link to="/order"  onClick={() => handleSelect('/order')}>
               <DynamicFeedIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
                 {/*Order"
@@ -547,7 +548,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
            color: selectedMenuItem === '/account' ? 'tomato' : '#28a355' }}>
             <Link to="/account"  onClick={() => handleSelect('/account')}>
               <AcUnitIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
               {translatedMenuItems[17]}
@@ -564,7 +565,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
         color: selectedMenuItem === '/product' ? 'tomato' : '#28a355' }}>
           <Link to="/product" onClick={() => handleSelect('/product')}>
             <ViewInArIcon
-            className='!text-base'
+            className='!text-base  text-[#e4eb2f]'
             />
             <span class="text-white text-ls ml-1">
               {/*Catalogue"
@@ -582,7 +583,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
         color: selectedMenuItem === '/promotion' ? 'tomato' : '#28a355' }}>
           <Link to="/promotion" onClick={() => handleSelect('/promotion')}>
             <PointOfSaleIcon 
-            className='!text-base'
+            className='!text-base  text-[#e4eb2f]'
             />
             <span class="text-white text-ls ml-1">
               {/*Quality"
@@ -600,7 +601,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
         color: selectedMenuItem === '/subscriptionmainapps' ? 'tomato' : '#28a355' }}>
           <Link to="/subscriptionmainapps" onClick={() => handleSelect('/subscriptionmainapps')}>
             <SubscriptionsIcon
-            className='!text-base'
+            className='!text-base  text-[#e4eb2f]'
             />
             <span class="text-white text-ls ml-1">
               {/* Subscription"
@@ -619,7 +620,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
             color: selectedMenuItem === '/refurbish' ? 'tomato' : '#28a355' }}>
             <Link to="/refurbish" onClick={() => handleSelect('/refurbish')}>
               <OnDeviceTrainingIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
                 {/*Refurbish"
@@ -636,7 +637,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
         color: selectedMenuItem === '/production' ? 'tomato' : '#28a355' }}>
           <Link to="/production" onClick={() => handleSelect('/production')}>
             <PrecisionManufacturingIcon
-            className='!text-base'
+            className='!text-base  text-[#e4eb2f]'
             />
             <span class="text-white text-ls ml-1">
               {/*Production"
@@ -652,7 +653,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
         color: selectedMenuItem === '/quality' ? 'tomato' : '#28a355' }}>
           <Link to="/quality" onClick={() => handleSelect('/quality')}>
             <VerifiedUserIcon
-            className='!text-base'
+            className='!text-base  text-[#e4eb2f]'
             />
             <span class="text-white text-ls ml-1">
               {/* Quality"
@@ -672,7 +673,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
 
               <ApartmentIcon
 
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
               {/* Prospect */}     
@@ -692,7 +693,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
             color: selectedMenuItem === '/supplies' ? 'tomato' : '#28a355' }}>
             <Link to="/supplies" onClick={() => handleSelect('/supplies')} >
               <CategoryIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
                 {/*Material"
@@ -710,7 +711,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
  color: selectedMenuItem === '/suppliers' ? 'tomato' : '#28a355'}}>
   <Link to="/suppliers" onClick={() => handleSelect('/suppliers')}>
     <FactoryIcon
-    className='!text-base'
+    className='!text-base  text-[#e4eb2f]'
     />
     <span class="text-white text-ls ml-1">
       {/* Suppliers"
@@ -727,7 +728,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
  color: selectedMenuItem === '/trade' ? 'tomato' : '#28a355'}}>
   <Link to="/trade" onClick={() => handleSelect('/trade')}>
     <ShopTwoIcon
-    className='!text-base'
+    className='!text-base  text-[#e4eb2f]'
     />
     <span class="text-white text-ls ml-1">
       {/* Trade */}
@@ -744,7 +745,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
 color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
             <Link to="/procurement" onClick={() => handleSelect('/procurement')}>
               <CrisisAlertIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
                 {/* Procurement"
@@ -762,7 +763,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
     <Menu.Item key="/inventory" style={{ height: "1.45rem",  color: selectedMenuItem === '/inventory' ? 'tomato' : '#28a355' }}>
       <Link to="/inventory" onClick={() => handleSelect('/inventory')}>
         <InventoryIcon
-        className='!text-base'
+        className='!text-base  text-[#e4eb2f]'
         />
         <span className="text-white text-ls ml-1">
           {/* Inventory"
@@ -783,7 +784,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
             color: selectedMenuItem === '/shipper' ? 'tomato' : '#28a355' }}>
             <Link to="/shipper" onClick={() => handleSelect('/shipper')}>
               <LocalShippingIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
                 {/* Shipper"
@@ -806,7 +807,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
         <Menu.Item key="/collection" style={{ height: "1.45rem",
          color: selectedMenuItem === '/collection' ? 'tomato' : '#28a355' }}>
           <Link to="/collection" onClick={() => handleSelect('/collection')} >
-            <ReceiptIcon style={{ fontSize: "large" }} />
+            <ReceiptIcon   className='!text-base  text-[#e4eb2f]' style={{ fontSize: "large" }} />
             <span class="text-white text-ls ml-1">
             {/* Collections"
                 */}
@@ -825,8 +826,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
         <Menu.Item key="/report" style={{ height: "1.45rem", 
          color: selectedMenuItem === '/report' ? 'tomato' : '#28a355' }}>
           <Link to="/leave" onClick={() => handleSelect('/report')}>
-            <i class="fas fa-luggage-cart"></i>
-            <span class="text-white text-ls ml-1">
+            <i class="fas fa-luggage-cart text-[#e4eb2f]"></i>
+            <span class="text-white text-ls ml-1 ">
               {/* Leaves"
              */}
              {translatedMenuItems[28]}
@@ -847,8 +848,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
          color: selectedMenuItem === '/mileage' ? 'tomato' : '#28a355' }}>
           <Link to="/mileage" onClick={() => handleSelect('/mileage')}>
 
-            <i class="fas fa-tachometer-alt"></i>
-            <span class="text-white text-ls ml-[0.3rem]">
+            <i class="fas fa-tachometer-alt text-[#e4eb2f]"></i>
+            <span class="text-white   text-ls ml-[0.3rem]">
               {/*Mileage"
              */}
              {translatedMenuItems[29]}
@@ -868,7 +869,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
           color: selectedMenuItem === '/expense' ? 'tomato' : '#28a355' }}>
           <Link to="/expense" onClick={() => handleSelect('/expense')}>
             <ReceiptIcon
-            className='!text-base'
+            className='!text-base  text-[#e4eb2f]'
             />
             <span class="text-white text-ls ml-1">
               {/* Expense"
@@ -911,7 +912,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
         color: selectedMenuItem === '/assessment' ? 'tomato' : '#28a355' }}>
           <Link to="/assessment" onClick={() => handleSelect('/assessment')}>
 
-            < AssessmentIcon  className="!text-base"/>
+            < AssessmentIcon  className="!text-base  text-[#e4eb2f]"/>
             &nbsp;
             <span class="text-white text-ls ml-1">
            {/* KPI Assessment */}
@@ -932,7 +933,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
           
                 <PortraitIcon
             
-                className='!text-base'
+                className='!text-base  text-[#e4eb2f]'
                 />
                  <span class="text-white text-ls ml-1">
                  {/* <FormattedMessage id="app.talent" defaultMessage="Talent" /> */}
@@ -956,7 +957,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
             <Link to="/requirement " onClick={() => handleSelect('/requirement')}>
 
               <RecentActorsIcon
-              className='!text-base' />
+              className='!text-base  text-[#e4eb2f]' />
 
               <span class="text-white text-ls ml-1">
               {/* <FormattedMessage id="app.requirement" defaultMessage="Requirement" /> */}
@@ -978,7 +979,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
            color: selectedMenuItem === '/project' ? 'tomato' : '#28a355' }}>
               <Link to="/project" onClick={() => handleSelect('/project')}>
                 <LightbulbIcon
-                className='!text-base'
+                className='!text-base  text-[#e4eb2f]'
                 />
                 <span class="text-white text-ls ml-1">
                 {/* Project */}
@@ -997,7 +998,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
             <Link to="/demand" onClick={() => handleSelect('/demand')}>
               <ContactsIcon
 
-              className='!text-base' />
+              className='!text-base  text-[#e4eb2f]' />
 
               <span class="text-white text-ls ml-1">
               {/*Demand */}
@@ -1023,7 +1024,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
             <Link to="/Billing">
               <AccessAlarmIcon
 
-               className='!text-base'
+               className='!text-base  text-[#e4eb2f]'
               />
              <span class="text-white text-ls ml-3">
             
@@ -1040,7 +1041,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
           color: selectedMenuItem === '/publish' ? 'tomato' : '#28a355' }}>
             <Link to="/publish" onClick={() => handleSelect('/publish')}>
 
-              <CellTowerIcon className='!text-base'/>
+              <CellTowerIcon className='!text-base  text-[#e4eb2f]'/>
               <span class="text-white text-ls ml-1">
               {translatedMenuItems[50]}
                  {/* publish */}
@@ -1055,7 +1056,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
               <Link to="/Invoice">
                 <TextSnippetIcon
 
-                  className='!text-base'
+                  className='!text-base  text-[#e4eb2f]'
                 />
                <span class="text-white text-ls ml-3">
                 
@@ -1074,7 +1075,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
               
                 <HandshakeIcon
              
-               className='!text-base'
+               className='!text-base  text-[#e4eb2f]'
                 />
                 <span class="text-white text-ls ml-3">
            
@@ -1110,7 +1111,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
               <Link to="/Accessment" onClick={() => handleSelect('/accessment')}>
                 <ComputerIcon
 
-                  className='!text-base'
+                  className='!text-base  text-[#e4eb2f]'
                 />
                  <span class="text-white text-ls ml-1">
                  {/* <FormattedMessage
@@ -1131,7 +1132,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
               <Link to="/Course" onClick={() => handleSelect('/course')}>
                 <NewspaperIcon
 
-                className='!text-base'
+                className='!text-base  text-[#e4eb2f]'
                 />
                <span class="text-white text-ls ml-1">
                {/* <FormattedMessage
@@ -1152,7 +1153,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
               <Link to="/Program" onClick={() => handleSelect('/program')}>
                 <LibraryBooksIcon
 
-                 className='!text-base'
+                 className='!text-base  text-[#e4eb2f]'
                 />
                 <span class="text-white text-ls ml-1">
               
@@ -1194,7 +1195,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
                 color: selectedMenuItem === '/teams' ? 'tomato' : '#28a355'}}>
                 <Link to="/teams" onClick={() => handleSelect('/teams')}>
                  <PeopleIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
                   />
                   <span class="text-white text-ls ml-1">
                     {/* <FormattedMessage 
@@ -1216,7 +1217,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
             <Link to="/Employees" onClick={() => handleSelect('/employees')}>
               <GroupsIcon
 
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
               {translatedMenuItems[33]}
@@ -1235,7 +1236,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
         {/* <Menu.Item key="/plant" style={{ height: "1.45rem", paddingLeft: "1rem" }}>
           <Link to="/plant">
             <FactoryIcon
-            className='!text-base'
+            className='!text-base  text-[#e4eb2f]'
             />
             <span class="text-white text-ls ml-1"><FormattedMessage
               id="app.plant"
@@ -1250,7 +1251,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
            color: selectedMenuItem === '/location' ? 'tomato' : '#28a355' }}>
             <Link to="/location" onClick={() => handleSelect('/location')}>
               <LocationOnIcon
-              className='!text-base'
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
               {/* Location */}

@@ -207,7 +207,7 @@ if (loading) {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[100%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent  sticky  z-10">
         <div class=" flex justify-between w-[89%] font-bold  font-poppins text-xs  ">
-        <div className=" w-[31.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div className=" w-[41.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         {translatedMenuItems[0]}</div>
         <div className=" w-[33.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[1]}</div>
@@ -222,7 +222,7 @@ if (loading) {
         <div className=" w-[22.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[6]}</div>
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
          {translatedMenuItems[8]}   {/* Score */}
           
             </div>
@@ -268,10 +268,10 @@ if (loading) {
                     return (
                       <div>
                       <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
-                          <div className=" flex font-medium  w-[14rem] max-sm:flex-row  max-sm:justify-between max-sm:w-wk  ">
+                          <div className=" flex font-medium  w-[14rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk  ">
 <div className="flex max-sm:w-full md:items-center max-lg:w-[7.2rem] max-xl:w-[9rem]"> 
 <div>
                          
@@ -309,19 +309,19 @@ if (loading) {
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk">
 
-                          <div className=" flex  max-sm:w-auto  w-[14.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto  w-[14.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
                              
                               <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-auto w-[10.2rem] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex max-sm:w-auto w-[10.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
                              
                               <div class="text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-auto w-[8.3rem] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
+                          <div className=" flex max-sm:w-auto w-[8.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
                           
                             <div class="text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                  {item.department}
@@ -329,13 +329,13 @@ if (loading) {
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk">
-                        <div className="flex  w-[6.01rem] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className="flex  w-[6.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 <div className="text-xs  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.oppNo}
 </div>
 </div>
-<div className=" flex  w-[5.01rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex  w-[5.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
                               
 
                               <div class=" text-xs  max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -343,7 +343,7 @@ if (loading) {
 
                               </div>
                           </div>
-                          <div className="flex  w-[5.1rem]  max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                          <div className="flex  w-[5.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                           
                               <div class="text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
@@ -356,14 +356,14 @@ if (loading) {
                           </div>
                           <div class="flex items-center max-sm:justify-between max-sm:w-wk">
                           {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[7.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center  text-xs w-[7.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>
             )}
                       
 
-                          <div className="flex w-[3.01rem] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
+                          <div className="flex w-[3.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
         <Tooltip title={item.ownerName}>
           <div class="max-sm:flex justify-end">
           <Tooltip title={item.ownerName}>
@@ -378,7 +378,7 @@ if (loading) {
     </Tooltip>
 
              </div>
-             <div className=" flex items-center w-[5rem] mr-1 max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+             <div className=" flex items-center w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] mr-1 max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -388,9 +388,9 @@ if (loading) {
           
                </div>
 
-             <div class="flex items-center max-sm:justify-evenly max-sm:w-wk">
+               <div class="flex max-sm:justify-between max-sm:w-wk items-center">  
           
-              <div>
+               <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
               <Tooltip title={translatedMenuItems[13]}>
  <NoteAltIcon
           className=" !text-icon cursor-pointer text-green-800"
@@ -402,7 +402,7 @@ if (loading) {
         />
      </Tooltip>
      </div>
-     <div>
+     <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
               <Tooltip title={translatedMenuItems[12]}>
  <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
@@ -415,7 +415,7 @@ if (loading) {
      </Tooltip>
      </div>
   
-<div>
+     <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
                 <Tooltip
                   title={translatedMenuItems[14]}
                 >
@@ -430,7 +430,7 @@ if (loading) {
               </div>
      
                         
-              <div class="rounded-full  cursor-pointer ">
+              <div class="rounded-full  cursor-pointer items-center justify-center  bg-[#eef2f9] h-8  flex">
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
         <span class="  text-xs cursor-pointer"
@@ -454,7 +454,7 @@ if (loading) {
       )}
     </Tooltip>
                   </div>
-             
+             <div class=" items-center justify-center  bg-[#eef2f9] h-8  flex">
                   <Tooltip title={item.emailId}>
      
       <MailOutlineIcon
@@ -466,6 +466,7 @@ if (loading) {
         }}
       />
      </Tooltip>
+     </div>
                   <span
         style={{ cursor: "pointer" }}
         onClick={() => {
@@ -478,7 +479,8 @@ if (loading) {
       </span>
                                                    
 
-      <div><PlusOutlined
+      <div class=" items-center justify-center  bg-[#eef2f9] h-8  flex">
+        <PlusOutlined
                         type="plus"
                         // tooltipTitle="Upload Document"
                         tooltiptitle={translatedMenuItems[16]}
@@ -489,7 +491,7 @@ if (loading) {
                         style={{ marginLeft: "0.25em", verticalAlign: "center" }}
                       /></div>
         {user.contactUpdateInd === true &&  user.crmInd === true && (
-      <div>
+      <div class=" items-center justify-center  bg-[#eef2f9] h-8  flex">
      
       <Tooltip title={translatedMenuItems[15]}>
         <BorderColorIcon

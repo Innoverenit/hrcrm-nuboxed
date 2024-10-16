@@ -10,6 +10,7 @@ import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
 import {
   EyeInvisibleOutlined, EyeOutlined,
 } from "@ant-design/icons";
+
 import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
 import FWLogo from "../../Assets/Images/name.jpg";//ct
 import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nubox

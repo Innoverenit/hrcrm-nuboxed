@@ -244,7 +244,7 @@ if (loading) {
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
             <div class=" flex justify-between font-poppins w-[89%]">
-            <div className="font-poppins font-bold text-xs w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className="font-poppins font-bold  text-[#00A2E8] text-base w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             {translatedMenuItems[0]}
            {/* name */}
             </div>
@@ -319,10 +319,10 @@ if (loading) {
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex  w-[13rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex  w-[13rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                           <div>
                             {/* <Tooltip title={item.name}> */}
@@ -359,7 +359,7 @@ if (loading) {
                           </div>
                         </div>
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -383,7 +383,7 @@ if (loading) {
                         </div>
 
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                     {/* Sector  */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.sector}
@@ -392,7 +392,7 @@ if (loading) {
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  items-center  w-[5.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  w-[5.215rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -400,7 +400,7 @@ if (loading) {
                         </div>
 
                       </div>
-                      <div className=" flex max-sm:w-auto  items-center  w-[5.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto  w-[5.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* Country */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
@@ -408,7 +408,7 @@ if (loading) {
                           {countryCode} */}
                         </div>
                       </div>
-                      <div className=" flex items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center  max-sm:w-auto w-[6.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -418,7 +418,7 @@ if (loading) {
                       </div>
                     
                    
-                      <div className=" flex max-sm:w-auto w-[2.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto w-[2.82rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                        {/* Pipeline Value */}
 
                         {/* {item.totalProposalValue > 0 && (
@@ -435,12 +435,12 @@ if (loading) {
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">  
                       {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center  w-[9.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
          {item.noteScoreInd}
           
             </div>
             )}               
-                      <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto   w-[4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -468,7 +468,7 @@ if (loading) {
                       </div>
           
               
-                      <div className=" flex  justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flex  justify-center  w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
@@ -492,7 +492,7 @@ if (loading) {
                       </div>
                       </div>
                       <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
-                      <div >
+                      <div class="items-center justify-center h-8 bg-[#eef2f9]" >
                           <Tooltip title={translatedMenuItems[11]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
@@ -504,7 +504,7 @@ if (loading) {
                           </Tooltip>
                         </div>
                      
-                        <div >
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]" >
                           <Tooltip title={translatedMenuItems[12]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800"
@@ -516,6 +516,7 @@ if (loading) {
                             />
                           </Tooltip>
                         </div> 
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]" >
                         <Tooltip title={translatedMenuItems[19]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
@@ -525,7 +526,9 @@ if (loading) {
           }}
           
         />   
-            </Tooltip>        
+            </Tooltip>   
+            </div>     
+            <div class="items-center justify-center h-8 bg-[#eef2f9]" >
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -548,7 +551,7 @@ if (loading) {
                             }
                           </Tooltip>
 
-                   
+                   </div>
                 
                           <div
                             style={{ fontSize: "0.8rem" }}
@@ -565,7 +568,7 @@ if (loading) {
                               className=" !text-icon cursor-pointer text-[#df9697]"
                             />}
                           </div>                                       
-                        <div >
+                          <div class="items-center justify-center h-8 bg-[#eef2f9]" >
                           <Tooltip title={translatedMenuItems[14]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
@@ -577,7 +580,7 @@ if (loading) {
                             />
                           </Tooltip>
                         </div>
-                        <div >
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]" >
                           <Tooltip title={translatedMenuItems[10]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -593,7 +596,7 @@ if (loading) {
                         </div>                                       
                                                 
                        
-                        <div >
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]" >
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title={translatedMenuItems[13]}>
                               <BorderColorIcon
@@ -612,7 +615,7 @@ if (loading) {
                          
                         </div>  
                         {/* <div class=" text-xs  font-poppins"> */}
-                        <div >                     
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]" >            
                         <StyledPopconfirm
                           title= "Do you want to delete?"
                           onConfirm={() =>  props.deleteCustomer(item.customerId)}>
@@ -624,18 +627,7 @@ if (loading) {
                        </Tooltip>
                         </StyledPopconfirm>
                       </div>
-                                {/* <Popconfirm
-                                // loading={props.deletingDistributorById}
-                                  title="
-                                 
-                                  //  onConfirm={() => props.deleteCustomer({}, item.customerId,props.userId)} 
-                                    >
-                                  <DeleteOutlined
-                                    className=" !text-icon cursor-pointer text-[red]"
-                                  />
-                                </Popconfirm> */}
- 
-                              {/* </div>                */}
+                          
                 
                   </div>
                 </div>

@@ -287,7 +287,7 @@ const exportPDFAnnexure = async () => {
                                                     </div>
                     <div className=" flex  w-wk     max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[12.43rem]">
+                        <div class="w-[11.43rem]">
                         <Badge size="small" count={item.productNum}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
@@ -310,7 +310,7 @@ const exportPDFAnnexure = async () => {
                         </div>
                         
 
-                        <div class="max-sm:w-full md:w-[10.02rem]">
+                        <div class="max-sm:w-full md:w-[5.04rem]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
@@ -321,7 +321,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[7.21rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[14.20rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -336,19 +336,19 @@ const exportPDFAnnexure = async () => {
 
                     </div>
                     <div class="flex">
-                    <div className=" flex  md:w-[3.31rem] max-sm:flex-row items-center w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-[6.32rem] max-sm:flex-row items-center w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
                     </div>
 
-                    <div className=" flex text-xs md:w-[11.912rem] items-center max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex text-xs md:w-[1.913rem] items-center max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
                   </div>
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                  <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[9.04rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -363,7 +363,7 @@ const exportPDFAnnexure = async () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -377,7 +377,7 @@ const exportPDFAnnexure = async () => {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.024rem] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -623,7 +623,7 @@ const exportPDFAnnexure = async () => {
  
                      </div>
                      <div class="flex">
-                     <div className=" flex  md:w-[3.31rem] max-sm:flex-row items-center w-full max-sm:justify-between ">
+                     <div className=" flex  md:w-[4.31rem] max-sm:flex-row items-center w-full max-sm:justify-between ">
                        <div class=" font-poppins text-xs">
                          {item.noOfPhones}
                        </div>
@@ -633,7 +633,7 @@ const exportPDFAnnexure = async () => {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                   <div className=" flex text-xs items-center md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
+                   <div className=" flex text-xs items-center md:w-[8.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                      <span>{date}</span>
                    </div>
                    <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
@@ -651,7 +651,7 @@ const exportPDFAnnexure = async () => {
  
                    </div>
                    <div class=" flex">
-                     <div class="flex flex-row items-center  md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                     <div class="flex flex-row items-center  md:w-[7.02rem] max-sm:flex-row w-full max-sm:justify-between">
                        <div>
                          <MultiAvatar2
                            primaryTitle={item.supervisorUserName}
@@ -665,7 +665,7 @@ const exportPDFAnnexure = async () => {
  
  
                      </div>
-                     <div class="flex flex-row items-center md:w-[6.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                     <div class="flex flex-row items-center md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between">
                        <div>
                          {show && (particularRowData.orderId === item.orderId) ?
                            <div class=" flex justify-between">

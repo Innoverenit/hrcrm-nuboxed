@@ -135,7 +135,7 @@ if(fetchingCustomerCampaign){
       return (
         <>
         <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded   w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
      
           
         <InfiniteScroll
@@ -339,7 +339,7 @@ if(fetchingCustomerCampaign){
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
          <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className="font-bold font-poppins text-xs md:w-[7.8rem]">{translatedMenuItems[0]} </div>
+        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.8rem]">{translatedMenuItems[0]} </div>
         {/* Type */}
         <div className="font-bold font-poppins text-xs md:w-[6.23rem]">{translatedMenuItems[1]} </div>
         {/* Subject */}
@@ -366,10 +366,10 @@ if(fetchingCustomerCampaign){
                     return (
                         <div key={item.eventId}>
                              <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                      <div class="flex ">
-                                <div className=" flex   w-[6.98rem] max-sm:w-full ">
+                                <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]  w-[7.98rem] max-sm:w-full ">
 <div className="flex max-sm:w-full"> 
           <div class="max-sm:w-full">
                                         <Tooltip>
@@ -387,7 +387,7 @@ if(fetchingCustomerCampaign){
                                         </div>
                                 </div>
 
-                                <div className=" flex    md:w-[4.26rem] max-sm:flex-row  w-full ">
+                                <div className=" flex    md:w-[9.26rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-[0.82rem]  font-poppins">   
                                     {item.eventSubject}
@@ -395,19 +395,19 @@ if(fetchingCustomerCampaign){
                                 </div>
                                 </div>
                                 <div class="flex  items-center ">
-                                <div className=" flex   md:w-[5.9rem] max-sm:flex-row  w-full">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[5.9rem] max-sm:flex-row  w-full">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-[0.82rem]  font-poppins">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex   md:w-[5.32rem] max-sm:flex-row  w-full">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.32rem] max-sm:flex-row  w-full">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-[0.82rem]  font-poppins">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex   md:w-[5.31rem] max-sm:flex-row  w-full ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.31rem] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
                                     <div class=" text-[0.82rem]  font-poppins">
@@ -437,7 +437,7 @@ if(fetchingCustomerCampaign){
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex   md:w-[4.69rem] max-sm:flex-row  w-full ">
+                                <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[4.69rem] max-sm:flex-row  w-full ">
 
                                   
                                   
@@ -464,7 +464,7 @@ if(fetchingCustomerCampaign){
 
                                    
                                 </div>
-                                <div className="flex   md:w-[4.12rem] max-sm:flex-row  w-full ">
+                                <div className="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[4.12rem] max-sm:flex-row  w-full ">
                    <div class="max-sm:flex justify-end">
 
             <SubTitle>
@@ -484,7 +484,7 @@ if(fetchingCustomerCampaign){
                                 <div class="flex ">
                                
                              
-                   <div className=" flex   md:w-[6.32rem] max-sm:flex-row  w-full">
+                   <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.32rem] max-sm:flex-row  w-full">
                                     
                                     <div class="text-[0.82rem]  font-poppins">
                                     {/* {item.budgetValue} */}
@@ -495,7 +495,7 @@ if(fetchingCustomerCampaign){
 />
                     </div>
   </div>
-  <div className=" flex   md:w-[5.321rem] max-sm:flex-row  w-full">
+  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.321rem] max-sm:flex-row  w-full">
                                     
                                     <div class="text-[0.82rem]  font-poppins">
                                     
@@ -512,7 +512,7 @@ if(fetchingCustomerCampaign){
                       </Select>
                     </div>
   </div>
-  <div className=" flex   md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
   <Button type="primary" onClick={() => handleSave(item.key)}>
   {translatedMenuItems[14]}   {/* Save */}
         </Button>

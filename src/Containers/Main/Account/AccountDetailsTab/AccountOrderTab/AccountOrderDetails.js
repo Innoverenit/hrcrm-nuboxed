@@ -233,7 +233,7 @@ function DistributorPauseForm(props) {
                     <>
                         <div className=' flex  sticky flex-col z-auto'>
                             <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                            <div class=" w-72 ml-4 max-sm:w-28">
+                            <div class="w-72 ml-4 mb-2 items- max-sm:w-28">
           <Input
             placeholder="Search by Imei"
             width={"100%"}
@@ -244,19 +244,18 @@ function DistributorPauseForm(props) {
         
           />
         </div>
-                                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                                     <div className=" md:w-[4.2rem]">
                                     {translatedMenuItems[0]}</div>
-                                    <div className=" md:w-[4.5rem]">{translatedMenuItems[1]}</div>
-                                    <div className="md:w-[6.2rem]">{translatedMenuItems[2]}</div>
+                                    <div className=" md:w-[6.5rem]">{translatedMenuItems[1]}</div>
+                                    <div className="md:w-[11.2rem]">{translatedMenuItems[2]}</div>
                                     <div className=" md:w-[9.2rem]">{translatedMenuItems[3]}</div>
-
                                     <div className=" md:w-[7.5rem]">{translatedMenuItems[4]}</div>
-                                    <div className=" md:w-[6.8rem]">{translatedMenuItems[5]}</div>
+                                    <div className=" md:w-[5.8rem]">{translatedMenuItems[5]}</div>
                                     <div className=" md:w-[6.5rem]">{translatedMenuItems[6]}</div>
-                                    <div className=" md:w-[6.31rem]">{translatedMenuItems[7]}</div>
+                                    <div className=" md:w-[5.31rem]">{translatedMenuItems[7]}</div>
                                     <div className=" md:w-[6.3rem]">{translatedMenuItems[8]}</div>
-                                    <div className=" md:w-[7rem]">QC</div>
+                                    <div className=" md:w-[4rem]">QC</div>
                                     <div className=" md:w-[6rem]">{translatedMenuItems[9]}</div>
                                     <div className=" md:w-[2rem]"></div>
                                     <div className=" md:w-[1rem]"></div>
@@ -269,7 +268,7 @@ function DistributorPauseForm(props) {
                                         next={handleLoadMore}
                                         hasMore={hasMore}
                                         loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                                        height={"64vh"}
+                                        height={"78vh"}
                                         style={{scrollbarWidth: "thin"}}
                                         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                                     >
@@ -284,18 +283,18 @@ function DistributorPauseForm(props) {
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex    items-center   md:w-[4.51rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[6.51rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.model}
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex   items-center    md:w-[4.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex   items-center    md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.imei}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex    items-center   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.os} {item.gb} {item.color}
                                                                 </div>
@@ -310,22 +309,22 @@ function DistributorPauseForm(props) {
                                                                     {item.color}
                                                                 </div>
                                                             </div> */}
-                                                            <div className=" flex    items-center   md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[4.60rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.condition}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex    items-center   md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.expectedPrice}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex    items-center   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.totalhours}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex    items-center   md:w-[6.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center   md:w-[6.50rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.totalExtraCost}
                                                                 </div>
@@ -481,11 +480,7 @@ function DistributorPauseForm(props) {
                                             )
                                         })}
                                     </InfiniteScroll>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="flex justify-end mr-4">
+                                    <div class="flex justify-end mr-4 mb-2">
                             <div class=" w-10">
                             <Button
                                 type="primary"
@@ -493,6 +488,13 @@ function DistributorPauseForm(props) {
                                 Print</Button>
                         </div>
                         </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    
                         
                     </>}
             </div>

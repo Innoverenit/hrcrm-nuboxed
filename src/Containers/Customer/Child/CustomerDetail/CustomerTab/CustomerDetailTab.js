@@ -165,7 +165,7 @@ class ContactDetailTab extends Component {
               tab={
                 <>
                   <span class="!text-tab">
-                    <LightbulbIcon className="!text-icon text-[#bfa89e]"/>
+                    <LightbulbIcon className="!text-icon text-[#a69658]"/>
                     <span class=" ml-1">
                     {this.state.translatedMenuItems[0]}
                     </span>
@@ -210,7 +210,7 @@ class ContactDetailTab extends Component {
               tab={
                 <>
                   <span>
- <ContactsIcon className="!text-icon text-[#96bdc6]"/>
+ <ContactsIcon className="!text-icon text-[#4f7cac]"/>
                     <span class="!text-tab ml-1">
                       {/* Contacts */}
                       {this.state.translatedMenuItems[1]}
@@ -223,18 +223,15 @@ class ContactDetailTab extends Component {
                         title= {this.state.translatedMenuItems[7]}
                       >
                         {this.props.user.contactCreateInd === true && (
-                          <PlusOutlined
+                          <PlusOutlined className="!text-icon ml-1"
                             type="plus"
                             //tooltipTitle="Create"
                             tooltiptitle= {this.state.translatedMenuItems[7]}
                             onClick={() => {
                               handleCustomerContactModal(true);
                             }}
-                            size="0.875em"
-                            style={{
-                              marginLeft: "0.3125em",
-                              verticalAlign: "center",
-                            }}
+                      
+                           
                           />
                         )}
                       </Tooltip>
@@ -302,13 +299,13 @@ class ContactDetailTab extends Component {
                   <TabPane
               tab={
                 <>
-
-<HourglassFullIcon className="text-[#edf67d] !text-icon" />
-                  <Badge
+ <Badge
                 count={this.props.customerActivityCount.count}
                 overflowCount={999}
               > 
                    </Badge>
+<HourglassFullIcon className="text-blue-500 !text-icon" />
+                 
                 
                   <span class="!text-tab ml-1">   
                           
@@ -353,7 +350,7 @@ class ContactDetailTab extends Component {
             <TabPane
               tab={
                 <>
-                  <ReceiptIcon className="!text-icon text-[#a9d8b8]"/>
+                  <ReceiptIcon className="!text-icon text-[#b91372]"/>
                   <span class="!text-tab ml-1">
                     
                          {this.state.translatedMenuItems[4]}
