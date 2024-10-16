@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
+import { base_url2 } from "../../../../../Config/Auth";
 
 const InvoiceTemplate = (props) => {
   const [selectedInvoice, setSelectedInvoice] = useState(null);
@@ -48,7 +49,6 @@ const InvoiceTemplate = (props) => {
     if (invoices.length > 0) {
       const firstInvoice = invoices[0];
       setSelectedInvoice(firstInvoice); // Set the first invoice as selected
-      sendInvoiceData(firstInvoice); // Post the data of the first invoice
     }
   }, []);
 
@@ -59,7 +59,13 @@ const InvoiceTemplate = (props) => {
     };
 
     axios
-      .post("https://dummyurl.com/invoice", payload)
+    .post(`${base_url2}/template`,payload, 
+      {
+        headers: {
+          Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+        },
+      }
+    )
       .then((response) => {
         console.log("POST successful", response.data);
       })

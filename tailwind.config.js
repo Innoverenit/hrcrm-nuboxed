@@ -51,6 +51,7 @@ module.exports = {
             },
             margin:{
         'margin5':'5%',
+        'gap':'0.2rem',
         'margin1':'1%',
         'margin3':'3%',
         'margin10':'10%',
