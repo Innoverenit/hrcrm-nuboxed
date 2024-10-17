@@ -172,12 +172,14 @@ const InventoryMaterialDamagedData = (props) => {
                                           {item.suppliesId}
                                         </div>
                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          {item.unitDamaged != 0 &&(
                                         <Switch
                                            checkedChildren="Yes"
                         unCheckedChildren="No"
              checked={item.repackedInd} 
             onChange={(checked) => handleSwitchChange(checked, index)}
           />
+                                          )}
            {item.repackedInd && (
             <Input
               placeholder={`Enter value (limit: ${item.unitDamaged})`}
@@ -201,8 +203,10 @@ const InventoryMaterialDamagedData = (props) => {
         },
         item.poSupplierSuppliesId
     );
+  
       
       }}
+      style={{backgroundColor:item.creditNoteInd===true?"green":"tomato",color:"white"}}
   >Credit Note</Button>
 </div>
 

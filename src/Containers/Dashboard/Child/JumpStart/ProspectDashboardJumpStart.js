@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import ProspectSourcePieChart from "../JumpStart/ProspectSourcePieChart"
+import ProspectSectorPieChart from "../JumpStart/ProspectSectorPieChart"
 import dayjs from "dayjs";
 import CustomerPieChart from "./CustomerPieChart"
 import {getJumpDistributorDetail,
@@ -270,11 +272,11 @@ function ProspectDashboardJumpStart (props) {
       <div class=" mt-1 flex flex-row justify-between items-center" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Sector</div>
-        <CustomerPieChart/>
+        <ProspectSectorPieChart/>
         </div>
         <div>
-        <div class=" font-poppins font-bold text-base ">By Source</div>
-        <CustomerPieChart/>
+        <div class=" font-poppins font-bold text-base ">By Sources</div>
+        <ProspectSourcePieChart/>
         </div>
       </div>
       </div>

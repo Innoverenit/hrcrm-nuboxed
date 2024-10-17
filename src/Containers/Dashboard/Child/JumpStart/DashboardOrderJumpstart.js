@@ -1,6 +1,8 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ProductionOrderValuePieChart from "../JumpStart/ProductionOrderValuePieChart"
+import ProductionVolumePieChart from "../JumpStart/ProductionVolumePieChart"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getJumpOrderCount,
@@ -201,11 +203,11 @@ function DashboardOrderJumpstart(props) {
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Value</div>
-        <CustomerPieChart/>
+        <ProductionOrderValuePieChart/>
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Volume</div>
-        <CustomerPieChart/>
+        <ProductionVolumePieChart/>
         </div>
       </div>
       </div>

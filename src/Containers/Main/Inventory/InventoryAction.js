@@ -2375,7 +2375,7 @@ export const getMaterialDamagedData = (locationDetailsId) => (dispatch) => {
 
 
 
-export const addToWaste = (customer) => (dispatch, getState) => {
+export const addToWaste = (customer,poSupplierSuppliesId) => (dispatch, getState) => {
   const userId = getState().auth.userDetails.userId;
 
   // const opportunityId = getState().opportunity.opportunity.opportunityId;
@@ -2385,7 +2385,7 @@ export const addToWaste = (customer) => (dispatch, getState) => {
   });
 
   axios
-    .post(`${base_url}/waste/moveToWaste`, customer, {
+    .post(`${base_url2}/waste/moveToWaste`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2410,7 +2410,7 @@ export const addToWaste = (customer) => (dispatch, getState) => {
 
       dispatch({
         type: types.ADD_TO_WASTE_SUCCESS,
-        payload: res.data,
+        payload: poSupplierSuppliesId,
       });
       // cb && cb();
     })
@@ -2509,7 +2509,7 @@ export const addAsileInbest = (customer,poSupplierS7ppliesId) => (dispatch, getS
   });
 
   axios
-    .put(`${base_url}/po/updateBestBefore/roomRack/${poSupplierS7ppliesId}`, customer, {
+    .put(`${base_url2}/po/updateBestBefore/roomRack/${poSupplierS7ppliesId}`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

@@ -1,6 +1,7 @@
 import React, { useEffect,useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ProcureProcessPieChart from "../JumpStart/ProcureProcessPieChart"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getJumpOrderCount,
@@ -259,7 +260,7 @@ function DashInvPayProcureJumstartbox(props) {
         <div>
         <div class=" font-poppins font-bold text-base mt-1">By Process</div>
         <Suspense fallback={<BundleLoader />}> 
-        <CustomerPieChart/>
+        <ProcureProcessPieChart/>
         </Suspense>
         </div>
         </div>

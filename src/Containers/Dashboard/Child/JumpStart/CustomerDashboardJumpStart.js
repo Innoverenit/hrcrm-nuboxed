@@ -1,6 +1,8 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import CustomerSectorPieChart from "../JumpStart/CustomerSectorPieChart"
+import CustomerSourcesPieChart from "../JumpStart/CustomerSourcesPieChart"
 import dayjs from "dayjs";
 import {getJumpDistributorDetail,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
@@ -227,13 +229,13 @@ function CustomerDashboardJumpStart (props) {
         <div>
         <div class=" font-poppins font-bold text-base ">By Sector</div>
         <Suspense fallback={<BundleLoader />}>
-        <CustomerPieChart/>
+        <CustomerSectorPieChart/>
         </Suspense>
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Source</div>
         <Suspense fallback={<BundleLoader />}>
-        <CustomerPieChart/>
+        <CustomerSourcesPieChart/>
         </Suspense>
         </div>
         </div>
