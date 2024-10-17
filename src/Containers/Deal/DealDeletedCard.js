@@ -151,7 +151,7 @@ const DealDeletedCard = (props) => {
                 >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div class="flex justify-between">
-                    <div className=" flex  w-[12rem]   max-sm:w-full">
+                    <div className=" flex  w-[12rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
                         <div>
                           <SubTitle>
@@ -191,7 +191,7 @@ const DealDeletedCard = (props) => {
                     </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                    <div className=" flex   md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-44 max-sm:flex-row w-full max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs  font-poppins">
                         <Link to="/investor">
                           {item.investor}
@@ -199,7 +199,7 @@ const DealDeletedCard = (props) => {
                       </div>
                     
 </div>
-                    <div className=" flex  md:w-44 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-44 max-sm:flex-row w-full max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs  font-poppins">
                         <SubTitle>
                           {item.contactName === null ? "None" :
@@ -215,21 +215,21 @@ const DealDeletedCard = (props) => {
                       </div>
                     </div>             
                              
-                    <div className=" flex  md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-36 max-sm:flex-row w-full max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs justify-center  font-poppins">
                         {dayjs(item.startDate).format("DD/MM/YYYY")}
                       </div>
                     </div>
 </div>
              <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                    <div className=" flex md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex md:w-36 max-sm:flex-row w-full max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs  font-poppins text-center">
                         <CurrencySymbol currencyType={item.currency} />
                         &nbsp;
                         {item.proposalAmount}
                       </div>
                     </div>
-                    <div className=" flex  md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-36 max-sm:flex-row w-full max-sm:justify-between  items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                       <div class="text-xs  font-poppins text-center">
                         <Dropdown
                           overlay={
@@ -261,7 +261,7 @@ const DealDeletedCard = (props) => {
                         </Dropdown>
                       </div>
                     </div>
-                    <div className=" flex  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-32 max-sm:flex-row w-full max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs  font-poppins">
                       <span>
                           {item.assignedTo === null ? (
@@ -285,7 +285,7 @@ const DealDeletedCard = (props) => {
                       </div>
                     </div>
                     </div>
-                    <div className=" flex md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                    <div className=" flex md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                       <span>
                         <MultiAvatar2
                           primaryTitle={item.ownerName}

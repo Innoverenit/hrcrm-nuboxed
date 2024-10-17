@@ -301,7 +301,7 @@ const countryCode = item.countryAlpha2Code
                         <div>
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                       <div class="flex flex-row items-center w-[3rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                       <div class="flex flex-row items-center  border-l-2 border-green-500 bg-[#eef2f9]  w-[3rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                         <div>
                                               <ButtonGroup>
                                               <RoleButton
@@ -349,8 +349,8 @@ const countryCode = item.countryAlpha2Code
                                                 </div>  
 
                                                 </div>  
-                                <div className=" flex   w-[7rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
-                                <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+                                <div className=" flex   items-center h-8 ml-gap bg-[#eef2f9] w-[7rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div className="flex max-sm:w-full items-center  max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
                                             <div>
 
                                                         <MultiAvatar
@@ -394,7 +394,7 @@ const countryCode = item.countryAlpha2Code
       
     
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                <div className=" flex   w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
+                <div className=" flex   w-[2.5rem]  items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
                                   {/* Country */}
                                   <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   <CountryFlag1 countryCode={countryCode} />
@@ -402,7 +402,7 @@ const countryCode = item.countryAlpha2Code
                       {countryCode}
                                     </div>
                               </div>
-                <div className=" flex   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                <div className=" flex   w-[7rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* Phone #  */}
 
                 <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -413,7 +413,7 @@ const countryCode = item.countryAlpha2Code
 
                        </div>
                       
-                              <div className=" flex   w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[8.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                           {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "None"}
@@ -423,14 +423,14 @@ const countryCode = item.countryAlpha2Code
                              
                             
                       
-                       <div className=" flex   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex   w-[5.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                             {/* Source */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.source || "None"}
 </div>
 
                        </div>
-                       <div className=" flex   w-[3.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex   w-[3.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                         {/*sector  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.sector || "None"}
@@ -438,21 +438,21 @@ const countryCode = item.countryAlpha2Code
 </div>
                        </div>
                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                       <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                       <div className=" flex  items-center w-[6.121rem]  h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Category */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {Category}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[4rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Share */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.unitOfShare}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* # Value */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -460,14 +460,14 @@ const countryCode = item.countryAlpha2Code
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.shareCurrency} {item.valueOfShare}
                                     </div>
                                 </div>
-                       <div className=" flex   w-[2.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                    {/* Assigned */}
 
                                     <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -497,13 +497,13 @@ const countryCode = item.countryAlpha2Code
                       </div>                            
                    </div>                                                                              
                    {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
            {item.noteScoreInd}
           
             </div>
             )}
-                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                   <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  justify-center h-8 ml-gap bg-[#eef2f9]">
+                   <div className=" flex   w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                                   {/* Qualif */}                                                      
                                     <div>
                                     {item.companyName ?
@@ -728,7 +728,7 @@ const countryCode = item.countryAlpha2Code
                         <div>
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                       <div class="flex flex-row items-center w-[3rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                       <div class="flex flex-row border-l-2 border-green-500 bg-[#eef2f9]  items-center w-[3rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                         <div>
                                               <ButtonGroup>
                                               <RoleButton
@@ -776,7 +776,7 @@ const countryCode = item.countryAlpha2Code
                                                 </div>  
 
                                                 </div>  
-                                <div className=" flex   w-[7rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                                 <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
                                             <div>
 
@@ -821,7 +821,7 @@ const countryCode = item.countryAlpha2Code
       
     
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                <div className=" flex   w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
+                <div className=" flex   h-8 ml-gap bg-[#eef2f9] justify-center items-center w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
                                   {/* Country */}
                                   <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   <CountryFlag1 countryCode={countryCode} />
@@ -829,7 +829,7 @@ const countryCode = item.countryAlpha2Code
                       {countryCode}
                                     </div>
                               </div>
-                <div className=" flex   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                <div className=" flex  h-8 ml-gap bg-[#eef2f9]  w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* Phone #  */}
 
                 <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -840,7 +840,7 @@ const countryCode = item.countryAlpha2Code
 
                        </div>
                       
-                              <div className=" flex   w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                           {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "None"}
@@ -850,14 +850,14 @@ const countryCode = item.countryAlpha2Code
                              
                             
                       
-                       <div className=" flex   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex   h-8 ml-gap bg-[#eef2f9] w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                             {/* Source */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.source || "None"}
 </div>
 
                        </div>
-                       <div className=" flex   w-[3.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex   h-8 ml-gap bg-[#eef2f9] w-[3.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                         {/*sector  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.sector || "None"}
@@ -865,21 +865,21 @@ const countryCode = item.countryAlpha2Code
 </div>
                        </div>
                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                       <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                       <div className=" flex  items-center   h-8 ml-gap bg-[#eef2f9] w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Category */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {Category}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[4rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[4rem]  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Share */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.unitOfShare}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center w-[5.181rem]  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* # Value */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -887,14 +887,14 @@ const countryCode = item.countryAlpha2Code
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.shareCurrency} {item.valueOfShare}
                                     </div>
                                 </div>
-                       <div className=" flex   w-[2.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex  justify-center h-8 ml-gap bg-[#eef2f9]  w-[2.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                    {/* Assigned */}
 
                                     <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -924,13 +924,13 @@ const countryCode = item.countryAlpha2Code
                       </div>                            
                    </div>                                                                              
                    {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  items-center justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  h-8 ml-gap bg-[#eef2f9] ">
            {item.noteScoreInd}
           
             </div>
             )}
-                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                   <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  justify-center h-8 ml-gap bg-[#eef2f9]">
+                   <div className=" flex   w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                                   {/* Qualif */}                                                      
                                     <div>
                                     {item.companyName ?
@@ -958,7 +958,7 @@ const countryCode = item.countryAlpha2Code
 
 </div>
                                 </div>  
-                                <div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
+                                <div class="rounded-full cursor-pointer w-4 max-xl:w-[1.5rem]  justify-center h-8 ml-gap bg-[#eef2f9]">
                     {item.url !== null ? (
               <Tooltip title={item.url}>
                 <span className=" cursor-pointer"
@@ -977,7 +977,7 @@ const countryCode = item.countryAlpha2Code
                         </div>  
                               
           
-     <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">
+     <div class="flex max-sm:justify-evenly max-sm:w-wk items-center h-8 ml-gap bg-[#eef2f9] justify-end">
     <div >
                     <Tooltip title= {translatedMenuItems[17]} >
        <NoteAltIcon
@@ -1154,7 +1154,7 @@ const countryCode = item.countryAlpha2Code
                         <div>
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                       <div class="flex flex-row items-center w-[3rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                       <div class="flex flex-row items-center border-l-2 border-green-500 bg-[#eef2f9]  w-[3rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                         <div>
                                               <ButtonGroup>
                                               <RoleButton
@@ -1202,7 +1202,7 @@ const countryCode = item.countryAlpha2Code
                                                 </div>  
 
                                                 </div>  
-                                <div className=" flex   w-[7rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div className=" flex   w-[7rem]  h-8 ml-gap bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                                 <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
                                             <div>
 
@@ -1247,7 +1247,7 @@ const countryCode = item.countryAlpha2Code
       
     
                 <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                <div className=" flex   w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
+                <div className=" flex  h-8 ml-gap bg-[#eef2f9] justify-center items-center  w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                 
                                   {/* Country */}
                                   <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   <CountryFlag1 countryCode={countryCode} />
@@ -1255,7 +1255,7 @@ const countryCode = item.countryAlpha2Code
                       {countryCode}
                                     </div>
                               </div>
-                <div className=" flex   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                            {/* Phone #  */}
 
                 <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -1266,7 +1266,7 @@ const countryCode = item.countryAlpha2Code
 
                        </div>
                       
-                              <div className=" flex   w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   h-8 ml-gap bg-[#eef2f9] w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                           {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "None"}
@@ -1276,14 +1276,14 @@ const countryCode = item.countryAlpha2Code
                              
                             
                       
-                       <div className=" flex   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex   h-8 ml-gap bg-[#eef2f9] w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                             {/* Source */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.source || "None"}
 </div>
 
                        </div>
-                       <div className=" flex   w-[3.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex  h-8 ml-gap bg-[#eef2f9]  w-[3.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                         {/*sector  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.sector || "None"}
@@ -1291,36 +1291,36 @@ const countryCode = item.countryAlpha2Code
 </div>
                        </div>
                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                       <div className=" flex  items-center w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                       <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[6.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Category */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {Category}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[4rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[4rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Share */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.unitOfShare}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* # Value */}
 
-                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs justify-center   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                    
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.shareCurrency} {item.valueOfShare}
                                     </div>
                                 </div>
-                       <div className=" flex   w-[2.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex justify-center h-8 ml-gap bg-[#eef2f9] w-[2.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                    {/* Assigned */}
 
                                     <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -1350,13 +1350,13 @@ const countryCode = item.countryAlpha2Code
                       </div>                            
                    </div>                                                                              
                    {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
            {item.noteScoreInd}
           
             </div>
             )}
-                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                   <div className=" flex  flex-col w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center bg-[#eef2f9] h-8 ml-gap ">
+                   <div className=" flex  justify-center w-4 max-xl:w-[2rem] max-sm:flex-col  max-sm:justify-evenly max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                                   {/* Qualif */}                                                      
                                     <div>
                                     {item.companyName ?
@@ -1384,7 +1384,7 @@ const countryCode = item.countryAlpha2Code
 
 </div>
                                 </div>  
-                                <div class="rounded-full bg-white  h-5 cursor-pointer w-4 max-xl:w-[1.5rem]">
+                                <div class=" justify-center  cursor-pointer w-4 max-xl:w-[1.5rem]">
                     {item.url !== null ? (
               <Tooltip title={item.url}>
                 <span className=" cursor-pointer"
@@ -1403,7 +1403,7 @@ const countryCode = item.countryAlpha2Code
                         </div>  
                               
           
-     <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">
+     <div class="flex max-sm:justify-evenly max-sm:w-wk items-center ">
     <div >
                     <Tooltip title= {translatedMenuItems[17]} >
        <NoteAltIcon

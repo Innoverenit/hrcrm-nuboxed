@@ -143,23 +143,23 @@ const TaskApproveTable = (props) => {
     <>
       
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-          <div className="font-bold font-poppins text-xs w-[12.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]">{translatedMenuItems[0]} 
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  text-xs font-poppins z-10">
+          <div className="flex justify-center w-[12.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]">{translatedMenuItems[0]} 
            {/* type */}
                     </div>
-        <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]">{translatedMenuItems[1]} 
+        <div className="flex justify-center w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]">{translatedMenuItems[1]} 
                         {/* name" */}
                       </div>
-             <div className="font-bold font-poppins text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] ">{translatedMenuItems[2]} 
+             <div className="flex justify-center w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] ">{translatedMenuItems[2]} 
               {/* submittedby */}
                         </div>
-        <div className="font-bold font-poppins text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]">{translatedMenuItems[3]} 
-       {/* Ageing */}
-                        </div>
-                         <div className="font-bold font-poppins text-xs w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">{translatedMenuItems[4]} 
+        {/* <div className="flex justify-center w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]">{translatedMenuItems[3]} 
+       Ageing
+                        </div> */}
+                         <div className="flex justify-center w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">{translatedMenuItems[4]} 
                           {/* Info */}
                           </div>
-        <div className="font-bold font-poppins text-xs w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]">
+        <div className="flex justify-center w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]">
           {/* {translatedMenuItems[5]}  */}
           Assigned On
                         </div>
@@ -171,7 +171,7 @@ const TaskApproveTable = (props) => {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingApproveTaskTable?<div class="flex justify-center" >Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex  text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
@@ -222,7 +222,7 @@ const TaskApproveTable = (props) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[15.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex   items-center h-8 ml-gap bg-[#eef2f9]  w-[15.3rem] max-xl:w-[8.3rem] max-lg:w-[6.3rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm   font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
@@ -255,38 +255,32 @@ const TaskApproveTable = (props) => {
                 />
                                     </div>
                                 </div>
-                                <div className="flex w-[4.23rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.23rem] max-lg:w-[3.23rem]  max-sm:flex-row  max-sm:w-auto ">
-                       
-                       
-                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-  {item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-red-900 font-semibold">{completeDeviation} Days</span>) :
-   (incompleteDeviationDate > 0 && <span className=" text-red-900 font-semibold">{incompleteDeviationDate} Days</span>)}
-</div>
-                     
-                   </div>
-                             </div>  
-                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                     <div className="flex  text-xs w-[17.6rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex  text-xs w-[13.6rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[10.23rem] max-lg:w-[6.23rem]  max-sm:flex-row  max-sm:w-auto ">
                                   {item.customerName ? (
                                       <>{item.customerName}</>
                                     ) : null} 
                                     {item.contact ? (
                                       <>{item.contact}</>
                                     ) : null}        
-                   </div>                                            
+                   </div>   
+                               
+                             </div>  
+                       
+                                                             
                                 <div className=" flex  w-[5.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned On</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     <span>{` ${dayjs(item.assignedOn).format("ll")}`}</span>
                                     </div>
                                 </div>
+                                
                       
-                         </div>
+                       
 
   
-                         <div class="flex  max-sm:justify-end max-sm:w-wk items-center justify-center h-8 ml-gap bg-[#eef2f9]">  
+                         <div class="flex  max-sm:justify-end max-sm:w-wk ">  
                   
-                   <div class="flex flex-col w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
+                   <div class="flex flex-col w-[10.2rem]  items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.2rem] max-lg:w-[6.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
                    <div class="w-36 max-sm:w-auto">
   {item.taskType === "Prospect To Customer" ? (
     <>
@@ -350,9 +344,27 @@ const TaskApproveTable = (props) => {
   )}
 </div>
 
+
 </div>                       
-                    
-<div class="flex flex-col w-[1.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
+<div className="flex w-[4.23rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.23rem] max-lg:w-[3.23rem]  max-sm:flex-row  max-sm:w-auto ">
+                       
+                       
+                       <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-blue-900 font-semibold">{completeDeviation} Days</span>) :
+                       (incompleteDeviationDate > 0 && <span className=" text-blue-900 font-semibold">
+                        {incompleteDeviationDate} Days
+                        
+                        </span>)}
+</span>
+    
+  </div>
+                       
+                     </div>                 
+<div class="flex h-8 ml-gap bg-[#eef2f9] items-center justify-end   max-sm:flex-row max-sm:w-auto">
                     <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
