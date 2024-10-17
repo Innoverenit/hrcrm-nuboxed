@@ -266,7 +266,7 @@ function OpportunityWonCard(props) {
                                 </div>
                                 </div>
                                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex   w-[11.1rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex   w-[11.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                            
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
                                     <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
@@ -277,7 +277,7 @@ function OpportunityWonCard(props) {
                                 </div>
                                
                                                    
-                                <div className=" flex  w-[7.01rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  w-[7.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
@@ -295,7 +295,7 @@ function OpportunityWonCard(props) {
           
                                   </div>
                               </div>
-                                <div className=" flex  w-[4.1rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex  w-[4.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-xs justify-center  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -304,7 +304,7 @@ function OpportunityWonCard(props) {
                                 </div>
                            </div>
                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex   w-[11.1rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex   w-[11.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                     <div class=" text-xs  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -351,7 +351,7 @@ function OpportunityWonCard(props) {
 
                                     </div> */}
                               
-                                <div className=" flex  w-32 items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex  w-32 items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class=" text-xs  font-poppins max-sm:text-sm">
@@ -369,7 +369,7 @@ function OpportunityWonCard(props) {
                              
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-8 max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-8 max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 

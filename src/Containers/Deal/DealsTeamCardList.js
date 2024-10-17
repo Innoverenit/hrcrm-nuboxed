@@ -196,7 +196,7 @@ const DealsTeamCardList = (props) => {
               >
                   <div class="flex max-sm:justify-start max-sm:w-wk max-sm:items-center">
                   <div class="flex justify-between">
-                    <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
+                    <div className=" flex font-medium  w-[15rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
                         <div>
                           <SubTitle>
@@ -237,7 +237,7 @@ const DealsTeamCardList = (props) => {
                       </div>
                     </div>
                     <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                    <div className=" flex   items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-poppins">
                         <Link to="/investor">
@@ -245,7 +245,7 @@ const DealsTeamCardList = (props) => {
                         </Link>
                       </div>
                     </div>
-                    <div className=" flex   items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs  font-poppins">
                         <SubTitle>
                           {item.contactName === null ? "None" :
@@ -262,7 +262,7 @@ const DealsTeamCardList = (props) => {
                     </div>
                
                   
-                    <div className=" flex  items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs justify-center  font-poppins">
                         {dayjs(item.startDate).format("DD/MM/YYYY")}
                       </div>
@@ -270,7 +270,7 @@ const DealsTeamCardList = (props) => {
                     </div>
 
                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                    <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs font-poppins text-center">
                         <CurrencySymbol currencyType={item.currency} />
                         &nbsp;
@@ -278,7 +278,7 @@ const DealsTeamCardList = (props) => {
                       </div>
                     </div>
 
-                    <div className=" flex items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs  font-poppins text-center">
                         <Dropdown
                           overlay={
@@ -311,12 +311,12 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex  items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
                     {myIndicator}
                     </div>
 </div>
 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                    <div className=" flex  items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-xs  font-poppins">
@@ -342,7 +342,7 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex  items-center  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
 
                       <span>
                         <MultiAvatar2

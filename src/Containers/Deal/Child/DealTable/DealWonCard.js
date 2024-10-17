@@ -182,7 +182,7 @@ function DealWonCard(props) {
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium  w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.1rem] max-sm:flex-row max-sm:w-auto  items-center">
+                      <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.1rem] max-sm:flex-row max-sm:w-auto  items-center">
                                 <div>
             <MultiAvatar
               primaryTitle={item.opportunityName}
@@ -206,7 +206,7 @@ function DealWonCard(props) {
 </div>
                                         </Tooltip>                         
                                 </div>
-                                <div className=" flex   w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex   w-[8.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                        {/* sector */}
                                    
                                     <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">   
@@ -217,7 +217,7 @@ function DealWonCard(props) {
                                 </div>
                                 </div>       
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex   w-[7.4rem] max-xl:w-[4.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[7.4rem] max-xl:w-[4.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                               {/* Country */}
                                   <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">                            
           {item.contactName === null ? "None" :
@@ -231,14 +231,14 @@ function DealWonCard(props) {
           }
                                   </div>
                               </div>
-                                <div className=" flex  w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                                     </div>
                                 </div>                           
-                                <div className=" flex  w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Value */}
                                     <div class=" text-xs  font-poppins text-center max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">              
             &nbsp;
@@ -247,7 +247,7 @@ function DealWonCard(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex  w-[9.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                {/* Value */}
 
                                     <div class=" text-xs  font-poppins text-center max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -280,7 +280,7 @@ function DealWonCard(props) {
             </Dropdown>
                                     </div>
                                 </div>
-                                <div className=" flex  w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Assigned */}
 
                                     <div class=" text-xs  font-poppins max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-xs">                                   
@@ -293,7 +293,7 @@ function DealWonCard(props) {
             </span>     
                                     </div>
                                 </div>
-                                <div className=" flex  w-[6.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                                 {/* Owner */}
               <Tooltip title={item.ownerName}>
           <span>
@@ -308,7 +308,7 @@ function DealWonCard(props) {
             </Tooltip>
                    </div>
                    </div>
-                   <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                   <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  justify-end h-8 ml-gap bg-[#eef2f9]">
                    
                     <div>
                     <Tooltip title= {translatedMenuItems[8]}><span

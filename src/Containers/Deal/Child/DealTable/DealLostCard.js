@@ -145,7 +145,7 @@ function DealLostCard(props) {
                             <div>
                              <div
                   className="flex flex-col rounded justify-between bg-white mt-[0.5rem] h-[9rem]  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">               
-                              <div class="flex justify-between ">
+                              <div class="flex justify-between  border-l-2 border-green-500 bg-[#eef2f9]">
                                        <div>
                     <MultiAvatar
                       primaryTitle={item.opportunityName}
@@ -187,20 +187,20 @@ function DealLostCard(props) {
                     }                
                                             </div>                                   
                                         </div>
-                                        <div class="flex justify-between">
+                                        <div class="flex justify-between items-center  h-8 ml-gap bg-[#eef2f9]">
                                                {/* Deals */}
-                                     <div class=" text-xs justify-center  font-poppins">
+                                     <div class=" text-xs justify-center  font-poppins items-center  h-8 ml-gap bg-[#eef2f9]">
                                             {dayjs(item.startDate).format("DD/MM/YYYY")}
                                             </div>
                                   {/* Pipeline Value */}   
-                                            <div class=" text-xs  font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                                             <CurrencySymbol currencyType={item.currency} />
                                      &nbsp;
                                      {item.proposalAmount}
                                           </div>
                                        
                            {/*Pipeline Value */}    
-                                            <div class=" text-xs  font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                                             <Dropdown
                       overlay={
                         <div>

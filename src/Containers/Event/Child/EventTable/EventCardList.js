@@ -149,43 +149,43 @@ const getLocation = () => {
    
          <div className=" flex  w-[100%]  max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
           <div className=" flex justify-between text-xs font-poppins w-[93%]">
-        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
+        <div className="flex justify-center w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
         {translatedMenuItems[0]} {/* <FormattedMessage
                   id="app.type"
                   defaultMessage="type"
                 /> */}
                 </div>
-        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]">
+        <div className="flex justify-center w-[13.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]">
         {translatedMenuItems[1]} {/* <FormattedMessage
                   id="app.subject"
                   defaultMessage="subject"
                 /> */}
                 </div>
-        <div className=" w-[9.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] ">
+        <div className="flex justify-center w-[9.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] ">
         {translatedMenuItems[2]} 
         {/* start */}
                 </div>
-        <div className=" w-[13.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
+        <div className="flex  w-[11.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
         {translatedMenuItems[3]} {/* <FormattedMessage
                   id="app.subject"
                   defaultMessage="subject"
                 /> */}
                 </div>
      
-        <div className="w-[6.32rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
+        <div className="flex justify-center w-[6.32rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
         {translatedMenuItems[4]} {/* <FormattedMessage
                   id="app.subject"
                   defaultMessage="subject"
                 /> */}
                 </div>
      
-        <div className="w-[8.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.15rem]">
+        <div className=" flex justify-center w-[8.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.15rem]">
         {translatedMenuItems[5]} {/* <FormattedMessage
                   id="app.subject"
                   defaultMessage="subject"
                 /> */}
                 </div>
-        <div className="w-24 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
+        <div className=" flex justify-center w-24 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
   
                 </div>
                 
@@ -196,7 +196,7 @@ const getLocation = () => {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingEventListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
       {eventListRangeByUserId.map((item) => { 
@@ -232,7 +232,7 @@ const getLocation = () => {
                                         </div>
                                 </div>
 
-                                <div className=" flex  w-[15.26rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[15.26rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">   
                                     {item.eventSubject}

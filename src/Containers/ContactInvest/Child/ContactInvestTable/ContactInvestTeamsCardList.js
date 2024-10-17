@@ -242,7 +242,7 @@ if (loading) {
                       <div>
                       <div className="flex rounded justify-between  bg-white mt-1 h-8  items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                          <div className=" flex font-medium  md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex   md:w-[15.1rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
 <div>
                          
@@ -257,7 +257,7 @@ if (loading) {
     &nbsp;
     <div class="max-sm:w-full md:w-[12.1rem]">
                                   <Tooltip>
-                                    <div class=" flex  max-sm:w-full justify-between flex-row md:flex-col">
+                                    <div class=" flex  max-sm:w-full justify-between  md:flex-col">
                                       
                                       <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
                                       <Link class="overflow-ellipsis whitespace-nowrap  text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
@@ -275,19 +275,19 @@ if (loading) {
                           </div>       
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[13.01rem]">
+                          <div className=" flex max-sm:w-full max-sm:justify-between   items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[13.01rem]">
                               {/* Company  */}
                               <div class=" text-xs  font-poppins">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.5rem] items-center">
+                          <div className=" flex max-sm:w-full max-sm:justify-between    w-[10.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                             {/* Designation */}
                               <div class="text-xs  font-poppins">
                                    {item.designation}
                               </div>
                           </div>         
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.2rem] items-center">
+                          <div className=" flex max-sm:w-full max-sm:justify-between    w-[10.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                           {/* Department */}
                             <div class="text-xs  font-poppins">
                                  {item.department}
@@ -295,7 +295,7 @@ if (loading) {
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
-                          <div className=" flex  md:w-[6.22rem] max-sm:flex-row w-full  items-center ">
+                          <div className=" flex  md:w-[6.22rem] max-sm:w-full  items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                               {/* # Deals */}
 
                               <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
@@ -307,14 +307,14 @@ if (loading) {
                                {item.oppNo}
                               </div>
                           </div>
-                          <div className=" flex   md:w-[3.05rem] max-sm:flex-row w-full items-center  ">
+                          <div className=" flex   md:w-[3.05rem] max-sm:w-full items-center  justify-center h-8 ml-gap bg-[#eef2f9] ">
                              {/* Deal Value */}
 
                               <div class=" text-xs  font-poppins">
                                {item.totalProposalValue}
                               </div>
                           </div> 
-                          <div className="flex  max-sm:justify-between  md:w-[6.81rem] max-sm:flex-row w-full items-center">
+                          <div className="flex  max-sm:justify-between  justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.81rem] max-sm:w-full items-center">
                           {/* Source */}
                               <div class="text-xs  font-poppins">
 
@@ -322,12 +322,12 @@ if (loading) {
                           </div>
                           {/* Score */}
                           {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
             {item.noteScoreInd}
           
             </div>
             )}                   
-                          <div className="flex  md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">             
+                          <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3.2rem]  max-sm:w-full max-sm:justify-between">             
                {/* Owner */}
              
         <Tooltip title={item.ownerName}>
@@ -344,7 +344,7 @@ if (loading) {
              </div>   
              </div>   
                            
-                  <div class=" flex justify-evenly items-center w-[7rem] max-sm:flex   max-sm:w-full">
+                  <div class=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9] w-wk  max-sm:flex   max-sm:w-full">
                   <div>
      <Tooltip title=     {translatedMenuItems[9]}>
  <MonitorHeartIcon

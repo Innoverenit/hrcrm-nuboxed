@@ -98,20 +98,20 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   
   return (
     <>
-       <div className=' flex  justify-center sticky  z-auto'>
+       <div className=' flex   sticky  z-auto'>
        <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
        <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" flex justify-between w-[84%] text-xs font-poppins">
-        <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">            
+        <div className=" flex justify-between w-[87%] text-xs font-poppins">
+        <div className="flex justify-center w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">            
         {props.translatedMenuItems[1]} 
         {/* Type */}
         </div>
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
-        <div className=" w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[3]}</div>
-        <div className=" w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[4]}</div>
-        <div className="w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[5]}</div>
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div> 
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[7]} </div>
+        <div className="flex justify-center w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
+        <div className=" flex justify-center w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[3]}</div>
+        <div className="flex justify-center w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[4]}</div>
+        <div className="flex justify-center w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[5]}</div>
+        <div className=" flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div> 
+        <div className=" flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[7]} </div>
          {/* <div className="w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[8]}</div> */}
          </div>    
       </div>
@@ -143,10 +143,10 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
               <div class="flex  w-[8.9rem]  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
             <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callType}</div>
             </div>
-            <div class="flex w-[14.8rem] items-center justify-center h-8 bg-[#eef2f9] ml-gap text-xs max-xl:w-[9.8rem] max-lg:w-[7.3rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+            <div class="flex w-[14.8rem] items-center justify-start h-8 bg-[#eef2f9] ml-gap text-xs max-xl:w-[9.8rem] max-lg:w-[7.3rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
             <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callPurpose}</div>
               </div>
-              <div class="flex w-[7.5rem]  items-center justify-center h-8 bg-[#eef2f9] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+              <div class="flex w-[7.5rem] ml-gap items-center justify-center h-8 bg-[#eef2f9] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
       
               <MultiAvatar2
                     primaryTitle={item.contactName}
@@ -159,7 +159,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
               
-              <div class="flex  text-xs   w-[11.35rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-col max-sm:justify-between max-sm:w-auto">
+              <div class="flex  text-xs   w-[11.354rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-col max-sm:justify-between max-sm:w-auto">
               <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {dayjs(item.startDate).format('YYYY-MM-DD')}</div>
               </div>
              
@@ -170,7 +170,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
            </div>
 
            {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center "> */}
-           <div class="flex w-full  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:justify-evenly max-sm:w-auto">
+           <div class="flex   w-[8.35rem]   items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:justify-evenly max-sm:w-auto">
               <Avatar.Group
                    maxCount={7}
                   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -194,12 +194,8 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                   })}
                  
             </Avatar.Group>
-        
-        
-         
-            
-            
-             <span>
+        </div>
+        <div  class="flex   w-[7.25rem]   items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:justify-evenly max-sm:w-auto">
               {item.assignedTo === null ? (
                 // "Not available"
                 <div>{props.translatedMenuItems[12]}</div>
@@ -217,7 +213,6 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                 )}
                 </>
               )}
-            </span>
                                          
            
              
@@ -244,7 +239,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                     
                         </div>
              <div class="flex max-sm:justify-between max-sm:w-wk ml-gap  items-center justify-center h-8 bg-[#eef2f9] ">
-              <div class="flex flex-row  w-[6%] max-sm:flex-row max-sm:w-auto">
+              <div class="flex flex-row  max-sm:flex-row max-sm:w-auto">
                     <div>
                     <Tooltip title={props.translatedMenuItems[14]}>
        <NoteAltIcon

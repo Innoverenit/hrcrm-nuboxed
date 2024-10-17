@@ -226,7 +226,7 @@ function ContactInvestCardList(props) {
                             <div
               className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-28 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                <div className=" flex  md:w-[15.1rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
 <div>                             
             <MultiAvatar2
@@ -240,7 +240,7 @@ function ContactInvestCardList(props) {
           &nbsp;
           <div class="max-sm:w-full md:w-[12.1rem]">
                                         <Tooltip>
-                                          <div class=" flex  max-sm:w-full justify-between flex-row md:flex-col">
+                                          <div class=" flex  max-sm:w-full justify-between  md:flex-col">
                                             
                                             <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
@@ -262,20 +262,20 @@ function ContactInvestCardList(props) {
                                 </div>                     
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center items-center">
-                                <div className=" flex max-sm:w-full max-sm:justify-between items-center flex-row  w-[11.01rem]">
+                                <div className=" flex max-sm:w-full max-sm:justify-between items-center  h-8 ml-gap bg-[#eef2f9] w-[11.01rem]">
                                    {/* Company  */}
                                     <div class=" text-xs  font-poppins">   
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[7.5rem] items-center">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  h-8 ml-gap bg-[#eef2f9]  w-[7.5rem] items-center">
                                {/* Designation */}
                                     <div class="text-xs  font-poppins">
                                          {item.designation}
                                     </div>
                                 </div>
                            
-                                <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[8.2rem] items-center">
+                                <div className=" flex max-sm:w-full max-sm:justify-between    w-[8.2rem] items-center  h-8 ml-gap bg-[#eef2f9]">
                                 {/* Department */}
                                   <div class="text-xs  font-poppins">
                                        {item.department}
@@ -283,7 +283,7 @@ function ContactInvestCardList(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
-                                <div className=" flex   md:w-[7.22rem] max-sm:flex-row w-full  ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.22rem] max-sm:w-full  ">
                                     {/* Deals */}
                                     <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
                                       onClick={() => {
@@ -294,14 +294,14 @@ function ContactInvestCardList(props) {
                                      {item.oppNo}
                                     </div>
                                 </div>
-                                <div className=" flex   md:w-[5.05rem] max-sm:flex-row w-full  ">
+                                <div className=" flex   md:w-[5.05rem] max-sm:w-full items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                                    {/* Deal Value */}
 
                                     <div class=" text-xs  font-poppins">
                                      {item.totalProposalValue}
                                     </div>
                                 </div>
-                                <div className="flex max-sm:justify-between  md:w-[3.81rem] max-sm:flex-row w-full ">
+                                <div className="flex max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3.81rem] max-sm:w-full ">
                                      {/* Source */}
 
                                     <div class="text-xs  font-poppins">
@@ -309,7 +309,7 @@ function ContactInvestCardList(props) {
                                     </div>
                                 </div>
                                 {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[16.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center  w-[16.12rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
             {item.noteScoreInd}
           
             </div>
@@ -317,7 +317,7 @@ function ContactInvestCardList(props) {
                                
                    </div>
                  
-      <div class=" flex  flex-row justify-evenly items-center w-[7rem] max-sm:flex   max-sm:w-full">                 
+      <div class=" flex   marker:items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7rem] max-sm:flex   max-sm:w-full">                 
                   
                     <Tooltip title= {translatedMenuItems[7]}>
                   <MonitorHeartIcon className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl"

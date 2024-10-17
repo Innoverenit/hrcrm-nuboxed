@@ -179,7 +179,7 @@ const DealsAllCardList = (props) => {
            >
                <div class="flex max-sm:justify-start max-sm:w-wk max-sm:items-center">
                <div class="flex justify-between">
-                 <div className=" flex  w-[12rem]   max-sm:w-full">
+                 <div className=" flex  w-[12rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-full">
                    <div className="flex max-sm:w-full items-center">
                      <div>
                        <SubTitle>
@@ -222,7 +222,7 @@ const DealsAllCardList = (props) => {
                  </div>
                  </div>
                  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                 <div className=" flex  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs  font-poppins">
                      <Link to="/investor">
@@ -231,7 +231,7 @@ const DealsAllCardList = (props) => {
                    </div>
                  </div>
 
-                 <div className=" flex  items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex  justify-center h-8 ml-gap bg-[#eef2f9] items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs font-poppins">
                      <SubTitle>
@@ -249,14 +249,14 @@ const DealsAllCardList = (props) => {
                  </div>
               
              
-                 <div className=" flex  items-center  md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs justify-center  font-poppins">
                      {dayjs(item.startDate).format("DD/MM/YYYY")}
                    </div>
                  </div>
 </div>
-                 <div className=" flex  items-center  md:w-36 max-sm:flex-row  max-sm:justify-evenly w-wk ">
+                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-36 max-sm:flex-row  max-sm:justify-evenly w-wk ">
 
                    <div class=" text-xs  font-poppins text-center">
                      <CurrencySymbol currencyType={item.currency} />
@@ -265,46 +265,47 @@ const DealsAllCardList = (props) => {
 
                    </div>
                 
-                 <div className=" flex items-center  md:w-36 max-sm:flex-row w-full max-sm:justify-evenly  ">
+              
+                 </div>
+                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-36 max-sm:flex-row w-full max-sm:justify-evenly  ">
 
-                   <div class=" text-xs  font-poppins text-center">
-                     <Dropdown
-                       overlay={
-                         <div>
-                           <Menu mode="horizontal">
-                             <Menu.Item
-                               style={{
-                                 paddingLeft: 5,
-                                 paddingRight: 5,
-                                 backgroundColor: "#F5F5F5",
-                               }}
-                             >
-                             </Menu.Item>
-                           </Menu>
-                         </div>
-                       }
-                       trigger={["click"]}
-                     >
-                       <Tooltip title={item.oppStage}>
-                         {" "}
-                         <Progress
-                           type="circle"
-                           style={{ cursor: "pointer", color: "red", fontSize: "0.8rem" }}
-                           percent={findProbability}
-                           width={30}
-                           strokeColor={"#005075"}
-                         />
-                       </Tooltip>
-                     </Dropdown>
-                   </div>
-                 </div>
-                 </div>
-                 <div className=" flex items-center  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+<div class=" text-xs  font-poppins text-center">
+  <Dropdown
+    overlay={
+      <div>
+        <Menu mode="horizontal">
+          <Menu.Item
+            style={{
+              paddingLeft: 5,
+              paddingRight: 5,
+              backgroundColor: "#F5F5F5",
+            }}
+          >
+          </Menu.Item>
+        </Menu>
+      </div>
+    }
+    trigger={["click"]}
+  >
+    <Tooltip title={item.oppStage}>
+      {" "}
+      <Progress
+        type="circle"
+        style={{ cursor: "pointer", color: "red", fontSize: "0.8rem" }}
+        percent={findProbability}
+        width={30}
+        strokeColor={"#005075"}
+      />
+    </Tooltip>
+  </Dropdown>
+</div>
+</div>
+                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
                  {myIndicator}
                  </div>
                  
                  <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                 <div className=" flex  items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs  font-poppins">
 
@@ -329,7 +330,7 @@ const DealsAllCardList = (props) => {
 
                    </div>
                  </div>
-                 <div className=" flex  items-center  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
 
                    <span>
                      <MultiAvatar2

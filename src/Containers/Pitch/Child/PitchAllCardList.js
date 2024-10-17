@@ -199,7 +199,7 @@ serachedPitchData={props.serachedPitchData}
           className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
         >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex   w-[12rem] max-xl:w-[6rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                          <div className=" flex   w-[12rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
 <div>
 
@@ -243,7 +243,7 @@ serachedPitchData={props.serachedPitchData}
                                   </div>
                                   </div>
                           </div>
-                          <div class="flex flex-row items-center w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                          <div class="flex flex-row items-center  h-8 ml-gap  bg-[#eef2f9]  w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
 <div>
 <ButtonGroup>
 <RoleButton
@@ -291,7 +291,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>  
 </div>  
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex    w-[9rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9]   w-[9rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                      <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.countryDialCode && item.phoneNumber
 ? `${item.countryDialCode} ${item.phoneNumber}`
@@ -303,7 +303,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                             <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                     
                               </div>
                         </div> */}
-                        <div className=" flex  w-[13.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  w-[13.1rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* country */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "None"}
@@ -312,13 +312,13 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
-                 <div className=" flex   w-[6.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex   w-[6.1rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                      {/* Company  */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source || "None"}
 </div>
                  </div>
-                 <div className=" flex   w-[7.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex   w-[7.12rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                {/* sector */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "None"}
@@ -326,11 +326,11 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                  </div>
                  {/* Score */}
                  {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center items-center  h-8 ml-gap  bg-[#eef2f9]  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
             </div>
             )}    
-                 <div className=" flex  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex  w-[5.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                             {/* Assigned */}
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                             
                               <span>
@@ -359,8 +359,8 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                           
                           </div>   
                                                                          
-<div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-             <div className=" flex  w-[2rem] max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+<div class="flex max-sm:justify-evenly max-sm:w-wk  items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
+             <div className=" flex  w-[2rem]  items-center    max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                             {/* Qualify */}                 
                              
                               <div>
