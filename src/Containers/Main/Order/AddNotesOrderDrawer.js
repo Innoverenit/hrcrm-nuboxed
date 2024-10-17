@@ -3,7 +3,7 @@ import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import OrderNotesForm from "../Account/AccountDetailsTab/AccountOrderTab/OrderNotesForm";
+
 
 
 const AddNotesOrderDrawer = (props) => {
@@ -20,7 +20,7 @@ const AddNotesOrderDrawer = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <OrderNotesForm particularRowData={particularRowData} />
+          {/* <OrderNotesForm particularRowData={particularRowData} /> */}
         </Suspense>
       </StyledDrawer>
     </>

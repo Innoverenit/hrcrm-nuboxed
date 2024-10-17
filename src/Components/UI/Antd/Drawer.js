@@ -20,9 +20,10 @@ const StyledDrawer = styled(Drawer)`
     }
     .ant-drawer-body {
        // background-color: ${props => props.theme.applicationBackground} !important;
-       background-color: #eaefed; 
-       color: ${props => props.theme.color};
-        padding: 0.7rem;
+       background-color: #FDFDFD; 
+    //    color: ${props => props.theme.color};
+       color:#444444;
+        padding: 0.5rem;
         border: none !important;
     }
     .ant-drawer-header {

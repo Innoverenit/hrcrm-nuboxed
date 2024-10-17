@@ -104,7 +104,7 @@ setEditingId(null);
       <>
       <div class="flex justify-between" >
       <div class="ml-2">
-{/* <label class="block" >Cell Code</label> */}
+{/* <div class="block" >Cell Code</div> */}
 <Input
       placeholder="Enter questions"
       style={{ width: 200 }}

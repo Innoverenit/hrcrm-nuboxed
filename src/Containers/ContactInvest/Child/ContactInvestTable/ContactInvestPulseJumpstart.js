@@ -3,12 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
-// import {getProspectWeightedValue,
-//   getWonCustomerOppValue,
-//   getWonCustomerPipeLineValue,
-//   getWonCustomerWeightedValue,
-//   getProspectOppValue,getProspectPipeLineValue,getProspectContactValue} from "../../CustomerAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
+import CustomerPieChart from "../../../Dashboard/Child/JumpStart/CustomerPieChart"
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactsIcon from '@mui/icons-material/Contacts';
 class ContactInvestPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -28,20 +26,6 @@ class ContactInvestPulseJumpStart extends React.Component{
     endDate
   };
 }
-// componentDidMount() {
-  
-//   this.props.getWonCustomerWeightedValue(this.props.customer.customerId)
-//   this.props.getWonCustomerPipeLineValue(this.props.customer.customerId)
-//   this.props.getWonCustomerOppValue(this.props.customer.customerId)
-//   // const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
-//   // const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
-//   this.props.getProspectWeightedValue(this.props.customer.customerId)
-//     this.props.getProspectOppValue(this.props.customer.customerId);    
-//     this.props.getProspectContactValue(this.props.customer.customerId);
-//     this.props.getProspectPipeLineValue(this.props.customer.customerId);
-//   // console.log(`Start Date: ${this.state.startDate.format("ll")}`);
-//   // console.log(`End Date: ${this.state.endDate.format("ll")}`);
-// }
 
 render() {
   const weightedValue = `${this.props.WeightedValue.weightedValue} ${this.props.WeightedValue.tradeCurrency}`;
@@ -56,31 +40,40 @@ render() {
   console.log(this.state.endDate.format("YYYY MM DD"))
   return(
     <>
-    <div class=" flex flex-row w-full" >
-    <div class="flex w-full" >
-        
-        <JumpStartBox
+  
+   <div className=" flex ">
+    <div class=" flex w-1/2" >
+    <div class="flex flex-wrap " >
+    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-1 bg-green-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                             </div>
+                             <JumpStartBox
             noProgress
             title={
               <FormattedMessage
-                id="app.opportunities"
-                defaultMessage="#Open Opportunities"
+                id="app.opendeals"
+                defaultMessage="#Open Deals"
               />
             }
-            // value={
-            //   this.props.OppValue.CustomerOppertunityDetails
-
             // }
-            bgColor="#33D7FF" 
-         
-            // isLoading={this.props.fetchingOppValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
-          />
-          
-  
-       
-          <JumpStartBox
+            bgColor="#33D7FF"             
+          />  
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-1 bg-pink-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                               </div>
+                               <JumpStartBox
             noProgress
             title={
               <FormattedMessage
@@ -89,145 +82,66 @@ render() {
               />
             }
             bgColor="#34495E "
-            // value={
-            //   pipeLineValue
-
-            // }
-            // isLoading={this.props.fetchingPipelineValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
+                   
           />
-
-<JumpStartBox
-        noProgress
-        title={
-          <FormattedMessage
-            id="app.opportunities"
-            defaultMessage=" Opportunities Won"
-          />
-        }
-        // value={
-        //   this.props.WonCustomerOpp.CustomerWonOppertunityDetails
-
-        // }
-         bgColor="#35CD7A"
-        // isLoading={this.props.fetchingWonCustomerOppValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-      
-      />
-
-      
-<JumpStartBox
+                           </div>
+                       </div>
+                    
+                   </div>  
+                                             
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center">
+                              <div class="flex-shrink pr-3">
+                                  <div class="rounded-full p-1 bg-blue-600"><i class="fab fa-connectdevelop text-[#FFFF] !text-3xl"></i></div>
+                              </div>
+                              <JumpStartBox
         noProgress
         title={
           <FormattedMessage
             id="app.activity"
             defaultMessage="Activity"
           />
-        }
-        // value={
-        //   this.props.WonCustomerOpp.CustomerWonOppertunityDetails
-
-        // }
-        bgColor="#FF4C33"
-        // isLoading={this.props.fetchingWonCustomerOppValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-      
+        }      
+        bgColor="#FF4C33"     
       />
-      <JumpStartBox
+                          </div>
+                      </div>
+                     
+                  </div>
+                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center">
+                              <div class="flex-shrink pr-3">
+                                  <div class="rounded-full p-1 bg-blue-600"><ContactsIcon className="!text-3xl text-[#FFFF]"/></div>
+                              </div>
+                              <JumpStartBox
             noProgress
             title={
               <FormattedMessage
                 id="app.#Contacts"
                 defaultMessage="#Contacts "
               />
-            }
-
-            // value={
-            //   this.props.contactValue.CustomerContactDetails
-
-            // }
-            bgColor="linear-gradient(270deg,black,grey)"
-            // isLoading={this.props.fetchingContactValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
-            
-          />
-        
-        
-           
-
+            }     
+            bgColor="linear-gradient(270deg,black,grey)"                     
+          /> 
+                          </div>
+                      </div>
+                     
+                  </div>                                
         </div>
-
+        </div>
     
-      </div>
-
-<div class=" flex flex-row w-full mt-4" >
-{/* <div class="flex w-full" >
-    
-<JumpStartBox2
-            noProgress
-            // title="Open Tasks"
-            title={
-              <FormattedMessage
-                id="app.weightedValue"
-                defaultMessage="Weighted Value"
-              />
-            }
-            value={
-              weightedValue
-
-            }
-            isLoading={this.props.fetchingWeightedValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
-            
-          />
-  
-   
-      <JumpStartBox1
-        noProgress
-        title={
-          <FormattedMessage
-            id="app.pipeLineValue"
-            defaultMessage="Won Pipe line value"
-          />
-        }
-      
-        value={
-          this.props.WonCustomerPipeline.WonPipeLineValue
-
-        }
-         isLoading={this.props.fetchingWonCusPipelineValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-      
-      />
-
-      <JumpStartBox2
-        noProgress
-        // title="Open Tasks"
-        title={
-          <FormattedMessage
-            id="app.weightedValue"
-            defaultMessage="Won Weighted Value"
-          />
-        }
-        value={
-          this.props.WonCustomerWeighted.weightedValue
-
-        }
-        isLoading={this.props.fetchingWonCusmWeightedValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-      
-        
-      />
-
- 
+      <div class=" mt-1 flex flex-col w-1/2 h-[83vh] items-center" > 
+      <div className="font-bold font-poppins  text-lg">Deals</div>
+        <CustomerPieChart/>
        
-
-    </div> */}
-
-  </div>
+        <div className="font-bold font-poppins text-lg">Activity</div>
+        <CustomerPieChart/>
+        </div>     
+        </div>
   </>
   ); 
 }
@@ -250,13 +164,7 @@ const mapStateToProps = ({ customer,auth }) => ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-//   getProspectWeightedValue,
-//   getProspectOppValue,
-//   getWonCustomerWeightedValue,
-//   getWonCustomerPipeLineValue,
-//   getProspectPipeLineValue,
-//   getProspectContactValue,
-//   getWonCustomerOppValue
+
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactInvestPulseJumpStart);

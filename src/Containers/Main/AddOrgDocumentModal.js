@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../Components/UI/Antd";
 import { BundleLoader } from "../../Components/Placeholder";
-import AddOrgDocumentForm from "./AddOrgDocumentForm";
 
+const AddOrgDocumentForm = lazy(() => import("./AddOrgDocumentForm"));
 
 const AddOrgDocumentModal = (props) => {
   return (

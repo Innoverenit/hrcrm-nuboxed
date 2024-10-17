@@ -9,8 +9,16 @@ class ContactDetailsLeft extends Component {
     return (
       <>
         <div  class=" flex flex-col">
-          <ContactOverViewCard contact={contact} />
-          <ContactDetailCard contact={contact} />
+          <ContactOverViewCard contact={contact}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
+          />
+          <ContactDetailCard contact={contact} 
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
+          />
         </div>
       </>
     );

@@ -37,8 +37,44 @@ class UpdateCustomerContactForm extends Component {
       currentOption: "",
       candidate: false,
       availability: false,
+      translatedMenuItems: [],
+      loading: true
     };
   }
+  
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+ 
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+"295",//0
+"353",//1
+"354",//2
+   "357"  ,//3   
+   "546",//4
+   "300",//5
+   "1157",//6
+   "140",//7
+   "547",//8
+   "361",//9
+   "325",//10
+   "326",//11
+   "316",//12
+   "104"//13
+
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });
   };
@@ -134,22 +170,22 @@ class UpdateCustomerContactForm extends Component {
             email:this.props.setEditingCustomerContact.email || "",
             emailId: this.props.setEditingCustomerContact.emailId || "",
             linkedinPublicUrl:  this.props.setEditingCustomerContact.linkedinPublicUrl || "",
-            address: [
-              {
-                addressId: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].addressId : "",
-                addressType: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].addressType : "",
-                address1:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].address1 : "",
-                address2:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].address2 : "",
-                town: "",
-                street: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].street : "",
-                city: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].city : "",
-                postalCode: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].postalCode : "",
-                state:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].state : "",
-                country: this.props.setEditingCustomerContact.countryName,
-                latitude: "",
-                longitude: "",
-              },
-            ],
+            // address: [
+            //   {
+            //     addressId: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].addressId : "",
+            //     addressType: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].addressType : "",
+            //     address1:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].address1 : "",
+            //     address2:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].address2 : "",
+            //     town: "",
+            //     street: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].street : "",
+            //     city: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].city : "",
+            //     postalCode: this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].postalCode : "",
+            //     state:  this.props.setEditingCustomerContact.address.length ? this.props.setEditingCustomerContact.address[0].state : "",
+            //     country: this.props.setEditingCustomerContact.countryName,
+            //     latitude: "",
+            //     longitude: "",
+            //   },
+            // ],
             notes:this.props.setEditingCustomerContact.notes || "",
           }}
           validationSchema={UpdateCustomerContactSchema}
@@ -182,35 +218,13 @@ class UpdateCustomerContactForm extends Component {
                       <FastField name="imageId" component={PostImageUpld} />
                       <div>
                       <div class=" flex justify-between">
-                          {/* <div class =" w-2/6">
-                            <FastField
-                              name="salutation"
-                              type="text"
-                              // label="Salutation"
-                              label={
-                                <FormattedMessage
-                                  id="app.salutation"
-                                  defaultMessage="Salutation"
-                                />
-                              }
-                              options={["Mr.", "Ms.", "None"]}
-                              component={SelectComponent}
-                              inlineLabel
-                              className="field"
-                              isColumn
-                            />
-                          </div> */}
+                        {/* salutation */}
                           <div class=" w-full">
                             <FastField
                               isRequired
                               name="firstName"
                               // label="First Name"
-                              label={
-                                <FormattedMessage
-                                  id="app.firstName"
-                                  defaultMessage="First Name"
-                                />
-                              }
+                              label={this.state.translatedMenuItems[0]}
                               type="text"
                               width={"100%"}
                               isColumn
@@ -225,12 +239,7 @@ class UpdateCustomerContactForm extends Component {
                             <FastField
                               name="middleName"
                               //label="Middle Name"
-                              label={
-                                <FormattedMessage
-                                  id="app.middle"
-                                  defaultMessage="Middle"
-                                />
-                              }
+                              label={this.state.translatedMenuItems[1]}
                               type="text"
                               width={"100%"}
                               isColumn
@@ -242,12 +251,7 @@ class UpdateCustomerContactForm extends Component {
                             <FastField
                               name="lastName"
                               //label="Last Name"
-                              label={
-                                <FormattedMessage
-                                  id="app.lastName"
-                                  defaultMessage="Last Name"
-                                />
-                              }
+                              label={this.state.translatedMenuItems[2]}
                               type="text"
                               width={"100%"}
                               isColumn
@@ -264,12 +268,7 @@ class UpdateCustomerContactForm extends Component {
                           name="countryDialCode"
                           isColumnWithoutNoCreate
                           //label="Mobile #"
-                          label={
-                            <FormattedMessage
-                              id="app.countryDialCode"
-                              defaultMessage="Dial Code"
-                            />
-                          }
+                          label={this.state.translatedMenuItems[3]}
                           isColumn
                           selectType="dialCode"
                           component={SearchSelect}
@@ -285,12 +284,7 @@ class UpdateCustomerContactForm extends Component {
                           type="text"
                           name="mobileNumber"
                           //placeholder="Mobile #"
-                          label={
-                            <FormattedMessage
-                              id="app.mobileNumber"
-                              defaultMessage="Mobile #"
-                            />
-                          }
+                          label={this.state.translatedMenuItems[4]}
                           component={InputComponent}
                           inlineLabel
                           width={"100%"}
@@ -305,12 +299,7 @@ class UpdateCustomerContactForm extends Component {
                           isColumnWithoutNoCreate
                           selectType="dialCode"
                           //label="Phone No #"
-                          label={
-                            <FormattedMessage
-                              id="app.countryDialCode1"
-                              defaultMessage="Dial Code"
-                            />
-                          }
+                          label={this.state.translatedMenuItems[5]}
                           isColumn
                           component={SearchSelect}
                           defaultValue={{
@@ -325,12 +314,7 @@ class UpdateCustomerContactForm extends Component {
                           type="text"
                           name="whatsappNumber"
                           // placeholder="Phone #"
-                          label={
-                            <FormattedMessage
-                              id="app.phoneNumber"
-                              defaultMessage="Whatsapp #"
-                            />
-                          }
+                          label={this.state.translatedMenuItems[6]}
                           isColumn
                           component={InputComponent}
                           inlineLabel
@@ -347,12 +331,7 @@ class UpdateCustomerContactForm extends Component {
                           type="email"
                           name="emailId"
                           //label="Email"
-                          label={
-                            <FormattedMessage
-                              id="app.emailId"
-                              defaultMessage="Email"
-                            />
-                          }
+                          label={this.state.translatedMenuItems[7]}
                           className="field"
                           isColumn
                           width={"100%"}
@@ -368,12 +347,7 @@ class UpdateCustomerContactForm extends Component {
                           type="text"
                           name="linkedinPublicUrl"
                           //label="Linkedin "
-                          label={
-                            <FormattedMessage
-                              id="app.linkedinPublicUrl"
-                              defaultMessage="Linkedin"
-                            />
-                          }
+                          label={this.state.translatedMenuItems[8]}
                           isColumn
                           width={"100%"}
                           component={InputComponent}
@@ -391,12 +365,7 @@ class UpdateCustomerContactForm extends Component {
                     selectType="customerList"
                     isColumnWithoutNoCreate
                     // label="Tag Company"
-                    label={
-                      <FormattedMessage
-                        id="app.tagWithCompany"
-                        defaultMessage="Tag Company"
-                      />
-                    }
+                    label={this.state.translatedMenuItems[9]}
                     component={SearchSelect}
                     isColumn
                     value={values.customerId}
@@ -416,12 +385,7 @@ class UpdateCustomerContactForm extends Component {
                         <FastField
                          name="designationTypeId"
                          //label="Designation"
-                         label={
-                           <FormattedMessage
-                             id="app.designation"
-                             defaultMessage="Designation"
-                           />
-                         }
+                         label={this.state.translatedMenuItems[10]}
                          selectType="designationType"
                            isColumn
                          component={SearchSelect}
@@ -434,12 +398,7 @@ class UpdateCustomerContactForm extends Component {
                       <FastField
                         name="departmentId"
                         //label="Department"
-                        label={
-                          <FormattedMessage
-                            id="app.department"
-                            defaultMessage="Department"
-                          />
-                        }
+                        label={this.state.translatedMenuItems[11]}
                         isColumn
                         isColumnWithoutNoCreate
                         component={SearchSelect}
@@ -456,7 +415,7 @@ class UpdateCustomerContactForm extends Component {
                   <div class=" h-full w-[47.5%]"
                 >                
                    
-                    <FieldArray
+                    {/* <FieldArray
                     name="address"
                     label="Address"
                     render={(arrayHelpers) => (
@@ -465,14 +424,12 @@ class UpdateCustomerContactForm extends Component {
                         values={values}
                       />
                     )}
-                  />
+                  /> */}
                   <div class=" mt-3">          
                     <Field
                       name="notes"
                       // label="Notes"
-                      label={
-                        <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                      }
+                      label={this.state.translatedMenuItems[12]}
                       width={"100%"}
                       isColumn
                       component={TextareaComponent}
@@ -487,7 +444,7 @@ class UpdateCustomerContactForm extends Component {
                     htmlType="submit"
                     loading={updateCustomerContactById}
                   >
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                  <div className="font-bold font-poppins text-xs">{this.state.translatedMenuItems[13]}</div>
                     {/*                     
                     Create */}
                   </Button>

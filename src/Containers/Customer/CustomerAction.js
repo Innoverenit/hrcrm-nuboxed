@@ -2417,6 +2417,13 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
     });
   };
 
+  export const handleAddressCutomerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_ADDRESS_CUSTOMER_MODAL,
+      payload: modalProps,
+    });
+  };
+
   export const getProspectWeightedValue = (customerId, startDate, endDate) => (dispatch) => {
     dispatch({ type: types.GET_PROSPECT_WEIGHTED_VALUE_REQUEST });
   
@@ -2839,6 +2846,35 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       });
   };
 
+
+
+
+  export const getCustomerDonut = (customerId) => (dispatch) => {
+    dispatch({
+      type: types.GET_CUSTOMER_DONUT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/opportunity/customer/record/count/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_CUSTOMER_DONUT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_CUSTOMER_DONUT_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
   export const getOpenOppListOfJumpstart = (customerId,pageNo,filter) => (dispatch) => {
     // let api_url = "";
     // if (userId) {
@@ -3094,6 +3130,45 @@ export const handleCustomerImportModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_CUSTOMER_IMPORT_MODAL,
     payload: modalProps,
   });
+};
+
+
+
+export const deleteCustomer = (data, customerId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.DELETE_CUSTOMER_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/customer/deleteCustomer/${customerId}`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+     
+      dispatch({
+        type: types.DELETE_CUSTOMER_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_CUSTOMER_FAILURE,
+        payload: err,
+      });
+    });
 };
 
 

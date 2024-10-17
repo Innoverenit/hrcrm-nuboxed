@@ -5,7 +5,7 @@ import {
   Button
 } from "antd";
 import { Formik, Form, Field } from "formik";
-import { Spacer } from "../../../Components/UI/Elements";
+
 
 function EmployeeShareForm(props) {
   useEffect(() => {
@@ -92,7 +92,7 @@ function EmployeeShareForm(props) {
               {/* </Popconfirm> */}
             </div>
 
-            <Spacer />
+            <div class=" mt-3" />
           </Form>
         )}
       </Formik>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,lazy } from "react";
+import React, { useEffect, useState ,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import {  DeleteOutlined } from "@ant-design/icons";
+import { BundleLoader} from "../../../../Components/Placeholder";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
 import { Link } from 'react-router-dom';
@@ -46,13 +47,12 @@ import {
   handleOwnModal
 } from "../../DealAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import AddDealsContactDrawerModal from "../UpdateDeal/AddDealsContactDrawerModal";
-import AddDealsOwnDrawerModal from "./AddDealsOwnDrawerModal";
-import SearchedDataDeal from "../../SearchedDataDeal";
-import { BundleLoader } from "../../../../Components/Placeholder";
+const AddDealsContactDrawerModal =lazy(() =>import("../UpdateDeal/AddDealsContactDrawerModal"));
+const SearchedDataDeal =lazy(()=>import("../../SearchedDataDeal"));
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const DealSelectStages =lazy(()=>import("./DealSelectStages"));
+const AddDealsOwnDrawerModal =lazy(()=>import("./AddDealsOwnDrawerModal"));
 
 function DealCardList(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -79,15 +79,22 @@ function DealCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-         " Name",//0
-          "Investor",//1
-          "Sponsor",//2
-          "Start Date",//3
-          "Values",//4
-          "Stages",//5
-          "Sales Rep",//6
-          "Owner",//7
-          "Action",//8
+         "110",//0  Name
+          "511",//1 Investor
+          "216",//2 Sponsor
+          "176",//3 Start Date
+          "1159",//4 Values
+          "219",//5 Stages
+          "76",//6 Assigned
+          "77",//7 Owner
+          "9",//8 Action
+         "494", // Lost
+         "493", // Won
+          "1445",// Tag Investor
+          "316",// "Notes"
+        "170",  // "Edit"
+         "1259", // Do you want to delete?
+         "84" // delete
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -141,7 +148,7 @@ function DealCardList(props) {
             <div class="flex justify-center">Loading...</div>
           ) : null
         }
-        height={"80vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
     <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center ">
@@ -173,10 +180,10 @@ function DealCardList(props) {
                   <div class=" flex  basis-[100%] overflow-hidden"
                   >
                     <div 
-                      class="font-semibold text-[#337df4] cursor-pointer text-sm ">
-         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
+                      class="font-semibold text-[#337df4] cursor-pointer text-xs ">
+         {/* <Link class="overflow-ellipsis whitespace-nowrap  text-xs text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}> */}
       {item.opportunityName}
-    </Link>
+    {/* </Link> */}
                   
                     </div>
                   </div>
@@ -190,7 +197,7 @@ function DealCardList(props) {
                     )}
                   </div>
                   <div>
-                    <div class="font-medium text-xs ml-1 ">
+                    <div class=" text-xs ml-1 ">
                                                   
                       {<CurrencySymbol currencyType={item.currency} />}
                       &nbsp;{item.proposalAmount || ""}
@@ -225,11 +232,11 @@ function DealCardList(props) {
                                   // candidateName={item.candidateName}
                                   // approveInd={item.approveInd}
                                   // rejectInd={item.rejectInd}
-                                  stageClick={(investorOppStagesId) => {
+                                  stageClick={(stagesId) => {
                                     props.LinkStageDeal({
                                       invOpportunityId: item.invOpportunityId,
                                       invOpportunityStagesId:
-                                        investorOppStagesId,
+                                      stagesId,
                                     });
                                   }}
                                 />{" "}
@@ -257,8 +264,8 @@ function DealCardList(props) {
                   <span>
                     <MultiAvatar2
                       primaryTitle={item.assignedTo}
-                      imgWidth={"1.8em"}
-                      imgHeight={"1.8em"}
+                      imgWidth={"1.8rem"}
+                      imgHeight={"1.8rem"}
                     />
                   </span>
                 </div>
@@ -283,13 +290,8 @@ function DealCardList(props) {
                       {item.approveInd && item.opportunityOwner ? (
                         <>
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.Own"
-                                defaultMessage="Own"
-                              />
-                            }
-                          >
+                            title=
+                            {translatedMenuItems[10]} >
                             <CheckCircleTwoTone
                               type="check-circle"
                               theme="twoTone"
@@ -300,7 +302,7 @@ function DealCardList(props) {
                         </>
                       ) : item.rejectInd && item.opportunityOwner ? (
                         <>
-                          <Tooltip title={"Lost"}>
+                          <Tooltip title= {translatedMenuItems[9]}>
                             {" "}
                             <StopTwoTone
                               type="stop"
@@ -316,12 +318,7 @@ function DealCardList(props) {
                       ) : (
                         <>
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.Own"
-                                defaultMessage="Won"
-                              />
-                            }
+                            title= {translatedMenuItems[10]}
                           >
                             <CheckCircleTwoTone
                                className="!text-icon text-[#24D8A7] cursor-pointer"
@@ -336,13 +333,7 @@ function DealCardList(props) {
                           </Tooltip>
                         
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.drop"
-                                defaultMessage="Lost"
-                              />
-                            }
-                          >
+                            title= {translatedMenuItems[9]}>
                             <StopTwoTone
                             className="!text-icon text-[red] cursor-pointer ml-2"
                               type="stop"
@@ -362,12 +353,7 @@ function DealCardList(props) {
                     <div>
                     <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.contact"
-                            defaultMessage="Tag Investor"
-                          />
-                        }
+                        title= {translatedMenuItems[11]}
                       >
                         <span
                           onClick={() => {
@@ -382,12 +368,7 @@ function DealCardList(props) {
                       </Tooltip>
                       <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.notes"
-                            defaultMessage="Notes"
-                          />
-                        }
+                        title= {translatedMenuItems[12]}
                       >
                         <span
                           onClick={() => {
@@ -402,12 +383,7 @@ function DealCardList(props) {
                       </Tooltip>
                       <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.edit"
-                            defaultMessage="Edit"
-                          />
-                        }
+                        title= {translatedMenuItems[13]}
                       >
                         {user.imInd === true && user.dealUpdateInd === true && (
                           <span class="cursor-pointer text-[blue]"
@@ -423,12 +399,12 @@ function DealCardList(props) {
                         )}
                       </Tooltip>
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title= {translatedMenuItems[14]}
                         onConfirm={() =>
                           deleteDealsData(item.invOpportunityId,props.userId)
                         }
                       >
-                         <Tooltip title="Delete">
+                         <Tooltip title={translatedMenuItems[15]}>
                         {user.imInd === true && user.dealDeleteInd === true && (
                           <DeleteOutlined
                             type="delete"
@@ -446,10 +422,11 @@ function DealCardList(props) {
         </div>
       </InfiniteScroll>
    )} 
+    <Suspense fallback={<BundleLoader />}>
       <UpdateDealModal
-      translateText={props.translateText}
-      selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         currentItem={currentItem}
         openupdateDealModal={openupdateDealModal}
         handleUpdateDealModal={handleUpdateDealModal}
@@ -457,24 +434,33 @@ function DealCardList(props) {
       />
       <AddDealsNotesDrawerModal
         currentItem={currentItem}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         addDrawerDealsNotesModal={props.addDrawerDealsNotesModal}
         handleDealsNotesDrawerModal={props.handleDealsNotesDrawerModal}
         handleSetCurrentItem={handleSetCurrentItem}
       />
           <AddDealsContactDrawerModal
         currentItem={currentItem}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         addDrawerDealsContactsModal={props.addDrawerDealsContactsModal}
         handleDealContactsDrawerModal={props.handleDealContactsDrawerModal}
         handleSetCurrentItem={handleSetCurrentItem}
       />
 
-<AddDealsOwnDrawerModal
+    <AddDealsOwnDrawerModal
         currentItem={currentItem}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         addOwnModal={props.addOwnModal}
         handleOwnModal={props.handleOwnModal}
         handleSetCurrentItem={handleSetCurrentItem}
       />
-
+    </Suspense>
     </>
   );
 }

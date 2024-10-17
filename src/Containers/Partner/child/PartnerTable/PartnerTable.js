@@ -6,7 +6,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { bindActionCreators } from "redux";
 import StatusToggle from "./StatusToggle";
 import dayjs from "dayjs";
-import styled from "styled-components";
 import {
   SearchOutlined,
   MailOutlined,
@@ -730,20 +729,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(PartnerTable);
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-
 
 

@@ -4,10 +4,8 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { updateEmailCredentials } from "../EmailAction";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 
 /**
@@ -90,7 +88,7 @@ class EditEmailForm extends Component {
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
+                    <mt-3 />
                     <Field
                       type="password"
                       isRequired
@@ -105,20 +103,11 @@ class EditEmailForm extends Component {
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
-                    {/* <Field
-                                        name="serverType"
-                                        label="Server Type"
-                                        component={InputComponent}
-                                        inlineLabel
-                                        style={{ flexBasis: "80%" }}
-                                    />
-                                    <Spacer /> */}
+                    <mt-3 />             
                     <Field
                       isMulti
-                      isRequired
-                      name="host"
-                      name="host"
+                      isRequired                 
+                     name="host"
                       // label="Host Name"
                       label={<FormattedMessage
                         id="app.host"
@@ -129,7 +118,7 @@ class EditEmailForm extends Component {
                       width={"100%"}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
+                    <mt-3 />
                     <Field
                       name="port"
                       //label="Port"
@@ -142,27 +131,11 @@ class EditEmailForm extends Component {
                       width={"100%"}
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
-                    />
-                    {/* <Spacer /> */}
-                    {/* <Field
-                                        name="connectionSecurity"
-                                        label="Connection Security"
-                                        inlineLabel
-                                        component={InputComponent}
-                                        style={{ flexBasis: "80%" }}
-                                    />
-                                    <Spacer />
-                                    <Field
-                                        name="AuthType"
-                                        label="Auth Type"
-                                        inlineLabel
-                                        component={InputComponent}
-                                        style={{ flexBasis: "80%" }}
-                                    /> */}
-                    <Spacer />
+                    />                
+                    <mt-3 />
                   </div>
                 </div>
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -175,7 +148,7 @@ class EditEmailForm extends Component {
 
                     {/* Update */}
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             )}
         </Formik>

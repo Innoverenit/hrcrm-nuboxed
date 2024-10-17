@@ -120,8 +120,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mr-3" >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}

@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  withRouter } from "react-router-dom";
-import { AuthContainer, FormWrapper } from "./styled";
-import { FlexContainer} from "../../Components/UI/Layout";
 import RandomImageScreen from "./RandomImageScreen";
 class AppLoginMessage extends Component {
 
@@ -11,22 +9,13 @@ class AppLoginMessage extends Component {
 
         return (
             <>
-                <FlexContainer>
-                    <AuthContainer
-                        style={{
-                            backgroundColor: "#F5F5F5",
-                            flexDirection: "column",
-                            position: "relative",
-
-
-                        }}
-                    >
-                      
+            <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+            <div class="  w-1/2  min-h-[100vh] overflow-auto flex  flex-col justify-center items-center  bg-[#F5F5F5] relative">
                         <br />
-                        <FormWrapper width="55%">
+                        <div class=" p-4 w-wk  w-[55% ]shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
 
                             Mobile app is under development and will be ready by mid August 2020. For now Korero is best viewed in desktop mode.
-                        </FormWrapper>
+                        </div>
                        
 
 
@@ -43,9 +32,9 @@ class AppLoginMessage extends Component {
                             © {new Date().getFullYear()}, {` `} tekorero.com, All rights
               reserved.
             </div>
-                    </AuthContainer>
+                    </div>
                     <RandomImageScreen />
-                </FlexContainer>
+                </div>
             </>
         );
     }

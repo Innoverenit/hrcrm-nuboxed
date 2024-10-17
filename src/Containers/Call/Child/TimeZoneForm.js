@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import dayjs from "dayjs";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { handleTimeZoneModal } from "../CallAction";
 
@@ -17,13 +16,6 @@ class TimeZoneForm extends Component {
     return (
       <>
         <Formik
-          // enableReinitialize
-          // initialValues={
-
-          //     // timeZone: "",
-
-          // }
-
           onSubmit={(values, { resetForm }) => { }}
         >
           {({

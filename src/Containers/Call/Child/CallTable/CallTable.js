@@ -1,6 +1,7 @@
-import React, { useEffect, useState,lazy } from "react";
+import React, { useEffect, useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from "dayjs";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Avatar } from "antd";
@@ -17,7 +18,7 @@ import {
   emptyCall
 } from "../../CallAction";
 import { MultiAvatar2, MultiAvatar } from "../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddCallNotesDrawerModal = lazy(() => import("../AddCallNotesDrawerModal"));
 
 function CallTable(props) {
@@ -46,6 +47,21 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+
+
+  dayjs.extend(relativeTime);
+
+  const getRelativeTime = (creationDate) => {
+      const now = dayjs();
+      const creationDay = dayjs(creationDate);
+  
+      if (creationDay.isSame(now, 'day')) {
+          return 'Today';
+      } else {
+          return creationDay.from(now); // e.g., "2 days ago"
+      }
+  };
 
   const handleLoadMore = () => {
     const callPageMapd = props.callListRangeByUserId && props.callListRangeByUserId.length &&props.callListRangeByUserId[0].pageCount
@@ -82,30 +98,31 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   
   return (
     <>
-       <div className=' flex  justify-center sticky  z-auto'>
-       <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-       <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">            
-        {props.translatedMenuItems[2]}
-</div>
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
-        <div className=" w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[4]}</div>
-        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[5]}</div>
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div> 
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[7]} </div>
-         <div className="w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[8]}</div>
-        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[9]}</div>
-       
-        <div className="w-12"></div>
+       <div className=' flex   sticky  z-auto'>
+       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+       <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" flex justify-between w-[87%] text-xs font-poppins">
+        <div className="flex justify-center w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">            
+        {props.translatedMenuItems[1]} 
+        {/* Type */}
+        </div>
+        <div className="flex justify-center w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
+        <div className=" flex justify-center w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[3]}</div>
+        <div className="flex justify-center w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[4]}</div>
+        <div className="flex justify-center w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[5]}</div>
+        <div className=" flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div> 
+        <div className=" flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[7]} </div>
+         {/* <div className="w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[8]}</div> */}
+         </div>    
       </div>
       <InfiniteScroll
         dataLength={callListRangeByUserId.length}
         next={handleLoadMore}
       hasMore={hasMore}
-        loader={fetchingCallListRangeByUserId?<div class="flex justify-center">{props.translatedMenuItems[10]}...</div>:null}
-        height={"80vh"}
+        loader={fetchingCallListRangeByUserId?<div class="flex justify-center">{props.translatedMenuItems[9]}...</div>:null}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
-        endMessage={ <div class="flex text-center font-bold text-xs text-red-500">{props.translatedMenuItems[11]}. </div>}
+        endMessage={ <div class="flex text-center font-bold text-xs text-red-500">{props.translatedMenuItems[10]}. </div>}
       >
       
           {callListRangeByUserId.map((item) => {
@@ -120,16 +137,16 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             }));
              return (
               <div>
-            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8  items-center p-1 max-sm:h-[7rem] max-sm:flex-row scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+            <div className="flex rounded justify-between bg-white  h-8  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-              <div class="flex  w-[8.9rem] max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
-            <div className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"> {item.callType}</div>
+              <div class="flex  w-[8.9rem]  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
+            <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callType}</div>
             </div>
-            <div class="flex w-[12.8rem] max-xl:w-[9.8rem] max-lg:w-[7.3rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
-            <div className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"> {item.callPurpose}</div>
+            <div class="flex w-[14.8rem] items-center justify-start h-8 bg-[#eef2f9] ml-gap text-xs max-xl:w-[9.8rem] max-lg:w-[7.3rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+            <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callPurpose}</div>
               </div>
-              <div class="flex w-[7.5rem] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+              <div class="flex w-[7.5rem] ml-gap items-center justify-center h-8 bg-[#eef2f9] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
       
               <MultiAvatar2
                     primaryTitle={item.contactName}
@@ -137,20 +154,23 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                     imageURL={item.imageURL}
                     imgWidth={"1.8em"}
                     imgHeight={"1.8em"}
-                  />
-              
-   
+                  /> 
               </div>
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
               
-              <div class="flex   justify-center w-[11.35rem] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
-              <div className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"> {dayjs(item.startDate).format('YYYY-MM-DD')}</div>
+              <div class="flex  text-xs   w-[11.354rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-col max-sm:justify-between max-sm:w-auto">
+              <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {dayjs(item.startDate).format('YYYY-MM-DD')}</div>
               </div>
-              <div class="flex w-[8.5rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
              
-              <div>
+              <div class="flex w-[11.35rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] text-xs max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
            
+           <div className="max-xl:text-[0.65rem]  text-xs  max-lg:text-[0.45rem] max-sm:text-sm"> {item.completionInd ? `${props.translatedMenuItems[13]}` : `${props.translatedMenuItems[13]}`} </div>
+           </div>
+           </div>
+
+           {/* <div class="flex max-sm:justify-between max-sm:w-wk items-center "> */}
+           <div class="flex   w-[8.35rem]   items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:justify-evenly max-sm:w-auto">
               <Avatar.Group
                    maxCount={7}
                   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -158,7 +178,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                     {item.included &&
                   item.included.map((candidate, i) => {
                     
-                    const data1 =candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : `${props.translatedMenuItems[12]}`
+                    const data1 =candidate.empName ? candidate.empName.slice(0, 2).toUpperCase() : `${props.translatedMenuItems[11]}`
                     // "None"
                     return (
                       <Tooltip title={candidate.empName} key={i}>
@@ -174,15 +194,11 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                   })}
                  
             </Avatar.Group>
-        
-        
-              </div>
-              </div>
-              <div class="flex w-[7.8rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
-             <span>
+        </div>
+        <div  class="flex   w-[7.25rem]   items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:justify-evenly max-sm:w-auto">
               {item.assignedTo === null ? (
                 // "Not available"
-                <div>{props.translatedMenuItems[13]}</div>
+                <div>{props.translatedMenuItems[12]}</div>
               ) : (
                 <>
                 {item.assignedTo === item.woner ? (
@@ -197,32 +213,35 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                 )}
                 </>
               )}
-            </span>
-              </div>
-              </div>
-              
-              <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
+                                         
+           
              
-              <div class="flex w-[9.38rem] max-xl:w-[7.78rem] max-lg:w-[5.38rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto mt-1 mb-1">
-             
-             <MultiAvatar
+             {/* <MultiAvatar
                    primaryTitle={item.woner}
                    imageURL={item.imageURL}
                    imgWidth={"1.8rem"}
                    imgHeight={"1.8rem"}
-                 />
+                 /> */}
             
-             </div>
-              <div class="flex w-[11.35rem] max-xl:w-[7.5rem] max-lg:w-[6.35rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
-           
-              <div className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"> {item.completionInd ? `${props.translatedMenuItems[14]}` : `${props.translatedMenuItems[15]}`} </div>
-              </div>
-            
-              
-             
-              <div class="flex flex-row  w-[6%] max-sm:flex-row max-sm:w-auto">
+    
+           </div>
+           <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs  items-center font-poppins">
+                            {/* {date} */}
+                            <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span>
+                            </div>
+                          
+                    
+                        </div>
+             <div class="flex max-sm:justify-between max-sm:w-wk ml-gap  items-center justify-center h-8 bg-[#eef2f9] ">
+              <div class="flex flex-row  max-sm:flex-row max-sm:w-auto">
                     <div>
-                    <Tooltip title={props.translatedMenuItems[16]}>
+                    <Tooltip title={props.translatedMenuItems[14]}>
        <NoteAltIcon
                 onClick={() => {
                   handleCallNotesDrawerModal(true);
@@ -233,7 +252,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
            </Tooltip>
                     </div>
                     <div>
-                    <Tooltip title={props.translatedMenuItems[17]}>
+                    <Tooltip title={props.translatedMenuItems[15]}>
                     <DeleteOutlined  type="delete" 
                     className="!text-icon cursor-pointer text-[red]"
                 onClick={() => deleteCall(item.callId, employeeId)}
@@ -250,6 +269,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
       </InfiniteScroll>
       </div>
       </div>
+      <Suspense fallback={<BundleLoader />}>      
       <AddCallNotesDrawerModal
 handleSetCallNameId={handleSetCallNameId}
 handleCallNotesDrawerModal={props.handleCallNotesDrawerModal}
@@ -257,7 +277,7 @@ addDrawerCallNotesModal={props.addDrawerCallNotesModal}
   currentNameId={currentNameId}
   // taskName={currentprocessName.taskName} // Pass taskName as a prop
 
-/>
+/></Suspense>
     </>
   );
 }

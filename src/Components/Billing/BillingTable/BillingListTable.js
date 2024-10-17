@@ -1,24 +1,16 @@
-import React, { useEffect, useState, useMemo, lazy } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyledTable } from '../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { MultiAvatar, Spacer } from "../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 import { SearchOutlined } from "@ant-design/icons";
 import { CurrencySymbol } from "../../../Components/Common";
 import { getCustomerTask } from "../../../Containers/Task/TaskAction"
-// import { getLeadsTabData,getLeadsDateWise,paidIndicatorLeads,handleStripeModal } from '../LeadsAction';
-import moment from "moment";
 import { Tooltip, Button, Input, Space } from "antd";
-import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url } from "../../../Config/Auth";
 import { BundleLoader } from '../../../Components/Placeholder';
-import { Link } from 'react-router-dom';
 import { getDesignationWiseBilling } from "../BillingAction";
-import { hrHR } from '@mui/material/locale';
-import { faArrowUp19 } from '@fortawesome/free-solid-svg-icons';
 
 function BillingListTable(props) {
 

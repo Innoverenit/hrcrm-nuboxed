@@ -3,14 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
-import { base_url2 } from "../../../Config/Auth";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
  import { addCategory } from "../ProductAction";
-import LazySelect from "../../../Components/Forms/Formik/LazySelect";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { CurrencySymbol } from "../../../Components/Common";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import * as Yup from "yup";
 
 const formSchema = Yup.object().shape({

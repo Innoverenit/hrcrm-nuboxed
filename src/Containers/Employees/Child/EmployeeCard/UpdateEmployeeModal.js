@@ -1,7 +1,5 @@
 import React, { lazy, Suspense } from "react";
-
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const UpdateEmployeeForm =lazy(()=>import("./UpdateEmployeeForm"));
@@ -23,6 +21,8 @@ const UpdateEmployeeModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           <UpdateEmployeeForm 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
              currentEmployeeId={currentEmployeeId}
              userData={props.userData}
             />

@@ -70,7 +70,36 @@ class OpportunityDetailTab extends Component {
       customField: [],
       ganttChart: false,
       costId: "",
+      translatedMenuItems: [],
+      loading: true
     };
+  }
+
+  componentDidMount() {
+    this.props.getCustomerData(this.props.userId);
+    this.props.getDepartments();
+    
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       '73', // 0
+       '1166', // 1
+       "1255" // 'Version', // 2
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
   }
 
   handleRecriutmentdashboard = () => {
@@ -143,6 +172,10 @@ class OpportunityDetailTab extends Component {
     if(fetchingOpportunityDetailsById){
 return  <BundleLoader />
     }
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <>
         <TabsWrapper>
@@ -157,9 +190,9 @@ return  <BundleLoader />
                 <>
                   <span onClick={this.handleRecruitClick}>
                   <TransferWithinAStationIcon 
-                  style={{fontSize:"1.1rem"}}
+                 className="!text-icon"
                    />
-                    <span style={{ marginLeft: '0.25em' }}>RecruitPro</span>
+                    <span className="ml-[0.25rem]">RecruitPro</span>
                   </span>
                   {activeKey === "1" && (
                     <>
@@ -168,47 +201,19 @@ return  <BundleLoader />
                      
                         <Tooltip title="Add Requirement">
                         {user.userType !== "USER" && user.department !== "Recruiter" && ( 
-                          <PlusOutlined
+                          <PlusOutlined className="ml-[0.125rem flex items-center ]"
                             type="plus"
                             tooltipTitle="Add Requirement"
                             onClick={() =>
                               this.props.handleRecruitModal(true)
                             }
-                            size="0.875em"
-                            style={{
-                              marginLeft: "0.125em",
-                              verticalAlign: "center",
-                            }}
+                            size="0.875em"                         
                           />
                         )}
-                          </Tooltip>
-                        
-                        {/* <Tooltip //title="Tag Position"
-                          title={<FormattedMessage
-                            id="app.tagposition"
-                            defaultMessage="Tag Position"
-                          />}
-
-                        >
-                           {user.userType !== "USER" && user.department !== "Recruiter" && ( 
-                          <Icon
-                            type="link"
-                            onClick={() => {
-                              this.handlepartnerPopoverVisibleChange();
-                              handleTagProfileModal(true);
-                            }}
-                            size="0.875em"
-                            style={{
-                              marginLeft: "-5px",
-                              verticalAlign: "center",
-                            }}
-                          />
-                           )}
-                        </Tooltip> */}
+                          </Tooltip>                                        
 
                         <Tooltip title="Summary">
-                      <span
-                       style={{marginLeft:"-4px"}}
+                      <span className="ml-[-4px]"                   
                           type="area-chart"
                           // tooltipTitle="Summary"
                           onClick={() => {
@@ -216,9 +221,8 @@ return  <BundleLoader />
                           }}
                           size="0.875em"                         
                           >
-                          {/* <i class="fas fa-chart-line"></i> */}
-                          {/* <i class="fas-solid fa-chart-pie"></i> */}
-                          <PieChartIcon  style={{fontSize:"1.1rem"}} />
+                       
+                          <PieChartIcon className="!text-icon" />
                           </span>
                         </Tooltip>
 
@@ -233,7 +237,7 @@ return  <BundleLoader />
                           }}
                           size="0.8em"                         
                           >
-                             <LockIcon style={{fontSize:"1.1rem"}} />
+                             <LockIcon className="!text-icon" />
                             
                           
                           </span>
@@ -303,12 +307,9 @@ return  <BundleLoader />
               tab={
                 <>
                   <span>
-                    <ContactsIcon   style={{fontSize:"1.1rem"}}/>
-                    <span style={{ marginLeft: '0.25em' }}>
-                      <FormattedMessage
-                        id="app.contacts"
-                        defaultMessage="Contacts"
-                      />
+                    <ContactsIcon className="!text-icon"/>
+                    <span className="ml-[0.25rem] !text-tab">     
+                    {translatedMenuItems[0]}           
                     </span>
                   </span>
                 
@@ -363,18 +364,19 @@ return  <BundleLoader />
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedContact/>
+                <LinkedContact
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+                translatedMenuItems={this.props.translatedMenuItems}
+                />
               </Suspense>
             </TabPane>
             <TabPane
               tab={
                 <>
-                  <InsertDriveFileIcon   style={{fontSize:"1.1rem"}}/>
-                    <span style={{ marginLeft: "0.25em" }}>
-                      <FormattedMessage
-                        id="app.documents"
-                        defaultMessage="Documents"
-                      />
+                  <InsertDriveFileIcon className="!text-icon"/>
+                    <span className="ml-[0.25rem] !text-tab">
+                    {translatedMenuItems[1]}
                   </span>
                   {activeKey === "3" && (
                     <>
@@ -405,19 +407,20 @@ return  <BundleLoader />
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments opportunity={opportunity} />
+                <LinkedDocuments opportunity={opportunity} 
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
+                />
               </Suspense>
             </TabPane>
 
               <TabPane
               tab={
                 <>
-                  <DynamicFeedIcon   style={{fontSize:"1.1rem"}}/>
-                    <span style={{ marginLeft: "0.25em" }}>
-                      <FormattedMessage
-                        id="app.version"
-                        defaultMessage="Version"
-                      />
+                  <DynamicFeedIcon  className="!text-icon"/>
+                  <span className="ml-[0.25rem] !text-tab">
+                    {translatedMenuItems[2]}
                   </span>
                
                 </>
@@ -471,10 +474,14 @@ return  <BundleLoader />
            opportunity={this.props.opportunity}
             addRecruitModal={this.props.addRecruitModal}
             handleRecruitModal={this.props.handleRecruitModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           />
           <AddTagProfileModal
             addTagProfileModal={this.props.addTagProfileModal}
             handleTagProfileModal={this.props.handleTagProfileModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
           />
 
           {/* <AddContactModal
@@ -487,6 +494,9 @@ return  <BundleLoader />
           handleCustomerContactModal={handleCustomerContactModal}
             addCustomerContactModal={addCustomerContactModal}
             opportunityId={opportunityId}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
             // defaultCustomers={[{ label: name, value: customerId }]}
             // customerId={{ value: customerId }}
             // callback={() => getContactListByCustomerId(customerId)}
@@ -500,17 +510,26 @@ return  <BundleLoader />
               { label: opportunityName, value: opportunityId },
             ]}
             linkType="opportunity"
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}
           />
 
 <AddDocumentModals
 opportunityId={opportunityId}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
           />
           <ReactSpeechModal
           opportunityId={opportunityId}
           handleReactSpeechModal={handleReactSpeechModal}
           addSpeechModal={addSpeechModal}
+          translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
           />
       
         </Suspense>

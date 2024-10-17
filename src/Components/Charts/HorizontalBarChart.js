@@ -44,13 +44,13 @@ class HorizontalBarChart_ extends Component {
           layout="vertical"
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
-          <Label value={chartName || "dgdsg"} position="insideBottom" />
+          <div value={chartName || "dgdsg"} position="insideBottom" />
           <XAxis type="number" />
           {/* <XAxis
                         dataKey="name"
                         tickFormatter={this.displayXTick}
                     >
-                        <Label value={chartName || ''} position="insideBottom" />
+                        <div value={chartName || ''} position="insideBottom" />
                     </XAxis> */}
           <YAxis type="category" dataKey="name" />
           <CartesianGrid strokeDasharray="3 3" />

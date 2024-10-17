@@ -19,6 +19,9 @@ const AddCustomerUpdateContactModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           <UpdateCustomerContactForm 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
             defaultCustomers={props.defaultCustomers}
             customerId={props.customerId}
            contactId={props.contactId} 

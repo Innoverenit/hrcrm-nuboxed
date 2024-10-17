@@ -1,54 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Icon } from "antd";
-import { Formik, Form, Field, FieldArray } from "formik";
+import { Button } from "antd";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import { Spacer } from "../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { TimePicker } from "../../../../../../Components/Forms/Formik/TimePicker";
 import { handleEventModal } from "../../../../../Event/EventAction";
 import { updateSuppliersEvent } from "../../../SuppliersAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../../../../../Components/UI/Antd";
-/**
- * yup validation scheme for creating a opportunity
- */
-// const EventSchema = Yup.object().shape({
-//   eventType: Yup.string().required("Please select event type"),
-// eventSubject: Yup.string().required("This field is required !"),
-// endDate: Yup.string()
-//   .nullable()
-//   .required("Input required !"),
-// startTime: Yup.string()
-//   .nullable()
-//   .required("Input required !"),
-// endTime: Yup.string()
-//   .nullable()
-//   .required("Input required !"),
-// startDate: Yup.string()
-//   .nullable()
-//   .required("Input required !"),
-// association: Yup.object()
-//   .shape(
-//     {
-//       contactIds: Yup.string().when("accountIds", {
-//         is: (accountIds) => !accountIds,
-//         then: Yup.string().required("Contact or Company required"),
-//       }),
-//       accountIds: Yup.string().when("contactIds", {
-//         is: (contactIds) => !contactIds,
-//         then: Yup.string().required("Company or Contact required"),
-//       }),
-//     },
-//     ["contactIds", "accountIds"]
-//   )
-//   .required(""),
-// });
+
 
 const EventSchema = Yup.object().shape({
   topic: Yup.string().required("Input needed!"),
@@ -223,7 +188,7 @@ class SuppliersEventUpdateForm extends Component {
                     style={{ flexBasis: "80%", marginTop: "4px" }}
                     // defaultValue='low'
                   />
-                  <Spacer />
+                  <mt-3 />
                   <Field
                     isRequired
                     name="topic"
@@ -238,9 +203,9 @@ class SuppliersEventUpdateForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  <Spacer />
+                  <mt-3 />
 
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         isRequired
@@ -275,9 +240,9 @@ class SuppliersEventUpdateForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer style={{ marginBottom: "15px" }} />
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <mt-3 style={{ marginBottom: "15px" }} />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         isRequired
@@ -326,8 +291,8 @@ class SuppliersEventUpdateForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>               
-                  <Spacer />
+                  </div>               
+                  <mt-3 />
                   {startDate ? (
                     <span>
                       {dayjs(startDate).isBefore(dayjs()) && (
@@ -352,44 +317,9 @@ class SuppliersEventUpdateForm extends Component {
                     width: "45%",
                   }}
                 >
-                  {/* {this.props.partnerLogin === "Yes" &&
-                  this.props.department === "Partner" ? (
-                    <Field
-                      type="text"
-                      name="association.ownerIds"
-                      label="Assigned"
-                      isColumn
-                      width={"100%"}
-                      disabled
-                      value={this.props.creatorName}
-                      component={InputComponent}
-                      inlineLabel
-                      style={{
-                        flexBasis: "80%",
-                        height: "29px",
-                        marginTop: "0px",
-                      }}
-                    />
-                  ) : (
-                    <Field
-                      name="association.ownerIds"
-                      selectType="user"
-                      label="Assigned"
-                      component={SearchSelect}
-                      isColumn
-                      margintop={"4px"}
-                      value={values.association.ownerIds}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName ||
-                          ""} ${lastName || ""}`,
-                        value: userId,
-                      }}
-                      inlineLabel
-                      style={{ flexBasis: "80%" }}
-                    />
-                  )} */}
+                 
 
-                  {/* <Spacer style={{ marginBottom: "45px" }} /> */}
+                  {/* <mt-3 style={{ marginBottom: "45px" }} /> */}
                   <Field
                     name="notes"
                     label="Notes"
@@ -403,7 +333,7 @@ class SuppliersEventUpdateForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  <Spacer />
+                  <mt-3 />
                   <Field
                     name="location"
                     label="Location"
@@ -419,8 +349,8 @@ class SuppliersEventUpdateForm extends Component {
                   />
                 </div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 {isEditing && (
                   <>
                     <StyledPopconfirm
@@ -446,7 +376,7 @@ class SuppliersEventUpdateForm extends Component {
                   Update
                   {/* {isEditing ? "Update" : "Create"} */}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

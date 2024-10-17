@@ -4,7 +4,7 @@ const StyledCreatable = styled(AsyncCreatable)`
     flex: 1 1;
 .sales__control{
     width:${(props) => (props ? props.width : "25em")};
-    height: 1.57rem;
+    height: 1.88rem;
     place-content: center;
     min-height:1.35rem; 
     border:0.0625em solid #d9d9d9;

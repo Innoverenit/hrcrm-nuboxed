@@ -21,7 +21,11 @@ const UpdateCustomerModal = (props) => {
         onClose={() => props.handleUpdateCustomerModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateCustomerForm customerId={props.customerId} />{" "}
+          <UpdateCustomerForm customerId={props.customerId}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>

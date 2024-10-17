@@ -10,6 +10,12 @@ const initialState = {
   fetchingInvestorsError: false,
   investorsbyId: [],
 
+  addInvestorAddressModal:false,
+
+  fetchingDeleteInvestors: false,
+        fetchingDeleteInvestorsError: false,
+        deleteInvestorList:[],
+
   fetchingDocumentList: false,
    fetchingDocumentListError: false,
    documentAllList:[],
@@ -208,13 +214,32 @@ export const investorReducer = (state = initialState, action) => {
         fetchingInvestorsError: true,
       };
 
+      case types.GET_INVESTORS_DELETELIST_REQUEST:
+      return { ...state, fetchingDeleteInvestors: true };
+    case types.GET_INVESTORS_DELETELIST_SUCCESS:
+      return {
+        ...state,
+        fetchingDeleteInvestors: false,
+         deleteInvestorList:action.payload,
+        
+      };
+    case types.GET_INVESTORS_DELETELIST_FAILURE:
+      return {
+        ...state,
+        fetchingDeleteInvestors: false,
+        fetchingDeleteInvestorsError: true,
+      };
+
       case types.GET_ALL_INVESTORS_BY_ID_REQUEST:
         return { ...state, fetchingAllInvestors: true };
       case types.GET_ALL_INVESTORS_BY_ID_SUCCESS:
         return {
           ...state,
           fetchingAllInvestors: false,
-          allInvestorsbyId: [...state.investorsbyId, ...action.payload],
+          allInvestorsbyId: [
+            ...state.allInvestorsbyId,
+            ...action.payload],
+          // allInvestorsbyId: [...state.investorsbyId, ...action.payload],
           clearbit:null
         };
       case types.GET_ALL_INVESTORS_BY_ID_FAILURE:
@@ -265,6 +290,8 @@ export const investorReducer = (state = initialState, action) => {
       case types.HANDLE_INVESTOR_MODAL:
       return { ...state, addInvestorModal: action.payload };
 
+      case types.HANDLE_INVESTOR_ADDRESS_MODAL:
+        return { ...state, addInvestorAddressModal: action.payload };
 
     case types.UPDATE_INVESTOR_BY_ID_REQUEST:
       return { ...state, updateInvestorById: true };
@@ -634,7 +661,10 @@ export const investorReducer = (state = initialState, action) => {
                     return {
                       ...state,
                       fetchingTeamInvestor: false,
-                  teamInvestor:action.payload,
+                      teamInvestor: [
+                        ...state.teamInvestor,
+                        ...action.payload],
+                  // teamInvestor:action.payload,
                     };
                   case types.GET_TEAM_INVESTOR_FAILURE:
                     return {
@@ -850,7 +880,12 @@ export const investorReducer = (state = initialState, action) => {
                                                   investorsbyId: state.investorsbyId.filter(
                                                     (item) => item.investorId !== action.payload
                                                 ), 
-                                  
+                                                teamInvestor: state.teamInvestor.filter(
+                                                  (item) => item.investorId !== action.payload
+                                              ), 
+                                              allInvestorsbyId: state.allInvestorsbyId.filter(
+                                                (item) => item.investorId !== action.payload
+                                            ), 
                                                 };
                                               case types.DELETE_INVESTOR_DATA_FAILURE:
                                                 return { ...state, deleteInvestorData: false, deleteInvestorDataError: false };
@@ -964,7 +999,23 @@ export const investorReducer = (state = initialState, action) => {
                 uploadingInvestorListError: true,
               };
 
-
+              case types.REINSTATE_TOGGLE_FOR_INVESTOR_REQUEST:
+                return { ...state, reInstatedInvestor: true };
+            case types.REINSTATE_TOGGLE_FOR_INVESTOR_SUCCESS:
+                return {
+                    ...state,
+                    reInstatedInvestor: false,
+                    deleteInvestorList: state.deleteInvestorList.filter(
+                        (item) => item.investorId !== action.payload
+                      ),
+                 
+                };
+            case types.REINSTATE_TOGGLE_FOR_INVESTOR_FAILURE:
+                return {
+                    ...state,
+                    reInstatedInvestor: false,
+                    reInstatedInvestorError: true,
+                };
 
 default:
       return state;

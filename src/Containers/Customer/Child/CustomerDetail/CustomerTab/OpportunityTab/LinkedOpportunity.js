@@ -22,8 +22,35 @@ const AddCustomerUpdateOpportunityModal =lazy(()=>import("./AddCustomerUpdateOpp
 
 
 function OpportunityTable(props) {
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
   useEffect(() => {
-    props.getOpportunityListByCustomerId(props.customerId);
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+              "213",  //  "Quotation",//0
+              "176", //   "Start Date",//1
+              "126",   //   "End Date",//2      
+              "218", //   "Value",//3
+              "142",//   "Status",//4
+              "216",  //   "Sponsor",//5
+                  "1305",    // Search
+                  "1307",  // Reset
+                  "1306",      // Filter
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  useEffect(() => {
+    props.getOpportunityListByCustomerId(props.customer.customerId);
   }, []);
   console.log(props.customerId);
   const [currentOpportunityId, setCurrentOpportunityId] = useState("");
@@ -39,8 +66,8 @@ function OpportunityTable(props) {
         confirm,
         clearFilters,
       }) => (
-        <div style={{ padding: 8 }}>
-          <Input
+        <div className="p-8">
+          <Input 
             placeholder={`Search ${dataIndex}`}
             value={selectedKeys[0]}
             onChange={(e) =>
@@ -58,14 +85,14 @@ function OpportunityTable(props) {
             size="small"
             style={{ width: 90 }}
           >
-            Search
+          {translatedMenuItems[6]}  {/* Search */}
           </Button>
-          <Button
+          <Button className="w-[90%]"
             onClick={() => handleReset(clearFilters)}
             size="small"
-            style={{ width: 90 }}
+            
           >
-            Reset
+          {translatedMenuItems[7]}  {/* Reset */}
           </Button>
           <Button
             type="link"
@@ -76,7 +103,7 @@ function OpportunityTable(props) {
               setSearchedColumn(dataIndex);
             }}
           >
-            Filter
+            {translatedMenuItems[8]}{/* Filter */}
           </Button>
         </div>
       ),
@@ -136,259 +163,28 @@ function OpportunityTable(props) {
     addUpdateCustomerOpportunityModal,
     setEditCustomerOpportunity,
   } = props;
-//   const columns = [
-//     {
-//       title: "",
-//       width: "2%",
-//     },
-//     // {
-//     //   title: "",
-//     //   dataIndex: "imageId",
-//     //   width: "3%",
-//     //   render: (name, item, i) => {
-//     //     return (
-//     //       <SubTitle>
-//     //         <MultiAvatar
-//     //           primaryTitle={item.accountName}
-//     //           imageId={item.imageId}
-//     //           imageURL={item.imageURL}
-//     //           imgWidth={"1.8em"}
-//     //           imgHeight={"1.8em"}
-//     //         />
-//     //       </SubTitle>
-//     //     );
-//     //   },
-//     // },
-//     {
-//       title: "",
-//       width: "1%",
-//     },
-//     { title: "Name",
-//        dataIndex:"opportunityName",
-//        width:"25%",
-//        ...getColumnSearchProps('opportunityName'),
-//        render(name, item, ) {
-//         return (
-//           <>
-//            <Link
-//               toUrl={`/opportunity/${item.opportunityId}`}
-//               title={`${item.opportunityName || ""} `}
-//             />
-//           </>
-//         );
-//       }
-//    },
-//     {
-//       //title: "Start Date",
-//       title: (
-//         <FormattedMessage id="app.startDate" defaultMessage="Start Date" />
-//       ),
-//       dataIndex: "startDate",
-//       width: "20%",
-//       defaultSortOrder: "descend",
-//       sorter: (a, b) => {
-//         var startDateA = a.startDate; // ignore upper and lowercase
-//         var startDateB = b.startDate; // ignore upper and lowercase
-//         if (startDateA < startDateB) {
-//           return -1;
-//         }
-//         if (startDateA > startDateB) {
-//           return 1;
-//         }
 
-//         return 0;
-//       },
-//       render: (text, item) => {
-//         const startDate = dayjs(item.startDate).format("ll");
-//         return <span>{startDate}</span>;
-//       },
-//     },
-//     {
-//       //title: "End Date",
-//       title: <FormattedMessage id="app.endDate" defaultMessage="End Date" />,
-//       dataIndex: "endDate",
-//       width: "20%",
-//       defaultSortOrder: "descend",
-//       render: (text, item) => {
-//         const endDate = dayjs(item.endDate).format("ll");
-//         return <span>{endDate}</span>;
-//       },
-//       sorter: (a, b) => {
-//         var endDateA = a.endDate; // ignore upper and lowercase
-//         var endDateB = b.endDate; // ignore upper and lowercase
-//         if (endDateA < endDateB) {
-//           return -1;
-//         }
-//         if (endDateA > endDateB) {
-//           return 1;
-//         }
-
-//         return 0;
-//       },
-//     },
-//     {
-//       //title: "Value",
-//       title: (
-//         <FormattedMessage
-//           id="app.proposalAmount"
-//           defaultMessage="Value"
-//         />
-//       ),
-//       dataIndex: "proposalAmount",
-//       width: "20%",
-//       onFilter: (value, record) => record.proposalAmount.indexOf(value) === 0,
-//       render: (name, item, i) => {        
-//         return (
-//           <>
-//             {/* {item.proposalAmount} {item.currency} */}
-//             <span>
-//             <CurrencySymbol currencyType={item.currency} />
-//             &nbsp;&nbsp;{item.proposalAmount}
-//           </span>
-//           </>
-//         );
-//       },
-//     },
-// {
-// title:(
-//   <FormattedMessage
-//     id="app.status"
-//     defaultMessage="Status"
-//   />
-// ),
-// render: (name, item, i) => {
-//   var findProbability = item.probability;
-//   item.stageList.forEach((element) => {
-//     if (element.oppStage === item.oppStage) {
-//       findProbability = element.probability;}
-//    });
-//   return (
-//     <>
-//     <Tooltip title={item.oppStage}>
-// {" "}
-// <Progress
-// type="circle"
-// style={{ cursor: "pointer",color:"red" }}
-// percent={findProbability}
-// //disable={true}
-// width={30}
-//  strokeColor={"#005075"}
-
-// />
-  
-// </Tooltip>
-
-//     </>
-//   );
-// },
-// dataIndex: "status",
-// width: "7%",
-// },
-
-//     {
-//       //title: "sponsor",
-//       title: (
-//         <FormattedMessage
-//           id="app.sponsor"
-//           defaultMessage="Sponsor"
-//         />
-//       ),
-//       dataIndex: "contactName",
-//       width: "10%",
-//       onFilter: (value, record) => record.contactName.indexOf(value) === 0,
-//       render: (name, item, i) => {        
-//         return (
-//           <>
-//             {item.contactName} 
-//           </>
-//         );
-//       },
-//       render: (name, item, i) => {
-//         return (
-//           <>
-//             <Tooltip title={item.contactName}>
-//               <span>
-//                 <MultiAvatar
-//                   primaryTitle={item.contactName}
-//                   imageId={item.imageId}
-//                   imageURL={item.imageURL}
-//                   imgWidth={"1.8em"}
-//                   imgHeight={"1.8em"}
-//                 />
-//               </span>
-//             </Tooltip>
-
-//           </>
-//         );
-//       },
-//     },
-//     {
-//       title: "",
-//       // dataIndex: "documentId",
-//       width:"2%",
-//       render: (name, item, i) => {
-//         return (
-//           <Tooltip title={item.description}>
-           
-//           <InfoIcon 
-          
-//               // type="edit"
-//               style={{ cursor: "pointer",fontSize:"1rem" }}
-             
-//             />
-          
-//           </Tooltip>
-//         );
-//       },
-//     },
-//     {
-//       title: "",
-//       width: "1%",
-//     },
-//     {
-
-//       title: "",
-//       dataIndex: "documentId",
-//       width:"2%",
-//       render: (name, item, i) => {
-//         return (
-//           <Tooltip title="Edit">
-//              {user.opportunityUpdateInd ===true && (
-//           <BorderColorIcon 
-          
-//               type="edit"
-//               style={{ cursor: "pointer",fontSize:"0.8rem" }}
-//               onClick={() => {
-//                 props.setEditCustomerOpportunity(item);
-//                 handleUpdateCustomerOpportunityModal(true);
-//                 handleSetCurrentOpportunityId(item.opportunityId)
-                
-//               }}
-//             />
-//             )}
-//           </Tooltip>
-//         );
-//       },
-//     },
-//     {
-//       title: "",
-//       width: "1%",
-//     },
-//   ];
 if (fetchingCustomerOpportunity) return <BundleLoader/>;
   const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
   return (
     <>
     <div className=' flex  sticky z-auto'>
-    <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[16rem]">Quotation ID</div>
-        <div className=" md:w-[5.1rem]">Start Date</div>
-        <div className=" md:w-[6.21rem] ">End Date</div>
-        <div className="md:w-[4.2rem]">Value</div>
-        <div className="md:w-[5.51rem]">Status</div>
-        <div className="md:w-[1.8rem]">Sponsor</div> 
+    <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className=" flex justify-between w-[100%] h-[79vh] p-1 bg-transparent font-bold sticky  z-10">
+        <div className="font-bold font-poppins  text-[#00A2E8] text-base md:w-[14rem]">{translatedMenuItems[0]} ID</div>
+        {/* Quotation ID */}
+        <div className="font-bold font-poppins text-xs md:w-[7.1rem]">{translatedMenuItems[1]}</div>
+        {/* Start Date         */}
+        <div className="font-bold font-poppins text-xs md:w-[6.21rem] ">{translatedMenuItems[2]}</div>
+        {/* End Date */}   
+        <div className="font-bold font-poppins text-xs md:w-[6.2rem]">{translatedMenuItems[3]}</div>
+        {/* Value */}  
+        <div className="font-bold font-poppins text-xs md:w-[5.51rem]">{translatedMenuItems[4]}</div>
+          {/* Status */}      
+        <div className="font-bold font-poppins text-xs md:w-[1.8rem]">{translatedMenuItems[5]}</div>
+        {/* Sponsor */}
+       
         <div className="w-[7rem]"></div>
 
       </div>
@@ -428,10 +224,10 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
           return (
             <div>
                <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between items-center bg-white mt-1 h-8  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                 <div class="flex ">
-                <div className=" flex font-medium flex-col md:w-[15.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                <div className=" flex font-medium flex-col border-l-2 border-green-500 bg-[#eef2f9] md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
           &nbsp;
           <div class="max-sm:w-full">
@@ -439,8 +235,10 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col ">
                                           
                                             <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
-      {item.opportunityName}
+                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.newOppId}`} title={item.opportunityName}>
+                                            {item.opportunityName} 
+                                            {/* {item.newOppId} */}
+
     </Link>                                     
          {/* <Link
           toUrl={`/opportunity/${item.opportunityId}`}
@@ -466,14 +264,14 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                                 </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs  font-poppins">
                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                  
                     </div>
                   </div>
-                  <div className=" flex md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
          
          <div class=" text-xs  font-poppins">
          {dayjs(item.endDate).format("DD/MM/YYYY")}
@@ -483,7 +281,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex justify-center  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs  font-poppins">
                     <span>
@@ -493,7 +291,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                  
                     </div>
                   </div>
-                  <div className=" flex  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
          <div class=" text-xs  font-poppins">
          <Tooltip title={item.oppStage}>
@@ -514,7 +312,7 @@ width={30}
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex md:w-14 max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.75rem] max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs  font-poppins">
                     <Tooltip title={item.contactName}>
@@ -535,7 +333,7 @@ width={30}
                 </div>
               
                 <div class="flex md:items-center ">
-                  <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                       <Tooltip title={item.description}>
            
@@ -545,7 +343,7 @@ width={30}
           </Tooltip>
                     </div>
                   </div>
-                  <div className=" flex md:w-[2rem]  max-sm:flex-row w-full max-sm:justify-between">
+                  <div className=" flex md:w-[3rem] items-center justify-center h-8  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                   <Tooltip title="Edit">
              {user.opportunityUpdateInd ===true && (
           <BorderColorIcon 
@@ -577,6 +375,9 @@ width={30}
        addUpdateCustomerOpportunityModal={addUpdateCustomerOpportunityModal}
         handleUpdateCustomerOpportunityModal={handleUpdateCustomerOpportunityModal}
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
         
       />
     </>
@@ -587,7 +388,7 @@ const mapStateToProps = ({ customer,auth }) => ({
   user: auth.userDetails,
   fetchingCustomerOpportunity: customer.fetchingCustomerOpportunity,
   fetchingCustomerOpportunityError: customer.fetchingCustomerOpportunityError,
-  customerId: customer.customer.customerId,
+  //customerId: customer.customer.customerId,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   addUpdateCustomerOpportunityModal:customer.addUpdateCustomerOpportunityModal,
 });

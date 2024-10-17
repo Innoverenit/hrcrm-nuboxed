@@ -1,22 +1,27 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
+import { BundleLoader } from "../../../Components/Placeholder";
 const TaskActionRight = lazy(() => import("./TaskActionRight"));
 const TaskActionLeft = lazy(() => import("./TaskActionLeft"));
 class TaskHeader extends Component {
   render() {
     const { viewType, setTaskViewType } = this.props;
     return (
-      <div style={{position: "sticky",
-      top: "3.35rem",
-      zIndex: "998"}}>
+      <div className="sticky mt-1 z-50"> 
         <ActionHeader
-          leftComponent={<TaskActionLeft 
+          leftComponent={
+            
+            <Suspense fallback={<BundleLoader />}><TaskActionLeft 
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             viewType={viewType}
             setTaskViewType={setTaskViewType}
-          />}
-          rightComponent={<TaskActionRight 
+          /></Suspense>}
+          rightComponent={<Suspense fallback={<BundleLoader />}><TaskActionRight
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage} 
             viewType={viewType}
-          />}
+          /></Suspense>}
         />
       </div>
     );

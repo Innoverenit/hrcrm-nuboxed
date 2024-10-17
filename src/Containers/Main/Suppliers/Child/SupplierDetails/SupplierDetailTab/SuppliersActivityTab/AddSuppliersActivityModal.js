@@ -31,17 +31,26 @@ class AddSuppliersActivityModal extends Component {
                     <StyledTabs defaultActiveKey="1">
                         <TabPane tab={`Call`} key="1">
                             <div style={{ marginTop: 20 }}>
-                                <SuppliersActivityCallForm supplier={supplier}/>
+                                <SuppliersActivityCallForm supplier={supplier}
+                                   translateText={this.props.translateText}
+                                   selectedLanguage={this.props.selectedLanguage}
+                                />
                             </div>
                         </TabPane>
                         <TabPane tab={`Event`} key="2">
                             <div style={{ marginTop: 20 }}>
-                                <SuppliersActivityEventForm supplier={supplier}/>
+                                <SuppliersActivityEventForm supplier={supplier}
+                                   translateText={this.props.translateText}
+                                   selectedLanguage={this.props.selectedLanguage}
+                                />
                             </div>
                         </TabPane>
                         <TabPane tab={`Task`} key="3">
                             <div style={{ marginTop: 20 }}>
-                                <SuppliersActivityTaskForm supplier={supplier}/>
+                                <SuppliersActivityTaskForm supplier={supplier}
+                                   translateText={this.props.translateText}
+                                   selectedLanguage={this.props.selectedLanguage}
+                                />
                             </div>
                         </TabPane>
                     </StyledTabs>

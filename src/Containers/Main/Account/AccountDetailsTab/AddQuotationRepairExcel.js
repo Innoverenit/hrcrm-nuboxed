@@ -63,11 +63,11 @@ function AddQuotationRepairExcel(props) {
                 }) => (
                     <div className="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
                         <Form className="form-background">
-                            <div className="justify-between flex mt-3">
-                                <div className="h-full w-[45%]">
-                                    <Select defaultValue="Repair" onChange={handleFormTypeChange} className="w-full mb-3">
+                            <div className="">
+                                <div className="h-full">
+                                    <Select defaultValue="Repair" onChange={handleFormTypeChange} className="w-[18rem] mb-3">
                                         <Option value="Repair">Repair</Option>
-                                        <Option value="Procure">Procure</Option>
+                                        <Option value="Procure">Commerce</Option>
                                     </Select>
                                     {formType === 'Repair' ? (
                                         <>
@@ -100,7 +100,7 @@ function AddQuotationRepairExcel(props) {
                                                     />
                                                 </div>
                                                 <div className="w-[45%]">
-                                                    <label>Required bulk QR code</label>
+                                                    <div class="font-bold text-xs font-poppins text-black">Required bulk QR code</div>
                                                     <Switch
                                                         onChange={handleBulkQr}
                                                         checked={bulkQr}
@@ -110,7 +110,7 @@ function AddQuotationRepairExcel(props) {
                                             </div>
                                             <div className="flex justify-between">
                                                 <div className="w-[70%] mt-2">
-                                                    <label>Send back non repaired units </label>
+                                                    <div class="font-bold text-xs font-poppins text-black">Send back non repaired units </div>
                                                     <Switch
                                                         onChange={handleRepaired}
                                                         checked={nonRepaied}

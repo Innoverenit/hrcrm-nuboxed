@@ -2,40 +2,36 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { MainWrapper } from "../../../../../../Components/UI/Elements";
 import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { addInventoryConsumption } from "../../../InventoryAction";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { setClearbitPurchaseData } from "../../../../Suppliers/SuppliersAction";
 import PurchaseClearbit from "../../../../../../Components/Forms/Autocomplete/PurchaseClearbit";
-import moment from "moment";
+import dayjs from "dayjs";
 
 function InventoryConsumption(props) {
   return (
     <>
       <Formik
         initialValues={{
-          deliveryDate: moment(),
+          deliveryDate: dayjs(),
           suppliesFullName: "",
           quantity: 0,
           userId: props.userId,
-          suppliesId: props.suppliesId,
-          // shiftId: props.shiftId,
+         suppliesId: props.suppliesId,   
         }}
-        // validationSchema={FormSchema}
         onSubmit={(values, { resetForm }) => {
           props.addInventoryConsumption(
             {
               ...values,
               locationDetailsId: props.locationDetailsId,
               suppliesId: props.suppliesId,
-              deliveryDate: moment(values.deliveryDate).toISOString(),
-
-              // startDate: `${newStartDate}T${newStartTime}`,
+              deliveryDate: dayjs(values.deliveryDate).toISOString(),
+      
             },
             props.locationDetailsId
-            // props.shiftId,//from headerPart
+        
           );
         }}
       >
@@ -49,7 +45,7 @@ function InventoryConsumption(props) {
           ...rest
         }) => (
           <Form>
-            <MainWrapper>
+      <div class="mr-5 ml-5">
             <div className="flex justify-evenly h-full w-full items-end">
             
                 <div class=" w-[20%]"
@@ -130,7 +126,7 @@ function InventoryConsumption(props) {
                   </Button>
                 </div>
               </div>
-            </MainWrapper>
+            </div>
           </Form>
         )}
       </Formik>

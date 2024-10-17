@@ -2,15 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox } from "../../../Components/UI/Elements";
-import { FlexContainer } from "../../../Components/UI/Layout";
 
 class ShipperJumpStart extends Component {
     render() {
         const { currencyType } = this.props;
 
         return (
-            <FlexContainer flexDirection="column" style={{ width: "100%" }}>
-                <FlexContainer style={{ width: "100%" }}>
+            <div class=" flex flex-col w-full flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+              <div class=" flex flex-row flex-wrap w-full items-start self-start justify-start grow shrink h-auto mr-auto ">
                     <JumpStartBox
                         // jumpstartClick={
                         //   subscriptionType === "PROFESSIONALPLUS"
@@ -93,8 +92,8 @@ class ShipperJumpStart extends Component {
                         title="Customers Added"
                         bgColor="#92defe"
                     />
-                </FlexContainer>
-            </FlexContainer>
+                </div>
+            </div>
         );
     }
 }

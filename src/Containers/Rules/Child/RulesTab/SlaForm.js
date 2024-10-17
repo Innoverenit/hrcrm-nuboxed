@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch, Icon, Tooltip } from "antd";
+import { Button, Switch} from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-import { StyledLabel } from "../../../../Components/UI/Elements";
-import { Spacer } from "../../../../Components/UI/Elements";
+
 import { getProcess } from "../../../Settings/SettingsAction";
 import { addSla, getSla } from "../../RulesAction";
 import { StyledTabs } from "../../../../Components/UI/Antd";
-// import { getRiskManagementUser } from "../../../Team/TeamAction";
+
 const TabPane = StyledTabs.TabPane;
 
 function SlaForm(props) {
@@ -128,11 +126,11 @@ function SlaForm(props) {
               >
                 {props.processId && props.sla && (
                   <div>
-                    <FlexContainer justifyContent="space-between">
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  ">
                       <div style={{ width: "0%" }}>
-                        <StyledLabel style={{ marginLeft: "1.5625em" }}>
+                        <div class=" text-xs font-bold font-poppins style={{ marginLeft: "1.5625em" }}>
                           Priority
-                        </StyledLabel>
+                        </div>
                       </div>
                       <div
                         style={{
@@ -150,19 +148,16 @@ function SlaForm(props) {
                           }}
                         ></div>
                         &nbsp;&nbsp;
-                        <StyledLabel style={{ marginTop: "0.375em" }}>
+                        <div class=" text-xs font-bold font-poppins style={{ marginTop: "0.375em" }}>
                           High
-                        </StyledLabel>
+                        </div>
                       </div>
 
-                      <FlexContainer
-                        justifyContent="space-between"
-                        style={{ width: "30%" }}
-                      >
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[30%]">
                         <div style={{ width: "55%" }}>
-                          <StyledLabel style={{ marginLeft: "1.5625em" }}>
+                          <div class=" text-xs font-bold font-poppins style={{ marginLeft: "1.5625em" }}>
                             To Start
-                          </StyledLabel>
+                          </div>
                           <Field
                             name="highPriorityMapper.startUnit"
                             // label="To Start"
@@ -194,11 +189,8 @@ function SlaForm(props) {
                             }}
                           />
                         </div>
-                      </FlexContainer>
-                      <FlexContainer
-                        justifyContent="space-between"
-                        style={{ width: "48%" }}
-                      >
+                      </div>
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[48%]">
                         <Switch
                           style={{
                             width: "4.0625em",
@@ -211,7 +203,7 @@ function SlaForm(props) {
                           unCheckedChildren="After"
                         />
                         &nbsp;&nbsp;
-                        <FlexContainer justifyContent="space-between">
+                        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                           <div style={{ width: "55%" }}>
                             <Field
                               name="highPriorityMapper.endUnit"
@@ -243,12 +235,11 @@ function SlaForm(props) {
                               }}
                             />
                           </div>
-                          <Spacer />
-                        </FlexContainer>
-                      </FlexContainer>
-                    </FlexContainer>
-
-                    <FlexContainer justifyContent="space-between">
+                          <mt-3 />
+                        </div>
+                      </div>
+                    </div>
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                       <div
                         style={{
                           marginTop: "1.875em",
@@ -265,15 +256,12 @@ function SlaForm(props) {
                           }}
                         ></div>
                         &nbsp;&nbsp;
-                        <StyledLabel style={{ marginTop: "0.375em" }}>
+                        <div class=" text-xs font-bold font-poppins style={{ marginTop: "0.375em" }}>
                           Medium
-                        </StyledLabel>
+                        </div>
                       </div>
 
-                      <FlexContainer
-                        justifyContent="space-between"
-                        style={{ width: "30%" }}
-                      >
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[30%]">
                         <div style={{ width: "55%" }}>
                           <Field
                             name="mediumPriorityMapper.startUnit"
@@ -305,13 +293,10 @@ function SlaForm(props) {
                             }}
                           />
                         </div>
-                        <Spacer />
-                      </FlexContainer>
+                        <mt-3 />
+                      </div>
 
-                      <FlexContainer
-                        justifyContent="space-between"
-                        style={{ width: "48%" }}
-                      >
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[48%]">
                         <Switch
                           style={{
                             width: "4.0625em",
@@ -324,7 +309,7 @@ function SlaForm(props) {
                           unCheckedChildren="After"
                         />
                         &nbsp;&nbsp;
-                        <FlexContainer justifyContent="space-between">
+                        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                           <div style={{ width: "55%" }}>
                             <Field
                               name="mediumPriorityMapper.endUnit"
@@ -356,12 +341,12 @@ function SlaForm(props) {
                               }}
                             />
                           </div>
-                          <Spacer />
-                        </FlexContainer>
-                      </FlexContainer>
-                    </FlexContainer>
+                          <mt-3 />
+                        </div>
+                      </div>
+                    </div>
 
-                    <FlexContainer justifyContent="space-between">
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                       <div
                         style={{
                           marginTop: "1.875em",
@@ -378,14 +363,11 @@ function SlaForm(props) {
                           }}
                         ></div>
                         &nbsp;&nbsp;
-                        <StyledLabel style={{ marginTop: "0.375em" }}>
+                        <div class=" text-xs font-bold font-poppins style={{ marginTop: "0.375em" }}>
                           Low
-                        </StyledLabel>
+                        </div>
                       </div>
-                      <FlexContainer
-                        justifyContent="space-between"
-                        style={{ width: "30%" }}
-                      >
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[30%]">
                         <div style={{ width: "55%" }}>
                           <Field
                             name="lowPriorityMapper.startUnit"
@@ -417,12 +399,9 @@ function SlaForm(props) {
                             }}
                           />
                         </div>
-                        <Spacer />
-                      </FlexContainer>
-                      <FlexContainer
-                        justifyContent="space-between"
-                        style={{ width: "48%" }}
-                      >
+                        <mt-3 />
+                      </div>
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  w-[48%]">
                         <Switch
                           style={{
                             width: "4.0625em",
@@ -435,7 +414,7 @@ function SlaForm(props) {
                           unCheckedChildren="After"
                         />
                         &nbsp;&nbsp;
-                        <FlexContainer justifyContent="space-between">
+                        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                           <div style={{ width: "55%" }}>
                             <Field
                               name="lowPriorityMapper.endUnit"
@@ -467,16 +446,16 @@ function SlaForm(props) {
                               }}
                             />
                           </div>
-                          <Spacer />
-                        </FlexContainer>
-                      </FlexContainer>
-                    </FlexContainer>
-                    <Spacer />
-                    <FlexContainer justifyContent="flex-end">
+                          <mt-3 />
+                        </div>
+                      </div>
+                    </div>
+                    <mt-3 />
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto">
                       <Button type="primary" htmlType="submit">
                         Update
                       </Button>
-                    </FlexContainer>
+                    </div>
                   </div>
                 )}
               </div>

@@ -39,7 +39,7 @@ const LeadsActionLeft = (props) => {
     if (props.viewType === "card") {
       props.getLeadsRecords(props.userId);
     } else if (props.viewType === "list") {
-      props.getJunkedLeadsRecords(props.userId);
+      props.getJunkedLeadsRecords(props.orgId);
     } else if (props.viewType === "teams") {
       props.getLeadsTeamRecords(props.userId);
     }
@@ -187,7 +187,7 @@ const LeadsActionLeft = (props) => {
               color: props.viewType === "card" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
               <TocIcon className="text-white !text-icon" /></Avatar>
 
           </span>
@@ -211,7 +211,7 @@ const LeadsActionLeft = (props) => {
                 //   color: props.viewType === "teams" && "#1890ff",
                 // }}
               >
-                <Avatar style={{ background: props.teamsAccessInd||props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+                <Avatar style={{ background: props.teamsAccessInd||props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
                   <PeopleIcon className="text-white !text-icon" /></Avatar>
 
               </span>
@@ -235,7 +235,7 @@ const LeadsActionLeft = (props) => {
                   color: props.viewType === "all" && "#1890ff",
                 }}
               >
-                <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
                   <div class="text-white">ALL</div></Avatar>
 
               </span>
@@ -289,7 +289,7 @@ const LeadsActionLeft = (props) => {
 
 
       <div class="w-[35%]  ml-2">
-        <StyledSelect placeholder="Sort" defaultValue="CreationDate" onChange={(e) => props.handleFilterChange(e)}>
+        <StyledSelect placeholder="Sort" defaultValue="Creation Date" onChange={(e) => props.handleFilterChange(e)}>
         <Option value="" disabled hidden>
         Sort by :
     </Option>

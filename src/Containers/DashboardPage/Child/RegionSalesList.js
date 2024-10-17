@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Tooltip, Select,Button,Progress } from "antd";
@@ -8,14 +8,11 @@ import {
     handleSalesQuotationDrawerModal,
     handleSalesOrderDrawerModal
 } from "../RegionalDashAction";
-import OrderPlanDrawerModal from "../Child/OrderPlanDrawerModal"
 import { FormattedMessage } from "react-intl";
-import QuotationPlanDrawerModal from "../Child/QuotationPlanDrawerModal"
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../Components/Placeholder";
-import SalesPlanDrawerModal from "./SalesPlanDrawerModal";
-
+const  OrderPlanDrawerModal =lazy(()=>import("../Child/OrderPlanDrawerModal"));
+const  QuotationPlanDrawerModal=lazy(()=>import("../Child/QuotationPlanDrawerModal"));
+const  SalesPlanDrawerModal=lazy(()=>import("./SalesPlanDrawerModal"));
 
 const Option = Select;
 
@@ -472,7 +469,7 @@ width={30}
       <p>None Available</p>
     )}
          
-
+         <Suspense fallback={<BundleLoader />}>
     <SalesPlanDrawerModal
     tabKey={props.tabKey}
             rowdata={rowdata}
@@ -493,6 +490,7 @@ width={30}
             addSalesOrderModal={props.addSalesOrderModal}
            
     />
+    </Suspense>
   </>
   
   );

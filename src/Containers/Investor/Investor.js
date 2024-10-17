@@ -10,6 +10,8 @@ import {
   getLatestCustomer,
   getCustomerCloser, 
 } from "../Customer/CustomerAction";
+
+const InvestorDeleteList = lazy(() => import("./InvestorDeleteList"));
 const InvestorHeader = lazy(() => import("./Child/InvestorHeader"));
 const InvestorTeamCardList = lazy(() => import("./Child/InvestorTable/InvestorTeamCardList"));
 const InvestorAllCardList = lazy(() => import("./Child/InvestorTable/InvestorAllCardList"));
@@ -19,26 +21,14 @@ const AddInvestorModal=lazy(()=>import("./Child/AddInvestorModal"));
 function Investor (props) {
 const [currentData,setcurrentData]=useState("");
 const [currentUser,setcurrentUser]=useState("");
-const [filter, setFilter] = useState("creationdate");
+const [filter, setFilter] = useState("CreationDate");
 const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   const setInvestorViewType = (viewType) => {
     setViewType(viewType);
     setTeamsAccessInd(false);
   };
-// function handleClear () {
-//   const startDate = moment()
-//     .startOf("month")
-//     .toISOString();
-//   const endDate = moment()
-//     .endOf("month")
-//     .toISOString();
-//     setcurrentData(currentData);
-// props.emptyInvestor();
-//   this.props.getInvestorsbyId(this.state.currentUser?this.state.currentUser:this.props.userId,0,"creationdate");
-//   this.props.getLatestCustomer(this.props.userId);
-//   this.props.getCustomerCloser(this.props.userId, startDate, endDate);
-// };
+
 const handleClear = () => {
   setcurrentData("");
   props.getInvestorsbyId(currentUser || props.userId, 0, "creationdate");
@@ -49,6 +39,7 @@ function handleCurrentData (value){
 const handleFilterChange = (data) => {
   setFilter(data);
   props.getInvestorsFilterData(props.userId, 0, data);
+  // props.getTeamInvestor(props.userId, 0,data);
 };
 const handleChange = (e) => {
   setcurrentData(e.target.value)
@@ -63,6 +54,7 @@ const handleChange = (e) => {
   } = props;
         return (
             <React.Fragment>
+              <Suspense fallback={<BundleLoader />}>
           <InvestorHeader
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
@@ -85,7 +77,7 @@ const handleChange = (e) => {
           addInvestorModal={addInvestorModal}
           handleInvestorModal={handleInvestorModal}
           />
- <Suspense fallback={<BundleLoader />}>
+ 
  {teamsAccessInd ? (
        <InvestorTeamCardList
        translateText={props.translateText}
@@ -105,17 +97,13 @@ const handleChange = (e) => {
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
             />}
+             {viewType === 'delete' &&  <InvestorDeleteList
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+            />}
           </>
         )}
- {/* {  viewType === "list" ?
-          <InvestorCardList/> 
- 
-  :viewType==="all" ?
- <InvestorAllCardList  filter={filter}/> 
- :viewType==="teams" ? (<InvestorTeamCardList/>)
-// <CustomerCardView/>  
 
-          :null} */}
  </Suspense>
             </React.Fragment>
         )

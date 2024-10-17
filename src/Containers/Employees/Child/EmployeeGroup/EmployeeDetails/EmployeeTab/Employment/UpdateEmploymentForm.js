@@ -276,7 +276,7 @@ class EmploymentDocumentForm extends Component {
                     component={InputComponent}
                     style={{ height: "2.0625em", marginTop: "0.25em" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="documentDescription"
                     label="Description"
@@ -286,7 +286,7 @@ class EmploymentDocumentForm extends Component {
                     component={TextareaComponent}
                     style={{ height: "5em", marginTop: "0.25em" }}
                   />
-                  <Spacer style={{ marginBottom: "0.9375em" }} />
+                  <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
                 </div> */}
               {/* </div> */}
               <div class=" flex justify-end mt-3" >

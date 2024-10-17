@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import { Switch, Popconfirm } from "antd";
 import { MainWrapper } from "../../../../../Components/UI/Layout";
 import { addingWeekendAccess, getWeekendAccess } from "../../../SettingsAction";
-import moment from "moment";
+import dayjs from "dayjs";
 
 function Weekend(props) {
   useEffect(() => {
@@ -63,7 +63,7 @@ function Weekend(props) {
       
       <div>
         Updated on{" "}
-        {moment(props.weekendAccess.updationDate).format("ll")} by{" "}
+        {dayjs(props.weekendAccess.updationDate).format("ll")} by{" "}
         {props.weekendAccess.updatedBy}
       </div>
     </MainWrapper>

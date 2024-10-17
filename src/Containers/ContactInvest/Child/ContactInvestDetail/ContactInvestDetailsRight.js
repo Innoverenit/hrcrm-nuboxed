@@ -8,7 +8,11 @@ class ContactInvestDetailsRight extends Component {
   render() {
     return (
       <div class=" w-full">
-        <ContactInvestDetailTab contactInVestDetail={this.props.contactInVestDetail} />
+        <ContactInvestDetailTab contactInVestDetail={this.props.contactInVestDetail}
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
+         translatedMenuItems={this.props.translatedMenuItems}
+        />
       </div>
     );
   }

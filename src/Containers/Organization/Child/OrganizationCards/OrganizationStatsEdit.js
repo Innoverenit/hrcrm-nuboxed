@@ -56,60 +56,9 @@ class OrganizationStatsEdit extends Component {
           <div class=" flex justify-between w-full m-[0.125em] "
           
           >
-            {/* <div style={{ width: "37%" }}>
-              <EditableSearcSelect
-                defaultValue={{
-                  value: countryDialCode,
-                  label: countryDialCode,
-                  color: "#FF8B00"
-                }}
-                handleSelectChange={this.handleChange}
-                name={"countryDialCode"}
-                //   placeholder={"Country dial Code "}
-                value={this.state.fields.countryDialCode}
-                selectType="dialCode"
-
-              />  </div> */}
-            {/* <div style={{ width: "60%" }}>
-              <EditableInput
-                defaultValue={mobileNo}
-                handleChange={this.handleChange}
-                name={"mobileNo"}
-                width="100%"
-                placeholder={"Mobile #"}
-                value={this.state.fields.mobileNo}
-              />
-            </div> */}
+          
           </div>
        
-          {/* <FlexContainer justifyContent="space-between" style={{ width: "100%" }}>
-
-            <div style={{ width: "37%" }}>
-              <EditableSearcSelect
-                defaultValue={{
-                  value: countryDialCode1,
-                  label: countryDialCode1,
-                  color: "#FF8B00"
-                }}
-                handleSelectChange={this.handleChange}
-                name={"countryDialCode1"}
-                // placeholder={"Country dial Code "}
-                selectType="dialCode"
-                value={this.state.fields.countryDialCode1}
-
-              />
-            </div>
-            <div style={{ width: "60%" }}>
-              <EditableInput
-                defaultValue={phoneNo}
-                handleChange={this.handleChange}
-                name={"phoneNo"}
-                width="100%"
-                placeholder={"Phone #"}
-                value={this.state.fields.phoneNo}
-              />
-            </div>
-          </FlexContainer> */}
           <div class=" m-[0.125em]">
         
           <EditableInput

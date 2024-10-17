@@ -1,8 +1,8 @@
-import React, { Component, Suspense } from "react";
+import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import SupplierDetailsTab from "./SupplierDetailsTab";
+const  SupplierDetailsTab =lazy(()=>import("./SupplierDetailsTab"));
 
 class SupplierDetailsRight extends Component {
   render() {
@@ -10,7 +10,9 @@ class SupplierDetailsRight extends Component {
     return (
       <div class="w-full">
         <Suspense fallback={<BundleLoader />}>
-          <SupplierDetailsTab supplier={this.props.supplier} />
+          <SupplierDetailsTab supplier={this.props.supplier} 
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}/>
         </Suspense>
       </div>
     );

@@ -39,14 +39,16 @@ import Upload from "../../../../Components/Forms/Formik/Upload";
 import DragableUpload from "../../../../Components/Forms/Formik/DragableUpload";
 import { Select } from "antd";
 import { Listbox, } from '@headlessui/react';
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const { Option } = Select;
 
 function CustomerTaskActivityForm (props) {
   const [selectedTaskType, setSelectedTaskType] = useState('');
   const [selectedWorkflow, setSelectedWorkflow] = useState("");
-//   const[selectedTaskType,setselectedTaskType]=useState("")
-// const[selectedWorkflow,setselectedWorkflow]=useState("");
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 const[workflow,setworkflow]=useState([]);
 const[active,setactive]=useState(props.selectedTask ? props.selectedTask.taskStatus
   : "To Start");
@@ -84,16 +86,6 @@ const [priority,setpriority]=useState(props.selectedTask
      setSelectedWorkflow("");
     props.getTaskForWorkflow(selectedTaskType);
   };
-
-//  const handleTaskTypeChange = (event) => {
-//     const selectedTaskType = event.target.value;
-//      const filteredWorkflow = props.recruitWorkflowTask.filter((item) => item.taskTypeId === selectedTaskType);
-//      const workflow=filteredWorkflow
-//      setselectedTaskType(selectedTaskType,workflow);
-//     console.log(selectedTaskType)
-//     props.getTaskForWorkflow(selectedTaskType);
-//   };
-
   const handleWorkflowChange = (event) => {
     const selectedWorkflow = event.target.value;
     setSelectedWorkflow(selectedWorkflow);
@@ -106,7 +98,39 @@ const [priority,setpriority]=useState(props.selectedTask
     handleTaskModal(false);
     callback && callback();
   };
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
 
+          "124", //  "Priority",//0
+          "71", // "type",//1
+         "141" , // "workflow",//2
+         "142" , // "status",//3
+         "126" , // "End Date",//4
+         "110" , // "Name",//5
+         "76",  // "Assigned",6
+         "361" , // "Tag Company",//7
+         "73", // "Contact",//8
+         "99" ,  // "Opportunity",//9
+          "147",//Description 10
+          "91",//Link 11 
+         "104" //Create 12
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
  const handleButtonClick = (type) => {
   setpriority(type);
   };
@@ -137,27 +161,6 @@ const [priority,setpriority]=useState(props.selectedTask
 
     return newData;
   };
-
-  // handleCheckListOptions = (filterOptionKey, filterOptionValue) => {
-  //   const listOptions =
-  //     this.props.recruitWorkflowTask.length &&
-  //     this.props.recruitWorkflowTask
-  //       .filter((option) => {
-  //         if (
-  //           option.taskTypeId === filterOptionValue &&
-  //           option.probability !== 0
-  //         ) {
-  //           return option;
-  //         }
-  //       })
-  //       .map((option) => ({
-  //         label: option.taskChecklistName || "",
-  //         value: option.taskType,
-  //       }));
-  //   console.log(listOptions);
-
-  //   return listOptions;
-  // };
 
   function taskStageOptions(filterOptionKey, filterOptionValue) {
     const listOptions =
@@ -243,8 +246,6 @@ const [priority,setpriority]=useState(props.selectedTask
       .map((item) => {
         return {
           label: `${item.name}`,
-          // label: `${item.salutation || ""} ${item.firstName ||
-          //   ""} ${item.middleName || ""} ${item.lastName || ""}`,
           value: item.customerId,
         };
       });
@@ -316,19 +317,15 @@ const [priority,setpriority]=useState(props.selectedTask
       };
     });
 
-    // const TaskOptions = this.props.recruitWorkflowTask.map((item) => {
-    //   return {
-    //     label: `${item.taskChecklistName}`,
-    //     value: item.taskChecklistId,
-    //   };
-    // });
-
-
     const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.sales.find((item) => item.fullName === selected);
    console.log("workflow",selectedWorkflow);
    console.log("recruitWorkflowTask",props.recruitWorkflowTask);
+   if (loading) {
+    return <div><BundleLoader/></div>;
+  }
+
     return (
       <>
         <Formik
@@ -533,12 +530,10 @@ const [priority,setpriority]=useState(props.selectedTask
                
                       <div class=" flex justify-between flex-col w-full">
                         
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                      <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                      {translatedMenuItems[0]}
                             {/* Priority */}
-                            <FormattedMessage
-                              id="app.priority"
-                              defaultMessage="priority"
-                            />
+                            
                             
                           </div>
                         
@@ -601,10 +596,7 @@ const [priority,setpriority]=useState(props.selectedTask
                  
                     <div class=" w-1/2  max-sm:w-wk ">
                       
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                              id="app.type"
-                              defaultMessage="type"
-                            /></div>
+                    <div class="font-bold font-poppins text-xs m-[0.1rem-0-0.02rem-0.2rem] flex flex-col">     {translatedMenuItems[1]}</div>
                       <select 
                         style={{ border: "0.06em solid #aaa" }}
                        onChange={handleTaskTypeChange}
@@ -615,41 +607,14 @@ const [priority,setpriority]=useState(props.selectedTask
               {item.taskType}
             </option>
           ))}
-        </select>
-                      {/* <StyledLabel>Type</StyledLabel>
-                      <Field
-                    name="taskTypeId"
-                    // selectType="customerList"
-                    isColumnWithoutNoCreate
-                 
-                    //component={SearchSelect}
-                    component={SelectComponent}
-                    // options={
-                    //   Array.isArray(TaskOption)
-                    //     ? TaskOption
-                    //     : []
-                    // }
-                    options={Array.isArray(TaskOption) ? TaskOption : []}
-                    isColumn
-                    margintop={"0"}
-                    value={values.taskTypeId}
-                    inlineLabel
-                  /> */}
-                      {/* <Field
-                        name="taskTypeId"
-                         component={SelectComponent}
-                        value={values.taskTypeId}
-                        options={Array.isArray(TaskOption) ? TaskOption : []}
-                      /> */}
+        </select>              
                     </div>
                   
                     {/* {values.taskTypeId === "TSK42340139329302023" && ( */}
                       <div class=" w-1/2 ml-2 max-sm:w-wk">
                           
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                              id="app.workflow"
-                              defaultMessage="workflow"
-                            /></div>
+                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"> {translatedMenuItems[2]}</div>
+                      {/* workflow */}
                           <select
                  style={{ border: "0.06em solid #aaa" }}
                        onChange={handleWorkflowChange}
@@ -663,95 +628,13 @@ const [priority,setpriority]=useState(props.selectedTask
               {item.taskChecklistName}
             </option>
           ))}
-        </select>
-                      {/* <StyledLabel> Workflow</StyledLabel>
-
-                      <Field
-                    name="taskType"
-                    // selectType="contactListFilter"
-                    isColumnWithoutNoCreate
-                 
-                    // component={SearchSelect}
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.handleCheckListOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.handleCheckListOptions("taskTypeId", values.taskTypeId)
-                        : []
-                    }
-                    value={values.taskType}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  /> */}
-                          {/* <Field
-                            name="taskChecklistId"
-                            // selectType="contactListFilter"
-                            isColumnWithoutNoCreate
-                            isRequired
-                            placeolder="Select type"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.taskList"
-                            //     defaultMessage="Task CheckList"
-                            //   />
-                            // }
-                            // component={SearchSelect}
-                            component={SelectComponent}
-                            options={
-                              Array.isArray(TaskOptions) ? TaskOptions : []
-                            }
-                            value={values.taskChecklistId}
-                            isColumn
-                            inlineLabel
-                          /> */}
-                     
-                      </div>
-                    {/* )} */}
-                      {/* <div class=" w-1/2">
-             
-                      <StyledLabel>Task Stages</StyledLabel>
-                      <Field
-                    name="taskChecklistId"
-                 
-                    isColumnWithoutNoCreate
-                
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.taskStageOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.taskStageOptions("taskTypeId", values.customerId)
-                        : []
-                    }
-                     value={values.taskChecklistId}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  />
-                    
-                     
-                      </div> */}
-
-
-                 
+        </select>                                                            
+                      </div>                          
                     <div class="w-[24%]">
                      
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <FormattedMessage
-                          id="app.status"
-                          defaultMessage="status"
-                        />
-                      
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] ml-1 text-xs flex flex-col">
+                    {translatedMenuItems[3]}
+                      {/* status */}
                       </div>
 
                       <div class="w-[100%]">
@@ -796,102 +679,22 @@ const [priority,setpriority]=useState(props.selectedTask
                               />
                             }
                             status={active}
-                            onClick={() => glassButtoClick("Completed")}
-                            //  status={item.taskStatus}
-                            //  onClick={() =>
-                            //    patchTask(item.taskId, { ...item, taskStatus: "Completed" })
-                            //  }
+                            onClick={() => glassButtoClick("Completed")}                      
                           />
                         </ButtonGroup>
                       </div>
                     </div>
                   </div>
             
-                  <div class="mt-3 flex justify-between w-full max-sm:flex-col">
-                   
-                    {/* <div class=" w-5/12 max-sm:w-wk">
-                      <div class=" flex justify-between w-full">
-                        <div class=" w-full">
-                          <Field
-                            isRequired
-                            name="taskName"
-                            //label="Name"
-                            // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                              />
-                            }
-                            component={InputComponent}
-                            isColumn
-                            width={"100%"}
-                            inlineLabel
-                          />
-                        </div>
-                      </div>
-                    </div> */}
-                  </div>
-                 
-                  {/* <div class=" flex justify-between">
-                    <div class=" w-1/2">
-                      <Field
-                        isRequired
-                        name="startDate"
-                        //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />
-                        }
-                        isColumn
-                        component={DatePicker}
-                        value={values.startDate}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                    <Spacer />
-                    <div class=" w-5/12">
-                      <Field
-                        // isRequired
-                        name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.startTime"
-                            defaultMessage="Start Time"
-                          />
-                        }
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.startTime}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <Spacer /> */}
-
-               
+                  <div class="mt-3 flex justify-between w-full max-sm:flex-col">                                  
+                  </div>                              
                   <div class=" flex justify-between mt-3">
                     <div class=" w-1/2 ">
+                   <div class="font-bold font-poppins text-xs">{translatedMenuItems[4]}</div> 
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.endDate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        // label="End "                   
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -916,44 +719,18 @@ const [priority,setpriority]=useState(props.selectedTask
                       />
                     </div>
                     <div class=" w-5/12">
+                    <div className="font-poppins font-bold text-xs">   {translatedMenuItems[5]}</div>
                           <Field
                             isRequired
                             name="taskName"
                             //label="Name"
-                            // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                              />
-                            }
+                            // value={values.taskName}                        
                             component={InputComponent}
                             isColumn
                             width={"100%"}
                             inlineLabel
                           />
-                        </div>
-                    {/* <div class=" w-5/12">
-                      <Field
-                        // isRequired
-                        name="endTime"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endTime"
-                            defaultMessage="End Time"
-                          />
-                        }
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.endTime}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div> */}
+                        </div>              
                   </div>
                   <div class=" w-full mt-4">
                         <Field
@@ -1138,55 +915,17 @@ const [priority,setpriority]=useState(props.selectedTask
                     </div>
                   </div>
                   <div class=" mt-3">
-                  
-                    {/* {values.startDate && (
-                      <>
-                        {dayjs(todayDate).isSameOrBefore(
-                          dayjs(values.startDate)
-                        ) ? (
-                          <></>
-                        ) : (
-                          <>
-                            {" "}
-                            <span
-                            >
-                              <b>This Task occurs in the past !</b>
-                            </span>
-                          </>
-                        )}
-                      </>
-                    )} */}
+                                
                   </div>
                 </div>
                 <div class="h-full w-w47.5 ml-[3rem] max-sm:w-wk">
-                 
-                  {/* <Field
-                    name="assignedTo"
-                    selectType="employee"
-                    isColumnWithoutNoCreate
-                    // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
-                    component={SearchSelect}
-                    isColumn
-                    value={values.assignedTo}
-                    defaultValue={{
-                      label: `${firstName || ""} ${middleName ||
-                        ""} ${lastName || ""}`,
-                      // value: employeeId,
-                    }}
-                    inlineLabel
-                  /> */}
+                         
+               
                                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] ">
-              Assigned
-            </Listbox.Label>
+              <div className="font-poppins font-bold text-xs">   {translatedMenuItems[5]}</div>
+              {/* Assigned */}
             <div className="relative mt-1">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
                 {selected}
@@ -1248,72 +987,16 @@ const [priority,setpriority]=useState(props.selectedTask
             </div>
           </>
         )}
-      </Listbox>
-                 
-                  {/* {values.taskTypeId === "TSK52434477391272022" && (
-                    <Field
-                      name="included"
-                      //type="text"
-                      label="Team"
-                      mode
-                      component={SelectComponent}
-                        //  options={Array.isArray(employeesData) ? employeesData : []}
-                      options={
-                        Array.isArray(
-                          this.handlecandidateOptions(
-                            "customerId",
-                            values.customerId
-                          )
-                        )
-                          ? this.handlecandidateOptions(
-                              "customerId",
-                              values.customerId
-                            )
-                          : []
-                      }
-                      value={values.included}
-                      defaultValue={{
-                        label: `${candidateName || ""} `,
-                        value: employeeId,
-                      }}
-                    />
-                  )} */}
-                  {/* {values.taskTypeId !== "TSK52434477391272022" && ( */}
-                  {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${fullName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-              
-                 
-                 
+      </Listbox>                                                                                      
                   <div class=" mt-3">
+                  <div className="font-poppins font-bold text-xs">   {translatedMenuItems[7]}</div>
                   {props.user.crmInd === true &&(
                  <Field
                  name="customerId"
                  isColumnWithoutNoCreate
                  selectType="customerList"
                  // label="Tag Company"
-                 label={
-                   <FormattedMessage
-                     id="app.tagcompany"
-                     defaultMessage="Tag Company"
-                   />
-                 }
+             
                  component={SearchSelect}
                  isColumn
                  value={values.customerId}
@@ -1328,43 +1011,30 @@ const [priority,setpriority]=useState(props.selectedTask
                   )} 
                   </div>
                   <div class=" mt-3">
+                  <div className="font-poppins font-bold text-xs">   {translatedMenuItems[8]}</div>
                   {props.user.crmInd === true &&(
                   <Field
                     name="contact"
                     //selectType="contactList"
                     isColumnWithoutNoCreate
                     // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="Contact"
-                      />
-                    }
+                  
                     component={SelectComponent}
                     isColumn
                     options={Array.isArray(ContactData) ? ContactData : []}
-                    // value={values.contactId}
-                    // // isDisabled={defaultContacts}
-                    // defaultValue={{
-                    //   label: `${fullName || ""} `,
-                    //   value: contactId,
-                    // }}
+                  
                     inlineLabel
                   />
                   )} 
                   </div>
                   <div class=" mt-3">
+                  <div className="font-poppins font-bold text-xs">   {translatedMenuItems[9]}</div>
                   {props.user.crmInd === true &&(
                  <Field
                  name="opportunity"
                  // selectType="customerList"
                  isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.opportunity"
-                     defaultMessage="Opportunity"
-                   />
-                 }
+               
                  //component={SearchSelect}
                  component={SelectComponent}
                  options={
@@ -1379,39 +1049,29 @@ const [priority,setpriority]=useState(props.selectedTask
                />
                   )} 
                   </div>
+                  <div className=" mt-2 font-poppins font-bold text-xs">   {translatedMenuItems[10]}</div>
                   <Field
                     name="taskDescription"
                     //label="Notes"
-                    label={
-                      <FormattedMessage id="app.description" defaultMessage="Description" />
-                    }
+                 
                     width={"21.875em"}
                     isColumn
                     component={TextareaComponent}
                     inlineLabel
                   />
                      <div class=" mt-4">
+                     <div className="font-poppins font-bold text-xs">   {translatedMenuItems[11]}</div>
                       <Field
                             type="text"
                             name="link"
                             //label="Name"
-                            // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.link"
-                                defaultMessage="Link"
-                              />
-                            }
+                            // value={values.taskName}                 
                             component={InputComponent}
                             isColumn
                             width={"100%"}
                             inlineLabel
                           />
-                      </div>
-                
-                 
-                  
-                
+                      </div>               
                   <div class=" flex justify-between mt-3">
                     {values.taskTypeId === "TSK52434477391272022" && (
                       <div class=" w-1/2 font-bold">
@@ -1419,8 +1079,7 @@ const [priority,setpriority]=useState(props.selectedTask
                           <div>
                           <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Set Reminder </div>
                           </div>
-                          <div>
-                            {/* <FlexContainer justifyContent="space-between"> */}
+                          <div>                  
                             <Switch
                               onChange={handleReminderChange}
                               checked={reminder}
@@ -1496,7 +1155,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     "Update"
                   ) : (
                     // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="Create" />
+                    <div className="font-poppins font-bold text-xs">   {translatedMenuItems[12]}</div>
                   )}
                 </Button>
               </div>

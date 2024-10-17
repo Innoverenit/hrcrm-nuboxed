@@ -34,22 +34,22 @@ class OrganizationDocumentTab extends Component {
       <>
         <div class=" flex flex-no-wrap" >
         <div class=" w-full" >
-          <TabsWrapper style={ {height:"80vh"}}>
+          <TabsWrapper style={ {height:"83vh"}}>
             <StyledTabs defaultActiveKey="0" onChange={this.handleTabChange}>
            
               <TabPane
                 tab={
                   <>
                   
-                    <span style={{ marginLeft: "0.25em" }}>Document</span>
+                    <span class=" ml-1">Document</span>
                     {(activeKey === "1" && this.props.user.repositoryCreateInd === true || this.props.user.role === "ADMIN") && (
                     <>
-                       <PlusOutlined
+                       <PlusOutlined className=" ml-1  flex items-center text-sm"
                         type="plus"
                         tooltipTitle="Add"
                          onClick={() => this.props.handleOrganizationDocumentDrawer(true)}
-                        size="14px"
-                        style={{ marginLeft: "0.25", verticalAlign: "center" }}
+                     
+                       
                       />
                     </>
                   )}
@@ -59,7 +59,9 @@ class OrganizationDocumentTab extends Component {
               >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <OrganizationDocumentList/>
+                <OrganizationDocumentList
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}/>
                 </Suspense>
               </TabPane>
 

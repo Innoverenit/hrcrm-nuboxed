@@ -22,15 +22,16 @@ const PhoneScanner = (props) => {
             {phnstr ? <div class=" bg-white overflow-y-auto max-sm:h-[68vh]">
                 <div className=' mt-2 ml-3 max-sm:flex flex md:flex-col max-sm:justify-around'>
                     <div class="">
+                    <div class=" flex mt-1">
+                            <span className=' font-bold'>IMEI :</span> {props.phoneDetails.imei}
+                        </div>
                         <div class=" flex mt-1">
                             <span className=' font-bold'>OEM :</span> {props.phoneDetails.company}
                         </div>
                         <div class=" flex mt-1">
                             <span className=' font-bold'>Model :</span> {props.phoneDetails.model}
                         </div>
-                        <div class=" flex mt-1">
-                            <span className=' font-bold'>IMEI :</span> {props.phoneDetails.imei}
-                        </div>
+                        
                         <div class=" flex mt-1">
                             <span className=' font-bold'>OS :</span> {props.phoneDetails.os}
                         </div>

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader} from "../../Components/Placeholder";
 import { setEmployeeViewType, handleEmployeeModal, getEmployeelist} from "./EmployeeAction";
+
 const EmployeesHeader = lazy(() => import("./Child/EmployeesHeader"));
 const AddEmployeeModal = lazy(() => import("./Child/AddEmployeeModal"));
 const EmployeeCardView = lazy(() => import("./Child/EmployeeCard/EmployeeCardView"));
@@ -73,6 +74,7 @@ class Employees extends Component {
     } = this.props;
     return (
       <React.Fragment>
+        <Suspense fallback={<BundleLoader />}>
         <EmployeesHeader
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
@@ -98,9 +100,11 @@ class Employees extends Component {
           addEmployeeModal={addEmployeeModal}
           handleEmployeeModal={handleEmployeeModal}
         />
-       <Suspense fallback={<BundleLoader />}>
+     
         { this.props.viewType==="tile"?
         <EmployeeCardView
+        translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         filteredData={this.state.filteredData}
         filter={this.state.filter}
            viewType={viewType}

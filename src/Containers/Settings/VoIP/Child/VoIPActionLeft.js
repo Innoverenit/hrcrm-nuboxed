@@ -1,10 +1,9 @@
 import React from 'react'
-import { ActionIcon } from "../../../../Components/Utils";
-import { FlexContainer } from '../../../../Components/UI/Layout'
+
 
 const VoIPActionLeft = (props) => {
     return (
-        <FlexContainer alignItems='center'>
+        <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
             {/* <ActionIcon
                 style={{ marginRight: '0.5rem', color: props.viewType === 'grid' && '#1890ff' }}
                 iconType='appstore-o'
@@ -17,7 +16,7 @@ const VoIPActionLeft = (props) => {
                 tooltipTitle='Table VIEW'
                 handleIconClick={() => props.setVoIPViewType('table')}
             /> */}
-        </FlexContainer>
+        </div>
     )
 }
 

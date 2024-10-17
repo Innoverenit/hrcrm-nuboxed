@@ -15,7 +15,7 @@ import {
   getLocationList
 } from "../AccountAction";
 import { DeleteOutlined } from "@ant-design/icons";
-import moment from "moment";
+import dayjs from "dayjs";
 import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
@@ -36,7 +36,7 @@ function QuotationDetailsCardList(props) {
 
   useEffect(() => {
     props.getBrand();
-    props.getQuotationExcelDetails(props.orderDetailsId.orderId);
+    props.getQuotationExcelDetails(props.orderDetailsId.quotationId);
     props.getCategorylist();
     props.getAllProductList();
     props.getSupplierSuppliesQuality();
@@ -104,7 +104,7 @@ function QuotationDetailsCardList(props) {
   const handleUpdate = (id) => {
     const data = {
       model: brand,
-      orderPhoneId: props.orderDetailsId.orderId,
+      orderPhoneId: props.orderDetailsId.quotationId,
       brandId: model,
       unit: newUnitName,
       specs: specs,
@@ -130,7 +130,7 @@ function QuotationDetailsCardList(props) {
 
   return (
     <>
-      <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className="flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className="md:w-[7.4rem]">
             <FormattedMessage id="app.category" defaultMessage="Category" />

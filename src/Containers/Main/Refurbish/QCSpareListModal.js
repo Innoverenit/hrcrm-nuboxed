@@ -11,7 +11,7 @@ const QCSpareListModal = (props) => {
   const drawerWidth = isSmallScreen ? "90%" : "60%";
   return (
     <>
-      <Modal
+      <StyledDrawer
       title={props.RowData.imei}
     
         width={drawerWidth}
@@ -19,7 +19,7 @@ const QCSpareListModal = (props) => {
         destroyOnClose
         closable
         placement="right"
-        onCancel={() => handleSpareList(false)}
+        onClose={() => handleSpareList(false)}
       >
         <Suspense fallback={<BundleLoader />}>
         <AddingQCSpareList
@@ -27,7 +27,7 @@ const QCSpareListModal = (props) => {
                         RowData={RowData}
                     />
         </Suspense>
-      </Modal>
+      </StyledDrawer>
     </>
   );
 };

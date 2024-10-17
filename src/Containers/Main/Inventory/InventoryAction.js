@@ -3,7 +3,7 @@ import { base_url } from "../../../Config/Auth";
 import { base_url2 } from "../../../Config/Auth";
 import Swal from "sweetalert2";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 
 export const setInventoryViewType = (viewType) => (dispatch) =>
@@ -1872,12 +1872,12 @@ export const handleStockUsedDrawer = (modalProps) => (dispatch) => {
   });
 };
 
-export const getRoomRackByLocId = (locationId, orgId) => (dispatch) => {
+export const getRoomRackByLocId = (locationDetailsId, orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ROOM_RACK_BY_LOCID_REQUEST,
   });
   axios
-    .get(`${base_url2}/roomrack/roomAndRackDetails/${locationId}/${orgId}`, {
+    .get(`${base_url2}/roomrack/allChamberDetails/${locationDetailsId}/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1896,12 +1896,12 @@ export const getRoomRackByLocId = (locationId, orgId) => (dispatch) => {
       });
     });
 };
-export const updateRoomRackId = (data, roomRackId) => (dispatch) => {
+export const updateRoomRackId = (data, roomRackChamberLinkId) => (dispatch) => {
   dispatch({
     type: types.UPDATE_ROOM_RACK_ID_REQUEST,
   });
   axios
-    .put(`${base_url2}/roomrack/update/${roomRackId}`, data, {
+    .put(`${base_url2}/roomrack/update/roomRackChamberLink/${roomRackChamberLinkId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2269,5 +2269,282 @@ export const moveRejectToggle = (productionProductId,cellChamberLinkId) => (disp
         payload: err,
       });
       // message.error("Something went wrong");
+    });
+};
+
+export const handleInventoryexpand = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVENTORY_EXPAND,
+    payload: modalProps,
+  });
+};
+
+export const handleInventoryTask = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVENTORY_TASK,
+    payload: modalProps,
+  });
+};
+
+export const searchOpenOrdeReceived = (imei) => (dispatch) => {
+  dispatch({
+    type: types.SEARCH_OPEN_ORDER_RECEIVED_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/search/${imei}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // message.success(res.data.message);
+
+      dispatch({
+        type: types.SEARCH_OPEN_ORDER_RECEIVED_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+     
+      dispatch({
+        type: types.SEARCH_OPEN_ORDER_RECEIVED_FAILURE,
+        payload: err,
+      });
+    });
+}; 
+export const ClearReducerData= () => (dispatch) => {
+  dispatch({
+    type: types.CLAER_REDUCERS_DATA,
+  });
+}
+
+
+
+export const getMaterialBestBefore = (locationDetailsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_BEST_BEFORE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getBestBeforeItemlist/${locationDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_MATERIAL_BEST_BEFORE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_BEST_BEFORE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getMaterialDamagedData = (locationDetailsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_DAMAGE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/dameged/supplies/${locationDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_MATERIAL_DAMAGE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_DAMAGE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const addToWaste = (customer) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_TO_WASTE_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/waste/moveToWaste`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      // })
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      //   showConfirmButton: false,
+      //   // timer: 1500
+      // })
+      console.log(res);
+      // dispatch(
+      //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
+      // );
+      // message.success(res.data.message)
+   
+
+      dispatch({
+        type: types.ADD_TO_WASTE_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_TO_WASTE_FAILURE,
+        payload: err,
+      });
+      message.error(err.data.message)
+      // cb && cb();
+    });
+};
+
+
+
+
+export const addRepairData = (documents,poSupplierSuppliesId, cb) => (dispatch) => {
+  console.log(documents);
+  dispatch({
+    type: types.ADD_REPAIR_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/po/rePacked/damagedItem/${poSupplierSuppliesId}`, documents, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+    
+      
+      // dispatch(getDocuments());
+      //dispatch(getRegionCount(orgId));
+      console.log(res);
+      dispatch({
+        type: types.ADD_REPAIR_DATA_SUCCESS,
+        payload: res.data
+        
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_REPAIR_DATA_FAILURE,
+      });
+      cb();
+    });
+};
+
+
+
+export const addDamagedCredit = (documents,poSupplierSuppliesId, cb) => (dispatch) => {
+  console.log(documents);
+  dispatch({
+    type: types.ADD_DAMAGED_CREDIT_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/po/creditNote/${poSupplierSuppliesId}`, documents, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+    
+      
+      // dispatch(getDocuments());
+      //dispatch(getRegionCount(orgId));
+      console.log(res);
+      dispatch({
+        type: types.ADD_DAMAGED_CREDIT_SUCCESS,
+        payload: res.data
+        
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_DAMAGED_CREDIT_FAILURE,
+      });
+      cb();
+    });
+};
+
+
+
+
+export const addAsileInbest = (customer,poSupplierS7ppliesId) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_ASILE_IN_BEST_REQUEST,
+  });
+
+  axios
+    .put(`${base_url}/po/updateBestBefore/roomRack/${poSupplierS7ppliesId}`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      // })
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      //   showConfirmButton: false,
+      //   // timer: 1500
+      // })
+      console.log(res);
+      // dispatch(
+      //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
+      // );
+      // message.success(res.data.message)
+   
+
+      dispatch({
+        type: types.ADD_ASILE_IN_BEST_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_ASILE_IN_BEST_FAILURE,
+        payload: err,
+      });
+      message.error(err.data.message)
+      // cb && cb();
     });
 };

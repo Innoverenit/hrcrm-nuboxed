@@ -38,6 +38,9 @@ class ContactHeader extends Component {
               // handleChoiceChange={this.props.handleChoiceChange}
               selectedCountry={this.props.selectedCountry}
               handleCountryChange={this.props.handleCountryChange}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
             />
           }
           rightComponent={
@@ -48,6 +51,9 @@ class ContactHeader extends Component {
             handleDropChange={this.props.handleDropChange}
             currentPartnerUser={this.props.currentPartnerUser}
             handlePartnerDropChange={this.props.handlePartnerDropChange}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}
             />
           }
         />

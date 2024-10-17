@@ -89,7 +89,7 @@ const {
                         }}
                     >
 
-                        <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#28a355" }}>
                             <TocIcon className="text-white" /></Avatar>
 
                     </span>

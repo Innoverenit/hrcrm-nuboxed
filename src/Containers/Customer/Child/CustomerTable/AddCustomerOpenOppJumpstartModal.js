@@ -23,6 +23,9 @@ class AddCustomerOpenOppJumpstartModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
             <CustrOpenOpportunityJumpstartCardList 
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}
           customer={this.props.customer} 
            
             />

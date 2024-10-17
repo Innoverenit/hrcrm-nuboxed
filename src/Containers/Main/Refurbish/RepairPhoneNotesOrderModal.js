@@ -4,7 +4,6 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ErpNote from "../ErpNote/ErpNote";
-const RepairPhoneNotesOrderForm = lazy(() => import("./RepairPhoneNotesOrderForm"));
 
 const RepairPhoneNotesOrderModal = (props) => {
     const { RowData, ...formProps } = props;

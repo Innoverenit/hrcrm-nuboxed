@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
-import SuppliersActionLeft from "./SuppliersActionLeft";
-import SuppliersActionRight from "./SuppliersActionRight";
-
+import { BundleLoader } from "../../../Components/Placeholder";
+const SuppliersActionRight =lazy(()=>import("./SuppliersActionRight"));
+const SuppliersActionLeft =lazy(()=>import("./SuppliersActionLeft"));
 class SuppliersHeader extends Component {
     render() {
         const {
@@ -16,6 +16,7 @@ class SuppliersHeader extends Component {
             <div>
                 <ActionHeader
                     leftComponent={
+                        <Suspense fallback={<BundleLoader />}>
                         <SuppliersActionLeft
                             viewType={viewType}
                             setSuppliersViewType={setSuppliersViewType}
@@ -25,14 +26,17 @@ class SuppliersHeader extends Component {
                             translateText={this.props.translateText}
                             translatedMenuItems={this.props.translatedMenuItems}
                             selectedLanguage={this.props.selectedLanguage}
-                        />
+                        /></Suspense>
                     }
-                    rightComponent={<SuppliersActionRight
-                        viewType={viewType}
-                        translateText={this.props.translateText}
+                    rightComponent={
+                        <Suspense fallback={<BundleLoader />}>
+                        <SuppliersActionRight
+                            viewType={viewType}
+                            translateText={this.props.translateText}
                             translatedMenuItems={this.props.translatedMenuItems}
                             selectedLanguage={this.props.selectedLanguage}
-                        />}
+                        /></Suspense>
+                        }
                 />
             </div>
         );

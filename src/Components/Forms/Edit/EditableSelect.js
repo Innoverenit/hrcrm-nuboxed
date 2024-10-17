@@ -1,7 +1,5 @@
 import React from "react";
-import { get } from "lodash";
-import { FlexContainer } from "../../UI/Layout";
-import { SelectInput, ValidationError, StyledLabel } from "../../UI/Elements";
+import { SelectInput, ValidationError } from "../../UI/Elements";
 const Option = SelectInput.Option;
 const EditableSelect = ({
   field,
@@ -15,13 +13,7 @@ const EditableSelect = ({
   placeholder,
   ...props
 }) => {
-  // function handleChange(value) {
-  //     console.log(`selected ${value}`);
-  //     setFieldValue(field.name, value)
-  // }
-  // function handleBlur(value) {
-  //     props.onBlur(field.name, true)
-  // }
+
   return (
     <SelectInput
       {...props}

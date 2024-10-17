@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { List, Avatar, Spin, Button } from "antd";
 import dayjs from "dayjs";
 import { getPastNotifications, updateNotifcation } from "../NotificationAction";
-import moment from "moment";
 
 class PastNotification extends Component {
   constructor(props) {
@@ -112,7 +111,7 @@ class PastNotification extends Component {
                             item.notificationReadInd === true ? "grey" : "white"
                         }}
                       >
-                        {moment(item.notificationDate).format("LLL")}
+                        {dayjs(item.notificationDate).format("LLL")}
                       </h4>
                     }
                     onClick={

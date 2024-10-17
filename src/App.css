@@ -54,41 +54,10 @@
   }
 }
 
-/* .ant-picker {
-  box-sizing: border-box;
-  box-shadow: 0 0.25em 0.62em #aaa;
-  height: 1.48rem;
-  margin: 0 0 0.42rem 0;
-  width: -webkit-fill-available;
-  color: rgba(0, 0, 0, 0.85);
-  font-size: 0.75rem;
-  font-variant: tabular-nums;
-  line-height: 1.5715;
-  list-style: none;
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  background: #fff;
-  border: 0.0625em solid #d9d9d9;
-  border-radius: 2px;
-  transition: border 0.3s, box-shadow 0.3s;
-} */
-/* 
-.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-  height: 1.48rem;
-} */
+
 .ant-select-selection.ant-select-selection--single {
-  height: 1.48rem;
+  height: 1.88rem;
 }
-/* .stages {
-  box-shadow: 0 0.8125em 1.6875em -0.3125em rgba(118, 118, 184, 0.432);
-  background-color: #09bc8b;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: -0.3125em;
-} */
 
 .avatar {
   justify-content: "center";
@@ -113,19 +82,20 @@
 .edit_hover_class:hover {
   visibility: visible;
 }
+@layer base {
+  ::-webkit-scrollbar {
+    width: 5px; 
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 2px; 
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+  
+}
 
-/* .details {
-  width: 12.9375em;
- 
-  box-shadow: 0 0.8125em 1.6875em -0.3125em rgba(50, 50, 93, 0.25);
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: -0.3125em;
-  margin-left: 0.5em;
-} */
 
 
 
@@ -141,16 +111,9 @@
   border-radius: 3px;
   background-color: #1890ff;
   border-color: #1890ff;
+  background-image: linear-gradient(90deg, #5b96ce, #92c3f0);
 }
-/* a {
-  color: #24d8a7;
-  text-decoration: none;
-  background-color: transparent;
-  outline: none;
-  cursor: pointer;
-  transition: color 0.3s;
-  -webkit-text-decoration-skip: objects;
-} */
+
 
 .antbtn1 {
   background-color: teal;
@@ -210,7 +173,7 @@
   border: 1px solid #d9d9d9;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  height: 1.48rem;
+  height: 1.88rem;
 }
 
 .ant-avatar-lg {
@@ -334,7 +297,7 @@
   position: relative;
   display: inline-block;
   width: -webkit-fill-available;
-  height: 26px;
+  height: 1.44rem;
   min-width: 0;
   padding: 4px 11px;
   color: rgba(0, 0, 0, 0.85);
@@ -370,20 +333,20 @@
 }
 
 .ant-select-selection__rendered {
-  height: 1.48rem;
+  height: 1.88rem;
 }
 .ant-select-selection {
-  height: 1.48rem;
+  height: 1.88rem;
 }
 
 
 .ant-select-selection--multiple {
-  height: 1.48rem;
+  height: 1.88rem;
 }
 .ant-select {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  height: 1.48rem;
+  height: 1.88rem;
   width: 100%;
   font-size: 0.75rem;
   box-shadow: 0em 0.25em 0.625em -0.25em #aaa;
@@ -427,7 +390,7 @@ style attribute {
 
 .ant-select:not(.ant-select-customize-input) .ant-select-selector {
   position: relative;
-  height: 1.48rem;
+  height: 1.88rem;
   font-family: "Poppins";
   margin: 0 0 0.42rem 0.1rem;
   box-shadow: 0 0.25em 0.62em #aaa;
@@ -439,8 +402,9 @@ style attribute {
 
 .ant-select-selectors {
   position: relative;
-  height: 1.48rem;
+  height: 1.88rem;
   font-family: "Poppins";
+  font-size: 0.75rem;
   margin: 0 0 0.42rem 0.1rem;
   box-shadow: 0 0.25em 0.62em #aaa;
   background-color: #fff;
@@ -459,8 +423,9 @@ style attribute {
 }
 .customize-select {
   position: relative;
-  height: 1.48rem;
+  height: 1.88rem;
   font-family: "Poppins";
+  font-size: 0.75rem;
   margin: 0 0 0.42rem 0.1rem;
   box-shadow: 0 0.25em 0.62em #aaa;
   background-color: #fff;
@@ -535,37 +500,23 @@ iframe#webpack-dev-server-client-overlay {
 }
 
 .ant-avatar {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  color: #fff;
-  font-size: 0.875rem;
-  line-height: 1.8rem;
-  list-style: none;
-  font-family: poppins;
-  position: relative;
-  display: inline-block;
+
   overflow: hidden;
-  white-space: nowrap;
-  text-align: center;
-  vertical-align: middle;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid transparent;
   width: 1.8rem;
   height: 1.8rem;
-  border-radius: 50%;
+
 }
 
 .ant-btn-primary {
   color: #fff;
-  height: 1.58rem;
-  font-size: 0.8125em;
+  height: 1.8rem;
+  font-size: 0.8rem;
   border-color: #fff;
   padding: 3px 8px;
   color: white;
   border-radius: 0.3rem;
   box-shadow: grey 1px 2px 0px 0px;
-  background-image: linear-gradient(180deg, tomato, orange);
+  background-image: linear-gradient(90deg, tomato, #ffb600e0);
   transition: background-image 0.3s ease; /* Add transition for smooth effect */
 }
 .ant-btn-primary:hover {
@@ -575,9 +526,9 @@ iframe#webpack-dev-server-client-overlay {
 .ant-btn-cancel {
   color: #fff;
   height: 1.58rem;
-  font-size: 0.8125em;
+  font-size: 0.55em;
   border-color: #fff;
-  padding: 3px 8px;
+  padding: 2px 1px;
   color: white;
   border-radius: 0.3rem;
   box-shadow: grey 1px 2px 0px 0px;
@@ -806,3 +757,44 @@ iframe#webpack-dev-server-client-overlay {
 .scroller {  
 scrollbar-width: thin;
 }
+
+.ant-modal .ant-modal-footer {
+  display: none;
+}
+
+.flip {
+  transform: rotateY(180deg);
+}
+
+
+
+.custom-image-gallery {
+  display: flex;
+  flex-wrap: wrap; /* Allow the images to wrap if they don't fit on one line */
+  gap: 10px; /* Add space between the images */
+}
+
+.gallery-item {
+  width: 120px;  /* Set the size of each image */
+  height: 120px; /* Keep the images square */
+  overflow: hidden;
+  border: 2px solid transparent; /* Default border for images */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Make sure the images fit properly */
+}
+
+.highlight {
+  border: 2px solid red; /* Highlight the primary image with a red border */
+  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5); /* Optional: Add a shadow effect to the highlighted image */
+}
+
+
+
+
+
+
+

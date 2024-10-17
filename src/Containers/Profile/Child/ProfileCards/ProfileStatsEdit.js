@@ -164,7 +164,7 @@ class ProfileStatsEdit extends Component {
             value={this.state.fields.level}
             width="17.625em"
           />
-          <Spacer style={{ margin: "0.125em" }} /> */}
+          <div class=" mt-3" style={{ margin: "0.125em" }} /> */}
           <div class=" w-full m-[0.125em]">
             <EditableSearcSelect
               defaultValue={{

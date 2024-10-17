@@ -18,6 +18,7 @@ import DragableUpload from "../../../../Components/Forms/Formik/DragableUpload";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import HospitalDocument from "./HospitalDocument";
+import {base_url} from "../../../../Config/Auth";
 
 const { Option } = Select;
 const ButtonGroup = Button.Group;
@@ -41,7 +42,7 @@ function DocumentUpload (props){
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -202,7 +203,7 @@ console.log(props.currentContactId.contactId)
                     />
                   </div>
                   {/* <div class="mt-1 flex flex-col" >
-<label className=" font-bold text-xs" >Include</label>
+<div className=" font-bold text-xs" >Include</div>
                    <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}
@@ -224,7 +225,7 @@ console.log(props.currentContactId.contactId)
        <div className="mt-1 flex flex-col">
       
       <div className="flex items-center">
-      <label className="font-bold text-xs">Share</label>
+      <div className="font-bold text-xs">Share</div>
         <Switch
           checked={showInclude}
           onChange={handleToggleInclude}
@@ -235,7 +236,7 @@ console.log(props.currentContactId.contactId)
       </div>
       {showInclude && ( // Conditionally render based on showInclude state
       <div className="mt-1 flex flex-col">
-      <label className="font-bold text-xs">Include</label>
+      <div className="font-bold text-xs">Include</div>
         <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}
@@ -258,7 +259,7 @@ console.log(props.currentContactId.contactId)
     </div>
                   <div class=" mt-3">
                     {!documentshare && (
-                      <p>Will be shared with customer Owner</p>
+                      <p>Will be  with customer Owner</p>
                     )}
                   </div>
                   <div class=" mt-3">

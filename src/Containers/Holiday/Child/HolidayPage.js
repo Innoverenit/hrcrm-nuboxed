@@ -23,7 +23,7 @@ class HolidayPage extends React.Component {
   }
   componentDidMount() {
     const currentYear = new Date().getFullYear();
-    // const country=this.props.address && this.props.address.length && this.props.address[0].country
+    
     this.props.getHolidayyear(this.props.workplace,currentYear);
   }
   handleChangeHolidayTime = (checked) => {
@@ -133,8 +133,7 @@ console.log(this.props.holidaysYear)
                 <DatePicker 
                 //  format="YYYY"
                 defaultValue={dayjs(currentYear, 'YYYY')}
-                // value={this.state.selectedYear ? dayjs(this.state.selectedYear, 'YYYY') : null}
-                    //  value={selectedYear}
+                
                  onChange={this.onChange}
                   picker="year" />
                  </div>
@@ -144,56 +143,8 @@ console.log(this.props.holidaysYear)
           <div>{firstItem.userOptnlHolidayApplied}/{firstItem.orgOptnlHoliday}</div>
         </>
       )}
-    </div>
-                 {/* {this.props.holidaysYear.map((item, i) => (
-                  <>
-                  <div>{item.userOptnlHolidayApplied}/{item.orgOptnlHoliday} </div>
-                  
-                  </>
-                ))} */}
-              {/* <div
-                style={{
-                  marginLeft:"326px"
-                }}>
-                Mandatory-10
-              </div> */}
-              </div>
-            
-              {/* <FlexContainer
-                justifyContent="space-between"
-                style={{ fontSize: "1.2em", fontWeight: "bold" }}
-              >
-                <div style={{ marginLeft: "1.4375em" }}>Name</div>
-                <div style={{ marginLeft: "5.375em" }}>Date</div>
-                <div style={{ marginRight: "8.4375em" }}>Type</div>
-              </FlexContainer> */}
-
-
-
-              {/* {this.props.role === "ADMIN" && (
-                <div>
-                {this.props.holidays.map((item, i) => (
-                  <SingleHoliday
-                    holidays={item}
-                    newHolidayName="holidayName"
-                    handleUpdateHoliday={this.handleUpdateHoliday}
-                  />
-                ))}
-                </div>
-              )}
-
-          
-              {this.props.role !== "ADMIN" && (
-                <div>
-                {this.props.holidays.map((item, i) => (
-                  <SingleHoliday2
-                    holidays={item}
-                    newHolidayName="holidayName"
-                    handleUpdateHoliday={this.handleUpdateHoliday}
-                  />
-                ))}
-                </div>
-              )} */}
+    </div>              
+              </div>                                  
               <div>
                 {this.props.holidaysYear.map((item, i) => (
                   <SingleHoliday
@@ -204,73 +155,7 @@ console.log(this.props.holidaysYear)
                   />
                 ))}
               </div>
-
-              {/* {isTextInputOpen ? (
-                <FlexContainer alignItems="left" style={{ marginTop: "5%", justifyContent:"space-between" }} >
-                
-                  <div >
-                  <TextInput
-                    placeholder="Holiday name"
-                    name="holidayName"
-                    value={this.state.holidayName}
-                    onChange={this.handleChange}
-                    width={"85%"}
-                  />
-                  </div>
-                  <div>
-                  <DatePicker onChange={this.onChangeDatePicker} />
-                  </div>
-                  <div>
-                  <Switch
-                    style={{ width: "6.25em", marginLeft: "0.625em" }}
-                    onChange={this.handleChangeHolidayTime}
-                    checked={this.state.holidayType}
-                    checkedChildren="Optional"
-                    unCheckedChildren="Mandatory"
-                  />
-                  </div>
-                  <FlexContainer justifyContent="flex-end" >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      Loading={this.props.addingHoliday}
-                      onClick={this.handleAddStage}
-                    >
-                    
-                      <FormattedMessage
-                    id="app.save"
-                    defaultMessage="Save"
-                   />
-                    </Button>
-                    &nbsp;
-                    <Button type="primary" ghost onClick={this.handleCancel}>
-                   
-                      <FormattedMessage
-                 id="app.cancel"
-                 defaultMessage="Cancel"
-                />
-                    </Button>
-                  </FlexContainer>
-                </FlexContainer>
-              ) : (
-                  <FlexContainer style={{ float: "right" }} alignItems="flex-end">
-                    {this.props.role === "ADMIN" && (
-                      <div style={{ marginTop: "0.3125em" }}>
-                        <Button
-                          style={{
-                            border: "0.0625em solid #1890ff",
-                            color: "#1890ff",
-                          }}
-                          htmlType="submit"
-                          onClick={this.toggleInput}
-                        >
-                          Add Holiday
-                    </Button>
-                    &nbsp;
-                      </div>
-                    )}
-                  </FlexContainer>
-                )} */}
+             
             </MainWrapper>
           </div>
         </div>

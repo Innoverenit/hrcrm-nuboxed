@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import { FormattedMessage } from "react-intl";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
@@ -94,7 +94,7 @@ function EditRecruitForm(props) {
                     marginTop: "0.25em",
                   }}
                 />
-                <Spacer />
+                <div class=" mt-3" />
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "46%" }}>
                     {" "}
@@ -155,7 +155,7 @@ function EditRecruitForm(props) {
                   </div>
                 </FlexContainer>
 
-                <Spacer />
+                <div class=" mt-3" />
               </div>
               &nbsp;
               <div
@@ -164,7 +164,7 @@ function EditRecruitForm(props) {
                 }}
               ></div>
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer justifyContent="flex-end">
               <Button
                 type="primary"

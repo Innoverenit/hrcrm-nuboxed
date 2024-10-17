@@ -1,4 +1,4 @@
-import React, {lazy} from "react";
+import React, {lazy, Suspense} from "react";
 const InvestorOverviewCard =lazy(()=> import("./InvestorCards/InvestorOverviewCard"));
 const InvestorExtraDetailCard =lazy(()=> import("./InvestorCards/InvestorExtraDetailCard"));
 const InvestorDetailCard =lazy(()=> import("./InvestorCards/InvestorDetailCard"));
@@ -8,9 +8,17 @@ function InvestorDetailLeft(props) {
     return (
       <>
         <div class=" flex flex-col">
-           <InvestorOverviewCard investorDetails={investorDetails} />
-       <InvestorExtraDetailCard investorDetails={investorDetails} />         
-          <InvestorDetailCard investorDetails={investorDetails} /> 
+        < Suspense fallback={"Loading..."}>
+           <InvestorOverviewCard investorDetails={investorDetails}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage} />
+       <InvestorExtraDetailCard investorDetails={investorDetails} 
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}/>         
+          <InvestorDetailCard investorDetails={investorDetails}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage} /> 
+           </Suspense>
         </div>
       </>
     );

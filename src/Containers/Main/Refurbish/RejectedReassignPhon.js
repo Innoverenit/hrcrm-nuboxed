@@ -43,7 +43,7 @@ const RejectedReassignPhon = (props) => {
                 <>
                     <div class="mt-[10px] flex justify-between">
                         <div class=" w-1/5">
-                            <label class="text-[15px] font-semibold m-[10px]">Department</label>
+                            <div class="text-[15px] font-semibold m-[10px]">Department</div>
                             <Select
                                 className="w-[350px]"
                                 value={department}
@@ -55,7 +55,7 @@ const RejectedReassignPhon = (props) => {
                             </Select>
                         </div>
                         <div class=" w-1/5">
-                            <label class="text-[15px] font-semibold m-[10px]">Technician</label>
+                            <div class="text-[15px] font-semibold m-[10px]">Technician</div>
                             <Select
                                 className="w-[350px]"
                                 value={technician}
@@ -68,7 +68,7 @@ const RejectedReassignPhon = (props) => {
                         </div>
 
                         <div class=" w-1/5">
-                            <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
+                            <div class="text-[15px] font-semibold m-[10px]">Due Date</div>
                             <DatePicker
                                 className="w-[250px]"
                                 value={dueDate}
@@ -105,7 +105,7 @@ const RejectedReassignPhon = (props) => {
                         </div>
 
                         <div class=" w-1/5">
-                            <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
+                            <div class="text-[15px] font-semibold m-[10px]">Due Date</div>
                             <DatePicker
                                 className="w-[250px]"
                                 value={dueDate}

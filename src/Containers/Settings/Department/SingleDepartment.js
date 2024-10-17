@@ -343,7 +343,7 @@ const SingleDepartment = (props) => {
           cardViewType === "view" ? (
             <div className="flex">
               <div className="w-full flex-row">
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <div className="w-[11%]">
                   <div class=" font-semibold" >{departmentName}&nbsp;&nbsp;&nbsp;
             {date === currentdate ?<span class="text-xs text-[tomato] font-bold"
@@ -386,7 +386,7 @@ const SingleDepartment = (props) => {
 
 {moduleMapper.financeInd === true && (
   <>
-  <div class=" flex">
+  <div class=" flex items-center">
                     <div class=" text-xs w-[4.5rem] ml-4">Accounting</div>
                     <div   class=" w-[7%]">
                     <Popconfirm

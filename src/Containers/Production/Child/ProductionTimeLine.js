@@ -51,8 +51,8 @@ const Component2 = (props) => {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "Steps",//0
-              "Add Parts",//1
+           "1156", //  "Steps",//0
+           "1054" //   "Add Parts",//1
           
           
            
@@ -129,7 +129,7 @@ const Component2 = (props) => {
                                             </Button>
 
                                             <ControlCameraIcon
-                              className=" !text-icon cursor-pointer text-[#4bc076]"
+                              className=" !text-icon cursor-pointer text-[#28a355]"
                               onClick={() => {
                                 props.addSpareNotesModal(true);
                                 handleSteps(step);

@@ -4,7 +4,6 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import RecruitCommunicationForm from "./RecruitCommunicationForm";
 import OutReachForm from "./OutReachForm";
 import JobPortalForm from "./JobPortalForm";
 
@@ -16,13 +15,13 @@ function RecruitSourcingTab(props) {
       <TabsWrapper>
         <StyledTabs defaultActiveKey="1" type="card">
         <TabPane tab={`Out reach`} key="1">
-                        <div style={{ marginTop: 10 }}>
+                        <div className="mt-10">
                             <OutReachForm />
                                                   
                         </div>
                     </TabPane>
         <TabPane tab={`Job Portal`} key="2">
-                        <div style={{ marginTop: 10 }}>
+                        <div className="mt-10">
                             <JobPortalForm/>
                         
                         </div>

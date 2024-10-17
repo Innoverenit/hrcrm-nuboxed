@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
@@ -15,8 +15,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import SearchedDataDeal from "../../../SearchedDataDeal";
-
+const SearchedDataDeal =lazy(()=>import("../../../SearchedDataDeal"));
 const ButtonGroup = Button.Group;
 
 const DealsAllCardList = (props) => {
@@ -31,15 +30,16 @@ const DealsAllCardList = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [  
-         " Name",//0
-          "Investor",//1
-          "Sponsor",//2
-          "Start Date",//3
-          "Values",//4
-          "Stages",//5
-          "Sales Rep",//6
-          "Owner",//7
-          "Action",//8
+          "110",//0  Name
+          "511",//1 Investor
+          "216",//2 Sponsor
+          "176",//3 Start Date
+          "1159",//4 Values
+          "219",//5 Stages
+          "76",//6 assigned
+          "77",//7 Owner
+          "9",//8 Action
+         "100" // New
         ];
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -97,45 +97,46 @@ const DealsAllCardList = (props) => {
     dealSerachedData={props.dealSerachedData}
     />
   ) : (
-      <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[99%] justify-between p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[14.5rem]">
+      <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+      <div className=" flex justify-between w-[95%]">
+          <div className=" font-bold font-poppins text-xs w-[14.5rem] md:w-[11.5rem]">
           {translatedMenuItems[0]}
           {/* name */}
           </div>
-          <div className=" md:w-[13.13rem]">
+          <div className=" font-bold font-poppins text-xs w-[13.13rem] md:w-[9.13rem]">
           {translatedMenuItems[1]}
            {/* investor */}
           </div>
-          <div className=" md:w-[9.2rem] ">
+          <div className="font-bold font-poppins text-xs w-[9.2rem] md:w-[2.2rem] ">
           {translatedMenuItems[2]}
           {/* sponsor */}
          
           </div>
-          <div className="md:w-[6.12rem]">
+          <div className=" font-bold font-poppins text-xs w-[6.12rem] md:w-[7.12rem]">
           {translatedMenuItems[3]}
                      {/* startdate   */}
           </div>
-          <div className="md:w-[7.2rem]">
+          <div className="font-bold font-poppins text-xs md:w-[6.2rem]">
           {translatedMenuItems[4]}
            {/* Value */}       
           </div>
-          <div className="md:w-[4.2rem]">
+          <div className="font-bold font-poppins text-xs md:w-[4.2rem]">
           {translatedMenuItems[5]}
           {/* stages" */}
          
           </div>
-          <div className="md:w-[5.26rem]">
+          <div className="font-bold font-poppins text-xs w-[5.26rem] md:w-[7.1rem]">
           {translatedMenuItems[6]}
             {/* Status */}
             </div>
-          <div className="md:w-[7.21rem]">
+          <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[3rem]">
           {translatedMenuItems[7]}
           {/* Assign To" */}
        
           </div>
-          <div className="md:w-[3rem]">
-          {translatedMenuItems[8]}
+          {/* <div className=" font-bold font-poppins text-xs md:w-[3rem]">
+          {translatedMenuItems[8]} */}
               {/* owner" */}
  </div>
         </div>
@@ -144,7 +145,8 @@ const DealsAllCardList = (props) => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={fetchingAllDealsData ? <div class="flex justify-center">Loading...</div> : null}
-          height={"80vh"}
+          height={"83vh"}
+          style={{ scrollbarWidth: "thin"}}
         >
           {!fetchingAllDealsData && props.allDealsData.length === 0 ? <NodataFoundPage /> : props.allDealsData.map((item, index) => {
             var findProbability = item.probability;
@@ -173,10 +175,11 @@ const DealsAllCardList = (props) => {
             return (
               <div>
               <div
-             className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+             className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
+               <div class="flex max-sm:justify-start max-sm:w-wk max-sm:items-center">
                <div class="flex justify-between">
-                 <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
+                 <div className=" flex  w-[12rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-full">
                    <div className="flex max-sm:w-full items-center">
                      <div>
                        <SubTitle>
@@ -195,23 +198,18 @@ const DealsAllCardList = (props) => {
 
                      <div class="max-sm:w-full w-52" >
                        <Tooltip>
-                         <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
+                         <div class="max-sm:w-full max-sm:justify-start flex md:flex-col">
                                     {/* Name */}
                                     
-                           <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-
-                             {/* <Link
-                                              toUrl={`customer/${item.customerId}`}
-                                              title={`${item.name}`} 
-                                            > */}
+                           <div class="text-xs flex text-blue-500  font-poppins font-semibold  ">                            
                              {item.opportunityName}
                              {/* </Link> */}
                              &nbsp;&nbsp;
                              {date === currentdate ? (
-                               <span class="text-[tomato] mt-[0.4rem] font-bold"
+                               <span class="text-[tomato]  text-[0.65rem] mt-[0.4rem] font-bold"
 
                                >
-                                 New
+                                {translatedMenuItems[9]} {/* New */}
                                </span>
                              ) : null}
 
@@ -219,9 +217,12 @@ const DealsAllCardList = (props) => {
                          </div>
                        </Tooltip>
                      </div>
+                     </div>
                    </div>
                  </div>
-                 <div className=" flex  items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 </div>
+                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                 <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs  font-poppins">
                      <Link to="/investor">
@@ -230,7 +231,7 @@ const DealsAllCardList = (props) => {
                    </div>
                  </div>
 
-                 <div className=" flex font-medium  items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex  justify-center h-8 ml-gap bg-[#eef2f9] items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs font-poppins">
                      <SubTitle>
@@ -239,68 +240,72 @@ const DealsAllCardList = (props) => {
                            primaryTitle={item.contactName}
                            imageId={item.imageId}
                            imageURL={item.imageURL}
-                           imgWidth={"1.8em"}
-                           imgHeight={"1.8em"}
+                           imgWidth={"1.8rem"}
+                           imgHeight={"1.8rem"}
                          />
                        }
                      </SubTitle>
                    </div>
                  </div>
-               </div>
-               <div class="flex">
-                 <div className=" flex  items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+              
+             
+                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs justify-center  font-poppins">
                      {dayjs(item.startDate).format("DD/MM/YYYY")}
                    </div>
                  </div>
+</div>
+                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-36 max-sm:flex-row  max-sm:justify-evenly w-wk ">
 
-                 <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-                   <div class=" text-sm  font-poppins text-center">
+                   <div class=" text-xs  font-poppins text-center">
                      <CurrencySymbol currencyType={item.currency} />
                      &nbsp;
                      {item.proposalAmount}
 
                    </div>
+                
+              
                  </div>
-                 <div className=" flex items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-36 max-sm:flex-row w-full max-sm:justify-evenly  ">
 
-                   <div class=" text-xs  font-poppins text-center">
-                     <Dropdown
-                       overlay={
-                         <div>
-                           <Menu mode="horizontal">
-                             <Menu.Item
-                               style={{
-                                 paddingLeft: 5,
-                                 paddingRight: 5,
-                                 backgroundColor: "#F5F5F5",
-                               }}
-                             >
-                             </Menu.Item>
-                           </Menu>
-                         </div>
-                       }
-                       trigger={["click"]}
-                     >
-                       <Tooltip title={item.stageName}>
-                         {" "}
-                         <Progress
-                           type="circle"
-                           style={{ cursor: "pointer", color: "red", fontSize: "0.8rem" }}
-                           percent={findProbability}
-                           width={30}
-                           strokeColor={"#005075"}
-                         />
-                       </Tooltip>
-                     </Dropdown>
-                   </div>
-                 </div>
-                 <div className=" flex items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div class=" text-xs  font-poppins text-center">
+  <Dropdown
+    overlay={
+      <div>
+        <Menu mode="horizontal">
+          <Menu.Item
+            style={{
+              paddingLeft: 5,
+              paddingRight: 5,
+              backgroundColor: "#F5F5F5",
+            }}
+          >
+          </Menu.Item>
+        </Menu>
+      </div>
+    }
+    trigger={["click"]}
+  >
+    <Tooltip title={item.oppStage}>
+      {" "}
+      <Progress
+        type="circle"
+        style={{ cursor: "pointer", color: "red", fontSize: "0.8rem" }}
+        percent={findProbability}
+        width={30}
+        strokeColor={"#005075"}
+      />
+    </Tooltip>
+  </Dropdown>
+</div>
+</div>
+                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
                  {myIndicator}
                  </div>
-                 <div className=" flex  items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                 
+                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
+                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                    <div class=" text-xs  font-poppins">
 
@@ -325,7 +330,7 @@ const DealsAllCardList = (props) => {
 
                    </div>
                  </div>
-                 <div className=" flex  items-center  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
 
                    <span>
                      <MultiAvatar2
@@ -336,7 +341,7 @@ const DealsAllCardList = (props) => {
                      />
                    </span>
                  </div>
-               </div>
+            </div>
              </div>
            </div>
             )

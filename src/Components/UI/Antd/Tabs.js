@@ -7,6 +7,8 @@ const StyledTabs = styled(Tabs)`
     }
     .ant-tabs-bar {
         margin: 0.3rem;
+        font-size: 0.75rem;
+        font-family: poppins;
     }
     .ant-nav-container {
         color: ${props => props.theme.color};

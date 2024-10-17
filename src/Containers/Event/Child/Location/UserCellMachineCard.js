@@ -54,7 +54,7 @@
 //     <>
 //       <div className="flex">
 //         <div className="ml-2">
-//           <label className="block">Machine</label>
+//           <div className="block">Machine</div>
 //           <Autocomplete
 //             multiple
 //             options={props.locationMachine}
@@ -181,7 +181,7 @@ const UserCellMachineCrd = (props) => {
     <>
       <div className="flex">
         <div className="ml-2">
-          {/* <label className="block">Machine</label> */}
+          {/* <div className="block">Machine</div> */}
           <Autocomplete
             multiple
             options={props.locationMachine}

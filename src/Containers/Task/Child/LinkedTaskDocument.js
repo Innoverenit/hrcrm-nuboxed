@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { OnlyWrapCard } from '../../../Components/UI/Layout';
 import { Button, } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
@@ -70,7 +70,7 @@ const LinkedTaskDocument = (props) => {
                                 <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
                                   <div class="text-[0.875rem]  font-poppins">Creation Date</div>
                                   <div class="text-[0.75rem]  font-poppins">
-                                  <span>{` ${moment(item.creationDate).format("ll")}`}</span>
+                                  <span>{` ${dayjs(item.creationDate).format("ll")}`}</span>
                                   </div>
                               </div>
                               <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">

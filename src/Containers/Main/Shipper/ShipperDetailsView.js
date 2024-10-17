@@ -10,6 +10,8 @@ class ShipperDetailView extends Component {
         <Link
           toUrl={`shipper/${this.props.shipperId}`}
           title={`${this.props.name}`}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
       </>
     );

@@ -27,6 +27,8 @@ class AddSupplierDocumentModal extends Component {
             <AddSupplierDocumentForm  supplier={this.props.supplier}
             distributorId={this.props.distributorId}
             shipperId= {this.props.shipperId}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             />
           </Suspense>
         </StyledDrawer>

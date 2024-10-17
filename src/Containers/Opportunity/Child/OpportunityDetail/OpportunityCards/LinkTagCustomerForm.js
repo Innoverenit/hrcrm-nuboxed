@@ -6,7 +6,6 @@ import { Button } from "antd";
 import {linktagCustomer} from "../../../OpportunityAction";
 import { Formik, Form, Field,  } from "formik";
 import { getCustomerListByUserId } from "../../../../Customer/CustomerAction";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 
 /**
@@ -112,7 +111,7 @@ class LinkTagCustomerForm extends Component {
                     style={{ flexBasis: "80%" }}
                   />
                     <br />
-                    <FlexContainer justifyContent="flex-end">
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                       <Button
                         type="primary"
                         htmlType="submit"
@@ -124,7 +123,7 @@ class LinkTagCustomerForm extends Component {
                           defaultMessage="Add"
                         /> 
                       </Button>
-                    </FlexContainer>
+                    </div>
                   </Form>
                 )}
             </Formik>

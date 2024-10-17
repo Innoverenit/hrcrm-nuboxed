@@ -18,11 +18,11 @@ const DeletedLocationCard = (props) => {
       try {
         const itemsToTranslate = [
        
-          "Name",//0
-          "Country",//1
-          "Address",//2
-          "Regions",//3
-          "Reinstate"//4
+        "110",  // "Name",//0
+        "1109",  // "Country",//1
+         "185", // "Address",//2
+       "24",   // "Region",//3
+         "1069" // "Reinstate"//4
          
         ];
 
@@ -57,8 +57,9 @@ const handleLoadMore = () => {
         hasMore={hasMore}
         loader={props.fetchingDeletedLocationHistory?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
       >
-      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+      <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[7.5rem]">
         {translatedMenuItems[0]}
         {/* Name */}
@@ -74,7 +75,7 @@ const handleLoadMore = () => {
         {translatedMenuItems[3]} {/* Regions */}
           </div>
         <div className="md:w-[30.9rem]">
-        {translatedMenuItems[54]}{/* Reinstate */}
+        {translatedMenuItems[4]}{/* Reinstate */}
           </div>
       </div>
       <div class="">

@@ -1,5 +1,7 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
+import { BundleLoader} from "../../../Components/Placeholder";
+
 const EmployeesActionLeft = lazy(() => import("./EmployeesActionLeft"));
 const EmployeesActionRight = lazy(() => import("./EmployeesActionRight"));
 class EmployeesHeader extends Component {
@@ -12,6 +14,7 @@ class EmployeesHeader extends Component {
     return (
       <>
         <div>
+        <Suspense fallback={<BundleLoader/>}>
           <ActionHeader
             leftComponent={
               <EmployeesActionLeft
@@ -39,9 +42,10 @@ class EmployeesHeader extends Component {
               handleEmployeeModal={handleEmployeeModal} />
             }
           />
+          </Suspense>
         </div>
 
-        <div></div>
+        
       </>
     );
   }

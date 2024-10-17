@@ -100,11 +100,11 @@ class SingleTaskStages extends Component {
                   {days}D
                 </StageName>
                 {/* <StageName>
-                  {`${ moment(startDate).format("DD/MM/YYYY")}`}
+                  {`${ dayjs(startDate).format("DD/MM/YYYY")}`}
                 </StageName>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <StageName>
-                {`${ moment(endDate).format("DD/MM/YYYY")}`}
+                {`${ dayjs(endDate).format("DD/MM/YYYY")}`}
                 </StageName> */}
                 <div class=" flex justify-between ml-[5rem] w-4">
                   <>

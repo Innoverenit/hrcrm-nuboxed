@@ -1,13 +1,19 @@
 import * as types from "./InventoryActionType";
 
 const initialState = {
-  viewType: "zone",
+  viewType: "repair",
   addInventoryModal: false,
+
+  fetchingMaterialDamageData:false,
+  fetchingMaterialDamageDataError:false,
+  materialDamageData:[],
 
   addingInventory: false,
   addingInventoryError: false,
 
+  inventoryExpandList:false,
 
+  inventoryExpandTask:false,
 
   fetchingQualityManufactureData:false,
   fetchingQualityManufactureDataError:false,
@@ -122,6 +128,10 @@ const initialState = {
   updatingInspection: false,
   updatingInspectionError: false,
 
+
+  addingRepairData:false,
+  addingRepairDataError:false,
+
   //get DispatchList
   fetchingDispatchList: false,
   fetchingDispatchListError: false,
@@ -150,6 +160,10 @@ const initialState = {
   //damagedItem
   addingDamagedItem: false,
   addingDamagedItemError: false,
+
+  fetchingMaterialBestBefore:false,
+  fetchingMaterialBestBeforeError:false,
+  materialBestBefore:[],
 
   //pickupdatemodal
   openPickupDateModal: false,
@@ -256,6 +270,11 @@ const initialState = {
   searchingDispatchItemError: false,
   updatedShipper: [],
 
+
+
+  addingDamagedCredit:false,
+  addingDamagedCreditError:false,
+
   updatingDispatchReceivePhone: false,
   updatingDispatchReceivePhoneError: false,
 
@@ -272,6 +291,11 @@ const initialState = {
   receivedOrdeIdModal: false,
   invenReceivedNoteOrderModal: false,
   phoNoteReceivedOrderIdModal: false,
+
+
+
+  addingAsileInBest:false,
+  addingAsileInBestError:false,
 
   updatingDispatchInspectionButton: false,
   updatingDispatchInspectionButtonError: false,
@@ -340,6 +364,10 @@ const initialState = {
   fetchingArchieveProductionLocIdError: true,
   archieveInProduction: [],
 
+
+  addingToWaste:false,
+  addingToWasteError:false,
+
   roomRackbyLoc: [],
   fetchingRoomRack: false,
   fetchingRoomRackByIdError: false,
@@ -358,6 +386,9 @@ const initialState = {
   rejectedReasonModal: false,
 
   custoModal:false,
+
+  fetchingOpenOrdeReceived: false,
+  fetchingOpenOrdeReceivedError: false,
 };
 
 export const inventoryReducer = (state = initialState, action) => {
@@ -426,6 +457,24 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingInventoryList: false,
         fetchingInventoryListError: true,
       };
+
+
+
+
+      case types.GET_MATERIAL_DAMAGE_DATA_REQUEST:
+        return { ...state, fetchingMaterialDamageData: true };
+      case types.GET_MATERIAL_DAMAGE_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingMaterialDamageData: false,
+          materialDamageData: action.payload
+        };
+      case types.GET_MATERIAL_DAMAGE_DATA_FAILURE:
+        return {
+          ...state,
+          fetchingMaterialDamageData: false,
+          fetchingMaterialDamageDataError: true,
+        };
 
     //inventory by id
     case types.GET_INVENTORY_BY_ID_REQUEST:
@@ -1433,6 +1482,30 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingDispatchReceivePhoneError: true,
       };
 
+
+
+
+
+      case types.ADD_DAMAGED_CREDIT_REQUEST:
+        return { ...state, addingDamagedCredit: true };
+      case types.ADD_DAMAGED_CREDIT_SUCCESS:
+        return {
+          ...state,
+          addingDamagedCredit: false,
+          materialDamageData: state.materialDamageData.map((item) => {
+            if (item.poSupplierSuppliesId === action.payload.poSupplierSuppliesId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+          // regiondata:action.payload,
+          //regions:[action.payload,...state.regions],
+          // documents: [...state.documents, action.payload],
+        };
+      case types.ADD_DAMAGED_CREDIT_FAILURE:
+        return { ...state, addingDamagedCredit: false, addingDamagedCreditError: true };
+
     case types.HANDLE_DISPATCH_RECEIVE_PHONE_MODAL:
       return { ...state, dispatchMismatchData: action.payload };
 
@@ -1480,6 +1553,69 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingMaterialReceiveData: false,
         fetchingMaterialReceiveDataError: true,
       };
+
+
+
+
+      case types.ADD_ASILE_IN_BEST_REQUEST:
+        return { ...state, addingAsileInBest: true };
+      case types.ADD_ASILE_IN_BEST_SUCCESS:
+        return {
+          ...state,
+          addingAsileInBest: false,
+         // addCustomerModal: false,
+         
+          // customerByUserId: state.customerByUserId.map((item) => {
+          //   if (item.customerId === action.payload.customerId) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
+        };
+      case types.ADD_ASILE_IN_BEST_FAILURE:
+        return { ...state,addingAsileInBest : false, addingAsileInBestError: false };
+
+
+
+      case types.GET_MATERIAL_BEST_BEFORE_REQUEST:
+        return { ...state, fetchingMaterialBestBefore: true };
+      case types.GET_MATERIAL_BEST_BEFORE_SUCCESS:
+        return {
+          ...state,
+          fetchingMaterialBestBefore: false,
+          materialBestBefore: action.payload
+        };
+      case types.GET_MATERIAL_BEST_BEFORE_FAILURE:
+        return {
+          ...state,
+          fetchingMaterialBestBefore: false,
+          fetchingMaterialBestBeforeError: true,
+        };
+
+
+
+
+
+        case types.ADD_TO_WASTE_REQUEST:
+      return { ...state, addingToWaste: true };
+    case types.ADD_TO_WASTE_SUCCESS:
+      return {
+        ...state,
+        addingToWaste: false,
+       // addCustomerModal: false,
+       
+        // customerByUserId: state.customerByUserId.map((item) => {
+        //   if (item.customerId === action.payload.customerId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+    case types.ADD_TO_WASTE_FAILURE:
+      return { ...state,addingToWaste : false, addingToWasteError: false };
+
 
     case types.GET_MATERIAL_RECEIVE_DETAIL_DATA_REQUEST:
       return { ...state, fetchingMaterialReceiveDetailData: true };
@@ -1759,7 +1895,7 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         updatingRoomRackId: false,
         roomRackbyLoc: state.roomRackbyLoc.map((item) =>
-          item.roomRackId === action.payload.roomRackId
+          item.roomRackChamberLinkId === action.payload.roomRackChamberLinkId
             ? action.payload : item
         ),
       };
@@ -1769,6 +1905,30 @@ export const inventoryReducer = (state = initialState, action) => {
         updatingRoomRackId: false,
         updatingRoomRackIdError: true,
       };
+
+
+
+
+
+      case types.ADD_REPAIR_DATA_REQUEST:
+        return { ...state, addingRepairData: true };
+      case types.ADD_REPAIR_DATA_SUCCESS:
+        return {
+          ...state,
+          addingRepairData: false,
+          materialDamageData: state.materialDamageData.map((item) => {
+            if (item.poSupplierSuppliesId === action.payload.poSupplierSuppliesId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+          // regiondata:action.payload,
+          //regions:[action.payload,...state.regions],
+          // documents: [...state.documents, action.payload],
+        };
+      case types.ADD_REPAIR_DATA_FAILURE:
+        return { ...state, addingRepairData: false, addingRepairDataError: true };
 
     case types.GET_RACK_LIST_REQUEST:
       return { ...state, fetchingRacklist: true };
@@ -1834,10 +1994,33 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingInventoryLocationRecords: false,
         fetchingInventoryLocationRecordsError: true,
       };
+      case types.HANDLE_INVENTORY_EXPAND:
+        return { ...state, inventoryExpandList: action.payload };
 
+        case types.HANDLE_INVENTORY_TASK:
+          return { ...state, inventoryExpandTask: action.payload };
       
     case types.HANDLE_CUSTOM_MODAL:
       return { ...state, custoModal: action.payload };
+
+
+      case types.SEARCH_OPEN_ORDER_RECEIVED_REQUEST:
+        return { ...state, fetchingOpenOrdeReceived: true };
+      case types.SEARCH_OPEN_ORDER_RECEIVED_SUCCESS:
+        return {
+          ...state,
+          fetchingOpenOrdeReceived: false,
+          phoneListById: action.payload,
+        };
+      case types.SEARCH_OPEN_ORDER_RECEIVED_FAILURE:
+        return { ...state, fetchingOpenOrdeReceivedError: true };
+      
+
+        case types.CLAER_REDUCERS_DATA:
+          return {
+            ...state,
+            phoneListById: [],
+          };   
 
     default:
       return state;

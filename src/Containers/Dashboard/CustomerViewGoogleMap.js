@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { GoogleMap, LoadScript, Marker,InfoWindow } from '@react-google-maps/api';
+import { GoogleMap, Marker,InfoWindow } from '@react-google-maps/api';
 
 const CustomerViewGoogleMap = (props) => {
     const [selectedCountry, setSelectedCountry] = useState(null);
@@ -36,33 +36,11 @@ const CustomerViewGoogleMap = (props) => {
     ]
   };
   console.log(props.selectedCountry)
-const{latitude,longitude}=props.address[0]
+// const{latitude,longitude}=props.address[0]
   const center = {
-    lat: parseFloat(latitude),
-    lng: parseFloat(longitude)
+    lat: parseFloat(47.3467),
+    lng: parseFloat(43.789)
   };
-
-  // const handleMapClick = (event) => {
-  //   const geocoder = new window.google.maps.Geocoder();
-  //   const latlng = {
-  //     lat: event.latLng.lat(),
-  //     lng: event.latLng.lng(),
-  //   };
-
-  //   geocoder.geocode({ location: latlng }, (results, status) => {
-  //     if (status === 'OK' && results[0]) {
-  //       const country = results[0].address_components.find(
-  //         (component) => component.types.includes('country')
-  //       );
-
-  //       if (country) {
-  //         setSelectedCountry(country.long_name);
-  //         console.log(country.long_name)
-  //       }
-  //     }
-  //   });
-  // };
-
   return (
    
       <GoogleMap

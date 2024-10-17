@@ -1,36 +1,14 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, { Component , lazy, Suspense} from "react";
 import { connect } from "react-redux";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { bindActionCreators } from "redux";
-
-import { Button, Switch, Tooltip, Icon,Select } from "antd";
-
-// import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
-import { Formik, Form, Field, FieldArray,FastField } from "formik";
-import { StyledDrawer, StyledModal } from "../../../Components/UI/Antd";
-import { Spacer, StyledLabel } from "../../../Components/UI/Elements";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
+import { Button, Select } from "antd";
+import { Formik, Form, Field, } from "formik";
 import {addAccountImportForm} from "./AccountAction"
-
-// import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
-import { FlexContainer } from "../../../Components/UI/Layout";
-import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
-//import { leadsReducer } from "../LeadsReducer";
-import ImportTaskUpload from "../../../Components/Forms/Formik/ImportTaskUpload";
-import { distributorReducer } from "./AccountReducer";
-
+const ImportTaskUpload = lazy(() => import("../../../Components/Forms/Formik/ImportTaskUpload"));
 
 const { Option } = Select;
-// const documentSchema = Yup.object().shape({
-// documentName: Yup.string().required("This field is required !"),
-// documentId: Yup.string().required("Input needed !"),
-// documentDescription: Yup.string().required("This field is required !"),
-// stageId: Yup.string().required("This field is required !")
-// });
-// const documentSchema = Yup.object().shape({
 
-// documentId: Yup.string().required("Input needed!"),
-// });
 class AccountImportForm extends Component {
   constructor(props) {
     super(props);
@@ -41,9 +19,33 @@ class AccountImportForm extends Component {
       ownerAbove: "Specific",
       selectedownerAbove: "Specific",
       data: [1],
+      translatedMenuItems: [],
     };
   }
- 
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "154",//0 Submit
+       
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
 
  
 
@@ -69,11 +71,6 @@ class AccountImportForm extends Component {
       },
    ]
 
-
-  
-
- 
- 
     return (
       <>
        
@@ -113,44 +110,40 @@ class AccountImportForm extends Component {
                 ...rest
               }) => (
                 <Form className="form-background">
-                  <div
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <div
-                      style={{
-                        height: "100%",
-                        width: "45%",
-                      }}
+                  <div className=" flex justify-between "  >
+                    <div className=" w-[45%] h-[100%] "
+                     
                     >
+                       <Suspense fallback={<BundleLoader />}>
                       <Field
                         name="excelId"
                         isRequired
                         component={ImportTaskUpload}
                         // component={DocumentUpload}
-                      />
+                      /></Suspense>
                       {errors.documentId && (
                         <p style={{ color: "tomato", fontWeight: 600 }}>
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                   
-                  <Spacer />
-                   
-                    </div>
+                            <div class=" mt-3" />
+                            
+                              </div>
                     
                   </div>
 
-                  <Spacer />
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       htmlType="submit"
                       type="primary"
             loading={this.props.addingAccountImportForm}
                     >
-                      Submit
+                     {this.state.translatedMenuItems[0]} {/* Submit */}
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </Form>
               )}
             </Formik>
@@ -160,10 +153,7 @@ class AccountImportForm extends Component {
     );
   }
 }
-// const DocumentUploadModal = (props) => {
-//     console.log(props)
 
-// }
 
 const mapStateToProps = ({ document, settings,distributor,leads,employee, departments,auth }) => ({
     addingLeadsImportForm:leads.addingLeadsImportForm,

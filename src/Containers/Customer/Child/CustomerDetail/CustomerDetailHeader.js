@@ -7,7 +7,11 @@ class CustomerDetailHeader extends Component {
     return (
       <div>
         <ActionHeader
-          leftComponent={<CustomerDetailActionLeft />}
+          leftComponent={<CustomerDetailActionLeft 
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
+          />}
           rightComponent={<></>}
         />
       </div>

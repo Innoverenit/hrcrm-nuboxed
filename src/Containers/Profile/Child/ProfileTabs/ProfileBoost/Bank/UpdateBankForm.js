@@ -11,6 +11,40 @@ const documentSchema = Yup.object().shape({
   documentId: Yup.string().required("Input needed !"),
 });
 class UpdateBankForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: "Full Time",
+      translatedMenuItems: [],
+    };
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+
+       "Account Number",
+      "IFSC Code",
+        "Branch Name",
+        "Bank Name",
+        "Update",
+        ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const { updatingBankDetails } = this.props;
     return (
@@ -49,17 +83,18 @@ class UpdateBankForm extends Component {
             <Form className="form-background">
               <div class=" w-full"
               >
-                 <div class=" w-full"
-              >
+                 <div class=" w-full" >
+                 <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[0]}</div>
+
                   <FastField
                     name="accountNo"
                     // label="Account Number"
-                    label={
-                      <FormattedMessage
-                        id="app.accountNo"
-                        defaultMessage="Account Number"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.accountNo"
+                    //     defaultMessage="Account Number"
+                    //   />
+                    // }
                     isColumn
                     margintop={"0.25em"}
                     selectType="number"
@@ -70,17 +105,18 @@ class UpdateBankForm extends Component {
                 </div>
                
                 <div class=" flex mt-3">
-                <div class=" w-[47%]"
-              >
+                <div class=" w-[47%]"  >
+                <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[1]}</div>
+
                     <FastField
                       name="ifscCode"
                       //label="IFSC CODE"
-                      label={
-                        <FormattedMessage
-                          id="app.ifscCode"
-                          defaultMessage="IFSC CODE"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.ifscCode"
+                      //     defaultMessage="IFSC CODE"
+                      //   />
+                      // }
                       className="field"
                       isColumn
                       width={"100%"}
@@ -94,18 +130,19 @@ class UpdateBankForm extends Component {
                     />
                   </div>
               
-                  <div class=" w-[50%] ml-2"
-              >
+                  <div class=" w-[50%] ml-2">
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[2]}</div>
+
                     <FastField
                       isRequired
                       name="branchName"
                       //label="Branch Name"
-                      label={
-                        <FormattedMessage
-                          id="app.branchName"
-                          defaultMessage="Branch Name"
-                        />
-                      }
+                      // label={
+                      //   <FormattedMessage
+                      //     id="app.branchName"
+                      //     defaultMessage="Branch Name"
+                      //   />
+                      // }
                       type="text"
                       width={"100%"}
                       isColumn
@@ -121,17 +158,18 @@ class UpdateBankForm extends Component {
                 </div>
                
                 <div class=" w-full mt-3"
-              >
+              > <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
+
                   <FastField
                     isRequired
                     name="bankName"
                     //label="Bank Name"
-                    label={
-                      <FormattedMessage
-                        id="app.bankName"
-                        defaultMessage="Bank Name"
-                      />
-                    }
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.bankName"
+                    //     defaultMessage="Bank Name"
+                    //   />
+                    // }
                     type="text"
                     width={"100%"}
                     isColumn
@@ -153,7 +191,7 @@ class UpdateBankForm extends Component {
                   type="primary"
                   Loading={updatingBankDetails}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                 {this.state.translatedMenuItems[4]} {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
                 </Button>
               </div>
             </Form>

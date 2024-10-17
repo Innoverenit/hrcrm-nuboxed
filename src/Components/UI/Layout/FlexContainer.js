@@ -14,10 +14,9 @@ const FlexContainer = styled.div`
   margin-right: ${props => props.marginRight || "auto"};
   margin-top: ${props => props.marginTop || ""};
 
-  @media only screen and (max-width: 37.5em) {
-    
-//  flex-direction:column;
-    
-  }
+
 `;
 export default FlexContainer;
+
+
+// <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">

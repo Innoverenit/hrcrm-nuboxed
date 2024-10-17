@@ -1,14 +1,15 @@
-import React, { Component } from "react";
+import React, { Component , lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
 import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
 import AddOrderInAccount from "./AddOrderInAccount";
-import AccountOrderSecondStep from "./AccountOrderSecondStep";
 import { FormattedMessage } from 'react-intl';
+import { BundleLoader } from '../../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
+const AccountOrderSecondStep = lazy(() => import('./AccountOrderSecondStep'));
 
 const Step = StyledSteps.Step;
 
@@ -55,7 +56,7 @@ class AccountStepper extends Component {
                 icon: <PhoneOutlined
                     style={{ color: "blue" }}
                 />,
-                content: <AccountOrderSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+                content:  <Suspense fallback={<BundleLoader />}><AccountOrderSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} /></Suspense> ,
             },
 
 

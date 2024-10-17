@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, lazy } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -6,9 +6,10 @@ import {
   handleUpdateProjectTaskModal,
   addProjectTask,
 } from "../TaskAction";
-import moment from "moment";
+import dayjs from "dayjs";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledTable } from "../../../Components/UI/Antd";
-import { Tooltip, Button, Input, Select } from "antd";
+import { Button, Input } from "antd";
 const UpdateProjectTaskModal = lazy(() => import("./UpdateProjectTaskModal"));
 
 function ProjectTaskTable(props) {
@@ -24,8 +25,7 @@ function ProjectTaskTable(props) {
   function handleSet( inputData, hourId) {
     setData1(
        inputData,
-     
-    );
+     );
   }
   console.log(data1);
   function handleDescription(textData){
@@ -75,7 +75,7 @@ console.log(name)
       title: "Creation Date",
       width: "15%",
       render: (text, item) => {
-        const startDate = moment(item.creationDate).format("ll");
+        const startDate = dayjs(item.creationDate).format("ll");
         return <span>{startDate}</span>;
       },
     },
@@ -83,7 +83,7 @@ console.log(name)
       title: "Start Date",
       width: "15%",
       render: (text, item) => {
-        const PlannerDate = moment(item.plannerStartDate).format("ll");
+        const PlannerDate = dayjs(item.plannerStartDate).format("ll");
         return <span>{PlannerDate}</span>;
       },
     },
@@ -142,12 +142,13 @@ console.log(name)
         dataSource={props.projectTaskTable}
         pagination={false}
       />
-
+    <Suspense fallback={<BundleLoader />}>
       <UpdateProjectTaskModal
         item={currentItem}
         updateProjectTaskModal={props.updateProjectTaskModal}
         handleUpdateProjectTaskModal={props.handleUpdateProjectTaskModal}
       />
+      </Suspense>
     </>
   );
 }

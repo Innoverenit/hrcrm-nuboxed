@@ -15,9 +15,7 @@ import { getDesignations } from "../../../../../Settings/Designation/Designation
 import { getDepartments } from "../../../../../Settings/Department/DepartmentAction";
 
 const { Option } = Select;
-/**
- * yup validation scheme for creating a contact
- */
+
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const ContactSchema = Yup.object().shape({
   firstName: Yup.string().required("Input needed!"),
@@ -26,10 +24,6 @@ const ContactSchema = Yup.object().shape({
     .matches(phoneRegExp, "Whatsapp number is not valid")
     .min(8, "Minimum 8 digits")
     .max(10, "Number is too long"),
-  // mobileNumber: Yup.string()
-  //   .matches(phoneRegExp, "Mobile number is not valid")
-  //   .min(8, "Minimum 8 digits")
-  //   .max(10, "Number is too long"),
 });
 
 class ContactForm extends Component {
@@ -44,8 +38,47 @@ class ContactForm extends Component {
       currentOption: "",
       candidate: false,
       availability: false,
+      translatedMenuItems: [],
+      loading: true
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+    // this.props.getDocuments();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+'295', // 0
+'353', // 1
+'354', // 2
+'357', // 3
+'546', // 4
+'1157', // 5
+'140',//6
+'547', // 7
+'361', // 8
+'325' ,// 9
+'326', // 10
+ '185',//12
+'316',//13
+  '104'
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });
   };
@@ -116,6 +149,11 @@ class ContactForm extends Component {
     } = this.props;
     console.log(linkContact);
 
+      
+    const {loading,translatedMenuItems } = this.state;
+    // if (loading) {
+    //   return <div><BundleLoader/></div>;
+    // } 
     return (
       <>
         <Formik
@@ -188,36 +226,17 @@ class ContactForm extends Component {
                   <div class=" flex flex-nowrap justify-between mt-3">
                     <FastField name="imageId" component={PostImageUpld} />
                     <div>
-                      <div class=" flex justify-between">
-                        {/* <div class=" w-2/5">
-                          <FastField
-                            name="salutation"
-                            type="text"
-                            // label="Salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
-                            options={["Mr.", "Ms.", "None"]}
-                            component={SelectComponent}
-                            inlineLabel
-                            className="field"
-                            isColumn
-                          />
-                        </div> */}
+                      <div class=" flex justify-between">                    
+                            {/* name="salutation" */}
+                       
                         <div class=" w-full">
+                        <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[0]}             
+                          </div>
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            // label="First Name"                         
                             type="text"
                             width={"100%"}
                             isColumn
@@ -229,15 +248,12 @@ class ContactForm extends Component {
                    
                       <div class=" flex justify-between mt-3">
                         <div class=" w-2/5">
+                        <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[1]}             
+                          </div>
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middle"
-                                defaultMessage="Middle"
-                              />
-                            }
+                            //label="Middle Name"                       
                             type="text"
                             width={"100%"}
                             isColumn
@@ -246,15 +262,12 @@ class ContactForm extends Component {
                           />
                         </div>
                         <div class=" w-2/4">
+                        <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[2]}             
+                          </div>
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            //label="Last Name"                      
                             type="text"
                             width={"100%"}
                             isColumn
@@ -266,18 +279,15 @@ class ContactForm extends Component {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-2/6 max-sm:w-2/5">
+                    <div class=" w-2/6 max-sm:w-2/5 mt-1">
+                    <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[3]}    
+                         {/* dialCode*/}
+                          </div>
                       <FastField
                         name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        //label="Mobile #"
-                        placeholder='+31'
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        isColumnWithoutNoCreate                   
+                        placeholder='+31'                    
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -288,18 +298,14 @@ class ContactForm extends Component {
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-2/5">
+                    <div class=" w-2/5 ml-2 mr-2 mt-1">
+                    <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[4]}             
+                          </div>
                       <FastField
-                      // inputMode="numeric" 
+                  // Mobile
                         type="number"
-                        name="mobileNumber"
-                        //placeholder="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.mobileNumber"
-                            defaultMessage="Mobile #"
-                          />
-                        }
+                        name="mobileNumber"                               
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
@@ -307,9 +313,9 @@ class ContactForm extends Component {
                       />
                     </div>
                     
-                  <div class=" w-1/4 font-bold"
-                  >
-                    WhatsApp
+                    <div class="  mt-1 text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[5]}                                              
+                    {/* WhatsApp */}
                     <Switch
                       onChange={this.handleWhatsApp}
                       checked={this.state.whatsapp}
@@ -363,17 +369,14 @@ class ContactForm extends Component {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-full">
+                    <div class=" w-full mt-1">
+                    <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[6]}    
+                         {/* Email          */}
+                          </div>
                       <FastField
                         type="email"
-                        name="emailId"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.emailId"
-                            defaultMessage="Email"
-                          />
-                        }
+                        name="emailId"                    
                         className="field"
                         isColumn
                         width={"100%"}
@@ -384,18 +387,15 @@ class ContactForm extends Component {
                     </div>
                   </div>
               
-                  <div class=" flex justify-between mt-3">
+                  <div class=" flex justify-between mt-2">
                     <div class="w-full">
+                    <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[7]}    
+                         {/* Linkedin          */}
+                          </div>
                       <FastField
                         type="text"
-                        name="linkedinPublicUrl"
-                        //label="Linkedin "
-                        label={
-                          <FormattedMessage
-                            id="app.linkedinPublicUrl"
-                            defaultMessage="Linkedin"
-                          />
-                        }
+                        name="linkedinPublicUrl"                      
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -405,43 +405,34 @@ class ContactForm extends Component {
                   </div>
               
 
-                  <div class=" flex justify-between mt-3">
+                  <div class=" flex justify-between mt-2">
                     <div class=" w-2/4">
                       <>
+                      <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[8]}             
+                          </div>
+                          {/* TagCompany */}
                         <Field
                           name="customerId"
                           isColumnWithoutNoCreate
-                          selectType="customerList"
-                          // label="Tag Company"
-                          label={
-                            <FormattedMessage
-                              id="app.tagcompany"
-                              defaultMessage="Tag Company"
-                            />
-                          }
+                          selectType="customerList"                       
                           component={SearchSelect}
                           isColumn
                           value={values.customerId}
                           isDisabled={defaultCustomers}
                         
-                          defaultValue={defaultCustomers ? defaultCustomers : null}
-                          // defaultValue={
-                          //   defaultCustomers ? defaultCustomers : null
-                          // }
+                          defaultValue={defaultCustomers ? defaultCustomers : null}                 
                           inlineLabel
                         />
                       </>
                     </div>
                     <div class=" w-2/5">
+                    <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[9]}             
+                          </div>
+                          {/* Designation */}
                       <FastField
-                        name="designationTypeId"
-                        //label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.designation"
-                            defaultMessage="Designation"
-                          />
-                        }
+                        name="designationTypeId"                  
                         selectType="designationType"
                         isColumn
                         component={SearchSelect}
@@ -451,46 +442,42 @@ class ContactForm extends Component {
                       />
                     </div>
                   </div>
-                  <div class="  w-w47.5">
+                  <div class="  w-w47.5 mt-2">
+                  <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[10]}             
+                          </div>
+                          {/* Department */}
                     <FastField
-                      name="departmentId"
-                      //label="Department"
-                      label={
-                        <FormattedMessage
-                          id="app.department"
-                          defaultMessage="Department"
-                        />
-                      }
+                      name="departmentId"                
                       width="100%"
                       isColumn
                       isColumnWithoutNoCreate
-                      component={InputComponent}
-                      // value={values.departmentId}
-                      // selectType="departmentName"
+                      component={InputComponent}                 
                       inlineLabel
                     />
                   </div>
                 </div>
                 <div class=" h-4/6 w-w47.5">
-                  <div class=" mt-3">
+                <div class=" text-xs font-bold font-poppins mt-3"> 
+                         {translatedMenuItems[11]}             
+                          </div>
                   <FieldArray
                     name="address"
-                    label="Address"
+                    // label="Address"
                     render={(arrayHelpers) => (
                       <AddressFieldArray
                         arrayHelpers={arrayHelpers}
                         values={values}
                       />
                     )}
-                  />
-                  </div>
+                  />             
                   <div class=" mt-3">
+                  <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[12]}             
+                          </div>
                   <Field
                     name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    // label="Notes"               
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -505,7 +492,9 @@ class ContactForm extends Component {
                   htmlType="submit"
                   loading={addingCustomerContact}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                 <div class=" text-xs font-bold font-poppins">  {translatedMenuItems[13]}  </div>   
+                             
+                         
                   {/*                     
                     Create */}
                 </Button>

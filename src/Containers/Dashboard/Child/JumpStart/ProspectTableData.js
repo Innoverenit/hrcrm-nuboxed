@@ -22,77 +22,15 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 //import { BundleLoader } from "../../Components/Placeholder";
 
 function ProspectTableData (props) {
-    useEffect(()=>{
-     props.getProspectTableData(props.selectedCountry)
-    }, []);
+    // useEffect(()=>{
+    //  props.getProspectTableData(props.selectedCountry)
+    // }, []);
 
-    useEffect(() => {
-      // Check if data is available
-      if (props.prospectTableData.length > 0) {
-        // Update activeTab when data is available
-        
-      }
-    }, [props.prospectTableData]);
-
-
-    if(props.fetchingProspectTableData){
-      return <BundleLoader/>;
-    }
-    // const columns = [
-    //   {
-    //     title: <FormattedMessage
-    //       id="app.name"
-    //       defaultMessage="Name"
-    //     />,
-    //     width: "30%",
-    //     dataIndex: "name",
-    //   },
-     
-    //   {
-    //     title: <FormattedMessage
-    //       id="app.emailId"
-    //       defaultMessage="Email Id"
-    //     />,
-    //     width: "22%",
-    //     dataIndex: "email",
-    //     defaultSortOrder: 'descend',
-    //     // sorter: (a, b) => a.proposalAmount - b.proposalAmount,
-  
-    //     // render: (name, item, i) => {
-    //     //   return (
-    //     //     <span>
-    //     //       <CurrencySymbol currencyType={this.props.currency} />{" "}
-    //     //       {`${item.proposalAmount}`}
-    //     //     </span>
-    //     //   );
-    //     // },
-    //   },
-    //   {
-    //     // title: "Status",
-    //     title: <FormattedMessage
-    //       id="app.companyName"
-    //       defaultMessage="Company Name"
-    //     />,
-    //     width: "25%",
-    //     dataIndex: "companyName",
-    //     // sorter: (a, b) => {
-    //     //   const stageNameA = a.stageName && a.stageName.toLowerCase();
-    //     //   const stageNameB = b.stageName && b.stageName.toLowerCase();
-    //     //   if (stageNameA < stageNameB) {
-    //     //     return -1;
-    //     //   }
-    //     //   if (stageNameA > stageNameB) {
-    //     //     return 1;
-    //     //   }
-    //     //   return 0;
-    //     // },
-    //   },
-    // ];
-    // if (props.fetchingProspectTableData) return <BundleLoader/>;
+    
   const{user}=props
     return (
       <>
-       <div className=' flex justify-end sticky top-28 z-auto'>
+       <div className=' flex justify-end sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p bg-transparent font-bold sticky  z-10">
             <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
@@ -180,7 +118,7 @@ function ProspectTableData (props) {
             height={"75vh"}
           > */}
 
-            {!props.fetchingProspectTableData && props.prospectTableData.length === 0 ? <NodataFoundPage /> : props.prospectTableData.map((item, index) => {
+            { props.modalData.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
               const countryCode = item.address[0].countryAlpha2Code
@@ -480,7 +418,7 @@ function ProspectTableData (props) {
                         <div>
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              className=" !text-xl cursor-pointer text-[#28a355]"
                               // onClick={() => {
                               //   handleCustomerNotesDrawerModal(true);
                               //   handleSetCurrentCustomer(item);

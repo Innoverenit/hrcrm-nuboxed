@@ -10,6 +10,7 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Link } from "../../../Components/Common";
 import { BundleLoader } from "../../../Components/Placeholder";
 import ReInstateShipper from "./ReInstateShipper";
+import ShipperSearchedData from "./ShipperSearchedData";
 
 function ShipperDeleteTable(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -55,17 +56,23 @@ function ShipperDeleteTable(props) {
   }
   return (
     <>
+    {props.shipperSerachedData.length > 0 ? (
+    <ShipperSearchedData
+    shipperSerachedData={props.shipperSerachedData}
+    translatedMenuItems={props.translatedMenuItems}
+    />
+  ) : (
 <div className=' flex  sticky z-auto'>
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[8.1rem]">   {props.translatedMenuItems[0]}</div>
-        <div className=" md:w-[5.1rem]">{props.translatedMenuItems[1]} #</div>
-        <div className=" md:w-[6.8rem] ">      {props.translatedMenuItems[2]}</div>
-        <div className="md:w-[5.9rem]">   {props.translatedMenuItems[3]}</div>
-        <div className="md:w-[7.8rem]">   {props.translatedMenuItems[4]}</div>
-        <div className="md:w-[7.9rem]">     {props.translatedMenuItems[5]}</div>
-        <div className="md:w-[9.2rem]">    {props.translatedMenuItems[6]}</div>
-        <div className="w-[3.8rem]">{props.translatedMenuItems[7]}</div>
+<div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div className="font-poppins font-bold text-xs md:w-[8.1rem]">   {props.translatedMenuItems[0]}</div>
+        <div className="font-poppins font-bold text-xs md:w-[5.1rem]">{props.translatedMenuItems[1]} #</div>
+        <div className="font-poppins font-bold text-xs md:w-[6.8rem] ">      {props.translatedMenuItems[2]}</div>
+        <div className="font-poppins font-bold text-xs md:w-[5.9rem]">   {props.translatedMenuItems[3]}</div>
+        <div className="font-poppins font-bold text-xs md:w-[7.8rem]">   {props.translatedMenuItems[4]}</div>
+        <div className="font-poppins font-bold text-xs md:w-[7.9rem]">     {props.translatedMenuItems[5]}</div>
+        <div className="font-poppins font-bold text-xs md:w-[9.2rem]">    {props.translatedMenuItems[6]}</div>
+        <div className="font-poppins font-bold text-xs w-[3.8rem]">{props.translatedMenuItems[7]}</div>
         </div>
         <InfiniteScroll
             dataLength={deletedShipper.length}
@@ -156,6 +163,7 @@ function ShipperDeleteTable(props) {
           </InfiniteScroll>
   </div>
   </div>
+  )}
     </>
   );
 }
@@ -165,6 +173,7 @@ const mapStateToProps = ({ shipper, auth }) => ({
   deletedShipper: shipper.deletedShipper,
   userId: auth.userDetails.userId,
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
+  shipperSerachedData: shipper.shipperSerachedData
 });
 
 const mapDispatchToProps = (dispatch) =>

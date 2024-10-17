@@ -5,7 +5,6 @@ import QuizIcon from '@mui/icons-material/Quiz';
 import {handleTestDrawerModal} from "../../CourseAction"
 import { Button, Tooltip} from "antd";
 import { StyledTabs } from "../../../../Components/UI/Antd";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { TextInput} from "../../../../Components/UI/Elements";
 import { elipsize } from "../../../../Helpers/Function/Functions";
 import { ViewEditCard } from "../../../../Components/UI/Elements";
@@ -49,11 +48,7 @@ class SingleTopic extends Component {
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
-              <FlexContainer
-                justifyContent="start"
-                alignItems="center"
-                
-              >
+              <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
                 
                 {/* <StageName style={{ flexBasis: "25%", textAlign: "left" }}> */}
                 <StyledTabs>
@@ -80,11 +75,11 @@ class SingleTopic extends Component {
                    </Tooltip>  
 </div>
                  
-           </FlexContainer>
+           </div>
             
             ) : (
               
-              <FlexContainer justifyContent="center">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-center grow shrink h-auto mr-auto ">
                 <TextInput
                   name={newTopicName}
                   // value={stageValue1 || stageName}
@@ -116,7 +111,7 @@ class SingleTopic extends Component {
                     defaultMessage="Cancel"
                   />
                 </Button>
-              </FlexContainer>
+              </div>
             )
           }
         </ViewEditCard>  

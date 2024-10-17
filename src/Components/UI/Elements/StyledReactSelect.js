@@ -2,7 +2,7 @@ import ReactSelect from "react-select";
 import styled from "styled-components";
 const StyledReactSelect = styled(ReactSelect)`
 .sales__control{
-    height: 1.57rem;
+    height: 1.88rem;
     place-content: center;
     min-height:1.35em; 
     margin: 0 0 0.42rem 0;

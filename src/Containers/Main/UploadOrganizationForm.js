@@ -1,34 +1,19 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, {  Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch, Tooltip, Icon } from "antd";
+import { Button, Switch} from "antd";
 import { getDepartments } from "../../Containers/Settings/Department/DepartmentAction";
 import {addOrganizationDocument} from "../Auth/AuthAction"
-// import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
-import { Formik, Form, Field, FieldArray } from "formik";
-import { StyledDrawer, StyledModal } from "../../Components/UI/Antd";
-import { Spacer, StyledLabel } from "../../Components/UI/Elements";
-import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
+import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
-import DocumentUpload from "../../Components/Forms/Formik/DocumentUpload";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
-
-// import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
 import { FlexContainer } from "../../Components/UI/Layout";
 import DragableUpload from "../../Components/Forms/Formik/DragableUpload";
-import LazySelect from "../../Components/Forms/Formik/LazySelect";
-
 import { FormattedMessage } from "react-intl";
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
-// const documentSchema = Yup.object().shape({
-// documentName: Yup.string().required("This field is required !"),
-// documentId: Yup.string().required("Input needed !"),
-// documentDescription: Yup.string().required("This field is required !"),
-// stageId: Yup.string().required("This field is required !")
-// });
+
 const documentSchema = Yup.object().shape({
 
 documentId: Yup.string().required("Input needed!"),
@@ -174,7 +159,7 @@ class UploadOrganizationForm extends Component {
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                     
                         <Field
                         name="description"
@@ -212,7 +197,7 @@ class UploadOrganizationForm extends Component {
                         component={InputComponent}
                         style={{ height: "2em",  }}
                       />
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                             // name="department"
                             name="catagory"
@@ -244,10 +229,10 @@ class UploadOrganizationForm extends Component {
                               Array.isArray(departmentOption) ? departmentOption : []
                             }
                           />
-                      <Spacer style={{ marginBottom: "0.9375em" }} />
+                      <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
 
                       <FlexContainer>
-                        <StyledLabel>Share</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Share</div>
                         <Switch
                           style={{ width: "6.25em", marginLeft: "0.625em" }}
                           onChange={this.handleChange}
@@ -261,7 +246,7 @@ class UploadOrganizationForm extends Component {
                     </div>
                   </div>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="flex-end">
                     <Button
                       htmlType="submit"
@@ -280,10 +265,7 @@ class UploadOrganizationForm extends Component {
     );
   }
 }
-// const DocumentUploadModal = (props) => {
-//     console.log(props)
 
-// }
 
 const mapStateToProps = ({ opportunity, settings, departments,auth }) => ({
     addingOrganizationDocument:auth.addingOrganizationDocument,
@@ -295,11 +277,7 @@ const mapDispatchToProps = (dispatch) =>
     {
         addOrganizationDocument,
         getDepartments
-    //   handleDocumentUploadModal,
-    //   addOpportunityDocument,
-    //   getOpportunityDocument,
-      //   getOppoStages,
-      //   getLevels,
+   
     },
     dispatch
   );

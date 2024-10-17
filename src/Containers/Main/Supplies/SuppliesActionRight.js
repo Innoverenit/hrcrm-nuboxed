@@ -1,13 +1,19 @@
 import React,{lazy,Suspense} from "react";
 import Button from "antd/lib/button";
 import { connect } from "react-redux";
-import { base_url } from "../../../Config/Auth";
+import { base_url, base_url2 } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
+import UploadMaterialModal from "./UploadMaterialModal"
+import UploadIcon from '@mui/icons-material/Upload';
 import { Tooltip } from "antd";
-import { handleSuppliesModal } from "./SuppliesAction";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import { handleSuppliesModal,handleUploadMaterialModal,handleImageSuppliesModal,handleNewAriival } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
+import UploadImageModalSupplies from "./UploadImageModalSupplies";
+import NewArrivalAddModal from "./NewArrivalAddModal";
 
 const SuppliesAddModal=lazy(()=>import("./SuppliesAddModal"));
 
@@ -33,11 +39,10 @@ class SuppliesActionRight extends React.Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        
-          
-         
-        "Add",
-        
+        "85",//0
+        "294",//1
+        "104",//2
+        "796",//3
         
       ];
 
@@ -48,24 +53,33 @@ class SuppliesActionRight extends React.Component {
     }
   };
   render() {
-    const { handleSuppliesModal, addSuppliesModal, user, viewType } = this.props;
+    const { handleSuppliesModal, addSuppliesModal, user, viewType,handleNewAriival,newArivalmodal } = this.props;
 
     return (
       <>
-        {user.functionName === "Production" && user.designation === "Manager" &&
-          viewType === "grid" ?
-          <Tooltip title="Export Supplies">
-            <Button
-              //type="primary"
-              className="export"
-              href={`${base_url}/export/supplies`}
-            >
+      <div className="flex">
+      <Tooltip title="New Arrivals">
+        <Button
+         type="primary"
+         onClick={() => handleNewAriival(true)}>
+            <DateRangeIcon
+            className="cursor-pointer !text-base"
              
-            </Button>
+            />   
+            New Arrivals
+            </Button>  
+          </Tooltip>
+        {
+          viewType === "all" ?
+          <Tooltip title="Export Supplies">
+            <CloudDownloadIcon
+            className="cursor-pointer"
+              href={`${base_url2}/export/supplies`}
+            />     
           </Tooltip>
           : null}
         {viewType === "all" && (
-          <Tooltip placement="left" title="Create">
+          <Tooltip placement="left" title={this.state.translatedMenuItems[2]}>
             <Button
               type="primary"
               onClick={() => handleSuppliesModal(true)}
@@ -75,12 +89,52 @@ class SuppliesActionRight extends React.Component {
             </Button>
           </Tooltip>
         )}
+          <Tooltip title= {this.state.translatedMenuItems[4]}>
+            <Button
+              className="export"
+              onClick={() => this.props.handleImageSuppliesModal(true)}
+              //default
+             // href={`${base_url}/export/product?orgId=${organizationId}`}
+            >
+            Upload Image
+            </Button>
+          </Tooltip>
+         <Tooltip placement="left" title={this.state.translatedMenuItems[1]}>
+            <Button
+              type="primary"
+              ghost
+              onClick={() => this.props.handleUploadMaterialModal(true)}
+            >
+             <UploadIcon className=" !text-icon"/>
+             {this.state.translatedMenuItems[1]}
+             
+             
+            </Button>
+          </Tooltip>
+          </div>
 <Suspense fallback={<BundleLoader/>}>
         <SuppliesAddModal
          translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}
           handleSuppliesModal={handleSuppliesModal}
           addSuppliesModal={addSuppliesModal}
+          translatedMenuItems={this.state.translatedMenuItems}
+        />
+         <NewArrivalAddModal
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
+         handleNewAriival={handleNewAriival}
+         newArivalmodal={newArivalmodal}
+          translatedMenuItems={this.state.translatedMenuItems}
+        />
+         <UploadImageModalSupplies
+        uploadImageListSupplies={this.props.uploadImageListSupplies}
+        handleImageSuppliesModal={this.props.handleImageSuppliesModal}
+        />
+          <UploadMaterialModal
+          handleUploadMaterialModal={this.props.handleUploadMaterialModal}
+          uploadMaterialModal={this.props.uploadMaterialModal}
+          translatedMenuItems={this.state.translatedMenuItems}
         />
         </Suspense>
       </>
@@ -91,12 +145,18 @@ class SuppliesActionRight extends React.Component {
 const mapStateToProps = ({ supplies, auth }) => ({
   addSuppliesModal: supplies.addSuppliesModal,
   user: auth.userDetails,
+  uploadMaterialModal:supplies.uploadMaterialModal,
+  uploadImageListSupplies:supplies.uploadImageListSupplies,
+  newArivalmodal: supplies.newArivalmodal
 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       handleSuppliesModal,
+      handleUploadMaterialModal,
+      handleImageSuppliesModal,
+      handleNewAriival
     },
     dispatch
   );

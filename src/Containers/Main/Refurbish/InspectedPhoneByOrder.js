@@ -1,27 +1,72 @@
 import React, { useEffect, lazy, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import ReactToPrint from "react-to-print";
 import QRCode from "qrcode.react";
+import Barcode from 'react-barcode';
 import { Button,Input,Tooltip,Progress } from "antd"
 import {
     searchimeiNamePhone,
     ClearPhoneDataOfrefurbish,
-    getDispatchUpdateList
+    getDispatchUpdateList,
+    handleAllTaskModal,
+    handleRepairPhoneNotesOrderModal
 } from "./RefurbishAction";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import { AudioOutlined, BarcodeOutlined } from '@ant-design/icons';
 import ReceivedSpareList from "./ProductionTab/ReceivedSpareList";
 import { BundleLoader } from "../../../Components/Placeholder";
 import PhoneListOrderTaskTable from "./PhoneListOrderTaskTable";
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import NodataFoundPageRefubish from "./NodataFoundPageRefubish";
+import ProcessTaskAllDrawer from "./ProcessTaskAllDrawer";
+import RepairPhoneNotesOrderModal from "./RepairPhoneNotesOrderModal";
 const QRCodeModal = lazy(() => import("../../../Components/UI/Elements/QRCodeModal"));
 
 function InspectedPhoneByOrder(props) {
+
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const componentBarRefs = useRef([]);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+             "264", //  Brand,//0
+              "265",  // "model",//1
+              "316" ,// Notes  2           
+              "76", // "Assigned ",//3
+              "1222" , // Issue //4
+              "113",    //Info5
+              "1217" , // "conditions",//6
+              "1281",      //Technician7
+              "1252",// Print8
+               "661",    //Repair 9
+                "119" ,//    Task10
+               "1282", // Receive Spare11
+                
+                "277",// Company12
+               
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
 
     const componentRefs = useRef([]);
     useEffect(() => {
@@ -31,6 +76,9 @@ function InspectedPhoneByOrder(props) {
     const handlePrint = () => {
         window.print();
     };
+    const handlePrintBr=()=>{
+        window.print();
+    }
     const [showTask, setshowTask] = React.useState(false);
     const [expand, setExpand] = useState(false);
     const [phoneId, setphoneId] = useState("");
@@ -42,7 +90,10 @@ function InspectedPhoneByOrder(props) {
   const [isRecording, setIsRecording] = useState(false);
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
-
+  const [RowData, setRowData] = useState({});
+  function handleSetRowData(item) {
+      setRowData(item);
+  }
     const handleShow = () => {
         setShow(!show)
     }
@@ -142,7 +193,7 @@ function InspectedPhoneByOrder(props) {
             {props.fetchingUpdateDispatchList ?
                 <BundleLoader />
                 : <div className='flex sticky ticky  z-10 '>
-                    <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div class=" w-72 ml-4 max-sm:w-28">
           <Input
             placeholder="Search by Imei"
@@ -154,28 +205,50 @@ function InspectedPhoneByOrder(props) {
         
           />
         </div>
-                        <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                            <div className=" md:w-[7.12rem]">Brand</div>
-                            <div className=" md:w-[7.1rem]"><FormattedMessage
+                        <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  max-sm:hidden z-10">
+                            <div className=" md:w-[7.12rem]">
+                            {translatedMenuItems[0]} {/* Brand */}
+                                </div>
+                            <div className=" md:w-[7.1rem]">
+                            {translatedMenuItems[1]}  
+                             {/* <FormattedMessage
                                 id="app.model"
                                 defaultMessage="model"
-                            /></div>
-                            <div className=" md:w-[6.8rem] "><FormattedMessage
+                            /> */}
+                            </div>
+                            <div className=" md:w-[6.8rem] ">
+                            IMEI
+                                {/* <FormattedMessage
                                 id="app.imei"
                                 defaultMessage="imei"
-                            /></div>
-                            <div className="md:w-[8.6rem]">Issue </div>
+                            /> */}
+                            </div>
+                            <div className="md:w-[8.6rem]">
+                            {translatedMenuItems[4]} {/* Issue  */}
+                                </div>
 
-                            <div className="md:w-[4.7rem]">Info</div>
-                            <div className="md:w-[5.9rem]"><FormattedMessage
+                            <div className="md:w-[4.7rem]">
+                            {translatedMenuItems[5]} {/* Info */}
+                                </div>
+                            <div className="md:w-[5.9rem]">
+                            {translatedMenuItems[6]}  {/* <FormattedMessage
                                 id="app.conditions"
                                 defaultMessage="conditions"
-                            /></div>
-                            <div className="md:w-[7rem]">Technician</div> 
-                            <div className="md:w-[6rem]">QC</div>
-                            <div className="md:w-[4rem]">Repair</div>
+                            /> */}
+                            </div>
+                            <div className="md:w-[7rem]">
+                            {translatedMenuItems[7]}  {/* Technician */}
+                                </div> 
+                            <div className="md:w-[6rem]">
+                          QC
+                                </div>
+                            <div className="md:w-[4rem]">
+                            {translatedMenuItems[9]}  {/* Repair */}
+                                </div>
                             {/* <div className="md:w-[5rem]">Qa</div> */}
-                            <div className="md:w-[7.2rem]">Task</div>
+                            <div className="md:w-[7.2rem]">
+                            {translatedMenuItems[10]}  {/* Task */}
+                                </div>
                         </div>
                         <div class="overflow-y-auto h-[72vh]"  style={{ scrollbarWidth:"thin"}}>
                             {props.updateDispatchList.length === 0 ? <NodataFoundPageRefubish /> :props.updateDispatchList.map((item, index) => {
@@ -233,8 +306,8 @@ function InspectedPhoneByOrder(props) {
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {item.repairTechnicianName && <MultiAvatar
                                                         primaryTitle={item.repairTechnicianName}
-                                                        imgWidth={"2.1rem"}
-                                                        imgHeight={"2.1rem"}
+                                                        imgWidth={"1.8rem"}
+                                                        imgHeight={"1.8rem"}
                                                     />}
                                                 </div>
                                             </div>
@@ -269,7 +342,7 @@ function InspectedPhoneByOrder(props) {
                                                             handleParticularRow(item)
                                                         }}
                                                     >
-                                                        Receive Spare
+                                                      {translatedMenuItems[11]}  {/* Receive Spare */}
                                                     </Button>
                                                 </div>
                                             </div>
@@ -281,7 +354,8 @@ function InspectedPhoneByOrder(props) {
                                                         trigger={() => <Button
                                                             onClick={handlePrint}
                                                         >
-                                                            Print<QrCodeIcon className="!text-icon"/></Button>
+                                                             {translatedMenuItems[8]}  {/* Print */}
+                                                            <QrCodeIcon className="!text-icon"/></Button>
                                                         }
                                                         content={() => componentRefs.current[index]
                                                         }
@@ -298,21 +372,51 @@ function InspectedPhoneByOrder(props) {
                                                                 alignItems: "center",
                                                             }}
                                                         >
-                                                            <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Company: {item.company}</div>
-                                                            <div style={{ marginBottom: "10px" }}>Model: {item.model}</div>
-                                                            <div style={{ marginBottom: "10px" }}>IMEI: {item.imei}</div>
+                                                            <div style={{ marginBottom: "10px", fontWeight: "bold" }}> {translatedMenuItems[12]}: {item.company}</div>
+                                                            <div style={{ marginBottom: "10px" }}> {translatedMenuItems[1]}: {item.model}</div>
+                                                            <div style={{ marginBottom: "10px" }}> {translatedMenuItems[2]}: {item.imei}</div>
                                                             <div style={{ marginBottom: "10px" }}>
-                                                                <QRCode value={item.imei} className="!text-icon" />
+                                                                <QRCode value={item.phoneId} className="!text-icon" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title={translatedMenuItems[11]}
+                                                       
+                                                        >
+                                                           
+                                                            <ReactToPrint
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} 
+                                                              onClick={handlePrintBr}>
+                                                            
+                                                                Print Br
+                                                                <BarcodeOutlined className="!text-icon"/></Button>}
+                                                                content={() => componentBarRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
+
+                                                    </div>
+                                                    <div style={{ display: "none", textAlign: "center" }}>
+
+                                                <div className=" flex flex-col mt-5 text-sm items-center"
+                                                    ref={(el) => (componentBarRefs.current[index] = el)}>
+                                                   
+                                                    <div   className=" text-5xl mt-8">
+                                                    <Barcode value={item.phoneId } displayValue={false}/>
+                                                       
+                                                    </div>
+                                                    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                                </div>
+                                            </div>
+                                                </div>
+
+                                               
                                             <div>
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.task"
-                                                                        defaultMessage="Task"
-                                                                    />}>
+                                                                    <Tooltip title={translatedMenuItems[4]}>
                                                                         {/* <FormatListBulletedIcon
                                                                             className="!text-base cursor-pointer"
                                                                             style={{ color: expand && item.phoneId === data.phoneId ? "red" : "black" }}
@@ -330,12 +434,26 @@ function InspectedPhoneByOrder(props) {
                                                                     onClick={() => {
                                                                         handlePhoneListOrderTask();
                                                                      handleParticularRow(item);
-                                                                     handleExpand(item.phoneId);
+                                                                     props.handleAllTaskModal(true);
+                                                                    //  handleExpand(item.phoneId);
                                                                     }}/>
                                                                     </Tooltip>
 
                                                                 </div>
+                                                                <div className=" flex  w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title= {translatedMenuItems[2]}>
+                                                    <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
+                                                            onClick={() => {
+                                                                handleSetRowData(item);
+                                                                props.handleRepairPhoneNotesOrderModal(true);
+                                                            }}
+                                                        />
 
+                                                    </Tooltip>
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 )
@@ -344,16 +462,37 @@ function InspectedPhoneByOrder(props) {
                     </div>
 
                 </div>}
-            {show && <ReceivedSpareList data={data} />}
+            {show && <ReceivedSpareList data={data}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage} />}
             {showTask &&(
-<PhoneListOrderTaskTable data={data}/>
+<PhoneListOrderTaskTable data={data}
+ translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}/>
                 )}
+
+<ProcessTaskAllDrawer
+ translateText={props.translateText}
+ selectedLanguage={props.selectedLanguage}
+                   data={data}
+                   allTaskModal={props.allTaskModal}
+                  handleAllTaskModal={props.handleAllTaskModal}
+                />
+                 <RepairPhoneNotesOrderModal
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage}
+                    RowData={RowData}
+                    phoNotesRepairOrderModal={props.phoNotesRepairOrderModal}
+                    handleRepairPhoneNotesOrderModal={props.handleRepairPhoneNotesOrderModal}
+                />
         </>
     )
 }
 
-const mapStateToProps = ({ inventory }) => ({
+const mapStateToProps = ({ inventory,refurbish }) => ({
     updateDispatchList: inventory.updateDispatchList,
+    allTaskModal:refurbish.allTaskModal,
+    phoNotesRepairOrderModal: refurbish.phoNotesRepairOrderModal,
     fetchingUpdateDispatchList: inventory.fetchingUpdateDispatchList
 });
 
@@ -362,7 +501,9 @@ const mapDispatchToProps = (dispatch) =>
         {
             getDispatchUpdateList,
             searchimeiNamePhone,
-    ClearPhoneDataOfrefurbish
+    ClearPhoneDataOfrefurbish,
+    handleAllTaskModal,
+    handleRepairPhoneNotesOrderModal,
         },
         dispatch
     );

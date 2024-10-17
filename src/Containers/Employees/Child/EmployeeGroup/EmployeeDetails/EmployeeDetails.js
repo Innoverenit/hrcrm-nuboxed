@@ -32,10 +32,14 @@ class EmployeeDetails extends Component {
             <Suspense fallback={""}>
               <div class=" flex flex-no-wrap w-full" >
                 <div class=" w-[25%] overflow-scroll h-[98vh]" >
-                  <EmployeeDetailLeft  singleEmployee= {singleEmployee}/>
+                  <EmployeeDetailLeft  singleEmployee= {singleEmployee}
+                   translateText={this.props.translateText}
+                   selectedLanguage={this.props.selectedLanguage}/>
                 </div>
                 <div class=" w-[75%]" >
-                  <EmployeeDetailRight singleEmployee= {singleEmployee}/>
+                  <EmployeeDetailRight singleEmployee= {singleEmployee}
+                   translateText={this.props.translateText}
+                   selectedLanguage={this.props.selectedLanguage}/>
                 </div>
               </div>
             </Suspense>

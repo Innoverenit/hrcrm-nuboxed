@@ -29,6 +29,13 @@ class SchedulerTab extends PureComponent {
         this.props.getDepartmentList(this.props.orgId)
     }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.departmentList !== this.props.departmentList && this.props.departmentList.length > 0) {
+          // Set the default departmentId to the first item in the list after loading
+          this.setState({ departmentId: this.props.departmentList[0].departmentId });
+        }
+      }
+
     handleOnClick = (departmentId) => {
         console.log(departmentId);
         debugger;

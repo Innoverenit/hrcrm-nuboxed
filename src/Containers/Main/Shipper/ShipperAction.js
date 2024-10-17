@@ -1,7 +1,7 @@
 import * as types from "./ShipperActionType";
 import axios from "axios";
 import { base_url, base_url2 } from "../../../Config/Auth";
-import moment from "moment";
+import dayjs from "dayjs";
 import Swal from 'sweetalert2'
 import { message } from "antd"
 /**
@@ -1391,8 +1391,8 @@ export const setTimeRange = (startDate, endDate) => (dispatch) => {
   dispatch({
     type: types.SET_TIME_INTERVAL,
     payload: {
-      startDate: moment(startDate).toISOString(),
-      endDate: moment(endDate).toISOString(),
+      startDate: dayjs(startDate).toISOString(),
+      endDate: dayjs(endDate).toISOString(),
     },
   });
 };
@@ -1537,4 +1537,11 @@ export const reinstateToggleForShipper = (data, shipperId,userId) => (
       });
       message.error("Something went wrong")
     });
+};
+
+export const handleShipperAddress = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SHIPPER_ADDRESS_MODAL,
+    payload: modalProps,
+  });
 };

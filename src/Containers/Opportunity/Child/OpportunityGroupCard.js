@@ -3,11 +3,8 @@ import {  Popconfirm,Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import { StopTwoTone, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { CheckCircleTwoTone } from "@ant-design/icons";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import {
   MultiAvatar,
-  Title,
-  SubTitle,
 } from "../../../Components/UI/Elements";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { CurrencySymbol } from "../../../Components/Common";
@@ -30,41 +27,37 @@ const BussinessCard = (props) => {
   
   return (
     <div class="flex-col rounded-[3px]">
-      <div className="h-24 m-1 p- shadow-[0 0.5em 0.375em -0.375em rgb(46, 44, 44)] border-2 border-gray-400 bg-white ">
-      
-      {/* <div class="rounded bg-white m-1 p-1 overflow-auto h-24 border-[0.0625rem] border-[#eee]-600 w-full"> */}
-        <FlexContainer
-          alignItems="center"
-          flexWrap="no-wrap"
-          style={{ height: "3rem" }}
-        >
-          <FlexContainer style={{ flexBasis: "20%", margin: "0.3rem" }}>
+      <div className="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[7.5rem] 
+                  text-[#444444] m-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+      <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-[3rem] mr-auto ">
+      {/* <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto m-[0.3rem] ">       
             <MultiAvatar
               primaryTitle={primaryTitle}
               imgHeight={"1.56em"}
               imgWidth={"1.56em"}
             />
-          </FlexContainer>
-          <FlexContainer
-            flexDirection="column"
-            style={{ flexBasis: "70%", overflow: "hidden" }}
-          >
-            <Title
+          </div> */}
+          <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto  overflow-hidden">
+            <div
               fontSize="0.875em"
               overflow="hidden"
               textOverflow="ellipsis"
               style={{ color: "#337df4", cursor: "pointer",display:"flex",justifyContent:"flex-start" }}
               onClick={handleClick}
             >
-              {primaryTitle || ""}
-            </Title>
+                {/* {item.newOppId}  */}
+                {primaryTitle || ""}
+            </div>
+            <div>
             <div class="text-xs">
               {customerName || ""} 
               </div>
               <div class="text-xs">          
               {contactName || ""} 
               </div>
-            <SubTitle>
+            </div>
+           
+            <div>
               &nbsp;&nbsp;
               {currencyType && <CurrencySymbol currencyType={currencyType} />}
              
@@ -127,17 +120,17 @@ const BussinessCard = (props) => {
             type="delete" className=" !text-icon cursor-pointer text-red-600 "  />
              )}
           </StyledPopconfirm>
-            </SubTitle>      
-          </FlexContainer>
-          <FlexContainer
-            style={{ flexBasis: "10%", alignSelf: "flex-start" }}
-          ></FlexContainer>
-          <SubTitle >
+            </div>      
+          </div>
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+            
+          </div>
+          <div >
           <EditOutlined  className=" !text-icon text-[#337df4bf]"
           onClick={props.handleEdit}
           />
-        </SubTitle>
-        </FlexContainer>
+        </div>
+        </div>
 
        
         </div>

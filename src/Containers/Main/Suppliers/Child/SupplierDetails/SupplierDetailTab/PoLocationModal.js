@@ -3,7 +3,6 @@ import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 const AddLocationInPo = lazy(() => import("./AddLocationInPo"));
 
-
 const PoLocationModal = (props) => {
     const { addlocationInPo, handlePoLocationModal, ...formProps } = props;
     return (
@@ -19,7 +18,9 @@ const PoLocationModal = (props) => {
                 <Suspense fallback={<BundleLoader />}>
                     <AddLocationInPo
                         supplierId={props.supplierId}
-                        rowData={props.rowData} />
+                        rowData={props.rowData} 
+                        translateText={props.translateText}
+                        selectedLanguage={props.selectedLanguage}/>
                 </Suspense>
             </StyledDrawer>
         </>

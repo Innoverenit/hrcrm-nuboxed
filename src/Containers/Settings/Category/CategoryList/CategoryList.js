@@ -1,15 +1,12 @@
-import React, { useEffect,lazy,useState } from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
-import { base_url } from "../../../../Config/Auth";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Button,Popconfirm,Tooltip, Input } from "antd";
+import { Popconfirm, Input } from "antd";
 import dayjs from "dayjs";
-import DownloadIcon from '@mui/icons-material/Download';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MainWrapper, } from "../../../../Components/UI/Layout";
-import { TextInput, } from "../../../../Components/UI/Elements";
 import {
     getCategory,
     getCategoryCount,
@@ -108,8 +105,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mt-[7px] mr-2"  >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -119,15 +116,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          {/* <div class="w-[38rem]">
-  <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"itemTask"}`}>
-    <div className="circle-icon !text-base cursor-pointer text-[green]">
-      <Tooltip placement="top" title="Download XL">
-        <DownloadIcon />
-      </Tooltip>
-    </div>
-  </a>
-</div> */}
+      
             <div className="add-region">
               {addingRegion ? (
                   <div>

@@ -1,16 +1,17 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import LocationCityIcon from '@mui/icons-material/LocationCity';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { CurrencySymbol } from "../../../../Components/Common";
+import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import {
   MultiAvatar,
   MultiAvatar2 } from "../../../../Components/UI/Elements";
@@ -26,22 +27,34 @@ import {
 } from "../../../Customer/CustomerAction";
 import ReactCountryFlag from 'react-country-flag';
 import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,
-  handleInvestorPulseDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData} from "../../InvestorAction";
+  handleInvestorPulseDrawerModal,  handleInvestorAddressDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData} from "../../InvestorAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
-import ContactsInvestorModal from "./ContactsInvestorModal";
-import InvestorSearchedData from "./InvestorSearchedData";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { BundleLoader } from "../../../../Components/Placeholder";
-const AddInvestorNotesDrawerModal = lazy(() =>
-  import("../InvestorDetail/AddInvestorNotesDrawerModal")
-);
-const UpdateInvestorModal = lazy(() =>
-  import("../UpdateInvestor/UpdateInvestorModal")
-);
+const InvestorPulseDrawerModal = lazy(() =>import("./InvestorPulseDrawerModal"));
+const InvestorSearchedData = lazy(() =>import("./InvestorSearchedData"));
+const ContactsInvestorModal = lazy(() =>import("./ContactsInvestorModal"));
+const  AddInvestorAdressModal = lazy(() =>import("./AddInvestorAdressModal"));
+const AddInvestorNotesDrawerModal = lazy(() =>  import("../InvestorDetail/AddInvestorNotesDrawerModal"));
+const UpdateInvestorModal = lazy(() =>import("../UpdateInvestor/UpdateInvestorModal"));
+
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
+
+dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+  const now = dayjs();
+  const creationDay = dayjs(creationDate);
+
+  if (creationDay.isSame(now, 'day')) {
+      return 'Today';
+  } else {
+      return creationDay.from(now); 
+  }
+};
 
 function InvestorTeamCardList(props) {
 
@@ -55,16 +68,25 @@ function InvestorTeamCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [        
-            "Name",//0
-            "Sector",//1
-            "Deals",//2
-            "Discussion",//3
-            "signed",//4
-            "Category",//5
-           "Assigned",//6
-            "Owner",//7
-            "Source"//8
-
+          "110",//0 Name
+          "278",//1Sector
+          "490",//2Deals
+            "578",//3Discussion
+            "579",//4signed
+            "14",//5 Category
+            "279",//6 Source
+            "76",//7 Assigned
+            "77",//8  Owner
+           "392", // pulse 9
+          "185", // 185ADDress 10
+          "316", // notes 11
+          "608",// investor contact 12
+          "170",// 170edit  13
+          "84", // 84delete 14
+          "1581" ,//Score 15
+          "1161",// Shares 16
+          "218",//Value 17
+          "592",//Club 18
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -111,13 +133,23 @@ function InvestorTeamCardList(props) {
   }
 
   const handleLoadMore = () => {
-
-      setPage(page + 1);
-      props.getTeamInvestor(
-        props.currentUser ? props.currentUser : props.userId,
-        page,
-      );
-  };
+    const callPageMapd = props.teamInvestor && props.teamInvestor.length &&props.teamInvestor[0].pageCount
+    setTimeout(() => {  
+      if  (props.teamInvestor)
+      {
+        if (page < callPageMapd) {    
+    setPage(page + 1);
+    props.getTeamInvestor(
+            props.currentUser ? props.currentUser : props.userId,
+            page,
+          );
+            }
+              if (page === callPageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
+  }
 
   const {
     fetchingTeamInvestor,
@@ -152,53 +184,74 @@ function InvestorTeamCardList(props) {
     fetchingInvestorSearchData={props.fetchingInvestorSearchData}
     />
   ) : (
-  <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-  <div className=" flex justify-between max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[14.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
+  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] max-sm:bg-gradient-to-b from-white to-gray-100  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+  <div className=" flex justify-between max-sm:hidden  w-[84%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div className="font-bold font-poppins text-xs w-[19.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
         {translatedMenuItems[0]}
         {/* "Name" */}              
                 </div>
-        <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <div className="font-bold font-poppins text-xs w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
         {translatedMenuItems[1]}
         {/* Sector" */}          
-                </div>
-        <div className=" w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "></div>
-        <div className="w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># 
+                </div>    
+        <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># 
         {translatedMenuItems[2]}
          {/* Deals */}      
                 </div>
-        <div className="w-[6.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        <div className="font-bold font-poppins text-xs w-[8.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
         {translatedMenuItems[3]}
                    {/* Discussion */}
           </div>
-          <div className="w-[6.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className=" font-bold font-poppins text-xs w-[5.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[4]} 
           {/* "Signed" */}       
           </div>
-          <div className="w-[6.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className="font-bold font-poppins text-xs w-[8.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[5]}
           {/* "Category */}
           </div>
-        <div className="w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+          <div className="font-bold font-poppins text-xs w-[7.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
         {translatedMenuItems[6]}
+         {/* Source" */}         
+          </div>
+          <div className=" font-bold font-poppins text-xs w-[5.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[16]}
+       {/* Shares # */}
+          </div>         
+          <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[17]}
+        {/* Value */}
+          </div>
+          <div className="font-bold font-poppins text-xs w-[9.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[18]}
+        {/* Club */}
+          </div>
+          {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+             {translatedMenuItems[15]}
+          {/* Score */}
+            </div>
+            )}
+        <div className="font-bold font-poppins text-xs w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+        {translatedMenuItems[7]}
         {/* Assigned" */}
              
          </div>
-        <div className="w-[4.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
-        {translatedMenuItems[7]}
+        
+        <div className="font-bold font-poppins text-xs w-[4.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
+        {translatedMenuItems[8]}
         {/* owner" */}         
                 </div>
-        <div className="w-[9.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        {translatedMenuItems[8]}
-         {/* Source" */}         
-          </div>
+           
       </div>
         <InfiniteScroll
         dataLength={teamInvestor.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingTeamInvestor?<h4 style={{ textAlign: 'center' }}>Loading...</h4>:null}
-        height={"80vh"}
+        height={"83vh"}
+        style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         
         { !fetchingTeamInvestor && teamInvestor.length === 0 ?<NodataFoundPage />:teamInvestor.map((item,index) =>  {
@@ -223,11 +276,10 @@ function InvestorTeamCardList(props) {
            } `;
                     return (
                       <div>
-                            <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-            >
+                            <div  className="flex rounded justify-between max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[10rem] max-sm:flex-col 
+                bg-white mt-1 h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium  w-[13.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex   w-[12.5rem] border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
                                 <div>
 
             <MultiAvatar
@@ -244,20 +296,16 @@ function InvestorTeamCardList(props) {
                                    </div>
                                    
                                         <Tooltip>
-                                        <div class=" flex max-sm:w-full  flex-row md:flex-col">                                         
+                                        <div class=" flex max-sm:w-full  flex-row md:flex-col ml-1">                                         
                                             {/* Name */}
                                            
-                                            <div class=" text-sm text-blue-500 flex  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                            <div class=" text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
+                                            <Link class="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
-  </Link>                                
-         {/* <Link
-          toUrl={`investor/${item.investorId}`}
-          title={`${item.name}`}
-        >{item.name}</Link> */}
-        &nbsp;&nbsp;
+  </Link>                                   
+       
         {date === currentdate ? (
-          <span class="text-[tomato] mt-[0.4rem] font-bold">
+          <span class="text-[tomato] mt-[0.4rem] font-bold ml-1 text-[0.65rem]">
             New
           </span>
         ) : null}
@@ -267,15 +315,15 @@ function InvestorTeamCardList(props) {
                                         </Tooltip>
                               
                                 </div>
-                                <div className=" flex items-center  w-[11.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                         
+                                </div>
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                                <div className=" flex   w-[7.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                         
                                      {/* Sector  */}
                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                     {item.sector}
                                     </div>
                                 </div>
-                                </div>                                                                                   
-                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center w-[3.21rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.21rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
                                  {/* Country */}
                                   <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   <ReactCountryFlag
@@ -290,37 +338,84 @@ function InvestorTeamCardList(props) {
                      {item.countryAlpha2Code}
                                   </div>
                               </div>
-                                <div className=" flex  items-center w-[7.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                     {/* Deals */}
+                              <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* Discussion */}                                
+      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+    
+      <div>
+      <CurrencySymbol currencyType={item.userCurrency}/>  
+         {`${Math.floor(item.totalProposalValue / 1000)}K`}
+         </div>
+      </div>
+    
+                                </div>                                                                            
+                           
+                               
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                     {/*signed */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.totalWonOppProposalValue}
                                     </div>
-                                </div>                            
-                                <div className=" flex  items-center w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* Pipeline Value */}
-
-                                    {item.totalProposalValue && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-         {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
-      </div>
-    )}
-                                </div>
-                                <div className=" flex  items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                </div>    
+                                </div>    
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                             
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                      {/* Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.signed}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[6.12rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Deals */}
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.12rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Category */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     {Category}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Source */}
+                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.source}
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                             {/* sHARES*/}
+
+                                    <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div  onClick={() => {
+                              props.handleInvestorPriceDrawer(true);
+                              handleCurrentRowData(item);
+                            }}>{item.allTotalQuantityOfShare}</div>
+                                    </div>
+                                </div>
+
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.918rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* # Value */}
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                   {item.allTotalAmountOfShare}
+                                    </div>
+                                </div>
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Club */}
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                   {item.club}
+                                    </div>
+                                </div>
+                          </div>
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center ">
+                                {props.user.aiInd && (
+           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] font-poppins w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Assigned */}
 
                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -347,7 +442,8 @@ function InvestorTeamCardList(props) {
             </span>           
                                     </div>
                                 </div>
-                                <div className=" flex   w-[4.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                              
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.12rem]  max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                          {/* Owner */}
                        <span>
                        <Tooltip title={item.ownerName}>
@@ -356,48 +452,64 @@ function InvestorTeamCardList(props) {
               <MultiAvatar
                 primaryTitle={item.ownerName}
                 imageId={item.ownerImageId}
-                imgWidth={"1.9rem"}
-                imgHeight={"1.9rem"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             </Tooltip>
             </div>
           </Tooltip>
             </span>
                    </div>
-                   </div>
-                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                   <div className=" flex  items-center  w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Source */}
-                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.source}
-                                    </div>
-                                </div>
-                                <div class="flex items-center justify-between">            
+                   <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
+                  </div>
+                
+            
+                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+                  
+                                       
                                 <div >
                                 {/* {user.pulseAccessInd === true && */}
-                          <Tooltip title="Pulse">
+                          <Tooltip title= {translatedMenuItems[9]} >
          <MonitorHeartIcon
                   onClick={() => {
                     handleInvestorPulseDrawerModal(true);
                     handleCurrentRowData(item);
                   }}
-                  className=" !text-icon cursor-pointer text-[#df9697]"
+                  className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl "
                 />
              </Tooltip>
         {/* } */}
                           </div>
+                        
                          <div>
-                   <Tooltip title="Notes">
+                   <Tooltip title={translatedMenuItems[11]}>
        <NoteAltIcon
                 onClick={() => {
                   props.handleInvestorNotesDrawerModal(true);
                   handleCurrentRowData(item);
                 }}
-                className=" !text-icon cursor-pointer text-green-800"
+                className=" !text-icon cursor-pointer text-green-800 max-sm:!text-xl"
               />
            </Tooltip>
                    </div>
-                   
+                   <div>
+                          <Tooltip title= {translatedMenuItems[10]} >
+                          <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
+          onClick={() => {
+            props.handleInvestorAddressDrawerModal(true);
+            handleCurrentRowData(item);
+          }}
+          
+        />   
+        </Tooltip>
+        </div> 
                    <div>
                     <Tooltip title={item.url}>
               {item.url !== "" ? (
@@ -408,7 +520,7 @@ function InvestorTeamCardList(props) {
                   {" "}
                   <a href={`https://${item.url}`} target="_blank">
                     <ExploreIcon
-                      className=" !text-icon cursor-pointer text-green-800"
+                      className=" !text-icon cursor-pointer text-green-800 max-sm:!text-xl"
                     />
                   </a>
                 </span>
@@ -419,27 +531,20 @@ function InvestorTeamCardList(props) {
                         </div>                                              
                         <div>
           
-            <Tooltip title="Investor Contact">
-              <LocationCityIcon
-              className=" !text-icon cursor-pointer p-1 text-blue-500 "
+            <Tooltip title={translatedMenuItems[12]}>
+              <ContactEmergencyIcon
+              className=" !text-icon cursor-pointer  text-blue-500 max-sm:!text-xl"
                 onClick={() => {
                   handleInvestorContModal(true);
                     handleCurrentRowData(item);                 
                 }}
               />
             </Tooltip>
-            </div>                                                        
-            <div>
-                    <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-            <span class="cursor-pointer">
-            <LocationOnIcon   className=" !text-icon cursor-pointer text-[#960a0a]"/>
-            </span>
-          </Tooltip>
-          </div>
+            </div>                                                              
             <div>
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
-            <Tooltip title="Edit">
-              <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato]"
+            <Tooltip title={translatedMenuItems[13]}>
+              <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
                 onClick={() => {
                     handleUpdateInvestorModal(true);
                     handleCurrentRowData(item);                
@@ -455,57 +560,66 @@ function InvestorTeamCardList(props) {
                           deleteInvestorData(item.investorId,props.userId)
                         }
                       >
-                         <Tooltip title="Delete">                      
+                         <Tooltip title={translatedMenuItems[14]}>                      
                           <DeleteOutlined
                             type="delete"
-                            className="!text-icon text-[red] cursor-pointer"
+                            className="!text-icon text-[red] cursor-pointer max-sm:!text-xl"
                           />                      
                         </Tooltip>
                       </StyledPopconfirm>        
                   </div>
-                  </div>
+                  
                       </div>   
                             </div>
                         </div>
+
                     )
                 })}
      </InfiniteScroll> 
      </div>
-        )}  
 
+
+        )}  
+<Suspense fallback={<BundleLoader />}>
       <UpdateInvestorModal
         RowData={RowData}
         updateInvestorModal={updateInvestorModal}
         handleUpdateInvestorModal={handleUpdateInvestorModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
            <AddInvestorNotesDrawerModal
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}
         handleInvestorNotesDrawerModal={props.handleInvestorNotesDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
       <InvestorPulseDrawerModal
         RowData={RowData}
         addDrawerInvestorPulseModal={addDrawerInvestorPulseModal}
         handleInvestorPulseDrawerModal={handleInvestorPulseDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
       <ContactsInvestorModal
         RowData={RowData}
         addDrawerInvestorContactModal={addDrawerInvestorContactModal}
         handleInvestorContModal={handleInvestorContModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
       />
-      {/* <AddCustomerDrawerModal
-        addDrawerCustomerModal={props.addDrawerCustomerModal}
-        handleCustomerDrawerModal={props.handleCustomerDrawerModal}
-      />
-          <AddCustomerEmailDrawerModal
-        // contactById={props.contactById}
-        addDrawerCustomerEmailModal={props.addDrawerCustomerEmailModal}
-        handleCustomerEmailDrawerModal={props.handleCustomerEmailDrawerModal}
-      /> */}
+         <AddInvestorAdressModal
+        item={RowData}
+         type="investor"
+         addInvestorAddressModal={props.addInvestorAddressModal}
+         handleInvestorAddressDrawerModal={props.handleInvestorAddressDrawerModal}
+      /> </Suspense>
+      
     </>
   );
 }
@@ -529,6 +643,7 @@ const mapStateToProps = ({
   user: auth.userDetails,
   employees: employee.employees,
   investorSerachedData:investor.investorSerachedData,
+  addInvestorAddressModal: investor.addInvestorAddressModal,
   fetchingInvestorSearchData:investor.fetchingInvestorSearchData,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   addDrawerInvestorPulseModal:investor.addDrawerInvestorPulseModal,
@@ -549,7 +664,8 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerById,
       handleInvestorPulseDrawerModal,
       deleteInvestorData,
-      handleInvestorContModal
+      handleInvestorContModal,
+      handleInvestorAddressDrawerModal
     },
     dispatch
   );

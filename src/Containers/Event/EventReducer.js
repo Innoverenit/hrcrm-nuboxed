@@ -41,6 +41,9 @@ const initialState = {
   setEditingEvents: {},
   updateEventModal: false,
 
+  fetchingEventSearchedList: false,
+  fetchingEventSearchedListError: false,
+
 };
 export const EventReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -236,7 +239,19 @@ export const EventReducer = (state = initialState, action) => {
             fetchingOpportunityRecord: false,
             fetchingOpportunityRecordError: true,
           };
-  
+
+          case types.SEARCH_EVENT_LIST_REQUEST:
+            return { ...state, fetchingEventSearchedList: true };
+          case types.SEARCH_EVENT_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingEventSearchedList: false,
+              eventListRangeByUserId: action.payload,
+              
+            };
+          case types.SEARCH_EVENT_LIST_FAILURE:
+            return { ...state, fetchingEventSearchedListError: true };
+      
       default:
       return state;
     

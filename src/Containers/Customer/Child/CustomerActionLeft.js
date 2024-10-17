@@ -8,7 +8,7 @@ import { Tooltip, Badge, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import { AudioOutlined } from "@ant-design/icons";
+import { DeleteOutlined, AudioOutlined } from "@ant-design/icons";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -37,6 +37,37 @@ const CustomerActionLeft = (props) => {
   const [searchOnEnter, setSearchOnEnter] = useState(false);
   const [currentData, setCurrentData] = useState("");
   const dummy = ["cloud", "azure", "fgfdg"];
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+   "374", // "My Prospects" // 0
+   "227",// "Team View", // 1
+   "228",// '"All', // 2
+   "228",// '"ALL"', // 3
+   "288",// 'Search by Name or Sector" // 4
+   "396",// ' Sort by Creation Date', // 5
+   "289",// 'Creation Date', // 6
+  
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+  
   console.log(searchOnEnter)
   const handleChange = (e) => {
     setCurrentData(e.target.value);
@@ -207,7 +238,8 @@ const CustomerActionLeft = (props) => {
   return (
     <div class=" flex items-center"
     >
-      <Tooltip title={<FormattedMessage id="app.myprospects" defaultMessage="My Prospects" />}>
+      <Tooltip title= {translatedMenuItems[0]}>
+      {/* FormattedMessage id="app.myprospects" defaultMessage="My Prospects" />} */}
         <Badge
           size="small"
           count={(props.viewType === "table" && props.recordData.customer) || 0}
@@ -220,7 +252,7 @@ const CustomerActionLeft = (props) => {
               color: props.viewType === "table" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
               <TocIcon className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -239,14 +271,14 @@ const CustomerActionLeft = (props) => {
               color: props.viewType === "card" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
             <GridViewIcon className="text-white"/>
             </Avatar>
           </span>
         </Badge>
       </Tooltip> */}
       {user.teamsAccessInd === true && (
-        <Tooltip title="Team View">
+        <Tooltip title= {translatedMenuItems[1]}>
           <Badge
             size="small"
             count={(teamCount||props.viewType === "teams" && props.customerTeamRecordData.prospectTeam || 0)}
@@ -259,7 +291,7 @@ const CustomerActionLeft = (props) => {
                 color: props.viewType === "teams" && "#1890ff",
               }}
             >
-              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
                 <PeopleIcon className="text-white !text-icon" />
               </Avatar>
             </span>
@@ -267,7 +299,7 @@ const CustomerActionLeft = (props) => {
         </Tooltip>
       )}
       {(user.crmInd === true && user.customerFullListInd === true || user.role === "ADMIN") && (
-        <Tooltip title="All">
+        <Tooltip title= {translatedMenuItems[2]}>
           <Badge
             size="All"
             count={(props.viewType === "all" && props.customerAllRecordData.customer) || 0}
@@ -280,11 +312,11 @@ const CustomerActionLeft = (props) => {
                 color: props.viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                <FormattedMessage
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+              {translatedMenuItems[3]} {/* <FormattedMessage
                   id="app.all"
                   defaultMessage="ALL"
-                />
+                /> */}
               </Avatar>
 
             </span>
@@ -292,48 +324,31 @@ const CustomerActionLeft = (props) => {
         </Tooltip>
       )}
 
-      {/* <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
-      >
-        <Badge
-          size="small"
-          // count={(props.viewType === "mapView" && props.recordData.customer) || 0}
-          overflowCount={999}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            onClick={() => props.setCustomerViewType("mapView")}
-            style={{
-              color: props.viewType === "mapView" && "#1890ff",
-            }}
-          >
-           <LanguageIcon />
-          </span>
-        </Badge>
-      </Tooltip> */}
-      {/* <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
-      >
-        <Badge
-          size="small"
-          count={(props.viewType === "map" && props.recordData.customer) || 0}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            style={{
-              color: props.viewType === "map" && "#1890ff",
-            }}
-            onClick={() => props.setCustomerViewType("map")}
-          >
-            <LanguageIcon />
-          </span>
-        </Badge>
-      </Tooltip> */}
+      
+         {user.teamsAccessInd === true && (
+       <Tooltip title="My Deleted-Prospect">
+                <Badge size="small"
+                // count={props.accountRecordData.distributor || 0}
+                >
+                    <span class=" mr-1 text-sm cursor-pointer"
+                        onClick={() => props.setCustomerViewType("dashboard1")}
+                        style={{
+                            color: props.viewType === "dashboard1" && "#1890ff",
+                        }}
+                    >
+                        <Avatar style={{ background: props.viewType === "dashboard1" ? "#f279ab" : "#28a355" }}>
+                            <DeleteOutlined className="text-white !text-icon " /></Avatar>
+
+                    </span>
+                </Badge>
+            </Tooltip>
+             )}
       <div class=" flex items-center justify-between"
       >
         <div class=" w-72 max-sm:w-24">
           <Input
-            placeholder="Search by Name or Sector"
+            placeholder= {translatedMenuItems[4]}
+            // "Search by Name or Sector"
 
             width={"100%"}
             suffix={suffix}
@@ -345,10 +360,10 @@ const CustomerActionLeft = (props) => {
         <div class="w-[40%]  ml-2 max-sm:w-[45%]">
           <StyledSelect placeholder={
             <span>
-              Sort by Creation Date
+               {translatedMenuItems[5]}{/* Sort by Creation Date */}
             </span>
-          } onChange={(e) => props.handleFilterChange(e)}>
-            <Option value="CreationDate">Creation Date</Option>
+          } value={props.filter} onChange={(e) => props.handleFilterChange(e)}>
+            <Option value="CreationDate"> {translatedMenuItems[6]}</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>
           </StyledSelect>

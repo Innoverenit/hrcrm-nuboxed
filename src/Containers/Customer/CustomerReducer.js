@@ -10,6 +10,8 @@ const initialState = {
   fetchingWonCusmWeightedValueError: false,
   WonCustomerWeighted: {},
 
+  addAddressCustomerModal:false,
+
   fetchingSelectdrop: false,
   fetchingSelectdropError: false,
   selectDrop: [],
@@ -39,6 +41,9 @@ const initialState = {
 
   fetchingFilterCustomers: false,
   fetchingFilterCustomersError: false,
+
+  deletingCustomerById: false,
+  deletingCustomerByIdError: false,
 
   addingCustomerActivityCall: false,
   addingCustomerActivityCallError: false,
@@ -320,6 +325,12 @@ const initialState = {
   fetchingContactValue: false,
   fetchingContactValueError: false,
   contactValue: {},
+
+
+  fetchingCustomerDonut:false,
+  fetchingCustomerDonutError:false,
+
+  customerDonut:{},
 
   updatingActivityEventForm: false,
   updatingActivityEventFormError: false,
@@ -1053,6 +1064,27 @@ export const customerReducer = (state = initialState, action) => {
         addingRecruitmentProfileError: true,
       };
 
+
+
+
+      case types.GET_CUSTOMER_DONUT_REQUEST:
+        return { ...state, fetchingCustomerDonut: true };
+      case types.GET_CUSTOMER_DONUT_SUCCESS:
+        return {
+          ...state,
+          fetchingCustomerDonut: false,
+        customerDonut: action.payload,
+  
+          //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_CUSTOMER_DONUT_FAILURE:
+        return {
+          ...state,
+          fetchingCustomerDonut: false,
+          fetchingCustomerDonutError: true,
+        };
+  
+
     case types.SET_CURRENT_RECRUITMENT_DATA:
       return { ...state, currentRecruitmentData: action.payload };
 
@@ -1113,7 +1145,7 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         puttingCustContcToggle: false,
         contactByCustomerId: state.contactByCustomerId.map((item) => {
-          if (item.contactId === action.payload.contactId) {
+          if (item.contactPersonId === action.payload.contactPersonId) {
             return action.payload;
           } else {
             return item;
@@ -1774,6 +1806,9 @@ export const customerReducer = (state = initialState, action) => {
     case types.HANDLE_CUSTOMER_OPPORTUNITY_DRAWER_MODAL:
       return { ...state, addDrawerCustomerOpportunityModal: action.payload };
 
+      case types.HANDLE_ADDRESS_CUSTOMER_MODAL:
+        return { ...state, addAddressCustomerModal: action.payload };
+
     case types.GET_OPPORTUNITY_RECORD_REQUEST:
       return { ...state, fetchingOpportunityRecord: true };
     case types.GET_OPPORTUNITY_RECORD_SUCCESS:
@@ -1842,6 +1877,23 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         fetchingAllCustomerList: false,
         fetchingAllCustomerListError: true,
+      };
+
+      case types.DELETE_CUSTOMER_REQUEST:
+      return { ...state, deletingCustomerById: true };
+    case types.DELETE_CUSTOMER_SUCCESS:
+      return {
+        ...state,
+        deletingCustomerById: false,
+        customerByUserId: state.customerByUserId.filter(
+          (item) => item.customerId !== action.payload.customerId
+        ),
+      };
+    case types.DELETE_CUSTOMER_FAILURE:
+      return {
+        ...state,
+        deletingCustomerById: false,
+        deletingCustomerByIdError: true,
       };
 
     case types.ADD_CUSTOMER_ACTIVITY_CALL_REQUEST:

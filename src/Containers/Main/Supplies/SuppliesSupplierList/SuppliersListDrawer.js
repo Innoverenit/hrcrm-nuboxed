@@ -11,7 +11,7 @@ const SuppliersListDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={`${particularDiscountData.suppliesName} ${particularDiscountData.attributeName} ${particularDiscountData.hsn}`}
+        title={`${particularDiscountData.suppliesName}`}
         width={drawerWidth}
         visible={suppliersListDrwr}
         maskClosable={false}

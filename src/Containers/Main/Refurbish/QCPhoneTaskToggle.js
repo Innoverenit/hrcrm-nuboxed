@@ -31,7 +31,7 @@ function QCPhoneTaskToggle(props) {
                         isLoading={true}
                         checkedChildren="Completed"
                         unCheckedChildren="Not Completed"
-                        disabled={ props.RowData.repairStatus === "To Start" || props.RowData.repairStatus === "Complete"}
+                        disabled={ props.RowData.repairStatus === "To Start" || props.RowData.repairStatus === "Complete" || (props.item.completeTaskInd === false && props.item.noNeedTaskInd === true)}
                     />
                 </Popconfirm>
             </div>

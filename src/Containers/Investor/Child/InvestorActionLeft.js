@@ -4,13 +4,12 @@ import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { Tooltip, Badge, Avatar } from "antd";
 import { connect } from "react-redux";
+import { DeleteOutlined } from "@ant-design/icons";
 import { bindActionCreators } from "redux";
 import PeopleIcon from '@mui/icons-material/People';
 import { withRouter } from "react-router-dom";
 import { AudioOutlined } from "@ant-design/icons";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
+import SpeechRecognition, {  useSpeechRecognition,} from "react-speech-recognition";
 import { getInvestor, ClearReducerDataOfInvestor, getInvestorsbyId, getInvestorTeam, searchInvestorName, getInvestorAll } from "../InvestorAction";
 import { Input } from "antd";
 
@@ -18,7 +17,6 @@ const Option = StyledSelect.Option;
 const { Search } = Input;
 
 const InvestorActionLeft = (props) => {
-  const [filter, setFilter] = useState("creationdate")
   const [currentData, setCurrentData] = useState("");
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
@@ -133,11 +131,7 @@ const InvestorActionLeft = (props) => {
     }
   }, [listening, isRecording, startTime]);
 
-  function handleFilterChange(data) {
-    setFilter(data)
-    props.getInvestorsbyId(props.userId, pageNo, data);
-    setPage(pageNo + 1);
-  }
+
 
   useEffect(() => {
 
@@ -177,7 +171,7 @@ const InvestorActionLeft = (props) => {
               color: props.viewType === "list" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355" }}>
               <TocIcon  className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -200,7 +194,7 @@ const InvestorActionLeft = (props) => {
                 color: props.viewType === "teams" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
                 <PeopleIcon  className="text-white !text-icon" />
               </Avatar>
             </span>
@@ -221,13 +215,30 @@ const InvestorActionLeft = (props) => {
                 color: props.viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
                 <FormattedMessage id="app.all" defaultMessage="ALL" class=" text-white !text-icon"/>
               </Avatar>
             </span>
           </Badge>
         </Tooltip>
       )}
+       <Tooltip title="Delete List">
+                {/* <Badge
+          size="small"
+          count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
+          overflowCount={999}
+        > */}
+                    <span class=" mr-1 !text-icon cursor-pointer"
+                        onClick={() => props.setInvestorViewType("delete")}
+                        style={{
+                            color: props.viewType === "delete" && "#1890ff",
+                        }}
+                    >
+                        <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#28a355" }}>
+                        <DeleteOutlined className="text-white" /></Avatar>
+                    </span>
+                    {/* </Badge> */}
+                </Tooltip>
       {/* <Tooltip>
         <Badge
           size="small"
@@ -293,9 +304,9 @@ const InvestorActionLeft = (props) => {
         >
           <FormattedMessage id="app.clear" defaultMessage="Clear" />
         </Button> */}
-        <div class=" w-[40%] mt-2 ml-2" >
-          <StyledSelect placeholder="Sort" onChange={(e) => props.handleFilterChange(e)}>
-            <Option value="CreationDate">Creation Date</Option>
+        <div class=" w-[40%]  ml-2" >
+          <StyledSelect placeholder="Sort" defaultValue="Creation Date" value={props.filter} onChange={(e) => props.handleFilterChange(e)}>
+            <Option value="Creation Date">Creation Date</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>
           </StyledSelect>

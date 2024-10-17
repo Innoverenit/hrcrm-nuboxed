@@ -401,7 +401,7 @@ import {
 } from "../../../../CustomerAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
-// import LinkedDocuments from "../../../../../Contact/Child/ContactDetail/ContactTab/Document/LinkedDocuments";
+import {base_url} from "../../../../../../Config/Auth";
 const { Option } = Select;
 const ButtonGroup = Button.Group;
 const documentSchema = Yup.object().shape({
@@ -420,11 +420,13 @@ function AddDocumentModal (props){
   const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
   const [touchedInclude, setTouchedInclude] = useState(false);
   const [showInclude, setShowInclude] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = ` ${base_url}/employee/active/user/drop-down/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -442,6 +444,29 @@ function AddDocumentModal (props){
     }
   };
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "71",//0
+          "1205",//1
+          "110",//2
+          "147",//3
+          "1158",//4
+          "75",//5
+          "154",//6
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getselectdrop(props.orgId);
   }, [ props.orgId]);
@@ -508,6 +533,7 @@ function AddDocumentModal (props){
     getCustomerDocument,
   } = props;
 
+
   return (
     <>
       <StyledDrawer
@@ -544,11 +570,12 @@ function AddDocumentModal (props){
                     <p style={{ color: "tomato", fontWeight: 600 }}>{errors.documentId}</p>
                   )}
                   <div class=" mt-3">
+                    <div className="font-bold font-poppins text-xs">{translatedMenuItems[0]}</div>
+                    {/* type */}
                     <Field
                       name="documentTypeId"
                       selectType="documentTypeName"
-                      isColumnWithoutNoCreate
-                      label={<FormattedMessage id="app.type" defaultMessage="Type" />}
+                      isColumnWithoutNoCreate                     
                       component={SearchSelect}
                       isColumn
                       value={values.documentId}
@@ -556,7 +583,10 @@ function AddDocumentModal (props){
                     />
                   </div>
                   <div class=" flex  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Contract</div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[1]}
+                      {/* Contract */}
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       onChange={handleContract}
@@ -567,47 +597,30 @@ function AddDocumentModal (props){
                   </div>
                 </div>
                 <div class=" h-full w-2/5">
+                <div className="font-bold font-poppins text-xs">{translatedMenuItems[2]}</div>
+                {/* name */}
                   <Field
                     name="documentTitle"
-                    label={<FormattedMessage id="app.name" defaultMessage="Name" />}
                     width={"100%"}
                     isColumn
                     component={InputComponent}
                   />
                   <div class=" mt-3">
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[3]}</div>
+                  {/* Description */}
                     <Field
-                      name="documentDescription"
-                      label={<FormattedMessage id="app.description" defaultMessage="Description" />}
+                      name="documentDescription"                  
                       isRequired
                       isColumn
                       width={"100%"}
                       component={TextareaComponent}
                     />
-                  </div>
-                  {/* <div class="mt-1 flex flex-col" >
-<label className=" font-bold text-xs" >Include</label>
-                   <Select
-          showSearch
-          style={{ width: "-webkit-fill-available" }}
-          placeholder="Search or select include"
-          optionFilterProp="children"
-          loading={isLoadingInclude}
-          onFocus={handleSelectIncludeFocus}
-          onChange={handleSelectChangeInclude}
-          defaultValue={selectedIncludeValues} 
-          mode="multiple" 
-        >
-          {include.map(includes => (
-            <Option key={includes.employeeId} value={includes.employeeId}>
-              {includes.empName}
-            </Option>
-          ))}
-        </Select>
-                 </div> */}
+                  </div>           
        <div className="mt-1 flex flex-col">
       
       <div className="flex items-center">
-      <label className="font-bold text-xs">Share</label>
+      <div className="font-bold font-poppins text-xs">{translatedMenuItems[4]}</div>
+      {/* Share */}
         <Switch
           checked={showInclude}
           onChange={handleToggleInclude}
@@ -616,9 +629,10 @@ function AddDocumentModal (props){
       unCheckedChildren="No"
         />
       </div>
-      {showInclude && ( // Conditionally render based on showInclude state
+      {showInclude && (
       <div className="mt-1 flex flex-col">
-      <label className="font-bold text-xs">Include</label>
+      <div className="font-bold font-poppins text-xs">{translatedMenuItems[5]}</div>
+      {/* Include */}
         <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}
@@ -718,7 +732,8 @@ function AddDocumentModal (props){
               </div>
               <div class=" flex justify-end mt-3">
                 <Button htmlType="submit" type="primary" loading={addingDocumentByCustomerId}>
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                <div className="font-bold font-poppins text-xs">{translatedMenuItems[6]}</div>
+                {/* submit */}
                 </Button>
               </div>
             </Form>

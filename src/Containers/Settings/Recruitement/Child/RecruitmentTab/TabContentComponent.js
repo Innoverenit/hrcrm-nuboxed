@@ -1,166 +1,5 @@
-// import React,{lazy,Suspense,useEffect,useState} from "react";
-// // import {  Select } from "../../../Components/UI/Elements";
-// // import { elipsize } from "../../../../../../Helpers/Function/Functions";
-// import BorderColorIcon from '@mui/icons-material/BorderColor';
-// import { FormattedMessage } from "react-intl";
 
-
-// import {
-//     MainWrapper,
-//     Spacer,
-//     TextInput,
-//   } from "../../../../../Components/UI/Elements";
-
-// import { TabsWrapper } from "../../../../../Components/UI/Layout";
-// import { connect } from "react-redux";
-// import { Tabs, Badge,Button } from 'antd';
-
-
-// import styled from "styled-components";
-
-
-// const { TabPane } = Tabs;
-
-// function TabContentComponent(props) {
-//     const [activeKey, setActiveKey] = useState("")
-//     const [activeTab, setActiveTab] = useState(null);
-
-
-//     console.log(activeTab)
-
-//     useEffect(() => {
-//         // Ensure the initial tab content is rendered on component mount
-//         renderTabContent(activeKey);
-        
-//       }, [activeKey]);
-
-
-//       useEffect(() => {
-//         // Ensure the initial tab content is rendered on component mount
-        
-//         if (props.processForWorkflowData.length > 0) {
-       
-//           setActiveKey(props.processForWorkflowData[0]?.workflowDetailsId);
-//         }
-//       }, [props.processForWorkflowData]);
-
-
-
-//       useEffect(() => {
-//         if (activeKey) {
-//           //props.getProcessForWorkFlowData(props.orgId, activeKey);
-//           // Set the active tab object when the activeKey changes
-//           const activeTabObj = props.processForWorkflowData.find(tab => tab.workflowDetailsId === activeKey);
-//           if (activeTabObj) {
-//             setActiveTab(activeTabObj);
-//           }
-//         }
-//       }, [activeKey, props.orgId]);
-
-
-//     const handleTabChange = (key) => {
-//         setActiveKey(key);
-//         const tabObj = props.processForWorkflowData.find(tab => tab.workflowDetailsId === key);
-//         if (tabObj) {
-//           setActiveTab(tabObj);
-//         }
-//       };
-
-
-
-//       const renderTabContent = (key) => {
-//         const tab = props.processForWorkflowData.find(tab => tab.workflowDetailsId === key);
-//         if (!tab) return null;
-    
-//         // return <TabContentComponent 
-//         // // label={tab.name} 
-//         // // processForWorkflowData={props.processForWorkflowData}
-    
-//         // // count={countMapping[tab.name]} 
-//         // />;
-//       };
-//   return (
-//     <>
-   
-//     <TabsWrapper>
-//       <Tabs type="card" defaultActiveKey={activeKey} onChange={handleTabChange}>
-//         {props.processForWorkflowData.map(tab => (
-//           <TabPane
-//             tab={
-//               <>
-//                 <span 
-//                 className="ml-1">{tab.workflowName}</span>
-//                 {/* <Badge count={countMapping[tab.name]} overflowCount={999} /> */}
-//               </>
-//             }
-//             key={tab.workflowDetailsId}
-//           />
-//         ))}
-//       </Tabs>
-//       <Suspense fallback={<div className="flex justify-center">Loading...</div>}>
-//         {/* {renderTabContent(activeKey)} */}
-//         {/* Hello */}
-//         <h1 style ={{color:"white"}}>
-//                     {
-//                     // this.state.currentProcess.workflowName ||
-//                       `${"Select Workflow"}`}
-//                       {/* {" "} */}
-                  
-                   
-              
-                 
-                    
-
-                  
-                  
-                
-//                   </h1> 
-//       </Suspense>
- 
-//     </TabsWrapper>
-
-
-
-  
-
-
-  
-
-
-//     </>
-
-    
-//   )
-// }
-
-// export default TabContentComponent
-
-
-// const AppIcon1 = (props) => (
-  
-//     <BorderColorIcon
-  
-//     className={`pen-to-square ${props.className}`}
-  
-//     />
-  
-  
-  
-//   );
-
-
-// const EditIcon1 = styled(AppIcon1)`
-//   color: white;
-//   &:hover {
-//     // background: yellow;
-//     color: blue;
-//   }
-// `;
-
-
-
-
-import React, { Component,lazy} from "react";
+import React, { Component} from "react";
 import { connect } from "react-redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { FormattedMessage } from "react-intl";
@@ -169,8 +8,6 @@ import { bindActionCreators } from "redux";
 import { Button,  message, Popconfirm } from "antd";
 import styled from "styled-components";
 import {
-  MainWrapper,
-  Spacer,
   TextInput,
 } from "../../../../../Components/UI/Elements";
 import {addProcessForDeals,
@@ -252,8 +89,25 @@ class TabContentComponent extends Component {
     this.setState({
       currentProcess: item,
     });
-      this.props.getProcessStagesForDeals(item.workflowDetailsId);
+      //this.props.getProcessStagesForDeals(item.workflowDetailsId);
   };
+
+
+  componentDidUpdate(prevProps, prevState) {
+    // Ensure the initial tab content is rendered on component mount
+    if (prevProps.processForWorkflowData !== this.props.processForWorkflowData && this.props.processForWorkflowData.length > 0) {
+      this.setState({ currentProcess: this.props.processForWorkflowData[0]?.workflowDetailsId });
+    }
+
+    if (prevState.currentProcess !== this.state.currentProcess && this.state.currentProcess) {
+      this.props.getProcessStagesForDeals( this.state.currentProcess.workflowDetailsId);
+    }
+  }
+
+
+  // componentDidMount() {
+  //   this.props.getProcessStagesForDeals(this.state.currentProcess);
+  // }
 
 
   handlePublishClick = () => {
@@ -440,8 +294,6 @@ fetchType = async () => {
     });
   };
 
-
-
   handlePublishGlobalClick = () => {
     const { currentProcess, publish } = this.state;
     console.log(currentProcess);
@@ -509,17 +361,18 @@ fetchType = async () => {
     });
   };
   render() {
+    console.log(this.state.currentProcess)
     console.log(this.state.currentItem)
     const { addingProcessForDeals, addProcessForDeals } = this.props;
     return (
       <>
         <StageWrapper>
-          <MainWrapper>
-            <h1
-            >
+          <div class="mr-5 ml-5">
+            <div>
+            
               {/* Workflow */}
               <FormattedMessage id="app.workflow" defaultMessage="Workflow" />
-            </h1>
+            </div>
 
             <div class=" flex">
                <StyledTabs
@@ -538,9 +391,8 @@ fetchType = async () => {
                           {elipsize(item.workflowName, 15)}
                           
                         </span>
-                        {/* Hello */}
-                    
-                        {/* {item.globalInd && <GlobalOutlined style={{ marginLeft: 8 }} />} */}
+                        {/* Hello */}                    
+                        {item.globalInd && <GlobalOutlined style={{ marginLeft: 8 }} />}
                         </>
                       }
                       
@@ -550,8 +402,7 @@ fetchType = async () => {
               </StyledTabs> 
 
               {this.state.isTextOpen ? (
-             <div class=" flex items-center ml-[0.3125em] mt-[0.3125em]"
-             >
+             <div class=" flex items-center ml-1  mt-1">             
                 <br />
                 <br />
               
@@ -562,10 +413,7 @@ fetchType = async () => {
                   onChange={this.handleChange}
                   width="40%"
                   style={{ marginRight: "0.125em" }}
-                />
-        
-              
-         
+                />                           
                 &nbsp;
                 <Button
                   type="primary"
@@ -590,13 +438,11 @@ fetchType = async () => {
                 <div class=" flex justify-end" >
                   <Button
                     type="primary"
-
                     htmlType="button"
                      Loading={addingProcessForDeals}
                     onClick={this.toggleInput1}
                   >
-                    Add
-                 
+                    Add             
                   </Button>
                   {this.props.primaryOrgType === 'Child' && (
                   <Select
@@ -716,9 +562,6 @@ fetchType = async () => {
                           : "Publish"}
                       </Button>
                     )}
-
-
-
 {this.state.currentProcess.workflowName && (
            <>
                       {this.props.primaryOrgType === 'Parent' && (
@@ -761,8 +604,7 @@ fetchType = async () => {
                 id="style-3"
               />
             ))}   
-
-            <Spacer />
+        
             {this.state.isTextInputOpen ? (
               <div class=" flex justify-center"
               >
@@ -826,7 +668,7 @@ fetchType = async () => {
                 </div>
               </>
             ):null}
-          </MainWrapper>
+          </div>
         </StageWrapper>
 
       </>
@@ -835,16 +677,7 @@ fetchType = async () => {
 }
 
 const mapStateToProps = ({ settings, auth }) => ({
-//   addingProcessForDeals:settings.addingProcessForDeals,
-//   addingProcessForDealsError:settings.addingProcessForDealsError,
-//    dealsProcess: settings.dealsProcess,
-//   organization:
-//   auth.userDetails &&
-//   auth.userDetails.metaData &&
-//   auth.userDetails.metaData.organization,
 token: auth.token,
-//   dealsStagesPublish: settings.dealsStagesPublish,
-//   dealsProcessPublish: settings.dealsProcessPublish,
   dealsProcessStages: settings.dealsProcessStages,
   primaryOrgType:auth.userDetails.primaryOrgType,
  orgId: auth.userDetails && auth.userDetails.organizationId,
@@ -855,7 +688,6 @@ const mapDispatchToProps = (dispatch) =>
     {
       addProcessForDeals,
       addConfigureGlobalType,
-    //   getProcessForDeals,
     addProcessStageForDeals,
        getProcessStagesForDeals,
        LinkDealsProcessGlobal,
@@ -882,18 +714,12 @@ const StageName = styled.h3`
   // margin-bottom: 0;
   margin: 0;
 `;
-
-
 const AppIcon1 = (props) => (
   
   <BorderColorIcon
 
   className={`pen-to-square ${props.className}`}
-
   />
-
-
-
 );
 
 const EditIcon1 = styled(AppIcon1)`

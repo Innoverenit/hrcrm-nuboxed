@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { FormattedMessage } from "react-intl";
-import { Spacer } from "../../../Components/UI/Elements";
 import { Formik, Form, Field, FastField } from "formik";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -149,7 +148,7 @@ function UpdateCourseForm(props) {
               </div>
             </div>
 
-            <Spacer />
+            <div class=" mt-3" />
             <div class=" flex justify-end">
               <Button type="primary" htmlType="submit" loading={updatingCourse}>
                 <FormattedMessage id="app.create" defaultMessage="Update" />

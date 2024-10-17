@@ -62,10 +62,10 @@ class BarChart_ extends Component {
                             tickFormatter={( tick ) => 'hello' + tick}
 
                         >
-                            <Label value={chartName || ''} position="insideBottom" />
+                            <div value={chartName || ''} position="insideBottom" />
                         </XAxis> */}
             <XAxis dataKey="name" tickFormatter={this.displayXTick}>
-              <Label value={chartName || ""} position="insideBottom" />
+              <div value={chartName || ""} position="insideBottom" />
             </XAxis>
             <YAxis />
             <Tooltip />
@@ -96,7 +96,7 @@ class BarChart_ extends Component {
         >
           {/* <CartesianGrid strokeDasharray="3 3" /> */}
           <XAxis dataKey="name" tick={{ fontSize: 12 }}>
-            <Label value={chartName || ""} position="insideBottom" />
+            <div value={chartName || ""} position="insideBottom" />
           </XAxis>
           <YAxis tick={{ fontSize: 12 }} />
           <Tooltip />

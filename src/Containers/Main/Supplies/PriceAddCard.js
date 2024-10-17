@@ -2,12 +2,18 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Input, Select,Tooltip } from "antd";
-import { getMaterialCurrency, createMaterialCurrency,
+import {
+  getCategory,
+ 
+} from "../../Settings/Category/CategoryList/CategoryListAction";
+
+import { Button, Input, Select,Tooltip,Switch, Popconfirm } from "antd";
+import { getMaterialCurrency, createMaterialCurrency,materialPricetype
  } from "./SuppliesAction";
 import {getSaleCurrency} from "../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import MaterialPriceTypeToggle from "./MaterialPriceTypeToggle";
 
 const { Option } = Select;
 
@@ -17,14 +23,49 @@ function PriceAddCard(props) {
   const [rows, setRows] = useState([]);
   const [showNoDataAlert, setShowNoDataAlert] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
+  const [isBestSeller, setIsBestSeller] = useState(false); 
 
   useEffect(() => {
     props.getMaterialCurrency(props.particularDiscountData.suppliesId);
     props.getSaleCurrency()
   }, []);
+
+  useEffect(() => {
+    props.getCategory(props.orgId); 
+   
+}, [])
+
+ 
+  
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+     "1370",   //  "Add Row",//0
+       "241", //   "Currency",//1
+      "657",  //   "Price",//2
+      "71",  //   "Type",
+       "154", //   "Submit",//3
+       "1078", //      " Save",
+       "1079", //      "Cancel"  
+     "14", //  Catagory
+     "110", //name
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -46,6 +87,7 @@ function PriceAddCard(props) {
       suppliesPrice: '',
       suppliesPriceB2C: '',
       vat: '',
+      catagoryId:"",
 
 
     };
@@ -75,6 +117,17 @@ function PriceAddCard(props) {
     setData(updatedData);
   };
 
+  function cancelType(){
+    if (isBestSeller) {
+      setIsBestSeller(true);
+    } else {
+      setIsBestSeller(false);
+    }
+  }
+  const handleToggleChange = (checked) => {
+    setIsBestSeller(checked);
+  };
+  
   const handleInputChange = (value, key, dataIndex) => {
     const updatedData = data.map((row) =>
       row.key === key ? { ...row, [dataIndex]: value } : row
@@ -94,9 +147,10 @@ function PriceAddCard(props) {
         suppliesId: props.particularDiscountData.suppliesId,
         userId: props.userId,
         orgId: props.orgId,
+        SCategory:row.catagoryId
       };
       props.createMaterialCurrency(result)
-      setRows([{ currency: '', suppliesPrice: '', suppliesPriceB2C: '', vat: '' }]);
+      setRows([{ currency: '', suppliesPrice: '', suppliesPriceB2C: '', vat: '',catagoryId:"" }]);
   };
   const handleEditClick = (id) => {
     setEditsuppliesId(id);
@@ -105,30 +159,35 @@ function PriceAddCard(props) {
     setEditedFields((prevFields) => ({ ...prevFields, [id]: undefined }));
     setEditsuppliesId(null);
   };
-  function handleUpdate(key) {
+  function handleUpdate(key,index) {
     console.log('Submitting Row:', key);
+    const row = rows[index];
     const updatedData = {
-        currency: key.currency_id,
+        // currency:row.currency_id ? row.currency_id: key.currency,
+        currency:key.currency,
       suppliesPrice: key.suppliesPrice,
       suppliesPriceB2C: key.suppliesPriceB2C,
       suppliesId: props.particularDiscountData.suppliesId,
       userId: props.userId,
       orgId: props.orgId,
+      type: isBestSeller ? "baseprice" : "mrp"
     };
-    props.createMaterialCurrency(updatedData);
+    props.materialPricetype(updatedData);
     setEditsuppliesId(null);
   };
 
   return (
     <div>
       <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
-        Add Row
+      {translatedMenuItems[0]} {/* Add Row */}
       </Button>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
             <div class="flex justify-around w-[30rem]">
               <div>
-                <label>Currency</label>
+                <div class="font-bold text-xs font-poppins text-black">
+                  {/* Currency */} {translatedMenuItems[1]}
+                  </div>
                 <div class="w-24">
                 <Select
                         classNames="w-32"
@@ -146,7 +205,7 @@ function PriceAddCard(props) {
               </div>
 
               <div>
-                <label>Price (B2B)</label>
+                <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[2]}  (B2B)</div>
                 <div class="w-24"></div>
                 <Input
                  inputMode="numeric"
@@ -157,7 +216,9 @@ function PriceAddCard(props) {
                         {errors[`suppliesPrice${index}`] && <span className="text-red-500">{errors[`suppliesPrice${index}`]}</span>}
                       </div>
               <div>
-                <label>Price (B2C)</label>
+                <div class="font-bold text-xs font-poppins text-black">
+                {translatedMenuItems[2]}{/* Price  */}(B2C)
+                  </div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -166,25 +227,62 @@ function PriceAddCard(props) {
                         onChange={(e) => handleChange(index,'suppliesPriceB2C',e.target.value)}
                       />
                        {errors[`suppliesPriceB2C${index}`] && <span className="text-red-500">{errors[`suppliesPriceB2C${index}`]}</span>}
-                      </div></div>
+                      </div>
+                      </div>
+
+                      <div>
+                <div class="font-bold text-xs font-poppins text-black">
+                  {/* Type */}  {translatedMenuItems[3]}
+                  </div>
+                <div class="w-24">
+                <div>
+                <div class="font-bold text-xs font-poppins text-black">
+                  {/* Currency */} {translatedMenuItems[1]}
+                  </div>
+                  <div class="font-bold text-xs font-poppins text-black">
+               {/* Catagory */}{translatedMenuItems[7]}
+                  
+                  </div>
+                <div class="w-24">
+                <Select
+                        classNames="w-32"
+                      value={row.catagoryId}
+                      onChange={(value) => handleChange(index, 'catagoryId',value)}
+                      >
+                        {props.categoryListData.map((s) => (
+                          <Option key={s.categoryId} value={s.categoryId}>
+                            {s.name}
+                          </Option>
+                        ))}
+                      </Select>
+
+                </div>
+              </div>
+                       
+                      </div>
+                      </div>
             </div>
             <div class="mt-4">
             <Button type="primary" onClick={() => handleSave(index)}>
-              Submit
+              {/* Submit */} {translatedMenuItems[4]}
             </Button>
             </div>
             
           </div>
         ))}
 
-      <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
-            <div className=" md:w-[7%]">Currency</div>
-            <div className=" md:w-[6.1rem]">Price(B2B)</div>
-            <div className=" md:w-[4.2rem] ">Price(B2C)</div>
-            {/* <div className="md:w-[5.8rem]">VAT(%)</div> */}
-            <div className="w-12"></div>             </div>
+      <div className=' flex sticky z-auto'>
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">          <div className=""></div>
+            <div className=" md:w-[7%]">  {translatedMenuItems[1]}</div>
+            <div className=" md:w-[6.1rem]">  {translatedMenuItems[2]}(B2B)</div>
+            <div className=" md:w-[4.2rem] ">  {translatedMenuItems[2]}(B2C)</div>
+            <div className=" md:w-[7.2rem] "> {translatedMenuItems[7]} {translatedMenuItems[8]}
+              {/* Catagory name */}
+              </div>
+            <div className="md:w-[5.8rem]">  {translatedMenuItems[3]}</div>
+            <div className="w-12"></div>         
+            </div>
 
           {data.length ? data.map((item) => {
             return (
@@ -194,7 +292,7 @@ function PriceAddCard(props) {
 
                   <div className=" flex items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
                     <div class="text-xs font-semibold  font-poppins cursor-pointer">
-                    {editsuppliesId === item.id ? (
+                    {/* {editsuppliesId === item.id ? (
                       <Select
                         classNames="w-32"
                         value={item.currencyName}
@@ -210,7 +308,10 @@ function PriceAddCard(props) {
                       <div className=" text-xs  font-poppins">
                       <div> {item.currencyName}</div>
                     </div>
-                  )}
+                  )} */}
+                  <div className=" text-xs  font-poppins">
+                      <div> {item.currencyName}</div>
+                    </div>
                     </div>
                   </div>
 
@@ -247,8 +348,27 @@ function PriceAddCard(props) {
                     </div>
                     )}
                   </div>
+                  <div className=" text-xs  font-poppins">
+                      <div> {item.SCategoryName}</div>
+                    </div>
+                    
+                  
                   <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                
+                  <Popconfirm
+        title="Are you sure you want to change status ?"
+        // onConfirm={handleToggleChange}
+       onCancel={cancelType}
+        okText="Yes"
+        cancelText="No"
+      >
+        <Switch
+         className="toggle-clr"
+         checked={isBestSeller}
+         onChange={handleToggleChange}
+          checkedChildren="Base price"
+          unCheckedChildren="MRP"
+        />
+      </Popconfirm>
                   </div>
 
                   <div class="flex md:items-center">
@@ -258,18 +378,18 @@ function PriceAddCard(props) {
                       <Button 
                       type="primary"
                       onClick={() => handleUpdate(item)}>
-                        Save
+                        {translatedMenuItems[5]}
                       </Button>
                         <Button 
                          type="primary"
                         onClick={() => handleCancelClick(item.id)} className="ml-[0.5rem]">
-                        Cancel
+                        {translatedMenuItems[6]}
                       </Button>
                       </>
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.id)}
@@ -305,12 +425,13 @@ function PriceAddCard(props) {
 
 };
 
-const mapStateToProps = ({ product, auth,supplies }) => ({
+const mapStateToProps = ({ product,categoryList, auth,supplies }) => ({
   materialCurrency: supplies.materialCurrency,
   fetchingMaterialCurrency: supplies.fetchingMaterialCurrency,
   addDiscountModal: product.addDiscountModal,
   addProductOfferModal: product.addProductOfferModal,
   currencies: auth.currencies,
+  categoryListData: categoryList.categoryListData,
   userId: auth.userDetails.userId,
   fetchingSaleCurrency:auth.fetchingSaleCurrency,
   saleCurrencies:auth.saleCurrencies,
@@ -322,10 +443,12 @@ const mapDispatchToProps = (dispatch) =>
     {
       getMaterialCurrency,
       createMaterialCurrency,
-    //   handleDiscountModal,
+      materialPricetype,
+      getCategory,
     //   handleOfferModal,
     //   getCurrency,
       getSaleCurrency,
+     
     //   removeProductPrice
     },
     dispatch

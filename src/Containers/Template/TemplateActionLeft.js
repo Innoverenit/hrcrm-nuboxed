@@ -1,18 +1,17 @@
 import React from "react";
-import { FlexContainer } from "../../Components/UI/Layout";
 import TemplateProfileCard from "./child/TemplateCard/TemplateProfileCard";
 
 function TemplateActionLeft(props) {
   console.log(props.currentRulesOpen);
   return (
     <div>
-      <FlexContainer flexDirection="column" style={{ display: "block" }}>
+     <div class=" block flex-col flex-wrap  items-start self-start justify-start grow shrink h-auto mr-auto ">
         <TemplateProfileCard
           handleRuleClick={props.handleRuleClick}
           rule={props.rule}
           currentRulesOpen={props.currentRulesOpen}
         />
-      </FlexContainer>
+      </div>
     </div>
   );
 }

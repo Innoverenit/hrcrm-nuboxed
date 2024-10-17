@@ -1,15 +1,15 @@
 import React, { lazy, Suspense,useEffect } from "react";
-import { StyledModal } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import ReceivedOrderIdPhoneNoteForm from "./ReceivedOrderIdPhoneNoteForm.js";
+import ErpNote from "../../../../ErpNote/ErpNote.js";
+import StyledDrawer from "../../../../../../Components/UI/Antd/Drawer.js";
 
 const ReceivedOrderIdPhoneNoteModal = (props) => {
     const { particularRowData,...formProps } = props;
     return (
         <>
-            <StyledModal
+            <StyledDrawer
                 title={`Notes`}
                 width="35vw"
                 visible={props.phoNoteReceivedOrderIdModal}
@@ -17,13 +17,17 @@ const ReceivedOrderIdPhoneNoteModal = (props) => {
                 destroyOnClose
                 maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
                 style={{ top: 40 }}
-                onCancel={() => props.handleReceivedOrderIdPhoneNoteModal(false)}
+                onClose={() => props.handleReceivedOrderIdPhoneNoteModal(false)}
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <ReceivedOrderIdPhoneNoteForm particularRowData={particularRowData} />
+                <ErpNote
+                         type="phone"
+                         id={props.particularRowData.phoneId}
+                        />
+              
                 </Suspense>
-            </StyledModal>
+            </StyledDrawer>
         </>
     );
 

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { Switch, Checkbox, Button, Popconfirm, message } from "antd";
+import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
-import { FlexContainer, MainWrapper } from "../../../../../../Components/UI/Layout";
-import { StyledLabel } from "../../../../../../Components/UI/Elements";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+import { MainWrapper } from "../../../../../../Components/UI/Layout";
+
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { Input } from "antd";
 import * as Yup from "yup";
@@ -17,8 +15,6 @@ const { Search } = Input;
 const MonsterSchema = Yup.object().shape({
   userName: Yup.string().required("Input needed!"),
   password: Yup.string().required("Input needed!"),
-  // startDate:Yup.string().required("Input needed!"),
-  // endDate:Yup.string().required("Input needed!"),
 });
 // const {
 //   addingMonster,
@@ -66,44 +62,40 @@ function MonsterForm(props) {
                  
                 }}
               >
-                <StyledLabel>User Name</StyledLabel>
+                <div class=" text-xs font-bold font-poppins text-black">User Name</div>
                 <div >
                  <Field
                   // label="User Name"
                   name="userName"
-                  type="email"
-                  //   placeholder="Email"
-                  // value={values.userName}
+                  type="email"              
                   component={InputComponent}
                 />
                 </div>
                
-                  <StyledLabel>Password</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Password</div>
                   <div >
                   <Field
                   // label="Password"
                   name="password"
-                  type="password"
-                  //   placeholder="Email"
-                  // value={values.userName}
+                  type="password"            
                   component={InputComponent}
                 />
             </div>
               </div>
             </div>
             <div>Updated on {dayjs(props.monster.lastUpdatedOn).format("ll")} by {props.monster.name}</div>
-            <FlexContainer justifyContent="flex-end">
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
               <Button
                 type="primary"
                 htmlType="submit"
                 Loading={props.addingMonster}
 
                 style={{ width: "7%", height: "2.5em" }}
-              // onClick={() => this.props.login('prabeen.strange@gmail.com', 'chicharito14')}
+      
               >
                 Update
               </Button>
-            </FlexContainer>
+            </div>
           </MainWrapper>
         </Form>
         )}

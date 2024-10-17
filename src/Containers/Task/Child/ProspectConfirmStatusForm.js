@@ -4,11 +4,9 @@ import { bindActionCreators } from "redux";
 import { Formik, Form, } from "formik";
 import {
   Select,
-  StyledLabel,
 } from "../../../Components/UI/Elements";
-import { MainWrapper } from "../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
-import { Button, Switch } from "antd";
+import { Button } from "antd";
 import {
     getDepartmentwiserUser,
 } from "../../Settings/SettingsAction";
@@ -37,7 +35,6 @@ function ProspectConfirmStatusForm(props) {
   const handlereportingManager = (val) => {
     setUser(val)
   }
-
 
 // const handleDeptChange = (event) => {
 //     const selectedDept = event.target.value;
@@ -89,20 +86,14 @@ function ProspectConfirmStatusForm(props) {
         }}
       >
         {({ values }) => (
-        <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
+        <div class="mr-5 ml-5 h-[28rem] overflow-auto ">
         <Form className="form-background">
-          <div class=" flex justify-between w-full"
-          >
-            <div class=" flex flex-col w-[44%] mt-[0.625rem] ml-[1rem]"
-            >
-            
-        
-             
-            
-             
+          <div class=" flex justify-between w-full">
+          
+            <div class=" flex flex-col w-[44%] mt-[0.625rem] ml-[1rem]">                                                            
               <div class=" flex justify-between" >
                                                     <div class=" w-[35%] mt-4" >
-                                                    <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</label>
+                                                    <div class="text-[#444] font-bold text-xs">Department</div>
                                                     <Select
                         className="w-[250px]"
                         value={department}
@@ -117,7 +108,7 @@ function ProspectConfirmStatusForm(props) {
           <>                                           
 
 <div class=" w-[35%] mt-4" >
-            <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>User</label>
+<div class="text-[#444] font-bold text-xs">User</div>
         <Select
                         className="w-[250px]"
                         value={user}
@@ -151,17 +142,11 @@ function ProspectConfirmStatusForm(props) {
                   {/* Update */}
                 </Button>
               </div>                         
-                                                </div>
-                                  
-                                       
+                                               </div>                                                                     
             </div>
-          </div>
-        
-             
-            
-  
+          </div>                         
         </Form>
-      </MainWrapper>
+      </div>
         )}
       </Formik>
     </>

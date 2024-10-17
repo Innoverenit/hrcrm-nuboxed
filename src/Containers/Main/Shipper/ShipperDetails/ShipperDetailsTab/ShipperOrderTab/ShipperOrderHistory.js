@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import moment from "moment";
+import dayjs from "dayjs";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
@@ -29,7 +29,7 @@ class ShipperOrderHistory extends Component {
         dataIndex: "orderDate",
         width: "20%",
         render: (name, item, i) => {
-          return <span>{` ${moment(item.orderDate).format("ll")}`}</span>;
+          return <span>{` ${dayjs(item.orderDate).format("ll")}`}</span>;
         },
       },
       {
@@ -38,7 +38,7 @@ class ShipperOrderHistory extends Component {
         width: "20%",
         render: (name, item, i) => {
           return (
-            <span>{` ${moment(item.subscriptionStartDate).format("ll")}`}</span>
+            <span>{` ${dayjs(item.subscriptionStartDate).format("ll")}`}</span>
           );
         },
       },
@@ -48,7 +48,7 @@ class ShipperOrderHistory extends Component {
         width: "20%",
         render: (name, item, i) => {
           return (
-            <span>{` ${moment(item.subscriptionEndDate).format("ll")}`}</span>
+            <span>{` ${dayjs(item.subscriptionEndDate).format("ll")}`}</span>
           );
         },
       },

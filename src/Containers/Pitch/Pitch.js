@@ -13,7 +13,7 @@ const PitchTeamCardlist =lazy(()=>import("./Child/PitchTeamCardlist"));
 function Pitch (props) {
   const [currentData,setcurrentData]=useState("");
   const [currentUser,setcurrentUser]=useState("");
-  const [filter, setFilter] = useState("creationdate");
+  const [filter, setFilter] = useState("CreationDate");
   const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   // const [filter, setFilter] = useState("creationdate");
@@ -39,12 +39,11 @@ function Pitch (props) {
   const {
     addInvestorModal,
     handleInvestorModal,
-    // viewType,
-    // setPitchViewType,
 
   } = props;
         return (
             <React.Fragment>
+           <Suspense fallback={<BundleLoader />}>
             <PitchHeader
             selectedLanguage={props.selectedLanguage}
             translateText={props.translateText}
@@ -63,17 +62,13 @@ function Pitch (props) {
                  handleChange={handleChange}
                  handleCurrentData={handleCurrentData}
             />
-             <AddPitchModal
-             
+             <AddPitchModal             
              selectedLanguage={props.selectedLanguage}
              translateText={props.translateText}
-              addPitchModal={props.addPitchModal}
-             
+              addPitchModal={props.addPitchModal}           
               handlePitchModal={props.handlePitchModal}
-            />
-           
-          
-            <Suspense fallback={<BundleLoader />}>
+            />                    
+        
 
 
               

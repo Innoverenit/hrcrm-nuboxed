@@ -45,7 +45,7 @@ class SuppliersTab extends Component {
                     <>
                       <FactoryIcon className=" !text-icon"/>
             
-                      <span class="font-poppins ml-1 ">
+                      <span class="font-poppins ml-1 text-sm ">
                       {/* <Badge
                 count={this.props.sectorCount.SectorCount}
                 overflowCount={999}

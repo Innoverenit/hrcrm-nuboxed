@@ -19,7 +19,9 @@ const AddEventModal = (props) => {
         onClose={() => handleEventModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <EventForm {...formProps} />
+          <EventForm {...formProps}
+           selectedLanguage={props.selectedLanguage}
+           translateText={props.translateText} />
         </Suspense>
       </StyledDrawer>
     </>

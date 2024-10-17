@@ -1,6 +1,5 @@
 import * as types from "./RefurbishActionTypes";
 import dayjs from "dayjs";
-import moment from "moment";
 
 const initialState = {
   viewType: "list",
@@ -8,9 +7,23 @@ const initialState = {
   fetchingTodayProductionError: false,
   production: [],
 
+
+  fetchingLevelData:false,
+  fetchingLevelDataError:false,
+  levelData:[],
+
   fetchingNoOfRepairTechnicianById: false,
   fetchingNoOfRepairTechnicianByIdError: false,
   repairByTechnician: [],
+
+  updatingProcessNwTask: false,
+  updatingProcessNwTaskError: false,
+
+  allTaskModal:false,
+
+  allSpareProcessModal:false,
+
+  addRefurbishLevelModal:false,
 
   fetchingProductionUrgent: false,
   fetchingProductionUrgentError: false,
@@ -720,6 +733,9 @@ export const refurbishReducer = (state = initialState, action) => {
     case types.HANDLE_ALL_SPARE_MODAL:
       return { ...state, approveSpareModal: action.payload };
 
+      case types.HANDLE_ALL_SPARE_PROCESS_MODAL:
+        return { ...state, allSpareProcessModal: action.payload };
+
     case types.GET_PRODUCTION_USER_BYID_REQUEST:
       return { ...state, fetchingProductionUserById: true };
     case types.GET_PRODUCTION_USER_BYID_SUCCESS:
@@ -740,6 +756,9 @@ export const refurbishReducer = (state = initialState, action) => {
 
     case types.HANDLE_PRODUCTION_ORDERID_MODAL:
       return { ...state, productionOrderIdModal: action.payload };
+
+      case types.HANDLE_REFURBISH_LEVEL_MODAL:
+        return { ...state, addRefurbishLevelModal: action.payload };
 
     case types.HANDLE_PHONE_NOTE_PRODUCTION_MODAL:
       return { ...state, phoNoteProductionModal: action.payload };
@@ -1074,6 +1093,27 @@ export const refurbishReducer = (state = initialState, action) => {
         fetchingRepairorderById: false,
         fetchingRepairorderByIdError: true,
       };
+
+
+
+
+      case types.GET_LEVEL_DATA_REQUEST:
+      return { ...state, fetchingLevelData: true };
+    case types.GET_LEVEL_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingLevelData: false,
+         levelData: action.payload,
+
+        //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+      };
+    case types.GET_LEVEL_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingLevelData: false,
+        fetchingLevelDataError: true,
+      };
+
     case types.HANDLE_REPAIR_PHONE_NOTES_ORDER_MODAL:
       return { ...state, phoNotesRepairOrderModal: action.payload };
 
@@ -1082,6 +1122,9 @@ export const refurbishReducer = (state = initialState, action) => {
 
         case types.HANDLE_SPARE_PROCESS:
           return { ...state, processSpareModal: action.payload };
+
+          case types.HANDLE_ALL_TASK_MODAL:
+            return { ...state, allTaskModal: action.payload };
 
     case types.HANDLE_QC_PHONE_NOTES_ORDER_MODAL:
       return { ...state, phoNotesQCOrderModal: action.payload };
@@ -1468,6 +1511,27 @@ export const refurbishReducer = (state = initialState, action) => {
         ...state,
         updatingProcessTask: false,
         updatingProcessTaskError: true,
+      };
+
+      case types.UPDATE_PROCESS_NWTASK_REQUEST:
+      return { ...state, updatingProcessNwTask: true };
+    case types.UPDATE_PROCESS_NWTASK_SUCCESS:
+      return {
+        ...state,
+        updatingProcessNwTask: false,
+        taskByPhone: state.taskByPhone.map((item) => {
+          if (item.phoneTaskId == action.payload.phoneTaskId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PROCESS_NWTASK_FAILURE:
+      return {
+        ...state,
+        updatingProcessNwTask: false,
+        updatingProcessNwTaskError: true,
       };
 
     case types.GET_TASK_ITEM_COUNT_REQUEST:

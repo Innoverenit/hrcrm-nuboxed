@@ -1,6 +1,5 @@
 
 import React, { Component } from "react";
-import { SubTitle } from "../../../../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 
 class ContactInvestDetailView extends Component {

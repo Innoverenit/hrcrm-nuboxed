@@ -3,6 +3,7 @@ import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import OpportunityStepper from "./OpportunityStepper";
+import OpportunityForm from "./OpportunityForm";
 
 const AddOpportunityModal = (props) => {
   const { addOpportunityModal, handleOpportunityModal, ...formProps } = props;
@@ -19,12 +20,12 @@ const AddOpportunityModal = (props) => {
         onClose={() => handleOpportunityModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          {/* <OpportunityForm {...formProps}/> */}
-          <OpportunityStepper
+          <OpportunityForm {...formProps}/>
+          {/* <OpportunityStepper
            translateText={props.translateText}
            selectedLanguage={props.selectedLanguage}
            translatedMenuItems={props.translatedMenuItems}
-          />
+          /> */}
         </Suspense>
       </StyledDrawer>
     </>

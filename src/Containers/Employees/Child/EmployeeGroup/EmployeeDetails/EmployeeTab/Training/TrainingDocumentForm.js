@@ -17,12 +17,45 @@ import dayjs from "dayjs";
 // });
 
 class TrainingDocumentForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
   componentDidMount() {
     const { getLinkedUsersDocument ,orgId} = this.props;
     this.props.getLinkedUsersDocument(this.props.orgId);
+    this.fetchMenuTranslations();
     // getLinkedUsersDocument(orgId);
    
 }
+componentDidUpdate(prevProps) {
+  if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+    this.fetchMenuTranslations();
+  }
+}
+fetchMenuTranslations = async () => {
+  try {
+    const itemsToTranslate = [
+      "76",//0Type
+      "",//1Course Name
+      "15",//2"Organization"
+      "1184",//3"Grade"
+      "176",//4"Start Date"
+      "138",// Document Id5
+      "1181",// Name of Document6
+     "1182", // Description of document7
+     "154", // submit8
+    ];
+
+    const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+    this.setState({ translatedMenuItems: translations });
+  } catch (error) {
+    console.error('Error translating menu items:', error);
+  }
+};
   render() {
     const { addingTrainingDetails } = this.props;
     const documentNameOption = this.props.linkedUserDocument.map((item) => {
@@ -76,13 +109,14 @@ class TrainingDocumentForm extends Component {
                   >
                     <div class=" flex justify-between" >
                       <div class=" w-full" >
+                      <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[0]}</div>
                       <FastField
                     name="documentTypeId"
                     type="text"
                     //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    // label={
+                    //   <FormattedMessage id="app.type" defaultMessage="Type" />
+                    // }
                     // options={[
                     //   "Aadhar Card",
                     //   "Voter-Id Card",
@@ -101,14 +135,15 @@ class TrainingDocumentForm extends Component {
                     isColumn
                      />
                <div class=" mt-3">
+               <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[1]}</div>
                         <FastField
                           isRequired
                           name="courseName"
                           //label="Course Name"
-                          label={<FormattedMessage
-                            id="app.courseName"
-                            defaultMessage="Course Name"
-                          />}
+                          // label={<FormattedMessage
+                          //   id="app.courseName"
+                          //   defaultMessage="Course Name"
+                          // />}
                           type="text"
                           width={"100%"}
                           isColumn
@@ -122,14 +157,15 @@ class TrainingDocumentForm extends Component {
                    
                     <div class=" flex justify-between mt-3" >
                       <div class=" w-[60%]" >
+                      <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[2]}</div>
                         {/* <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Organization/Institution</div> */}
                         <FastField
                           type="Organization"
                           name="organization"
-                          label={<FormattedMessage
-                            id="app.organization"
-                            defaultMessage="Organization"
-                          />}
+                          // label={<FormattedMessage
+                          //   id="app.organization"
+                          //   defaultMessage="Organization"
+                          // />}
                           className="field"
                           isColumn
                           width={"100%"}
@@ -138,13 +174,13 @@ class TrainingDocumentForm extends Component {
                           />
                       </div>
                       <div class=" w-[30%]" >
-                      
+                      <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[3]}</div>
                         <FastField
                           name="grade"
-                          label={<FormattedMessage
-                            id="app.grade"
-                            defaultMessage="Grade"
-                          />}
+                          // label={<FormattedMessage
+                          //   id="app.grade"
+                          //   defaultMessage="Grade"
+                          // />}
                           isColumn
                           selectType="text"
                           width={"30%"}
@@ -159,13 +195,14 @@ class TrainingDocumentForm extends Component {
                  
                     <div class=" flex justify-between mt-3" >
                       <div class=" w-[47%]" >
+                      <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[4]}</div>
                         <Field
                           name="startDate"
                           //label="Start Date"
-                          label={<FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />}
+                          // label={<FormattedMessage
+                          //   id="app.startDate"
+                          //   defaultMessage="Start Date"
+                          // />}
                           isRequired
                           component={DatePicker}
                           isColumn
@@ -174,73 +211,42 @@ class TrainingDocumentForm extends Component {
                           inlineLabel
                           />
                       </div>
-{/* 
-                      <div style={{ width: "47%" }}>
-                        <Field
-                          name="endDate"
-                          //label="End Date "
-                          label={<FormattedMessage
-                            id="app.endDate"
-                            defaultMessage="End Date"
-                          />}
-                          isRequired
-                          isColumn
-                          width={"100%"}
-                          component={DatePicker}
-                          value={values.endDate}
-                          disabledDate={(currentDate) => {
-                            if (values.startDate) {
-                              if (
-                                dayjs(currentDate).isBefore(
-                                  dayjs(values.startDate)
-                                )
-                              ) {
-                                return true;
-                              } else {
-                                return false;
-                              }
-                            }
-                          }}
-                          inlineLabel
-                          />
-                      </div> */}
+
                     </div>
                 
                   </div>
 
-                  <div class=" w-[50%]"
-                  >
-                   <div class=" flex justify-between " ></div>
-
-                    <div class=" w-full"
-                    >
+                  <div class=" w-[50%]" >
+                
+                    <div class=" w-full"  >
                       <Field
                         name="documentId"
                         isRequired
                         component={DragableUpload}
                       />
                     <div class=" mt-3">
-
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[6]}</div>
                       <Field
                         name="documentTitle"
                         //label="Name of Document"
-                        label={<FormattedMessage
-                          id="app.documentTitle"
-                          defaultMessage="Name of Document"
-                        />}
+                        // label={<FormattedMessage
+                        //   id="app.documentTitle"
+                        //   defaultMessage="Name of Document"
+                        // />}
                         width={"100%"}
                         isColumn
                         component={InputComponent}
                         />
                         </div>
                         <div class=" mt-3">
+                        <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[7]}</div>
                       <Field
                         name="documentDescription"
                         //label="Description of Document"
-                        label={<FormattedMessage
-                          id="app.documentDescription"
-                          defaultMessage="Description of Document"
-                        />}
+                        // label={<FormattedMessage
+                        //   id="app.documentDescription"
+                        //   defaultMessage="Description of Document"
+                        // />}
                         isRequired
                         isColumn
                         width={"100%"}
@@ -273,10 +279,11 @@ class TrainingDocumentForm extends Component {
                     type="primary"
                     Loading={addingTrainingDetails}
                   >
-                    <FormattedMessage
+                {this.state.translatedMenuItems[8]}
+                    {/* <FormattedMessage
                       id="app.submit"
                       defaultMessage="Submit"
-                    />
+                    /> */}
                   </Button>
                 </div>
               </Form>

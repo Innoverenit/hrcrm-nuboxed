@@ -4,6 +4,7 @@ import { LOGOUT } from "../Containers/Auth/AuthTypes";
  *  All of application reducers import goes here...
  */
 import { authReducer } from "../Containers/Auth/AuthReducer";
+import {WarantyReducer} from "../Containers/Waranty/WarantyReducer"
 import { pitchReducer } from "../Containers/Pitch/PitchReducer";
 import { regionsReducer } from "../Containers/Settings/Category/Region/RegionReducer";
 import { serviceLineReducer } from "../Containers/Settings/Category/ServiceLine/ServiceLineReducer";
@@ -124,6 +125,7 @@ const appReducer = combineReducers({
   theme: themeReducer,
   leave: LeavesReducer,
   holiday: holidayReducer,
+  waranty: WarantyReducer,
   report: reportReducer,
   course: courseReducer,
   notification: notificationReducer,

@@ -11,19 +11,23 @@ const AddSubscriptionModal = (props) => {
     <>
       <StyledDrawer
         title={<FormattedMessage
-          id="app.notes"
-          defaultMessage="Notes"
+          id="app.subscription"
+          defaultMessage="Subscription"
          />}
         width="60%"
         visible={props.addDrawerLeadsSubscriptionModal}
         destroyOnClose
         maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-        style={{marginTop:"3rem"}}
+       
         onClose={() => props.handleLeadsSubscriptionModal(false)}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-       <LeadsSubscriptionForm/>
+       <LeadsSubscriptionForm
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        item={props.item}
+       />
         </Suspense>
       </StyledDrawer>
     </>

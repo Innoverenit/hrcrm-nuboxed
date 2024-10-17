@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { lazy,Suspense } from 'react'
 import PieChart1 from '../../../../Components/Charts/PieChart1'
+import { BundleLoader } from "../../../../Components/Placeholder";
 import { Flex, Progress } from 'antd';
-import PulseTable from './AccountDocumentTab/PulseTable';
+const PulseTable = lazy(() => import("./AccountDocumentTab/PulseTable"));
 
 const SummaryTable = (props) => {
     const currentDate = new Date();
@@ -11,7 +12,7 @@ const SummaryTable = (props) => {
   return (
     <>
      <div class="flex flex-col items-center ">
-      <label class="font-bold"> {year}</label>
+      <div class="font-bold"> {year}</div>
     </div>
    
     <div class="flex justify-between">
@@ -58,9 +59,10 @@ const SummaryTable = (props) => {
   </div>
         </div>
         <div class="flex flex-col w-[33%]">
+        <Suspense fallback={<BundleLoader />}>
         <PulseTable
          RowData={props.RowData}
-        />
+        /></Suspense>
         </div>
     </div>
     </>

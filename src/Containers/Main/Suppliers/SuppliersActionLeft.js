@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import {
     inputDataSearch, setSuppliersDashboardType, setSelectedTimeInterval,
-    setTimeRange,getSupplierCount,getSupplierAllCount,
+    setTimeRange,getSupplierCount,getSupplierAllCount,getSupplierCountNot,
     getSupplierDeletedCount,
     ClearSearchedDataOfSupplier,
     getSuppliersList
@@ -36,6 +36,9 @@ function SuppliersActionLeft (props) {
         else if (props.viewType === "delete") {
           props.getSupplierDeletedCount(props.orgId);
         } 
+        else if (props.viewType === "not approved") {
+          props.getSupplierCountNot(props.userId);
+        } 
       }, [props.viewType, props.userId, props.orgId]);
     
         const {
@@ -62,7 +65,7 @@ const {
     
         if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
           //setPage(pageNo + 1);
-          props.getSuppliersList(props.userId, page);
+         // props.getSuppliersList(props.userId, page);
           props.ClearSearchedDataOfSupplier()
           setSearchOnEnter(false);
         }
@@ -75,6 +78,11 @@ const {
             props.inputDataSearch(currentData,'card');
           } else if (props.viewType === "all") {
             props.inputDataSearch(currentData,'all');
+          } 
+          else if (props.viewType === "not approved") {
+            props.inputDataSearch(currentData,'not approved');
+          } else if (props.viewType === "delete") {
+            props.inputDataSearch(currentData,'delete');
           } 
           setSearchOnEnter(true);  //Code for Search
         } else {
@@ -113,6 +121,11 @@ const {
           } else if (props.viewType === "all") {
             props.inputDataSearch(transcript,'all');
           } 
+          else if (props.viewType === "not approved") {
+            props.inputDataSearch(transcript,'not approved');
+          } else if (props.viewType === "delete") {
+            props.inputDataSearch(transcript,'delete');
+          } 
           setSearchOnEnter(true);
         }
       };
@@ -148,7 +161,7 @@ const {
                             color: viewType === "card" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#28a355" }}>
                             < ChecklistIcon className="text-white !text-icon" /></Avatar>
 
                     </span></Badge>
@@ -157,7 +170,7 @@ const {
                 <Tooltip title={`${props.translatedMenuItems[4]}-${props.translatedMenuItems[5]}`}>
                 <Badge
           size="small"
-          //count={(props.viewType === "not approved" && props.allCountSupplier.AllSupplierCount) || 0}
+          count={(props.viewType === "not approved" && props.countSupplierNot.supplierCount) || 0}
           overflowCount={999}
         >
                     <span class=" mr-1 text-sm cursor-pointer"
@@ -166,7 +179,7 @@ const {
                             color: viewType === "not approved" && "#1890ff",
                         }}
                     >
-                       <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                       <Avatar style={{ background: viewType === "not approved" ? "#f279ab" : "#28a355" }}>
                        <TocIcon className="text-white !text-icon" />
                             </Avatar> 
                     </span>
@@ -185,7 +198,7 @@ const {
                             color: viewType === "all" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                             <div className="text-white">
                               {/* ALL */}{props.translatedMenuItems[6]}
                               </div></Avatar>
@@ -204,7 +217,7 @@ const {
                             color: viewType === "delete" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#28a355" }}>
                         <DeleteOutlined className="text-white" /></Avatar>
                     </span>
                     </Badge>
@@ -235,6 +248,7 @@ const mapStateToProps = ({ auth, suppliers }) => ({
     countSupplier:suppliers.countSupplier,
     allCountSupplier:suppliers.allCountSupplier,
     deletedCountSupplier:suppliers.deletedCountSupplier,
+    countSupplierNot:suppliers.countSupplierNot
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
@@ -244,6 +258,7 @@ const mapDispatchToProps = (dispatch) =>
             setSelectedTimeInterval,
             setTimeRange,
             getSupplierCount,
+            getSupplierCountNot,
             getSupplierAllCount,
             getSupplierDeletedCount,
             ClearSearchedDataOfSupplier,

@@ -3,8 +3,6 @@ import styled from "styled-components";
 import { Button, Tooltip } from "antd";
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import EditableInput from "../../../../Components/Forms/Edit/EditableInput";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 import { TextInput } from "../../../../Components/UI/Elements";
 import ViewEditCard from "../../../../Components/UI/Elements/ViewEditCard";
@@ -39,7 +37,7 @@ class SingleProject extends Component {
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
-              <FlexContainer justifyContent="space-between">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between  grow shrink h-auto mr-auto ">
                 <ProjectName style={{ flexBasis: "85%" }}>
                   {projectName}
                   </ProjectName>
@@ -67,9 +65,9 @@ class SingleProject extends Component {
                     />
                   </Tooltip>
                 </div>
-              </FlexContainer>
+              </div>
             ) : (
-              <FlexContainer>
+              <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                 <TextInput
                    name={name}
                  
@@ -98,7 +96,7 @@ class SingleProject extends Component {
                     <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
                   </Button>
                 </div>
-              </FlexContainer>
+              </div>
             )
           }
         </ViewEditCard>

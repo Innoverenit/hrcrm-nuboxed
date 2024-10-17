@@ -24,10 +24,14 @@ class Profile extends Component {
               <Suspense fallback={"Loading..."}>
               <div class=" flex flex-no-wrap w-full ">
                   <div class=" w-[25%] h-full" >
-                    <ProfileDetailLeft />
+                    <ProfileDetailLeft 
+                     translateText={this.props.translateText}
+                     selectedLanguage={this.props.selectedLanguage}/>
                   </div>
                   <div class=" w-[75%] h-full" >
-                    <ProfileDetailRight />
+                    <ProfileDetailRight 
+                     translateText={this.props.translateText}
+                     selectedLanguage={this.props.selectedLanguage}/>
                   </div>
                 </div>
               </Suspense>

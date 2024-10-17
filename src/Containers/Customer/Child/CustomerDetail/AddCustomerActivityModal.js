@@ -39,7 +39,11 @@ const AddCustomerActivityModal = (props) => {
           <LeadsActivityTab 
            defaultCustomers={props.defaultCustomers}
            customerId={props. customerId }
-          customer={props.customer}/>
+          customer={props.customer}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+          />
 
         </Suspense>
       </StyledDrawer>
@@ -70,7 +74,11 @@ const AddCustomerActivityModal = (props) => {
                   <CustomerCallActivityForm 
                      defaultCustomers={props.defaultCustomers}
                      customerId={props. customerId }
-                  customer={props.customer} {...formProps} />
+                  customer={props.customer} {...formProps}
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage}
+                translatedMenuItems={props.translatedMenuItems}
+                  />
                 </Suspense>
               </TabPane>
           
@@ -87,7 +95,11 @@ const AddCustomerActivityModal = (props) => {
                   <CustomerEventActivityForm 
                     defaultCustomers={props.defaultCustomers}
                     customerId={props. customerId }
-                  customer={props.customer} {...formProps}/>
+                  customer={props.customer} {...formProps}
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage}
+                translatedMenuItems={props.translatedMenuItems}
+                  />
                 </Suspense>
               </TabPane>
               <TabPane
@@ -103,7 +115,11 @@ const AddCustomerActivityModal = (props) => {
                   <CustomerTaskActivityForm 
                     defaultCustomers={props.defaultCustomers}
                     customerId={props. customerId }
-                  customer={props.customer} {...formProps}/>
+                  customer={props.customer} {...formProps}
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage}
+                translatedMenuItems={props.translatedMenuItems}
+                  />
                 </Suspense>
               </TabPane>
             </StyledTabs>

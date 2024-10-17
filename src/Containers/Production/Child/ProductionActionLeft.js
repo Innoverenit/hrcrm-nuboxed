@@ -37,7 +37,7 @@ const ProductionActionLeft = (props) => {
                                 color: viewType === "table" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#28a355" }}>
                                 {/* <div className="text-white">All</div> */}
                                 <TableBarOutlined className=" text-white !text-icon"/>
                                 </Avatar>
@@ -63,7 +63,7 @@ const ProductionActionLeft = (props) => {
             }}
             onClick={() => props.setProductionViewType("stage")}
           >
-             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#28a355" }}>
            <TableOutlined className=" text-white !text-icon  cursor-pointer"/>
            </Avatar>
           </span>
@@ -76,7 +76,7 @@ const ProductionActionLeft = (props) => {
             color: viewType === "arch" && "#1890ff",
           }}
         >
-          <Avatar style={{ background: viewType === "arch" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: viewType === "arch" ? "#f279ab" : "#28a355" }}>
             <ArchiveIcon className=" text-white !text-icon cursor-pointer " />
           </Avatar>
 
@@ -94,7 +94,7 @@ const ProductionActionLeft = (props) => {
                                 color: viewType === "all" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                                 <div className=" text-white  cursor-pointer ">ALL</div></Avatar>
 
                         </span>
@@ -115,7 +115,7 @@ const ProductionActionLeft = (props) => {
                             }}
                         >
                            
-                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                        <TokenIcon className="text-white !text-icon cursor-pointer" /></Avatar>
 
 

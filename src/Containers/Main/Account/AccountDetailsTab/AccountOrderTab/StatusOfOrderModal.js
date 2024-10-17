@@ -27,7 +27,10 @@ class StatusOfOrderModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <StatusOfOrder particularRowData={particularRowData} />
+                        <StatusOfOrder particularRowData={particularRowData}
+                        selectedLanguage={this.props.selectedLanguage}
+                        translateText={this.props.translateText}
+                         />
                     </Suspense>
                 </StyledDrawer>
             </>

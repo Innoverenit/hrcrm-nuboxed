@@ -14,7 +14,7 @@ const CustomizeInputComponent = ({ field, form: { touched, errors }, ...props })
 
     return (
         <div>
-            <label htmlFor={field.name}>{props.label}</label>
+            <div htmlFor={field.name}>{props.label}</div>
             <input
                 type="text"
                 id={field.name}

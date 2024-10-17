@@ -3,8 +3,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import WonForm from "./WonForm";
-
+const WonForm = lazy(() => import("./WonForm"));
 class AddDealsOwnDrawerModal extends Component {
   render() {
      
@@ -21,7 +20,10 @@ console.log(this.props.currentItem.opportunityName)
           onClose={() => this.props.handleOwnModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <WonForm currentItem={this.props.currentItem}/>
+            <WonForm currentItem={this.props.currentItem}
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
+            />
           </Suspense>
         </StyledDrawer>
       </div>

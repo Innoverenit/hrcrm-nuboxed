@@ -2,8 +2,10 @@ import React, { useEffect, useState,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
@@ -35,10 +37,27 @@ import {
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
 const UpdateOpportunityModal =lazy(()=> import("../UpdateOpportunity/UpdateOpportunityModal"));
 const ReinstateToggleForLost =lazy(()=> import("../../Child/OpportunityTable/ReinstateToggleForLost"));
 
+
+
+dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+    const now = dayjs();
+    const creationDay = dayjs(creationDate);
+
+    if (creationDay.isSame(now, 'day')) {
+        return 'Today';
+    } else {
+        return creationDay.from(now); 
+    }
+};
 
 function OpportunityAllCardList(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -69,19 +88,18 @@ function OpportunityAllCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-        'Name', // 0
-'Prospect', // 1
-'Sponsor', // 2
-'Start Date', // 3
-'Value', // 4
-'Stages', // 5
-'Sales Rep', // 6
-'Owner' // 7
-
-
-
-
-
+          '110', // 0
+          '97', // 1
+          '216', // 2
+          '176', // 3
+          '218', // 4
+          '219', // 5
+          '76', // 6
+          '77', // 7
+         "232", // 'Click to Open'
+         "170", // "Edit"
+          "1259",// "Do you want to delete?"
+          "84",// Delete"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -102,6 +120,78 @@ function OpportunityAllCardList(props) {
     const [currentOpportunityId, setCurrentOpportunityId] = useState("");
     function handleSetCurrentOpportunityId(opportunityId,opportunityName) {
       setCurrentOpportunityId(opportunityId,opportunityName);
+    }
+    const exportPDFAnnexure = async () => {
+      var doc = new jsPDF();
+      // const {
+      //   userDetails:
+      //   {address},
+      //     imageId
+      // }=props
+     
+      // let cityd=`${address.city}`
+      // let countryd=`${address.country}`
+      // let addressde=`${address.state}`
+      // let cityde=`${address.street}`
+      // var imageUrl = `${base_url}/image/${imageId || ""}`;
+      var name1 = `East Repair Inc `
+      var name2 =`1912 Harvest Lane New York ,NY 12210`
+      var name3 =`BILL TO`
+      var name4 = `SHIP TO`
+      var name5 = `QUOTE #`
+    var name6 = `QUOTE DATE`
+      var name7 = `P.O.#`
+      var name8 = `Order Total`
+      var name9 = `QTY`
+      var name10 = `DESCRIPTION`
+      var name11 = `UNIT PRICE`
+      var name12 = `AMOUNT`
+      var name13= `TERM & CONDITIONS`
+      var name14= `Payement id due within 15 days`
+      var name15= `Please make checks payble to: East repair Inc. `
+    
+    
+      doc.setFont("Montserrat");
+      doc.setFillColor(62, 115, 185);
+      doc.rect(0, 0, 230, 13, 'F');
+      doc.setFontSize(25);
+      doc.setFontSize(14);
+      doc.setDrawColor(0, 0, 0)
+      // doc.addImage(imageUrl, 'JPEG', 20, 18, 165, 20);
+      doc.text(name1, 8, 25);
+      doc.setFontSize(10);
+      let yPosition = 32;
+    //   address.forEach(item => {
+    //     doc.text(` ${item.city}  ${item.country}  ${item.state}  ${item.street}`, 8, yPosition);
+    //     yPosition += 4
+    // });
+      // doc.text(name2, 8, 32);
+      doc.setFontSize(12);
+      doc.text(name3, 8, 50);
+      doc.text(name4, 60, 50);
+      doc.text(name5, 120, 50);
+      doc.text(name6, 120, 58);
+      doc.text(name7, 120, 66);
+      doc.line(8, 80, 200, 80);
+      doc.setFontSize(22);
+      doc.text(name8, 8, 90);
+      doc.line(8, 100, 200, 100);
+      doc.setFontSize(10);
+      doc.text(name9, 8, 110);
+      doc.text(name10, 30, 110);
+      doc.text(name11, 90, 110);
+      doc.text(name12, 140, 110);
+      doc.setFontSize(12);
+      doc.text(name13, 8, 250);
+      doc.setFontSize(9);
+      doc.text(name14, 8, 260);
+      doc.text(name15, 8, 270);
+      //footer
+      doc.setFillColor(62, 115, 185);
+      doc.rect(0, 276, 230, 15, 'F');
+    
+      doc.save("Quotation.pdf")
+    
     }
     const {
         user,
@@ -128,18 +218,20 @@ function OpportunityAllCardList(props) {
     />
   ) : (
    <div className=' flex  sticky  z-auto'>
-<div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className="flex max-sm:hidden  w-[99%] max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]}</div>
+<div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+<div className="flex max-sm:hidden  w-[100%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
+<div className="   flex justify-between w-[98%] font-bold font-poppins text-xs">
+        <div className=" w-[16.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]}</div>
         <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]}</div>
-        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> {translatedMenuItems[2]}</div>
-        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]}</div>
-        <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
-        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
-        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>
-        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>
+        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> {translatedMenuItems[2]}</div>
+        <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]}</div>
+        <div className=" w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
+        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
+        <div className="  w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>
+        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>
         <div className="w-[4.1rem] "></div>
         <div className="w-12"></div>
+        </div>
       </div>
 
       <InfiniteScroll
@@ -147,10 +239,9 @@ function OpportunityAllCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllOpportunity?<div class="flex justify-center" >Loading...</div> :null}
-        height={"82vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
- {/* <CardWrapper>       */}
  { !fetchingAllOpportunity && allOpportunity.length === 0 ?<NodataFoundPage />:allOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
@@ -163,10 +254,10 @@ function OpportunityAllCardList(props) {
 
                   <div className="max-sm:w-wk">
                    <div
-                className="flex  rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex  rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex w-[13rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
+                    <div className=" flex w-[13rem] items-center  border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
                               <div>
 
           <MultiAvatar
@@ -195,8 +286,9 @@ function OpportunityAllCardList(props) {
                                       </Tooltip>
                             
                               </div>
-
-                              <div className=" flex  w-44 max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              </div>
+                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                              <div className=" flex  w-44 items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
                                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                   
@@ -204,11 +296,11 @@ function OpportunityAllCardList(props) {
                   
                                   </div>
                               </div>
-                              </div>
+                           
                             
                               
-                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex  w-[7rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                           
+                              <div className=" flex  w-[7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 
                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -225,7 +317,7 @@ function OpportunityAllCardList(props) {
        
                                 </div>
                             </div>
-                              <div className=" flex   w-[8.81rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[8.81rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                                   <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -233,7 +325,7 @@ function OpportunityAllCardList(props) {
                                   </div>
                               </div>
                            
-                              <div className=" flex   w-36 max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-36  items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
    
 
                                   <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -245,7 +337,7 @@ function OpportunityAllCardList(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex w-[7.01rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex w-[7.01rem]  items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
            
 
                                   <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -267,7 +359,7 @@ overlay={
 }
 trigger={["click"]}
 >
-<Tooltip title={item.stageName}>
+<Tooltip title={item.oppStage}>
 {" "}
 <Progress
 type="circle"
@@ -281,7 +373,7 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex w-32 max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex w-32 items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                     
 
                                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -296,9 +388,7 @@ strokeColor={"#005075"}
            
                                   </div>
                               </div>
-                              <div className=" flex w-20 max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
-                     
-
+                              <div className=" flex w-20 items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
 
                         <Tooltip title={item.ownerName}>
                     <span>
@@ -312,8 +402,16 @@ strokeColor={"#005075"}
                       </span>
                         </Tooltip>
                               </div>
+                              <div className=" flex items-center w-[5rem] justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                          <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+                          </svg>
+                            {getRelativeTime(item.creationDate)}
+                            </span>
+                            </div>
                               </div>
-                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                              <div class="flex max-sm:justify-between max-sm:w-wk  items-center  h-8 ml-gap bg-[#eef2f9]">
                               <div>
                                 <ReinstateToggleForLost 
                         opportunityId={item.opportunityId} 
@@ -348,10 +446,14 @@ handleSetCurrentOpportunityId(item.opportunityName);
        </span>
                       </div>
          
-        
+                      <div class="w-6">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
+                           </span>
+          </div> 
                  
                   <div>
-                  <Tooltip title='Click to Open'><span
+                  <Tooltip title={translatedMenuItems[8]}><span
        onClick={() => {
         props.LinkClosedOpportunity(
           item.opportunityId,
@@ -376,12 +478,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                     <div>
                        <Tooltip
                       placement="right"
-                      title={
-                        <FormattedMessage
-                          id="app.edit"
-                          defaultMessage="Edit"
-                        />
-                      }
+                      title={translatedMenuItems[9]}
                     >
                       {user.opportunityUpdateInd ===true && (
             
@@ -406,19 +503,14 @@ handleSetCurrentOpportunityId(item.opportunityName);
                   
                     <div>
                     <StyledPopconfirm
-                      title="Do you want to delete?"
+                      title={translatedMenuItems[10]}
                       onConfirm={() =>
                         deleteLostOpportunity(item.opportunityId)
                       }
                     >
                          <Tooltip
                     
-                      title={
-                        <FormattedMessage
-                          id="app.Delete"
-                          defaultMessage="Delete"
-                        />
-                      }
+                      title={translatedMenuItems[11]}
                     >
                         {user.opportunityDeleteInd ===true && (
                       
@@ -441,9 +533,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                   
 
                  )  
-            })}
-              {/* </CardWrapper> */}
-  
+            })} 
 
       </InfiniteScroll>
       </div>
@@ -458,7 +548,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
+       translatedMenuItems={props.translatedMenuItems}
       />
 
 <AddOpportunityDrawerModal
@@ -538,34 +628,3 @@ mapStateToProps,
 mapDispatchToProps
 )(OpportunityAllCardList);
 
-
- 
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`
-const CardElement = styled.div`
- 
-border-radius: 0.75rem;
-    border: 3px solid #EEEEEE;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0.25em 0.62em #aaa;
-    height: 17rem;
-    color: rgb(68,68,68);
-    margin: 1em;
-    padding: 0.2rem;
-    width: 20vw;
-    display: flex;
-    flex-direction: column;
-  @media only screen and (max-width: 600px) {
-    width: -webkit-fill-available;
-    
-  }
-`

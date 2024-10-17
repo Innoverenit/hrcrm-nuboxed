@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import {getDevelopChart} from "../../Containers/Dashboard/DashboardAction";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
@@ -92,8 +92,8 @@ useEffect(() => {
       }));
   return (
     <>
-    <div style={{marginTop:"-14px",textAlign:"center",fontWeight:"bold"}}>{moment.utc(weekendStart).format("DD-MM-YYYY")}-{moment.utc(weekendEnd).format("DD-MM-YYYY")}</div>
-    {/* {`  ${moment.utc(weekendStart).format("DD-MM-YYYY")-moment.utc(weekendEnd
+    <div style={{marginTop:"-14px",textAlign:"center",fontWeight:"bold"}}>{dayjs(weekendStart).format("DD-MM-YYYY")}-{dayjs(weekendEnd).format("DD-MM-YYYY")}</div>
+    {/* {`  ${dayjs(weekendStart).format("DD-MM-YYYY")-dayjs(weekendEnd
   ).format("DD-MM-YYYY")}`} */}
     <BarChart width={540} height={162} data={data}>
       <CartesianGrid strokeDasharray="3 3" />

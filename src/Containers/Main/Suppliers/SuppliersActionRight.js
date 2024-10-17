@@ -36,7 +36,7 @@ class SuppliersActionRight extends React.Component {
             type="primary"
             // ghost
             onClick={() => handleSuppliersModal(true)}
-          ><DataSaverOnIcon/>
+          ><DataSaverOnIcon className=" !text-icon"/>
            {/* Add */}
             {this.props.translatedMenuItems[9]}
           </Button>
@@ -47,6 +47,8 @@ class SuppliersActionRight extends React.Component {
           handleSuppliersModal={handleSuppliersModal}
           addSuppliersModal={addSuppliersModal}
           translatedMenuItems={this.props.translatedMenuItems}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
 </Suspense>
         
