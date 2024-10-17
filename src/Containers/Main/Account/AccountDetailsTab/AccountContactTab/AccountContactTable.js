@@ -117,46 +117,46 @@ const AccountContactTable = (props) => {
 
     return (
         <>
-            <div className='flex sticky h-70 z-auto'>
+            <div className='flex sticky h-[79vh] z-auto'>
                 <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  font-poppins text-xs z-10">
-                        <div className="md:w-[5.1rem]">{translatedMenuItems[0]}</div>
-                        <div className="md:w-[6.01rem]">{translatedMenuItems[1]}</div>
-                        <div className="md:w-[4.8rem]">{translatedMenuItems[2]}</div>
-                        <div className="md:w-[5.9rem]">{translatedMenuItems[3]}</div>
-                        <div className="md:w-[16.6rem]">{translatedMenuItems[4]}</div>
-                        <div className="md:w-[4.7rem]">{translatedMenuItems[5]}</div>
-                        <div className="md:w-[18.8rem]">{translatedMenuItems[6]}</div>
+                        <div className="w-[5.1rem] text-[#00A2E8] text-base md:w-[7.1rem]">{translatedMenuItems[0]}</div>
+                        <div className="w-[6.01rem] md:w-[6.01rem]">{translatedMenuItems[1]}</div>
+                        <div className="w-[4.8rem] md:w-[1.8rem]">{translatedMenuItems[2]}</div>
+                        <div className="w-[5.9rem] md:w-[1.9rem]">{translatedMenuItems[3]}</div>
+                        <div className="w-[16.6rem] md:w-[16.6rem]">{translatedMenuItems[4]}</div>
+                        <div className="w-[4.7rem] md:w-[4.7rem]">{translatedMenuItems[5]}</div>
+                        <div className=" w-[18.8rem] md:w-[18.8rem]">{translatedMenuItems[6]}</div>
                     </div>
 
                     {props.contactDistributor.map((item) => (
                         <div key={item.contactPersonId}>
-                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid m-1 leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]">
+                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid  leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]">
                                 <div className="flex">
-                                    <div className="flex font-bold md:w-[6.8rem] max-sm:flex-row w-full max-sm:justify-between">
+                                    <div className="flex font-bold items-center justify-center md:w-[6.8rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div className="text-xs font-poppins">
                                             {`${item.salutation || ""} ${item.firstName || ""} ${item.middleName || ""} ${item.lastName || ""}`}
                                         </div>
                                     </div>
 
-                                    <div className="flex md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between">
+                                    <div className="flex md:w-[11.23rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div className="text-xs font-poppins">{item.emailId}</div>
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex md:w-[13.023rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">{`${item.dialCode1 || ""} ${item.mobileNo || ""}`}</div>
                                 </div>
-                                <div className="flex md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex md:w-[12.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">{item.designationName}</div>
                                 </div>
 
-                                <div className="flex md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex md:w-[16.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">{item.departmentId}</div>
                                 </div>
                                                     
                                 <div className="flex justify-end items-center max-sm:flex-row w-full max-sm:justify-between">
-                                <div className="flex md:w-[7.27rem] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex md:w-[6.27rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <div className="flex justify-evenly">
                                             <ButtonGroup>
@@ -191,7 +191,7 @@ const AccountContactTable = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex md:w-[8.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <Select
                                             style={{ width: "8rem" }}
@@ -206,7 +206,7 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ml-2 mr-2">
+                                <div className="flex md:w-[6.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ml-2 mr-2">
                                     <div className="text-xs font-poppins text-center">
                                         <Input
                                             onPressEnter={(e) => handleKeyPress(item.contactPersonId, e)}
@@ -219,7 +219,7 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[8.01rem] max-sm:flex-row  max-sm:justify-between">
+                                <div className="flex md:w-[11.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <Select
                                             style={{ width: "6rem" }}
@@ -234,7 +234,7 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
             {item.accessInd === 0 ? (
-                <div className="text-xs font-poppins">
+                <div className="text-xs font-poppins items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                     <Button
                         type="primary"
                         loading={rowData.contactPersonId === item.contactPersonId && props.applyingForLoginInContact}
@@ -262,7 +262,7 @@ const AccountContactTable = (props) => {
                   {translatedMenuItems[10]}  {/* Login Approved */}
                     </b>
             )}
-
+      <div className="flex items-center justify-center h-8 bg-[#eef2f9]">
             <Tooltip title={translatedMenuItems[11]}>
             {/* "Pulse"> */}
                 <MonitorHeartIcon
@@ -274,8 +274,9 @@ const AccountContactTable = (props) => {
                     }}
                 />
             </Tooltip>
-            <div className="flex w-[1.01rem] max-sm:flex-row max-sm:justify-between">
-                                    <div className="!text-icon font-poppins">
+            </div>
+            <div className="flex w-[2.01rem] max-sm:flex-row max-sm:justify-between">
+                                    <div className=" flex !text-icon font-poppins  items-center justify-center h-8 bg-[#eef2f9]">
                                         <Tooltip title={translatedMenuItems[7]}>
                                         {/* "Edit"> */}
                                             <BorderColorIcon
@@ -287,7 +288,7 @@ const AccountContactTable = (props) => {
                                             />
                                         </Tooltip>
                                     </div>
-                                    <div className="!text-icon font-poppins">
+                                    <div className=" flex !text-icon font-poppins  items-center justify-center h-8 bg-[#eef2f9]">
                                         <Tooltip title={translatedMenuItems[7]}>
                                        
                                             <EditNoteIcon

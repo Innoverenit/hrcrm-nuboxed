@@ -222,21 +222,21 @@ const {handleProcureNotesDrawerModal,
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
         <div className=" flex justify-between w-[96%]  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[10rem]">{translatedMenuItems[0]} ID</div>
-                        <div className=" md:w-[5.4rem]">{translatedMenuItems[1]}</div>
-                        <div className=" md:w-[6.4rem] flex justify-end">{translatedMenuItems[2]}</div>
+                        <div className="w-[10rem] md:w-[10.02rem] text-[#00A2E8] text-base">{translatedMenuItems[0]} ID</div>
+                        <div className="w-[5.4rem] md:w-[5.04rem]">{translatedMenuItems[1]}</div>
+                        <div className="w-[13.4rem] md:w-[13.04rem] flex justify-end">{translatedMenuItems[2]}</div>
                         {/* Customer */}
-                        <div className=" md:w-[8.4rem]">{translatedMenuItems[3]}</div>
+                        <div className="w-[8.4rem] md:w-[10.14rem]">{translatedMenuItems[3]}</div>
                         {/* Shipping */}
-                        <div className=" md:w-[8.4rem]">{translatedMenuItems[4]}</div>
+                        <div className="w-[8.4rem] md:w-[8.13rem]">{translatedMenuItems[4]}</div>
                         {/* Billing */}
-                        <div className=" md:w-[5.4rem]">{translatedMenuItems[5]}</div>
+                        <div className="w-[5.4rem] md:w-[5.12rem]">{translatedMenuItems[5]}</div>
                         {/* item */}
-                        <div className=" md:w-[4.4rem]">{translatedMenuItems[8]}</div>
-                        <div className=" md:w-[4.4rem]">{translatedMenuItems[6]}</div>
+                        <div className="w-[4.4rem] md:w-[4.2rem]">{translatedMenuItems[8]}</div>
+                        <div className="w-[4.4rem] md:w-[4.3rem]">{translatedMenuItems[6]}</div>
                         {/* <div className=" md:w-[4.4rem]">{translatedMenuItems[7]}</div>  */}
                      
-                        <div className=" md:w-[5.4rem]"> 
+                        <div className="w-[4.4rem] md:w-[5.4rem]"> 
                           {translatedMenuItems[10]}
                           
                           </div>
@@ -246,7 +246,7 @@ const {handleProcureNotesDrawerModal,
                           </div>
                         <div className=" md:w-[7rem]"></div>
                        
-                        <div className="md:w-[1rem]"></div>
+                      
         </div>
         <InfiniteScroll
             hasMore={hasMore}
@@ -265,32 +265,24 @@ const {handleProcureNotesDrawerModal,
             return (
                 <div>
                 <div
-className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
-                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
-                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex   md:w-[7rem] max-sm:flex-row max-sm:justify-between  ">
+className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                     <div class="flex max-sm:justify-between max-sm:w-wk items-center border-l-2 border-green-500 bg-[#eef2f9]">
+                        <div className=" flex   md:w-[9.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
                                 {item.newOrderNo}
                             </div>
                             {date === currentDate ? (
-                                <span className=" text-[0.65rem] text-[tomato] font-bold" >
+                                <span className=" text-[0.65rem] text-[tomato] ml-1 font-bold" >
                                  {translatedMenuItems[9]} {/* New */}
                                 </span>
                               ) : null}
                         </div>
                       
                         </div>
-                        <div className=" flex  items-center md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  items-center font-poppins">
-                            {/* {date} */}
-                            <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
-</svg>
-{getRelativeTime(item.creationDate)}
-</span>
-                            </div>
-                            <div class=" text-xs  items-center font-poppins">
+                        <div className=" flex  items-center md:w-[3.9rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                          
+                            <div class=" text-xs  items-center font-poppins ">
                             <MultiAvatar
                   primaryTitle={item.contactPersonName}
                   // imageId={item.ownerImageId}
@@ -302,19 +294,19 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                     
                         </div>
 
-                        <div className=" flex items-center  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[8.12rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 {item.distributorName}
                             </div>
 
                         </div>
-                        <div className=" flex items-center  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[9.3rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 {item.loadingAddress?.[0]?.city}
                             </div>
 
                         </div>
-                        <div className=" flex items-center  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[10.5rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 {item.category}  {item.attribute}
                             </div>
@@ -322,7 +314,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                         </div>
 
 
-                        <div className=" flex items-center  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[3.1rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs cursor-pointer text-blue-500 font-poppins"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
@@ -332,31 +324,40 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                             </div>
 
                         </div>
-                        <div className=" flex items-center  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[7.8rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 {item.status}
                             </div>
 
                         </div>
-                        <div className=" flex items-center  md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[6.6rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 {item.orderSource}
                             </div>
 
                         </div>
 
-                        <div className=" flex   md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[9.5rem] max-sm:flex-row  max-sm:justify-between  ">
                         <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
                   }}>{translatedMenuItems[7]}</Button>
                         </div>
+                        <div class="flex text-xs  items-center font-poppins items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                            {/* {date} */}
+                            <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span>
+                            </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center"> 
-                        <div class="w-6">
+                        <div class="w-6 items-center justify-center h-8   bg-[#eef2f9] flex">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div>                                                 
-                        <div>                       
+                        <div class=" items-center justify-center h-8   bg-[#eef2f9] flex">                       
                         <Tooltip title={translatedMenuItems[6]}
                         // "Status"
                                                                 
@@ -371,6 +372,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                                                                 />
                                                             </Tooltip>
                         </div>
+                        <div class=" items-center justify-center h-8   bg-[#eef2f9] flex">   
                         <Tooltip title="CBM">
                         <StackedBarChartIcon
                          onClick={() => {
@@ -379,6 +381,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                        }}
                         />
                         </Tooltip>
+                        </div>
                     </div>
 
                 </div>
@@ -393,10 +396,10 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
          setopenInvoiceModal={setopenInvoiceModal}
          translatedMenuItems={translatedMenuItems}
          />
-          <ProcureItemViewDrawer
+          <ProcureItemViewDrawer       
            particularRowData={particularRowData}
            viewItemDrwr={props.viewItemDrwr}
-           handleItemViewDrawer={props.handleItemViewDrawer}
+           handleItemViewDrawer={props.handleItemViewDrawer}                    
            />
            <CBMdrawer
            particularRowData={particularRowData}
@@ -410,13 +413,6 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                 modalVisible={modalVisible}
                 closeModal={closeModal} />
 
-{/*<AddProcureNotesDrawerModal
- selectedLanguage={props.selectedLanguage}
- translateText={props.translateText}
-        particularRowData={particularRowData}
-        addDrawerProcureNotesModal={props.addDrawerProcureNotesModal}
-        handleProcureNotesDrawerModal={props.handleProcureNotesDrawerModal}
-      /> */}
     </>
        )}
   </div>

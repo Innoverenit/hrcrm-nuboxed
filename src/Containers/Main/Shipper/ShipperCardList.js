@@ -78,7 +78,7 @@ function ShipperCardList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className="font-poppins font-bold text-xs w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
              {/* Name */}
               {props.translatedMenuItems[0]}
               </div>
@@ -113,7 +113,7 @@ function ShipperCardList(props) {
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingShipperByUserId ? <div className="flex justify-center" >{props.translatedMenuItems[8]}...</div> : null}
-            height={"80vh"}
+            height={"88vh"}
           >
             {props.shipperByUserId.length ? <>
               {props.shipperByUserId.map((item) => {
@@ -121,9 +121,9 @@ function ShipperCardList(props) {
                   <>
                     <div  >
                       <div className="flex rounded max-sm:rounded-lg
-                max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white h-8 items-center max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                          <div className=" flex font-medium flex-col w-[10.9rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white h-8 items-center max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                        <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center">
+                          <div className=" flex font-medium flex-col  w-[8.9rem] max-xl:w-[7.6rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
                   
                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                               <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -136,7 +136,7 @@ function ShipperCardList(props) {
 
                             </div>
                           </div>
-                          <div className=" flex  w-[6.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex  w-[6.5rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
                             <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.dialCode} {item.phoneNo}
                             </div>
@@ -144,14 +144,14 @@ function ShipperCardList(props) {
                         </div>
 
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                          <div className=" flex   w-[13.3rem] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex   w-[13.3rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                             <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.emailId}
                             </div>
                           </div>
 
-                          <div className=" flex  w-[7.12rem] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex  w-[7.12rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
                             <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.shipByName}
                             </div>
@@ -159,7 +159,7 @@ function ShipperCardList(props) {
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                          <div className=" flex  w-[11.31rem] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex  w-[13.31rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                             <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {`${(item.address && item.address.length && item.address[0].address1) || ""}
@@ -169,7 +169,7 @@ function ShipperCardList(props) {
                             </div>
                           </div>
                           
-                          <div className=" flex   w-[12.21rem] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex   w-[12.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
                             <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {(item.address &&
                                 item.address.length &&
@@ -178,7 +178,7 @@ function ShipperCardList(props) {
                             </div>
                           </div>
                     
-                          <div className=" flex  w-[6.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex  w-[7.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                             <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {(item.address &&
@@ -189,7 +189,7 @@ function ShipperCardList(props) {
                           </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                          <div>
+                          <div className="items-center justify-center w-[5rem] h-8 ml-gap  bg-[#eef2f9]">
                             <Switch
                               className="toggle-clr"
                               //checked={item.productionInd}
@@ -199,8 +199,9 @@ function ShipperCardList(props) {
                             />
                           </div>
                           <div class="flex justify-end max-sm:w-wk items-center">
-                          <div class="flex max-sm:flex-row  justify-end md:w-20 max-sm:w-[25%] ">
+                          <div class="flex max-sm:flex-row w-[7rem] justify-end md:w-20 max-sm:w-[25%] ">
                            
+                          <div className=" flex items-center justify-center h-8   bg-[#eef2f9]">
                           <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {
@@ -208,8 +209,9 @@ function ShipperCardList(props) {
             handleRowData(item);
           }}         
         />      
-       
-                                            
+       </div>
+
+                                   <div className=" flex items-center justify-center h-8  bg-[#eef2f9]">          
                             <Tooltip title={props.translatedMenuItems[9]}>
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-2xl"
@@ -222,8 +224,8 @@ function ShipperCardList(props) {
                                 }}
                               />
                             </Tooltip>
-                  
-                       
+                  </div>
+                  <div className=" flex items-center justify-center h-8  bg-[#eef2f9]">
                             <Popconfirm
                               title={`${props.translatedMenuItems[10]}?`}
                               onConfirm={() => props.deleteShipperData(item.shipperId, props.userId)}
@@ -233,6 +235,7 @@ function ShipperCardList(props) {
 
                               />
                             </Popconfirm>
+                            </div>
                          </div>
                         </div>
                         </div>

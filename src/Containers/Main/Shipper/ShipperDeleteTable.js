@@ -65,34 +65,34 @@ function ShipperDeleteTable(props) {
 <div className=' flex  sticky z-auto'>
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className="font-poppins font-bold text-xs md:w-[8.1rem]">   {props.translatedMenuItems[0]}</div>
-        <div className="font-poppins font-bold text-xs md:w-[5.1rem]">{props.translatedMenuItems[1]} #</div>
-        <div className="font-poppins font-bold text-xs md:w-[6.8rem] ">      {props.translatedMenuItems[2]}</div>
-        <div className="font-poppins font-bold text-xs md:w-[5.9rem]">   {props.translatedMenuItems[3]}</div>
+        <div className="font-poppins font-bold  text-[#00A2E8] text-base md:w-[12.1rem]">   {props.translatedMenuItems[0]}</div>
+        <div className="font-poppins font-bold text-xs md:w-[10.1rem]">{props.translatedMenuItems[1]} #</div>
+        <div className="font-poppins font-bold text-xs md:w-[8.8rem] ">      {props.translatedMenuItems[2]}</div>
+        <div className="font-poppins font-bold text-xs md:w-[7.9rem]">   {props.translatedMenuItems[3]}</div>
         <div className="font-poppins font-bold text-xs md:w-[7.8rem]">   {props.translatedMenuItems[4]}</div>
         <div className="font-poppins font-bold text-xs md:w-[7.9rem]">     {props.translatedMenuItems[5]}</div>
         <div className="font-poppins font-bold text-xs md:w-[9.2rem]">    {props.translatedMenuItems[6]}</div>
-        <div className="font-poppins font-bold text-xs w-[3.8rem]">{props.translatedMenuItems[7]}</div>
+        <div className="font-poppins font-bold text-xs w-[4.8rem]">{props.translatedMenuItems[7]}</div>
         </div>
         <InfiniteScroll
             dataLength={deletedShipper.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingDeletedShipper ? <div className="flex justify-center" >{props.translatedMenuItems[8]}...</div> : null}
-            height={"80vh"}
+            height={"83vh"}
           >
             {deletedShipper.length ? <>
               {deletedShipper.map((item) => {
                 return (
                
                      <>
-     <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"               >
+     <div className="flex rounded justify-between mt-1 bg-white h-8 items-center "               >
  <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
- <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+ <div className=" flex font-medium border-l-2 border-green-500 bg-[#eef2f9] h-8   flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
 
 
-<div class=" font-normal text-xs  font-poppins">
+<div class=" text-xs  font-poppins  items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
 <Link
           toUrl={`shipper/${item.shipperId}`}
           title={`${item.shipperName}`}
@@ -100,46 +100,46 @@ function ShipperDeleteTable(props) {
 </div>
 
 </div>
-<div className=" flexl md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-<div class=" font-normal text-xs  font-poppins">
+<div className=" flex md:w-44 items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
+<div class="  text-xs   font-poppins">
 {item.dialCode} {item.phoneNo}
 </div>
 
 </div>
-<div className=" flex   md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-<div class=" font-normal text-xs  font-poppins">
+<div className=" flex   md:w-44  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
+<div class="  text-xs  font-poppins">
 {item.emailId} 
 </div>
 
 </div>
 
-<div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
-<div class=" font-normal text-xs  font-poppins">
+<div className=" flex  md:w-44   items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
+<div class="  text-xs  font-poppins">
 {item.shipByName} 
 </div>
 
 </div>
-<div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex  md:w-44  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" font-normal text-xs  font-poppins">
+<div class=" text-xs  font-poppins">
 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
          
         `}
 </div>
 </div>
-<div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex  md:w-44  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" font-normal text-xs  font-poppins">
+<div class="  text-xs  font-poppins">
 {(item.address &&
                               item.address.length &&
                               item.address[0].city) ||
                               ""}
 </div>
 </div>
-<div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex  md:w-44 max-sm:justify-between  items-center justify-center h-8 ml-gap  bg-[#eef2f9] w-full max-sm:flex-row ">
 
-<div class=" font-normal text-xs  font-poppins">
+<div class="  text-xs  font-poppins">
 {(item.address &&
                               item.address.length &&
                               item.address[0].postalCode) ||
@@ -147,8 +147,8 @@ function ShipperDeleteTable(props) {
 </div>
 </div>
 
-<div className=" flex  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div className=" flex  w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class=" text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateShipper shipperId={item.shipperId} />
                             </div>
                           </div>
