@@ -2,6 +2,8 @@ import React, {} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import ContactInvestPieChart1 from "../ContactInvestTable/ContactInvestPieChart1"
+import ContactInvestPieChart2 from "../ContactInvestTable/ContactInvestPieChart2"
 import dayjs from "dayjs";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import CustomerPieChart from "../../../Dashboard/Child/JumpStart/CustomerPieChart"
@@ -136,10 +138,10 @@ render() {
     
       <div class=" mt-1 flex flex-col w-1/2 h-[83vh] items-center" > 
       <div className="font-bold font-poppins  text-lg">Deals</div>
-        <CustomerPieChart/>
+        <ContactInvestPieChart1/>
        
         <div className="font-bold font-poppins text-lg">Activity</div>
-        <CustomerPieChart/>
+        <ContactInvestPieChart2/>
         </div>     
         </div>
   </>
