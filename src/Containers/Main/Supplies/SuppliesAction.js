@@ -1594,6 +1594,30 @@ export const getSuppliesLocationItem = (locationId) => (dispatch) => {
     });
 };
 
+export const getItemData = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ITEM_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/newArrivals/material/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ITEM_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ITEM_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 
 

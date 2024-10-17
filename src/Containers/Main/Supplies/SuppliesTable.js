@@ -32,7 +32,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import dayjs from "dayjs";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { BundleLoader } from "../../../Components/Placeholder";
-import { MultiAvatar } from "../../../Components/UI/Elements";
+import { JumpStartBox, MultiAvatar } from "../../../Components/UI/Elements";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -144,6 +144,10 @@ function SuppliesTable(props) {
        "1610" , //  Complimentry22
        "1252" , //  "Print"23
        "800" ,// Supplies Id24
+       "1229",  //  "Orders Added", // 25
+       "1230", //  "Orders Open", // 26
+        "1231",//   "Orders Closed", // 27
+        "1232",//  "Orders Cancelled"//28
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -171,11 +175,135 @@ function SuppliesTable(props) {
       handleErpDocumentUploadModal } = props;
   return (
     <>
-      <div className=" flex sticky z-auto">
+     <div class=" flex w-full max-sm:flex-col mt-4" >
+          
+          <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center  text-xs">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                             </div>
+                             <JumpStartBox
+              bgColor="linear-gradient(270deg,#F15753,orange)"
+              noProgress
+              title= {translatedMenuItems[25]}
+             // jumpstartClick={()=> handleClick("Added")}
+              cursorData={"pointer"}
+              value={"0"}
+            // isLoading={props.fetchingorderDetails}
+            />
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center text-xs">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                               </div>
+                               <JumpStartBox
+            bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
+              noProgress
+              title= {translatedMenuItems[26]} 
+            //jumpstartClick={()=> handleClick("Open")}
+              cursorData={"pointer"}
+            // value={ pendingOrder}
+            // isLoading={props.fetchingorderDetails}
+            />
+                           </div>
+                       </div>
+                    
+                   </div>  
+                    
+                <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center text-xs">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                               </div>
+                               <JumpStartBox
+                bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
+              noProgress
+              title= {translatedMenuItems[27]}
+          
+              //jumpstartClick={()=> handleClick("Closed")}
+              cursorData={"pointer"}
+            // value={completeOrder}
+            // isLoading={props.fetchingorderDetails}
+            />
+                           </div>
+                       </div>
+                     
+                   </div>  
+                   
+                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center text-xs">
+                              <div class="flex-shrink pr-3">
+                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                              </div>
+                              <JumpStartBox
+                             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+                              noProgress
+                              title= {translatedMenuItems[28]} 
+                             // jumpstartClick={()=> handleClick("Cancelled")}
+                              cursorData={"pointer"}
+                              value={"0"}
+                            // isLoading={props.fetchingorderDetails}
+                            />
+                          </div>
+                      </div>      
+                  </div>
+                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center  text-xs">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                             </div>
+                             <JumpStartBox
+              bgColor="linear-gradient(270deg,#F15753,orange)"
+              noProgress
+              title= {translatedMenuItems[25]}
+             // jumpstartClick={()=> handleClick("Added")}
+              cursorData={"pointer"}
+              value={"0"}
+            // isLoading={props.fetchingorderDetails}
+            />
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center text-xs">
+                              <div class="flex-shrink pr-3">
+                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                              </div>
+                              <JumpStartBox
+                             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+                              noProgress
+                              title= {translatedMenuItems[28]} 
+                             // jumpstartClick={()=> handleClick("Cancelled")}
+                              cursorData={"pointer"}
+                              value={"0"}
+                            // isLoading={props.fetchingorderDetails}
+                            />
+                          </div>
+                      </div>      
+                  </div>
+          </div>
+      <div className=" flex sticky z-auto mt-4">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[81%] justify-between  p-1 bg-transparent font-bold sticky  z-10">
             <div className=" w-[3.25rem] max-xl:w-[2rem]"></div>
-            <div className="font-bold font-poppins text-xs w-[4.522rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold text-[#00A2E8] text-base font-poppins  w-[4.522rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* HSN */}
               {translatedMenuItems[0]} ID
               </div>
@@ -229,9 +357,9 @@ function SuppliesTable(props) {
                   
                   return (
                     <>
-                      <div className="flex rounded  bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                      <div className="flex rounded  bg-white mt-1  h-8  max-sm:h-[7.5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                      <div className="flex max-sm:w-wk max-sm:justify-between ">
-                                <div className=" flex items-center w-[2rem]">
+                                <div className=" flex items-center w-[2rem] border-l-2 border-green-500 bg-[#eef2f9]">
                                   {item.imageId && (
                                     <span>
                                       <MultiAvatar
@@ -244,7 +372,7 @@ function SuppliesTable(props) {
                                 </div>
                                 
 
-                                <div class="max-sm:w-auto flex items-center  w-[5.22rem]">
+                                <div class="max-sm:w-auto flex items-center  w-[5.22rem] h-8 ml-gap bg-[#eef2f9] justify-center">
 
                                   <div className=" flex  max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                                     <div class=" text-[0.65rem] max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -255,7 +383,7 @@ function SuppliesTable(props) {
                                   
                                                                   
                                 <div className=" flex  flex-row w-[6rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" w-[7.8rem] text-[0.65rem] cursor-pointer text-blue-600 max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                              <div class=" w-[4.8rem] text-[0.65rem] cursor-pointer text-blue-600 max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
                                onClick={() => {
                                 openModal();
                                 handleParticularRowData(item);
@@ -269,7 +397,7 @@ function SuppliesTable(props) {
                             </div>
                            
                                 </div>
-                                <div className=" flex  w-[4.52rem] items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                                <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center  w-[4.52rem] items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                                     <div class=" text-[0.65rem] max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                       {item.msku} 
                                     </div>
@@ -282,7 +410,7 @@ function SuppliesTable(props) {
                                       ) : null} </span>
                               </div>
 
-                            <div className=" flex  w-[6.1rem] items-center max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  h-8 ml-gap bg-[#eef2f9] justify-center w-[6.1rem] items-center max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs truncate max-w-[100px]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer text-blue-600" title={item.suppliesName}
                                onClick={() => {
                                 openModal();
@@ -294,24 +422,24 @@ function SuppliesTable(props) {
                             </div>
                           
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex  w-[7.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  h-8 ml-gap bg-[#eef2f9] justify-center items-center  w-[7.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs truncate max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.categoryName}  {item.subCategoryName}
                               </div>
                             </div>
 
                             
-                            <div className=" flex  w-[9.12rem] max-xl:w-[6.32rem] max-lg:w-[5.32rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center items-center w-[9.12rem] max-xl:w-[6.32rem] max-lg:w-[5.32rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.brandName}  
                               </div>
                             </div>
-                            <div className=" flex w-[7.19rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex w-[7.19rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 
                               </div>
                             </div>
-                            <div className=" flex w-[6.19rem] max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex w-[6.19rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 
                               </div>
@@ -321,7 +449,7 @@ function SuppliesTable(props) {
                             
 
                            
-                            <div className=" flex  w-[6.9rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[6.9rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MultiAvatar
                                   primaryTitle={item.userName}
@@ -332,7 +460,7 @@ function SuppliesTable(props) {
                                 {`${dayjs(item.creationDate).format("DD/MM/YYYY")}`}
                               </div>
                             </div>
-                            <div className=" flex  w-[6.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[6.2rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialStatusToggle
                                   publishInd={item.publishInd}
@@ -342,7 +470,7 @@ function SuppliesTable(props) {
                             </div>
                           
 
-                            <div className=" flex w-[1.25rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex w-[1.25rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <UploadOutlined
                                onClick={() => {
@@ -359,7 +487,7 @@ function SuppliesTable(props) {
                           </div> 
 
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center justify-end w-wk">
-                     <div className=" flex ml-1  w-[5.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                     <div className=" flex   h-8 ml-gap bg-[#eef2f9] justify-center items-center w-[5.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={translatedMenuItems[23]}
                                                         // {<FormattedMessage
@@ -394,7 +522,7 @@ function SuppliesTable(props) {
 </div> */}
 
                       
-                            <div className=""> 
+                            <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
                               <Tooltip title={translatedMenuItems[19]}>
                                 <ViewQuiltIcon
                                   className="cursor-pointer !text-icon text-[#c589e8]"
@@ -405,7 +533,7 @@ function SuppliesTable(props) {
                                 />
                               </Tooltip>
                             </div>
-                            <div className="">
+                            <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
                               {props.repairInd && <Tooltip title={translatedMenuItems[20]}>
                                 <PhoneFilled
                                   onClick={() => {
@@ -418,7 +546,7 @@ function SuppliesTable(props) {
                             </div>
 
 
-                            <div className=""> 
+                            <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
                               <Tooltip title={translatedMenuItems[12]}>
                                 <CategoryIcon
                                   onClick={() => {
@@ -430,7 +558,7 @@ function SuppliesTable(props) {
                               </Tooltip>
                             </div>
 
-                            <div className="">
+                            <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
                               <Tooltip title={translatedMenuItems[13]}>
                                 <InventoryIcon className=" !text-icon cursor-pointer text-[#937666]"  onClick={() => {
                                     props.handleMaterialInventory(true);
@@ -453,7 +581,7 @@ function SuppliesTable(props) {
                            
                            
                            
-                              <div className="">
+                     <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
                               <DescriptionIcon
                       type="plus"
                       title={
@@ -473,7 +601,7 @@ function SuppliesTable(props) {
                     />
                               </div>
                               
-                            <div className="">
+                              <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
                               <Tooltip title={translatedMenuItems[14]}>
                                 <BorderColorIcon
                                   onClick={() => {
@@ -484,7 +612,7 @@ function SuppliesTable(props) {
                                 />
                               </Tooltip>
                            </div>
-                           <div className="">
+                           <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
                               <Popconfirm
                                 title={translatedMenuItems[21]}
                                 onConfirm={() => props.deletePurchaseData(item.suppliesId)}

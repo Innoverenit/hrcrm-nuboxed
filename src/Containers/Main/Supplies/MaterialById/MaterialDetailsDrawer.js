@@ -15,22 +15,13 @@ function MaterialDetailsDrawer(props) {
 
     const { modalVisible,closeModal,particularDiscountData, ...formProps } = props;
     const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "60%";
+    const drawerWidth = isSmallScreen ? "90%" : "90%";
     const [activeKey, setActiveKey] = useState("1");
     const handleTabChange = (key) => setActiveKey(key);
     const renderTabContent = (key) => {
       switch (key) {
+       
         case "1":
-          return     <div> 
-              <MaterialsDetailsbyId 
-          particularDiscountData={particularDiscountData}
-          recomendInd={particularDiscountData.recomendInd}
-          suppliesId={particularDiscountData.suppliesId}
-          fifoInd={particularDiscountData.fifoInd}
-          featureInd={particularDiscountData.featureInd}
-          /> 
-              </div>;
-        case "2":
           return  <div> <div class="font-semibold ">Price</div>
           <PriceAddCard particularDiscountData={particularDiscountData}
            translateText={props.translateText}
@@ -43,11 +34,20 @@ function MaterialDetailsDrawer(props) {
           <PriceDiscountCardB2C particularDiscountData={particularDiscountData} 
            translateText={props.translateText}
            selectedLanguage={props.selectedLanguage} /></div>;
-      
-          case "3":
-          return  <div>  <LocationSuppliesList
-          particularDiscountData={props.particularDiscountData}
-          /></div>;
+           case "2":
+            return     <div> 
+                <MaterialsDetailsbyId 
+            particularDiscountData={particularDiscountData}
+            recomendInd={particularDiscountData.recomendInd}
+            suppliesId={particularDiscountData.suppliesId}
+            fifoInd={particularDiscountData.fifoInd}
+            featureInd={particularDiscountData.featureInd}
+            /> 
+                </div>;
+          // case "3":
+          // return  <div>  <LocationSuppliesList
+          // particularDiscountData={props.particularDiscountData}
+          // /></div>;
           case "4":
           return  <div><MaterialComplementaryCard
           translateText={props.translateText}
@@ -79,22 +79,7 @@ function MaterialDetailsDrawer(props) {
             <StyledTabs
            defaultActiveKey={activeKey} onChange={handleTabChange}
             >
-               
-                    <TabPane
-                        tab={
-                            <>
-                                <span >
-                                    Info
-                                </span>
-                               
-                               
-
-                            </>
-                        }
-                        key="1">
-                       
-                    </TabPane>
-                <TabPane
+                  <TabPane
                     tab={
                         <>
                             <span >
@@ -106,13 +91,28 @@ function MaterialDetailsDrawer(props) {
 
                         </>
                     }
-                    key="2">
+                    key="1">
                     <Suspense fallback={<BundleLoader />}>
                        
                     </Suspense>
                 </TabPane>
-
                     <TabPane
+                        tab={
+                            <>
+                                <span >
+                                    Info
+                                </span>
+                               
+                               
+
+                            </>
+                        }
+                        key="2">
+                       
+                    </TabPane>
+             
+
+                    {/* <TabPane
                         tab={
                             <>
                                 <span>
@@ -125,7 +125,7 @@ function MaterialDetailsDrawer(props) {
                         
 
 
-                    </TabPane>
+                    </TabPane> */}
                     
                     <TabPane
                         tab={

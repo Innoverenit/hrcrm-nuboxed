@@ -291,6 +291,8 @@ const initialState = {
 
   addDeletePurchaseModal: false,
 
+  addRecallModal:false,
+
   fetchingDeletedPurchaseById: false,
   fetchingDeletedPurchaseByIdError: false,
 
@@ -482,6 +484,9 @@ export const suppliersReducer = (state = initialState, action) => {
 
     case types.HANDLE_SUPPLIERS_MODAL:
       return { ...state, addSuppliersModal: action.payload };
+
+      case types.HANDLE_RECALL_MODAL:
+        return { ...state, addRecallModal: action.payload };
 
 
       case types.EMPTY_NOT_APPROVED_SUPPLIER_LIST:
