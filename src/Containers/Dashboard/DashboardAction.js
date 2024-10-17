@@ -3052,3 +3052,31 @@ export const getQuotationDashboardCount = (userId) => (dispatch) => {
           });
       });
 };
+
+
+
+export const getRepairVolumeChart = (userId,type) => (dispatch) => {
+  dispatch({ type: types.GET_REPAIR_VOLUME_CHART_REQUEST });
+  axios
+    .get(
+      `${base_url2}/dashboard/volumePieChart/${userId}/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_REPAIR_VOLUME_CHART_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REPAIR_VOLUME_CHART_FAILURE,
+        payload: err,
+      });
+    });
+};

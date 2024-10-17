@@ -67,6 +67,11 @@ const initialState = {
   fetchingDashboardTasksError: false,
   dashboardTasks: [],
 
+
+  fetchingRepairVolumeChart:false,
+  fetchingRepairVolumeChartError:false,
+  repairVolumeChart:{},
+
   fetchingdashboardTable: false,
   fetchingdashboardTableError: false,
   tableDashboard: [],
@@ -786,6 +791,24 @@ export const dashboardReducer = (state = initialState, action) => {
           fetchingQuotationDashboard: false,
           fetchingQuotationDashboardError: true,
         };
+
+
+
+        case types.GET_REPAIR_VOLUME_CHART_REQUEST:
+      return { ...state, fetchingRepairVolumeChart: true };
+    case types.GET_REPAIR_VOLUME_CHART_SUCCESS:
+      return {
+        ...state,
+        fetchingRepairVolumeChart: false,
+        repairVolumeChart: action.payload,
+      };
+    case types.GET_REPAIR_VOLUME_CHART_FAILURE:
+      return {
+        ...state,
+        fetchingRepairVolumeChart: false,
+        fetchingRepairVolumeChartError: true,
+
+      };
 
     // case types.CHANGE_SELECTED_TODO_TIME_INTERVAL_REPORT:
     //   return {

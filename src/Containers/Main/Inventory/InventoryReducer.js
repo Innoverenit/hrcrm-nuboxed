@@ -1612,6 +1612,9 @@ export const inventoryReducer = (state = initialState, action) => {
         //     return item;
         //   }
         // }),
+        materialBestBefore: state.materialBestBefore.filter(
+          (item) => item.poSupplierSuppliesId !== action.payload
+        ),
       };
     case types.ADD_TO_WASTE_FAILURE:
       return { ...state,addingToWaste : false, addingToWasteError: false };

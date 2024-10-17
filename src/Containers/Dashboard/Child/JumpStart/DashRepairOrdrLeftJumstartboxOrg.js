@@ -278,7 +278,7 @@ function DashRepairOrdrLeftJumstartboxOrg(props) {
           
         </div>
         <div className=" mt-1">
-        <div class=" font-poppins font-bold text-base ">By Process</div>
+        <div class=" font-poppins font-bold text-base ">By Processes</div>
         <CustomerPieChart/>
         </div>
       </div>

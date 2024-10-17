@@ -182,11 +182,12 @@ console.log(selectedZones)
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=""></div>
-                        <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
                         <div className=" w-[13.52rem]" style={{marginLeft:"-132px"}}>
                             {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
-                         Item Name
+                         Item 
                         </div>
+                        <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
+                       
                
                         <div className=" w-[11.122rem]" style={{marginLeft:"-104px"}}>       
                        Supplier Name
@@ -212,6 +213,18 @@ console.log(selectedZones)
                         </div> */}
                         <div className=" w-[11.122rem]" style={{marginLeft:"-52px"}}>       
                     Units
+
+                        </div>
+                        <div className=" w-[11.122rem]" style={{marginLeft:"-52px"}}>       
+                    Zone
+
+                        </div>
+                        <div className=" w-[11.122rem]" style={{marginLeft:"-52px"}}>       
+                    Aisle
+
+                        </div>
+                        <div className=" w-[11.122rem]" style={{marginLeft:"-52px"}}>       
+                    Rack
 
                         </div>
                    
@@ -288,11 +301,14 @@ console.log(selectedZones)
                                           props.addToWaste({
                                             poSupplierSuppliesId:item.poSupplierSuppliesId,
                                             poSupplierDetailsId:item.poSupplierDetailsId,
-                                            suppliesId:"",
+                                            suppliesId:item.suppliesId,
                                             userId:item.userId,
                                             locationId:item.locationId,
                                             orgId:props.orgId,
-                                          });
+                                            moveToWasteInd:true
+                                          },
+                                          item.poSupplierSuppliesId
+                                        );
                                           
                                         }}
                                         style={{marginLeft:"-202px"}}
@@ -344,7 +360,7 @@ console.log(selectedZones)
     <Select placeholder="Select rack" 
       style={{ width: 146,marginLeft:"1em" }}
       loading={isLoadingRack}
-   
+   value={item.chamber}
       onChange={(value) => handleRackChange(value, item.poSupplierSuppliesId)}
       // disabled={!selectedZone} 
       >

@@ -116,53 +116,64 @@
 
 
 
-import React from 'react';
+import React,{useEffect} from 'react';
 import ReactApexChart from 'react-apexcharts';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {
+    getRepairVolumeChart,
+  } from "../../DashboardAction";
 
-const GradientDonutChart = () => {
-  const options = {
-    series: [44, 55, 41, 17, 15],  // Data for the chart
-    chart: {
-      width: 300,  // Chart width
-      type: 'donut',  // Chart type
-    },
-    plotOptions: {
-      pie: {
-        customScale: 0.8,
-        startAngle: -90,  // Custom start angle
-        endAngle: 270     // Custom end angle
-      }
-    },
-    dataLabels: {
-      enabled: false  // Disable data labels
-    },
-    fill: {
-      type: 'gradient'  // Gradient fill
-    },
-    legend: {
-      formatter: function(val, opts) {
-        return val + " - " + opts.w.globals.series[opts.seriesIndex];  // Custom legend text
-      }
-    },
-    // title: {
-    //   text: 'Gradient Donut with custom Start-angle'  // Title for the chart
-    // },
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200  // Responsive chart width for smaller screens
-          },
-          legend: {
-            position: 'bottom'  // Legend position for smaller screens
+const RepairVolumeChart = (props) => {
+
+
+
+    useEffect(() => {
+        props.getRepairVolumeChart(props.userId,props.timeRangeType)
+     }, [props.timeRangeType]);
+ 
+     const series = Object.values(props.repairVolumeChart);
+     const options = {
+        labels: Object.keys(props.repairVolumeChart),  // Use keys from chartData as labels
+        chart: {
+          width: 300,
+          type: 'donut',
+        },
+        plotOptions: {
+          pie: {
+            customScale: 0.8,
+            startAngle: -90,
+            endAngle: 270
           }
-        }
-      }
-    ]
-  };
-
-  const series = [44, 55, 41, 17, 15];  // Data for the donut chart
+        },
+        dataLabels: {
+          enabled: false
+        },
+        fill: {
+          type: 'gradient'
+        },
+        legend: {
+          formatter: function (val, opts) {
+            return val + " - " + opts.w.globals.series[opts.seriesIndex];
+          }
+        },
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+                donut: {
+                    size: '65%'
+                  },
+              chart: {
+                width: 200
+              },
+              legend: {
+                position: 'bottom'
+              }
+            }
+          }
+        ]
+      };
 
   return (
     <div className=' w-[23vw]'>
@@ -171,4 +182,30 @@ const GradientDonutChart = () => {
   );
 };
 
-export default GradientDonutChart;
+
+const mapStateToProps = ({ dashboard,auth }) => ({
+        // showHotColdWarm:dashboard.showHotColdWarm,
+        orgId:auth.userDetails.organizationId,
+        userId:auth.userDetails.userId,
+        timeRangeType:dashboard.timeRangeType,
+        customerDashboardChart:dashboard.customerDashboardChart,
+        startDate: dashboard.startDate,
+        endDate: dashboard.endDate,
+        repairVolumeChart:dashboard.repairVolumeChart,
+        gettingCustomerChart:dashboard.gettingCustomerChart,
+        // gettingHotColdWarm:dashboard.gettingHotColdWarm,
+        // showHotColdWarm:dashboard.showHotColdWarm,
+        // openLeadHCWdrawer:dashboard.openLeadHCWdrawer
+      });
+      const mapDispatchToProps = (dispatch) =>
+      bindActionCreators(
+        {
+            getRepairVolumeChart
+        //   getHotColdWarm,
+        //   handleLeadHCWdrawer
+        },
+        dispatch
+      );
+      export default connect(mapStateToProps, mapDispatchToProps)(RepairVolumeChart);
+
+

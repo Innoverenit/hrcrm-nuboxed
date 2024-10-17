@@ -3,11 +3,13 @@ import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import CustomerCategoryPieChart from "../JumpStart/CustomerCategoryPieChart"
 import CustomerPieChart from "./CustomerPieChart"
 import { getJumpFinanceDetail } from "../../DashboardAction"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import CustomerSectorPieChart from "./CustomerSectorPieChart";
 
 function CustomerDashJumpstart(props) {
 
@@ -127,11 +129,11 @@ function CustomerDashJumpstart(props) {
       <div class=" mt-1 flex flex-row justify-between" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Category</div>
-        <CustomerPieChart />
+        <CustomerCategoryPieChart />
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Source</div>
-        <CustomerPieChart/>
+        <CustomerSectorPieChart/>
         </div>
       </div>
         </div>

@@ -1,6 +1,8 @@
 import React, { useEffect,useState , lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ProcureOrderValuePieChart from "../JumpStart/ProcureOrderValuePieChart"
+import ProcureVolumePieChart from "../JumpStart/ProcureVolumePieChart"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import {
@@ -205,14 +207,14 @@ function DashboardOrderJumpstart(props) {
         <div class=" font-poppins font-bold text-base ">By Order Value</div>
         <Suspense fallback={<BundleLoader />}>
         
-        <CustomerPieChart/>
+        <ProcureOrderValuePieChart/>
 </Suspense>
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Volume</div>
         <Suspense fallback={<BundleLoader />}>
         
-        <CustomerPieChart/>
+        <ProcureVolumePieChart/>
         </Suspense>
         </div>
       </div>

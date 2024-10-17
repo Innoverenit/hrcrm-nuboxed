@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import RepairValuePieChart from "../JumpStart/RepairValuePieChart"
+import RepairVolumePieChart from "../JumpStart/RepairVolumePieChart"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getFinaceOrderDetails,
@@ -186,11 +188,11 @@ const openModal = (type) => {
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Value</div>
-        <CustomerPieChart/>
+        <RepairValuePieChart/>
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Volume</div>
-        <CustomerPieChart/>
+        <RepairVolumePieChart/>
         </div>
       </div>
       </div>

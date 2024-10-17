@@ -119,7 +119,7 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const GradientDonutChart = () => {
+const ProductionOrderValuePieChart = () => {
   const options = {
     series: [44, 55, 41, 17, 15],  // Data for the chart
     chart: {
@@ -171,4 +171,4 @@ const GradientDonutChart = () => {
   );
 };
 
-export default GradientDonutChart;
+export default ProductionOrderValuePieChart;

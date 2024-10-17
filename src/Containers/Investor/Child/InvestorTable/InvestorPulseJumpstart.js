@@ -2,6 +2,8 @@ import React, {} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import InvestorPieChart1 from "../InvestorTable/InvestorPieChart1"
+import InvestorPieChart2 from "../InvestorTable/InvestorPieChart2"
 import dayjs from "dayjs";
 import CustomerPieLineChart from "../InvestorTable/CustomerPieLineChart"
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
@@ -328,10 +330,10 @@ render() {
 
           <div class=" mt-1 flex flex-col w-1/2 h-[83vh] items-center" > 
       <div className="font-bold font-poppins  text-lg">Deals</div>
-        <CustomerPieChart/>
+        <InvestorPieChart1/>
        
         <div className="font-bold font-poppins text-lg">Activity</div>
-        <CustomerPieChart/>
+        <InvestorPieChart2/>
         </div> 
 
 

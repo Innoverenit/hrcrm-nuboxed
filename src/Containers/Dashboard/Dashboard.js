@@ -75,7 +75,7 @@ class Dashboard extends Component {
       activeTab: "Q1",
       loading: false,
       tab: ["Q1", "Q2", "Q3", "Q4"],
-      activeButton: "Tasks",
+      activeButton: "Summary",
       setInfoWindowPosition:null,
       showShareForm: false,
       dashRepairCount: "",

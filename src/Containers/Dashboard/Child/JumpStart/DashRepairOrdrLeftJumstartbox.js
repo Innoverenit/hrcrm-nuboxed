@@ -1,6 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import RepairProcessPieChart from "../JumpStart/RepairProcessPieChart"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getJumpOrderCount,
@@ -279,7 +280,7 @@ function DashRepairOrdrLeftJumstartbox(props) {
         </div>
         <div className=" mt-1">
         <div class=" font-poppins font-bold text-base ">By Process</div>
-        <CustomerPieChart/>
+        <RepairProcessPieChart/>
         </div>
       </div>
         {/* <OrdersCancelModal
