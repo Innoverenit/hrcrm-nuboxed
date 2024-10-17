@@ -253,7 +253,7 @@ function MaterialComplementaryCard(props) {
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingComplementaryList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-            height={"80vh"}
+            height={"69vh"}
             style={{ scrollbarWidth:"thin" }}
           >
             {props.complementaryList.length ?

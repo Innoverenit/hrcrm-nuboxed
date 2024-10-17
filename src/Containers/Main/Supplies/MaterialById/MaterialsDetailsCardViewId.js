@@ -3,6 +3,7 @@ import ImageGallery from 'react-image-gallery';
 import Carousel from "react-elastic-carousel";
 
 import { base_url } from '../../../../Config/Auth';
+import LocationSuppliesList from '../LocationSuppliesList';
 const initialFlow = {
   imgIds: [
     {
@@ -131,7 +132,7 @@ function MaterialsDetailsCardViewId (props) {
       };
   
       return (
-        <table className="min-w-[70%] border-collapse border border-gray-200">
+        <table className="w-[48%] border-collapse border border-gray-200">
           <thead>
             <tr className="bg-gray-50">
               <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
@@ -184,8 +185,11 @@ function MaterialsDetailsCardViewId (props) {
      
      
     </div>
-    <div className='mt-8'>
+    <div className='mt-8 flex justify-between'>
     <CartTable materialsBySuppliesId={props.materialsBySuppliesId} />
+    <LocationSuppliesList
+          particularDiscountData={props.particularDiscountData}
+          />
     </div>
       {/* <table className="min-w-full border-collapse border border-gray-200">
       <tbody>

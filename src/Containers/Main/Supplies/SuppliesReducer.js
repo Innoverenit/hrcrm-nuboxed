@@ -7,6 +7,10 @@ const initialState = {
     uploadingMaterialList:false,
     uploadingMaterialListError:false,
 
+    fetchingItemData: false,
+    fetchingItemDataError: false,
+    newStepItemData:[],
+
     erpDocumentUploadModal:false,
 
     deletingSuppliesDocumentData: false,
@@ -310,6 +314,21 @@ export const suppliesReducer = (state = initialState, action) => {
           fetchingSuppliesLocationItemError: true,
         };
 
+
+        case types.GET_ITEM_DATA_REQUEST:
+          return { ...state, fetchingItemData: true };
+        case types.GET_ITEM_DATA_SUCCESS:
+          return {
+            ...state,
+            fetchingItemData: false,
+         newStepItemData: action.payload
+          };
+        case types.GET_ITEM_DATA_FAILURE:
+          return {
+            ...state,
+            fetchingItemData: false,
+            fetchingItemDataError: true,
+          };
 
         case types.UPDATE_SUPPLIES_BY_ID_REQUEST:
             return { ...state, updateSuppliesById: true };

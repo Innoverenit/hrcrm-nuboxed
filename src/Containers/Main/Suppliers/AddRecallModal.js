@@ -1,26 +1,27 @@
 import React, { Component,lazy,Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import NewArrivalStepper from "./NewArrivalStepper";
+import NewRecallStepper from "./NewRecallStepper";
 
 
-class NewArrivalAddModal extends Component {
+
+class AddRecallModal extends Component {
     render() {
-        const { newArivalmodal, handleNewAriival } = this.props;
+        const { addRecallModal, handleRecall } = this.props;
         return (
             <div>
                 <StyledDrawer
-                    title="New Ariivals"
+                    title="Recall"
                     // {this.props.translatedMenuItems[3]}
                     width="60%"                   
-                    visible={newArivalmodal}
+                    visible={addRecallModal}
                     destroyOnClose
                     maskClosable={false}
-                    onClose={() => handleNewAriival(false)}
+                    onClose={() => handleRecall(false)}
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader/>}>
-                    <NewArrivalStepper
+                    <NewRecallStepper
                      translateText={this.props.translateText}
                      selectedLanguage={this.props.selectedLanguage}
                     />
@@ -34,4 +35,4 @@ class NewArrivalAddModal extends Component {
 
 
 
-export default NewArrivalAddModal;
+export default AddRecallModal;

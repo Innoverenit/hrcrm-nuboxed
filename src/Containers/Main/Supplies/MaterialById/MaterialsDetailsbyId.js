@@ -93,7 +93,7 @@ const breakPoints = [
                               </div>
                             </div>
                             <div className=" flex flex-col  w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div className="text-base">Fifo</div>
+                            <div className="text-base">Fulfillment</div>
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialFifoToggle
                                   fifoInd={props.fifoInd}
@@ -129,6 +129,7 @@ const breakPoints = [
       <MaterialsDetailsCardViewId 
       UpdateMaterialIamge={props.UpdateMaterialIamge}
    materialsBySuppliesId={props.materialsBySuppliesId}
+   particularDiscountData={props.particularDiscountData}
       />
     
       </div>

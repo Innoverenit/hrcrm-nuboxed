@@ -6,17 +6,28 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { Tooltip } from "antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
-import { handleSuppliersModal } from "../../Main/Suppliers/SuppliersAction";
+import { handleSuppliersModal,handleRecall } from "../../Main/Suppliers/SuppliersAction";
+import AddRecallModal from "./AddRecallModal"
 
 const AddSuppliersModal =lazy(()=>import("./Child/AddSuppliersModal"));
 
 
 class SuppliersActionRight extends React.Component {
   render() {
-    const { handleSuppliersModal, addSuppliersModal, user, viewType } = this.props;
+    const { handleSuppliersModal, addSuppliersModal,handleRecall,addRecallModal, user, viewType } = this.props;
 
     return (
       <>
+      <div className="flex">
+       <Tooltip title="Recall">
+        <Button
+         type="primary"
+         onClick={() => handleRecall(true)}>
+            
+           Recall
+            </Button>  
+          </Tooltip>
+          </div>
         {user.functionName === "Production" && user.designation === "Manager" &&
           viewType === "grid" ?
           <Tooltip 
@@ -50,6 +61,13 @@ class SuppliersActionRight extends React.Component {
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
         />
+        <AddRecallModal
+          handleRecall={handleRecall}
+          addRecallModal={addRecallModal}
+          translatedMenuItems={this.props.translatedMenuItems}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        />
 </Suspense>
         
       </>
@@ -59,12 +77,14 @@ class SuppliersActionRight extends React.Component {
 
 const mapStateToProps = ({ suppliers, auth }) => ({
   addSuppliersModal: suppliers.addSuppliersModal,
+  addRecallModal:suppliers.addRecallModal,
   user: auth.userDetails,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       handleSuppliersModal,
+      handleRecall
     },
     dispatch
   );

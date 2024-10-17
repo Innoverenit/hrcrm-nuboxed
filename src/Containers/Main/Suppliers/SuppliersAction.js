@@ -15,6 +15,13 @@ export const handleSuppliersModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleRecall = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_RECALL_MODAL,
+    payload: modalProps,
+  });
+};
+
 
 export const emptynotApprovedSuppliers = () => (dispatch) => {
   dispatch({
