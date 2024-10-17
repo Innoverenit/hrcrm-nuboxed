@@ -18,6 +18,7 @@ class SuppliersActionRight extends React.Component {
 
     return (
       <>
+        <div className="flex">
       <div className="flex">
        <Tooltip title="Recall">
         <Button
@@ -52,6 +53,7 @@ class SuppliersActionRight extends React.Component {
             {this.props.translatedMenuItems[9]}
           </Button>
         </Tooltip>
+        </div>
   {/* } */}
 <Suspense fallback={"Loading"}>
 <AddSuppliersModal
