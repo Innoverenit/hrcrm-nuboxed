@@ -9,14 +9,41 @@ import UploadIcon from '@mui/icons-material/Upload';
 const Option = StyledSelect.Option;
 
 class LeadsActionRight extends React.Component {
-  state = {
-    isClicked: "import",
-  };
-  componentDidMount() {}
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+  
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
   handleClicked = (value) => {
     this.setState({
       isClicked: value,
     });
+  };
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       "85",//Add 0
+       "123",//Import 1
+       
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
   };
   render() {
     const { handleLeadsModal, user} = this.props;
@@ -24,17 +51,14 @@ class LeadsActionRight extends React.Component {
       <>
         {user.leadsCreateInd === true && user.crmInd === true &&(
         <div class=" flex  items-center">
-          {/* {user.customerFullListInd === true &&(  */}
-        {/* <LeadShareForm
-      handleDropChange={this.props.handleDropChange}
-      currentUser={this.props.currentUser} 
-      /> */}
-      {/* )} */}
+       
       {this.props.viewType==="teams" || this.props.viewType ==="all" ?  "" :
       <>
 
           <Button type="primary"  onClick={() => handleLeadsModal(true)}>
-          <DataSaverOnIcon className="!text-icon"/>Add
+          <DataSaverOnIcon className="!text-icon"/>
+          {this.state.translatedMenuItems[0]}
+          {/* Add */}
           </Button>
           
           </>
@@ -43,7 +67,9 @@ class LeadsActionRight extends React.Component {
           <Button type="primary"  
         onClick={() => this.props.handleLeadsImportModal(true)}
         >
-            <UploadIcon className=" !text-icon"/>Import
+            <UploadIcon className=" !text-icon"/>
+            {this.state.translatedMenuItems[1]}
+            {/* Import */}
           </Button>
           </div>
         </div>

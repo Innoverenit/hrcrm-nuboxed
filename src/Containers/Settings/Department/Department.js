@@ -164,7 +164,7 @@ class Department extends Component {
       <>
         <div flexWrap="nowrap">
           
-              <div class=" flex flex-row justify-between">
+              <div class=" flex flex-row justify-end items-center">
 
                        <div class=" flex w-[18vw]" >
                        <Input
@@ -177,7 +177,7 @@ class Department extends Component {
           />
         </div>
     
-        <div class="w-[38rem]">
+        <div className="ml-2 mr-2">
   <a href={`${base_url}/excel/export/catagory/All/${this.props.orgId}?type=${"department"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -237,7 +237,7 @@ class Department extends Component {
                     loading={addingDepartments}
                     onClick={this.toggleInput}                
                   >
-                   <label class="text-white"> Add More</label>
+                   <div class="text-white"> Add More</div>
                   </Button>
                 </div>
                
@@ -416,7 +416,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Department);
 //           <h2>{department.departmentName}</h2>
 //           {Object.keys(fieldLabels).map((field) => (
 //             <div key={field}>
-//               <label>{fieldLabels[field]}: </label>
+//               <div class="font-bold text-xs font-poppins text-black">{fieldLabels[field]}: </div>
 //               <Popconfirm
 //                 title={`Are you sure to change ${fieldLabels[field]}?`}
 //                 onConfirm={() => handleSwitchChange(department.departmentId, field, !department[field])}

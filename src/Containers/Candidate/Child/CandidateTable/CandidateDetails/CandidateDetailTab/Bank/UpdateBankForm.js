@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch, } from "antd";
 import { Formik, Form, FastField } from "formik";
-import { StyledLabel } from "../../../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
 import { updateBankDetails } from "../../../../../CandidateAction";
@@ -162,7 +162,7 @@ class UpdateBankForm extends Component {
               
               <div class=" w-[47%] mt-[1.5em]" style={{margin:"6% 0% 0% 0%"}}>
               <div class=" flex justify-between" >
-              <StyledLabel>Default Bank?</StyledLabel>
+              <div class=" text-xs font-bold font-poppins text-black">Default Bank?</div>
               <Switch
                
                 checked={this.state.defaultBank}

@@ -13,11 +13,15 @@ class ProfileOverviewCard extends Component {
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
               <ProfileOverviewView
+              translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
                 user={user}
                 toggleViewType={toggleViewType}
               />
             ) : (
               <ProfileOverviewEdit
+              translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
                 user={user}
                 toggleViewType={toggleViewType}
               />

@@ -1,8 +1,7 @@
-
-
 import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import Barcode from 'react-barcode';
 import {
     getRepairPhoneByUser,
     updaterepairStatus,
@@ -16,8 +15,8 @@ import {
     ClearReducerDataOfrepair,
     handleSpareProcess
 } from "./RefurbishAction";
-import { Button, Tooltip,  Progress,Input } from "antd";
-import {  RollbackOutlined } from "@ant-design/icons";
+import { Button, Tooltip,  Progress,Input,Badge } from "antd";
+import {  BarcodeOutlined, RollbackOutlined } from "@ant-design/icons";
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -42,6 +41,7 @@ function PhoneListForRepair(props) {
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const componentRefs = useRef([]);
+    const componentBarRefs = useRef([]);
     const [startTime, setStartTime] = useState(null);
     const [isRecording, setIsRecording] = useState(false); //Code for Search
     const minRecordingTime = 3000; // 3 seconds
@@ -50,6 +50,47 @@ function PhoneListForRepair(props) {
     const handlePrint = () => {
         window.print();
     };
+
+    const handlePrintBr=()=>{
+        window.print();
+    }
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+                "1318", // Search by device ID",//0
+                "1320",  //"scan",//1
+             "264", //   Brand 2
+             "265", //   "model"3
+             "1222", //   Issue4
+             "1321", //   Estimate (hours) 5 
+             "158", //  "Start"6
+             "111", //     "End"7
+             "199", //     Task8
+              "1322",// "Resume"9
+             "316", // "Notes"10
+             "1252", // "Print"11
+              "1324",    //    "Pause"
+             "144"  ,// In Progress
+              "268"//Complete
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+    
     useEffect(() => {
         setPage(page + 1);
         props.getRepairPhoneByUser(props.rowData.orderPhoneId, props.userId);
@@ -250,11 +291,12 @@ function PhoneListForRepair(props) {
         <>
             {props.fetchingRepairPhoneByUser ? <BundleLoader /> : 
             <div className=' flex  sticky z-auto overflow-x-auto '>
-             <div class=" rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+             <div class=" rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div class="flex items-center">
                 <div class=" w-72 ml-1 max-sm:w-28">
           <Input
-            placeholder="Search by Imei"
+            placeholder={translatedMenuItems[0]}
+            // "Search by Imei"
             width={"100%"}
             suffix={suffix}
             onPressEnter={handleSearch}  
@@ -264,10 +306,7 @@ function PhoneListForRepair(props) {
           />
         </div>
         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title={<FormattedMessage
-                                                        id="app.scan"
-                                                        defaultMessage="scan"
-                                                    />}>
+                                                    <Tooltip title={translatedMenuItems[1]}>
 
                                                         <Button
                                                             // onClick={() => {
@@ -275,44 +314,57 @@ function PhoneListForRepair(props) {
                                                             //     handleSetRowData(item)
                                                             // }}
                                                             class=" bg-green-600 cursor-pointer text-gray-50"
-                                                        >
-                                                            Scan </Button>
+                                                        >{translatedMenuItems[1]}
+                                                            {/* Scan  */}
+                                                            </Button>
 
                                                     </Tooltip>
 
                                                 </div>
                                                 </div>
-                    <div className=" flex  w-[99%] max-sm:hidden p-1 bg-transparent font-bold sticky z-10">
-                        <div className=" w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Brand</div>
-                        <div className=" w-[7.31rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                    <div className=" flex  w-[100%]  max-sm:hidden p-1 bg-transparent font-bold sticky z-10">
+                        <div className=" w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                           {translatedMenuItems[2]} {/* Brand */}
+                            </div>
+                        <div className=" w-[7.31rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[3]} {/* <FormattedMessage
                             id="app.model"
                             defaultMessage="model"
-                        /></div>
-                        <div className=" w-[10.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
+                        /> */}
+                        </div>
+                        <div className=" w-[10.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                         IMEI   {/* <FormattedMessage
                             id="app.iMEI"
                             defaultMessage="IMEI"
-                        /></div>
-                        <div className="w-[4.01rem]">Issue</div>
+                        /> */}
+                        </div>
+                        <div className="w-[4.01rem]">{translatedMenuItems[4]}</div>
                         <div className="w-[8.31rem]"></div>
                         <div className="w-[8.58rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            Estimate (hours)
+                        {translatedMenuItems[5]} {/* Estimate (hours) */}
                         </div>
-                        <div className="w-[6.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[6.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[6]}  {/* <FormattedMessage
                             id="app.start"
                             defaultMessage="Start"
-                        /></div>
-                        <div className="w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        /> */}
+                        </div>
+                        <div className="w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[7]}   {/* <FormattedMessage
                             id="app.end"
                             defaultMessage="End"
-                        /></div>
+                        /> */}
+                        </div>
 
-                        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
+                        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                         TAT   {/* <FormattedMessage
                             id="app.tat"
                             defaultMessage="TAT"
-                        /></div>
+                        /> */}
+                        </div>
 
-                        <div className="w-[10.81rem]">Spare</div>
-                        <div className="w-[10.43rem]">Task</div>
+                        {/* <div className="w-[10.81rem]">Spare</div> */}
+                        <div className="w-[10.43rem]">{translatedMenuItems[8]}</div>
                         <div className="w-[2.03rem]"></div>
                         <div className="w-[2rem]"></div>
                     </div>
@@ -345,7 +397,8 @@ function PhoneListForRepair(props) {
                             const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
                             return (
                                 <div>
-                                    <div className="flex rounded  w-full   bg-white h-8 items-center p-1 max-sm:h-[8rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+                                    <div className="flex rounded  w-full   bg-white h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-24 max-sm:flex-col max-sm:justify-between scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
 
                                     >
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
@@ -370,38 +423,39 @@ function PhoneListForRepair(props) {
                                                 <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div>
                                                 </div>
                                             </div>
+
+
+                                            <div className=" flex  w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.levelCount&&item.levelCount.map((level)=>{
+                                                            return(
+                                                                <span 
+                                                                style={{marginLeft:"9px",cursor:"pointer"}}
+                                                                onClick={() => {
+                                                                   props.handleRefurbishLevelModal(true);
+                                                                   // handleSetCurrentOpportunityId(item);
+                                                                 }}
+                                                               title={level.level}
+                                                               >
+                                                                <Badge size="small" count={level.levelCount}>
+                                                                {level.level}
+                                                                </Badge>
+                                                                   {/* {level.levelCount} */}
+                                                                   {/* {item.issue.substring(0, 10)}{item.issue.length > 20 && '...'} */}
+                                                               </span>
+                                                            )
+                                                        })}
+
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            {/* <div className=" flex w-[3.06rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <SubTitle>
-                                                        {item.qrCodeId ? (
-                                                            <span onClick={() => {
-                                                                props.handlePhoneDetails(true)
-                                                                handleSetRowData(item);
-                                                            }}>
-                                                                <QRCodeModal
-                                                                    qrCodeId={item.qrCodeId ? item.qrCodeId : ''}
-                                                                    imgHeight={"2.8em"}
-                                                                    imgWidth={"2.8em"}
-                                                                    imgRadius={20}
-                                                                />
-                                                            </span>
-
-                                                        ) : (
-                                                            <span class="text-[0.6rem] font-bold">
-                                                                No QR
-                                                            </span>
-                                                        )}
-                                                    </SubTitle>
-                                                </div>
-                                            </div> */}
-
+                                          
                                             <div className=" flex  w-[5.3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 {props.rowData.repairInspectionInd !== 0 &&
                                                 <div class=" text-xs  flex w-[3.5rem] font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {(x === true && y === true) &&
-                                                        <Tooltip title="Pause">
+                                                        <Tooltip title={translatedMenuItems[12]}>
                                                             <PlayCircleFilledSharp className="!text-lg"
                                                                 // class=" cursor-pointer"
                                                                 onClick={() => {
@@ -418,7 +472,7 @@ function PhoneListForRepair(props) {
                                                     {item.repairStatus === "To Start" && <StatusIcon 
                                                         type="In Progress"
                                                         iconType="fa-hourglass-half"
-                                                        tooltip="In Progress"
+                                                        tooltip={translatedMenuItems[13]}
                                                         id={item.phoneId}
                                                         indStatus={item.repairStatus}
                                                         phoneId={RowData.phoneId}
@@ -430,7 +484,7 @@ function PhoneListForRepair(props) {
                                                         }}
                                                     />}
                                                     {item.repairStatus === "In Progress" && item.pauseInd === false &&
-                                                        <Tooltip title="Resume">
+                                                        <Tooltip title={translatedMenuItems[9]}>
                                                             <PauseCircleFilled
                                                                 class=" cursor-pointer text-orange-400"
                                                                 onClick={() => {
@@ -445,15 +499,15 @@ function PhoneListForRepair(props) {
                                                         </Tooltip>
                                                     }
 
-                                                    {item.repairStatus === "In Progress" && item.pauseInd === false && <StatusIcon1
+                                                    {item.repairStatus === "In Progress" && item.pauseInd === false && item.totalTaskCount === item.totalCompleteAndNoNeedTaskCount && <StatusIcon1
                                                         type="Complete"
                                                         iconType="fa-hourglass"
-                                                        tooltip="Complete"
+                                                        tooltip={translatedMenuItems[14]}
                                                         indStatus={item.repairStatus}
                                                         status={active}
                                                         id={item.phoneId}
                                                         phoneId={RowData.phoneId}
-                                                        disabled={ item.totalTaskCount !== item.totalCompleteTaskCount }
+                                                        // disabled={ item.totalTaskCount !== item.totalCompleteAndNoNeedTaskCount }
                                                         onClick={() => {
                                                             handleQCRepairStatus("Complete", item);
                                                         }}
@@ -497,34 +551,7 @@ function PhoneListForRepair(props) {
                                         {props.rowData.repairInspectionInd !== 0 &&
                                             <div className=" flex w-[8.79rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {/* <Tooltip title="Spare">
-                                                        <Badge size="small" count={` ${item.checkedSpare}/${item.totalSpare}`} overflowCount={5000}>
-                                                            <Button
-                                                                type="primary"
-                                                                style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "white" }}
-
-                                                                onClick={() => {
-                                                                    handleSetRowData(item);
-                                                                    hanldeSpare();
-                                                                }}>
-                                                                <CategoryIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Spares
-                                                            </Button>
-                                                        </Badge> 
-                                                    </Tooltip> */}
-                                                  
-                                                     <Tooltip title="Spare">
-                                                              <Progress 
-                                                               percent={percentage}
-                                                               success={{percentage}}
-                                                               format={() => `${percentage}%`} 
-                                                                style={{width:"8rem",cursor:"pointer"}} 
-                                                               onClick={() => {
-                                                                    handleSetRowData(item);
-                                                                   // hanldeSpare();
-                                                                   props.handleSpareProcess(true);
-                                                                }} />
-                                                                                                   
-                                                    </Tooltip>
+                                                 
                                                 
                                                 </div>
                                             </div>
@@ -532,35 +559,9 @@ function PhoneListForRepair(props) {
                          {props.rowData.repairInspectionInd !== 0 &&
                                             <div className=" flex  w-[9.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {/* <Tooltip title="Task">
-                                                        <Badge size="small" count={`${item.totalCompleteTaskCount} / ${item.totalTaskCount}`} overflowCount={5000}>
-                                                            <Button
-                                                                style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "white" }}
-                                                                type="primary"
-                                                                onClick={() => {
-                                                                    handleSetRowData(item);
-                                                                    handleExpand(item.phoneId);
-                                                                }}
-                                                            ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
-                                                        </Badge>
-                                                    </Tooltip> */}
-                                                     {/* <Tooltip title="Task">
-                                                     <Progress
-                                                     type="circle"
-                                                      style={{ cursor: "pointer",color:"red" }}
-                                                       percent={acivedPercentage}
-
-                                                      width={30}
-                                                        strokeColor={"#005075"}
-                                                        onClick={() => {
-                                                            handleSetRowData(item);
-                                                            //handleExpand(item.phoneId);
-                                                            props.handleProcessExpand(true);
-                                                        }}
-                                                          />                                                       
-                                                    </Tooltip> */}
                                                   
-                                                  <Tooltip title="Task">
+                                                  
+                                                  <Tooltip title={translatedMenuItems[8]}>
                                                      <Progress
                                                     percent={acivedPercentage}
                                                     success={{acivedPercentage}}
@@ -578,11 +579,11 @@ function PhoneListForRepair(props) {
                                                 </div>
                                             </div>
                         }
-                                        </div>
-                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        
+                                       
                                             <div className=" flex  w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title="Notes">
+                                                    <Tooltip title={translatedMenuItems[10]}>
                                                     <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
                                                             onClick={() => {
                                                                 handleSetRowData(item);
@@ -597,13 +598,10 @@ function PhoneListForRepair(props) {
 
                                             <div className=" flex ml-1   w-[4.023rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title={<FormattedMessage
-                                                        id="app.Print"
-                                                        defaultMessage="Print"
-                                                    />}>
+                                                    <Tooltip title={translatedMenuItems[11]}>
 
                                                         <ReactToPrint
-                                                           trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>Print <QrCodeIcon className="!text-icon"/></Button>}
+                                                           trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>{translatedMenuItems[11]} <QrCodeIcon className="!text-icon"/></Button>}
                                                             content={() => componentRefs.current[index]}
                                                         />
                                                     </Tooltip>
@@ -611,26 +609,6 @@ function PhoneListForRepair(props) {
                                                 </div>
                                             </div>
 
-                                            {/* <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title={<FormattedMessage
-                                                        id="app.scan"
-                                                        defaultMessage="scan"
-                                                    />}>
-
-                                                        <Button
-                                                            onClick={() => {
-                                                                props.handleInTagDrawer(true)
-                                                                handleSetRowData(item)
-                                                            }}
-                                                            class=" bg-green-600 cursor-pointer text-gray-50"
-                                                        >
-                                                            Scan </Button>
-
-                                                    </Tooltip>
-
-                                                </div>
-                                            </div> */}
                                         </div>
                                         <div style={{ display: "none", textAlign: "center" }}>
 
@@ -647,11 +625,41 @@ function PhoneListForRepair(props) {
                                                 <div style={{ fontSize: "5rem" }}>
                                                     <QRCode
                                                         size={150}
-                                                        value={item.phoneId} />
+                                                        value={`scan/${item.phoneId}`} />
                                                 </div>
                                                 <div style={{ fontSize: "1.5rem" }}> {item.imei}</div>
                                             </div>
                                         </div>
+                                        <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title={translatedMenuItems[11]}
+                                                       
+                                                        >
+                                                           
+                                                            <ReactToPrint
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} 
+                                                              onClick={handlePrintBr}>
+                                                            
+                                                                Print Br
+                                                                <BarcodeOutlined className="!text-icon"/></Button>}
+                                                                content={() => componentBarRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
+
+                                                    </div>
+                                                    <div style={{ display: "none", textAlign: "center" }}>
+
+                                                <div className=" flex flex-col mt-5 text-sm items-center"
+                                                    ref={(el) => (componentBarRefs.current[index] = el)}>
+                                                   
+                                                    <div   className=" text-5xl mt-8">
+                                                    <Barcode value={`scan/${item.phoneId}` } displayValue={false}/>
+                                                       
+                                                    </div>
+                                                    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                                </div>
+                                            </div>
+                                                </div>
                                     </div>
                                 </div>
                             )
@@ -686,6 +694,7 @@ function PhoneListForRepair(props) {
                 <ProcessExpandDrawer
                    phoneId={phoneId}
                    RowData={RowData}
+                   rowData={props.rowData}
                     processExpandModal={props.processExpandModal}
                     handleProcessExpand={props.handleProcessExpand}
                 />

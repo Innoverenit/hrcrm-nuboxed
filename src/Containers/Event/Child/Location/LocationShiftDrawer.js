@@ -19,7 +19,10 @@ const LocationShiftDrawer = (props) => {
         onClose={() => handleLocationShiftDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LocationShiftDrawerTab   storedLoc={storedLoc}/>
+          <LocationShiftDrawerTab 
+            storedLoc={storedLoc}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

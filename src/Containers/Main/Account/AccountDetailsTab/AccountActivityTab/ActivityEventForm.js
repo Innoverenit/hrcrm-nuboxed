@@ -8,7 +8,6 @@ import * as Yup from "yup";
 import { getAllCustomerData,addCustomerActivityEvent } from "../../../../Customer/CustomerAction"
 import { getFilteredEmailContact } from "../../../../Candidate/CandidateAction";
 import dayjs from "dayjs";
-import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
@@ -288,7 +287,7 @@ function ActivityEventForm(props) {
                         <Form className="form-background">
                             <div class=" flex justify-around max-sm:flex-col">
                                 <div class=" h-full w-w47.5 max-sm:w-wk">
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         isRequired
                                         name="eventTypeId"
@@ -318,7 +317,7 @@ function ActivityEventForm(props) {
                                         component={InputComponent}
                                         inlineLabel
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         <div class=" flex justify-between">
                                             <div class=" w-1/2">
@@ -439,31 +438,8 @@ function ActivityEventForm(props) {
                                         component={SearchSelect}
                                         inlineLabel
                                     />
-                                    <Spacer />
-                                    <Spacer />
-
-                                    {/* <Field
-                      name="employeesId"
-                      isColumnWithoutNoCreate
-                      selectType="employee"
-                      // label="Assigned"
-                      label={
-                        <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="Assigned"
-                        />
-                      }
-                      component={SearchSelect}
-                      isColumn
-                      value={values.employeeId}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName || ""} ${
-                          lastName || ""
-                        }`,
-                        value: employeeId,
-                      }}
-                      inlineLabel
-                    /> */}
+                                    < div class="mt-3" />
+                                    < div class="mt-3" />
                                     <Listbox value={selected} onChange={setSelected}>
                                         {({ open }) => (
                                             <>
@@ -529,7 +505,7 @@ function ActivityEventForm(props) {
                                             </>
                                         )}
                                     </Listbox>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         name="included"
                                         // label="Include"
@@ -549,7 +525,7 @@ function ActivityEventForm(props) {
                                             value: employeeId,
                                         }}
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
@@ -576,7 +552,7 @@ function ActivityEventForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
@@ -603,7 +579,7 @@ function ActivityEventForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
@@ -630,41 +606,10 @@ function ActivityEventForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
-                                    {/* <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    label="Team"
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={
-                      props.setClearbitCandidateData
-                    }
-                    component={CandidateClearbit}
-                    inlineLabel
-                  /> */}
-                                    {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
-                                </div>
+                                    < div class="mt-3" />
+                                       </div>
                                 <div class=" h-full w-w47.5 max-sm:w-wk ">
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <FieldArray
                                         name="address"
                                         render={(arrayHelpers) => (
@@ -675,7 +620,7 @@ function ActivityEventForm(props) {
                                             />
                                         )}
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         name="eventDescription"
                                         //label="Notes"
@@ -687,50 +632,11 @@ function ActivityEventForm(props) {
                                         component={TextareaComponent}
                                         inlineLabel
                                     />
-                                    <Spacer />
-                                    {/* <div class=" flex justify-between">
-                    <div class=" w-1/2 font-bold">
-                      <div class=" flex justify-between">
-                        <div>
-                          <StyledLabel>Set Reminder </StyledLabel>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
+                                    < div class="mt-3" />
+                                
                                 </div>
                             </div>
-                            <Spacer />
+                            < div class="mt-3" />
                             <div class=" flex justify-end">
                                 {isEditing && (
                                     <>

@@ -2,18 +2,18 @@ import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
-import { base_url } from "../../../Config/Auth";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm, Input,Tooltip } from "antd";
+import { base_url } from "../../../Config/Auth";
+import { Tooltip,Popconfirm } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
   getSupplierCategory,
-  //getSectorCount,
+
   addSupplierCategory,
-  //removeSectors,
-  //updateSectors,
+  removeSuppliers,
+  updateSuppliers,
   //searchSectorName,
   ClearReducerDataOfSupplierCategory
 } from "../SettingsAction";
@@ -38,6 +38,16 @@ const SupplierCategory = (props) => {
       setEditingId(sectorId);
       setCategoryName(name);
   };
+  const handleUpdateSupplier=(region)=>{
+    console.log(region)
+    let data={
+      supplierCategoryId:region.supplierCategoryId,
+      name:newCategoryName
+     
+    }
+props.updateSuppliers(data,region.categoryId)
+setEditingId(null);
+}
 
 
 
@@ -45,17 +55,6 @@ const SupplierCategory = (props) => {
       setAddingRegion(true);
       setCategoryName("")
   };
-
-//   const handleUpdateSector=(region)=>{
-//       console.log(region)
-//       let data={
-//         sectorId:region.sectorId,
-//         sectorName:newSectorName
-       
-//       }
-// props.updateSectors(data,region.sectorId)
-// setEditingId(null);
-//   }
 
   const handleSector = () => {
       let data={
@@ -106,18 +105,9 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    {/* <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
-          <Input
-       placeholder="Search by Name"
-      style={{width:"100%",marginLeft:"0.5rem"}}
-          // suffix={suffix}
-          onPressEnter={handleSearch}  
-          onChange={handleChange}
-          // value={currentData}
-        />
-          </div> */}
-          <div class="w-[18rem]">
+    <div class=" flex flex-row justify-end items-center">
+  
+          <div class="w-[2rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"sector"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -175,32 +165,27 @@ return <div><BundleLoader/></div>;
             {/* Action buttons */}
             <div >
                 {/* Edit button */}
-                {editingId === region.sectorId ? (
+                {editingId === region.supplierCategoryId ? (
                     <div>
-                        {/* <button onClick={() => handleUpdateSector(region)}>Save</button> */}
+                        <button onClick={() => handleUpdateSupplier(region)}>Save</button>
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    // <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.sectorId, region.sectorName)} />
-                    <></>
+                      <BorderColorIcon   className=" !text-icon text-red-600 cursor-pointer "
+                       onClick={() => editRegion(region.supplierCategoryId, region.supplierCatName)}
+                        />                   
                 )}
-
                 {/* Delete button */}
-                {/* <Popconfirm
-                        title="Do you want to delete?"
-                        okText="Yes"
-                        cancelText="No"
-                        onConfirm={() =>  props.removeSectors(region.sectorId,props.orgId)}
-                      >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
-            
-                 />
-                 </Popconfirm> */}
+                <Popconfirm
+          title="Do you want to delete?"
+          okText="Yes"
+          cancelText="No"
+          onConfirm={() => props.removeSuppliers(region.supplierCategoryId)}
+        >
+          <DeleteOutlined   className=" !text-icon text-red-600 cursor-pointer "
+          />
+        </Popconfirm>
+
             </div>
         </div>
         ))}
@@ -233,8 +218,8 @@ const mapDispatchToProps = (dispatch) =>
       //getSectorCount,
       getSupplierCategory,
       addSupplierCategory,
-      //removeSectors,
-     // updateSectors,
+      removeSuppliers,
+      updateSuppliers,
       //searchSectorName,
       ClearReducerDataOfSupplierCategory
     },

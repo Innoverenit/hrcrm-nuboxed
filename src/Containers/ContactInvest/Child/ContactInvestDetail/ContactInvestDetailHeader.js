@@ -7,7 +7,11 @@ function ContactInvestDetailHeader(props) {
     return (
       <div>
         <ActionHeader
-          leftComponent={<ContactInvestDetailActionLeft />}
+          leftComponent={<ContactInvestDetailActionLeft
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
+            />}
           rightComponent={<></>}
         />
       </div>

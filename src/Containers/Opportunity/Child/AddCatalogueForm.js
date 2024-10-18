@@ -5,7 +5,6 @@ import { Button,Select,Input } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { BundleLoader } from '../../../Components/Placeholder';
 import OppoProduLinkedCard from "./OppoProduLinkedCard";
 // import {getCatalogueById,addCatalogueOnebyOne,getAllCatalogueSearch} from "../../CustomerAction";
 import {linkProductWithOpportunity,getAllCatalogueSearch} from "../OpportunityAction";

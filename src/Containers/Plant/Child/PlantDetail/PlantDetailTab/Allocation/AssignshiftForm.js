@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
-import moment from "moment";
+import dayjs from "dayjs";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import {
   getShift,
@@ -15,9 +15,9 @@ function AssignShiftForm(props) {
   useEffect(() => {
     props.getShift(props.locationDetailsId);
   }, []);
-  moment.addRealYear = function addRealYear(y) {
-    var fm = moment(y).add(10, "Y");
-    var fmEnd = moment(fm).endOf("year");
+  dayjs.addRealYear = function addRealYear(y) {
+    var fm = dayjs(y).add(10, "Y");
+    var fmEnd = dayjs(fm).endOf("year");
     return y.date() != fm.date() && fm.isSame(fmEnd.format("YYYY-MM-DD"))
       ? fm.add(10, "y")
       : fm;
@@ -28,13 +28,13 @@ function AssignShiftForm(props) {
       value: item.shiftId,
     };
   });
-  // var nextMonth = moment.addRealMonth(moment());
+  // var nextMonth = dayjs.addRealMonth(dayjs());
   return (
     <>
       <Formik
         initialValues={{
-          startDate: moment(),
-          endDate: moment.addRealYear(moment()),
+          startDate: dayjs(),
+          endDate: dayjs.addRealYear(dayjs()),
           shiftId: "",
           userId: props.setEditingPlantAllocation.userId,
         }}

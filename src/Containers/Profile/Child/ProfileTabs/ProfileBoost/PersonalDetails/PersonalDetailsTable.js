@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -7,6 +7,7 @@ import {
 } from "../../../../../../Components/UI/Antd";
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../../../../Config/Auth";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 import {
   handleUpdatePersonalDetailsModal,
   getDocumentDetails,
@@ -121,11 +122,13 @@ class EducationTable extends Component {
           loading={fetchingDocumentDetails || fetchingDocumentDetailsError}
           onChange={console.log("task onChangeHere...")}
         />
-
+        <Suspense fallback={<BundleLoader />}>
         <UpdatePersonalDetailsModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           updatePersonalDetailsModal={updatePersonalDetailsModal}
           handleUpdatePersonalDetailsModal={handleUpdatePersonalDetailsModal}
-        />
+        /></Suspense>
       </>
     );
   }

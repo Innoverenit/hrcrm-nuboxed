@@ -8,7 +8,9 @@ function AccountDetailsRight(props) {
     return (
         <div style={{ width: "100%" }}>
             <Suspense fallback={<BundleLoader />}>
-                <AccountDetailsTab distributorData={props.distributorData} />
+                <AccountDetailsTab distributorData={props.distributorData}
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} />
             </Suspense>
         </div>
     );

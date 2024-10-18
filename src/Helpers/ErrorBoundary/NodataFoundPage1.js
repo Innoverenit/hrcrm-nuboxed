@@ -1,7 +1,7 @@
 import React from "react";
 import error from "../../Assets/Images/i.png";
 import { Button } from "antd";
-import { Spacer } from "../../Components/UI/Elements";
+
 import { FormattedMessage } from "react-intl";
 
 class NodataFoundPage1 extends React.Component {
@@ -44,7 +44,7 @@ class NodataFoundPage1 extends React.Component {
                 </div>
                 
               </div>
-              {/* <Spacer />
+              {/* <div class=" mt-3" />
               <Button
                 type="primary"
               

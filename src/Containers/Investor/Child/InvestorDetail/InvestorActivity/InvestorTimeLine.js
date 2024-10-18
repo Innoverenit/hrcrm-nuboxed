@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Timeline, Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import {getInvestorTimeline,getInvestorActivityRecords} from "../../../InvestorAction";
 import { BundleLoader } from '../../../../../Components/Placeholder';
@@ -16,6 +16,7 @@ const InvestorTimeline = (props) => {
   const { InvestorStatus, fetchingInvestStatus,ratingValue } = props;
   console.log(props.investorDetails.investorId)
   if (fetchingInvestStatus) return <BundleLoader/>;
+  console.log()
   return (
     <>
       <div className="mt-4 ml-2">
@@ -23,8 +24,15 @@ const InvestorTimeline = (props) => {
           {InvestorStatus &&
             InvestorStatus.map((status, i) => (
               <Timeline.Item key={i}>
-              <div>
-              <div>{status.category} {status.activityType} {moment.utc(status.endDate).format('ll')}</div>
+              <div className='flex'>
+              <div>{status.category} {status.activityType} {dayjs(status.endDate).format('MMMM D, YYYY h:mm A')} </div>
+              <div class=" ml-2">
+              {dayjs().format("DD/MM/YYYY") === dayjs(status.creationDate).format("DD/MM/YYYY") ? (
+                                                <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold">
+                                                  New
+                                                </span>
+                                              ) : null}
+                                              </div>
               <span class=" ml-2">
              
              <>

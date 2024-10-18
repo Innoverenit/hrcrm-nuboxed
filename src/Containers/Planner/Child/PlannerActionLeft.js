@@ -1,11 +1,10 @@
 import React from 'react'
 import { ActionIcon } from "../../../Components/Utils";
-import { FlexContainer } from '../../../Components/UI/Layout'
 import { FormattedMessage } from "react-intl";
 import PlannerShareForm from "./PlannerShareForm"
 const PlannerActionLeft = (props) => {
     return (
-        <FlexContainer alignItems='center'>
+      <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
             <ActionIcon
                 style={{ marginRight: '0.3rem', color: props.viewType === 'table' && '#1890ff' }}
                 iconType='appstore-o'
@@ -18,23 +17,11 @@ const PlannerActionLeft = (props) => {
                   }
                
                 handleIconClick={() => props.setPlannerViewType('table')}
-            />
-            {/* <ActionIcon
-                style={{ marginRight: '0.3rem', color: props.viewType === 'dashboard' && '#1890ff'  }}
-                iconType='table'
-                // tooltipTitle='App'
-                tooltipTitle={
-                    <FormattedMessage
-                      id="app.app"
-                      defaultMessage="App"
-                    />
-                  }
-                handleIconClick={() => props.setPlannerViewType('dashboard')}
-            /> */}
+            />        
             {props.viewType==="dashboard"?
             <PlannerShareForm/>
             :null}
-        </FlexContainer>
+        </div>
     )
 }
 

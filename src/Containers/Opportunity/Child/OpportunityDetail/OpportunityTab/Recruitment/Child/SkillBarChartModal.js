@@ -21,7 +21,7 @@ const SkillBarChartModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           {/* <OrderJumpStart particularRowData={props.particularRowData} />
-          <Spacer /> */}
+          <div class=" mt-3" /> */}
           <SkillBarChartForm 
           skillsCount={props.skillsCount}
            candidatePostData={props.candidatePostData}

@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { Tooltip } from "antd";
-import { FlexContainer } from "../../../Components/UI/Layout";
-import { AppstoreOutlined } from "@ant-design/icons";
 import TocIcon from '@mui/icons-material/Toc';
 import GridViewIcon from '@mui/icons-material/GridView';
 
@@ -28,11 +26,7 @@ class ProjectsActionLeft extends Component {
     const { setProjectsViewType, viewType, user } = this.props
     return (
       <>
-        <div class="flex items-center" >
-
-         
-
-
+        <div class="flex items-center" >      
           <Tooltip title="Card View">
             <span
               style={{

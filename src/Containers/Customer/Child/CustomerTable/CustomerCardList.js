@@ -1,8 +1,8 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
@@ -11,7 +11,7 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { getCountries } from "../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button, Popconfirm } from "antd";
+import { Tooltip, Select, Button, Popconfirm,Checkbox } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import {
@@ -35,13 +35,17 @@ import {
   handleCustomerPulseDrawerModal,
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
+  handleAddressCutomerModal,
+  deleteCustomer
 } from "../../CustomerAction";
+import { DeleteOutlined} from "@ant-design/icons";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { FormattedMessage } from "react-intl";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import AddCustomerAdressModal from "./AddCustomerAdressModal";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
 );
@@ -87,16 +91,26 @@ function CustomerCardList(props) {
         setLoading(true); 
         const itemsToTranslate = [
 
-    'Name', // 0
-'Work', // 1
-'Sector', // 2
-'Source', // 3
-'Quotation', // 4
-'PipeLine', // 5
-'Assigned', // 6
-'Owner', // 7
-'Customer', // 8
-
+   "110", // 'Name', // 0
+   "378",// 'Work', // 1
+   "278",// 'Sector', // 2
+   "279",// 'Source', // 3
+   "213",// 'Quotation', // 4
+   "328",// 'PipeLine', // 5
+   "76",// 'Assigned', // 6 
+   "248",// 'Customer', // 7
+    "100",   // new 8
+    "1300" , //  Change status to Customer?"9
+    "213" ,  // "Opportunity"10
+    "392" ,  // Pulse 11
+    "316" ,  // "Notes"12
+    "170" ,  // "Edit" 13
+   "73", // Contact 14
+   "144" ,//In Progress 15
+   "387",//  Convert 16
+   "389",//   Converted 17
+   "1581", //Score 18
+   "185"//Address 19
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -117,19 +131,6 @@ function CustomerCardList(props) {
       props.getCustomerListByUserId(props.userId, page, "creationdate");
    
   }, [props.viewType]);
-  // useEffect(() => {
-  //   if (props.viewType === "table") {
-  //     props.emptyCustomer()
-  //     props.getCustomerListByUserId(props.userId, page, "creationdate");
-  //   } else if (props.viewType === "teams") { 
-  //     props.emptyCustomer()
-  //     props.getCustomerListByUserId(props.viewType, page1, "creationdate");
-  //   } else {     
-  //     props.emptyCustomer()
-  //     props.getCustomerListByUserId(props.viewType, page2, "creationdate");
-  //   }
-  // }, [props.viewType,page,page1,page2]);
-
 
   useEffect(() => {
     window.addEventListener('error', e => {
@@ -148,21 +149,6 @@ function CustomerCardList(props) {
         }
       }
     })
-    //setPage(page + 1);
-    // props.getCustomerListByUserId(props.userId, page, "creationdate");
-    //   props.getSectors();
-    // props.getCountries();
-    //props.getAllCustomerEmployeelist();
-    // if (props.viewType === "table") {
-    //   props.emptyCustomer()
-    //   props.getCustomerListByUserId(props.userId, page, "creationdate");
-    // } else if (props.viewType === "teams") {
-    //   props.emptyCustomer()
-    //   props.getCustomerListByUserId(props.viewType, page1, "creationdate");
-    // } else {
-    //   props.emptyCustomer()
-    //   props.getCustomerListByUserId(props.viewType, page2, "creationdate");
-    // }
 
   }, []);
 
@@ -216,52 +202,6 @@ function CustomerCardList(props) {
     }
     }, 100);
   };
-  // const handleLoadMore = () => {
-  
-  //   if(props.viewType==="table"){
-  //     // setPage(page + 1)
-  //     setPage(prevPage => prevPage + 1)
-  //     props.getCustomerListByUserId(props.userId, page+1, "creationdate");
-  //   }else if (props.viewType==="teams"){
-  //     // setPage1(page1 + 1)
-  //     setPage1(prevPage => prevPage + 1)
-  //   props.getCustomerListByUserId(props.viewType, page1+1, "creationdate");
-  //   }else if (props.viewType==="all"){
-  //     // setPage2(page2 + 1)
-  //     setPage2(prevPage => prevPage + 1)
-  //   props.getCustomerListByUserId(props.viewType, page2+1, "creationdate");
-  //   }
-     
-  //   //  setPage(page + 1);
-  //   // setPage(prevPage => prevPage + 1);
-  //   //   props.getCustomerListByUserId(props.viewType === "table"?props.userId:props.viewType, page+1, "creationdate");
-    
-  // };
-
-
-  // const handleLoadMore = () => {
-  //   if (props.viewType === "table") {
-  //     setPage(prevPage => {
-  //       console.log("Previous page (table):", prevPage);
-  //       return prevPage + 1;
-  //     });
-  //     props.getCustomerListByUserId(props.userId, page + 1, "creationdate");
-  //   } else if (props.viewType === "teams") {
-  //     setPage1(prevPage => {
-  //       console.log("Previous page (teams):", prevPage);
-  //       return prevPage + 1;
-  //     });
-  //     props.getCustomerListByUserId(props.viewType, page1 + 1, "creationdate");
-  //   } else if (props.viewType === "all") {
-  //     setPage2(prevPage => {
-  //       console.log("Previous page (all):", prevPage);
-  //       return prevPage + 1;
-  //     });
-  //     props.getCustomerListByUserId(props.viewType, page2 + 1, "creationdate");
-  //   }
-  // };
-  
-  
 
   const {
     fetchingCustomers,
@@ -301,90 +241,54 @@ if (loading) {
     />
   ) : (
       <div className=' flex  sticky  z-auto'>
-        <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[99%] justify-between p-1 bg-transparent font-bold sticky z-10">
-            <div></div>
-            <div className=" w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
+            <div class=" flex justify-between font-poppins w-[89%]">
+            <div className="font-poppins font-bold  text-[#00A2E8] text-base w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             {translatedMenuItems[0]}
-              {/* <FormattedMessage
-                id="app.name"
-                defaultMessage="Name"
-              /> */}
+           {/* name */}
             </div>
-            <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className="font-poppins  font-bold text-xs  w-[8.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             {translatedMenuItems[1]}
-              {/* <FormattedMessage
-                id="app.work"
-                defaultMessage="Work"
-              /> */}
-
+             {/* work */}
             </div>
-            <div className=" w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className="font-poppins font-bold text-xs  w-[9.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             {translatedMenuItems[2]}
-              {/* <FormattedMessage
-                id="app.sector"
-                defaultMessage="Sector"
-              /> */}
-
-            </div>
-            <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-            {translatedMenuItems[3]}
-              {/* <FormattedMessage
-                id="app.source"
-                defaultMessage="Source"
-              /> */}
-
-            </div>
-            <div className=" w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
-              
-
-            </div>
-            <div className="w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-            {translatedMenuItems[4]}
-              {/* <FormattedMessage
-                id="app.quotation"
-                defaultMessage="Quotation"
-              /> */}
-
-            </div>
-            <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-            {translatedMenuItems[5]}
-              {/* <FormattedMessage
-                id="app.pipeline"
-                defaultMessage="Pipeline"
-              /> */}
-
-            </div>
-            {/* <div className="md:w-[3.9rem]">
-        <FormattedMessage
-                        id="app.weighted"
-                        defaultMessage="Weighted"
-                      />
+              {/* "Sector" */}
           
-          </div> */}
-            <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            </div>
+            <div className="font-poppins font-bold text-xs  w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            {translatedMenuItems[3]}
+             {/* "Source" */}
+         
+            </div>         
+            <div className="font-poppins font-bold text-xs w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            {translatedMenuItems[4]}
+              {/* Quotation" */}
+     
+            </div>
+            <div className="font-poppins font-bold text-xs  w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            {translatedMenuItems[5]}
+             {/* Pipeline" */}
+            </div>   
+            {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {/* Score */}
+            {translatedMenuItems[18]}
+            </div>
+            )}    
+            <div className="font-poppins font-bold text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             {translatedMenuItems[6]}
-              {/* <FormattedMessage
-                id="app.assigned"
-                defaultMessage="Assigned"
-              /> */}
-
-            </div>
-            <div className="w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
+            {/* Assigned */}
+            </div>          
+            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {translatedMenuItems[7]}
-              {/* <FormattedMessage
-                id="app.owner"
-                defaultMessage="Owner"
-              /> */}
+              {/* Customer" */}
+          
             </div>
-            <div className="w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            {translatedMenuItems[8]}
-              {/* <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              /> */}
+         
             </div>
-            <div className="w-[4.12rem]"></div>
+           
 
           </div>
           <InfiniteScroll
@@ -392,7 +296,7 @@ if (loading) {
             next={handleLoadMore}
             hasMore={hasMore}
             loader={fetchingCustomers || fetchingCustomerPagination ? <div class="flex justify-center">Loading...</div> : null}
-            height={"80vh"}
+            height={"83vh"}
             style={{ scrollbarWidth:"thin"}}
           >
 
@@ -415,11 +319,23 @@ if (loading) {
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex  w-[13rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex  w-[13rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
+                        <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                    {/* Sector  */}
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {props.showCheckboxes && (
+                        <Checkbox
+                onChange={() => props.handleCheckboxChange(item.customerId)}
+              checked={props.selectedDeals.includes(item.customerId)}
+              />
+                        )}
+                        </div>
+
+                      </div>
                           <div>
                             {/* <Tooltip title={item.name}> */}
                             <MultiAvatar
@@ -433,43 +349,29 @@ if (loading) {
                           </div>
                           <div class="w-[4%]"></div>
 
-                          <div class="max-sm:w-full md:flex items-center">
+                          <div class="max-sm:w-full flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                <div class="flex text-xs ml-1 text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                  <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
                                   </Link>
 
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
-                                    <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
+                                    <div class="text-[0.65rem] text-[tomato] font-bold"
                                     >
-                                      New
+                                      {translatedMenuItems[8]}
                                     </div>
-                                  ) : null}
-                                  {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
-                            href={`customer/${item.customerId}`}>{item.name} </a>
-                              &nbsp;&nbsp;
-        {date === currentdate ? (
-          <div class="text-xs"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
-          >
-            New
-          </div>
-        ) : null}
-        */}
+                                  ) : null}                              
                                 </div>
                               </div>
                             </Tooltip>
                           </div>
                         </div>
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -493,9 +395,8 @@ if (loading) {
                         </div>
 
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
-
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                      <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                    {/* Sector  */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.sector}
                         </div>
@@ -503,7 +404,7 @@ if (loading) {
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  w-[5.215rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -511,30 +412,26 @@ if (loading) {
                         </div>
 
                       </div>
-                      <div className=" flex max-sm:w-auto  items-center  w-[5.1rem] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-
-
-                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
+                      <div className=" flex max-sm:w-auto  w-[5.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                  {/* Country */}
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           <CountryFlag1 countryCode={countryCode} />
                           {/* &nbsp;
                           {countryCode} */}
                         </div>
                       </div>
-
-
-                      <div className=" flex items-center  max-sm:w-auto w-[6.1rem] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                      <div className=" flex items-center  max-sm:w-auto w-[6.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                     {/* Pipeline Value */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.oppNo}
 
                         </div>
                       </div>
-                    </div>
-                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex max-sm:w-auto w-[4.82rem] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                    
+                   
+                      <div className=" flex max-sm:w-auto w-[2.82rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                       {/* Pipeline Value */}
 
                         {/* {item.totalProposalValue > 0 && (
       <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -546,16 +443,16 @@ if (loading) {
       {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
+                      </div> 
                       </div>
-                      {/* <div className=" flex font-medium flex-Nonew-96 max-sm:flex-row w-full max-sm:justify-between ">
-                                
-
-                                    <div class=" text-xs  font-poppins text-center">
-                                    {item.weight}
-
-                                    </div>
-                                </div> */}
-                      <div className=" flex items-center max-sm:w-auto   w-[4rem] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">  
+                      {props.user.aiInd && (
+           <div className=" flex  justify-center  w-[9.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+         {item.noteScoreInd}
+          
+            </div>
+            )}               
+                      <div className=" flex items-center max-sm:w-auto   w-[4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -581,48 +478,69 @@ if (loading) {
 
                         </div>
                       </div>
-                      <div className=" flex f items-center max-sm:w-auto w-[2rem] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
-                        <Tooltip title={item.ownerName}>
-                          <div class="max-sm:flex justify-end">
-                            <Tooltip title={item.ownerName}>
-                              <MultiAvatar
-                                primaryTitle={item.ownerName}
-                                imageId={item.ownerImageId}
-                                imgWidth={"1.8rem"}
-                                imgHeight={"1.8rem"}
-                              />
-                            </Tooltip>
-                          </div>
-                        </Tooltip>
-                      </div>
-                    </div>
-                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
-                      <div className=" flex  justify-center  w-[9.1rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+          
+              
+                      <div className=" flex  justify-center  w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
-                          title="Change status to Customer?"
+                          title={translatedMenuItems[9]}
                           onConfirm={() => handleConfirm(item.customerId)}
                           okText="Yes"
                           cancelText="No"
                         >
                           {user.erpInd === true && (
                             <Button type="primary"
-                              style={{ width: "8rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }}>
+                              style={{ width: "8rem", background: item.convertInd === 1 ? "tomato" :"linear-gradient(to right, #2BBCCF, #38C98D)" }}>
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
-                                {item.convertInd === 0 && "Convert"}
-                                {item.convertInd === 1 && "In progress"}
-                                {item.convertInd === 2 && "Converted"}
+                                {item.convertInd === 0 && translatedMenuItems[17]}
+                                {item.convertInd === 1 && translatedMenuItems[16]}
+                                {item.convertInd === 2 && translatedMenuItems[18]}
                                 <NextPlanIcon  className="!text-icon "/>
                               </div>
                             </Button>
                           )}
                         </Popconfirm>
                       </div>
-
+                      </div>
+                      <div class="flex max-sm:justify-evenly max-sm:w-wk items-center"> 
+                      <div class="items-center justify-center h-8 bg-[#eef2f9]" >
+                          <Tooltip title={translatedMenuItems[11]}>
+                            <MonitorHeartIcon
+                              className=" !text-icon cursor-pointer text-[#df9697]"
+                              onClick={() => {
+                                handleCustomerPulseDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                              }}
+                            />
+                          </Tooltip>
+                        </div>
                      
-                        <div>
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]" >
+                          <Tooltip title={translatedMenuItems[12]}>
+                            <NoteAltIcon
+                              className=" !text-icon cursor-pointer text-green-800"
+                              onClick={() => {
+                                handleCustomerNotesDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                                handleRowData(item);
+                              }}
+                            />
+                          </Tooltip>
+                        </div> 
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]" >
+                        <Tooltip title={translatedMenuItems[19]}>
+                        <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleAddressCutomerModal(true);
+            handleRowData(item);
+          }}
+          
+        />   
+            </Tooltip>   
+            </div>     
+            <div class="items-center justify-center h-8 bg-[#eef2f9]" >
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -645,8 +563,8 @@ if (loading) {
                             }
                           </Tooltip>
 
-                        </div>
-                        <div>
+                   </div>
+                
                           <div
                             style={{ fontSize: "0.8rem" }}
                             onClick={() => {
@@ -661,17 +579,9 @@ if (loading) {
                             {user.pulseAccessInd === true && <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
                             />}
-                          </div>
-                        </div>
-                        <div>
-
-
-                        </div>
-                     
-
-                     
-                        <div >
-                          <Tooltip title="Contact">
+                          </div>                                       
+                          <div class="items-center justify-center h-8 bg-[#eef2f9]" >
+                          <Tooltip title={translatedMenuItems[14]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
                               onClick={() => {
@@ -682,8 +592,8 @@ if (loading) {
                             />
                           </Tooltip>
                         </div>
-                        <div >
-                          <Tooltip title="Opportunity">
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]" >
+                          <Tooltip title={translatedMenuItems[10]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
                               onClick={() => {
@@ -695,51 +605,12 @@ if (loading) {
                             />
                           </Tooltip>
 
-                        </div>
-                     
-                     
-                        <div >
-                          <Tooltip title="Pulse">
-                            <MonitorHeartIcon
-                              className=" !text-icon cursor-pointer text-[#df9697]"
-                              onClick={() => {
-                                handleCustomerPulseDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                              }}
-
-                            />
-                          </Tooltip>
-                        </div>
-                        <div >
-                          <Tooltip title="Notes">
-                            <NoteAltIcon
-                              className=" !text-icon cursor-pointer text-[#4bc076]"
-                              onClick={() => {
-                                handleCustomerNotesDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
-
-                            />
-                          </Tooltip>
-
-                        </div>
-                     
-
-                      
-                        <div >
-                          <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-
-                            <LocationOnIcon
-                              className=" !text-icon cursor-pointer text-[#960A0A]"
-
-                            />
-
-                          </Tooltip>
-                        </div>
-                        <div >
+                        </div>                                       
+                                                
+                       
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]" >
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
-                            <Tooltip title="Edit">
+                            <Tooltip title={translatedMenuItems[13]}>
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato]"
 
@@ -752,31 +623,34 @@ if (loading) {
                               />
                             </Tooltip>
                           )}
-                          {/* <Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                style={{ cursor: "pointer",fontSize: "1rem" }}
-                onClick={() => {
-                  props.getCustomerById(item.customerId);
-                  props.handleCustomerEmailDrawerModal(true);
-                }}
-              />
-            </Tooltip> */}
-                        </div>
-                      
-
-                    </div>
+                          
+                         
+                        </div>  
+                        {/* <div class=" text-xs  font-poppins"> */}
+                        <div class="items-center justify-center h-8 bg-[#eef2f9]" >            
+                        <StyledPopconfirm
+                          title= "Do you want to delete?"
+                          onConfirm={() =>  props.deleteCustomer(item.customerId)}>
+                     <Tooltip title="Delete">
+                          <DeleteOutlined
+                            type="delete"
+                            className=" !text-icon cursor-pointer text-[red]"
+                          />
+                       </Tooltip>
+                        </StyledPopconfirm>
+                      </div>
+                          
+                
                   </div>
                 </div>
-
-
+                </div>
               )
             })}
           </InfiniteScroll>
         </div>
       </div>
   )}
-
+  <Suspense fallback={<BundleLoader />}>
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
@@ -817,6 +691,9 @@ if (loading) {
         addDrawerCustomerOpportunityModal={addDrawerCustomerOpportunityModal}
         handleCustomerOpportunityDrawerModal={handleCustomerOpportunityDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <AddCustomerEmailDrawerModal
         // contactById={props.contactById}
@@ -837,6 +714,13 @@ if (loading) {
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
+      <AddCustomerAdressModal
+        item={rowdata}
+         type="customer"
+         addAddressCustomerModal={props.addAddressCustomerModal}
+         handleAddressCutomerModal={props.handleAddressCutomerModal}
+      /> 
+      </Suspense>
     </>
   );
 }
@@ -867,13 +751,14 @@ const mapStateToProps = ({
   countries: auth.countries,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
-  // viewType: customer.viewType,
   customerSearch: customer.customerSearch,
+  addAddressCustomerModal:customer.addAddressCustomerModal,
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+
       getCustomerListByUserId,
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
@@ -892,6 +777,8 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerById,
       getCountries,
       getAllCustomerEmployeelist,
+      handleAddressCutomerModal,
+      deleteCustomer
     },
     dispatch
   );

@@ -23,9 +23,7 @@ import {
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import PostImageUpld from "../../../../../Components/Forms/Formik/PostImageUpld";
-import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import ProgressiveImage from "../../../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../../../Components/Forms/Autocomplete/ClearbitImage";
@@ -121,21 +119,21 @@ props.emptyClearbit();
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          'First Name', // 0
-'Middle ', // 1
-'Last Name', // 2
-'Email', // 3
-'Mobile', // 4
-'Phone No', // 5
-'Company', // 6
-'URL', // 7
-'Sector', // 8
-'Source', // 9
-'LOB', // 10
-'VAT Number', // 11
-'Registration', // 12
-'Assigned', // 13
-'Notes', // 14
+          '295', //First Name 0
+'353', // 1 middle
+'354', // 2 last
+'140', // 3Email
+'299', // 4Mobile
+'300', // 5 Phone No
+'277', // 6
+'302', // 7 URL
+'278', // 8 Sector
+'279', // 9Source
+'280', // 10
+'306', // 11 VAT Number
+'307', // 12 Registration
+'76', // 13 Assigned
+'316', // 14 Notes
 
 
         ];
@@ -747,7 +745,7 @@ props.emptyClearbit();
                   <div class=" flex  justify-between mt-3">
                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
 
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[8]}</label>
+<div style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[8]}</div>
 
 <Select
         showSearch
@@ -774,7 +772,7 @@ props.emptyClearbit();
                     </div>
                     <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
                           
-                          <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[9]}</label>
+                          <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[9]}</div>
 
 <Select
         showSearch
@@ -802,7 +800,7 @@ props.emptyClearbit();
                   
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
-                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}</label>
+                    <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}</div>
 
 <Select
         showSearch
@@ -930,49 +928,14 @@ props.emptyClearbit();
                   </div>
              
 
-                  {/* <div class=" w-1/2">
-                    <StyledLabel>
-                      <Field
-                        name="proposalValue"
-                        type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.proposalValue"
-                            defaultMessage="Proposal Value"
-                          />
-                        }
-                        isColumn
-                        width={"100%"}
-                        component={InputComponent}
-                        inlineLabel
-                      />
-                      </StyledLabel>
-                    </div>
-                    <div class=" w-1/2">
-                    <StyledLabel>
-                      <Field
-                        name="opportunityName"
-                        type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.opportunityName"
-                            defaultMessage="Opportunity Name"
-                          />
-                        }
-                        isColumn
-                        width={"100%"}
-                        component={InputComponent}
-                        inlineLabel
-                      />
-                      </StyledLabel>
-                    </div> */}
+                 
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
                 >
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-semibold text-[0.75rem]">{translatedMenuItems[13]}</Listbox.Label>
+          <Listbox.Label className=" font-semibold text-[0.75rem]">{translatedMenuItems[13]}</Listbox.Label>
           <div className="relative">
               <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -1075,19 +1038,10 @@ translatedMenuItems={props.translatedMenuItems}
                         isColumnWithoutNoCreate
                         label="Bedrooms"
                        
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.tagCompany"
-                        //     defaultMessage="Tag Company"
-                        //   />
-                        // }
                         options={["1", "2", "3","4","5","6"]}
                         component={SelectComponent}
                         isColumn
-                        //value={values.customerId}
-                        //isDisabled={defaultCustomers}
-                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                        
                         inlineLabel
                       />
                                          <Switch
@@ -1146,95 +1100,16 @@ translatedMenuItems={props.translatedMenuItems}
                   </div>
                 
                   </div>
-                 
-                 
-
-                 
-                  {/* <Field
-                    name="address[0].address1"
-                    // label="Address"
-                    label={
-                      <FormattedMessage
-                        id="app.address[0].address1"
-                        defaultMessage="Address"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  />
-                   */}
-                  {/* <Field
-                    name="address[0].street"
-                    //label="Street"
-
-                    label={
-                      <FormattedMessage
-                        id="app.street"
-                        defaultMessage="Street"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  /> */}
-                  
+                           
                   <div class=" flex  justify-between mt-3">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
+                  
                   </div>
                   
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
+                
                 </div>
                 )}
                 <div class="mt-3">
-                    <div>{translatedMenuItems[14]}</div>
+                    <div class="font-bold text-xs font-poppins">{translatedMenuItems[14]}</div>
                     <div>
                   <div>
                     <span onClick={startListening}>

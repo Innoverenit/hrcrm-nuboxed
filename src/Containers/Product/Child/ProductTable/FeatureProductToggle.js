@@ -15,17 +15,17 @@ function FeatureProductToggle(props) {
   function handleToggleClick(item) {
     if (props.featureInd) {
       props.featureProductToggle({
-        suppliesId: props.suppliesId,
+        productId: props.productId,
         featureInd: props.featureInd ? false : true,
          
-      },props.suppliesId);
+      },props.productId);
       setToggle( props.featureInd ? false : true);
  
     } else {
       props.featureProductToggle({
-        suppliesId: props.suppliesId,
+        productId: props.productId,
         featureInd: props.featureInd ? false : true,
-      },props.suppliesId);
+      },props.productId);
       setToggle( props.featureInd ? false : true);
     }
   }

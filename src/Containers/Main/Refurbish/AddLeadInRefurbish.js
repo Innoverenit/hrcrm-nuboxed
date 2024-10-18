@@ -19,7 +19,9 @@ const AddLeadInRefurbish = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
                     <LeadRefurbishForm
-                        rowData={props.rowData} />
+                        rowData={props.rowData} 
+                        translateText={props.translateText}
+                        selectedLanguage={props.selectedLanguage}/>
                 </Suspense>
             </StyledDrawer>
         </>

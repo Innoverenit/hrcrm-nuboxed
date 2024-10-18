@@ -27,7 +27,7 @@ const LeavesActionLeft = (props) => {
           color: props.viewType === "tile" && "#1890ff",
         }}
       >
-          <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#28a355" }}>
             <GridViewIcon className='text-white !text-icon' />
           </Avatar>
         </span>
@@ -47,7 +47,7 @@ const LeavesActionLeft = (props) => {
             cursor: "pointer",
           }}
         >
-          <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355" }}>
             <CategoryIcon className='text-white !text-icon'
             // icon={solid('users')}
             />
@@ -68,7 +68,7 @@ const LeavesActionLeft = (props) => {
             cursor: "pointer",
           }}
         >
-          <Avatar style={{ background: props.viewType === "grant" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "grant" ? "#f279ab" : "#28a355" }}>
             <AreaChartOutlined className='text-white !text-icon'
             // icon={solid('users')}
             />
@@ -88,7 +88,7 @@ const LeavesActionLeft = (props) => {
               cursor: 'pointer',
             }}
           >
-            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
               <FormattedMessage id="app.all" defaultMessage="ALL" />
 
             </Avatar>

@@ -10,9 +10,18 @@ class ShipperDetailLeft extends Component {
     return (
       <>
         <FlexContainer flexDirection="column" style={{ display: "block" }}>
-          <ShipperOverViewCard  shipper={shipper}/>
-          <ShipperDetailCard shipper={shipper} />
-          <ShipperOverViewDetailCard shipper={shipper} />
+          <ShipperOverViewCard  shipper={shipper}
+ translateText={this.props.translateText}
+ selectedLanguage={this.props.selectedLanguage}
+          />
+          <ShipperDetailCard shipper={shipper} 
+  translateText={this.props.translateText}
+  selectedLanguage={this.props.selectedLanguage}
+          />
+          <ShipperOverViewDetailCard shipper={shipper}
+  translateText={this.props.translateText}
+  selectedLanguage={this.props.selectedLanguage}
+           />
         </FlexContainer>
       </>
     );

@@ -1,11 +1,8 @@
-import React, { Component, useState, useMemo, useEffect } from "react";
+import React, { useState,  useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { Button, Tooltip } from "antd";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
+import { Button } from "antd";
+import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Select } from "antd";
 import { getSequence } from "../../../../Settings/SettingsAction";
@@ -42,20 +39,7 @@ function SequenceCandidateForm(props) {
     };
   });
 
-  // const {
-  //   user: { userId },
-  //   addingOpportunity,
-  //   employeeId,
-  //   salesUserIds,
-  //   fullName,
-  //   contactId,
-  //   customerId,
-  //   startDate,
-  //   endDate,
-  //   defaultCustomers,
-  //   defaultContacts,
-  //   name,
-  // } = props;
+
    console.log(props.sequenceId);
   return (
     <>
@@ -105,9 +89,9 @@ function SequenceCandidateForm(props) {
                   width: "98%",
                 }}
               >
-                <FlexContainer justifyContent="space-between">
+               <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
-                    <StyledLabel>True</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">True</div>
                     <Select
                       style={{ width: "100%" }}
                      // name="trueSequenceRule"
@@ -136,11 +120,11 @@ function SequenceCandidateForm(props) {
                       />
                     )}
                   </div>
-                </FlexContainer>
-                <Spacer  />
-                <FlexContainer justifyContent="space-between">
+                </div>
+                <mt-3  />
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
-                    <StyledLabel>False</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">False</div>
                     <Select
                       style={{ width: "100%" }}
                       placeholder="Select"
@@ -169,11 +153,11 @@ function SequenceCandidateForm(props) {
                       />
                     )}
                   </div>
-                </FlexContainer>
-                <Spacer />
-                <FlexContainer justifyContent="space-between">
+                </div>
+                <mt-3 />
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
-                    <StyledLabel>No Response</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">No Response</div>
                     <Select
                       style={{ width: "100%" }}
                       name="noInputSequenceRule"
@@ -202,11 +186,11 @@ function SequenceCandidateForm(props) {
                       />
                     )}
                   </div>
-                </FlexContainer>                
+                </div>                
               </div>
             </div>
-            <Spacer />
-            <FlexContainer justifyContent="flex-end">
+            <mt-3 />
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
               <Button
                 type="primary"
                 htmlType="submit"
@@ -214,7 +198,7 @@ function SequenceCandidateForm(props) {
               >
                 Create
               </Button>
-            </FlexContainer>
+            </div>
           </Form>
         )}
       </Formik>

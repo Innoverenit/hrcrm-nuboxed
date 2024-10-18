@@ -216,7 +216,7 @@
            
 //                    <div class=" flex justify-between">
 //                     <div class="w-[30%] max-sm:w-[40%] ">
-//                       {/* <label>Dial Code</label> */}
+//                       {/* <div class="font-bold text-xs font-poppins text-black">Dial Code</div> */}
                   
 //                       <FastField
 //                         name="dialCode"
@@ -276,10 +276,10 @@
 
 
 //                   <div class="w-full">
-//                     <label>
+//                     <div class="font-bold text-xs font-poppins text-black">
 //                       Approve
                       
-//                     </label>
+//                     </div>
 //                   <Switch 
 //                   checked={checked} 
 //                   onChange={handleChange} 
@@ -669,7 +669,7 @@ function AddSuppliersForm(props) {
                     />
                   </div>
                   <div className="w-full">
-                    <label>Approve</label>
+                    <div class="font-bold text-xs font-poppins text-black">Approve</div>
                     <Switch
                       checked={checked}
                       onChange={handleChange}

@@ -3,26 +3,12 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer, StyledModal } from "../../../Components/UI/Antd";
-import { sortedLastIndex } from "lodash";
-import ProjectTaskTable from "./ProjectTaskTable";
 const ProjectTaskForm = lazy(() => import("../Child/ProjectTaskForm"));
-
-
 class UpdateProjectTaskModal extends Component {
-  
-  
    
-  
-
-  
-
- 
   render() {
 console.log("Item",this.props.item)
-     
-      
-   
-   
+  
     return (
       <div>
  <StyledDrawer

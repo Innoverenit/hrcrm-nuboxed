@@ -3,7 +3,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import StepperTaskForm from "./StepperTaskForm";
+const  StepperTaskForm = lazy(() => import("./StepperTaskForm"));
 class AddTaskStepperDrawerModal extends Component {
   render() {
     //  console.log("data5", this.props.currentNameId.taskName);

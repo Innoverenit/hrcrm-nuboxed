@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { PlusOutlined } from "@ant-design/icons";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import { Tooltip } from "antd";
 import { withRouter } from "react-router";
@@ -109,7 +109,10 @@ class InventoryDetailTab extends PureComponent {
             >
               {" "}
               <Suspense fallback={"Loading..."}>
-                <ReceivedTable />
+                <ReceivedTable
+                  translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+                 />
               </Suspense>
             </TabPane>
 
@@ -138,6 +141,8 @@ class InventoryDetailTab extends PureComponent {
             >
               <Suspense fallback={"Loading..."}>
                 <DispatchTable 
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
                    inventory={this.props.inventory}
                 />
               </Suspense>

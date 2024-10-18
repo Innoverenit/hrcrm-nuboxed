@@ -20,7 +20,10 @@ const SupplierSuppliesDrawer = (props) => {
         onClose={() => handleSuppleirSuppliesDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <SupplierSuppliesCardTable   particularDiscountData={particularDiscountData}/>
+          <SupplierSuppliesCardTable   particularDiscountData={particularDiscountData}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+          />
         </Suspense>
       </StyledDrawer>
     </>

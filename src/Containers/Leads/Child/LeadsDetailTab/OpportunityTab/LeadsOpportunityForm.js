@@ -9,7 +9,7 @@ import {
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { getCustomerListByUserId } from "../../../../Customer/CustomerAction";
-import { Spacer } from "../../../../../Components/UI/Elements";
+
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { addLeadsOpportunity } from ".././../../LeadsAction";
 import {
@@ -296,7 +296,7 @@ function LeadsOpportunityForm (props) {
                     component={InputComponent}
                     inlineLabel
                     />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                   <div class=" w-2/4">
                       <Field
@@ -345,7 +345,7 @@ function LeadsOpportunityForm (props) {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                   <div class=" w-2/4">
                       <Field
@@ -385,7 +385,7 @@ function LeadsOpportunityForm (props) {
                  
                   </div>
 
-                  <Spacer/>
+                  <div class=" mt-3"/>
                     <div class=" w-full">
                      <Field
                     name="description"
@@ -431,7 +431,7 @@ function LeadsOpportunityForm (props) {
                     inlineLabel
                     
                   />
-                 <Spacer />
+                 <div class=" mt-3" />
                   <Field
                     name="contactId"
                     isColumnWithoutNoCreate
@@ -459,7 +459,7 @@ function LeadsOpportunityForm (props) {
                      isColumn
                      inlineLabel
                     />
-                  <Spacer />
+                  <div class=" mt-3" />
                     <Field
                       name="oppInnitiative"
                     isColumnWithoutNoCreate
@@ -533,7 +533,7 @@ function LeadsOpportunityForm (props) {
                   </div> 
                 </div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <div class=" flex justify-end">
                 <Button
                   type="primary"

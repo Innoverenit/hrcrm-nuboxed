@@ -24,7 +24,10 @@ const ProcessExpandDrawer = (props) => {
                 <Suspense fallback={<BundleLoader />}>
                 <RepairTaskList
                         phoneId={RowData.phoneId}
-                        RowData={RowData} />
+                        RowData={RowData}
+                        rowData={props.rowData}
+                        />
+                        
                 </Suspense>
             </Modal>
         </>

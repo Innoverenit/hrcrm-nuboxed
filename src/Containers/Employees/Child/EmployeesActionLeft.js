@@ -146,7 +146,7 @@ const EmployeesActionLeft = (props) => {
               color: props.viewType === "tile" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#28a355" }}>
             <GridViewIcon className="text-white !text-icon"/>
             </Avatar>
           </span>
@@ -170,7 +170,7 @@ const EmployeesActionLeft = (props) => {
               color: props.viewType === "table" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
             <div class="text-white ">ALL</div>
             </Avatar>
           </span>
@@ -190,7 +190,7 @@ const EmployeesActionLeft = (props) => {
       </div>
    
         <div  class=" w-[35%]  ml-2">
-          <StyledSelect placeholder="Sort"  defaultValue="cretiondate" onChange={(e)  => props.handleFilterChange(e)}>
+          <StyledSelect placeholder="Sort"  defaultValue="Creation Date" onChange={(e)  => props.handleFilterChange(e)}>
           <Option value="cretiondate">Creation Date</Option>
           <Option value="AtoZ">A To Z</Option>
             <Option value="ZtoA">Z To A</Option>

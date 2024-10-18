@@ -3,7 +3,7 @@ import { get } from "lodash";
 import dayjs from "dayjs";
 
 import { StyledTimePicker } from "../../UI/Antd";
-import { ValidationError, StyledLabel } from "../../UI/Elements";
+import { ValidationError } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 export const TimePicker = ({
   value,
@@ -20,7 +20,7 @@ export const TimePicker = ({
     return (
       <>
         {!noLabel && (
-          <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+          <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
         )}
         <StyledTimePicker
           allowClear={false}
@@ -45,7 +45,7 @@ export const TimePicker = ({
       <FlexContainer>
         <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
           {!noLabel && (
-            <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+            <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
           )}
           <StyledTimePicker
             allowClear={false}

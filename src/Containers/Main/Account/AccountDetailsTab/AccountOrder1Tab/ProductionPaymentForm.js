@@ -7,7 +7,7 @@ import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { addPaidOrder, getPaymentMode } from "../../../Account/AccountAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { FormattedMessage } from "react-intl";
 import { getCurrency } from "../../../../Auth/AuthAction";
@@ -37,7 +37,7 @@ function ProductionPaymentForm(props) {
             <Formik
                 enableReinitialize
                 initialValues={{
-                    date: moment(),
+                    date: dayjs(),
                     paymentAmount: "",
                     paymentMode: "",
                     remarks: "",
@@ -53,7 +53,7 @@ function ProductionPaymentForm(props) {
                 }}
 
                 onSubmit={(values, { resetForm }) => {
-                    let newEndDate = moment(values.date).format("YYYY-MM-DD");
+                    let newEndDate = dayjs(values.date).format("YYYY-MM-DD");
                     props.addPaidOrder(
                         {
                             ...values,

@@ -6,17 +6,12 @@ import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import {
-  Spacer,
-  StyledLabel,
-} from "../../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import {
   getProcessForRecruit,
   getProcessStagesForRecruit,
-} from "../../../../../../Settings/SettingsAction";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
+} from "../../../../../../Settings/SettingsAction"; 
 import {
   addRecruit,
   getContactListByOpportunityId,
@@ -29,9 +24,6 @@ import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePic
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
 
-/**
- * yup validation scheme for creating a opportunity
- */
 
 const OpportunitySchema = Yup.object().shape({
   // requirementName: Yup.string().required("Please provide Requirement"),
@@ -66,15 +58,6 @@ function CustomerForm(props) {
     );
   }, [props.recruitProcess]);
 
-  // const currency = props.currencies.map((item) => {
-  //   return {
-  //     label: item.currencyName || "",
-  //     value: item.currencyName,
-  //   };
-  // });
-
- 
-  
   const Sponsor = props.contactListByOpportunityId.map((item) => {
     return {
       label: `${item.firstName || ""}  ${item.middleName ||
@@ -82,27 +65,6 @@ function CustomerForm(props) {
       value: item.contactId,
     };
   });
-
-  // function getStagesOptions(filterOptionKey, filterOptionValue) {
-  //   const stagesOptions =
-  //     props.allProcessStagesForRecruit.length &&
-  //     props.allProcessStagesForRecruit
-  //       .filter((option) => {
-  //         if (
-  //           option.processId === filterOptionValue &&
-  //           option.probability !== 0 &&
-  //           option.probability !== 100
-  //         ) {
-  //           return option;
-  //         }
-  //       })
-  //       .map((option) => ({
-  //         label: option.stageName || "",
-  //         value: option.stageId,
-  //       }));
-
-  //   return stagesOptions;
-  // }
 
   const partnerNameOption = props.allpartnerByUserId.map((item) => {
     return {
@@ -128,10 +90,6 @@ function CustomerForm(props) {
   function handleReset(resetForm) {
     resetForm();
   }
-
-  // function handleCallback() {
-  //   props.getRecruitByOpportunityId(props.opportunityId);
-  // }
 
   return (
   
@@ -273,22 +231,8 @@ function CustomerForm(props) {
                   width: "45%",
                   }}
                 >
-                  <FlexContainer justifyContent="space-between">
-                    {/* <div style={{ width: "47%" }}>
-                    <Field
-                        name="jobOrder"
-                        //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.joborder"
-                          defaultMessage="Job ID"
-                        />}
-                        isColumn
-                        width={"100%"}
-                        inlineLabel                       
-                      component={InputComponent}
-                      // options={Array.isArray(Sponsor) ? Sponsor : []}
-                      />
-                    </div> */}
+           <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                  
                     <div style={{ width: "47%" ,}}>
                     <Field
                         name="requirementName"
@@ -306,9 +250,9 @@ function CustomerForm(props) {
                       />                 
                     
                     </div>
-                  </FlexContainer>
+                  </div>
                                   
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                     <Field
                         name="experience"
@@ -342,8 +286,8 @@ function CustomerForm(props) {
                   
                     
                     </div>
-                  </FlexContainer>
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "100%" }}>
                       <Field
                         // isRequired
@@ -368,9 +312,9 @@ function CustomerForm(props) {
                         inlineLabel
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer/>                  
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" mt-3"/>                  
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" ,}}>
                     <Field
                         name="sponserId"
@@ -405,9 +349,9 @@ function CustomerForm(props) {
                       
                       />
                     </div>
-                      </FlexContainer>
-                      <Spacer />
-                      <FlexContainer justifyContent="space-between">
+                      </div>
+                      <div class=" mt-3" />
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         name="departmentId"
@@ -451,9 +395,9 @@ function CustomerForm(props) {
                         inlineLabel
                       />
                     </div>
-                  </FlexContainer>  
-                  <Spacer />
-                      <FlexContainer justifyContent="space-between">
+                  </div>  
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "100%" ,}}>
                   <Field
                     name="recruitersId"
@@ -476,10 +420,10 @@ function CustomerForm(props) {
                   </div>
                    
                    
-                      </FlexContainer>
-                      <Spacer />
+                      </div>
+                      <div class=" mt-3" />
 
-                  <FlexContainer justifyContent="space-between">
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       {" "}
                       <Field
@@ -497,7 +441,7 @@ function CustomerForm(props) {
                       />
                     </div>
                     <div style={{ width: "47%" }}>
-                      <StyledLabel>Type </StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Type </div>
                       <br/>
                     <Switch
                         checked={typeData}
@@ -509,10 +453,10 @@ function CustomerForm(props) {
                         // }}
                       />
                     </div>
-                  </FlexContainer>                
+                  </div>                
                
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
                   <Field
                     name="recruitmentProcessId"
@@ -535,16 +479,13 @@ function CustomerForm(props) {
                   />
                   </div>
                   <div style={{ width: "47%", }}>
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "45%" }}>
                       {" "}
                       <Field
                         name="billing"
                         label={typeData?"Salary":"Rate/hr"}
-                        // label={<FormattedMessage
-                        //   id="app.billing"
-                        //   defaultMessage="Billing/hour"
-                        // />}
+                       
                         width={"100%"}
                         isRequired
                         isColumn
@@ -569,18 +510,17 @@ function CustomerForm(props) {
                         value={values.currencyName}
                         isRequired
                         component={SearchSelect}
-                        // flag={values.currency}
-                        // options={Array.isArray(currency) ? currency : []}
+                      
                       />
                     </div>
                     
-                    </FlexContainer>
                     </div>
-                    </FlexContainer>
+                    </div>
+                    </div>
                   
                  
-                    <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                    <div class=" mt-3" />
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       {" "}
                       <Field
@@ -645,11 +585,11 @@ function CustomerForm(props) {
                       />
                     </div>
                   
-                  </FlexContainer>
-                  <Spacer style={{marginTop:"1.25em"}}/>
-                <FlexContainer style={{}}>
+                  </div>
+                  <div class=" mt-3" style={{marginTop:"1.25em"}}/>
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                  
-                 <StyledLabel style={{marginLeft:"0px"}}>Category</StyledLabel>
+                 <div class=" text-xs font-bold font-poppins ml-0" >Category</div>
                  &nbsp;&nbsp;
                  <Switch
                    style={{
@@ -661,7 +601,7 @@ function CustomerForm(props) {
                    checkedChildren="White"
                    unCheckedChildren="Blue"
                  />
-                  </FlexContainer>
+                  </div>
                 </div>
               &nbsp;
               <div
@@ -670,7 +610,7 @@ function CustomerForm(props) {
                        width: "47%",
                   }}
                 >
-               <FlexContainer justifyContent="space-between">
+           <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "101%" }}>
                     <Field
                     name="description"
@@ -690,12 +630,12 @@ function CustomerForm(props) {
                     }}
                   />
                 </div>
-                </FlexContainer>
+                </div>
                
               </div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <div class=" mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -707,7 +647,7 @@ function CustomerForm(props) {
                   />
                   {/* Create */}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
       </Formik>

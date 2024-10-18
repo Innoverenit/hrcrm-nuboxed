@@ -6,6 +6,12 @@ import Swal from 'sweetalert2'
 
 export const setProductionViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_PRODUCTION_VIEW_TYPE, payload: viewType });
+export const handleRefurbishLevelModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_REFURBISH_LEVEL_MODAL,
+    payload: modalProps,
+  });
+};
 
 export const getTodayProduction = (date) => (dispatch) => {
   dispatch({
@@ -728,12 +734,12 @@ export const getNoOfTechnicianById = (orderPhoneId) => (dispatch) => {
       });
     });
 };
-export const getNoOfPhoneInQCById = (orderPhoneId, technicianId) => (dispatch) => {
+export const getNoOfPhoneInQCById = (orderPhoneId, technicianId,pageNo) => (dispatch) => {
   dispatch({
     type: types.GET_NO_OF_PHONE_IN_QC_BYID_REQUEST,
   });
   axios
-    .get(`${base_url2}/TechnicianPhoneList/${orderPhoneId}/${technicianId}`, {
+    .get(`${base_url2}/TechnicianPhoneList/${orderPhoneId}/${technicianId}/${pageNo}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1741,6 +1747,35 @@ export const updateProcessTask = (data, phoneTaskId) => (dispatch) => {
       message.error("Something went wrong");
     });
 };
+
+export const updateProcessNwTask = (data, phoneTaskId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_PROCESS_NWTASK_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/itemTask/updateNoNeedTaskInd/${phoneTaskId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.UPDATE_PROCESS_NWTASK_SUCCESS,
+        payload: res.data,
+      });
+      message.success("Confirmation Successfull");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_PROCESS_NWTASK_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong");
+    });
+};
+
+
 export const gettASKItemCounts = (phoneId) => (dispatch) => {
   dispatch({
     type: types.GET_TASK_ITEM_COUNT_REQUEST,
@@ -2466,6 +2501,46 @@ export const updateDispatchInspectionButton = (data, orderPhoneId,locationId) =>
       console.log(err);
       dispatch({
         type: types.UPDATE_DISPATCH_INSPECTION_BUTTON_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const handleAllTaskModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ALL_TASK_MODAL,
+    payload: modalProps,
+  });
+};
+export const handleAllSpareProcess = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ALL_SPARE_PROCESS_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const getLevelData = (phoneId,level) => (dispatch) => {
+  dispatch({
+    type: types.GET_LEVEL_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/itemTask/levelWise/${phoneId}/${level}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LEVEL_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_LEVEL_DATA_FAILURE,
         payload: err,
       });
     });

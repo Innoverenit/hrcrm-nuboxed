@@ -10,7 +10,11 @@ class ContactOverviewCard extends Component {
       <div>
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
-            viewType === "view" ? <ContactOverView contact={contact} /> : null
+            viewType === "view" ? <ContactOverView contact={contact}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+          /> : null
           }
         </ViewEditCard>
       </div>

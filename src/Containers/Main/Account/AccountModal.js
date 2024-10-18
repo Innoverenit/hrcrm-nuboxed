@@ -1,8 +1,7 @@
 import React, { Suspense,lazy } from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import AccountIconForm from "./AccountIconForm";
-
+const  AccountIconForm = lazy(() => import("./AccountIconForm"));
 
 const AccountModal = (props) => {
     const {RowData, ...formProps } = props;

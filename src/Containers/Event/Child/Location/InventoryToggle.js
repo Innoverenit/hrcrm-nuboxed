@@ -50,7 +50,7 @@ function InventoryToggle(props) {
             checked={props.inventoryInd || toggle}
             isLoading={true}
             style={{
-              width: "4em",
+              width: "4rem",
               // backgroundColor: props.inventoryInd || toggle ? "rgb(119, 221, 119)" : "#E6E6E6",
             }}
             checkedChildren="Yes"

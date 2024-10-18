@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
 import { Formik, Form, Field } from "formik";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { Spacer, StyledLabel } from "../../../../Components/UI/Elements";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
@@ -152,7 +151,7 @@ class AddLeadsDocumentModal extends Component {
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                         name="documentTypeId"
                         selectType="documentTypeName"
@@ -183,7 +182,7 @@ class AddLeadsDocumentModal extends Component {
                         isColumn
                         component={InputComponent}
                         />
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                         name="documentDescription"
                         label={
@@ -198,11 +197,11 @@ class AddLeadsDocumentModal extends Component {
                         component={TextareaComponent}
                         />
                     
-                      <Spacer />
+                      <div class=" mt-3" />
                       {!this.state.documentshare && this.props.testShow && (
                         <p>Will be shared with customer Owner</p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                       {this.state.documentshare && (
                      <div class=" flex justify-between w-full ">
                           {/* {organization &&
@@ -245,14 +244,14 @@ class AddLeadsDocumentModal extends Component {
                                   />
                                 </div>
                                 <div>
-                                  <StyledLabel>
+                                  <div class=" text-xs font-bold font-poppins text-black">
                                     {" "}
                                     <FormattedMessage
                                       id="app.level"
                                       defaultMessage="Level"
                                     />
                                     ,{/* Level */}
-                                  </StyledLabel>
+                                  </div>
                                   <div class=" flex justify-between">
                                     <ButtonGroup>
                                       <Tooltip title="Specific">
@@ -324,7 +323,7 @@ class AddLeadsDocumentModal extends Component {
                     </div>
                   </div>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-end">
                     <Button
                       htmlType="submit"

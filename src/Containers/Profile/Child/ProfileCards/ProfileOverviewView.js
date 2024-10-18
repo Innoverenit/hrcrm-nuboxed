@@ -135,13 +135,11 @@ class ProfileOverviewView extends Component {
               size="1em"
             />{" "} */}
           
-            <EditOutlined
+            <EditOutlined className=" !text-icon  ml-4"
               tooltipTitle="Edit"
               iconType="edit"
               onClick={toggleViewType}
-              size="1em"
-              style={{marginLeft:"1rem"}}
-            />
+             />
           </div>
         </div>
 

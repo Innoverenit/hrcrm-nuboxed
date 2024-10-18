@@ -1,5 +1,4 @@
 import React, { Component,Suspense,lazy} from "react";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import ProgramOverViewCard from "../ProgramCards/ProgramOverViewCard";
 
 class ProgramDetailsLeft extends Component {

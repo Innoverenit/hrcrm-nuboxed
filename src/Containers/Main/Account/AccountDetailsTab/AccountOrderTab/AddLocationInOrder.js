@@ -21,7 +21,9 @@ const AddLocationInOrder = (props) => {
                     {/* <CardContainer /> */}
                     <LocationOrderForm
                         type={props.type}
-                        particularRowData={props.particularRowData} />
+                        particularRowData={props.particularRowData} 
+                        selectedLanguage={props.selectedLanguage}
+                        translateText={props.translateText} />
                 </Suspense>
             </StyledDrawer>
         </>

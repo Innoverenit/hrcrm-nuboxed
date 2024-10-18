@@ -14,9 +14,7 @@ class OpportunityHeader extends Component {
       handleClear,
     } = this.props;
     return (
-      <div style={{position: "sticky",
-        top: "3.35rem",
-        zIndex: "998"}}>
+      <div className="sticky mt-1 z-50"> 
         <ActionHeader
           leftComponent={
             <OpportunityActionLeft
@@ -26,12 +24,18 @@ class OpportunityHeader extends Component {
               currentData={currentData}
               handleClear={handleClear}
               setCurrentData={this.props.setCurrentData}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
             />
           }
           rightComponent={
             <OpportunityActionRight
               viewType={viewType}
               handleOpportunityModal={handleOpportunityModal}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
             />
           }
         />

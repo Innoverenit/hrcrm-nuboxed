@@ -1,10 +1,7 @@
 import React, {  Suspense } from 'react';
 import { BundleLoader } from "../../../Components/Placeholder";
 import ShipperJumpstart from './ShipperJumpstart';
-import {
-    ResponsiveBox,
-    FlexContainer
-} from "../../../Components/UI/Layout";
+
 import ChartTab from './ChartTab';
 import ChartTab2 from './ChartTab2';
 import ChartTab3 from './ChartTab3';
@@ -17,32 +14,32 @@ function ShipperDashboard() {
         <>
             <Suspense fallback={<BundleLoader />}>
                 <ShipperJumpstart />
-                <FlexContainer style={{ marginTop: "0.3rem" }}>
-                    <ResponsiveBox>
+                <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto mt-[0.3rem] ">
+                <div class="block box-border h-auto w-1/3">
                         <ChartTab />
-                    </ResponsiveBox>
+                    </div>
 
-                    <ResponsiveBox>
+                    <div class="block box-border h-auto w-1/3">
                         <ChartTab2 />
-                    </ResponsiveBox>
+                    </div>
 
-                    <ResponsiveBox>
+                    <div class="block box-border h-auto w-1/3">
                         <ChartTab3 />
-                    </ResponsiveBox>
+                    </div>
 
-                    <ResponsiveBox>
+                    <div class="block box-border h-auto w-1/3">
                         <ChartTab4 />
-                    </ResponsiveBox>
+                    </div>
 
-                    <ResponsiveBox>
+                    <div class="block box-border h-auto w-1/3">
                         <ChartTab5 />
-                    </ResponsiveBox>
+                    </div>
 
-                    <ResponsiveBox>
+                    <div class="block box-border h-auto w-1/3">
                         <ChartTab6 />
-                    </ResponsiveBox>
+                    </div>
 
-                </FlexContainer>
+                </div>
             </Suspense>
         </>
     )

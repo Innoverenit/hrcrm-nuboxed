@@ -1,14 +1,5 @@
 import React from "react";
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-import { Avatar } from "antd";
-import {
-  MultiAvatar,
-  Title,
-  SubTitle,
-  JumpStartBox,
-  Spacer,
-} from "../../../../Components/UI/Elements";
+import {  Marker, Popup } from "react-leaflet";
 import { AddressComponent } from "../../../../Components/Common";
 import L from "leaflet";
 
@@ -55,28 +46,17 @@ export default function MapPopupMarker({ mark }) {
   return (
     <Marker position={[mark.lat, mark.lng]} icon={image}>
       <Popup className="!w-[18rem]">
-        {/* <div justifyContent="center" flexDirection="column">
-          <div flexWrap="nowrap" alignItems="center">
-            <div className="avatar-bg" style={{ borderRadius: "50%" }}>
-              <MultiAvatar
-                // primaryTitle={firstName || ''}
-                minAvatarWidth="5em"
-                imageId={imageId}
-                className="avatar"
-              />
-              &nbsp;&nbsp;
-            </div> */}
         <div className="details">
-          <Title
+          <div
             fontSize="1.1rem"
             style={{ display: "flex", justifyContent: "center" }}
-          >{`${firstName || ""} ${middleName || ""} ${lastName || ""}`}</Title>
-          <Title
+          >{`${firstName || ""} ${middleName || ""} ${lastName || ""}`}</div>
+          <div
             fontSize="0.78rem"
             style={{ display: "flex", justifyContent: "center" }}
           >
             {accountName}
-          </Title>
+          </div>
           <div>
             {address &&
               address.map((components, i) => {
@@ -89,40 +69,7 @@ export default function MapPopupMarker({ mark }) {
               })}
           </div>
         </div>
-        <Spacer />
-        {/* <FlexContainer style={{ width: "100%" }} justifyContent="space-between">
-          <div
-            style={{
-              width: "49%",
-              padding: "0em 0em",
-              textAlign: "center",
-              background: "#6ba9f7",
-              color: "white",
-              border: "0.0625em solid #ddd",
-              borderRadius: "0.3rem",
-              boxShadow: "0 0.5em 0.375em -0.375em rgb(46,44,44)",
-            }}
-          >
-            <h3 style={{ color: "white" }}>Proposal</h3>
-             {actualFunnel || 0} 
-          </div>
-          <div
-            style={{
-              width: "49%",
-              padding: "0em 0em",
-              textAlign: "center",
-              background: "#f7ae9b",
-              color: "white",
-              border: "0.0625em solid #ddd",
-              borderRadius: "0.3rem",
-              boxShadow: "0 0.5em 0.375em -0.375em rgb(46,44,44)",
-            }}
-          >
-            <h3 style={{ color: "white" }}>Win Rate</h3>
-            {`${Won || 0} / ${(Lost || 0) + (Won || 0) || 0}`} 
-          </div>
-
-        </FlexContainer> */}
+        <div class=" mt-3" />    
       </Popup>
     </Marker>
   );

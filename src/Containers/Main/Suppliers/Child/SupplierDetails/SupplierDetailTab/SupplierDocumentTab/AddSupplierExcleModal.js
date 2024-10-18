@@ -1,8 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 import { Button,Switch } from "antd";
 import { StyledDrawer} from "../../../../../../../Components/UI/Antd";
-import AddSupplierDocumentForm from "./AddSupplierDocumentForm";
-import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import AddSupplierExcleForm from "./AddSupplierExcleForm";
 import AddManualForm from "./AddManualForm";
 

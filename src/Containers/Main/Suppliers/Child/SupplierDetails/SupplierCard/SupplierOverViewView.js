@@ -16,7 +16,7 @@ class SupplierOverViewView extends Component {
     return (
       <>
         <div class="flex justify-between items-center">
-          <div class="flex start-0 flex-nowrap w-full items-center">
+          <div class="flex start-0 flex-nowrap w-full items-center mb-6">
             <div>
               <MultiAvatar />
             </div>
@@ -41,6 +41,7 @@ class SupplierOverViewView extends Component {
                 ></i>
               </span>
             </Tooltip>
+           
           </div>
         </div>    
       </>

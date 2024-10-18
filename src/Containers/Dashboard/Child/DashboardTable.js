@@ -6,7 +6,7 @@
  import { Tooltip, Icon,Input,Button, Table,  InputNumber, Popconfirm, Form, Typography  } from "antd";
  import Highlighter from 'react-highlight-words';
  import { CurrencySymbol } from "../../../Components/Common";
- import moment from "moment";
+ import dayjs from "dayjs";
  import { StyledTable, StyledPopconfirm } from "../../../Components/UI/Antd";
  import { MultiAvatar, SubTitle } from "../../../Components/UI/Elements";
  import { FlexContainer } from "../../../Components/UI/Layout";
@@ -199,8 +199,8 @@ import { SearchOutlined } from "@ant-design/icons";
      //     const fullName = ` ${item.salutation || ""} ${item.firstName ||
      //       ""} ${item.middleName || ""} ${item.lastName || ""}`;
  
-     //     const currentdate = moment().format("DD/MM/YYYY");
-     //     const date = moment(item.creationDate).format("DD/MM/YYYY");
+     //     const currentdate = dayjs().format("DD/MM/YYYY");
+     //     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
      //     console.log(date, currentdate, currentdate === date);
      //     return (
      //       <>
@@ -245,7 +245,7 @@ import { SearchOutlined } from "@ant-design/icons";
       //   ...getColumnSearchProps('customer'),
          width: "12%",
          render: (text, item) => {
-          const startDate = moment(item.creationDate).format("ll");
+          const startDate = dayjs(item.creationDate).format("ll");
           return <span>{startDate}</span>;
         }, 
       },
@@ -259,7 +259,7 @@ import { SearchOutlined } from "@ant-design/icons";
        dataIndex: "avilableDate",
        width:"12%",
        render: (text, item) => {
-        const startDate = moment(item.avilableDate).format("ll");
+        const startDate = dayjs(item.avilableDate).format("ll");
         return <span>{startDate}</span>;
       },
        //defaultSortOrder: "descend",
@@ -276,7 +276,7 @@ import { SearchOutlined } from "@ant-design/icons";
      //     return 0;
      //   },
      //   render: (text, item) => {
-     //     const startDate = moment(item.startDate).format("ll");
+     //     const startDate = dayjs(item.startDate).format("ll");
      //     return <span>{startDate}</span>;
      //   },
      },
@@ -302,7 +302,7 @@ import { SearchOutlined } from "@ant-design/icons";
      //     return 0;
      //   },
      //   render: (text, item) => {
-     //     const endDate = moment(item.endDate).format("ll");
+     //     const endDate = dayjs(item.endDate).format("ll");
      //     return <span>{endDate}</span>;
      //   },
      },

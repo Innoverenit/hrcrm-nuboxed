@@ -7,7 +7,7 @@ import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { deleteShipperOrderData } from "../../../../ShipperAction";
 import * as Yup from "yup";
-import { Spacer } from "../../../../../Components/UI/Elements";
+
 const FormSchema = Yup.object().shape({
   description: Yup.string().required("Input required!"),
 });
@@ -59,7 +59,7 @@ function ShipperDeleteOrderForm(props) {
                 // }}
               />
             </div>
-            <Spacer style={{ marginBottom: "1.25em" }} />
+            <div class=" mt-3" style={{ marginBottom: "1.25em" }} />
             <FlexContainer justifyContent="flex-end">
               <Button
                 type="primary"

@@ -3,7 +3,7 @@ import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-const PhoneNotesForm = lazy(() => import("./PhoneNotesForm"));
+// const PhoneNotesForm = lazy(() => import("./PhoneNotesForm"));
 
 const PhoneNotesOrderModal = (props) => {
     const { RowData, ...formProps } = props;
@@ -19,7 +19,7 @@ const PhoneNotesOrderModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <PhoneNotesForm RowData={RowData} />
+                    {/* <PhoneNotesForm RowData={RowData} /> */}
                 </Suspense>
             </StyledDrawer>
         </>

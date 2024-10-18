@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { ViewEditCard } from "../../../../../Components/UI/Elements";
 import OpportunityProductView from "./OpportunityProductView";
-import OpportunityAboutEdit from "./OpportunityAboutEdit";
 
 class OpportunityProductCard extends Component {
   render() {

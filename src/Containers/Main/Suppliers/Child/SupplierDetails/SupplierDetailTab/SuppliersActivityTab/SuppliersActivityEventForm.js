@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button, Icon } from "antd";
 import { Formik, Form, Field} from "formik";
 import dayjs from "dayjs";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
@@ -210,7 +210,7 @@ class SuppliersActivityEventForm extends Component {
                       width: "100%"
                     }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     isRequired
                     name="topic"
@@ -225,7 +225,7 @@ class SuppliersActivityEventForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <Field
@@ -262,7 +262,7 @@ class SuppliersActivityEventForm extends Component {
                       />
                     </div>
                   </FlexContainer>
-                  <Spacer style={{ marginBottom: "15px" }} />
+                  <div class=" mt-3" style={{ marginBottom: "15px" }} />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <Field
@@ -314,7 +314,7 @@ class SuppliersActivityEventForm extends Component {
                     </div>
                   </FlexContainer>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                   {startDate ? (
                     <span>
                       {dayjs(startDate).isBefore(dayjs()) && (
@@ -352,7 +352,7 @@ class SuppliersActivityEventForm extends Component {
                       marginTop: "0px",
                     }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="location"
                     label="Location"
@@ -368,7 +368,7 @@ class SuppliersActivityEventForm extends Component {
                   />
                 </div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 {isEditing && (
                   <>

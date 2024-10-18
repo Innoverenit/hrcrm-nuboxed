@@ -1,9 +1,9 @@
+
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   getProcureDetails,
@@ -17,8 +17,10 @@ import {
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
 import { DeleteOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
-import { BundleLoader } from "../../../../Components/Placeholder";
+import { base_url2 } from "../../../../Config/Auth";
+import axios from "axios";
+import Swal from 'sweetalert2';
+import IosShareIcon from '@mui/icons-material/IosShare'; 
 
 const { Option } = Select;
 
@@ -29,23 +31,84 @@ function AccountProcureDetails(props) {
   const [brand, setBrand] = useState("");
   const [quality, setQuality] = useState("");
   const [model, setModel] = useState("");
+  const [inputValues, setInputValues] = useState({});
   const [newUnitName, setUnitName] = useState('');
   const [specs, setSpecs] = useState("");
   const [category, setCategory] = useState("");
   const [location, setLocation] = useState("");
   const [currency, setCurrency] = useState("");
   const [newPrice, setPrice] = useState('');
-  // const [particularRowData, setParticularRowData] = useState({});
+  const [invoices, setInvoices] = useState('');
+  const [RowInvoices, setRowInvoices] = useState('');
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [CreditMemo, setCreditMemo] = useState([]);
+
+  const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const [creditmemoData,setcreditmemoData]=useState([]);
 
   useEffect(() => {
-    props.getBrand();
-    props.getCategorylist();
-    props.getAllProductList();
-    props.getSupplierSuppliesQuality();
-    props.getLocationList(props.orgId);
-    props.getSaleCurrency()
-    props.getProcureDetails(props.particularRowData.orderId);
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+  '14', // 0
+  '264', // 1
+  '265', // 2
+  '259', // 3
+  '654', // 4
+  '658', // 5
+  '655',
+  '260',
+  '657',//8
+  '1093',
+  "1169",//10
+  "1225",
+  '1224',//12
+  "110",
+  
+        ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+
+  useEffect(() => {
+    // props.getBrand();
+    // props.getCategorylist();
+    // props.getAllProductList();
+    // props.getSupplierSuppliesQuality();
+    // props.getLocationList(props.orgId);
+    // props.getSaleCurrency()
+    props.getProcureDetails(props.particularRowData.orderPhoneId);
+    fetchCreditMemoData();
   }, []);
+
+  const fetchCreditMemoData = async () => {
+    try {
+      const response = await axios.get(`${base_url2}/creditMemo/creditMemoList/${props.distributorId}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setcreditmemoData(response.data);
+      setLoading(false);
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    }
+  };
 
   const handleChange = (id, fieldName, value) => {
     setEditedFields((prevFields) => ({
@@ -101,7 +164,6 @@ function AccountProcureDetails(props) {
 
   const handleCategoryChange = async (value) => {
     setCategory(value);
-   
   };
   
   const handleModelChange = (value) => {
@@ -113,6 +175,17 @@ function AccountProcureDetails(props) {
   };
 
   const handleUpdate = (id) => {
+    const unitValue = editedFields[id]?.unit || 1;
+    if (unitValue < 1) {
+      Swal.fire({
+        title: 'Validation Error!',
+        text: 'Unit value must be at least 1.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+      return;
+    }
+
     const data = {
       model: brand,
       orderPhoneId: props.particularRowData.orderId,
@@ -125,6 +198,7 @@ function AccountProcureDetails(props) {
       location:location,
       currency:currency,
       price:newPrice,
+      invoice: invoices,
     };
 
     props.updateProcureDetails(data, id);
@@ -140,41 +214,191 @@ function AccountProcureDetails(props) {
   // if (props.fetchingProcureDetails) {
   //   return <BundleLoader />;
   // }
+  
+  const handleCreditMemo =  (value) => {
+    setCreditMemo(value);
+  };
 
+  const handleUnitChange = (id, value) => {
+    const unitValue = parseInt(value, 10);
+    if (unitValue < 1 || isNaN(unitValue)) {
+      setEditedFields((prevFields) => ({
+        ...prevFields,
+        [id]: {
+          ...prevFields[id],
+          reaminingInvoiceUnit: 1, 
+        },
+      }));
+    } else {
+      setEditedFields((prevFields) => ({
+        ...prevFields,
+        [id]: {
+          ...prevFields[id],
+          reaminingInvoiceUnit: unitValue,
+        },
+      }));
+    }
+  };
+
+
+const handleGenerateInvoice= async () => {
+    setLoading(true);
+    setError(null);
+    const selectedData = creditmemoData.filter(item => CreditMemo.includes(item.creditMemo));
+    const itemList = props.procureDetails.map(item => {
+      const unitValue = editedFields[item.id]?.reaminingInvoiceUnit || item.reaminingInvoiceUnit;  
+      if (unitValue < 1) {
+        Swal.fire({
+          title: 'Validation Error!',
+          text: 'Unit value must be at least 1 for all items.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        setLoading(false);
+        return null; 
+      }
+      if (selectedData < 1) {
+        Swal.fire({
+          title: 'Validation Error!',
+          text: 'Credit memo has not valid amount',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        setLoading(false);
+        return null; 
+      }
+      return {
+        price: item.price,
+        procureOrderProductId: item.id,
+        unit:  inputValues[item.id] || '',
+        //unit:RowInvoices,
+        // reaminingInvoiceUnit:unitValue
+      };
+    }).filter(item => item !== null); 
+  
+    if (itemList.length === 0) {
+      setLoading(false);
+      return; 
+    }
+    if (invoices.trim() === '') {
+      Swal.fire({
+        title: 'Validation Error',
+        text: 'Invoice field cannot be blank.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+      return;
+    }
+
+   
+
+    try {
+      const response = await axios.post(`${base_url2}/invoice/procureInvoice`,{
+
+      userId: props.userId,
+      distributorId:props.distributorId,
+        invoiceId: invoices,
+        itemList: itemList,
+        procureOrderInvoiceId: "",
+        procureOrderProductInvoiceId:"",
+        orgId: props.orgId,
+        creditMemoList:selectedData,
+        processType:"Part",
+        procureInvoiceList:[
+          {
+          orderPhoneId: props.particularRowData.orderId,
+        }
+      ]
+
+      },
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+        
+      );
+      setData(response.data);
+      Swal.fire({
+        title: 'Success!',
+        text: 'Invoice generated successfully!',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    });
+
+    props.handleProcureDetailsModal(false);
+    } 
+    
+    catch (err) {
+      setError(err);
+      Swal.fire({
+        title: 'Error!',
+        text: 'There was an issue generating the invoice.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+    });
+    } finally {
+      setLoading(false);
+    }
+    setInvoices("");
+  }; 
+
+  const handleInputChange = (id, value) => {
+    setInputValues({
+      ...inputValues,
+      [id]: value
+    });
+  };
+  
   return (
     <>
-      <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className="flex justify-between  w-[99%] p-1 bg-transparent font-bold sticky z-10">
-        <div className="md:w-[7.4rem]">
-            <FormattedMessage id="app.category" defaultMessage="Category" />
+      <div className="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[83vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className="flex justify-between font-bold font-poppins text-xs w-[99%]   p-1 bg-transparent  sticky z-10">
+      
+          <div className="w-[10.4%] md:w-[10.4%]">
+        {translatedMenuItems[13]}
           </div>
-          <div className="md:w-[7.4rem]">
-            <FormattedMessage id="app.brand" defaultMessage="Brand" />
+
+        <div className=" w-[7.4%] md:w-[7.4%]">
+        {translatedMenuItems[0]} {/* Category" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.model" defaultMessage="Model" />
+          <div className="w-[7.4%] md:w-[7.4%]">
+          {translatedMenuItems[1]}{/* Brand" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
+          <div className="w-[7.1%] md:w-[7.1%]">
+          {translatedMenuItems[2]} {/* Model" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.quality" defaultMessage="Quality" />
+          <div className="w-[7.1%] md:w-[7.1%]">
+          {translatedMenuItems[3]} {/* Attribute" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.location" defaultMessage="Location" />
+
+          {/* <div className=" w-[7%] md:w-[7%]">
+          {translatedMenuItems[4]}  /> Quality
+          </div> */}
+          {/* <div className="md:w-[7.1%]">
+          {translatedMenuItems[5]} */}
+          {/* Location" /> */}
+          {/* </div> */}
+          {/* <div className=" w-[8%] md:w-[8%]">
+          {translatedMenuItems[6]}  Specs  
+          </div> */}
+          <div className="w-[4.8%] md:w-[5.8%]">
+          {translatedMenuItems[8]} {/*Price" /> */}
           </div>
-          <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.specs" defaultMessage="Specs" />
+          <div className="w-[5%] md:w-[5%]">
+          {translatedMenuItems[7]} {/* Units" /> */}
           </div>
-          <div className="md:w-[2.8rem]">
-            <FormattedMessage id="app.units" defaultMessage="Units" />
+          <div className="w-[5%] md:w-[5%]">
+          {translatedMenuItems[10]} 
           </div>
-          <div className="md:w-[4.8rem]">
-            <FormattedMessage id="app.price" defaultMessage="Price" />
+          <div className=" w-[5.8%] md:w-[5.8%]">
+          {translatedMenuItems[9]}
           </div>
-        
-        
-          <div className="md:w-[2rem]"></div>
+              <div className="w-[5%] md:w-[5%]">
+          Supplies ID
+          </div>
+      
+       
         </div>
         <InfiniteScroll
         dataLength={props.procureDetails.length}
@@ -182,224 +406,104 @@ function AccountProcureDetails(props) {
       // hasMore={hasMore}
         loader={props.fetchingProcureDetails?<div class="flex justify-center">Loading...</div>:null}
         height={"71vh"}
+        style={{scrollbarWidth:"thin"}}
         // endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-        {props.procureDetails.map((item, index) => {
+        {props.procureDetails.length > 0 ? 
+        props.procureDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
-
-<div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
-                {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={category}
-                      onChange={(e) => handleCategoryChange(e.target.value)}
-                    >
-                      {props.categoryList.map((categoryItem, categoryIndex) => (
-                        <option key={categoryIndex} value={categoryItem.id}>
-                          {categoryItem.categoryName}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.category}</div>
-                  )}
-                </div>
+              <div className="flex  md:w-[0.5%] max-sm:flex-row w-[2.5%] max-sm:justify-between">
+              <div className="text-xs  font-poppins">
+           {item.imageId}</div>
               </div>
-              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
-                  {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={brand}
-                      onChange={(e) => handleBrandChange(e.target.value)}
-                    >
-                      {props.brand.map((brandItem, brandIndex) => (
-                        <option key={brandIndex} value={brandItem.brand}>
-                          {brandItem.brand}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.brand}</div>
-                  )}
-                </div>
-              </div>
-              <div className="flex font-medium flex-col md:w-[30rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
-                  {editContactId === item.id ? (
-                    <Select
-                      className="w-32"
-                      value={model}
-                      onChange={handleModelChange}
-                    >
-                      {props.model.map((modelItem) => (
-                        <Option key={modelItem.id} value={modelItem.id}>
-                          {modelItem.model}
-                        </Option>
-                      ))}
-                    </Select>
-                  ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.model}</div>
-                  )}
-                </div>
-              </div>
-              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
-                  {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={attribute}
-                      onChange={(e) => handleAttributeChange(e.target.value)}
-                    >
-                      {props.allProduct.map((attributeItem, attributeIndex) => (
-                        <option key={attributeIndex} value={attributeItem.productId}>
-                          {attributeItem.productFullName}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.attribute}</div>
-                  )}
-                </div>
-              </div>
-              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
-                  {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={quality}
-                      onChange={(e) => handleQualityChange(e.target.value)}
-                    >
-                      {props.supplierSuppliesQuality.map((qualityItem, qualityIndex) => (
-                        <option key={qualityIndex} value={qualityItem.qualityId}>
-                          {qualityItem.code}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.quality}</div>
-                  )}
-                </div>
-              </div>
-              <div className="flex font-medium flex-col md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
-                  {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={location}
-                      onChange={(e) => handleLocationChange(e.target.value)}
-                    >
-                      {props.locationlist.map((locationItem, locationIndex) => (
-                        <option key={locationIndex} value={locationItem.locationDetailsId}>
-                          {locationItem.locationName}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.location}</div>
-                  )}
-                </div>
-              </div>
-              <div className="flex font-medium flex-col md:w-[6rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
-                  {editContactId === item.id ? (
-                    <Select
-                      style={{ width: 100 }}
-                      value={specs}
-                      onChange={handleSpecsChange}
-                    >
-                      <Option value="US">US</Option>
-                      <Option value="CE">CE</Option>
-                      <Option value="IND">IND</Option>
-                      <Option value="HK">HK</Option>
-                    </Select>
-                  ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.specs}</div>
-                  )}
-                </div>
+              <div className="flex  md:w-[4%] ml-1 max-sm:flex-row w-[4%] max-sm:justify-between">
+              <div className="text-xs  font-poppins">
+           {item.productFullName}</div>
               </div>
 
-              <div className="flex font-medium flex-col ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
-                  {editContactId === item.id ? (
-                    <input
-                      placeholder="Update Unit"
-                      style={{border:"2px solid black"}}
-                      type="text"
-                      value={newUnitName}
-                      onChange={(e) => setUnitName(e.target.value)}
-                    />
-                  ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.unit}</div>
-                  )}
+<div className="flex  md:w-[10%] max-sm:flex-row w-[10%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                
+                                      <div className=" text-xs  font-poppins">{item.category}</div>
                 </div>
               </div>
-
-              <div className="flex font-medium flex-col ml-2 md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
-                  {editContactId === item.id ? (
-                    <input
-                      placeholder="Update Price"
-                      style={{border:"2px solid black",width:"6rem"}}
-                      type="text"
-                      value={newPrice}
-                      onChange={(e) => setPrice(e.target.value)}
-                    />
-                  ) : (
-                    <div className="font-normal text-sm  font-poppins">{item.price}{item.currency} </div>
-                  )}
+              <div className="flex  md:w-[5%] max-sm:flex-row w-[5%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                 
+                                   <div className=" text-xs  font-poppins">{item.brand}</div>
                 </div>
               </div>
-              <div className="flex font-medium flex-col md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-sm  font-poppins">
-                  {editContactId === item.id ? (
-                    <select
-                      className="customize-select"
-                      style={{ width: "70%" }}
-                      value={currency}
-                      onChange={(e) => handleCurrencyChange(e.target.value)}
-                    >
-                      {props.saleCurrencies.map((currencyItem, currencyIndex) => (
-                        <option key={currencyIndex} value={currencyItem.currency_id}>
-                          {currencyItem.currency_name}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
                   
-                    <div className="font-normal text-sm  font-poppins"></div>
-                  )}
+                             <div className=" text-xs  font-poppins">{item.model}</div>
+                </div>
+              </div>
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                 
+                   <div className=" text-xs  font-poppins">{item.attribute}</div>
+                </div>
+              </div>
+              {/* <div className="flex  md:w-[4%] max-sm:flex-row w-[5%] max-sm:justify-between">                          
+                  <div className=" text-xs  font-poppins">{item.quality}</div>      
+              </div> */}
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                
+                 
+                  <div className=" text-xs  font-poppins">{item.location}</div>
+                </div>
+              </div>
+              {/* <div className="flex  md:w-[4%]  max-sm:flex-row w-[4%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                  
+            <div className=" text-xs  font-poppins">{item.specs}</div>
+                </div>
+              </div> */}
+
+            <div className="flex   md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                 
+<div className=" text-xs  font-poppins">{item.price}{item.currency} </div>
+                </div>
+              </div>
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                {item.unit}
+                    
+                   
+ 
+                 
+                </div>
+              </div>
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                {/* {item.reaminingInvoiceUnit === 0 ? `$` : */}
+                <input
+  placeholder="Invoice Units"
+  style={{ border: "1px solid grey",width:"4rem" }}
+  min="1"
+  value={inputValues[item.id] || ''}
+  onChange={(e) => handleInputChange(item.id, e.target.value)}
+  
+  // value={editedFields[item.id]?.RowInvoices || item.RowInvoices}
+  // onChange={(e) => setRowInvoices(item.id, e.target.value)}
+/>
+             
+                </div>
+              </div>
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                {item.reaminingInvoiceUnit}
+                
                 </div>
               </div>
              
-
-              <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
-                <div className="flex">
-                  {editContactId === item.id ? (
-                    <>
-                      <Button onClick={() => handleUpdate(item.id,)}>
-                        Save
-                      </Button>
-                      <Button onClick={() => handleCancelClick(item.id)} style={{ marginLeft: '0.5rem' }}>
-                        Cancel
-                      </Button>
-                    </>
-                  ) : (
-                    <BorderColorIcon
-                      tooltipTitle="Edit"
-                      iconType="edit"
-                      onClick={() => handleEditClick(item.id,item.category, item.brand, item.model,item.attribute,item.quality,item.location, item.unit, item.specs,item.price,item.currency,)}
-                      style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
-                    />
-                  )}
-                </div>
+           
+              <div className="flex justify-end  max-sm:flex-row max-sm:w-auto">
+               
                 <div>
                   <StyledPopconfirm
                     title="Do you want to delete?"
@@ -411,7 +515,7 @@ function AccountProcureDetails(props) {
                         style={{
                           cursor: "pointer",
                           color: "red",
-                          fontSize: "1rem",
+                          fontSize: "1%",
                         }}
                       />
                     </Tooltip>
@@ -420,7 +524,48 @@ function AccountProcureDetails(props) {
               </div>
             </div>
           );
-        })}
+        }):"No Invoices have been created"}
+         <div className="flex max-sm:flex-row mt-2 justify-end">
+                <div className="text-xs  font-poppins shadow-sm">
+                   <input
+                  //  className=" border-red-600 h-6 shadow-sm "
+                   placeholder="invoice"
+                   style={{border:"1px solid red",height:"1.5rem", }}
+                   type="text"
+                   value={invoices}
+                   onChange={(e) => setInvoices(e.target.value)}
+                 />
+                </div>
+                <div className="ml-2 ">
+                <Select
+                     style={{width:"10rem"}}
+                     placeholder="Apply Credit"
+                      value={CreditMemo}
+                      onChange={(value) => handleCreditMemo(value)}
+                      mode="multiple" 
+                    >
+   {creditmemoData.map((critem, crindex) => (
+      <option  key={critem.creditMemoId} value={critem.creditMemo}>
+       {critem.creditMemoId} {critem.creditMemo}
+      </option>
+    ))}
+
+                    </Select>
+                    </div>
+                    <div className="ml-2 ">
+                    
+                
+                    <Button
+                        type='primary'
+                        onClick={handleGenerateInvoice}
+                    >
+                      <IosShareIcon className=" !text-icon" />
+        {translatedMenuItems[12]}
+                    </Button>
+                   
+              </div>
+              </div>
+          
           </InfiniteScroll>
       </div>
     </>
@@ -439,6 +584,8 @@ const mapStateToProps = ({ distributor,suppliers,auth }) => ({
   locationlist:distributor.locationlist,
   saleCurrencies: auth.saleCurrencies,
   orgId: auth.userDetails.organizationId,
+  userId: auth.userDetails.userId,
+  distributorId: distributor.distributorDetailsByDistributorId.distributorId,
 });
 
 const mapDispatchToProps = (dispatch) =>

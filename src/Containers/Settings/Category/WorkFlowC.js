@@ -5,7 +5,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm,Switch, Input,Tooltip,Select } from "antd";
+import { Popconfirm,Switch, Input,message,Tooltip,Select,Button } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
@@ -23,9 +23,20 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MainWrapper } from "../../../Components/UI/Layout";
 
 const { Option } = Select;  
+const optionsData = [
+  "Production",
+  "Quotation",
+  "Repair",
+  "Supplier-Onboarding",
+  "Task",
+  "User-Onboarding",
+  "Deals",
+  "Others",
+];
 const WorkFlowC = (props) => {
   const [touched, setTouched] = useState(false);
   const [type, setType] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
   const [currentData, setCurrentData] = useState("");
@@ -43,6 +54,11 @@ const WorkFlowC = (props) => {
     console.log(name)
       setEditingId(sectorId);
       setCategoryName(name);
+  };
+
+  const handleSelectType = (value) => {
+    setSelectedValue(value);
+   
   };
 
 
@@ -67,6 +83,7 @@ const WorkFlowC = (props) => {
       let data={
         name:newCategoryName,
         orgId:props.orgId,
+        navType:selectedValue
       }
       props.addWorkFlowCategory(data)
       setAddingRegion(false)
@@ -93,6 +110,7 @@ const WorkFlowC = (props) => {
 
   const handleCancelAdd = () => {
     setCategoryName('');
+    setSelectedValue(null);
       setAddingRegion(false);
   };
   const cancelEdit = () => {
@@ -174,6 +192,27 @@ const WorkFlowC = (props) => {
     props.updateGlobalWorkflow(data,key)
     console.log(`Row ${key} switch is now ${checked}`);
   };
+
+
+  const renderOptions = () => {
+    return optionsData.map((option) => {
+      const isDisabled = workFlowCategory.some((item) => item.name === option);
+      return (
+        <Option
+          key={option}
+          value={option}
+          disabled={isDisabled}
+          onMouseEnter={() => {
+            if (isDisabled) {
+              message.info(`${option} has already been selected.`);
+            }
+          }}
+        >
+          {option}
+        </Option>
+      );
+    });
+  };
   useEffect(() => {
       
       if (props.workFlowCategory.length > 0) {
@@ -188,11 +227,11 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
+    <div class=" flex flex-row justify-end items-center">
  
             <div className="add-region">
               {addingRegion ? (
-                  <div>
+                  <div style={{display:"flex"}}>
                       <input 
                         placeholder="Add workFlowCategory"
                       style={{border:"2px solid black",width:"55%"}}
@@ -200,18 +239,35 @@ return <div><BundleLoader/></div>;
                           value={newCategoryName} 
                           onChange={(e) => setCategoryName(e.target.value)} 
                       />
-                      <button 
+                        <Select
+        style={{ width: '55%' }}
+        placeholder="Select workFlowCategory"
+        onChange={handleSelectType}
+        disabled={!newCategoryName}
+        value={selectedValue}
+      >
+       
+           
+            {renderOptions()}
+           
+          
+        
+      </Select>
+                      <Button 
+                        disabled={!selectedValue}
                          loading={props.addingWorkflowCategory}
-                      onClick={handleSector}>Save</button>
-                      <button onClick={handleCancelAdd}>Cancel</button>
+                      onClick={handleSector}>Save</Button>
+                      <Button onClick={handleCancelAdd}>Cancel</Button>
                   </div>
+
+                  
               ) : (
                   <button 
                   loading={props.addingWorkflowCategory}
                    style={{backgroundColor:"tomato",color:"white"}}
                   onClick={handleAddSector}> Add More</button>
               )}
-  {props.primaryOrgType === 'Parent' && (
+  {props.primaryOrgType === 'Child' && (
 <Select
         showSearch
         style={{ width: 200,marginLeft:'20px' }}

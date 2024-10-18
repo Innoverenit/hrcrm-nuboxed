@@ -25,7 +25,9 @@ class AccountOrderDetailsModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <AccountOrderDetails particularRowData={this.props.particularRowData} />
+                        <AccountOrderDetails particularRowData={this.props.particularRowData} 
+                         selectedLanguage={this.props.selectedLanguage}
+                         translateText={this.props.translateText}/>
                     </Suspense>
                 </StyledDrawer>
             </>

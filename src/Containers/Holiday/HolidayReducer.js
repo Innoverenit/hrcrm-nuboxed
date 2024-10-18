@@ -35,7 +35,10 @@ export const holidayReducer = (state = initialState, action) => {
     case types.ADD_HOLIDAY_REQUEST:
       return { ...state, addingHoliday: true };
     case types.ADD_HOLIDAY_SUCCESS:
-      return { ...state, addingHoliday: false };
+      return { ...state, 
+        addingHoliday: false ,
+        holidays:[action.payload, ...state.holidays],
+      };
     case types.ADD_HOLIDAY_FAILURE:
       return {
         ...state,

@@ -47,7 +47,7 @@ import {
   getTopicsByCandidateId,
 } from "../../../../../Candidate/CandidateAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import moment from "moment";
+import dayjs from "dayjs";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import EditRecruitForm from "./EditRecruitForm";
 import { Suspense } from "react";
@@ -393,8 +393,8 @@ class RecruitmentTable extends Component {
         ...this.getColumnSearchProps("topic"),
         width: "13%",
         render: (name, item, i) => {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           console.log(item);
 
           return {
@@ -595,7 +595,7 @@ class RecruitmentTable extends Component {
           return 0;
         },
         render: (text, item) => {
-          const creationDate = moment(item.creationDate).format("L");
+          const creationDate = dayjs(item.creationDate).format("L");
 
           return {
             props: {
@@ -683,7 +683,7 @@ class RecruitmentTable extends Component {
               },
             },
 
-            children: <span>{moment(item.avilableDate).format("L")}</span>,
+            children: <span>{dayjs(item.avilableDate).format("L")}</span>,
           };
         },
         sorter: (a, b) => {
@@ -700,17 +700,17 @@ class RecruitmentTable extends Component {
         title: "Duration",
         width: "8%",
         render: (text, item) => {
-          //const getDate = (date) => moment(date, 'DD/MM/YYYY').startOf('month')
+          //const getDate = (date) => dayjs(date, 'DD/MM/YYYY').startOf('month')
           const diff = Math.abs(
-            moment(item.availableDate).diff(moment(item.endDate), "months")
+            dayjs(item.availableDate).diff(dayjs(item.endDate), "months")
           );
           const date = diff + 1;
-          // const availableDate = moment(item.availableDate).subtract(item.endDate);
+          // const availableDate = dayjs(item.availableDate).subtract(item.endDate);
           return (
             <>
               {/* {item.availableDate === null ? "None" : */}
               <span>
-                {/* {moment(item.availableDate).subtract(item.endDate).month()} */}
+                {/* {dayjs(item.availableDate).subtract(item.endDate).month()} */}
                 {date} months
               </span>
               {/* } */}
@@ -1266,14 +1266,14 @@ class RecruitmentTable extends Component {
           //         Sponsor Approved on
           //       </p>
           //       <p>{`${record.sponserInd
-          //         ? moment(record.sponserOfferDate).format("lll")
+          //         ? dayjs(record.sponserOfferDate).format("lll")
           //         : ""
           //         }`}</p>
           //       <p style={{ fontWeight: "bold", margin: 0 }}>
           //         Candidate Approved on
           //       </p>
           //       <p>{`${record.candidateOfferAccept} ${record.candidateInd
-          //         ? moment(record.candidateOfferDate).format("lll")
+          //         ? dayjs(record.candidateOfferDate).format("lll")
           //         : ""
           //         }`}</p>
           //       <p style={{ fontWeight: "bold", margin: 0 }}>Description</p>

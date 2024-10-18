@@ -8,11 +8,9 @@ const StyledSelect = styled(Select)`
     background-color: ${props => props.theme.backgroundColor};
     color: ${props => props.theme.color};
     display: block;
-    height: 1.48rem;
-    // margin: 0 0 0.42rem 0;
+    height: 1.88rem;
     outline: none;
     box-shadow: 0em 0.25em 0.625em -0.25em ${props => props.theme.boxShadowColor};
-    // padding: 0.3rem 1rem;
   }
   .ant-select-selection {
     box-shadow: 0em 0.25em 0.625em -0.25em ${props => props.theme.boxShadowColor};

@@ -20,6 +20,8 @@ import {
   getContactAllRecord,
   getCustomerRecords,
   getContactRecord,
+  getAllContact,
+  getTeamContact
 } from "../ContactAction";
 import {getDepartments} from "../../Settings/Department/DepartmentAction";
 
@@ -35,16 +37,34 @@ const ContactActionLeft = (props) => {
 
     if (searchOnEnter&&e.target.value.trim() === "") {
       setPage(pageNo + 1);
-      props.getContactListByUserId(props.userId, pageNo,"creationdate");
+      if (props.viewType === "table") {
+      props.getContactListByUserId(props.userId, pageNo,"Creation Date");
+      }
+      else if (props.viewType === "teams") {
+      props.getAllContact("0","Customer");
+      }
+      else if (props.viewType === "all") {
+      props.getTeamContact(props.userId, "0");
+      }
       props.ClearReducerDataOfContact()
     }
   };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
-      // Perform the search
-      props.inputContactDataSearch(currentData);
-      setSearchOnEnter(true);  //Code for Search
-    } else {
+      if (props.viewType === "table") {
+      props.inputContactDataSearch(currentData,"table","customer");
+      }
+      else if (props.viewType === "teams") {
+        props.inputContactDataSearch(currentData,"teams","customer");
+        }
+        else if (props.viewType === "all") {
+          props.inputContactDataSearch(currentData,"all","customer");
+          }
+      setSearchOnEnter(true);  
+    } 
+    
+    
+    else {
       console.error("Input is empty. Please provide a value.");
     }
   };
@@ -139,7 +159,7 @@ const ContactActionLeft = (props) => {
               color: props.viewType === "table" && "#1890ff",
             }}
           >
-           <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+           <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
              <AccountBalanceIcon className="text-white !text-icon" /></Avatar>
           </span>
         </Badge>
@@ -161,7 +181,7 @@ const ContactActionLeft = (props) => {
             class=" mr-1 text-sm cursor-pointer"
             onClick={() => props.setContactsViewType("teams")}
           >
-            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
          <PeopleIcon className="text-white !text-icon"/>
          </Avatar>
           </span>
@@ -188,7 +208,7 @@ const ContactActionLeft = (props) => {
               color: props.viewType === "all" && "#1890ff",
             }}
           >
-             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
           <div className="text-white "> ALL</div>
            </Avatar>
           </span>
@@ -250,7 +270,7 @@ const ContactActionLeft = (props) => {
       </div>
 
       <div class="w-[22%]  ml-2">
-          <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
+          <StyledSelect placeholder="Sort" defaultValue="Creation Date" value={props.filter}  onChange={(e)  => props.handleFilterChange(e)}>
           <Option value="CreationDate">Creation Date</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>
@@ -284,7 +304,9 @@ const mapDispatchToProps = (dispatch) =>
       getContactAllRecord,
       getCustomerRecords,
       getContactRecord,
-      getDepartments
+      getDepartments,
+      getAllContact,
+      getTeamContact
     },
     dispatch
   );

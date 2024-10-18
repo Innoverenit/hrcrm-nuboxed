@@ -28,19 +28,19 @@ function ProductionAllCardView(props) {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "MFG ID",//0
-              "Location",//1
-              "Cell",//1
-              "Created",//1
-              "Item",//1
-              "Category",//1
-              "Attribute",//1
-              "Start",//1
-              "End",//1
-              "Workflow",//1
-              "Status",//1
-              "Inspected",//1
-              "Dispatch",//1
+            "1061",//  "MFG ID",//0
+           "658" ,//   "Location",//1
+            "744",//   "Cell",//1
+           "679" ,//   "Created",//1
+            "1044",//   "Item",//1
+           "14", //   "Category",//1
+           "259", //   "Attribute",//1
+            "158",//   "Start",//1
+           "111", //   "End",//1
+            "141",//   "Workflow",//1
+            "142",//   "Status",//1
+           "1051", //   "Inspected",//1
+            "1063"//   "Dispatch",//1
           
           
            
@@ -116,7 +116,7 @@ function ProductionAllCardView(props) {
         <>
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  justify-between w-[99%] p-1 bg-transparent font-bold sticky h-8 z-10">
+                    <div className=" flex  justify-between w-[100%]  p-1 bg-transparent font-bold sticky h-8 z-10">
                         <div className=""></div>
                         <div className=" md:w-[8.1rem]">
                             {/* MFG ID */}

@@ -32,17 +32,7 @@ function DealAddedTable (props) {
         />,
         width: "22%",
         dataIndex: "proposalAmount",
-        defaultSortOrder: 'descend',
-        // sorter: (a, b) => a.proposalAmount - b.proposalAmount,
-  
-        // render: (name, item, i) => {
-        //   return (
-        //     <span>
-        //       <CurrencySymbol currencyType={this.props.currency} />{" "}
-        //       {`${item.proposalAmount}`}
-        //     </span>
-        //   );
-        // },
+        defaultSortOrder: 'descend',    
       },
       {
         // title: "Status",
@@ -51,18 +41,7 @@ function DealAddedTable (props) {
           defaultMessage="Status"
         />,
         width: "25%",
-        dataIndex: "stageName",
-        // sorter: (a, b) => {
-        //   const stageNameA = a.stageName && a.stageName.toLowerCase();
-        //   const stageNameB = b.stageName && b.stageName.toLowerCase();
-        //   if (stageNameA < stageNameB) {
-        //     return -1;
-        //   }
-        //   if (stageNameA > stageNameB) {
-        //     return 1;
-        //   }
-        //   return 0;
-        // },
+        dataIndex: "stageName",    
       },
     ];
   

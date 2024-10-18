@@ -3,7 +3,6 @@ import { Button, Icon, Tooltip } from "antd";
 import { Field } from "formik";
 import { EnvironmentOutlined } from '@ant-design/icons';
 import { FlexContainer } from "../../UI/Layout";
-import { Spacer, StyledLabel } from "../../UI/Elements";
 import FormikPlacesAutoComplete from "./FormikPlacesAutoComplete";
 import { InputComponent } from "../Formik/InputComponent";
 import { SelectComponent } from "../Formik/SelectComponent";
@@ -14,7 +13,7 @@ class AddressFieldArray2 extends Component {
         console.log(singleAddress);
         return (
             <div >
-                <Spacer />
+                <div class=" mt-3" />
                 {values &&
                     values.pickUpAddress.map((pickUpAddress, index) => (
                         <div>

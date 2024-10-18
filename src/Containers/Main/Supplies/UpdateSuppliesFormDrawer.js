@@ -24,7 +24,9 @@ class UpdateSuppliesFormDrawer extends Component {
                         <UpdateSuppliesForm 
                          translateText={this.props.translateText}
                          selectedLanguage={this.props.selectedLanguage}
-                        particularDiscountData={particularDiscountData} />
+                        particularDiscountData={particularDiscountData} 
+                        
+                        />
                     </Suspense>
                 </StyledDrawer>
             </div>

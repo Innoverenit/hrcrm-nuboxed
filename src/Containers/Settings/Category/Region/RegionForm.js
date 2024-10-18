@@ -45,7 +45,7 @@
 //             <div key={header} style={{marginTop:"23px"}}>
 //               <h3>{header}</h3>
 //               <div>
-//                 <label>Target</label>
+//                 <div class="font-bold text-xs font-poppins text-black">Target</div>
 //                 <input
 //                 style={{marginLeft:"12px"}}
 //                   type="number"
@@ -86,6 +86,7 @@ import {
   import { Tabs,Select } from 'antd';
   import { getKpiName } from "../KPI/KPIAction";
 import { getSaleCurrency } from "../../../Auth/AuthAction";
+import {base_url} from "../../../../Config/Auth";
 
 
 const { TabPane } = Tabs;
@@ -103,7 +104,7 @@ const YearHeaderInput = (props) => {
     setLoading(true);
     props.setActiveTab(key);
     try {
-      const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/regions/target/${props.currentregionId}/${props.selectedYear}/${key}`, {
+      const response = await axios.get(`${base_url}/regions/target/${props.currentregionId}/${props.selectedYear}/${key}`, {
         headers: {
           Authorization: `Bearer ${props.token}`
         }
@@ -231,7 +232,7 @@ const handleSubmit = () => {
             <div key={header} style={{marginTop:"23px"}}>
               <h3>{header}</h3>
               <div>
-                <label>Target</label>
+                <div class="font-bold text-xs font-poppins text-black">Target</div>
                 <input
                  style={{marginLeft:"12px"}}
                   type="number"

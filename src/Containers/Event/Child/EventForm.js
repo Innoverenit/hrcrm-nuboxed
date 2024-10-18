@@ -28,7 +28,8 @@ import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../Candidate/CandidateAction";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
-import { Listbox } from '@headlessui/react'
+import { Listbox } from '@headlessui/react';
+import {base_url} from "../../../Config/Auth";
 
 const { Option } = Select; 
 // yup validation scheme for creating a opportunity
@@ -70,25 +71,25 @@ function EventForm (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Type",//0
-         "Subject",//1
-         "Start Date",//2
-         "Start Time",//3
-          "End Date",//4
-          "End Time",//5
-          " Time Zone",//6
-          "Prospect",//7
-          "Contact",//8
-          "Opportunity",//9
-          "Assigned",//10
-          "Include",//11
-          "Address",//12
+        "71",//  "Type",//0
+       "72", //  "Subject",//1
+       "176", //  "Start Date",//2
+       "93", //  "Start Time",//3
+        "126" , // "End Date",//4
+         "94", // "End Time",//5
+        "95",  // " Time Zone",//6
+        "97" , // "Prospect",//7
+          "73",// "Contact",//8
+         "99", // "Opportunity",//9
+         "76", // "Assigned",//10
+          "75",// "Include",//11
+      "185", //"Address",//12
           // "Street",//13
           // "Zip Code",//14
           // "City", //15
           //  "State",//16
           //  "Country",///17
-           "Notes"//18
+         "316" //  "Notes"//18
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -212,7 +213,7 @@ const [customer, setCustomer] = useState([]);
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -249,7 +250,7 @@ const [customer, setCustomer] = useState([]);
     setIsLoadingCustomer(true);
     try {
       const apiEndpoint = `
-      https://develop.tekorero.com/employeePortal/api/v1/customer/drop/customer-list/${props.userId}`;
+     ${base_url}/customer/drop/customer-list/${props.userId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -287,7 +288,7 @@ const [customer, setCustomer] = useState([]);
     setIsLoadingContact(true);
     try {
       const apiEndpoint = `
-      https://develop.tekorero.com/employeePortal/api/v1/contact/user/${props.userId}`;
+     ${base_url}/contact/user/${props.userId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -327,7 +328,7 @@ const [customer, setCustomer] = useState([]);
     try {
       const apiEndpoint = `
       
-https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityList/${props.userId}`;
+${base_url}/opportunity/drop-opportunityList/${props.userId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -552,18 +553,15 @@ const {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]"  style={{scrollbarWidth:"thin"}}>
-            <Form className="form-background">
+            <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]  "  style={{scrollbarWidth:"thin"}}>
+            <Form className="form-background max-sm:w-[90%]">
               <div class=" flex justify-between max-sm:flex-col">
-                <div class=" h-full w-w47.5  mt-3 max-sm:w-wk">
+                <div class=" h-full w-w47.5  max-sm:w-wk">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                   <Field
                     isRequired
                     name="eventTypeId"
-                    //label="Type"
-                    // label={
-                    //   <FormattedMessage id="app.type" defaultMessage="type" />
-                    // }
+                    //label="Type"               
                     component={SearchSelect}
                     isColumnWithoutNoCreate
                     selectType="eventType"
@@ -575,13 +573,7 @@ const {
                   <Field
                     isRequired
                     name="eventSubject"
-                    //label="Topic"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.subject"
-                    //     defaultMessage="subject"
-                    //   />
-                    // }
+                    //label="Topic"             
                     isColumn
                   style={{ width:"100%"}}
                     component={InputComponent}
@@ -590,18 +582,12 @@ const {
               
                   <div class="mt-3">
                     <div class=" flex justify-between">
-                      <div class=" w-5/12">
+                      <div class=" w-5/12 flex flex-col">
                       <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
                         <Field
                           isRequired
                           name="startDate"
-                          //label="Start "
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.startDate"
-                          //     defaultMessage="Start Date"
-                          //   />
-                          // }
+                          //label="Start "                    
                           isColumn
                           component={DatePicker}
                           value={values.startDate}
@@ -609,18 +595,12 @@ const {
                         
                         />
                       </div>
-                      <div class=" w-5/12">
+                      <div class=" w-5/12 flex flex-col">
                       <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
                         <Field
                           isRequired
                           name="startTime"
-                          // label="Start Time"
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.startTime"
-                          //     defaultMessage="Start Time"
-                          //   />
-                          // }
+                          // label="Start Time"                    
                           isColumn
                           component={TimePicker}
                           use12Hours
@@ -632,18 +612,12 @@ const {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-5/12">
+                    <div class=" w-5/12 flex flex-col mt-1">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End "
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.enddate"
-                        //     defaultMessage="enddate"
-                        //   />
-                        // }
+                        // label="End "               
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -665,18 +639,12 @@ const {
                         }}
                       />
                     </div>
-                    <div class=" w-5/12">
+                    <div class=" w-5/12 flex flex-col mt-1">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                       <Field
                         isRequired
                         name="endTime"
-                        //label="End Time"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.endtime"
-                        //     defaultMessage="endtime"
-                        //   />
-                        // }
+                        //label="End Time"              
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -686,57 +654,26 @@ const {
                       />
                     </div>
                   </div>
-                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
+                  <div class=" text-xs font-bold font-poppins mt-1"> {translatedMenuItems[6]}</div>
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
                     isColumnWithoutNoCreate
                     name="timeZone"
-                    //label="TimeZone "
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.timeZone"
-                    //     defaultMessage="timeZone"
-                    //   />
-                    // }
+                    //label="TimeZone "        
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
                     component={SearchSelect}
                     inlineLabel
                   />
-       
-
-                    {/* <Field
-                      name="employeesId"
-                      isColumnWithoutNoCreate
-                      selectType="employee"
-                      // label="Assigned"
-                      label={
-                        <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="Assigned"
-                        />
-                      }
-                      component={SearchSelect}
-                      isColumn
-                      value={values.employeeId}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName || ""} ${
-                          lastName || ""
-                        }`,
-                        value: employeeId,
-                      }}
-                      inlineLabel
-                    /> */}
-                   
-                
+                       
                    <div class="mt-3" >
                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                   {props.user.crmInd === true &&(
               
      <>        
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label> */}
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</div> */}
 
 <Select
         showSearch
@@ -761,7 +698,7 @@ const {
                   {props.user.crmInd === true &&(
                   
                   <>
-                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label> */}
+                  {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</div> */}
 
 <Select
         showSearch
@@ -807,7 +744,7 @@ const {
               //    inlineLabel
               //  />
               <>
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label> */}
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</div> */}
               <Select
         showSearch
       
@@ -827,38 +764,7 @@ const {
                   )} 
                   </div>
                 
-                  {/* <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    label="Team"
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={
-                      props.setClearbitCandidateData
-                    }
-                    component={CandidateClearbit}
-                    inlineLabel
-                  /> */}
-                  {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
-                  
+                               
                 </div>
                 <div class="h-full w-w47.5 max-sm:w-wk ">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
@@ -866,12 +772,8 @@ const {
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            {/* <Listbox.Label className="block text-sm font-semibold text-gray-700">            
-              <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="assignedto"
-                      />
-            </Listbox.Label> */}
+                           {/* assignedto" */}
+                 
             <div className="relative ">
             <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
                 {selected}
@@ -935,29 +837,10 @@ const {
         )}
       </Listbox>
       </div>
-      <div class="mt-1">
+      <div class="mt-2">
       <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
-                  {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="include"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${empName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label> */}
+              
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</div> */}
                    <Select
           showSearch
           
@@ -976,7 +859,7 @@ const {
           ))}
         </Select>
                  </div>
-                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
+                 <div class=" text-xs font-bold font-poppins mt-1"> {translatedMenuItems[12]}</div>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -1036,7 +919,7 @@ const {
                     <div class=" w-1/2 font-bold">
                       <div class=" flex justify-between">
                         <div>
-                          <StyledLabel>Set Reminder </StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Set Reminder </div>
                         </div>
                         <div>
                           <Switch

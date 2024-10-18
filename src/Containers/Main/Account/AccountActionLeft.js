@@ -147,7 +147,7 @@ const AccountActionLeft = (props) => {
                                     color: props.viewType === "list" && "#1890ff",
                                 }}
                             >
-                                <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+                                <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355" }}>
                                     <TocIcon className="text-white !text-icon" /></Avatar>
 
                             </span>
@@ -169,7 +169,7 @@ const AccountActionLeft = (props) => {
                                     color: props.viewType === "all" && "#1890ff",
                                 }}
                             >
-                                <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                                <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
                                     <div class="text-white ">ALL</div></Avatar>
 
                             </span>
@@ -187,8 +187,8 @@ const AccountActionLeft = (props) => {
                             color: props.viewType === "dashboard" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
-                            <DeleteOutlined className="text-white " /></Avatar>
+                        <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#28a355" }}>
+                            <DeleteOutlined className="text-white !text-icon" /></Avatar>
 
                     </span>
                 </Badge>
@@ -203,48 +203,7 @@ const AccountActionLeft = (props) => {
                     onChange={handleChange}
                     value={currentData}
                 /></div>
-            {/* &nbsp; &nbsp;
-            {props.viewType === "table" ?
-                (
-                    <div style={{ fontSize: "0.9375em", fontWeight: "bold", color: "tomato" }}>
-                        # Records -{" "}{props.recordData.distributor || 0}{" "}
-                    </div>
-                )
-                : props.viewType === "all" ?
-                    (
-                        <div style={{ fontSize: "0.9375em", fontWeight: "bold", color: "tomato" }}>
-                            # Records -{" "}{props.recordAllData.distributor || 0}{" "}
-                        </div>
-                    ) : null} */}
-
-            {/* &nbsp;&nbsp;
-            {props.viewType === "table" ?
-                (
-                    <div>
-                        <>
-                            <b> {dayjs().format("ll")}  </b>
-                            &nbsp;&nbsp;
-                            <b>||&nbsp;&nbsp;Balance : ₹ {`${cost}`}  </b>
-                            &nbsp;&nbsp;
-                            <b>||&nbsp;&nbsp;Outstanding : ₹ {`${costA}`}</b>
-                            &nbsp;&nbsp;
-                        </>
-                    </div>
-                )
-                : props.viewType === "all" ?
-                    (
-
-                        <div>
-                            <>
-                                <b> {dayjs().format("ll")}  </b>
-                                &nbsp;&nbsp;
-                                <b>||&nbsp;&nbsp;Balance : ₹ {`${cost1}`}  </b>
-                                &nbsp;&nbsp;
-                                <b>||&nbsp;&nbsp;Outstanding : ₹ {`${costB}`}</b>
-                                &nbsp;&nbsp;
-                            </>
-                        </div>
-                    ) : null} */}
+           
         </div>
     );
 };

@@ -1,80 +1,3 @@
-// import React, { useState,useEffect } from 'react';
-// import { Tabs, Card } from 'antd';
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import { getDepartmentList,getDepartmentRoleData } from "../../../SettingsAction"
-// import DepartmentRole from './DepartmentRole';
-// // import MatrixData from './MatrixData';
-
-
-// const { TabPane } = Tabs;
-
-
-// const Access = (props) => {
-//     const [activeTab, setActiveTab] = useState(props.departmentList.length > 0 ? props.departmentList[0].departmentId : null);
-//   useEffect(() => {
-//     props.getDepartmentList(props.orgId);
-//      props.getDepartmentRoleData(activeTab);
-//     console.log(activeTab)
-//   },[activeTab]);
-
-//   useEffect(() => {
-   
-//     props.getDepartmentRoleData(activeTab);
-//     console.log(activeTab)
-//   },[activeTab]);
- 
-//   console.log(activeTab)
-
-//   const handleTabClick = (key) => {
-//     console.log(key)
-//     setActiveTab(key);
-//     props.getDepartmentRoleData(key);
-    
-//   };
-
-//   return (
-//     <Tabs type="card" activeKey={activeTab} onChange={handleTabClick}>
-//       {props.departmentList.map((item) => (
-//         <TabPane key={item.departmentId
-//         } tab={item.departmentName}>
-//           {/* <Card>
-//             <p>Country: {item.country_name}</p>
-//             <p>ID: {item.country_id}</p>
-//           </Card> */}
-        
-//           <DepartmentRole
-//           activeTab={activeTab}
-//           departmentRoleData={props.departmentRoleData}
-//           />
-//         </TabPane>
-//       ))}
-//     </Tabs>
-//   );
-// };
-
-// const mapStateToProps = ({ settings, opportunity, auth }) => ({
-//     departmentList: settings.departmentList,
-//     orgId:auth.userDetails.organizationId,
-//     departmentRoleData: settings.departmentRoleData,
-
-
-// });
-
-// const mapDispatchToProps = (dispatch) =>
-//     bindActionCreators({
-//         getDepartmentList,
-//         getDepartmentRoleData
-//     }, dispatch);
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Access);
-
-
-
-
-
-
-
 
 import React, { PureComponent,lazy, Suspense, } from "react";
 import { connect } from "react-redux";
@@ -97,9 +20,30 @@ class Access extends PureComponent {
         }
     }
 
+    // componentDidMount() {
+    //     this.props.getDepartmentList(this.props.orgId)
+    // }
     componentDidMount() {
         this.props.getDepartmentList(this.props.orgId)
-    }
+      
+        // Set the initial club data when departmentList is available
+        if (this.props.departmentList && this.props.departmentList.length > 0) {
+          this.setState({
+            departmentData: this.props.departmentList[0],
+          });
+        }
+      }
+      
+      componentDidUpdate(prevProps) {
+        // Check if departmentList has changed and set the initial state
+        if (prevProps.departmentList !== this.props.departmentList) {
+          if (this.props.departmentList && this.props.departmentList.length > 0) {
+            this.setState({
+              departmentData: this.props.departmentList[0],
+            });
+          }
+        }
+      }
 
     handleOnClick = (data) => {
         console.log(data);
@@ -120,7 +64,7 @@ class Access extends PureComponent {
       
         return (
             <>
-                <TabsWrapper style={{height:"150vh" }}>
+                <TabsWrapper className="h-[150vh]">
                     <StyledTabs type="card">
                         {departmentList.map((member, i) => {
                             return (

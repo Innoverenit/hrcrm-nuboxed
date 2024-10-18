@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { Switch, Checkbox, Popconfirm,Button, message, Select } from "antd";
+import React, {  } from "react";
+import { Popconfirm,Button } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import {
     LinkProcessPublish
 } from "../../../SettingsAction";
@@ -24,7 +23,7 @@ function onClick(props) {
 
     return (
         <>
-            <FlexContainer>
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                 <Popconfirm
                     title="Confirm received"
                     onConfirm={onClick}
@@ -42,7 +41,7 @@ function onClick(props) {
                                Publish
                              </Button> 
                 </Popconfirm>
-            </FlexContainer>
+            </div>
         </>
     );
 }

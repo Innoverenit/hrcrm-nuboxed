@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ClubStatusToggle from "./ClubStatusToggle"
 import { Button, Input, Select,Tooltip } from "antd";
 import {clubShare,getclubShare,updateClub} from "../../SettingsAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -127,16 +128,16 @@ function ClubList(props) {
 //     props.updateClub(updatedData,clubId);
 //     setEditsuppliesId(null);
 //   };
-const { clubShareData } = props;
-let clubId; // Declare clubId outside
+// const { clubShareData } = props;
+// let clubId; // Declare clubId outside
 
-if (clubShareData && clubShareData.length > 0) {
-  const firstItem = clubShareData[0];
-  clubId = firstItem.clubId;
-  console.log(clubId); // or use the clubId as needed
-} else {
-  console.error("clubShareData is undefined or empty");
-}
+// if (clubShareData && clubShareData.length > 0) {
+//   const firstItem = clubShareData[0];
+//   clubId = firstItem.clubId;
+//   console.log(clubId); // or use the clubId as needed
+// } else {
+//   console.error("clubShareData is undefined or empty");
+// }
 
 function handleUpdate(key) {
   console.log('Submitting Row:', key);
@@ -145,11 +146,11 @@ function handleUpdate(key) {
     noOfShare: key.noOfShare,
     discount: key.discount,
   };
-  if (clubId) {
-    props.updateClub(updatedData, clubId);
-  } else {
-    console.error("clubId is undefined");
-  }
+  // if (clubId) {
+    props.updateClub(updatedData, key.clubId);
+  // } else {
+  //   console.error("clubId is undefined");
+  // }
   setEditsuppliesId(null);
 };
 console.log(props.clubShareData)
@@ -164,7 +165,7 @@ console.log(props.clubShareData)
               
 
               <div>
-                <label>Name</label>
+                <div class="font-bold text-xs font-poppins text-black">Name</div>
                 <div class="w-24"></div>
                 <Input
                 type="text"
@@ -177,7 +178,7 @@ console.log(props.clubShareData)
                         {errors[`clubName${index}`] && <span className="text-red-500">{errors[`clubName${index}`]}</span>}
                       </div>
               <div>
-                <label># Shares</label>
+                <div class="font-bold text-xs font-poppins text-black"># Shares</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -188,7 +189,7 @@ console.log(props.clubShareData)
                        {errors[`noOfShare${index}`] && <span className="text-red-500">{errors[`noOfShare${index}`]}</span>}
                       </div></div>
               <div>
-                <label>Discount %</label>
+                <div class="font-bold text-xs font-poppins text-black">Discount %</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -198,6 +199,8 @@ console.log(props.clubShareData)
                       />
                         {errors[`discount${index}`] && <span className="text-red-500">{errors[`discount${index}`]}</span>}
                 </div>
+
+
               </div>
             </div>
             <div class="mt-4">
@@ -211,7 +214,7 @@ console.log(props.clubShareData)
 
       <div className=' flex sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">         
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">         
             <div className=" md:w-[10rem]">Name</div>
             <div className=" md:w-[10.1rem]"># Shares</div>
             <div className=" md:w-[11.2rem] ">Discount %</div>
@@ -270,10 +273,18 @@ console.log(props.clubShareData)
                     </div>
                      ):(
                       <div className="font-normal text-sm  font-poppins">
-                      <div> {item.discount}</div>
+                      <div> {item.discount} %</div>
                     </div>
                     )}
                   </div>
+                  
+                <div class="w-24">
+                <ClubStatusToggle
+                                  invToCusInd={item.invToCusInd}
+                                  clubId={item.clubId}
+                                  // suppliesId={item.suppliesId}
+                                />
+                </div>
 
                   <div class="flex md:items-center">
 

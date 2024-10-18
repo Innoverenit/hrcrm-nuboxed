@@ -118,8 +118,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end items-center">
+    <div class="mb-1 flex w-[18vw]" >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -129,7 +129,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[38rem]">
+          <div class="ml-2 mr-2">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"roleTypeExternal"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -138,7 +138,7 @@ return <div><BundleLoader/></div>;
     </div>
   </a>
 </div>
-            <div className="add-region">
+            <div className="add-region justify-end">
               {addingRegion ? (
                   <div>
                       <input 

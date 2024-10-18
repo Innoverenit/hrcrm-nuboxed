@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { GroupView } from '../../../../Components/Common';
 import { NoData } from "../../../../Components/UI/Elements";
 import SingleVoIP from '../VoIPList/SingleVoIP';
@@ -33,7 +32,7 @@ class VoIPGroup extends Component {
                     {
                         (isViewAll, toggleViewAll) => (
                             !isViewAll
-                                ? <FlexContainer>
+                                ? <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                                     {twilioCredential && twilioCredential.slice(0, 5)
                                         .map((voip, i) => {
                                             return (
@@ -43,8 +42,8 @@ class VoIPGroup extends Component {
 
                                                 />)
                                         })}
-                                </FlexContainer>
-                                : <FlexContainer>
+                                </div>
+                                : <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                                     {twilioCredential && twilioCredential.map((voip, i) => {
                                         return (
                                             <SingleVoIP
@@ -53,7 +52,7 @@ class VoIPGroup extends Component {
 
                                             />)
                                     })}
-                                </FlexContainer>
+                                </div>
                         )
                     }
                 </GroupView>

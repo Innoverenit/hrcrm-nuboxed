@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Input, Space, Tooltip, Button } from "antd";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
 // import {
@@ -184,7 +184,7 @@ class AllocationTable extends Component {
         width:"10%",
         dataIndex: "shiftStartDate",
         render: (name, item, i) => {
-          return <>{moment(item.shiftStartDate).format("ll")}</>;
+          return <>{dayjs(item.shiftStartDate).format("ll")}</>;
         },
       },
       {
@@ -192,7 +192,7 @@ class AllocationTable extends Component {
         width:"10%",
         dataIndex: "shiftEndDate",
         render: (name, item, i) => {
-          return <>{moment(item.shiftEndDate).format("ll")}</>;
+          return <>{dayjs(item.shiftEndDate).format("ll")}</>;
         },
       },
 

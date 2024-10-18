@@ -3,15 +3,10 @@ import { connect } from "react-redux";
 import { Button, message } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../Components/UI/Antd";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-
-// import SecondInvoicePage from "./SecondInvoicePage";
 import FirstInvoiceProjectPage from "./FirstInvoiceProjectPage";
 
 
-
 const Step = StyledSteps.Step;
-
 class InvoiceProjectStepper extends Component {
   //   componentDidMount() {
   //   this.props.getCandidatesTotalBillingsForInvoice(this.props.customerId,this.props.projectId,this.props.month,this.props.year);
@@ -70,11 +65,7 @@ handleProjectId = (e) => {
         />,
        
       },
-    //   {
-    //     title: "Second",
-    //     content:<SecondInvoicePage/>,
-    //     // <SecondStep projectDetailsId={this.props.projectDetailsId} />,
-    //   },
+  
     
     ];
     const { current } = this.state;

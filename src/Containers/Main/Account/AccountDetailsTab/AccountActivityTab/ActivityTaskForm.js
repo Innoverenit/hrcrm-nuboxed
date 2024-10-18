@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, {  useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip, Switch } from "antd";
@@ -10,13 +10,10 @@ import { getAllOpportunityData } from "../../../../Opportunity/OpportunityAction
 import { getFilteredEmailContact } from "../../../../Candidate/CandidateAction";
 import { getAllCustomerData,addCustomerActivityTask } from "../../../../Customer/CustomerAction"
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { Spacer } from "../../../../../Components/UI/Elements";
 import { getUnits } from "../../../../../Containers/Settings/Unit/UnitAction";
-import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
-import { TimePicker } from "../../../../../Components/Forms/Formik/TimePicker";
 import {
     addTask,
     updateTask,
@@ -34,7 +31,7 @@ import {
     getTaskForWorkflow,
 } from "../../../../Settings/SettingsAction";
 import { handleChooserModal } from "../../../../Planner/PlannerAction";
-import { StyledLabel } from "../../../../../Components/UI/Elements";
+
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import ButtonGroup from "antd/lib/button/button-group";
 import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
@@ -42,8 +39,7 @@ import { getAssignedToList } from "../../../../Employees/EmployeeAction";
 import Upload from "../../../../../Components/Forms/Formik/Upload";
 import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
 import { Select } from "antd";
-import moment from "moment";
-import { Listbox, Transition } from '@headlessui/react';
+import { Listbox } from '@headlessui/react';
 
 const { Option } = Select;
 
@@ -84,20 +80,10 @@ function ActivityTaskForm(props) {
 
     const handleTaskTypeChange = (event) => {
         const selectedTaskType = event.target.value;
-        // const filteredWorkflow = props.recruitWorkflowTask.filter((item) => item.taskTypeId === selectedTaskType);
         setSelectedTaskType(selectedTaskType);
         setSelectedWorkflow("");
         props.getTaskForWorkflow(selectedTaskType);
     };
-
-    //  const handleTaskTypeChange = (event) => {
-    //     const selectedTaskType = event.target.value;
-    //      const filteredWorkflow = props.recruitWorkflowTask.filter((item) => item.taskTypeId === selectedTaskType);
-    //      const workflow=filteredWorkflow
-    //      setselectedTaskType(selectedTaskType,workflow);
-    //     console.log(selectedTaskType)
-    //     props.getTaskForWorkflow(selectedTaskType);
-    //   };
 
     const handleWorkflowChange = (event) => {
         const selectedWorkflow = event.target.value;
@@ -142,28 +128,6 @@ function ActivityTaskForm(props) {
 
         return newData;
     };
-
-    // handleCheckListOptions = (filterOptionKey, filterOptionValue) => {
-    //   const listOptions =
-    //     this.props.recruitWorkflowTask.length &&
-    //     this.props.recruitWorkflowTask
-    //       .filter((option) => {
-    //         if (
-    //           option.taskTypeId === filterOptionValue &&
-    //           option.probability !== 0
-    //         ) {
-    //           return option;
-    //         }
-    //       })
-    //       .map((option) => ({
-    //         label: option.taskChecklistName || "",
-    //         value: option.taskType,
-    //       }));
-    //   console.log(listOptions);
-
-    //   return listOptions;
-    // };
-
     function taskStageOptions(filterOptionKey, filterOptionValue) {
         const listOptions =
             props.recruitTaskStages.length &&
@@ -250,8 +214,6 @@ function ActivityTaskForm(props) {
         .map((item) => {
             return {
                 label: `${item.name}`,
-                // label: `${item.salutation || ""} ${item.firstName ||
-                //   ""} ${item.middleName || ""} ${item.lastName || ""}`,
                 value: item.customerId,
             };
         });
@@ -321,15 +283,6 @@ function ActivityTaskForm(props) {
             value: item.unitId,
         };
     });
-
-    // const TaskOptions = this.props.recruitWorkflowTask.map((item) => {
-    //   return {
-    //     label: `${item.taskChecklistName}`,
-    //     value: item.taskChecklistId,
-    //   };
-    // });
-
-
     const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.assignedToList.find((item) => item.empName === selected);
@@ -343,7 +296,7 @@ function ActivityTaskForm(props) {
                     isEditing
                         ? prefillTask
                         : {
-                            // taskType: state.currentType,
+                           
                             taskTypeId: "",
                             taskName: "",
                             documentId: "",
@@ -533,14 +486,14 @@ function ActivityTaskForm(props) {
 
                                         <div class=" flex justify-between flex-col w-full">
 
-                                            <StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">
                                                 {/* Priority */}
                                                 <FormattedMessage
                                                     id="app.priority"
                                                     defaultMessage="Priority"
                                                 />
 
-                                            </StyledLabel>
+                                            </div>
 
                                             <div class="flex">
                                                 <Tooltip title="High">
@@ -602,7 +555,7 @@ function ActivityTaskForm(props) {
 
                                         <div class=" w-1/2  max-sm:w-wk ">
 
-                                            <StyledLabel>Type</StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">Type</div>
                                             <select
                                                 style={{ border: "0.06em solid #aaa" }}
                                                 onChange={handleTaskTypeChange}
@@ -614,37 +567,12 @@ function ActivityTaskForm(props) {
                                                     </option>
                                                 ))}
                                             </select>
-                                            {/* <StyledLabel>Type</StyledLabel>
-                      <Field
-                    name="taskTypeId"
-                    // selectType="customerList"
-                    isColumnWithoutNoCreate
-                 
-                    //component={SearchSelect}
-                    component={SelectComponent}
-                    // options={
-                    //   Array.isArray(TaskOption)
-                    //     ? TaskOption
-                    //     : []
-                    // }
-                    options={Array.isArray(TaskOption) ? TaskOption : []}
-                    isColumn
-                    margintop={"0"}
-                    value={values.taskTypeId}
-                    inlineLabel
-                  /> */}
-                                            {/* <Field
-                        name="taskTypeId"
-                         component={SelectComponent}
-                        value={values.taskTypeId}
-                        options={Array.isArray(TaskOption) ? TaskOption : []}
-                      /> */}
+                                      
                                         </div>
 
-                                        {/* {values.taskTypeId === "TSK42340139329302023" && ( */}
                                         <div class=" w-1/2 ml-2 max-sm:w-wk">
 
-                                            <StyledLabel>Workflow</StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">Workflow</div>
                                             <select
                                                 style={{ border: "0.06em solid #aaa" }}
                                                 onChange={handleWorkflowChange}
@@ -652,102 +580,23 @@ function ActivityTaskForm(props) {
                                                 <option value="">select</option>
                                                 {filteredWorkflow.map((item, index) => (
                                                     <option key={index}
-                                                        // disabled
-                                                        // disabled={!values.country_name}
                                                         value={item.taskChecklistId}>
                                                         {item.taskChecklistName}
                                                     </option>
                                                 ))}
                                             </select>
-                                            {/* <StyledLabel> Workflow</StyledLabel>
-
-                      <Field
-                    name="taskType"
-                    // selectType="contactListFilter"
-                    isColumnWithoutNoCreate
-                 
-                    // component={SearchSelect}
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.handleCheckListOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.handleCheckListOptions("taskTypeId", values.taskTypeId)
-                        : []
-                    }
-                    value={values.taskType}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  /> */}
-                                            {/* <Field
-                            name="taskChecklistId"
-                            // selectType="contactListFilter"
-                            isColumnWithoutNoCreate
-                            isRequired
-                            placeolder="Select type"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.taskList"
-                            //     defaultMessage="Task CheckList"
-                            //   />
-                            // }
-                            // component={SearchSelect}
-                            component={SelectComponent}
-                            options={
-                              Array.isArray(TaskOptions) ? TaskOptions : []
-                            }
-                            value={values.taskChecklistId}
-                            isColumn
-                            inlineLabel
-                          /> */}
-
+                                          
                                         </div>
-                                        {/* )} */}
-                                        {/* <div class=" w-1/2">
-                          <Spacer />
-                      <StyledLabel>Task Stages</StyledLabel>
-                      <Field
-                    name="taskChecklistId"
-                 
-                    isColumnWithoutNoCreate
-                
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.taskStageOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.taskStageOptions("taskTypeId", values.customerId)
-                        : []
-                    }
-                     value={values.taskChecklistId}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  />
-                    
-                     
-                      </div> */}
-
-
-
+                                      
                                         <div style={{ width: "24%" }}>
 
-                                            <StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">
                                                 <FormattedMessage
                                                     id="app.status"
                                                     defaultMessage="Status"
                                                 />
                                                 {/* Status */}
-                                            </StyledLabel>
+                                            </div>
 
                                             <div style={{ width: "100%" }}>
                                                 <ButtonGroup>
@@ -801,81 +650,13 @@ function ActivityTaskForm(props) {
                                             </div>
                                         </div>
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div class=" flex justify-between w-full max-sm:flex-col">
 
-                                        {/* <div class=" w-5/12 max-sm:w-wk">
-                      <div class=" flex justify-between w-full">
-                        <div class=" w-full">
-                          <Field
-                            isRequired
-                            name="taskName"
-                            //label="Name"
-                            // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                              />
-                            }
-                            component={InputComponent}
-                            isColumn
-                            width={"100%"}
-                            inlineLabel
-                          />
-                        </div>
-                      </div>
-                    </div> */}
+                                     
                                     </div>
-                                    <Spacer />
-                                    {/* <div class=" flex justify-between">
-                    <div class=" w-1/2">
-                      <Field
-                        isRequired
-                        name="startDate"
-                        //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />
-                        }
-                        isColumn
-                        component={DatePicker}
-                        value={values.startDate}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                    <Spacer />
-                    <div class=" w-5/12">
-                      <Field
-                        // isRequired
-                        name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.startTime"
-                            defaultMessage="Start Time"
-                          />
-                        }
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.startTime}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <Spacer /> */}
-
-
-                                    <div class=" flex justify-between">
+                                    < div class="mt-3" />
+                                      <div class=" flex justify-between">
                                         <div class=" w-1/2 ">
                                             <Field
                                                 isRequired
@@ -898,8 +679,8 @@ function ActivityTaskForm(props) {
                                                 disabledDate={(currentDate) => {
                                                     if (values.startDate) {
                                                         if (
-                                                            moment(currentDate).isBefore(
-                                                                moment(values.startDate)
+                                                            dayjs(currentDate).isBefore(
+                                                                dayjs(values.startDate)
                                                             )
                                                         ) {
                                                             return true;
@@ -914,8 +695,7 @@ function ActivityTaskForm(props) {
                                             <Field
                                                 isRequired
                                                 name="taskName"
-                                                //label="Name"
-                                                // value={values.taskName}
+                                               
                                                 label={
                                                     <FormattedMessage
                                                         id="app.name"
@@ -928,27 +708,7 @@ function ActivityTaskForm(props) {
                                                 inlineLabel
                                             />
                                         </div>
-                                        {/* <div class=" w-5/12">
-                      <Field
-                        // isRequired
-                        name="endTime"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endTime"
-                            defaultMessage="End Time"
-                          />
-                        }
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.endTime}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div> */}
+                                      
                                     </div>
                                     <div class=" w-full mt-4">
                                         <Field
@@ -1053,7 +813,7 @@ function ActivityTaskForm(props) {
                                             <div class=" flex justify-between w-full">
                                                 {values.taskTypeId === "TSK52434477391272022" && (
                                                     <div class=" w-full">
-                                                        <StyledLabel>Complexity</StyledLabel>
+                                                        <div class=" text-xs font-bold font-poppins text-black">Complexity</div>
                                                         <div>
                                                             <Tooltip title="Easy">
                                                                 <Button
@@ -1133,49 +893,12 @@ function ActivityTaskForm(props) {
                                         </div>
                                     </div>
                                     <div>
-                                        <Spacer />
-                                        {/* {values.startDate && (
-                      <>
-                        {dayjs(todayDate).isSameOrBefore(
-                          dayjs(values.startDate)
-                        ) ? (
-                          <></>
-                        ) : (
-                          <>
-                            {" "}
-                            <span
-                            >
-                              <b>This Task occurs in the past !</b>
-                            </span>
-                          </>
-                        )}
-                      </>
-                    )} */}
+                                        < div class="mt-3" />
+                                      
                                     </div>
                                 </div>
                                 <div class=" h-full w-w47.5 max-sm:w-wk">
 
-                                    {/* <Field
-                    name="assignedTo"
-                    selectType="employee"
-                    isColumnWithoutNoCreate
-                    // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
-                    component={SearchSelect}
-                    isColumn
-                    value={values.assignedTo}
-                    defaultValue={{
-                      label: `${firstName || ""} ${middleName ||
-                        ""} ${lastName || ""}`,
-                      // value: employeeId,
-                    }}
-                    inlineLabel
-                  /> */}
                                     <Listbox value={selected} onChange={setSelected}>
                                         {({ open }) => (
                                             <>
@@ -1241,57 +964,9 @@ function ActivityTaskForm(props) {
                                             </>
                                         )}
                                     </Listbox>
-                                    <Spacer />
-                                    {/* {values.taskTypeId === "TSK52434477391272022" && (
-                    <Field
-                      name="included"
-                      //type="text"
-                      label="Team"
-                      mode
-                      component={SelectComponent}
-                        //  options={Array.isArray(employeesData) ? employeesData : []}
-                      options={
-                        Array.isArray(
-                          this.handlecandidateOptions(
-                            "customerId",
-                            values.customerId
-                          )
-                        )
-                          ? this.handlecandidateOptions(
-                              "customerId",
-                              values.customerId
-                            )
-                          : []
-                      }
-                      value={values.included}
-                      defaultValue={{
-                        label: `${candidateName || ""} `,
-                        value: employeeId,
-                      }}
-                    />
-                  )} */}
-                                    {/* {values.taskTypeId !== "TSK52434477391272022" && ( */}
-                                    {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${fullName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-
-                                    <Spacer />
+                                    < div class="mt-3" />
+                                 
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
@@ -1318,7 +993,7 @@ function ActivityTaskForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
@@ -1345,7 +1020,7 @@ function ActivityTaskForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
@@ -1404,16 +1079,16 @@ function ActivityTaskForm(props) {
 
 
 
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div class=" flex justify-between">
                                         {values.taskTypeId === "TSK52434477391272022" && (
                                             <div class=" w-1/2 font-bold">
                                                 <div class=" flex justify-between">
                                                     <div>
-                                                        <StyledLabel>Set Reminder </StyledLabel>
+                                                        <div class=" text-xs font-bold font-poppins text-black">Set Reminder </div>
                                                     </div>
                                                     <div>
-                                                        {/* <FlexContainer justifyContent="space-between"> */}
+                                                     
                                                         <Switch
                                                             onChange={handleReminderChange}
                                                             checked={reminder}
@@ -1452,7 +1127,7 @@ function ActivityTaskForm(props) {
                                     </div>
                                 </div>
                             </div>
-                            <Spacer />
+                            < div class="mt-3" />
                             <div class=" flex justify-end">
                                 {isEditing && (
                                     <>
@@ -1556,8 +1231,6 @@ const mapDispatchToProps = (dispatch) =>
             getTaskForWorkflow,
             getUnits,
             getTaskForStages,
-            // getOppoStages,
-            // setClearbitCandidateData,
             addCustomerActivityTask
         },
         dispatch

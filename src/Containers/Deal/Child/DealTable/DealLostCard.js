@@ -52,15 +52,19 @@ function DealLostCard(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-         " Name",//0
-          "Investor",//1
-          "Sponsor",//2
-          "Start Date",//3
-          "Values",//4
-          "Stages",//5
-          "Sales Rep",//6
-          "Owner",//7
-          "Action",//8
+          "110",//0  Name
+          "511",//1 Investor
+          "216",//2 Sponsor
+          "176",//3 Start Date
+          "1159",//4 Values
+          "219",//5 Stages
+          "76",//6 Assigned
+          "77",//7 Owner
+          "9",//8 Action
+         "232", // 'Click to Open'
+         "316", // Notes
+        "170",  // "Edit"
+         "1259", // Do you want to delete?
 
         ];
 
@@ -126,7 +130,7 @@ function DealLostCard(props) {
                 next={handleLoadMore}
                 hasMore={hasMore}
                 loader={fetchingLostDeals ?<div class="flex justify-center">Loading...</div>:null}
-                height={"75vh"}
+                height={"83vh"}
                 style={{scrollbarWidth:"thin"}}
               >
                 { !fetchingLostDeals && lostDeals.length === 0 ?<NodataFoundPage />:lostDeals.map((item,index) =>  {
@@ -140,8 +144,8 @@ function DealLostCard(props) {
                          return (
                             <div>
                              <div
-                  className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem]  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">               
-                              <div class="flex justify-between ">
+                  className="flex flex-col rounded justify-between bg-white mt-[0.5rem] h-[9rem]  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">               
+                              <div class="flex justify-between  border-l-2 border-green-500 bg-[#eef2f9]">
                                        <div>
                     <MultiAvatar
                       primaryTitle={item.opportunityName}
@@ -152,20 +156,20 @@ function DealLostCard(props) {
                     />
                         </div>                                                                                   
                                                 <Tooltip>
-                                                <div class=" flex max-sm:w-full  flex-row md:flex-col">
+                                                <div class=" flex max-sm:w-full font-bold font-poppins text-xs flex-row md:flex-col">
                                                     {/* Name */}
                                                   
                                                     <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
-                                                    <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
+                                                    {/* <Link class="overflow-ellipsis whitespace-nowrap  text-xs p-1 text-[#042E8A] "  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}> */}
               {item.opportunityName}
-            </Link>                                 
+            {/* </Link>                                  */}
                               &nbsp;&nbsp;
                
                                                     </div>
                                             </div>
                                                 </Tooltip>
                                        {/* Sector */}
-                                            <div class=" text-xs  font-poppins">   
+                                            <div class=" text-xs font-bold font-poppins">   
                                             <Link to ="/investor">
                                 {item.investor}
                                 </Link>
@@ -177,26 +181,26 @@ function DealLostCard(props) {
                         primaryTitle={item.contactName}
                         imageId={item.imageId}
                          imageURL={item.imageURL}
-                        imgWidth={"1.8em"}
-                        imgHeight={"1.8em"}
+                        imgWidth={"1.8rem"}
+                        imgHeight={"1.8rem"}
                       />
                     }                
                                             </div>                                   
                                         </div>
-                                        <div class="flex justify-between">
+                                        <div class="flex justify-between items-center  h-8 ml-gap bg-[#eef2f9]">
                                                {/* Deals */}
-                                     <div class=" text-xs justify-center  font-poppins">
+                                     <div class=" text-xs justify-center  font-poppins items-center  h-8 ml-gap bg-[#eef2f9]">
                                             {dayjs(item.startDate).format("DD/MM/YYYY")}
                                             </div>
                                   {/* Pipeline Value */}   
-                                            <div class=" text-xs  font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                                             <CurrencySymbol currencyType={item.currency} />
                                      &nbsp;
                                      {item.proposalAmount}
                                           </div>
                                        
                            {/*Pipeline Value */}    
-                                            <div class=" text-xs  font-poppins text-center">
+                                            <div class=" text-xs  font-poppins text-center items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                                             <Dropdown
                       overlay={
                         <div>
@@ -214,7 +218,7 @@ function DealLostCard(props) {
                       }
                       trigger={["click"]}
                     >
-                      <Tooltip title={item.stageName}>
+                      <Tooltip title={item.oppStage}>
                         {" "}
                         <Progress
                           type="circle"
@@ -231,8 +235,8 @@ function DealLostCard(props) {
                                             <span>
                                             <MultiAvatar2
                       primaryTitle={item.assignedTo}
-                      imgWidth={"1.8em"}
-                      imgHeight={"1.8em"}
+                      imgWidth={"1.8rem"}
+                      imgHeight={"1.8rem"}
                     />
                     </span>
                            </div>
@@ -252,7 +256,9 @@ function DealLostCard(props) {
                            </div>                    
                            <div class="flex justify-between">
                            <div >
-                            <Tooltip title='Click to Open'><span
+                            <Tooltip title= {translatedMenuItems[9]}>
+                            {/* // 'Click to Open' */}
+                              <span
                   onClick={() => {
                    props.LinkClosedOpportunity(
                      item.opportunityId,
@@ -262,24 +268,15 @@ function DealLostCard(props) {
                    );         
                  }}                     
                  >
-                  <LockIcon
-                        style={{
-                          fontSize: "0.8rem",
-                          cursor: "pointer",
-                        }}
-                      />
+                  <LockIcon className="!text-icon cursor-pointer" />
                     </span>
              </Tooltip> 
                             </div>
                             <div>
                             <Tooltip
                                 placement="right"
-                                title={
-                                  <FormattedMessage
-                                    id="app.notes"
-                                    defaultMessage="Notes"
-                                  />
-                                }
+                                title= {translatedMenuItems[10]}
+                                
                               >
                                 <span
                                   onClick={() => {
@@ -288,23 +285,16 @@ function DealLostCard(props) {
                                   }}
                                 >
                                   <NoteAltIcon
-                                     className="!text-xl cursor-pointer text-[green]"
+                                     className="!text-icon cursor-pointer text-[green]"
                                   />
                                 </span>
                               </Tooltip>
                             </div>
-                          
-                          
-                           
+                                                                         
                               <div>
                                  <Tooltip
                                 placement="right"
-                                title={
-                                  <FormattedMessage
-                                    id="app.edit"
-                                    defaultMessage="Edit"
-                                  />
-                                }
+                                title= {translatedMenuItems[11]}
                               >
                                 {user.imInd === true && user.dealUpdateInd === true && (
                                   <span class="cursor-pointer text-[blue]"
@@ -314,7 +304,7 @@ function DealLostCard(props) {
                                     }}
                                   >
                                     <BorderColorIcon
-                                      className="!text-xl cursor-pointer text-[tomato]"
+                                      className="!text-icon cursor-pointer text-[tomato]"
                                     />
                                   </span>
                                 )}
@@ -322,7 +312,7 @@ function DealLostCard(props) {
                               </div>                                  
                               <div>
                               <StyledPopconfirm
-                                title="Do you want to delete?"
+                                title= {translatedMenuItems[12]}
                                 onConfirm={() =>
                                   deleteOpportunityData(item.opportunityId)
                                 }
@@ -331,15 +321,15 @@ function DealLostCard(props) {
                                 
                                   <DeleteOutlined
                                     type="delete"
-                                    className="!text-xl text-[red] cursor-pointer"
+                                    className="!text-icon text-[red] cursor-pointer"
                                   />
                                   )}
                                   </StyledPopconfirm>
                               </div>                                                                                                           
                            <div>
-                           <span
+                           <span class=" cursor-pointer"
                  
-                 style={{ cursor: "pointer" }}
+                
                  onClick={() => {
                     //  props.getAllRecruitmentByOppId(item.opportunityId);
                     //  props.getAllRecruitmentPositionByOppId(item.opportunityId);
@@ -388,8 +378,9 @@ function DealLostCard(props) {
       }
       return (    
   <>   
-<div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+<div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+      <div className=" flex justify-between font-bold font-poppins text-xs w-[100%]">
         <div className=" md:w-[13.12rem]">
          {translatedMenuItems[0]} 
           {/* name"  */}              
@@ -423,9 +414,10 @@ function DealLostCard(props) {
          {/* owner" */}              
                 </div>
         <div className="md:w-[5.71rem]"></div>
-        <div className="w-12">
+        {/* <div className="w-12">
         {translatedMenuItems[8]}
         {/* action" */}          
+                {/* </div>  */}
                 </div>
       </div>
       <InfiniteScroll
@@ -447,13 +439,13 @@ function DealLostCard(props) {
                  return (
                     <div>
                     <div
-                      className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                      className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                       // style={{
                       //   borderBottom: "3px dotted #515050",
                       // }}
                     >
                       <div class="flex ">
-                      <div className=" flex font-medium  md:w-[13.1rem] max-sm:flex-row w-full  items-center">
+                      <div className=" flex  md:w-[13.1rem] max-sm:flex-row w-full  items-center">
                                 <div>
             <MultiAvatar
               primaryTitle={item.opportunityName}
@@ -497,8 +489,8 @@ function DealLostCard(props) {
                 primaryTitle={item.contactName}
                 imageId={item.imageId}
                  imageURL={item.imageURL}
-                imgWidth={"1.8em"}
-                imgHeight={"1.8em"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             }
                                      </div>
@@ -564,8 +556,8 @@ function DealLostCard(props) {
                                     <span>
                                     <MultiAvatar2
               primaryTitle={item.assignedTo}
-              imgWidth={"1.8em"}
-              imgHeight={"1.8em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
             </span>
                                                  </div>
@@ -588,7 +580,7 @@ function DealLostCard(props) {
                   
                    <div class="flex  w-[0%] max-sm:flex-row max-sm:w-[10%]">
                     <div>
-                    <Tooltip title='Click to Open'><span
+                    <Tooltip title={translatedMenuItems[9]}><span
           onClick={() => {
            props.LinkClosedOpportunity(
              item.opportunityId,
@@ -611,12 +603,7 @@ function DealLostCard(props) {
                     <div>
                     <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.notes"
-                            defaultMessage="Notes"
-                          />
-                        }
+                        title={translatedMenuItems[10]}
                       >
                         <span
                           onClick={() => {
@@ -625,7 +612,7 @@ function DealLostCard(props) {
                           }}
                         >
                           <NoteAltIcon
-                            className="!text-xl cursor-pointer text-[green]"
+                            className="!text-icon cursor-pointer text-[green]"
                           />
                         </span>
                       </Tooltip>
@@ -636,12 +623,7 @@ function DealLostCard(props) {
                       <div>
                          <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.edit"
-                            defaultMessage="Edit"
-                          />
-                        }
+                        title={translatedMenuItems[11]}
                       >
                         {user.imInd === true && user.dealUpdateInd === true && (
                           <span class="cursor-pointer text-[blue]"
@@ -651,7 +633,7 @@ function DealLostCard(props) {
                             }}
                           >
                             <BorderColorIcon
-                             className="!text-xl cursor-pointer text-[tomato]"
+                             className="!text-icon cursor-pointer text-[tomato]"
                             />
                           </span>
                         )}
@@ -659,7 +641,7 @@ function DealLostCard(props) {
                       </div>                                    
                       <div>
                       <StyledPopconfirm
-                        title="Do you want to delete?"
+                        title={translatedMenuItems[12]}
                         onConfirm={() =>
                           deleteOpportunityData(item.opportunityId)
                         }
@@ -678,9 +660,9 @@ function DealLostCard(props) {
                   </div>   
                                 <div class="flex w-[0%] max-sm:flex-row max-sm:w-[10%]">
                    <div>
-                   <span
+                   <span className=" cursor-pointer"
          
-         style={{ cursor: "pointer" }}
+         
          onClick={() => {
             //  props.getAllRecruitmentByOppId(item.opportunityId);
             //  props.getAllRecruitmentPositionByOppId(item.opportunityId);
@@ -695,9 +677,8 @@ function DealLostCard(props) {
            }}
          >
            {user.pulseAccessInd === true && (
-             <MonitorHeartIcon
-               style={{ fontSize: "0.8rem", color: "#df9697" }}
-             />
+             <MonitorHeartIcon className=" cursor-pointer"/>
+             
            )}
          </span>
                         </div>

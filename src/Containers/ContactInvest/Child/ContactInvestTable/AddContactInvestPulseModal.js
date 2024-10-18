@@ -25,6 +25,9 @@ class AddContactInvestPulseModal extends Component {
           <Suspense fallback={<BundleLoader />}>
           <ContactInvestPulseJumpstart 
             contactiData={this.props.contactiData}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
             />
           </Suspense>
         </StyledDrawer>

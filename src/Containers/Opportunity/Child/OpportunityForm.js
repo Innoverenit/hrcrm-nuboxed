@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCustomerData } from "../../Customer/CustomerAction";
 import { getContactData } from "../../Contact/ContactAction";
-import { FormattedMessage } from "react-intl";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { Button, Tooltip,Select } from "antd";
+import { Button, Tooltip,Select,Switch } from "antd";
 import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
 import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
-import {  StyledLabel } from "../../../Components/UI/Elements";
 import {
   addOpportunity,
   getInitiative,
@@ -31,6 +29,7 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { BundleLoader } from "../../../Components/Placeholder";
+import {base_url} from "../../../Config/Auth";
 
 /**
  * yup validation scheme for creating a opportunity
@@ -59,43 +58,66 @@ function OpportunityForm(props) {
   const [defaultOption, setDefaultOption] = useState(props.fullName);
   const [selected, setSelected] = useState(defaultOption);
 
+  const[stage,setStage]=useState([])
+const [isLoadingStage, setIsLoadingStage] = useState(false);
+const [selectedStage, setSelectedStage] = useState(null);
+
   const [include, setInclude] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [touched, setTouched] = useState(false);
+
+  const [isLoadingWorkflow, setIsLoadingWorkflow] = useState(false);
+
+  const [workflow, setWorkflow] = useState([]);
+  const [selectedWorkflow, setSelectedWorkflow] = useState(null);
   const [selectedValues, setSelectedValues] = useState([]);
   const [loading, setLoading] = useState(true);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   const [customers, setCustomers] = useState([]);
   const [contacts, setContacts] = useState([]);
+
+  const[workFlowType,setWorkFlowType]=useState([])
+
+  const [selectedWorkFlowType, setSelectedWorkFlowType] = useState(null);
+  const [isLoadingWorkflowType, setIsLoadingWorkflowType] = useState(false);
+  const [touchedWorkFlowType, setTouchedWorkFlowType] = useState(false);
   const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
   const [isLoadingContacts, setIsLoadingContacts] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [selectedContact, setSelectedContact] = useState(null);
   const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [emailInd, setEmailInd] = useState(false);
+  const [transcript, setTranscript] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
 
   // useEffect(() => {
   //   fetchCustomers();
   // }, []);
+const  handleEmailInd = (checked) => {
+    setEmailInd(checked)
+  };
+
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          ' Name', // 0
-          'Start Date', // 1
-          'End Date', // 2
-          'Value', // 3
-          'Currency', // 4
-          "Description",//5
-          'Assigned', // 6
-          'Include', // 7
-          'Customer', // 8
-          'Contact', // 9
-          'Workflow', // 10
-          'Stages', // 11
-
+          '110', // 0
+          '176', // 1
+          '126', // 2
+          '218', // 3
+          '241', // 4
+          "316",//5
+          '76', // 6
+          '75', // 7
+          '248', // 8
+          '73', // 9
+          '141', // 10
+          '219', // 11
+          '46',//12
 
         ];
 
@@ -108,14 +130,15 @@ function OpportunityForm(props) {
       }
     };
 
+
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
   const fetchCustomers = async () => {
     setIsLoadingCustomers(true);
     try {
-      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
-      // setCustomers(response.data);
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}`;
+   
+
+      const apiEndpoint = `${base_url}/customer/user/${props.userId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -145,9 +168,8 @@ function OpportunityForm(props) {
   const fetchContacts = async (customerId) => {
     setIsLoadingContacts(true);
     try {
-      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
-      // setContacts(response.data);
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
+   
+      const apiEndpoint = `${base_url}/customer/contact/drop/${customerId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -175,7 +197,7 @@ function OpportunityForm(props) {
   const fetchInclude = async () => {
     setIsLoading(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.organizationId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.organizationId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -192,7 +214,6 @@ function OpportunityForm(props) {
       setIsLoading(false);
     }
   };
-
 
   const handleSelectChange = (values) => {
     setSelectedValues(values); // Update selected values
@@ -224,7 +245,6 @@ function OpportunityForm(props) {
     };
   });
 
-
   function getAreaOptions(filterOptionKey, filterOptionValue) {
     const contactOptions = props.contactData
       .filter((option) => option.customerId === filterOptionValue && option.probability !== 0)
@@ -233,11 +253,10 @@ function OpportunityForm(props) {
         value: option.contactId,
       }))
       .sort((a, b) => {
-        // Replace 'propertyToSortBy' with the actual property you want to sort by
+      
         const propertyToSortByA = a.label.toLowerCase();
         const propertyToSortByB = b.label.toLowerCase();
-        
-        // Use localeCompare for case-insensitive string comparison
+               
         return propertyToSortByA.localeCompare(propertyToSortByB);
       });
   
@@ -303,7 +322,6 @@ function OpportunityForm(props) {
       if (libraryNameA > libraryNameB) {
         return 1;
       }
-
       // names must be equal
       return 0;
     })
@@ -322,22 +340,177 @@ const AllEmplo = props.assignedToList.map((item) => {
 });
 const filteredEmployeesData = AllEmplo.filter(
   (item) => item.value !== props.user.userId
+
+
 );
+
+
+const handleSelectWorkflowTypeFocus = () => {
+  if (!touchedWorkFlowType) {
+    fetchWorkFlowType();
+    // fetchSector();
+
+    setTouchedWorkFlowType(true);
+  }
+};
+
+const handleWorkFlowTypeChange = (type) => {
+  setSelectedWorkFlowType(type);
+  // fetchWorkFlowType(customerId);
+  fetchWorkflow(type)
+};
+
+
+const fetchWorkFlowType = async () => {
+  setIsLoadingWorkflowType(true);
+  try {
+    // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
+    // setCustomers(response.data);
+    const apiEndpoint = `${base_url}/workflow/publish/for_dropdown/${props.organizationId}/Quotation`;
+    const response = await fetch(apiEndpoint,{
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${props.token}`,
+        'Content-Type': 'application/json',
+        // Add any other headers if needed
+      },
+    });
+    const data = await response.json();
+    setWorkflow(data);
+  } catch (error) {
+    console.error('Error fetching customers:', error);
+  } finally {
+    setIsLoadingWorkflowType(false);
+  }
+};
+
+
+const fetchWorkflow = async (type) => {
+  setIsLoadingWorkflow(true);
+  try {
+    // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+    // setContacts(response.data);
+    const apiEndpoint = `${base_url}/workflow/for_dropdown/${props.orgId}/${type}`;
+    const response = await fetch(apiEndpoint,{
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${props.token}`,
+        'Content-Type': 'application/json',
+        // Add any other headers if needed
+      },
+    });
+    const data = await response.json();
+    setWorkflow(data);
+  } catch (error) {
+    console.error('Error fetching contacts:', error);
+  } finally {
+    setIsLoadingWorkflow(false);
+  }
+};
+
+
+const handleWorkflowChange=(workflowDetailsId)=>{
+  setSelectedWorkflow(workflowDetailsId);
+  fetchStage(workflowDetailsId)
+}
+
+
+const fetchStage= async (workflowId) => {
+  setIsLoadingStage(true);
+  try {
+    // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+    // setContacts(response.data);
+    const apiEndpoint = `${base_url}/workflow/stages/for_dropdown/${props.orgId}/${workflowId}`;
+    const response = await fetch(apiEndpoint,{
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${props.token}`,
+        'Content-Type': 'application/json',
+        // Add any other headers if needed
+      },
+    });
+    const data = await response.json();
+    setStage(data);
+  } catch (error) {
+    console.error('Error fetching contacts:', error);
+  } finally {
+    setIsLoadingStage(false);
+  }
+};
+
+
+const handleStageChange=(value)=>{
+  setSelectedStage(value);
+}
 
   const [text, setText] = useState("");
   function handletext(e) {
     setText(e.target.value);
   }
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition,
-  } = useSpeechRecognition();
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser doesn't support speech recognition.</span>;
-  }
+
+  useEffect(() => {
+    if (!('webkitSpeechRecognition' in window)) {
+      console.log('Browser does not support speech recognition.');
+      return;
+    }
+  const recognition = new window.webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+
+  recognition.onresult = (event) => {
+    let finalTranscript = '';
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        finalTranscript += event.results[i][0].transcript;
+      }
+    }
+    finalTranscript = finalTranscript.trim(); // Trim spaces around the transcript
+
+    // Ensure the final transcript is appended only once
+    setTranscript((prevTranscript) => {
+      setText((prevText) => (prevText + ' ' + finalTranscript).trim());
+      return prevTranscript + ' ' + finalTranscript;
+    });
+  };
+
+  recognition.onend = () => {
+    setIsListening(false);
+  };
+
+  recognitionRef.current = recognition;
+
+  return () => {
+    recognition.stop();
+  };
+}, []);
+
+  const startListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.start();
+      setIsListening(true);
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    }
+  };
+
+  const handleTextChange = (event) => {
+    setText(event.target.value);
+    setTranscript('');
+  };
+
+  const resetTranscript = () => {
+    setTranscript('');
+    setText('');
+  };
+ 
+ 
 
   const {
     user: { userId,empName, },
@@ -373,8 +546,9 @@ const filteredEmployeesData = AllEmplo.filter(
           oppStage: "",
           salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
           // included: selectedValues,
+          emialInd:emailInd ? "true" : "false",
         }}
-        validationSchema={OpportunitySchema}
+        // validationSchema={OpportunitySchema}
         onSubmit={(values, { resetForm }) => {
           console.log(values);
           console.log(values);
@@ -454,11 +628,15 @@ const filteredEmployeesData = AllEmplo.filter(
               ...values,
               customerId:selectedCustomer,
               contactId:selectedContact,
+              oppStage: selectedStage,
+              oppWorkflow: selectedWorkflow,
+              workFlowType:selectedWorkFlowType,
               startDate: `${newStartDate}T20:00:00Z`,
               endDate: `${newEndDate}T20:00:00Z`,
               included: selectedValues,
-              description: transcript ? transcript : text,
+              description: text,
               salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
+              emialInd:emailInd ? "true" : "false",
             },
             props.userId,
             props.customerId,
@@ -479,36 +657,23 @@ const filteredEmployeesData = AllEmplo.filter(
           <Form className="form-background">
             <div class=" flex justify-between max-sm:flex-col">
               <div class=" h-full w-[47.5%] mt-3 max-sm:w-wk">
-               
-                <Field
-                  //isRequired
+              <div class="font-bold text-xs">{translatedMenuItems[0]}</div>
+                <Field          
                   name="opportunityName"
                   type="text"
-                  //label="Name"
-
-                  label={translatedMenuItems[0]}
-                  // {
-                  //   <FormattedMessage id="app.name" defaultMessage="Name" />
-                  // }
+                  //label="Name"             
                   isColumn
                   width={"100%"}
-                  component={InputComponent}
-                  // accounts={accounts}
+                  component={InputComponent}              
                   inlineLabel
                 />
                 
                 <div class="flex justify-between max-sm:flex-col mt-3">
                 <div class=" w-w47.5 max-sm:w-wk">
+                <div class="font-bold text-xs">{translatedMenuItems[1]}</div>
                     <Field
                       name="startDate"
-                      //label="Start "
-                    label={translatedMenuItems[1]}
-                      // {
-                      //   <FormattedMessage
-                      //     id="app.startDate"
-                      //     defaultMessage="Start Date"
-                      //   />
-                      // }
+                      //label="Start "                
                       component={DatePicker}
                       value={values.startDate}
                       isColumn
@@ -516,17 +681,11 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
+                  <div class="font-bold text-xs">{translatedMenuItems[2]}</div>
                     <Field
                       // isRequired
                       name="endDate"
-                      // label="End Date"
-                      label={translatedMenuItems[2]}
-                      // {
-                      //   <FormattedMessage
-                      //     id="app.endDate"
-                      //     defaultMessage="End Date"
-                      //   />
-                      // }
+                      // label="End Date"                 
                       isColumn
                       component={DatePicker}
                       value={values.endDate || values.startDate}
@@ -548,36 +707,23 @@ const filteredEmployeesData = AllEmplo.filter(
                
                 <div class="flex justify-between max-sm:flex-col mt-3">
                 <div class=" w-w47.5 max-sm:w-wk">
+                <div class="font-bold text-xs">{translatedMenuItems[3]}</div>
                     <Field
                       name="proposalAmount"
-                      //label="Value"
-
-                label={translatedMenuItems[3]}
-                      // {
-                      //   <FormattedMessage
-                      //     id="app.proposalamount"
-                      //     defaultMessage="Value"
-                      //   />
-                      // }
+                      //label="Value"          
                       isColumn
                       width={"100%"}
                       component={InputComponent}
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
+                  <div class="font-bold text-xs">{translatedMenuItems[4]}</div>
                     <Field
                       name="currency"
                       isColumnWithoutNoCreate
                       defaultValue={{
                         value: props.user.currency,
-                      }}
-                    label={translatedMenuItems[4]}
-                      // {
-                      //   <FormattedMessage
-                      //     id="app.currency"
-                      //     defaultMessage="Currency"
-                      //   />
-                      // }
+                      }}                 
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -591,14 +737,12 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                 </div>
-              
-                <div className="mt-3">
-            {translatedMenuItems[5]}
-                  {/* Description */}
-                  </div>
-                <div>
-                  <div>
-                    <span onClick={SpeechRecognition.startListening}>
+                <div class="mt-3">
+              <div>
+                <span class="font-bold text-xs">{translatedMenuItems[5]}</span>
+                {/* Description */}
+                   <span>
+                    <span onClick={startListening}>
                       <Tooltip title="Start">
                         <span >
                           <RadioButtonCheckedIcon  className="!text-icon ml-1 text-red-600" />
@@ -606,7 +750,7 @@ const filteredEmployeesData = AllEmplo.filter(
                       </Tooltip>
                     </span>
 
-                    <span onClick={SpeechRecognition.stopListening}>
+                    <span onClick={stopListening}>
                       <Tooltip title="Stop">
                         <span>
                           <StopCircleIcon   className="!text-icon ml-1 text-green-600" />
@@ -621,24 +765,27 @@ const filteredEmployeesData = AllEmplo.filter(
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                    </span>
+                
                   <div>
                     <textarea
                       name="description"
                       className="textarea"
                       type="text"
                       value={transcript ? transcript : text}
-                      onChange={handletext}
+                      onChange={handleTextChange}
                     ></textarea>
                   </div>
-                </div>
+                  </div>
               </div>
+              </div>
+
             <div
                class=" h-full w-[47.5%] max-sm:w-wk mr-1">
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <div className="block font-bold text-[0.75rem] mt-[0.6rem]">
+            <div className=" font-bold text-[0.75rem] mt-[0.6rem]">
           {translatedMenuItems[6]}
               {/* Assigned */}
             </div>
@@ -705,27 +852,8 @@ const filteredEmployeesData = AllEmplo.filter(
         )}
       </Listbox>
 
-       <div class=" mt-2" style={{display:"flex",flexDirection:"column"}}>
-       {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="include"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${empName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-                  <div className="font-bold text-[0.75rem]">
+       <div class=" mt-2" style={{display:"flex",flexDirection:"column"}}>    
+                  <div className="font-bold text-xs">
                 {translatedMenuItems[7]}
                     {/* Include */}
                     </div>
@@ -748,31 +876,8 @@ const filteredEmployeesData = AllEmplo.filter(
         </Select>
         </div>        
 <div class="flex justify-between max-sm:flex-col mt-[0.75rem]">
-<div class=" w-w47.5 max-sm:w-wk">
-                  {/* <Field
-                    name="customerId"
-                    // selectType="customerList"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.customer"
-                        defaultMessage="Customer"
-                      />
-                    }
-                    //component={SearchSelect}
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(customerNameOption)
-                        ? customerNameOption
-                        : []
-                    }
-                    isColumn
-                    margintop={"0"}
-                    value={values.customerId}
-                    inlineLabel
-                  /> */}
-
-<div className="font-bold text-[0.75rem]">
+<div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
 {translatedMenuItems[8]}
   {/* Customer */}
   </div>
@@ -791,36 +896,7 @@ const filteredEmployeesData = AllEmplo.filter(
       </Select>
           
             </div>
-            <div class=" w-w47.5 max-sm:w-wk">
-            <StyledLabel>
-                  {/* <Field
-                    name="contactId"
-                    // selectType="contactListFilter"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="Contact"
-                      />
-                    }
-                    // component={SearchSelect}
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        getAreaOptions("customerId", values.customerId)
-                      )
-                        ? getAreaOptions("customerId", values.customerId)
-                        : []
-                    }
-                    value={values.contactId}
-                    filterOption={{
-                      filterType: "customerId",
-                      filterValue: values.customerId,
-                    }}
-                    disabled={!values.customerId}
-                    isColumn
-                    inlineLabel
-                  /> */}
+            <div class=" w-w47.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
 {translatedMenuItems[9]}
@@ -837,104 +913,60 @@ const filteredEmployeesData = AllEmplo.filter(
             {contact.fullName}
           </Option>
         ))}
-      </Select>
-                </StyledLabel>
+      </Select>            
                 </div>
                         </div>
-              
-                {/* <StyledLabel>
-                  <Field
-                    name="oppInnitiative"
-                    //selectType="initiativeName"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.initiative"
-                        defaultMessage="Initiative"
-                      />
-                    }
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        getInitiativeOptions("customerId", values.customerId)
-                      )
-                        ? getInitiativeOptions("customerId", values.customerId)
-                        : []
-                    }
-                    value={values.initiativeDetailsId}
-                    filterOption={{
-                      filterType: "customerId",
-                      filterValue: values.customerId,
-                    }}
-                    disabled={!values.customerId}
-                    isColumn
-                    inlineLabel
-                  />
-                </StyledLabel> */}
+                        {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow Type</label>
+      <Select
+       
+        placeholder="Select WorkflowType"
+        loading={isLoadingWorkflowType}
+        onFocus={handleSelectWorkflowTypeFocus}
+        onChange={handleWorkFlowTypeChange}// Disable Contact dropdown if no customer is selected
+      >
+        {workFlowType.map(flow => (
+          <Option key={flow.workflowCategoryId} value={flow.workflowCategoryId}>
+            {flow.name}
+          </Option>
+        ))}
+      </Select> */}
                 
-
-                <div class="flex justify-between max-sm:flex-col mt-3">
+                                          
+      <div class="flex justify-between max-sm:flex-col mt-3">
                   <div class=" w-w47.5 max-sm:w-wk">
-                    <StyledLabel>
-                      <Field
-                        name="oppWorkflow"
-                        // selectType="contactListFilter"
-                        isColumnWithoutNoCreate
-                        isRequired
-                        placeolder="Select type"
-                        label={translatedMenuItems[10]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.workflow"
-                        //     defaultMessage="Workflow"
-                        //   />
-                        // }
-                        // component={SearchSelect}
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(WorkflowOptions) ? WorkflowOptions : []
-                        }
-                        value={values.oppWorkflow}
-                        isColumn
-                        inlineLabel
-                      />
-                    </StyledLabel>
+                   
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow</label>
+      <Select
+       
+        placeholder="Select Workflow"
+      loading={isLoadingWorkflowType}
+        onChange={handleWorkflowChange}
+        onFocus={handleSelectWorkflowTypeFocus}
+        // disabled={!selectedWorkFlowType}
+      >
+        {workflow.map(work => (
+          <Option key={work.workflowDetailsId} value={work.workflowDetailsId}>
+            {work.workflowName}
+          </Option>
+        ))}
+      </Select>
                   </div>
                  
                   <div class=" w-w47.5 max-sm:w-wk ">
-                    <StyledLabel>
-                      <Field
-                        name="oppStage"
-                        isRequired
-                        isColumnWithoutNoCreate
-                        label={translatedMenuItems[11]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.stages"
-                        //     defaultMessage="Stages"
-                        //   />
-                        // }
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(
-                            getStagesOptions("oppWorkflow", values.oppWorkflow)
-                          )
-                            ? getStagesOptions(
-                                "oppWorkflow",
-                                values.oppWorkflow
-                              )
-                            : []
-                        }
-                        value={values.oppStage}
-                        filterOption={{
-                          filterType: "oppWorkflow",
-                          filterValue: values.oppWorkflow,
-                        }}
-                        disabled={!values.oppWorkflow}
-                        isColumn
-                        inlineLabel
-                      />
-                    </StyledLabel>
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Stage</label>
+      <Select
+       
+        placeholder="Select Stage"
+        loading={isLoadingStage}
+        onChange={handleStageChange}
+      disabled={!selectedWorkflow}
+      >
+        {stage.map(stage => (
+          <Option key={stage.stagesId} value={stage.stagesId}>
+            {stage.stageName}
+          </Option>
+        ))}
+      </Select>
                   </div>
                 </div>
                 <div class="mt-3">
@@ -944,8 +976,23 @@ const filteredEmployeesData = AllEmplo.filter(
                                             component={DraggableUpload1}
                                         />
                                     </div>
+                                    <div class=" flex">
+                  <div class=" w-[47%] mt-2" >
+                      <div class="font-bold text-xs">
+                     Auto Email Quotation to receipient?
+                    </div>
+                      <div>
+                      <Switch               
+                          checked={emailInd}
+                          onChange={handleEmailInd}
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                        />
+                      </div>
+                    </div>
+                    </div>
               </div> 
-  
+             
             </div>
           
             <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
@@ -954,8 +1001,8 @@ const filteredEmployeesData = AllEmplo.filter(
                 htmlType="submit"
                 loading={addingOpportunity}
               >
-                <FormattedMessage id="app.create" defaultMessage="Create" />
-                {/* Create */}
+                <div class="font-bold font-poppins text-xs">{translatedMenuItems[12]}</div>
+                Create
               </Button>
             </div>
           </Form>

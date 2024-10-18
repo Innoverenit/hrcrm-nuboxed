@@ -25,7 +25,9 @@ class DispatchPhoneListModal extends Component {
                 >
                     <Suspense fallback={<BundleLoader />}>
                         {/* <PickUpForm /> */}
-                        <DispatchDetailsTable rowData={this.props.rowData} />
+                        <DispatchDetailsTable rowData={this.props.rowData} 
+                          translateText={this.props.translateText}
+                          selectedLanguage={this.props.selectedLanguage}/>
                     </Suspense>
 
                 </StyledDrawer>

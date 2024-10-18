@@ -183,16 +183,16 @@ class ErpNoteForm extends Component {
                 type="primary"
                 htmlType="submit"
                 disabled={this.state.edit}
-                style={{ marginRight: "1.3125em", marginTop: "1.3125em" }}
+                style={{  marginTop: "1.3125em" }}
               >
-                <FormattedMessage id="app.post" defaultMessage="Post" />
+                <FormattedMessage id="app.post" defaultMessage="Post" className=" !text-icon" />
               </Button>
               <Button
                 type="default"
                 onClick={recognizing ? this.stopRecognition : this.startRecognition}
-                style={{ marginLeft: "1.3125em", marginTop: "1.3125em" }}
+                style={{  marginTop: "1.3125em" }}
               >
-                {recognizing ? <VoiceOverOffIcon /> : <RadioButtonCheckedIcon />}
+                {recognizing ? <VoiceOverOffIcon  className="!text-icon "/> : <RadioButtonCheckedIcon  className="!text-icon "/>}
               </Button>
             </div>
           </Form>

@@ -5,9 +5,7 @@ import { Switch,Button,Select  } from "antd";
 import { getSectors } from "../../../../../Containers/Settings/Sectors/SectorsAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import * as Yup from "yup";
 import { getAllCustomerEmployeelist } from "../../../../Employees/EmployeeAction";
-import { HeaderLabel,  } from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
 import {
@@ -460,7 +458,7 @@ console.log(isLastNameVisible)
           />
     </div>
     <div class="w-16 ml-2 max-sm:w-wk">
-      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+      <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</div>
       <Select
         showSearch
         style={{ width: 100 }}
@@ -487,7 +485,7 @@ console.log(isLastNameVisible)
   </div>
 
 
-  <div class="w-w47.5">
+  <div class="w-w47.5 ">
     <Field
       name="type"
       label={
@@ -552,7 +550,7 @@ console.log(isLastNameVisible)
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem]  leading-lh1.2  "
+            <Listbox.Label className=" font-bold text-xs  leading-lh1.2  "
             // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
             >
               Assigned
@@ -628,30 +626,6 @@ console.log(isLastNameVisible)
             unCheckedChildren="Hidden"
           />
 
-      
-                    {/* <Field
-                    name="assignedTo"
-                    selectType="employee"
-                    isColumnWithoutNoCreate
-                    // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
-                    // component={SearchSelect}
-                    isColumn
-                    // value={values.employeeId}
-                    // defaultValue={{
-                    //   label: `${firstName || ""} ${middleName ||
-                    //     ""} ${lastName || ""}`,
-                    //   value: employeeId,
-                    // }}
-                    component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
-                    inlineLabel
-                  /> */}
                   </div>
                     </div>
                    
@@ -713,7 +687,7 @@ console.log(isLastNameVisible)
                   
                   <div class="mt-8" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}} >Corporate Address</HeaderLabel>
+                      <div class="font-semibold text-xs text-white flex"> Corporate Address</div>
                   </div>
                     </div>
            
@@ -735,29 +709,7 @@ console.log(isLastNameVisible)
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
-                   {/* <div class=" flex justify-between">
-                   <div class=" w-1/2 max-sm:w-wk">
-                     <Field
-                       name="country"
-                       isColumnWithoutNoCreate
-                       label={
-                         <FormattedMessage
-                           id="app.country"
-                           defaultMessage="Country"
-                         />
-                       }
-                       component={SearchSelect}
-                       defaultValue={{
-                         value: props.user.countryName,
-                       }}
-                       value={values.countryName}
-                       selectType="country"
-                       inlineLabel
-                       isColumn
-                       width="100%"
-                     />
-                   </div>
-                 </div> */}
+                  
                
                 </div>
               </div>

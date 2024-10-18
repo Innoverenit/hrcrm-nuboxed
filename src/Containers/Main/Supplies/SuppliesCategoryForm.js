@@ -1,15 +1,10 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import LazySelect from "../../../Components/Forms/Formik/LazySelect";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
-import { CurrencySymbol } from "../../../Components/Common";
-import { base_url2 } from "../../../Config/Auth";
-import axios from "axios";
 import * as Yup from "yup";
 import {addMaterialCategory} from "./SuppliesAction";
 
@@ -43,6 +38,31 @@ const formSchema = Yup.object().shape({
 function SuppliesCategoryForm (props) {
 
     const [loading, setLoading] = useState(false);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+     
+            
+              "Category",//0
+              "Create"
+              
+  
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
 
     return (
         <>
@@ -57,6 +77,7 @@ function SuppliesCategoryForm (props) {
             props.addMaterialCategory(
               {
                 ...values,
+                alert:(parseInt(values.alert, 10) || 0),
                 
               },
               setLoading, 
@@ -82,9 +103,10 @@ function SuppliesCategoryForm (props) {
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-1/2 max-sm:w-full">
+                          <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                           <Field
                             name="categoryName"
-                            label="Category"
+                            // label="Category"
                             placeholder="Category"
                             isColumn
                             width={"100%"}
@@ -93,6 +115,17 @@ function SuppliesCategoryForm (props) {
 
                           />
                         </div>
+                        <div class="w-[47%]">
+                  <div class="font-bold text-xs font-poppins text-black">Alert</div>
+                      <Field
+                        name="alert"
+                        //label="HSN"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
                        
                       </div>
                     </div>
@@ -107,7 +140,7 @@ function SuppliesCategoryForm (props) {
                   htmlType="submit"
                   loading={loading}
                 >
-                  Create
+                  {translatedMenuItems[1]}
                 </Button>
               </div>
             </Form>

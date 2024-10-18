@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense,useEffect,useState } from "react";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
@@ -8,14 +8,42 @@ const ContactInvestorCallActivityForm =lazy(()=>import("./ContactInvestorCallAct
 const ContactInvestorEventActivityForm =lazy(()=>import("./ContactInvestorEventActivityForm"));
 const ContactInvestorTaskActivityForm =lazy(()=>import("./ContactInvestorTaskActivityForm"));
 
-
-
 const TabPane = StyledTabs.TabPane;
 
 const ContactInvestorActivityModal = (props) => {
   const { handleContactInvestActivityModal, contactInvestorActivityModal, ...formProps } = props;
   const isSmallScreen = window.innerWidth <= 600;
   const drawerWidth = isSmallScreen ? "90%" : "55%";
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+      
+          "70", // "Calls",//1
+          "35" , // "Events",//2
+          "105" , // "Tasks",//3
+        
+        
+       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
       <StyledDrawer
@@ -38,7 +66,11 @@ const ContactInvestorActivityModal = (props) => {
           <ContactInvestorActivityTab 
           
            investorId={props. investorId }
-           contactInVestDetail={props.contactInVestDetail}/>
+           contactInVestDetail={props.contactInVestDetail}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
+           />
 
         </Suspense>
       </StyledDrawer>
@@ -53,17 +85,15 @@ const ContactInvestorActivityModal = (props) => {
           <TabsWrapper>
             <StyledTabs
               defaultActiveKey="1"
-              style={{ overflow: "visible", width: "53vw", padding: "15px" }}
+              style={{ overflow: "visible", width: "50vw", padding: "4px" }}
               animated={false}
             >
               <TabPane
                 tab={
                   <span>
                    <i class="fas fa-phone-square"></i>&nbsp;
-                   <FormattedMessage
-                        id="app.calls"
-                        defaultMessage="Calls"
-                      />
+                   {translatedMenuItems[0]}
+                   {/* Calls */}
                   </span>
                 }
                 key="1"
@@ -79,10 +109,8 @@ const ContactInvestorActivityModal = (props) => {
                 tab={
                   <span>
                     <i class="fas fa-tasks"></i>&nbsp;
-                    <FormattedMessage
-                        id="app.events"
-                        defaultMessage="Events"
-                      />
+                    {translatedMenuItems[1]}
+                    {/* events  */}
                   </span>
                 }
                 key="2"
@@ -97,10 +125,8 @@ const ContactInvestorActivityModal = (props) => {
                 tab={
                   <span>
                     <i class="far fa-calendar-check"></i>&nbsp;
-                    <FormattedMessage
-                        id="app.tasks"
-                        defaultMessage="Tasks"
-                      />
+                    {translatedMenuItems[2]}
+                    {/* Calls */}
                   </span>
                 }
                 key="3"

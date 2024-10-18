@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { FormattedMessage } from "react-intl";
 import { getCourse,handleEditModal,setEditCourse } from "../CourseAction";
@@ -44,7 +44,7 @@ function CourseTable(props) {
     <>
         <div className='flex justify-end sticky top-28 z-auto'>
          <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
-         <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+         <div className=" flex justify-between w-[100%]  px-2 bg-transparent font-bold sticky top-0 z-10">
         
          <div className=" md:w-[4.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
         <div className=" md:w-[6.1rem]"><FormattedMessage id="app.duration" defaultMessage="Duration"/></div>
@@ -61,8 +61,8 @@ function CourseTable(props) {
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
              {props.courseById.map((item) => {
-               const currentdate = moment().format("DD/MM/YYYY");
-               const date = moment(item.creationDate).format("DD/MM/YYYY");
+               const currentdate = dayjs().format("DD/MM/YYYY");
+               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                const content = item.description;
           return (
 <div>
@@ -193,7 +193,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(CourseTable);
 // import { StyledTable } from "../../../Components/UI/Antd";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
-// import moment from "moment";
+// import dayjs from "dayjs";
 // import { FormattedMessage } from "react-intl";
 // import { Tooltip, Button, Input } from "antd";
 // import SearchIcon from "@mui/icons-material/Search";
@@ -328,8 +328,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(CourseTable);
 //       ...getColumnSearchProps("courseName"),
 //       width: "19%",
 //       render: (name, item, id) => {
-//         const currentdate = moment().format("DD/MM/YYYY");
-//         const date = moment(item.creationDate).format("DD/MM/YYYY");
+//         const currentdate = dayjs().format("DD/MM/YYYY");
+//         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 //         return (
 //           <>
 //             <CourseDetailsView

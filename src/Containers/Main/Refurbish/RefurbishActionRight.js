@@ -1,5 +1,5 @@
 import { Button } from 'antd'
-import moment from 'moment';
+import dayjs from 'dayjs';
 import React from 'react'
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -33,7 +33,7 @@ Copy for`
         // doc.text("Content/Text of box -2", 110, 26);
 
 
-        doc.save(`CMR_template ${moment().format("L")}`);
+        doc.save(`CMR_template ${dayjs().format("L")}`);
 
     }
     const exportPDFCMRPage = async () => {
@@ -206,7 +206,7 @@ Copy for`
         doc.setFillColor(2, 179, 34);
         doc.rect(0, 276, 230, 15, 'F');
 
-        doc.save(`CMR ${moment().format("L")}`);
+        doc.save(`CMR ${dayjs().format("L")}`);
 
     }
     return (

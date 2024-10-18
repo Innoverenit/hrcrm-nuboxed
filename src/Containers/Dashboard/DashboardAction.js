@@ -43,14 +43,6 @@ export const handleOrderAddedModal = (modalProps) => (dispatch) => {
   });
 };
 
-
-export const handleDasboardRepairOrderDrawer = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_DASHBOARD_REPAIR_ORDER_MODAL,
-    payload: modalProps,
-  });
-};
-
 export const setDashboardViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_DASHBOARD_VIEW_TYPE, payload: viewType });
 
@@ -72,15 +64,6 @@ export const handleActionDrawerModal = (modalProps) => (dispatch) => {
   });
 };
 
-
-export const handleOrderOpenModal = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_ORDER_OPEN_MODAL,
-    payload: modalProps,
-  });
-};
-
-
 export const handleOrderClosedModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_ORDER_CLOSED_MODAL,
@@ -88,38 +71,6 @@ export const handleOrderClosedModal = (modalProps) => (dispatch) => {
   });
 };
 
-
-export const handleOrderCancelModal = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_ORDER_CANCEL_MODAL,
-    payload: modalProps,
-  });
-};
-
-
-export const handleDasboardRepairOrderOpenDrawer = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_DASHBOARD_REPAIR_ORDER_OPEN_MODAL,
-    payload: modalProps,
-  });
-};
-
-export const handleDasboardRepairOrderCloseDrawer = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_DASHBOARD_REPAIR_ORDER_CLOSE_MODAL,
-    payload: modalProps,
-  });
-};
-// export const setSelectedTodoTimeIntervalReport = (selectedTodoTime) => (dispatch) => {
-//   //console.log(selectedTime);
-//   dispatch({
-//     type: types.CHANGE_SELECTED_TODO_TIME_INTERVAL_REPORT,
-//     payload: selectedTodoTime,
-//   });
-// };
-/**
- * set current Time  report
- */
 export const setTimeRangeReport = (startDate, endDate) => (dispatch) => {
   dispatch({
     type: types.SET_TIME_INTERVAL_REPORT,
@@ -129,12 +80,6 @@ export const setTimeRangeReport = (startDate, endDate) => (dispatch) => {
     },
   });
 };
-
-// export const setDashboardType = (type) => (dispatch) =>
-// dispatch({
-//   type: types.SET_DASHBOARD_TYPE,
-//   payload: type,
-// });
 
 export const getListByOrderId = () => (dispatch) => {
   dispatch({
@@ -250,12 +195,6 @@ export const getRecruiterDashboardList = (recruiterId) => (dispatch) => {
     });
 };
 export const getDashboardTable2 = (orgId) => (dispatch) => {
-  // let api_url = "";
-  // if (userId) {
-  //   api_url = `/sort/all/contacts/user/${userId}`;
-  // } else {
-  //   api_url = `/contacts`;
-  // }
   dispatch({
     type: types.GET_DASHBOARD_TABLE_PROGRESS_REQUEST,
   });
@@ -566,8 +505,6 @@ export const getSalesDateWiseList =
   };
 
 export const updateTodoCall = (data, callId, type) => (dispatch, getState) => {
-  // const { userId } = getState("auth").auth.userDetails;
-  // console.log(data);
   dispatch({ type: types.UPDATE_TODO_CALL_BY_ID_REQUEST });
   axios
     .put(`${base_url}/todo/update/${callId}?type=${type}`, data, {
@@ -593,8 +530,6 @@ export const updateTodoCall = (data, callId, type) => (dispatch, getState) => {
 
 export const updateTodoEvent =
   (data, eventId, type) => (dispatch, getState) => {
-    ////debugger
-    // const { userId } = getState("auth").auth.userDetails;
     console.log(data);
     dispatch({ type: types.UPDATE_TODO_EVENT_BY_ID_REQUEST });
     axios
@@ -2483,27 +2418,6 @@ export const getOpenQuotationThisYear = (country) => (dispatch) => {
     });
 };
 
-
-export const handleQuotationYear = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_QUOTATION_YEAR_DRAWER,
-    payload: modalProps,
-  });
-};
-
-
-
-
-export const handleQuotationLife = (modalProps) => (dispatch) => {
-  dispatch({
-    type: types.HANDLE_QUOTATION_LIFE_DRAWER,
-    payload: modalProps,
-  });
-};
-
-
-
-
 export const getProspectTableData = (country) => (dispatch) => {
   dispatch({
     type: types.GET_PROSPECT_TABLE_DATA_REQUEST,
@@ -2869,7 +2783,7 @@ export const getRepairDashboardOrderClose = (userId, startDate, endDate,page) =>
     type: types.GET_REPAIR_DASHBOARD_ORDER_CLOSE_REQUEST,
   });
   axios
-    .get(`${base_url2}/dashboard/inCompleteOrderList/${userId}/${endDate}/${startDate}/${page}`, {
+    .get(`${base_url2}/dashboard/completeOrderList/${userId}/${endDate}/${startDate}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2926,7 +2840,7 @@ export const getRepairDashboardOrderOpen = (userId, startDate, endDate,page) => 
     type: types.GET_REPAIR_DASHBOARD_ORDER_OPEN_REQUEST,
   });
   axios
-    .get(`${base_url2}/dashboard/completeOrderList/${userId}/${endDate}/${startDate}/${page}`, {
+    .get(`${base_url2}/dashboard/inCompleteOrderList/${userId}/${endDate}/${startDate}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2942,6 +2856,254 @@ export const getRepairDashboardOrderOpen = (userId, startDate, endDate,page) => 
       console.log(err.response);
       dispatch({
         type: types.GET_REPAIR_DASHBOARD_ORDER_OPEN_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getRepairDashboardOrderCancelled = (userId, startDate, endDate,page) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dashboard/CancelledDummy/${userId}/${endDate}/${startDate}/${page}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getCountbyUserID = (userId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_COUNT_BY_USERID_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2}/distributor/distributorCount/${userId}/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_COUNT_BY_USERID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_COUNT_BY_USERID_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getDistributorbyUserID = (userId,endDate,startDate,page) => (dispatch) => {
+  dispatch({
+    type: types.GET_DISTRIBUTOR_BY_USERID_REQUEST,
+  });
+  axios
+    .get(
+      `${base_url2}/distributor/${userId}/${endDate}/${startDate}/${page}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_DISTRIBUTOR_BY_USERID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_DISTRIBUTOR_BY_USERID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSourceCountAcc = (userId,type,countryName) => (dispatch) => {
+  dispatch({
+    type: types.GET_SOURCE_COUNT_ACC_REQUEST,
+  });
+  axios
+    .get(`${base_url}/dashboard/sourceCount/${userId}/${type}/${countryName}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SOURCE_COUNT_ACC_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_SOURCE_COUNT_ACC_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getCategoryCountAcc = (userId,type,countryName) => (dispatch) => {
+  dispatch({
+    type: types.GET_CATEGORY_COUNT_ACC_REQUEST,
+  });
+  axios
+    .get(`${base_url}/dashboard/categoryCount/${userId}/${type}/${countryName}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CATEGORY_COUNT_ACC_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CATEGORY_COUNT_ACC_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+export const getQuotationDashboard = (userId) => (dispatch) => {
+  dispatch({
+      type: types.GET_QUOTATION_DASHBOARD_REQUEST,
+  });
+
+  axios
+      .get(`${base_url2}/quotation/notConverted/toOrder/user/${userId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_QUOTATION_DASHBOARD_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_QUOTATION_DASHBOARD_FAILURE,
+              payload: err,
+          });
+      });
+};
+
+
+
+
+
+export const getQuotationDashboardCount = (userId) => (dispatch) => {
+  dispatch({
+      type: types.GET_QUOTATION_DASHBOARD_COUNT_REQUEST,
+  });
+
+  axios
+      .get(`${base_url2}/quotation/notConverted/toOrder/count/user/${userId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_QUOTATION_DASHBOARD_COUNT_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_QUOTATION_DASHBOARD_COUNT_FAILURE,
+              payload: err,
+          });
+      });
+};
+
+
+
+export const getRepairVolumeChart = (userId,type) => (dispatch) => {
+  dispatch({ type: types.GET_REPAIR_VOLUME_CHART_REQUEST });
+  axios
+    .get(
+      `${base_url2}/dashboard/volumePieChart/${userId}/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      dispatch({
+        type: types.GET_REPAIR_VOLUME_CHART_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REPAIR_VOLUME_CHART_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getReorderdata = () => (dispatch) => {
+  dispatch({ type: types.GET_REORDER_DATA_REQUEST });
+
+  axios
+    .get(`${base_url2}/po/getReorder/all/material`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // console.log(res)
+      dispatch({
+        type: types.GET_REORDER_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REORDER_DATA_FAILURE,
         payload: err,
       });
     });

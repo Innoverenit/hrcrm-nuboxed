@@ -37,6 +37,29 @@ function SignatureView(props) {
       )
     );
   }
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    
+          " Update"
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     props.getOrganizationSignatureByOrgId(props.organizationId);
   }, []);
@@ -94,7 +117,7 @@ function SignatureView(props) {
               htmlType="submit"
               disabled={!edit}
             >
-              Update
+             {translatedMenuItems[0]} {/* Update */}
             </Button>
           </StyledPopconfirm>
         </div>

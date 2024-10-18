@@ -6,7 +6,7 @@ import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { setClearbitProductDistributorData } from "../../../Product/ProductAction";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
-import moment from "moment";
+import dayjs from "dayjs";
 import { addDistributorOffer } from "../../ProductAction";
 
 class DistributorProductOfferForm extends Component {
@@ -28,9 +28,9 @@ class DistributorProductOfferForm extends Component {
                         distributorOfferProductQty: 0,
                         distributorProductQty: 0,
                         distributorOfferProductId: "",
-                        distributorStartDate: distributorStartDate || moment(),
+                        distributorStartDate: distributorStartDate || dayjs(),
                         distributorEndDate: distributorEndDate || null,
-                        distributorEndDate: moment(),
+                        distributorEndDate: dayjs(),
                     }}
                     onSubmit={(values, { resetForm }) => {
                         console.log(values);
@@ -47,10 +47,10 @@ class DistributorProductOfferForm extends Component {
                         if (!values.distributorEndDate) {
                             values.distributorEndDate = values.distributorStartDate;
                         }
-                        let newStartDate = moment(values.distributorStartDate).format("YYYY-MM-DD");
+                        let newStartDate = dayjs(values.distributorStartDate).format("YYYY-MM-DD");
                         console.log(newStartDate);
                         //Time calculation
-                        let firstStartTime = moment(values.startTime).format(
+                        let firstStartTime = dayjs(values.startTime).format(
                             "HH:mm:ss.SSS[Z]"
                         ); // getting start time from form input
                         console.log(firstStartTime);
@@ -81,8 +81,8 @@ class DistributorProductOfferForm extends Component {
                         let newStartTime = `${finalStartTime}${timeEndPart}`;
                         console.log(newStartTime);
 
-                        let newEndDate = moment(values.distributorEndDate).format("YYYY-MM-DD");
-                        let firstEndTime = moment(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
+                        let newEndDate = dayjs(values.distributorEndDate).format("YYYY-MM-DD");
+                        let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
                         console.log(firstEndTime);
                         let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
                         console.log(firstEndHours);
@@ -202,13 +202,13 @@ class DistributorProductOfferForm extends Component {
                                                 component={DatePicker}
                                                 isColumn
                                                 value={values.distributorEndDate || values.distributorStartDate}
-                                                defaultValue={moment("2015-01-01")}
+                                                defaultValue={dayjs("2015-01-01")}
                                                 inlineLabel
                                                 disabledDate={(currentDate) => {
                                                     if (values.startDate) {
                                                         if (
-                                                            moment(currentDate).isBefore(
-                                                                moment(values.startDate)
+                                                            dayjs(currentDate).isBefore(
+                                                                dayjs(values.startDate)
                                                             )
                                                         ) {
                                                             return true;

@@ -16,7 +16,7 @@ class CustomerPulseDrawerModal extends Component {
         <StyledDrawer
         // title="Notes"
           title={this.props.customer.name}
-          width="65%"
+          width="90%"
           destroyOnClose
           closable
           visible={this.props.addDrawerCustomerPulseModal}
@@ -24,6 +24,9 @@ class CustomerPulseDrawerModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
             <CustomerPulseJumpstart 
+               translateText={this.props.translateText}
+               selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
             customer={this.props.customer}
             />
           </Suspense>

@@ -14,33 +14,15 @@ import {
 } from "./CandidateAction";
 
 const CandidateHeader = lazy(() => import("./Child/CandidateHeader"));
-const CandidateWhiteTable = lazy(() =>
-  import("../Candidate/Child/CandidateWhiteTable")
-);
-const CandidateBlackListTable = lazy(() =>
-  import("../Candidate/CandidateBlackListTable")
-);
-const AddCandidateResumeModal = lazy(() =>
-  import("../Candidate/Child/AddCandidateResumeModal")
-);
-const CandidateBlueTable = lazy(() =>
-  import("../Candidate/Child/CandidateBlueTable")
-);
-const CandidateTable = lazy(() =>
-  import("./Child/CandidateTable/CandidateTable")
-);
-const CandidateMap = lazy(() =>
-  import("../Candidate/CandidateMap")
-);
-const AddCandidateFilterModal = lazy(() =>
-  import("../Candidate/Child/AddCandidateFilterModal")
-);
-const CandidateDollarTable = lazy(() =>
-  import("../Candidate/Child/CandidateTable/CandidateDollarTable")
-);
-const CandidateBillableStepper = lazy(() =>
-  import("../Dashboard/Child/BillableCandidate/CandidateBillableStepper")
-);
+const CandidateWhiteTable = lazy(() =>import("../Candidate/Child/CandidateWhiteTable"));
+const CandidateBlackListTable = lazy(() =>import("../Candidate/CandidateBlackListTable"));
+const AddCandidateResumeModal = lazy(() =>import("../Candidate/Child/AddCandidateResumeModal"));
+const CandidateBlueTable = lazy(() =>import("../Candidate/Child/CandidateBlueTable"));
+const CandidateTable = lazy(() =>import("./Child/CandidateTable/CandidateTable"));
+const CandidateMap = lazy(() =>import("../Candidate/CandidateMap"));
+const AddCandidateFilterModal = lazy(() =>import("../Candidate/Child/AddCandidateFilterModal"));
+const CandidateDollarTable = lazy(() =>import("../Candidate/Child/CandidateTable/CandidateDollarTable"));
+const CandidateBillableStepper = lazy(() =>import("../Dashboard/Child/BillableCandidate/CandidateBillableStepper"));
 const CandidateCardView = lazy(() => import("./CandidateCardView"));
 
 const Candidate = (props) => {

@@ -1,7 +1,7 @@
 import * as types from "./ContactActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
-import { base_url } from "../../Config/Auth";
+import { base_url, base_url2 } from "../../Config/Auth";
 import Swal from "sweetalert2";
 import { getContactListByOpportunityId } from "../Opportunity/OpportunityAction";
 /**
@@ -186,6 +186,32 @@ export const getContactData = (userId,page) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_CONTACT_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getContactDistributor = (userId,page) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_DISTRIBUTOR_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/contactPerson/distributorContactPersonsList`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_DISTRIBUTOR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CONTACT_DISTRIBUTOR_FAILURE,
         payload: err,
       });
     });
@@ -627,12 +653,15 @@ export const updateContact = (data, contactId) => (dispatch) => {
     });
 };
 //SEARCH
-export const inputContactDataSearch = (name) => (dispatch) => {
+export const inputContactDataSearch = (name,type,contactType) => (dispatch) => {
   dispatch({
     type: types.INPUT_CONTACT_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url}/contact/Name/${name}`, {
+    // .get(`${base_url}/contact/Name/${name}`, 
+    .get(`${base_url}/contact/search/alltype/${name}/${type}/${contactType}`,
+      {
+
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1596,6 +1625,90 @@ export const getContactAddressData = (id,type) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_CONTACT_ADDRESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const updateContactAddress = (data) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.UPDATE_CONTACT_ADDRESS_REQUEST,
+  });
+  axios
+    .put(`${base_url}/address/update`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_CONTACT_ADDRESS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.UPDATE_CONTACT_ADDRESS_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+
+
+export const removeAddressData = (addressId) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_ADDRESS_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/delete/address/${addressId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Address Deleted Successfully',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch({
+        type: types.REMOVE_ADDRESS_DATA_SUCCESS,
+        payload: addressId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_ADDRESS_DATA_FAILURE,
         payload: err,
       });
     });

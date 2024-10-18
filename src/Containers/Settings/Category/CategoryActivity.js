@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import {  Badge } from "antd";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 import { connect } from "react-redux";
 const Event = lazy(() => import("../Event/Event"));
 const Task = lazy(() => import("../Task/Task"));
@@ -45,13 +46,14 @@ class CategoryActivity extends Component {
                 tab={
                   <>
                     <i className="far fa-calendar-check"></i>
-                    <Badge
-                count={this.props.eventCount.EventTypeCount}
-                overflowCount={999}
-              >
-                    <span className="ml-1 font-poppins">Event 
+                    <span className="ml-1 !text-tab font-poppins text-sm">Event 
                     {/* <span className="text-red-500 font-bold">{this.props.eventCount.EventTypeCount}</span> */}
                     </span>
+                    <Badge
+                count={this.props.eventCount.EventTypeCount}
+                overflowCount={999} offset={[ 0, -16]}
+              >
+                   
                     </Badge>
                   </>
                 }
@@ -60,14 +62,15 @@ class CategoryActivity extends Component {
               <TabPane
                 tab={
                   <>
-                    <i className="fas fa-tasks"></i>
-                    <Badge
-                count={this.props.taskCount.TaskTypeCount}
-                overflowCount={999}
-              >
-                    <span className="ml-1 font-poppins">Task 
+                   <FactCheckIcon className="!text-icon"/>
+                    <span className="!text-tab ml-1 font-poppins text-sm">Task 
                     {/* <span className="text-red-500 font-bold">{this.props.taskCount.TaskTypeCount}</span> */}
                     </span>
+                    <Badge
+                count={this.props.taskCount.TaskTypeCount}
+                overflowCount={999} offset={[ 0, -16]}
+              >
+                   
                     </Badge>
                   </>
                 }

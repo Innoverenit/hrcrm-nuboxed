@@ -22,6 +22,9 @@ class AddPitchNotesDrawerModal extends Component {
              <MainNotes
              type="contactInvest"
              uniqueId={this.props.contactiData.contactId}
+             translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
             />
           </Suspense>
         </StyledDrawer>

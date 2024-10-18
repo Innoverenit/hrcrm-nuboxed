@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { JumpStartBox } from "../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 
 class VoIPJumpStart extends Component {
     componentDidMount() {
-        const { }
+    
     }
     render() {
         const { } = this.props;
 
 
         return (
-            <FlexContainer flexDirection='column' style={{ width: '100%' }}>
-                <FlexContainer style={{ width: '100%' }}>
+            <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto  w-[100%]">
+             <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto  w-[100%]">
                     <JumpStartBox
                         noProgress
                         // isLoading={fetchingEventsListByVoIPId}
@@ -29,8 +28,8 @@ class VoIPJumpStart extends Component {
                         title='Auth Token'
                     // bgColor='#F3967E'
                     />
-                </FlexContainer>
-                <FlexContainer style={{ width: '100%' }}>
+                </div>
+                <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto  w-[100%]">
                     <JumpStartBox
                         noProgress
                         // isLoading={fetchingFunnelValueByVoIPId}
@@ -47,8 +46,8 @@ class VoIPJumpStart extends Component {
                         title='VoIP Provider'
                     // bgColor='#24B47E'
                     />
-                </FlexContainer>
-            </FlexContainer>
+                </div>
+            </div>
         )
     }
 }

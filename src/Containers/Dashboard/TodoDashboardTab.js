@@ -35,7 +35,7 @@ class TodoDashboardTab extends Component {
       ganttChart: false,
       costId: "",
     };
-  }
+  } 
 
   componentDidMount() {
     const { getTodosCount, userId, startDate, endDate } = this.props;

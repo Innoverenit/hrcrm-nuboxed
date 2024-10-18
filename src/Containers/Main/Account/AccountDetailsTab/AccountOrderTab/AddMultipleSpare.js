@@ -107,7 +107,7 @@ const AddMultipleSpare = (props) => {
                     <>
                         <div class="flex justify-between">
                             <div class="w-[30%]">
-                                <label>{`Spare ${i + 1}`}</label>
+                                <div class="font-bold text-xs font-poppins text-black">{`Spare ${i + 1}`}</div>
 
                                 <Select
                                     name={`${row.id}_value`}
@@ -125,13 +125,13 @@ const AddMultipleSpare = (props) => {
                             </div>
 
                             <div class="w-[15%]">
-                                <label>
+                                <div class="font-bold text-xs font-poppins text-black">
                                     <FormattedMessage
                                         id="app.units"
                                         defaultMessage="Units"
                                     />
 
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.noOfSpare}`}
@@ -141,12 +141,12 @@ const AddMultipleSpare = (props) => {
                                 />
                             </div>
                             <div class="w-[15%]">
-                                <label>
+                                <div class="font-bold text-xs font-poppins text-black">
                                     <FormattedMessage
                                         id="app.hours"
                                         defaultMessage="Hours"
                                     />
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.hours}`}
@@ -156,13 +156,13 @@ const AddMultipleSpare = (props) => {
                                 />
                             </div>
                             <div class="w-[15%]">
-                                <label>
+                                <div class="font-bold text-xs font-poppins text-black">
                                     <FormattedMessage
                                         id="app.cost"
                                         defaultMessage="Cost"
                                     />
 
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.extraCost}`}
@@ -172,7 +172,7 @@ const AddMultipleSpare = (props) => {
                                 />
                             </div>
                             <div class="w-[15%]">
-                                <label>{`Currency`}</label>
+                                <div class="font-bold text-xs font-poppins text-black">{`Currency`}</div>
 
                                 <Select
                                     name={`${row.id}_value`}

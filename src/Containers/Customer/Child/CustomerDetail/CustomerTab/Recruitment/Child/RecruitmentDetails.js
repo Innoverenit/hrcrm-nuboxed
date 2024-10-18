@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import {
-  FlexContainer,
   MainWrapper,
 } from "../../../../../../../Components/UI/Layout";
 
@@ -20,9 +19,9 @@ class RecruitmentDetails extends Component {
             <BundleLoader />
           </MainWrapper>
         ) : (
-            <FlexContainer>
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
               <Suspense fallback={"Loading..."}>
-                <FlexContainer flexWrap="no-wrap" style={{ width: "100%" }}>
+              <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[100%] ">
                   <div style={{ width: "25%" }}>
                     <RecruitmentDetailsLeft contact={this.props.contact} />
                   </div>
@@ -33,9 +32,9 @@ class RecruitmentDetails extends Component {
                       profileId={this.props.profileId}
                     />
                   </div>
-                </FlexContainer>
+                </div>
               </Suspense>
-            </FlexContainer>
+            </div>
           )}
       </>
     );

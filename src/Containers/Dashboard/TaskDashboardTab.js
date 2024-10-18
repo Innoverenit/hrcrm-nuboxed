@@ -48,10 +48,10 @@ class TaskDashboardTab extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-        ' Development', // 0
-         'Open Tasks', // 1
-         'Completed Tasks', // 2
-         ' Events ', // 3
+        '33', // 0
+         '31', // 1
+         '34', // 2
+         '35', // 3
 
 
       ];
@@ -78,9 +78,9 @@ class TaskDashboardTab extends Component {
     // const { activeKey } = this.state;
     const { activeKey, loading, translatedMenuItems } = this.state;
 
-    if (loading) {
-      return <div><BundleLoader/></div>;
-    } 
+    // if (loading) {
+    //   return <div><BundleLoader/></div>;
+    // } 
     return (
       <>
         <TabsWrapper1 style={{height:"14.5rem"}}>

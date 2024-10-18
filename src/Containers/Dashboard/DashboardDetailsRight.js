@@ -1,7 +1,7 @@
 import React, { lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FlexContainer, MainWrapper } from "../../Components/UI/Layout";
+import { MainWrapper } from "../../Components/UI/Layout";
 import WordCloud from "../../Components/WordCloud/WordCloud";
  import DashboardTodo from "./Child/DashboardTodo";
 import Indicator from "./Indicator";
@@ -10,10 +10,10 @@ function DashboardDetailsRight(props) {
   return (
     <>
 
-       <FlexContainer flexDirection="column" style={{ display: "block" }}>
+<div class=" block flex-col  flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
       
       <DashboardCustomerTab/> 
-       <FlexContainer justifyContent="space-between" >
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
     
        <MainWrapper
         style={{width:"54%",height:"30vh"}}>
@@ -28,7 +28,7 @@ function DashboardDetailsRight(props) {
     
        </div>
       
-       </FlexContainer>
+       </div>
      
        <div style={{ width: "55%", }}>
        <MainWrapper
@@ -37,24 +37,20 @@ function DashboardDetailsRight(props) {
        <WordCloud/>
        </MainWrapper>
        </div>
-      
-       {/* <DashboardCustomerTab/> */}
-      
-    </FlexContainer>
+
+    </div>
     </>
   );
 }
 
 const mapStateToProps = ({ permissions, auth }) => ({
-//   permissionsData: permissions.permissionsData,
-//   userId: auth.userDetails.userId,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-    //   getPermissions,
-    //   addingPermissions
+    
     },
     dispatch
   );

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch, Icon, Tooltip } from "antd";
+import { Button, Switch } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-import { StyledLabel } from "../../../../Components/UI/Elements";
-import { Spacer } from "../../../../Components/UI/Elements";
+
 
 function Rules3Form() {
   const [visible, setVisible] = useState(false);
@@ -34,9 +32,9 @@ function Rules3Form() {
                   width: "45%",
                 }}
               >
-                <FlexContainer justifyContent="space-between">
+               <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "50%", marginTop: "0.625em" }}>
-                    <StyledLabel>Auto Approval</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Auto Approval</div>
                     <Switch
                       style={{ width: "5em", marginLeft: "0.625em" }}
                       onChange={handleChange}
@@ -58,10 +56,10 @@ function Rules3Form() {
                       />
                     </div>
                   )}
-                </FlexContainer>
-                <Spacer />
+                </div>
+                <mt-3 />
                 {values.type && (
-                  <FlexContainer justifyContent="space-between">
+                         <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "65%" }}>
                       <Field
                         name="unit"
@@ -93,13 +91,13 @@ function Rules3Form() {
                         }}
                       />
                     </div>
-                    <Spacer />
-                    <FlexContainer justifyContent="flex-end">
+                    <mt-3 />
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                       <Button type="primary" htmlType="submit">
                         Add Rule
                       </Button>
-                    </FlexContainer>
-                  </FlexContainer>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>

@@ -1,9 +1,12 @@
 import React, { lazy, Suspense, useEffect, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
+import PhoneMaterialScanner from "../Main/Scan/PhoneScanner/PhoneMaterialScanner"
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 import AssessmentData from "../AssessmentData/AssessmentData"
-import { base_url,login_url } from "../../Config/Auth";
+import { login_url } from "../../Config/Auth";
+import Waranty from "../Waranty/Waranty"
+import ProductionPhoneScanner from "../Main/Scan/PhoneScanner/ProductionPhoneScanner"
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
@@ -15,9 +18,7 @@ import { bindActionCreators } from "redux";import {
 } from "antd";
 import { ThemeProvider } from "styled-components";
 import {
-  ApplicationWrapper,
   LayoutWrapper,
-  NavbarWrapper,
 } from "../../Components/UI/Layout";
 import { Select } from "antd";
 import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
@@ -80,6 +81,9 @@ const Holiday = lazy(() =>
 const Reports = lazy(() =>
   import("../Reports/Reports")
 );
+const Analytics = lazy(() =>
+  import("../Reports/Analytics")
+);
 const Partner = lazy(() =>
   import("../Partner/Partner")
 );
@@ -102,9 +106,7 @@ const AssessmentDetails = lazy(() =>
 const Leads = lazy(() =>
   import("../Leads/Leads")
 );
-const LeadDetails = lazy(() =>
-  import("../Leads/Child/LeadsDetailTab/LeadDetails")
-);
+
 const Program = lazy(() =>
   import("../Program/Program")
 );
@@ -219,7 +221,6 @@ const Accessment = lazy(() => import("../Accessment/Accessment"));
 const Task = lazy(() => import("../Task/Task"));
 const Event = lazy(() => import("../Event/Event"));
 const Leave = lazy(() => import("../Leave/Leave"));
-const PageNotFound = lazy(() => import("../404/PageNotFound"));
 const LiveMessage = lazy(() =>
   import("../../Containers/LiveMessages/LiveMessage")
 );
@@ -244,7 +245,6 @@ const ContactInvest = lazy(() => import("../ContactInvest/ContactInvest"));
 const Investor = lazy(() => import("../Investor/Investor"));
 const InvestorDetail = lazy(() => import("../Investor/Child/InvestorDetail/InvestorDetail"));
 const ContactInvestDetail = lazy(() => import("../ContactInvest/Child/ContactInvestDetail/ContactInvestDetail"));
-const DealDetail = lazy(() => import("../Deal/Child/DealDetail/DealDetail"));
 const Product = lazy(() => import("../Product/Product"));
 const Collection = lazy(() => import("../Collection/Collection"));
 const Plant = lazy(() => import("../Plant/Plant"));
@@ -261,7 +261,7 @@ function MainApp(props) {
 
   const [supportedLanguages, setSupportedLanguages] = useState([]);
 
-  const [data, setData] = useState('No result');
+  const [data, setData] = useState(null);
   const [scanning, setScanning] = useState(false);
   const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
@@ -307,7 +307,7 @@ function MainApp(props) {
   };
 
   const translateText = async (text, targetLanguage) => {
-    const url = `${login_url}/words/convertWord`;
+    const url = `${login_url}/words/convertWordsById`;
 
     const response = await fetch(url, {
       method: 'POST',
@@ -422,7 +422,7 @@ function MainApp(props) {
                 className="logo1"
                 style={{
                   display: "flex",
-                  width: "-webkit-fill-available",
+                  width: "90%",
                   justifyContent: !collapsed ? "center" : "center",
 
                 }}
@@ -441,14 +441,14 @@ function MainApp(props) {
               />
             </Sider>
           </div>
-          <LayoutWrapper>
-            <NavbarWrapper style={{
-              padding: 0, height: 50, alignItems: "center", position: "sticky", zIndex: "999", top: " 0.15rem",
-
-
-            }}>
-              <Header>
-              <div class="max-xl:text-[0.75rem] max-lg:text-[0.5rem]">
+          <LayoutWrapper class="w-[90%]  max-sm:w-wk" >
+            <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50  h-10  leading-8  shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
+           
+              <Header class=" flex bg-white w-[100%] box-border border-2 justify-between p-0 items-center">
+              <div ><Navmenu2 className=" z-10 "
+                  translateText={translateText}
+                  selectedLanguage={selectedLanguage} /></div>
+              <div class="max-xl:text-[0.75rem]  max-lg:text-[0.5rem] ">
                   <LanguageSelector
                     translateText={translateText}
                     selectedLanguage={selectedLanguage}
@@ -458,15 +458,13 @@ function MainApp(props) {
                   />
                 </div> 
                 <div class="flex justify-between items-center">
-                  <div class="xl:hidden ml-4 "><Navmenu2 
-                  translateText={translateText}
-                  selectedLanguage={selectedLanguage} /></div>
+                  
                   <StartStop />
                   <div >
                      </div>
                 
                   <div class="ml-2">
-                    <QRCodeList
+                    <QRCodeList  class
                       handleScan={handleScan}
                       stopScanning={stopScanning}
                       startScanning={startScanning}
@@ -553,8 +551,8 @@ function MainApp(props) {
                       </div>
                     </a>
 
-                    <RepositoryData />
-                    <FAQPage />
+                    <RepositoryData  />
+                    <FAQPage/>
 
                   </div>
                   <ProfileDropdown />
@@ -562,8 +560,8 @@ function MainApp(props) {
                
                 </div>
               </Header>
-            </NavbarWrapper>
-            <ApplicationWrapper>
+            </div>
+            <div class=" p-1 bg-light-gray ">
               <AppErrorBoundary>
                 <Content>
                   <Suspense maxDuration={6000} fallback={<BundleLoader />}>
@@ -971,6 +969,17 @@ function MainApp(props) {
                         />
                       )}
                     />
+                    <Route
+                      exact
+                      path="/analytics"
+                      render={(props) => (
+                        <Analytics
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                      <Route
                       exact
                       path="/partner"
@@ -1009,6 +1018,18 @@ function MainApp(props) {
                       path="/call"
                       render={(props) => (
                         <Call
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+
+<Route
+                      exact
+                      path="/Sold"
+                      render={(props) => (
+                        <Waranty
                           {...props}
                           translateText={translateText}
                            selectedLanguage={selectedLanguage}
@@ -1082,7 +1103,7 @@ function MainApp(props) {
                         />
                       )}
                     />   
-                     <Route
+                     {/* <Route
                       exact
                       path="/leads/:leadsId"
                       render={(props) => (
@@ -1092,7 +1113,7 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    /> 
+                    />  */}
                      <Route
                       exact
                       path="/scan/:phoneId"
@@ -1104,6 +1125,30 @@ function MainApp(props) {
                         />
                       )}
                     /> 
+
+<Route
+                      exact
+                      path="/material/:suppliesId"
+                      render={(props) => (
+                        <PhoneMaterialScanner
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    /> 
+{/* 
+<Route
+                      exact
+                      path="/production/:manufactureId"
+                      render={(props) => (
+                        <ProductionPhoneScanner
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />  */}
                     <Route
                       exact
                       path="/course/:courseId"
@@ -1536,18 +1581,7 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    />
-                      <Route
-                      exact
-                      path="/dealDetails/:invOpportunityId"
-                      render={(props) => (
-                        <DealDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
-                    />
+                    />                      
                     <Route
                       exact
                       path="/subscriptionmainapps"
@@ -1561,12 +1595,12 @@ function MainApp(props) {
                       )}
                     />
                      
-                      <Route path="**" component={PageNotFound} />
+                     
                     </Switch>
                   </Suspense>
                 </Content>
               </AppErrorBoundary>
-            </ApplicationWrapper>
+            </div>
           </LayoutWrapper>
         </LayoutWrapper>
       </ThemeProvider>

@@ -10,11 +10,10 @@ import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Button, Input, Modal, Select, Switch, Tooltip, message } from 'antd';
 import PoReceiveToggle from './PoReceiveToggle';
-import { FormattedMessage } from 'react-intl';
 import { trnasferGrnItemToStock } from "../../../InventoryAction"
 import AllowGrnToggle from './AllowGrnToggle';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { MultiAvatar, StyledLabel } from '../../../../../../Components/UI/Elements';
+import { MultiAvatar } from '../../../../../../Components/UI/Elements';
 
 const { Option } = Select;
 
@@ -100,8 +99,8 @@ const ReceivedDetailCard = (props) => {
     return (
         <>
             <div className=' flex  sticky z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                         <div className=""></div>
                         <div className=" w-[29.51rem]">
                             {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */} {props.translatedMenuItems[15]}
@@ -322,10 +321,10 @@ const ReceivedDetailCard = (props) => {
                     onOk={handleOk}
                     onCancel={handleCancelmodal}
                 >
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                         {/* Select from existing GRN */} {props.translatedMenuItems[27]}
 
-                    </StyledLabel>
+                    </div>
                     <div class=" flex justify-evenly">
                         <Switch
                             checked={existGrn}

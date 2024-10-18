@@ -8,11 +8,6 @@ import {
   getProcessForRecruit,
 } from "../../../../../Settings/SettingsAction";
 import dayjs from "dayjs";
-import {
-  HeaderLabel,
-  Spacer,
-  StyledLabel,
-} from "../../../../../../Components/UI/Elements";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import { getAllPartnerListByUserId } from "../../../../../Partner/PartnerAction"
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
@@ -314,7 +309,7 @@ function RequirementForm(props) {
                       />
                     </div>
                     <div style={{ width: "47%" }}>
-                      <StyledLabel>Type </StyledLabel> 
+                      <div class=" text-xs font-bold font-poppins text-black">Type </div> 
                       <Switch
                         checked={typeData}
                         onChange={handleType}
@@ -465,7 +460,7 @@ function RequirementForm(props) {
                  
                   <FlexContainer justifyContent="space-between">
                   <div style={{ width: "25%" }}>
-                    <StyledLabel >Category</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins">Category</div>
                    
                     <Switch
                       style={{
@@ -520,7 +515,7 @@ function RequirementForm(props) {
                       </FlexContainer>
                     </div>
                   </FlexContainer>
-                  <Spacer style={{marginTop:"1.25em"}} />
+                  <div class=" mt-3" style={{marginTop:"1.25em"}} />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%", }}>
                       <Field
@@ -570,10 +565,10 @@ function RequirementForm(props) {
                     </div>
                   </FlexContainer>     
                   
-                  <Spacer style={{marginTop:"1.25em"}} />             
+                  <div class=" mt-3" style={{marginTop:"1.25em"}} />             
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "100%" }}>
-                       <StyledLabel>Recruiter</StyledLabel> 
+                       <div class=" text-xs font-bold font-poppins text-black">Recruiter</div> 
   
                       <Select
                         name="recruitersId"
@@ -593,7 +588,7 @@ function RequirementForm(props) {
   
                     </div>
                   </FlexContainer>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FlexContainer justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <Field
@@ -612,7 +607,7 @@ function RequirementForm(props) {
                       />
                     </div>
                     <div style={{ width: "47%" }}>
-                       <StyledLabel>Vendor</StyledLabel> 
+                       <div class=" text-xs font-bold font-poppins text-black">Vendor</div> 
   
                        <Select
                         name="partnerId"
@@ -670,7 +665,7 @@ function RequirementForm(props) {
                   <FlexContainer justifyContent="space-between">
                   <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}}>Location</HeaderLabel>
+                      <div class="font-semibold text-white text-xs flex"> Location</div>
                   </div>
                   </div>
                   <div style={{ width: "100%" }}>
@@ -686,7 +681,7 @@ function RequirementForm(props) {
                   />
                   </div>
                   </FlexContainer>
-                  <Spacer style={{marginTop:"1.25em"}} /> 
+                  <div class=" mt-3" style={{marginTop:"1.25em"}} /> 
                     <div style={{ width: "100%" }}>
                       <Field
                         name="description"
@@ -706,7 +701,7 @@ function RequirementForm(props) {
                     </div>
                 </div>
               </div>
-              <Spacer/>
+              <div class=" mt-3"/>
               <FlexContainer justifyContent="flex-end">
                 <Button
                   type="primary"

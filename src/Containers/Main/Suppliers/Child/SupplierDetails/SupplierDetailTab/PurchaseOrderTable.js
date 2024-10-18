@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,lazy, Suspense,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
@@ -10,20 +10,22 @@ import {
     handleTermsnConditionModal,
     addCurrencyInPo,
     updatePOContact,
-    getSupplierContactList
+    getSupplierContactList,getSearchPo,ClearPoData
 } from "../../../SuppliersAction"
-import { Button, Select, Tooltip } from 'antd';
+import { Button, Select, Tooltip,Input } from 'antd';
 import dayjs from "dayjs";
+import { AudioOutlined } from '@ant-design/icons';
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 import NodataFoundPage from '../../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import PoLocationModal from "./PoLocationModal";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
-import POSupplierDetailsModal from "./POSupplierDetailsModal";
 import { TerminalSharp } from "@mui/icons-material";
-import TermsnConditionModal from "./TermsnConditionModal";
 import { getCurrency } from "../../../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-
+const PoLocationModal  = lazy(() => import("./PoLocationModal"));
+const POSupplierDetailsModal  = lazy(() => import("./POSupplierDetailsModal"));
+const TermsnConditionModal  = lazy(() => import("./TermsnConditionModal"));
 const { Option } = Select;
 
 function PurchaseOrderTable(props) {
@@ -32,6 +34,45 @@ function PurchaseOrderTable(props) {
   const [editContactId, setEditContactId] = useState(null);
   const [contact, setContact] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false);
+  const [pageNo, setPageNo] = useState(0);
+  const [startTime, setStartTime] = useState(null);
+const [isRecording, setIsRecording] = useState(false); //Code for Search
+const minRecordingTime = 3000; // 3 seconds
+const timerRef = useRef(null);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+   
+          // "PO", //0
+          "77",   // "Owner",//0
+          "658",  // "Location",//2
+           "772", // "Delivery",//3
+           "73", // "Contact",//4
+            "241",// "Currency ",//5
+           "218", // "Value",//6
+           "1246" //update 7
+          //  "",//Terms and consdtions
+            
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
     useEffect(() => {
         props.getCurrency()
@@ -92,42 +133,138 @@ function PurchaseOrderTable(props) {
     const handleLoadMore = () => {
         setPage(page + 1);
     };
+
+    const {
+      transcript,
+      listening,
+      resetTranscript,
+      browserSupportsSpeechRecognition
+    } = useSpeechRecognition();
+
+    useEffect(() => {
+      // props.getCustomerRecords();
+      if (transcript) {
+        console.log(">>>>>>>", transcript);
+        setCurrentData(transcript);
+      }
+      }, [ transcript]);
+  
+    const handleChange = (e) => {
+      setCurrentData(e.target.value);
+  
+      if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+        props.getPurchaseSuppliersList(props.supplier.supplierId);
+        props.ClearPoData()
+        setSearchOnEnter(false);
+      }
+    };
+    const handleSearch = () => {
+      if (currentData.trim() !== "") {
+        // Perform the search
+        props.getSearchPo(currentData);
+        setSearchOnEnter(true);  //Code for Search
+      } else {
+        console.error("Input is empty. Please provide a value.");
+      }
+    };
+    const handleStartListening = () => {
+      setStartTime(Date.now());
+      setIsRecording(true);
+      SpeechRecognition.startListening();
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      timerRef.current = setTimeout(() => {
+        SpeechRecognition.stopListening();
+        setIsRecording(false);
+      }, minRecordingTime);
+    };
+    const suffix = (
+      <AudioOutlined
+        onClick={handleStartListening}
+        style={{
+          fontSize: 16,
+          color: '#1890ff',
+        }}
+  
+      />
+    );
+    const handleStopListening = () => {
+      SpeechRecognition.stopListening();
+      setIsRecording(false);
+      if (transcript.trim() !== "") {
+        setCurrentData(transcript);
+        props.getSearchPo(transcript);
+        setSearchOnEnter(true);
+      }
+    };
+    useEffect(() => {
+      if (!listening && isRecording) {
+        handleStopListening();
+      }
+    }, [listening]);
+    useEffect(() => {
+      if (isRecording && !listening) {
+        // If recording was stopped but less than 5 seconds have passed, restart listening
+        const elapsedTime = Date.now() - startTime;
+        if (elapsedTime < minRecordingTime) {
+          SpeechRecognition.startListening();
+        } else {
+          setIsRecording(false);
+        }
+      }
+    }, [listening, isRecording, startTime]);
+
+
+
+
     return (
         <>
-            <div className=' flex  sticky z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
+            <div className=' flex  sticky z-auto flex-col'>
+            <div class=" w-64 max-sm:w-40">
+        <Input
+          placeholder="Search By Po ID"
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+      </div>
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=" w-[15.1rem]  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
-                            <FormattedMessage
+                      <FormattedMessage
                                 id="app.po"
                                 defaultMessage="PO ID"
-                            /></div>
+                            />
+                            </div>
                         <div className=" w-[14.1rem]   old max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[0]}    {/* <FormattedMessage
                                 id="app.created"
-                                defaultMessage="Created" />
+                                defaultMessage="Created" /> */}
                         </div>
                         <div className=" w-[14.1rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[1]} {/* <FormattedMessage
                                 id="app.location"
-                                defaultMessage="Location" />
+                                defaultMessage="Location" /> */}
                         </div>
                         <div className=" w-[14.12rem]   max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                            Delivery
+                        {translatedMenuItems[2]}  {/* Delivery */}
                         </div>
                         <div className=" w-[14.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                            Contact
+                        {translatedMenuItems[3]} {/* Contact */}
                         </div>
                        
                         <div className=" w-[14.13rem]    max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[4]}  {/* <FormattedMessage
                                 id="app.currency"
-                                defaultMessage="Currency" />
+                                defaultMessage="Currency" /> */}
                         </div>
                         <div className=" w-[14.11rem]   max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                            <FormattedMessage
+                        {translatedMenuItems[5]}  {/* <FormattedMessage
                                 id="app.value"
-                                defaultMessage="Value" />
+                                defaultMessage="Value" /> */}
                         </div>
                         <div className=" md:w-[5.1rem]">
 
@@ -143,7 +280,7 @@ function PurchaseOrderTable(props) {
                             next={handleLoadMore}
                             hasMore={hasMore}
                             loader={props.fetchingPurchaseSupplierList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"72vh"}
+                            height={"67vh"}
                             style={{scrollbarWidth:"thin"}}
                         >
                             {props.purchaseList.length ? <>
@@ -154,7 +291,7 @@ function PurchaseOrderTable(props) {
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 p-1" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9]  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" underline font-bold max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                             <span
                                                                 class=" text-sky-700 cursor-pointer"
@@ -172,8 +309,8 @@ function PurchaseOrderTable(props) {
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex  w-[5.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins">
+                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                             <MultiAvatar
                                                                 primaryTitle={item.userName}
                                                                 imgWidth={"1.8rem"}
@@ -181,13 +318,13 @@ function PurchaseOrderTable(props) {
                                                             />
                                                         </div>
                                                     </div>
-                                                    <div className=" flex  w-[16.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[16.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" max-xl:text-[0.65rem] text-xs  font-poppins">
 
                                                             {item.locationName}
                                                         </div>
                                                     </div>
-                                                    <div className="flex md:w-[16rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[16rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                                          <DatePicker
@@ -206,7 +343,7 @@ function PurchaseOrderTable(props) {
                 </div>
               </div>
 
-                                                    <div className="flex  md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                <select
@@ -227,7 +364,7 @@ function PurchaseOrderTable(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                <select
@@ -251,59 +388,13 @@ function PurchaseOrderTable(props) {
                 </div>
               </div>
            
-                                                    <div className=" flex   w-[12.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs  font-poppins">
 
                                                             {item.poValue}
                                                         </div>
                                                     </div>
- 
-                                                    {/* <div className=" flex font-medium  w-[7.32rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins w-20">
-                                                            {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
-                                                                <Select
-                                                                    value={currency}
-                                                                    onChange={(value) =>
-                                                                        handleChangeCurrency(value)
-                                                                    }
-                                                                // placeholder={`select`}
-                                                                >
-                                                                    {props.currencies.map((a) => {
-                                                                        return <Option value={a.currency_name}>{a.currency_name}</Option>;
-                                                                    })}
-                                                                </Select> :
-                                                                item.poCurrency}
-                                                        </div>
-                                                    </div> */}
-        
-                                                    {/* <div className=" flex font-medium  w-[2.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins">
-                                                            <Tooltip title="Update Currency">
-                                                                {showIcon && rowData.poSupplierDetailsId === item.poSupplierDetailsId ?
-                                                                    <div>
-                                                                        <Button onClick={() => {
-                                                                            props.addCurrencyInPo({
-                                                                                poCurrency: currency
-                                                                            }, item.poSupplierDetailsId, handleCallback())
-                                                                        }}>Save</Button>
-                                                                        <Button onClick={handleCurrencyField}>Cancel</Button>
-                                                                    </div> :
-                                                                   <div class=" font-normal text-xs  font-poppins">
-                                                                 
-                                                                   <BorderColorIcon
-                                                                       className=" !text-xl cursor-pointer text-[tomato]"
-                                                                        onClick={() => {
-                                                                            handleRowData(item);
-                                                                            handleCurrencyField()
-                                                                        }}
-                                                                    />
-                                                                  
-                                                                    </div>
-                                                                }
-                                                            </Tooltip>
-                                                        </div>
-                                                    </div> */}
-                                                    <div className="flex w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
+                                                    <div className="flex w-[6rem] max-sm:flex-row max-sm:w-auto items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                 <div className="flex">
                   {editContactId === item.poSupplierDetailsId ? (
                     <>
@@ -315,7 +406,7 @@ function PurchaseOrderTable(props) {
                       </Button>
                     </>
                   ) : (
-                    <Tooltip title="Update Info">
+                    <Tooltip title= {translatedMenuItems[7]}  >
                     <BorderColorIcon
                       tooltipTitle="Edit"
                     
@@ -327,8 +418,8 @@ function PurchaseOrderTable(props) {
                 </div>
                
               </div>
-                                                    <div className=" flex  w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins">
+                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs items-center font-poppins">
                                                             {item.locationName === null ? <Button
                                                                 type="primary"
                                                                 onClick={() => {
@@ -343,10 +434,10 @@ function PurchaseOrderTable(props) {
                                                             </Button> : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex   w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs  font-poppins">
-                                                            <Tooltip title="Terms and condition">
-                                                                <TerminalSharp
+                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
+                                                            <Tooltip title="Terms and conditions">
+                                                                <TerminalSharp className="!text-icon text-[#c3b20b]"
                                                                     onClick={() => {
                                                                         handleRowData(item)
                                                                         props.handleTermsnConditionModal(true)
@@ -367,23 +458,32 @@ function PurchaseOrderTable(props) {
                     </div>
                 </div>
             </div>
+            <Suspense fallback={<BundleLoader />}>
             <PoLocationModal
                 supplierId={props.supplier.supplierId}
                 rowData={rowData}
                 addlocationInPo={props.addlocationInPo}
                 handlePoLocationModal={props.handlePoLocationModal}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
             />
             <POSupplierDetailsModal
                 supplierId={props.supplier.supplierId}
                 rowData={rowData}
                 addPoListmModal={props.addPoListmModal}
                 handlePoListModal={props.handlePoListModal}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
+                
             />
             <TermsnConditionModal
                 rowData={rowData}
                 addTermsnCondition={props.addTermsnCondition}
                 handleTermsnConditionModal={props.handleTermsnConditionModal}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
             />
+            </Suspense>
         </>
     )
 }
@@ -408,7 +508,9 @@ const mapDispatchToProps = (dispatch) =>
             getCurrency,
             addCurrencyInPo,
             updatePOContact,
-            getSupplierContactList
+            getSupplierContactList,
+            getSearchPo,
+            ClearPoData
         },
         dispatch
     );

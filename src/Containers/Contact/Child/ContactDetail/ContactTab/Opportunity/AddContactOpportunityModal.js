@@ -25,7 +25,11 @@ const AddContactOpportunityModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
           <ContactOpportunityForm 
            contactId={ props.contactId }
-          {...formProps} />{" "}
+          {...formProps} 
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>

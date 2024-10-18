@@ -1,5 +1,4 @@
-import React, { lazy, Suspense,useEffect } from "react";
-import { StyledDrawer } from "../../../../Components/UI/Antd";
+import React, { lazy, Suspense,useEffect , useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -7,10 +6,8 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { handleLeadCallModal,getLeadsActivityRecords } from "../../LeadsAction";
 import { PlusOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
 import { Tooltip,Badge } from "antd";
 
-const CallLeadsTable = lazy(() => import("./CallLeadsTable"));
 const AddCallTaskModal = lazy(() => import("./AddCallTaskModal"));
 
 
@@ -18,6 +15,32 @@ const AddCallTaskModal = lazy(() => import("./AddCallTaskModal"));
 const TabPane = StyledTabs.TabPane;
 
  function LeadsCetTab (props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+ 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+     '1165', // 0  Activity
+     '104', // "Create"
+
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
   useEffect(() => {
     props.getLeadsActivityRecords(props.rowdata.leadsId);
   }, []);
@@ -26,48 +49,39 @@ const TabPane = StyledTabs.TabPane;
     console.log(props.rowdata)
     return (
       <>
-        <TabsWrapper>
-          <StyledTabs
-            defaultActiveKey="1"
-            style={{ overflow: "visible", width: "53vw", padding: "15px" }}
+        <TabsWrapper >
+          <StyledTabs className=" w-[52vw] p-2 h-[60rem] "
+          // style={{height:"65rem"}}
+            defaultActiveKey="1"            
             animated={false}
           >
             <TabPane
               tab={
                 <>
-                  <span>
+                
                   <Badge
                 count={props.leadsActivityCount.count}
                 overflowCount={999}
               > 
+                </Badge>
+                <span>
                        <i class="fas fa-phone-square"></i>&nbsp;
-                  Activity
-                  </Badge>
+                       {translatedMenuItems[0]} {/* Activity */}
+                
                   </span>
                 
                     <>
                       <Tooltip 
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title={translatedMenuItems[1]}
                       >
                        &nbsp;
-                        <PlusOutlined
-                          type="plus"
-                          style={{color:"blue"}}
-                          tooltiptitle={
-                            <FormattedMessage
-                              id="app.Create"
-                              defaultMessage="Create"
-                            />
-                          }
+                        <PlusOutlined className="text-blue-600 !text-icon"
+                          type="plus"                    
+                          tooltiptitle={translatedMenuItems[1]}
                           onClick={() => {
                             handleLeadCallModal(true);
                           }}
-                          size="0.875em"
+                      
                         />
                        
                       </Tooltip>
@@ -77,12 +91,7 @@ const TabPane = StyledTabs.TabPane;
               }
               key="1"
             >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <CallLeadsTable
-                  rowdata={props.rowdata}
-                />
-              </Suspense>
+              
             </TabPane>
           
           </StyledTabs>
@@ -92,6 +101,9 @@ const TabPane = StyledTabs.TabPane;
         rowdata={props.rowdata}
           addCallTaskModal={addCallTaskModal}
           handleLeadCallModal={handleLeadCallModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
         />
         </Suspense>
       </>

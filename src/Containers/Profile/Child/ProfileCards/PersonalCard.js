@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { ViewEditCard } from "../../../../Components/UI/Elements";
 const PersonalView = lazy(() => import("./PersonalView"))
 const PersonalEdit = lazy(() => import("./PersonalEdit"))
@@ -10,6 +10,7 @@ class PersonalCard extends Component {
     return (
       <div>
         <ViewEditCard>
+        <Suspense fallback={"Loading..."}>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
               <PersonalView user={user} toggleViewType={toggleViewType} />
@@ -17,6 +18,7 @@ class PersonalCard extends Component {
               <PersonalEdit user={user} toggleViewType={toggleViewType} />
             )
           }
+          </Suspense>
         </ViewEditCard>
       </div>
     );

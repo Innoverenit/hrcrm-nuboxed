@@ -9,6 +9,9 @@ class ContactDetailView extends Component {
         <Link
           toUrl={`contact/${this.props.contactId}`}
           title={`${this.props.contactName}`}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
         />
       </>
     );

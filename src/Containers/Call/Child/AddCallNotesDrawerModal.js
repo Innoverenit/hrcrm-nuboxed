@@ -3,7 +3,8 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import MainNotes from "../../CustomNote/MainNotes";
+
+const  MainNotes = lazy(() => import("../../CustomNote/MainNotes"));
 
 
 class AddCallNotesDrawerModal extends Component {

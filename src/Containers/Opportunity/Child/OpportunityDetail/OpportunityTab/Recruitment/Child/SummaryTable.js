@@ -16,9 +16,7 @@ import AddMonsterModal from "../AddMonsterModal";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { Button, Progress, Tooltip, Avatar } from "antd";
 import { FileExcelOutlined, } from "@ant-design/icons";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import {
-  Spacer,
   MultiAvatar,
 } from "../../../../../../../Components/UI/Elements";
 import jsPDF from "jspdf";
@@ -26,7 +24,7 @@ import "jspdf-autotable";
 import styled from "styled-components";
 import { base_url } from "../../../../../../../Config/Auth";
 import { FormattedMessage } from "react-intl";
-import moment from "moment";
+import dayjs from "dayjs";
 function onChange(pagination, filters, sorter) {
   console.log("Clicked", pagination, filters, sorter);
 }
@@ -68,28 +66,6 @@ class SummaryTable extends Component {
   componentDidMount() {
     this.props.getAllRecruitmentDetailsByOppId(this.props.opportunityId);
   }
-
-  // handleWebsite = (
-  //    recruitmentId,
-  //   // recruitmentProcessId,
-  //   // stageId,
-  //   //  opportunityId,
-  //   //  organizationId,
-  //   //  userId
-  // ) => {
-  // //   const value = {
-  // //       recruitmentId: recruitmentId,
-  // //     // recruitmentProcessId: recruitmentProcessId,
-  // //     // stageId: stageId,
-  // //       opportunityId: this.props.opportunityId,
-  // //       organizationId:this.props.organizationId,
-  // //       userId:this.props.userId
-  // //   };
-  // //    this.props.addWebsite(value, );
-  // // };
-  // toggle=()=>{
-  //   this.setState({ state:null})
-  // }
   handleCandidateDataSet = (data) => {
     this.setState({ candidatePostData: data });
   };
@@ -184,7 +160,7 @@ class SummaryTable extends Component {
           data.settings.margin.left + 70,
           20
         );
-        var before = `Published on ${moment().format("Do MMM YYYY")}`;
+        var before = `Published on ${dayjs().format("Do MMM YYYY")}`;
         doc.text(before, 75, 30);
 
         // Footer
@@ -208,7 +184,7 @@ class SummaryTable extends Component {
       doc.putTotalPages(totalPagesExp);
     }
     doc.save(
-      `${opportunityName && opportunityName} Requirement ${moment().format(
+      `${opportunityName && opportunityName} Requirement ${dayjs().format(
         "L"
       )}`
     );
@@ -342,44 +318,7 @@ class SummaryTable extends Component {
           };
         },
       },
-      // {
-      //   title: "",
-      //   width: "3%",
-      //   render: (name, item, i) => {
-      //     console.log(this.state.skillSetData)
-      //     // const IconShow = this.state.skillSetData.skillName !== {} ? true : false;
-      //     return (
-      //       <>
-
-      //           <span
-      //             // type="edit"
-      //             style={{ cursor: "pointer", color: "tomato" }}
-      //             onClick={() => {
-      //               // this.props.LinkSkillsRecruit({
-      //               //   opportunityId: item.opportunityId,
-      //               //   stageId: item.stageId,
-      //               //   recruitmentProcessId: item.recruitmentProcessId,
-      //               //   skillName: this.state.skillSetData || item.skillName,
-      //               //   recruitmentId: item.recruitmentId,
-      //               //   profileId: item.profileId,
-      //               // });
-      //               this.props.getRecruiter(
-      //                item.skillName,
-      //                 item.recruitmentId,
-      //                 this.props.opportunityId,
-
-      //               );
-      //               this.handleCandidateDataSet(item);
-      //               this.props.handleRecruiterModal(true);
-      //             }}
-      //           >
-      //             <FontAwesomeIcon icon={solid('person-circle-question')} />
-      //           </span>
-
-      //       </>
-      //     )
-      //   }
-      // },
+   
 
       {
         title: "Talent",
@@ -436,41 +375,7 @@ class SummaryTable extends Component {
         },
       },
 
-      // {
-      //   title:"",
-      //   render: (name, item, i) => {
-      //     return(
-      //       // <span>
-      //       //   {/* <FontAwesomeIcon icon={solid("firefox-browser")} /> */}
-      //       //   <FontAwesomeIcon icon={solid('circle-question')} />
-
-      //       // </span>
-      //       <Icon type="chrome"
-      //       onClick={() =>
-      //         this.handleWebsite(
-      //           item.recruitmentId,
-      //           // this.props.opportunityId,
-      //           // this.props.organizationId,
-      //           // this.props.userId
-
-      //         )}
-      //       // style={{
-      //       //   backgroundColor:
-      //       //     this.state.priority === "High"
-      //       //       ? "red"
-      //       //       : "white",
-      //       // }}
-
-      //       />
-
-      //     //   <Icon
-      //     //   type="edit"
-      //     //   style={{ cursor: "pointer", color: "blue" }}
-
-      //     // />
-      //     )}
-
-      // },
+   
 
       {
         title: "Website",
@@ -573,7 +478,7 @@ class SummaryTable extends Component {
             padding: "0.625em 0em 0.625em 0em",
           }}
         ></div>
-        <FlexContainer>
+   <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <PDFPreviewTable>
             <StyledTable
               columns={columns}
@@ -602,11 +507,9 @@ class SummaryTable extends Component {
                 handleMonsterModal={this.props.handleMonsterModal}
               />
             </Suspense>
-            <Spacer />
-            <FlexContainer
-              justifyContent="flex-end"
-              style={{ padding: "0em 1.25em" }}
-            >
+            <div class=" mt-3" />
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto p-[0rem 1.25rem] ">
+         
               <Tooltip // title={"Generate PDF"}
                 title={
                   <FormattedMessage
@@ -653,9 +556,9 @@ class SummaryTable extends Component {
                   }}
                 ></Button>
               </Tooltip>
-            </FlexContainer>
+            </div>
           </PDFPreviewTable>
-        </FlexContainer>
+        </div>
       </>
     );
   }

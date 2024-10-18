@@ -17,7 +17,9 @@ const OrderPhoneModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <OrderPhoneListById rowData={rowData} />
+                    <OrderPhoneListById rowData={rowData} 
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage}/>
                 </Suspense>
             </StyledDrawer>
         </>

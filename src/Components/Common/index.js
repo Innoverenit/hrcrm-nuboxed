@@ -4,8 +4,4 @@ export { default as GroupView } from "./GroupView";
 export { default as Link } from "./Link";
 export { default as CurrencySymbol } from "./CurrencySymbol";
 export { default as AddressComponent } from "./AddressComponent";
-export { default as SingleNote } from "./SingleNote";
-export { default as TweetFeed } from "./TweetFeed";
 export { default as YoutubeThumbnail } from "./YoutubeThumbnail";
-export { default as NewsFeed } from "./NewsFeed";
-export { default as NewsModal } from "./NewsModal";

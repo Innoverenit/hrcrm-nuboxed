@@ -1,9 +1,8 @@
-import React, { useState,lazy,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
-import styled from "styled-components";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
@@ -40,17 +39,15 @@ import {
 } from "../Task/TaskAction";
 import { MultiAvatar, MultiAvatar2, } from "../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import AddTaskStepperDrawerModal from "../Task/Child/TaskStepper/AddTaskStepperDrawerModal";
-import AddTaskNotesDrawerModal from "../Task/Child/AddTaskNotesDrawerModal";
-import AddTaskProjectDrawerModal from "../Task/Child/AddTaskProjectDrawerModal";
-import OpenTaskModal from "../Task/Child/OpenTaskModal";
-import DownloadTaskModal from "../Task/Child/DownloadTaskModal";
-import UpdateTaskModal from "../Task/Child/UpdateTaskModal";
-import AddTaskDocumentDrawerModal from "../Task/Child/AddTaskDocumentDrawerModal";
-import UpdateDocumentDrawerModal from "../Task/Child/UpdateDocumentDrawerModal";
-import AddTaskFeedbackDrawerModal from "../Task/Child/AddTaskFeedbackDrawerModal";
-
-
+const UpdateTaskModal=lazy(()=> import("../Task/Child/UpdateTaskModal"));
+const AddTaskDocumentDrawerModal=lazy(()=> import("../Task/Child/AddTaskDocumentDrawerModal"));
+const UpdateDocumentDrawerModal=lazy(()=> import("../Task/Child/UpdateDocumentDrawerModal"));
+const AddTaskFeedbackDrawerModal=lazy(()=> import("../Task/Child/AddTaskFeedbackDrawerModal"));
+const AddTaskStepperDrawerModal =lazy(()=> import("../Task/Child/TaskStepper/AddTaskStepperDrawerModal"));
+const  AddTaskNotesDrawerModal =lazy(()=> import("../Task/Child/AddTaskNotesDrawerModal"));
+const AddTaskProjectDrawerModal=lazy(()=> import("../Task/Child/AddTaskProjectDrawerModal"));
+const OpenTaskModal =lazy(()=> import("../Task/Child/OpenTaskModal"));
+const DownloadTaskModal=lazy(()=> import("./../Task/Child/DownloadTaskModal"));
 const ButtonGroup = Button.Group;
 
 const TaskDataCardList = (props) => {
@@ -144,7 +141,7 @@ const TaskDataCardList = (props) => {
     
           <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
@@ -640,6 +637,7 @@ const TaskDataCardList = (props) => {
                  </InfiniteScroll>
       </div>
 </div>
+<Suspense fallback={<BundleLoader />}>
 <UpdateTaskModal
           updateTaskModal={updateTaskModal}
           handleUpdateTaskModal={handleUpdateTaskModal}
@@ -697,7 +695,7 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
  handleUpdateDocumentDrawerModal={props.handleUpdateDocumentDrawerModal}
  addUpdatedocumentTaskModal={props.addUpdatedocumentTaskModal}
 />
-
+</Suspense>
 
       {/* AddTaskProjectDrawerModal and AddTaskNotesDrawerModal components go here */}
     </>
@@ -840,17 +838,3 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
           );
         }
       }
-      
-      const AppIcon = (props) => (
-        <i
-          className={`fas fa-heartbeat ${props.className}`}
-          style={{ fontSize: "123%" }}
-        ></i>
-      );
-      const PulseIcon = styled(AppIcon)`
-        color: #df9697;
-        &:hover {
-          // background: yellow;
-          color: blue;
-        }
-      `;

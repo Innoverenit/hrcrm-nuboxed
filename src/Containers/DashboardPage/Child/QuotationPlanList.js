@@ -1,28 +1,22 @@
 
 
-import React, { useEffect, useMemo, useState, } from "react";
+import React, { useEffect, useMemo, useState, lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import {updateOpportunitydragstage,getRegionSalesQuotationList} from "../../Opportunity/OpportunityAction"
 import styled from "styled-components";
-// import {
-//     getRegionSalesQuotationList,
-  
-// } from "../RegionalDashAction";
 import {
     getProcessForOpportunity,
     getProcessStagesForOpportunity,
 } from "../../Settings/SettingsAction";
-import StageQuotationColumn from "../Child/StageQuotationColumns"
-// import StageColumns1 from "./StageColumns1";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { StyledTabs, } from "../../../Components/UI/Antd";
 import { MainWrapper } from "../../../Components/UI/Layout";
-
-
 import { Spin} from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
+const StageQuotationColumn = lazy(() =>import("../Child/StageQuotationColumns"));
+
 const TabPane = StyledTabs.TabPane;
 
 
@@ -244,12 +238,14 @@ console.log("publishIndTrueItem",publishIndTrueItem)
                                         )
                                         .map((opp, index) => {
                                           return (
+                                            <Suspense fallback={<BundleLoader />}>
                                             <StageQuotationColumn
                                               key={index}
                                               opportunity={opp}
                                               index={index}
                                               history={props.history}
                                             />
+                                            </Suspense>
                                           );
                                         })}
                                     </StageColumn>

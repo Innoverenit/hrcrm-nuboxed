@@ -3,12 +3,8 @@ import { Tooltip, Popconfirm } from "antd";
 import { FormattedMessage } from "react-intl";
 import { StopTwoTone} from "@ant-design/icons";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
-import { FlexContainer, MainWrapper } from "../../../Components/UI/Layout";
-import {
-  MultiAvatar,
-  Title,
-  SubTitle,
-} from "../../../Components/UI/Elements";
+import { MainWrapper } from "../../../Components/UI/Layout";
+import { MultiAvatar} from "../../../Components/UI/Elements";
 import { CheckCircleTwoTone,DeleteOutlined } from "@ant-design/icons";
 import { CurrencySymbol } from "../../../Components/Common";
 
@@ -28,37 +24,27 @@ const DealGroupCard = (props) => {
     user
   } = props;
   return (
-    <FlexContainer flexDirection="column" style={{ borderRadius: 3 }}>
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto rounded-[3px]">
       <MainWrapper>
-        <FlexContainer
-          alignItems="center"
-          flexWrap="no-wrap"
-          style={{ height: "3rem" }}
-        >
-          <FlexContainer style={{ flexBasis: "20%", margin: "0.3rem" }}>
+      <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-[3rem] mr-auto ">
+       
+      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto m-[0.3rem]">
             <MultiAvatar
               primaryTitle={primaryTitle}
-              imgHeight={"1.56em"}
-              imgWidth={"1.56em"}
+              imgHeight={"1.8rem"}
+              imgWidth={"1.8rem"}
             />
-          </FlexContainer>
-          <FlexContainer
-            flexDirection="column"
-            style={{ flexBasis: "70%", overflow: "hidden" }}
-          >
-            <Title
-              fontSize="0.875em"
-              overflow="hidden"
-              textOverflow="ellipsis"
-              style={{ color: "#337df4", cursor: "pointer",display:"flex",justifyContent:"flex-start" }}
+          </div>
+          <div class=" flex flex-col flex-wrap overflow-hidden items-start self-start justify-start grow shrink h-auto mr-auto ">
+            <div class=" text-xs overflow-hidden overflow-ellipsis text-[#337df4] cursor-pointer flex justify-start  "
               onClick={handleClick}
             >
               {primaryTitle || ""}
-            </Title>
+            </div>
             <div class="text-xs">
               {investorName}
             </div>
-            <SubTitle>
+            <div>
               &nbsp;&nbsp;
               {currencyType && <CurrencySymbol currencyType={currencyType} />}
               &nbsp;
@@ -130,18 +116,18 @@ const DealGroupCard = (props) => {
                           />
                         )}
                       </StyledPopconfirm>
-            </SubTitle>
-          </FlexContainer>
-          <FlexContainer
-            style={{ flexBasis: "10%", alignSelf: "flex-start" }}
-          ></FlexContainer>
-        </FlexContainer>
+            </div>
+          </div>
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
 
-        <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
-          {/* {elipsize(subtitle1 || "", 23)} */}
-        </SubTitle>
+          </div>
+        </div>
+
+        <div className=" text-[#337df4]  text-sm">
+        
+        </div>
       </MainWrapper>
-    </FlexContainer>
+    </div>
   );
 };
 export default DealGroupCard;

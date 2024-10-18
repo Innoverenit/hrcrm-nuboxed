@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Draggable } from "react-beautiful-dnd";
-import QuotationGroupCard from "../Child/QuotationGroupCard";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { elipsize } from "../../../Helpers/Function/Functions";
-//import {  StatusRecruit, lostStatusRecruit,deleteOpportunityData} from "../OpportunityAction";
+const QuotationGroupCard =lazy(() =>import("../Child/QuotationGroupCard"));
 
 class StageColumns1 extends Component {
   render() {
@@ -21,7 +21,7 @@ class StageColumns1 extends Component {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-  
+  <Suspense fallback={<BundleLoader />}>
             <QuotationGroupCard
               isDragging={snapshot.isDragging}
               opportunityId={opportunity.opportunityId}
@@ -51,7 +51,7 @@ class StageColumns1 extends Component {
             //     this.props.deleteOpportunityData(opportunity.opportunityId)
             //   }}
             />
-             
+             </Suspense>
             </div>
             )}
                  </Draggable>

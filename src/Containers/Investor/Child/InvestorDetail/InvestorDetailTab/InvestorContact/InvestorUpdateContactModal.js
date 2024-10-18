@@ -23,6 +23,8 @@ const InvestorUpdateContactModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
           <UpdateInvestorContactForm 
            currentRowData={currentRowData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
           /> {" "}
   
         </Suspense>

@@ -1,10 +1,9 @@
 
-import React, { useEffect, useState,lazy} from "react";
+import React, { useEffect, useState,lazy, Suspense} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import moment from "moment";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -13,6 +12,7 @@ import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import { BundleLoader, } from "../../../Components/Placeholder";
 import {
   getPitch,
   getPitchHot,
@@ -30,7 +30,6 @@ import AddchartIcon from '@mui/icons-material/Addchart';
 import { Button, Tooltip } from "antd";
 import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
@@ -45,15 +44,15 @@ const PitchSearchedData = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
-  useEffect(() => {
-    props.getPitch(props.userId,page,"creationdate");
-    props.getPitchHot(props.userId, page,"creationdate","hot");
-    props.getPitchCold(props.userId, page,"creationdate","cold");
-    props.getPitchWarm(props.userId, page,"creationdate","warm");
-    setPage(page + 1);
-    // props.getSectors();
-    // props.getCountries();
-  }, []);
+  // useEffect(() => {
+  //   props.getPitch(props.userId,page,"creationdate");
+  //   props.getPitchHot(props.userId, page,"creationdate","hot");
+  //   props.getPitchCold(props.userId, page,"creationdate","cold");
+  //   props.getPitchWarm(props.userId, page,"creationdate","warm");
+  //   setPage(page + 1);
+  //   // props.getSectors();
+  //   // props.getCountries();
+  // }, []);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -85,8 +84,8 @@ const PitchSearchedData = (props) => {
   return (
     
     <>
-  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-red-600  justify-center ">Type</div>
         <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]"><FormattedMessage
                   id="app.name"
@@ -345,7 +344,7 @@ const countryCode = item.countryAlpha2Code
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                    
-                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
+                                    {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium items-center w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -546,7 +545,7 @@ const countryCode = item.countryAlpha2Code
       </div>
 
     
-
+      <Suspense fallback={<BundleLoader />}>
 
       <UpdateLPitchModal
         item={currentLeadsId}
@@ -576,7 +575,7 @@ const countryCode = item.countryAlpha2Code
           //  handleRowData={handleRowData}
            addPitchConvertModal={props.addPitchConvertModal}
            handlePitchConvertModal={props.handlePitchConvertModal}
-           />
+           /></Suspense>
     </>
    
   );

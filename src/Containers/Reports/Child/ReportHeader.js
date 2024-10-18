@@ -1,5 +1,6 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense} from "react";
 import { ActionHeader } from "../../../Components/Utils";
+import BundleLoader from "../../../Components/Placeholder/BundleLoader";
 const ReportActionLeft =lazy(()=> import("./ReportActionLeft"));
 const ReportActionRight =lazy(()=> import("./ReportActionRight"));
 class ReportHeader extends Component {
@@ -7,16 +8,28 @@ class ReportHeader extends Component {
     const {} = this.props;
     return (
       <div >
+         <Suspense fallback={<BundleLoader />}>
         <ActionHeader
-
-          leftComponent={<ReportActionLeft   
+        
+            leftComponent={<ReportActionLeft   
+           translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             handleIconClick={this.props.handleIconClick}
             activeIcon={this.props.activeIcon}
             dropdownData={this.props.dropdownData}
-               handleDropChange={this.props.handleDropChange}/>}
+            handleDropChange={this.props.handleDropChange}
+            selectedCategory={this.props.selectedCategory}
+            handleButtonTask={this.props.handleButtonTask}
+            selectedButtonIcon={this.props.selectedButtonIcon}
+            handleButtonIcon={this.props.handleButtonIcon}
+            UserOrgFlipClick={this.props.UserOrgFlipClick}
+            userorgflipClick={this.props.userorgflipClick}
+           />
+              
+              }
           // rightComponent={<ReportActionRight />}
         
-        />
+        /> </Suspense>
       </div>
     );
   }

@@ -14,5 +14,7 @@ const OnlyWrapCard = styled.div`
     width: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
     width: fill-available;
     overflow: auto;
-`
+`  
+// className=" overflow-auto w-wk p-2 m-5 shadow-[4px 0px 9px 3px rgba(163, 171, 185, 0.5)] rounded bg-white"
 export default OnlyWrapCard;
+

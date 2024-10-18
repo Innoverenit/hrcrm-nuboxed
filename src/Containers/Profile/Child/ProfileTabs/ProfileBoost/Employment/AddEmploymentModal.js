@@ -30,7 +30,9 @@ class AddEmploymentModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <EmploymentDocumentForm employeeId={this.props.employeeId}/>
+            <EmploymentDocumentForm employeeId={this.props.employeeId}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>

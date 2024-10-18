@@ -24,7 +24,10 @@ const AddInvestorModal = (props) => {
           props.handleInvestorModal(false)}}
       >
         <Suspense fallback={<BundleLoader />}>
-          <InvesterForm />{" "}
+          <InvesterForm 
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>

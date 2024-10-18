@@ -2,6 +2,7 @@ import * as types from "./MileageActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
 import { base_url } from "../../Config/Auth";
+import Swal from "sweetalert2";
 
 export const handleMileageModal = (modalProps) => (dispatch) => {
   dispatch({ type: types.HANDLE_MILEAGE_MODAL, payload: modalProps });
@@ -357,6 +358,34 @@ export const getMileageNotes = (mileageId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_MILEAGE_NOTE_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const searchMileageList = (name,type) => (dispatch) => {
+  dispatch({
+    type: types.SEARCH_MILEAGE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/mileage/search/alltype/${name}/${type}`,
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.SEARCH_MILEAGE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Contact list is empty',
+      })
+      dispatch({
+        type: types.SEARCH_MILEAGE_LIST_FAILURE,
         payload: err,
       });
     });

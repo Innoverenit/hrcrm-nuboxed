@@ -1,10 +1,8 @@
 
 import React, { lazy, Component, Suspense } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
-import QualityProductForm from "../ProductTable/QualityProductForm"
 import { BundleLoader } from "../../../../Components/Placeholder";
-//const ProductCellCard = lazy(() => import("./ProductCellCard"));
+const QualityProductForm= lazy(() => import("../ProductTable/QualityProductForm"));
 
 class ProductQualityDrawer extends Component {
   render() {
@@ -27,6 +25,8 @@ class ProductQualityDrawer extends Component {
           <Suspense fallback={<BundleLoader />}>
         <QualityProductForm
          particularDiscountData={this.props.particularDiscountData}
+         translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
           </Suspense>
 

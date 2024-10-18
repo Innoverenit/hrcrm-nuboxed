@@ -18,7 +18,10 @@ const AddPickupModal = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
                     {/* <CardContainer /> */}
-                    <OrderPickupForm particularRowData={props.particularRowData} />
+                    <OrderPickupForm particularRowData={props.particularRowData}
+                       selectedLanguage={props.selectedLanguage}
+                       translateText={props.translateText} 
+                     />
                 </Suspense>
             </StyledDrawer>
         </>

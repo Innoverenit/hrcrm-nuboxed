@@ -7,9 +7,9 @@
 // import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 // import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 // import { SwitchComponent } from "../../../../../Components/Forms/Formik/SwitchComponent";
-// import { FlexContainer } from "../../../../../Components/UI/Layout";
-// import { StyledLabel } from "../../../../../Components/UI/Elements";
-// import { Spacer } from "../../../../../Components/UI/Elements";
+// import { div } from "../../../../../Components/UI/Layout";
+// 
+// 
 // import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 // import {
 //   addApproval,
@@ -120,7 +120,7 @@
 //                             </div>
 //                         );
 //                     })}
-//                      {/* <FlexContainer justifyContent="space-between">
+//                      {/* <div justifyContent="space-between">
 //                             <div style={{ width: "47%" }}>
 //                               <Field
 //                                 name="reportingTo"
@@ -137,18 +137,18 @@
                                
 //                               />
 //                             </div>
-//                             </FlexContainer> */}
+//                             </div> */}
                             
-//                     <Spacer />
-//                     <FlexContainer justifyContent="flex-end">
+//                     <div class=" mt-3" />
+//                     <div justifyContent="flex-end">
 //                         <div className="button">
 //                             <Button type="primary" onClick={handleAddRowClick}>
 //                             Add Level
 //                             </Button>
 //                         </div>
-//                     </FlexContainer>
-//                     <Spacer style={{marginTop:"1.25em"}} />
-//                     <FlexContainer justifyContent="flex-end"
+//                     </div>
+//                     <div class=" mt-3" style={{marginTop:"1.25em"}} />
+//                     <div justifyContent="flex-end"
 //                         style={{ marginLeft: "104%", marginTop: "52px" }}>
 //                         <Button
 //                             type="primary"
@@ -161,7 +161,7 @@
 //                         >
 //                             Submit
 //                         </Button>
-//                     </FlexContainer>
+//                     </div>
 //                 </div>
 //             </div>
 //         </div>
@@ -191,22 +191,13 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as Yup from "yup";
-import { Button, Switch, Icon, Tooltip, Popconfirm, Popover,Select } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
-import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
-import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
-import { SwitchComponent } from "../../../../../Components/Forms/Formik/SwitchComponent";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { StyledLabel } from "../../../../../Components/UI/Elements";
-import { Spacer } from "../../../../../Components/UI/Elements";
-import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
+import { Button,Select } from "antd";
+
 import {
   addApproval,
   getApprovalData,
   getDepartmentList
 } from "../../../../Settings/SettingsAction";
-import { functions } from "lodash";
 import { CloseOutlined } from "@ant-design/icons";
 const { Option } = Select;
 function StandardApprovalForm(props) {
@@ -236,15 +227,7 @@ function StandardApprovalForm(props) {
         console.log(data);
         props.addApproval(data);
     };
-    //     approvalIndicator: true
-    // approvalType: "Exception"
-    // designationId: "DDG49470159634152021"
-    // functionId: "FDG18460358639152021"
-    // jobLevel: "3"
-    // processName: "BOQ"
-    // reportingTo: ""
-    // subProcessName: "BOQApprove"
-    // threshold: ""
+  
     function handleChangeValue(value, a) {
         setRows((v) => {
             return v.map((d) => {
@@ -300,14 +283,14 @@ function StandardApprovalForm(props) {
                             </div>
                         );
                     })}
-                    <FlexContainer justifyContent="flex-end">
+                 <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                         <div className="button">
                             <Button type="primary" onClick={handleAddRowClick}>
                                 Add Level
                             </Button>
                         </div>
-                    </FlexContainer>
-                    <FlexContainer justifyContent="flex-end"
+                    </div>
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto "
                         style={{ marginLeft: "104%", marginTop: "52px" }}>
                         <Button
                             type="primary"
@@ -320,7 +303,7 @@ function StandardApprovalForm(props) {
                         >
                             Submit
                         </Button>
-                    </FlexContainer>
+                    </div>
                 </div>
             </div>
         </div>
@@ -360,7 +343,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(StandardApprovalForm
 // import { Select } from "antd";
 
 // import { Button, Divider, message,Input } from "antd";
-// import { MainWrapper, FlexContainer } from "../../../../../Components/UI/Layout";
+// import { MainWrapper, div } from "../../../../../Components/UI/Layout";
 // import { TextInput, Title } from "../../../../../Components/UI/Elements";
 // //import SingleSectors from "./SingleSector";
 // // import * as Yup from "yup";
@@ -485,7 +468,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(StandardApprovalForm
 //     // if (fetchingSectorsError) return <p>We are unable to load data</p>;
 //     return (
 //       <>
-//         <FlexContainer flexWrap="nowrap">
+//         <div flexWrap="nowrap">
 //           <MainWrapper
 //             style={{
 //               flexBasis: "100%",
@@ -496,7 +479,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(StandardApprovalForm
 //           >
         
        
-//             {/* <FlexContainer flexDirection="column">
+//             {/* <div flexDirection="column">
             
 //               <MainWrapper style={{ height: "30em", marginTop: "0.625em" }}>
 //                 {sectors.length &&
@@ -518,9 +501,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(StandardApprovalForm
 //                     />
 //                   ))}
 //               </MainWrapper>
-//             </FlexContainer> */}
+//             </div> */}
 //             {/* {isTextInputOpen ? ( */}
-//               <FlexContainer
+//               <div
 //                 alignItems="center"
 //                 style={{ marginLeft: "0.3125em", marginTop: "0.3125em" }}
 //               >
@@ -564,11 +547,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(StandardApprovalForm
 //                     defaultMessage="Cancel"
 //                   />
 //                 </Button>
-//               </FlexContainer>
+//               </div>
 //             {/* ) : ( */}
 //               <>
 //                 <br />
-//                 <FlexContainer justifyContent="flex-end">
+//                 <div justifyContent="flex-end">
 //                   <Button
 //                     type="primary"
 //                     ghost
@@ -582,12 +565,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(StandardApprovalForm
 //                     defaultMessage="Add More"
 //                   />
 //                   </Button>
-//                 </FlexContainer>
+//                 </div>
 //               </>
 //             {/* )} */}
 //           </MainWrapper>
 //           {/* <MainWrapper>
-//             <FlexContainer
+//             <div
 //               style={{
 //                 border: "0.0625em solid #eee",
 //                 width: "100%",
@@ -609,9 +592,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(StandardApprovalForm
 //                 source then it cannot be deleted from the list till no
 //                 opportunity exists in that source.
 //               </p>
-//             </FlexContainer>
+//             </div>
 //           </MainWrapper> */}
-//         </FlexContainer>
+//         </div>
 //       </>
 //     );
 //   }

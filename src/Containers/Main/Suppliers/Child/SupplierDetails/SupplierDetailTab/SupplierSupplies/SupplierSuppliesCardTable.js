@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSupplierSupplies,setSupplierSuppliesType,getSupplierSuppliesQuality  } from "../../../../SuppliersAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
 import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Tooltip,Button,Select } from "antd";
 import SupplierSuppliesToggle from "./SupplierSuppliesToggle";
@@ -22,6 +21,7 @@ function SupplierSuppliesCardTable(props) {
   const [currentType, setCurrentType] = useState({});
   const [rowdata, setrowData] = useState({});
   const [page, setPage] = useState(0);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
   const { handleUpdateShipperModal } = props;
 
@@ -48,7 +48,27 @@ function SupplierSuppliesCardTable(props) {
   const handleLoadMore = () => {
     setPage(page + 1);
   };
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "110",//0 Name
+         "14",//10 Category
+          "259",//2 Attribute
+          "1276",//3 Tag With Supplier
+          "654",//4 Quality
+         
+        ];
 
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     props.getSupplierSuppliesQuality();
   }, []);
@@ -66,27 +86,24 @@ function SupplierSuppliesCardTable(props) {
 
   return (
     <>
-      <div className=' flex justify-end sticky  z-auto'>
-        <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-xl:w-[6.6rem]">  <FormattedMessage
-              id="app.name"
-              defaultMessage="Name"
-            /></div>
-             <div className="w-[7.9rem] max-xl:text-[0.65rem] max-xl:w-[6.9rem]">
-              <FormattedMessage id="app.category" defaultMessage="Category" />
+      <div className=' flex sticky  z-auto'>
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[100%] p-1 bg-transparent  text-xs font-poppins font-bold sticky  z-10">
+            <div className=" w-[7.1rem] max-xl:text-[0.65rem] max-xl:w-[6.6rem]">   {translatedMenuItems[0]}
+              {/* Name */}
+            </div>
+             <div className="w-[7.9rem] max-xl:text-[0.65rem] max-xl:w-[6.9rem]">  {translatedMenuItems[1]}
+             {/* Category */}
               </div>
-              <div className="w-[7.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">
-              <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
+              <div className="w-[7.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">  {translatedMenuItems[2]}
+              {/* Attribute */}
               </div>
-            <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
-              id="app.tagwithsuplier"
-              defaultMessage="Tag with Supplier"
-            /></div>
-                <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <FormattedMessage
-              id="app.quality"
-              defaultMessage="Quality"
-            /></div>       
+            <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">    {translatedMenuItems[3]}
+         {/* Tag with Supplier" */}
+           </div>
+                <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">   {translatedMenuItems[4]}
+                  {/* Quality */}
+                  </div>       
             <div className="w-[1.5rem]">
             </div>
           </div>
@@ -109,35 +126,36 @@ function SupplierSuppliesCardTable(props) {
 
                         >
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
-                            <div className=" flex font-medium  w-[12.1rem] max-xl:w-[9.2rem] items-center  max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem]">                        
+                            <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[12.1rem] max-xl:w-[9.2rem] items-center  max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem]">                        
                                   {item.suppliesName}
                                   {/* </Link> */}
 
                               </div>
                             </div>
-                            <div className=" flex   w-[13.01rem] max-xl:w-[10.01rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex justify-center h-8 ml-gap bg-[#eef2f9]  w-[13.01rem] max-xl:w-[10.01rem] items-center max-sm:justify-between  max-sm:flex-row ">
 
                               <div class="  text-xs font-poppins max-xl:text-[0.65rem]">
                                 {item.categoryName} {item.subCategoryName}
                               </div>
                             </div>
-                            <div className=" flex  w-[15.9rem] max-xl:w-[8.9rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  justify-center h-8 ml-gap bg-[#eef2f9] w-[15.9rem] max-xl:w-[8.9rem] items-center max-sm:justify-between  max-sm:flex-row ">
                               <div class=" text-xs font-poppins max-xl:text-[0.65rem]">
                               {item.attributeName} {item.subAttributeName}
                               </div>
                             </div>
 
-                            <div className=" flex   w-[6.25rem] max-xl:w-[9.2rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex   justify-center h-8 ml-gap bg-[#eef2f9] w-[6.25rem] max-xl:w-[9.2rem] items-center max-sm:justify-between  max-sm:flex-row ">
                             
 <SupplierSuppliesToggle
 item={item}
 supplierId={props.supplier.supplierId}
+
 />
 
 
 </div>
-<div className="w-[18.1rem]">   
+<div className="w-[18.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">   
 {item.supplierSuppliesInd &&( 
   <>
 <div class="flex flex-row items-center justify-between w-[14rem]  max-sm:flex-row  max-sm:justify-end">

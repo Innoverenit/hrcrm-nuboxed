@@ -11,6 +11,32 @@ const EmployeeEquipmentForm = (props) => {
     const [selectedEquipment, setSelectedEquipment] = useState({});
     const [equipmentValues, setEquipmentValues] = useState({});
 
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+            "1547",//0 Yes"
+            "118",//1 No
+             "995",//2  Submit
+                   
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+
     useEffect(() => {
         props.getEquipment();
         props.getEmployeeEquipmentByUserId(props.employeeName.employeeId);
@@ -79,8 +105,8 @@ const EmployeeEquipmentForm = (props) => {
                         <Switch
                             onChange={(checked) => handleEquipment(checked, dept.equipmentId)}
                             checked={selectedEquipment[dept.equipmentId]}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
+                            checkedChildren={translatedMenuItems[0]}
+                            unCheckedChildren={translatedMenuItems[1]}
                         />
                         {selectedEquipment[dept.equipmentId] && (
                             <div class=" ml-4 w-[10%]">
@@ -97,7 +123,7 @@ const EmployeeEquipmentForm = (props) => {
             </div>
             <div class=" flex justify-end">
                 <Button type="primary" onClick={handleSubmit}>
-                    Submit
+                {translatedMenuItems[2]}   {/* Submit */}
                 </Button>
             </div>
         </div>

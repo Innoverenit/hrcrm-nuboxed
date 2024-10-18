@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { SubTitle } from "../../../../../Components/UI/Elements";
 
 class PlantDetailView extends Component {
@@ -19,15 +18,12 @@ export default PlantDetailView;
 
 const PlantItemRow = ({ label, value }) => {
   return (
-    <FlexContainer
-      alignItems="center"
-      flexWrap="nowrap"
-      style={{ margin: "0.4rem" }}
-    >
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto m-[0.4rem]">
+   
       <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
       <SubTitle style={{ marginLeft: "-30px", textOverflow: "ellipsis" }}>
         {value}
       </SubTitle>
-    </FlexContainer>
+    </div>
   );
 };

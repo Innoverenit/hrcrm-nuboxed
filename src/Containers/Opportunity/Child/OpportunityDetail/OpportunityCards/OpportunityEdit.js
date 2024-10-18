@@ -4,7 +4,6 @@ import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
  import { updateOpportunity } from "../../../OpportunityAction";
 import { Button } from "antd";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import {
   TextInput,
 } from "../../../../../Components/UI/Elements";
@@ -40,10 +39,7 @@ class OpportunityOverviewEdit extends Component {
     const { opportunity, toggleViewType, updateOpportunityById } = this.props;
     return (
       <>
-        <FlexContainer
-          flexDirection="column"
-          style={{ padding: "0.625em 1.25em 0.625em 1.25em" }}
-        >
+      <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto py-2.5 px-5 ">
           <EditableInput
             defaultValue={opportunity.opportunityName}
             handleChange={this.handleChange}
@@ -51,16 +47,14 @@ class OpportunityOverviewEdit extends Component {
             value={this.state.fields.opportunityName}
             width="100%"
           />
-        </FlexContainer>
-        <FlexContainer justifyContent="flex-end" marginRight="1.25em">
+        </div>
+        <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-[1.25em]">
           <Button
             type="primary"
             Loading={updateOpportunityById}
             onClick={this.handleUpdate}
             //  onClick={() => this.handleUpdate(this.props.opportunity.opportunityId)}
-  >
-          
-          
+  >     
             <FormattedMessage
               id="app.save"
               defaultMessage="Save"
@@ -75,7 +69,7 @@ class OpportunityOverviewEdit extends Component {
             />
             {/* Cancel */}
           </Button>
-        </FlexContainer>
+        </div>
       </>
     );
   }

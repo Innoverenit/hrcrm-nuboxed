@@ -3,19 +3,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import { Spacer } from "../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import { updateShipperContact } from "../../../ShipperAction";
-import * as Yup from "yup";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
-import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import Upload from "../../../../../../Components/Forms/Formik/Upload";
 import { getDesignations } from "../../../../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../../../../Settings/Department/DepartmentAction";
-import {getCountries} from "../../../../../Auth/AuthAction";
+
 class UpdateShipperContactForm extends Component {
   constructor(props) {
     super(props);
@@ -163,10 +159,10 @@ class UpdateShipperContactForm extends Component {
                     width: "45%",
                   }}
                 >
-                  <FlexContainer flexWrap="no-wrap">
+                  <div flexWrap="no-wrap">
                     <FastField name="imageId" component={Upload} />
                     <div>
-                      <FlexContainer justifyContent="space-between">
+                    <div class="justify-between flex flex-row flex-wrap items-start self-start grow shrink h-auto mr-auto ">
                         <div style={{ width: "35%" }}>
                           <FastField
                             name="salutation"
@@ -201,9 +197,9 @@ class UpdateShipperContactForm extends Component {
                             }}
                           />
                         </div>
-                      </FlexContainer>
-                      <Spacer />
-                      <FlexContainer justifyContent="space-between">
+                      </div>
+                      <div class=" mt-3" />
+                      <div class="justify-between flex flex-row flex-wrap items-start self-start grow shrink h-auto mr-auto ">
                         <div style={{ width: "40%" }}>
                           <FastField
                             name="middleName"
@@ -236,11 +232,11 @@ class UpdateShipperContactForm extends Component {
                             }}
                           />
                         </div>
-                      </FlexContainer>
+                      </div>
                     </div>
-                  </FlexContainer>
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" mt-3" />
+                  <div class="justify-between flex flex-row flex-wrap items-start self-start grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <FastField
                         name="dialCode1"
@@ -274,9 +270,9 @@ class UpdateShipperContactForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" mt-3" />
+                  <div justifyContent="space-between">
                     <div style={{ width: "47%" }}>
                       <FastField
                         name="dialCode2"
@@ -310,10 +306,10 @@ class UpdateShipperContactForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
+                  </div>
 
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" mt-3" />
+                  <div class="justify-between flex flex-row flex-wrap items-start self-start grow shrink h-auto mr-auto ">
                     <div style={{ width: "100%" }}>
                       <FastField
                         type="email"
@@ -331,9 +327,9 @@ class UpdateShipperContactForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" mt-3" />
+                  <div class="justify-between flex flex-row flex-wrap items-start self-start grow shrink h-auto mr-auto ">
                     <div style={{ width: "100%" }}>
                       <FastField
                         type="text"
@@ -350,8 +346,8 @@ class UpdateShipperContactForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer style={{ marginTop: "25px" }} />
+                  </div>
+                  <div class=" mt-3" style={{ marginTop: "25px" }} />
                   <Field
                     name="notes"
                     label="Notes"
@@ -374,7 +370,7 @@ class UpdateShipperContactForm extends Component {
                     marginTop: "10px",
                   }}
                 >
-                  <FlexContainer justifyContent="space-between">
+            <div class="justify-between flex flex-row flex-wrap items-start self-start grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         name="designationId"
@@ -401,8 +397,8 @@ class UpdateShipperContactForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer />
+                  </div>
+                  <div class=" mt-3" />
 
                   <div style={{ marginTop: "30px" }}>
                     <FieldArray
@@ -418,7 +414,7 @@ class UpdateShipperContactForm extends Component {
                   </div>
                 </div>
               </div>
-              <FlexContainer justifyContent="flex-end">
+              <div class="justify-end flex flex-row flex-wrap items-start self-start grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -427,7 +423,7 @@ class UpdateShipperContactForm extends Component {
                 >
                   Create
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

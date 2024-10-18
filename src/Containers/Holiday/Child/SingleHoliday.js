@@ -120,18 +120,7 @@ class SingleHoliday extends Component {
   >
     Apply
    
-  </Button>
-            {/* <Popconfirm
-              title="Do you wish to change Status ? "
-              okText="Yes"
-              cancelText="No"
-            >
-              <Switch
-                style={{ width: "7em" }}
-                checkedChildren="Applied"
-                unCheckedChildren="Not Applied"
-              />
-            </Popconfirm> */}
+  </Button>        
           </StageValue>
           :null}
       
@@ -181,27 +170,7 @@ class SingleHoliday extends Component {
                     checkedChildren="Optional"
                     unCheckedChildren="Mandatory"
                   />
-                  {/* <TextInput
-                                        name={newProbability}
-                                        defaultValue={probability}
-                                        // disabled={disabled}
-                                        // style={{ cursor: disabled ? "not-allowed" : "pointer" }}
-                                        onChange={this.handleChange}
-
-                                        width={"25%"}
-                                    /> */}
-               
-                  {/* <TextInput
-                                        name={newDays}
-                                        defaultValue={days}
-
-
-                                        // style={{ cursor: disabled ? "not-allowed" : "pointer" }}
-                                        onChange={this.handleChange}
-                                        placeholder="Days"
-                                        width={"24%"}
-                                    /> */}
-    
+            
                   <div class=" flex justify-end mr-[0.3125em] ml-2 mt-[0.625em] mb-[0.625em]"
                   
                   >

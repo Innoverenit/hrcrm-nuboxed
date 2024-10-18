@@ -7,7 +7,10 @@ class ShipperDetailsHeader extends Component {
         return (
             <div>
                 <ActionHeader
-                    leftComponent={<ShipperDetailsHeaderLeft />}
+                    leftComponent={<ShipperDetailsHeaderLeft
+                        translatedMenuItems={this.translatedMenuItems}
+                        selectedLanguage={this.props.selectedLanguage} 
+                        />}
                     rightComponent={<></>}
                 />
             </div>

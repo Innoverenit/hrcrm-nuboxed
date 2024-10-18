@@ -16,7 +16,28 @@ function ProductbuilderTable (props) {
   },[]);
 
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
- 
+
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         
+        "799",  // "HSN",//0 
+        "1",  // Select"
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -53,13 +74,13 @@ function ProductbuilderTable (props) {
 
                                     <div class="flex justify-between">
                                     <div class={`${isMobile ? "w-wk" : "w-[18%]"}`}>
-                                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">HSN</div>
+                                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">{translatedMenuItems[0]}</div>
                                     <Select
                                     showSearch
                 // value={selectedValue}
                 style={{ width: "100%" }}
                 onChange={handleChange}
-                placeholder="Select"
+                placeholder={translatedMenuItems[1]}
               >
         {prosb.map(option => {
           return <Option key={option.suppliesId} value={option.hsn}>{option.hsn}</Option>

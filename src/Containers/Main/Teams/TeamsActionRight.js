@@ -29,7 +29,7 @@ class TeamsActionRight extends React.Component {
         
           
          
-        "Add",
+      "85"  // "Add",
         
         
       ];

@@ -616,7 +616,7 @@ const [priority,setpriority]=useState(props.selectedTask
             </option>
           ))}
         </select>
-                      {/* <StyledLabel>Type</StyledLabel>
+                      {/* <div class=" text-xs font-bold font-poppins text-black">Type</div>
                       <Field
                     name="taskTypeId"
                     // selectType="customerList"
@@ -664,7 +664,7 @@ const [priority,setpriority]=useState(props.selectedTask
             </option>
           ))}
         </select>
-                      {/* <StyledLabel> Workflow</StyledLabel>
+                      {/* <div class=" text-xs font-bold font-poppins text-black"> Workflow</div>
 
                       <Field
                     name="taskType"
@@ -715,7 +715,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     {/* )} */}
                       {/* <div class=" w-1/2">
              
-                      <StyledLabel>Task Stages</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Task Stages</div>
                       <Field
                     name="taskChecklistId"
                  
@@ -854,7 +854,7 @@ const [priority,setpriority]=useState(props.selectedTask
                         }}
                       />
                     </div>
-                    <Spacer />
+                    <div class=" mt-3" />
                     <div class=" w-5/12">
                       <Field
                         // isRequired
@@ -877,7 +877,7 @@ const [priority,setpriority]=useState(props.selectedTask
                       />
                     </div>
                   </div>
-                  <Spacer /> */}
+                  <div class=" mt-3" /> */}
 
                
                   <div class=" flex justify-between mt-3">
@@ -1419,8 +1419,7 @@ const [priority,setpriority]=useState(props.selectedTask
                           <div>
                           <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Set Reminder </div>
                           </div>
-                          <div>
-                            {/* <FlexContainer justifyContent="space-between"> */}
+                          <div>                       
                             <Switch
                               onChange={handleReminderChange}
                               checked={reminder}

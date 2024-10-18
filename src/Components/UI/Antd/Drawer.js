@@ -20,13 +20,14 @@ const StyledDrawer = styled(Drawer)`
     }
     .ant-drawer-body {
        // background-color: ${props => props.theme.applicationBackground} !important;
-       background-color: #eaefed; 
-       color: ${props => props.theme.color};
-        padding: 0.7rem;
+       background-color: #FDFDFD; 
+    //    color: ${props => props.theme.color};
+       color:#444444;
+        padding: 0.5rem;
         border: none !important;
     }
     .ant-drawer-header {
-        background-image: linear-gradient(-90deg,#0e4c7fe0,#94d0e4);
+        background-image: linear-gradient(#478498,#478498,#478498);
         maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
         box-shadow: 0 0.75em 0.375em -0.375em rgb(46,44,44);
         border-bottom:0.0625em solid  #aaa;
