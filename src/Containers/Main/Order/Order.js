@@ -5,7 +5,7 @@ import { setOrderViewType } from "./OrderAction";
 import OrderHeader from "./OrderHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
 import CompleteOrder from "./CompleteOrder";
-import AllCompleteOrderList from "./AllCompleteOrderList";
+import AllCompleteOrderList from "./AllCompleteOrderList";//2
 import ProductionOrderCardList from "./ProductionOrderCardList";
 import ProductionHistoryCardList from "./ProductionHistoryCardList";
 import ProductionAllCardList from "./ProductionAllCardList";
@@ -13,8 +13,8 @@ import DeletedOrderList from "./DeletedOrderList";
 import ProcreCardList from "../Procre/ProcreCardList";
 
 const EcomCardList=lazy(()=>import("./EcomCardList"));
-const AllOrderList = lazy(() => import("./AllOrderList"));
-const OrderTableByUserID = lazy(() => import("./OrderTableByUserID"));
+const AllOrderList = lazy(() => import("./AllOrderList"));//4
+const OrderTableByUserID = lazy(() => import("./OrderTableByUserID")); //1
 
 class Order extends Component {
   constructor(props) {

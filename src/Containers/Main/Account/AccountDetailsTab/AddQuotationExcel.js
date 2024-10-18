@@ -113,7 +113,7 @@ function AddQuotationExcel(props) {
   return (
     <>
     <div class="flex justify-between">
-      <div class="w-[18rem]">
+      <div class="w-[18rem] box-content p-2 border-blue border-4">
         {rows.map((row, index) => (
           <div key={index}>
             <div className="flex-col">
@@ -177,58 +177,7 @@ function AddQuotationExcel(props) {
                   </Select>
                 </div>
               </div>
-              <div class="mt-1" />
-              <div>
-                <div class="font-bold text-xs font-poppins text-black">Quality</div>
-                <div className="w-[9rem]">
-                  <Select
-                    style={{ width: 200 }}
-                    value={row.quality}
-                    onChange={(value) => handleQualityChange(value, index)}
-                  >
-                    {props.supplierSuppliesQuality.map((a) => (
-                      <Option key={a.qualityId} value={a.qualityId}>{a.code}</Option>
-                    ))}
-                  </Select>
-                </div>
-              </div>
-              <div class="mt-1" />
-              <div class=" ml-4">
-                <div class="font-bold text-xs font-poppins text-black">Location</div>
-                <div className="w-[7rem]">
-                  {/* <Select
-                    style={{ width: 100 }}
-                    value={row.locationId}
-                    onChange={(value) => handleLocationChange(value, index)}
-                  >
-                    {props.locationlist.map((a) => (
-                      <Option key={a.locationDetailsId} value={a.locationDetailsId}>{a.locationName}</Option>
-                    ))}
-                  </Select> */}
-                    <Input
-                    type="text"
-                    value={row.location}
-                     onChange={(e) => handleUnitChange(index, 'location', e.target.value)}
-                    placeholder="Enter Location"
-                  />
-                </div>
-              </div>
-              <div class="mt-1" />
-              <div>
-                <div class="font-bold text-xs font-poppins text-black">Specs</div>
-                <div className="w-24 ml-2">
-                  <Select
-                    style={{ width: 200 }}
-                    value={row.specs}
-                    onChange={(value) => handleSpecsChange(value, index)}
-                  >
-                    <Option value="US">US</Option>
-                    <Option value="CE">CE</Option>
-                    <Option value="IND">IND</Option>
-                    <Option value="HK">HK</Option>
-                  </Select>
-                </div>
-              </div>
+                                        
               <div class="mt-1" />
               <div class=" ml-4">
                 <div class="font-bold text-xs font-poppins text-black">Unit</div>

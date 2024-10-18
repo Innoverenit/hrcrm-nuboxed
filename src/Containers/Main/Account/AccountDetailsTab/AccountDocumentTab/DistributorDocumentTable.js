@@ -57,7 +57,7 @@ class DistributorDocumentTable extends Component {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[7.4rem]">{translatedMenuItems[0]}</div>
+                        <div className="text-[#00A2E8] text-base md:w-[7.4rem]">{translatedMenuItems[0]}</div>
                         <div className=" md:w-[5.1rem]">{translatedMenuItems[1]}</div>
                         <div className=" md:w-[8.8rem] ">{translatedMenuItems[2]}</div>
                         <div className=" md:w-[8.8rem] ">{translatedMenuItems[3]}</div>
@@ -65,31 +65,31 @@ class DistributorDocumentTable extends Component {
 
 
                     </div>
-                    <div class="overflow-x-auto h-[69vh]">
+                    <div class="overflow-x-auto h-[73vh]">
                         {this.props.documentTable.map((item) => {
                             
                             return (
                                 <div >
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                    <div className="flex rounded  mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex w-3/4">
-                                        <div className=" flex   md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]  md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                 <div class=" text-xs  font-poppins text-center">
                                                           {item.documentTitle}
                                                   </div>
                                                 </div>
-                                            <div className=" flex  md:w-[1.56rem] max-sm:w-full text-xs  ">
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[1.56rem] max-sm:w-full text-xs  ">
 
                                                       {` ${dayjs(item.creationDate).format("YYYY-MM-DD")}`}
 
                                             </div>
 
-                                            <div className=" flex  md:w-[1.56rem] max-sm:w-full text-xs  ">
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[1.56rem] max-sm:w-full text-xs  ">
                                             {item.documentTitle}
                             
                                                </div>
 
-                                            <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {item.Description}
                                                 </div>

@@ -33,7 +33,7 @@ import { HistoryOutlined } from "@ant-design/icons";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import ShopIcon from '@mui/icons-material/Shop'
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import OrderTableC from "./OrderTableC";
+import OrderTableC from "./OrderTableC"; //3
 import ProcureCommerceShippedOrder from "./AccountOrderTab/ProcureCommerceShippedOrder";
 
 const CompleteOrderTable= lazy(() =>import("./AccountOrderTab/CompleteOrderTable"));
@@ -44,8 +44,8 @@ const AddCustomerProcurementModal = lazy(() => import("./AccountOrderTab/AddCust
 const AccountInvoiceTable = lazy(() => import("./AccountInvoiceTable"));
 const ErpNote = lazy(() => import("../../ErpNote/ErpNote"));
 const AddAccountOpportunityModal = lazy(() => import("./AddAccountOpportunityModal"));
-const LinkedOpportunityTable = lazy(() => import("./LinkedOpportunityTable"));
-const CustomerProcurementTable = lazy(() => import("./AccountOrderTab/CustomerProcurementTable"));
+const LinkedOpportunityTable = lazy(() => import("./LinkedOpportunityTable"));//2
+const CustomerProcurementTable = lazy(() => import("./AccountOrderTab/CustomerProcurementTable"));//1
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
@@ -244,7 +244,7 @@ function AccountDetailsTab(props) {
                                                 onClick={() => {
                                                     props.handleAddOrderModal(true);
                                                 }}
-                                                className="!text-icon  cursor-pointer ml-1"
+                                                className="!text-icon  cursor-pointer "
                                             />
                                         </Tooltip>
                                     </>
@@ -297,7 +297,7 @@ function AccountDetailsTab(props) {
                                                 onClick={() => {
                                                     props.handleLinkDistributorOrderConfigureModal(true);
                                                 }}
-                                                className="!text-icon  -ml-3 cursor-pointer "
+                                                className="!text-icon  ml-1 cursor-pointer "
                                             />
                                         </Tooltip>
                                     </>
@@ -308,18 +308,7 @@ function AccountDetailsTab(props) {
                         key="3"
                     >
 
-                        {/* <Suspense fallback={"Loading ..."}>
-                            {openOrder ?
-                                <CompleteOrderTable distributorId={props.distributorData.distributorId} type="complete" 
-                                selectedLanguage={props.selectedLanguage}
-                              translateText={props.translateText} /> :
-                                <AccountOrderTable distributorId={props.distributorData.distributorId} type="incomplete" 
-                                selectedLanguage={props.selectedLanguage}
-                              translateText={props.translateText}
-                              
-                              />
-                            }
-                        </Suspense> */}
+                      
                     </TabPane>}
                     { props.user.moduleMapper.ecomModInd &&
                    <TabPane
@@ -341,8 +330,7 @@ function AccountDetailsTab(props) {
                                     offset={[ 0, -16]}
                                 >
                               </Badge>
-                                &nbsp;  
-                             
+                                                        
                                 {activeKey === "4" && (
                                     <>
                                      <Tooltip title="Shipped Order">
@@ -372,10 +360,7 @@ function AccountDetailsTab(props) {
 
                         <Suspense fallback={"Loading ..."}>
                        
-                                {/* <CustomerProcurementTable distributorId={props.distributorData.distributorId} 
-                                selectedLanguage={props.selectedLanguage}
-                                translateText={props.translateText}
-                                 /> */}
+                                
 
                           
                         </Suspense>
@@ -433,12 +418,7 @@ function AccountDetailsTab(props) {
               }
               key="1"
             >
-              {/* <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LinkedOpportunityTable distributorData={props.distributorData} 
-                selectedLanguage={props.selectedLanguage}
-                translateText={props.translateText}/>
-              </Suspense> */}
+            
             </TabPane>
             <TabPane
                         tab={
@@ -480,11 +460,7 @@ function AccountDetailsTab(props) {
                         }
                         key="11"
                     >
-                        {/* <Suspense fallback={"Loading ..."}>
-                            <AccountInvoiceTable    distributorId={props.distributorData.distributorId}
-                            selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText} />
-                        </Suspense> */}
+                      
                     </TabPane> 
                     <TabPane
                         tab={
@@ -510,12 +486,7 @@ function AccountDetailsTab(props) {
                         }
                         key="12"
                     >
-                        {/* <Suspense fallback={"Loading ..."}>
-                            <AccountCreditMemos
-                            distributorId={props.distributorData.distributorId}
-                            selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText} />
-                        </Suspense> */}
+                     
                     </TabPane> 
                     <TabPane
                         tab={
@@ -546,11 +517,7 @@ function AccountDetailsTab(props) {
                         }
                         key="5"
                     >
-                        {/* <Suspense fallback={"Loading ..."}>
-                            <AccountActivityTable distributorId={props.distributorData.distributorId} 
-                            selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText}/>
-                        </Suspense> */}
+                      
                     </TabPane>
 
                     <TabPane
@@ -581,11 +548,7 @@ function AccountDetailsTab(props) {
                         }
                         key="10"
                     >
-                        {/* <Suspense fallback={"Loading ..."}>
-                            <AccountContactTable distributorId={props.distributorData.distributorId} 
-                              selectedLanguage={props.selectedLanguage}
-                              translateText={props.translateText}/>
-                        </Suspense> */}
+                      
                     </TabPane>
 
                     <TabPane
@@ -602,31 +565,10 @@ function AccountDetailsTab(props) {
                         }
                         key="6"
                     >
-                        {/* <Suspense fallback={"Loading ..."}>
-                        <ErpNote
-                         type="distributor"
-                         id={props.distributorData.distributorId}
-                         selectedLanguage={props.selectedLanguage}
-                              translateText={props.translateText}
-                        />
-                        </Suspense> */}
+                      
                     </TabPane>
 
-                    {/* <TabPane
-                        tab={
-                            <>
-                                <span>
-                                    <i class="fas fa-history"></i>
-                                    <span class="ml-1">History</span>
-                                </span>
-                            </>
-                        }
-                        key="5"
-                    >
-                        <Suspense fallback={"Loading ..."}>
-
-                        </Suspense>
-                    </TabPane> */}
+                
 
                     <TabPane
                         tab={
