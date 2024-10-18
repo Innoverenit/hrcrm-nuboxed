@@ -98,6 +98,9 @@ const initialState = {
   deleteInvestorData: false, 
   deleteInvestorDataError: false ,
 
+  updatingInvestorOwenership:false,
+  updatingInvestorOwenershipError:false,
+
   fetchingWonInvPipelineValue: false,
   fetchingWonInvPipelineValueError: false,
   WonInvestorPipeline: {},
@@ -488,6 +491,31 @@ export const investorReducer = (state = initialState, action) => {
                           updateInvestorContactById: false,
                           updateInvestorContactByIdError: true,
                         };  
+
+
+
+
+                        case types.UPDATE_INVESTOR_OWNERSHIP_REQUEST:
+                          return { ...state, updatingInvestorOwenership: true };
+                        case types.UPDATE_INVESTOR_OWNERSHIP_SUCCESS:
+                          return {
+                            ...state,
+                            updatingInvestorOwenership: false,
+                            // updateCandidateEmploymentModal: false,
+                            // employmentDetails: state.employmentDetails.map((employment, i) => {
+                            //   if (employment.id === action.payload.id) {
+                            //     return action.payload;
+                            //   } else {
+                            //     return employment;
+                            //   }
+                            // }),
+                          };
+                        case types.UPDATE_INVESTOR_OWNERSHIP_FAILURE:
+                          return {
+                            ...state,
+                            updatingInvestorOwenership: false,
+                            updatingInvestorOwenershipError: true,
+                          };
                         
                         case types.GET_INVESTOR_DATA_REQUEST:
                           return { ...state, fetchingInvestorData: true };

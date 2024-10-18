@@ -20,8 +20,13 @@ class CustomerHeader extends Component {
           leftComponent={
             <CustomerActionLeft
             viewType={viewType}
+            isTransferMode={this.props.isTransferMode}
+            selectedDeals={this.props.selectedDeals}
+            handleTransferClick={this.props.handleTransferClick}
+            showCheckboxes={this.props.showCheckboxes}
             teamsAccessInd={teamsAccessInd}
             handleChange={handleChange}
+            handleUserSelect={this.props.handleUserSelect}
             setCustomerViewType={setCustomerViewType}
               currentData={currentData}
               handleClear={handleClear}

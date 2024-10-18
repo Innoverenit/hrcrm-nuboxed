@@ -11,7 +11,7 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { getCountries } from "../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button, Popconfirm } from "antd";
+import { Tooltip, Select, Button, Popconfirm,Checkbox } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import {
@@ -324,6 +324,18 @@ if (loading) {
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex  w-[13rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
+                        <div className=" flex  items-center max-sm:w-auto  w-[9.21rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                    {/* Sector  */}
+                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {props.showCheckboxes && (
+                        <Checkbox
+                onChange={() => props.handleCheckboxChange(item.customerId)}
+              checked={props.selectedDeals.includes(item.customerId)}
+              />
+                        )}
+                        </div>
+
+                      </div>
                           <div>
                             {/* <Tooltip title={item.name}> */}
                             <MultiAvatar

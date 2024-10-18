@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { getCountries } from "../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select,Button ,Popconfirm} from "antd";
+import { Tooltip, Select,Button ,Checkbox,Popconfirm} from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import {
   MultiAvatar,
@@ -314,6 +314,14 @@ const [rowdata, setrowdata] = useState("");
               >
                                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                    <div className=" flex  w-[15rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
+                                   <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {props.showCheckboxes && (
+                        <Checkbox
+                onChange={() => props.handleCheckboxChange(item.customerId)}
+              checked={props.selectedDeals.includes(item.customerId)}
+              />
+                        )}
+                        </div>
                                    <div className="flex max-sm:w-full">
                       <div class="flex items-center">
                         
