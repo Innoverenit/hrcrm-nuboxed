@@ -3080,3 +3080,31 @@ export const getRepairVolumeChart = (userId,type) => (dispatch) => {
       });
     });
 };
+
+
+
+
+export const getReorderdata = () => (dispatch) => {
+  dispatch({ type: types.GET_REORDER_DATA_REQUEST });
+
+  axios
+    .get(`${base_url2}/po/getReorder/all/material`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // console.log(res)
+      dispatch({
+        type: types.GET_REORDER_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REORDER_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};

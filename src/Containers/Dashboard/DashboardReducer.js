@@ -7,6 +7,10 @@ const initialState = {
   fetchingSkillsCloudError: false,
   skillsCloud: [],
 
+  fetchingReorderData:false,
+  fetchingReorderDataError:false,
+  reOrderData:[],
+
   fetchingRepairDashboardOrderClose:false,
   fetchingRepairDashboardOrderCloseError:false,
   repairDashboardOrderClose:[],
@@ -1336,6 +1340,20 @@ export const dashboardReducer = (state = initialState, action) => {
       };
     case types.GET_TASK_PER_FAILURE:
       return { ...state, fetchingTaskper: false, fetchingTaskperError: true };
+
+
+
+      case types.GET_REORDER_DATA_REQUEST:
+        return { ...state, fetchingReorderData: true, fetchingTaskperError: false };
+      case types.GET_REORDER_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingReorderData: false,
+          fetchingReorderDataError: false,
+          reOrderData: action.payload,
+        };
+      case types.GET_REORDER_DATA_FAILURE:
+        return { ...state, fetchingReorderData: false, fetchingReorderDataError: true };
 
     case types.GET_JUMPSTART_BULB_REQUEST:
       return {
