@@ -8,6 +8,10 @@ const initialState = {
   fetchingMaterialDamageDataError:false,
   materialDamageData:[],
 
+  fetchingCommerceList: false,
+  fetchingCommerceListError: false,
+  allCommerceList:[],
+
   addingInventory: false,
   addingInventoryError: false,
 
@@ -805,6 +809,22 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingDispatchList: false,
         fetchingDispatchListError: true,
       };
+
+      case types.GET_COMMERCE_LIST_REQUEST:
+        return { ...state, fetchingCommerceList: true };
+      case types.GET_COMMERCE_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingCommerceList: false,
+          allCommerceList: [...state.allCommerceList, ...action.payload],
+        };
+      case types.GET_COMMERCE_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingCommerceList: false,
+          fetchingCommerceListError: true,
+        };
+  
 
     //get received details List
     case types.GET_RECEIVED_DETAILS_REQUEST:

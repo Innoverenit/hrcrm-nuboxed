@@ -77,9 +77,9 @@ function AllShipperList(props) {
             <div className="font-poppins font-bold text-xs w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
             <div className="font-poppins font-bold text-xs w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
             <div className="font-poppins font-bold text-xs w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[4]}</div>
-            <div className="font-poppins font-bold text-xs w-[4.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[5]}</div>
-            <div className="font-poppins font-bold text-xs w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div>
-            <div className="font-poppins font-bold text-xs w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
+            <div className="font-poppins font-bold text-xs w-[3.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[5]}</div>
+            <div className="font-poppins font-bold text-xs w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div>
+            <div className="font-poppins font-bold text-xs w-[8.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
           </div>
           <InfiniteScroll
         dataLength={props.allShipper.length}
@@ -164,7 +164,7 @@ function AllShipperList(props) {
 </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                       <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] w-[5rem]">                      
+                       <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] w-[8rem]">                      
                           <Switch
                             className="toggle-clr"
                             //checked={item.productionInd}

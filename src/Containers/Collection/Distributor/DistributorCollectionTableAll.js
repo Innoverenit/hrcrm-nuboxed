@@ -124,7 +124,7 @@ class AllDistributorList extends Component {
                     // }}
                     >
                       <div class="flex">
-                        <div className=" flex font-medium flex-col md:w-40 max-sm:w-full  ">
+                        <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-40 max-sm:w-full  ">
 
 
                           <Tooltip>
@@ -132,7 +132,7 @@ class AllDistributorList extends Component {
                               {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                              <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                              <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                 <Link
                                   toUrl={`distributor/${item.distributorId}`}
@@ -155,7 +155,7 @@ class AllDistributorList extends Component {
 
                         </div>
 
-                        <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
                           {/*  Sector </div> */}
                           <div class=" text-xs  font-poppins">
@@ -166,7 +166,7 @@ class AllDistributorList extends Component {
 
                       </div>
                       <div class="flex">
-                        <div className=" flex font-medium flex-col md:w-full max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-full max-sm:flex-row w-full max-sm:justify-between ">
                           {/* # Opportunity</div> */}
 
                           <div class=" text-xs  font-poppins text-center">
@@ -174,7 +174,7 @@ class AllDistributorList extends Component {
 
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
                           {/* Pipeline Value</div> */}
 
                           <div class=" text-xs  font-poppins text-center">
@@ -183,7 +183,7 @@ class AllDistributorList extends Component {
                           </div>
                         </div>
                       </div>
-                      <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
                         {/* </div> */}
 
                         <div class=" text-xs  font-poppins text-center">
@@ -194,7 +194,7 @@ class AllDistributorList extends Component {
 
                       <div class="flex md:items-center">
                         <div class="flex">
-                          <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
                             {/* Sector </div> */}
                             <div class=" text-xs  font-poppins">
@@ -205,7 +205,7 @@ class AllDistributorList extends Component {
                             </div>
 
                           </div>
-                          <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
                             {/*  Sector </div> */}
                             <div class=" text-xs  font-poppins">

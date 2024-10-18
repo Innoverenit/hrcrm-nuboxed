@@ -367,7 +367,7 @@ function AccountInvoiceTable(props) {
       }
     return (
         <>
-         <div class=" w-64 max-sm:w-24">
+         <div class=" w-64 max-sm:w-24 ">
         <Input
           placeholder={translatedMenuItems[5]}
           width={"100%"}
@@ -377,7 +377,7 @@ function AccountInvoiceTable(props) {
         value={currentData}
         />
 
-<Button type="primary" onClick={()=> setmodalMultiple(true)}>
+<Button class="mt-1" type="primary" onClick={()=> setmodalMultiple(true)}>
       Create from multipule orders 
     </Button>
         </div>
@@ -398,7 +398,7 @@ function AccountInvoiceTable(props) {
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[86%] p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
                   
-                    <div class=" w-[8.5rem]">{translatedMenuItems[0]} ID</div>
+                    <div class="text-[#00A2E8] text-base w-[8.5rem]">{translatedMenuItems[0]} ID</div>
                         <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>
            
                         <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
@@ -419,7 +419,7 @@ function AccountInvoiceTable(props) {
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:">
-                                                    <div className=" flex w-[6.25rem] max-xl:w-[16.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex w-[6.25rem]  border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[16.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins  font-bold flex items-center">
                                                           
                                                            <span
@@ -438,26 +438,26 @@ function AccountInvoiceTable(props) {
                                                                 </div>
                                                             ) : null}</div>
                                                     </div>
-                                                    <div className=" flex  text-xs w-[8.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  text-xs w-[8.1rem] max-xl:w-[10.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         
                                                                 {item.newOrderNo}
                                                         </div>
                                                     </div>
                                                  
-                                                    <div className=" flex text-xs w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex text-xs w-[7.2rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.totalValue}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex   w-[8rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                     {item.remainingTotalValue} 
 
                           </div> </div>
-                                                       <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                       <div className=" flex   w-[8rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {item.creditInd  ? "" :(
                                                         <Tooltip title="">
@@ -477,7 +477,7 @@ function AccountInvoiceTable(props) {
                                                     
                                                   
 
-                                                    <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex   w-[8rem] max-xl:w-[20.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  max-sm:flex-row ">
                                                         <Tooltip title="">
                                                                 <Button
                                                                     className="cursor-pointer"
@@ -488,14 +488,14 @@ function AccountInvoiceTable(props) {
                                                                 > {translatedMenuItems[10]}</Button>
                                                             </Tooltip>
                                                           </div>   
-                                                          <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                          <div className=" flex   w-[8rem] max-xl:w-[20.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                    {item.paidInd=== true ? "Paid":"Unpaid"}
 
                                                </div> </div>   
                                                      <div className=" flex  items-center justify-end  w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                       
+                                                       <div class="items-center justify-center  bg-[#eef2f9] h-8">
                                                         <Tooltip title="">
                                                                 <PaidIcon
                                                                     className="!text-icon cursor-pointer text-[#e5625e]"
@@ -506,8 +506,8 @@ function AccountInvoiceTable(props) {
 
                                                                 />
                                                             </Tooltip>      
-                       
-                          <div>
+                       </div>
+                       <div class="items-center justify-center  bg-[#eef2f9] h-8">
                           <Tooltip title={translatedMenuItems[11]}>
                              <EventRepeatIcon
                              className="!text-icon cursor-pointer text-[green]"
@@ -518,7 +518,7 @@ function AccountInvoiceTable(props) {
                              />
                                   </Tooltip>
                               </div>
-                              <div class="w-6">
+                              <div class="w-6 items-center justify-center  bg-[#eef2f9] h-8">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>

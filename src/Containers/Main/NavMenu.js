@@ -156,7 +156,7 @@ function NavMenu(props) {
     return <div><BundleLoader/></div>;
   }
   return (
-    <div style={{ marginLeft: "-1.1875em" }}>
+    <div >
 
       <Menu
       //  defaultSelectedKeys={[selectedMenuItem]}

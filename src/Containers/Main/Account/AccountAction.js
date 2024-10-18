@@ -3353,8 +3353,8 @@ export const getAllProductList = (category,brand,model) => (dispatch) => {
     type: types.GET_ALL_PRODUCT_LIST_REQUEST,
   });
   axios
-    // .get(`${base_url2}/product/all-product`, 
-    .get(`${base_url2}/product/attributeName/${category}/${brand}/${model}`, 
+    .get(`${base_url2}/supplies/all-attribute`, 
+    // .get(`${base_url2}/product/attributeName/${category}/${brand}/${model}`, 
     {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -4115,8 +4115,9 @@ export const getBrand = (category) => (dispatch) => {
       type: types.GET_BRAND_REQUEST,
   });
   axios
-      // .get(`${base_url2}/masterlist/brand/drop-down`, 
-      .get(`${base_url2}/product/brandName/${category}`, 
+      // .get(`${base_url2}/masterlist/brand/drop-down`,
+      // .get(`${base_url2}/product/brandName/${category}`, 
+      .get(`${base_url2}/supplies/allSuppliesBrand`, 
       {
           headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -4144,7 +4145,8 @@ export const getModel = (category,brand) => (dispatch) => {
   });
   axios
       // .get(`${base_url2}/masterlist/model/drop-down/${brandName}`,
-      .get(`${base_url2}/product/modelName/${category}/${brand}`,
+      .get(`${base_url2}/masterlist/masterList`,
+      // .get(`${base_url2}/product/modelName/${category}/${brand}`,
        {
           headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",

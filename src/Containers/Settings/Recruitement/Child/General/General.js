@@ -52,6 +52,13 @@ function General(props) {
     enaShipInd: props.requirementDuration.enaShipInd,
     tskAgCriRng: props.requirementDuration.tskAgCriRng,
     noOfQtion: props.requirementDuration.noOfQtion,
+    task: props.requirementDuration.task,
+    deal: props.requirementDuration.deal,
+    qtionErp: props.requirementDuration.qtionErp,
+    ordRepr: props.requirementDuration.ordRepr,
+    ordCmrc: props.requirementDuration.ordCmrc,
+    ordprdts: props.requirementDuration.ordprdts,
+    apprvl: props.requirementDuration.apprvl,
     userId: props.userId,
     orgId: props.orgId,
   });
@@ -100,6 +107,13 @@ function General(props) {
     newArrDay: props.requirementDuration.newArrDay || "",
     tskAgCriRng: props.requirementDuration.tskAgCriRng || "",
     noOfQtion: props.requirementDuration.noOfQtion || "",
+    task: props.requirementDuration.task || "",
+    deal: props.requirementDuration.deal || "",
+    qtionErp: props.requirementDuration.qtionErp || "",
+    ordRepr: props.requirementDuration.ordRepr || "",
+    ordCmrc: props.requirementDuration.ordCmrc || "",
+    ordprdts: props.requirementDuration.ordprdts || "",
+    apprvl: props.requirementDuration.apprvl || "",
     processInd: props.requirementDuration.processInd,
     enaShipInd: props.requirementDuration.enaShipInd,
     userId: props.userId,
@@ -156,6 +170,13 @@ function General(props) {
           typeInd: formValues.typeInd,
           repairOrdInd: formValues.repairOrdInd,
           qcInd: formValues.qcInd,
+          task: formValues.task,
+          deal: formValues.deal,
+          qtionErp: formValues.qtionErp,
+          ordRepr: formValues.ordRepr,
+          ordCmrc: formValues.ordCmrc,
+          ordprdts: formValues.ordprdts,
+          apprvl: formValues.apprvl,
           b2bCheckInvenOrdInd: formValues.b2bCheckInvenOrdInd,
           b2cCheckInvenOrdInd: formValues.b2cCheckInvenOrdInd,
           shipInvoicePayImentnd: formValues.shipInvoicePayImentnd,
@@ -609,6 +630,102 @@ function General(props) {
    
                       </div>
                     </div>
+                    <div className="flex justify-between mt-2">
+                  <div className="text-xs">Task </div>
+                  <div>
+                  <input
+                      type="number"
+                      name="task"
+                      value={formValues.task}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between mt-2">
+                  <div className="text-xs">Deal</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="deal"
+                      value={formValues.deal}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between mt-2">
+                  <div className="text-xs">QotationErp</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="qtionErp"
+                      value={formValues.qtionErp}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between mt-2">
+                  <div className="text-xs">OrderRepair</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="ordRepr"
+                      value={formValues.ordRepr}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between mt-2">
+                  <div className="text-xs">OrderCommerce</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="ordCmrc"
+                      value={formValues.ordCmrc}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between mt-2">
+                  <div className="text-xs">OrderProduct</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="ordprdts"
+                      value={formValues.ordprdts}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-between mt-2">
+                  <div className="text-xs">Approval</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="apprvl"
+                      value={formValues.apprvl}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+                 
+
+
+
+
                     <div class=" text-xs mt-3 font-bold ">Invoice</div>
                     <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">Proforma Invoice (PI) needed</div>

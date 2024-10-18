@@ -62,7 +62,7 @@ function AddQuotationRepairExcel(props) {
                     ...rest
                 }) => (
                     <div className="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
-                        <Form className="form-background">
+                        <Form className="form-background h-[89vh]">
                             <div className="">
                                 <div className="h-full">
                                     <Select defaultValue="Repair" onChange={handleFormTypeChange} className="w-[18rem] mb-3">
@@ -78,28 +78,19 @@ function AddQuotationRepairExcel(props) {
                                                     component={DraggableUpload1}
                                                 />
                                             </div>
-                                            <div className="mt-3">
+                                            <div className="flex justify-between">
+                                            <div className="mt-3 w-[45%]">
                                                 <Field
                                                     label="AWB No"
                                                     name="awbNo"
                                                     component={InputComponent}
                                                     inlineLabel
-                                                    width={"100%"}
+                                                    width={"97%"}
                                                     isColumn
                                                 />
                                             </div>
-                                            <div className="flex justify-between">
-                                                <div className="w-[45%]">
-                                                    <Field
-                                                        label="Units"
-                                                        name="totalPhoneCount"
-                                                        component={InputComponent}
-                                                        inlineLabel
-                                                        width={"100%"}
-                                                        isColumn
-                                                    />
-                                                </div>
-                                                <div className="w-[45%]">
+                                            
+                                            <div className="w-[45%] mt-3">
                                                     <div class="font-bold text-xs font-poppins text-black">Required bulk QR code</div>
                                                     <Switch
                                                         onChange={handleBulkQr}
@@ -107,6 +98,19 @@ function AddQuotationRepairExcel(props) {
                                                         checkedChildren="Yes"
                                                         unCheckedChildren="No" />
                                                 </div>
+</div>
+                                           
+                                                <div className="w-[45%]">
+                                                    <Field
+                                                        label="Units"
+                                                        name="totalPhoneCount"
+                                                        component={InputComponent}
+                                                        inlineLabel
+                                                        width={"97%"}
+                                                        isColumn
+                                                    />
+                                                
+                                               
                                             </div>
                                             <div className="flex justify-between">
                                                 <div className="w-[70%] mt-2">

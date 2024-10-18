@@ -121,18 +121,18 @@ const AllAccountList = (props) => {
       <div className=' flex  sticky z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex max-sm:hidden  w-[90%]   justify-between p-1 bg-transparent  sticky  z-10">
-        <div class=" flex justify-between text-xs font-poppins  font-bold  w-[96%]  ">
-            <div className=" w-[16.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  
+        <div class=" flex justify-between text-xs font-poppins  font-bold  w-[94%]  ">
+            <div className=" w-[20.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  
             {translatedMenuItems[0]}
             {/* Name */}
             </div>
             <div className=" w-[10.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]">
               {translatedMenuItems[1]}
             {/* Work */}</div>
-            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
+            <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
             {translatedMenuItems[2]}
             {/*category */}</div>
-            <div className="w-[4.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
+            <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
             {translatedMenuItems[3]}
             {/* type % */}</div>
             <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
@@ -141,12 +141,9 @@ const AllAccountList = (props) => {
             <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
             {/* Club */}{translatedMenuItems[12]}
           {/*Club */}
-            </div>
-            {/* <div className="w-[5.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">
-            {translatedMenuItems[5]}
-              Tax</div>         */}
+            </div>       
 
-                <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
+                <div className="w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
             {translatedMenuItems[11]}
            {/* Owner */}        
             </div>
@@ -154,7 +151,7 @@ const AllAccountList = (props) => {
           {translatedMenuItems[10]}
             {/* Assigned */}          
             </div>
-            <div className="w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className="w-[0.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
           {translatedMenuItems[14]}
             {/* Created */}          
             </div>
@@ -185,9 +182,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 `;
                   return (
                     <div>
-                    <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
+                    <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex  w-[16rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
+                        <div className=" flex  w-[14rem] max-xl:w-[11rem] border-l-2 border-green-500 bg-[#eef2f9] max-lg:w-[8rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-auto">
                             <div>
                               <MultiAvatar
@@ -198,8 +195,8 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                 imgHeight={"1.8rem"}
                               />
                             </div>
-                            <div class="w-[0.25rem]"></div>
-                            <div class="max-sm:w-auto flex items-center">
+                            <div class="w-[0.25rem] "></div>
+                            <div class="max-sm:w-auto flex items-center ">
                               <Tooltip>
                                 <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                   <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
@@ -222,7 +219,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </div>
                           </div>
                         </div>
-                        <div className=" flex   items-center  w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
+                        <div className=" flex   items-center  w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] h-8 max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
                           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-sm ">
                             {item.dialCode} {item.phoneNo}
                           </div>
@@ -231,27 +228,27 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex  max-sm:w-auto w-[9.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  max-sm:w-auto w-[9.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {/* {item.url} */}
                             {item.dCategoryName}
 
                           </div>
                         </div>
-                        <div className=" flex  max-sm:w-auto w-[8rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  max-sm:w-auto w-[8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.clientName}
 
                           </div>
                         </div>
 
-                        <div className=" flex  max-sm:w-auto w-[9rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  max-sm:w-auto w-[9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.payment}
 
                           </div>
                         </div>
-                        <div className=" flex  max-sm:w-auto w-[8rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  max-sm:w-auto w-[7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clubName}
 
@@ -267,14 +264,14 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                         </div>                                         
                       </div> */}
-                      <div className=" flex items-center max-sm:w-auto w-[6rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto w-[10rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp; &nbsp;
                             <div class=" text-xs  items-center font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.currencyPrice}
 
                             </div>
                           </div>  
-                       <div className=" flex  items-center max-sm:w-auto flex-col w-6rem max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                       <div className=" flex  items-center max-sm:w-auto flex-col w-[6rem] items-center justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                           <div class="max-sm:flex justify-end">
                           {item.salesExecutive?
                             <Tooltip title={item.salesExecutive}>
@@ -287,7 +284,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </Tooltip>:""}
                           </div>                      
                       </div>     
-                      <div className=" flex items-center w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
 <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -300,7 +297,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      <div className=" flex    max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex    max-xl:w-[1.2rem] max-sm:flex-row items-center justify-center h-8 bg-[#eef2f9] max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title=  {translatedMenuItems[8]}>
                             {/* "Pulse"> */}
@@ -314,6 +311,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </Tooltip>
                           </div>
                         </div>
+                        <div class=" flex items-center justify-center h-8  bg-[#eef2f9]">
                         <Tooltip title=  {translatedMenuItems[13]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
@@ -324,8 +322,9 @@ ${(item.address && item.address.length && item.address[0].country) || ""
           
         /> 
         </Tooltip>  
+        </div>
 
-                      <div className=" flex    max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex    max-xl:w-[1.2rem] items-center justify-center h-8 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
                       <div>
                         <Tooltip title={item.url}>
                           {item.url !== "" ? (
@@ -351,7 +350,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       </div>
                         </div>
  
-                        <div className=" flex    max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex    max-xl:w-[1.25rem] max-sm:flex-row  items-center justify-center h-8  bg-[#eef2f9] max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title=  {translatedMenuItems[9]}>
                             {/*  "Edit"> */}

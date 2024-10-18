@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect,useState } from "react";
 import ImageGallery from 'react-image-gallery';
+import axios from 'axios';
 import Carousel from "react-elastic-carousel";
 
-import { base_url } from '../../../../Config/Auth';
+import { base_url, base_url2 } from '../../../../Config/Auth';
 import LocationSuppliesList from '../LocationSuppliesList';
 const initialFlow = {
   imgIds: [
@@ -67,8 +68,99 @@ function MaterialsDetailsCardViewId (props) {
       { width: 1200, itemsToShow: 4 }
     ];
 
+    // const CartTable = (props) => {
+    //   const data = {
+    //     Length: {
+    //       retail: props.materialsBySuppliesId.length
+    //         ? props.materialsBySuppliesId.length.toFixed(2)
+    //         : '0',
+    //       inner: props.materialsBySuppliesId.innerLength
+    //         ? props.materialsBySuppliesId.innerLength.toFixed(2)
+    //         : '0',
+    //       master: props.materialsBySuppliesId.masterLength
+    //         ? props.materialsBySuppliesId.masterLength.toFixed(2)
+    //         : '0'
+    //     },
+    //     Depth: {
+    //       retail: props.materialsBySuppliesId.width
+    //         ? props.materialsBySuppliesId.width.toFixed(2)
+    //         : '0',
+    //       inner: props.materialsBySuppliesId.innerWidth
+    //         ? props.materialsBySuppliesId.innerWidth.toFixed(2)
+    //         : '0',
+    //       master: props.materialsBySuppliesId.masterWidth
+    //         ? props.materialsBySuppliesId.masterWidth.toFixed(2)
+    //         : '0'
+    //     },
+    //     Height: {
+    //       retail: props.materialsBySuppliesId.height
+    //         ? props.materialsBySuppliesId.height.toFixed(2)
+    //         : '0',
+    //       inner: props.materialsBySuppliesId.innerHeight
+    //         ? props.materialsBySuppliesId.innerHeight.toFixed(2)
+    //         : '0',
+    //       master: props.materialsBySuppliesId.masterHeight
+    //         ? props.materialsBySuppliesId.masterHeight.toFixed(2)
+    //         : '0'
+    //     },
+    //     Volume: {
+    //       retail: props.materialsBySuppliesId.volume
+    //         ? props.materialsBySuppliesId.volume.toFixed(2)
+    //         : '0',
+    //       inner: props.materialsBySuppliesId.innerVolume
+    //         ? props.materialsBySuppliesId.innerVolume.toFixed(2)
+    //         : '0',
+    //       master: props.materialsBySuppliesId.masterVolume
+    //         ? props.materialsBySuppliesId.masterVolume.toFixed(2)
+    //         : '0'
+    //     },
+    //     Weight: {
+    //       retail: props.materialsBySuppliesId.weight
+    //         ? props.materialsBySuppliesId.weight.toFixed(2)
+    //         : '0',
+    //       inner: props.materialsBySuppliesId.innerWeight
+    //         ? props.materialsBySuppliesId.innerWeight.toFixed(2)
+    //         : '0',
+    //       master: props.materialsBySuppliesId.masterWeight
+    //         ? props.materialsBySuppliesId.masterWeight.toFixed(2)
+    //         : '0'
+    //     },
+    //     Category: {
+    //       retail: props.materialsBySuppliesId.categoryName || 'No Data',
+    //       inner: props.materialsBySuppliesId.categoryName || 'No Data',
+    //       master: props.materialsBySuppliesId.categoryName || 'No Data'
+    //     }
+    //   };
+  
+    //   return (
+    //     <table className="w-[48%] border-collapse border border-gray-200">
+    //       <thead>
+    //         <tr className="bg-gray-50">
+    //           <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
+    //           <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Retail</th>
+    //           <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Inner</th>
+    //           <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Master</th>
+    //         </tr>
+    //       </thead>
+    //       <tbody>
+    //         {Object.keys(data).map((key) => (
+    //           <tr key={key} className="bg-gray-50 odd:bg-white">
+    //             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">{key}</th>
+    //             <td className="p-2 border border-gray-200">{data[key].retail}</td>
+    //             <td className="p-2 border border-gray-200">{data[key].inner}</td>
+    //             <td className="p-2 border border-gray-200">{data[key].master}</td>
+    //           </tr>
+    //         ))}
+    //       </tbody>
+    //     </table>
+    //   );
+    // };    
+ 
+
+
+
     const CartTable = (props) => {
-      const data = {
+      const [data, setData] = useState({
         Length: {
           retail: props.materialsBySuppliesId.length
             ? props.materialsBySuppliesId.length.toFixed(2)
@@ -124,13 +216,46 @@ function MaterialsDetailsCardViewId (props) {
             ? props.materialsBySuppliesId.masterWeight.toFixed(2)
             : '0'
         },
-        Category: {
-          retail: props.materialsBySuppliesId.categoryName || 'No Data',
-          inner: props.materialsBySuppliesId.categoryName || 'No Data',
-          master: props.materialsBySuppliesId.categoryName || 'No Data'
+      });
+    
+      const handleBlur = async (key, type, value) => {
+        try {
+          const updatedData = { ...data, [key]: { ...data[key], [type]: parseFloat(value) || 0 } };
+          setData(updatedData); // Update the local state with the new value
+      
+          const payload = {
+            suppliesId: props.materialsBySuppliesId.suppliesId,
+            length: updatedData.Length.retail,
+            innerLength: updatedData.Length.inner,
+            masterLength: updatedData.Length.master,
+            width: updatedData.Depth.retail,
+            innerWidth: updatedData.Depth.inner,
+            masterWidth: updatedData.Depth.master,
+            height: updatedData.Height.retail,
+            innerHeight: updatedData.Height.inner,
+            masterHeight: updatedData.Height.master,
+            volume: updatedData.Volume.retail,
+            innerVolume: updatedData.Volume.inner,
+            masterVolume: updatedData.Volume.master,
+            weight: updatedData.Weight.retail,
+            innerWeight: updatedData.Weight.inner,
+            masterWeight: updatedData.Weight.master
+          };
+      
+          // Perform PUT request to the dummy URL
+          await axios.put(`${base_url2}/supplies/infoEdit`, payload);
+      
+          console.log('Payload sent:', payload);
+        } catch (error) {
+          console.error('Error updating data', error);
         }
       };
-  
+    
+      const handleInputChange = (key, type, e) => {
+        const updatedData = { ...data, [key]: { ...data[key], [type]: e.target.value } };
+        setData(updatedData);
+      };
+    
       return (
         <table className="w-[48%] border-collapse border border-gray-200">
           <thead>
@@ -145,16 +270,42 @@ function MaterialsDetailsCardViewId (props) {
             {Object.keys(data).map((key) => (
               <tr key={key} className="bg-gray-50 odd:bg-white">
                 <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">{key}</th>
-                <td className="p-2 border border-gray-200">{data[key].retail}</td>
-                <td className="p-2 border border-gray-200">{data[key].inner}</td>
-                <td className="p-2 border border-gray-200">{data[key].master}</td>
+                <td className="p-2 border border-gray-200">
+                  <input
+                    type="text"
+                    value={data[key].retail}
+                    onChange={(e) => handleInputChange(key, 'retail', e)}
+                    onBlur={(e) => handleBlur(key, 'retail', e.target.value)}
+                    className="w-full bg-transparent"
+                  />
+                </td>
+                <td className="p-2 border border-gray-200">
+                  <input
+                    type="text"
+                    value={data[key].inner}
+                    onChange={(e) => handleInputChange(key, 'inner', e)}
+                    onBlur={(e) => handleBlur(key, 'inner', e.target.value)}
+                    className="w-full bg-transparent"
+                  />
+                </td>
+                <td className="p-2 border border-gray-200">
+                  <input
+                    type="text"
+                    value={data[key].master}
+                    onChange={(e) => handleInputChange(key, 'master', e)}
+                    onBlur={(e) => handleBlur(key, 'master', e.target.value)}
+                    className="w-full bg-transparent"
+                  />
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       );
-    };    
- 
+    };
+    
+
+
 
   return (
   <>

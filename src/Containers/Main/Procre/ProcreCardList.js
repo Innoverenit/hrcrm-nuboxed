@@ -242,7 +242,7 @@ const {handleProcureNotesDrawerModal,
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]" >
         <div className=" flex justify-between w-[90%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
         <div className=" md:w-[0.5rem]"></div>
-                        <div className="font-bold font-poppins text-xs md:w-[11rem]">{translatedMenuItems[0]}</div>
+                        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[11rem]">{translatedMenuItems[0]}</div>
                         <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[1]}</div>
                         <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[2]}</div>
                         <div className="font-bold font-poppins text-xs md:w-[12rem]">{translatedMenuItems[3]}ID</div>
@@ -261,7 +261,7 @@ const {handleProcureNotesDrawerModal,
           dataLength={props.allProcure.length}
           next={handleLoadMore}
           loader={props.fetchingAllProcure?<div class="flex justify-center" >Loading...</div>:null}
-          height={"79vh"}
+          height={"83vh"}
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
@@ -281,13 +281,13 @@ const {handleProcureNotesDrawerModal,
                   <div className=" flex  w-wk items-center   max-sm:w-full">
                   <div className="flex items-center max-sm:w-full">
                   <div 
-  className="flex items-center truncate max-w-[100px] text-xs md:w-[12rem] max-sm:w-full" 
+  className="flex items-center truncate max-w-[100px] text-xs md:w-[12rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full" 
   title={`${item.category} ${item.brand} ${item.model} ${item.attribute}`}
 >
 
                                                       {item.category} {item.brand} {item.model} {item.attribute}
                                                     </div>
-                                                    <div className=" flex   md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   md:w-[4.22rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs  font-semibold  font-poppins">
  
@@ -296,7 +296,7 @@ const {handleProcureNotesDrawerModal,
                       </div>
                     </div>
   </div>
-  <div className=" flex   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex   md:w-[4rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs  font-semibold  font-poppins">
                       <div className=" text-xs  font-poppins">
@@ -304,7 +304,7 @@ const {handleProcureNotesDrawerModal,
                       </div>
                     </div>
   </div> 
-                        <div class="max-sm:w-full  items-center md:w-[7.52rem]">
+                        <div class="max-sm:w-full  items-center md:w-[7.52rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
                           <Tooltip>
                           <div class="max-sm:w-full  justify-between md:flex text-xs">                      
                                 <span
@@ -328,7 +328,7 @@ const {handleProcureNotesDrawerModal,
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[8rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
                   
                       
                   <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
@@ -338,7 +338,7 @@ const {handleProcureNotesDrawerModal,
                          </div>
                   </div>
                   <div class="flex items-center">
-                    <div className=" flex   md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[10.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -346,14 +346,14 @@ const {handleProcureNotesDrawerModal,
         `}
                       </div>
                     </div>
-                    <div className=" flex  md:w-[10.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-[10.051rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
 
                      {date}
                       </div>
                     </div>
                     
-                  <div class="flex items-center md:w-[4.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex items-center md:w-[4.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -458,12 +458,12 @@ const {handleProcureNotesDrawerModal,
                     </div>
                   </div>
                   <div className=" flex   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  <div class="w-6">
+                  <div class="w-6 items-center justify-center h-8  bg-[#eef2f9] ">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div>          
-                  <div >
+                  <div class="items-center justify-center h-8   bg-[#eef2f9] " >
                       <Tooltip title={translatedMenuItems[16]}>
                         <NoteAltIcon
                          className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
@@ -495,13 +495,14 @@ const {handleProcureNotesDrawerModal,
                     ) : (
                       <>
                        {!item.acceptedInd && (
-                     
+                     <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
                       <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1 max-sm:!text-2xl"
                         tooltipTitle={translatedMenuItems[19]}
                         iconType="edit"
                         onClick={() => handleEditClick(item.iteamId)}
                       />
+                      </div>
                        )}
                       </>
                     )}

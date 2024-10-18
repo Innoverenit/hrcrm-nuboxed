@@ -75,9 +75,9 @@ const {
           // Perform the search
           //props.inputDataSearch(currentData);
           if (props.viewType === "card") {
-            props.inputDataSearch(currentData,'card');
+            props.inputDataSearch(currentData,'user');
           } else if (props.viewType === "all") {
-            props.inputDataSearch(currentData,'all');
+            props.inputDataSearch(currentData,'All');
           } 
           else if (props.viewType === "not approved") {
             props.inputDataSearch(currentData,'not approved');

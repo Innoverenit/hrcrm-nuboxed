@@ -194,7 +194,7 @@ const {handleProcureNotesDrawerModal,
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
         <div className=" flex justify-between w-[90%]  p-1 bg-transparent font-bold sticky  z-10">
 
-                        <div className="font-bold w-[17rem] font-poppins text-xs md:w-[10rem]">{translatedMenuItems[0]} </div>
+                        <div className="font-bold text-[#00A2E8] text-base w-[17rem] font-poppins  md:w-[10rem]">{translatedMenuItems[0]} </div>
                         <div className="font-bold w-[23rem] font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[1]} ID</div>
                         <div className="font-bold  w-[21rem] font-poppins text-xs md:w-[6.4rem]">{translatedMenuItems[2]}</div>
                         <div className="font-bold  w-[10rem] font-poppins text-xs md:w-[8.4rem]">{translatedMenuItems[3]}</div>
@@ -220,10 +220,10 @@ const {handleProcureNotesDrawerModal,
             return (
                 <div>
                 <div
-className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
-                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex   md:w-[4rem] max-sm:flex-row max-sm:justify-between  ">
+                        <div className=" flex   md:w-[4rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
                                 {item.orderType}
                             </div>
@@ -235,7 +235,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                         </div>
                       
                         </div>
-                        <div className=" flex  items-center md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  items-center md:w-[12rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  items-center font-poppins">
                              {item.newOrderNo}
                             </div>
@@ -244,7 +244,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
 
 
 
-                        <div className=" flex items-center  md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center  md:w-[12rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                             {date}
                             </div>
@@ -252,7 +252,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                         </div>
 
 
-                        <div className=" flex items-center  md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center  md:w-[12rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 
                                 <MultiAvatar2
@@ -264,12 +264,13 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                             </div>
 
                         </div>
-                        <div className=" flex items-center  md:w-[12rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex items-center  md:w-[12rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 {item.paymentAmount}
                             </div>
 
                         </div>
+                        <div class="items-center justify-center ml-gap bg-[#eef2f9] h-8 flex">
                         <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
                                             <Tooltip title={translatedMenuItems[5]}>
                                              
@@ -283,6 +284,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max
                                                                 />
                                                             </Tooltip>
                                             </div> 
+                                            </div>
 
                                             <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>

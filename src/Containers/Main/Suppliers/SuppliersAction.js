@@ -2081,7 +2081,7 @@ export const getCategorylist = () => (dispatch) => {
     type: types.GET_CATEGORYLIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/product/allProductCatagory`, {
+    .get(`${base_url2}/supplies/allSuppliesCatagory`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

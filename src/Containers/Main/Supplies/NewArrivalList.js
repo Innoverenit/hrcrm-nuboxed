@@ -1,7 +1,7 @@
 // import React, { useEffect, useState } from "react";
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
-// import { getContactData } from "../../Contact/ContactAction";
+// import { getContactDistributor } from "../../Contact/ContactAction";
 // import { Checkbox, Button, Tooltip } from "antd";
 // import dayjs from "dayjs";
 // import Swal from "sweetalert2";
@@ -16,7 +16,7 @@
 //   const [loading, setLoading] = useState(true);
 
 //   useEffect(() => {
-//     props.getContactData(props.userId);
+//     props.getContactDistributor(props.userId);
 //   }, []);
 //   useEffect(() => {
 //     const fetchMenuTranslations = async () => {
@@ -52,7 +52,7 @@
 //     if (selectAll) {
 //       setSelectedItems([]); // Deselect all
 //     } else {
-//       setSelectedItems(props.contactData); // Select all
+//       setSelectedItems(props.contactDistributor); // Select all
 //     }
 //     setSelectAll(!selectAll);
 //   };
@@ -99,7 +99,7 @@
 //           </div>
 //         </div>
 // <div className=" overflow-x-auto h-[75vh]">
-//         {props.contactData.map((item) => {
+//         {props.contactDistributor.map((item) => {
 //           const currentDate = dayjs().format("DD/MM/YYYY");
 //           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
@@ -144,13 +144,13 @@
 // const mapStateToProps = ({ contact, auth }) => ({
 //   orgId: auth.userDetails.organizationId,
 //   userId: auth.userDetails.userId,
-//   contactData: contact.contactData,
+//   contactDistributor: contact.contactDistributor,
 // });
 
 // const mapDispatchToProps = (dispatch) =>
 //   bindActionCreators(
 //     {
-//       getContactData,
+//       getContactDistributor,
 //     },
 //     dispatch
 //   );
@@ -164,14 +164,14 @@ import { Checkbox, Tooltip } from "antd";
 const NewArrivalList = ({ 
     selectedItems, 
     setSelectedItems, 
-    getContactData, 
-    contactData, 
+    getContactDistributor, 
+    contactDistributor, 
     userId 
 }) => {
 
     useEffect(() => {
-        getContactData(userId); // Fetch contact data when the component is loaded
-    }, [userId, getContactData]);
+        getContactDistributor(userId); // Fetch contact data when the component is loaded
+    }, [userId, getContactDistributor]);
 
     // Handle individual checkbox selection
     const handleCheckboxChange = (item) => {
@@ -184,9 +184,9 @@ const NewArrivalList = ({
 
     // Handle select all checkbox
     const handleSelectAll = () => {
-        setSelectedItems(contactData.length === selectedItems.length ? [] : contactData);
+        setSelectedItems(contactDistributor.length === selectedItems.length ? [] : contactDistributor);
     };
-
+console.log(contactDistributor)
     return (
         <div>
              <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
@@ -195,20 +195,20 @@ const NewArrivalList = ({
              <div className="md:w-[2rem]">
             <Tooltip title="Select All">
                 <Checkbox
-                    checked={contactData.length === selectedItems.length}
+                    checked={contactDistributor.length === selectedItems.length}
                     onChange={handleSelectAll}
                 />
             </Tooltip>
             </div>
-            <div className="font-bold w-[43.5rem] flex items-center font-poppins text-xs">
+            <div className="font-bold w-[19.5rem] flex items-center font-poppins text-xs">
            Contact Name
           </div>
-          <div className="font-bold w-[43.5rem] flex items-center font-poppins text-xs">
+          <div className="font-bold w-[42.5rem] flex items-center font-poppins text-xs">
            Customer Name
           </div>
             </div>
             <div className="overflow-x-auto h-[75vh]">
-                {contactData.map((item) => (
+                {contactDistributor.map((item) => (
                     <div key={item.contactId}>
                         <div
                   className="flex rounded  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg max-sm:bg-gradient-to-b max-sm:from-blue-200
@@ -221,6 +221,11 @@ const NewArrivalList = ({
                          <div className="flex items-center md:w-[14rem] max-sm:flex-row max-sm:justify-between">
                          <div className="text-xs flex items-center font-poppins">
                         {item.fullName}
+                        </div>
+                        </div>
+                        <div className="flex items-center md:w-[13rem] max-sm:flex-row max-sm:justify-between">
+                         <div className="text-xs flex items-center font-poppins">
+                        {item.customerName}
                         </div>
                         </div>
                         </div>

@@ -225,7 +225,7 @@ function ProductionOrderListById(props) {
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-24 max-sm:justify-between max-sm:flex-col max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                           <div class="flex  max-sm:w-wk items-center">
-                                            <div className=" flex  md:w-[3.26rem] ">
+                                            <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-[3.26rem] ">
                                                     {item.priority === "High" && (
                                                         <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                     )}
@@ -234,7 +234,7 @@ function ProductionOrderListById(props) {
                                                         <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                                                     )}
                                                 </div>
-                                                <div className=" flex w-[15.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                <div className=" flex w-[15.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.qcCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
                                                         <span class="underline font-bold text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
@@ -256,27 +256,27 @@ function ProductionOrderListById(props) {
                                                 </div>
                                               </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex   w-[14rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[14rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex   w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.lead}
                                                     </div>
 
                                                 </div>
 
-                                                <div className=" flex   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInProgressPhoneCount} {translatedMenuItems[11]}
                                                         {/* In Progress */}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInspectionInd === 0 ?
                                                             <Button
@@ -301,7 +301,7 @@ function ProductionOrderListById(props) {
                                                 </div>
                                                 </div>
                                         
-                                                <div className=" flex  w-wk   max-sm:flex-row max-sm:w-auto max-sm:justify-between  justify-end">
+                                                <div className=" flex  w-wk items-center  h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto max-sm:justify-between  justify-end">
                                                 <div class="   text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-2xl">
                                                     <Tooltip title={translatedMenuItems[6]}>
                                                         <NoteAltIcon

@@ -222,11 +222,7 @@ function AccountTable(props) {
   <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
           {translatedMenuItems[7]}
             {/* Assigned */}          
-            </div>
-            {/* <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] "> */}
-            {/* {translatedMenuItems[8]} */}
-           {/* Owner */}        
-            {/* </div> */}
+            </div>         
                  
           </div>
           </div>

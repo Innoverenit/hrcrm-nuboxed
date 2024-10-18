@@ -197,8 +197,11 @@ const NewArrivalListStep1 = ({
                 <Checkbox checked={selectAll} onChange={handleSelectAll} />
             </Tooltip>
             </div>
-            <div className="font-bold w-[43.5rem] flex items-center font-poppins text-xs">
+            <div className="font-bold w-[16rem] flex items-center font-poppins text-xs">
            Name
+          </div>
+          <div className="font-bold w-[35.5rem] flex items-center font-poppins text-xs">
+           Unit
           </div>
           </div>
             <div className="overflow-x-auto h-[75vh]">
@@ -215,6 +218,11 @@ const NewArrivalListStep1 = ({
                          <div className="flex items-center md:w-[14rem] max-sm:flex-row max-sm:justify-between">
                          <div className="text-xs flex items-center font-poppins">
                        {item.suppliesName}
+                        </div>
+                        </div>
+                        <div className="flex items-center md:w-[12rem] max-sm:flex-row max-sm:justify-between">
+                         <div className="text-xs flex items-center font-poppins">
+                       {item.unit}
                         </div>
                         </div>
                     </div>

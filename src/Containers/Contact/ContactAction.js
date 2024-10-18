@@ -1,7 +1,7 @@
 import * as types from "./ContactActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
-import { base_url } from "../../Config/Auth";
+import { base_url, base_url2 } from "../../Config/Auth";
 import Swal from "sweetalert2";
 import { getContactListByOpportunityId } from "../Opportunity/OpportunityAction";
 /**
@@ -186,6 +186,32 @@ export const getContactData = (userId,page) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_CONTACT_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getContactDistributor = (userId,page) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_DISTRIBUTOR_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/contactPerson/distributorContactPersonsList`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_DISTRIBUTOR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CONTACT_DISTRIBUTOR_FAILURE,
         payload: err,
       });
     });
