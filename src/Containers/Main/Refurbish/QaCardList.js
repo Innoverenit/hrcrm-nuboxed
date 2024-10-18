@@ -198,7 +198,7 @@ function QaCardList(props) {
         />
       </div>
 
-                    <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                    <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
                         <div className='w-[7.2rem]'></div>
                         <div className=" w-[9.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}  
                           {/* Order ID */}
@@ -222,7 +222,7 @@ function QaCardList(props) {
                             next={handleLoadMore}
                             hasMore={hasMore}
                             loader={props.fetchingQAorderlist ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                            height={"75vh"}
+                            height={"81vh"}
                             style={{ scrollbarWidth:"thin"}}
                             endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                         >
@@ -231,9 +231,9 @@ function QaCardList(props) {
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div >
-                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                        <div className="flex justify-between rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                            <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     {item.priority === "High" && (
                                                         <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                     )}
@@ -244,7 +244,7 @@ function QaCardList(props) {
                                                         <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                                                     )}
                                                 </div>
-                                                <div className=" flex  w-[12.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.dispatchPhoneCount} / ${item.phoneReceiveCount}`} overflowCount={5000}>
                                                         <span class="underline font-bold text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
@@ -266,7 +266,7 @@ function QaCardList(props) {
                                                     ) : null}
                                                 </div>
                                                 
-                        <div className=" flex w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                        <div className=" flex w-[6.5rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.dispatchInspectionInd === 0 ?
                                 <Button
@@ -290,7 +290,7 @@ function QaCardList(props) {
                                     null}
                             </div>
                           </div>
-                                                <div className=" flex  w-[34rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[34rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
@@ -298,13 +298,13 @@ function QaCardList(props) {
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.lead}
                                                     </div>
                                                     </div>
                                                    
-                                                 <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                
                                 <RefurbishToggle        
@@ -314,7 +314,7 @@ function QaCardList(props) {
                                 />
                               </div>
                             </div>
-                            <div class="   flex justify-end text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                            <div class="   flex w-wk items-center h-8 ml-gap bg-[#eef2f9] justify-end text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title=  {translatedMenuItems[9]}>
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer"
