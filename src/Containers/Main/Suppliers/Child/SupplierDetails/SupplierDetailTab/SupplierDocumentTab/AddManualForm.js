@@ -11,10 +11,11 @@ const { Option } = Select;
 
 function AddManualForm(props) {
   useEffect(() => {
-    // props.getBrand();
+     props.getBrand();
     props.getSaleCurrency();
     props.getCategorylist();
-    // props.getAllProductList();
+    props.getModel();
+     props.getAllProductList();
     props.getLocationList(props.orgId)
   }, []);
 
@@ -49,7 +50,7 @@ function AddManualForm(props) {
       ...prevState,
       model: true
     }));
-    props.getModel(updatedRows[index].category,value);
+   // props.getModel(updatedRows[index].category,value);
   };
 
   const handleCurrencyChange = (value, index) => {
@@ -100,7 +101,7 @@ function AddManualForm(props) {
       ...prevState,
       brand: true
     }));
-    props.getBrand(value);
+  //  props.getBrand(value);
   };
   
 
@@ -114,7 +115,7 @@ function AddManualForm(props) {
       ...prevState,
       attribute: true
     }));
-    props.getAllProductList(updatedRows[index].category, updatedRows[index].brand,value);
+    //props.getAllProductList(updatedRows[index].category, updatedRows[index].brand,value);
   };
 
   const handleSpecsChange = (value, index) => {
@@ -203,10 +204,10 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.brand}
                     onChange={(value) => handleBrandChange(value, index)}
-                    disabled={!fieldEnabled.brand}
+                   // disabled={!fieldEnabled.brand}
                  >
                     {props.brand.map((a) => (
-                      <Option key={a.brand} value={a.brand}>{a.brand}</Option>
+                      <Option key={a.brand} value={a.brand}>{a.brandName}</Option>
                     ))}
                   </Select>
                 </div>
@@ -218,10 +219,10 @@ function AddManualForm(props) {
                     style={{ width: 170 }}
                     value={row.model}
                     onChange={(value) => handleModelChange(value, index)}
-                    disabled={!fieldEnabled.model}
+                   // disabled={!fieldEnabled.model}
                   >
                     {props.model.map((a) => (
-                      <Option key={a.model} value={a.model}>{a.model}</Option>
+                      <Option key={a.phoneMasterListId} value={a.phoneMasterListId}>{a.model}</Option>
                     ))}
                   </Select>
                 </div>
@@ -233,15 +234,17 @@ function AddManualForm(props) {
                     style={{ width: 100 }}
                     value={row.attribute}
                     onChange={(value) => handleAttributeChange(value, index)}
-                    disabled={!fieldEnabled.attribute}
+                  //  disabled={!fieldEnabled.attribute}
                  >
-                    {props.allProduct.map((a) => (
+                    {/* {props.allProduct.map((a) => (
                       <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
-                    ))}
+                    ))} */}
+                     <Option value="SADG84650329032252024">SADG84650329032252024</Option>
+                    
                   </Select>
                 </div>
               </div>
-              <div>
+              {/* <div>
                 <div class="font-bold text-xs font-poppins text-black">Specs</div>
                 <div className="w-28 ">
                   <Select
@@ -256,8 +259,8 @@ function AddManualForm(props) {
                     <Option value="HK">HK</Option>
                   </Select>
                 </div>
-              </div>
-              <div>
+              </div> */}
+              {/* <div>
                 <div class="font-bold text-xs font-poppins text-black">Grade</div>
                 <div className="w-28">
                 <Select
@@ -273,7 +276,7 @@ function AddManualForm(props) {
                     <Option value="D">D</Option>
                   </Select>
                 </div>
-              </div>
+              </div> */}
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Type</div>
                 <div className="w-28 ">
@@ -289,7 +292,7 @@ function AddManualForm(props) {
                 </div>
               </div>
               
-              <div>
+              {/* <div>
                 <div class="font-bold text-xs font-poppins text-black">Location</div>
                 <div className="w-[7rem]">
                   <Select
@@ -303,7 +306,7 @@ function AddManualForm(props) {
                     ))}
                   </Select>
                 </div>
-              </div>
+              </div> */}
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Currency</div>
                 <div className="w-[7rem]">

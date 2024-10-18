@@ -60,6 +60,7 @@ return(
     searchSupplierList={props.searchSupplierList}
     translateText={props.translateText}
     selectedLanguage={props.selectedLanguage}
+    translatedMenuItems={props.translatedMenuItems}
     />
   ) : (
 <div className=' flex  sticky  z-auto'>

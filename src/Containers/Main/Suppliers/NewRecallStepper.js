@@ -166,6 +166,7 @@ const NewRecallStepper = (props) => {
     const [selectedItemsStep1, setSelectedItemsStep1] = useState([]); // Step 1 data
     const [selectedItemsStep2, setSelectedItemsStep2] = useState([]); // Step 2 data
 
+
     const next = () => setCurrent((prev) => prev + 1);
     const prev = () => setCurrent((prev) => prev - 1);
 
@@ -173,9 +174,9 @@ const NewRecallStepper = (props) => {
         try {
             const payload = {
                
-                newArrivals: selectedItemsStep1.map((item) => ({
-                    name: item.name,
-                    subCategoryName: item.subCategoryName,
+                customerInfo: selectedItemsStep1.map((item) => ({
+                    supplierId: item.supplierId,
+                    suppliesFullName: item.suppliesFullName,
                     contacts: selectedItemsStep2.map((item) => item.contactId),
                 })),
             };

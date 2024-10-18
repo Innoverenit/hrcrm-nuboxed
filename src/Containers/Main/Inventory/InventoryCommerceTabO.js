@@ -5,6 +5,7 @@ import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { withRouter } from "react-router";
 import DispatchTableOut from "./DispatchTableOut";
+import CommerceTableOut from "./CommerceTableOut";
 
 
                                            
@@ -93,13 +94,13 @@ class InventoryCommerceDetailTabO extends PureComponent {
               {" "}
               <Suspense fallback={"Loading..."}>
                
-                
-              <DispatchTableOut
+              <CommerceTableOut
                 translateText={this.props.translateText}
                 selectedLanguage={this.props.selectedLanguage}
                 locationDetailsId={this.props.user.locationId}
                    inventory={this.props.inventory}
                 />
+             
               </Suspense>
             </TabPane>
 
