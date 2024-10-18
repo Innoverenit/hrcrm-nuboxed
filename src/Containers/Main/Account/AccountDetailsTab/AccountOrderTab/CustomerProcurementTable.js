@@ -1,5 +1,6 @@
 import React, { useEffect, useState, lazy,useRef,Suspense } from "react";
 import { connect } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { Tooltip,Button,Input,Select } from "antd";
 import dayjs from "dayjs";
@@ -55,6 +56,7 @@ const getRelativeTime = (creationDate) => {
 
 
 function CustomerProcurementTable(props) {
+  const dispatch = useDispatch();
   const [page, setPage] = useState(0);
   const [openInvoiceModal,setopenInvoiceModal] = useState(false);
   const [currentData, setCurrentData] = useState("");
@@ -252,7 +254,7 @@ const handleLoadMoreLow = () => {
 
   const handlePostChange =  async (item) => {
       let updatedItem={
-          packingDate: new Date(date).toISOString(),
+        dispatchReceivedDate: new Date(date).toISOString(),
         // trackId:trackId?trackId:item.trackId,
         orderId:item.orderId,
       }
@@ -263,7 +265,12 @@ const handleLoadMoreLow = () => {
           'Authorization':  `Bearer ${props.token}`  // Replace with your actual token if required
         };
 
-          const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch`, updatedItem, { headers });
+          const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch`, updatedItem, {  
+            headers: {
+                Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+         });
+         dispatch(getDistributorOrderOfHigh(props.distributorId, page, "procure","High"));
           console.log("API Response:", response.data);
       setData(prevData => 
             prevData.map(cat =>
@@ -564,15 +571,16 @@ const handleLoadMoreLow = () => {
                                                                 <input
           type="date"
           // value={date}
-          value={dayjs(item.packingDate).format("YYYY-MM-DD")}
+          value={dayjs(item.dispatchReceivedDate).format("YYYY-MM-DD")}
           onChange={(e) => handleDateChange(e,item)}
         //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
           class="border border-black rounded"
-        /> ) : (
+        /> 
+      ) : (
             <div className="font-normal text-xs  font-poppins">
-               {item.packingDate === null ? "" :
+               {item.dispatchReceivedDate === null ? "" :
               <div> 
-              {dayjs(item.packingDate).format("YYYY/MM/DD")} 
+              {dayjs(item.dispatchReceivedDate).format("YYYY/MM/DD")} 
               </div>}
             </div>
           )}
@@ -804,15 +812,15 @@ const handleLoadMoreLow = () => {
                                                                 <input
           type="date"
           // value={date}
-          value={dayjs(item.packingDate).format("YYYY-MM-DD")}
+          value={dayjs(item.dispatchReceivedDate).format("YYYY-MM-DD")}
           onChange={(e) => handleDateChange(e,item)}
         //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
           class="border border-black rounded"
         /> ) : (
             <div className="font-normal text-xs  font-poppins">
-               {item.packingDate === null ? "" :
+               {item.dispatchReceivedDate === null ? "" :
               <div> 
-              {dayjs(item.packingDate).format("YYYY/MM/DD")} 
+              {dayjs(item.dispatchReceivedDate).format("YYYY/MM/DD")} 
               </div>}
             </div>
           )}

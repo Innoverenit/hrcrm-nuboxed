@@ -502,6 +502,33 @@ export const getDispatchList = (locationId,pageNo) => (dispatch) => {
     });
 };
 
+export const getCommerceList = (orgId,pageNo) => (dispatch) => {
+  // const dispatchId = getState().inventory.dispatch.dispatchId;
+  dispatch({
+    type: types.GET_COMMERCE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/all-procure-dispatch/${orgId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMMERCE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMMERCE_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 //get received details list
 export const getReceivedDetailsList = (dispatchId) => (dispatch, getState) => {
   // const dispatchId = getState().inventory.allDispatchList

@@ -115,7 +115,7 @@ import { Button, Checkbox, Tooltip } from "antd";
 import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
 import { StyledSteps } from "../../../Components/UI/Antd";
 import { getItemData } from "./SuppliesAction";
-import { getContactData } from "../../Contact/ContactAction";
+import { getContactDistributor } from "../../Contact/ContactAction";
 import Swal from "sweetalert2";
 import axios from "axios";
 import dayjs from "dayjs";
@@ -196,8 +196,8 @@ const NewArrivalStepper = (props) => {
                     translateText={props.translateText}
                     selectedLanguage={props.selectedLanguage}
                     userId={props.userId}
-                    getContactData={props.getContactData}
-                    contactData={props.contactData}
+                    getContactDistributor={props.getContactDistributor}
+                    contactDistributor={props.contactDistributor}
                 />
             ),
         },
@@ -243,14 +243,14 @@ const mapStateToProps = ({ supplies, auth, contact }) => ({
     orgId: auth.userDetails.organizationId,
     userId: auth.userDetails.userId,
     newStepItemData: supplies.newStepItemData,
-    contactData: contact.contactData,
+    contactDistributor: contact.contactDistributor,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getItemData,
-            getContactData,
+            getContactDistributor,
         },
         dispatch
     );

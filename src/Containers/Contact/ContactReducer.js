@@ -12,6 +12,10 @@ const initialState = {
   fetchingOpportunityRecordError: false,
   opportunityRecord:[],
 
+  fetchingContactDistributor: false,
+                fetchingContactDistributorError: false,
+                contactDistributor:[],
+
   fetchingContactRecords: false,
   fetchingContactRecordsError: true,
   contactRecord:[],
@@ -889,6 +893,21 @@ export const contactReducer = (state = initialState, action) => {
               fetchingContactData: false,
               fetchingContactDataError: true,
             };
+
+            case types.GET_CONTACT_DISTRIBUTOR_REQUEST:
+              return { ...state, fetchingContactDistributor: true };
+            case types.GET_CONTACT_DISTRIBUTOR_SUCCESS:
+              return {
+                ...state,
+                fetchingContactDistributor: false,
+                 contactDistributor: action.payload,
+              };
+            case types.GET_CONTACT_DISTRIBUTOR_FAILURE:
+              return {
+                ...state,
+                fetchingContactDistributor: false,
+                fetchingContactDistributorError: true,
+              };
 
             case types.GET_DEALS_CONTACT_DATA_REQUEST:
               return { ...state, fetchingDelasContactData: true };
