@@ -294,25 +294,22 @@ const handleGenerateInvoice= async () => {
 
     try {
       const response = await axios.post(`${base_url2}/invoice/procureInvoice`,{
-      //   paymentMode: "Cash",
-      //   %arks: "",
-      //   invoiceId:invoices,
-      //   userId: props.userId,
-      //   orderPaymentType: "Repair",
-      //   transactionNumber: "",
-      //   orgId: props.orgId,
-      //   distributorId:props.distributorId,
-      //   orderId: props.particularRowData.orderId,
-      //   paymentAmount: "550",
+
       userId: props.userId,
       distributorId:props.distributorId,
         invoiceId: invoices,
         itemList: itemList,
-        orderPhoneId: props.particularRowData.orderId,
         procureOrderInvoiceId: "",
         procureOrderProductInvoiceId:"",
         orgId: props.orgId,
         creditMemoList:selectedData,
+        processType:"Part",
+        procureInvoiceList:[
+          {
+          orderPhoneId: props.particularRowData.orderId,
+        }
+      ]
+
       },
         {
           headers: {

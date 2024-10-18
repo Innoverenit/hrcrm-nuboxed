@@ -219,14 +219,18 @@ class Dashboard extends Component {
         selectedLanguage={this.props.selectedLanguage}
         translateText={this.props.translateText}
         />
-     
-            {this.state.activeButton==="Summary" && 
+            
+            {this.state.activeButton==="Summary" ?
+         <div>
              <DashBoardSummary
               buttonName={buttonName} 
               selectedLanguage={this.props.selectedLanguage}
               translateText={this.props.translateText}
-             />}
-             
+             />
+              </div>
+             :
+             <div> 
+
         <MainWrapper style={{marginTop:"0.25rem",overflow:"hidden"}}>
       
           <div class=" h-[45vh] max-sm:h-[38vh] max-sm:overflow-x-auto">
@@ -589,7 +593,7 @@ class Dashboard extends Component {
   
     </div>
     </MainWrapper>
-   
+
     <MainWrapper style={{marginTop:"0.5rem",overflow:"none"}}
     >
     <div class=" h-[44vh]   max-sm:h-[38vh] max-sm:overflow-x-auto">
@@ -763,9 +767,9 @@ class Dashboard extends Component {
   
     </div>
     </MainWrapper>
- 
-    
 
+    </div> }
+                      
             
     </Suspense>
       </React.Fragment>
