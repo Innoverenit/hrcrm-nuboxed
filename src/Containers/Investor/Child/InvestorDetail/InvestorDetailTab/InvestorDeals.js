@@ -158,10 +158,10 @@ if (loading) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      
-                                <div className=" flex font-medium flex-col w-[12rem]   max-sm:w-full">
+                                <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  w-[12rem]   max-sm:w-full">
                                 <div className="flex max-sm:w-full items-center"> 
 <div>
 
@@ -177,7 +177,7 @@ if (loading) {
                                    </div>
                                         <div class="max-sm:w-full" >
                                         <Tooltip>
-                                          <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
+                                          <div class="max-sm:w-full max-sm:justify-between flex md:">
                                             
                                             <div class=" text-[0.82rem] flex text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                                                       
@@ -197,7 +197,7 @@ if (loading) {
                                         </div>
                                         </div>
                                 </div>
-                                <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 <div class=" text-sm  font-poppins">   
 <Link to ="/investor">
@@ -206,7 +206,7 @@ if (loading) {
 </div>
 </div>
 
-<div className=" flex font-medium flex-col md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 <div class=" text-sm  font-poppins">
@@ -225,7 +225,7 @@ imgHeight={"1.8em"}
 </div>
 
 
-<div className=" flex md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 <div class=" text-xs justify-center  font-poppins">
@@ -233,7 +233,7 @@ imgHeight={"1.8em"}
 </div>
 </div>
 
-<div className=" flex  md:w-[4.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[4.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 <div class=" text-xs  font-poppins text-center">
@@ -243,7 +243,7 @@ imgHeight={"1.8em"}
 
 </div>
 </div>
-<div className=" flex md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 <div class=" text-xs  font-poppins text-center">
@@ -279,7 +279,7 @@ strokeColor={"#005075"}
 
 </div>
 </div>
-<div className=" flex  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 <div class=" text-xs font-poppins">
@@ -305,7 +305,7 @@ imgHeight={"1.8rem"}
 
 </div>
 </div>
-<div className=" flex  md:w-[5.1rem] max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[5.1rem] max-sm:flex-row w-full mb-1 max-sm:justify-between ">
 
 
 

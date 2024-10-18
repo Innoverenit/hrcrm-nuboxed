@@ -291,7 +291,7 @@ const timerRef = useRef(null);
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 p-1" >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                    <div className=" flex  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9]  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" underline font-bold max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                             <span
                                                                 class=" text-sky-700 cursor-pointer"
@@ -309,7 +309,7 @@ const timerRef = useRef(null);
 
                                                         </div>
                                                     </div>
-                                                    <div className=" flex  w-[5.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                             <MultiAvatar
                                                                 primaryTitle={item.userName}
@@ -318,13 +318,13 @@ const timerRef = useRef(null);
                                                             />
                                                         </div>
                                                     </div>
-                                                    <div className=" flex  w-[16.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[16.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" max-xl:text-[0.65rem] text-xs  font-poppins">
 
                                                             {item.locationName}
                                                         </div>
                                                     </div>
-                                                    <div className="flex md:w-[16rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[16rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                                          <DatePicker
@@ -343,7 +343,7 @@ const timerRef = useRef(null);
                 </div>
               </div>
 
-                                                    <div className="flex  md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                    <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                <select
@@ -364,7 +364,7 @@ const timerRef = useRef(null);
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                <select
@@ -388,13 +388,13 @@ const timerRef = useRef(null);
                 </div>
               </div>
            
-                                                    <div className=" flex   w-[12.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs  font-poppins">
 
                                                             {item.poValue}
                                                         </div>
                                                     </div>
-                                                    <div className="flex w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
+                                                    <div className="flex w-[6rem] max-sm:flex-row max-sm:w-auto items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                 <div className="flex">
                   {editContactId === item.poSupplierDetailsId ? (
                     <>
@@ -418,7 +418,7 @@ const timerRef = useRef(null);
                 </div>
                
               </div>
-                                                    <div className=" flex  w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs items-center font-poppins">
                                                             {item.locationName === null ? <Button
                                                                 type="primary"
@@ -434,7 +434,7 @@ const timerRef = useRef(null);
                                                             </Button> : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex   w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
                                                             <Tooltip title="Terms and conditions">
                                                                 <TerminalSharp className="!text-icon text-[#c3b20b]"

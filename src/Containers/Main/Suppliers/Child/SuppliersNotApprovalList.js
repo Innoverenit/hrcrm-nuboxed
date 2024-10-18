@@ -101,7 +101,7 @@ function SuppliersNotApprovalList(props) {
                           className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:flex-col  max-sm:h-[6rem]  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className="font-medium  flex items-center w-[14.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
+                              <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8  flex items-center w-[14.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                                 <div class=" font-semibold text-[0.85rem] font-poppins">
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
@@ -116,7 +116,7 @@ function SuppliersNotApprovalList(props) {
                                   </div>
                                 ) : null}
                               </div>
-                              <div className=" flex  items-center flex-col w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
+                              <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
 
                                 <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm">
                                   {item.dialCode} {item.phoneNo}
@@ -125,7 +125,7 @@ function SuppliersNotApprovalList(props) {
                               </div>
                             </div>
                             <div class="flex items-center max-sm:justify-between max-sm:w-wk ">
-                              <div className=" flex  w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
+                              <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
 
                                 <div class="  text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm">
                                   {item.emailId}
@@ -133,7 +133,7 @@ function SuppliersNotApprovalList(props) {
                               </div>                          
                             </div>                        
 
-                            <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
+                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs">
                                 <SuplierNotApprovalPublishToggle
                                  approvedInd={item.approvedInd}

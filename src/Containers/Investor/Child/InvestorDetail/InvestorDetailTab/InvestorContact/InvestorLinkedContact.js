@@ -209,7 +209,7 @@ const InvestorLinkedContact = (props) => {
                            <div
             className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
           >
-             <div className=" flex font-medium  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+             <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 <div>
                               <SubTitle>
@@ -247,31 +247,31 @@ const InvestorLinkedContact = (props) => {
                                       </div>
                               </div>
                               <div class="flex">                         
-                              <div className=" flex  md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center  md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                  
                                   <div class="text-xs  font-poppins">
                                        {item.emailId}
                                   </div>
                               </div>
-                              <div className=" flex  md:w-[7.3rem]  max-sm:flex-row w-full max-sm:justify-between">                                
+                              <div className=" flex  md:w-[7.3rem] h-8 ml-gap bg-[#eef2f9] items-center max-sm:flex-row w-full max-sm:justify-between">                                
                                 <div class="text-xs  font-poppins">
                                 {item.countryDialCode} {item.mobileNumber}
                                 </div>
                             </div>
                             </div>
-                            <div className="flex md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                            <div className="flex md:w-[8.01rem] h-8 ml-gap bg-[#eef2f9] items-center max-sm:flex-row w-full max-sm:justify-between ">
 
 <div className="text-xs font-poppins text-center">
   {item.department}
 </div>
 </div>
-<div className=" flex   md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">                                
+<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between ">                                
                                   <div class=" text-xs  font-poppins text-center">
                                   {item.designation}
 
                                   </div>
                               </div>
-                              <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                   
 
                                   <div class=" text-xs  font-poppins text-center">
@@ -287,7 +287,7 @@ const InvestorLinkedContact = (props) => {
 
                                   </div>
                               </div>
-                              <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">                                 
+                              <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">                                 
                                   <div class=" text-xs  font-poppins text-center">
                                   <Tooltip title="LinkedIn">
             <span
@@ -303,7 +303,7 @@ const InvestorLinkedContact = (props) => {
           </Tooltip>
                                   </div>
                               </div>
-                              <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                   
 
                                   <div class=" !text-icon  font-poppins text-center">
