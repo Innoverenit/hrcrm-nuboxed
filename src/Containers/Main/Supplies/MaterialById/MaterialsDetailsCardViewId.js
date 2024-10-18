@@ -1,10 +1,13 @@
 import React, { useEffect,useState } from "react";
 import ImageGallery from 'react-image-gallery';
 import axios from 'axios';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Button, Input, Select } from "antd";
 import Carousel from "react-elastic-carousel";
-
 import { base_url, base_url2 } from '../../../../Config/Auth';
 import LocationSuppliesList from '../LocationSuppliesList';
+const { Option } = Select;
 const initialFlow = {
   imgIds: [
     {
@@ -28,7 +31,7 @@ const initialFlow = {
 
 function MaterialsDetailsCardViewId (props) {
   console.log(props.materialsBySuppliesId.imgIds)
-    
+
  
 
     
@@ -217,7 +220,22 @@ function MaterialsDetailsCardViewId (props) {
             : '0'
         },
       });
+      const [data1, setData1] = useState({
+        Uom: {
+          retail: props.materialsBySuppliesId.length
+            ? props.materialsBySuppliesId.length.toFixed(2)
+            : '0',
+          inner: props.materialsBySuppliesId.innerLength
+            ? props.materialsBySuppliesId.innerLength.toFixed(2)
+            : '0',
+          master: props.materialsBySuppliesId.masterLength
+            ? props.materialsBySuppliesId.masterLength.toFixed(2)
+            : '0'
+        },
+       
     
+      });
+      const [selectedUom, setSelectedUom] = useState({});
       const handleBlur = async (key, type, value) => {
         try {
           const updatedData = { ...data, [key]: { ...data[key], [type]: parseFloat(value) || 0 } };
@@ -239,7 +257,8 @@ function MaterialsDetailsCardViewId (props) {
             masterVolume: updatedData.Volume.master,
             weight: updatedData.Weight.retail,
             innerWeight: updatedData.Weight.inner,
-            masterWeight: updatedData.Weight.master
+            masterWeight: updatedData.Weight.master,
+            uomId: selectedUom[key] 
           };
       
           // Perform PUT request to the dummy URL
@@ -255,9 +274,15 @@ function MaterialsDetailsCardViewId (props) {
         const updatedData = { ...data, [key]: { ...data[key], [type]: e.target.value } };
         setData(updatedData);
       };
-    
+      const handleUomChange = (value, key) => {
+        setSelectedUom({ ...selectedUom, [key]: value });
+        console.log('Selected UOM for', key, 'is', value);
+      };
+      // console.log(props.UOMListData)
       return (
-        <table className="w-[48%] border-collapse border border-gray-200">
+        <>
+        <div className="flex flex-col w-[85%]">
+        <table className="w-[95%] border-collapse border border-gray-200">
           <thead>
             <tr className="bg-gray-50">
               <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
@@ -301,6 +326,48 @@ function MaterialsDetailsCardViewId (props) {
             ))}
           </tbody>
         </table>
+        <table className="w-[95%] border-collapse border border-gray-200">
+          <thead>
+            <tr className="bg-gray-50">
+              <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
+              <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">dimension Uom</th>
+              <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">weight Uom</th>
+             
+            </tr>
+          </thead>
+          <tbody>
+            {Object.keys(data1).map((key) => (
+              <tr key={key} className="bg-gray-50 odd:bg-white">
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">{key}</th>
+                <td className="p-2 border border-gray-200">
+                {/* <Select
+                  style={{ width: 170 }}
+                  value={selectedUom[key]}
+                 onChange={(value) => handleUomChange(value, key)}
+                >
+                  {props.UOMListData.map((uom) => (
+                    <Option key={uom.uomId} value={uom.uomId}>
+                      {uom.unitName}
+                    </Option>
+                  ))}
+                </Select> */}
+                </td>
+                <td className="p-2 border border-gray-200">
+                  <input
+                    type="text"
+                    value={data1[key].inner}
+                    onChange={(e) => handleInputChange(key, 'inner', e)}
+                    onBlur={(e) => handleBlur(key, 'inner', e.target.value)}
+                    className="w-full bg-transparent"
+                  />
+                </td>
+               
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
+        </>
       );
     };
     
@@ -386,6 +453,19 @@ function MaterialsDetailsCardViewId (props) {
     </>
   );
 };
+const mapStateToProps = ({ settings }) => ({
 
-export default MaterialsDetailsCardViewId;
+});
+
+const mapDispatchToProps = (dispatch) =>
+bindActionCreators(
+  {
+
+   
+ 
+  },
+  dispatch
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MaterialsDetailsCardViewId);
 

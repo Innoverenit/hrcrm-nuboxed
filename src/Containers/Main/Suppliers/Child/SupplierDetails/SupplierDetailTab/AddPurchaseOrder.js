@@ -126,6 +126,7 @@ const AddPurchaseOrder = (props) => {
                         supplierId: props.supplier.supplierId,
                         poSupplierDetailsId: props.poSupplierDetailsId || "",
                         userId: props.userId,
+                        orgId: props.orgId,
                     }}
                     validationSchema={FormSchema}
                     onSubmit={(values, { resetForm }) => {
@@ -309,6 +310,7 @@ const AddPurchaseOrder = (props) => {
 }
 const mapStateToProps = ({ suppliers, auth }) => ({
     userId: auth.userDetails.userId,
+    orgId:auth.userDetails.organizationId,
     materialwiseQuality:suppliers.materialwiseQuality,
     suppliesBySupplier: suppliers.suppliesBySupplier,
     poSupplierDetailsId: suppliers.pOSupplierDetailsId,

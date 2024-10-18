@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 // import { getmaterialsBySuppliesId } from "./InventoryAction";
-
+import {getUOM} from "../../../Settings/SettingsAction"
 import styled from "styled-components";
 import { Select } from "../../../../Components/UI/Elements";
 import MaterialFastMovingToggle from "../MaterialById/MaterialFastMovingToggle"
@@ -21,7 +21,7 @@ function MaterialsDetailsbyId(props) {
   useEffect(() => {
   
       props.getMaterialsBySuppliesId(props.particularDiscountData.suppliesId);
-    
+    props.getUOM()
   }, []);
 
 //   if (props.fetchingProductsList) {
@@ -43,7 +43,6 @@ const breakPoints = [
   { width: 768, itemsToShow: 2, itemToScroll: 2 },
   { width: 1100, itemsToShow: 4, itemToScroll: 4 },
 ];
-
   return (
     
     <div className="bg-[#F7F8FC]">
@@ -130,6 +129,7 @@ const breakPoints = [
       UpdateMaterialIamge={props.UpdateMaterialIamge}
    materialsBySuppliesId={props.materialsBySuppliesId}
    particularDiscountData={props.particularDiscountData}
+  //  UOMListData={props.UOMListData?.length ? props.UOMListData : []}
       />
     
       </div>
@@ -141,17 +141,18 @@ const breakPoints = [
   
   );
 }
-const mapStateToProps = ({ supplies,auth }) => ({
+const mapStateToProps = ({ supplies,auth ,settings}) => ({
     materialsBySuppliesId: supplies.materialsBySuppliesId,
   fetchingMaterialsBySuppliesId:supplies.fetchingMaterialsBySuppliesId,
+  UOMListData:settings.UOMListData,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getMaterialsBySuppliesId,
-      UpdateMaterialIamge
-   
+      UpdateMaterialIamge,
+      getUOM
     },
     dispatch
   );
