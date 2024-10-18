@@ -270,7 +270,7 @@ console.log(selectedZones)
 
                                             <div class=" text-xs  font-poppins" style={{marginLeft:"-141px"}}>
                                                
-                                                {item.suppliesFullName}
+                                                {item.suppliesFullName}  
                                             </div>
 
                                         </div>
