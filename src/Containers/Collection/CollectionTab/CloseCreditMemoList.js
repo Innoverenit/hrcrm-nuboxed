@@ -96,14 +96,14 @@ function CloseCreditMemoList(props) {
               <div>
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium   w-[12.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                    <div className=" flex   border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[12.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         {item.orderSourceName}
                       </div>
 
                     </div>
 
-                    <div className=" flex font-medium   w-[10.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                    <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         {item.orderId}
                       </div>
@@ -112,7 +112,7 @@ function CloseCreditMemoList(props) {
 
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium  w-[10.11rem] max-xl:w-[5.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.11rem] max-xl:w-[5.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
 
                       <div class=" text-xs  font-poppins text-center">
@@ -120,13 +120,13 @@ function CloseCreditMemoList(props) {
 
                       </div>
                     </div>
-                    <div className=" flex font-medium  w-[9.02rem] max-xl:w-[5.02rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                    <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.02rem] max-xl:w-[5.02rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                       <div class=" text-xs  font-poppins text-center">
                         {item.paymentType}
 
                       </div>
                     </div>
-                    <div className=" flex font-medium  w-[8.01rem]  max-xl:w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.01rem]  max-xl:w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                     <div class=" text-xs  font-poppins text-center">
                       {` ${dayjs(item.date).format("DD-MM-YY")}`}
 
@@ -137,13 +137,13 @@ function CloseCreditMemoList(props) {
 
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                    
-                      <div className=" flex font-medium   w-[10.03rem] max-xl:w-[4.03rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                      <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.03rem] max-xl:w-[4.03rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins">
                           {item.paymentAmount} &nbsp; {item.orderCurrencyName}
                         </div>
 
                       </div>
-                      <div className=" flex font-medium   w-[11.04rem] max-xl:w-[8.54rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                      <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[11.04rem] max-xl:w-[8.54rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins">
                           {item.paymentModeName}
                         </div>
@@ -152,7 +152,7 @@ function CloseCreditMemoList(props) {
                    
 
                     
-                      <div className=" flex font-medium   w-[7.05rem] max-xl:w-[3.85rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                      <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.05rem] max-xl:w-[3.85rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins">

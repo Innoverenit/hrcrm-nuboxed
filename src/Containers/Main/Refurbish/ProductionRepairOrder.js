@@ -222,7 +222,7 @@ function ProductionRepairOrder(props) {
                                         <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"   >
                                             <div class="flex  max-sm:w-wk items-center">
-                                            <div className=" flex md:w-[3.26rem]">
+                                            <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-[3.26rem]">
                                                 {item.priority === "High" && (
                       <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                     )}
@@ -231,7 +231,7 @@ function ProductionRepairOrder(props) {
                       <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
                     </div>
-                                            <div className=" flex   w-[15.01rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
+                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[15.01rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
                                                         <span class="underline text-xs text-[#1890ff] font-bold cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                             onClick={() => {
@@ -258,21 +258,21 @@ function ProductionRepairOrder(props) {
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                               
-                                            <div className=" flex w-[19rem] max-xl:w-[15rem] max-lg:w-[9rem]  max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex w-[19rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[15rem] max-lg:w-[9rem]  max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairDueDate === null ? "" : dayjs(item.repairDueDate).format("DD-MM-YYYY")}
                                                     </div>
 
                                                 </div>
                                                 
-                                                <div className=" flex  w-[14.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[14.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInProgressPhoneCount} {item.repairStatus}
                                                     </div>
 
                                                 </div>
                                            
-                                                <div className=" flex justify-center w-[18.6rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[18.6rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInspectionInd === 0 ?
                                                             <Button
@@ -301,13 +301,13 @@ function ProductionRepairOrder(props) {
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex   w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.reason}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className=" flex    max-sm:flex-row max-sm:w-auto max-sm:justify-between justify-end ">
+                                            <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto max-sm:justify-between justify-end ">
                                                 <div class="  text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-2xl">
                                                     <Tooltip title={translatedMenuItems[6]}>
                                                         <NoteAltIcon

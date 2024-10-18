@@ -187,14 +187,14 @@ function DistributorColletcionArchive(props) {
                 <div>
                   <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col  w-[9.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[9.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.orderSourceName}
                         </div>
 
                       </div>
 
-                      <div className=" flex font-medium flex-col  w-[2.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.newOrderNo}
                         </div>
@@ -203,7 +203,7 @@ function DistributorColletcionArchive(props) {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col w-[5.8rem] max-xl:w-[7.8rem] max-lg:w-[4.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex w-[5.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.8rem] max-lg:w-[4.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -211,13 +211,13 @@ function DistributorColletcionArchive(props) {
 
                         </div>
                       </div>
-                      <div className=" flex font-medium flex-col w-[10.15rem] max-xl:w-[2.15rem] max-lg:w-[3.15rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex w-[10.15rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.15rem] max-lg:w-[3.15rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                         {item.transactionNumber}
 
                         </div>
                       </div>
-                      <div className=" flex font-medium flex-col w-[9.36rem] max-xl:w-[8.36rem] max-lg:w-[5.86rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.36rem] max-xl:w-[8.36rem] max-lg:w-[5.86rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {` ${dayjs(item.date).format("DD-MM-YY")}`}
 
@@ -228,19 +228,19 @@ function DistributorColletcionArchive(props) {
 
 
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium flex-col  w-[9.2rem] max-xl:w-[5.9rem] max-lg:w-[4.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.2rem] max-xl:w-[5.9rem] max-lg:w-[4.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                         {item.orderCurrencyName} &nbsp;  {item.paymentAmount} 
                         </div>
 
                       </div>
-                      <div className=" flex font-medium flex-col  w-[9.04rem] max-xl:w-[5.6rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.04rem] max-xl:w-[5.6rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.paymentModeName}
                         </div>
 
                       </div>
-                      <div className=" flex font-medium flex-col  w-[7.03rem] max-xl:w-[4.2rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.03rem] max-xl:w-[4.2rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {user.collectionApproveInd === true && (
                             <DistributorPaymentToggle paymentId={item.paymentId} orderPaymentType={item.orderPaymentType} />
@@ -250,7 +250,7 @@ function DistributorColletcionArchive(props) {
                       </div>
 
 
-                      <div className=" flex font-medium flex-col  w-[6.07rem] max-xl:w-[6.07rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.07rem] max-xl:w-[6.07rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">

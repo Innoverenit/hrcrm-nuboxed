@@ -71,8 +71,9 @@ const DashBoardSummary=(props) =>{
       </div>
 {/* <div class="relative   sm:after:content-[''] sm:after:absolute sm:after:w-[3px] sm:after:min-h-[500vh] sm:after:bg-black sm:after:right-[-1rem]"></div> */}
       {/* QUOTATION */}
-      <div class="flex flex-col border-x-black h-[40vh]">
-  <h2 className="text-xl font-bold mb-4 ">
+      {/* <div class=" border-l-2 box-border border-black"></div> */}
+      <div class="flex flex-col border-l-2 box-border border-black">
+  <h2 className="text-xl font-bold mb-4 ml-2">
   QUOTATION - (1)
   {/* ({`${props.quotationDashboardCount.} `}) */}
 </h2>
@@ -80,7 +81,7 @@ const DashBoardSummary=(props) =>{
     <p>No data found</p>
   ) : (
     props.quotationDashboard.map((lead, index) => (
-      <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23]">
+      <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
         <div className="flex justify-between">
           <p className="font-semibold">{lead.quotationId}</p>
           <p className="text-sm text-gray-500">{lead.time}</p>
@@ -94,10 +95,10 @@ const DashBoardSummary=(props) =>{
 
 
       {/* ORDER */}
-      <div class="flex flex-col">
-        <h2 className="text-xl font-bold mb-4">ORDER-(6)</h2>
+      <div class="flex flex-col border-l-2 box-border border-black">
+        <h2 className="text-xl font-bold mb-4 ml-2 ">ORDER-(6)</h2>
         {data.notInCrm.map((contact, index) => (
-          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23]">
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
             <div className="flex justify-between">
               <p className="font-semibold">{contact.name}</p>
               <p className="text-sm text-gray-500">{contact.time}</p>
@@ -109,10 +110,10 @@ const DashBoardSummary=(props) =>{
       </div>
 
       {/* DEALS */}
-      <div class="flex flex-col">
-        <h2 className="text-xl font-bold mb-4"> DEALS-(5) </h2>
+      <div class="flex flex-col border-l-2 box-border border-black">
+        <h2 className="text-xl font-bold mb-4 ml-2"> DEALS-(5) </h2>
         {data.colleagues.map((colleague, index) => (
-          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23]">
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
             <div className="flex justify-between">
               <p className="font-semibold">{colleague.name}</p>
               <p className="text-sm text-gray-500">{colleague.date}</p>
