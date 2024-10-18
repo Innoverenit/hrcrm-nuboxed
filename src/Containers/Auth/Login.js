@@ -10,7 +10,7 @@ import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
 import {
   EyeInvisibleOutlined, EyeOutlined,
 } from "@ant-design/icons";
-
+import FWLogo3 from "../../Assets/Images/dashbrdimg.jpg";
 import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
 import FWLogo from "../../Assets/Images/name.jpg";//ct
 import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nubox
@@ -74,15 +74,17 @@ class Login extends Component {
     return (
       <>
         <div class="flex justify-between p-4">
-          <div class=" flex justify-center w-1/2 items-center md:min-h-screen max-sm:w-wk h-[80vh] "
-            style={{
-              // backgroundColor: "#F5F5F5",
-              backgroundColor: "white",
-              flexDirection: "column",
-              position: "relative",
-              margin: "auto",
-            }}
+          
+          <div class=" flex flex-col bg-white relative justify-center w-1/2 items-center md:min-h-screen max-sm:w-wk h-[80vh] "
+            // style={{
+            //   // backgroundColor: "#F5F5F5",
+            //   backgroundColor: "white",
+            //   flexDirection: "column",
+            //   position: "relative",
+            //   margin: "auto",
+            // }}
           >
+             <div className=" text-xxl font-bold font-poppins"> Welcome to Korero.</div>
             <img
               className="big-logo w-[13rem]"
               src={DevelopTk}
@@ -165,10 +167,10 @@ class Login extends Component {
 
 
           </div>
-          <div class="w-1/2 flex justify-center  max-sm:hidden">
+          <div class="w-1/2 flex justify-center items-center max-sm:hidden  bg-blue-400">
             <img
-              className="big-logo"
-              src={FWLogo1}
+              className="big-logo h-[62%] w-[94%]"
+              src={FWLogo3}
               style={{}}
               alt="Tekorero logo"
             />
