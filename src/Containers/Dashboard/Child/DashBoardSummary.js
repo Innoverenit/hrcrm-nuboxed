@@ -52,12 +52,12 @@ const DashBoardSummary=(props) =>{
   };
 
   return (
-    <div className="container mx-auto p-4 grid grid-cols-4 gap-6">
+    <div className="container mx-auto p-4 grid grid-cols-4 gap-6  rounded mt-1  bg-white h-[87vh] ">
       {/* TASK */}
-      <div>
-        <h2 className="text-xl font-bold mb-4">Task-(5)</h2>
+      <div class="flex flex-col">
+        <h2 className="text-xl font-bold mb-4">TASK-(5)</h2>
         {data.deals.map((deal, index) => (
-          <div key={index} className="mb-4">
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ">
             <div className="flex justify-between">
               <div>
                 <p className="font-semibold">{deal.name}</p>
@@ -69,18 +69,18 @@ const DashBoardSummary=(props) =>{
           </div>
         ))}
       </div>
-
+{/* <div class="relative   sm:after:content-[''] sm:after:absolute sm:after:w-[3px] sm:after:min-h-[500vh] sm:after:bg-black sm:after:right-[-1rem]"></div> */}
       {/* QUOTATION */}
-      <div>
-  <h2 className="text-xl font-bold mb-4">
-  Quotation - (1)
+      <div class="flex flex-col border-x-black h-[40vh]">
+  <h2 className="text-xl font-bold mb-4 ">
+  QUOTATION - (1)
   {/* ({`${props.quotationDashboardCount.} `}) */}
 </h2>
   {props.quotationDashboard.length === 0 ? (
     <p>No data found</p>
   ) : (
     props.quotationDashboard.map((lead, index) => (
-      <div key={index} className="mb-4">
+      <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23]">
         <div className="flex justify-between">
           <p className="font-semibold">{lead.quotationId}</p>
           <p className="text-sm text-gray-500">{lead.time}</p>
@@ -94,10 +94,10 @@ const DashBoardSummary=(props) =>{
 
 
       {/* ORDER */}
-      <div>
-        <h2 className="text-xl font-bold mb-4">Order-(6)</h2>
+      <div class="flex flex-col">
+        <h2 className="text-xl font-bold mb-4">ORDER-(6)</h2>
         {data.notInCrm.map((contact, index) => (
-          <div key={index} className="mb-4">
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23]">
             <div className="flex justify-between">
               <p className="font-semibold">{contact.name}</p>
               <p className="text-sm text-gray-500">{contact.time}</p>
@@ -109,10 +109,10 @@ const DashBoardSummary=(props) =>{
       </div>
 
       {/* DEALS */}
-      <div>
-        <h2 className="text-xl font-bold mb-4"> Deals-(5) </h2>
+      <div class="flex flex-col">
+        <h2 className="text-xl font-bold mb-4"> DEALS-(5) </h2>
         {data.colleagues.map((colleague, index) => (
-          <div key={index} className="mb-4">
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23]">
             <div className="flex justify-between">
               <p className="font-semibold">{colleague.name}</p>
               <p className="text-sm text-gray-500">{colleague.date}</p>

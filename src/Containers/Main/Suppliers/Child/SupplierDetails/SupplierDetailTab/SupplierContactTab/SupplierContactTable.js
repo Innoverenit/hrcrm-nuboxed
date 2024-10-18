@@ -54,9 +54,9 @@ function SupplierContactTable(props) {
 
   return (
     <>
-    <div className=' flex justify-end sticky  z-auto'>
+    <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins text-xs z-10">
             <div className=" w-[13.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[0]}</div>
             {/* Name */}
             <div className=" w-[20.1rem] max-xl:text-[0.65rem]">{translatedMenuItems[1]}
@@ -94,32 +94,32 @@ function SupplierContactTable(props) {
 
                         >
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                            <div className=" flex  font-bold w-[13.1rem] max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  font-bold border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[13.1rem] max-sm:justify-between  max-sm:flex-row ">
                               <div class="flex items-center  font-normal text-xs font-poppins max-xl:text-[0.65rem]">
                                {` ${item.firstName || ""} ${item.middleName || ""} ${item.lastName || ""}`}
                               </div>
                             </div>
 
-                            <div className=" flex   w-[19.2rem] max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[19.2rem] max-sm:justify-between  max-sm:flex-row ">
                               <div class="flex items-center  text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.emailId}
                               </div>
                             </div>
 
-                            <div className=" flex  w-[8.34rem] max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[8.34rem] max-sm:justify-between  max-sm:flex-row ">
                               <div class="flex items-center   text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.dialCode1} {item.mobileNo}                             
                               </div>
                             </div>     
 
-                            <div className=" flex   w-[11.32rem] max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[11.32rem] max-sm:justify-between  max-sm:flex-row ">
                               <div class="flex items-center   text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.designationName}
                               
                               </div>
 
                             </div>
-                            <div className=" flex  w-[11.02rem] max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[11.02rem] max-sm:justify-between  max-sm:flex-row ">
 
                               <div class=" flex items-center  text-xs  font-poppins max-xl:text-[0.65rem]">
                               {item.departmentName}
@@ -127,7 +127,7 @@ function SupplierContactTable(props) {
                               </div>
 
                             </div>
-                            <div className=" flex   md:w-[7.03rem] max-sm:flex-row w-9rem max-sm:justify-between  ">
+                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.03rem] max-sm:flex-row w-9rem max-sm:justify-between  ">
 
 
 {item.accessInd === 0 ? <div class=" text-xs  font-poppins">

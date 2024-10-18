@@ -13,7 +13,7 @@ import InventoryMaterialDamagedData from "../Inventory/InventoryMaterialDamagedD
 import MaterialStockTableOut from "./MaterialStockTableOut";
 import MaterialUnitsDataOut from "./MaterialUnitsDataOut";
 import MaterialCellCardViewOut from "./MaterialCellCardViewOut";
-
+import CookieIcon from '@mui/icons-material/Cookie';
 const TabPane = StyledTabs.TabPane;
 class InventoryMaterialTabO extends PureComponent {
     constructor(props) {
@@ -261,7 +261,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick}>
-                                    <i class="far fa-share-square"/>&nbsp;
+                                    <CookieIcon className=" !text-icon"/>&nbsp;
                                       Best Before
                                      
                                        

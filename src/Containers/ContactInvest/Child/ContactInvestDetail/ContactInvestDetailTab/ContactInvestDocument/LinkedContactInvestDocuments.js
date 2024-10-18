@@ -85,23 +85,23 @@ class LinkedContactInvestDocuments extends Component {
               className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                   <div class="flex">
-                                      <div className=" flex  md:w-[9.8rem] max-sm:w-full  ">
+                                      <div className=" flex  h-8 border-l-2 border-green-500 bg-[#eef2f9] md:w-[9.8rem] max-sm:w-full  ">
                                       <div>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</div>
                                       </div>
 
-                                      <div className=" flex    md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                      <div className=" flex  h-8 ml-gap bg-[#eef2f9]    md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
                                           <div class=" text-xs  font-poppins">
                                              {item.documentTitle}
                                           </div>
 
                                       </div>
-                                      <div className=" flex  md:w-[10.8rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
+                                      <div className=" flex h-8 ml-gap bg-[#eef2f9]  justify-center  md:w-[10.8rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
                                           <div class=" text-xs  font-poppins">
                                               {item.documentDescription}
                                           </div>
                                       </div>
                                   </div>
-                                  <div className=" flex  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                                       <div class=" text-xs  font-poppins text-center">
@@ -109,20 +109,20 @@ class LinkedContactInvestDocuments extends Component {
 
                                       </div>
                                   </div>
-                                  <div className=" flex  md:w-[2.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[2.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <a
               href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
             >
-              <DownloadIcon
+              <DownloadIcon className=" !text-icon cursor-pointer"
                 type="download"
-                style={{ cursor: "pointer" ,fontSize:"1.25rem"}}
+              
               />
             </a>
                                       </div>
                                   </div>
-                                  <div className=" flex  md:w-[2.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[2.22rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <a
               href={`${base_url}/download/${item.documentTypeId}`}
@@ -131,7 +131,7 @@ class LinkedContactInvestDocuments extends Component {
 
                                       </div>
                                   </div>
-                                  <div className=" flex  md:w-[5.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[5.23rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
               title="Do you want to delete?"

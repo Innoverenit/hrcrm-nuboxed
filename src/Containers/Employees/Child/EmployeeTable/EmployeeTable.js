@@ -277,7 +277,7 @@ function EmployeeTable(props) {
                             <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:justify-between   max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
                               <div class="flex  max-sm:w-wk items-center max-sm:items-center">
-                                    <div className=" flex md:w-[15.6rem] max-sm:w-full ">
+                                    <div className="border-l-2 h-8 border-green-500 bg-[#eef2f9] flex md:w-[15.6rem] max-sm:w-full ">
                                     <EmployeeDetailsView
           employeeId={item.employeeId}
           fullName={item.fullName}
@@ -291,13 +291,13 @@ function EmployeeTable(props) {
                                         ) : null}
                                     </div>
 
-                                    <div className=" flex  md:w-[8.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                    <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] md:w-[8.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                         <div class=" text-xs  font-poppins">
                                             {item.department}
                                         </div>
 
                                     </div>
-                                    <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 
@@ -308,20 +308,20 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
 
-                                <div class="flex  max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
-                                <div className=" flex md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div class="flex  h-8 ml-gap bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     {item.countryDialCode} {item.mobileNo}
                                     </div>
                                 </div>
-                                <div className=" flex md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                        {item.emailId}
                                     </div>
                                 </div>
                                 </div>
                                 <div class="flex  max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
-                                <div className=" flex md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     {props.user.userDeleteInd === true || user.role === "ADMIN" ? (
             <SuspendEmployee
@@ -334,7 +334,7 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
                                 {props.user.multyOrgLinkInd=== true && (
-                                <div className=" flex  ml-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                   
                             <MultiOrgEmployee
@@ -345,7 +345,7 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
                                 )}
-                                <div className=" flex md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs cursor-pointer  font-poppins text-center">
                                     {item.suspendInd !== true && ( 
               <Tooltip  title={item.role}>
@@ -372,7 +372,7 @@ function EmployeeTable(props) {
                )}
                                     </div>
                                 </div>
-                                <div className=" flex md:w-[12.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[12.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center ">
                                     <span className=" cursor-pointer max-sm:!text-2xl "
               onClick={() => {
@@ -387,7 +387,7 @@ function EmployeeTable(props) {
                 <MonitorHeartIcon className="!text-icon text-[#df9697] "  />  </span>
                                     </div>
                                 </div>
-                                <div className=" flex md:w-[9.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[9.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="Add as Admin">
            <CircleNotificationsIcon className=" cursor-pointer !text-icon max-sm:!text-2xl"
@@ -399,7 +399,7 @@ function EmployeeTable(props) {
            </Tooltip>
                                     </div>
                                 </div>
-                                <div className=" flex md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-base  font-poppins text-center">
                                     {item.suspendInd === true && (
                  <StyledPopconfirm

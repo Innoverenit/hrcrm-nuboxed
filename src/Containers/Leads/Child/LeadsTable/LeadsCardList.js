@@ -310,7 +310,7 @@ const LeadsCardList = (props) => {
                 className="flex  justify-between bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                  max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-               <div class="flex flex-row mr-1  border-l-2 border-green-500 bg-[#eef2f9] items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+               <div class="flex flex-row mr-1 h-8 border-l-2 border-green-500 bg-[#eef2f9] items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                     <div>
                       <ButtonGroup>
                         <RoleButton
@@ -360,7 +360,7 @@ const LeadsCardList = (props) => {
                       </ButtonGroup>
                     </div>
                   </div>
-                  <div className=" flex  w-[12rem] h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.5rem] max-lg:w-[5rem]  mr-1   max-sm:w-auto">
+                  <div className=" flex  w-[12rem] h-8 ml-gap bg-[#eef2f9] items-center justify-center max-xl:w-[9.5rem] max-lg:w-[5rem]  mr-1   max-sm:w-auto">
                     <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                       <div class=" mr-1 ">
                        

@@ -50,8 +50,8 @@ const AddCallTaskModal = (props) => {
         <>
           <TabsWrapper>
             <StyledTabs
-              defaultActiveKey="1"
-              style={{ overflow: "visible", width: "52vw", padding: "5px" }}
+              defaultActiveKey="1"             
+              // style={{ overflow: "visible", width: "52vw", padding: "5px" }}
               animated={false}
             >
               <TabPane

@@ -129,12 +129,12 @@ if (fetchingDealList) return <BundleLoader/>;
               <div
                 className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div class="flex ">
-                <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
           &nbsp;
           <div class="max-sm:w-full">
                                         <Tooltip>
-                                          <div class=" flex max-sm:w-full justify-between flex-row md:flex-col ">
+                                          <div class=" flex max-sm:w-full justify-between flex-row md:max-sm:w-full ">
                                           
                                             <div class="text-xs flex text-blue-500  font-poppins font-bold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
@@ -159,33 +159,33 @@ if (fetchingDealList) return <BundleLoader/>;
                                 </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex   md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <h4 class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins">
                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                  
-                    </h4>
+                    </div>
                   </div>
-                  <div className=" flex md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">       
-         <h4 class=" text-xs  font-poppins">
+                  <div className=" flex md:w-[7rem] h-8 ml-gap bg-[#eef2f9] items-center justify-center max-sm:flex-row w-full max-sm:justify-between ">       
+         <div class=" text-xs  font-poppins">
          {dayjs(item.endDate).format("DD/MM/YYYY")}
                 
-         </h4>
+         </div>
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex  justify-center flex-col  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center  justify-center max-sm:w-full  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <h4 class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins">
                     <div>
             <CurrencySymbol currencyType={item.currency} />
             &nbsp;&nbsp;{item.proposalAmount}
           </div>                 
-                    </h4>
+                    </div>
                   </div>
-                  <div className=" flex   md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <h4 class=" text-xs  font-poppins">
+         <div class=" text-xs  font-poppins">
          <Tooltip title={item.oppStage}>
 {" "}
 <Progress
@@ -198,13 +198,13 @@ width={30}
 />
 </Tooltip>
       
-         </h4>
+         </div>
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex   md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <h4 class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins">
                     <Tooltip title={item.contactName}>
               <div>
                 <MultiAvatar
@@ -217,27 +217,24 @@ width={30}
               </div>
             </Tooltip>
                  
-                    </h4>
+                    </div>
                   </div>
       
                 </div>
               
-                <div class="flex md:items-center ">
-                  <div className=" flex  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                <div class="flex h-8 ml-gap bg-[#eef2f9] items-center justify-end ">
+                  <div className=" flex  max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                       <Tooltip title={item.description}>
            
-          <InfoIcon 
+          <InfoIcon className=" !text-icon cursor-pointer"
           
-              // type="edit"
-              style={{ cursor: "pointer",fontSize:"1.25rem" }}
-             
             />
           
           </Tooltip>
                     </div>
                   </div>
-                  <div className=" flex  md:w-[5rem]  max-sm:flex-row w-full max-sm:justify-between">
+                  <div className=" flex   max-sm:flex-row w-full max-sm:justify-between">
                   <Tooltip title="Edit">       
           <BorderColorIcon 
           

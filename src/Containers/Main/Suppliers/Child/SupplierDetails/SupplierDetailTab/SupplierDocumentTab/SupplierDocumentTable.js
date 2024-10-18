@@ -123,20 +123,20 @@ class SupplierDocumentTable extends Component {
                   <div key={item.id}>
                     <div className="flex rounded mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col">
                       <div className="flex w-3/4">
-                        <div className="flex  md:w-[1.56rem] max-sm:w-full">
+                        <div className="flex border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-[1.56rem] max-sm:w-full">
                           {dayjs(item.creationDate).format("ll")}
                         </div>
-                        <div className="flex md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                        <div className="flex items-center h-8 ml-gap bg-[#eef2f9] md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div className="text-xs  font-poppins text-center">
                             {item.contactDocumentName}
                           </div>
                         </div>
-                        <div className="flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                        <div className="flex  items-center  h-8 ml-gap bg-[#eef2f9] md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div className="text-xs  font-poppins text-center">
                             {item.description}
                           </div>
                         </div>
-                        <div className="flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                        <div className="flex items-center h-8 ml-gap bg-[#eef2f9] md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div className="text-xs  font-poppins text-center">
                             {item.uploadedBy}
                           </div>
