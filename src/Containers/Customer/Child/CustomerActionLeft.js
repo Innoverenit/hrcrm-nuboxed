@@ -21,10 +21,18 @@ import {
   getCategoryRecords,
   getTeamCustomer
 } from "../CustomerAction";
-import { Input } from "antd";
+import { Input ,Button,Select} from "antd";
+import { base_url } from "../../../Config/Auth";
 
 const Option = StyledSelect.Option;
 const { Search } = Input;
+
+
+const userList = [
+  { id: 1, name: 'User A' },
+  { id: 2, name: 'User B' },
+  { id: 3, name: 'User C' },
+];
 
 const CustomerActionLeft = (props) => {
   const [filter, setFilter] = useState("creationdate")
@@ -36,6 +44,9 @@ const CustomerActionLeft = (props) => {
 
   const [searchOnEnter, setSearchOnEnter] = useState(false);
   const [currentData, setCurrentData] = useState("");
+  const [userData, setUserData] = useState([]);
+  const [isLoadingUser, setIsLoadingUser] = useState(false);
+  const [touchedUser, setTouchedUser] = useState(false);
   const dummy = ["cloud", "azure", "fgfdg"];
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -107,6 +118,16 @@ const CustomerActionLeft = (props) => {
       setSearchOnEnter(true);  // Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
+    }
+  };
+
+
+  const handleSelectUserFocus = () => {
+    if (!touchedUser) {
+      fetchUser();
+      // fetchSector();
+
+      setTouchedUser(true);
     }
   };
   const handleStartListening = () => {
@@ -232,6 +253,29 @@ const CustomerActionLeft = (props) => {
   //   } 
 
   // }, [])
+
+  const fetchUser = async () => {
+    setIsLoadingUser(true);
+    try {
+   
+
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingUser(false);
+    }
+  };
 
   const { user } = props;
   const teamCount = props.teamsAccessInd && props.customerTeamRecordData ? props.customerTeamRecordData.prospectTeam : 0;
@@ -368,6 +412,37 @@ const CustomerActionLeft = (props) => {
             <Option value="descending">Z To A</Option>
           </StyledSelect>
         </div>
+
+
+
+
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {/* {!props.showCheckboxes && (  */}
+        <Button type="primary" 
+        onClick={props.handleTransferClick}
+        >
+          {props.isTransferMode ? 'Transfer' : 'Cancel'}
+        </Button>
+       {/* )} */}
+        </div>
+
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {props.showCheckboxes && props.selectedDeals.length > 0 && ( 
+        <Select
+       
+       placeholder="Select User"
+       loading={isLoadingUser}
+       onFocus={handleSelectUserFocus}
+       onChange={props.handleUserSelect}
+     >
+       {userData.map(customer => (
+         <Option key={customer.employeeId} value={customer.employeeId}>
+           {customer.empName}
+         </Option>
+       ))}
+     </Select>
+     )}
+        </div>
       </div>
     </div>
   );
@@ -381,6 +456,7 @@ const mapStateToProps = ({ customer, auth, candidate }) => ({
   recordCategoryDataBlue: customer.recordCategoryDataBlue,
   Candidatesort: candidate.Candidatesort,
   userId: auth.userDetails.userId,
+  token: auth.token,
   orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>

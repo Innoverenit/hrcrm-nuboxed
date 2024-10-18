@@ -1478,3 +1478,37 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         message.error("Something went wrong")
       });
   };
+
+
+
+
+  export const updateOwnerinvestorById = (data,userId, ) => (dispatch, getState) => {
+    const userId1 = getState().auth.userDetails.userId;
+    dispatch({
+      type: types.UPDATE_INVESTOR_OWNERSHIP_REQUEST,
+    });
+    axios
+      .put(`${base_url}/investorLeads/transfer/one-user-to-another/${userId}`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        // dispatch(getCustomerListByUserId(userId1,0,"creationdate"));
+        // dispatch(getTeamCustomer(userId1,0,));
+        dispatch({
+          type: types.UPDATE_INVESTOR_OWNERSHIP_SUCCESS,
+          payload: res.data,
+        });
+        // cb && cb("success");
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_INVESTOR_OWNERSHIP_FAILURE,
+          payload: err,
+        });
+        // cb && cb("error");
+      });
+  }

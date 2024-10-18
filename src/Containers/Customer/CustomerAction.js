@@ -1393,7 +1393,7 @@ export const getInvoiceByCustomerId = (customerId) => (dispatch) => {
     });
 };
 
-export const updateOwnercustomerById = (userId, data) => (dispatch, getState) => {
+export const updateOwnercustomerById = (data,userId, ) => (dispatch, getState) => {
   const userId1 = getState().auth.userDetails.userId;
   dispatch({
     type: types.UPDATE_CUSTOMER_OWNERSHIP_REQUEST,
@@ -1405,7 +1405,8 @@ export const updateOwnercustomerById = (userId, data) => (dispatch, getState) =>
       },
     })
     .then((res) => {
-      dispatch(getCustomerListByUserId(userId1));
+      dispatch(getCustomerListByUserId(userId1,0,"creationdate"));
+      dispatch(getTeamCustomer(userId1,0,));
       dispatch({
         type: types.UPDATE_CUSTOMER_OWNERSHIP_SUCCESS,
         payload: res.data,

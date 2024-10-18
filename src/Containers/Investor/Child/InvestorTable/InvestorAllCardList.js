@@ -8,7 +8,7 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, } from "antd";
+import { Tooltip, Select, Checkbox} from "antd";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
 import {
@@ -275,6 +275,16 @@ function InvestorAllCardList(props) {
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  w-[13.5rem] border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
+                                <div className=" flex items-center  w-[4.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* >Source */}
+
+                                    <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <Checkbox
+                onChange={() => props.handleCheckboxChange(item.investorId)}
+                checked={props.selectedDeals.includes(item.investorId)}
+              />
+                                    </div>
+                                </div>
                                 <div>
 
             <MultiAvatar

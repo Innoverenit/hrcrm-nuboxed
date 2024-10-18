@@ -25,6 +25,12 @@ function InvestorHeader (props) {
           leftComponent={
             < Suspense fallback={"Loading..."}>
             <InvestorActionLeft
+             showCheckboxes={props.showCheckboxes}
+             selectedDeals={props.selectedDeals}
+             selectedUser={props.selectedUser}
+             isTransferMode={props.isTransferMode}
+             handleUserSelect={props.handleUserSelect}
+             handleTransferClick={props.handleTransferClick}
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}
             teamsAccessInd={teamsAccessInd}
