@@ -316,7 +316,7 @@ function AccountDetailsTab(props) {
                             <>
                              <Tooltip title={translatedMenuItems[12]}>
                                             <ShopIcon
-                                                className="!text-icon text-[#78a1bb] cursor-pointer"
+                                                className="!text-icon text-[#823038] cursor-pointer"
                                             />
                                             <span class=" ml-1 !text-tab font-poppins ">
                                             {translatedMenuItems[12]}

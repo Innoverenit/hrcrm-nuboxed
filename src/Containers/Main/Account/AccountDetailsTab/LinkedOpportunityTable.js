@@ -367,13 +367,13 @@ const handleConfirm = (quotationId) => {
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
         <div className='flex   justify-between w-[86%]  text-xs font-bold font-poppins'>
-<div class="text-[#00A2E8] text-base w-[9.55rem]"> {translatedMenuItems[9]}</div>
-<div className=" md:w-[11.4rem]"> {translatedMenuItems[1]} ID</div>
-<div className=" md:w-[8rem]">
+<div class="text-[#00A2E8] text-base w-[6.55rem]"> {translatedMenuItems[9]}</div>
+<div className=" md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
+<div className=" md:w-[7rem]">
 {translatedMenuItems[10]}
                         </div>
-                        <div className=" md:w-[12.1rem]"> {translatedMenuItems[2]}</div>
-                        <div className=" md:w-[14.8rem] "> {translatedMenuItems[3]}</div>
+                        <div className=" md:w-[10.1rem]"> {translatedMenuItems[2]}</div>
+                        <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
                         <div className="md:w-[7.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[8.7rem]"> {translatedMenuItems[5]}</div>           
                         <div className="md:w-[8.8rem]"> {translatedMenuItems[8]}</div>
@@ -472,7 +472,7 @@ const handleConfirm = (quotationId) => {
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[12.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -502,7 +502,7 @@ const handleConfirm = (quotationId) => {
 
                       
                   </div>
-                  <div class="w-[9.40rem] items-center  ml-gap bg-[#eef2f9] h-8 justify-end flex">
+                  <div class="w-[12.40rem] items-center  ml-gap bg-[#eef2f9] h-8 justify-end flex">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>

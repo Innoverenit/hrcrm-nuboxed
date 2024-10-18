@@ -194,10 +194,10 @@ function OpportunitytProcureDetails(props) {
           <div className="md:w-[7.4rem] text-xs font-bold font-poppins">
           {translatedMenuItems[1]}{/* "Brand" /> */}
           </div>
-          <div className="md:w-[7.1rem] text-xs font-bold font-poppins">
+          <div className="md:w-[4.1rem] text-xs font-bold font-poppins">
           {translatedMenuItems[2]} {/* "Model" /> */}
           </div>
-          <div className="md:w-[7.1rem] text-xs font-bold font-poppins">
+          <div className="md:w-[4.1rem] text-xs font-bold font-poppins">
           {translatedMenuItems[3]} {/* "Attribute" /> */}
           </div>
           <div className="md:w-[7.1rem] text-xs font-bold font-poppins">
@@ -218,7 +218,7 @@ function OpportunitytProcureDetails(props) {
       //   next={handleLoadMore}
       // hasMore={hasMore}
         loader={props.fetchingProcureDetails?<div class="flex justify-center">Loading...</div>:null}
-        height={"71vh"}
+        height={"79vh"}
         style={{scrollbarWidth:"thin"}}
         // endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
@@ -226,7 +226,7 @@ function OpportunitytProcureDetails(props) {
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center ">
 
-<div className="flex  md:w-[11rem] h-8  border-l-2 border-green-500 bg-[#eef2f9] items-center justify-center max-sm:flex-row w-full max-sm:justify-between">
+<div className="flex  md:w-[17rem] h-8  border-l-2 border-green-500 bg-[#eef2f9] items-center justify-center max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {editContactId === item.id ? (
                     <select
@@ -246,7 +246,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[17rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -266,7 +266,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[30rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[17rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <Select
@@ -285,7 +285,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[17rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -305,7 +305,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[17rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -325,7 +325,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[1rem]  max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -345,7 +345,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[6rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ml-2 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[1rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <Select
@@ -365,7 +365,7 @@ function OpportunitytProcureDetails(props) {
               </div>
 
 
-              <div className="flex  ml-2 md:w-[5rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  ml-2 md:w-[16rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <input
@@ -396,7 +396,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[4rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[1rem]  max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -419,7 +419,7 @@ function OpportunitytProcureDetails(props) {
               </div>
              
 
-              <div className="flex flex-col w-[6rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ml-1 max-sm:flex-row max-sm:w-auto">
+              <div className="flex flex-col w-[8rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ml-1 max-sm:flex-row max-sm:w-auto">
                 <div className="flex">
                   {editContactId === item.id ? (
                     <>
