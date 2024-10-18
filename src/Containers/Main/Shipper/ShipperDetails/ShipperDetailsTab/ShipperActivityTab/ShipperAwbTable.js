@@ -74,7 +74,7 @@ class ShipperAwbTable extends Component {
             <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                         <div className=" md:w-[0.5rem]"></div>
-                        <div className="Font-poppins font-bold text-xs md:w-[7.4rem]">  {this.state.translatedMenuItems[0]}</div>
+                        <div className="Font-poppins font-bold text-[#00A2E8] text-base md:w-[7.4rem]">  {this.state.translatedMenuItems[0]}</div>
                         {/* AWB# */}
                         <div className="Font-poppins font-bold text-xs md:w-[10.1rem]">  {this.state.translatedMenuItems[1]}</div>
                         {/* Created */}
@@ -93,16 +93,16 @@ class ShipperAwbTable extends Component {
                this.props.awbShipper.map((item) => (
                             
                             <div key={item.id}>
-                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
-                                        <div class="flex w-3/4">
-                                            <div className=" flex font-medium flex-col md:w-[14.56rem] max-sm:w-full  ">
+                                     <div className="flex rounded  mt-1 bg-white h-8 items-center  max-sm:h-[7rem] max-sm:flex-col ">
+                                        <div class="flex w-3/4 ">
+                                            <div className=" flex font-medium flex-col md:w-[14.56rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                             <div class=" text-xs  font-poppins text-center">
                                                     {item.newAwbNo}
                                                 </div>
 
                                             </div>
 
-                                            <div className=" flex font-medium flex-col  md:w-[9.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex font-medium flex-col  md:w-[9.4rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins text-center">
                                                    
@@ -112,18 +112,18 @@ class ShipperAwbTable extends Component {
 
 
 
-                                            <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex font-medium flex-col md:w-[6.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {item.topic}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex font-medium flex-col md:w-[10.1rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {` ${dayjs(item.pickUp).format("lll")}`}
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex font-medium flex-col md:w-[11.5rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                                
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {/* {` ${dayjs(item.endDate).format("lll")}`} */}
@@ -131,46 +131,10 @@ class ShipperAwbTable extends Component {
                                                 </div>
                                             </div>
                                         </div>
-{/*                           
-                                        <div className=" flex font-medium flex-col  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <h4 class=" text-xs  font-poppins">
-                                            <Tooltip title="Edit">
-              {item.activity === "Event" && (
-               <ScheduleOutlined
-                  style={{ cursor: "pointer", fontSize: "12px" }}
-                  onClick={() => {
-                    // this.props.setEditEvents(item);
-                    handleUpdateEventModal(true);
-                  }}
-                />
-              )}
-              {item.activity === "Call" && (
-               <PhoneOutlined
-                  style={{ cursor: "pointer", fontSize: "12px" }}
-                  onClick={() => {
-                    // this.props.setEditCall(item);
-                    handleUpdateCallModal(true);
-                  }}
-                />
-              )}
-              {item.activity === "Task" && (
-               <FileDoneOutlined 
-                  style={{ cursor: "pointer", fontSize: "12px" }}
-                  onClick={() => {
-                    // this.props.setEditTask(item);
-                    handleUpdateTaskModal(true);
-                  }}
-                />
-              )}
-            </Tooltip>
-                                            </h4>
 
-                                        </div> */}
                                     </div>
                                 </div>
-
-
-                          
+                                                   
 ))
 ) : (
   <div className="text-center p-5">

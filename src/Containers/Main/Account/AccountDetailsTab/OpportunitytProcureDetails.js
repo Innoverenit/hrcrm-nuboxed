@@ -188,38 +188,29 @@ function OpportunitytProcureDetails(props) {
     <>
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className="flex justify-between  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className="md:w-[7.4rem]">
-        {translatedMenuItems[0]} {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
+        <div className="md:w-[7.4rem] text-[#00A2E8] text-base font-bold font-poppins">
+        {translatedMenuItems[0]} {/* Category" /> */}
           </div>
-          <div className="md:w-[7.4rem]">
-          {translatedMenuItems[1]}{/* <FormattedMessage id="app.brand" defaultMessage="Brand" /> */}
+          <div className="md:w-[7.4rem] text-xs font-bold font-poppins">
+          {translatedMenuItems[1]}{/* "Brand" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-          {translatedMenuItems[2]} {/* <FormattedMessage id="app.model" defaultMessage="Model" /> */}
+          <div className="md:w-[7.1rem] text-xs font-bold font-poppins">
+          {translatedMenuItems[2]} {/* "Model" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-          {translatedMenuItems[3]} {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */}
+          <div className="md:w-[7.1rem] text-xs font-bold font-poppins">
+          {translatedMenuItems[3]} {/* "Attribute" /> */}
           </div>
-          <div className="md:w-[7.1rem]">
-          {translatedMenuItems[4]} {/* <FormattedMessage id="app.quality" defaultMessage="Quality" /> */}
+          <div className="md:w-[7.1rem] text-xs font-bold font-poppins">
+          {translatedMenuItems[4]} {/* "Quality" /> */}
           </div>
-          {/* <div className="md:w-[7.1rem]">
-          {translatedMenuItems[5]}<FormattedMessage id="app.location" defaultMessage="Location" />
-          </div> */}
-          {/* <div className="md:w-[8.8rem]">
-          {translatedMenuItems[6]}<FormattedMessage id="app.specs" defaultMessage="Specs" />
-          </div> */}
-            <div className="w-[5rem] md:w-[5%]">
+      
+            <div className="w-[7rem] md:w-[5%] text-xs font-bold font-poppins">
           Supplies ID
           </div>
-          <div className="md:w-[2.8rem]">
-          {translatedMenuItems[7]} {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
+          <div className="md:w-[2.8rem] text-xs font-bold font-poppins">
+          {translatedMenuItems[7]} {/* "Units" /> */}
           </div>
-          {/* <div className="md:w-[4.8rem]">
-          {translatedMenuItems[8]} <FormattedMessage id="app.price" defaultMessage="Price" />
-          </div> */}
-        
-        
+             
           <div className="md:w-[2rem]"></div>
         </div>
         <InfiniteScroll
@@ -233,9 +224,9 @@ function OpportunitytProcureDetails(props) {
       >
         {props.procureDetails.map((item, index) => {
           return (
-            <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
+            <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center ">
 
-<div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+<div className="flex  md:w-[11rem] h-8  border-l-2 border-green-500 bg-[#eef2f9] items-center justify-center max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {editContactId === item.id ? (
                     <select
@@ -255,7 +246,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[11rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -275,7 +266,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[30rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[30rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <Select
@@ -294,7 +285,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[11rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -314,7 +305,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[11rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -334,7 +325,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[11rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[11rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -354,7 +345,7 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[6rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[6rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <Select
@@ -373,23 +364,8 @@ function OpportunitytProcureDetails(props) {
                 </div>
               </div>
 
-              <div className="flex  ml-2 md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-xs  font-poppins">
-                  {editContactId === item.id ? (
-                    <input
-                      placeholder="Update Unit"
-                      style={{border:"2px solid black"}}
-                      type="text"
-                      value={newUnitName}
-                      onChange={(e) => setUnitName(e.target.value)}
-                    />
-                  ) : (
-                    <div className="font-normal text-xs  font-poppins">{item.unit}</div>
-                  )}
-                </div>
-              </div>
 
-              <div className="flex  ml-2 md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  ml-2 md:w-[5rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <input
@@ -404,7 +380,23 @@ function OpportunitytProcureDetails(props) {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between">
+              
+              <div className="flex  ml-2 md:w-[10rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                  {editContactId === item.id ? (
+                    <input
+                      placeholder="Update Unit"
+                      style={{border:"2px solid black"}}
+                      type="text"
+                      value={newUnitName}
+                      onChange={(e) => setUnitName(e.target.value)}
+                    />
+                  ) : (
+                    <div className="font-normal text-xs  font-poppins">{item.unit}</div>
+                  )}
+                </div>
+              </div>
+              <div className="flex  md:w-[4rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
@@ -427,7 +419,7 @@ function OpportunitytProcureDetails(props) {
               </div>
              
 
-              <div className="flex flex-col w-[6rem] ml-1 max-sm:flex-row max-sm:w-auto">
+              <div className="flex flex-col w-[6rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ml-1 max-sm:flex-row max-sm:w-auto">
                 <div className="flex">
                   {editContactId === item.id ? (
                     <>
@@ -446,8 +438,7 @@ function OpportunitytProcureDetails(props) {
                       style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem' }}
                     />
                   )}
-                </div>
-                <div>
+                    <div>
                   <StyledPopconfirm
                     title="Do you want to delete?"
                     onConfirm={() => props.deleteProcureData(item.id)}
@@ -464,6 +455,8 @@ function OpportunitytProcureDetails(props) {
                     </Tooltip>
                   </StyledPopconfirm>
                 </div>
+                </div>
+              
               </div>
             </div>
           );

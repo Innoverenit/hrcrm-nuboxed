@@ -212,17 +212,17 @@ const handleConfirm = (quotationId) => {
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
         <div className='flex   justify-between w-[81%]  text-xs font-bold font-poppins'>
-             <div class=" w-[7.55rem]"> {translatedMenuItems[0]}</div>
-                        <div className="w-[7.4rem] md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
-                        <div className=" md:w-[5rem]">
+             <div class="text-[#00A2E8] text-base w-[9.55rem]"> {translatedMenuItems[0]}</div>
+                        <div className="  w-[11.4rem] md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
+                        <div className=" md:w-[8rem]">
                         {translatedMenuItems[10]}  
                           </div>
-                        <div className=" md:w-[8.1rem]"> {translatedMenuItems[2]}</div>
-                        <div className=" md:w-[16.8rem] "> {translatedMenuItems[3]}</div>
-                        <div className="md:w-[6.8rem]"> {translatedMenuItems[4]}</div>
-                        <div className="md:w-[5.8rem]"> {translatedMenuItems[5]}</div>
+                        <div className=" md:w-[12.1rem]"> {translatedMenuItems[2]}</div>
+                        <div className=" md:w-[14.8rem] "> {translatedMenuItems[3]}</div>
+                        <div className="md:w-[7.8rem]"> {translatedMenuItems[4]}</div>
+                        <div className="md:w-[8.7rem]"> {translatedMenuItems[5]}</div>
                     
-                        <div className="md:w-[5.8rem]"> {translatedMenuItems[8]}</div>
+                        <div className="md:w-[8.8rem]"> {translatedMenuItems[8]}</div>
                         
                        </div>
                         </div>
@@ -242,11 +242,11 @@ const handleConfirm = (quotationId) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                        <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                        <div className="flex rounded mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
                                           <div className=" flex   w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex  items-center  md:w-[7.56rem] max-sm:w-full  ">
+                                            <div className=" flex  items-center  md:w-[7.56rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                                       <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -263,7 +263,7 @@ const handleConfirm = (quotationId) => {
                                                                               </Tooltip>
                                                                           </div>
                       
-                                              <div class="max-sm:w-full items-center  md:w-[7.02rem]">
+                                              <div class="max-sm:w-full   md:w-[7.02rem] items-center justify-center ml-gap bg-[#eef2f9] h-8">
                                                 <Tooltip>
                                                   <div class="max-sm:w-full   flex md:flex flex-row text-xs">
                                                   <span
@@ -274,7 +274,7 @@ const handleConfirm = (quotationId) => {
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
-                                          <span className="text-[0.65rem] text-[tomato] font-bold">
+                                          <span className="text-[0.65rem] text-[tomato] font-bold ml-1">
                                            {translatedMenuItems[11]} {/* New */}
                                           </span>
                                         ) : null} </span>
@@ -282,14 +282,14 @@ const handleConfirm = (quotationId) => {
                                                   </div>
                                                 </Tooltip>
                                               </div>
-                                              <div className="  ml-2 text-xs flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                              <div className="  ml-2 items-center justify-center ml-gap bg-[#eef2f9] h-8 text-xs flex md:w-[7.31rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                             </div>
                                             
                                           </div>
                       
-                                          <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between text-xs">
+                                          <div class="flex flex-row items-center md:w-[9rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between text-xs">
                                         
                                             
                                         <div class="max-sm:w-full justify-between flex md: text-xs">
@@ -300,7 +300,7 @@ const handleConfirm = (quotationId) => {
                                       </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   text-xs md:w-[18.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  text-xs md:w-[16.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -309,13 +309,13 @@ const handleConfirm = (quotationId) => {
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[5.03rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
@@ -327,7 +327,7 @@ const handleConfirm = (quotationId) => {
                                         </div>
                                    
                                       
-                  <div class="flex flex-row items-center md:w-[20.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[14.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                
                           
@@ -337,8 +337,9 @@ const handleConfirm = (quotationId) => {
                               setopenConvertModal(true)}}
                               >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
-                              {translatedMenuItems[13]} {/* Convert */}
                               <NextPlanIcon  className="!text-icon"/>
+                              {translatedMenuItems[13]} {/* Convert */}
+                          
                               </div>
                             </Button>
                           
@@ -347,7 +348,7 @@ const handleConfirm = (quotationId) => {
 
                      
                   </div>
-                  <div class="w-6">
+                  <div class="w-[9.40rem] items-center  ml-gap bg-[#eef2f9] h-8 justify-end flex">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>
@@ -365,17 +366,17 @@ const handleConfirm = (quotationId) => {
      { props.user.moduleMapper.ecomModInd === true &&(
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
-        <div className='flex   justify-between w-[81%]  text-xs font-bold font-poppins'>
-<div class=" w-[7.55rem]"> {translatedMenuItems[9]}</div>
-<div className=" md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
+        <div className='flex   justify-between w-[86%]  text-xs font-bold font-poppins'>
+<div class="text-[#00A2E8] text-base w-[9.55rem]"> {translatedMenuItems[9]}</div>
+<div className=" md:w-[11.4rem]"> {translatedMenuItems[1]} ID</div>
 <div className=" md:w-[8rem]">
 {translatedMenuItems[10]}
                         </div>
-                        <div className=" md:w-[6.1rem]"> {translatedMenuItems[2]}</div>
-                        <div className=" md:w-[16.8rem] "> {translatedMenuItems[3]}</div>
-                        <div className="md:w-[6.8rem]"> {translatedMenuItems[4]}</div>
-                        <div className="md:w-[5.8rem]"> {translatedMenuItems[5]}</div>           
-                        <div className="md:w-[5.8rem]"> {translatedMenuItems[8]}</div>
+                        <div className=" md:w-[12.1rem]"> {translatedMenuItems[2]}</div>
+                        <div className=" md:w-[14.8rem] "> {translatedMenuItems[3]}</div>
+                        <div className="md:w-[7.8rem]"> {translatedMenuItems[4]}</div>
+                        <div className="md:w-[8.7rem]"> {translatedMenuItems[5]}</div>           
+                        <div className="md:w-[8.8rem]"> {translatedMenuItems[8]}</div>
                       
                    </div>
                      
@@ -399,11 +400,11 @@ const handleConfirm = (quotationId) => {
                                     const date1 =  dayjs(item.deliveryDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                      <div className="flex rounded  mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
                                           <div className=" flex  w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex items-center  md:w-[7.56rem] max-sm:w-full  ">
+                                            <div className=" flex items-center  md:w-[7.56rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                                       <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -420,7 +421,7 @@ const handleConfirm = (quotationId) => {
                                                                               </Tooltip>
                                                                           </div>
                       
-                                              <div class="max-sm:w-full text-xs items-center  md:w-[7.02rem]">
+                                              <div class="max-sm:w-full text-xs items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[8.02rem]">
                                                 <Tooltip>
                                                   <div class="font-bold max-sm:w-full   flex md:flex flex-row text-xs">
                                                   <span
@@ -431,7 +432,7 @@ const handleConfirm = (quotationId) => {
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
-                                          <span className="text-[0.65rem] text-[tomato] font-bold">
+                                          <span className="text-[0.65rem] text-[tomato] font-bold ml-1">
                                            {translatedMenuItems[11]} {/* New */}
                                           </span>
                                         ) : null} </span>
@@ -439,13 +440,13 @@ const handleConfirm = (quotationId) => {
                                                   </div>
                                                 </Tooltip>
                                               </div>
-                                              <div className=" ml-2 flex md:w-[6.31rem] max-sm:flex-row w-full max-sm:justify-between text-xs ">
+                                              <div className=" ml-2 flex md:w-[7.31rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between text-xs ">
                                                     {date}
                                                     </div>
                                             </div> 
                                           </div>
                       
-                                          <div class="flex flex-row items-center md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between text-xs">
+                                          <div class="flex flex-row md:w-[9rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between text-xs">
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md: text-xs">
@@ -456,7 +457,7 @@ const handleConfirm = (quotationId) => {
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   text-xs md:w-[18.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   text-xs md:w-[16.01rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -465,13 +466,13 @@ const handleConfirm = (quotationId) => {
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[6.03rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -483,15 +484,16 @@ const handleConfirm = (quotationId) => {
                                             </div>
                                         </div>
                                     
-                                        <div class="flex flex-row items-center md:w-[20.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[14.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
              
                   <Button type="primary"  style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }} 
                   onClick={()=>{  handleRowItem(item); setopenConvertModal(true)}}
                   >
                   <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
+                  <NextPlanIcon  className="!text-icon"/>
                   {translatedMenuItems[13]}  {/* Convert */}
-                              <NextPlanIcon  className="!text-icon"/>
+                       
                               </div>
                      </Button>
                   {/* </Popconfirm> */}
@@ -500,7 +502,7 @@ const handleConfirm = (quotationId) => {
 
                       
                   </div>
-                  <div class="w-5">
+                  <div class="w-[9.40rem] items-center  ml-gap bg-[#eef2f9] h-8 justify-end flex">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>
