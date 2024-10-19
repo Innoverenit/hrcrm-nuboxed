@@ -312,14 +312,14 @@ const TaskCardList = (props) => {
                     {item.priority === "Low" && (
                       <div class="border rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
-                    <div class=" w-5"></div>
+                   
           <div class=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
                                             {/* <div class="text-sm  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs truncate max-w-[4rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                       
+                                            <div class="text-xs truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                       
                                             {item.taskType}
        
                                             </div>
@@ -331,7 +331,7 @@ const TaskCardList = (props) => {
 
                                 <div className=" flex   w-[11.12rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
-                                    <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
+                                    <div class=" text-xs ml-gap font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
                 onClick={() => {
                   props.handleTaskopenModal(true);               
@@ -356,7 +356,7 @@ const TaskCardList = (props) => {
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
-                                <div class="flex  w-[8.1rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                                <div class="flex  w-[6.1rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
                     <ButtonGroup >
@@ -411,6 +411,7 @@ const TaskCardList = (props) => {
                    
                  
                    <div className="flex text-xs w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
+                   <div class="text-xs  font-poppins ml-gap items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}
@@ -418,7 +419,7 @@ const TaskCardList = (props) => {
 {item.contact ? (
   <>{item.contact}</>
 ) : null}        
-
+</div>
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
@@ -490,7 +491,7 @@ const TaskCardList = (props) => {
      </div>
                                         
                    <div class="flex  w-[8.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
-                    <div class=" w-36">
+                    <div class=" w-36 items-center">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>
       <div>

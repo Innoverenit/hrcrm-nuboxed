@@ -100,6 +100,7 @@ function OpportunityAllCardList(props) {
          "170", // "Edit"
           "1259",// "Do you want to delete?"
           "84",// Delete"
+          "1069"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -229,7 +230,7 @@ function OpportunityAllCardList(props) {
         <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
         <div className="  w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>
         <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>
-        <div className="w-[4.1rem] "></div>
+        <div className="w-[4.1rem] ">{translatedMenuItems[12]}</div>
         <div className="w-12"></div>
         </div>
       </div>

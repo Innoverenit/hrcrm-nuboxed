@@ -342,7 +342,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                             {/* </Tooltip> */}
                           </div>
-                          <div class="w-[4%]"></div>
+                       
 
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
@@ -367,10 +367,10 @@ const [rowdata, setrowdata] = useState("");
                           </div>
                         </div>
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[7.54rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {
   
   (item.countryDialCode !== null && item.countryDialCode !== undefined) && 
@@ -399,20 +399,20 @@ const [rowdata, setrowdata] = useState("");
                           {countryCode} */}
                         </div>
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[7.21rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[7.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                        {/* Sector  */}
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.sector}
                         </div>
 
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto    w-[8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto    w-[8rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.source}
                         </div>
 
@@ -494,7 +494,7 @@ const [rowdata, setrowdata] = useState("");
                   
                       
 
-                      <div className=" flex justify-center  w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flex  w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
@@ -509,10 +509,11 @@ const [rowdata, setrowdata] = useState("");
                              
                               >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
+                              <NextPlanIcon className="!text-icon "  />
                               {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}
                                 {item.convertInd === 2 && translatedMenuItems[18]}
-                                <NextPlanIcon className="!text-icon "  />
+                                
                               </div>
                             </Button>
                           )}
@@ -526,9 +527,9 @@ const [rowdata, setrowdata] = useState("");
 {getRelativeTime(item.creationDate)}
 </span></div>
 </div>
-                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                      <div class="flex max-sm:justify-between max-sm:w-wk  items-center justify-end h-8 bg-[#eef2f9]">
                      
-                      <div class="w-4 items-center justify-center h-8 bg-[#eef2f9]">
+                      <div class=" ">
                           <Tooltip title= {translatedMenuItems[12]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
@@ -540,7 +541,7 @@ const [rowdata, setrowdata] = useState("");
                           </Tooltip>
                         </div>
                       
-                        <div class="w-4 items-center justify-center h-8 bg-[#eef2f9]">
+                        <div class=" ">
                           <Tooltip title= {translatedMenuItems[13]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800"
@@ -553,7 +554,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div> 
-                        <div class="items-center justify-center h-8 bg-[#eef2f9]">
+                        <div class="">
                         <Tooltip title= {translatedMenuItems[20]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
@@ -565,7 +566,7 @@ const [rowdata, setrowdata] = useState("");
         /> 
         </Tooltip>  
         </div>
-        <div class="items-center justify-center h-8 bg-[#eef2f9]">
+        <div class="">
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -582,15 +583,15 @@ const [rowdata, setrowdata] = useState("");
                                 </a>
                               </div>
                             )
-                              : <div class=" w-4">
+                              : <div class=" ">
 
                               </div>
                             }
                           </Tooltip>
                           </div>
            
-                          <div class=" items-center justify-center h-8 bg-[#eef2f9]"
-                            style={{ fontSize: "0.8rem" }}
+                          <div class="!text-icon "
+                            // style={{ fontSize: "0.8rem" }}
                             onClick={() => {
                               props.getCustomerDetailsById(item.customerId);
                               props.getCustomerKeySkill(item.customerId);
@@ -605,7 +606,7 @@ const [rowdata, setrowdata] = useState("");
                             />}
                           </div>
                                                        
-                          <div class="w-4 items-center justify-center h-8 bg-[#eef2f9]">
+                          <div class="">
                           <Tooltip title= {translatedMenuItems[15]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
@@ -617,7 +618,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>
-                        <div class="w-4 items-center justify-center h-8 bg-[#eef2f9]">
+                        <div class="">
                           <Tooltip title= {translatedMenuItems[11]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -631,7 +632,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>                                      
                                                
                       
-                        <div class="w-4 items-center justify-center h-8 bg-[#eef2f9]">
+                        <div class="">
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title= {translatedMenuItems[14]}>
                               <BorderColorIcon

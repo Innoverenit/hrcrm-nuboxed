@@ -288,9 +288,7 @@ function OpportunityTeamsCard(props) {
                                   />
         
                              </div>
-                                 <div class="w-[4%]">
-
-                                 </div>
+                              
                                  
                                       <Tooltip>
                                       <div class=" flex max-sm:w-full  flex-row items-center">
@@ -308,9 +306,9 @@ function OpportunityTeamsCard(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex   w-[11rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[11rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-                                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                  <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                   
                                   {item.customer}
                   
@@ -341,7 +339,7 @@ function OpportunityTeamsCard(props) {
 
 
                                   <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                  {dayjs(item.startDate).format("ll")}
+                                  {dayjs(item.startDate).format("YYYY-MM-DD")}
                                   </div>
                               </div>
                            
@@ -432,7 +430,7 @@ strokeColor={"#005075"}
 {getRelativeTime(item.creationDate)}
 </span></div>
                  </div>
-                 <div class="flex max-sm:justify-between max-sm:w-wk h-8 ml-gap bg-[#eef2f9] ">
+                 <div class="flex max-sm:justify-between max-sm:w-wk h-8 ml-gap bg-[#eef2f9] items-center justify-end ">
                  <div>
                   <ReinstateToggleForLost 
           opportunityId={item.opportunityId} 
@@ -490,7 +488,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                   </div>
                 
                
-                  <div class="w-6">
+                  <div >
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
