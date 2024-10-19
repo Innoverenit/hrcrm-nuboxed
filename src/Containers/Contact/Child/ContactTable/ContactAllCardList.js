@@ -269,7 +269,7 @@ if (loading) {
                                     <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
                                     
                                       <div class="text-xs flex text-blue-500  font-poppins  font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+                                      <Link class="overflow-ellipsis flex whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   
@@ -290,9 +290,9 @@ if (loading) {
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk">
 
-                          <div className=" flex  max-sm:w-auto items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[14.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap bg-[#eef2f9] w-[14.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
                              
-                              <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
+                              <div class=" text-xs   ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
                               {item.tagWithCompany}
                               </div>
                           </div>

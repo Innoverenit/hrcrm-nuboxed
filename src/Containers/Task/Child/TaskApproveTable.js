@@ -60,7 +60,7 @@ const TaskApproveTable = (props) => {
           "794" , // "Submitted By",//2
            "112" ,// "Ageing",//3
           "113" , // "Info",//5
-          //  "", // "Assigned On",//5
+           "76", // "Assigned On",//5
         
 
         ];
@@ -160,10 +160,10 @@ const TaskApproveTable = (props) => {
                           {/* Info */}
                           </div>
         <div className="flex justify-center w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]">
-          {/* {translatedMenuItems[5]}  */}
-          Assigned On
+          {translatedMenuItems[5]} On
+          {/* Assigned On */}
                         </div>
-        <div className="w-[8.52rem]"></div>
+       
        
 </div>
 <InfiniteScroll
@@ -205,10 +205,10 @@ const TaskApproveTable = (props) => {
                       class="rounded-[50%] h-6 w-6 bg-[teal]"
                       ></div>
                     )}
-                    <div class=" w-1"></div>
-          <div class=" flex w-[7.1rem]   justify-center h-8 ml-gap bg-[#eef2f9] items-center max-sm:w-full">
+                   
+          <div class=" flex w-[11.1rem]   justify-center h-8 ml-gap bg-[#eef2f9] items-center max-sm:w-full">
                                         <Tooltip>
-                                        <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
+                                        <div class=" flex max-sm:justify-between flex-row  md:flex-col">
                                             {/* <div class="text-sm  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
@@ -270,7 +270,7 @@ const TaskApproveTable = (props) => {
                                 <div className=" flex  w-[5.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned On</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
-                                    <span>{` ${dayjs(item.assignedOn).format("ll")}`}</span>
+                                    <span>{` ${dayjs(item.assignedOn).format("YYYY-MM-DD")}`}</span>
                                     </div>
                                 </div>
                                 

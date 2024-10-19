@@ -148,7 +148,7 @@ const getLocation = () => {
       <div class="rounded  justify-between m-1  max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
          <div className=" flex  w-[100%]  max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" flex justify-between text-xs font-poppins w-[93%]">
+          <div className=" flex justify-between text-xs font-poppins w-[90%]">
         <div className="flex justify-center w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
         {translatedMenuItems[0]} {/* <FormattedMessage
                   id="app.type"
@@ -222,7 +222,7 @@ const getLocation = () => {
                                             {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs   font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">                                       
+                                            <div class="text-xs items-center ml-gap font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">                                       
                                             {item.eventType}
        
                                             </div>
@@ -234,19 +234,19 @@ const getLocation = () => {
 
                                 <div className=" flex  w-[15.26rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
-                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">   
+                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">   
                                     {item.eventSubject}
                                     </div>
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex w-[11.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[7.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.6rem] max-lg:w-[5.6rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex w-[5.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[6.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}

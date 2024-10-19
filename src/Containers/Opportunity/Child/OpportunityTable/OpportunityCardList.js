@@ -259,8 +259,8 @@ console.log(props.userDetails.imageId)
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7.5rem] 
                   text-[#444444] m-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-        <div class="flex items-center flex-no-wrap h-[2.81em]">
-          <div class=" flex basis-[15%] mr-[0.2rem]" >
+        <div class="flex items-center flex-no-wrap h-16">
+          <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
             <MultiAvatar
               primaryTitle={item.opportunityName}
               imageId={item.imageId}
@@ -293,7 +293,7 @@ title={`${item.opportunityName}`}>
           </div>
        
         </div>
-        <div className="flex justify-between max-sm:justify-between">
+        <div className="flex justify-between max-sm:justify-between h-15">
           <div>
           {item.customer && (
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
@@ -377,7 +377,7 @@ width={30}
 </Dropdown>
 </span>
 </div>
-<div>
+<div className=" flex items-center">
 {<CurrencySymbol currencyType={item.currency} />}
             &nbsp;{  item.proposalAmount || ""}
   </div>
@@ -482,7 +482,7 @@ imgHeight={"1.8rem"}
 )}
 </div>
 <div class="flex items-center">
-<div class="w-6">
+<div >
 <MailOutlineIcon className="!text-icon"
                 type="mail"
                 style={{ cursor: "pointer" }}
@@ -493,7 +493,7 @@ imgHeight={"1.8rem"}
               />
   </div>
 
-  <div class="w-6">
+  <div >
 <MonitorHeartIcon className="!text-icon"
                 type="mail"
                 style={{ cursor: "pointer" }}
@@ -504,7 +504,7 @@ imgHeight={"1.8rem"}
               />
   </div>
 
-<div class="w-6">
+<div >
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>

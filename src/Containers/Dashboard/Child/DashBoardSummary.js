@@ -127,7 +127,7 @@ const DashBoardSummary=(props) =>{
                   
                   </p>
               </div>
-              <p className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded">
+              <p className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded max-h-max">
               {`${dayjs(deal.endDate).format("DD/MM/YYYY")}`}
                 </p>
             </div>
@@ -138,7 +138,7 @@ const DashBoardSummary=(props) =>{
       </div>
 {/* <div class="relative   sm:after:content-[''] sm:after:absolute sm:after:w-[3px] sm:after:min-h-[500vh] sm:after:bg-black sm:after:right-[-1rem]"></div> */}
       {/* QUOTATION */}
-      <div class="flex flex-col border-l-2 box-border border-black ml-2">
+      <div class="flex flex-col">
   <h2 className="text-xl font-bold mb-4 ">
   QUOTATION -
   ({`${props.quotationDashboardCount.countByUserId} `})
@@ -165,8 +165,8 @@ const DashBoardSummary=(props) =>{
     
 
   {/* Re Order */}
-  <div class="flex flex-col border-l-2 box-border border-black ml-2">
-        <h2 className="text-xl font-bold mb-4"> Re Order-(0) </h2>
+  <div class="flex flex-col ">
+        <h2 className="text-xl font-bold mb-4"> RE-ORDER-(0) </h2>
         {props.reOrderData.map((colleague, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
             <div className="flex justify-between">
@@ -183,8 +183,8 @@ const DashBoardSummary=(props) =>{
       </div>
 
          {/* Best Before */}
-         <div class="flex flex-col border-l-2 box-border border-black ml-2">
-        <h2 className="text-xl font-bold mb-4"> Best Before-(2) </h2>
+         <div class="flex flex-col ">
+        <h2 className="text-xl font-bold mb-4"> BEST BEFORE-(2) </h2>
         {props.materialBestBefore.map((colleague, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
             <div className="flex justify-between">
@@ -202,7 +202,7 @@ const DashBoardSummary=(props) =>{
 
 
         {/* ORDER */}
-        <div class="flex flex-col border-l-2 box-border border-black ml-2">
+        <div class="flex flex-col">
         <h2 className="text-xl font-bold mb-4">ORDER-(6)</h2>
         {data.notInCrm.map((contact, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
@@ -217,7 +217,7 @@ const DashBoardSummary=(props) =>{
       </div>
 
       {/* DEALS */}
-      <div class="flex flex-col border-l-2 box-border border-black ml-2">
+      {/* <div class="flex flex-col border-l-2 box-border border-black ml-2">
         <h2 className="text-xl font-bold mb-4"> DEALS-(5) </h2>
         {data.colleagues.map((colleague, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
@@ -231,7 +231,7 @@ const DashBoardSummary=(props) =>{
             <p className="text-sm text-gray-500">{colleague.description}</p>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>   
   );
 };
