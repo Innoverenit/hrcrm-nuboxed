@@ -12,7 +12,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url } from "../../../Config/Auth";
 import { handleOrderDetailsModal, handleLeadModal,
  
    } from "../Account/AccountAction";
@@ -35,7 +34,6 @@ import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidBu
 import { PersonAddAlt1 } from "@mui/icons-material";
 import AddLeadModal from "./AddLeadModal";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { BundleLoader } from "../../../Components/Placeholder";
 import OrderSearchedData from "./OrderSearchedData";
 const { Option } = Select;
 
@@ -67,10 +65,8 @@ function OrderTableByUserID(props) {
               "260",  // ' Units', // 4
               "77", // 'Owner', // 5
               "676",  // ' Supervisor',6
-              "677",   // 'Lead',7
-               
-              "679",    // 'Created',8
-              
+              "677",   // 'Lead',7              
+              "679",    // 'Created',8            
               "108",  // "Normal"9
                  "100",     // New10
                  "1272",   // Add Lead11
@@ -124,11 +120,7 @@ function OrderTableByUserID(props) {
     }
     }, 100);
   };
-//   const handleLoadMoreMedium = () => {
-//     setPage(page + 1);
-   
-//     props.getRepairMediumOrderList(props.userId, page,"Medium");
-// };
+
 const handleLoadMoreMedium = () => {
   const callPageMapd = props.repairMediumCompleteOrder && props.repairMediumCompleteOrder.length &&props.repairMediumCompleteOrder[0].pageCount
   setTimeout(() => {
@@ -150,10 +142,7 @@ const handleLoadMoreMedium = () => {
   }
   }, 100);
 };
-// const handleLoadMoreLow = () => {
-//     setPage(page + 1);
-//     props.getRepairLowOrderList(props.userId, page,"Low");
-// };
+
 const handleLoadMoreLow = () => {
   const callPageMapd = props.repairLowCompleteOrder && props.repairLowCompleteOrder.length &&props.repairLowCompleteOrder[0].pageCount
   setTimeout(() => {
@@ -177,17 +166,7 @@ const handleLoadMoreLow = () => {
 };
 const exportPDFAnnexure = async () => {
   var doc = new jsPDF();
-  // const {
-  //   userDetails:
-  //   {address},
-  //     imageId
-  // }=props
- 
-  // let cityd=`${address.city}`
-  // let countryd=`${address.country}`
-  // let addressde=`${address.state}`
-  // let cityde=`${address.street}`
-  // var imageUrl = `${base_url}/image/${imageId || ""}`;
+
   var name1 = `East Repair Inc `
   var name2 =`1912 Harvest Lane New York ,NY 12210`
   var name3 =`BILL TO`
@@ -215,11 +194,7 @@ const exportPDFAnnexure = async () => {
   doc.text(name1, 8, 25);
   doc.setFontSize(10);
   let yPosition = 32;
-//   address.forEach(item => {
-//     doc.text(` ${item.city}  ${item.country}  ${item.state}  ${item.street}`, 8, yPosition);
-//     yPosition += 4
-// });
-  // doc.text(name2, 8, 32);
+
   doc.setFontSize(12);
   doc.text(name3, 8, 50);
   doc.text(name4, 60, 50);
@@ -270,14 +245,9 @@ const exportPDFAnnexure = async () => {
           <div className=" w-[8.031rem] md:w-[5.031rem]">{translatedMenuItems[8]}</div>
           <div className=" w-[5.73rem] md:w-[5.73rem]">{translatedMenuItems[5]}</div>
           <div className="w-[5.8rem] md:w-[5.8rem]">{translatedMenuItems[6]}</div>
-          <div className=" w-[9.8rem] md:w-[9.8rem]">{translatedMenuItems[7]}</div>
-         
-          
+          <div className=" w-[9.8rem] md:w-[9.8rem]">{translatedMenuItems[7]}</div>               
           </div>
-                    </div>
-
-                    {/* <div class="overflow-x-auto h-[64vh]"> */}
-                   
+                    </div>                           
                     <InfiniteScroll
           dataLength={props.repairHighCompleteOrder.length}
           next={handleLoadMore}
@@ -301,9 +271,9 @@ const exportPDFAnnexure = async () => {
                max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500
                 bg-white mt-1 h-8 items-center  max-sm:h-24 max-sm:    scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                  <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full border-l-2 border-green-500 bg-[#eef2f9]  ">
+                  <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full border-l-2 border-green-500 bg-[#eef2f9] justify-center  ">
                                                         <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:">
+                                                            <div class="flex max-sm:flex-row justify-center w-full md:">
                                                                 <div class="  text-blue-500  font-poppins font-bold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -319,10 +289,10 @@ const exportPDFAnnexure = async () => {
                                                     </div>
                     <div className=" flex  font-bold  w-wk   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[9.43rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                        <div class="w-[9.43rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
                           <Badge size="small" count={item.count}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
+                              class="underline cursor-pointer text-[#1890ff] ml-gap font-bold text-xs "
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -340,9 +310,9 @@ const exportPDFAnnexure = async () => {
                               ) : null}
                         </div>
                         {props.user.accountInfoInd?
-                        <div class="max-sm:w-full md:w-[7.02rem] font-bold  items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                        <div class="max-sm:w-full md:w-[7.02rem] font-bold  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:text-xs">
+                            <div class="max-sm:w-full justify-between ml-gap flex md:text-xs">
                               {item.distributorName}
                             </div>
                           </Tooltip>
@@ -553,9 +523,9 @@ const exportPDFAnnexure = async () => {
                 <div className="flex rounded justify-between max-sm:  mt-1 bg-white h-8 items-center   max-sm:rounded-lg max-sm:h-[9rem]
                 max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                  <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                  <div className=" flex items-center md:w-[4.26rem] max-sm:w-full border-l-2 border-green-500 bg-[#eef2f9] ">
+                  <div className=" flex items-center md:w-[4.26rem] max-sm:w-full border-l-2 border-green-500 bg-[#eef2f9] justify-center ">
                          <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:">
+                                                            <div class="flex max-sm:flex-row justify-center w-full md:">
                                                                 <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -571,10 +541,10 @@ const exportPDFAnnexure = async () => {
                     </div>
                     <div className=" flex   w-wk   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[9.43rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                        <div class="w-[9.43rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
                           <Badge size="small" count={item.count}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
+                              class="underline cursor-pointer text-[#1890ff] ml-gap font-bold text-xs"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
