@@ -166,7 +166,7 @@ const EventActionLeft = (props) => {
               color: props.viewType === "all" && "#1890ff",
             }}
           >
-             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+             <Avatar style={{ background: props.clickView === "all" ? "#f279ab" : "#28a355" }}>
           <div className="text-white "> ALL</div>
            </Avatar>
           </span>

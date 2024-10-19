@@ -108,8 +108,8 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
         </div>
         <div className="flex justify-center w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
         <div className=" flex justify-center w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[3]}</div>
-        <div className="flex justify-center w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[4]}</div>
-        <div className="flex justify-center w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[5]}</div>
+        <div className="flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[4]}</div>
+        <div className="flex justify-center w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[5]}</div>
         <div className=" flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div> 
         <div className=" flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[7]} </div>
          {/* <div className="w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[8]}</div> */}
@@ -141,19 +141,19 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               <div class="flex  w-[8.9rem]  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
-            <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callType}</div>
+            <div className=" flex items-center ml-gap max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callType}</div>
             </div>
             <div class="flex w-[14.8rem] items-center justify-start h-8 bg-[#eef2f9] ml-gap text-xs max-xl:w-[9.8rem] max-lg:w-[7.3rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
-            <div className="max-xl:text-[0.65rem] text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callPurpose}</div>
+            <div className="max-xl:text-[0.65rem] ml-gap text-xs max-lg:text-[0.45rem] max-sm:text-sm"> {item.callPurpose}</div>
               </div>
-              <div class="flex w-[7.5rem] ml-gap items-center justify-center h-8 bg-[#eef2f9] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
+              <div class="flex w-[10.5rem] ml-gap items-center justify-center h-8 bg-[#eef2f9] max-xl:w-[4.8rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:justify-between max-sm:w-auto">
       
               <MultiAvatar2
                     primaryTitle={item.contactName}
                     // imageId={item.ownerImageId}
                     imageURL={item.imageURL}
-                    imgWidth={"1.8em"}
-                    imgHeight={"1.8em"}
+                    imgWidth={"1.8rem"}
+                    imgHeight={"1.8rem"}
                   /> 
               </div>
               </div>
@@ -228,7 +228,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
            <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  items-center font-poppins">
                             {/* {date} */}
-                            <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                            <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
 </svg>

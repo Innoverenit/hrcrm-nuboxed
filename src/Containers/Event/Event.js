@@ -6,7 +6,7 @@ import { handleEventModal } from "./EventAction";
 const AddEventModal = lazy(() => import('./Child/AddEventModal'))
 const EventHeader = lazy(() => import('./Child/EventHeader'))
 const EventCardList = lazy(() => import('./Child/EventTable/EventCardList'))
-
+const EventAllCardList = lazy(() => import('./Child/EventTable/EventAllcardList'))
 function Event (props) {
    
         const { addEventModal, handleEventModal } = props;
@@ -36,7 +36,10 @@ const [clickView,setclickView]=useState("table");
                      translateText={props.translateText}
                      />:
 clickView==="all" ?
-                    <h2>Hello All</h2> 
+                    <EventAllCardList
+                    selectedLanguage={props.selectedLanguage}
+                     translateText={props.translateText}/>
+                    // <h2>Hello All</h2> 
                     :null}
                 </Suspense>
             </React.Fragment>
