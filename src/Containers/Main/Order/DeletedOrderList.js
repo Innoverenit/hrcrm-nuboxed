@@ -18,7 +18,6 @@ import {
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url } from "../../../Config/Auth";
 import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
@@ -58,10 +57,8 @@ function DeletedOrderList(props) {
               "260",  // ' Units', // 4
               "77", // 'Owner', // 5
               "676",  // ' Supervisor',
-              "677",   // 'Lead',
-               
-              "679",    // 'Created',
-              
+              "677",   // 'Lead',            
+              "679",    // 'Created',             
               "108",  // "Normal"
 
 
@@ -208,7 +205,7 @@ const exportPDFAnnexure = async () => {
               
                 <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
                 <div className="font-bold font-poppins text-xs md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-                        <div className="font-bold font-poppins text-xs md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+                        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
           <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
           <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
           <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
@@ -236,13 +233,13 @@ const exportPDFAnnexure = async () => {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
                 >
                   <div class="flex ">
-                  <div className=" flex   md:w-[4.26rem]  items-center max-sm:w-full  ">
+                  <div className=" flex   md:w-[4.26rem] border-l-2 border-green-500 bg-[#eef2f9] justify-center  items-center max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -262,7 +259,7 @@ const exportPDFAnnexure = async () => {
                                                     </div>
                     <div className=" flex  w-wk   max-sm:w-full">
                       <div className="flex  justify-center max-sm:w-full">
-                        <div class="w-[9.43rem]">
+                        <div class="w-[9.43rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                           <Badge size="small" count={item.productNum}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
@@ -284,7 +281,7 @@ const exportPDFAnnexure = async () => {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[9.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
@@ -295,7 +292,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[3.23rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.23rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -311,7 +308,7 @@ const exportPDFAnnexure = async () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex   md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[3.31rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
@@ -319,7 +316,7 @@ const exportPDFAnnexure = async () => {
 
 
                   </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[5.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                   <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
@@ -337,7 +334,7 @@ const exportPDFAnnexure = async () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -351,7 +348,7 @@ const exportPDFAnnexure = async () => {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[6.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -388,29 +385,29 @@ const exportPDFAnnexure = async () => {
 
                   </div>
                 
-                  <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                  <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <ReInstateOrderToggle item={item} />
 
 </div>
                   <div class="flex">
-                    <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[0.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
+                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                       {item.orderStatus}
                     </div>
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
-                    <div class="w-6">
+                    <div class="w-6 items-center justify-center h-8  bg-[#eef2f9]">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div>        
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins items-center justify-center h-8   bg-[#eef2f9]">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                              className=" !text-icon cursor-pointer text-green-800"
@@ -427,7 +424,7 @@ const exportPDFAnnexure = async () => {
                     </div>
 
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer"
@@ -440,7 +437,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                                   className=" !text-icon cursor-pointer "
@@ -454,7 +451,7 @@ const exportPDFAnnexure = async () => {
 
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Collection">
                           <PaidIcon
                                   className=" !text-icon cursor-pointer text-[#e5625e]"
@@ -543,10 +540,10 @@ const exportPDFAnnexure = async () => {
                                                     </div>
                     <div className=" flex  w-wk   max-sm:w-full">
                       <div className="flex  items-centermax-sm:w-full">
-                        <div class="w-[9.43rem]">
+                        <div class="w-[9.43rem] items-center justify-center ml-gap bg-[#eef2f9] h-8">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
+                              class="underline cursor-pointer text-[#1890ff] ml-tiny text-xs font-bold items-center"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -565,7 +562,7 @@ const exportPDFAnnexure = async () => {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[9.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem] items-center justify-center ml-gap bg-[#eef2f9] h-8">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
@@ -576,7 +573,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[3.23rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.23rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -592,7 +589,7 @@ const exportPDFAnnexure = async () => {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex   md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[3.31rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
@@ -600,7 +597,7 @@ const exportPDFAnnexure = async () => {
 
 
                   </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[5.03rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                   <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
@@ -619,7 +616,7 @@ const exportPDFAnnexure = async () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.02rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -633,7 +630,7 @@ const exportPDFAnnexure = async () => {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[6.02rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -670,22 +667,22 @@ const exportPDFAnnexure = async () => {
 
                   </div>
                   
-                  <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                  <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <ReInstateOrderToggle item={item} />
 
 </div>
                   <div class="flex">
-                    <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full   items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
+                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8  items-center justify-center ml-gap bg-[#eef2f9] h-8 justify-cente">
                       {item.orderStatus}
                     </div>
-                    <div class="w-6">
+                    <div class="w-6  items-center justify-center  bg-[#eef2f9] h-8">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
@@ -693,7 +690,7 @@ const exportPDFAnnexure = async () => {
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
 
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                            className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
@@ -710,7 +707,7 @@ const exportPDFAnnexure = async () => {
                     </div>
 
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer max-sm:!text-2xl"
@@ -723,7 +720,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                              className=" !text-icon cursor-pointer max-sm:!text-2xl "
@@ -737,7 +734,7 @@ const exportPDFAnnexure = async () => {
 
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Collection">
                           <PaidIcon
                              className=" !text-icon cursor-pointer text-[#e5625e] max-sm:!text-2xl "

@@ -265,7 +265,7 @@ function AccountDetailsTab(props) {
                              <span onClick={() => handleOrderClick(false)}>
                                         <Tooltip title={translatedMenuItems[15]}>
                                             <OnDeviceTrainingIcon
-                                                className="!text-icon text-[#81968f] cursor-pointer"
+                                                className="!text-icon text-[#157a6e] cursor-pointer"
                                             />
                                             <span class="ml-1 !text-tab font-poppins ">
                                             {translatedMenuItems[1]}   {/* Repair */}
