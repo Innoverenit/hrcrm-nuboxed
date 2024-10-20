@@ -142,7 +142,7 @@ function AccountDeleteTable(props) {
     <div class="flex md:items-center"> 
 
 </div>
-<div class="flex  w-[2%] items-center justify-center h-8 bg-[#eef2f9] max-sm:flex-row max-sm:w-[6%]">
+<div class="flex  w-[2%] items-center justify-center h-8 bg-[#eef2f9] ml-gap max-sm:flex-row max-sm:w-[6%]">
                    <div>
                    <Tooltip title="Activity">
                         <span>
