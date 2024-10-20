@@ -4,6 +4,9 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 
 const CustomerCallActivityForm = lazy(() =>
   import("../CustomerActivity/CustomerCallActivityForm")
@@ -64,7 +67,9 @@ const AddCustomerActivityModal = (props) => {
               <TabPane
                 tab={
                   <span>
-                   <i class="fas fa-phone-square"></i>&nbsp;
+                <VolumeUpIcon        
+              className='!text-icon mr-1'
+              />
                     Calls
                   </span>
                 }
@@ -85,7 +90,9 @@ const AddCustomerActivityModal = (props) => {
               <TabPane
                 tab={
                   <span>
-                    <i class="fas fa-tasks"></i>&nbsp;
+                     <EventAvailableIcon
+              className='!text-icon mr-1 '
+              />
                     Events
                   </span>
                 }
@@ -105,7 +112,9 @@ const AddCustomerActivityModal = (props) => {
               <TabPane
                 tab={
                   <span>
-                    <i class="far fa-calendar-check"></i>&nbsp;
+                     <FactCheckIcon
+              className='!text-icon mr-1 '
+              />
                     Tasks
                   </span>
                 }

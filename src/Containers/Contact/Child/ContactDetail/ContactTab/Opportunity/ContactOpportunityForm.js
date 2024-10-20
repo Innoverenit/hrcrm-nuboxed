@@ -404,8 +404,8 @@ const filteredEmployeesData = AllEmplo.filter(
           values,
           ...res
         }) => (
-          <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
-          <Form className="form-background">
+          <div class="overflow-y-auto  overflow-x-hidden max-sm:h-[30rem]">
+          <Form className="form-background h-[40rem]">
             <div class=" flex justify-between max-sm:flex-col">
               <div class=" h-full w-[47.5%]  max-sm:w-wk">
               <div className="font-bold font-poppins  text-black text-xs">{translatedMenuItems[0]}</div>
@@ -634,7 +634,7 @@ const filteredEmployeesData = AllEmplo.filter(
             </div>
          
                         </div>                         
-                <div class=" mt-3" />
+                <div class=" mt-1" />
 
                 <div class="flex justify-between max-sm:flex-col">
                   <div class=" w-w47.5 max-sm:w-wk">
@@ -658,7 +658,7 @@ const filteredEmployeesData = AllEmplo.filter(
                       />
                     </div>
                   </div>
-                  <div class=" mt-3" />
+                  <div class=" mt-1" />
                   <div class=" w-w47.5 max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins text-black">
                     {translatedMenuItems[9]}
@@ -706,7 +706,7 @@ const filteredEmployeesData = AllEmplo.filter(
                 htmlType="submit"
                 loading={props.addingContactOpportunity}
               >
-                <div class=" text-xs font-bold font-poppins text-black">
+                <div class=" text-xs font-bold font-poppins">
                 {translatedMenuItems[10]}</div>
                 {/* Create */}
               </Button>

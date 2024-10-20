@@ -70,13 +70,13 @@ const DashBoardSummary=(props) =>{
       {/* TASK */}
       <div class="flex flex-col">
         <h2 className="text-xl font-bold mb-4">TASK-({`${props.taskperCount.totalTask} `})</h2>
-        <div className="overflow-y-auto max-h-96">
+        <div className="overflow-y-auto max-h-[78vh]">
         {props.tasksdashboardGantt.map((deal, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ">
             <div className="flex justify-between">
               <div>
-                <p className="font-semibold">{deal.taskName}</p>
-                <p className="text-sm text-gray-500">
+                <div className="font-semibold">{deal.taskName}</div>
+                <div className="text-sm text-gray-500 font-poppins">
                 <ButtonGroup >
          
          <StatusIcon class=" !text-icon"
@@ -125,13 +125,13 @@ const DashBoardSummary=(props) =>{
                   
                   
                   
-                  </p>
+                  </div>
               </div>
-              <p className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded max-h-max">
+              <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded max-h-max">
               {`${dayjs(deal.endDate).format("DD/MM/YYYY")}`}
-                </p>
+                </div>
             </div>
-            {/* <p className="text-green-600 font-bold bg-green-100 inline-block px-2 py-1 rounded">${deal.amount}</p> */}
+            {/* <div className="text-green-600 font-bold bg-green-100 inline-block px-2 py-1 rounded">${deal.amount}</div> */}
           </div>
         ))}
         </div>
@@ -144,18 +144,20 @@ const DashBoardSummary=(props) =>{
   ({`${props.quotationDashboardCount.countByUserId} `})
 </h2>
   {props.quotationDashboard.length === 0 ? (
-    <p>No data found</p>
+    <div>No data found</div>
   ) : (
     props.quotationDashboard.map((lead, index) => (
       <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
         <div className="flex justify-between">
-          <p className="font-semibold">{lead.quotationId}</p>
-          <p className="text-sm text-gray-500">{lead.time}</p>
+          <div className="font-semibold">{lead.quotationId}</div>
+          <div className="text-sm text-gray-500 font-poppins">{lead.time}</div>
           
         </div>
-        <p className="text-sm text-gray-500">{lead.amount}</p>
-        <p className="text-sm text-gray-500">{lead.contactPersonName}</p>
+        <div className="text-sm text-gray-500 font-poppins">{lead.amount}</div>
+        <div class="flex justify-between">
+        <div className="text-sm text-gray-500 font-poppins">{lead.contactPersonName}</div>
         <Button>To Order</Button>
+        </div>
       </div>
     ))
   )}
@@ -170,13 +172,13 @@ const DashBoardSummary=(props) =>{
         {props.reOrderData.map((colleague, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
             <div className="flex justify-between">
-              <p className="font-semibold">{colleague.suppliesFullName} {colleague.batchNo}</p>
-              <p className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded">
+              <div className="font-semibold">{colleague.suppliesFullName} {colleague.batchNo}</div>
+              <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded">
              {colleague.reorderLevel}
-                </p>
+                </div>
             </div>
-            <p className="text-sm text-gray-500">{colleague.zone} {colleague.aisle} {colleague.chamber} </p>
-            <p className="text-sm text-gray-500">{colleague.locationName}</p>
+            <div className="text-sm text-gray-500 font-poppins">{colleague.zone} {colleague.aisle} {colleague.chamber} </div>
+            <div className="text-sm text-gray-500 font-poppins">{colleague.locationName}</div>
             <Button>Create PO</Button>
           </div>
         ))}
@@ -188,14 +190,16 @@ const DashBoardSummary=(props) =>{
         {props.materialBestBefore.map((colleague, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
             <div className="flex justify-between">
-              <p className="font-semibold">{colleague.suppliesFullName} {colleague.batchNo}</p>
-              <p className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded">
+              <div className="font-semibold">{colleague.suppliesFullName} {colleague.batchNo}</div>
+              <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded">
               {`${dayjs(colleague.bestBeforeUse).format("DD/MM/YYYY")}`}
-                </p>
+                </div>
             </div>
-            <p className="text-sm text-gray-500">{colleague.newPoNumber} {colleague.hsn} </p>
-                      <p className="text-sm text-gray-500">{colleague.zone} {colleague.aisle} {colleague.chamber} </p>
+            <div className="text-sm text-gray-500 font-poppins">{colleague.newPoNumber} {colleague.hsn} </div>
+            <div class="flex justify-between">
+                      <div className="text-sm text-gray-500 font-poppins">{colleague.zone} {colleague.aisle} {colleague.chamber} </div>
             <Button>To Waste</Button>
+            </div>
           </div>
         ))}
       </div>
@@ -207,10 +211,10 @@ const DashBoardSummary=(props) =>{
         {data.notInCrm.map((contact, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
             <div className="flex justify-between">
-              <p className="font-semibold">{contact.name}</p>
-              <p className="text-sm text-gray-500">{contact.time}</p>
+              <div className="font-semibold">{contact.name}</div>
+              <div className="text-sm text-gray-500 font-poppins">{contact.time}</div>
             </div>
-            <p className="text-sm text-gray-500">{contact.description}</p>
+            <div className="text-sm text-gray-500 font-poppins">{contact.description}</div>
             
           </div>
         ))}
@@ -222,13 +226,13 @@ const DashBoardSummary=(props) =>{
         {data.colleagues.map((colleague, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
             <div className="flex justify-between">
-              <p className="font-semibold">{colleague.name}  </p>
-              <p className="text-sm text-gray-500">
+              <div className="font-semibold">{colleague.name}  </div>
+              <div className="text-sm text-gray-500 font-poppins">
                 {colleague.date}
                 
-                </p>
+                </div>
             </div>
-            <p className="text-sm text-gray-500">{colleague.description}</p>
+            <div className="text-sm text-gray-500 font-poppins">{colleague.description}</div>
           </div>
         ))}
       </div> */}

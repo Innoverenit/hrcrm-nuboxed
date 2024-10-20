@@ -83,6 +83,8 @@ export const addCustomer = (customer) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Prospect created Successfully!',
+        showConfirmButton: false,
+        timer: 2000
       })
       // Swal.fire({
       //   icon: 'success',

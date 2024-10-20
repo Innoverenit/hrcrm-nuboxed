@@ -5,7 +5,6 @@ import { Button, Tooltip } from "antd";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import {getDataRoom} from "./DataRoomAction";
-import InventoryTreeMap from "./InventoryTreeMap"
 import CountryFlag1 from "../Settings/Category/Country/CountryFlag1";
 
 const DataRoomCard = (props) => {

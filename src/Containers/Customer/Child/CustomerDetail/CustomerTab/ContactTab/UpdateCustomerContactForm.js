@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import { Button, Select, } from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { updateCustomerContact } from "../../../../CustomerAction";
 import PostImageUpld from "../../../../../../Components/Forms/Formik/PostImageUpld";
@@ -217,14 +215,15 @@ class UpdateCustomerContactForm extends Component {
                     <div  class=" flex flex-nowrap mt-3">
                       <FastField name="imageId" component={PostImageUpld} />
                       <div>
-                      <div class=" flex justify-between">
+                      <div class=" flex justify-between ml-1 ">
                         {/* salutation */}
                           <div class=" w-full">
+                          <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[0]}</div>
                             <FastField
                               isRequired
                               name="firstName"
                               // label="First Name"
-                              label={this.state.translatedMenuItems[0]}
+                          
                               type="text"
                               width={"100%"}
                               isColumn
@@ -235,11 +234,12 @@ class UpdateCustomerContactForm extends Component {
                         </div>
                         
                         <div class=" flex justify-between mt-3">
-                          <div class=" w-2/5">
+                          <div class=" w-2/5 ml-1 ">
+                          <div class="font-bold font-poppins  text-xs">{this.state.translatedMenuItems[1]}</div>
                             <FastField
                               name="middleName"
                               //label="Middle Name"
-                              label={this.state.translatedMenuItems[1]}
+                      
                               type="text"
                               width={"100%"}
                               isColumn
@@ -247,11 +247,11 @@ class UpdateCustomerContactForm extends Component {
                               inlineLabel
                               />
                           </div>
-                          <div class=" w-7/12">
+                          <div class=" w-7/12 ml-1 ">
+                          <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[2]}</div>
                             <FastField
                               name="lastName"
-                              //label="Last Name"
-                              label={this.state.translatedMenuItems[2]}
+                              //label="Last Name"               
                               type="text"
                               width={"100%"}
                               isColumn
@@ -264,11 +264,11 @@ class UpdateCustomerContactForm extends Component {
                     </div>
                     <div class=" flex justify-between">
                       <div class=" w-2/5">
+                      <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[3]}</div>
                         <FastField
                           name="countryDialCode"
                           isColumnWithoutNoCreate
-                          //label="Mobile #"
-                          label={this.state.translatedMenuItems[3]}
+                          //label="Mobile #"                  
                           isColumn
                           selectType="dialCode"
                           component={SearchSelect}
@@ -280,11 +280,11 @@ class UpdateCustomerContactForm extends Component {
                          />
                       </div>
                       <div class=" w-2/4">
+                      <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[4]}</div>
                         <FastField
                           type="text"
                           name="mobileNumber"
-                          //placeholder="Mobile #"
-                          label={this.state.translatedMenuItems[4]}
+                          //placeholder="Mobile #"                   
                           component={InputComponent}
                           inlineLabel
                           width={"100%"}
@@ -294,12 +294,12 @@ class UpdateCustomerContactForm extends Component {
                     </div>
                     <div class=" flex justify-between">
                       <div class=" w-2/5">
+                      <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[5]}</div>
                         <FastField
                           name="countryDialCode1"
                           isColumnWithoutNoCreate
                           selectType="dialCode"
-                          //label="Phone No #"
-                          label={this.state.translatedMenuItems[5]}
+                          //label="Phone No #"                     
                           isColumn
                           component={SearchSelect}
                           defaultValue={{
@@ -310,11 +310,10 @@ class UpdateCustomerContactForm extends Component {
                           />
                       </div>
                       <div class=" w-2/4">
+                      <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[6]}</div>
                         <FastField
                           type="text"
-                          name="whatsappNumber"
-                          // placeholder="Phone #"
-                          label={this.state.translatedMenuItems[6]}
+                          name="whatsappNumber"                     
                           isColumn
                           component={InputComponent}
                           inlineLabel
@@ -326,12 +325,12 @@ class UpdateCustomerContactForm extends Component {
                   
                     <div class=" flex justify-between mt-3">
                       <div class=" w-full">
+                      <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[7]}</div>
                         <FastField
                           isRequired
                           type="email"
                           name="emailId"
                           //label="Email"
-                          label={this.state.translatedMenuItems[7]}
                           className="field"
                           isColumn
                           width={"100%"}
@@ -343,11 +342,11 @@ class UpdateCustomerContactForm extends Component {
               
                     <div class=" flex justify-between mt-3">
                       <div class=" w-full">
+                      <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[8]}</div>
                         <FastField
                           type="text"
                           name="linkedinPublicUrl"
                           //label="Linkedin "
-                          label={this.state.translatedMenuItems[8]}
                           isColumn
                           width={"100%"}
                           component={InputComponent}
@@ -360,12 +359,12 @@ class UpdateCustomerContactForm extends Component {
                     <div class=" flex justify-between mt-3">
                     <div class="  w-w47.5">
                         <>
+                        <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[9]}</div>
                         <Field
                     name="customerId"
                     selectType="customerList"
                     isColumnWithoutNoCreate
                     // label="Tag Company"
-                    label={this.state.translatedMenuItems[9]}
                     component={SearchSelect}
                     isColumn
                     value={values.customerId}
@@ -382,10 +381,10 @@ class UpdateCustomerContactForm extends Component {
 
                     <div class=" flex justify-between">
                     <div class="  w-w47.5">
+                    <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[10]}</div>
                         <FastField
                          name="designationTypeId"
                          //label="Designation"
-                         label={this.state.translatedMenuItems[10]}
                          selectType="designationType"
                            isColumn
                          component={SearchSelect}
@@ -395,10 +394,10 @@ class UpdateCustomerContactForm extends Component {
                         />
                      </div>
                      <div class="w-w47.5">
+                     <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[11]}</div>
                       <FastField
                         name="departmentId"
                         //label="Department"
-                        label={this.state.translatedMenuItems[11]}
                         isColumn
                         isColumnWithoutNoCreate
                         component={SearchSelect}
@@ -425,11 +424,11 @@ class UpdateCustomerContactForm extends Component {
                       />
                     )}
                   /> */}
-                  <div class=" mt-3">          
+                  <div class=" mt-3">    
+                  <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[12]}</div>      
                     <Field
                       name="notes"
                       // label="Notes"
-                      label={this.state.translatedMenuItems[12]}
                       width={"100%"}
                       isColumn
                       component={TextareaComponent}

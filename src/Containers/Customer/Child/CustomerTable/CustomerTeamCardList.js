@@ -504,11 +504,11 @@ const [rowdata, setrowdata] = useState("");
                           cancelText="No"
                         >
                           {user.erpInd === true && (
-                            <Button type="primary"
-                              style={{ width: "6.5rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                            <Button className="justify-start" type="primary"
+                              style={{ width: "7rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
                              
                               >
-                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
+                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex  items-center  w-wk" >
                               <NextPlanIcon className="!text-icon "  />
                               {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}
