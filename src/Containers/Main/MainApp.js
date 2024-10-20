@@ -477,10 +477,13 @@ function MainApp(props) {
                   </div>
                 </div>
             
+                <div className="flex items-center">            
+                <Button           
+                 onClick
+                >Data Room</Button>
+                 </div>
 
-                <div class="mr-3 flex items-center h-[2.5rem]"
-                >
-                 
+                <div class="mr-3 flex items-center h-[2.5rem]">            
  {/* <div className="flex items-center">           
                 <Button
                  type="primary"

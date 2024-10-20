@@ -48,7 +48,8 @@ class LinkedContact extends Component {
 '325', // 1
 '1206', // 2
 '140', // 3
-'546'//4
+'546',//4
+'326'//5 department
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -230,6 +231,9 @@ class LinkedContact extends Component {
                         </div>
                       <div className=" md:w-[9.5rem]">  {translatedMenuItems[1]}    
                         {/* Designation */}
+                        </div>
+                        <div className=" md:w-[9.5rem]">  {translatedMenuItems[5]}    
+                        {/* Department*/}
                         </div>
                       <div className=" md:w-[9.8rem] ">  {translatedMenuItems[2]}    
                         {/* Function */}

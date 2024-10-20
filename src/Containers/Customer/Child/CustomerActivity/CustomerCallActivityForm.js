@@ -116,7 +116,7 @@ function CustomerCallActivityForm(props) {
          "75",  // "Include",//10
          "97",  // "Prospect",//11
           "73", // "Contact",//12
-        "99" ,  // "Opportunity",//13
+        "213" ,  // "Quotation",//13
          "316"  ,// "Notes"//14
          "104" //Create
 
@@ -383,7 +383,7 @@ function CustomerCallActivityForm(props) {
             ...rest
           }) => (
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
-            <Form className="form-background">
+            <Form className="form-background h-wk">
               <div class=" flex justify-around max-sm:flex-col">
               <div class=" h-full w-w47.5 max-sm:w-wk"   >
               <div class=" flex justify-between w-full max-sm:flex-col">

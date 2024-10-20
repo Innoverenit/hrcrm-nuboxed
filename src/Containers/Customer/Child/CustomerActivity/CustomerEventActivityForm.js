@@ -86,7 +86,7 @@ function CustomerEventActivityForm (props) {
          "75" , // "Include",//8
          "361",  // "Tag Company",//9
          "73",  // "Contact",//10
-         "99",  // "Opportunity",//11
+         "213",  // "Opportunity",//11
           "185", // "address",//12
         "316" ,  // "Notes",//13
          "104" //Create
@@ -336,7 +336,7 @@ const {
             ...rest
           }) => (
             <div class="overflow-y-auto h-[44rem] overflow-x-hidden max-sm:h-[30rem]">
-            <Form className="form-background">
+            <Form className="form-background h-wk">
               <div class=" flex justify-around max-sm:flex-col">
                 <div class=" h-full w-w47.5 mt-3 max-sm:w-wk">
                 <div className="font-bold font-poppins text-xs"> {translatedMenuItems[0]}</div>

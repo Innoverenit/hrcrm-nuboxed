@@ -226,7 +226,7 @@ const handleConfirm = (quotationId) => {
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
         <div className='flex   justify-between w-[81%]  text-xs font-bold font-poppins'>
-             <div class="text-[#00A2E8] text-base w-[9.55rem]"> {translatedMenuItems[0]}</div>
+             <div class="text-[#00A2E8] text-base w-[6.55rem]"> {translatedMenuItems[0]}</div>
                         <div className="  w-[11.4rem] md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
                         <div className=" md:w-[8rem]">
                         {translatedMenuItems[10]}  
@@ -277,7 +277,7 @@ const handleConfirm = (quotationId) => {
                                                                               </Tooltip>
                                                                           </div>
                       
-                                              <div class="max-sm:w-full flex  md:w-[6.02rem] items-center justify-start ml-gap bg-[#eef2f9] h-8">
+                                              <div class="max-sm:w-full flex  md:w-[8.02rem] items-center justify-start ml-gap bg-[#eef2f9] h-8">
                                                 <Tooltip>
                                                   <div class="max-sm:w-full   flex md:flex flex-row text-xs">
                                                   <span
@@ -333,7 +333,7 @@ const handleConfirm = (quotationId) => {
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center md:w-[7.03rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[7.04rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               <MultiAvatar
                                                       primaryTitle={item.contactPersonName}
@@ -387,11 +387,11 @@ const handleConfirm = (quotationId) => {
         <div className='flex   justify-between w-[86%]  text-xs font-bold font-poppins'>
 <div class="text-[#00A2E8] text-base w-[6.55rem]"> {translatedMenuItems[9]}</div>
 <div className=" md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
-<div className=" md:w-[7rem]">
+<div className=" md:w-[8rem]">
 {translatedMenuItems[10]}
                         </div>
-                        <div className=" md:w-[10.1rem]"> {translatedMenuItems[2]}</div>
-                        <div className=" md:w-[8.8rem] "> {translatedMenuItems[3]}</div>
+                        <div className=" md:w-[12.1rem]"> {translatedMenuItems[2]}</div>
+                        <div className=" md:w-[14.8rem] "> {translatedMenuItems[3]}</div>
                         <div className="md:w-[7.8rem]"> {translatedMenuItems[4]}</div>
                         <div className="md:w-[8.7rem]"> {translatedMenuItems[5]}</div>           
                         <div className="md:w-[8.8rem]"> {translatedMenuItems[8]}</div>
@@ -422,7 +422,7 @@ const handleConfirm = (quotationId) => {
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex items-center  md:w-[7.56rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                                            <div className=" flex items-center  md:w-[3.56rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                                       <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -459,7 +459,7 @@ const handleConfirm = (quotationId) => {
                                                 </Tooltip>
                                               </div>
                                               <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[10.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
 </svg>
@@ -468,7 +468,7 @@ const handleConfirm = (quotationId) => {
                                             </div> 
                                           </div>
                       
-                                          <div class="flex flex-row md:w-[9rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between text-xs">
+                                          <div class="flex flex-row md:w-[10rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between text-xs">
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md: text-xs">
@@ -479,7 +479,7 @@ const handleConfirm = (quotationId) => {
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   text-xs md:w-[16.01rem] items-center justify-start ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   text-xs md:w-[17.01rem] items-center justify-start ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs justify-start ">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -488,13 +488,13 @@ const handleConfirm = (quotationId) => {
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[6.03rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center md:w-[7.03rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.budget}
                                             </div>
                                         </div>
                                      
-                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[12.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[7.04rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -506,7 +506,7 @@ const handleConfirm = (quotationId) => {
                                             </div>
                                         </div>
                                     
-                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[14.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[12.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
              
                   <Button type="primary"  style={{ width: "6.5rem", background: "linear-gradient(to right, #2BBCCF, #38C98D)" }} 
@@ -524,7 +524,7 @@ const handleConfirm = (quotationId) => {
 
                       
                   </div>
-                  <div class="w-[12.40rem] items-center  ml-gap bg-[#eef2f9] h-8 justify-end flex">
+                  <div class="w-[14.40rem] items-center  ml-gap bg-[#eef2f9] h-8 justify-end flex">
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </span>

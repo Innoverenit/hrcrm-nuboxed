@@ -509,7 +509,7 @@ const [priority,setpriority]=useState(props.selectedTask
             ...rest
           }) => (
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
-            <Form className="form-background">
+            <Form className="form-background h-wk">
               <div class="flex justify-around pr-2 max-sm:flex-col">
                
                 <div class=" h-full w-w47.5 max-sm:w-wk">

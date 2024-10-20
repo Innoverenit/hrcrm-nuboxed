@@ -313,7 +313,7 @@ const [rowdata, setrowdata] = useState("");
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                   <div className=" flex  w-[15rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
+                                   <div className=" flex  w-[14rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
                                    <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {props.showCheckboxes && (
                         <Checkbox
@@ -357,42 +357,43 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                                     </div> 
-                                    <div className=" flex  max-sm:w-auto    w-[8.24rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                           
-                                   
-                                    <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">   
+                                    <div className=" flex  max-sm:w-auto    w-[7.24rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">                                                        
+                                    <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ml-gap">   
                                     {item.phoneNumber}
-                                    </div>
-                                
+                                    </div>                              
                                 </div> 
-                                <div className=" flex  max-sm:w-auto   w-[7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+
+                                <div className=" flex  w-[3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+<div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+  <CountryFlag1 countryCode={item.countryAlpha2Code} />
+  &nbsp;
+  {item.countryAlpha2Code}
+</div>
+</div>
+                                <div className=" flex  max-sm:w-auto   w-[8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
             {/* sector */}
-                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ml-gap">
                           {item.sector}
                         </div>
 
                       </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex   max-sm:w-auto w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto w-[7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-<div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ml-gap">
   {item.source}
 </div>
 
 </div>
 <div className=" flex  w-[2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-<div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-  <CountryFlag1 countryCode={item.countryAlpha2Code} />
-  &nbsp;
-  {item.countryAlpha2Code}
-</div>
 <div class=" text-xs  max-sm:text-sm font-poppins text-center">
                             {item.oppNo}
 
                           </div>
-</div>
+                          </div>
+
 
 <div className=" flex  w-[4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs flex max-sm:text-sm font-poppins text-center">
@@ -404,12 +405,7 @@ const [rowdata, setrowdata] = useState("");
                           </div>
                                 </div>
 </div>     
-<div className=" flex w-[4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-<div class=" text-xs  max-sm:text-sm font-poppins text-center">
-                            {item.weight}
-
-                          </div>                       
-</div>                         
+                       
                             
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 {props.user.aiInd && (
@@ -459,15 +455,16 @@ const [rowdata, setrowdata] = useState("");
                           cancelText="No"
                         >
                           {user.erpInd === true && (
-                            <Button type="primary"
-                            style={{ width: "6.5rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                            <Button className="justify-start" type="primary"
+                            style={{ width: "7rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
                            
                             >
-                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] " >
+                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] w-wk flex items-center" >
+                              <NextPlanIcon className="!text-icon " />
                               {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}
                                 {item.convertInd === 2 && translatedMenuItems[18]}
-                               <NextPlanIcon className="!text-icon " />
+                            
                               </div>
                             </Button>
                           )}

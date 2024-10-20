@@ -220,10 +220,10 @@ const {handleProcureNotesDrawerModal,
             return (
                 <div>
                 <div
-className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 border-l-2 border-green-500 bg-[#eef2f9]
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
-                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex   md:w-[4rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row max-sm:justify-between  ">
+                     <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
+                        <div className=" flex   md:w-[8rem] max-sm:flex-row max-sm:justify-between items-center justify-start bg-[#eef2f9] h-8 ">
                             <div class=" text-xs  font-poppins">
                                 {item.orderType}
                             </div>
@@ -235,7 +235,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:
                         </div>
                       
                         </div>
-                        <div className=" flex  items-center md:w-[12rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex   md:w-[19rem] items-center justify-start ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  items-center font-poppins">
                              {item.newOrderNo}
                             </div>
@@ -244,7 +244,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:
 
 
 
-                        <div className=" flex items-center  md:w-[12rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex   md:w-[19rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                             {date}
                             </div>
@@ -252,7 +252,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:
                         </div>
 
 
-                        <div className=" flex items-center  md:w-[12rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  md:w-[19rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 
                                 <MultiAvatar2
@@ -264,7 +264,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:
                             </div>
 
                         </div>
-                        <div className=" flex items-center  md:w-[12rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex   md:w-[19rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs   font-poppins">
                                 {item.paymentAmount}
                             </div>
@@ -284,7 +284,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:
                                                                 />
                                                             </Tooltip>
                                             </div> 
-                                            </div>
+                                          
 
                                             <div class="w-6">
         <span onClick={() => exportPDFAnnexure()}>
@@ -294,6 +294,7 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:
                        
 
                 </div>
+            </div>
             </div>
             );
           })}

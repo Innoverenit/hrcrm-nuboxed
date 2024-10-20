@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Button,Select } from "antd";
 import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
-import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import { getAllCustomerEmployeelist } from "../../Employees/EmployeeAction";
@@ -80,6 +79,10 @@ function CustomerForm(props) {
            '194', // Clear" 15    
           '1302',  // Search or select source" //16
           '1303',  // Search or select sector"//17
+          '418',//Corporate Address 18
+          '306',// vat number 19
+          '460',// businessRegistration 20
+          '702',//Tax Registration 21
   ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -848,12 +851,8 @@ country_dial_code
                         name="vatNo"
                         type="text"
                         // label="VAT Number"
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="VAT Number"
-                          />
-                        }
+                        label=                                               
+                        {translatedMenuItems[19]}                                                          
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -867,12 +866,7 @@ country_dial_code
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.registration"
-                            defaultMessage="Registration"
-                          />
-                        }
+                        label=   {translatedMenuItems[20]}  
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -888,10 +882,7 @@ country_dial_code
                   <div class="mt-8 w-full" style={{ backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                     <div>
                       <div class=" text-[white] text-xs" >
-                        <FormattedMessage
-                          id="app.corporateAddress"
-                          defaultMessage="Corporate Address"
-                        />
+                      {translatedMenuItems[18]}  
 
                       </div>
                     </div>
