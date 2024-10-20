@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Select,Input,Button } from 'antd';
 import dayjs from "dayjs";
-import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { base_url2 } from "../../../../../Config/Auth";
 import axios from "axios";
 const { Option } = Select;
@@ -76,11 +75,6 @@ function ProcureInvoiceList (props) {
         const deliveryDate = new Date(item.deliveryDate);
     setDate(e.target.value);
 
-        // if (selectedDate >= deliveryDate) {
-        //     setDate(e.target.value);
-        // } else {   
-        //     alert('Shipping date cannot be earlier than delivery date');
-        // }
     };
     
     
@@ -129,33 +123,33 @@ function ProcureInvoiceList (props) {
     return (
         <>
 <div class="text-xs">Total Invoice: {invoicDataCount.orderProcureInvoice || 0}
-  {/* <Badge
-                                    size="small"
-                                    count={(invoicDataCount.orderProcureInvoice) || 0}
-                                    overflowCount={999}
-                                    offset={[ 0, -16]}
-                                /> */}
+
                                 </div>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold  font-poppins text-xs sticky z-10">
+                    <div className=" flex justify-between w-[91.5%] p-1 bg-transparent font-bold  font-poppins text-xs sticky z-10">
                    
-                    <div class=" w-[8.5rem]">
-                    {props.translatedMenuItems[10]} ID 
+                    <div class=" text-[#00A2E8] text-base w-[9.5rem]">
+                    {props.translatedMenuItems[12]} ID 
                         </div>
                         <div className=" md:w-[7.4rem]">
-                            {/* {props.translatedMenuItems[1]} */}
-                             Track ID 
+                            {props.translatedMenuItems[14]}
+                             {/*value*/}
+                            </div>
+                        <div className=" md:w-[7.4rem]">
+                            {props.translatedMenuItems[13]} ID
+                             {/* Track ID  */}
+                            </div>
+                         
+                            <div className=" md:w-[7.4rem]">
+                            {props.translatedMenuItems[8]} 
+                             {/*Ship */}
                             </div>
                         <div className=" md:w-[7.1rem]">
-                            {props.translatedMenuItems[2]} 
-                        </div>
-                        <div className=" md:w-[8rem]">
-                            {props.translatedMenuItems[7]} 
-
+                            {props.translatedMenuItems[6]} 
                         </div>
                     </div>
-                    <div class="h-[75vh]">
+                    <div class="h-[78vh]">
                           
                     {data.length === 0 ? (
     <div className="text-center text-gray-500">Data not available</div>
@@ -164,13 +158,13 @@ function ProcureInvoiceList (props) {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
+                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex font-medium justify-between border-l-2 border-green-500 bg-[#eef2f9] h-8 w-[11.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
                                                           
                                                            <span
-                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    class="underline cursor-pointer ml-gap text-[#1890ff]"
                                                                     onClick={() => {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleInvoiceModal(true);
@@ -184,10 +178,14 @@ function ProcureInvoiceList (props) {
                                                                 </div>
                                                             ) : null}
                                                     </div>
-                                                   
+
+                                                    <div className=" flex   w-[11rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                       
+                                                     
+                                                       </div>   {/*Value */}
                                                     
                                                    
-                                                    <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  w-[12.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {editsuppliesId === item.procureOrderInvoiceId ? (
                        <Input
@@ -203,7 +201,7 @@ function ProcureInvoiceList (props) {
                     )}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  w-[12.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {editsuppliesId === item.procureOrderInvoiceId ? (
                                                          
@@ -225,13 +223,13 @@ function ProcureInvoiceList (props) {
                                                         </div>
                                                     </div>
                                                    
-                                                       <div className=" flex   w-[8rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                       <div className=" flex   w-[11rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                        
                                                    {item.paidInd ? "Paid":"Unpaid"}
                                                     </div>
                                                                                                     </div>
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex w-20  md:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex w-20 items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[6rem] max-sm:flex-row  max-sm:justify-between ">
     {editsuppliesId === item.procureOrderInvoiceId ? (
                         <>
                       <Button 
@@ -253,7 +251,7 @@ function ProcureInvoiceList (props) {
                       <Button
                       type="primary"
                         onClick={() => handleEditClick(item.procureOrderInvoiceId)}
-                      >Ship</Button>
+                      >Pack</Button>
                     }
                     </>
                     )}

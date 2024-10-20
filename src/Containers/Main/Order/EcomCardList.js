@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { getInventory,  } from "../Inventory/InventoryAction";
 import { Tooltip,Button,Input ,Popconfirm} from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import {
     getEcomList,
     handleItemViewDrawer
@@ -58,7 +59,7 @@ useEffect(() => {
         setLoading(true); 
         const itemsToTranslate = [
         "660",// 'Order',//0
-       "679", //  'Created', 1
+       "73", //  'Created', 1
        "248",  // 'Customer',//2
        "1209",// 'Shipping Address',3
         "710",  // 'Billing Address',//4
@@ -67,7 +68,11 @@ useEffect(() => {
       "1210",  // 'Invoices',7
        "1377",  // 'Ship',8
      "100", //  New 9
-     "71" //Type
+     "71" ,//Type 10
+     "880",//Inventory 11
+     "1169",// Invoice 12
+     "1486",// Track 13
+     "218",// Value 14
 
 
       ];
@@ -220,31 +225,31 @@ const {handleProcureNotesDrawerModal,
     ) : (
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
-        <div className=" flex justify-between w-[96%]  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
+        <div className=" flex justify-between w-[79%]  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
         <div className=" md:w-[0.5rem]"></div>
-                        <div className="w-[10rem] md:w-[10.02rem] text-[#00A2E8] text-base">{translatedMenuItems[0]} ID</div>
+                        <div className="w-[10rem] md:w-[4.02rem] text-[#00A2E8] text-base">{translatedMenuItems[0]} ID</div>
                         <div className="w-[5.4rem] md:w-[5.04rem]">{translatedMenuItems[1]}</div>
-                        <div className="w-[13.4rem] md:w-[13.04rem] flex justify-end">{translatedMenuItems[2]}</div>
+                        <div className="w-[13.4rem] md:w-[8.04rem] flex">{translatedMenuItems[2]}</div>
                         {/* Customer */}
-                        <div className="w-[8.4rem] md:w-[10.14rem]">{translatedMenuItems[3]}</div>
+                        <div className="w-[8.4rem] md:w-[12.14rem]">{translatedMenuItems[3]}</div>
                         {/* Shipping */}
                         <div className="w-[8.4rem] md:w-[8.13rem]">{translatedMenuItems[4]}</div>
                         {/* Billing */}
                         <div className="w-[5.4rem] md:w-[5.12rem]">{translatedMenuItems[5]}</div>
                         {/* item */}
-                        <div className="w-[4.4rem] md:w-[4.2rem]">{translatedMenuItems[8]}</div>
+                        {/* <div className="w-[4.4rem] md:w-[4.2rem]">{translatedMenuItems[8]}</div> */}
                         <div className="w-[4.4rem] md:w-[4.3rem]">{translatedMenuItems[6]}</div>
-                        {/* <div className=" md:w-[4.4rem]">{translatedMenuItems[7]}</div>  */}
+            
                      
                         <div className="w-[4.4rem] md:w-[5.4rem]"> 
                           {translatedMenuItems[10]}
                           
                           </div>
-                          <div className=" md:w-[5.4rem]"> 
-                        Inventory
+                          {/* <div className=" md:w-[5.4rem]"> 
+                          {translatedMenuItems[11]}
                           
-                          </div>
-                        <div className=" md:w-[7rem]"></div>
+                          </div> */}
+                    
                        
                       
         </div>
@@ -268,7 +273,7 @@ const {handleProcureNotesDrawerModal,
 className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center border-l-2 border-green-500 bg-[#eef2f9]">
-                        <div className=" flex   md:w-[9.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row max-sm:justify-between  ">
+                        <div className=" flex   md:w-[6.4rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
                                 {item.newOrderNo}
                             </div>
@@ -294,21 +299,21 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm
                     
                         </div>
 
-                        <div className=" flex items-center items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[8.12rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs   font-poppins">
+                        <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9]  md:w-[8.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs ml-gap  font-poppins">
                                 {item.distributorName}
                             </div>
 
                         </div>
-                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[9.3rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs   font-poppins">
-                                {item.loadingAddress?.[0]?.city}
+                        <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9]  md:w-[13.3rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs ml-gap  font-poppins">
+                                {item.loadingAddress?.[0]?.city} {/* Shipping address */}
                             </div>
 
                         </div>
-                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[10.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs   font-poppins">
-                                {item.category}  {item.attribute}
+                        <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  md:w-[13.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div class=" text-xs ml-gap  font-poppins">
+                             
                             </div>
 
                         </div>
@@ -340,7 +345,9 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm
                         <div className=" flex  items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[9.5rem] max-sm:flex-row  max-sm:justify-between  ">
                         <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
-                  }}>{translatedMenuItems[7]}</Button>
+                  }}>          <DataSaverOnIcon className=" !text-icon" /> 
+                  {translatedMenuItems[7]}
+                  </Button>
                         </div>
                         <div class="flex text-xs  items-center font-poppins items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                             {/* {date} */}

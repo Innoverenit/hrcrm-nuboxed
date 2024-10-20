@@ -173,19 +173,19 @@ function AccountTable(props) {
           <div className=" flex max-sm:hidden   w-[96%]  justify-between p-1 bg-transparentsticky  z-10">
            <div class=" flex justify-between text-xs font-poppins  font-bold  w-[100%]  ">
             <div className="w-1"></div>
-            <div className=" w-[15.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
+            <div className=" w-[16.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
             {translatedMenuItems[0]}
             {/* Name */}
             </div>
-            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]">
+            <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]">
             {translatedMenuItems[1]}
            {/* Work */}
             </div>
-            <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
+            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
             {translatedMenuItems[2]}
               {/* Category */}
               </div>
-            <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
+            <div className="w-[6.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
             {translatedMenuItems[3]}
           {/* Type */}
              </div>
@@ -193,33 +193,25 @@ function AccountTable(props) {
             {translatedMenuItems[20]}
           {/* Type */}
              </div>
-             <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
+             <div className="w-[6.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
             {translatedMenuItems[21]}
           {/* Type */}
              </div>
              <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
             {/* Club */} {translatedMenuItems[17]}
-          {/*Club */}
-            </div>
-            <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
-            {translatedMenuItems[4]}
-          {/* Paymentdays   */}
-            </div>
-            
-            <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
-            {translatedMenuItems[5]} (%)
+         
+            </div> 
+
+            <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
+            {translatedMenuItems[5]}
               {/* Payment % */}
             </div>
-            {/* <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">
-            {translatedMenuItems[6]} 
-              Tax
-              </div>    */}
            {/* "billingaddress" */}
            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
           {translatedMenuItems[8]}
             {/* Credit */}          
             </div>
-  <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+  <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
           {translatedMenuItems[7]}
             {/* Assigned */}          
             </div>         
@@ -301,7 +293,7 @@ function AccountTable(props) {
 
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex items-center justify-center max-sm:w-auto w-[10.2rem] max-xl:w-[6.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center justify-center max-sm:w-auto w-[10.2rem] max-xl:w-[5.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {/* {item.url} */}
                               {item.dcategoryName}
@@ -331,25 +323,25 @@ function AccountTable(props) {
 
                             </div>
                           </div>
-                          <div className=" flex  items-center justify-center max-sm:w-auto w-[8rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[10rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.payment}
+                              {item.payment} days
 
                             </div>
-                          </div>
-                          <div className=" flex  items-center justify-center max-sm:w-auto w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                         
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem]  bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">       
                               {visible && (item.distributorId === particularRowData.distributorId) ?
                                                                 <Input
                                                                     type='text'
                                                                     value={price}
-                                                                    onChange={(e) => handleChange(e.target.value)}
+                                                                    onChange={(e) => handleChange(e.target.value)} 
                                                                 />
-                                                                : item.dispatchPaymentPercentage}
+                                                                : item.dispatchPaymentPercentage}%
                             </div>
                           </div>
                           
-                          <div className=" flex  items-center justify-center   md:w-[3.06rem] bg-[#eef2f9] h-8 max-sm:flex-row w-full  max-sm:justify-between  ">
+                          <div className=" flex  items-center justify-center   md:w-[1.06rem] bg-[#eef2f9] h-8 max-sm:flex-row w-full  max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.distributorId === particularRowData.distributorId) ? (
@@ -386,26 +378,23 @@ function AccountTable(props) {
                                                     </div>
 
                                                 </div>
+                                                </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-{/* Tax
-                          <div className=" flex  max-sm:w-auto  w-[4.5rem] max-xl:w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.countryValue}
-                            </div>
 
-                          </div>                        */}
                                         
-                      <div className=" flex items-center justify-center bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[6.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                      <div className=" flex items-center max-sm:w-auto w-[7rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;
                             
                           </div>
-                          <div class=" text-xs flex items-center justify-center font-poppins w-[5.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.currencyPrice}
 
-                            </div>
-                          <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            </div>                  
+                        </div>
+
+                        <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[4.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {/* Assigned */}
                                   {item.assignToUser?
                                   <span>
@@ -417,11 +406,9 @@ function AccountTable(props) {
           </span>:""}
            
                                   </div>
-
-                        </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">   
 
-                              <div className=" flex items-center justify-center bg-[#eef2f9] h-8    max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                              <div className=" flex items-center justify-center bg-[#eef2f9] h-8  ml-gap  max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                                 <Tooltip title={translatedMenuItems[12]}>
                                 {/* "Pulse"> */}
