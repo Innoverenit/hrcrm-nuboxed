@@ -136,32 +136,32 @@ function ShipperCardList(props) {
 
                             </div>
                           </div>
-                          <div className=" flex  w-[6.5rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          <div className=" flex  w-[6.5rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                            <div class="  text-xs  font-poppins ml-gap max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.dialCode} {item.phoneNo}
                             </div>
                           </div>
                         </div>
 
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                          <div className=" flex   w-[13.3rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex   w-[13.3rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                            <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                            <div class="  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.emailId}
                             </div>
                           </div>
 
-                          <div className=" flex  w-[7.12rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          <div className=" flex  w-[7.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                            <div class="  text-xs  font-poppins ml-gap max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.shipByName}
                             </div>
 
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                          <div className=" flex  w-[13.31rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex  w-[13.31rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                            <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                            <div class="  text-xs  ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
          
@@ -169,8 +169,8 @@ function ShipperCardList(props) {
                             </div>
                           </div>
                           
-                          <div className=" flex   w-[12.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          <div className=" flex   w-[12.21rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                            <div class="  text-xs  font-poppins ml-gap max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {(item.address &&
                                 item.address.length &&
                                 item.address[0].city) ||
@@ -178,9 +178,9 @@ function ShipperCardList(props) {
                             </div>
                           </div>
                     
-                          <div className=" flex  w-[7.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex  w-[7.2rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                            <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                            <div class="  text-xs  ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {(item.address &&
                                 item.address.length &&
                                 item.address[0].postalCode) ||

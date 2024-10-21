@@ -207,7 +207,7 @@ function General(props) {
               
                 <div class=" flex justify-between w-full p-3 ">             
                   <div>   
-                  <div class=" text-xs  font-bold">HR</div>           
+                  <div class=" text-sm  font-bold">HR</div>           
                     {/* <div class=" flex justify-between mt-2">                    
                      <div class=" text-xs  ">Drop Open Orders (in months)</div>
                      <div>
@@ -270,7 +270,7 @@ function General(props) {
                       </div>
                     </div>
                     <div class=" flex  mt-2">
-                      <div class=" text-xs  font-bold">Production</div>                      
+                      <div class=" text-sm  font-bold">Production</div>                      
                       </div>
                     {props.user.productionInd === true ? (
    <> 
@@ -316,27 +316,7 @@ function General(props) {
    
                       </div>
                     </div>
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Show Orders To Investor</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Show Orders To Investor")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.proInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("proInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
+                
                     <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">AMC</div>
                       <div>
@@ -365,7 +345,7 @@ function General(props) {
   </div>
 )}   
 <div class=" flex  mt-2">
-                      <div class=" text-xs  font-bold">Inventory</div>
+                      <div class=" text-sm  font-bold">Inventory</div>
                       </div>
 <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">Inception</div>
@@ -388,11 +368,24 @@ function General(props) {
    
                       </div>
                     </div>
+                    <div className="flex justify-between mt-2">
+                  <div className="text-xs">New Arrival Date Range (Days)</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="newArrDay"
+                      value={formValues.newArrDay}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
                     <div class=" flex  justify-between mt-3">
-                      <div class=" text-xs  font-bold ">Repair</div>
+                      <div class=" text-sm  font-bold ">Repair</div>
                       </div>
                     <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Auto Generate Part Number</div>
+                    <div class=" text-xs  ">Auto Generate Part Number For Spares</div>
                       <div>
                       <div>
                     <Popconfirm
@@ -413,7 +406,7 @@ function General(props) {
                       </div>
                     </div>
                     <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Leads To Customer</div>
+                    <div class=" text-xs  "> Convert Leads To Customer Directly</div>
                       <div>
                       <div>
                     <Popconfirm
@@ -433,27 +426,7 @@ function General(props) {
    
                       </div>
                     </div>
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Show Orders To Investor</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Show Orders To Investor")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.repairOrdInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("repairOrdInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
+               
                     <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">QC Required as part of Workflow</div>
                       <div>
@@ -497,7 +470,7 @@ function General(props) {
                       </div>
                     </div>
                     <div className="flex justify-between mt-2">
-                  <div className="text-xs">Critical Date Range</div>
+                  <div className="text-xs">Critical Date Range (Days)</div>
                   <div>
                   <input
                       type="number"
@@ -509,21 +482,9 @@ function General(props) {
                     />
                   </div>
                 </div>
-                <div className="flex justify-between mt-2">
-                  <div className="text-xs">New Arrival Date Range (Days)</div>
-                  <div>
-                  <input
-                      type="number"
-                      name="newArrDay"
-                      value={formValues.newArrDay}
-                      onChange={handleInputChange}
-                      onBlur={handleInputBlur}
-                      className="input-component" // Add styling or class as needed
-                    />
-                  </div>
-                </div>
+            
                           <div class=" flex  justify-between mt-3">
-                      <div class=" text-xs  font-bold ">CRM</div>
+                      <div class=" text-sm  font-bold ">CRM</div>
                       </div>
                       <div class=" flex justify-between ] mt-2">           
                         <div class=" text-xs  ">Drop Open Quotations (in months)</div>    
@@ -542,7 +503,7 @@ function General(props) {
                       </div>
                     </div>
                       <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Transfer Prospect to ERP On Quotation win</div>
+                    <div class=" text-xs  ">Convert Prospect to ERP On Quotation win</div>
                       <div>
                       <div>
                     <Popconfirm
@@ -563,7 +524,7 @@ function General(props) {
                       </div>
                     </div>
                     <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Transfer All Prospect Info to Erp</div>
+                    <div class=" text-xs  ">Transfer all Prospect Info to Customer</div>
                       <div>
                       <div>
                     <Popconfirm
@@ -584,7 +545,7 @@ function General(props) {
                       </div>
                     </div>
                     <div className="flex justify-between mt-2">
-                  <div className="text-xs">No of Qotation</div>
+                  <div className="text-xs">Number of Quotation</div>
                   <div>
                   <input
                       type="number"
@@ -597,7 +558,7 @@ function General(props) {
                   </div>
                 </div>
                 <div className="flex justify-between mt-2">
-                  <div className="text-xs">Task Agging CriticalRange </div>
+                  <div className="text-xs">Task Ageing Critical Range (Days) </div>
                   <div>
                   <input
                       type="number"
@@ -609,42 +570,9 @@ function General(props) {
                     />
                   </div>
                 </div>
-                <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Enable shipment on part payment</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Enable shipment on part payment")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.enaShipInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("enaShipInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
-                    <div className="flex justify-between mt-2">
-                  <div className="text-xs">Task </div>
-                  <div>
-                  <input
-                      type="number"
-                      name="task"
-                      value={formValues.task}
-                      onChange={handleInputChange}
-                      onBlur={handleInputBlur}
-                      className="input-component" // Add styling or class as needed
-                    />
-                  </div>
-                </div>
+                           
                 <div className="flex justify-between mt-2">
-                  <div className="text-xs">Deal</div>
+                  <div className="text-xs">  Critical Range (Days) Deal</div>
                   <div>
                   <input
                       type="number"
@@ -657,7 +585,7 @@ function General(props) {
                   </div>
                 </div>
                 <div className="flex justify-between mt-2">
-                  <div className="text-xs">QotationErp</div>
+                  <div className="text-xs">  Critical Range (Days) QuotationErp</div>
                   <div>
                   <input
                       type="number"
@@ -670,7 +598,7 @@ function General(props) {
                   </div>
                 </div>
                 <div className="flex justify-between mt-2">
-                  <div className="text-xs">OrderRepair</div>
+                  <div className="text-xs">  Critical Range (Days) Order Repair</div>
                   <div>
                   <input
                       type="number"
@@ -683,7 +611,7 @@ function General(props) {
                   </div>
                 </div>
                 <div className="flex justify-between mt-2">
-                  <div className="text-xs">OrderCommerce</div>
+                  <div className="text-xs">  Critical Range (Days) Order Commerce</div>
                   <div>
                   <input
                       type="number"
@@ -696,7 +624,7 @@ function General(props) {
                   </div>
                 </div>
                 <div className="flex justify-between mt-2">
-                  <div className="text-xs">OrderProduct</div>
+                  <div className="text-xs">  Critical Range (Days) Order Product</div>
                   <div>
                   <input
                       type="number"
@@ -709,7 +637,7 @@ function General(props) {
                   </div>
                 </div>
                 <div className="flex justify-between mt-2">
-                  <div className="text-xs">Approval</div>
+                  <div className="text-xs">  Critical Range (Days) Approval</div>
                   <div>
                   <input
                       type="number"
@@ -726,7 +654,7 @@ function General(props) {
 
 
 
-                    <div class=" text-xs mt-3 font-bold ">Invoice</div>
+                    <div class=" text-sm mt-3 font-bold ">Invoice</div>
                     <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">Proforma Invoice (PI) needed</div>
                       <div>
@@ -770,7 +698,7 @@ function General(props) {
                       </div>
                     </div>
                     <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Auto generate Commercial Invoice</div>
+                    <div class=" text-xs  ">Auto generate Commercial Invoice (CI)</div>
                       <div>
                       <div>
                     <Popconfirm
@@ -815,7 +743,7 @@ function General(props) {
 )}
 {props.user.repairInd  && (
    <div class=" flex justify-between   mt-2">                
-   <div class=" text-xs  ">B2b Reapir</div>
+   <div class=" text-xs  ">B2b Repair</div>
      <div>
      <div>
    <Popconfirm
@@ -884,7 +812,7 @@ function General(props) {
 )}
   {props.user.repairInd  && (
     <div class=" flex justify-between   mt-2">                
-    <div class=" text-xs  ">B2c Reapir</div>
+    <div class=" text-xs  ">B2c Repair</div>
       <div>
       <div>
     <Popconfirm
@@ -991,9 +919,53 @@ function General(props) {
   
       </div>
     </div> 
+    
+    <div class=" text-sm mt-3 font-bold ">Logistics</div>
+    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Enable shipment on part payment</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Enable shipment on part payment")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.enaShipInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("enaShipInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+    <div class=" text-sm mt-3 font-bold ">Investor Management</div>
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Show Orders To Investor</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Show Orders To Investor")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.proInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("proInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
 
                   </div>
-
                 </div>
                 <div class="mt-4">
                   Updated on{" "}

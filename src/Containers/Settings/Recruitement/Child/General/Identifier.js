@@ -77,6 +77,7 @@ function Identifier(props) {
             <div className="flex justify-between w-full p-3">
               <div>
                 {/* Device Code */}
+                <div className="flex text-sm mt-2 font-bold">Identifier</div>
                 <div className="flex justify-between mt-2">
                   <div className="text-xs">Device</div>
                   <div>
@@ -158,27 +159,7 @@ function Identifier(props) {
                     </div>
                   </div>
 
-                  {/* Owner Code */}
-                  {/* <div className="flex justify-between mt-2">
-                    <div className="text-xs">Owner</div>
-                    <div>
-                      <Popconfirm
-                        title="Are you sure to change the Owner code type?"
-                        onConfirm={() => handleConfirm("Owner Code")}
-                        okText="Yes"
-                        cancelText="No"
-                      >
-                        <Switch
-                          checked={formValues.ownerName}
-                          checkedChildren={"Bar Code"}
-                          unCheckedChildren={"QR Code"}
-                          onChange={(checked) => handleToggleChange("ownerName", checked)}
-                        />
-                      </Popconfirm>
-                    </div>
-                  </div> */}
-
-                  {/* Packet Code */}
+           
                   <div className="flex justify-between mt-2">
                     <div className="text-xs">Packet (Dispatch)</div>
                     <div>
