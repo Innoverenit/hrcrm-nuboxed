@@ -130,7 +130,7 @@ const InventoryMaterialDamagedData = (props) => {
                                     <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
                                         <div class="flex">
 
-                                            <div className=" flex  border-l-2 border-green-500 bg-[#eef2f9] w-[16.1rem] max-sm:w-full  ">
+                                            <div className=" flex  border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[16.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         // onClick={() => {
@@ -149,29 +149,29 @@ const InventoryMaterialDamagedData = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[4.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            <div class=" text-xs  font-poppins">
+                                            <div class=" text-xs   ml-gap font-poppins">
                                               {item.suppliesFullName}
                                             </div>
 
                                         </div>
-                                        <div className=" flex  w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             {item.supplierName}
 
                                         </div>
-                                        <div className=" flex   w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
                                               {item.hsn}
                                             </div>
                                         </div>
                                       
-                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           {item.suppliesId}
                                         </div>
-                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex  items-center justify-center  h-8 ml-gap bg-[#eef2f9]  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           {item.unitDamaged != 0 &&(
                                         <Switch
                                            checkedChildren="Yes"
@@ -192,9 +192,9 @@ const InventoryMaterialDamagedData = (props) => {
          )} 
                                         </div>
 
-                                        <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[4.12rem]  justify-center items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
-<div class=" text-xs  font-poppins">
+<div class=" text-xs   font-poppins">
   <Button
    disabled={item.creditNoteInd === true || item.unitDamaged === 0}
     onClick={() => {
@@ -211,10 +211,10 @@ const InventoryMaterialDamagedData = (props) => {
 </div>
 
 </div>
-                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex   items-center h-8 ml-gap bg-[#eef2f9] md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                          
                                          </div>
-                                         <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                         <div className=" flex  justify-center items-center h-8 ml-gap bg-[#eef2f9] md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                          {item.unitDamaged}
                                          </div>
                                        

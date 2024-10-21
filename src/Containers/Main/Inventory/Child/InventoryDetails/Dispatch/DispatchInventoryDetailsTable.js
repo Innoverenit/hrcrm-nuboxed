@@ -340,52 +340,53 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
            
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex font-medium w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                        <div className=" flex border-l-2  h-8 border-green-500 bg-[#eef2f9] w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                {item.company}
                                             </div>
-                                            <div className=" flex font-medium w-[3.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                
                                             {item.model} 
                                             </div>
                                             
-<div className=" flex font-medium flex-col w-[7.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+<div className=" flex  flex-col w-[7.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                         {item.imei}
                         </div>
                       </div>
-                                            <div className=" flex font-medium   w-[5rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   w-[5rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.os}
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex font-medium   w-[3.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                        <div class="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-between max-sm:w-wk items-center">
+                                            <div className=" flex    w-[3.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.gb}
                                                 </div>
 
                                             </div>
 
-                                            <div className=" flex font-medium   w-[4.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.color}
                                                 </div>
 
                                             </div>
-                                            <div className=" flex font-medium  w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.conditions}
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  w-[8.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.repairTechnicianName}
 
                                                 </div>
                                             </div>
+                                            <div className="items-center justify-end h-8 ml-gap bg-[#eef2f9] ">
                                             <Tooltip title="Task">
             <FileDoneOutlined style={{ color: "black" }} type="file-done"
               onClick={() => {
@@ -407,6 +408,7 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
                                                             />
 
                                                         </Tooltip>
+
           <Tooltip>
             {props.rowData.dispatchInspectionInd === 1 && <DispatchReceiveToggle
               phoneId={item.phoneId}
@@ -415,7 +417,8 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
               orderPhoneId={props.rowData.orderPhoneId}
             />}
           </Tooltip>
-          <div className=" flex font-medium  w-[7.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+          </div>
+          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[7.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.dispatchPhoneUserName}
 
@@ -438,7 +441,7 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
                 >Rejected</Button> : null
             }
           </Tooltip> */}
-          <div className=" flex font-medium  w-[8.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.reason}
 

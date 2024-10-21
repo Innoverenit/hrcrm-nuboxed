@@ -533,10 +533,10 @@ const AWBtst=[
                   const date = dayjs(item.createAt).format("DD/MM/YYYY");
                   return (
                     <div>
-                      <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div className="flex rounded justify-between mt-1 bg-white items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                          <div className=" flex  w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                          <div className=" flex  w-[7.2rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                             <div class="text-xs flex  font-bold underline font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
                               <div
                                 onClick={() => {
@@ -551,7 +551,7 @@ const AWBtst=[
                               ) : null}
                             </div>
                           </div>
-                          <div className=" flex   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                         
                                                                 <Button
@@ -577,7 +577,7 @@ const AWBtst=[
 
 
 
-                                                    <div className=" flex   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             {/* <Badge
                                                                 class=" ml-2"
@@ -605,12 +605,12 @@ const AWBtst=[
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
 
 
-                          <div className=" flex  w-[5.4rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[5.4rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs  ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchPhoneCount}/{item.phoneReceiveCount}
                             </div>
                           </div>
-                          <div className=" flex  w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex   w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 ?
                                 <Button
@@ -633,7 +633,7 @@ const AWBtst=[
                                     null}
                             </div>
                           </div>
-                          <div className=" flex  w-[4.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
                                 null : <DispatchPackedToggle
@@ -651,12 +651,12 @@ const AWBtst=[
                             </div>
                           </div> */}
 
-                          <div className=" flex  w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.shipperName === "null" ? "" : item.shipperName}
                             </div>
                           </div>
-                          <div className=" flex  w-[5.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
                             </div>
@@ -664,7 +664,7 @@ const AWBtst=[
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                        
-                          <div className=" flex  w-[7.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.unloadingAddresses && item.unloadingAddresses[0].city && item.newAwbNo==="null" ? <Button type="primary"
                                 onClick={() => {
@@ -675,12 +675,12 @@ const AWBtst=[
                             </div>
                           </div>
                     
-                          <div className=" flex  w-[5.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.status === "null" ? "" : item.status}
                             </div>
                           </div>
-                          <div className=" flex  w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 4 && item.newAwbNo &&
                                 <DispatchValidationToggle
@@ -689,7 +689,7 @@ const AWBtst=[
                                 />}
                             </div>
                           </div>
-                          <div class="flex  md:w-[2rem] max-sm:flex-row max-sm:w-[6%]">
+                          <div class="flex items-center justify-end h-8 ml-gap bg-[#eef2f9] md:w-[2rem] max-sm:flex-row max-sm:w-[6%]">
                             <div>
                             <Tooltip title="Notes">
                                                         <NoteAltIcon
@@ -708,7 +708,9 @@ const AWBtst=[
                       </div>
                       {checkAwb && (item.orderId === particularRowData.orderId) &&
                    
-                                                <SubOrderList orderId={particularRowData.orderId} />
+                                                <SubOrderList orderId={particularRowData.orderId}
+                                                translateText={props.translateText}
+                                                selectedLanguage={props.selectedLanguage} />
                                             }
                     </div>
                   );

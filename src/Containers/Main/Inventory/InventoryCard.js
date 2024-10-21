@@ -72,7 +72,7 @@ const InventoryCard = (props) => {
                   <div>
                     <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col">
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex   w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
+                        <div className=" flex border-l-2  h-8 border-green-500 bg-[#eef2f9]  w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
 
 
                           <Tooltip>
@@ -105,7 +105,7 @@ const InventoryCard = (props) => {
                         </div>
 
 
-                        <div className=" flex  w-[20.2rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[14.211rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
 
                           {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
@@ -118,7 +118,7 @@ const InventoryCard = (props) => {
                         </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex   w-[17.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[17.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         {/* <div class=" text-xs  font-poppins max-sm:hidden"># Opportunity</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -126,7 +126,7 @@ const InventoryCard = (props) => {
 
                         </div>
                       </div>
-                      <div className=" flex   w-[16.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[16.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -138,7 +138,7 @@ const InventoryCard = (props) => {
 
                       
 
-                        <div className=" flex justify-center flex-col max-sm:flex-row  ">
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  ">
 
                         <Button type="primary"
                             onClick={() => {

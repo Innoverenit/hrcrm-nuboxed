@@ -61,44 +61,44 @@ function SubOrderDetailsList(props) {
                                     <div>
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                                             <div class="flex">
-                                                <div className=" flex md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex md:w-[7rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.company}
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.model}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.imei}
                                                     </div>
                                                 </div>
-                                                <div className=" flex md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.os}
                                                     </div>
                                                 </div>
-                                                <div className=" flex md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.gb}
                                                     </div>
                                                 </div>
-                                                <div className=" flex md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.color}
                                                     </div>
                                                 </div>
-                                                <div className=" flex md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.condition}
                                                     </div>
                                                 </div>
-                                                <div className=" flex md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         <SubTitle>
                                                             {item.qrCodeId ? (

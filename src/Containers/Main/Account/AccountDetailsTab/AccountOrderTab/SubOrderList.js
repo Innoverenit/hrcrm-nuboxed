@@ -89,7 +89,7 @@ function SubOrderList(props) {
                                     <div>
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                                             <div class="flex">
-                                                <div className=" flex  text-xs font-bold font-poppins  md:w-[12rem] max-sm:w-full  ">
+                                                <div className=" flex  text-xs font-bold font-poppins  border-l-2  h-8 border-green-500 bg-[#eef2f9] md:w-[12rem] max-sm:w-full  ">
                                                     <Badge
                                                         class=" ml-2"
                                                         size="small"
@@ -107,7 +107,7 @@ function SubOrderList(props) {
                                                     </Badge>
                                                 </div>
 
-                                                <div className=" flex text-xs   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex text-xs items-center justify-end h-8 ml-gap bg-[#eef2f9]   md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         <MultiAvatar2
                                                             primaryTitle={item.awbUserName}
@@ -118,7 +118,7 @@ function SubOrderList(props) {
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex   justify-center items-center md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex   items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs   font-poppins">
                                                         {awbUpdate && (item.orderPhoneAwbId === subRow.orderPhoneAwbId) ?
                                                             <>
@@ -147,7 +147,7 @@ function SubOrderList(props) {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     <BorderColorIcon
                                                         onClick={() => {

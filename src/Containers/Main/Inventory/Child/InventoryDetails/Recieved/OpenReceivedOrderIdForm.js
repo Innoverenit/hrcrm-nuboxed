@@ -321,7 +321,7 @@ function OpenReceivedOrderIdForm(props) {
       }`}
     >
                       <div class="flex">
-                        <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex   border-l-2  h-8 border-green-500 bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs  font-poppins">
                             <PlusOutlined onClick={() => {
                               handleMismatchItem();
@@ -330,17 +330,17 @@ function OpenReceivedOrderIdForm(props) {
                             } />
                           </div>}
                         </div>
-                        <div className=" flex font-medium  md:w-[5.03rem] max-sm:w-full  ">
+                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.03rem] max-sm:w-full  ">
                           {item.company}
                         </div>
 
-                        <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             {item.model}
                           </div>
 
                         </div>
-                        <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-sm  font-poppins">
 
                             {item.imei}
@@ -348,24 +348,24 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[13.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[13.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
 
                           {item.os} {item.gb}  {item.color}
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[5.63rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.63rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.conditions}
                         </div>
                       </div>
-                      <div className=" flex font-medium  md:w-[12.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[12.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                         <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div>
                         </div>
                       </div>
-                      <div className=" flex  w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.levelCount&&item.levelCount.map((level)=>{
                                                             return(
@@ -389,7 +389,7 @@ function OpenReceivedOrderIdForm(props) {
                                                     </div>
                                                 </div>
 
-                      <div className=" flex font-medium  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                         {item.receivePhoneInd?(
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Task">
@@ -406,7 +406,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                          ):null}
                       </div>
-                      <div className=" flex font-medium  md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Notes">
                             <NoteAltIcon
@@ -422,7 +422,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[7.06rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip>
                             {item.inspectionInd === 1 &&
@@ -438,7 +438,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.receivePhoneUserName !== null &&
                             <>
@@ -458,7 +458,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[3.09rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[3.09rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.inspectionInd === 1 && item.receivePhoneInd && !item.cannotRepairInd && (
                             <EditOutlined
@@ -475,7 +475,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[7.08rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.08rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.inspectionInd !== 0 && item.receivePhoneInd &&
                             <>
@@ -509,12 +509,12 @@ function OpenReceivedOrderIdForm(props) {
                             </>}
                         </div>
                       </div>
-                      <div className=" flex font-medium   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins">
                           {item.cannotRepairInd && "Can't Repair"}
                         </div>
                       </div>
-                      <div className=" flex font-medium   md:w-[5.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins">
                           <Tooltip title={<FormattedMessage
                             id="app.Print"

@@ -132,7 +132,7 @@ const MaterialUnitsDataOut = (props) => {
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
                                         <div class="flex">
-                                            <div className=" flex   border-l-2 border-green-500 bg-[#eef2f9] md:w-[2.1rem] max-sm:w-full  ">
+                                            <div className=" flex   border-l-2 border-green-500 h-8 bg-[#eef2f9] md:w-[2.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins ">
                                                     <PlusOutlined
                                                         onClick={() => {
@@ -145,16 +145,16 @@ const MaterialUnitsDataOut = (props) => {
                                         </div>
 
                                         <div class="flex">
-                                            <div className=" flex  md:w-[9.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs font-semibold  font-poppins ">
+                                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] md:w-[9.1rem] max-sm:w-full  ">
+                                                <div class="flex justify-between ml-gap text-xs font-semibold  font-poppins ">
                                                     {item.newPoNumber}
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="flex">
-                                            <div className=" flex  md:w-[11.12rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs font-semibold font-poppins cursor-pointer underline text-blue-600">
+                                            <div className=" flex  md:w-[11.12rem] items-center  h-8 ml-gap bg-[#eef2f9] max-sm:w-full  ">
+                                                <div class="flex justify-between ml-gap text-xs font-semibold font-poppins cursor-pointer underline text-blue-600">
                                                     <span
                                                         onClick={() => {
                                                             props.handleSTockItemModal(true)
@@ -177,32 +177,32 @@ const MaterialUnitsDataOut = (props) => {
                                                 {item.price}
                                             </div>
                                         </div> */}
-                                        <div className=" flex  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unit}
                                             </div>
                                         </div>
-                                        <div className=" flex   md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unitReceived}
                                             </div>
                                         </div>
-                                        <div className=" flex   md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unitDamaged}
                                             </div>
                                         </div>
-                                        <div className=" flex   md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.remainingCorrectUnit}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.remark}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[8.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
 
@@ -225,7 +225,7 @@ const MaterialUnitsDataOut = (props) => {
                                                 )}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[8.6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.6rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
                                                     <Select
@@ -241,13 +241,13 @@ const MaterialUnitsDataOut = (props) => {
                                                     </Select>
 
                                                 ) : (
-                                                    <div className="font-normal text-xs font-poppins">
+                                                    <div className="font-normal ml-gap text-xs font-poppins">
                                                         <div> {item.chamber}</div>
                                                     </div>
                                                 )}
                                             </div>
                                         </div>
-                                        <div class="flex justify-end  w-8 items-center max-sm:flex-row max-sm:w-[10%]">
+                                        <div class="flex justify-end  h-8 ml-gap bg-[#eef2f9] w-8 items-center max-sm:flex-row max-sm:w-[10%]">
 
                                             <div>
                                                 <Tooltip title="">
