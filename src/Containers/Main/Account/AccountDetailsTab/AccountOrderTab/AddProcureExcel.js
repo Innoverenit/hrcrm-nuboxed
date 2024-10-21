@@ -155,7 +155,7 @@ function AddProcureExcel(props) {
                     onChange={(value) => handleBrandChange(value, index)}
                   >
                     {props.brand.map((a) => (
-                      <Option key={a.brand} value={a.brand}>{a.brand}</Option>
+                      <Option key={a.brand} value={a.brand}>{a.brandName}</Option>
                     ))}
                   </Select>
                 </div>
@@ -183,7 +183,7 @@ function AddProcureExcel(props) {
                     onChange={(value) => handleAttributeChange(value, index)}
                   >
                     {props.allProduct.map((a) => (
-                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
+                      <Option key={a.attributeId} value={a.attributeId}>{a.attributeName}</Option>
                     ))}
                   </Select>
                 </div>

@@ -42,7 +42,7 @@ function AccountInvoiceTable(props) {
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [data, setData] = useState([]);
+    const [cardData, setcardData] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [message, setMessage] = useState("");
     const [invoices, setInvoices] = useState('');
@@ -59,15 +59,15 @@ function AccountInvoiceTable(props) {
                   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
                 },
               }); 
-             if (typeof response.data === 'string') {
-                setMessage(response.data); 
-                setData([]); 
-            } else if (Array.isArray(response.data)) {
-                setData(prevData => [...prevData, ...response.data]); 
-                setMessage(""); 
-            } else {
-                setHasMore(false); 
-            }
+              if (typeof response.data === 'string') {
+                setMessage(response.data);
+                setcardData([]);
+              } else if (Array.isArray(response.data)) {
+                setcardData(prevData => [...prevData, ...response.data]);
+                setMessage("");
+              } else {
+                setHasMore(false);
+              }
         } catch (error) {
             setError(error);
             console.error('Error fetching data:', error);
@@ -151,7 +151,7 @@ function AccountInvoiceTable(props) {
         }
     
         const procureInvoiceList = selectedRows.map(orderId => {
-            const selectedRow = data.find(item => item.orderId === orderId);
+            const selectedRow = cardData.find(item => item.orderId === orderId);
             return {
                 orderPhoneId: selectedRow ? selectedRow.orderId : "",
             };
@@ -174,13 +174,25 @@ function AccountInvoiceTable(props) {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
           });
-          setData(response.data);
+          if (Array.isArray(response.data)) {
+            setcardData(response.data);
+          } else {
+            console.error('Expected array but got:', response.data);
+            setcardData([]);
+          }
           Swal.fire({
             title: 'Success!',
             text: 'Invoice generated successfully!',
             icon: 'success',
             confirmButtonText: 'OK'
           });
+          props.setmodalMultiple(false);
+          props.getGeneratedInvoiveList(props.distributorId);
+          // window.location.reload();
+          // setTimeout(() => {
+          //   props.setactiveKey("11")
+          // }, 1000);
+     
         } catch (err) {
           setError(err);
           Swal.fire({
@@ -268,9 +280,9 @@ function AccountInvoiceTable(props) {
                 <div className="text-center font-semibold text-xs">Loading...</div>
             ) : message ? (
                 <NodataFoundPage/>
-            ) : data.length > 0 ? (
+            ) : Array.isArray(cardData) && cardData.length > 0 ? (
                 <>
-                    {data.map((item) => {
+                    {cardData.map((item) => {
                 const currentdate = dayjs().format("DD/MM/YYYY");
                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                 return (

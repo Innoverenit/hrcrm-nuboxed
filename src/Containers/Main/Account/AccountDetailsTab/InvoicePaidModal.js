@@ -14,7 +14,7 @@ class InvoicePaidModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={`Collection - ${this.props.particularRowData.newOrderNo}`}
+                    title={`Collection - ${this.props.particularRowData.invoiceId}`}
                     width="70%"
                     visible={addPaidButtonModal}
                     destroyOnClose
