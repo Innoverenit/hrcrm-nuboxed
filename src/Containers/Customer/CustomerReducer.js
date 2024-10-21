@@ -1279,13 +1279,13 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         updatingCustomerOwenership: false,
         // updateCandidateEmploymentModal: false,
-        employmentDetails: state.employmentDetails.map((employment, i) => {
-          if (employment.id === action.payload.id) {
-            return action.payload;
-          } else {
-            return employment;
-          }
-        }),
+        // employmentDetails: state.employmentDetails.map((employment, i) => {
+        //   if (employment.id === action.payload.id) {
+        //     return action.payload;
+        //   } else {
+        //     return employment;
+        //   }
+        // }),
 
         customerByUserId:state.customerByUserId.filter(
           (item)=>{
@@ -1293,9 +1293,27 @@ export const customerReducer = (state = initialState, action) => {
 
           return !action.payload.includes(item.customerId)  
           }
+        ),
+
+        teamCustomer:state.teamCustomer.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.customerId)  
+          }
+        ),
+
+
+
+        allCustomers:state.allCustomers.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.customerId)  
+          }
         )
       };
-    case types.UPDATE_CUSTOMER_OWNERSHIP_SUCCESS:
+    case types.UPDATE_CUSTOMER_OWNERSHIP_FAILURE:
       return {
         ...state,
         updatingCustomerOwenership: false,
