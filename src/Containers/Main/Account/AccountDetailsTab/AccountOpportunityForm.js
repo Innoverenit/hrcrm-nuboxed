@@ -167,7 +167,7 @@ const handleOnSelectType =(ontype)=> {
                                             ]}
                                         /> */}
                                        
-                                        <button className={`${props.moduleMapper.procurementInd === true || props.moduleMapper.procurementInd === false && 
+                                        <button className={`${props.moduleMapper.ecomModInd === true || props.moduleMapper.ecomModInd === false && 
                                         selectOnType === "Commerce" ? 
                                         "bg-green-400 text-white border rounded-md":"bg-purple-400 text-black border rounded-md"}`}
                                         onClick={() => handleOnSelectType("Commerce")}
@@ -175,7 +175,7 @@ const handleOnSelectType =(ontype)=> {
                                             Commerce
                                         </button>
                                         &nbsp;
-                                        <button className={`${selectOnType==="Repair" ? 
+                                        <button className={`${props.moduleMapper.repairInd=== true  &&  selectOnType==="Repair" ? 
                                         "bg-green-400 text-white rounded-md":"bg-purple-400 text-black border rounded-md"}`}
                                         onClick={() => handleOnSelectType("Repair")}
                                         >

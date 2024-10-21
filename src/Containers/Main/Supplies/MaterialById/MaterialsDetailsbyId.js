@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 // import { getmaterialsBySuppliesId } from "./InventoryAction";
@@ -43,6 +43,7 @@ const breakPoints = [
   { width: 768, itemsToShow: 2, itemToScroll: 2 },
   { width: 1100, itemsToShow: 4, itemToScroll: 4 },
 ];
+console.log(props.UOMListData)
   return (
     
     <div className="bg-[#F7F8FC]">
@@ -129,7 +130,7 @@ const breakPoints = [
       UpdateMaterialIamge={props.UpdateMaterialIamge}
    materialsBySuppliesId={props.materialsBySuppliesId}
    particularDiscountData={props.particularDiscountData}
-  //  UOMListData={props.UOMListData?.length ? props.UOMListData : []}
+   mydata={props.UOMListData}
       />
     
       </div>
@@ -144,7 +145,7 @@ const breakPoints = [
 const mapStateToProps = ({ supplies,auth ,settings}) => ({
     materialsBySuppliesId: supplies.materialsBySuppliesId,
   fetchingMaterialsBySuppliesId:supplies.fetchingMaterialsBySuppliesId,
-  UOMListData:settings.UOMListData,
+  // UOMListData:settings.UOMListData,
 });
 
 const mapDispatchToProps = (dispatch) =>

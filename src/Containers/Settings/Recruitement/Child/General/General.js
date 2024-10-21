@@ -59,6 +59,8 @@ function General(props) {
     ordCmrc: props.requirementDuration.ordCmrc,
     ordprdts: props.requirementDuration.ordprdts,
     apprvl: props.requirementDuration.apprvl,
+    bestBfrDayRng: props.requirementDuration.bestBfrDayRng,
+    packageInd: props.requirementDuration.packageInd,
     userId: props.userId,
     orgId: props.orgId,
   });
@@ -114,6 +116,8 @@ function General(props) {
     ordCmrc: props.requirementDuration.ordCmrc || "",
     ordprdts: props.requirementDuration.ordprdts || "",
     apprvl: props.requirementDuration.apprvl || "",
+    bestBfrDayRng: props.requirementDuration.bestBfrDayRng || "",
+    packageInd: props.requirementDuration.packageInd,
     processInd: props.requirementDuration.processInd,
     enaShipInd: props.requirementDuration.enaShipInd,
     userId: props.userId,
@@ -191,6 +195,8 @@ function General(props) {
           noOfQtion: formValues.noOfQtion,
           tskAgCriRng: formValues.tskAgCriRng,
           enaShipInd: formValues.enaShipInd,
+          bestBfrDayRng: formValues.bestBfrDayRng,
+          packageInd: formValues.packageInd,
 
     };
 
@@ -721,8 +727,40 @@ function General(props) {
                     />
                   </div>
                 </div>
-                 
-
+                <div className="flex justify-between mt-2">
+                  <div className="text-xs">Best Before Day Range</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="bestBfrDayRng"
+                      value={formValues.bestBfrDayRng}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+                <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Package</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Package")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.packageInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("packageInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
 
 
 

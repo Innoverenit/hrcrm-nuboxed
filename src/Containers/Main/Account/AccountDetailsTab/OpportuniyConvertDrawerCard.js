@@ -89,7 +89,7 @@ const OpportuniyConvertDrawerCard = ({ props,userId,setopenConvertModal,stripeNo
           <Radio value={"EFT"}>
           <div className="flex justify-between mt-2"> 
             <div className="flex">
-          <label> Electronics Fund Transfer (EFT) - </label> send remittance to sales@1Di.ca
+          <label> Electronics Fund Transfer (EFT) - </label> send remittance 
           </div>
             <div className="flex justify-center ml-2 mr-2">
             {value === "EFT" && (
@@ -108,7 +108,7 @@ const OpportuniyConvertDrawerCard = ({ props,userId,setopenConvertModal,stripeNo
           <Radio value={"Cash on Delivery"}>
           <div className="flex items-center">
           <div>
-              <h3>pay in cash or pay in per at the time of delivery</h3>
+              <h3>Pay in cash or pay at the time of delivery</h3>
             </div>
           {/* <img className="w-[4.25rem]"  alt="pay"  /> */}
               {value === "Cash on Delivery" && (
@@ -125,11 +125,11 @@ const OpportuniyConvertDrawerCard = ({ props,userId,setopenConvertModal,stripeNo
           
          
           </Radio>
-          <Radio.Group onChange={handlePaymentChange} value={paymentMethod}>
+          {/* <Radio.Group onChange={handlePaymentChange} value={paymentMethod}> */}
       <Radio value="pay by check">
         <div className=" flex font-semibold mt-2">      
           Pay by Check
-          {paymentMethod === "pay by check" && (
+          {/* {paymentMethod === "pay by check" && ( */}
             <div className="flex justify-center ml-2 mr-2">
               {/* <Input
                 className="rounded border-black w-48"
@@ -144,7 +144,7 @@ const OpportuniyConvertDrawerCard = ({ props,userId,setopenConvertModal,stripeNo
                style={{marginLeft:"1rem"}}>
                 Checkout
               </Button> */}
-              
+              {value === "pay by check" && (
               <Button
               type="primary"
               onClick={() => handlePaybyOrder()}
@@ -152,13 +152,13 @@ const OpportuniyConvertDrawerCard = ({ props,userId,setopenConvertModal,stripeNo
             >
                 Checkout
               </Button>
-                  
+              )} 
             </div>
-          )}
+          {/* )} */}
         </div>
       </Radio>
       
-    </Radio.Group>
+    {/* </Radio.Group> */}
           
     <Radio value={"Creditors"}>
             <div className="flex justify-between mt-2"> 

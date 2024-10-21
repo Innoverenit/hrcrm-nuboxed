@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button,DatePicker } from "antd";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
+import {getUOM} from "../../Settings/SettingsAction"
 import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
 import { base_url2 } from "../../../Config/Auth";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
@@ -28,6 +29,7 @@ class Suppliesform extends Component {
   }
   componentDidMount() {
     this.props.getCurrency()
+    this.props.getUOM()
   }
 
 
@@ -83,7 +85,12 @@ class Suppliesform extends Component {
         value: item.currency_name,
       };
     })
-
+    const uomType = this.props.UOMListData.map((item) => {
+      return {
+        label: item.unitName || "",
+        value: item.unitName,
+      };
+    })
     return (
       <>
         <Formik
@@ -94,7 +101,9 @@ class Suppliesform extends Component {
             categoryName: "",
             description: "",
             imageId: "",
+            uom:"",
             name: "",
+            wtUom:"",
             hsn: "",
             subAttribute: "",
             subAttributeName: "",
@@ -220,7 +229,7 @@ class Suppliesform extends Component {
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[13]}</div>
                       <Field
                         name="length"
-                        //label="UOM"
+      
                         isColumn
                         inlineLabel
                         component={InputComponent}
@@ -258,12 +267,18 @@ class Suppliesform extends Component {
                     </div>
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
-                      <Field
-                        name="weight"
+                    <Field
+                        name="uom"
+                        //label="UOM"
                         isColumn
-                        width={"100%"}
                         inlineLabel
-                        component={InputComponent}
+                        value={values.unitName}
+                        component={SelectComponent}
+                        options={Array.isArray(uomType) ? uomType : []}
+                        // options={["g", "kg"]}
+                        style={{
+                          width: "100%",
+                        }}
                       />
                     </div>
                   </div>
@@ -337,12 +352,14 @@ class Suppliesform extends Component {
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                       <Field
-                        name="netUnit"
+                        name="wtUom"
                         //label="UOM"
                         isColumn
                         inlineLabel
+                        value={values.unitName}
                         component={SelectComponent}
-                        options={["g", "kg"]}
+                        options={Array.isArray(uomType) ? uomType : []}
+                        // options={["g", "kg"]}
                         style={{
                           width: "100%",
                         }}
@@ -361,7 +378,7 @@ class Suppliesform extends Component {
                         component={InputComponent}
                       />
                     </div>
-                    <div class="w-[47%]">
+                    {/* <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[8]}</div>
                       <Field
                         name="grossUnit"
@@ -374,7 +391,7 @@ class Suppliesform extends Component {
                           width: "100%",
                         }}
                       />
-                    </div>
+                    </div> */}
                   </div>
                   <div class="flex justify-between mt-2">
                     <div class="w-[47%]">
@@ -443,12 +460,13 @@ class Suppliesform extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, supplies }) => ({
+const mapStateToProps = ({ auth, supplies,settings }) => ({
   addingPurchase: supplies.addingPurchase,
   groupId: auth.userDetails.groupId,
   userId: auth.userDetails.userId,
   currencies: auth.currencies,
   orgId: auth.userDetails.organizationId,
+  UOMListData:settings.UOMListData,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -456,6 +474,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       addSupplies,
       getCurrency,
+      getUOM
     },
     dispatch
   );

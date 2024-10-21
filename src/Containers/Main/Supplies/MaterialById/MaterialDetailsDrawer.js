@@ -42,6 +42,7 @@ function MaterialDetailsDrawer(props) {
             suppliesId={particularDiscountData.suppliesId}
             fifoInd={particularDiscountData.fifoInd}
             featureInd={particularDiscountData.featureInd}
+            UOMListData={props.UOMListData}
             /> 
                 </div>;
           // case "3":
@@ -60,7 +61,7 @@ function MaterialDetailsDrawer(props) {
           return null;
       }
     };
-
+console.log(props.UOMListData)
     return (
       <>
         <StyledDrawer

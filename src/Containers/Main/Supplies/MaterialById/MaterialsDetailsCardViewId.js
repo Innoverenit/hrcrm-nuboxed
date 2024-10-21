@@ -278,7 +278,7 @@ function MaterialsDetailsCardViewId (props) {
         setSelectedUom({ ...selectedUom, [key]: value });
         console.log('Selected UOM for', key, 'is', value);
       };
-      // console.log(props.UOMListData)
+       
       return (
         <>
         <div className="flex flex-col w-[85%]">
@@ -345,7 +345,7 @@ function MaterialsDetailsCardViewId (props) {
                   value={selectedUom[key]}
                  onChange={(value) => handleUomChange(value, key)}
                 >
-                  {props.UOMListData.map((uom) => (
+                  {props.mydata.map((uom) => (
                     <Option key={uom.uomId} value={uom.uomId}>
                       {uom.unitName}
                     </Option>
@@ -373,7 +373,7 @@ function MaterialsDetailsCardViewId (props) {
     
 
 
-
+    console.log(props.mydata)
   return (
   <>
        

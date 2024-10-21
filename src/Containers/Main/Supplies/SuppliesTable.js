@@ -21,6 +21,7 @@ import {
   handleErpDocumentUploadModal
 } from "./SuppliesAction";
 import EuroIcon from '@mui/icons-material/Euro';
+import {getUOM} from "../../Settings/SettingsAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip, Popconfirm,Button } from "antd";
 import {
@@ -81,7 +82,7 @@ function SuppliesTable(props) {
   useEffect(() => {
     setPage(page + 1);
     props.getSuppliesList(page);
-
+    props.getUOM()
   }, []);
 
   const handleLoadMore = () => {
@@ -694,6 +695,7 @@ function SuppliesTable(props) {
        setopenComplementary={setopenComplementary}
        handlePriceModal={handlePriceModal}
        priceOpenModal={props.priceOpenModal}
+       UOMListData={props.UOMListData}
         />
  
       <AddSuppliesRowImageModal
@@ -711,7 +713,7 @@ function SuppliesTable(props) {
 }
 
 
-const mapStateToProps = ({ supplies, auth }) => ({
+const mapStateToProps = ({ supplies, auth,settings }) => ({
   fetchingPurchaseList: supplies.fetchingPurchaseList,
   purchaseList: supplies.purchaseList,
   updateSuppliesDrawer: supplies.updateSuppliesDrawer,
@@ -725,6 +727,7 @@ const mapStateToProps = ({ supplies, auth }) => ({
   materialInveDawer:supplies.materialInveDawer,
   priceOpenModal: supplies.priceOpenModal,
   locationSuppliesModal:supplies.locationSuppliesModal,
+  UOMListData:settings.UOMListData,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -742,7 +745,8 @@ const mapDispatchToProps = (dispatch) =>
       handleSuppliersListDrawer,
       handleMaterialInventory,
       handleErpDocumentUploadModal,
-      handlePriceModal
+      handlePriceModal,
+      getUOM
     },
     dispatch
   );
