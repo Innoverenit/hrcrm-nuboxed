@@ -191,22 +191,7 @@ const filterData = filteredData.filter(item =>
             />}
           </>
         )}
-        {/* {props.viewType === "table" ?(
-        
-        <ContactCardList
-           
-        currentUser={currentUser} 
-        filter={filter}
-         filterData={filterData}
-         />) :
-         props.viewType ==="all" ?(
-         
-             <ContactAllCardList/>)
-         :viewType==="teams" ?(
-         
-          <ContactTeamCardList/>)
-
-        : null} */}
+      
       </Suspense>
     </React.Fragment>
   );

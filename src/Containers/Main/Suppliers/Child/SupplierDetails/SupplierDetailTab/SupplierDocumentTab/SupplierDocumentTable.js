@@ -121,13 +121,13 @@ class SupplierDocumentTable extends Component {
               {documentsBySupplierId.length > 0 ? (
                 documentsBySupplierId.map((item) => (
                   <div key={item.id}>
-                    <div className="flex rounded mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col">
-                      <div className="flex w-3/4">
+                    <div className="flex rounded mt-1 bg-white h-8 items-center max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                      <div className="flex w-3/4 border-l-2 h-8 border-green-500 bg-[#eef2f9]">
                         <div className="flex border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-[1.56rem] max-sm:w-full">
                           {dayjs(item.creationDate).format("ll")}
                         </div>
-                        <div className="flex items-center h-8 ml-gap bg-[#eef2f9] md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-                          <div className="text-xs  font-poppins text-center">
+                        <div className="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                          <div className="text-xs ml-gap font-poppins text-center">
                             {item.contactDocumentName}
                           </div>
                         </div>

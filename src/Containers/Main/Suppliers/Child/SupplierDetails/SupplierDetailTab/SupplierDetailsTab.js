@@ -20,11 +20,11 @@ import Shop2Icon from '@mui/icons-material/Shop2';
 import InventoryIcon from '@mui/icons-material/Inventory';
 const AddPoModal = lazy(() => import("./AddPoModal"));
 const AddSupplierInventoryImportModal = lazy(() => import("./SuppliersActivityTab/SuppliersActivityTable"));
-const PurchaseOrderTable = lazy(() => import("./PurchaseOrderTable"));
+const PurchaseOrderTable = lazy(() => import("./PurchaseOrderTable"));//1
 const SupplierSuppliesDrawer = lazy(() => import("./SupplierSupplies/SupplierSuppliesDrawer"));
-const InventoryTable = lazy(() => import("./InventoryTable"));
+const InventoryTable = lazy(() => import("./InventoryTable"));//2
 const AddSupplierExcleModal = lazy(() => import("./SupplierDocumentTab/AddSupplierExcleModal"));
-const SupplierSuppliesCardTable = lazy(() => import("./SupplierSupplies/SupplierSuppliesCardTable"));
+const SupplierSuppliesCardTable = lazy(() => import("./SupplierSupplies/SupplierSuppliesCardTable"));//3
 const AddSupplierContactModal = lazy(() => import("./SupplierContactTab/AddSupplierContactModal"));
 const SupplierContactTable = lazy(() => import("./SupplierContactTab/SupplierContactTable"));
 const SupplierDocumentTable = lazy(() => import("./SupplierDocumentTab/SupplierDocumentTable"));
