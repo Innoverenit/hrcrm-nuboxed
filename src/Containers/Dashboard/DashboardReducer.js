@@ -97,6 +97,10 @@ const initialState = {
   fetchingRecruiterDashboardListError: false,
   listRecruiterDashboard: [],
 
+
+  linkingTaskStatusDashboard:false,
+  linkingTaskStatusDashboardError:false,
+
   fetchingOrderOpenList:false,
   fetchingOrderOpenListError:false,
   orderOpenList:[],
@@ -1013,6 +1017,37 @@ export const dashboardReducer = (state = initialState, action) => {
         fetchingTaskDashboardGantt: false,
         fetchingTaskDashboardGanttError: true,
       };
+
+
+
+
+
+      case types.LINK_TASK_STATUS_DASHBOARD_REQUEST:
+        return { ...state, linkingTaskStatusDashboard: true };
+      case types.LINK_TASK_STATUS_DASHBOARD_SUCCESS:
+        return {
+          ...state,
+          linkingTaskStatusDashboard: false,
+          tasksdashboardGantt: state.tasksdashboardGantt.map((item) => {
+            if (item.taskId === action.payload.taskId) {
+              // return { ...item, active: action.payload.active };
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+  
+          
+          // cancelOrder: action.payload,
+          // candidateByUserId: action.payload,
+          // addTeamTransferModal: false,
+        };
+      case types.LINK_TASK_STATUS_DASHBOARD_FAILURE:
+        return {
+          ...state,
+          linkingTaskStatusDashboard: false,
+          linkingTaskStatusDashboardError: true,
+        };
 
     case types.UPDATE_TODO_CALL_BY_ID_REQUEST:
       return { ...state, updatingTodoCall: true };

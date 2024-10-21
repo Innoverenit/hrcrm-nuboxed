@@ -1,14 +1,16 @@
 import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {linkTaskStatusDashboard} from "../DashboardAction"
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import {Button,Tooltip} from "antd"
+import {Button,Tooltip,Spin} from "antd"
 import dayjs from "dayjs";
 
 import {
   getMaterialBestBefore,
+  addToWaste,
 
 } from "../../Main/Inventory/InventoryAction";
 
@@ -71,70 +73,78 @@ const DashBoardSummary=(props) =>{
       <div class="flex flex-col">
         <h2 className="text-xl font-bold mb-4">TASK-({`${props.taskperCount.totalTask} `})</h2>
         <div className="overflow-y-auto max-h-[78vh]">
-        {props.tasksdashboardGantt.map((deal, index) => (
-          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ">
+      {props.fetchingTaskDashboardGantt ? (
+        <div className="flex justify-center items-center h-full">
+          <Spin color="#00008b" size={50} /> 
+          <div>No data found</div>
+          {/* Spinner component */}
+        </div>
+      ) : (
+        props.tasksdashboardGantt.map((deal, index) => {
+          const currentDate = dayjs();
+        const completionDate = dayjs(deal.completionDate);
+          const endDate = dayjs(deal.endDate);
+        const difference = currentDate.diff(endDate, 'days');
+         
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23]">
             <div className="flex justify-between">
               <div>
                 <div className="font-semibold">{deal.taskName}</div>
                 <div className="text-sm text-gray-500 font-poppins">
-                <ButtonGroup >
-         
-         <StatusIcon class=" !text-icon"
- type="To Start"
- iconType={<HourglassEmptyIcon  className=" !text-icon" />} 
-// iconType="fa-hourglass-start"
- tooltip="To Start"
-//  status={item.taskStatus}
-//  difference={difference} 
-//  onClick={() =>
-//    linkTaskStatus(item.taskId, {
-//      taskStatus: "To Start",
-//    })
-//  }
-/>
-       
-           <StatusIcon class=" !text-icon"
-             type="In Progress"
-            iconType={<HourglassTopIcon  className=" !text-icon"/>}
-             tooltip="In Progress"
-            //  status={item.taskStatus}
-            //  difference={difference}
-            //  onClick={() =>
-            //    linkTaskStatus(item.taskId, {
-            //      //  ...item,
-            //       taskStatus: "In Progress",
-            //    })
-            //  }
-           />
-        
-           <StatusIcon class=" !text-icon"
-             type="Completed"
-           iconType={<HourglassBottomIcon  className=" !text-icon"/>}
-             tooltip="Completed"
-            //  status={item.taskStatus}
-            //  difference={difference}
-            //  onClick={() =>
-            //    linkTaskStatus(item.taskId, {
-            //      //  ...item,
-            //       taskStatus: "Completed",
-            //    })
-            //  }
-           />
-         
-       </ButtonGroup>
-                  
-                  
-                  
-                  </div>
+                  <ButtonGroup>
+                    <StatusIcon
+                      class="!text-icon"
+                      type="To Start"
+                      iconType={<HourglassEmptyIcon className="!text-icon" />}
+                      tooltip="To Start"
+                      status={deal.taskStatus}
+                      difference={difference} 
+                      onClick={() =>
+                        props.linkTaskStatusDashboard(deal.taskId, {
+                          taskStatus: "To Start",
+                        })
+                      }
+                    />
+                    <StatusIcon
+                      class="!text-icon"
+                      type="In Progress"
+                      iconType={<HourglassTopIcon className="!text-icon" />}
+                      tooltip="In Progress"
+                      status={deal.taskStatus}
+              difference={difference}
+              onClick={() =>
+                props.linkTaskStatusDashboard(deal.taskId, {
+                  //  ...item,
+                   taskStatus: "In Progress",
+                })
+              }
+                    />
+                    <StatusIcon
+                      class="!text-icon"
+                      type="Completed"
+                      iconType={<HourglassBottomIcon className="!text-icon" />}
+                      tooltip="Completed"
+                      status={deal.taskStatus}
+                      difference={difference}
+                      onClick={() =>
+                        props.linkTaskStatusDashboard(deal.taskId, {
+                          //  ...item,
+                           taskStatus: "Completed",
+                        })
+                      }
+                    />
+                  </ButtonGroup>
+                </div>
               </div>
               <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded max-h-max">
-              {`${dayjs(deal.endDate).format("DD/MM/YYYY")}`}
-                </div>
+                {`${dayjs(deal.endDate).format("DD/MM/YYYY")}`}
+              </div>
             </div>
-            {/* <div className="text-green-600 font-bold bg-green-100 inline-block px-2 py-1 rounded">${deal.amount}</div> */}
           </div>
-        ))}
-        </div>
+       
+})
+      )}
+    </div>
       </div>
 {/* <div class="relative   sm:after:content-[''] sm:after:absolute sm:after:w-[3px] sm:after:min-h-[500vh] sm:after:bg-black sm:after:right-[-1rem]"></div> */}
       {/* QUOTATION */}
@@ -143,8 +153,13 @@ const DashBoardSummary=(props) =>{
   QUOTATION -
   ({`${props.quotationDashboardCount.countByUserId} `})
 </h2>
-  {props.quotationDashboard.length === 0 ? (
-    <div>No data found</div>
+  {props.quotationDashboard.length === 0 &&props.fetchingQuotationDashboard? (
+    <>
+     <Spin color="#00008b" size={50} /> 
+     <div>No data found</div>
+    </>
+    
+   
   ) : (
     props.quotationDashboard.map((lead, index) => (
       <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
@@ -187,7 +202,13 @@ const DashBoardSummary=(props) =>{
          {/* Best Before */}
          <div class="flex flex-col ">
         <h2 className="text-xl font-bold mb-4"> BEST BEFORE-(2) </h2>
-        {props.materialBestBefore.map((colleague, index) => (
+        <div className="overflow-y-auto max-h-[78vh]">
+      {props.fetchingMaterialBestBefore ? (
+        <div className="flex justify-center items-center h-full">
+          <Spin color="#00008b" size={50} /> {/* Spinner component */}
+        </div>
+      ) : (
+        props.materialBestBefore.map((colleague, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
             <div className="flex justify-between">
               <div className="font-semibold">{colleague.suppliesFullName} {colleague.batchNo}</div>
@@ -198,10 +219,29 @@ const DashBoardSummary=(props) =>{
             <div className="text-sm text-gray-500 font-poppins">{colleague.newPoNumber} {colleague.hsn} </div>
             <div class="flex justify-between">
                       <div className="text-sm text-gray-500 font-poppins">{colleague.zone} {colleague.aisle} {colleague.chamber} </div>
-            <Button>To Waste</Button>
+            <Button
+              onClick={() => {
+                props.addToWaste({
+                  poSupplierSuppliesId:colleague.poSupplierSuppliesId,
+                  poSupplierDetailsId:colleague.poSupplierDetailsId,
+                  suppliesId:colleague.suppliesId,
+                  userId:colleague.userId,
+                  locationId:colleague.locationId,
+                  orgId:props.orgId,
+                  moveToWasteInd:true
+                },
+                colleague.poSupplierSuppliesId
+              );
+                
+              }}
+            >To Waste</Button>
             </div>
           </div>
-        ))}
+        ))
+
+      )}
+
+        </div>
       </div>
 
 
@@ -241,12 +281,16 @@ const DashBoardSummary=(props) =>{
 };
 const mapStateToProps = ({ dashboard,inventory, auth }) => ({
   userId: auth.userDetails.userId,
+  fetchingQuotationDashboard:dashboard.fetchingQuotationDashboard,
   locationId: auth.userDetails.locationId,
   reOrderData:dashboard.reOrderData,
+  fetchingTaskper:dashboard.fetchingTaskper,
   taskperCount:dashboard.taskperCount,
+  fetchingMaterialBestBefore:inventory.fetchingMaterialBestBefore,
   tasksdashboardGantt:dashboard.tasksdashboardGantt,
   materialBestBefore:inventory.materialBestBefore,
   quotationDashboard:dashboard.quotationDashboard,
+  fetchingTaskDashboardGantt:dashboard.fetchingTaskDashboardGantt,
   quotationDashboardCount:dashboard.quotationDashboardCount
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -254,7 +298,10 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getQuotationDashboardCount,
   getMaterialBestBefore,
   getTasklist,
+  linkTaskStatusDashboard,
+
   getReorderdata,
+  addToWaste,
   getTakskdashboardGantt
 
 }, dispatch);

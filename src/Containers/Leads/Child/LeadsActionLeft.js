@@ -6,14 +6,18 @@ import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import PeopleIcon from '@mui/icons-material/People';
 import { StyledSelect } from "../../../Components/UI/Antd";
-import { Input, Tooltip, Tag, Badge, Avatar } from "antd";
+import { Input, Tooltip, Tag, Badge,Button,Select, Avatar } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import { inputLeadsDataSearch, ClearSearchedDataOfLead,ClearReducerDataOfLead, getLeads, getLeadsRecords,getLeadsAllRecords, getLeadsTeamRecords, getJunkedLeadsRecords } from "../LeadsAction";
+import { base_url } from "../../../Config/Auth";
 const { Search } = Input;
 const Option = StyledSelect.Option;
 
 const LeadsActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
+  const [userData, setUserData] = useState([]);
+  const [isLoadingUser, setIsLoadingUser] = useState(false);
+  const [touchedUser, setTouchedUser] = useState(false);
   const [searchOnEnter, setSearchOnEnter] = useState(false); 
   const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false); //Code for Search
@@ -60,6 +64,14 @@ const LeadsActionLeft = (props) => {
       setCurrentData(transcript);
     }
     }, [ transcript]);
+    const handleSelectUserFocus = () => {
+      if (!touchedUser) {
+        fetchUser();
+        // fetchSector();
+  
+        setTouchedUser(true);
+      }
+    };
 
   const handleChange = (e) => {
     setCurrentData(e.target.value);
@@ -164,6 +176,31 @@ const LeadsActionLeft = (props) => {
       }
     }
   }, [listening, isRecording, startTime]);
+
+
+
+  const fetchUser = async () => {
+    setIsLoadingUser(true);
+    try {
+   
+
+      const apiEndpoint = `${base_url}/employee/active/user/type/drop-down/${props.orgId}/${"employee"}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingUser(false);
+    }
+  };
   const { user } = props;
   console.log(currentData)
   const teamCount = props.teamsAccessInd && props.leadsTeamCountData ? props.leadsTeamCountData.leadsTeam : 0;
@@ -298,6 +335,34 @@ const LeadsActionLeft = (props) => {
           <Option value="descending">Z To A</Option>
         </StyledSelect>
       </div>
+      <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {/* {!props.showCheckboxes && (  */}
+        <Button type="primary" 
+        onClick={props.handleTransferClick}
+        >
+          Transfer
+          {/* {props.isTransferMode ? 'Transfer' : 'Cancel'} */}
+        </Button>
+       {/* )} */}
+        </div>
+
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {/* {props.showCheckboxes && props.selectedDeals.length > 0 && (  */}
+        <Select
+       
+       placeholder="Select User"
+       loading={isLoadingUser}
+       onFocus={handleSelectUserFocus}
+       onChange={props.handleUserSelect}
+     >
+       {userData.map(customer => (
+         <Option key={customer.employeeId} value={customer.employeeId}>
+           {customer.empName}
+         </Option>
+       ))}
+     </Select>
+     {/* )} */}
+        </div>
     </div>
   );
 };

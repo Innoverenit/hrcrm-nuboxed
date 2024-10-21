@@ -1286,6 +1286,14 @@ export const customerReducer = (state = initialState, action) => {
             return employment;
           }
         }),
+
+        customerByUserId:state.customerByUserId.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.customerId)  
+          }
+        )
       };
     case types.UPDATE_CUSTOMER_OWNERSHIP_SUCCESS:
       return {
