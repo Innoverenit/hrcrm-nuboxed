@@ -160,6 +160,7 @@ class LinkedDocuments extends Component {
       fetchingDocumentsByCustomerIdError,
       deleteDocument,
     } = this.props;
+    console.log(documentsByCustomerId)
 
     const documentTypeOption = this.props.documents.map((item) => {
       return {
@@ -197,7 +198,7 @@ class LinkedDocuments extends Component {
       </div>
    
         
-      { !fetchingDocumentsByCustomerId && documentsByCustomerId.length === 0 ?<NodataFoundPage />:documentsByCustomerId.map((item,index) =>  {
+      { documentsByCustomerId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         
@@ -326,7 +327,7 @@ const mapStateToProps = ({ customer, document }) => ({
   fetchingDocumentsByCustomerId: customer.fetchingDocumentsByCustomerId,
   fetchingDocumentsByCustomerIdError:
     customer.fetchingDocumentsByCustomerIdError,
-  documentsByCustomerId: customer.documentsByCustomerId,
+    documentsByCustomerId: customer.documentsByCustomerId,
 });
 
 const mapDispatchToProps = (dispatch) =>

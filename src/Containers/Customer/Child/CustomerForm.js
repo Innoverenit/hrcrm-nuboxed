@@ -2,6 +2,7 @@ import React, { useState, useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button,Select } from "antd";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -725,7 +726,7 @@ country_dial_code
 
 {/* {props.customerConfigure.noteInd===true&& */}
 <div class="mt-3">
-<div>
+{/* <div>
                     <span class="font-bold font-poppins text-xs"> {translatedMenuItems[12]}</span>
                     
                   <span>
@@ -764,7 +765,11 @@ country_dial_code
                       onChange={handleTextChange}
                     ></textarea>
                   </div>
-                </div>
+                </div> */}
+                <ReactDescription
+                setText={setText}
+                text={text}
+                />
                   </div>
 {/* } */}
                 </div>

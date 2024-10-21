@@ -507,8 +507,30 @@ export const investorReducer = (state = initialState, action) => {
                             //     return action.payload;
                             //   } else {
                             //     return employment;
-                            //   }
+                            //   }investorsbyId
                             // }),
+
+                            allInvestorsbyId:state.allInvestorsbyId.filter(
+                              (item)=>{
+                                console.log("abc",item,action.payload);
+                    
+                              return !action.payload.includes(item.investorId)  
+                              }
+                            ),
+                            investorsbyId:state.investorsbyId.filter(
+                              (item)=>{
+                                console.log("abc",item,action.payload);
+                    
+                              return !action.payload.includes(item.investorId)  
+                              }
+                            ),
+                            teamInvestor:state.teamInvestor.filter(
+                              (item)=>{
+                                console.log("abc",item,action.payload);
+                    
+                              return !action.payload.includes(item.investorId)  
+                              }
+                            ),
                           };
                         case types.UPDATE_INVESTOR_OWNERSHIP_FAILURE:
                           return {

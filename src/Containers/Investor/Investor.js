@@ -70,10 +70,10 @@ const handleUserSelect = (value) => {
   // const selectedUser = userList.find((user) => user.id === value);
   // setSelectedUser(selectedUser);
   let data={
-    customerIds:this.state.selectedDeals
+    investorIds:selectedDeals
   }
-  this.props.updateOwnerinvestorById(data,value)
-  console.log('Selected Deals:', selectedDeals);
+  props.updateOwnerinvestorById(data,value)
+  // console.log('Selected Deals:', selectedDeals);
   // console.log('Selected User:', selectedUser);
 };
 const handleFilterChange = (data) => {

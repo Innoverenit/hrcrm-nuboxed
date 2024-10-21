@@ -1488,7 +1488,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
       type: types.UPDATE_INVESTOR_OWNERSHIP_REQUEST,
     });
     axios
-      .put(`${base_url}/investorLeads/transfer/one-user-to-another/${userId}`, data, {
+      .put(`${base_url}/investor/transfer/${userId}`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

@@ -296,10 +296,13 @@ function InvestorCardList(props) {
                                     {/* >Source */}
 
                                     <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {props.showCheckboxes && (
                                     <Checkbox
                 onChange={() => props.handleCheckboxChange(item.investorId)}
                 checked={props.selectedDeals.includes(item.investorId)}
               />
+                                    )}
+
                                     </div>
                                 </div>
                                 <div className=" flex   w-[10.5rem] border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  items-center">

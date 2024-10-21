@@ -20,6 +20,11 @@ class LeadsHeader extends Component {
           leftComponent={
             <LeadsActionLeft
             viewType={viewType}
+            isTransferMode={this.props.isTransferMode}
+            selectedDeals={this.props.selectedDeals}
+            handleTransferClick={this.props.handleTransferClick}
+            showCheckboxes={this.props.showCheckboxes}
+            handleUserSelect={this.props.handleUserSelect}
             teamsAccessInd={teamsAccessInd}
             handleChange={handleChange}
             setLeadsViewType={setLeadsViewType}
