@@ -13,6 +13,7 @@ import PostImageUpld from "../../../../../../Components/Forms/Formik/PostImageUp
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { getDesignations } from "../../../../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../../../../Settings/Department/DepartmentAction";
+import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 
 const { Option } = Select;
 
@@ -185,6 +186,7 @@ class ContactForm extends Component {
                 address1: "",
                 address2: "",
                 town: "",
+                documentId: "",
                 street: "",
                 city: "",
                 postalCode: "",
@@ -483,6 +485,12 @@ class ContactForm extends Component {
                     component={TextareaComponent}
                   />
                    </div>
+                   <div className="mt-2">
+                   <Field name="documentId" isRequired component={DragableUpload} />       
+                  {errors.documentId && (
+                    <p style={{ color: "tomato", fontWeight: 600 }}>{errors.documentId}</p>
+                  )}
+                  </div>
                 </div>
               </div>
            

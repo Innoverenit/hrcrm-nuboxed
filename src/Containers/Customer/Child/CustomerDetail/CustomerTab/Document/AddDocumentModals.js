@@ -565,7 +565,7 @@ function AddDocumentModal (props){
             <Form className="form-background">
               <div class=" flex justify-between ">
                 <div class=" h-full w-2/4">
-                  <Field name="documentId" isRequired component={DragableUpload} />
+                  <Field name="documentId" isRequired component={DragableUpload} />       
                   {errors.documentId && (
                     <p style={{ color: "tomato", fontWeight: 600 }}>{errors.documentId}</p>
                   )}

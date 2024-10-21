@@ -10,12 +10,10 @@ const AddSuppliesLocationModal = (props) => {
   return (
     <>
       <StyledDrawer
-       title="Location"
+       title={props.currentLocationId.locationName}
         width="60%"
         visible={props.addSuppliesLocationModal}
         destroyOnClose
-        maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-        style={{marginTop:"3rem"}}
         onClose={() => props.handleSuppliesLocationModal(false)}
         footer={null}
       >

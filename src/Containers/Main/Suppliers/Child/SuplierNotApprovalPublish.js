@@ -8,6 +8,7 @@ import {
 
 function SuplierNotApprovalPublish(props) {
     const [data, setData] = useState(props.supplierList);
+    const [toggle, setToggle] = React.useState(props.approvedInd);
   useEffect(() => {
     setData(props.supplierList);
   }, [props.supplierList]);
@@ -34,7 +35,7 @@ function SuplierNotApprovalPublish(props) {
                     cancelText="Cancel"
                 >
                     <Switch className="toggle-clr"
-            //  checked={props.approvedInd}
+                     checked={props.approvedInd || toggle}
                         // isLoading={true}
                         checkedChildren="Yes"
                         unCheckedChildren="No"
