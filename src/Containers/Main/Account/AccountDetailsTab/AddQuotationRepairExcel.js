@@ -15,7 +15,7 @@ function AddQuotationRepairExcel(props) {
 
     const [bulkQr, setBulkQr] = useState(false);
     const [nonRepaied, setNonRepaired] = useState(false);
-    const [formType, setFormType] = useState('Repair'); 
+    const [formType, setFormType] = useState(props.orderDetailsId.orderType); 
 
     function handleBulkQr(checked) {
         setBulkQr(checked);
@@ -48,7 +48,7 @@ function AddQuotationRepairExcel(props) {
                         distributorId: props.distributorId,
                         type: "Non-Catalogue",
                         // orderType: formType === 'Repair',
-                        orderType: 'Repair',
+                        orderType: props.orderDetailsId.orderType,
                     }, props.distributorId);
                 }}
             >
@@ -65,10 +65,10 @@ function AddQuotationRepairExcel(props) {
                         <Form className="form-background h-[89vh]">
                             <div className="">
                                 <div className="h-full">
-                                    <Select defaultValue="Repair" onChange={handleFormTypeChange} className="w-[18rem] mb-3">
+                                    {/* <Select defaultValue="Repair" onChange={handleFormTypeChange} className="w-[18rem] mb-3">
                                         <Option value="Repair">Repair</Option>
                                         <Option value="Procure">Commerce</Option>
-                                    </Select>
+                                    </Select> */}
                                     {formType === 'Repair' ? (
                                         <>
                                             <div className="mt-3">

@@ -145,8 +145,14 @@ function QuotationDetailsCardList(props) {
             <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
           </div>
       
-          <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.unit" defaultMessage="Unit" />
+          <div className="md:w-[4.8rem]">
+           Units
+          </div>
+          <div className="md:w-[5.8rem]">
+           Price
+          </div>
+          <div className="md:w-[6.8rem]">
+          Discount
           </div>
         
           <div className="md:w-[6.12rem]"></div>

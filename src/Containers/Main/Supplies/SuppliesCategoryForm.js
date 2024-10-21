@@ -101,12 +101,12 @@ function SuppliesCategoryForm (props) {
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
                     <div>
-                      <div class=" flex justify-between max-sm:flex-col">
-                        <div class=" w-1/2 max-sm:w-full">
+                      <div class=" flex justify-between flex-col ml-2">
+                        <div class="  max-sm:w-full flex flex-col">
                           <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                           <Field
                             name="categoryName"
-                            // label="Category"
+                             label="Category"
                             placeholder="Category"
                             isColumn
                             width={"100%"}
@@ -115,11 +115,12 @@ function SuppliesCategoryForm (props) {
 
                           />
                         </div>
-                        <div class="w-[47%]">
-                  <div class="font-bold text-xs font-poppins text-black">Alert</div>
+                        <div class="">
+                  <div class="font-bold text-xs font-poppins text-black">Alert in days</div>
                       <Field
                         name="alert"
                         //label="HSN"
+                        placeholder="Alert"
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -140,7 +141,7 @@ function SuppliesCategoryForm (props) {
                   htmlType="submit"
                   loading={loading}
                 >
-                  {translatedMenuItems[1]}
+                  Submit
                 </Button>
               </div>
             </Form>

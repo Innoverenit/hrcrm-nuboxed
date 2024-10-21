@@ -165,13 +165,13 @@ console.log("drb2",data)
             <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div>
 
             <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]">Alert</div>
-            <div className=" flex  w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+            <div className=" flex  w-[9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Add">
-                          <AddCircleIcon
-                            className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={handleSuppliesCategoryModal}
-                          />
+                          <Button
+                            className="!text-sm cursor-pointer text-[tomato]"
+                            onClick={handleSuppliesCategoryModal}>+ Add Category</Button>
+                        
                         </Tooltip>
                       </div>
 

@@ -117,7 +117,16 @@ function AddQuotationExcel(props) {
         {rows.map((row, index) => (
           <div key={index}>
             <div className="flex-col">
-
+            <div class=" w-64 max-sm:w-24">
+        <Input
+          placeholder="Search "
+          width={"100%"}
+         // suffix={suffix}
+          // onPressEnter={handleSearch}
+          // onChange={handleChange}
+        //value={currentData}
+        />
+        </div>
             <div>
                 <div class="font-bold text-xs font-poppins text-black">Category</div>
                 <div className="w-[9rem]">
@@ -142,7 +151,7 @@ function AddQuotationExcel(props) {
                     onChange={(value) => handleBrandChange(value, index)}
                   >
                     {props.brand.map((a) => (
-                      <Option key={a.brand} value={a.brand}>{a.categoryName}</Option>
+                      <Option key={a.brandName} value={a.brandName}>{a.brandName}</Option>
                     ))}
                   </Select>
                 </div>
@@ -172,14 +181,29 @@ function AddQuotationExcel(props) {
                     onChange={(value) => handleAttributeChange(value, index)}
                   >
                     {props.allProduct.map((a) => (
-                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
+                      <Option key={a.attributeId} value={a.attributeId}>{a.attributeName}</Option>
                     ))}
                   </Select>
                 </div>
               </div>
                                         
+             
               <div class="mt-1" />
               <div class=" ml-4">
+                <div class="font-bold text-xs font-poppins text-black">Price per Unit</div>
+                <div className="w-24">
+                  <Input
+                    type="text"
+                    value={row.price}
+                    disabled
+                     onChange={(e) => handleUnitChange(index, 'price', e.target.value)}
+                    placeholder="Enter price"
+                  />
+                </div>
+              </div>
+              <div class="mt-1" />
+              <div class=" ml-4 flex">
+                <div className="flex flex-col">
                 <div class="font-bold text-xs font-poppins text-black">Unit</div>
                 <div className="w-24">
                   <Input
@@ -189,17 +213,17 @@ function AddQuotationExcel(props) {
                     placeholder="Enter unit"
                   />
                 </div>
-              </div>
-              <div class="mt-1" />
-              <div class=" ml-4">
-                <div class="font-bold text-xs font-poppins text-black">Price per Unit</div>
+                </div>
+                <div className="flex flex-col">
+                <div class="font-bold text-xs font-poppins text-black">Discount</div>
                 <div className="w-24">
                   <Input
                     type="text"
-                    value={row.price}
-                     onChange={(e) => handleUnitChange(index, 'price', e.target.value)}
-                    placeholder="Enter price"
+                    value={row.discount}
+                    onChange={(e) => handleUnitChange(index, 'discount', e.target.value)}
+                    placeholder="Enter discount"
                   />
+                </div>
                 </div>
               </div>
               <div className="w-4 mt-[1.5rem]">
@@ -208,7 +232,7 @@ function AddQuotationExcel(props) {
             </div>
           </div>
         ))}
-        <Button type="primary" onClick={handleAddRow}>Add</Button>
+        {/* <Button type="primary" onClick={handleAddRow}>Add</Button> */}
         <Button type="primary" loading={props.addingQuotationPhoneDetails} onClick={handleSubmit}>Submit</Button>
       </div>
       <div class="w-[55rem]">
