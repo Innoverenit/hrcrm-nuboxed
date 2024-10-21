@@ -70,6 +70,7 @@ function CustomerCallActivityForm(props) {
   
   const[category,setCategory] =useState(props.selectedCall ? props.selectedCall.callCategory : "New")
   const[reminder,setReminder] =useState(true)
+  const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
   console.log("category",category);
   const[Type,setType]=useState(props.selectedCall?props.selectedCall.callType:"Inbound",)
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -79,6 +80,10 @@ function CustomerCallActivityForm(props) {
     debugger;
 
     setCategory(  data );
+  };
+
+  const handleSelectChangeInclude = (values) => {
+    setSelectedIncludeValues(values); // Update selected values
   };
  function handleTypeChange  (data) {
     debugger;
@@ -196,6 +201,10 @@ function CustomerCallActivityForm(props) {
         value: item.contactId,
       };
     });
+    const filteredContactData = ContactData.filter(
+      (item) => item.value !== props.user.userId
+    );
+
     const salesNameOption = props.sales.map((item) => {
       return {
         label: `${item.fullName || ""}`,
@@ -262,7 +271,7 @@ function CustomerCallActivityForm(props) {
                 opportunity:"",
                 included: [],
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
-                contactId: "",
+                contactId: [],
                 candidateId: "",
               }
              
@@ -753,27 +762,24 @@ function CustomerCallActivityForm(props) {
                   <div class=" mt-3">
                   {props.user.crmInd === true &&(
                   <Field
-                    name="contactId"
-                    //selectType="contactList"
-                    isColumnWithoutNoCreate
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="Contact"
-                      />
-                    }
-                    component={SelectComponent}
-                    isColumn
-                    options={Array.isArray(ContactData) ? ContactData : []}
-                    value={values.contactId}
-                    // isDisabled={defaultContacts}
-                    defaultValue={{
-                      label: `${fullName || ""} `,
-                      value: contactId,
-                    }}
-                    inlineLabel
-                  />
+                  name="contactId"
+                  // label="Include"
+                  label={
+                        <FormattedMessage
+                          id="app.contact"
+                          defaultMessage="Contact"
+                        />
+                      }
+                  mode
+                  placeholder="Select"
+                  component={SelectComponent}
+                  options={Array.isArray(filteredContactData) ? filteredContactData : []}
+                  value={values.contactId}
+                  defaultValue={{
+                    label: `${fullName || ""} `,
+                    value: contactId,
+                  }}
+                />
                   )} 
                   </div>
                   <div class=" mt-3">

@@ -276,6 +276,9 @@ const [priority,setpriority]=useState(props.selectedTask
         value: item.contactId,
       };
     });
+    const filteredContactData = ContactData.filter(
+      (item) => item.value !== props.user.userId
+    );
     const today = dayjs();
     var todayDate = new Date();
     console.log(today);
@@ -345,7 +348,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   assignedDate: assignedDate || dayjs(),
                   customerId: "",
                   opportunity:"",
-                  contact:"",
+                  contact:[],
                   projectName: "",
                   included: [],
                   taskChecklistId: "",
@@ -477,7 +480,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   {
                     ...values,
                     opportunity:values.opportunity,
-                    contact:values.contact,
+                    //contact:values.contact,
                     customerId: props.customer.customerId,
                     taskTypeId:selectedTaskType,
                     taskChecklistId:selectedWorkflow,
@@ -1016,14 +1019,20 @@ const [priority,setpriority]=useState(props.selectedTask
                   <Field
                     name="contact"
                     //selectType="contactList"
-                    isColumnWithoutNoCreate
+                   
                     // label="Contact"
-                  
+                    mode
+                     placeholder="Select"
                     component={SelectComponent}
-                    isColumn
-                    options={Array.isArray(ContactData) ? ContactData : []}
+                   
+                    value={values.contact}
+                    options={Array.isArray(filteredContactData) ? filteredContactData : []}
+                   // options={Array.isArray(ContactData) ? ContactData : []}
+                   defaultValue={{
+                    label: `${fullName || ""} `,
+                    value: contactId,
+                  }}
                   
-                    inlineLabel
                   />
                   )} 
                   </div>

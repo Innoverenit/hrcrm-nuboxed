@@ -2,6 +2,7 @@ import React from "react";
 import { message, Upload } from "antd";
 import { base_url } from "../../../Config/Auth";
 import axios from "axios";
+import { CheckCircleOutlined } from '@ant-design/icons';
 import { FormattedMessage } from "react-intl";
 import { InboxOutlined } from "@ant-design/icons";
 
@@ -13,6 +14,7 @@ class DragableUpload extends React.Component {
     previewVisible: false,
     previewImage: "",
     fileList: [],
+    uploadSuccess: false,
   };
   beforeUpload = (file) => {
     const isLt3M = file.size / 2000 / 2000 < 25;
@@ -40,7 +42,7 @@ class DragableUpload extends React.Component {
         console.log(res);
         onSuccess();
         this.props.form.setFieldValue(this.props.field.name, res.data);
-        this.setState({ previewVisible: false, previewImage: "" });
+        this.setState({ previewVisible: false, previewImage: "" ,uploadSuccess: true});
       })
       .catch((err) => {
         console.log(err);
@@ -66,7 +68,7 @@ class DragableUpload extends React.Component {
     this.setState({ fileList });
   };
   render() {
-    const { fileList } = this.state;
+    const { fileList,uploadSuccess } = this.state;
     return (
       <div className="clearfix">
         <Dragger
@@ -84,6 +86,12 @@ class DragableUpload extends React.Component {
             {/* Click or drag file to this area to upload. */}
           </p>
         </Dragger>
+        {uploadSuccess && (
+          <div className="mt-2 flex">
+            <CheckCircleOutlined style={{ fontSize: '24px', color: 'green' }} />
+            <span style={{ marginLeft: '8px', color: 'green', fontWeight: 600 }}>Document uploaded successfully!</span>
+          </div>
+        )}
       </div>
     );
   }

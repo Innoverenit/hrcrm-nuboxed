@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
+import { PlusOutlined } from "@ant-design/icons";
 import { ActionIcon } from "../../../../../../Components/Utils";
 import {
   StyledPopconfirm,
@@ -18,6 +19,7 @@ import {
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
+import ContactReportData from "./ContactReportData";
 const AddCustomerUpdateContactModal = lazy(() => import("./AddCustomerUpdateContactModal"));
 const CustomerContactActiveToggle = lazy(() => import("./CustomerContactActiveToggle"));
 
@@ -67,7 +69,11 @@ function LinkedContact(props) {
   const [contactId, setContactId] = useState("");
   const [currentContactId, setCurrentContactId] = useState("");
   const [currentContact, setCurrentContact] = useState("");
+  const [itemHistory, setItemHistory] = useState(false);
 
+  const handleItemHistory = () => {
+      setItemHistory(!itemHistory)
+  }
   function handleSetCurrentContactId(contactId) {
     setCurrentContactId(contactId);
     console.log(contactId);
@@ -162,7 +168,18 @@ function LinkedContact(props) {
                         <div>
                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
-                                     
+                                  <div class="flex">
+                                            <div className=" flex md:w-[2.1rem] max-sm:w-full  ">
+                                                <div class="flex justify-between text-xs  font-semibold  font-poppins ">
+                                                    <PlusOutlined
+                                                        onClick={() => {
+                                                            handleItemHistory()
+                                                            handleSetCurrentContact(item)
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>    
                                 <div className=" flex  md:w-[14rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 <div>
@@ -348,7 +365,19 @@ function LinkedContact(props) {
 }
 
 </div>
+
                             </div>
+                            <div>
+                            {itemHistory && (currentContact.contactId === item.contactId)
+                                            && <ContactReportData
+                                            selectedLanguage={props.selectedLanguage}
+                                            translateText={props.translateText}
+                                            currentContact={currentContact} 
+                                            
+                                          
+
+                                            />}
+                                            </div>
                         </div>
 
 

@@ -128,6 +128,9 @@ function CustomerEventActivityForm (props) {
         value: item.contactId,
       };
     });
+    const filteredContactData = ContactData.filter(
+      (item) => item.value !== props.user.userId
+    );
     const customerNameOption = props.allCustomerData
     .sort((a, b) => {
       const libraryNameA = a.name && a.name.toLowerCase();
@@ -172,6 +175,7 @@ const {
       updatingEvent,
       defaultOpportunities,
       creatorId,
+      contactId,
       employeeId,
     } = props;
 
@@ -190,7 +194,7 @@ const {
                   eventVenue: "",
                   remindAt: "",
                   // opportunity:"",
-                  // contact:"",
+                   contact:[],
                   notificationEmail: false,
                   eventDescription: "",
                   timeZone: timeZone,
@@ -294,7 +298,7 @@ const {
                   prefillEvent.eventId,
                   {
                     ...values,
-                    contact: values.contact,
+                    //contact: values.contact,
                     // contact: values.contactId,
                     opportunity: values.opportunity,
                     customer: props.customer.customerId,
@@ -309,7 +313,7 @@ const {
               : addCustomerActivityEvent(
                   {
                     ...values,
-                    contact: values.contact,
+                    //contact: values.contact,
                     // contact: values.contactId,
                     opportunity: values.opportunity,
                     customer: props.customer.customerId,
@@ -600,19 +604,20 @@ const {
                   <Field
                     name="contact"
                     //selectType="contactList"
-                    isColumnWithoutNoCreate
-                    // label="Contact"
-                
+                    //isColumnWithoutNoCreate
+                     //label="Contact"
+                     mode
+                      placeholder="Select"
                     component={SelectComponent}
-                    isColumn
-                    options={Array.isArray(ContactData) ? ContactData : []}
-                    // value={values.contactId}
+                   // isColumn
+                   options={Array.isArray(filteredContactData) ? filteredContactData : []}
+                     value={values.contact}
                     // isDisabled={defaultContacts}
-                    // defaultValue={{
-                    //   label: `${fullName || ""} `,
-                    //   value: contactId,
-                    // }}
-                    inlineLabel
+                    defaultValue={{
+                      label: `${fullName || ""} `,
+                      value: contactId,
+                    }}
+                   
                   />
                   )} 
                   </div>

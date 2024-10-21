@@ -156,7 +156,66 @@ class ContactDetailTab extends Component {
       handleInvoiceModal,
       handleCallActivityModal,
     } = this.props;
+    const renderTabContent = (key) => {
+      switch (key) {
+        case "1":
+          return     <div> 
+                 <LinkedOpportunity customer={this.props.customer}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
+                />
+              </div>;
+        case "2":
+          return  <div> <LinkedContact  defaultCustomers={[{ label: name, value: customerId }]}
+          customerId={ customerId }
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+          /> </div>;
+          case "3":
+              return  <div>   <LinkedDocuments
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+             /> </div>;
+              case "4":
+                  return  <div> 
+                    <CustomerActivityTable
 
+customer={this.props.customer}
+translateText={this.props.translateText}
+selectedLanguage={this.props.selectedLanguage}
+translatedMenuItems={this.props.translatedMenuItems}
+/> 
+                      </div>;
+                   case "5":
+                      return  <div><LinkedInvoice 
+                      translateText={this.props.translateText}
+                      selectedLanguage={this.props.selectedLanguage}
+                    translatedMenuItems={this.props.translatedMenuItems}
+                     /></div>;
+                      case "6":
+                      return  <div> 
+                        <CampaignCardView
+                 customer={this.props.customer}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
+                /> 
+                          </div>;
+                     case "7":
+                      return  <div>  
+                           <CustomerMapTable
+                                translateText={this.props.translateText}
+                                selectedLanguage={this.props.selectedLanguage}
+                              translatedMenuItems={this.props.translatedMenuItems}
+                               />    
+                          </div>;
+        default:
+          return null;
+      }
+    };
     return (
       <>
         <TabsWrapper>
@@ -199,11 +258,11 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedOpportunity customer={this.props.customer}
+                {/* <LinkedOpportunity customer={this.props.customer}
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
                translatedMenuItems={this.props.translatedMenuItems}
-                />
+                /> */}
               </Suspense>
             </TabPane>
             <TabPane
@@ -243,12 +302,12 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedContact  defaultCustomers={[{ label: name, value: customerId }]}
+                {/* <LinkedContact  defaultCustomers={[{ label: name, value: customerId }]}
             customerId={ customerId }
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
           translatedMenuItems={this.props.translatedMenuItems}
-            />
+            /> */}
               </Suspense>
             </TabPane>
           
@@ -262,7 +321,7 @@ class ContactDetailTab extends Component {
                   {this.state.translatedMenuItems[2]}
                     {/* Documents */}
                   </span>
-                  {activeKey === "5" && (
+                  {activeKey === "3" && (
                     <>
                      <Tooltip //title="Create"
                         title=
@@ -285,15 +344,15 @@ class ContactDetailTab extends Component {
                   )}
                 </>
               }
-              key="5"
+              key="3"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments
+                {/* <LinkedDocuments
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
                translatedMenuItems={this.props.translatedMenuItems}
-                />
+                /> */}
               </Suspense>
             </TabPane>      
                   <TabPane
@@ -313,7 +372,7 @@ class ContactDetailTab extends Component {
           {/* Activity */}
                  
                   </span>            
-                  {activeKey === "7" && (
+                  {activeKey === "4" && (
                     <>
                       <Tooltip //title="Create"
                         title= {this.state.translatedMenuItems[7]}
@@ -334,17 +393,17 @@ class ContactDetailTab extends Component {
                 
                 </>
               }
-              key="7"
+              key="4"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <CustomerActivityTable
+                {/* <CustomerActivityTable
 
                  customer={this.props.customer}
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
                translatedMenuItems={this.props.translatedMenuItems}
-                />
+                /> */}
               </Suspense>
             </TabPane>
             <TabPane
@@ -356,22 +415,22 @@ class ContactDetailTab extends Component {
                          {this.state.translatedMenuItems[4]}
                     {/* Invoice */}
                   </span>
-                  {activeKey === "8" && (
+                  {activeKey === "5" && (
                     <>
                     
                     </>
                   )}
                 </>
               }
-              key="8"
+              key="5"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedInvoice 
+                {/* <LinkedInvoice 
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
                translatedMenuItems={this.props.translatedMenuItems}
-                />
+                /> */}
               </Suspense>
             </TabPane>
             <TabPane
@@ -391,7 +450,7 @@ class ContactDetailTab extends Component {
                  
                   </span>
            
-                  {activeKey === "9" && (
+                  {activeKey === "6" && (
                     <>
                         <Tooltip //title="Create"
                         title= {this.state.translatedMenuItems[7]}
@@ -412,17 +471,17 @@ class ContactDetailTab extends Component {
                 
                 </>
               }
-              key="9"
+              key="6"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
               
-                <CampaignCardView
+                {/* <CampaignCardView
                  customer={this.props.customer}
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
                translatedMenuItems={this.props.translatedMenuItems}
-                />
+                /> */}
               </Suspense>
             </TabPane>
            
@@ -440,18 +499,21 @@ class ContactDetailTab extends Component {
                                 
                             </>
                         }
-                        key="10"
+                        key="7"
                     >
                         <Suspense fallback={"Loading ..."}>
-                        <CustomerMapTable
+                        {/* <CustomerMapTable
                                 translateText={this.props.translateText}
                                 selectedLanguage={this.props.selectedLanguage}
                               translatedMenuItems={this.props.translatedMenuItems}
-                               />                       
+                               />                        */}
                         </Suspense>
                     </TabPane>
 
           </StyledTabs>
+          <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
         </TabsWrapper>
         <Suspense fallback={null}>
           <AddRecruitModal
