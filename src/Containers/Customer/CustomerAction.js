@@ -1407,8 +1407,8 @@ export const updateOwnercustomerById = (data,userId, ) => (dispatch, getState) =
       },
     })
     .then((res) => {
-      dispatch(getCustomerListByUserId(userId1,0,"creationdate"));
-      dispatch(getTeamCustomer(userId1,0,));
+      // dispatch(getCustomerListByUserId(userId1,0,"creationdate"));
+      // dispatch(getTeamCustomer(userId1,0,));
       dispatch({
         type: types.UPDATE_CUSTOMER_OWNERSHIP_SUCCESS,
         payload: res.data,
