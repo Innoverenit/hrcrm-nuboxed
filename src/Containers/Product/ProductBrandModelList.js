@@ -10,6 +10,10 @@ import {
 } from "../Settings/Category/Brand&Model/BrandModelAction";
 import dayjs from "dayjs"; 
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
+import "./Product.scss";
+import Tooltip from '@mui/material/Tooltip';
+import styled from "styled-components";
+import Carousel from "react-elastic-carousel";
 
 const ProductBrandModelList = (props) => {
     const [currentData, setCurrentData] = useState("");
@@ -145,6 +149,13 @@ const ProductBrandModelList = (props) => {
   if (props.fetchingBrandModel) {
   return <div><BundleLoader/></div>;
   }
+  const breakPoints = [
+    { width: 1, itemsToShow: 1 },
+    { width: 500, itemsToShow: 2 },
+    { width: 768, itemsToShow: 4, itemToScroll: 4 },
+    { width: 1100, itemsToShow: 5, itemToScroll: 5 },
+  ];
+
     return (
       <>
       <div class="" >
@@ -192,77 +203,135 @@ const ProductBrandModelList = (props) => {
     
             
 
-            <div class=" flex flex-col" >
+    
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
-            {!props.fetchingBrandModel && brandModel.length === 0 ? <NodataFoundPage /> : brandModel.map((region, index) => (
+            <div class="h-[24rem] overflow-auto">
+
+<CardWrapper>
+<Carousel
+    // ref={carouselRef}
+    pagination={false}
+    breakPoints={breakPoints}
+    style={{ minHeight: "6em", justifyContent: "center" }}
+    class="w-2/12 mt-8 ml-margin10"
+    // onNextEnd={next}
+    // onPrevEnd={previous}
+                   >
+              {brandModel.map((item, index) => {
+                 const currentdate = dayjs().format("YYYY/MM/DD");
+                 const date = dayjs(item.creationDate).format("YYYY/MM/DD");
+                
+                 return (
+                  <CardElement >
+                    <div  key={item.phoneMasterListId} className="card-element">
+<div class=" h-[18rem] flex-col flex bg-[cornsilk] items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[18rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
+<div class="mt-1"> 
+<Tooltip title={item.brand} placement="top" arrow>
+                             
+                             <Header>{item.brand || ""}</Header>
+                           </Tooltip>
+</div>
+<div class="max-sm:mr-0 md:flex  my-2 h-hwk">
+                              {/* <div class="object-cover object-center  flex items-center">
+                                <div>
+                            <img
+                                        src={`${base_url}/image/${item.imageId}`} alt=""
+                                        style={{ height: "7rem", width: "7rem" }}
+                                    />
+                                     <h3>{item.newProductNo} </h3>  
+                                     </div>
+                                                      </div>   */}
+                                                                                                   
+                                                      <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">
+                                                      {/* <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
+                                                      <div className="add-minus-quantity">
+      <span
+
+      >
+             <MinusOutlined onClick={() => handleDecrement(item.productId)}/>
+      </span>
+    
+      <input type="number"  
+       value={units[item.productId] || 1}
+       onChange={(event) => handleQuantityChange(event, item.productId)}
+      min="1" 
+      step="1" 
+      />
      
-              <div className="flex rounded ml-1  text-xs shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.phoneMasterListId}>
-              {/* Region name display or input field */}
-              
-              {editingId === region.phoneMasterListId ? (
-                  <input
-                  style={{border:"2px solid black"}}
-                      type="text"
-                      value={newBrandModelName}
-                      onChange={(e) => setBrandModelName(e.target.value)}
-                  />
-              ) : (
-                  <div >{region.brand}</div>
-              )}
-               {editingId === region.phoneMasterListId ? (
-                  <input
-                  style={{border:"2px solid black"}}
-                      type="text"
-                      value={newModelName}
-                      onChange={(e) => setModelName(e.target.value)}
-                  />
-              ) : (
-                  <div style={{width:"39rem"}}>{region.model}&nbsp;&nbsp;&nbsp;
-                  {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+      <span
+
+      >
+      <PlusOutlined onClick={() => handleIncrement(item.productId)} />
+      </span>
+
+    </div>
+       
+                      
+                                                 
+                                                            </div> */}
+                                                      <h3 class=" mt-2 h-4 font-bold text-xs ">
+                                                        {item.model} &nbsp;&nbsp;&nbsp;
+                                                        {dayjs(item.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                         >
                                          {translatedMenuItems[6]} {/* New */}
-                                        </span> : null}</div>
-              )}
-  
-              {/* Action buttons */}
-              <div >
-                  {/* Edit button */}
-                  {/* {editingId === region.phoneMasterListId ? (
-                      <div>
-                          <button onClick={() => handleUpdateBrandModel(region)}>Save</button>
-                          <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
-                      </div>
-                  ) : (
-                      <BorderColorIcon   style={{fontSize:"1rem"}} 
-                    //   onClick={() => editRegion(region.phoneMasterListId, region.name)} 
-                      />
-                  )} */}
-  
-                  {/* Delete button */}
-                  {/* <Popconfirm
-                          title="Do you want to delete?"
-                          okText="Yes"
-                          cancelText="No"
-                        //   onConfirm={() =>  props.removeShipBy(region.phoneMasterListId)}
-                        >
-                  <DeleteOutlined 
-                    style={{
-                    
-                      color: "red",
-                    }}
-                // onClick={() => 
-                //     props.removeServiceLine(item.phoneMasterListId)
-                //  }
-                   />
-                   </Popconfirm> */}
-              </div>
-          </div>
-         ))}
-</MainWrapper>
+                                        </span> : null}
+                                                      </h3>
+                                                      <h3 class=" mt-2 h-4 font-bold text-xs ">
+                                                        {item.subCategoryName}
+                                                      </h3> 
+                                                    </div>
+
+                                                    </div>
+                                                    
+                                                    {/* <div class="flex justify-between m-2 w-wk max-sm:w-40 items-baseline md: " >
+                                                        <Desc> {item.description === "null" ? "No Description" : `${item.description}`}</Desc>
+                                                        {item.description === "<h3></h3>\n" ? null : (
+                                                          <Tooltip
+                                                            style={{ backgroundColor: "red" }}
+                                                            title={
+                                                              <Desc2>{item.description === "null" ? "No Description" : `${item.description}`}</Desc2>
+                                                            }
+                                                            placement="top"
+                                                            arrow
+                                                          >
+                                                            <span
+                                                              style={{
+                                                                cursor: "pointer",
+                                                              }}
+                                                            >
+                                                              <InfoCircleTwoTone class=" flex items-center"/>
+                                                            </span>
+                                                          </Tooltip>
+                                                        )}
+                                                      </div> */}
+                                                      <div class="mt-px flex  justify-end w-wk m-1">
+                   {/* <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue cursor-pointer"
+                                                            
+                                      
+                                                            onClick={() =>
+                                                              handleAddToCart(
+                                                                item.productId
+                                                              )
+                                                            }
+                                                          >
+                                                              <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white cursor-pointer">
+                                                        Add +
+                                                          </label>
+                                                          </div> */}
+</div>
+                   </div>
+                   </div>
+                 </CardElement>
+                );
+              })}
+              </Carousel>
+              {/* {!hasMore && <p className="text-center text-red-500">End of the list.</p>} */}
+        </CardWrapper>    
+
+</div>
             </div>
    
-        </div>
+   
          <div class=" font-bold">{translatedMenuItems[7]}{dayjs(props.brandModel && props.brandModel.length && props.brandModel[0].updationDate).format('YYYY-MM-DD')} {translatedMenuItems[8]} {props.brandModel && props.brandModel.length && props.brandModel[0].updatedBy}</div>
     </>
          );
@@ -289,3 +358,64 @@ const mapDispatchToProps = (dispatch) =>
         dispatch
     );
 export default connect(mapStateToProps, mapDispatchToProps)(ProductBrandModelList);
+
+const CardWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  @media only screen and (max-width: 600px) {
+    justify-content: center;
+    flex-direction: column;
+  }
+`;
+const CardElement = styled.div`
+
+  /* border:2px solid orange */
+   padding: 0 10px;
+   margin-top: 2.5em;
+  display: flex;
+    justify-content: center;
+  /* margin:0px 20px; */
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    padding:0;
+    margin-top: 1rem;
+    justify-content: center;
+    width: 100%;
+  }
+`;
+const Header = styled.div`
+  text-overflow: ellipsis;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 2em;
+  font-size: 1.3em;
+  font-family: Poppins;
+  font-weight: 700;
+  @media only screen and (max-width: 600px) {
+    text-overflow: ellipsis;
+
+white-space: nowrap;
+overflow: hidden;
+height: 2em;
+font-size: 1.3em;
+font-family: Poppins;
+font-weight: 700;
+width:100%
+text-align:center
+  }
+`;
+const Desc = styled.p`
+  height: 1.5em;
+  overflow: hidden;
+  padding: 1%;
+  text-align: center;
+`;
+const Desc2 = styled.p`
+  height: 60px;
+  overflow: auto;
+  color: white;
+  padding: 3%;
+  text-align: center;
+`;

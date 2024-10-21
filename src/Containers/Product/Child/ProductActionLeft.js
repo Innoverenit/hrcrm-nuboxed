@@ -232,7 +232,7 @@ const ProductActionLeft = (props) => {
       </Tooltip>
 
 
-      <Tooltip title={translatedMenuItems[2]}>
+      {/* <Tooltip title={translatedMenuItems[2]}>
         <div
           class=" ml-2 text-xs cursor-pointer"
           style={{
@@ -246,7 +246,7 @@ const ProductActionLeft = (props) => {
           </Avatar>
 
         </div>
-      </Tooltip>
+      </Tooltip> */}
 
 
       <Tooltip title={translatedMenuItems[5]}>

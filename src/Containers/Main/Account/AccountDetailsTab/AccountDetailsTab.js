@@ -65,6 +65,11 @@ function AccountDetailsTab(props) {
     const [openOrder, setOpenOrder] = useState(false)
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [selectedHistory, setSelectedHistory] = useState("completed");
+
+    const [clickSideIcon,setclickSideIcon]=useState(false);
+
+    
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -114,15 +119,27 @@ function AccountDetailsTab(props) {
 
     const handleOpenOrder = () => {
         setBreadCumb(false);
-        setOpenOrder(true)
+        setOpenOrder(true);
     };
-    const handleClosedOrder = () => {
-        setBreadCumb(false);
-        setOpenOrder(false)
+    const handleClickSideIcon = (type) => {
+        setclickSideIcon(true);
+        setSelectedHistory(type);
     };
-    const handleTabChange = (key) => setactiveKey(key);
-    console.log(props.productionInd)
-    console.log(props.activeKey)
+    // const handleTabChange = (key) => setactiveKey(key);
+    // console.log(props.productionInd)
+    // console.log(props.activeKey)
+
+    const handleTabChange = (key) => {
+        setactiveKey(key);
+    
+        if (key === "4") {
+                       setclickSideIcon(false);
+            setSelectedHistory("completed"); 
+        } else {
+                  setclickSideIcon(false);
+            setSelectedHistory(null); 
+                }
+    };
 
     const renderTabContent = (key) => {
         switch (key) {
@@ -150,13 +167,19 @@ function AccountDetailsTab(props) {
                 }</div>;
                 case "4":
                     return  <div>  
-                        {openOrder === true &&
-                        <ProcureCommerceShippedOrder/> }
-                         {openOrder === false &&  
-                        <CustomerProcurementTable distributorId={props.distributorData.distributorId} 
+                        {clickSideIcon  && selectedHistory === "shipped" ? (
+                <ProcureCommerceShippedOrder 
+                    distributorId={props.distributorData.distributorId} 
                     selectedLanguage={props.selectedLanguage}
                     translateText={props.translateText}
-                     />}</div>;
+                />
+            ) : (
+                <CustomerProcurementTable 
+                    distributorId={props.distributorData.distributorId} 
+                    selectedLanguage={props.selectedLanguage}
+                    translateText={props.translateText}
+                />
+            )}</div>;
                      case "5":
                         return  <div><AccountActivityTable distributorId={props.distributorData.distributorId} 
                         selectedLanguage={props.selectedLanguage}
@@ -219,7 +242,7 @@ function AccountDetailsTab(props) {
       };
 
 
-    console.log("opIND",openOrder)  
+    console.log("opIND",clickSideIcon)  
     return (
         <>
             <TabsWrapper>
@@ -244,7 +267,7 @@ function AccountDetailsTab(props) {
                                                 onClick={() => {
                                                     props.handleAddOrderModal(true);
                                                 }}
-                                                className="!text-icon  cursor-pointer "
+                                                className="!text-icon  cursor-pointer"
                                             />
                                         </Tooltip>
                                     </>
@@ -297,7 +320,7 @@ function AccountDetailsTab(props) {
                                                 onClick={() => {
                                                     props.handleLinkDistributorOrderConfigureModal(true);
                                                 }}
-                                                className="!text-icon  ml-1 cursor-pointer "
+                                               className="!text-icon  ml-1 cursor-pointer "
                                             />
                                         </Tooltip>
                                     </>
@@ -307,8 +330,6 @@ function AccountDetailsTab(props) {
                         }
                         key="3"
                     >
-
-                      
                     </TabPane>}
                     { props.user.moduleMapper.ecomModInd &&
                    <TabPane
@@ -318,7 +339,10 @@ function AccountDetailsTab(props) {
                                             <ShopIcon
                                                 className="!text-icon text-[#823038] cursor-pointer"
                                             />
-                                            <span class=" ml-1 !text-tab font-poppins ">
+                                            <span class=" ml-1 !text-tab font-poppins " onClick={() => {
+                                                    setclickSideIcon(false); 
+                                                    setSelectedHistory("completed"); 
+                                                   }}>
                                             {translatedMenuItems[12]}
                                             {/* Procure */}
                                                 </span>
@@ -330,13 +354,14 @@ function AccountDetailsTab(props) {
                                     offset={[ 0, -16]}
                                 >
                               </Badge>
-                                                        
+                                &nbsp;  
+                             
                                 {activeKey === "4" && (
                                     <>
                                      <Tooltip title="Shipped Order">
                                         <HistoryOutlined
                                             fontSize="small"
-                                            onClick={handleOpenOrder}
+                                            onClick={() => handleClickSideIcon("shipped")}
                                         />
                                     </Tooltip>
                                         <Tooltip title={translatedMenuItems[13]}>
@@ -345,7 +370,6 @@ function AccountDetailsTab(props) {
                                                 tooltipTitle={translatedMenuItems[11]}
                                                 onClick={() => {
                                                     props.handleLinkCustomerProcurementModal(true);
-                                                    setOpenOrder(true);
                                                 }}
                                                 className="!text-icon cursor-pointer "
                                             />
@@ -359,10 +383,6 @@ function AccountDetailsTab(props) {
                     >
 
                         <Suspense fallback={"Loading ..."}>
-                       
-                                
-
-                          
                         </Suspense>
                     </TabPane>
 }
@@ -418,7 +438,6 @@ function AccountDetailsTab(props) {
               }
               key="1"
             >
-            
             </TabPane>
             <TabPane
                         tab={
@@ -460,7 +479,6 @@ function AccountDetailsTab(props) {
                         }
                         key="11"
                     >
-                      
                     </TabPane> 
                     <TabPane
                         tab={
@@ -485,8 +503,7 @@ function AccountDetailsTab(props) {
                             </>
                         }
                         key="12"
-                    >
-                     
+                    >   
                     </TabPane> 
                     <TabPane
                         tab={
@@ -517,7 +534,7 @@ function AccountDetailsTab(props) {
                         }
                         key="5"
                     >
-                      
+                       
                     </TabPane>
 
                     <TabPane
@@ -548,7 +565,7 @@ function AccountDetailsTab(props) {
                         }
                         key="10"
                     >
-                      
+                    
                     </TabPane>
 
                     <TabPane
@@ -565,10 +582,10 @@ function AccountDetailsTab(props) {
                         }
                         key="6"
                     >
-                      
+                        
                     </TabPane>
 
-                
+                   
 
                     <TabPane
                         tab={
@@ -601,13 +618,7 @@ function AccountDetailsTab(props) {
                         }
                         key="7"
                     >
-                        {/* <Suspense fallback={"Loading ..."}>
-                            <DistributorDocumentTable
-                                distributorId={props.distributorData.distributorId}
-                                selectedLanguage={props.selectedLanguage}
-                              translateText={props.translateText}
-                            />
-                        </Suspense> */}
+                       
                     </TabPane>
 
                     <TabPane
