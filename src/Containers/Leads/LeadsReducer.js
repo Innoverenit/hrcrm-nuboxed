@@ -156,6 +156,11 @@ const initialState = {
   addingLeadsActivityTask: false,
   addingLeadsActivityTaskError: false,
 
+
+
+  updatingLeadOwenership:false,
+  updatingLeadOwenershipError:false,
+
   addingLeadsContact: false,
   addingLeadsContactError: false,
   addLeadsContactModal: false,
@@ -1045,6 +1050,46 @@ case types.HANDLE_LEADS_MODAL:
                     reInstateJunkedLeads: false,
                     reInstateJunkedLeadsError: true,
                   }; 
+
+
+
+
+
+                  case types.UPDATE_LEAD_OWNERSHIP_REQUEST:
+      return { ...state, updatingLeadOwenership: true };
+    case types.UPDATE_LEAD_OWNERSHIP_SUCCESS:
+      return {
+        ...state,
+        updatingLeadOwenership: false,
+        // updateCandidateEmploymentModal: false,
+        // employmentDetails: state.employmentDetails.map((employment, i) => {
+        //   if (employment.id === action.payload.id) {
+        //     return action.payload;
+        //   } else {
+        //     return employment;
+        //   }
+        // }),
+
+        // customerByUserId:state.customerByUserId.filter(
+        //   (item)=>{
+        //     console.log("abc",item,action.payload);
+
+        //   return !action.payload.includes(item.customerId)  
+        //   }
+        // ),
+
+        
+
+
+
+      
+      };
+    case types.UPDATE_LEAD_OWNERSHIP_FAILURE:
+      return {
+        ...state,
+        updatingLeadOwenership: false,
+        updatingLeadOwenershipError: true,
+      };
                          
                   case types.HANDLE_CET_MODAL:
                     return { ...state, openCETmodal: action.payload };

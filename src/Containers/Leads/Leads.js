@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import {getLeads} from "../Leads/LeadsAction"
 import AddLeadsImportModal from "../Leads/AddLeadsImportModal"
-import {handleLeadsModal, handleLeadsImportModal } from "./LeadsAction";
+import {handleLeadsModal,updateOwnerLeadById, handleLeadsImportModal } from "./LeadsAction";
 const LeadsHeader=lazy(()=>import ("./Child/LeadsHeader"));
 const AddLeadsModal=lazy(()=>import ("./Child/AddLeadsModal"));
 const LeadsTeamCardList = lazy(()=>import("./Child/LeadsTable/LeadsTeamCardList"));
@@ -16,9 +16,11 @@ class Leads extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isTransferMode: true, // Initial state for Transfer mode
+      showCheckboxes: false,
       viewType: null, // Default viewType
       teamsAccessInd: props.teamsAccessInd ,// Default UerInd
-      currentData: "",currentUser:"", 
+      currentData: "",currentUser:"",     selectedDeals: [],
     };
   }
 
@@ -32,6 +34,40 @@ class Leads extends Component {
   handleChange = (e) => {
     this.setState({ currentData: e.target.value })
    
+  };
+
+
+  handleUserSelect = (value) => {
+    // Log the selected value
+    console.log(value);
+
+   
+    let data = {
+      leadsIds: this.state.selectedDeals
+    };
+
+    // Call the parent's updateOwnercustomerById method with data and the selected user ID
+    this.props.updateOwnerLeadById(data, value);
+
+   
+    console.log('Selected Deals:', this.state.selectedDeals);
+
+   
+  };
+
+
+
+
+  handleTransferClick = () => {
+    const { isTransferMode } = this.state;
+
+    if (isTransferMode) {
+      // If in Transfer mode, show checkboxes and switch to Cancel mode
+      this.setState({ showCheckboxes: true, isTransferMode: false });
+    } else {
+      // If in Cancel mode, hide checkboxes, reset selected deals, and switch to Transfer mode
+      this.setState({ showCheckboxes: false, isTransferMode: true, selectedDeals: [] });
+    }
   };
   componentDidMount() {
     // Check if isMobile is stored in localStorage
@@ -59,6 +95,19 @@ class Leads extends Component {
   setCurrentData = (value) => {
     this.setState({ currentData: value });
   };
+
+
+  handleCheckboxChange = (dealName) => {
+    console.log(dealName);
+    this.setState((prevState) => {
+      const { selectedDeals } = prevState;
+      if (selectedDeals.includes(dealName)) {
+        return { selectedDeals: selectedDeals.filter((name) => name !== dealName) };
+      } else {
+        return { selectedDeals: [...selectedDeals, dealName] };
+      }
+    });
+  };
   handleDropChange=(value)=>{
     this.setState({ currentUser: value });
       this.props.getLeads(value );
@@ -77,6 +126,10 @@ class Leads extends Component {
     return (
       <React.Fragment>
         <LeadsHeader
+         isTransferMode={this.state.isTransferMode}
+         showCheckboxes={this.state.showCheckboxes}
+         handleTransferClick={this.handleTransferClick}
+         handleUserSelect={this.handleUserSelect}
          translateText={this.props.translateText}
          selectedLanguage={this.props.selectedLanguage}
         //  translatedMenuItems={this.props.translatedMenuItems}
@@ -121,6 +174,10 @@ class Leads extends Component {
         :null} */}
          {teamsAccessInd ? (
           <LeadsTeamCardList 
+          handleCheckboxChange={this.handleCheckboxChange}
+          selectedUser={this.state.selectedUser}
+          showCheckboxes={this.state.showCheckboxes}
+          selectedDeals={this.state.selectedDeals}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
         translatedMenuItems={this.props.translatedMenuItems}
@@ -130,15 +187,27 @@ class Leads extends Component {
           <>
             {viewType === 'card' && <LeadsCardList  filter={this.state.filter}  
             translateText={this.props.translateText}
+            handleCheckboxChange={this.handleCheckboxChange}
+            selectedUser={this.state.selectedUser}
+            showCheckboxes={this.state.showCheckboxes}
+            selectedDeals={this.state.selectedDeals}
                selectedLanguage={this.props.selectedLanguage}
              translatedMenuItems={this.props.translatedMenuItems}/>}
             {viewType === 'all' && <LeadsAllCardList 
+                      handleCheckboxChange={this.handleCheckboxChange}
+             selectedUser={this.state.selectedUser}
+             showCheckboxes={this.state.showCheckboxes}
+             selectedDeals={this.state.selectedDeals}
              translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}
             />}
             {viewType === 'teams' && <LeadsTeamCardList 
              translateText={this.props.translateText}
+             handleCheckboxChange={this.handleCheckboxChange}
+             selectedUser={this.state.selectedUser}
+             showCheckboxes={this.state.showCheckboxes}
+             selectedDeals={this.state.selectedDeals}
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}
             />}
@@ -166,7 +235,8 @@ const mapDispatchToProps = (dispatch) =>
         //setLeadsViewType,
          handleLeadsModal,
          getLeads,
-         handleLeadsImportModal
+         handleLeadsImportModal,
+         updateOwnerLeadById
     
     },
     dispatch

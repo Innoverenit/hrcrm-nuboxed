@@ -340,14 +340,14 @@ const LeadsActionLeft = (props) => {
         <Button type="primary" 
         onClick={props.handleTransferClick}
         >
-          Transfer
+          {props.isTransferMode ? 'Transfer' : 'Cancel'}
           {/* {props.isTransferMode ? 'Transfer' : 'Cancel'} */}
         </Button>
        {/* )} */}
         </div>
 
         <div class="w-[40%]  ml-2 max-sm:w-[45%]">
-       {/* {props.showCheckboxes && props.selectedDeals.length > 0 && (  */}
+      {/* {props.showCheckboxes && props.selectedDeals.length > 0 && (  */}
         <Select
        
        placeholder="Select User"
@@ -361,7 +361,7 @@ const LeadsActionLeft = (props) => {
          </Option>
        ))}
      </Select>
-     {/* )} */}
+   {/* )}  */}
         </div>
     </div>
   );
@@ -370,6 +370,7 @@ const LeadsActionLeft = (props) => {
 const mapStateToProps = ({ leads, auth }) => ({
   fetchingLeadsInputSearchData: leads.fetchingLeadsInputSearchData,
   leadsCountData: leads.leadsCountData,
+  token: auth.token,
   leadsTeamCountData: leads.leadsTeamCountData,
   leadsCountJunked: leads.leadsCountJunked,
   userId: auth.userDetails.userId,
