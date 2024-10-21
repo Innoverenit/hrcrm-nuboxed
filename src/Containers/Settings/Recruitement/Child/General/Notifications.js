@@ -162,7 +162,7 @@ function Notifications(props) {
               <div class=" flex justify-between w-[100%] p-3">                       
                <div class=" w-[100%]">             
                   <div>
-                    <div class="flex font-bold text-base">
+                    <div class="flex font-bold text-sm">
                                  Notifications
                     </div>
                   </div>           
@@ -226,52 +226,7 @@ function Notifications(props) {
                     </div>
                   </div>
               
-                  {/* <div class=" flex justify-between mt-2"
-                
-                  >
-                    <p>In Whatsapp</p>
-                    <div>
-                      <Popconfirm
-                        title="Do you wish to change Status ? "
-                        onConfirm={handleWpClick}
-                        onCancel={handleCancel}
-                        okText="Yes"
-                        cancelText="No"
-                      >
-                        <Switch
-                        
-                          checked={inWhatsappInd || whatsappInd}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                      </Popconfirm>
-                    </div>
-                  </div> */}
-                  {/* <div class=" mt-3" />
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <p>Level</p>
-                    <div>
-                      <Popconfirm
-                        title="Do you wish to change Status ? "
-                        // onConfirm={handleSmsClick}
-                        // onCancel={handleCancel}
-                        okText="Yes"
-                        cancelText="No"
-                      >
-                        <Switch
-                        
-                          // checked={inSmsInd || smsInd}
-                          checkedChildren="Basic"
-                          unCheckedChildren="Advanced"
-                        />
-                      </Popconfirm>
-                    </div>
-                  </div> */}
+               
                 </div>
               </div>
               <div class=" text-xs mt-2">Updated on {dayjs(props.notifications.updatedDate).format("ll")} by {props.notifications.ownerName}</div>

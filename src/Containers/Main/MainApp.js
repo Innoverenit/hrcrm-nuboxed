@@ -6,11 +6,11 @@ import { connect } from "react-redux";
 import AssessmentData from "../AssessmentData/AssessmentData"
 import { login_url } from "../../Config/Auth";
 import Waranty from "../Waranty/Waranty"
-import ProductionPhoneScanner from "../Main/Scan/PhoneScanner/ProductionPhoneScanner"
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
 import { bindActionCreators } from "redux";import {
+  Tooltip,
   Button,
   Layout,
   message,
@@ -464,6 +464,7 @@ function MainApp(props) {
                      </div>
                 
                   <div class="ml-2">
+                  <Tooltip title= "Scanner" >
                     <QRCodeList  class
                       handleScan={handleScan}
                       stopScanning={stopScanning}
@@ -474,11 +475,13 @@ function MainApp(props) {
                       data={data}
                       shouldRenderCamera={shouldRenderCamera}
                     />
+                    </Tooltip>
                   </div>
                 </div>
             
                 <div className="flex items-center">            
-                <Button           
+                <Button   
+                 type="primary"        
                  onClick
                 >Data Room</Button>
                  </div>
@@ -510,7 +513,7 @@ function MainApp(props) {
                     overflowCount={999}
                   ></Badge>
                   </div>
-                  <div class=" text-white bg-mainclr h-[1.75rem] ml-8 mr-3 max-sm:hidden"
+                  <div class=" text-[tomato]  bg-white h-[1.75rem] ml-8 mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",
                       borderRadius: "5px",
@@ -521,7 +524,7 @@ function MainApp(props) {
                     {props.role}
                   </div>
 
-                  <div class=" text-white bg-mainclr h-[1.75rem] mr-3 max-sm:hidden"
+                  <div class=" text-[tomato]  bg-white h-[1.75rem] mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",
                       borderRadius: "5px",
@@ -531,7 +534,7 @@ function MainApp(props) {
                   >
                     {props.department}
                   </div>
-                  <div class=" text-white bg-mainclr h-[1.75rem] mr-3 max-sm:hidden"
+                  <div class=" text-[tomato]  bg-white h-[1.75rem] mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",
                       borderRadius: "5px",
