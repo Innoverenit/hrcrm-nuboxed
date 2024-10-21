@@ -180,7 +180,7 @@ function DealCardList(props) {
                   <div class=" flex  basis-[100%] overflow-hidden"
                   >
                     <div 
-                      class="font-semibold text-[#337df4] cursor-pointer text-xs ">
+                      class="font-semibold text-[#337df4] cursor-pointer font-poppins text-sm ">
          {/* <Link class="overflow-ellipsis whitespace-nowrap  text-xs text-[#042E8A] cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}> */}
       {item.opportunityName}
     {/* </Link> */}
@@ -191,7 +191,7 @@ function DealCardList(props) {
                 <div className="flex justify-around">
                   <div>
                     {item.investor && (
-                      <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
+                      <div class="overflow-hidden text-ellipsis cursor-pointer font-poppins text-sm flex items-center">
                         {item.investor || ""}
                       </div>
                     )}

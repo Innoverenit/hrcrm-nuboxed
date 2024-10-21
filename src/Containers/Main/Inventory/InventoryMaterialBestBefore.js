@@ -244,10 +244,10 @@ console.log(selectedZones)
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
                                         <div class="flex border-l-2 ">
 
-                                            <div className=" flex  w-[16.1rem] max-sm:w-full  ">
+                                            <div className=" flex  border-l-2 border-green-500 bg-[#eef2f9] w-[16.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600 border-l-2 border-green-500 bg-[#eef2f9]">
                                                     <div
                                                         // onClick={() => {
@@ -266,7 +266,7 @@ console.log(selectedZones)
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[4.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins" style={{marginLeft:"-141px"}}>
                                                
@@ -276,26 +276,26 @@ console.log(selectedZones)
                                         </div>
 
 
-                                        <div className=" flex  w-[16.32rem] max-sm:flex-row  max-sm:justify-between  " style={{marginLeft:"-76px"}}>
+                                        <div className=" flex  w-[16.32rem] items-center   h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  " style={{marginLeft:"-76px"}}>
 
                                             {item.supplierName}
 
                                         </div>
-                                        <div className=" flex   w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
                                                 {item.hsn}
                                             </div>
                                         </div>
                                       
-                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex  md:w-[20rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                           {item.newSuppliesNo}
                                         </div>
-                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between " style={{marginLeft:"-68px"}}>
+                                        <div className=" flex  md:w-[20rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between " style={{marginLeft:"-68px"}}>
                                           {item.remainingCorrectUnit}
                                         </div>
 
-                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         <Button
                                         onClick={() => {
                                           props.addToWaste({
@@ -314,7 +314,7 @@ console.log(selectedZones)
                                         style={{marginLeft:"-202px"}}
                                         >To Waste</Button>
                                         </div>
-                                        <div className=" flex font-medium  items-center md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex font-medium items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-29em"}} >
                                                         
                                                     <Select placeholder="Select zone" 
@@ -376,7 +376,7 @@ console.log(selectedZones)
                                                 </div>
 
 
-                                        <div className=" flex ml-4  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
                                                             <Tooltip title="Terms and conditions">
                                                                 <TerminalSharp className="!text-icon text-[#c3b20b]"
