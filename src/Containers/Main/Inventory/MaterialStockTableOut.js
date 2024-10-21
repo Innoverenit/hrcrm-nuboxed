@@ -126,9 +126,9 @@ const MaterialStockTableOut = (props) => {
                         {props.materialUnitsData.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
                                         <div class="flex">
-                                            <div className=" flex md:w-[2.1rem] max-sm:w-full  ">
+                                            <div className=" flex md:w-[2.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs  font-semibold  font-poppins ">
                                                     <PlusOutlined
                                                         onClick={() => {
@@ -141,7 +141,7 @@ const MaterialStockTableOut = (props) => {
                                         </div>
 
                                         <div class="flex">
-                                            <div className=" flex md:w-[9.1rem] max-sm:w-full  ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[9.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs  font-semibold  font-poppins ">
                                                     
                                                 </div>
@@ -149,44 +149,44 @@ const MaterialStockTableOut = (props) => {
                                         </div>
 
 
-                                        <div className=" flex  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
+                                        <div className=" flex  md:w-[8.2rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs ml-gap font-poppins">
                                                 {item.suppliesFullName}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
+                                        <div className=" flex  md:w-[11.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs ml-gap font-poppins">
                                                 {item.categoryName}  {item.subCategoryName}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
+                                        <div className=" flex  md:w-[11.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div class=" text-xs  ml-gap font-poppins">
                                                 {item.attributeName}  {item.subAttributeName}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.remainingCorrectUnit}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unitReceived}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.hsn}
                                             </div>
                                         </div>
-                                        <div className=" flex  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.balanced}
                                             </div>
                                         </div>
 
 
-                                        <div class="flex flex-col w-6 items-center max-sm:flex-row max-sm:w-[10%]">
+                                        <div class="flex justify-center h-8 ml-gap bg-[#eef2f9] w-6 items-center max-sm:flex-row max-sm:w-[10%]">
 
 <div>
     <Tooltip title="">

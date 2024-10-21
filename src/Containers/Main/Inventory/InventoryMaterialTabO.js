@@ -14,6 +14,9 @@ import MaterialStockTableOut from "./MaterialStockTableOut";
 import MaterialUnitsDataOut from "./MaterialUnitsDataOut";
 import MaterialCellCardViewOut from "./MaterialCellCardViewOut";
 import CookieIcon from '@mui/icons-material/Cookie';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import FolderDeleteIcon from '@mui/icons-material/FolderDelete';
+
 const TabPane = StyledTabs.TabPane;
 class InventoryMaterialTabO extends PureComponent {
     constructor(props) {
@@ -83,7 +86,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick}>
-                                    <i class="far fa-share-square"/>&nbsp;
+                                    <LocalShippingIcon className=" !text-icon"/>&nbsp;
                                         {/* Stock */} 
                                         In transit
                                         {/* {this.props.translatedMenuItems[19]} */}
@@ -129,7 +132,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick}>
-                                    <i class="far fa-share-square"/>&nbsp;
+                                    <WarehouseIcon  className=" !text-icon text-red-600"/>&nbsp;
                                         {/* Stock */} 
                                         {this.props.translatedMenuItems[19]}
 
@@ -208,7 +211,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick}>
-                                    <i class="far fa-share-square"/>&nbsp;
+                                    <FolderDeleteIcon className="!text-icon"/>&nbsp;
                                         {/* Stock */} 
                                       Damaged
                                         {/* {this.props.translatedMenuItems[19]} */}
@@ -226,10 +229,7 @@ class InventoryMaterialTabO extends PureComponent {
                           }}
                           size="0.875em"                         
                           >
-                          <WarehouseIcon
-                            style={{ color: "red", fontSize: "1rem" }}
-                          
-                          />
+                          <WarehouseIcon className=" !text-icon text-red-600" />
                           </span>
                         </>
                       )}

@@ -41,9 +41,9 @@ function ProcureStep1(props) {
     '260', // 4
     '142', // 5
    '259',//6
-    "",// Value
+    "218",// Value
   "1379", // Ship on
-   "" // track ID
+   "1486" // track ID
 
 
           ];

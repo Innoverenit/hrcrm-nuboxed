@@ -109,7 +109,7 @@ const MaterialReceivedTableOut = (props) => {
                                         <div class="flex">
 
                                             <div className=" flex  w-[16.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs font-bold  border-l-2 border-green-500 bg-[#eef2f9] font-poppins cursor-pointer underline text-blue-600">
+                                                <div class="flex justify-between text-xs font-bold  h-8 border-l-2 border-green-500 bg-[#eef2f9] font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         onClick={() => {
                                                             handleRow(item);
@@ -126,7 +126,7 @@ const MaterialReceivedTableOut = (props) => {
                                                     ) : null}
                                             </div>
                                         </div>
-                                        <div className=" flex w-[4.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[4.12rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
                                                 <MultiAvatar
@@ -137,19 +137,19 @@ const MaterialReceivedTableOut = (props) => {
                                             </div>
 
                                         </div>
-                                        <div className=" flex  w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[8.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
                                             {date}
 
                                         </div>
-                                        <div className=" flex   w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            <div class=" text-xs  font-poppins">
+                                            <div class=" text-xs ml-gap font-poppins">
                                                 {item.supplierName}
                                             </div>
                                         </div>
                                       
-                                        <div className=" flex  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           
                                         </div>
                                         <div className=" flex  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">
@@ -173,7 +173,7 @@ const MaterialReceivedTableOut = (props) => {
                                                 {/* </Tooltip> */}
                                                 
                                             </div>
-                                            <div className=" flex ml-4  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
                                                             <Tooltip title="Terms and conditions">
                                                                 <TerminalSharp className="!text-icon text-[#c3b20b]"
