@@ -232,46 +232,31 @@ const timerRef = useRef(null);
         />
       </div>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-                        <div className=" w-[15.1rem]  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
+                    <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky z-10">
+                        <div className=" w-[13.1rem]  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                       <FormattedMessage
                                 id="app.po"
                                 defaultMessage="PO ID"
                             />
                             </div>
-                        <div className=" w-[14.1rem]   old max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                        {translatedMenuItems[0]}    {/* <FormattedMessage
-                                id="app.created"
-                                defaultMessage="Created" /> */}
+                        <div className=" w-[10.1rem]   old max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                        {translatedMenuItems[0]}    {/* Created" /> */}
                         </div>
-                        <div className=" w-[14.1rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                        {translatedMenuItems[1]} {/* <FormattedMessage
-                                id="app.location"
-                                defaultMessage="Location" /> */}
+                        <div className=" w-[13.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                        {translatedMenuItems[1]} {/* Location" /> */}
                         </div>
-                        <div className=" w-[14.12rem]   max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                        <div className=" w-[17.12rem]   max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                         {translatedMenuItems[2]}  {/* Delivery */}
                         </div>
-                        <div className=" w-[14.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                        <div className=" w-[17.11rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                         {translatedMenuItems[3]} {/* Contact */}
                         </div>
-                       
-                        <div className=" w-[14.13rem]    max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
-                        {translatedMenuItems[4]}  {/* <FormattedMessage
-                                id="app.currency"
-                                defaultMessage="Currency" /> */}
+                                           
+                        <div className=" w-[19.14rem]   max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                        {translatedMenuItems[5]} 
+                         {/* Value" */}
                         </div>
-                        <div className=" w-[14.11rem]   max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                        {translatedMenuItems[5]}  {/* <FormattedMessage
-                                id="app.value"
-                                defaultMessage="Value" /> */}
-                        </div>
-                        <div className=" md:w-[5.1rem]">
-
-                        </div>
-                        <div className=" md:w-[12.1rem]">
-
-                        </div>
+                                      
                         <div className=" md:w-[5.1rem]"> </div>
                     </div>
                     <div class="">
@@ -289,10 +274,10 @@ const timerRef = useRef(null);
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded justify-between mt-1 bg-white h-8 p-1" >
+                                            <div className="flex rounded justify-between mt-1 bg-white h-8 p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                     <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9]  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" underline font-bold max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
+                                                        <div class="ml-gap underline font-bold max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                             <span
                                                                 class=" text-sky-700 cursor-pointer"
                                                                 onClick={() => {
@@ -318,14 +303,14 @@ const timerRef = useRef(null);
                                                             />
                                                         </div>
                                                     </div>
-                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[16.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" max-xl:text-[0.65rem] text-xs  font-poppins">
+                                                    <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[16.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" max-xl:text-[0.65rem] ml-gap text-xs  font-poppins">
 
                                                             {item.locationName}
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[16rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-xs  font-poppins">
+                <div className="text-xs ml-gap font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                                          <DatePicker
                                          style={{marginLeft:"0.5rem"}}
@@ -343,8 +328,8 @@ const timerRef = useRef(null);
                 </div>
               </div>
 
-                                                    <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-xs  font-poppins">
+                                                    <div className="flex items-center justify-start h-8 ml-gap bg-[#eef2f9] md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+                <div className="text-xs ml-gap font-poppins">
                   {editContactId === item.poSupplierDetailsId ? (
                <select
                className="customize-select"
@@ -383,17 +368,11 @@ const timerRef = useRef(null);
                ))}
              </select>
                   ) : (
-                    <div className=" text-xs  font-poppins">{item.poCurrency}</div>
+                    <div className=" text-xs  font-poppins">{item.poCurrency}  {item.poValue}</div>
                   )}
                 </div>
               </div>
-           
-                                                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins">
-
-                                                            {item.poValue}
-                                                        </div>
-                                                    </div>
+                                                       
                                                     <div className="flex w-[6rem] max-sm:flex-row max-sm:w-auto items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                 <div className="flex">
                   {editContactId === item.poSupplierDetailsId ? (

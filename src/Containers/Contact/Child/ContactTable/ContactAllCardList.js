@@ -275,7 +275,7 @@ if (loading) {
   
   
   {date === currentdate ? (
- <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
+ <div class="text-[0.65rem]  mt-[0.4rem] text-[tomato] font-bold"
                             
  >
     {translatedMenuItems[9]}   {/* New */}

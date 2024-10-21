@@ -57,19 +57,19 @@ function SupplierContactTable(props) {
     <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins text-xs z-10">
-            <div className=" w-[13.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[0]}</div>
+            <div className=" w-[12.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[0]}</div>
             {/* Name */}
-            <div className=" w-[20.1rem] max-xl:text-[0.65rem]">{translatedMenuItems[1]}
+            <div className=" w-[4.1rem] max-xl:text-[0.65rem]">{translatedMenuItems[1]}
              {/* Email */}
             </div>
-            <div className=" w-[9.8rem] max-xl:text-[0.65rem] ">  {translatedMenuItems[2]}
+            <div className=" w-[1.8rem] max-xl:text-[0.65rem] ">  {translatedMenuItems[2]}
               {/* mobile */}
             </div>
-            <div className="w-[11.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[3]}
+            <div className="w-[3.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[3]}
             {/* Designation */}
 
             </div>
-            <div className="w-[7.9rem] max-xl:text-[0.65rem]">{translatedMenuItems[4]}
+            <div className="w-[27.9rem] max-xl:text-[0.65rem]">{translatedMenuItems[4]}
              {/* Department */}
 
             </div>
@@ -90,30 +90,30 @@ function SupplierContactTable(props) {
                      const data = {}
                     return (
                       <>
-                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
+                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
 
                         >
-                          <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                            <div className=" flex  font-bold border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[13.1rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class="flex items-center  font-normal text-xs font-poppins max-xl:text-[0.65rem]">
+                          <div class=" flex flex-row  w-wk max-sm:flex-col ">
+                            <div className=" flex  font-bold border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[14.1rem] max-sm:justify-between  max-sm:flex-row  ">
+                              <div class="flex items-center ml-gap font-normal text-xs font-poppins max-xl:text-[0.65rem]">
                                {` ${item.firstName || ""} ${item.middleName || ""} ${item.lastName || ""}`}
                               </div>
                             </div>
 
-                            <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[19.2rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class="flex items-center  text-xs  font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[14.2rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class="flex items-center ml-gap  text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.emailId}
                               </div>
                             </div>
 
-                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[8.34rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class="flex items-center   text-xs  font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[11.34rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class="flex items-center  ml-gap text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.dialCode1} {item.mobileNo}                             
                               </div>
                             </div>     
 
-                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[11.32rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class="flex items-center   text-xs  font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[12.32rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class="flex items-center ml-gap  text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.designationName}
                               
                               </div>
@@ -121,13 +121,13 @@ function SupplierContactTable(props) {
                             </div>
                             <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[11.02rem] max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class=" flex items-center  text-xs  font-poppins max-xl:text-[0.65rem]">
+                              <div class=" flex items-center ml-gap text-xs  font-poppins max-xl:text-[0.65rem]">
                               {item.departmentName}
                              
                               </div>
 
                             </div>
-                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.03rem] max-sm:flex-row w-9rem max-sm:justify-between  ">
+                            <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[20.03rem] max-sm:flex-row w-9rem max-sm:justify-between  ">
 
 
 {item.accessInd === 0 ? <div class=" text-xs  font-poppins">
@@ -154,15 +154,7 @@ function SupplierContactTable(props) {
 
 </div>
                             <div className=" flex font-medium  max-sm:justify-between  max-sm:flex-row ">
-                            {/* <Tooltip title="Edit">
-            <EditOutlined
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                props.setEditSupplierContact(item);
-                props.handleUpdateSupplierContactModal(true);
-              }}
-            />
-          </Tooltip> */}
+                           
 </div>
                           </div>
                         </div>

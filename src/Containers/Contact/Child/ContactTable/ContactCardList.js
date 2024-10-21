@@ -270,7 +270,7 @@ function ContactCardList(props) {
   
 
   {date === currentdate ? (
- <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
+ <div class="text-[0.65rem]  mt-[0.4rem] text-[tomato] font-bold"
                             
  >
       {/* New */}{translatedMenuItems[8]}
