@@ -275,7 +275,7 @@ function InvestorAllCardList(props) {
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  w-[13.5rem] border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
-                                <div className=" flex items-center  w-[4.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center  w-[1.5rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* >Source */}
 
                                     <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -320,9 +320,9 @@ function InvestorAllCardList(props) {
                                 </div>
                                 </div> 
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[13.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[13.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                               {/* Sector  */}
-                                    <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">   
+                                    <div class=" text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">   
                                     {item.sector}
                                     </div>
                                 </div>
@@ -349,10 +349,10 @@ function InvestorAllCardList(props) {
                                 </div>
                               
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[8.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Source */}
 
-                                    <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-xs max-sm:text-sm">
+                                    <div class=" text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-xs max-sm:text-sm">
                                     {item.source}
                                     </div>
                                 </div>

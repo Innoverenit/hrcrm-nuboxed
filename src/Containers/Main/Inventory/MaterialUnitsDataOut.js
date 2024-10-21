@@ -130,9 +130,9 @@ const MaterialUnitsDataOut = (props) => {
                         {props.poGrnList.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
                                         <div class="flex">
-                                            <div className=" flex  md:w-[2.1rem] max-sm:w-full  ">
+                                            <div className=" flex   border-l-2 border-green-500 bg-[#eef2f9] md:w-[2.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins ">
                                                     <PlusOutlined
                                                         onClick={() => {

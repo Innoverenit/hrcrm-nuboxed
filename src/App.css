@@ -349,7 +349,7 @@
   height: 1.88rem;
   width: 100%;
   font-size: 0.75rem;
-  box-shadow: 0em 0.25em 0.625em -0.25em #aaa;
+  /* box-shadow: 0em 0.25em 0.625em -0.25em #aaa; */
   color: rgba(0, 0, 0, 0.65);
   font-variant: tabular-nums;
   list-style: none;

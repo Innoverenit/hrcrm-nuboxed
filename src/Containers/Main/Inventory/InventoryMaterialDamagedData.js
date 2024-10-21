@@ -127,10 +127,10 @@ const InventoryMaterialDamagedData = (props) => {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
                                         <div class="flex">
 
-                                            <div className=" flex  w-[16.1rem] max-sm:w-full  ">
+                                            <div className=" flex  border-l-2 border-green-500 bg-[#eef2f9] w-[16.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         // onClick={() => {
