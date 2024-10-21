@@ -125,7 +125,7 @@ const GradientDonutChart = (props) => {
   const options = {
     labels: Object.keys(props.customerDonut),  // Use keys from chartData as labels
     chart: {
-      width: 380,
+      width: 250,
       type: 'donut',
     },
     plotOptions: {
@@ -150,7 +150,7 @@ const GradientDonutChart = (props) => {
         breakpoint: 480,
         options: {
           chart: {
-            width: 200
+            width: 150
           },
           legend: {
             position: 'bottom'

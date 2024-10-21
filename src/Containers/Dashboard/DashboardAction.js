@@ -3108,3 +3108,40 @@ export const getReorderdata = () => (dispatch) => {
       });
     });
 };
+
+
+
+
+
+export const linkTaskStatusDashboard = (taskId,data ) => (
+  dispatch,
+  getState
+) => {
+  // debugger;
+  dispatch({
+    type: types.LINK_TASK_STATUS_DASHBOARD_REQUEST,
+  });
+  axios
+    .put(`${base_url}/task/completionstatus/${taskId}`, 
+     { ...data }, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //  dispatch(getTaskListRangeByUserId(employeeId));
+      dispatch({
+        type: types.LINK_TASK_STATUS_DASHBOARD_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_TASK_STATUS_DASHBOARD_FAILURE,
+        payload: err,
+      });
+      // cb && cb("failuer");
+    });
+};

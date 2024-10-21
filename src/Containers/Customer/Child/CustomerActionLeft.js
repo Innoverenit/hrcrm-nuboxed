@@ -259,7 +259,7 @@ const CustomerActionLeft = (props) => {
     try {
    
 
-      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/type/drop-down/${props.orgId}/${"employee"}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
