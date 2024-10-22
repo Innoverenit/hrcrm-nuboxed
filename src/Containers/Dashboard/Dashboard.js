@@ -231,12 +231,12 @@ class Dashboard extends Component {
              :
              <div> 
 
-        <MainWrapper style={{marginTop:"0.25rem",overflow:"hidden"}}>
+        <MainWrapper style={{overflow:"hidden"}}>
       
           <div class=" h-[45vh] max-sm:h-[38vh] max-sm:overflow-x-auto">
          <div class="flex justify-around  max-sm:flex-col">
-           <div class="w-[53%] max-sm:w-wk">
-           <div class=" flex flex-col h-[44vh] overflow-auto border box-border" >
+           <div class="w-[52.5%] max-sm:w-wk">
+           <div class=" flex flex-col h-[45vh] overflow-auto border-[3px] box-border" >
            {viewType==="ME" ?
            (
             <div className=" text-base">Me View</div>
@@ -678,7 +678,7 @@ class Dashboard extends Component {
     </div>
     </div>
 
-     <div class="w-[47.5%] max-sm:w-wk border box-border">
+     <div class="w-[49.5%] max-sm:w-wk border box-border">
   
      <div class=" flex flex-col " >
        <div class=" flex flex-col  justify-between" >
