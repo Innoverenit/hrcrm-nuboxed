@@ -24,16 +24,28 @@ const LeadsTeamCardList = (props) => {
   ) : (
         <>
 <LeadsTeamHotcard
+ handleCheckboxChange={props.handleCheckboxChange}
+ selectedUser={props.selectedUser}
+ showCheckboxes={props.showCheckboxes}
+ selectedDeals={props.selectedDeals}
  translateText={props.translateText}
  selectedLanguage={props.selectedLanguage}
 translatedMenuItems={props.translatedMenuItems}
 />
 <LeadsTeamWarmcard
+handleCheckboxChange={props.handleCheckboxChange}
+selectedUser={props.selectedUser}
+showCheckboxes={props.showCheckboxes}
+selectedDeals={props.selectedDeals}
  translateText={props.translateText}
  selectedLanguage={props.selectedLanguage}
 translatedMenuItems={props.translatedMenuItems}
 />
 <LeadsTeamColdCard
+handleCheckboxChange={props.handleCheckboxChange}
+selectedUser={props.selectedUser}
+showCheckboxes={props.showCheckboxes}
+selectedDeals={props.selectedDeals}
  translateText={props.translateText}
  selectedLanguage={props.selectedLanguage}
 translatedMenuItems={props.translatedMenuItems}

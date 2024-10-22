@@ -1070,13 +1070,92 @@ case types.HANDLE_LEADS_MODAL:
         //   }
         // }),
 
-        // customerByUserId:state.customerByUserId.filter(
-        //   (item)=>{
-        //     console.log("abc",item,action.payload);
+        leadsAllDataHot:state.leadsAllDataHot.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
 
-        //   return !action.payload.includes(item.customerId)  
-        //   }
-        // ),
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+        leadsAllDataWarm:state.leadsAllDataWarm.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+
+        leadsAllDataCold:state.leadsAllDataCold.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+
+
+
+
+        teamLeadsCold:state.teamLeadsCold.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+        teamLeadsWarm:state.teamLeadsWarm.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+        teamLeadsHot:state.teamLeadsHot.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+
+
+        allleadsInfoHot:state.allleadsInfoHot.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+        allleadsInfoCold:state.allleadsInfoCold.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+
+        allleadsInfoWarm:state.allleadsInfoWarm.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
 
         
 
