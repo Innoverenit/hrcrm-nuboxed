@@ -70,6 +70,8 @@ function SuppliesCategoryForm (props) {
           initialValues={{
             categoryName:"",
             imageId: "",
+            qualityList:"",
+            specsList:"",
           }}
           validationSchema={formSchema}
           onSubmit={(values, { resetForm }) => {
@@ -78,6 +80,8 @@ function SuppliesCategoryForm (props) {
               {
                 ...values,
                 alert:(parseInt(values.alert, 10) || 0),
+                qualityList: values.qualityList.split(','), 
+                specsList: values.specsList.split(',') 
                 
               },
               setLoading, 
@@ -127,7 +131,30 @@ function SuppliesCategoryForm (props) {
                         component={InputComponent}
                       />
                     </div>
-                       
+                    <div class="">
+                  <div class="font-bold text-xs font-poppins text-black">Quality</div>
+                      <Field
+                        name="qualityList"
+                        //label="HSN"
+                        placeholder="Quality"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div>
+                    <div class="">
+                  <div class="font-bold text-xs font-poppins text-black">Spec</div>
+                      <Field
+                        name="specsList"
+                        //label="HSN"
+                        placeholder="Spec"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                      />
+                    </div> 
                       </div>
                     </div>
                   </div>
