@@ -413,7 +413,7 @@ function EmployeeForm(props) {
           ...rest
         }) => (
           <div class=" h-[32rem]  max-sm:h-[30rem]">
-            <Form className="form-background">
+            <Form className="form-background h-[84vh]">
               <div class="flex justify-between  pr-2 max-sm:flex-col">
                 <div class=" w-[47.5%] max-sm:w-wk">
 
@@ -589,7 +589,7 @@ function EmployeeForm(props) {
                     </div>
                   </div>
                   <div class=" flex justify-between max-sm:flex-col" >
-                    <div class=" w-w48 max-sm:w-wk">
+                    <div class="mt-2 w-w48 max-sm:w-wk">
                       {/* <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
                       id="app.dateofjoining"
                       defaultMessage=" Date Of Joining"
@@ -612,7 +612,7 @@ function EmployeeForm(props) {
                         }}
                       />
                     </div>
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class="mt-2 w-w47.5 max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[11]}</div>
                       {/* <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
                       id="app.dateofbirth"
@@ -638,7 +638,7 @@ function EmployeeForm(props) {
                   </div>
 
                   <div class=" flex justify-between" >
-                    <div class=" w-full">
+                    <div class="mt-2 w-full">
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[12]}</div>
                       <Field
                         name="linkedinPublicUrl"
@@ -701,100 +701,19 @@ function EmployeeForm(props) {
                     inlineLabel
                   />
                   </div>
-                  {/* <Listbox value={selected} onChange={setSelected}>
-        {({ open }) => (
-          <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] m-[0.1rem 0 0.02rem 0.2rem] ">
-              Assigned
-            </Listbox.Label>
-            <div className="relative mt-[0.1rem]">
-              <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                {selected}
-              </Listbox.Button>
-              {open && (
-                <Listbox.Options
-                  static
-                  className="absolute z-10 mt-1 max-h-56 w-full overflow-auto  bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-                >
-                  {props.assignedToList.map((item) => (
-                    <Listbox.Option
-                      key={item.employeeId}
-                      className={({ active }) =>
-                        `relative cursor-default select-none py-2 pl-3 pr-9 ${
-                          active ? "text-white bg-indigo-600" : "text-gray-900"
-                        }`
-                      }
-                      value={item.empName}
-                    >
-                      {({ selected, active }) => (
-                        <>
-                          <div className="flex items-center">
-                            <span
-                              className={`ml-3 block truncate ${
-                                selected ? "font-semibold" : "font-normal"
-                              }`}
-                            >
-                              {item.empName}
-                            </span>
-                          </div>
-                          {selected && (
-                            <span
-                              className={`absolute inset-y-0 right-0 flex items-center pr-4 ${
-                                active ? "text-white" : "text-indigo-600"
-                              }`}
-                            >
-                              
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M6.293 9.293a1 1 0 011.414 0L10 11.586l2.293-2.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </span>
-                          )}
-                        </>
-                      )}
-                    </Listbox.Option>
-                  ))}
-                </Listbox.Options>
-              )}
-            </div>
-          </>
-        )}
-      </Listbox> */}
+          
                   <div class=" flex justify-between max-sm:flex-col mt-4" >
                     <div class=" w-w48 flex flex-col max-sm:w-wk">
-                      {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Department</div>
+                      {/*
                       <select  className="customize-select"
-                      
-                      onChange={handleDeptChange}>
-          <option value="">Select </option>
-          {props.departments.map((item, index) => (
-            <option 
-           
-            key={index} value={item.departmentId}>
-              {item.departmentName}
-            </option>
-          ))}
-        </select> */}
+               */}
         <div class=" text-xs font-bold font-poppins">{translatedMenuItems[20]}</div>
                       <Field
                         name="departmentId"
                         isColumnWithoutNoCreate
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.Department"
+                  
                         //     defaultMessage="Department"
-                        //   />
-                        // }
-                        // label={translatedMenuItems[20]}
+               
                         component={SelectComponent}
                         options={
                           Array.isArray(DepartmentOptions)
@@ -828,7 +747,7 @@ function EmployeeForm(props) {
                     </div>
                   </div>
                   <div class=" flex justify-between max-sm:flex-col" >
-                  <div class=" w-w48 max-sm:w-wk">
+                  <div class=" w-w48 max-sm:w-wk mt-3">
                   <div class=" text-xs font-bold font-poppins">{translatedMenuItems[22]}</div>
                     <Field
                       name="roleType"
@@ -868,7 +787,7 @@ function EmployeeForm(props) {
                     // selectType="roleType"
                     />
                   </div>
-                    <div class=" w-w48 flex flex-col max-sm:w-wk">
+                    <div class="mt-3 w-w48 flex flex-col max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[23]}</div>
                     <Field
                     
@@ -876,10 +795,7 @@ function EmployeeForm(props) {
                         type="text"
                         isColumn
                         width={"100%"}
-                        // label={translatedMenuItems[23]} 
-                        // label={<FormattedMessage
-                        //   id="app.salary"
-                        //   defaultMessage="Salary" />}
+                  //Salary" />}
                         component={InputComponent}
                         inlineLabel
                       />
@@ -909,28 +825,15 @@ function EmployeeForm(props) {
                       />
                       </div>
                   <div class=" flex justify-between max-sm:flex-col" >
-                    <div class=" w-w48 flex flex-col max-sm:w-wk">
-                      {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>WorkPlace</div>
-                      <select 
-                        className="customize-select"
-                      onChange={handleCountryChange}>
-          <option value="">Select </option>
-          {props.countries.map((item, index) => (
-            <option key={index} value={item.country_name}>
-              {item.country_name}
-            </option>
-          ))}
-        </select> */}<div class=" text-xs font-bold font-poppins">{translatedMenuItems[25]}</div>
+                    <div class="mt-3 w-w48 flex flex-col max-sm:w-wk">
+             
+             <div class=" text-xs font-bold font-poppins">{translatedMenuItems[25]}</div>
                       <Field
                         name="workplace"
                         isColumnWithoutNoCreate
-                        // label={translatedMenuItems[25]} 
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.Workplace"
+                      
                         //     defaultMessage="Workplace"
-                        //   />
-                        // }
+                       
                         component={SelectComponent}
                         options={
                           Array.isArray(WorkplaceOptions)
@@ -944,27 +847,12 @@ function EmployeeForm(props) {
                       />
                     </div>
 
-                    <div class=" w-w47.5 flex flex-col max-sm:w-wk">
-                      {/* <div style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>Location</div>
-                    <select  className="customize-select"
-                //  style={{ border: "0.06em solid #aaa" }}
-                      onChange={handleLocationChange}
-                    >
-          <option value="">Select </option>
-          {props.showLocation.map((item, index) => (
-            <option key={index}
-            // disabled={!values.country_name}
-             value={item.locationDetailsId}>
-              {item.locationName}
-            </option>
-          ))}
-        </select> */}
+                    <div class="mt-3 w-w47.5 flex flex-col max-sm:w-wk">
+                     {/* locationName */}
                       <div class=" text-xs font-bold font-poppins">{translatedMenuItems[26]}</div>
                       <Field
                         name="location"
-                        // label={translatedMenuItems[26]} 
-                        // label={<FormattedMessage
-                        //   id="app.location"
+                     
                         //   defaultMessage="Location"
                         // />}
                         isColumnWithoutNoCreate
@@ -992,48 +880,17 @@ function EmployeeForm(props) {
                         margintop={"0"}
                         inlineLabel
 
-                      // value={values.roleTypeId}
-                      // width={"100%"}
-                      // isColumn
-                      // selectType="roleType"
                       />
 
 
-                      {/* <Field
-                        isRequired
-                        name="location"
-                        isColumnWithoutNoCreate
-                        label={<FormattedMessage
-                          id="app.location"
-                          defaultMessage="Location"
-                        />}
-                        isColumn
-                        // placeholder='+31'
-                        options={
-                          Array.isArray(getLocationNameOption)
-                            ? getLocationNameOption
-                            : []
-                        }
-                       
-                        component={SelectComponent}
-                        inlineLabel
-                      /> */}
+                      
                     </div>
                   </div>
 
-                  {/* <Field
-                    name="workplace"
-                    label={<FormattedMessage
-                      id="app.workplace"
-                      defaultMessage="Work place"
-                    />}
-                    width={"100%"}
-                    isColumn
-                    component={InputComponent}
-                     /> */}
+               
                   <div class=" flex mt-2 " >
                     <div>
-                      <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                      <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] mt-3 text-xs flex flex-col">
                      {translatedMenuItems[27]}  {/* Job Type */}
                       </div>
                       <Switch
@@ -1042,31 +899,12 @@ function EmployeeForm(props) {
                         checkedChildren="Part Time"
                         unCheckedChildren="Full Time"
                       />
-                      {/* <ButtonGroup name="job_type">
-                      <StatusIcon
-                        color="blue"
-                        type="Full Time"
-                        iconType="fa-hourglass-start"
-                        tooltip="Full Time"
-                        status={this.state.active}
-                        onClick={() => this.glassButtoClick("Full Time")}
-                      />
-                      <StatusIcon
-                        type="Part Time"
-                        name="icon1"
-                        iconType="fa-hourglass-half"
-                        tooltip="Part Time"
-                        status={this.state.active}
-                        onClick={() => this.glassButtoClick("Part Time")}
-                      />
-                    </ButtonGroup> */}
+                  
                     </div>
 
-                    <div class=" ml-4">
+                    <div class=" ml-4 mt-3">
                       <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        {/* <FormattedMessage
-                          id="app.category"
-                          defaultMessage="Category"
+                        {/* Category"
                         /> */} 
                         {translatedMenuItems[28]}
                       </div>
@@ -1082,9 +920,7 @@ function EmployeeForm(props) {
 
                   <div class=" mt-3">
                     <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      {/* <FormattedMessage
-                      id="app.employeetype"
-                      defaultMessage="Employee Type"
+                      {/* Employee Type"
                     /> */} {translatedMenuItems[29]}
                     </div>
 
@@ -1126,7 +962,7 @@ function EmployeeForm(props) {
 
 
                   <div class=" flex justify-between  max-sm:flex-col" >
-                    <div class=" w-w48 max-sm:w-wk">
+                    <div class=" w-w48 max-sm:w-wk mt-2">
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[20]}</div>
                      {/* Department */}
                         
@@ -1158,7 +994,7 @@ function EmployeeForm(props) {
                     </div>
                   </div>
                   <div class=" flex justify-between  max-sm:flex-col" >
-                    <div class=" w-w48 max-sm:w-wk">
+                    <div class=" w-w48 max-sm:w-wk mt-3">
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[34]}</div>
                     {/* Secondary Department */}
                       
@@ -1173,7 +1009,7 @@ function EmployeeForm(props) {
                       </Select>
                     </div>
 
-                    <div class="w-w48  max-sm:w-wk">
+                    <div class="w-w48  max-sm:w-wk mt-3">
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[35]}</div>
                      {/* Secondary Reporting Manager */}
                      

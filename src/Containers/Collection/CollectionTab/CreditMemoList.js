@@ -78,15 +78,15 @@ function CreditMemoList(props) {
               <div>
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex  border-l-2 h-8 border-green-500 bg-[#eef2f9]  w-[16.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div className=" flex  border-l-2 h-8 border-green-500 bg-[#eef2f9] justify-start items-center  w-[11.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                      <div class=" text-xs ml-gap items-center font-poppins">
                         {item.newOrderNo}
                       </div>
 
                     </div>
 
-                    <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div className=" flex   items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[14.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                      <div class=" text-xs ml-gap items-center font-poppins">
                         {item.invoiceNum}
                       </div>
 
@@ -94,21 +94,21 @@ function CreditMemoList(props) {
 
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[16.11rem] max-xl:w-[5.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                    <div className=" flex   items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[14.11rem] max-xl:w-[5.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
 
-                      <div class=" text-xs  font-poppins text-center">
+                      <div class=" text-xs ml-gap items-center font-poppins text-center">
                         {item.distributorName}
 
                       </div>
                     </div>
-                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[12.02rem] max-xl:w-[5.02rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                      <div class=" text-xs  font-poppins text-center">
+                    <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[14.02rem] max-xl:w-[5.02rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div class=" text-xs ml-gap items-center font-poppins text-center">
                         {item.creditMemo}
 
                       </div>
                     </div>
-                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.01rem]  max-xl:w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[14.01rem]  max-xl:w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                     <div class=" text-xs  font-poppins text-center">
                       {` ${dayjs(item.creationDate).format("DD-MM-YY")}`}
 
@@ -119,7 +119,7 @@ function CreditMemoList(props) {
 
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                    
-                      <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.05rem] max-xl:w-[3.85rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                      <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[14.05rem] max-xl:w-[3.85rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
 
                   
 

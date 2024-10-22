@@ -123,7 +123,7 @@ function ShipperCardList(props) {
                       <div className="flex rounded max-sm:rounded-lg
                 max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white h-8 items-center max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center">
-                          <div className=" flex font-medium flex-col  w-[8.9rem] max-xl:w-[7.6rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                          <div className=" flex font-medium flex-col  w-[9.9rem] max-xl:w-[7.6rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
                   
                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                               <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -189,7 +189,7 @@ function ShipperCardList(props) {
                           </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                          <div className="items-center justify-center w-[5rem] h-8 ml-gap  bg-[#eef2f9]">
+                          <div className="items-center justify-center w-[10rem] h-8 ml-gap  bg-[#eef2f9]">
                             <Switch
                               className="toggle-clr"
                               //checked={item.productionInd}
@@ -199,9 +199,9 @@ function ShipperCardList(props) {
                             />
                           </div>
                           <div class="flex justify-end max-sm:w-wk items-center">
-                          <div class="flex max-sm:flex-row w-[7rem] justify-end md:w-20 max-sm:w-[25%] ">
+                          <div class="flex max-sm:flex-row w-[8rem]  justify-end md:w-[3rem] max-sm:w-[25%] ">
                            
-                          <div className=" flex items-center justify-center h-8   bg-[#eef2f9]">
+                          <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                           <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {

@@ -253,21 +253,20 @@ function EmployeeTable(props) {
         <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-                    <div className="w-[10rem] md:w-[16.5rem]">{translatedMenuItems[0]}</div>
+                    <div className="w-[14rem] font-bold font-poppins text-xs md:w-[16.5rem]">{translatedMenuItems[0]}</div>
                     {/* Name */}
-                    <div className=" md:w-[9.1rem]">{translatedMenuItems[1]}</div>
+                    <div className=" md:w-[9.1rem] font-bold font-poppins text-xs">{translatedMenuItems[1]}</div>
                     {/* Department */}
-                    <div className=" md:w-[6.8rem] ">{translatedMenuItems[2]}</div>
+                    <div className=" md:w-[6.8rem] font-bold font-poppins text-xs ">{translatedMenuItems[2]}</div>
                     {/* Role */}
-                    <div className="md:w-[8.7rem]">{translatedMenuItems[3]}</div>
+                    <div className="md:w-[10.7rem] font-bold font-poppins text-xs">{translatedMenuItems[3]}</div>
                     {/* Mobile # */}
-                    <div className="md:w-[10.9rem]">{translatedMenuItems[4]}</div>
+                    <div className="md:w-[13.9rem] font-bold font-poppins text-xs">{translatedMenuItems[4]}</div>
                     {/* Email # */}
-                    <div className="md:w-[9.2rem]">{translatedMenuItems[5]}</div>
+                    <div className="md:w-[11.2rem] font-bold font-poppins text-xs">{translatedMenuItems[5]}</div>
                     {/* Stop Access */}
-                    <div className="md:w-[8.2rem]">{translatedMenuItems[6]}</div>
-                    {/* Multi Org */}
-                    <div className="md:w-[11.2rem]"></div>
+                    <div className="md:w-[11.2rem] font-bold font-poppins text-xs">{translatedMenuItems[6]}</div>
+                    {/* Multi Org */}               
                 </div>
                 {props.employees.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
@@ -276,8 +275,8 @@ function EmployeeTable(props) {
                         <div>
                             <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:justify-between   max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
-                              <div class="flex  max-sm:w-wk items-center max-sm:items-center">
-                                    <div className="border-l-2 h-8 border-green-500 bg-[#eef2f9] flex md:w-[15.6rem] max-sm:w-full ">
+                              <div class="flex  max-sm:w-wk  items-center max-sm:items-center">
+                                    <div className="border-l-2 h-8 border-green-500 bg-[#eef2f9] items-center flex md:w-[12.6rem] max-sm:w-full ">
                                     <EmployeeDetailsView
           employeeId={item.employeeId}
           fullName={item.fullName}
@@ -291,17 +290,17 @@ function EmployeeTable(props) {
                                         ) : null}
                                     </div>
 
-                                    <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] md:w-[8.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                        <div class=" text-xs  font-poppins">
+                                    <div className=" flex justify-start items-center h-8 ml-gap bg-[#eef2f9] md:w-[7.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div class=" text-xs items-center ml-gap font-poppins">
                                             {item.department}
                                         </div>
 
                                     </div>
-                                    <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex justify-start items-center h-8 ml-gap bg-[#eef2f9] md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 
-                                        <div class=" text-xs  font-poppins">
+                                        <div class=" text-xs  items-center ml-gap font-poppins">
                                             
                                            {item.roleTypeName}
                                         </div>
@@ -309,20 +308,20 @@ function EmployeeTable(props) {
                                 </div>
 
                                 <div class="flex  h-8 ml-gap bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    <div class=" text-xs  font-poppins text-center">
+                                <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] md:w-[11.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div class=" text-xs  items-center ml-gap font-poppins text-center">
                                     {item.countryDialCode} {item.mobileNo}
                                     </div>
                                 </div>
-                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    <div class=" text-xs  font-poppins text-center">
+                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div class=" text-xs items-center ml-gap  font-poppins text-center">
                                        {item.emailId}
                                     </div>
                                 </div>
                                 </div>
                                 <div class="flex  max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    <div class=" text-xs  font-poppins text-center">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div class=" text-xs items-center ml-gap   font-poppins text-center">
                                     {props.user.userDeleteInd === true || user.role === "ADMIN" ? (
             <SuspendEmployee
               partnerId={item.partnerId}
@@ -346,7 +345,7 @@ function EmployeeTable(props) {
                                 </div>
                                 )}
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    <div class=" text-xs cursor-pointer  font-poppins text-center">
+                                    <div class=" text-xs cursor-pointer items-center ml-gap  font-poppins text-center">
                                     {item.suspendInd !== true && ( 
               <Tooltip  title={item.role}>
                 {/* <Button
@@ -372,7 +371,7 @@ function EmployeeTable(props) {
                )}
                                     </div>
                                 </div>
-                                <div className=" flex md:w-[12.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex md:w-[15.12rem] items-center justify-end h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center ">
                                     <span className=" cursor-pointer max-sm:!text-2xl "
               onClick={() => {
@@ -386,8 +385,8 @@ function EmployeeTable(props) {
     
                 <MonitorHeartIcon className="!text-icon text-[#df9697] "  />  </span>
                                     </div>
-                                </div>
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[9.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                              
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[1.22rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="Add as Admin">
            <CircleNotificationsIcon className=" cursor-pointer !text-icon max-sm:!text-2xl"
@@ -399,7 +398,7 @@ function EmployeeTable(props) {
            </Tooltip>
                                     </div>
                                 </div>
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-base  font-poppins text-center">
                                     {item.suspendInd === true && (
                  <StyledPopconfirm
@@ -415,7 +414,7 @@ function EmployeeTable(props) {
      )}
                                     </div>
                                 </div>
-                                
+                                </div>
 </div>
                             </div>
                         </div>

@@ -73,7 +73,7 @@ props.getTeamMemberlist();
           values,
           ...rest
         }) => (
-          <Form class="form-background">
+          <Form class="form-background h-[86vh]">
             <div class="flex justify-between" >
               <div class="h-full w-w47.5" >
                 
@@ -100,12 +100,7 @@ props.getTeamMemberlist();
                  <Field
                     name="teamMember"
                     // label="Include"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.teamMember"
-                    //     defaultMessage="Team Member"
-                    //   />
-                    // }
+                 
                     // label={props.translatedMenuItems[1]}
                     mode
                     placeholder="Select"

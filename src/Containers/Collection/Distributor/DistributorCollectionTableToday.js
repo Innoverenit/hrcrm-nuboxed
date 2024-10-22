@@ -147,13 +147,13 @@ function DistributorColletcionArchive(props) {
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className="font-bold font-poppins text-xs w-[8.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {translatedMenuItems[2]}   {/* Customer" /> */}
               </div>
-            <div className="font-bold font-poppins text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]} #
+            <div className="font-bold font-poppins text-xs w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]} #
               {/* Order #" /> */}
               </div>
-            <div className="font-bold font-poppins text-xs w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Invoice */} {translatedMenuItems[4]}
               </div>
             <div className="font-bold font-poppins text-xs w-[8.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  {translatedMenuItems[5]} ID
@@ -162,20 +162,20 @@ function DistributorColletcionArchive(props) {
               <div className="font-bold font-poppins text-xs w-[6.12rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* "Date" /> */} {translatedMenuItems[7]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* "Type" /> */} {translatedMenuItems[6]}
               </div>
           
-            <div className="font-bold font-poppins text-xs w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[8.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* "Amount" /> */} {translatedMenuItems[8]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Mode" /> */} {translatedMenuItems[9]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[10]}?
+            <div className="font-bold font-poppins text-xs w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[10]}?
               {/*"Received ?" /> */}
               </div>
-            <div className="font-bold font-poppins text-xs w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Owner" /> */} {translatedMenuItems[11]}
               </div>
           </div>
@@ -187,15 +187,15 @@ function DistributorColletcionArchive(props) {
                 <div>
                   <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[9.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-                        <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                      <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] items-center  w-[11.1rem] max-xl:w-[6.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs  font-poppins items-center ml-gap max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.orderSourceName}
                         </div>
 
                       </div>
 
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-                        <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                      <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs items-center ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.newOrderNo}
                         </div>
 
@@ -203,44 +203,46 @@ function DistributorColletcionArchive(props) {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex w-[5.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.8rem] max-lg:w-[4.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex w-[6.8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.8rem] max-lg:w-[4.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                        <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                        <div class=" text-xs items-center ml-gap font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.invoiceId}
 
                         </div>
                       </div>
-                      <div className=" flex w-[10.15rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.15rem] max-lg:w-[3.15rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                        <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                      <div className=" flex w-[7.15rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.15rem] max-lg:w-[3.15rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                        <div class=" text-xs  font-poppins items-center ml-gap text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                         {item.transactionNumber}
 
                         </div>
                       </div>
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.36rem] max-xl:w-[8.36rem] max-lg:w-[5.86rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.36rem] max-xl:w-[8.36rem] max-lg:w-[5.86rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {` ${dayjs(item.date).format("DD-MM-YY")}`}
 
                         </div>
                       </div>
+                      <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[9.36rem] max-xl:w-[8.36rem] max-lg:w-[5.86rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              {item.paymentType}
+{/* Type */}
+                        </div>
                     </div>
 
-
-
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.2rem] max-xl:w-[5.9rem] max-lg:w-[4.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-xl:w-[5.9rem] max-lg:w-[4.5rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                         {item.orderCurrencyName} &nbsp;  {item.paymentAmount} 
                         </div>
 
                       </div>
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.04rem] max-xl:w-[5.6rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-                        <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                      <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[8.04rem] max-xl:w-[5.6rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                        <div class=" text-xs items-center ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.paymentModeName}
                         </div>
 
                       </div>
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.03rem] max-xl:w-[4.2rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.03rem] max-xl:w-[4.2rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {user.collectionApproveInd === true && (
                             <DistributorPaymentToggle paymentId={item.paymentId} orderPaymentType={item.orderPaymentType} />

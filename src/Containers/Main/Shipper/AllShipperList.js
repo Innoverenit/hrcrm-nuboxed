@@ -98,44 +98,44 @@ function AllShipperList(props) {
                         <div className=" flex  w-[11.6rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                            <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                          <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                              <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
-                                to={`shipper/${item.shipperId}`} title={item.shipperName}>
-                                {item.shipperName}
-                              </Link>
-                            </div>
+<Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+  to={`shipper/${item.shipperId}`} title={item.shipperName}>
+  {item.shipperName}
+</Link>
+</div>
 
                           </div>
                         </div>
-                        <div className=" flex  w-[6.5rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div className=" flex  w-[6.5rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div class=" font-normal text-xs ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.dialCode} {item.phoneNo}
                           </div>
 
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                        <div className=" flex  w-[13.3rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex  w-[13.3rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.emailId}
                           </div>
 
                         </div>
 
-                        <div className=" flex   w-[9.12rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex   w-[9.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.shipByName}
                           </div>
 
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                        <div className=" flex   w-[12.31rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex   w-[12.31rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
          
@@ -143,8 +143,8 @@ function AllShipperList(props) {
                           </div>
 
                         </div>
-                        <div className=" flex   w-[12.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div className=" flex   w-[12.21rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div class=" font-normal text-xs ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {(item.address &&
                               item.address.length &&
                               item.address[0].city) ||
@@ -152,9 +152,9 @@ function AllShipperList(props) {
                           </div>
 
                         </div>
-                        <div className=" flex   w-[8.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex   w-[8.2rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-<div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+<div class=" font-normal text-xs ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
   {(item.address &&
     item.address.length &&
     item.address[0].postalCode) ||
@@ -164,7 +164,7 @@ function AllShipperList(props) {
 </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                       <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] w-[8rem]">                      
+                       <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] w-[6rem]">                   
                           <Switch
                             className="toggle-clr"
                             //checked={item.productionInd}
