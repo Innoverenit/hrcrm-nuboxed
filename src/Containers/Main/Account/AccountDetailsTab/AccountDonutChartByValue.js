@@ -1,6 +1,7 @@
+import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const ProductionVolumePieChart = () => {
+const GradientDonutChart = () => {
   const options = {
     series: [44, 55, 41, 17, 15],  // Data for the chart
     chart: {
@@ -52,4 +53,4 @@ const ProductionVolumePieChart = () => {
   );
 };
 
-export default ProductionVolumePieChart;
+export default GradientDonutChart;

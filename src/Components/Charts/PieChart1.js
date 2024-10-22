@@ -3,7 +3,7 @@ import Chart from "react-apexcharts";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getHotColdWarm,handleLeadHCWdrawer} from "../../Containers/Dashboard/DashboardAction";
-import { BundleLoader } from "../Placeholder";
+
 
 function Piechart1(props) {
   useEffect(()=> {

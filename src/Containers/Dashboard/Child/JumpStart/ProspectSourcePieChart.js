@@ -5,7 +5,7 @@ const ProspectSourcePieChart = () => {
   const options = {
     series: [44, 55, 41, 17, 15],  // Data for the chart
     chart: {
-      width: 250,  // Chart width
+      // width: 250,  // Chart width
       type: 'donut',  // Chart type
     },
     plotOptions: {
