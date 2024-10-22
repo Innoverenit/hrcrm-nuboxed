@@ -11,6 +11,7 @@ import ProductionHistoryCardList from "./ProductionHistoryCardList";
 import ProductionAllCardList from "./ProductionAllCardList";
 import DeletedOrderList from "./DeletedOrderList";
 import ProcreCardList from "../Procre/ProcreCardList";
+import CommerceTab from "./CommerceTab";
 
 const EcomCardList=lazy(()=>import("./EcomCardList"));
 const AllOrderList = lazy(() => import("./AllOrderList"));//4
@@ -109,9 +110,10 @@ class Order extends Component {
             selectedLanguage={this.props.selectedLanguage}
             translateText={this.props.translateText}/>
           ) : viewType === "ecom" && this.props.user.moduleMapper.ecomModInd && this.props.user.moduleMapper.orderManagementInd ? (
-            <EcomCardList 
+            <CommerceTab
             selectedLanguage={this.props.selectedLanguage}
             translateText={this.props.translateText}/>
+            
           ) :
           null}
         </Suspense>

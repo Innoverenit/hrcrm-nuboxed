@@ -224,11 +224,64 @@ const [rowdata, setrowdata] = useState("");
     fetchingCustomerInputSearchData={props.fetchingCustomerInputSearchData}
     />
   ) : (
-         <div className=' flex sticky  z-auto'>
+    <div className=" flex "> 
+     
+      <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
+       <div> Search team Member</div>
+        </div>
+        <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+         <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
+                  text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+        <div class="flex items-center flex-no-wrap h-16">
+          <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
+            <MultiAvatar
+              // primaryTitle={item.opportunityName}
+              // imageId={item.imageId}
+              imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
+            />
+          </div>
+          
+          <div class="flex basis-[100%] overflow-hidden">
+          
+          <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
+        
+    Itisri Chaudhury
+
+        </div> 
+        </div>
+          
+       
+        </div>
+        <div className="flex flex-col max-sm:justify-between ">
+          
+              <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
+                97886556738              </div>
+            
+          <div>
+          <div class="font-medium text-xs ">
+       
+              <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
+               itisrichudhuryiti@gmail.com
+              </div>
+           
+            
+          </div>
+          </div>
+          </div>
+          
+      
+       
+      </div>
+
+        </div>
+        </div>
+         <div className=' flex sticky  w-[85%] z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
          <div class=" flex justify-between w-[94%]">
-            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[16.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             {translatedMenuItems[0]}
            {/* name */}
             </div>
@@ -237,19 +290,19 @@ const [rowdata, setrowdata] = useState("");
              {/* work */}
 
             </div>
-            <div className="font-poppins font-bold text-xs w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className="font-poppins font-bold text-xs w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             {translatedMenuItems[2]}
              {/* sector */}
 
             </div>
-            <div className="font-poppins font-bold text-xs w-[2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className="font-poppins font-bold text-xs w-[3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             {translatedMenuItems[3]}
            {/* source */}
 
             </div>
             <div className="font-poppins font-bold text-xs w-[1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">           
             </div>
-            <div className="font-poppins font-bold text-xs w-[4.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className="font-poppins font-bold text-xs w-[3.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             {translatedMenuItems[4]}
              {/* quotation */}
 
@@ -270,19 +323,13 @@ const [rowdata, setrowdata] = useState("");
             {/* Assigned" */}
           
             </div>
-            <div className="font-poppins font-bold text-xs w-[3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
-            {translatedMenuItems[7]}
-             {/* Owner" */}
-         
-            </div>
-            <div className="font-poppins font-bold text-xs w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+          
+            <div className="font-poppins font-bold text-xs w-[1.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {translatedMenuItems[8]}
              {/* Customer" */}
           
             </div>
-            <div className="font-poppins font-bold text-xs w-[5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            {/* {translatedMenuItems[8]} ago*/}
-            </div>
+         
           </div>
 
           </div>
@@ -321,7 +368,7 @@ const [rowdata, setrowdata] = useState("");
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex   w-[15rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex   w-[9rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {props.showCheckboxes && (
@@ -399,7 +446,7 @@ const [rowdata, setrowdata] = useState("");
                           {countryCode} */}
                         </div>
                       </div>
-                      <div className=" flex   max-sm:w-auto  w-[7.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[8.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                        {/* Sector  */}
                         <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -420,7 +467,7 @@ const [rowdata, setrowdata] = useState("");
                     
 
 
-                      <div className=" flex max-sm:w-auto w-[4.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto w-[3.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* >Pipeline Value */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -430,7 +477,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex  max-sm:w-auto w-[2.82rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex  max-sm:w-auto w-[4.82rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                        {/* Pipeline Value */}
                        
                             {item.totalProposalValue && (
@@ -445,13 +492,13 @@ const [rowdata, setrowdata] = useState("");
                       </div>     
 
                       {props.user.aiInd && (
-           <div className=" flex  w-[7.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  w-[3.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
          {item.noteScoreInd}
           
             </div>
             )}
 {/* Score */}
-                      <div className=" flex  max-sm:w-auto   w-[4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex  max-sm:w-auto   w-[3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                     {/* Assigned */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -477,24 +524,11 @@ const [rowdata, setrowdata] = useState("");
 
                         </div>
                       </div>
-                      <div className=" flex  max-sm:w-auto w-[2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
-                        <Tooltip title={item.ownerName}>
-                          <div class="max-sm:flex justify-end">
-                            <Tooltip title={item.ownerName}>
-                              <MultiAvatar
-                                primaryTitle={item.ownerName}
-                                imageId={item.ownerImageId}
-                                imgWidth={"1.8rem"}
-                                imgHeight={"1.8rem"}
-                              />
-                            </Tooltip>
-                          </div>
-                        </Tooltip>
-                      </div>
+              
                   
                       
 
-                      <div className=" flex  w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flex  w-[7.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm
@@ -663,6 +697,7 @@ const [rowdata, setrowdata] = useState("");
                     )
                 })}
                 </InfiniteScroll>
+      </div>
       </div>
       </div>
        )}

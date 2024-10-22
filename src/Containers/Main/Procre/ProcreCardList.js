@@ -305,7 +305,7 @@ const {handleProcureNotesDrawerModal,
                       </div>
                     </div>
   </div> 
-                        <div class="max-sm:w-full  items-center md:w-[7.52rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
+                        <div class="max-sm:w-full  items-center md:w-[7.52rem]  justify-center h-8 ml-gap  bg-[#eef2f9] ">
                           <Tooltip>
                           <div class="max-sm:w-full  justify-between md:flex text-xs">                      
                                 <span
@@ -329,7 +329,7 @@ const {handleProcureNotesDrawerModal,
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[8rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[8rem]  justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
                   
                       
                   <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
@@ -354,7 +354,7 @@ const {handleProcureNotesDrawerModal,
                       </div>
                     </div>
                     
-                  <div class="flex items-center md:w-[4.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex items-center md:w-[4.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}

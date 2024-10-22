@@ -16,6 +16,8 @@ class DataRoomHeader extends Component {
           leftComponent={
             <Suspense fallback={<BundleLoader />}>
             <DataRoomActionLeft
+              selectedTab={this.props.selectedTab}
+              setSelectedTab={this.props.setSelectedTab}
              translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
             setDataRoomViewTyp={this.props.setDataRoomViewType}

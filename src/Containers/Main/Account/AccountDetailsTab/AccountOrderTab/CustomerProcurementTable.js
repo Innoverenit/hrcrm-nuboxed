@@ -2,7 +2,7 @@ import React, { useEffect, useState, lazy,useRef,Suspense } from "react";
 import { connect } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from "redux";
-import { Tooltip,Button,Input,Select } from "antd";
+import { Tooltip,Button,Input,Select, Badge } from "antd";
 import dayjs from "dayjs";
 import {
   // getOrderProcurement,
@@ -746,9 +746,11 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                         </Tooltip>
                                                     </div>
                                                     </div>
+
                         <div class="max-sm:w-full items-center  md:w-[6.60rem] justify-center h-8 ml-gap  bg-[#eef2f9]">
                           <Tooltip>
                             <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
+                            <Badge size="small" count={`${item.itemCount}`} overflowCount={5000}>
                             <span
                                                                     class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                     onClick={() => {
@@ -756,7 +758,10 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                                         props.handleProcureDetailsModal(true);
                                                                     }}
                                                                 >{item.newOrderNo}</span>
-                                                                 <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
+                                                                </Badge>
+                                                                 <span>
+                                                                  
+                                                                   {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-[0.65rem] text-[tomato] font-bold">
                   {translatedMenuItems[11]}     {/* New */}
                     </span>

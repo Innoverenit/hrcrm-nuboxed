@@ -1,6 +1,7 @@
 import React, {Suspense,lazy, useState} from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import DataInvestorRoomCard from "../Data Room/DataInvestorRoomCard"
 import { BundleLoader } from "../../Components/Placeholder";
 import {setDataRoomViewType,handleDataroomModal} from "./DataRoomAction";
 const AddDataRoomModal=lazy(()=> import("../Data Room/AddDataRoomModal"));
@@ -10,6 +11,22 @@ const DataRoomCustomerCard=lazy(()=> import("../Data Room/DataRoomCustomerCard")
 const DataRoomProspectCard=lazy(()=> import("../Data Room/DataRoomProspectcard"));
 
 function DataRoom (props) {
+
+  const [selectedTab, setSelectedTab] = useState('prospect'); 
+  const [selectedPerson, setSelectedPerson] = useState(null);
+
+  const [selectedInvestor, setSelectedInvestor] = useState(null);
+
+  const handleCardClick = (person) => {
+    setSelectedPerson(person);
+  };
+
+
+  const handleCardClickInvestor = (person) => {
+    setSelectedInvestor(person);
+  };
+  console.log(selectedPerson)
+ 
     const {
         handleDataroomModal ,
         addDataroomModal   
@@ -19,6 +36,7 @@ function DataRoom (props) {
             <React.Fragment>
             <Suspense fallback={<BundleLoader />}>
             <DataRoomHeader
+            setSelectedTab={setSelectedTab}
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
              setDataRoomViewType={setDataRoomViewType}
@@ -32,14 +50,17 @@ function DataRoom (props) {
              handleDataroomModal={handleDataroomModal}
         />                  
        
-            {viewType === "list" ? 
+            {selectedTab === "list" ? 
            //<DataRoomTab />
-              <DataRoomCard
+              <DataInvestorRoomCard
+              selectedInvestor={selectedInvestor}
+              setSelectedInvestor={setSelectedInvestor}
+              handleCardClickInvestor={handleCardClickInvestor}
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}
               translatedMenuItems={props.translatedMenuItems}
               />:
-          viewType === "customer" ? 
+              selectedTab === "customer" ? 
             //<DataRoomTab />
                <DataRoomCustomerCard
                translateText={props.translateText}
@@ -47,9 +68,12 @@ function DataRoom (props) {
                translatedMenuItems={props.translatedMenuItems}
                />
            :
-           props.viewType === "prospect" ? 
+           selectedTab === "prospect" ? 
             //<DataRoomTab />
                <DataRoomProspectCard
+               selectedPerson={selectedPerson}
+               handleCardClick={handleCardClick}
+               setSelectedPerson={setSelectedPerson}
                translateText={props.translateText}
                selectedLanguage={props.selectedLanguage}
                translatedMenuItems={props.translatedMenuItems}
