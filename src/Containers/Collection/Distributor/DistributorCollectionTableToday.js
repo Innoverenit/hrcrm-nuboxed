@@ -14,6 +14,8 @@ import dayjs from "dayjs";
 import DistributorPaymentToggle from "./DistributorPaymentToggle";
 import DistributorProductHistory from "./DistributorProductHistory";
 import { BundleLoader } from "../../../Components/Placeholder";
+import { handleInvoiceModal } from "../../Main/Account/AccountAction";
+import InvoiceModal from "../../Main/Account/AccountDetailsTab/InvoiceModal";
 
 function DistributorColletcionArchive(props) {
   useEffect(() => {
@@ -196,7 +198,13 @@ function DistributorColletcionArchive(props) {
 
                       <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
                         <div class=" text-xs items-center ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                          {item.newOrderNo}
+                        <span
+                                                                    class="underline cursor-pointer text-[#1890ff]"
+                                                                    onClick={() => {
+                                                                        handleSetParticularOrderData(item);
+                                                                        props.handleInvoiceModal(true);
+                                                                    }}
+                                                                >  {item.newOrderNo}</span>
                         </div>
 
                       </div>
@@ -287,25 +295,33 @@ function DistributorColletcionArchive(props) {
         collectionDistributorOrder={props.collectionDistributorOrder}
         particularRowData={particularRowData}
       />
-
+                 <InvoiceModal
+                    particularRowData={particularRowData}
+                    handleInvoiceModal={props.handleInvoiceModal}
+                    invoiceO={props.invoiceO}
+                    selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText}
+                /> 
     </>
   );
 }
-const mapStateToProps = ({ collection, leads, auth }) => ({
+const mapStateToProps = ({ collection, leads,distributor, auth }) => ({
   DistributorCollectionReceivable: collection.DistributorCollectionReceivable,
   todayDistributor: collection.todayDistributor,
   fetchingTodayDistributor: collection.fetchingTodayDistributor,
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   allSalesUsers: leads.allSalesUsers,
-  collectionDistributorOrder: collection.collectionDistributorOrder
+  collectionDistributorOrder: collection.collectionDistributorOrder,
+  invoiceO: distributor.invoiceO,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getTodayDistributor,
       DistributorCollectionReceivableToday,
-      handleDistributorProductModal
+      handleDistributorProductModal,
+      handleInvoiceModal
     },
     dispatch
   );
