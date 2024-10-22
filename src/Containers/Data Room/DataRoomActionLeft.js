@@ -30,10 +30,10 @@ function RefurbishActionLeft (props) {
             <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto " >                  
               <Tooltip title="Prospect">
                 <span class=" text-sm cursor-pointer"
-                  onClick={() => props.setDataRoomViewType("list")}
-                  style={{
-                    color: props. viewType === "list" && "#1890ff",
-                  }}
+                  onClick={() => props.setSelectedTab('prospect')}
+                  // style={{
+                  //   color: props. viewType === "list" && "#1890ff",
+                  // }}
                 >
                   <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355" }}>
                     <HomeRepairServiceIcon className="!text-icon cursor-pointer" /></Avatar>  
@@ -41,24 +41,21 @@ function RefurbishActionLeft (props) {
               </Tooltip> 
               <Tooltip title="customer">
                 <span class=" text-sm cursor-pointer"
-                  onClick={() => props.setDataRoomViewType("customer")}
-                  style={{
-                    color: props.viewType === "customer" && "#1890ff",
-                  }}
+                    onClick={() => props.setSelectedTab('customer')}
+                  // style={{
+                  //   color: props.viewType === "customer" && "#1890ff",
+                  // }}
                 >
-                  <Avatar style={{ background: props.viewType === "customer" ? "#f279ab" : "#28a355" }}>
-                    <AcUnitIcon className="!text-icon cursor-pointer" /></Avatar>  
+                  
+                    <AcUnitIcon className="!text-icon cursor-pointer" /> 
                 </span>
               </Tooltip>
               <Tooltip title="Investor">
                 <span class=" text-sm cursor-pointer"
-                  onClick={() => props.setDataRoomViewType("prospect")}
-                  style={{
-                    color: props.viewType === "prospect" && "#1890ff",
-                  }}
+                 onClick={() => props.setSelectedTab('list')}
                 >
-                  <Avatar style={{ background: props.viewType === "prospect" ? "#f279ab" : "#28a355" }}>
-                    <ApartmentIcon className="!text-icon cursor-pointer" /></Avatar>  
+                  
+                    <ApartmentIcon className="!text-icon cursor-pointer" />
                 </span>
               </Tooltip>            
             </div>   

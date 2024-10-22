@@ -3,9 +3,11 @@ import { Route, Switch } from "react-router-dom";
 import PhoneMaterialScanner from "../Main/Scan/PhoneScanner/PhoneMaterialScanner"
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 import AssessmentData from "../AssessmentData/AssessmentData"
 import { login_url } from "../../Config/Auth";
 import Waranty from "../Waranty/Waranty"
+import { useNavigate } from 'react-router-dom';
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
@@ -252,8 +254,9 @@ const PlantDetail = lazy(() => import("../Plant/Child/PlantDetail/PlantDetail"))
 const Procurement = lazy(() => import("../Procurement/Procurement"));
 const SubscriptionMainApps = lazy(() => import("../Subscription/SubscriptionMainApps"));
 const Production = lazy(() => import("../Production/Production"));
-
+ 
 function MainApp(props) {
+  
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
@@ -480,10 +483,15 @@ function MainApp(props) {
                 </div>
             
                 <div className="flex items-center">            
-                <Button   
+                {/* <Button   
                  type="primary"        
                  onClick
-                >Data Room</Button>
+                >Data Room</Button> */}
+     <Link to="/dataroom">
+      <Button type="primary">
+        Data Room
+      </Button>
+    </Link>
                  </div>
 
                 <div class="mr-3 flex items-center h-[2.5rem]">            
