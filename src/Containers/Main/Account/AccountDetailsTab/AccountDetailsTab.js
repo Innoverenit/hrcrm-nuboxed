@@ -175,6 +175,7 @@ function AccountDetailsTab(props) {
                 />
             ) : (
                 <CustomerProcurementTable 
+                    distributorData={props.distributorData}
                     distributorId={props.distributorData.distributorId} 
                     selectedLanguage={props.selectedLanguage}
                     translateText={props.translateText}

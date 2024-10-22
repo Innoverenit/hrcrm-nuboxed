@@ -7,13 +7,18 @@ import {
 } from "../../ProductAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MultiAvatar} from "../../../../Components/UI/Elements";
-import { Button, Tooltip,Input,Popconfirm } from "antd";
+import { Button, Input,Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { base_url2 } from "../../../../Config/Auth";
+import { base_url, base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import EditUpload from "../../../../Components/Forms/Edit/EditUpload";
 import ProductCategoryPUnblishToggle from "./ProductCategoryPUnblishToggle";
+import Tooltip from '@mui/material/Tooltip';
+import styled from "styled-components";
+import "../../Product.scss";
+import dayjs from "dayjs"; 
+import Carousel from "react-elastic-carousel";
 
 const CategoryProductModal = lazy(() => import("../CategoryProductModal"));
 
@@ -159,45 +164,37 @@ const DeleteOnClick = async (item) => {
   }
 };
 
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 500, itemsToShow: 2 },
+  { width: 768, itemsToShow: 4, itemToScroll: 4 },
+  { width: 1100, itemsToShow: 5, itemToScroll: 5 },
+];
 
   return (
     <>
+ <div class="h-[24rem] overflow-auto">
+ <CardWrapper>
+<Carousel
+    // ref={carouselRef}
+    pagination={false}
+    breakPoints={breakPoints}
+    style={{ minHeight: "6em", justifyContent: "center" }}
+    class="w-2/12 mt-8 ml-margin10"
+    // onNextEnd={next}
+    // onPrevEnd={previous}
+                   >
 
-      <div className=' flex  sticky  z-auto'>
-        <div class="rounded m-1 h-[85vh] max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">          
-            <div className="font-bold font-poppins text-xs w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
-            {translatedMenuItems[0]}   {/* Category */}
-              </div>
-            <div className=" font-poppins text-xs w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div>
-            <div className=" flex  w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Add">
-                          <AddCircleIcon
-                            className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              //props.setEditProducts(item);
-                              handleCategoryModal(true);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-
-
-                    </div>
-          </div>
-          
-            {data.map((item) => {
-              return (
-                <div>
-                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    
-
-                      <div className=" flex   w-[10.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
-                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {editsuppliesId === item.categoryId ? (
+{data.map((item, index) => {
+                 const currentdate = dayjs().format("YYYY/MM/DD");
+                 const date = dayjs(item.creationDate).format("YYYY/MM/DD");
+                
+                 return (
+                  <CardElement >
+                    <div  key={item.categoryId} className="card-element">
+<div class=" h-[18rem] flex-col flex bg-[cornsilk] items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[18rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
+<div class="mt-1"> 
+{editsuppliesId === item.categoryId ? (
                             <Input
                             style={{ width: "3rem" }}
                             value={item.categoryName}
@@ -206,20 +203,16 @@ const DeleteOnClick = async (item) => {
                       
                        
                     ) : (
-                      <div className=" text-xs  font-poppins">
-                        <div>  {item.categoryName}</div>
-                      </div>
+                      <Tooltip title={item.categoryName} placement="top" arrow>
+                      <Header>{item.categoryName || ""}</Header> 
+                    </Tooltip>
                     )}
-                        </div>
 
-                      </div>
-      
-                    </div>
-                    <div className=" flex   w-[10.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
-<div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-
-{editsuppliesId === item.categoryId ? (
+</div>
+<div class="max-sm:mr-0 md:flex  my-2 h-hwk">
+                              <div class="object-cover object-center  flex items-center">
+                                <div>
+                                {editsuppliesId === item.categoryId ? (
     
     <EditUpload
     imageId={item.imageId}
@@ -229,32 +222,101 @@ const DeleteOnClick = async (item) => {
   />
                        
                     ) : (
-                      <div className=" text-xs  font-poppins">
-                        <div> 
-                            {item.imageId ? (
-                            <MultiAvatar
-                              imageId={item.imageId ? item.imageId : ''}
-                              imgHeight={"1.8rem"}
-                              imgWidth={"1.8rem"}
-                            />
-                          ) : (
-                            <div class="font-bold text-xs" >
-                              No Image
-                            </div>
-                          )}
-                          </div>
-                      </div>
-                    )}
+                            <img
+                                        src={`${base_url}/image/${item.imageId}`} alt=""
+                                        style={{ height: "7rem", width: "7rem" }}
+                                    />
+)}
+                                     {/* <h3>{item.newProductNo} </h3>   */}
+                                     </div>
+                                                      </div>  
+                                                                                                   
+                                                      <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">
+                                                      {/* <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
+                                                      <div className="add-minus-quantity">
+      <span
+
+      >
+             <MinusOutlined onClick={() => handleDecrement(item.productId)}/>
+      </span>
+    
+      <input type="number"  
+       value={units[item.productId] || 1}
+       onChange={(event) => handleQuantityChange(event, item.productId)}
+      min="1" 
+      step="1" 
+      />
+     
+      <span
+
+      >
+      <PlusOutlined onClick={() => handleIncrement(item.productId)} />
+      </span>
+
+    </div>
+       
                       
-</div>
+                                                 
+                                                            </div> */}
+                                                      <h3 class=" mt-2 h-4 font-bold text-xs ">
+                                                        {item.model} &nbsp;&nbsp;&nbsp;
+                                                        {dayjs(item.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                                        >
+                                         {translatedMenuItems[6]} {/* New */}
+                                        </span> : null}
+                                                      </h3>
+                                                      <h3 class=" mt-2 h-4 font-bold text-xs ">
+                                                      <ProductCategoryPUnblishToggle item={item}    publishInd={item.publishInd}  categoryId={item.categoryId}/>
+                                                      </h3> 
+                                                    </div>
 
-</div>
-<div className=" flex  w-[10.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-<ProductCategoryPUnblishToggle item={item}    publishInd={item.publishInd}  categoryId={item.categoryId}/>
-              </div>
+                                                    </div>
+                                                    
+                                                    {/* <div class="flex justify-between m-2 w-wk max-sm:w-40 items-baseline md: " >
+                                                        <Desc> {item.description === "null" ? "No Description" : `${item.description}`}</Desc>
+                                                        {item.description === "<h3></h3>\n" ? null : (
+                                                          <Tooltip
+                                                            style={{ backgroundColor: "red" }}
+                                                            title={
+                                                              <Desc2>{item.description === "null" ? "No Description" : `${item.description}`}</Desc2>
+                                                            }
+                                                            placement="top"
+                                                            arrow
+                                                          >
+                                                            <span
+                                                              style={{
+                                                                cursor: "pointer",
+                                                              }}
+                                                            >
+                                                              <InfoCircleTwoTone class=" flex items-center"/>
+                                                            </span>
+                                                          </Tooltip>
+                                                        )}
+                                                      </div> */}
+                                                      <div class="mt-px flex  justify-end w-wk m-1">
+                   {/* <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue cursor-pointer"
+                                                            
+                                      
+                                                            onClick={() =>
+                                                              handleAddToCart(
+                                                                item.productId
+                                                              )
+                                                            }
+                                                          >
+                                                              <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white cursor-pointer">
+                                                        Add +
+                                                          </label>
+                                                          </div> */}
+                                                              <div>
+                              <Popconfirm
+                                title="Do you want to delete?"
+                                onConfirm={() => DeleteOnClick(item)}
+                              >
 
-                   <div class="flex justify-end text-center  max-sm:justify-between max-sm:w-wk items-center">
-                   <div className=" flex   max-sm:flex-row  max-sm:justify-between ">
+                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
+                              </Popconfirm>
+                            </div>
+                                                          <div className=" flex   max-sm:flex-row  max-sm:justify-between ">
     {editsuppliesId === item.categoryId ? (
                         <>
                       <Button 
@@ -281,26 +343,17 @@ const DeleteOnClick = async (item) => {
                       />
                     )}
     </div> 
+</div>
+                   </div>
+                   </div>
+                 </CardElement>
+                );
+              })}
 
-
-    <div>
-                              <Popconfirm
-                                title="Do you want to delete?"
-                                onConfirm={() => DeleteOnClick(item)}
-                              >
-
-                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
-                              </Popconfirm>
-                            </div>
-                    </div>
-                   
-                  </div>
-                </div>
-               );
-            })} 
-          
-        </div>
-      </div>
+</Carousel>
+</CardWrapper> 
+ </div>
+    
       <Suspense fallback={"Loading"}>
       <CategoryProductModal
          translateText={props.translateText}
@@ -351,3 +404,63 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProductCategory);
+const CardWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  @media only screen and (max-width: 600px) {
+    justify-content: center;
+    flex-direction: column;
+  }
+`;
+const CardElement = styled.div`
+
+  /* border:2px solid orange */
+   padding: 0 10px;
+   margin-top: 2.5em;
+  display: flex;
+    justify-content: center;
+  /* margin:0px 20px; */
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    padding:0;
+    margin-top: 1rem;
+    justify-content: center;
+    width: 100%;
+  }
+`;
+const Header = styled.div`
+  text-overflow: ellipsis;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 2em;
+  font-size: 1.3em;
+  font-family: Poppins;
+  font-weight: 700;
+  @media only screen and (max-width: 600px) {
+    text-overflow: ellipsis;
+
+white-space: nowrap;
+overflow: hidden;
+height: 2em;
+font-size: 1.3em;
+font-family: Poppins;
+font-weight: 700;
+width:100%
+text-align:center
+  }
+`;
+const Desc = styled.p`
+  height: 1.5em;
+  overflow: hidden;
+  padding: 1%;
+  text-align: center;
+`;
+const Desc2 = styled.p`
+  height: 60px;
+  overflow: auto;
+  color: white;
+  padding: 3%;
+  text-align: center;
+`;

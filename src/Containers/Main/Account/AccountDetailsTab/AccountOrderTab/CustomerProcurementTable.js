@@ -255,28 +255,22 @@ const handleLoadMoreLow = () => {
   const handlePostChange =  async (item) => {
       let updatedItem={
         dispatchReceivedDate: new Date(date).toISOString(),
-        // trackId:trackId?trackId:item.trackId,
+        // trackId:trackId?trackId:item.trackId,Order Successfully dispatched!!!!
         orderId:item.orderId,
       }
-      // props.updateOrdrSuplrItems(data);
       try {
-        const headers = {
-          'Content-Type': 'application/json',
-          'Authorization':  `Bearer ${props.token}`  // Replace with your actual token if required
-        };
-
           const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch`, updatedItem, {  
             headers: {
                 Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
             },
          });
-         dispatch(getDistributorOrderOfHigh(props.distributorId, page, "procure","High"));
-          console.log("API Response:", response.data);
-      setData(prevData => 
-            prevData.map(cat =>
-              cat.orderId === item.orderId ? response.data : cat
-            )
-          );
+        
+         if (response.data === 'Order Successfully dispatched!!!!') {
+          const updatedOrderItems = data.filter(itm => itm.orderId !== item.orderId);
+          setData(updatedOrderItems);
+        } else {
+          console.log(response.data);
+        }
           setEditsuppliesId(null);
         } catch (error) {
           console.error("Error updating item:", error);
@@ -399,6 +393,8 @@ const handleLoadMoreLow = () => {
   };
   
   // Commerce
+  console.log("fox",props.distributorData)
+
   return (
     <>
  <div class=" flex justify-between">
@@ -467,11 +463,21 @@ const handleLoadMoreLow = () => {
                         {data.length ?
                             <>
                                 {data.map((item) => {
+
                                    const currentDate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                    const totalPay = item.totalPayment;
+    const outStand = props.distributorData.outstanding;
+    const currencyPrice = props.distributorData.currencyPrice
+    const payStand = totalPay + outStand;
+    const canPack = payStand < currencyPrice || payStand === currencyPrice;
+
+console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",canPack)
+
+
                                     return (
                                       <div>
-                                        <div className="flex rounded  mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                        <div key={item.orderId} className="flex rounded  mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
                                           <div className=" flex  w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
@@ -547,7 +553,7 @@ const handleLoadMoreLow = () => {
                                         </div>
                                      
                                      
-                                        <div class="flex flex-row items-center md:w-[10.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row  md:w-[10.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {/* {item.contactPersonName} */}
                                               <MultiAvatar
@@ -558,12 +564,12 @@ const handleLoadMoreLow = () => {
                                                     />
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[7.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row md:w-[7.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.paymentInTerms}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row items-center md:w-[10.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row  md:w-[10.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.status}                                              
                                             </div>
@@ -619,19 +625,21 @@ const handleLoadMoreLow = () => {
                       
                     ) : (
                       <>
-                      
+                     {canPack && (
+                      <div>
                       <Button
                       type="primary"
                         onClick={() => handleEditClick(item.orderId)}
                       >
                   <LogoutIcon className=" !text-icon" /> 
                         Pack</Button>
-                  
-                    </>
+                        </div>)}
+                        </>
+            
                     )}
     </div>
        <div class="flex w-7 justify-end max-sm:flex-row max-sm:w-[10%]">                                                                                              
-                                                       <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer items-center justify-center h-8  bg-[#eef2f9] flex">
+                                                       <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full  md:w-5 h-5 cursor-pointer items-center justify-center h-8  bg-[#eef2f9] flex">
                                             <Tooltip title={translatedMenuItems[12]}>
                                       
                                                                 <EventRepeatIcon className="!text-base cursor-pointer"
@@ -738,7 +746,7 @@ const handleLoadMoreLow = () => {
                                                         </Tooltip>
                                                     </div>
                                                     </div>
-                        <div class="max-sm:w-full items-center  md:w-[6.60rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                        <div class="max-sm:w-full items-center  md:w-[6.60rem] justify-center h-8 ml-gap  bg-[#eef2f9]">
                           <Tooltip>
                             <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
                             <span
@@ -758,7 +766,7 @@ const handleLoadMoreLow = () => {
                           </Tooltip>
                         </div>
                     
-                      <div className=" flex items-center w-[12rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center w-[12rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -767,7 +775,7 @@ const handleLoadMoreLow = () => {
 </span></div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[8rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full text-xs max-sm:justify-between">
+                    <div class="flex flex-row  md:w-[8rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full text-xs max-sm:justify-between">
                   
                       
                       <div class="max-sm:w-full justify-between flex md:text-xs">
@@ -788,7 +796,7 @@ const handleLoadMoreLow = () => {
                   </div>
                
                
-                  <div class="flex flex-row items-center md:w-[10.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[10.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                     
                         <MultiAvatar
@@ -799,12 +807,12 @@ const handleLoadMoreLow = () => {
                               />
                       </div>
                   </div>
-                  <div class="flex flex-row items-center md:w-[7.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[7.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                   <div class=" font-poppins text-xs">
                         {item.paymentInTerms}
                       </div>
                   </div>
-                  <div class="flex flex-row items-center md:w-[10.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[10.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.status}
                                             </div>
@@ -830,7 +838,7 @@ const handleLoadMoreLow = () => {
           )}
                                                         </div>
                                                     </div>
-                  <div class="flex flex-row items-center md:w-[11.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[11.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{
                     setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
