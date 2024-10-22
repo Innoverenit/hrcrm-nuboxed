@@ -116,6 +116,58 @@ const DealsTeamCardList = (props) => {
     dealSerachedData={props.dealSerachedData}
     /></Suspense>
   ) : (
+    <div  className=" flex">
+       <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
+       <div> Search team Member</div>
+        </div>
+        <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+         <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
+                  text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+        <div class="flex items-center flex-no-wrap h-16">
+          <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
+            <MultiAvatar
+              // primaryTitle={item.opportunityName}
+              // imageId={item.imageId}
+              imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
+            />
+          </div>
+          
+          <div class="flex basis-[100%] overflow-hidden">
+          
+          <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
+        
+    Itisri Chaudhury
+
+        </div> 
+        </div>
+          
+       
+        </div>
+        <div className="flex flex-col max-sm:justify-between ">
+          
+              <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
+                97886556738              </div>
+            
+          <div>
+          <div class="font-medium text-xs ">
+       
+              <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
+               itisrichudhuryiti@gmail.com
+              </div>
+           
+            
+          </div>
+          </div>
+          </div>
+          
+      
+       
+      </div>
+
+        </div>
+        </div>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
         <div className=" flex justify-between w-[100%]">
@@ -359,6 +411,7 @@ const DealsTeamCardList = (props) => {
             )
           })}
         </InfiniteScroll>
+      </div>
       </div>
        )} 
     </>
