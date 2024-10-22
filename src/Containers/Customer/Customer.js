@@ -66,6 +66,11 @@ class Customer extends Component {
       customerIds:this.state.selectedDeals
     }
     this.props.updateOwnercustomerById(data,value)
+    this.setState({
+      showCheckboxes: false,
+      selectedDeals: [],
+      selectedUser: null,
+    });
     console.log('Selected Deals:', this.state.selectedDeals);
     // console.log('Selected User:', selectedUser);
   };

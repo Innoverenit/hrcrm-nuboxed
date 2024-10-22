@@ -229,7 +229,7 @@ function DistributorPauseForm(props) {
     return (
         <>
             <div>
-                {props.fetchingPhoneListById ? <BundleLoader /> :
+                {/* {props.fetchingPhoneListById ? <BundleLoader /> : */}
                     <>
                         <div className=' flex  sticky flex-col z-auto'>
                             <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -247,7 +247,10 @@ function DistributorPauseForm(props) {
                                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                                     <div className=" md:w-[4.2rem]">
                                     {translatedMenuItems[0]}</div>
-                                    <div className=" md:w-[6.5rem]">{translatedMenuItems[1]}</div>
+                                    <div className=" md:w-[6.5rem]">
+                                        {translatedMenuItems[1]}
+                                      
+                                        </div>
                                     <div className="md:w-[11.2rem]">{translatedMenuItems[2]}</div>
                                     <div className=" md:w-[9.2rem]">{translatedMenuItems[3]}</div>
                                     <div className=" md:w-[7.5rem]">{translatedMenuItems[4]}</div>
@@ -496,7 +499,7 @@ function DistributorPauseForm(props) {
                         </div>
                     
                         
-                    </>}
+                    </>
             </div>
             <Suspense fallback={<BundleLoader />}>
                 {expand && (
