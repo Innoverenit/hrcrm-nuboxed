@@ -136,7 +136,7 @@ const RepairVolumeChart = (props) => {
      const options = {
         labels: Object.keys(props.repairVolumeChart),  // Use keys from chartData as labels
         chart: {
-          width: 300,
+          // width: 300,
           type: 'donut',
         },
         plotOptions: {
@@ -165,7 +165,7 @@ const RepairVolumeChart = (props) => {
                     size: '65%'
                   },
               chart: {
-                width: 200
+                width: 150
               },
               legend: {
                 position: 'bottom'

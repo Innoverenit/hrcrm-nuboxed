@@ -177,8 +177,8 @@ class LinkedDocuments extends Component {
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
-        <div class="rounded m-1 p-1 w-[100%]    shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%] h-[79vh] p-1 bg-transparent font-bold sticky  z-10">
+        <div class="rounded m-1 p-1 w-[100%]  ">
+          <div className=" flex justify-between w-[100%]  p-1  font-bold sticky  z-10">
           
         <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[16.1rem]">
         {this.state.translatedMenuItems[0]}</div>
@@ -186,11 +186,11 @@ class LinkedDocuments extends Component {
                 <div className="font-bold font-poppins text-xs  md:w-[16.2rem]">{this.state.translatedMenuItems[1]}</div>
                 {/* Name */}
         <div className="font-bold font-poppins text-xs  md:w-[13.13rem]">{this.state.translatedMenuItems[2]}</div>
-        {/* Description */}
+       
         <div className="font-bold font-poppins text-xs  md:w-[15.1rem]">{this.state.translatedMenuItems[3]}</div>
-        {/* uploadedBy */}
+     
         <div className="font-bold font-poppins text-xs  md:w-[12.2rem]">{this.state.translatedMenuItems[4]}</div>
-        {/* fileName */}
+        
                      <div className="font-bold font-poppins text-xs  md:w-[9.2rem]">{this.state.translatedMenuItems[5]}</div>
                      {/* Contract */}
         

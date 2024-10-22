@@ -123,7 +123,7 @@ const ProductionOrderValuePieChart = () => {
   const options = {
     series: [44, 55, 41, 17, 15],  // Data for the chart
     chart: {
-      width: 300,  // Chart width
+      // width: 300,  // Chart width
       type: 'donut',  // Chart type
     },
     plotOptions: {
@@ -152,7 +152,7 @@ const ProductionOrderValuePieChart = () => {
         breakpoint: 480,
         options: {
           chart: {
-            width: 200  // Responsive chart width for smaller screens
+            width: 150  // Responsive chart width for smaller screens
           },
           legend: {
             position: 'bottom'  // Legend position for smaller screens
