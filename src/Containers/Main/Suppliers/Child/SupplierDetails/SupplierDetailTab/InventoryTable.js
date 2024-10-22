@@ -272,7 +272,7 @@ function InventoryTable(props) {
                                         <>
                                             <div key={item.inventorySupplieId} className="flex rounded justify-between mt-1 bg-white h-8 items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" > 
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                                                <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] font-medium justify-between items-center  w-[8.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] font-medium justify-between items-center  w-[8.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row  ">
                                                         <div class=" font-normal ml-gap max-xl:text-[0.65rem] text-xs font-poppins flex items-center">
                                                            {item.tradeId}                                                      
 

@@ -176,11 +176,11 @@ function InvestorDeleteList(props) {
         {translatedMenuItems[0]} 
         {/* "Name" */}          
                      </div>
-        <div className=" font-bold font-poppins text-xs w-[9.55rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <div className=" font-bold font-poppins text-xs w-[7.55rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
         {translatedMenuItems[1]}
         {/* "Sector" */}
                     </div>
-        <div className="font-bold font-poppins text-xs w-[5.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">#
+        <div className="font-bold font-poppins text-xs w-[4.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">#
         {translatedMenuItems[2]}
          {/* "Deals" */}          
                 </div>
@@ -250,10 +250,12 @@ function InvestorDeleteList(props) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[10rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[10rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium  w-[10.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
+
+
+                                     <div className=" flex   w-[10.5rem] ml- border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  items-center">
                                 <div>
 
                                                    <MultiAvatar
@@ -264,21 +266,18 @@ function InvestorDeleteList(props) {
                                                       imgHeight={"1.8rem"}
                                                     />
                                                   
-                                        </div>
-                                   <div >
-
-                                   </div>                 
+                                        </div>                                                 
                                         <Tooltip>
                                         <div class=" flex max-sm:w-full  flex-row md:flex-col ml-1">                                         
                                             {/* Name */}
                                   
-                                            <div class="text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap  text-[#042E8A] cursor-pointer max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                            <div class=" flex items-center   text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
+                                            <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] cursor-pointer max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
                                             {item.name}
                                         </Link>                                
                                               {/* {/* <Link */}
                                              
-                                              &nbsp;&nbsp;
+                                              
                                               {date === currentdate ? (
                                                 <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold">
                                                   New
@@ -292,15 +291,15 @@ function InvestorDeleteList(props) {
                                 </div>
                                 </div> 
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex items-center  w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[6.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                 {/* Sector                     */}
-                                    <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">   
+                                    <div class="text-xs items-center ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">   
                                     {item.sector}
                                     </div>
                                 </div>
                                                                                                                     
                                
-                                <div className=" flex  items-center w-[3rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                              
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                              
                                {/* Country */}
                                   <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                               <ReactCountryFlag
@@ -315,7 +314,7 @@ function InvestorDeleteList(props) {
                                 {item.countryAlpha2Code}
                                               </div>
                                           </div>
-                                <div className=" flex  items-center w-[4.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
 
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -325,7 +324,7 @@ function InvestorDeleteList(props) {
                                
                                </div>
                                <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Pipeline Value */}
 
                                     {item.totalProposalValue && (
@@ -336,13 +335,13 @@ function InvestorDeleteList(props) {
                                 </div>
                               
                              
-                                <div className=" flex items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* # Signed */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.signed}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[5.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[5.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* # category */}
 
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -351,7 +350,7 @@ function InvestorDeleteList(props) {
                                 </div>
                                
                             
-                                <div className=" flex items-center  w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* >Source */}
 
                                     <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -360,13 +359,13 @@ function InvestorDeleteList(props) {
                                 </div>
                                 </div>
                                     <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center w-[7.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Deals */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                               
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                              {/* Deals */}
 
                                     <div class="text-xs text-[blue] cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -378,7 +377,7 @@ function InvestorDeleteList(props) {
                                 </div>
                                
                               
-                                <div className=" flex items-center w-[4.918rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.918rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* # Deals */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                    {item.allTotalAmountOfShare}
@@ -386,13 +385,13 @@ function InvestorDeleteList(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex items-center w-[4.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                    {item.club}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Assigned */}
                                     <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                                    
                                     <span>
@@ -417,7 +416,7 @@ function InvestorDeleteList(props) {
             </span>          
                                     </div>
                                 </div>
-                                <div className=" flex  w-[3.32rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex  w-[3.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                                 {/* Owner */}                    
                        <span>
                        <Tooltip title={item.ownerName}>
@@ -438,10 +437,10 @@ function InvestorDeleteList(props) {
                 </div>
                                             
                                 <div class="flex w-wk cursor-pointer justify-between items-center"> 
-                                <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <div class="items-center justify-center h-8 ml-gap bg-[#eef2f9]  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateInvestor investorId={item.investorId} />
                             </div> 
-                            <div >
+                            <div  class="items-center flex justify-center h-8 ml-gap bg-[#eef2f9]">
                           <Tooltip title="Pulse">
          <MonitorHeartIcon
                   onClick={() => {
@@ -452,7 +451,7 @@ function InvestorDeleteList(props) {
                 />
              </Tooltip>
                           </div>                                                                            
-                          <div >
+                          <div  class="items-center flex justify-center h-8 ml-gap bg-[#eef2f9]">
                    <Tooltip title="Notes">
        <NoteAltIcon
                 onClick={() => {
@@ -463,7 +462,7 @@ function InvestorDeleteList(props) {
               />
            </Tooltip>
                    </div> 
-                                  <div>
+                   <div  class="items-center flex justify-center h-8 ml-gap bg-[#eef2f9]">
                                   <Tooltip title="Document">
                                     <ArticleIcon 
                                   onClick={() => {
@@ -475,7 +474,7 @@ function InvestorDeleteList(props) {
                                   </Tooltip>
                                   </div>          
                                            
-                   <div >
+                                  <div  class="items-center flex justify-center h-8 ml-gap bg-[#eef2f9]">
                     <Tooltip title={item.url}>
               {item.url !== "" ? (
                 <span class="cursor-pointer"
@@ -493,7 +492,7 @@ function InvestorDeleteList(props) {
               </div>}
             </Tooltip>
                         </div>                                    
-                    <div >
+                        <div  class="items-center flex justify-center h-8 ml-gap bg-[#eef2f9]">
                         <span 
               className=" !text-icon cursor-pointer"    
             >
@@ -501,7 +500,7 @@ function InvestorDeleteList(props) {
               {user.pulseAccessInd === true && <MonitorHeartIcon  className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl" />}
             </span> 
                         </div>      
-                        <div >         
+                        <div  class="items-center flex justify-center h-8 ml-gap bg-[#eef2f9]">
             <Tooltip title="Investor Contact">
               <ContactEmergencyIcon
               className=" !text-icon cursor-pointer  text-blue-500 max-sm:!text-xl "
