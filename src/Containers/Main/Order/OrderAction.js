@@ -944,6 +944,20 @@ export const handleItemViewDrawer = (modalProps) => (dispatch) => {
   })
 };
 
+export const quatationDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_QUOTATION_DRAWER,
+    payload: modalProps
+  })
+};
+
+export const invoiceDrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVOICE_DRAWER,
+    payload: modalProps
+  })
+};
+
 export const getProcureOrderDetails = (orderPhoneId) => (dispatch) => {
   dispatch({
     type: types.GET_PROCURE_ORDER_DETAILS_REQUEST,
@@ -988,6 +1002,56 @@ export const getOrdrSuppierDetails = (orderId) => (dispatch) => {
     .catch((err) => {
       dispatch({
         type: types.GET_ORDR_SUPLR_DETAILS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getInvoiceEcomList = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVOICE_ECOM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/invoice/erpUnPaidInvoice/${userId}`, 
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_INVOICE_ECOM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_INVOICE_ECOM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getQuotationEcomList = (userId,pageNo,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUOTATION_ECOM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/quotation/order/user/${userId}/${pageNo}/${type}`, 
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_QUOTATION_ECOM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.GET_QUOTATION_ECOM_FAILURE,
         payload: err,
       });
     });

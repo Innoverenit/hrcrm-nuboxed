@@ -83,7 +83,12 @@ function UpdateSuppliesForm (props) {
 
   const [newimageId, setnewimageId] = useState("");
 
-
+  const uomType = props.UOMListData.map((item) => {
+    return {
+      label: item.unitName || "",
+      value: item.unitName,
+    };
+  })
   function setImage(imageId) {
     setnewimageId(imageId);
   }
@@ -134,10 +139,28 @@ function UpdateSuppliesForm (props) {
             netWeight:props.particularDiscountData.netWeight || "",
             reorder:props.particularDiscountData.reorder || "",
             availabilityDate: availabilityDate,
-            weight: "",
-            width: "",
-             length:"",
-              height: "",
+            uom:"",
+            wtUom:"",
+            weight: props.particularDiscountData.weight || "",
+            width: props.particularDiscountData.width || "",
+             length:props.particularDiscountData.length || "",
+              height: props.particularDiscountData.height || "",
+              volume:props.particularDiscountData.volume || "",
+              innerHeight:props.particularDiscountData.innerHeight || "",
+              innerWeight:props.particularDiscountData.innerWeight || "",
+              innerLength:props.particularDiscountData.innerLength || "",
+              innerWidth:props.particularDiscountData.innerWidth || "",
+              innerVolume:props.particularDiscountData.innerVolume || "",
+              masterHeight:props.particularDiscountData.masterHeight || "",
+              masterWeight:props.particularDiscountData.masterWeight || "",
+              masterLength:props.particularDiscountData.masterLength || "",
+              masterWidth:props.particularDiscountData.masterWidth || "",
+              masterVolume:props.particularDiscountData.masterVolume || "",
+              shopify:props.particularDiscountData.shopify || "",
+              seoTitle:props.particularDiscountData.seoTitle || "",
+              seoDescription:props.particularDiscountData.seoDescription || "",
+              tag:props.particularDiscountData.tag || "",
+              msku:props.particularDiscountData.msku || "",
          
           }}
           validationSchema={SuppliesSchema}
@@ -247,21 +270,12 @@ function UpdateSuppliesForm (props) {
                     </div>
                   </div>
                   <div class="flex justify-between">
-                    <div class="w-[47%]">
-                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[12]}</div>
-                      <Field
-                        name="weight"
-                        isColumn
-                        width={"100%"}
-                        inlineLabel
-                        component={InputComponent}
-                      />
-                    </div>
+                   
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[13]}</div>
                       <Field
                         name="length"
-                        //label="UOM"
+      
                         isColumn
                         inlineLabel
                         component={InputComponent}
@@ -271,8 +285,6 @@ function UpdateSuppliesForm (props) {
                         }}
                       />
                     </div>
-                  </div>
-                  <div class="flex justify-between">
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[14]}</div>
                       <Field
@@ -283,6 +295,9 @@ function UpdateSuppliesForm (props) {
                         component={InputComponent}
                       />
                     </div>
+                  </div>
+                  <div class="flex justify-between">
+                   
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[15]}</div>
                       <Field
@@ -296,6 +311,245 @@ function UpdateSuppliesForm (props) {
                         }}
                       />
                     </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[8]}</div>
+                    <Field
+                        name="uom"
+                        //label="UOM"
+                        isColumn
+                        inlineLabel
+                        value={values.unitName}
+                        component={SelectComponent}
+                        options={Array.isArray(uomType) ? uomType : []}
+                        // options={["g", "kg"]}
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Weight</div>
+                    <Field
+                        name="weight"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Volume</div>
+                    <Field
+                        name="volume"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Inner Height</div>
+                    <Field
+                        name="innerHeight"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Inner Weight</div>
+                    <Field
+                        name="innerWeight"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Inner Length</div>
+                    <Field
+                        name="innerLength"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Inner Width</div>
+                    <Field
+                        name="innerWidth"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Inner Volume</div>
+                    <Field
+                        name="innerVolume"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Master Height</div>
+                    <Field
+                        name="masterHeight"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Master Weight</div>
+                    <Field
+                        name="masterWeight"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Master Length</div>
+                    <Field
+                        name="masterLength"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Master Width</div>
+                    <Field
+                        name="masterWidth"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Master Volume</div>
+                    <Field
+                        name="masterVolume"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Shopify</div>
+                    <Field
+                        name="shopify"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Seo Title</div>
+                    <Field
+                        name="seoTitle"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Seo Descrption</div>
+                    <Field
+                        name="seoDescription"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Tag</div>
+                    <Field
+                        name="tag"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">MSKU</div>
+                    <Field
+                        name="msku"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                   
                   </div>
                 </div>
                 <div class="h-full w-[50%]">
@@ -365,13 +619,15 @@ function UpdateSuppliesForm (props) {
                     </div>
                     <div class="w-[47%]">
                     <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[8]}</div>
-                      <Field
-                        name="netUnit"
-                        // label="UOM"
+                    <Field
+                        name="wtUom"
+                        //label="UOM"
                         isColumn
                         inlineLabel
+                        value={values.unitName}
                         component={SelectComponent}
-                        options={["g", "kg"]}
+                        options={Array.isArray(uomType) ? uomType : []}
+                        // options={["g", "kg"]}
                         style={{
                           width: "100%",
                         }}
@@ -390,20 +646,7 @@ function UpdateSuppliesForm (props) {
                         component={InputComponent}
                       />
                     </div>
-                    <div class="w-[47%]">
-                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[8]}</div>
-                      <Field
-                        name="grossUnit"
-                        // label="UOM"
-                        isColumn
-                        inlineLabel
-                        component={SelectComponent}
-                        options={["g", "kg"]}
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
+                   
                   </div>
                   <div class="flex justify-between mt-2">
                     <div class="w-[47%]">
@@ -418,7 +661,7 @@ function UpdateSuppliesForm (props) {
                     </div>
                 
                   </div>
-                  <div class="flex justify-between mt-4">
+                  <div class="flex justify-between mt-4 flex-col">
                   <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[10]}</div>
                     <div class="w-full">
                       <Field
@@ -435,7 +678,7 @@ function UpdateSuppliesForm (props) {
                       <MaterialImagesView />
                     </div> */}
                   </div>
-                  <div className="flex justify-between mt-4">
+                  <div className="flex justify-between mt-4 flex-col">
                   <div class="font-bold text-xs font-poppins text-black">
                     {/* Availability Date */} {translatedMenuItems[17]}
                     </div>
@@ -466,12 +709,13 @@ function UpdateSuppliesForm (props) {
     );
 }
 
-const mapStateToProps = ({ auth, supplies }) => ({
+const mapStateToProps = ({ auth, supplies,settings }) => ({
   addingPurchase: supplies.addingPurchase,
   groupId: auth.userDetails.groupId,
   userId: auth.userDetails.userId,
   currencies: auth.currencies,
   orgId: auth.userDetails.organizationId,
+  UOMListData:settings.UOMListData,
 });
 
 const mapDispatchToProps = (dispatch) =>

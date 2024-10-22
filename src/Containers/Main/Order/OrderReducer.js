@@ -8,6 +8,18 @@ const initialState = {
 
   viewItemDrwr: false,
 
+  quotationItemDrwr:false,
+
+  invoiceItemDrwr:false,
+
+  fetchingInvoiceDetails: false,
+  fetchingInvoiceDetailsError: false,
+  ecomInvoiceList:[],
+
+  fetchingQuotationDetails: false,
+  fetchingQuotationDetailsError: false,
+  ecomQuotation:[],
+
   fetchingProcureOrderDetails: false,
   fetchingProcureOrderDetailsError: false,
   orderProcureDetails: [],
@@ -852,9 +864,44 @@ export const orderReducer = (state = initialState, action) => {
                                   fetchingOrdrSuplrDetailsError: true,
                                 };
                           
+                                case types.GET_INVOICE_ECOM_REQUEST:
+                                return { ...state, fetchingInvoiceDetails: true };
+                              case types.GET_INVOICE_ECOM_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingInvoiceDetails: false,
+                                  ecomInvoiceList: action.payload,
+                                };
+                              case types.GET_INVOICE_ECOM_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingInvoiceDetails: false,
+                                  fetchingInvoiceDetailsError: true,
+                                };
+
+                                case types.GET_QUOTATION_ECOM_REQUEST:
+                                return { ...state, fetchingQuotationDetails: true };
+                              case types.GET_QUOTATION_ECOM_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingQuotationDetails: false,
+                                  ecomQuotation: action.payload,
+                                };
+                              case types.GET_QUOTATION_ECOM_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingQuotationDetails: false,
+                                  fetchingQuotationDetailsError: true,
+                                };
                             
     case types.HANDLE_ITEM_VIEW_DRAWER:
       return { ...state, viewItemDrwr: action.payload };
+
+      case types.HANDLE_QUOTATION_DRAWER:
+        return { ...state, quotationItemDrwr: action.payload };
+
+        case types.HANDLE_INVOICE_DRAWER:
+          return { ...state, invoiceItemDrwr: action.payload };
     
     default:
       return state;
