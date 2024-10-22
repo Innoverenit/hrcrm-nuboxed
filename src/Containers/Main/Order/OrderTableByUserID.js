@@ -252,13 +252,13 @@ const exportPDFAnnexure = async () => {
                     <div className=" flex  w-[100%]   bg-transparent  sticky  z-10 max-sm:hidden">
                     <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
                         <div className="w-[3.54rem] md:w-[5.54rem]  text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-                        <div className="text-[#00A2E8] text-base w-[4rem] md:w-[5rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className=" w-[10.6rem] md:w-[5.6rem]">{translatedMenuItems[2]}</div>
-          <div className=" w-[2.051rem] md:w-[3.051rem] ">{translatedMenuItems[3]}</div>
-          <div className=" w-[2.018rem] md:w-[10.018rem]">{translatedMenuItems[4]}</div>      
-          <div className=" w-[5.73rem] md:w-[1.73rem]">{translatedMenuItems[5]}</div>
-          <div className="w-[5.8rem] md:w-[2.8rem]">{translatedMenuItems[6]}</div>
-          <div className=" w-[9.8rem] md:w-[21.8rem]">{translatedMenuItems[7]}</div>               
+                        <div className="flex items-center text-[#00A2E8] text-base w-[4rem] md:w-[5rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className="flex items-center w-[10.6rem] md:w-[5.6rem]">{translatedMenuItems[2]}</div>
+          <div className="flex items-center w-[2.051rem] md:w-[3.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="flex items-center w-[2.018rem] md:w-[10.018rem]">{translatedMenuItems[4]}</div>      
+          <div className="flex items-center w-[5.73rem] md:w-[1.73rem]">{translatedMenuItems[5]}</div>
+          <div className="flex items-center w-[5.8rem] md:w-[2.8rem]">{translatedMenuItems[6]}</div>
+          <div className="flex items-center w-[9.8rem] md:w-[21.8rem]">{translatedMenuItems[7]}</div>               
           </div>
                     </div>                           
                     <InfiniteScroll
@@ -317,7 +317,7 @@ const exportPDFAnnexure = async () => {
                             </span>
                           </Badge>
                               {date === currentdate ? (
-                                <span className=" text-[0.65rem] text-[tomato] font-bold" >
+                                <span className=" text-[0.65rem] text-[tomato] ml-1 font-bold" >
                                 {translatedMenuItems[10]} {/* New */}
                                 </span>
                               ) : null}
@@ -505,14 +505,14 @@ const exportPDFAnnexure = async () => {
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]   bg-transparent  sticky  z-10 max-sm:hidden">
                     <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
-                        <div className="w-[3.54rem] md:w-[5.54rem]  text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-                        <div className="text-[#00A2E8] text-base w-[4rem] md:w-[5rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className=" w-[10.6rem] md:w-[5.6rem]">{translatedMenuItems[2]}</div>
-          <div className=" w-[2.051rem] md:w-[3.051rem] ">{translatedMenuItems[3]}</div>
-          <div className=" w-[2.018rem] md:w-[10.018rem]">{translatedMenuItems[4]}</div>      
-          <div className=" w-[5.73rem] md:w-[1.73rem]">{translatedMenuItems[5]}</div>
-          <div className="w-[5.8rem] md:w-[2.8rem]">{translatedMenuItems[6]}</div>
-          <div className=" w-[9.8rem] md:w-[21.8rem]">{translatedMenuItems[7]}</div>               
+                        <div className="w-[3.54rem] md:w-[5.54rem]  text-[white] flex justify-center bg-[red]">{translatedMenuItems[9]} </div>
+                        <div className="flex items-center text-[#00A2E8] text-base w-[4rem] md:w-[5rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className="flex items-center w-[10.6rem] md:w-[5.6rem]">{translatedMenuItems[2]}</div>
+          <div className="flex items-center w-[2.051rem] md:w-[3.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="flex items-center w-[2.018rem] md:w-[10.018rem]">{translatedMenuItems[4]}</div>      
+          <div className="flex items-center w-[5.73rem] md:w-[1.73rem]">{translatedMenuItems[5]}</div>
+          <div className="flex items-center w-[5.8rem] md:w-[2.8rem]">{translatedMenuItems[6]}</div>
+          <div className="flex items-center w-[9.8rem] md:w-[21.8rem]">{translatedMenuItems[7]}</div>               
           </div>
                     </div> 
 
@@ -572,7 +572,7 @@ const exportPDFAnnexure = async () => {
                           </Badge>
                           
                               {date === currentdate ? (
-                                <span className=" text-[0.65rem] text-[tomato] font-bold"  >
+                                <span className=" text-[0.65rem] text-[tomato] ml-1 font-bold"  >
                                  {translatedMenuItems[10]} {/* New */}
                                 </span>
                               ) : null}

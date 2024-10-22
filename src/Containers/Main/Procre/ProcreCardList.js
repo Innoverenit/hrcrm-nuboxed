@@ -245,7 +245,7 @@ const {handleProcureNotesDrawerModal,
                         <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[11rem]">{translatedMenuItems[0]}</div>
                         <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[1]}</div>
                         <div className="font-bold font-poppins text-xs md:w-[5.4rem]">{translatedMenuItems[2]}</div>
-                        <div className="font-bold font-poppins text-xs md:w-[12rem]">{translatedMenuItems[3]}ID</div>
+                        <div className="font-bold font-poppins text-xs md:w-[12.4rem]">{translatedMenuItems[3]}ID</div>
                         <div className="font-bold font-poppins text-xs md:w-[6rem]">{translatedMenuItems[4]}</div>
                         <div className="font-bold font-poppins text-xs md:w-[5rem]">{translatedMenuItems[5]}</div>
                         <div className="font-bold font-poppins text-xs md:w-[6.01rem]">{translatedMenuItems[6]}</div>
@@ -279,15 +279,16 @@ const {handleProcureNotesDrawerModal,
 </div>
                   <div class="flex">
                   <div className=" flex  w-wk items-center   max-sm:w-full">
-                  <div className="flex items-center max-sm:w-full">
-                  <div 
-  className="flex items-center truncate max-w-[100px] text-xs md:w-[12rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full" 
-  title={`${item.category} ${item.brand} ${item.model} ${item.attribute}`}
->
+                  <div className="flex items-center border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full">
+                  <div className=" flex   md:w-[4.22rem]   max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className="flex items-center truncate max-w-[100px] text-xs md:w-[12.8rem]  max-sm:w-full" 
+  title={`${item.category} ${item.brand} ${item.model} ${item.attribute}`}>
+
 
                                                       {item.category} {item.brand} {item.model} {item.attribute}
                                                     </div>
-                                                    <div className=" flex   md:w-[4.22rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between ">
+                                                    </div>
+                                                    <div className=" flex   md:w-[6.22rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between ">
       
       <div class=" text-xs  font-semibold  font-poppins">
  
@@ -389,7 +390,7 @@ const {handleProcureNotesDrawerModal,
                         </div>
                       </div>
           )}
-                  <div class="flex flex-row items-center md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                     {editsuppliesId === item.iteamId ? (
                        <Input
