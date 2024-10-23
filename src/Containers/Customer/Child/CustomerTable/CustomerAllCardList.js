@@ -377,7 +377,7 @@ const [rowdata, setrowdata] = useState("");
                             imageId={item.imageId}
                             imageURL={item.imageURL}
                             imgWidth={"1.8rem"}
-                            imgHeight={"1.8rem"}
+                            imgHeight={"1.8rem"} 
                           />
                        
                       </div>
@@ -516,9 +516,9 @@ const [rowdata, setrowdata] = useState("");
 {getRelativeTime(item.creationDate)}
 </span></div>
                       </div>
-                      <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                      <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-center h-8  bg-[#eef2f9]">
                       <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-           <div class="items-center justify-center h-8  bg-[#eef2f9]">
+           <div class="">
            <Tooltip title= {translatedMenuItems[12]}>
              <MonitorHeartIcon
                className=" !text-icon cursor-pointer text-[#df9697]"
@@ -533,7 +533,7 @@ const [rowdata, setrowdata] = useState("");
    
          </div>
         
-<div class="items-center justify-center h-8  bg-[#eef2f9]">
+<div class="">
            <Tooltip title= {translatedMenuItems[13]}>
              <NoteAltIcon
                className=" !text-icon cursor-pointer text-green-800"
@@ -546,7 +546,7 @@ const [rowdata, setrowdata] = useState("");
              />
            </Tooltip>
            </div>
-           <div class="items-center justify-center h-8  bg-[#eef2f9]">
+           <div >
            <Tooltip title= {translatedMenuItems[20]}>
            <AddLocationAltIcon
 className=" !text-icon cursor-pointer text-[#8e4bc0]"
@@ -560,7 +560,7 @@ handleRowData(item);
 </div>
 
                       <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
-                      <div class="items-center justify-center h-8  bg-[#eef2f9]">
+                      <div>
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -587,8 +587,8 @@ handleRowData(item);
                           </div>
                         
                       
-                          <div class=" items-center justify-center h-8  bg-[#eef2f9]"
-                            style={{ fontSize: "0.8rem" }}
+                          <div 
+                          
                             onClick={() => {
                               props.getCustomerDetailsById(item.customerId);
                               props.getCustomerKeySkill(item.customerId);
@@ -606,7 +606,7 @@ handleRowData(item);
                    
                     
                       <div class="flex   max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
-                   <div class="items-center justify-center h-8  bg-[#eef2f9] ">
+                   <div>
                           <Tooltip title= {translatedMenuItems[15]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
@@ -620,7 +620,7 @@ handleRowData(item);
                         </div>
                         </div>
                        
-                    <div class="items-center justify-center h-8  bg-[#eef2f9]">
+                    <div>
                           <Tooltip title= {translatedMenuItems[11]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -640,7 +640,7 @@ handleRowData(item);
 
                       <div class="flex max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                       
-                      <div class="items-center justify-center h-8  bg-[#eef2f9]">
+                      <div>
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title= {translatedMenuItems[14]}>
                               <BorderColorIcon
