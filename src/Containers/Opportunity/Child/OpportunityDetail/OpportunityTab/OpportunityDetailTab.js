@@ -321,7 +321,7 @@ return  <BundleLoader />
                           defaultMessage="Create"
                         />}
                       >
-                         {user.userType !== "USER" && user.department !== "Recruiter" && ( 
+                         {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
                         <PlusOutlined
                           type="plus"
                           tooltipTitle="Create"
@@ -333,10 +333,10 @@ return  <BundleLoader />
                           size="0.875em"
                           style={{ verticalAlign: "center", marginLeft: "0.125em" }}
                         />
-                         )}
+                         {/* )} */}
                          
                       </Tooltip>
-                      <Tooltip 
+                      {/* <Tooltip 
                           title={<FormattedMessage
                             id="app.tagexisting"
                             defaultMessage="Tag Existing"
@@ -355,7 +355,7 @@ return  <BundleLoader />
                             }}
                           />
 
-                     </Tooltip>
+                     </Tooltip> */}
                     </>
                   )}
                 </>
