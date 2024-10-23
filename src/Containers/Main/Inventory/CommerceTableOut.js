@@ -2,7 +2,6 @@ import React, { useState, lazy, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button,Badge } from "antd";
-import { getAllShipper } from "../Shipper/ShipperAction";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
@@ -12,7 +11,7 @@ import { withRouter } from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
-
+// Commerce -1
 
 
 
@@ -522,10 +521,10 @@ const AWBtst=[
                   const dvdate= dayjs(item.deliveryDate).format("DD-MM-YYYY");
                   return (
                     <div>
-                      <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div className="flex rounded justify-between mt-1 bg-white h-8 items-center  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                          <div className=" flex  w-[7.2rem]  border-l-2  h-8 border-green-500 bg-[#eef2f9]  max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                          <div className=" flex  w-[14.2rem]  border-l-2  h-8 border-green-500 bg-[#eef2f9]  max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                             <div class="text-xs flex  font-bold  font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
                               <div className=" text-xs flex  font-bold underline font-poppins cursor-pointer"
                                 onClick={() => {
@@ -594,7 +593,7 @@ const AWBtst=[
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
 
 
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.4rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.4rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.itemCount}
                             </div>
@@ -634,18 +633,18 @@ const AWBtst=[
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[7.76rem] max-xl:w-[4.26rem] max-lg:w-[3.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[14.76rem] max-xl:w-[4.26rem] max-lg:w-[3.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs items-center ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.loadingAddress && item.loadingAddress[0].city || ""}
                             </div>
                           </div>
 
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {dvdate}
                             </div> 
                           </div>
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
                             </div>
@@ -653,7 +652,7 @@ const AWBtst=[
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                        
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.unloadingAddresses && item.unloadingAddresses[0].city && item.newAwbNo==="null" ? <Button type="primary"
                                 onClick={() => {
@@ -664,8 +663,8 @@ const AWBtst=[
                             </div>
                           </div>
                     
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs items-center ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.status === "null" ? "" : item.status}
                             </div>
                           </div>
@@ -682,7 +681,7 @@ const AWBtst=[
                             <div>
                             <Tooltip title="Notes">
                                                         <NoteAltIcon
-                                                            className="!text-icon cursor-pointer"
+                                                            className="!text-icon cursor-pointer text-[green]"
                                                             // style={{ cursor: "pointer" }}
                                                             onClick={() => {
                                                                 handleRowData(item);

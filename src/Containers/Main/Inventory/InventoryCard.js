@@ -50,10 +50,10 @@ const InventoryCard = (props) => {
         </div>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">{props.translatedMenuItems[0]}</div>
-            <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[1]}</div>
-            <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]">{props.translatedMenuItems[2]}</div>
-            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
+            <div className=" w-[9.1rem] font-poppins font-bold text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">{props.translatedMenuItems[0]}</div>
+            <div className=" w-[2.8rem] font-poppins font-bold text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[1]}</div>
+            <div className="w-[6.6rem] font-poppins font-bold text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]">{props.translatedMenuItems[2]}</div>
+            <div className="w-[5.8rem] font-poppins font-bold text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
             {/* <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.zone" defaultMessage="#Zone" /></div> */}
             <div className="w-[4.3rem]"></div>
           </div>
@@ -70,9 +70,9 @@ const InventoryCard = (props) => {
                 //console.log(countryCode)
                 return (
                   <div>
-                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col">
+                    <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex border-l-2  h-8 border-green-500 bg-[#eef2f9]  w-[14.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
+                        <div className=" flex border-l-2  h-8 border-green-500 bg-[#eef2f9]  w-[18.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">
 
 
                           <Tooltip>
@@ -105,7 +105,7 @@ const InventoryCard = (props) => {
                         </div>
 
 
-                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[14.211rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.211rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
 
                           {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
@@ -118,7 +118,7 @@ const InventoryCard = (props) => {
                         </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[17.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[20.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         {/* <div class=" text-xs  font-poppins max-sm:hidden"># Opportunity</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -126,7 +126,7 @@ const InventoryCard = (props) => {
 
                         </div>
                       </div>
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[16.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[12.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                         <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -138,7 +138,7 @@ const InventoryCard = (props) => {
 
                       
 
-                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  ">
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12rem] max-sm:flex-row  ">
 
                         <Button type="primary"
                             onClick={() => {

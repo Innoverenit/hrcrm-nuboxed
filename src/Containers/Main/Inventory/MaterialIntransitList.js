@@ -52,7 +52,7 @@ const MaterialIntransitList = (props) => {
                         <div className=" w-[15.5rem]">
                             Po Id
                             </div>
-                        <div className=" w-[13.52rem]">
+                        <div className=" w-[23.52rem]">
                           Supplies
                           
                         </div>
@@ -73,7 +73,7 @@ const MaterialIntransitList = (props) => {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex">
 
                                             <div className=" flex  w-[16.1rem] h-8  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
@@ -96,14 +96,14 @@ const MaterialIntransitList = (props) => {
                                         </div>
                                        
                                        
-                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[21.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            <div class=" text-xs ml-gap font-poppins">
+                                            <div class=" text-xs ml-gap items-center ml-gap font-poppins">
                                                 {item.supplierName}
                                             </div>
                                         </div>
                                       
-                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[45rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           
                                         </div>
                                        

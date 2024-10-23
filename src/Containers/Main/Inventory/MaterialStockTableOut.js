@@ -89,13 +89,13 @@ const MaterialStockTableOut = (props) => {
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
-                        <div className="w-[2.5rem]"></div>
+                        <div className="w-[9.5rem]"></div>
                    {/* po # */}
-                        <div className=" md:w-[9.21rem]">
+                        <div className=" md:w-[8.21rem]">
                    {/* name */}
                             {props.translatedMenuItems[0]}
                             </div>
-                        <div className=" md:w-[3.82rem]">
+                        <div className=" md:w-[6.82rem]">
                             {/* Category */}
                     {props.translatedMenuItems[24]}
                             </div>
@@ -107,7 +107,7 @@ const MaterialStockTableOut = (props) => {
                         <div className=" md:w-[4.25rem]">
                        {/* cell  {props.translatedMenuItems[7]} */}
                         </div>
-                        <div className=" md:w-[6.10rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
+                        <div className=" md:w-[7.11rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
                         <div className=" md:w-[6.10rem]">
                             {/* in stock  */}
                              {props.translatedMenuItems[29]}
@@ -126,7 +126,7 @@ const MaterialStockTableOut = (props) => {
                         {props.materialUnitsData.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex">
                                             <div className=" flex md:w-[2.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs  font-semibold  font-poppins ">
@@ -141,7 +141,7 @@ const MaterialStockTableOut = (props) => {
                                         </div>
 
                                         <div class="flex">
-                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[9.1rem] max-sm:w-full  ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs  font-semibold  font-poppins ">
                                                     
                                                 </div>
@@ -149,7 +149,7 @@ const MaterialStockTableOut = (props) => {
                                         </div>
 
 
-                                        <div className=" flex  md:w-[8.2rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[15.2rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs ml-gap font-poppins">
                                                 {item.suppliesFullName}
                                             </div>

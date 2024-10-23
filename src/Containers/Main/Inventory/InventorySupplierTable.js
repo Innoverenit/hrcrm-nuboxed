@@ -204,46 +204,46 @@ function InventorySupplierTable(props) {
 
                 </div>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded  w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold sticky top-0 z-10">
                         <div className="w-4"></div>
-                    <div className=" w-[18.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[12]}
+                    <div className=" w-[18.69rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[12]}
                             {/* Name*/}
                             </div>
-                    <div className=" w-[13.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[0]}
+                    <div className=" w-[13.69rem] font-poppins text-xs font-bold  max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[0]}
                             {/* Trade ID */}
                             </div>
-                            <div className=" w-[14.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[1]}
+                            <div className=" w-[14.11rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[1]}
                             {/* Creation  */}
                         </div>
-                        <div className=" w-[19.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[2]}
+                        <div className=" w-[19.1rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[2]}
                             {/* Category */}
                             </div>
-                        <div className=" w-[17.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]"> {translatedMenuItems[3]}
+                        <div className=" w-[17.1rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.1rem]"> {translatedMenuItems[3]}
                             {/* Brand */}
                         </div>
-                        <div className=" w-[42.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]"> {translatedMenuItems[4]}
+                        <div className=" w-[42.12rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.12rem]"> {translatedMenuItems[4]}
                            {/* Model */}
                         </div>
-                        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[5]}
+                        <div className=" w-[13.23rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[5]}
                           {/* Availability Date */}
                         </div>
-                        <div className=" w-[13.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[6]}
+                        <div className=" w-[13.23rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[6]}
                           {/* Attribute */}
                         </div>
-                        <div className=" w-[12.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[7]}
+                        <div className=" w-[12.11rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[7]}
                             {/* Quality */}
                         </div>
-                        <div className=" w-[13.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]"> {translatedMenuItems[8]}
+                        <div className=" w-[13.13rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[16.13rem]"> {translatedMenuItems[8]}
                             {/* Specs */}
                         </div>
-                        <div className=" md:w-[14.9rem]"> {translatedMenuItems[9]}
+                        <div className=" md:w-[14.9rem] font-poppins text-xs font-bold "> {translatedMenuItems[9]}
                            {/* Unit */}
                         </div>
-                        <div className=" md:w-[5.9rem]"> {translatedMenuItems[10]}
+                        <div className=" md:w-[5.9rem] font-poppins text-xs font-bold"> {translatedMenuItems[10]}
                          {/* Price */}
                         </div>
-                        <div className=" md:w-[5.9rem]"> {translatedMenuItems[11]}
+                        <div className=" md:w-[5.9rem] font-poppins text-xs font-bold"> {translatedMenuItems[11]}
                          {/* Publish */}
                         </div>
                     </div>

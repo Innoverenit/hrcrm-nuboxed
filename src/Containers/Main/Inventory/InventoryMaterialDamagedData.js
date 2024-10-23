@@ -81,29 +81,29 @@ const InventoryMaterialDamagedData = (props) => {
                          Item Name
                         </div>
 
-                        <div className=" w-[11.122rem]">       
+                        <div className=" w-[11.12rem]">       
                        Supplier Name
 
                         </div>
 
-                        <div className=" w-[11.122rem]">       
+                        <div className=" w-[11.13rem]">       
                       HSN
 
                         </div>
 
-                        <div className=" w-[11.122rem]">       
+                        <div className=" w-[11.14rem]">       
                       Supplies Id
 
                         </div>
-                        <div className=" w-[11.122rem]">       
+                        <div className=" w-[11.15rem]">       
                       Repacked
 
                         </div>
-                        <div className=" w-[11.122rem]">       
+                        <div className=" w-[11.16rem]">       
                    
 
                         </div>
-                        <div className=" w-[11.122rem]">       
+                        <div className=" w-[11.17rem]">       
                     Units
 
                         </div>
@@ -127,10 +127,10 @@ const InventoryMaterialDamagedData = (props) => {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                         <div class="flex">
 
-                                            <div className=" flex  border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[16.1rem] max-sm:w-full  ">
+                                            <div className=" flex  border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[9.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         // onClick={() => {
@@ -149,29 +149,29 @@ const InventoryMaterialDamagedData = (props) => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex w-[4.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[33.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs   ml-gap font-poppins">
                                               {item.suppliesFullName}
                                             </div>
 
                                         </div>
-                                        <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] w-[8.32rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] w-[19.32rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             {item.supplierName}
 
                                         </div>
-                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.24rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
                                               {item.hsn}
                                             </div>
                                         </div>
                                       
-                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex  items-center justify-start  h-8 ml-gap bg-[#eef2f9] w-[28.2rem] md:w-[19.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           {item.suppliesId}
                                         </div>
-                                        <div className=" flex  items-center justify-center  h-8 ml-gap bg-[#eef2f9]  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex  items-center justify-center ml-gap  h-8 ml-gap bg-[#eef2f9] w-[17.01rem] md:w-[13.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           {item.unitDamaged != 0 &&(
                                         <Switch
                                            checkedChildren="Yes"
@@ -192,7 +192,7 @@ const InventoryMaterialDamagedData = (props) => {
          )} 
                                         </div>
 
-                                        <div className=" flex w-[4.12rem]  justify-center items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[7.22rem]  justify-center items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
 <div class=" text-xs   font-poppins">
   <Button
@@ -211,10 +211,10 @@ const InventoryMaterialDamagedData = (props) => {
 </div>
 
 </div>
-                                        <div className=" flex   items-center h-8 ml-gap bg-[#eef2f9] md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex  w-[25.02rem] items-center h-8 ml-gap bg-[#eef2f9] md:w-[13.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                          
                                          </div>
-                                         <div className=" flex  justify-center items-center h-8 ml-gap bg-[#eef2f9] md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                         <div className=" flex w-[18.1rem] justify-center items-center h-8 ml-gap bg-[#eef2f9] md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                                          {item.unitDamaged}
                                          </div>
                                        
