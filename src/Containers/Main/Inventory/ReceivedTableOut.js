@@ -130,13 +130,13 @@ const ReceivedTableOut = (props) => {
       
         <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex justify-between max-sm:hidden  w-[88%]  p-1 bg-transparent font-bold text-xs font-poppins  z-10">
-              <div className=" w-[16.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" flex justify-between max-sm:hidden  w-[94%]  p-1 bg-transparent font-bold text-xs font-poppins  z-10">
+              <div className=" w-[11.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {translatedMenuItems[0]}
                 </div>
               {props.accountInfoInd && (
                 <>
-              <div className=" w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+              <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
               {translatedMenuItems[1]}
                 </div>
               <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -177,7 +177,7 @@ const ReceivedTableOut = (props) => {
                   const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                   return (
                     <div>
-                      <div className="flex justify-between rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
+                      <div className="flex justify-between rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex w-[9.62rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto   ">
                           <span className="text-xs  font-bold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
@@ -215,7 +215,7 @@ const ReceivedTableOut = (props) => {
 
                             </div>
                           </div>
-                          <div className=" flex w-[10.12rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex w-[9.12rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.contactPersonName}
                             </div>
@@ -235,7 +235,7 @@ const ReceivedTableOut = (props) => {
                               />
                             </div>
                           </div> */}
-                          <div className=" flex w-[4.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex w-[7.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               <MultiAvatar
@@ -246,12 +246,12 @@ const ReceivedTableOut = (props) => {
                               />
                             </div>
                           </div>
-                          <div className=" flex w-[6.81rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex w-[9.81rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
                             </div>
                           </div>
-                          <div className=" flex w-[4.52rem] max-xl:w-[3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex w-[7.52rem] max-xl:w-[3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.inspectionInd !== 0 && <MultiAvatar
                                 primaryTitle={item.startInspectionUserName}
@@ -261,7 +261,7 @@ const ReceivedTableOut = (props) => {
                               />}
                             </div>
                           </div>
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[13.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.phoneReceiveCount}/{item.phoneCount} */}
                               {isValidPercentage ? (
@@ -277,7 +277,7 @@ const ReceivedTableOut = (props) => {
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.5rem] max-xl:w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.5rem] max-xl:w-[5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div>
                               {item.inspectionInd === 0 ? <ReceivedOrderToggle
                                 orderId={item.orderPhoneId}
@@ -287,7 +287,7 @@ const ReceivedTableOut = (props) => {
                             </div>
                           </div>
 
-                          <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                          <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
 
                               {item.productionLocationName && <MultiAvatar
@@ -298,7 +298,7 @@ const ReceivedTableOut = (props) => {
                               />}
                             </div>
                           </div>
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[13rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.inspectionInd === 0 && item.inventoryReceiveInd ?
                                 <Button

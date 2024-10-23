@@ -244,10 +244,10 @@ console.log(selectedZones)
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
-                                        <div class="flex border-l-2 ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                      
 
-                                            <div className=" flex  border-l-2  h-8 border-green-500 bg-[#eef2f9] w-[16.1rem] max-sm:w-full  ">
+                                            <div className=" flex  border-l-2  h-8 border-green-500 bg-[#eef2f9] w-[10.1rem] max-sm:w-full ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600 border-l-2 border-green-500 bg-[#eef2f9]">
                                                     <div
                                                         // onClick={() => {
@@ -265,37 +265,46 @@ console.log(selectedZones)
                                                     ) : null} */}
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className=" flex w-[4.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                                     
 
-                                            <div class=" text-xs  ml-gap font-poppins" style={{marginLeft:"-141px"}}>
+                                        <div className=" flex w-[18.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+
+                                            <div class=" text-xs  ml-gap font-poppins" >
                                                
                                                 {item.suppliesFullName}  
                                             </div>
 
                                         </div>
 
-
-                                        <div className=" flex  w-[16.32rem] items-center   h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  " style={{marginLeft:"-76px"}}>
+                                       
+                                        <div className=" flex w-[14.02rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className="  text-xs  ml-gap font-poppins " >
 
                                             {item.supplierName}
 
                                         </div>
-                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        </div>
+                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.25rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
                                                 {item.hsn}
                                             </div>
                                         </div>
                                       
-                                        <div className=" flex  md:w-[20rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-                                          {item.newSuppliesNo}
+                                        <div className=" flex  md:w-[10.4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs  font-poppins">
+                                        {item.newSuppliesNo}
+                                            </div>
+                                          
                                         </div>
-                                        <div className=" flex  md:w-[20rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between " style={{marginLeft:"-68px"}}>
-                                          {item.remainingCorrectUnit}
+                                        <div className=" flex  md:w-[8.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs  font-poppins">
+                                        {item.remainingCorrectUnit}
+                                            </div>
+                                       
                                         </div>
 
-                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4.6rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         <Button
                                         onClick={() => {
                                           props.addToWaste({
@@ -311,11 +320,11 @@ console.log(selectedZones)
                                         );
                                           
                                         }}
-                                        style={{marginLeft:"-202px"}}
+                         
                                         >To Waste</Button>
                                         </div>
-                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.023rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-29em"}} >
+                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-29rem"}} >
                                                         
                                                     <Select placeholder="Select zone" 
                                                     style={{ width: 146 }}
@@ -376,7 +385,7 @@ console.log(selectedZones)
                                                 </div>
 
 
-                                        <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9] w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                        <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9] w-[4.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
                                                             <Tooltip title="Terms and conditions">
                                                                 <TerminalSharp className="!text-icon text-[#c3b20b]"
@@ -387,8 +396,7 @@ console.log(selectedZones)
                                                                 />
                                                             </Tooltip>
                                                         </div>
-                                                    </div>
-                                       
+                                                    </div>                                  
                                     </div>
 
                                 </div>

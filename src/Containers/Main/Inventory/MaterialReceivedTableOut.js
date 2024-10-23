@@ -105,11 +105,11 @@ const MaterialReceivedTableOut = (props) => {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white items-center p-1 ">
+                                    <div className="flex rounded  mt-1 bg-white items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                         <div class="flex">
 
-                                            <div className=" flex  w-[16.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs font-bold  h-8 border-l-2 border-green-500 bg-[#eef2f9] font-poppins cursor-pointer underline text-blue-600">
+                                            <div className=" flex  w-[18.1rem]  h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                                                <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         onClick={() => {
                                                             handleRow(item);
@@ -126,7 +126,7 @@ const MaterialReceivedTableOut = (props) => {
                                                     ) : null}
                                             </div>
                                         </div>
-                                        <div className=" flex w-[4.12rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[5.12rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins">
                                                 <MultiAvatar
@@ -137,19 +137,19 @@ const MaterialReceivedTableOut = (props) => {
                                             </div>
 
                                         </div>
-                                        <div className=" flex  w-[8.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[10.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
                                             {date}
 
                                         </div>
-                                        <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[14.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs ml-gap font-poppins">
                                                 {item.supplierName}
                                             </div>
                                         </div>
                                       
-                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[20rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[26rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           
                                         </div>
                                         <div className=" flex  w-[8.121rem] max-sm:flex-row  max-sm:justify-between  ">

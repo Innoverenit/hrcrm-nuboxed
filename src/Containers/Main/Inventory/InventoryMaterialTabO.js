@@ -1,16 +1,16 @@
 import React, { Component, lazy, PureComponent, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import MaterialIntransitList from "../Inventory/MaterialIntransitList"
+import MaterialIntransitList from "../Inventory/MaterialIntransitList"//2
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import InventoryMaterialBestBefore from "../Inventory/InventoryMaterialBestBefore"
 import { withRouter } from "react-router";
 import TokenIcon from '@mui/icons-material/Token';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
-import MaterialReceivedTableOut from "./MaterialReceivedTableOut";
-import InventoryMaterialDamagedData from "../Inventory/InventoryMaterialDamagedData"
-import MaterialStockTableOut from "./MaterialStockTableOut";
+import MaterialReceivedTableOut from "./MaterialReceivedTableOut";//1
+import InventoryMaterialDamagedData from "../Inventory/InventoryMaterialDamagedData"//4
+import MaterialStockTableOut from "./MaterialStockTableOut";//3
 import MaterialUnitsDataOut from "./MaterialUnitsDataOut";
 import MaterialCellCardViewOut from "./MaterialCellCardViewOut";
 import CookieIcon from '@mui/icons-material/Cookie';
