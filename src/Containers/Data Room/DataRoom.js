@@ -16,7 +16,7 @@ function DataRoom (props) {
   const [selectedPerson, setSelectedPerson] = useState(null);
 
   const [selectedInvestor, setSelectedInvestor] = useState(null);
-
+const[selectedCustomer,setSelectedCustomer]=useState(null)
   const handleCardClick = (person) => {
     setSelectedPerson(person);
   };
@@ -24,6 +24,11 @@ function DataRoom (props) {
 
   const handleCardClickInvestor = (person) => {
     setSelectedInvestor(person);
+  };
+
+
+  const handleCardClickCustomer = (person) => {
+    setSelectedCustomer(person);
   };
   console.log(selectedPerson)
  
@@ -36,6 +41,7 @@ function DataRoom (props) {
             <React.Fragment>
             <Suspense fallback={<BundleLoader />}>
             <DataRoomHeader
+            selectedTab={selectedTab}
             setSelectedTab={setSelectedTab}
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
@@ -63,6 +69,9 @@ function DataRoom (props) {
               selectedTab === "customer" ? 
             //<DataRoomTab />
                <DataRoomCustomerCard
+               selectedCustomer={selectedCustomer}
+               setSelectedCustomer={setSelectedCustomer}
+               handleCardClickCustomer={handleCardClickCustomer}
                translateText={props.translateText}
                selectedLanguage={props.selectedLanguage}
                translatedMenuItems={props.translatedMenuItems}

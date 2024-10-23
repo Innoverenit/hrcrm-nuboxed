@@ -552,16 +552,6 @@ console.log(selectedSource)
                     />
 }
                   </div>
-                  <div class="font-bold text-xs"> {translatedMenuItems[1]}  </div>
-                  <Field
-                    name="url"
-                    type="text"
-                    // label="URL"                       
-                    isColumn
-                    width={"100%"}
-                    component={InputComponent}
-                    inlineLabel
-                  />           
                   <div class=" flex justify-between mt-2">
                     <div class=" w-3/12 max-sm:w-[30%]">
                
@@ -610,6 +600,17 @@ country_dial_code
 }
                     </div>
                   </div>
+                  <div class="font-bold text-xs"> {translatedMenuItems[1]}  </div>
+                  <Field
+                    name="url"
+                    type="text"
+                    // label="URL"                       
+                    isColumn
+                    width={"100%"}
+                    component={InputComponent}
+                    inlineLabel
+                  />           
+                 
 
                   <div class=" flex justify-between mt-3">
                     <div class="w-w47.5 max-sm:w-w47.5" style={{display:"flex",flexDirection:"column"}}>                  

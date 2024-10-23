@@ -14,6 +14,7 @@ import { TextareaComponent } from "../../../../../../Components/Forms/Formik/Tex
 import { getDesignations } from "../../../../../Settings/Designation/DesignationAction";
 import { getDepartments } from "../../../../../Settings/Department/DepartmentAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
+import { base_url } from "../../../../../../Config/Auth";
 
 const { Option } = Select;
 
@@ -39,9 +40,19 @@ class ContactForm extends Component {
       currentOption: "",
       candidate: false,
       availability: false,
+      selectedCustomer: null,
+      selectedContact:null,
+      translatedMenuItems: [],
+      customers: [],
+      contacts:[],
+      isLoadingCustomers: false,
+      isLoadingContacts:false,
       translatedMenuItems: [],
       loading: true
     };
+    this.handleSelectCustomerFocus=this.handleSelectCustomerFocus.bind(this)
+    this.handleCustomerChange = this.handleCustomerChange.bind(this);
+    this.fetchCustomers = this.fetchCustomers.bind(this);
   }
   componentDidMount() {
     this.fetchMenuTranslations();
@@ -128,6 +139,44 @@ class ContactForm extends Component {
     });
   };
 
+  handleSelectCustomerFocus() {
+    const { touchedCustomer } = this.state;
+    if (!touchedCustomer) {
+      this.fetchCustomers();
+      // this.fetchSector();
+
+      this.setState({ touchedCustomer: true });
+    }
+  }
+
+  handleCustomerChange(customerId) {
+    this.setState({ selectedCustomer: customerId });
+  //this.fetchContacts(customerId);
+  }
+
+
+  async fetchCustomers() {
+    this.setState({ isLoadingCustomers: true });
+
+    try {
+      const apiEndpoint = `${base_url}/customer/contact/drop/${this.props.customerId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      this.setState({ customers: data });
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      this.setState({ isLoadingCustomers: false });
+    }
+  }
+
   render() {
     const {
       user: { userId, firstName, lastName },
@@ -203,6 +252,7 @@ class ContactForm extends Component {
             addCustomerContact(
               {
                 ...values,
+                reportsTo:this.state.selectedCustomer,
                 customerId: this.props.customerId,
                 opportunityId:this.props.opportunityId,
                 investorId:this.props.investorId,
@@ -428,11 +478,50 @@ class ContactForm extends Component {
                         />
                       </>
                     </div>
-                    <div class=" w-2/5">
+
+                    
+<div class=" w-w47.5 ">
+
+                    <div class=" text-xs font-bold font-poppins"> Reports To</div>
+                    
+ 
+                    {/* {this.props.customerConfigure.sourceInd===true&& */}
+                    <Select
+       
+       placeholder="Select Contact"
+       loading={this.state.isLoadingCustomers}
+       onFocus={this.handleSelectCustomerFocus}
+       onChange={this.handleCustomerChange}
+     >
+       {this.state.customers.map(customer => (
+         <Option key={customer.contactId} value={customer.contactId}>
+           {customer.fullName}
+         </Option>
+       ))}
+     </Select>
+                    {/* } */}
+                        </div>
+                    {/* <div class=" w-2/5">
                     <div class=" text-xs font-bold font-poppins"> 
                          {translatedMenuItems[9]}             
                           </div>
-                          {/* Designation */}
+
+                      <FastField
+                        name="designationTypeId"                  
+                        selectType="designationType"
+                        isColumn
+                        component={SearchSelect}
+                        value={values.designationTypeId}
+                        isColumnWithoutNoCreate
+                        inlineLabel
+                      />
+                    </div> */}
+                  </div>
+                   <div class=" w-2/5">
+                    <div class=" text-xs font-bold font-poppins"> 
+                         {translatedMenuItems[9]}             
+                          </div>
+
                       <FastField
                         name="designationTypeId"                  
                         selectType="designationType"
@@ -443,7 +532,6 @@ class ContactForm extends Component {
                         inlineLabel
                       />
                     </div>
-                  </div>
                   <div class="  w-w47.5 mt-2">
                   <div class=" text-xs font-bold font-poppins"> 
                          {translatedMenuItems[10]}             
@@ -529,6 +617,7 @@ const mapStateToProps = ({
   userId: auth.userDetails.userId,
   customerId: customer.customer.customerId,
   departmentId: departments.departmentId,
+  token: auth.token,
   designationTypeId: designations.designationTypeId,
   // tagWithCompany: customer.customer.name,
 });

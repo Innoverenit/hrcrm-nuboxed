@@ -19,16 +19,21 @@ function DataRoomCustomerCard (props) {
        <div class=" flex flex-no-wrap w-full" >
                 <div class=" w-[22%]" >
                   <DataRoomCustomerActionLeft
+                  selectedCustomer={props.selectedCustomer}
+                  setSelectedCustomer={props.setSelectedCustomer}
+                  handleCardClickCustomer={props.handleCardClickCustomer}
                     // handleRuleClick={handleRuleClick}
                     // rules={rules}
                     // currentRulesOpen={currentRulesOpen}
                     />
                 </div>
+                {props.selectedCustomer && (
                 <div class=" w-[78%]" >
                   <DataRoomCustomerActionRight         />
                   {/* current={currentRulesOpen} */}
             
                 </div>
+                )}
               </div>
         </>
     );

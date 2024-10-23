@@ -6,7 +6,7 @@ export class DataRoomInvestorActionRight extends Component {
     return (
       <div>
        <Tabs defaultActiveKey="1">
-          <TabPane tab="Quotation" key="1">
+          <TabPane tab="Deals" key="1">
             Quotation content for 
             {/* {selectedPerson.name} */}
           </TabPane>
@@ -14,10 +14,7 @@ export class DataRoomInvestorActionRight extends Component {
             Task content for 
             {/* {selectedPerson.name} */}
           </TabPane>
-          <TabPane tab="Closed" key="3">
-            Event content for 
-            {/* {selectedPerson.name} */}
-          </TabPane>
+         
         </Tabs>
         </div>
     )

@@ -298,6 +298,9 @@ const initialState = {
   fetchingRemarkError: false,
   remark: [],
 
+  addingMoreContact:false,
+  addingMoreContactError:false,
+
   fetchingOppLinkedWorkflow: false,
   fetchingOppLinkedWorkflowError: false,
   oppLinkWorkflow: [],
@@ -604,6 +607,32 @@ export const OpportunityReducer = (state = initialState, action) => {
         ...state,
         addingOpportunity: false,
         addingOpportunityError: true,
+        //addOpportunityModal: false,
+      };
+
+
+
+
+
+
+
+
+      case types.ADD_MORE_CONTACT_REQUEST:
+      return { ...state, addingOpportunity: true };
+    case types.ADD_MORE_CONTACT_SUCCESS:
+      return {
+        ...state,
+        addingMoreContact: false,
+        //addOpportunityModal: false,
+        //addedOpportunity:action.payload,
+        //opportunityByUserId: [action.payload, ...state.opportunityByUserId],
+        // clearbit: null,
+      };
+    case types.ADD_MORE_CONTACT_FAILURE:
+      return {
+        ...state,
+        addingMoreContact: false,
+        addingMoreContactError: true,
         //addOpportunityModal: false,
       };
 

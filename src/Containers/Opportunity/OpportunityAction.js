@@ -2054,6 +2054,38 @@ export const getJobBoardName = () => (dispatch) => {
     });
 };
 
+
+
+
+export const addMoreContact = (opportunity, cb) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADD_MORE_CONTACT_REQUEST,
+  });
+  axios
+    .post(`${base_url}/contact`, opportunity, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     
+      
+      dispatch({
+        type: types.ADD_MORE_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_MORE_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getJobBoardOccupation = () => (dispatch) => {
   dispatch({ type: types.GET_JOB_OCCUPATION_REQUEST });
 

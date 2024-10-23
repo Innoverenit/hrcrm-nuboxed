@@ -11,7 +11,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import { DeleteOutlined } from "@ant-design/icons";
 import SupplierSearchedData from "./SupplierSearchedData";
-import { MultiAvatar2 } from "../../../../Components/UI/Elements";
+import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
 
 function AllSuppliersCardList(props) {
