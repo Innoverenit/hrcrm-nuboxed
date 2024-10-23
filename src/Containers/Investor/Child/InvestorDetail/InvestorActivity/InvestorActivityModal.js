@@ -3,6 +3,9 @@ import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
 const InvestorCallActivityForm=lazy(()=>import("./InvestorCallActivityForm"));
 const InvestorEventActivityForm=lazy(()=>import("./InvestorEventActivityForm"));
 const InvestorTaskActivityForm=lazy(()=>import("./InvestorTaskActivityForm"));
@@ -90,7 +93,9 @@ const InvestorActivityModal = (props) => {
               <TabPane
                 tab={
                   <span>
-                   <i class="fas fa-phone-square"></i>&nbsp;
+                      <VolumeUpIcon        
+              className='!text-icon'
+              />
                    {translatedMenuItems[0]}
                     {/* Calls */}
                   </span>
@@ -110,7 +115,9 @@ const InvestorActivityModal = (props) => {
               <TabPane
                 tab={
                   <span>
-                    <i class="fas fa-tasks"></i>&nbsp;
+                    <EventAvailableIcon
+              className='!text-icon '
+              />
                     {translatedMenuItems[1]}
                     {/* Events */}
                   </span>
@@ -129,7 +136,9 @@ const InvestorActivityModal = (props) => {
               <TabPane
                 tab={
                   <span>
-                    <i class="far fa-calendar-check"></i>&nbsp;
+                      <FactCheckIcon
+              className='!text-icon'
+              />
                     {translatedMenuItems[2]}
                     {/* Tasks */}
                   </span>

@@ -136,7 +136,7 @@ const InvestorLinkedDocuments = (props) => {
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                 
-                <div className="md:w-[9.7rem]">
+                <div className="md:w-[15.7rem]">
                 {translatedMenuItems[0]}   
                   {/* Date */}
                 </div>
@@ -164,16 +164,22 @@ const InvestorLinkedDocuments = (props) => {
                     return (
                         <div >
                               <div
-            className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-colscale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+            className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:h-[9rem] max-sm:flex-colscale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
           >
                                 <div class="flex">
-                                    <div className=" flex  md:w-[9.8rem]  h-8 border-l-2 border-green-500 bg-[#eef2f9]max-sm:w-full  ">
+                                    <div className=" flex  md:w-[10.8rem] items-center h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                     <div>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</div>
                                     </div>
 
-                                    <div className=" flex h-8 ml-gap bg-[#eef2f9]  md:w-[11.21rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                    <div className=" flex h-8 ml-gap bg-[#eef2f9]  md:w-[12.21rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
                                         <div class=" text-xs  font-poppins">
                                            {item.documentTitle}
+                                        </div>
+
+                                    </div>
+                                    <div className=" flex h-8 ml-gap bg-[#eef2f9]  md:w-[12.22rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                        <div class=" text-xs  font-poppins">
+                                           {item.userType}
                                         </div>
 
                                     </div>
@@ -183,7 +189,7 @@ const InvestorLinkedDocuments = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center enter md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center items-center enter md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title={item.uploadedBy}>
             <SubTitle>
@@ -203,9 +209,9 @@ const InvestorLinkedDocuments = (props) => {
             href={`${base_url}/document/${item.documentId}`}
           // target="_blank"
           >
-            <DownloadIcon
+            <DownloadIcon  className="!text-icon cursor-pointer !text-icon "
               type="download"
-             class=" cursor-pointer !text-icon bg-green-600"
+            
             />
           </a>
 
@@ -218,8 +224,9 @@ const InvestorLinkedDocuments = (props) => {
             title="Do you want to delete?"
           //   onConfirm={() => deleteDocument(item.documentId)}
          >
-            <DeleteOutlined type="delete"
-            class=" cursor-pointer !text-icon  bg-red-600 " />
+            <DeleteOutlined className="!text-icon text-[red] cursor-pointer"
+            type="delete"
+             />
           </StyledPopconfirm>
 
                                     </div>
