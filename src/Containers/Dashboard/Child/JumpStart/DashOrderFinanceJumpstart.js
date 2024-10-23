@@ -42,7 +42,7 @@ function DashOrderFinanceJumpstart(props) {
   }, [props.timeRangeType])
   return (
     <>
-      <div class=" flex flex-col" >
+      <div class=" flex flex-col w-[100%]" >
         <div class=" flex w-full" >
 
         <div class="w-1/2 md:w-1/2 xl:w-1/3 p-2">

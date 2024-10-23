@@ -6,6 +6,7 @@ import Ecomimg from "../../../../Assets/Images/Ecomimg.jpg";
 import Cataloimg from "../../../../Assets/Images/Cataloimg.jpg";
 import Materialimg from "../../../../Assets/Images/Materialimg.jpg";
 import Trading from "../../../../Assets/Images/Trading.jpeg";
+import Timetrack from "../../../../Assets/Images/timetrack.jpg"
 
 const { Option } = Select;
 
@@ -161,7 +162,7 @@ class ModuleTrading extends Component {
             <div className=" flex h-28 justify-center "> 
               <img
               className="big-logo w-36 h-24 m-2"
-              src={Materialimg}
+              src={Timetrack}
               alt="Tekorero logo"
             /></div>
             <div class="flex  flex-col justify-center  ">

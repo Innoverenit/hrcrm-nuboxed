@@ -3519,9 +3519,9 @@ export const addCustomerConfigure = (opportunity, cb) => (dispatch, getState) =>
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Opportunity created Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        title: 'created Successfully!',
+        showConfirmButton: false,
+        timer: 1500
       })
       console.log(res);
       // const startDate = dayjs()
@@ -6504,8 +6504,8 @@ export const updateProcessTaskStage = (data, stagesTaskId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Prospect Info updated Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
       console.log(res);
       dispatch({

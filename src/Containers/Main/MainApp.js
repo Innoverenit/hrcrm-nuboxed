@@ -35,6 +35,8 @@ import { handlePartnerModal } from "../Partner/PartnerAction";
 import { BundleLoader } from "../../Components/Placeholder";
 import AppErrorBoundary from "../../Helpers/ErrorBoundary/AppErrorBoundary";
 import { getPresentNotifications } from "../Notification/NotificationAction";
+import FlashOnIcon from '@mui/icons-material/FlashOn'; 
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
 import LanguageSelector from "../Translate/LanguageSelector";
@@ -451,15 +453,28 @@ function MainApp(props) {
               <div ><Navmenu2 className=" z-10 "
                   translateText={translateText}
                   selectedLanguage={selectedLanguage} /></div>
-              <div class="max-xl:text-[0.75rem]  max-lg:text-[0.5rem] ">
-                  <LanguageSelector
-                    translateText={translateText}
-                    selectedLanguage={selectedLanguage}
-                    setSelectedLanguage={setSelectedLanguage}
-                    onLanguageChange={handleLanguageChange}
-                    supportedLanguages={supportedLanguages}
-                  />
-                </div> 
+                    <div className="flex items-center">            
+                {/* <Button   
+                 type="primary"        
+                 onClick
+                >Data Room</Button> */}
+     <Link to="/dataroom">
+      <Button type="primary">
+      <MeetingRoomIcon  className=" !text-icon"/>  Data Room
+      </Button>
+    </Link>
+                 </div>
+                 <div class=" text-base cursor-pointer font-normal text-[blue]  ml-1 max-sm:hidden "
+                    onClick={() => {
+                      props.handleActionDrawerModal(true);
+
+                    }}
+                  >   <Button type="primary"><FlashOnIcon  className=" !text-icon"/> Action </Button><Badge
+                    count={props.actionCount.ActionRecordCount}
+                    overflowCount={999}
+                  ></Badge>
+                  </div>
+
                 <div class="flex justify-between items-center">
                   
                   <StartStop />
@@ -482,17 +497,7 @@ function MainApp(props) {
                   </div>
                 </div>
             
-                <div className="flex items-center">            
-                {/* <Button   
-                 type="primary"        
-                 onClick
-                >Data Room</Button> */}
-     <Link to="/dataroom">
-      <Button type="primary">
-        Data Room
-      </Button>
-    </Link>
-                 </div>
+              
 
                 <div class="mr-3 flex items-center h-[2.5rem]">            
  {/* <div className="flex items-center">           
@@ -502,7 +507,7 @@ function MainApp(props) {
                   props.handlePromotion(true)}}
                 >Promotions</Button>
                  </div> */}
-           <div className="flex items-center">
+           {/* <div className="flex items-center">
                 <div className=" text-sm font-semibold font-poppins mr-1">{Subscription}</div>
                 <Button
                  type="primary"
@@ -510,18 +515,9 @@ function MainApp(props) {
                   handleRowData(props.suscrptionData);
                   props.handleCreateSubscriptionDrawer(true)}}
                 >Upgrade</Button>
-                 </div>
-                  <div class=" text-base cursor-pointer font-normal text-[blue]  ml-1 max-sm:hidden "
-                    onClick={() => {
-                      props.handleActionDrawerModal(true);
-
-                    }}
-                  >Action<Badge
-                    count={props.actionCount.ActionRecordCount}
-                    overflowCount={999}
-                  ></Badge>
-                  </div>
-                  <div class=" text-[tomato]  bg-white h-[1.75rem] ml-8 mr-3 max-sm:hidden"
+                 </div> */}
+                 
+                  {/* <div class=" text-[tomato]  bg-white h-[1.75rem] ml-8 mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",
                       borderRadius: "5px",
@@ -530,9 +526,9 @@ function MainApp(props) {
                     }}
                   >
                     {props.role}
-                  </div>
+                  </div> */}
 
-                  <div class=" text-[tomato]  bg-white h-[1.75rem] mr-3 max-sm:hidden"
+                  {/* <div class=" text-[tomato]  bg-white h-[1.75rem] mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",
                       borderRadius: "5px",
@@ -541,7 +537,16 @@ function MainApp(props) {
                     }}
                   >
                     {props.department}
-                  </div>
+                  </div> */}
+                      <div class="max-xl:text-[0.75rem]  max-lg:text-[0.5rem] ">
+                  <LanguageSelector
+                    translateText={translateText}
+                    selectedLanguage={selectedLanguage}
+                    setSelectedLanguage={setSelectedLanguage}
+                    onLanguageChange={handleLanguageChange}
+                    supportedLanguages={supportedLanguages}
+                  />
+                </div> 
                   <div class=" text-[tomato]  bg-white h-[1.75rem] mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",
