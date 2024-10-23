@@ -30,9 +30,9 @@ props.getTeamMemberlist();
     const fetchMenuTranslations = async () => {
       try {
           const itemsToTranslate = [
-            'Name',//0
-            'Team Lead',//1
-            'Create',//2
+          "110",  // 'Name',//0
+           "1139", // 'Team Lead',//1
+           "104" // 'Create',//2
            ];
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -73,7 +73,7 @@ props.getTeamMemberlist();
           values,
           ...rest
         }) => (
-          <Form class="form-background">
+          <Form class="form-background h-[86vh]">
             <div class="flex justify-between" >
               <div class="h-full w-w47.5" >
                 
@@ -100,12 +100,7 @@ props.getTeamMemberlist();
                  <Field
                     name="teamMember"
                     // label="Include"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.teamMember"
-                    //     defaultMessage="Team Member"
-                    //   />
-                    // }
+                 
                     // label={props.translatedMenuItems[1]}
                     mode
                     placeholder="Select"
@@ -121,33 +116,7 @@ props.getTeamMemberlist();
                 </div>          
               </div>
               <div class="h-full w-w47.5" >
-                {/* <FlexContainer style={{ justifyContent: "space-between" }}>
-                  <div style={{ width: "100%" }}>
-                    <Field
-                      isRequired
-                      name="state"
-                      type="text"
-                      label="State"
-                      options={["Tripura"]}
-                      component={SelectComponent}
-                      isColumn
-                      inlineLabel
-                      
-                    />                
-                    <Field
-                      isRequired
-                      name="city"
-                      type="text"
-                      label="City"
-                      options={["Agartala"]}
-                      component={SelectComponent}
-                      isColumn
-                      inlineLabel
-                     
-                    />
-                  </div>
-                </FlexContainer>              */}
-           
+               
               </div>
             </div>
           

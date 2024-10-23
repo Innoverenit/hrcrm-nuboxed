@@ -6,9 +6,8 @@ import { Timeline } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { base_url } from "../../../Config/Auth";
-import moment from 'moment';
+import dayjs from 'dayjs';
  import { getTaskTimeline } from '../TaskAction';
-//import { BundleLoader } from '../../../../Components/Placeholder';
 
 const TaskDocumentList = (props) => {
   useEffect(() => {
@@ -17,7 +16,7 @@ const TaskDocumentList = (props) => {
   }, []);
 console.log(props.currentNameId)
  const { customerActivityTimeline, ratingValue } = props;
-   const currentDate = moment().format("DD/MM/YYYY");
+   const currentDate = dayjs().format("DD/MM/YYYY");
 //   if (props.fetchingCusActivityTimelineStatus) return <BundleLoader/>;
   return (
     <>
@@ -30,7 +29,7 @@ console.log(props.currentNameId)
                 <div>               
                 <div>                
                 
-{currentDate === moment(status.creationDate).format("DD/MM/YYYY") ? (
+{currentDate === dayjs(status.creationDate).format("DD/MM/YYYY") ? (
                       <span className="text-xs text-[tomato] font-bold">
                         New
                       </span>
@@ -39,7 +38,7 @@ console.log(props.currentNameId)
             href={`${base_url}/document/${status.documentId}`}
             // target="_blank"
           >  
-                    {status.documentName}  Uploaded by {status.uploadedBy} on {`${moment.utc(status.creationDate).format("YYYY/MM/DD")}`}
+                    {status.documentName}  Uploaded by {status.uploadedBy} on {`${dayjs(status.creationDate).format("YYYY/MM/DD")}`}
                     </a>
                   </div>
            

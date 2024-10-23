@@ -1,6 +1,5 @@
 import React from "react";
 import { SubTitle } from "../UI/Elements";
-import { FlexContainer } from "../UI/Layout";
 import { ActionIcon } from "../Utils";
 import EditAddressField from "../Forms/Edit/EditAddressField";
 import AddAddressField from "../Forms/Edit/AddAddressField";
@@ -29,7 +28,7 @@ export default class AddressComponent extends React.Component {
       <>
         <div style={{ width: "100%", height: "100%" }}>
           {editable && (
-            <FlexContainer justifyContent="flex-end">
+           <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
               <ActionIcon
                 tooltipTitle="Edit"
                 iconType="edit"
@@ -47,60 +46,27 @@ export default class AddressComponent extends React.Component {
                   size="1em"
                 />
               )}
-            </FlexContainer>
+            </div>
           )}
           {this.state.isEditing ? (
-            <FlexContainer flexDirection="column" style={{ width: "100%" }}>
+           <div class=" flex flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto flex-col">
               <EditAddressField
                 components={components}
                 toggleEdit={this.toggleEdit}
                 {...rest}
               />
-            </FlexContainer>
+            </div>
           ) : this.state.isAdd ? (
-            <FlexContainer flexDirection="column" style={{ width: "100%" }}>
+            <div class=" flex flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto flex-col">
               <AddAddressField
                 components={components}
                 toggleAdd={this.toggleAdd}
                 {...rest}
               />
-            </FlexContainer>
+            </div>
           ) : (
                 <StaticAddressField components={components} />
-              )}
-
-          {/* {this.state.isEditing && !this.state.isAdd && (
-            <FlexContainer flexDirection="column" style={{ width: "100%" }}>
-              <EditAddressField
-                components={components}
-                toggleEdit={this.toggleEdit}
-                {...rest}
-              />
-            </FlexContainer>
-          )}
-          {this.state.isAdd && !this.state.isEditing && (
-            <FlexContainer flexDirection="column" style={{ width: "100%" }}>
-              <AddAddressField
-                components={components}
-                toggleAdd={this.toggleAdd}
-                {...rest}
-              />
-            </FlexContainer>
-          )}
-          {!this.state.isAdd && !this.state.isEditing && (
-            <StaticAddressField components={components} />
-          )}
-          {this.state.isEditing ? (
-            <FlexContainer flexDirection="column" style={{ width: "100%" }}>
-              <EditAddressField
-                components={components}
-                toggleEdit={this.toggleEdit}
-                {...rest}
-              />
-            </FlexContainer>
-          ) : (
-            <StaticAddressField components={components} />
-          )} */}
+              )}  
         </div>
       </>
     );
@@ -128,15 +94,7 @@ function StaticAddressField({
 }) {
   return (
     <div>
-      <div style={{ fontSize: 12 }}>
-        {/* {(address1 && address1) || ""}
-        {(address2 && address2) || ""} */}
-        {/* <div>
-                    {street && street || ''}
-                    {town && town || ''}
-                    {city && city || ''}&nbsp;
-                    {state && state || ''}&nbsp;
-                </div> */}
+      <div style={{ fontSize: 12 }}>     
         <div>
           {(address1 && address1) || ""}&nbsp;
           {(address2 && address2) || ""}&nbsp;
@@ -155,7 +113,7 @@ function StaticAddressField({
 
       {/* {/ {postalCode && postalCode || '' } /} */}
       {actualFunnel && (
-        <FlexContainer flexWrap="nowrap" alignItems="center" style={{}}>
+        <div class=" flex flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto flex-col">
           <SubTitle
             style={{
               flexBasis: "40%",
@@ -170,17 +128,8 @@ function StaticAddressField({
             {" "}
             {actualFunnel && actualFunnel.toFixed(2)}
           </SubTitle>
-        </FlexContainer>
+        </div>
       )}
     </div>
-    // <FlexContainer flexDirection='column' style={{ width: '100%' }}>
-    //     {address1 && <FlexContainer flexWrap='nowrap' alignItems='center' style={{ width: '100%' }}><SubTitle style={{ flexBasis: '40%', fontWeight: 600, margin: 0, color: '#444' }}>Address1 </SubTitle> <SubTitle style={{ margin: '0.3rem' }}> {`${address1 || ''} `} </SubTitle></FlexContainer>}
-    //     {address2 && <FlexContainer flexWrap='nowrap' alignItems='center' style={{ width: '100%' }}><SubTitle style={{ flexBasis: '40%', fontWeight: 600, margin: 0, color: '#444' }}>Address2 </SubTitle> <SubTitle style={{ margin: '0.3rem' }}> {`${address2 || ''} `} </SubTitle></FlexContainer>}
-    //     {street && <FlexContainer flexWrap='nowrap' alignItems='center' style={{ width: '100%' }}><SubTitle style={{ flexBasis: '40%', fontWeight: 600, margin: 0, color: '#444' }}>Street </SubTitle> <SubTitle style={{ margin: '0.3rem' }}> {`${street || ''} `} </SubTitle></FlexContainer>}
-    //     {town && <FlexContainer flexWrap='nowrap' alignItems='center' style={{ width: '100%' }}><SubTitle style={{ flexBasis: '40%', fontWeight: 600, margin: 0, color: '#444' }}>Town </SubTitle> <SubTitle style={{ margin: '0.3rem' }}> {`${town || ''} `} </SubTitle></FlexContainer>}
-    //     {city && <FlexContainer flexWrap='nowrap' alignItems='center' style={{ width: '100%' }}><SubTitle style={{ flexBasis: '40%', fontWeight: 600, margin: 0, color: '#444' }}>City </SubTitle> <SubTitle style={{ margin: '0.3rem' }}> {`${city || ''} `} </SubTitle></FlexContainer>}
-    //     {state && <FlexContainer flexWrap='nowrap' alignItems='center' style={{ width: '100%' }}><SubTitle style={{ flexBasis: '40%', fontWeight: 600, margin: 0, color: '#444' }}>State </SubTitle> <SubTitle style={{ margin: '0.3rem' }}> {`${state || ''} `} </SubTitle></FlexContainer>}
-    //     {country && <FlexContainer flexWrap='nowrap' alignItems='center' style={{ width: '100%' }}><SubTitle style={{ flexBasis: '40%', fontWeight: 600, margin: 0, color: '#444' }}>Country </SubTitle> <SubTitle style={{ margin: '0.3rem' }}> {`${country || ''} `} </SubTitle></FlexContainer>}
-    // </FlexContainer>
   );
 }

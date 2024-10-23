@@ -1,8 +1,10 @@
-import React, { Component } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { BundleLoader } from '../../../../../Components/Placeholder';
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
-import AccountStepper from "./AccountStepper";
+
+const AccountStepper = lazy(() => import('./AccountStepper'));
 
 class AddAccountModal extends Component {
     render() {
@@ -19,8 +21,9 @@ class AddAccountModal extends Component {
                     onClose={() => handleLinkDistributorOrderConfigureModal(false)}
                     // footer={null}
                 >
+                     <Suspense fallback={<BundleLoader />}>
                     <AccountStepper distributorId={this.props.distributorId} />
-
+                    </Suspense>
                 </StyledDrawer>
             </div>
         );

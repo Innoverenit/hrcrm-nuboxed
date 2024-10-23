@@ -1,11 +1,10 @@
 import React from 'react'
-import { FlexContainer } from '../../../Components/UI/Layout'
 
 const ImportActionRight = (props) => {
     return (
-        <FlexContainer alignItems='center'>
+        <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
             
-        </FlexContainer>
+        </div>
     )
 }
 

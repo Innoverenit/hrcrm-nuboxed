@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPlantById } from "../../PlantAction";
-import { FlexContainer, MainWrapper } from "../../../../Components/UI/Layout";
+import { MainWrapper } from "../../../../Components/UI/Layout";
 import { withRouter } from "react-router";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import PlantDetailHeader from "./PlantDetailHeader";
@@ -25,18 +25,18 @@ class PlantDetail extends Component {
               <BundleLoader />
             </MainWrapper>
           ) : (
-            <FlexContainer>
+            <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
               <Suspense fallback={"Loading..."}>
-                <FlexContainer flexWrap="no-wrap" style={{ width: "100%" }}>
+              <div class=" flex flex-row flex-wrap w-full items-start self-start justify-start grow shrink h-auto mr-auto ">
                   <div style={{ width: "22%" }}>
                     <PlantDetailLeft plant={plant} /> 
                   </div>
                   <div style={{ width: "78%" }}>
                     <PlantDetailRight plant={plant} />
                   </div>
-                </FlexContainer>
+                </div>
               </Suspense>
-            </FlexContainer>
+            </div>
           )}
         </>
       </>

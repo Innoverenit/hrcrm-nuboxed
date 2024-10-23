@@ -14,7 +14,6 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import { MainWrapper } from "../../Components/UI/Elements";
 import { FormattedMessage } from "react-intl";
 
  function LeadsAddChart (props) {
@@ -33,10 +32,8 @@ import { FormattedMessage } from "react-intl";
     const data=props.dashCustoLeadsAdded
   return (
     <>
-    <MainWrapper
-    style={{height:"16em",width:"-webkit-fill-available"}}
-    >
-      
+   <div class="mr-5 ml-5 h-[16rem] w-wk">
+   
       <div class=" flex justify-between" >
       <span><FormattedMessage
               id="app.hours"
@@ -65,7 +62,7 @@ import { FormattedMessage } from "react-intl";
       <Legend className="recharts-default-legend"/>
       <Bar dataKey="number" stackId="a" fill="rgb(0, 192, 239, 0.4)" />
     </BarChart>
-    </MainWrapper>
+    </div>
     </>
   );
 }

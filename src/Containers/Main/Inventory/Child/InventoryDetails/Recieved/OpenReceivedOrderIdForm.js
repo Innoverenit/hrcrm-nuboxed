@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Button, Tooltip, Input } from "antd";
+import { Button, Tooltip, Input,Badge } from "antd";
 import QRCode from "qrcode.react";
 import {
   handleReceivedOrderIdPhoneNoteModal,
@@ -12,7 +12,9 @@ import {
   handlereceivePhoneModal,
   getPhonelistByOrderId,
   updateRepairStatus,
-
+  handleInventoryexpand,
+  searchOpenOrdeReceived,
+  ClearReducerData
 } from "../../../InventoryAction";
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
 import { EditOutlined, FileDoneOutlined, PlusOutlined } from "@ant-design/icons";
@@ -29,6 +31,11 @@ import PhoneDetailsModal from "../../../../Refurbish/ProductionTab/PhoneDetailsM
 import { handlePhoneDetails, handleInTagDrawer } from "../../../../Refurbish/RefurbishAction"
 import TagInDrawer from "../../../../Refurbish/ProductionTab/TagInDrawer";
 import OpenReceivedPlusCard from "./OpenReceivedPlusCard";
+import InventoryExpandListModal from "./InventoryExpandListModal";
+import NodataFoundPageAccount from "../../../../Account/AccountDetailsTab/AccountOrderTab/NodataFoundPageAccount";
+import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import { AudioOutlined } from '@ant-design/icons';
+
 const { Search } = Input;
 
 function OpenReceivedOrderIdForm(props) {
@@ -45,6 +52,13 @@ function OpenReceivedOrderIdForm(props) {
 
   const [hasMore, setHasMore] = useState(true);
   const [selectedRow, setSelectedRow] = useState(null);
+
+  const [currentData, setCurrentData] = useState("");
+  const [searchOnEnter, setSearchOnEnter] = useState(false); 
+  const [startTime, setStartTime] = useState(null);
+  const [isRecording, setIsRecording] = useState(false); 
+  const minRecordingTime = 3000; // 3 seconds
+  const timerRef = useRef(null);
 
   // const handleLoadMore = () => {
   //   setPage(page + 1);
@@ -110,18 +124,112 @@ function OpenReceivedOrderIdForm(props) {
       [phoneId]: value
     }));
   };
+ const {
+      transcript,
+      listening,
+      resetTranscript,
+      browserSupportsSpeechRecognition
+    } = useSpeechRecognition();
+
+    useEffect(() => {
+      // props.getCustomerRecords();
+      if (transcript) {
+        console.log(">>>>>>>", transcript);
+        setCurrentData(transcript);
+      }
+      }, [ transcript]);
+
+      const {
+          viewType,
+          setSuppliesViewType,
+          suppliesCount,
+          suppliesDeletedCount,
+      } = props;
+
+   const handleChange = (e) => {
+          setCurrentData(e.target.value);
+          if (searchOnEnter&& e.target.value.trim() === "") {  //Code for Search
+             props.getPhonelistByOrderId(props.rowData.orderPhoneId, "0");
+             props.ClearReducerData();
+            setSearchOnEnter(false);
+          }
+        };
+        const handleSearch = () => {
+          if (currentData.trim() !== "") {
+            // Perform the search
+             props.searchOpenOrdeReceived(currentData);
+            setSearchOnEnter(true);  //Code for Search
+          } else {
+            console.error("Input is empty. Please provide a value.");
+          }
+        };
+        const handleStartListening = () => {
+          setStartTime(Date.now());
+          setIsRecording(true);
+          SpeechRecognition.startListening();
+          if (timerRef.current) {
+            clearTimeout(timerRef.current);
+          }
+          timerRef.current = setTimeout(() => {
+            SpeechRecognition.stopListening();
+            setIsRecording(false);
+          }, minRecordingTime);
+        };
+        const suffix = (
+          <AudioOutlined
+            onClick={handleStartListening}
+            style={{
+              fontSize: 16,
+              color: '#1890ff',
+            }}
+      
+          />
+        );
+
+      const handleStopListening = () => {
+          SpeechRecognition.stopListening();
+          setIsRecording(false);
+          if (transcript.trim() !== "") {
+            setCurrentData(transcript);
+            props.searchOpenOrdeReceived(transcript);
+            setSearchOnEnter(true);
+          }
+        };
+        useEffect(() => {
+          if (!listening && isRecording) {
+            handleStopListening();
+          }
+        }, [listening]);
+        useEffect(() => {
+          if (isRecording && !listening) {
+            const elapsedTime = Date.now() - startTime;
+            if (elapsedTime < minRecordingTime) {
+              SpeechRecognition.startListening();
+            } else {
+              setIsRecording(false);
+            }
+          }
+        }, [listening, isRecording, startTime]);
 
   return (
     <>
       <div class=" flex justify-between">
         <div class=" w-3/6">
           <div style={{ display: "flex", marginLeft: "8rem" }}>
-
+ 
             <Button type="primary">
-              Scan
+              Scan 
             </Button>
             <div style={{ marginLeft: '10px' }}>
-              <Search placeholder="input search text" onSearch={onSearch} enterButton />
+            <Input
+          placeholder="Search by Name "
+          width={"100%"}
+          suffix={suffix}
+          onPressEnter={handleSearch}
+          onChange={handleChange}
+        value={currentData}
+        />
+
             </div>
           </div>
         </div>
@@ -154,8 +262,8 @@ function OpenReceivedOrderIdForm(props) {
       </div>
       {/* {props.fetchingPhoneListById ? <BundleLoader /> : */}
       <div className='flex justify-center sticky ticky z-10 '>
-        <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+        <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
             <div className=" md:w-[2.01rem]"></div>
             <div className=" md:w-[4.74rem]">Brand</div>
             <div className=" md:w-[6.73rem]"><FormattedMessage
@@ -202,7 +310,7 @@ function OpenReceivedOrderIdForm(props) {
               height={"70vh"}
               endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
             >
-              {props.phoneListById.map((item, index) => {
+              {props.phoneListById.length === 0 ? <NodataFoundPageAccount /> :props.phoneListById.map((item, index) => {
                  const isSelected = selectedRow === item.phoneId;
 
                 return (
@@ -213,7 +321,7 @@ function OpenReceivedOrderIdForm(props) {
       }`}
     >
                       <div class="flex">
-                        <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex   border-l-2  h-8 border-green-500 bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs  font-poppins">
                             <PlusOutlined onClick={() => {
                               handleMismatchItem();
@@ -222,17 +330,17 @@ function OpenReceivedOrderIdForm(props) {
                             } />
                           </div>}
                         </div>
-                        <div className=" flex font-medium  md:w-[5.03rem] max-sm:w-full  ">
+                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.03rem] max-sm:w-full  ">
                           {item.company}
                         </div>
 
-                        <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             {item.model}
                           </div>
 
                         </div>
-                        <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                           <div class=" text-sm  font-poppins">
 
                             {item.imei}
@@ -240,33 +348,57 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[13.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[13.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
 
                           {item.os} {item.gb}  {item.color}
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[5.63rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.63rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.conditions}
                         </div>
                       </div>
-                      <div className=" flex font-medium  md:w-[12.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[12.023rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
-                        <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 10 && '...'}</span>
+                        <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div>
                         </div>
                       </div>
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.levelCount&&item.levelCount.map((level)=>{
+                                                            return(
+                                                                <span 
+                                                                style={{marginLeft:"9px",cursor:"pointer"}}
+                                                                onClick={() => {
+                                                                   props.handleRefurbishLevelModal(true);
+                                                                   // handleSetCurrentOpportunityId(item);
+                                                                 }}
+                                                               title={level.level}
+                                                               >
+                                                                <Badge size="small" count={level.levelCount}>
+                                                                {level.level}
+                                                                </Badge>
+                                                                   {/* {level.levelCount} */}
+                                                                   {/* {item.issue.substring(0, 10)}{item.issue.length > 20 && '...'} */}
+                                                               </span>
+                                                            )
+                                                        })}
 
-                      <div className=" flex font-medium  md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    </div>
+                                                </div>
+
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                         {item.receivePhoneInd?(
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Task">
                             <FileDoneOutlined   className="!text-icon  text-[black]" type="file-done"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
-                                handleExpand(item.phoneId);
-                                setSelectedRow(item.phoneId);
+                                 handleExpand(item.phoneId);
+                                 setSelectedRow(item.phoneId);
+                                props.handleInventoryexpand(true);
                               }}
                             />
 
@@ -274,7 +406,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                          ):null}
                       </div>
-                      <div className=" flex font-medium  md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Notes">
                             <NoteAltIcon
@@ -290,7 +422,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[7.06rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip>
                             {item.inspectionInd === 1 &&
@@ -306,7 +438,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[10.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.receivePhoneUserName !== null &&
                             <>
@@ -326,7 +458,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[3.09rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[3.09rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.inspectionInd === 1 && item.receivePhoneInd && !item.cannotRepairInd && (
                             <EditOutlined
@@ -343,7 +475,7 @@ function OpenReceivedOrderIdForm(props) {
                         </div>
                       </div>
 
-                      <div className=" flex font-medium  md:w-[7.08rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.08rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.inspectionInd !== 0 && item.receivePhoneInd &&
                             <>
@@ -377,12 +509,12 @@ function OpenReceivedOrderIdForm(props) {
                             </>}
                         </div>
                       </div>
-                      <div className=" flex font-medium   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins">
                           {item.cannotRepairInd && "Can't Repair"}
                         </div>
                       </div>
-                      <div className=" flex font-medium   md:w-[5.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins">
                           <Tooltip title={<FormattedMessage
                             id="app.Print"
@@ -434,12 +566,18 @@ function OpenReceivedOrderIdForm(props) {
           </div>
 
 
-          {expand && (
+          {/* {expand && (
             <AccountPhoneTaskTable
               phoneId={phoneId}
               //RowData={particularRowData}
               particularRowData={particularRowData} />
-          )}
+          )} */}
+           <InventoryExpandListModal   
+           phoneId={phoneId}         
+                  particularRowData={particularRowData}
+                  inventoryExpandList={props.inventoryExpandList}
+                  handleInventoryexpand={props.handleInventoryexpand}
+                />
           <ReceivedOrderIdPhoneNoteModal
             particularRowData={particularRowData}
             phoNoteReceivedOrderIdModal={props.phoNoteReceivedOrderIdModal}
@@ -478,6 +616,7 @@ const mapStateToProps = ({ inventory, auth, refurbish }) => ({
   addReceivePhone: inventory.addReceivePhone,
   showPhoneData: refurbish.showPhoneData,
   updatingRepairStatus: inventory.updatingRepairStatus,
+  inventoryExpandList: inventory.inventoryExpandList,
   phoNoteReceivedOrderIdModal: inventory.phoNoteReceivedOrderIdModal
 });
 
@@ -491,7 +630,10 @@ const mapDispatchToProps = (dispatch) =>
       handlereceivePhoneModal,
       updateRepairStatus,
       handlePhoneDetails,
-      handleInTagDrawer
+      handleInTagDrawer,
+      handleInventoryexpand,
+      searchOpenOrdeReceived,
+      ClearReducerData
     },
     dispatch
   );

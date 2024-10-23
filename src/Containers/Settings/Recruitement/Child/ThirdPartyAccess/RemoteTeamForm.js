@@ -1,12 +1,11 @@
 // 
 
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import { bindActionCreators } from "redux";
-import { Icon, Switch, Button, Popconfirm } from "antd";
-import { FlexContainer, MainWrapper } from "../../../../../Components/UI/Layout";
-import { StyledLabel,Spacer } from "../../../../../Components/UI/Elements";
+import {  Switch, Popconfirm } from "antd";
+import {  MainWrapper } from "../../../../../Components/UI/Layout";
  import { getRemoteAccess,addingRemoteAccess } from "../../../SettingsAction";
 
 function RemoteTeamForm(props) {
@@ -52,8 +51,8 @@ function RemoteTeamForm(props) {
     <MainWrapper style={{ height: "446px", width:"", overflow: "auto" }}>
       
           
-      <Spacer />
-       <FlexContainer style={{ width: "52%", justifyContent: "space-between" }}>
+      <div class=" mt-3" />
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[52%] ">
         <p>Enable Hiring Team Feature on Portal</p>
         <div>
           <Popconfirm
@@ -71,8 +70,8 @@ function RemoteTeamForm(props) {
             />
           </Popconfirm>
         </div>
-      </FlexContainer> 
-    <Spacer />
+      </div> 
+    <div class=" mt-3" />
       <div>Updated on {dayjs(props.remoteAccess.lastUpdatedOn).format("ll")} by {props.remoteAccess.name}</div>
     </MainWrapper>
   );

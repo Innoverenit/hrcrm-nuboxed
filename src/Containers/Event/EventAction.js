@@ -3,7 +3,7 @@ import axios from "axios";
 import { message } from "antd";
 import { base_url } from "../../Config/Auth";
 import { getEventsListByUserId } from "../Auth/AuthAction";
-
+import Swal from "sweetalert2";
 
 /**
  * handle event modal opening and close
@@ -365,6 +365,36 @@ export const getOpportunityRecord = (userId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_OPPORTUNITY_RECORD_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const searchEventList = (name,type) => (dispatch) => {
+  dispatch({
+    type: types.SEARCH_EVENT_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/event/search/alltype/${name}/${type}`,
+      {
+
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.SEARCH_EVENT_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Contact list is empty',
+      })
+      dispatch({
+        type: types.SEARCH_EVENT_LIST_FAILURE,
         payload: err,
       });
     });

@@ -82,7 +82,7 @@
 //     <>
 //     <div>
 //       <div style={{ marginBottom: '16px' }}>
-//         <label style={{ display: 'block', marginBottom: '8px' }}>Name</label>
+//         <div style={{ display: 'block', marginBottom: '8px' }}>Name</div>
 //         <Input 
 //           value={name} 
 //           onChange={(e) => setName(e.target.value)} 
@@ -92,7 +92,7 @@
 //       </div>
 
 //       <div style={{ marginBottom: '16px' }}>
-//         <label style={{ display: 'block', marginBottom: '8px' }}>Department</label>
+//         <div style={{ display: 'block', marginBottom: '8px' }}>Department</div>
        
 
 
@@ -120,8 +120,8 @@
 //       </Button>
 //     </div>
 //     <div className='flex sticky z-auto' style={{width:"62em"}}>
-//             <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-//                 <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+//             <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+//                 <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
 //                     <div className=""></div>
 //                     <div className="md:w-[22.12rem]">
                   
@@ -244,6 +244,9 @@ const { Option } = Select;
 
 const MyForm = (props) => {
   const [name, setName] = useState('');
+  const [role, setRole] = useState([]);
+  const [selectedRole, setSelectedRole] = useState(null);
+  const [isLoadingRole, setIsLoadingRole] = useState(false);
   const [department, setDepartment] = useState([]);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [touchedDepartment, setTouchedDepartment] = useState(false);
@@ -294,10 +297,15 @@ const MyForm = (props) => {
     }
   };
 
-  const handleSelectDepartment = (value) => {
-    setSelectedDepartment(value);
-    console.log('Selected department:', value);
+  const handleSelectDepartment = (departmentId) => {
+    setSelectedDepartment(departmentId);
+    fetchRole(departmentId);
+    //console.log('Selected department:', value);
   };
+
+  const handleRoleChange=(value)=>{
+    setSelectedRole(value);
+  }
 
   const startEditing = (item) => {
     setEditingRow(item.stagesTaskId);
@@ -323,11 +331,34 @@ const MyForm = (props) => {
     setEditingRow(null);
   };
 
+
+  const fetchRole = async (departmentId) => {
+    setIsLoadingRole(true);
+    try {
+     
+      const apiEndpoint = `${base_url}/roleType/department/${departmentId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setRole(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingRole(false);
+    }
+  };
+
   return (
     <>
       <div>
         <div style={{ marginBottom: '16px' }}>
-          <label style={{ display: 'block', marginBottom: '8px' }}>Name</label>
+          <div style={{ display: 'block', marginBottom: '8px' }}>Name</div>
           <Input 
             value={name} 
             onChange={(e) => setName(e.target.value)} 
@@ -336,7 +367,7 @@ const MyForm = (props) => {
           />
         </div>
         <div style={{ marginBottom: '16px' }}>
-          <label style={{ display: 'block', marginBottom: '8px' }}>Department</label>
+          <div style={{ display: 'block', marginBottom: '8px' }}>Department</div>
           <Select
             showSearch
             style={{ width: 200 }}
@@ -352,14 +383,27 @@ const MyForm = (props) => {
               </Option>
             ))}
           </Select>
+          <div style={{ display: 'block', marginBottom: '8px' }}>Role</div>
+          <Select
+        placeholder="Select Role"
+        loading={isLoadingRole}
+        onChange={handleRoleChange}
+        disabled={!selectedDepartment} // Disable Contact dropdown if no customer is selected
+      >
+        {role.map(contact => (
+          <Option key={contact.roleTypeId} value={contact.roleTypeId}>
+            {contact.roleType}
+          </Option>
+        ))}
+      </Select> 
         </div>
         <Button type="primary" onClick={handleSubmit}>
           Submit
         </Button>
       </div>
       <div className='flex sticky z-auto' style={{ width: "62em" }}>
-        <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className="flex w-[99%] p-1 bg-transparent font-bold sticky z-10">
+        <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky z-10">
             <div className=""></div>
             <div className="md:w-[22.12rem]">
               <FormattedMessage id="app.name" defaultMessage="Name" />

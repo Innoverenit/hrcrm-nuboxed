@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import * as Yup from "yup";
-import { StyledLabel } from '../../../../Components/UI/Elements';
+import {getBrandCategoryData} from "../../../../Containers/Settings/Category/BrandCategory/BrandCategoryAction"
 import { SelectComponent } from '../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../Components/Forms/Formik/TextareaComponent';
@@ -15,8 +15,14 @@ import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../Suppliers/SuppliersAction"
 import { addQuotationOrderForm, getLobList } from '../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import AddressFieldArray1 from '../../../../Components/Forms/Formik/AddressFieldArray1';
+import ValidationAddressField from '../../../../Components/Forms/Formik/ValidationAddressField';
 import dayjs from "dayjs";
+
+const addressSchema = Yup.object().shape({
+    address1: Yup.string().required('Address is required'),
+    street: Yup.string().required('Street is required'), 
+  });
+
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
     advancePayment: Yup.number()
@@ -26,8 +32,17 @@ const FormSchema = Yup.object().shape({
     orderCurrencyId: Yup.string().required("Input needed!"),
     customPayment: Yup.number()
     .typeError('Number Required!'),
+    loadingAddress: Yup.array().of(addressSchema).min(1, 'At least one address is required'),
+
 })
 function AccountOpportunityForm(props) {
+
+const [selectOnType,setselectOnType]=useState("Commerce");
+
+const handleOnSelectType =(ontype)=> {
+    setselectOnType(ontype)
+}
+
     const contactOption = props.contactDistributor.map((item) => {
         return {
             value: item.contactPersonId,
@@ -38,6 +53,7 @@ function AccountOpportunityForm(props) {
         props.getContactDistributorList(props.distributorId)
         props.getSaleCurrency()
         props.getLobList(props.orgId)
+        props.getBrandCategoryData(props.orgId);
     }, [])
 
     const [priority, setPriority] = useState("High")
@@ -50,6 +66,12 @@ function AccountOpportunityForm(props) {
         return {
             label: item.currency_name || "",
             value: item.currency_id,
+        };
+    });
+    const categoryOption = props.BrandCategoryData.map((item) => {
+        return {
+            label: item.name || "",
+            value: item.shipById,
         };
     });
     const lobOption = props.lobList.map((item) => {
@@ -71,8 +93,9 @@ function AccountOpportunityForm(props) {
                 paymentInTerms: "",
                 customPayment: "0",
                 comments: "",
-                orderType:"Repair",
+                orderType:selectOnType,
                 orderCurrencyId: "",
+                shipById:"",
                 totalPhoneCount: "",
                 advancePayment: 50,
                 distributorId: props.distributorId,
@@ -85,6 +108,7 @@ function AccountOpportunityForm(props) {
                 loadingAddress: [
                     {
                         address1: "",
+                        street:"",
                         addressId: "",
                         state: "",
                         city: "",
@@ -107,9 +131,9 @@ function AccountOpportunityForm(props) {
                 if (values.advancePayment < 100) {
                     props.addQuotationOrderForm({
                         ...values,
-                        orderSource: "erp",
+                        orderSource: "B2B ERP",
                         priority: priority || "",
-                        orderType:values.orderType,
+                        orderType:selectOnType,
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
 
                     }, props.distributorId,);
@@ -131,7 +155,7 @@ function AccountOpportunityForm(props) {
                           
                             <div class=" flex justify-between">
  <div class="w-[45%]">
-                                        <Field
+                                        {/* <Field
                                             name="orderType"
                                             label="Type"
                                             isColumn
@@ -139,23 +163,36 @@ function AccountOpportunityForm(props) {
                                             component={SelectComponent}
                                             options={[
                                                 { label: "Repair", value: "Repair" },
-                                                { label: "Procure", value: "Procure" },
+                                                { label: "Commerce", value: "Procure" },
                                             ]}
-                                        />
+                                        /> */}
+                                       
+                                        <button className={`${props.moduleMapper.ecomModInd === true || props.moduleMapper.ecomModInd === false && 
+                                        selectOnType === "Commerce" ? 
+                                        "bg-green-400 text-white border rounded-md":"bg-purple-400 text-black border rounded-md"}`}
+                                        onClick={() => handleOnSelectType("Commerce")}
+                                        >
+                                            Commerce
+                                        </button>
+                                        &nbsp;
+                                        <button className={`${props.moduleMapper.repairInd=== true  &&  selectOnType==="Repair" ? 
+                                        "bg-green-400 text-white rounded-md":"bg-purple-400 text-black border rounded-md"}`}
+                                        onClick={() => handleOnSelectType("Repair")}
+                                        >
+                                            Repair
+                                        </button>
+                                       
                                     </div>
 
 
 <div class="w-[46%]  ml-8 mt-2">
-    <StyledLabel><FormattedMessage
+    <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
         id="app.priority"
         defaultMessage="Priority"
-    /></StyledLabel>
+    /></div>
     <div class="justify-between flex">
         <div>
-            <Tooltip title={<FormattedMessage
-                id="app.high"
-                defaultMessage="High"
-            />}>
+            <Tooltip title="Urgent">
                 <Button
                     // type="primary"
                     shape="circle"
@@ -173,27 +210,8 @@ function AccountOpportunityForm(props) {
                 />
             </Tooltip>
             &nbsp;
-            <Tooltip title={<FormattedMessage
-                id="app.medium"
-                defaultMessage="Medium"
-            />}>
-                <Button
-                    // type="primary"
-                    shape="circle"
-                    icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
-                    onClick={() => handleButtonClick("Medium")}
-                    style={{
-                        backgroundColor:
-                            priority === "Medium"
-                                ? "Orange"
-                                : "white",
-                        borderRadius: "50%",
-                        width: "31px",
-                        height: "31px"
-                    }}
-                />
-            </Tooltip>
-            &nbsp;
+       
+            
             <Tooltip title={<FormattedMessage
                 id="app.low"
                 defaultMessage="Low"
@@ -223,15 +241,15 @@ function AccountOpportunityForm(props) {
 
                                     {values.orderType === "Repair" ? (
                                     <div className="mt-3">
-                                        <StyledLabel>
+                                        <div class=" text-xs font-bold font-poppins text-black">
                                             <h3>
                                                 <FormattedMessage id="app.pickupaddress" defaultMessage="Pickup Address" />
                                             </h3>
-                                        </StyledLabel>
+                                        </div>
                                         <FieldArray
                                             name="loadingAddress"
                                             render={(arrayHelpers) => (
-                                                <AddressFieldArray1
+                                                <ValidationAddressField
                                                     singleAddress
                                                     arrayHelpers={arrayHelpers}
                                                     values={values}
@@ -241,15 +259,15 @@ function AccountOpportunityForm(props) {
                                     </div>
                                 ) : (
                                     <div className="mt-3">
-                                        <StyledLabel>
+                                        <div class=" text-xs font-bold font-poppins text-black">
                                             <h3>
                                                 <FormattedMessage id="app.deliveryaddress" defaultMessage="Delivery Address" />
                                             </h3>
-                                        </StyledLabel>
+                                        </div>
                                         <FieldArray
                                             name="loadingAddress"
                                             render={(arrayHelpers) => (
-                                                <AddressFieldArray1
+                                                <ValidationAddressField
                                                     singleAddress
                                                     arrayHelpers={arrayHelpers}
                                                     values={values}
@@ -398,7 +416,17 @@ function AccountOpportunityForm(props) {
                                
 
                                 </div>
-                               
+                                <div class="w-[45%]">
+                                        <Field
+                                            name="shipById"
+                                            label="Category"
+                                            isColumn
+                                            style={{ borderRight: "3px red solid" }}
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(categoryOption) ? categoryOption : []}
+                                        />
+                                    </div>
 
                                 <div class=" mt-3 flex justify-between">
 
@@ -427,13 +455,15 @@ function AccountOpportunityForm(props) {
     );
 }
 
-const mapStateToProps = ({ homeStepper, auth, distributor, suppliers }) => ({
+const mapStateToProps = ({ homeStepper,brandCategory, auth, distributor, suppliers }) => ({
     contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     addingQuotationOrder: distributor.addingQuotationOrder,
     lobList: distributor.lobList,
     orgId: auth.userDetails.organizationId,
+    BrandCategoryData: brandCategory.BrandCategoryData,
+    moduleMapper:auth.userDetails.moduleMapper
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -442,7 +472,8 @@ const mapDispatchToProps = (dispatch) =>
             addQuotationOrderForm,
             getSaleCurrency,
             getLobList,
-            getContactDistributorList
+            getContactDistributorList,
+            getBrandCategoryData
         },
         dispatch
     );

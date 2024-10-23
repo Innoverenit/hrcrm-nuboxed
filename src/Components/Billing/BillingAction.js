@@ -1,6 +1,6 @@
 import * as types from "./BillingActionTypes";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { base_url } from "../../Config/Auth";
 import { message } from "antd";
 

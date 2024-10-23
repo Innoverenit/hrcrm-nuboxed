@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddOpportunityPulseModal from "../OpportunityTable/AddOpportunityPulseModal"
 import { DeleteOutlined } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroll-component"
 import { FormattedMessage } from "react-intl";
@@ -36,6 +37,7 @@ import {
          lostStatusRecruit,
          LinkStageOpportunity,
          getOpportunityForecast,
+         handleOpportunityPulseModal,
          handleOpportunityRowEmailModal
 } from "../../OpportunityAction";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
@@ -48,6 +50,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OpportunityRowEmailModal from "./OpportunityRowEmailModal";
 import { base_url } from "../../../../Config/Auth";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
+import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -255,9 +258,9 @@ console.log(props.userDetails.imageId)
                     });
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7.5rem] 
-                  text-[#444444] m-3 p-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-        <div class="flex items-center flex-no-wrap h-[2.81em]">
-          <div class=" flex basis-[15%] mr-[0.2rem]" >
+                  text-[#444444] m-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+        <div class="flex items-center flex-no-wrap h-16">
+          <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
             <MultiAvatar
               primaryTitle={item.opportunityName}
               imageId={item.imageId}
@@ -268,7 +271,7 @@ console.log(props.userDetails.imageId)
           &nbsp;
           <div class="flex flex-col basis-[100%] overflow-hidden">
           
-          <div class="font-semibold text-[#337df4] cursor-pointer text-sm " >
+          <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
         
     {item.newOppId}
 
@@ -290,7 +293,7 @@ title={`${item.opportunityName}`}>
           </div>
        
         </div>
-        <div className="flex justify-between max-sm:justify-between">
+        <div className="flex justify-between max-sm:justify-between h-15">
           <div>
           {item.customer && (
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
@@ -338,12 +341,12 @@ overlay={
       // candidateName={item.candidateName}
       // approveInd={item.approveInd}
       // rejectInd={item.rejectInd}
-      stageClick={(opportunityStagesId) => {
+      stageClick={(stagesId) => {
         props.LinkStageOpportunity(
           {
             opportunityId: item.opportunityId,
             //oppStage: item.oppStage,
-            opportunityStagesId:opportunityStagesId
+            opportunityStagesId:stagesId
             // recruitmentProcessId: item.recruitmentProcessId,
             // recruitmentId: item.recruitmentId,
             // profileId: item.profileId,
@@ -374,7 +377,7 @@ width={30}
 </Dropdown>
 </span>
 </div>
-<div>
+<div className=" flex items-center">
 {<CurrencySymbol currencyType={item.currency} />}
             &nbsp;{  item.proposalAmount || ""}
   </div>
@@ -479,7 +482,7 @@ imgHeight={"1.8rem"}
 )}
 </div>
 <div class="flex items-center">
-<div class="w-6">
+<div >
 <MailOutlineIcon className="!text-icon"
                 type="mail"
                 style={{ cursor: "pointer" }}
@@ -490,9 +493,20 @@ imgHeight={"1.8rem"}
               />
   </div>
 
-<div class="w-6">
+  <div >
+<MonitorHeartIcon className="!text-icon"
+                type="mail"
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  props.handleOpportunityPulseModal(true);
+                  handleSetCurrentOpportunityId(item);
+                }}
+              />
+  </div>
+
+<div >
         <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
                            </span>
           </div>
 <div class="flex items-center">
@@ -595,7 +609,21 @@ imgHeight={"1.8rem"}
         translatedMenuItems={props.translatedMenuItems}
       />
 
+<AddOpportunityPulseModal
+currentOpportunityId={currentOpportunityId}
+updatePulseModal={props.updatePulseModal}
+handleOpportunityPulseModal={props.handleOpportunityPulseModal}
+        // addDrawerOpportunityNotesModal={addDrawerOpportunityNotesModal}
+        // opportunityData={currentOpportunityId}
+        // handleOpportunityNotesDrawerModal={handleOpportunityNotesDrawerModal}
+        // handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        // translateText={props.translateText}
+        // selectedLanguage={props.selectedLanguage}
+        // translatedMenuItems={props.translatedMenuItems}
+      />
+
 <AddOpportunityDrawerModal
+
  opportunityData={currentOpportunityId}
 opportunityForecast={props.opportunityForecast}
 opportunityInitiativesSkillsDetails={props.opportunityInitiativesSkillsDetails}
@@ -611,6 +639,9 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
              allRecruitmentPositionByOppId={props.allRecruitmentPositionByOppId}
                handleOpportunityDrawerModal={props.handleOpportunityDrawerModal}
                addDrawerOpportunityModal={props.addDrawerOpportunityModal}
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+               translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );
@@ -620,6 +651,7 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
 const mapStateToProps = ({ auth, account, opportunity }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
+  updatePulseModal:opportunity.updatePulseModal,
   deleteOpportunityData:opportunity.deleteOpportunityData,
   addDrawerOpportunityNotesModal:opportunity.addDrawerOpportunityNotesModal,
   role: auth.userDetails.role,
@@ -671,6 +703,7 @@ const mapDispatchToProps = (dispatch) =>
          LinkClosedOpportunity,
          StatusRecruit,
          lostStatusRecruit,
+         handleOpportunityPulseModal,
          emptyOpportunity,
          LinkStageOpportunity,
          handleOpportunityRowEmailModal

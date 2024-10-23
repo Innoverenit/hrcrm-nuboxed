@@ -54,8 +54,8 @@ const FunnelChartCustomer = (props) => {
       };
     
       return (
-        <div>
-            <div style={{ display: "flex" }}>
+        <div className=' h-[40vh] flex items-center justify-center'>
+            <div className=" flex" >
           <StyledTabs
             // defaultActiveKey={this.state.activeKey}
            // onChange={handleTabChange}
@@ -66,9 +66,7 @@ const FunnelChartCustomer = (props) => {
                 <TabPane
                   key={i}
                   tab={
-                    <span 
-                    // onClick={() => handleProcessClick(item)}
-                    >
+                    <span >
                       {item.workflowName}
                     </span>
                   }
@@ -78,7 +76,7 @@ const FunnelChartCustomer = (props) => {
           </StyledTabs>
         </div>
         
-          <Funnel 
+          <Funnel  
           // className=" h-[218px] w-[401px]"
           style={{height:"177px",width:"354px"}}
           {...config} />

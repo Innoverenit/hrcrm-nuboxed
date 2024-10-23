@@ -2,7 +2,14 @@ import React, {} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
+import InvestorPieChart1 from "../InvestorTable/InvestorPieChart1"
+import InvestorPieChart2 from "../InvestorTable/InvestorPieChart2"
 import dayjs from "dayjs";
+import CustomerPieLineChart from "../InvestorTable/CustomerPieLineChart"
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import CustomerPieChart from "../../../Dashboard/Child/JumpStart/CustomerPieChart"
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
  import {
   getInvestorWeightedValue,
   handleInvestorActivityJumpstartModal,
@@ -68,12 +75,21 @@ render() {
   } = this.props;
   return(
     <>
+    <div class="flex">
+    <div className="w-1/2">
         <div class=" text-base flex  font-bold justify-center text-[blue]">Current</div>
     <div class=" flex flex-row w-full" >
     
-    <div class="flex w-full" >
-        
-        <JumpStartBox
+    <div class="flex flex-wrap w-full" >
+    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-1 bg-green-600">
+                                  <CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                             </div>
+                             <JumpStartBox
             noProgress
             title={
               <FormattedMessage
@@ -91,9 +107,18 @@ render() {
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
           
           />
-  
-       
-          <JumpStartBox
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-1 bg-pink-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                               </div>
+                               <JumpStartBox
             noProgress
             // bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
             bgColor="#34495E "
@@ -112,8 +137,19 @@ render() {
             //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
           
           />
-
-          <JumpStartBox
+                           </div>
+                       </div>
+                    
+                   </div>  
+                    
+                <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-1 bg-yellow-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                               </div>
+                               <JumpStartBox
             bgColor="#35CD7A"
           // bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
             noProgress
@@ -133,7 +169,19 @@ render() {
           
             
           />
-          <JumpStartBox
+                           </div>
+                       </div>
+                     
+                   </div>  
+                   
+                   <div class="w-full md:w-1/2 xl:w-1/3 p-2 mt-2">
+                      
+                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center">
+                              <div class="flex-shrink pr-3">
+                                  <div class="rounded-full p-1 bg-blue-600">  <HourglassFullIcon className="text-[#edf67d] !text-3xl" /> </div>
+                              </div>
+                              <JumpStartBox
         noProgress
         title={
           <FormattedMessage
@@ -151,11 +199,22 @@ render() {
   
         cursorData={"pointer"}
         bgColor="#FF4C33"
-        // isLoading={this.props.fetchingWonCustomerOppValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+
       
       />
-          <JumpStartBox
+                          </div>
+                      </div>
+                     
+                  </div>
+       
+                  <div class="w-full md:w-1/2 xl:w-1/3 p-2 mt-2">
+                      
+                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center">
+                              <div class="flex-shrink pr-3">
+                                  <div class="rounded-full p-1 bg-blue-600"><ContactsIcon className="!text-3xl text-[#FFFF]"/></div>
+                              </div>
+                              <JumpStartBox
            bgColor="linear-gradient(270deg,black,grey)"
             noProgress
             title={
@@ -170,32 +229,24 @@ render() {
 
             }
             isLoading={this.props.fetchingInvContactValue} 
-            // //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
-            
-          />
-
-
-       
-
-        </div>
-
-        {/* <FlexContainer>
-          <JumpStartBox noProgress title="All Products" bgColor="#8791a1" />
-          <JumpStartBox noProgress title="Quantity On Hand" bgColor="#8791a1" />
-          <JumpStartBox
-            noProgress
-            title="Out of Stock Products"
-            bgColor="#8791a1"
-          />
-          <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
-        </FlexContainer> */}
+          />    
+                          </div>
+                      </div>
+                     
+                  </div>
+         </div>
       </div>
-      <div class=" text-base justify-center flex font-bold  text-[blue]">Past</div>
+      <div class=" text-base justify-center flex font-bold mt-8 text-[blue]">Past</div>
         <div class=" flex flex-row w-full mt-4" >
-        <div class="flex w-full" >
-            
-            <JumpStartBox
+        <div class="flex w-full flex-wrap" >
+        <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center">
+                             <div class="flex-shrink pr-3">
+                                 <div class="rounded-full p-1 bg-green-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                             </div>
+                             <JumpStartBox
              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 title={
@@ -212,9 +263,18 @@ render() {
                 //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
               
               />
-      
-           
-              <JumpStartBox
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-1 bg-pink-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                               </div>
+                               <JumpStartBox
                bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 title={
@@ -223,17 +283,26 @@ render() {
                     defaultMessage="Won Pipe line value"
                   />
                 }
-              
                 value={
                   this.props.WonInvestorPipeline.pipeLineWonValue
     
                 }
                  isLoading={this.props.fetchingWonInvPipelineValue} 
-                //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-              
               />
     
-              <JumpStartBox
+                           </div>
+                       </div>
+                    
+                   </div>  
+                    
+                <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center">
+                               <div class="flex-shrink pr-3">
+                                   <div class="rounded-full p-1 bg-yellow-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                               </div>
+                               <JumpStartBox
                bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 // title="Open Tasks"
@@ -248,28 +317,37 @@ render() {
     
                 }
                 isLoading={this.props.fetchingWonINVWeightedValue} 
-                //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-              
                 
               />
-      
-         
-               
-    
+                           </div>
+                       </div>
+                     
+                   </div>  
+           
             </div>
-    
-            {/* <FlexContainer>
-              <JumpStartBox noProgress title="All Products" bgColor="#8791a1" />
-              <JumpStartBox noProgress title="Quantity On Hand" bgColor="#8791a1" />
-              <JumpStartBox
-                noProgress
-                title="Out of Stock Products"
-                bgColor="#8791a1"
-              />
-              <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
-            </FlexContainer> */}
+          </div>        
           </div>
 
+          <div class=" mt-1 flex flex-col w-1/2 h-[83vh] items-center" > 
+      <div className="font-bold font-poppins  text-lg">Deals</div>
+        <InvestorPieChart1/>
+       
+        <div className="font-bold font-poppins text-lg">Activity</div>
+        <InvestorPieChart2/>
+        </div> 
+
+
+
+
+
+        <div class=" mt-1 flex flex-col w-1/2 h-[83vh] items-center" > 
+      <div className="font-bold font-poppins  text-lg">Line Chart</div>
+        <CustomerPieLineChart/>
+       
+       
+        </div> 
+        
+        </div>
           <AddInvestorActivityJumpstartModal
        RowData={this.props.RowData}
        addInvestorActivityJumpstartModal={addInvestorActivityJumpstartModal}

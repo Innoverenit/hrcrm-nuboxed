@@ -18,13 +18,13 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import {getInvestorList} from "../../Settings/Category/InvestorTab/InvestorListAction";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
+import {base_url} from "../../../Config/Auth";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -38,6 +38,8 @@ function InvesterForm(props) {
 
    const[checked,setChecked]=useState(true);
   const[whiteblue,setWhiteblue]=useState(true);
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]); 
 
   function handleWhiteBlue (checked) {
     setWhiteblue( checked );
@@ -51,6 +53,36 @@ function InvesterForm(props) {
  !checked
     );
   };
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "110",//0 Name
+          "102",//1 URL
+          "140",//2 Email
+          "357",//3 Dial Code
+          "300",//4 Phone No
+          '71', // 5Type
+         "14",//6 Category
+          "619",//7 UBO
+          "622",//8 Identification       
+          "74",//9 Date
+          "147",//10 Description
+          "76",//11 Assigned                
+              "104",//Create 12
+        
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     // props.getSectors();
      props.getAllEmployeelist();
@@ -142,7 +174,7 @@ function InvesterForm(props) {
     const fetchSource = async () => {
       setIsLoading(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+        const apiEndpoint = `${base_url}/source/${props.organizationId}`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -180,7 +212,7 @@ function InvesterForm(props) {
     const fetchSector = async () => {
       setIsLoadingSector(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+        const apiEndpoint = `${base_url}/sector`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -255,17 +287,6 @@ function InvesterForm(props) {
             assignedTo: selectedOption ? selectedOption.employeeId:userId,
             department: "",
             firstMeetingDate: endDate || null,
-            address: [
-              {
-                address1: "",
-                address2: "",
-                street: "",
-                city: "",
-                state: "",
-                postalCode: "",
-                country: props.user.countryName,
-              },
-            ],
             category: whiteblue ? "White" : "Blue" || "Both",
           }}
           validationSchema={InvestorSchema}
@@ -319,7 +340,7 @@ function InvesterForm(props) {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
+            <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem] " style={{scrollbarWidth:"thin"}}>
             <Form className="form-background">
             <div class=" flex justify-between max-sm:flex-col">
                 <div class=" h-full w-w47.5 max-sm:w-wk"   >
@@ -347,14 +368,13 @@ function InvesterForm(props) {
                       </a>
                     ) : null}
                   </div>
-                <div class="mt-[0.7rem]">
+                <div class="font-bold font-poppins text-xs">
+                {translatedMenuItems[0]} 
+                {/* Name */}
                   <Field
                     name="name"
                     type="text"
-                    //label="Name"
-                    label={
-                      <FormattedMessage id="app.name" defaultMessage="Name" />
-                    }
+                    //label="Name"                
                     isColumn
                     width={"100%"}
                     setClearbitData={props.setClearbitData}
@@ -363,24 +383,24 @@ function InvesterForm(props) {
                     inlineLabel
                   />
                   </div>
-                  <Field
+                  <div class="font-bold font-poppins text-xs  mt-[0.7rem]">
+                {translatedMenuItems[1]} 
+                   <Field
                     name="url"
                     type="text"
-                    // label="URL"
-                    label={<FormattedMessage id="app." defaultMessage="URL" />}
+                    // label="URL"    
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                   />
+                  </div>
                   {!contract ?
+                 
                   <Field
                     name="email"
                     type="text"
-                    // label="Email"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
+                     label = {translatedMenuItems[2]}           
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -388,16 +408,12 @@ function InvesterForm(props) {
                   />     
                   : ( null)}             
                    <div class=" flex justify-between mt-3">
-                    <div class=" w-3/12 max-sm:w-[30%]">
+                    <div class=" font-bold font-poppins text-xs w-3/12 max-sm:w-[30%]">
+                    {translatedMenuItems[3]} 
+                    {/* Dial Code */}
                     <FastField
                         name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.dialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        isColumnWithoutNoCreate    
                         defaultValue={{
                           label:`+${user.countryDialCode}`,
                         }}
@@ -409,11 +425,12 @@ function InvesterForm(props) {
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-8/12">
+                    <div class=" w-8/12 font-bold font-poppins text-xs">
+                    {translatedMenuItems[4]} 
                       <FastField
                         type="text"
                         name="phoneNumber"
-                        label="Phone No"
+                        // label="Phone No"
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -445,7 +462,7 @@ function InvesterForm(props) {
                             : []
                         }
                           /> */}
-                             <label>Sector</label>
+                             <div class="font-bold text-xs font-poppins text-black">Sector</div>
 
 <Select
         showSearch
@@ -480,7 +497,7 @@ function InvesterForm(props) {
                             value={values.source}
                             isColumn
                           /> */}
-                          <label>Source</label>
+                          <div class="font-bold text-xs font-poppins text-black">Source</div>
 
 <Select
         showSearch
@@ -501,18 +518,13 @@ function InvesterForm(props) {
                           : ( null)}
                   </div>
                   <div class=" flex justify-between">
-                  <div class=" w-w47.5">
+                  <div class="font-bold font-poppins text-xs w-w47.5 ">
+                  {translatedMenuItems[5]}
                   <Field                     
-                            name="investorCategoryId"
-                            label={
-                              <FormattedMessage
-                                id="app.type"
-                                defaultMessage="Type"
-                              />
-                            }
+                            name="investorCategoryId"                          
                             isColumn
                             placeholder="Type"
-                           
+                          //  type
                             value={values.investorCategoryId}
                             component={SelectComponent}
                             options={
@@ -523,8 +535,11 @@ function InvesterForm(props) {
                              
                           />
                     </div>
-                    <div class=" flex flex-col items-center  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Category</div>
+                    <div class=" flex flex-col items-center ">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[6]} 
+                    {/* Category */}
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       onChange={handleContract}
@@ -535,8 +550,11 @@ function InvesterForm(props) {
                   </div>
                     </div> 
                  <div class="flex justify-between">
-                 <div class=" flex flex-col items-center  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">UBO</div>
+                 <div class=" flex flex-col items-center  mt-2">
+                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[7]} 
+                      {/* UBO */}
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       //onChange={handleContract}
@@ -545,8 +563,11 @@ function InvesterForm(props) {
                       unCheckedChildren="No"
                     />
                   </div>
-                  <div class=" flex flex-col items-center  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Identification</div>
+                  <div class=" flex flex-col items-center  mt-2">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[8]} 
+                    {/* Identification */}
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       //onChange={handleContract}
@@ -558,8 +579,10 @@ function InvesterForm(props) {
                   
                  </div>
                  
-                  <div class=" flex flex-col   mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Inofocit</div>
+                  <div class=" flex flex-col   mt-2">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                                        Inofocit
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       //onChange={handleContract}
@@ -568,68 +591,30 @@ function InvesterForm(props) {
                       unCheckedChildren="No"
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class=" w-w47.5 max-sm:w-wk font-bold font-poppins text-xs mt-2">
+                  {translatedMenuItems[9]}  
+                  {/* Date */}
                     <Field
-                      name="firstMeetingDate"
-                      label="Date"
+                      name="firstMeetingDate"                    
                       component={DatePicker}
                       value={values.firstMeetingDate}
                       isColumn
                       inlineLabel
                     />
                   </div>
-                  <div class="mt-3">
-                  <div>Descriptions</div>
-                    <div>
-                  <div>
-                    <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span
-                          
-                        >
-                          <StopCircleIcon     className="!text-icon ml-1 text-green-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span  >
-                          <RotateRightIcon className="!text-icon ml-1"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </div>
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div>
-                </div>
-                  </div>
+                 
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "  
                 >
                  
                  <div class=" flex justify-between">
-                    <div class=" h-full w-full mt-2">
+                    <div class=" h-full w-full ">
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] ">
-              Assigned
+            <Listbox.Label className="font-bold text-xs font-poppins ">
+            {translatedMenuItems[11]} 
+            {/* Assigned */}
             </Listbox.Label>
             <div className="relative mt-[0.1rem]">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -736,24 +721,50 @@ function InvesterForm(props) {
                      : ( null)}
                   </div>
                  
-                  <div class="mt-3 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
-                      <div>
-                      <div class="text-white font-medium m-[0.2rem_0_0.4rem_0.2rem] text-xs flex" >Corporate Address</div>
-                  </div>
-                    </div>
+                
                  
-                  <div class="mt-3">
-                  <FieldArray
-                    name="address"
-                    label="Address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  />
-              </div>
+                 
+              <div class="mt-3">
+                    <div>
+                 <span class="font-bold font-poppins text-xs ">{translatedMenuItems[10]} </span> 
+                  {/* description */}           
+                  <span>
+                    <span onClick={SpeechRecognition.startListening}>
+                      <Tooltip title="Start">
+                        <span  >
+                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={SpeechRecognition.stopListening}>
+                      <Tooltip title="Stop">
+                        <span >                      
+                        
+                          <StopCircleIcon  className="!text-icon ml-1 text-green-600"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+
+                    <span onClick={resetTranscript}>
+                      <Tooltip title="Clear">
+                        <span  >
+                          <RotateRightIcon className="!text-icon ml-1"/>
+                        </span>
+                      </Tooltip>
+                    </span>
+                  </span>
+                  <div>
+                    <textarea
+                      name="description"
+                      className="textarea"
+                      type="text"
+                      value={transcript ? transcript : text}
+                      onChange={handletext}
+                    ></textarea>
+                  </div>           
+                </div>
+                  </div>
                 </div>
               </div>
            
@@ -764,7 +775,7 @@ function InvesterForm(props) {
                   htmlType="submit"
                   loading={addingInvestor}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                  <div class="font-poppins font-bold text-xs">{translatedMenuItems[12]}</div>
                 </Button>
               </div>
             </Form>

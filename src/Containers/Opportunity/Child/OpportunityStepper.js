@@ -28,7 +28,8 @@ class OpportunityStepper extends Component {
             comments:"",
             catalogueId:"",
             unit:"",
-            price:""
+            price:"",
+            emialInd:false,
         };
     }
     handleSubmit = (data) => {
@@ -99,6 +100,9 @@ class OpportunityStepper extends Component {
 componentDidMount(){
    // this.props.getCreatedOffers(this.props.rowItem.offerId);
 };
+handleEmailInd = (checked) => {
+    this.setState({ emailInd: checked });
+  };
 
     render() {
         const {  ...formProps } = this.props;
@@ -109,7 +113,8 @@ componentDidMount(){
                     id="app.order"
                     defaultMessage="Order"
                 />,
-                icon: <UserOutlined />,
+                icon: <UserOutlined className=" text-green-600" 
+                style={{ backgroundColor:"green"}} />,
                 content: <OpportunityForm {...formProps}/>,
             },
             {
@@ -117,9 +122,7 @@ componentDidMount(){
                     id="app.catalogue"
                     defaultMessage="Catalogue List"
                 />,
-                icon: <PhoneOutlined
-                    style={{ color: "blue" }}
-                />,
+                icon: <PhoneOutlined className=" text-green-500"/>,
                 content: <AddCatalogueForm
                 // handleChooseCatalogue={this.handleChooseCatalogue}
                 // catalogueId={this.state.catalogueId}
@@ -139,14 +142,14 @@ componentDidMount(){
             <>
                 <StyledSteps current={current}>
                     <Step
-                        title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
+                        title={<AddShoppingCartIcon className=" !text-icon"  />}
                         description={<FormattedMessage
                             id="app.oderdetails"
                             defaultMessage="Order Details"
                         />}
                     />
                     <Step
-                        title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
+                        title={<ControlPointDuplicateIcon className=" !text-icon" />}
                         description={<FormattedMessage
                             id="app.unitsinfo"
                             defaultMessage="Units Info"
@@ -165,7 +168,7 @@ componentDidMount(){
                                             type="tertiary"
                                             
                                             onClick={() => this.prev()}>
-                                        <label class="text-base cursor-pointer"> Previous</label>
+                                        <div class="text-base cursor-pointer"> Previous</div>
                                             {/* {this.props.translatedMenuItems[1]} */}
                                         </Button>
                                     )}
@@ -178,7 +181,7 @@ componentDidMount(){
                                                 onClick={() => this.handleComplete()}
                                                 //  disabled={!this.state.checked}
                                             >
-                                                <label class="text-base cursor-pointer">Complete</label> 
+                                                <div class="text-base cursor-pointer">Complete</div> 
                                                 {/* {this.props.translatedMenuItems[2]} */}
                                             </Button>
 
@@ -198,9 +201,9 @@ componentDidMount(){
                                                 }}
                                           
                                             >
-                                           <label class="text-base cursor-pointer">
+                                           <div class="text-base cursor-pointer">
                                            Proceed
-                                             </label>
+                                             </div>
                                   
                                             </Button> : 
                                             null}

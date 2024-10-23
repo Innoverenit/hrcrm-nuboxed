@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import styled from "styled-components";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
 import {
   MultiAvatar,
-  SubTitle,
 } from "../../../../Components/UI/Elements";
 import {
   getDeletedOpportunity,
@@ -48,7 +46,7 @@ function OpportunityDeletedCard(props) {
         hasMore={hasMore}
         loader={fetchingDeletedOpportunity?<div class="flex justify-center">Loading...</div>:null}
         style={{ scrollbarWidth:"thin"}}
-        height={"86vh"}
+        height={"83vh"}
       >
 <div class="flex  justify-center flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">       
 { !fetchingDeletedOpportunity && deletedOpportunity.length === 0 ?<NodataFoundPage/>:deletedOpportunity.map((item,index) =>  {
@@ -56,7 +54,7 @@ function OpportunityDeletedCard(props) {
                  var findProbability = 0;
                  return (
 
-                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[7.5rem] 
+                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[8.5rem] 
                   text-[#444444] m-3 p-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                       <div class="flex items-center  flex-no-wrap h-[2.81em] ">
                       <div class=" flex basis-[15%] mr-[0.2rem]" >
@@ -199,31 +197,3 @@ export default connect(
 mapStateToProps,
 mapDispatchToProps
 )(OpportunityDeletedCard);
-
-const Header = styled.div`
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1em;
-padding:4px;
-  color:blue;
-  cursor:pointer;
-  // font-family: Poppins;
-  //font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-display: flex;
-    justify-content: flex-end;
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-
-text-align:center
-  }
-`

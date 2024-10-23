@@ -21,7 +21,9 @@ const LocationCreateShiftDrawer = (props) => {
         onClose={() => handleCreateShiftDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LocationCreateShiftForm storedLoc={storedLoc}/>
+          <LocationCreateShiftForm storedLoc={storedLoc}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

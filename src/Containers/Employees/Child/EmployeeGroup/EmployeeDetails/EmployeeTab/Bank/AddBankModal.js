@@ -24,7 +24,9 @@ class AddBankModal extends Component {
                     onClose={() => handleBankModal(false)}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <BankDocumentForm />
+                        <BankDocumentForm 
+                                 translateText={this.props.translateText}
+                                 selectedLanguage={this.props.selectedLanguage} />
                     </Suspense>
                 </StyledDrawer>
             </>

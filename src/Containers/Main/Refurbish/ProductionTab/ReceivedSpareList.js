@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../Components/UI/Antd";
@@ -11,6 +11,34 @@ function ReceivedSpareList(props) {
         props.getSpareListById(props.data.phoneId)
     }, [])
 
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+              "1308", //  "Spare",//0
+              "14",  //"Category",//1
+              "259" ,// "Attribute",  2           
+              "1085", // "Received ",//3
+             
+               
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     const columns = [
         {
             title: "",
@@ -18,12 +46,12 @@ function ReceivedSpareList(props) {
             width: "1%",
         },
         {
-            title: "Spare",
+            title: translatedMenuItems[0],
             dataIndex: "suppliesName",
             width: "20%",
         },
         {
-            title: "Category",
+            title: translatedMenuItems[1],
             width: "15%",
             render: (text, item) => {
                 return (
@@ -34,7 +62,7 @@ function ReceivedSpareList(props) {
             },
         },
         {
-            title: "Attribute",
+            title: translatedMenuItems[2],
             render: (text, item) => {
                 return (
                     <>
@@ -45,7 +73,7 @@ function ReceivedSpareList(props) {
             width: "15%",
         },
         {
-            title: "Recived",
+            title: translatedMenuItems[3],
             width: "10%",
             render: (text, item) => {
                 return (

@@ -2,7 +2,8 @@
 import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import SuppliesCategoryForm from "./SuppliesCategoryForm";
+
+const  SuppliesCategoryForm  =lazy(()=>import("./SuppliesCategoryForm"));
 
 
 const SuppliesCategoryModal = (props) => {
@@ -20,7 +21,9 @@ const SuppliesCategoryModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <SuppliesCategoryForm closeModal={props.closeModal} onSuccess={props.handleNewCategory} /> 
+          <SuppliesCategoryForm closeModal={props.closeModal} onSuccess={props.handleNewCategory}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage} /> 
         </Suspense>
       </StyledDrawer>
     </>

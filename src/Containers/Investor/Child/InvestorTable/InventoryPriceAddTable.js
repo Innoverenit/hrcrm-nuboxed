@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import { Button, DatePicker, Input, Select,Tooltip } from "antd";
+import { Button, DatePicker, Input, Select } from "antd";
 import {investorShare,getInvestorShare,investorShareUpdate} from "../../InvestorAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import {getInvestorCurrency} from "../../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 
@@ -146,7 +144,7 @@ function InventoryPriceAddTable(props) {
           <div key={index} class="flex items-center justify-between">
             <div class="flex justify-around w-[30rem]">
             <div>
-                <label>Currency</label>
+                <div class="font-bold text-xs font-poppins text-black">Currency</div>
                 <div class="w-24">
                 <Select
                 style={{width:"5rem"}}
@@ -165,7 +163,7 @@ function InventoryPriceAddTable(props) {
               </div>
 
               <div>
-                <label>Quantity Of Share</label>
+                <div class="font-bold text-xs font-poppins text-black">Quantity Of Share</div>
                 <div class="w-24"></div>
                 <Input
                  inputMode="numeric"
@@ -176,7 +174,7 @@ function InventoryPriceAddTable(props) {
                         {errors[`quantityOfShare${index}`] && <span className="text-red-500">{errors[`quantityOfShare${index}`]}</span>}
                       </div>
               <div>
-                <label>Value per Share</label>
+                <div class="font-bold text-xs font-poppins text-black">Value per Share</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -187,7 +185,7 @@ function InventoryPriceAddTable(props) {
                        {errors[`amountPerShare${index}`] && <span className="text-red-500">{errors[`amountPerShare${index}`]}</span>}
                       </div></div>
                       <div>
-        <label>Date</label>
+        <div class="font-bold text-xs font-poppins text-black">Date</div>
         <div class="w-24">
           <DatePicker
             style={{width:"9rem"}}
@@ -209,10 +207,10 @@ function InventoryPriceAddTable(props) {
 
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">         
-            <div className=" md:w-[21rem]">Quantity Of Share</div>
-            <div className=" md:w-[11.1rem]">Value per Share</div>
-            <div className=" md:w-[6.2rem] ">Purchase date</div>
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold  font-poppins sticky  z-10">         
+            <div className=" md:w-[12rem]">Shares</div>
+            <div className=" md:w-[14.1rem]">Value per Share</div>
+            <div className=" md:w-[10.2rem] ">Purchase date</div>
             <div className="w-12"></div>           
               </div>
 
@@ -223,7 +221,7 @@ function InventoryPriceAddTable(props) {
                 >
 
                  
- <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+ <div className=" flex   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.investorId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -233,13 +231,14 @@ function InventoryPriceAddTable(props) {
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs font-poppins">
                       <div> {item.quantityOfShare}</div>
                     </div>
                     )}
                   </div>
-                  <div className=" flex font-medium items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
-                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
+                  <div className="flex">
+                  <div className=" flex  items-end  md:w-[2.1rem] max-sm:w-full  ">
+                    <div class="text-xs font-semibold  font-poppins cursor-pointer">
                     {editsuppliesId === item.investorId ? (
                       <Select
                       style={{width:"5rem"}}
@@ -253,13 +252,13 @@ function InventoryPriceAddTable(props) {
                         ))}
                       </Select>
                     ):(
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs font-poppins">
                       <div> {item.currency}</div>
                     </div>
                   )}
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex    md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.investorId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -269,12 +268,12 @@ function InventoryPriceAddTable(props) {
                       />
                     </div>
  ):(
-  <div className="font-normal text-sm  font-poppins">
+  <div className=" text-xs font-poppins">
   <div> {item.amountPerShare}</div>
 </div>
 )}
                   </div>
-
+</div>
 
 
                  
@@ -285,7 +284,7 @@ function InventoryPriceAddTable(props) {
     onChange={(buyingDate) => handleInputChange(buyingDate, item.key, 'buyingDate')}
   />
 ) : (
-  <div className="font-normal text-sm font-poppins">
+  <div className=" text-xsfont-poppins">
     <div>{dayjs(item.buyingDate).format('DD/MM/YY')}</div>
   </div>
 )}
@@ -309,26 +308,13 @@ function InventoryPriceAddTable(props) {
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.investorId)}
                       />
                     )}
- {/* <div>
-      <StyledPopconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => props.removeProductPrice(item.investorId)}
-
-                          >
-                     <Tooltip title="Delete">
-                     <DeleteOutlined
-                      style={{ color: 'red' }}
-                          className="!text-xl cursor-pointer  flex justify-center items-center mt-1 ml-1"
-                          />
-                       </Tooltip>
-                       </StyledPopconfirm>
-                       </div> */}
+ 
                   </div>
 
                 </div>

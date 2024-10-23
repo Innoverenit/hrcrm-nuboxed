@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button,  Tooltip,  } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import {
-  StyledLabel,
+  
 } from "../../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
@@ -149,7 +149,7 @@ class UpdateCandidateEducationForm extends Component {
               >
               <div class=" w-[47%]"
               >
-                  <StyledLabel>Course Type</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Course Type</div>
                 <div class=" mt-4">
                   <ButtonGroup>
                     <StatusIcon

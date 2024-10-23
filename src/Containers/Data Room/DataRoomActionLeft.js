@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Avatar, Tooltip } from "antd";
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
-import { FlexContainer } from "../../Components/UI/Layout";
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 
 function RefurbishActionLeft (props) {
   const [currentData, setCurrentData] = useState("");
@@ -18,27 +19,49 @@ function RefurbishActionLeft (props) {
 //       } 
    
 //     }, [props.viewType, props.userId, props.orgId]);
-  
-      const {
-          user,
-          viewType,
-          setDataRoomViewType,
-      } = props;
+
+      // const {
+      //     user,
+      //     viewType,
+      //     setDataRoomViewType,
+      // } = props;
         return (
           <>
-            <FlexContainer alignItems="center">                  
-              <Tooltip title="List">
+            <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto " >                  
+              <Tooltip title="Prospect">
                 <span class=" text-sm cursor-pointer"
-                  onClick={() => setDataRoomViewType("list")}
+                  onClick={() => props.setSelectedTab('prospect')}
                   style={{
-                    color: viewType === "list" && "#1890ff",
+                    color: props. selectedTab === "prospect" && "#1890ff",
                   }}
                 >
-                  <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
+                  <Avatar style={{ background: props.selectedTab === "prospect" ? "#f279ab" : "#28a355" }}>
                     <HomeRepairServiceIcon className="!text-icon cursor-pointer" /></Avatar>  
                 </span>
-              </Tooltip>             
-            </FlexContainer>   
+              </Tooltip> 
+              <Tooltip title="customer">
+                <span class=" text-sm cursor-pointer"
+                    onClick={() => props.setSelectedTab('customer')}
+                  style={{
+                    color: props.selectedTab === "customer" && "#1890ff",
+                  }}
+                >
+                  
+                    <AcUnitIcon className="!text-icon cursor-pointer" /> 
+                </span>
+              </Tooltip>
+              <Tooltip title="Investor">
+                <span class=" text-sm cursor-pointer"
+                 onClick={() => props.setSelectedTab('list')}
+                 style={{
+                  color: props.selectedTab === "list" && "#1890ff",
+                }}
+                >
+                  
+                    <ApartmentIcon className="!text-icon cursor-pointer" />
+                </span>
+              </Tooltip>            
+            </div>   
           </>
         );
 }

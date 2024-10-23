@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { partnerMapSelector } from "../Partner/PartnerSelector";
-import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-import { FlexContainer } from "../../Components/UI/Layout";
+import { Marker, Popup } from "react-leaflet";
 import { MultiAvatar, Title } from "../../Components/UI/Elements";
 import { getPartnerListByUserId } from "./PartnerAction";
 import Leaflet from "../../Components/Utils/Leaflet";
 import L from "leaflet";
-
 import PartnerMapPopUpMarker from "../Partner/PartnerMapPopUpMarker";
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -79,8 +77,8 @@ const MyPopupMarker = ({ mark }) => {
   return (
     <Marker position={[mark.lat, mark.lng]} icon={image}>
       <Popup className="!w-[18rem]">
-        <FlexContainer justifyContent="center" flexDirection="column">
-          <FlexContainer flexWrap="nowrap" alignItems="center">
+      <div class=" flex flex-col flex-wrap items-start self-start justify-center grow shrink h-auto mr-auto ">
+      <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
             <MultiAvatar
               primaryTitle={accountName || ""}
               imageId={imageId}
@@ -90,7 +88,7 @@ const MyPopupMarker = ({ mark }) => {
             <Title overflow="hidden" textOverflow="ellipsis">
               {mark.name}
             </Title>
-          </FlexContainer>
+          </div>
           {address &&
             address.map((components, i) => {
               if (
@@ -100,7 +98,7 @@ const MyPopupMarker = ({ mark }) => {
                 return;
               }
             })}
-        </FlexContainer>
+        </div>
       </Popup>
     </Marker>
   );

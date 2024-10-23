@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import dayjs from "dayjs";
-import { Spacer } from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import {
   addProcessForRecruiter,
   getProcessForRecruit,
 } from "../SettingsAction";
-import { FlexContainer } from "../../../Components/UI/Layout";
+
 
 class ProcessForm extends Component {
   handleCallback = (status) => {
@@ -44,20 +41,16 @@ class ProcessForm extends Component {
                 <Field
                   name="recruitmentProcessName"
                   label="Name"
-                  // label={<FormattedMessage
-                  //   id="app.recruitmentProcessName"
-                  //   defaultMessage="Enter Workflow name"
-                  // />}
                   component={InputComponent}
                   isColumn
                   width={"100%"}
                   placeholder={"Enter Workflow name "}
                   style={{ flexBasis: "80%", marginTop: "0.25em" }}
                 />
-                <Spacer />
+                <mt-3 />
 
-                <Spacer style={{ marginTop: 15 }} />
-                <FlexContainer justifyContent="flex-end">
+                <mt-3 style={{ marginTop: 15 }} />
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   {" "}
                   <Button
                     type="primary"
@@ -67,7 +60,7 @@ class ProcessForm extends Component {
                   >
                     Create
                   </Button>
-                </FlexContainer>
+                </div>
               </div>
             </Form>
           )}

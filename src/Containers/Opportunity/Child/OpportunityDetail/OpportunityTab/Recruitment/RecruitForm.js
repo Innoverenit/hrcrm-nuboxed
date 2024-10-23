@@ -10,11 +10,6 @@ import dayjs from "dayjs";
 import {
   getTalentRoles,
 } from "../../../../../Settings/Category/Role/RoleAction";
-import {
-  HeaderLabel,
-  Spacer,
-  StyledLabel,
-} from "../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import {
@@ -374,7 +369,7 @@ function RecruitForm(props) {
                     />
                   </div>
                   <div style={{ width: "47%" }}>
-                    <StyledLabel>Type </StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Type </div>
                    
                     <Switch
                       checked={typeData}
@@ -560,7 +555,7 @@ function RecruitForm(props) {
 
                 <FlexContainer justifyContent="space-between">
                 <div style={{ width: "25%" }}>
-                  <StyledLabel>Category</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Category</div>
                  
                   <Switch
                     checked={typeData1}
@@ -613,7 +608,7 @@ function RecruitForm(props) {
 
                 </FlexContainer>
 
-                <Spacer style={{ marginTop: "1.25em" }} />
+                <div class=" mt-3" style={{ marginTop: "1.25em" }} />
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%" }}>
                   <Field
@@ -687,7 +682,7 @@ function RecruitForm(props) {
                 </div>
                 
                 </FlexContainer>
-                <Spacer style={{ marginTop: "1.25em" }} />
+                <div class=" mt-3" style={{ marginTop: "1.25em" }} />
 
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "100%" }}>
@@ -714,7 +709,7 @@ function RecruitForm(props) {
                     />
                   </div>
                 </FlexContainer>
-                <Spacer />
+                <div class=" mt-3" />
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%" }}>
                     <Field
@@ -765,7 +760,7 @@ function RecruitForm(props) {
                   </div>
                 </FlexContainer>
                 <div style={{ width: "47%" }}>
-                    <StyledLabel>WorkType </StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">WorkType </div>
                    
                     <Switch
                       checked={workTypeData}
@@ -788,7 +783,7 @@ function RecruitForm(props) {
                 <FlexContainer justifyContent="space-between">
                 <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}}>Location</HeaderLabel>
+                      <div class="font-semibold text-xs flex"> Location</div>
                   </div>
                   </div>
                   <div style={{ width: "100%" }}>
@@ -804,7 +799,7 @@ function RecruitForm(props) {
                     />
                   </div>
                 </FlexContainer>
-                <Spacer style={{ marginTop: "1.25em" }} />
+                <div class=" mt-3" style={{ marginTop: "1.25em" }} />
                 <div style={{ width: "100%" }}>
                   <Field
                     name="description"
@@ -828,7 +823,7 @@ function RecruitForm(props) {
                 </div>
               </div>
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer justifyContent="flex-end">
               <Button
                 type="primary"

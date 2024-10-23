@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { updateShipperById } from "../../ShipperAction";
 import { Button } from "antd";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { TextInput, Spacer } from "../../../../../Components/UI/Elements";
+import { TextInput } from "../../../../../Components/UI/Elements";
 
 class ShipperViewDataEdit extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class ShipperViewDataEdit extends Component {
             value={this.state.fields.phoneNo}
             width="100%"
           />
-          <Spacer style={{ margin: "2px" }} />
+          <div class=" mt-3" style={{ margin: "2px" }} />
           <EditableInput
             defaultValue={shipper.emailId}
             handleChange={this.handleChange}
@@ -54,7 +54,7 @@ class ShipperViewDataEdit extends Component {
             value={this.state.fields.emailId}
             width="100%"
           />
-          <Spacer style={{ margin: "2px" }} />
+          <div class=" mt-3" style={{ margin: "2px" }} />
           <EditableInput
             defaultValue={shipper.shipByName}
             handleChange={this.handleChange}

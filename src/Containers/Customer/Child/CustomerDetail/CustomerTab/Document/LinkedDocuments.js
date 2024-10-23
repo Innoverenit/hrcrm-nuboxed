@@ -20,7 +20,6 @@ import {
   getCustomerDocument,
   deleteDocument,
 } from "../../../../CustomerAction";
-import { FormattedMessage } from "react-intl";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -33,6 +32,7 @@ class LinkedDocuments extends Component {
     this.state = {
       searchText: "",
       searchedColumn: "",
+       translatedMenuItems: [],
     };
   }
   componentDidMount() {
@@ -40,10 +40,41 @@ class LinkedDocuments extends Component {
       customer: { customerId },
       getCustomerDocument,
     } = this.props;
+    this.fetchMenuTranslations();
     getCustomerDocument(customerId);
     // this.props.getDocuments();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+           "74" ,  // "Date",//0
+           "110" , // "Name",//1
+           "147" ,   // "Description",//2
+           "1207" ,   // "Uploaded By",//3
+          "1208" , // "File Name",//4
+          "1205" , // "Contract",//5
+          "1305" ,  // Search  6
+           "1307" ,   // Reset 7   
+          "100" ,  // New8
+           "1351" , // "Download"9
+           "1259" ,  // Do you want to delete?10
+            "84" , // "Delete"11
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   getColumnSearchProps = (dataIndex) => ({
     filterDropdown: ({
       setSelectedKeys,
@@ -66,21 +97,21 @@ class LinkedDocuments extends Component {
           }
           style={{ width: 188, marginBottom: 8, display: "block" }}
         />
-        <Button
+        <Button className="w-[90%] mr-8"
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
           icon={<SearchOutlined />}
           size="small"
-          style={{ width: 90, marginRight: 8 }}
+        
         >
-          Search
+          {this.state.translatedMenuItems[6]} {/* Search */}
         </Button>
-        <Button
+        <Button className="w-[90%]"
           onClick={() => this.handleReset(clearFilters)}
           size="small"
-          style={{ width: 90 }}
+     
         >
-          Reset
+         {this.state.translatedMenuItems[7]}  {/* Reset */}
         </Button>
       </div>
     ),
@@ -129,6 +160,7 @@ class LinkedDocuments extends Component {
       fetchingDocumentsByCustomerIdError,
       deleteDocument,
     } = this.props;
+    console.log(documentsByCustomerId)
 
     const documentTypeOption = this.props.documents.map((item) => {
       return {
@@ -145,57 +177,45 @@ class LinkedDocuments extends Component {
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
-        <div class="rounded m-1 p-1 w-[99%]   shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+        <div class="rounded m-1 p-1 w-[100%]  ">
+          <div className=" flex justify-between w-[100%]  p-1  font-bold sticky  z-10">
           
-        <div className=" md:w-[6rem]">
-        <FormattedMessage
-                  id="app.date"
-                  defaultMessage="Date"
-                /></div>
-                <div className=" md:w-[8.1rem]"><FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
-        <div className=" md:w-[9.13rem]"><FormattedMessage
-                  id="app.description"
-                  defaultMessage="Description"
-                /></div>
-        <div className="md:w-[5.1rem]"><FormattedMessage
-                  id="app.Uploadedby"
-                  defaultMessage="Uploaded By"
-                /></div>
-        <div className="md:w-[10.2rem]"><FormattedMessage
-                  id="app.filename"
-                  defaultMessage="File Name"
-                /></div>
-                     <div className="md:w-[8.2rem]"><FormattedMessage
-                  id="app.contract"
-                  defaultMessage="Contract"
-                /></div>
+        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[16.1rem]">
+        {this.state.translatedMenuItems[0]}</div>
+        {/* Date */}
+                <div className="font-bold font-poppins text-xs  md:w-[16.2rem]">{this.state.translatedMenuItems[1]}</div>
+                {/* Name */}
+        <div className="font-bold font-poppins text-xs  md:w-[13.13rem]">{this.state.translatedMenuItems[2]}</div>
+       
+        <div className="font-bold font-poppins text-xs  md:w-[15.1rem]">{this.state.translatedMenuItems[3]}</div>
+     
+        <div className="font-bold font-poppins text-xs  md:w-[12.2rem]">{this.state.translatedMenuItems[4]}</div>
+        
+                     <div className="font-bold font-poppins text-xs  md:w-[9.2rem]">{this.state.translatedMenuItems[5]}</div>
+                     {/* Contract */}
         
         
       </div>
    
         
-      { !fetchingDocumentsByCustomerId && documentsByCustomerId.length === 0 ?<NodataFoundPage />:documentsByCustomerId.map((item,index) =>  {
+      { documentsByCustomerId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         
                     return (
                       <div>
                        <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9.1rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
-                          <div className=" flex  md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex  md:w-[9rem] h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 
     <div class="max-sm:w-full">
     <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-xs   font-poppins font-medium  cursor-pointer">
+                                            <div class="text-xs   font-poppins   cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
@@ -209,7 +229,7 @@ class LinkedDocuments extends Component {
                           <div class="flex">
 
                        
-                          <div className=" flex  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex  md:w-[12.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                              
                               <div class="text-xs  font-poppins">
                                    {item.documentTitle}
@@ -217,19 +237,19 @@ class LinkedDocuments extends Component {
         {date === currentdate ? (
     <span class="text-xs text-[tomato] font-bold"
     >
-            New
+             {this.state.translatedMenuItems[8]}{/* New */}
           </span>
         ) : null} 
                               </div>
                           </div>
-                          <div className=" flex font-medium  md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                          <div className=" flex   md:w-[12.4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
                           
                             <div class="text-xs  font-poppins">
                             {elipsize(item.documentDescription || "", 15)}
                             </div>
                         </div>
                         </div>
-                        <div className="flex font-medium  md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className="flex   md:w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
 <div className="text-xs  font-poppins text-center">
 <div className="font-normal text-xs font-poppins">
@@ -245,13 +265,13 @@ class LinkedDocuments extends Component {
                      </div>
 </div>
 </div>
-<div className=" flex font-medium  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex   md:w-[12.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                               <div class=" text-xs  font-poppins text-center">
                               {item.fileName}
 
                               </div>
                           </div>
-                          <div className=" flex font-medium  md:w-[4.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex   md:w-[5.22rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                               <div class=" text-xs  font-poppins text-center">
                               <ContractToggle
           contractInd={item.contractInd}
@@ -263,25 +283,25 @@ class LinkedDocuments extends Component {
                        
                               
 
-                              <div>
+                              <div class="items-center justify-center h-8 bg-[#eef2f9]">
                               <a
             href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
-          > <Tooltip title="Download">
+          > <Tooltip title= {this.state.translatedMenuItems[9]}>
             <DownloadIcon
             className="cursor-pointer !text-icon"
             /></Tooltip>
           </a>  
                  </div>
-          <div>
+                 <div class="items-center justify-center h-8 bg-[#eef2f9]">
             
           <Popconfirm
-                        title="Do you want to delete?"
+                        title= {this.state.translatedMenuItems[10]}
                         okText="Yes"
                         cancelText="No"
                         onConfirm={() => deleteDocument(item.documentId)}
                       >
-                         <Tooltip title="Delete">
+                         <Tooltip title= {this.state.translatedMenuItems[11]}>
       
             <DeleteOutlined
 className="cursor-pointer !text-icon text-[red]"
@@ -307,7 +327,7 @@ const mapStateToProps = ({ customer, document }) => ({
   fetchingDocumentsByCustomerId: customer.fetchingDocumentsByCustomerId,
   fetchingDocumentsByCustomerIdError:
     customer.fetchingDocumentsByCustomerIdError,
-  documentsByCustomerId: customer.documentsByCustomerId,
+    documentsByCustomerId: customer.documentsByCustomerId,
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -14,7 +14,7 @@ class CustomerOverView extends Component {
         <div class=" flex justify-between">
           <div class=" flex justify-start flex-nowrap w-wk items-center"
           >
-            <div class=" w-[15%]" >
+            <div class=" w-[15%] mr-1" >
               <MultiAvatar
                 primaryTitle={customer.name}
                 imageId={customer.imageId}

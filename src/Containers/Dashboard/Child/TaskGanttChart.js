@@ -11,37 +11,39 @@ const TaskGanttChart = (props) => {
 
   useEffect(()=>{
  
-    props.getTakskdashboardGantt(props.userId,);
+    props.getTakskdashboardGantt(props.userId);
 },[props.userId])
 useEffect(()=>{
   
 },[props.tasksdashboardGantt])
-  // const data = [
-  //   {
-  //     taskId: "TIF86786106513252023",
-  //     taskType: "Whatsapp",
-  //     taskName: "whats",
-  //     startDate: "2023-09-26T20:00:00Z",
-  //     endDate: "2023-09-26T20:00:00Z",
-  //   },
-    
-  // ];
+
 
   
-  const tasks = props.tasksdashboardGantt.map(item => ({
+const tasks = props.tasksdashboardGantt.map(item => {
+  const start = item.startDate ? new Date(item.startDate) : new Date();
+  const end = item.endDate ? new Date(item.endDate) : new Date();
+
+  if (isNaN(start.getTime())) {
+    console.error(`Invalid startDate for task ${item.taskId}: ${item.startDate}`);
+  }
+  if (isNaN(end.getTime())) {
+    console.error(`Invalid endDate for task ${item.taskId}: ${item.endDate}`);
+  }
+
+  return {
     id: item.taskId,
     name: item.taskName,
-    start: new Date(item.startDate),
-    end: new Date(item.endDate),
-  }));
+    start,
+    end,
+  };
+});
 
   if (props.fetchingTaskDashboardGantt) {
     return <BundleLoader />;
   }
 
   return (
-    <div>
-      {/* <h2>Gantt Chart</h2> */}
+    <div class=" overflow-auto">
       {props.tasksdashboardGantt.length?
       <Gantt tasks={tasks} />:null}
     </div>
@@ -51,14 +53,10 @@ useEffect(()=>{
 
 
 const mapStateToProps = ({ task,auth,dashboard }) => ({
-  // leavesGantt:dashboard.leavesGantt,
    userId: auth.userDetails.userId,
    tasksdashboardGantt:dashboard.tasksdashboardGantt,
    fetchingTaskDashboardGantt:dashboard.fetchingTaskDashboardGantt,
-  //  fetchingLeavesGantt:dashboard.fetchingLeavesGantt,
-  // viewType: task.viewType,
-  // grantTask:task.grantTask,
-  // fetchingGrantTask:task.fetchingGrantTask
+
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -1,10 +1,11 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
   StyledTable,
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { handleUpdateBankModal, setEditBank } from "../../../../ProfileAction";
 import { getBankDetails } from "../../../../ProfileAction";
 import { deleteBankTable } from "../../../../ProfileAction";
@@ -127,12 +128,14 @@ class BankTable extends Component {
           loading={fetchingBankDetails || fetchingBankDetailsError}
           onChange={console.log("task onChangeHere...")}
         />
-
+ <Suspense fallback={<BundleLoader />}>
         <UpdateBankModal
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
           updateBankModal={updateBankModal}
           handleUpdateBankModal={handleUpdateBankModal}
         />
-
+</Suspense>
         {/* )} */}
         {/* <StyledModal
                     title={"Configure"}

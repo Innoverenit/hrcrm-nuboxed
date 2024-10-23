@@ -1,6 +1,5 @@
 import React from "react";
 import { Icon, message, Upload } from "antd";
-import { StyledUpload, StyledModal } from "./UI/Antd";
 import { base_url } from "../Config/Auth";
 import axios from "axios";
 import { InboxOutlined } from '@ant-design/icons';

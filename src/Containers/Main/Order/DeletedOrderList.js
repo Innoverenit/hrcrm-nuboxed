@@ -15,6 +15,9 @@ import {
     handleStatusOfOrder,
     handlePaidModal
 } from "./OrderAction";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 import PaidIcon from '@mui/icons-material/Paid';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
@@ -26,6 +29,7 @@ import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/Sta
 import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import { PersonAddAlt1 } from "@mui/icons-material";
 import ReInstateOrderToggle from "./ReInstateOrderToggle";
+import OrderSearchedData from "./OrderSearchedData";
 const { Option } = Select;
 
 function DeletedOrderList(props) {
@@ -39,7 +43,38 @@ function DeletedOrderList(props) {
         
         setPage(page + 1);
     }, []);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+              "106",  // 'Urgent', // 0
+              "660",    // 'Order', // 1
+              "248",    // ' Customer', // 2
+              "73",  // 'Contact', // 3
+              "260",  // ' Units', // 4
+              "77", // 'Owner', // 5
+              "676",  // ' Supervisor',
+              "677",   // 'Lead',            
+              "679",    // 'Created',             
+              "108",  // "Normal"
 
+
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     const [show, setshow] = useState(false);
     const [orderId, setorderId] = useState("");
     const [searchText, setSearchText] = useState("");
@@ -73,7 +108,78 @@ function DeletedOrderList(props) {
     setPage(page + 1);
     props.getDeletedLowOrderList(props.userId, props.currentUser ? props.currentUser : page,"Low");
 }
-  
+const exportPDFAnnexure = async () => {
+  var doc = new jsPDF();
+  // const {
+  //   userDetails:
+  //   {address},
+  //     imageId
+  // }=props
+ 
+  // let cityd=`${address.city}`
+  // let countryd=`${address.country}`
+  // let addressde=`${address.state}`
+  // let cityde=`${address.street}`
+  // var imageUrl = `${base_url}/image/${imageId || ""}`;
+  var name1 = `East Repair Inc `
+  var name2 =`1912 Harvest Lane New York ,NY 12210`
+  var name3 =`BILL TO`
+  var name4 = `SHIP TO`
+  var name5 = ` ORDER #`
+  var name6 = `ORDER DATE`
+  var name7 = `P.O.#`
+  var name8 = `Order Total`
+  var name9 = `QTY`
+  var name10 = `DESCRIPTION`
+  var name11 = `UNIT PRICE`
+  var name12 = `AMOUNT`
+  var name13= `TERM & CONDITIONS`
+  var name14= `Payement id due within 15 days`
+  var name15= `Please make checks payble to: East repair Inc. `
+
+
+  doc.setFont("Montserrat");
+  doc.setFillColor(62, 115, 185);
+  doc.rect(0, 0, 230, 13, 'F');
+  doc.setFontSize(25);
+  doc.setFontSize(14);
+  doc.setDrawColor(0, 0, 0)
+  // doc.addImage(imageUrl, 'JPEG', 20, 18, 165, 20);
+  doc.text(name1, 8, 25);
+  doc.setFontSize(10);
+  let yPosition = 32;
+//   address.forEach(item => {
+//     doc.text(` ${item.city}  ${item.country}  ${item.state}  ${item.street}`, 8, yPosition);
+//     yPosition += 4
+// });
+  // doc.text(name2, 8, 32);
+  doc.setFontSize(12);
+  doc.text(name3, 8, 50);
+  doc.text(name4, 60, 50);
+  doc.text(name5, 120, 50);
+  doc.text(name6, 120, 58);
+  doc.text(name7, 120, 66);
+  doc.line(8, 80, 200, 80);
+  doc.setFontSize(22);
+  doc.text(name8, 8, 90);
+  doc.line(8, 100, 200, 100);
+  doc.setFontSize(10);
+  doc.text(name9, 8, 110);
+  doc.text(name10, 30, 110);
+  doc.text(name11, 90, 110);
+  doc.text(name12, 140, 110);
+  doc.setFontSize(12);
+  doc.text(name13, 8, 250);
+  doc.setFontSize(9);
+  doc.text(name14, 8, 260);
+  doc.text(name15, 8, 270);
+  //footer
+  doc.setFillColor(62, 115, 185);
+  doc.rect(0, 276, 230, 15, 'F');
+
+  doc.save("Orders.pdf")
+
+}
 
     function handleSetParticularOrderData(item, data) {
         console.log(item);
@@ -84,28 +190,37 @@ function DeletedOrderList(props) {
         return () => props.emptyMOrders();
     }, []);
     return (
+      <div>
+      {props.orderSearch.length > 0 ? (
+        <OrderSearchedData
+        orderSearch={props.orderSearch}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+        />
+      ) : (
         <>
             <div className=' flex justify-end sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               
-                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-                <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">Urgent </div>
-                <div className=" md:w-[10.31rem] ml-2">Order ID</div>
-          <div className=" md:w-[8.6rem]">Customer</div>
-          <div className=" md:w-[4.051rem] ">Contact</div>
-          <div className="md:w-[5.014rem]">Units</div>
-          <div className="md:w-[5.031rem]">Owner</div>
-          <div className="md:w-[5.2rem]">Supervisor</div>
-          <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[9.73rem]">Created</div>
-          <div className="md:w-24"></div>
+                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+                <div className="font-bold font-poppins text-xs md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
+                        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.031rem]">{translatedMenuItems[8]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.06rem]">{translatedMenuItems[7]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[9.73rem]">{translatedMenuItems[5]}</div>
+          <div className="font-bold font-poppins text-xsmd:w-24"></div>
         </div>
                     <InfiniteScroll
                         dataLength={props.deletedHighOrder.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingDeletedHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"23vh"}
+                        height={"38vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
                         {props.deletedHighOrder.length ?
@@ -118,13 +233,13 @@ function DeletedOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
                 >
                   <div class="flex ">
-                  <div className=" flex   md:w-[4.26rem]  items-center max-sm:w-full  ">
+                  <div className=" flex   md:w-[4.26rem] border-l-2 border-green-500 bg-[#eef2f9] justify-center  items-center max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -143,11 +258,11 @@ function DeletedOrderList(props) {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex  w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
-                        <div class="w-[9.43rem]">
+                      <div className="flex  justify-center max-sm:w-full">
+                        <div class="w-[9.43rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -166,7 +281,7 @@ function DeletedOrderList(props) {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[9.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
@@ -177,7 +292,7 @@ function DeletedOrderList(props) {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[3.23rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.23rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -193,7 +308,7 @@ function DeletedOrderList(props) {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex   md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[3.31rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
@@ -201,7 +316,10 @@ function DeletedOrderList(props) {
 
 
                   </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[5.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <span>{date}</span>
+                  </div>
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -216,7 +334,7 @@ function DeletedOrderList(props) {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -230,7 +348,7 @@ function DeletedOrderList(props) {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[6.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -266,28 +384,30 @@ function DeletedOrderList(props) {
                     </div>
 
                   </div>
-                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <span>{date}</span>
-                  </div>
-                  <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                
+                  <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <ReInstateOrderToggle item={item} />
 
 </div>
                   <div class="flex">
-                    <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[0.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
+                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                       {item.orderStatus}
                     </div>
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
-
+                    <div class="w-6 items-center justify-center h-8  bg-[#eef2f9]">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
+                           </span>
+          </div>        
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins items-center justify-center h-8   bg-[#eef2f9]">
                         <Tooltip title="Notes">
                           <NoteAltIcon
                              className=" !text-icon cursor-pointer text-green-800"
@@ -304,7 +424,7 @@ function DeletedOrderList(props) {
                     </div>
 
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
                             className="!text-icon cursor-pointer"
@@ -317,7 +437,7 @@ function DeletedOrderList(props) {
                       </div>
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Status">
                           <EventRepeatIcon
                                   className=" !text-icon cursor-pointer "
@@ -331,10 +451,10 @@ function DeletedOrderList(props) {
 
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Collection">
                           <PaidIcon
-                                  className=" !text-icon cursor-pointer"
+                                  className=" !text-icon cursor-pointer text-[#e5625e]"
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -362,295 +482,18 @@ function DeletedOrderList(props) {
                 </div>
             </div>
 
-            <div className=' flex justify-end sticky z-auto'>
-            <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10">
-                <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[orange] ">High </div>
-                <div className=" md:w-[10.31rem] ml-2">Order ID</div>
-          <div className=" md:w-[8.6rem]">Customer</div>
-          <div className=" md:w-[4.051rem] ">Contact</div>
-          <div className="md:w-[5.014rem]">Units</div>
-          <div className="md:w-[5.031rem]">Owner</div>
-          <div className="md:w-[5.2rem]">Supervisor</div>
-          <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[9.73rem]">Created</div>
-          <div className="md:w-24"></div>
-        </div>
-                    <InfiniteScroll
-                        dataLength={props.deletedMediumOrder.length}
-                        next={handleLoadMoreMedium}
-                        hasMore={hasMore}
-                        loader={props.fetchingDeletedMediumOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"23vh"}
-                        style={{ scrollbarWidth:"thin"}}
-                    >
-                        {props.deletedMediumOrder.length ?
-                            <>
-                                {props.deletedMediumOrder.map((item) => {
-                                    const currentdate = dayjs().format("DD/MM/YYYY");
-                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-
-
-                                    return (
-                                        <div>
-                <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-                // style={{
-                //   borderBottom: "3px dotted #515050",
-                // }}
-                >
-                  <div class="flex">
-                  <div className=" flex   md:w-[4.26rem] items-center  max-sm:w-full  ">
-                                                        <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                                                                <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
-
-                                                                    {item.priority === "High" && (
-                                                                        <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[red]"></div>
-                                                                    )}
-                                                                    {item.priority === "Medium" && (
-                                                                        <div
-                                                                            class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[orange]"></div>)}
-                                                                    {item.priority === "Low" && (
-                                                                        <div class="border rounded-[50%] h-[1.5625rem] w-[1.5625rem] bg-[teal]"></div>)}
-                                                                </div>
-                                                            </div>
-                                                        </Tooltip>
-                                                    </div>
-                    <div className=" flex  w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
-                        <div class="w-[9.43rem]">
-                          <Badge size="small" count={item.productNum}>
-                            <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
-                              onClick={() => {
-                                handleSetParticularOrderData(item);
-                                props.handleOrderDetailsModal(true);
-                              }}
-
-                            >{`${item.newOrderNo} `}
-
-                              &nbsp;&nbsp;
-                              {date === currentdate ? (
-                                <span className=" text-[0.65rem] text-[tomato] font-bold"  >
-                                  New
-                                </span>
-                              ) : null}
-                            </span>
-                          </Badge>
-                        </div>
-                      
-
-                        <div class="max-sm:w-full md:w-[9.02rem]">
-                          <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
-                              {item.distributorName}
-
-                            </div>
-                          </Tooltip>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="flex flex-row items-center md:w-[3.23rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                        <MultiAvatar2
-                          primaryTitle={item.contactPersonName}
-                          imageURL={item.imageURL}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
-
-                      </div>
-
-
-
-                    </div>
-                  </div>
-                  <div class="flex">
-                    <div className=" flex   md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
-                      <div class=" font-poppins text-xs">
-                        {item.noOfPhones}
-                      </div>
-                    </div>
-
-
-                  </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
-                    <div>
-                      <MultiAvatar
-                        primaryTitle={item.userName}
-                        imageURL={item.imageURL}
-                        imgWidth={"1.8rem"}
-                        imgHeight={"1.8rem"}
-                      />
-
-                    </div>
-
-
-
-                  </div>
-                  <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                        <MultiAvatar2
-                          primaryTitle={item.supervisorUserName}
-                          imageURL={item.imageURL}
-                          imgWidth={"1.8rem"}
-                          imgHeight={"1.8rem"}
-                        />
-
-                      </div>
-
-
-
-                    </div>
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
-                      <div>
-                        {show && (particularRowData.orderId === item.orderId) ?
-                          <div class=" flex justify-between">
-                            <Select
-                              className="w-[350px]"
-                              value={lead}
-                              onChange={(value) => handleLeadData(value)}
-                            >
-                              {props.departmentUser.map((a) => {
-                                return <Option value={a.employeeId}>{a.empName}</Option>;
-                              })}
-                            </Select>
-                            <Button
-                              type="primary"
-                            >
-                              Add
-                            </Button>
-                            <Button onClick={handleCancel}>
-                              Cancel
-                            </Button>
-                          </div>
-                          :
-                          <MultiAvatar2
-                            primaryTitle={item.lead}
-                            imageURL={item.imageURL}
-                            imgWidth={"1.8rem"}
-                            imgHeight={"1.8rem"}
-                          />
-
-
-                        }
-                      </div>
-                    </div>
-
-                  </div>
-                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <span>{date}</span>
-                  </div>
-                  <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
-<ReInstateOrderToggle item={item} />
-
-</div>
-                  <div class="flex">
-                    <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-
-                      <div class=" text-xs  font-semibold  font-poppins">
-                        {item.noOfownerPhones}
-                      </div>
-                    </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
-                      {item.orderStatus}
-                    </div>
-   
-                    <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
-
-                      {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Notes">
-                          <NoteAltIcon
-                            className=" !text-icon cursor-pointer text-green-800"
-                            onClick={() => {
-
-                              props.handleNotesModalInOrder(true);
-                              handleSetParticularOrderData(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-
-
-                    </div>
-
-                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Add Supervisor">
-                          <PersonAddAlt1
-                            className="!text-icon cursor-pointer"
-                            style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
-                            onClick={() => {
-                              handleShow()
-                              handleSetParticularOrderData(item)
-                            }} />
-                        </Tooltip>
-                      </div>
-                    </div>
-                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Status">
-                          <EventRepeatIcon
-                              className=" !text-icon cursor-pointer "
-                            onClick={() => {
-                              props.handleStatusOfOrder(true);
-                              handleSetParticularOrderData(item);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-
-                    </div>
-                    <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Collection">
-                          <PaidIcon
-                                className=" !text-icon cursor-pointer"
-                            onClick={() => {
-                              props.handlePaidModal(true);
-                              handleSetParticularOrderData(item);
-                            }}
-                          // style={{ color: "blue" }}
-                          />
-                        </Tooltip>
-
-                      </div>
-                    </div>
-  
-
-
-                  </div>
-
-                </div>
-              </div>
-
-                                    );
-                                })}
-                            </> :
-                            !props.deletedMediumOrder.length && !props.fetchingDeletedMediumOrderList ? <NodataFoundPage /> : null}
-
-
-                    </InfiniteScroll>
-                </div>
-            </div>
             <div className=' flex sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
-                <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] ">Normal </div>
-                <div className=" md:w-[10.31rem] ml-2">Order ID</div>
-          <div className=" md:w-[8.6rem]">Customer</div>
-          <div className=" md:w-[4.051rem] ">Contact</div>
-          <div className="md:w-[5.014rem]">Units</div>
-          <div className="md:w-[5.031rem]">Owner</div>
-          <div className="md:w-[5.2rem]">Supervisor</div>
-          <div className="md:w-[5.06rem]">Lead</div>
-          <div className="md:w-[9.73rem]">Created</div>
+                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+                <div className="font-bold font-poppins text-xs md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
+                        <div className="font-bold font-poppins text-xs md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
+          <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.031rem]">{translatedMenuItems[8]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.06rem]">{translatedMenuItems[7]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[9.73rem]">{translatedMenuItems[5]}</div>
           <div className="md:w-24"></div>
         </div>
                     <InfiniteScroll
@@ -658,7 +501,7 @@ function DeletedOrderList(props) {
                         next={handleLoadMoreLow}
                         hasMore={hasMore}
                         loader={props.fetchingDeletedLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"23vh"}
+                        height={"38vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
                         {props.deletedLowOrder.length ?
@@ -671,7 +514,7 @@ function DeletedOrderList(props) {
                                     return (
                                         <div>
                 <div
-                  className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  className="flex rounded justify-between mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col p-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 // style={{
                 //   borderBottom: "3px dotted #515050",
                 // }}
@@ -696,11 +539,11 @@ function DeletedOrderList(props) {
                                                         </Tooltip>
                                                     </div>
                     <div className=" flex  w-wk   max-sm:w-full">
-                      <div className="flex max-sm:w-full">
-                        <div class="w-[9.43rem]">
+                      <div className="flex  items-centermax-sm:w-full">
+                        <div class="w-[9.43rem] items-center justify-center ml-gap bg-[#eef2f9] h-8">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs"
+                              class="underline cursor-pointer text-[#1890ff] ml-tiny text-xs font-bold items-center"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -719,7 +562,7 @@ function DeletedOrderList(props) {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[9.02rem]">
+                        <div class="max-sm:w-full md:w-[9.02rem] items-center justify-center ml-gap bg-[#eef2f9] h-8">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
@@ -730,7 +573,7 @@ function DeletedOrderList(props) {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[3.23rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.23rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -746,7 +589,7 @@ function DeletedOrderList(props) {
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex   md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[3.31rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
@@ -754,7 +597,11 @@ function DeletedOrderList(props) {
 
 
                   </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[5.03rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <span>{date}</span>
+                  </div>
+                  
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -769,7 +616,7 @@ function DeletedOrderList(props) {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.02rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -783,7 +630,7 @@ function DeletedOrderList(props) {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[6.02rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -819,32 +666,34 @@ function DeletedOrderList(props) {
                     </div>
 
                   </div>
-                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
-                    <span>{date}</span>
-                  </div>
                   
-                  <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                  <div className=" flex   w-[5.5rem] max-xl:w-[6.9rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <ReInstateOrderToggle item={item} />
 
 </div>
                   <div class="flex">
-                    <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full   items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
+                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8  items-center justify-center ml-gap bg-[#eef2f9] h-8 justify-cente">
                       {item.orderStatus}
                     </div>
+                    <div class="w-6  items-center justify-center  bg-[#eef2f9] h-8">
+        <span onClick={() => exportPDFAnnexure()}>
+            <PictureAsPdfIcon className="!text-icon text-red-600"/>
+                           </span>
+          </div>        
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
 
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                      <div class=" text-xs  font-poppins">
+                      <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                           className=" !text-icon cursor-pointer text-green-800"
+                           className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);
@@ -858,10 +707,10 @@ function DeletedOrderList(props) {
                     </div>
 
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Add Supervisor">
                           <PersonAddAlt1
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer max-sm:!text-2xl"
                             style={{ color: item.supervisorUserName ? "green" : "red", fontSize: "1.25rem" }}
                             onClick={() => {
                               handleShow()
@@ -871,10 +720,10 @@ function DeletedOrderList(props) {
                       </div>
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Status">
                           <EventRepeatIcon
-                             className=" !text-icon cursor-pointer "
+                             className=" !text-icon cursor-pointer max-sm:!text-2xl "
                             onClick={() => {
                               props.handleStatusOfOrder(true);
                               handleSetParticularOrderData(item);
@@ -885,10 +734,10 @@ function DeletedOrderList(props) {
 
                     </div>
                     <div className=" flex  max-sm:flex-row  max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
+                    <div class=" text-xs  font-poppins items-center justify-center h-8  bg-[#eef2f9] ">
                         <Tooltip title="Collection">
                           <PaidIcon
-                             className=" !text-icon cursor-pointer "
+                             className=" !text-icon cursor-pointer text-[#e5625e] max-sm:!text-2xl "
                             onClick={() => {
                               props.handlePaidModal(true);
                               handleSetParticularOrderData(item);
@@ -938,6 +787,8 @@ function DeletedOrderList(props) {
                 addOrderDetailsModal={props.addOrderDetailsModal} />
 
         </>
+          )}
+  </div>
     )
 }
 
@@ -954,6 +805,7 @@ const mapStateToProps = ({ order, auth, distributor }) => ({
     userId: auth.userDetails.userId,
     addOrderDetailsModal: distributor.addOrderDetailsModal,
     orgId: auth.userDetails.organizationId,
+    orderSearch:order.orderSearch
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -8,7 +8,6 @@ import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
 import { handleCallNotesModal } from "../../../../Call/CallAction";
 import dayjs from "dayjs";
-import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
@@ -41,7 +40,6 @@ const suffix = (
 );
 const green = "#39D1B4";
 const yellow = "#FFD712";
-// yup validation scheme for creating a call
 const CallSchema = Yup.object().shape({
   callType: Yup.string().required("Select call type"),
   callCategory: Yup.string().required("Input required !"),
@@ -57,10 +55,6 @@ const CallSchema = Yup.object().shape({
   endTime: Yup.string()
     .nullable()
     .required("Input required !"),
-
-  // reminder:Yup.string()
-  // .nullable()
-  // .required("Input required !"),
 });
 function ContactInvestorCallActivityForm(props) {
 
@@ -410,10 +404,7 @@ function ContactInvestorCallActivityForm(props) {
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                       Mode
                       </div>
-                      <Switch
-                        // style={{
-                        //   marginLeft: "0.3125em"
-                        // }}
+                      <Switch                   
                         name="mode"
                         checkedChildren="Audio"
                         unCheckedChildren="Video"
@@ -521,7 +512,7 @@ function ContactInvestorCallActivityForm(props) {
                       />
                     </div>
                   </div>
-                  <Spacer />
+              
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
@@ -540,35 +531,7 @@ function ContactInvestorCallActivityForm(props) {
                     component={SearchSelect}
                     inlineLabel
                   />
-                 
-                  {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>
-                            <FormattedMessage
-                              id="app.thiscalloccursinthepast!"
-                              defaultMessage="This Call occurs in the past !"
-                            />
-                          </b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>
-                            {" "}
-                            <FormattedMessage
-                              id="app.thiscalloccursinthepast!"
-                              defaultMessage="This Call occurs in the past !"
-                            />
-                          </b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
+                                 
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk mt-3" 
                 >
@@ -659,29 +622,7 @@ function ContactInvestorCallActivityForm(props) {
                     }}
                   />
                  </div>
-                 
-                
-                  {/* <div >
-                  <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    //label="Talent"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={props.setClearbitCandidateData}
-                    component={CandidateClearbit}
-                    inlineLabel
-                  />
-                   </div>
-                  <Spacer /> */}
+                                      
                   <div class="mt-3">
                     <div class=" w-full"><Field
                       name="callDescription"
@@ -695,49 +636,7 @@ function ContactInvestorCallActivityForm(props) {
                       inlineLabel
                     /></div>
                   </div>
-                 
-                  
-                  {/* <div class=" flex justify-between" >
-                    <div 
-                    class=" w-1/2 font-bold">
-                    <div class=" flex justify-between" >
-                        <div>
-                          <StyledLabel>Set Reminder</StyledLabel>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
+                                             
                 </div>
               </div>
                 <div class=" flex justify-end mt-3">

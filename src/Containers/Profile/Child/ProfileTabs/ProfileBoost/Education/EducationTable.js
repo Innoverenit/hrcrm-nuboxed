@@ -1,4 +1,4 @@
-import React, { Component ,lazy} from "react";
+import React, { Component ,lazy ,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -72,7 +72,7 @@ class EducationTable extends Component {
         ),
         dataIndex: "yearOfPassing",
         // render: (name, item, i) => {
-        //   return <span>{moment(item.yearOfPassing).format("LL")}</span>;
+        //   return <span>{dayjs(item.yearOfPassing).format("LL")}</span>;
         // },
       },
       {
@@ -192,11 +192,13 @@ class EducationTable extends Component {
             );
           }}
         />
-
+<Suspense fallback={"Loading ..."}>
         <UpdateEducationModal
           updateEducationModal={updateEducationModal}
           handleUpdateEducationModal={handleUpdateEducationModal}
-        />
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        /></Suspense>
       </>
     );
   }

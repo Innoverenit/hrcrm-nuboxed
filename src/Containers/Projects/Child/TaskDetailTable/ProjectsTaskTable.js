@@ -2,7 +2,7 @@ import React, { useEffect, useState,useMemo,lazy } from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Tooltip,Button,Input,Avatar } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
 import {getProjectsTaskListById} from "../../ProjectsAction"
@@ -192,7 +192,7 @@ function ProjectsTaskTable (props)  {
           width:"8%",
           render: (text, item) => {
             
-            return <span>{` ${moment(item.assignedOn).format("ll")}`}</span>;
+            return <span>{` ${dayjs(item.assignedOn).format("ll")}`}</span>;
           },
         },
         {
@@ -255,7 +255,7 @@ function ProjectsTaskTable (props)  {
           dataIndex: "startDate",
           width:"8%",
          render: (text, item) => {
-           const date= ` ${moment(item.startDate).format("ll")}`
+           const date= ` ${dayjs(item.startDate).format("ll")}`
             return <span>
   {date}
               </span>;
@@ -268,7 +268,7 @@ function ProjectsTaskTable (props)  {
           dataIndex: "endDate",
           width:"8%",
           render: (text, item) => {
-             const data2= ` ${moment(item.endDate).format("ll")}`
+             const data2= ` ${dayjs(item.endDate).format("ll")}`
             return <span>
               {data2}
 

@@ -23,7 +23,9 @@ const LocationUpdateDrawer = (props) => {
         onClose={() => handleUpdateLocationDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LocationUpdateForm   storedLoc={storedLoc}/>
+          <LocationUpdateForm   storedLoc={storedLoc}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

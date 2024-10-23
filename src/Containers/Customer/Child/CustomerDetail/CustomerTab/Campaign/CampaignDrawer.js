@@ -19,7 +19,11 @@ const CampaignDrawer = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <CampaignForm customer={customer}{...formProps} />{" "}
+          <CampaignForm customer={customer}{...formProps} 
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>

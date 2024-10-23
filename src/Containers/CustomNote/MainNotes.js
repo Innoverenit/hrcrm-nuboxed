@@ -1,15 +1,13 @@
-import React, { Component,lazy} from "react";
+import React, { Component,lazy,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Timeline } from "antd";
 import { BorderBox } from "../../Components/UI/Layout"
 import { getNotesListByNotes } from "./MainNoteAction";
-import MainNoteForm from "./MainNoteForm";
-import MainSingleNotes from "./MainSingleNotes";
 import { BundleLoader } from "../../Components/Placeholder";
 
-
-
+const MainNoteForm = lazy(() => import("./MainNoteForm"));
+const  MainSingleNotes = lazy(() => import("./MainSingleNotes"));
 class MainNotes extends Component {
   componentDidMount() {
     this.props.getNotesListByNotes(this.props.type,this.props.uniqueId);
@@ -24,7 +22,7 @@ class MainNotes extends Component {
         
 
         <BorderBox>
-          <div class="h-80 overflow-auto p-[0.3rem]">
+          <div class="h-80 overflow-auto p-[0.8rem]">
             {fetchingNotesListByCustomerId ? (
               <BundleLoader />
             ) : (
@@ -35,7 +33,12 @@ class MainNotes extends Component {
                         key={index}
                         style={{ paddingBottom: "0.625em" }}
                       >
-                        <MainSingleNotes {...item} userId={this.props.userId} />
+                        <Suspense fallback={<BundleLoader />}> 
+                        <MainSingleNotes {...item} userId={this.props.userId}
+                         translatedMenuItems={this.translatedMenuItems}
+                         selectedLanguage={this.props.selectedLanguage}
+                         translateText={this.props.translateText}
+                        /></Suspense>
                       </Timeline.Item>
                     ))}
                 </Timeline>
@@ -44,13 +47,13 @@ class MainNotes extends Component {
         </BorderBox>
         <br />
         <div style={{ backgroundColor: "#dcdcdc" }}>
-          <MainNoteForm
+        <Suspense fallback={<BundleLoader />}>  <MainNoteForm
            type={this.props.type}
            uniqueId={this.props.uniqueId}
             callback={() =>
               this.props.getNotesListByNotes(this.props.type,this.props.uniqueId)
             }
-          />
+          /></Suspense>
         </div>
       </>
     );

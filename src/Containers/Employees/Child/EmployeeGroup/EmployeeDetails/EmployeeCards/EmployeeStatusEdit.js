@@ -65,12 +65,9 @@ class EmployeeStatusEdit extends Component {
             value={this.state.fields.emailId}
             width="100%"
           />
-          <Spacer style={{ margin: "0.125em" }} />
-
-          <FlexContainer
-            flexDirection="column"
-            style={{ padding: "0.625em 1.25em 0.625em 1.25em" }}
-          >
+          <div class=" mt-3" style={{ margin: "0.125em" }} />
+         <div class=" flex flex-col flex-wrap items-start self-start p-[0.625em 1.25em 0.625em 1.25em] justify-start grow shrink h-auto mr-auto ">
+       
             <EditableDatePicker
               defaultValue={dateOfJoining}
               handleChange={this.handleChange}
@@ -79,8 +76,8 @@ class EmployeeStatusEdit extends Component {
               value={this.state.fields.dateOfJoining}
               style={{ width: "100%" }}
             /> */}
-            {/* <Spacer style={{ margin: "0.125em" }} /> */}
-          {/* </FlexContainer> */}
+            {/* <div class=" mt-3" style={{ margin: "0.125em" }} /> */}
+          {/* </div> */}
 
           <div class=" flex justify-between w-full"
           >
@@ -171,7 +168,7 @@ class EmployeeStatusEdit extends Component {
             width="100%"
           />
             </div>
-           {/* <Spacer style={{ margin: "0.125em" }} />
+           {/* <div class=" mt-3" style={{ margin: "0.125em" }} />
             <EditableInput
             // defaultValue={twitter}
             handleChange={this.handleChange}

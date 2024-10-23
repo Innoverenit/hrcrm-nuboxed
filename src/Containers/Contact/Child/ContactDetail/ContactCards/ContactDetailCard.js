@@ -14,6 +14,9 @@ class ContactDetailCard extends Component {
               <ContactDetailView
                 contact={contact}
                 toggleViewType={toggleViewType}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
               />
             ) : null
           }

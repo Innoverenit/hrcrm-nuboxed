@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { JumpStartBox } from "../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { CurrencySymbol } from "../../../../Components/Common";
 import {
   getAllRecruitmentByOppId,
@@ -20,9 +19,8 @@ class RecruitProJumpStart extends Component {
   }
   render() {
     return (
-      <FlexContainer flexDirection="column" style={{ width: "100%" }}>
-        <FlexContainer style={{ width: "100%",
-          }}>
+      <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
           <JumpStartBox
             // title="# Requirements"
             title={<FormattedMessage
@@ -72,8 +70,8 @@ class RecruitProJumpStart extends Component {
               value={this.props.allRecruitmentAvgTimeByOppId.recruitProfileLinkDetails}
            
           />
-        </FlexContainer>
-      </FlexContainer>
+        </div>
+      </div>
     );
   }
 }

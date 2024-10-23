@@ -73,32 +73,33 @@ function AddedSuppliesTable(props) {
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class=" m-5 p-1  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class=" m-3 p-1 h-62vh overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between  p-1 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[19.1rem]">
+                        <div className=" font-poppins text-xs md:w-[19.1rem]">
                             Name
                         </div>
-                        <div className=" md:w-[14.1rem]">
+                        <div className="font-poppins text-xs md:w-[14.1rem]">
                             Category
                         </div>
-                        <div className=" md:w-[14.1rem]">
+                        <div className="font-poppins text-xs md:w-[14.1rem]">
                             Sub-category
                         </div>
-                        <div className=" md:w-[14.1rem]">
+                        <div className="font-poppins text-xs md:w-[14.1rem]">
                             Attribute
                         </div>
-                        <div className=" md:w-[14.1rem]">
+                        <div className="font-poppins text-xs md:w-[14.1rem]">
                             Sub-attribute
                         </div>
-                        <div className=" md:w-[5.1rem]">
-                            Units
-                        </div>
-                        <div className=" md:w-[5.1rem]">
+                       
+                        <div className="font-poppins text-xs md:w-[5.1rem]">
                             Quality
+                        </div>
+                        <div className="font-poppins text-xs md:w-[5.1rem]">
+                            Units
                         </div>
 
                     </div>
-                    <div class="overflow-x-auto h-[64vh]">
+                    <div class="overflow-x-auto h-[57vh]">
 
                         <>
                             {props.generatorSuppliers.map((item) => {
@@ -136,14 +137,15 @@ function AddedSuppliesTable(props) {
                                                         {item.subAttributeName}
                                                     </div>
                                                 </div>
+                                               
                                                 <div className=" flex  w-12 max-sm:justify-between  max-sm:flex-row ">
                                                     <div class="  text-xs  font-poppins">
-                                                        {item.unit}
+                                                        {item.quality}
                                                     </div>
                                                 </div>
                                                 <div className=" flex  w-12 max-sm:justify-between  max-sm:flex-row ">
                                                     <div class="  text-xs  font-poppins">
-                                                        {item.quality}
+                                                        {item.unit}
                                                     </div>
                                                 </div>
 

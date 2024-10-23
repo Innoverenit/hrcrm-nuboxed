@@ -5,41 +5,16 @@ import { FormattedMessage } from "react-intl";
 import ReactDOM from "react-dom";
 import QuotProAndService from "./QuotProAndService";
 import { Tooltip, Button, message, Icon } from "antd";
-// import { ShoppingOutlined,ReconciliationOutlined, PlusOutlined, ShoppingCartOutlined, LinkOutlined, AreaChartOutlined} from '@ant-design/icons';
 import { ActionIcon } from "../../../../../Components/Utils";
-// import {
-//   getContactListByOpportunityId,
-//   getCallsListByOpportunityId,
-//   getEventsListByOpportunityId,
-//   linkContactsToOpportunity,
-//   getTasksListByOpportunityId,
-//   handleDocumentUploadModal,
-//   handleLinkConfigureModal,
-//   handleLinkServiceModal,
-//   handleLinkDeliveryModal,
-//   generateQuotation,
-//   linkContactsCheckToOpportunity,
-//   handleRecruitModal,
-//   handleTagProfileModal,
-//   emailSendQuote,
-//   // getOpportunityCard,
-// } from "../../../OpportunityAction";
-
 import AddTagProfileModal from "./Recruitment/AddTagProfileModal";
 import { connect } from "react-redux";
 import AddRecruiterModal from "./Recruitment/AddRecruitModal";
-// import RecruitProJumpstart from "../../RecruitProJumpstart/RecruitProJumpstart";
-// import RecruitProgressBar from "../../RecruitProProgressBar/RecruitProgressBar";
 import SummaryTable from "./Recruitment/Child/SummaryTable";
 import RecruitmentTable from "./Recruitment/RecruitmentTable";
 import { Breadcrumb, Alert } from "antd";
-// import LinkConfigureModal from "./LinkConfigureModal";
-// import { handleTaskModal } from "../../../../Task/TaskAction";
 import {
-  FlexContainer,
   TabsWrapper,
 } from "../../../../../Components/UI/Layout";
-// import QuotationTable from "./QuotationTable";
 import LinkedGenerateQuote from "./LinkedGenerateQuote";
 import AddTaskModal from "../../../../Task/Child/AddTaskModal";
 
@@ -55,7 +30,6 @@ class DraggableTabs extends Component {
     };
     this.moveTab = this.moveTab.bind(this);
     this.selectTab = this.selectTab.bind(this);
-    // this.closedTab = this.closedTab.bind(this);
     this.addTab = this.addTab.bind(this);
     this.state = {
       tabs: [
@@ -123,11 +97,7 @@ class DraggableTabs extends Component {
                           tooltiptitle={<FormattedMessage
                             id="app.create"
                             defaultMessage="Create"
-                          />}
-                          // onClick={() => {
-                          //   this.handleQuotProPopoverVisibleChange();
-                          //   this.props.handleLinkConfigureModal(true);
-                          // }}
+                          />}                     
                           size="0.875em"
                           style={{
                             marginLeft: "0.375em",
@@ -141,10 +111,7 @@ class DraggableTabs extends Component {
 
                   {/* <QuotProAndService /> */}
 
-                  <FlexContainer
-                    justifyContent="flex-end"
-                    style={{ marginTop: "0.3125em" }}
-                  >
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto m-[0.3125rem] ">         
                     <Button
                       type="primary"
                       onClick={() =>
@@ -160,7 +127,7 @@ class DraggableTabs extends Component {
                       />
                       {/* Generate Quote */}
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </Suspense>
               ) : (
                   <>
@@ -332,12 +299,7 @@ class DraggableTabs extends Component {
                         </Suspense>
                       )}
                   </>
-                )}
-
-                {/* <LinkConfigureModal
-                  addLinkConfigureModal={this.props.addLinkConfigureModal}
-                  handleLinkConfigureModal={this.props.handleLinkConfigureModal}
-                /> */}
+                )}          
               </>
             </>
           ),
@@ -361,56 +323,6 @@ class DraggableTabs extends Component {
             </>
           ),
         },
-        // {
-        //   id: 3,
-        //   content: (
-        //     <>
-        //       <span>
-        //         <>
-        //           <Icon type="file-done" />
-        //           &nbsp; Task
-        //         </>
-        //       </span>
-        //       <ActionIcon
-        //         type="plus"
-        //         tooltipTitle="Create"
-        //         handleIconClick={() => this.props.handleTaskModal(true)}
-        //         size="0.875em"
-        //         style={{ marginLeft: "0.3125em", verticalAlign: "center" }}
-        //       />
-        //     </>
-        //   ),
-
-        //   display: (
-        //     <>
-        //       <AddTaskModal
-        //         addTaskModal={this.props.addTaskModal}
-        //         handleTaskModal={handleTaskModal}
-        //         callback={() =>
-        //           this.props.getTasksListByOpportunityId(
-        //             this.props.opportunityId
-        //           )
-        //         }
-        //         defaultAccounts={[
-        //           {
-        //             label:
-        //               this.props.opportunity &&
-        //               this.props.opportunity.metaData &&
-        //               this.props.opportunity.metaData.account &&
-        //               this.props.opportunity.metaData.account.accountName,
-        //             // value: this.props.opportunity.accountId,
-        //           },
-        //         ]}
-        //         defaultOpportunities={[
-        //           {
-        //             label: this.props.opportunity.opportunityName,
-        //             value: this.props.opportunity.opportunityId,
-        //           },
-        //         ]}
-        //       />
-        //     </>
-        //   ),
-        // },
         {
           id: 5,
           content: "Partner",

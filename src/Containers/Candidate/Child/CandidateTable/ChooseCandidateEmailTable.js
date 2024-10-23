@@ -2,7 +2,7 @@ import React, { useEffect,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledTable } from "../../../../Components/UI/Antd";
 const EmailSkillLoadMore = lazy(() =>
   import("../CandidateTable/EmailSkillLoadMore")
@@ -81,7 +81,7 @@ function ChooseCandidateEmailTable(props) {
       dataIndex: "availableDate",
       width: "20%",
       render: (text, item) => {
-        const endDate = moment(item.availableDate).format("ll");
+        const endDate = dayjs(item.availableDate).format("ll");
         return <span>{endDate}</span>;
     },
   },

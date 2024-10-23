@@ -16,7 +16,6 @@ import RecruitmentDetails from "./Child/RecruitmentDetails";
 import RecruitmentStages from "./RecruitmentStages";
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import moment from "moment"
 import {
   Tooltip,
   Dropdown,
@@ -266,7 +265,7 @@ class SubTableClickCandidate extends Component {
       return (
         <>
           {/* {item.candidateBilling} {item.currency}  */}
-          {moment(item.avilableDate).format("L")}
+          {dayjs(item.avilableDate).format("L")}
          
         </>
       );
@@ -584,19 +583,19 @@ class SubTableClickCandidate extends Component {
           : item.documentSetList.filter((document) => {
               return document !== null && document !== "";
             });
-
+  const data1=item.documentSetList;
       return (
-        <>
-          {item.documentSetList === [] ? (
+       
+          data1.length === 0 ? (
             "None"
           ) : (
             <span>
               <DocumentsLoadMore documentSetList={data} />
             </span>
-          )}
-        </>
+          )
       );
     },
+    
   },
 
 
@@ -623,7 +622,7 @@ class SubTableClickCandidate extends Component {
         return <>
         {item.onboardDate === null ? "None" :
           <span>
-            {moment(item.onboardDate).format("L")}
+            {dayjs(item.onboardDate).format("L")}
           </span>
         }
       </>

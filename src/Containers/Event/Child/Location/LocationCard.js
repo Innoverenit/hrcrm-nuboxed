@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -26,7 +26,8 @@ import BillingToggle from "./BillingToggle";
 import CorporateToggle from "./CorporateToggle";
 import ProjectToggle from "./ProjectToggle";
 import RetailToggle from "./RetailToggle";
-import LocationCellDrawer from "./LocationCellDrawer";
+
+const LocationCellDrawer = lazy(() => import("./LocationCellDrawer"));
 const LocationCustomerDrawer = lazy(() => import("./LocationCustomerDrawer"));
 const LocationSupplierDrawer = lazy(() => import("./LocationSupplierDrawer"));
 const LocationShiftDrawer = lazy(() => import("./LocationShiftDrawer"));
@@ -52,16 +53,23 @@ const LocationCard = (props) => {
       try {
         const itemsToTranslate = [
        
-          "Name",//0
-          "Address",//1
-          "Production",//2
-          "Refurbish",//3
-          "Inventory",//4
-          "Billing",//5
-          "Corporate",//6
-          "Project",//7
-          "Retail",//8
-          "Region"//9
+        "110",  // "Name",//0
+         "185", // "Address",//1
+         "203", // "Production",//2
+         "758", // "Refurbish",//3
+        "880",  // "Inventory",//4
+        "1010",  // "Billing",//5
+         "1011", // "Corporate",//6
+       "137",   // "Project",//7
+        "1013",  // "Retail",//8
+        "24" , // "Region"//9
+       "1017", // "Shift"
+       "1627", // Customer-Virtual Location
+       "744", // "Cell"
+       "170", // "Edit"
+       "1259", // "Do you want to delete?"
+       "84",// "Delete"
+     "1626" //  "No address available"
          
         ];
 
@@ -97,199 +105,165 @@ const LocationCard = (props) => {
           loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
           height={"80vh"}
         >
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex  font-bold font-poppins bg-[#eef2f9] text-base justify-between w-[100%] mt-3 p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
             <div className=" md:w-[7.5rem]">
             {translatedMenuItems[0]}</div>
-            <div className="   md:w-[9.1rem]">
+            <div className="   md:w-[9.1rem] font-bold font-poppins text-xs ">
               
             </div>
-            <div className=" md:w-[6.1rem] ">{translatedMenuItems[1]}
+            <div className=" md:w-[6.1rem] font-bold font-poppins text-xs ">{translatedMenuItems[1]}
               {/* Address */}
               </div>
-            <div className=" md:w-[6.9rem] ">
+            <div className=" md:w-[6.9rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[2]}
             {/* Production */}
             </div>
-            <div className=" md:w-[5.9rem] ">
+            <div className=" md:w-[5.9rem] font-bold font-poppins text-xs  ">
             {translatedMenuItems[3]}{/* Refurbish */}
             </div>
-            <div className="md:w-[7.5rem]">
+            <div className="md:w-[7.5rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[4]} {/* Inventory */}
               </div>
-            <div className="md:w-[7.5rem]">
+            <div className="md:w-[7.5rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[5]} {/* Billing */}
               </div>
-            <div className="md:w-[6.51rem]">
+            <div className="md:w-[6.51rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[6]} {/* Corporate */}
               </div>
-            <div className="md:w-[6.3rem]">
+            <div className="md:w-[6.3rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[7]} {/* Project */}
               </div>
-            <div className="md:w-[5.9rem]">
+            <div className="md:w-[5.9rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[8]}{/* Retail */}
               </div>
-            <div className="md:w-[8.9rem]">
+            <div className="md:w-[8.9rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[9]}{/* Regions */}
               </div>
           </div>
-          <div class="">
+          <div class="w-[99%]">
             {props.showLocation.map((item) => {
               return (
                 <div >
-                  <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm: scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                     <div class="flex">
-                      <div className=" flex  flex-row md:w-[25.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex w-[9.12rem] border-l-2 h-8 border-green-500 bg-[#eef2f9] items-center justify-start  md:w-[25.12rem] max-sm:w-full max-sm:justify-between ">
 
 
-                        <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
+                        <div class=" text-sm items-center font-poppins md:w-[10.1rem]">
                           {item.locationName}
                         </div>
 
+                        </div>
+                        <div className=" flex w-[3.25rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  md:w-[7.25rem]  max-sm:w-full mt-1 max-sm:justify-between">
 
-                        <div className=" flex   md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
 
-
-                          <div class=" font-normal text-[0.82rem]  font-poppins">
+                          <div class=" text-sm  font-poppins">
                             <CountryFlag1 countryCode={item.countryAlpha2Code} />
                             &nbsp;
                             {item.countryAlpha2Code}
                           </div>
                         </div>
-                        <div className=" flex  flex-col md:w-[13rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                        <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[13.22rem] md:w-[13.22rem] max-sm:w-full mt-1 max-sm:justify-between">
 
-
-                          <div class=" font-normal text-[0.82rem]  font-poppins">
+                          <div class=" text-sm items-center ml-gap font-poppins">
 
                             <span>
                               {item.address && item.address.length > 0 ? (
                                 `${(item.address[0].city || "")} ${(item.address[0].state || "")}`.slice(0, 20)
                               ) : (
-                                "No address available"
+                               translatedMenuItems[16] // "No address available"
                               )}
                             </span>            </div>
                         </div>
-                      </div>
+                      
                     </div>
 
 
-                    <div className=" flex  flex-row md:w-[7.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.22rem] md:w-[7.22rem] max-sm:w-full mt-1 max-sm:justify-between">
 
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <ProductionToggle
                           locationDetailsId={item.locationDetailsId}
                           productionInd={item.productionInd}
                         />
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex w-[7.21rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.21rem] max-sm:w-full mt-1 max-sm:justify-between">
 
 
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <RefurbishToggle
                           locationDetailsId={item.locationDetailsId}
                           refurbishInd={item.refurbishInd}
                         />
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[7.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   w-[7.12rem] md:w-[7.12rem] max-smw-full mt-1 max-sm:justify-between">
 
 
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <InventoryToggle
                           locationDetailsId={item.locationDetailsId}
                           inventoryInd={item.inventoryInd}
                         />
-                        {/* <Switch
-                          className="toggle-clr"
-                          checked={item.inventoryInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          disabled={!props.orderManagementInd}
-                        /> */}
+                   
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.1rem]  md:w-[7.1rem] max-sm:w-full mt-1 max-sm:justify-between ">
 
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <BillingToggle
                           locationDetailsId={item.locationDetailsId}
                           billingInd={item.billingInd}
                         />
-                        {/* <Switch
-                          className="toggle-clr"
-                          checked={item.billingInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          disabled={!props.financeInd}
-                        /> */}
+                      
                       </div>
                     </div>
 
 
-                    <div className=" flex  flex-row md:w-[7.11rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[7.11rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.11rem] max-sm:w-full mt-1 max-sm:justify-between">
 
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
 
                         <CorporateToggle
                           locationDetailsId={item.locationDetailsId}
                           corporateInd={item.corporateInd}
                         />
-                        {/* <Switch
-                          className="toggle-clr"
-                          checked={item.corporateInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          
-                        /> */}
+                      
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[6.23rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[6.23rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.23rem] max-sm:w-full mt-1 max-sm:justify-between">
 
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  items-center ml-gap font-poppins">
                         <ProjectToggle
                           locationDetailsId={item.locationDetailsId}
                           projectInd={item.projectInd}
                         />
-                        {/* <Switch
-                          className="toggle-clr"
-                          checked={item.projectInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                          disabled={!props.recruitProInd}
-                        /> */}
+                        
                       </div>
                     </div>
-                    <div className=" flex  flex-row md:w-[11.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[11.41rem] md:w-[11.41rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-full mt-1 max-sm:justify-between">
 
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" text-sm  font-poppins">
                         <RetailToggle
                           locationDetailsId={item.locationDetailsId}
                           retailInd={item.retailInd}
                         />
-                        {/* <Switch
-                          className="toggle-clr"
-                          checked={item.retailInd}
-                          isLoading={true}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        /> */}
+                      
                       </div>
                     </div>
-                    <div className=" w-28  max-md:w-[4.41rem] max-sm:flex-row  mt-1 max-sm:justify-between">
+                    <div className=" w-28  max-md:w-[4.41rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] mt-1 max-sm:justify-between">
 
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" text-sm items-center ml-gap font-poppins">
                         {item.regions}
                       </div>
                     </div>
-                    <div class="flex   max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                    <div class="flex   justify-end w-[6.2rem]  max-xl:w-[1.2rem] max-lg:w-[1rem]  items-center justify-start h-8  bg-[#eef2f9]  max-sm:w-[10%] ">
                       <div>
-                        <Tooltip title="Shift">
+                        <Tooltip title={translatedMenuItems[10]} >
                           <FilterTiltShiftIcon
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer text-[#798071]"
                             onClick={() => {
                               handleStoredLocations(item);
                               props.handleLocationShiftDrawer(true);
@@ -299,9 +273,9 @@ const LocationCard = (props) => {
                         </Tooltip>
                       </div>
                       <div>
-                        <Tooltip title="Customer-Virtual Location">
+                        <Tooltip title={translatedMenuItems[11]} >
                           <AcUnitIcon
-                            className="!text-icon cursor-pointer"
+                            className="!text-icon cursor-pointer text-[#fecdaa]"
                             onClick={() => {
                               handleStoredLocations(item);
                               props.handleLocationCustomerDrawer(true);
@@ -309,14 +283,14 @@ const LocationCard = (props) => {
                           />
                         </Tooltip>
                       </div>
-                    </div>
+                   
 
-                    <div class="flex  max-sm:flex-row max-sm:w-[10%]">
+                    <div class="flex  max-sm:w-[10%]">
                       {item.productionInd ?
                         <div>
-                          <Tooltip title="Cell">
+                          <Tooltip title={translatedMenuItems[12]} >
                             <TokenIcon
-                              className=" !text-icon cursor-pointer text-[blue]"
+                              className=" !text-icon cursor-pointer text-[#755b69]"
                               onClick={() => {
                                 handleStoredLocations(item);
                                 props.handleLocnCellDrawer(true);
@@ -325,9 +299,9 @@ const LocationCard = (props) => {
                           </Tooltip>
                         </div> : null}
                     </div>
-                    <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
+                    
                       <div>
-                        <Tooltip title="Edit">
+                        <Tooltip title={translatedMenuItems[13]} >
                           <BorderColorIcon
                             className="!text-icon cursor-pointer text-[tomato]"
                             onClick={() => {
@@ -337,12 +311,12 @@ const LocationCard = (props) => {
                           />
                         </Tooltip>
                       </div>
-                      <div>
+                      
                         <StyledPopconfirm
-                          title="Do you want to delete?"
+                          title={translatedMenuItems[14]} 
                           onConfirm={() => props.deleteLocation(item.locationDetailsId, props.orgId)}
                         >
-                          <Tooltip title="Delete">
+                          <Tooltip title={translatedMenuItems[15]} >
                             <DeleteOutlined
                               type="delete"
                               className="!text-icon cursor-pointer text-red-500"
@@ -352,40 +326,51 @@ const LocationCard = (props) => {
 
                       </div>
                     </div>
-
-                  </div>
-                </div>
+</div>
+                 
               );
             })}
           </div>
         </InfiniteScroll>
       </div>
+      <Suspense fallback={<BundleLoader />}>
       <LocationShiftDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
         storedLoc={storedLoc}
         locShiftDrawer={props.locShiftDrawer}
         handleLocationShiftDrawer={props.handleLocationShiftDrawer}
         handleStoredLocations={handleStoredLocations}
       />
       <LocationUpdateDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
         storedLoc={storedLoc}
         locationUpdatedrawr={props.locationUpdatedrawr}
         handleUpdateLocationDrawer={props.handleUpdateLocationDrawer}
       />
       <LocationCustomerDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
         storedLoc={storedLoc}
         locationCustomerdrawr={props.locationCustomerdrawr}
         handleLocationCustomerDrawer={props.handleLocationCustomerDrawer}
       />
       <LocationSupplierDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
         storedLoc={storedLoc}
         locationSupplierdrawr={props.locationSupplierdrawr}
         handleLocationSupplierDrawer={props.handleLocationSupplierDrawer}
       />
       <LocationCellDrawer
+       translateText={props.translateText}
+       selectedLanguage={props.selectedLanguage}
         storedLoc={storedLoc}
         clickLocDrwr={props.clickLocDrwr}
         handleLocnCellDrawer={props.handleLocnCellDrawer}
       />
+      </Suspense>
     </>
   );
 };

@@ -1,21 +1,18 @@
 
-import React, { useState, useEffect } from 'react';
-import { Formik, Form, Field, FieldArray } from 'formik';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { Formik, Form, Field,  } from 'formik';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import * as Yup from "yup";
-import { StyledLabel } from '../../../../../Components/UI/Elements';
 import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
-import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
-import { Button, Tooltip, message, Switch } from 'antd';
+import { Button, Tooltip, message } from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { updateProcureStep1, getLobList } from '../../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
 import dayjs from "dayjs";
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
@@ -30,6 +27,38 @@ function ProcureStep1(props) {
             label: `${item.firstName || ""} ${item.lastName || ""}`
         }
     })
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    '110', // 0
+    '14', // 1
+    '218', // 2
+    '71', // 3
+    '260', // 4
+    '142', // 5
+   '259',//6
+    "218",// Value
+  "1379", // Ship on
+   "1486" // track ID
+
+
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         props.getContactDistributorList(props.setEdittingProcure.distributorId)
         props.getSaleCurrency()
@@ -124,35 +153,7 @@ function ProcureStep1(props) {
                 <div class="overflow-y-auto h-[28rem] overflow-x-hidden max-sm:h-[30rem]">
                     <Form>
                         <div class=" flex justify-between">
-                            {/* <div class=" w-[47%] flex-col flex">
-                                <div class="mt-3">
-                                    <StyledLabel><h3> <FormattedMessage
-                                        id="app.deliveryaddress"
-                                        defaultMessage="Delivery Address"
-                                    /></h3></StyledLabel>
-
-                                    <FieldArray
-                                        name="loadingAddress"
-                                        render={(arrayHelpers) => (
-                                            <AddressFieldArray1
-                                                singleAddress
-                                                arrayHelpers={arrayHelpers}
-                                                values={values}
-                                            />
-                                        )}
-                                    />
-                                </div>
-                                <div class="mt-3">
-                                    <Field
-                                        name="comments"
-                                        label="Notes"
-                                        width={"100%"}
-                                        isColumn
-                                        component={TextareaComponent}
-                                    />
-                                </div>
-
-                            </div> */}
+                          
                             <div class=" w-[47%]">
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
@@ -280,10 +281,10 @@ function ProcureStep1(props) {
                                 <div class="justify-between flex mt-3">
 
                                     <div class="w-[46%]  ml-8 mt-2">
-                                        <StyledLabel><FormattedMessage
+                                        <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
                                             id="app.priority"
                                             defaultMessage="Priority"
-                                        /></StyledLabel>
+                                        /></div>
                                         <div class="justify-between flex">
                                             <div>
                                                 <Tooltip title={<FormattedMessage

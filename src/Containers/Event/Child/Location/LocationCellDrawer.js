@@ -20,7 +20,9 @@ const LocationCellDrawer = (props) => {
         onClose={() => handleLocnCellDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-         <LocationCellTab  storedLoc={storedLoc}/>
+         <LocationCellTab  storedLoc={storedLoc}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

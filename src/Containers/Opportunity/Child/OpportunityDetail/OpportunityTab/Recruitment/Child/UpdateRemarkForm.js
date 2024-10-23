@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import ReactSpeech from "../../../../../../../Components/ReactSpeech/ReactSpeech";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import StopIcon from '@mui/icons-material/Stop';
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
@@ -9,16 +8,11 @@ import RotateRightIcon from '@mui/icons-material/RotateRight';
 import { Button ,Tooltip} from "antd";
 import { Formik, Form, Field } from "formik";
 import { FormattedMessage } from "react-intl";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
-import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import {updateRemark}  from "../../../../../OpportunityAction";
 import * as Yup from "yup";
-/**
- * yup validation scheme for creating a opportunity
- */
+
 const ProfileSchema = Yup.object().shape({
   // note: Yup.string().required("Input needed!"),
 
@@ -109,7 +103,7 @@ function UpdateRemarkForm(props) {
                     component={SelectComponent}
                     options={Array.isArray(stageList) ? stageList : []}
                   />{" "}
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="reviewer"
                     //  label="Reviewer"
@@ -126,30 +120,9 @@ function UpdateRemarkForm(props) {
                       marginTop: "0.25em",
                     }}
                   />
-                  <Spacer />
-                  {/* <Field
-                    name="note"
-                    isRequired
-                    // label="Comments"
-                    label={<FormattedMessage
-                      id="app.note"
-                      defaultMessage="Note"
-                    />}
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                    style={{
-                      flexBasis: "80%",
-                      height: "5em",
-                      // marginLeft: "2.5em",
-                      marginTop: "0.25em",
-                    }}
-                    
-                  /> */}
-
-               
-                  
-                    <div>
+                  <div class=" mt-3" />
+                                                
+                   <div>
       <p>Microphone:  {listening ? 'on' : 'off'} 
         </p>
       <div>
@@ -196,15 +169,9 @@ function UpdateRemarkForm(props) {
         //  defaultValue={props.setEditingRemark.transcript?props.setEditingRemark.transcript:props.setEditingRemark.text}
          value={transcript?transcript:text}
          onChange={handletext}
-        >
-        
-        </textarea>
-    
-      
-      </div>
-      
-      
-     
+        >       
+        </textarea>       
+      </div>              
     </div>
   
     
@@ -215,8 +182,8 @@ function UpdateRemarkForm(props) {
                   }}
                 ></div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <div class=" mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -229,7 +196,7 @@ function UpdateRemarkForm(props) {
                   {/* Remark */}
                 </Button>
                
-              </FlexContainer>
+              </div>
            
             </Form>
             

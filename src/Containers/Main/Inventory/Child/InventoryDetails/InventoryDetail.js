@@ -39,57 +39,57 @@ function InventoryDetail(props) {
       const fetchMenuTranslations = async () => {
         try {
           const itemsToTranslate = [
-           "Material",//0
-            "Production",//1
-            "Repair",//2
-            "Back",//3
-            "New",//4
-            "Receive",//5
-            "Stock",//6
-            'Cell',//7
-            'Dispatch',//8
-            'Archive',//9
-            'Loading',//10
-            'Created',//11
-            'Supplier',//12
-            'New',//13
-            'To Stock',//14
-            'Name',//15
-            'Category',//16
-            'Attribute',//17
-            'Units',//18
-            'Received',//19
-            'Damaged',//20
-            'Remark',//21
-            'Create',//22
-            'Add',//23
-            'Cancel',//24
-            'Check for',//25
-            'Generate',//26
-            'Select from existing',//27
-            'Change Status',//28
-            'In Stock',//29
-            'Ordered',//30
-            'Balance',//31
-            'Zone',//32
-            'Rack',//33
-            'Save',//34
-            'Manufacture',//35
-            'To Dispatch',//36
-            'Store',//37
-            'You have reached the end of page',//38
-            'Send To Store',//39
-            'Edit',//40
-            'Print',//41
-            'Dispatch By',//42
-            'list for',//43
-            'Price',//44
-            'Damage',//45
-            'Final',//46
-            'Select Zone',//47
-            'Item',//48
-            'System',//49
-            'Part',//50
+         "796", //  "Material",//0
+           "203", // "Production",//1
+            "661",// "Repair",//2
+            "45",// "Back",//3
+            "100",// "New",//4
+          "1080",  // "Receive",//5
+           "1082", // "Stock",//6
+           "744", // 'Cell',//7
+            "1063",// 'Dispatch',//8
+           "922" ,// 'Archive',//9
+           "82" ,// 'Loading',//10
+            "679",// 'Created',//11
+           "1083", // 'Supplier',//12
+           "100",// 'New',//13
+           "1256", // 'To Stock',//14
+           "110" ,// 'Name',//15
+           "14", // 'Category',//16
+           "259" ,// 'Attribute',//17
+           "260", // 'Units',//18
+           "1085", // 'Received',//19
+       "1086", // 'Damaged',//20
+           "1087" ,// 'Remark',//21
+           "104", // 'Create',//22
+         "85" ,  // 'Add',//23
+          "1079",  // 'Cancel',//24
+           "1088", // 'Check for',//25
+           "1089", // 'Generate',//26
+           "1090", // 'Select from existing',//27
+          "1250" , // 'Change Status',//28
+           "1091", // 'In Stock',//29
+           "1092", // 'Ordered',//30
+           "1093" ,// 'Balance',//31
+           "1077", // 'Zone',//32
+          "1073",  // 'Rack',//33
+          "1078",  // 'Save',//34
+          "1042",  // 'Manufacture',//35
+           "778", // 'To Dispatch',//36
+            "1052",// 'Store',//37
+          "1251",// 'You have reached the end of page',//38
+          "1095" , // 'Send To Store',//39
+          "170",  // 'Edit',//40
+          "1252",  //  'Print',//41
+           "1097", // 'Dispatch By',//42
+          "1253", // 'list for',//43
+           "657", // 'Price',//44
+          "1086" , // 'Damage',//45
+          "771",  // 'Final',//46
+          "1098" , // 'Select Zone',//47
+           "1044", // 'Item',//48
+             "1254", // 'System',//49
+         "2056"   // 'Part',//50
           ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -142,7 +142,9 @@ function InventoryDetail(props) {
                   <div class="cursor-pointer">
                   <InventoryMaterialTab inventory={inventory}  translateText={props.translateText}
         translatedMenuItems={translatedMenuItems}
-        selectedLanguage={props.selectedLanguage}/>
+        selectedLanguage={props.selectedLanguage}
+        
+        />
                   </div>
                 ) : props.viewType1 === "production" && props.productionInd ? (
                   <div class="cursor-pointer">

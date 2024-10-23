@@ -11,13 +11,13 @@ class LocationHeader extends Component {
         setLocationViewType,
     } = this.props;
     return (
-      <div style={{position: "sticky",
-      top: "3.35rem",
-      zIndex: "998"}} >
+      <div className="sticky mt-1 z-50"> 
         <ActionHeader
             leftComponent={
 
                 <LocationActionLeft
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
                     viewType={viewType}
                     setLocationViewType={setLocationViewType}
                 />
@@ -25,6 +25,8 @@ class LocationHeader extends Component {
             }
           rightComponent={
             <LocationActionRight
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             handleLocationModal={this.props.handleLocationModal}
           addlocationModal={this.props.addlocationModal}
             />

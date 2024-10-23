@@ -7,16 +7,11 @@ import {
   
     
   } from '@ant-design/icons';
-import { base_url } from "../../../Config/Auth";
-import { Icon, Button, Tooltip } from "antd";
-import { FlexContainer } from "../../../Components/UI/Layout";
-import { Spacer, TextInput } from "../../../Components/UI/Elements";
+import { Button } from "antd";
+
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleHolidayModal } from "../HolidayAction"
-// import AddLeavesModal from "./Tab/AddLeavesModal";
-// import { LeavesReducer } from "../LeavesReducer";
-// import { setAccountFilterText, setAccountFilterUser } from "../AccountAction";
-// import { getUsers } from "../../Team/TeamAction";
+
 
 const Option = StyledSelect.Option;
 
@@ -35,7 +30,7 @@ class HolidayActionRight extends React.Component {
     render() {
         const { handleHolidayModal } = this.props
         return (
-            <FlexContainer alignItems="center">
+            <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
                 <Button
                     type="primary"
                     onClick={() => handleHolidayModal(true)}
@@ -43,21 +38,15 @@ class HolidayActionRight extends React.Component {
                 >
                     <PlusOutlined type="plus" />
                 </Button>
-                {/* <AddLeavesModal handleLeavesModal={handleLeavesModal} addLeaveModal={this.props.addLeaveModal} /> */}
-            </FlexContainer>
+            
+            </div>
         );
     }
 }
 
 const mapStateToProps = ({ holiday }) => ({
     addHolidayModal: holiday.addHolidayModal,
-    // addLeaveModal: leave.addLeaveModal
-    //   userId: auth.userDetails.userId,
-    //   subscriptionType: auth.userDetails.metaData.organization.subscriptionType,
-    //   accountFilterText: account.accountFilterText,
-    //   users: team.users,
-    //   filterByUserOption: team.filterByUserOption,
-    //   user: auth.userDetails,
+  
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     handleHolidayModal

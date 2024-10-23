@@ -1,4 +1,4 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, { Component, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import styled from 'styled-components';
@@ -7,7 +7,6 @@ import { BundleLoader } from "../../Components/Placeholder";
 import {
     setReionalDashViewType,   
   } from "../DashboardPage/RegionalDashAction";
-import dayjs from "dayjs";
 import RegionalDashboardHeader from "./Child/RegionalDashboardHeader";
 import RegionalSales from "./Child/RegionalSales";
 import FullFillMentJumpstartBox from "../Dashboard/FullFillMentJumpstartBox";
@@ -43,10 +42,8 @@ class DashboardPage extends Component {
   };
 
   handleChange = (e) => {
-    this.setState({ currentData: e.target.value })
-   
+    this.setState({ currentData: e.target.value }) 
   };
-
 
   render() {
     const {isMobile } = this.state;
@@ -72,50 +69,31 @@ class DashboardPage extends Component {
         <Suspense fallback={<BundleLoader />}>
         <MainWrapper style={{marginTop:"1rem",overflow:"hidden",height:"21rem"}}
     >
-          <div class=" flex justify-between max-sm:h-[36rem] max-sm:overflow-x-auto">
-         {/* <div class="flex justify-between  max-sm:flex-col"> */}
-        
+          <div class=" flex justify-between max-sm:h-[36rem] max-sm:overflow-x-auto">        
            <div class="w-[47.5%] max-sm:w-wk">
-           <CardElement>
+           <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
         
            <div class=" flex flex-col " >
            <div className="font-bold flex-col justify-center flex text-lg">Sales</div>
               {/* { props.viewType==="card"  ?  */}
-              <RegionalSales
-                  
-                      />
-           
-            {/* :(
-              
-          null
-          )} */}
-  
-
+              <RegionalSales               
+                   />         
 
     </div>
-    </CardElement>
+    </div>
     </div>
   
-
      <div class="w-[47.5%] max-sm:w-wk">
-     <CardElement>
+     <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
      <div class=" flex flex-col" >
      
        <div className="font-bold flex-col justify-center flex text-lg">FulFillment</div>
-       <FullFillMentJumpstartBox
-                  
+       <FullFillMentJumpstartBox              
                   />
-      </div>
-
-      
-   
-    </CardElement>
+      </div>   
     </div>
-    
+    </div>
     {/* </div> */}
-
-
-  
     </div>
     </MainWrapper>
     <MainWrapper style={{marginTop:"0.5rem",overflow:"none",height:"21rem"}}
@@ -124,67 +102,26 @@ class DashboardPage extends Component {
          {/* <div class="flex justify-between  max-sm:flex-col"> */}
        
            <div class="w-[47.5%] max-sm:w-wk">
-           <CardElement>
+           <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
            <div className="font-bold flex-col justify-center flex text-lg">Investment</div>
-           <div class=" flex flex-col " >
-          
-     
-
-    <div class=" flex justify-between" >
-                
-    <InvestorRegionalJumpstartBox
-                  
-                  /> 
-                 
-                    {/* { viewType==="ALL" || this.state.activeButton==="Customer" ? ( <CustomerGoogleMap
-                    handleMapClick={this.handleMapClick}
-                      />)
-              
-           
-            :(
-              
-          null
-          )} */}
-               
-            </div> 
-
+           <div class=" flex flex-col " >          
+    <div class=" flex justify-between" >            
+    <InvestorRegionalJumpstartBox               
+                  />                             
+            </div>
     </div>
-        </CardElement>
+        </div>
     </div>
-
-     <div class="w-[47.5%] max-sm:w-wk">
-  
+     <div class="w-[47.5%] max-sm:w-wk"> 
      <div class=" flex flex-col " >
-       <div class=" flex flex-col  justify-between" >
-     
-      
-      
-
-
- 
- 
-
-
-   
-      </div>
-
-  
-      
+       <div class=" flex flex-col  justify-between" > 
+      </div>    
     </div>
     </div>
- 
     {/* </div> */}
-
-
-  
     </div>
     </MainWrapper>
-        </Suspense> 
-     
-      
-  
- 
-         
+        </Suspense>           
       </React.Fragment>
     );
   }
@@ -204,21 +141,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);
-const CardElement = styled.div`
- 
-border-radius: 0.75rem;
-    border: 3px solid #EEEEEE;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0.25em 0.62em #aaa;
-    height: 18rem;
-    color: rgb(68,68,68);
-    margin: 1em;
-    padding: 0.2rem;
-    width: 42vw;
-    display: flex;
-    flex-direction: column;
-  @media only screen and (max-width: 600px) {
-    width:  -webkit-fill-available;
-    
-  }
-`
+
+

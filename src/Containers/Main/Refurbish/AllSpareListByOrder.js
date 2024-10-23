@@ -17,7 +17,9 @@ const AllSpareListByOrder = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <ApproveSpareTable rowData={rowData} />
+                    <ApproveSpareTable rowData={rowData}
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage} />
                 </Suspense>
             </StyledDrawer>
         </>

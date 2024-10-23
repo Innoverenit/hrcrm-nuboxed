@@ -3,7 +3,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import LinkedDealContact from "./LinkedDealContact";
+const LinkedDealContact =lazy(()=>import("./LinkedDealContact"));
 class AddDealsContactDrawerModal extends Component {
   render() {
      
@@ -22,6 +22,9 @@ class AddDealsContactDrawerModal extends Component {
           <Suspense fallback={<BundleLoader />}>
             <LinkedDealContact currentItem={this.props.currentItem} 
             invOpportunityId={this.props.currentItem.invOpportunityId} 
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
             />
           </Suspense>
         </StyledDrawer>

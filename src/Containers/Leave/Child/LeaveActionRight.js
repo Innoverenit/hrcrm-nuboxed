@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import {  Button, Tooltip } from "antd";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleLeavesModal } from "../LeavesAction";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
@@ -26,7 +25,7 @@ class LeaveActionRight extends React.Component {
   render() {
     const { handleLeavesModal } = this.props;
     return (
-      <FlexContainer alignItems="center">
+      <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
         <Tooltip placement="right" title="Apply">
           <Button type="primary"
           onClick={() => handleLeavesModal(true)}>
@@ -37,18 +36,13 @@ class LeaveActionRight extends React.Component {
           handleLeavesModal={handleLeavesModal}
           addLeaveModal={this.props.addLeaveModal}
         />
-      </FlexContainer>
+      </div>
     );
   }
 }
 const mapStateToProps = ({ leave }) => ({
   addLeaveModal: leave.addLeaveModal,
-  //   userId: auth.userDetails.userId,
-  //   subscriptionType: auth.userDetails.metaData.organization.subscriptionType,
-  //   accountFilterText: account.accountFilterText,
-  //   users: team.users,
-  //   filterByUserOption: team.filterByUserOption,
-  //   user: auth.userDetails,
+ 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import * as Yup from "yup";
-import { StyledLabel } from '../../../../../Components/UI/Elements';
+import {getBrandCategoryData} from "../../../../../Containers/Settings/Category/BrandCategory/BrandCategoryAction"
 import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
@@ -29,6 +29,7 @@ function AddAddressDetail(props) {
     useEffect(() => {
         props.getContactDistributorList(props.distributorId)
         props.getSaleCurrency()
+        props.getBrandCategoryData(props.orgId);
     }, [])
 
     const [priority, setPriority] = useState("High")
@@ -43,6 +44,12 @@ function AddAddressDetail(props) {
             value: item.currency_id,
         };
     });
+    const categoryOption = props.BrandCategoryData.map((item) => {
+        return {
+            label: item.name || "",
+            value: item.shipById,
+        };
+    });
     return (
         <Formik
             initialValues={{
@@ -52,6 +59,7 @@ function AddAddressDetail(props) {
                 paymentInTerms: "",
                 comments: "",
                 awbNo: "",
+                shipById:"",
                 orderCurrencyId: "",
                 deliverToBusinessInd: "",
                 fullLoadTruckInd: "",
@@ -115,10 +123,10 @@ function AddAddressDetail(props) {
                     <Form>
                         <div class="w-wk flex justify-between">
                             <div class="w-[47.5%]">
-                                <StyledLabel><h3> <FormattedMessage
+                                <div class=" text-xs font-bold font-poppins text-black"><h3> <FormattedMessage
                                     id="app.pickupaddress"
                                     defaultMessage="Pickup Address"
-                                /></h3></StyledLabel>
+                                /></h3></div>
 
                                 <FieldArray
                                     name="loadingAddress"
@@ -141,7 +149,7 @@ function AddAddressDetail(props) {
                                     disabledDate={(currentDate) => {
                                         const date = new Date()
                                         if (
-                                            moment(currentDate).isBefore(moment(date).subtract(1, 'days'))
+                                            dayjs(currentDate).isBefore(dayjs(date).subtract(1, 'days'))
                                         ) {
                                             return true;
                                         } else {
@@ -166,8 +174,8 @@ function AddAddressDetail(props) {
                                     disabledDate={(currentDate) => {
                                         if (values.availabilityDate) {
                                             if (
-                                                moment(currentDate).isBefore(
-                                                    moment(values.availabilityDate)
+                                                dayjs(currentDate).isBefore(
+                                                    dayjs(values.availabilityDate)
                                                 )
                                             ) {
                                                 return true;
@@ -278,12 +286,23 @@ function AddAddressDetail(props) {
 
 
                                 </div>
+                                <div class="w-[45%]">
+                                        <Field
+                                            name="shipById"
+                                            label="Category"
+                                            isColumn
+                                            style={{ borderRight: "3px red solid" }}
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(categoryOption) ? categoryOption : []}
+                                        />
+                                    </div>
                                 <div class="justify-between flex mt-2 items-center">
                                     <div class="w-[47.5%]  ">
-                                        <StyledLabel><FormattedMessage
+                                        <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
                                             id="app.priority"
                                             defaultMessage="Priority"
-                                        /></StyledLabel>
+                                        /></div>
                                         <div class="justify-between flex">
                                             <div>
                                                 <Tooltip title={<FormattedMessage
@@ -306,8 +325,8 @@ function AddAddressDetail(props) {
                                                         }}
                                                     />
                                                 </Tooltip>
-                                                &nbsp;
-                                                <Tooltip title={<FormattedMessage
+                                              
+                                                {/* <Tooltip title={<FormattedMessage
                                                     id="app.medium"
                                                     defaultMessage="Medium"
                                                 />}>
@@ -326,7 +345,7 @@ function AddAddressDetail(props) {
                                                             height: "31px"
                                                         }}
                                                     />
-                                                </Tooltip>
+                                                </Tooltip> */}
                                                 &nbsp;
                                                 <Tooltip title={<FormattedMessage
                                                     id="app.low"
@@ -377,11 +396,12 @@ function AddAddressDetail(props) {
     );
 }
 
-const mapStateToProps = ({ suppliers, auth, distributor }) => ({
+const mapStateToProps = ({ suppliers, auth, distributor,brandCategory }) => ({
     contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     orgId: auth.userDetails.organizationId,
+    BrandCategoryData: brandCategory.BrandCategoryData,
     creatingOrderForProduction: distributor.creatingOrderForProduction
 });
 
@@ -390,7 +410,8 @@ const mapDispatchToProps = (dispatch) =>
         {
             createOrderForProduction,
             getSaleCurrency,
-            getContactDistributorList
+            getContactDistributorList,
+            getBrandCategoryData
         },
         dispatch
     );

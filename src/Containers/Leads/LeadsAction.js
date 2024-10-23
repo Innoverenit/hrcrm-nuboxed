@@ -1,7 +1,7 @@
 import * as types from "./LeadsActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
-import { base_url } from "../../Config/Auth";
+import { base_url,sub_url } from "../../Config/Auth";
 import Swal from 'sweetalert2'
 
 export const setLeadsViewType = (viewType) => (dispatch) => {
@@ -22,6 +22,14 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
   export const handleLeadsSubscriptionModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_LEADS_SUBSCRIPTION_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
+
+  export const handleLeadsAddressDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_LEADS_ADDRESS_DRAWER_MODAL,
       payload: modalProps,
     });
   };
@@ -60,6 +68,8 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Lead created Successfully!',
+          showConfirmButton: false,
+          timer: 2000
       
         })
         dispatch(getOpportunityRecord(userId));
@@ -231,7 +241,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       payload: data,
     });
   };
-  export const convertCustomerStatus = (data, leadsId,assignedToId) => (
+  export const convertCustomerStatus = ( leadsId,assignedToId) => (
     dispatch,
     getState
   ) => {
@@ -241,7 +251,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       type: types.CONVERT_CUSTOMER_STATUS_REQUEST,
     });
     axios
-      .put(`${base_url}/leads/convert/${leadsId}/${assignedToId}`, data, {
+      .put(`${base_url}/leads/convert/${leadsId}/${assignedToId}`, {}, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -250,6 +260,8 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Lead converted Successfully!',
+          showConfirmButton: false,
+          timer: 2000
        
         })
         dispatch(getLeads(userId));
@@ -291,7 +303,9 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       .then((res) => {
         Swal.fire({
           icon: 'success',
-          title: 'Lead Deleted Successfully!',
+          title: 'Deleted Successfully!',
+          showConfirmButton: false,
+          timer: 2000
       
         })
         console.log(res);
@@ -363,6 +377,8 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Lead Info  updated Successfully!',
+          showConfirmButton: false,
+          timer: 2000
        
         })
         console.log(res);
@@ -1109,12 +1125,12 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
-  export const getJunkedLeadsRecords = (userId) => (dispatch) => {
+  export const getJunkedLeadsRecords = (orgId) => (dispatch) => {
     dispatch({
       type: types.GET_JUNKED_LEADS_RECORDS_REQUEST,
     });
     axios
-      .get(`${base_url}/leads/junked/count/${userId}`, {
+      .get(`${base_url}/leads/junked/count/for-org/${orgId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -1152,7 +1168,8 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Reinstated Successfully',
-      
+          showConfirmButton: false,
+          timer: 2000
         })
       })
       .catch((err) => {
@@ -1675,6 +1692,40 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
     });
   };
 
+
+
+
+  export const updateOwnerLeadById = (data,userId, ) => (dispatch, getState) => {
+    const userId1 = getState().auth.userDetails.userId;
+    dispatch({
+      type: types.UPDATE_LEAD_OWNERSHIP_REQUEST,
+    });
+    axios
+      .put(`${base_url}/leads/transfer/one-user-to-another/${userId}`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        // dispatch(getCustomerListByUserId(userId1,0,"creationdate"));
+        // dispatch(getTeamCustomer(userId1,0,));
+        dispatch({
+          type: types.UPDATE_LEAD_OWNERSHIP_SUCCESS,
+          payload: res.data,
+        });
+        // cb && cb("success");
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_LEAD_OWNERSHIP_FAILURE,
+          payload: err,
+        });
+        // cb && cb("error");
+      });
+  };
+
   export const getLeadsActivityRecords = (leadsId) => (dispatch) => {
     dispatch({
       type: types.GET_LEADS_ACTIVITY_RECORDS_REQUEST,
@@ -1906,6 +1957,111 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CLAER_SEARCHED_DATA_LEAD,
     });
+  };
+
+
+
+  export const getLeadSubscriptionData = (orgId) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_LEADS_SUBSCRIPTION_DATA_REQUEST,
+    });
+    axios
+      .get(`${sub_url}/subscription/getAll/publish/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_LEADS_SUBSCRIPTION_DATA_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_LEADS_SUBSCRIPTION_DATA_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+  export const addSubscriptionData = (leads) => (dispatch, getState) => {
+    const userId = getState().auth.userDetails.userId;
+  
+    // const opportunityId = getState().opportunity.opportunity.opportunityId;
+    // console.log("inside add leads");
+    dispatch({
+      type: types.ADD_SUBSCRIPTION_DATA_REQUEST,
+    });
+  
+    axios
+      .put(`${base_url}/leads/add/subscription`, leads, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Subscription added Successfully!',
+          showConfirmButton: false,
+          timer: 2000
+      
+        })
+        //dispatch(getOpportunityRecord(userId));
+        console.log(res);
+        
+        // dispatch(getLeadsRecords(userId));
+  
+        dispatch({
+          type: types.ADD_SUBSCRIPTION_DATA_SUCCESS,
+          payload: res.data,
+        });
+        // cb && cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.ADD_SUBSCRIPTION_DATA_FAILURE,
+          payload: err,
+        });
+        // cb && cb();
+      });
+  };
+
+
+
+
+  export const getSubscriptionCompare = (leadsId) => (dispatch) => {
+ 
+    dispatch({
+      type: types.GET_SUBSCRIPTION_COMPARE_REQUEST,
+    });
+    axios
+      .get(`${base_url}/leads/get/subscription/${leadsId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_SUBSCRIPTION_COMPARE_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_SUBSCRIPTION_COMPARE_FAILURE,
+          payload: err,
+        });
+      });
   };
   
 

@@ -56,6 +56,10 @@ class OpportunityUpdateStepper extends Component {
                 icon: <UserOutlined />,
                 content: <UpdateOpportunityForm
                 opportunityId={this.props.opportunityId}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
+
                 />,
             },
             {
@@ -74,14 +78,14 @@ class OpportunityUpdateStepper extends Component {
             <>
                 <StyledSteps current={current}>
                     <Step
-                        title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
+                        title={<AddShoppingCartIcon className="!text-icon" />}
                         description={<FormattedMessage
                             id="app.oderdetails"
                             defaultMessage="Order Details"
                         />}
                     />
                     <Step
-                        title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
+                        title={<ControlPointDuplicateIcon  className="!text-icon" />}
                         description={<FormattedMessage
                             id="app.unitsinfo"
                             defaultMessage="Units Info"
@@ -100,7 +104,7 @@ class OpportunityUpdateStepper extends Component {
                                             type="tertiary"
                                             
                                             onClick={() => this.prev()}>
-                                        <label class="text-base cursor-pointer"> Previous</label>
+                                        <div class="text-base cursor-pointer"> Previous</div>
                                            
                                         </Button>
                                     )}
@@ -113,7 +117,7 @@ class OpportunityUpdateStepper extends Component {
                                                 onClick={() => this.handleComplete()}
                  
                                             >
-                                                <label class="text-base cursor-pointer">Complete</label> 
+                                                <div class="text-base cursor-pointer">Complete</div> 
                                  
                                             </Button>
 
@@ -133,9 +137,9 @@ class OpportunityUpdateStepper extends Component {
                                                 }}
                                           
                                             >
-                                           <label class="text-base cursor-pointer">
+                                           <div class="text-base cursor-pointer">
                                            Proceed
-                                             </label>
+                                             </div>
                                   
                                             </Button> : 
                                             null}

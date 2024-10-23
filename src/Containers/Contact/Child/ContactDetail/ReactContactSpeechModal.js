@@ -27,6 +27,9 @@ const ReactContactSpeechModal = props => {
       >
         <ReactContactSpeeech
         contactId={props.contactId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
        
         />
       </StyledModal>

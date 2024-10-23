@@ -6,14 +6,7 @@ import { Button } from "antd";
 import { getContactListByCustomerId, } from "../../../Containers/Customer/CustomerAction";
 import { Formik, Form, Field,} from "formik";
 import {linkOpportunityContact} from "../../Contact/ContactAction"
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-
-
-/**
- * yup validation scheme for creating a opportunity
- */
-
 
 class LinkedContactForm extends Component {
   handleReset = (resetForm) => {
@@ -34,34 +27,12 @@ class LinkedContactForm extends Component {
           value: item.contactId,
       };
   });
+ 
 
-//   const salesNameOption = this.props.sales.map((item) => {
-//     return {
-//         label: `${item.fullName || ""}`,
-//         value: item.employeeId,
-//     };
-// });
- 
- 
-  
     const {
-    //   user:{userId},
-    //   addingOpportunity,
-    //   fullName,
-    //   employeeId,
-    //   salesUserIds,
-    //   firstName,
-    //   middleName,
-    //   lastName,
-    //   contactId,
-    //   customerId,
-    //   startDate,
-    //   endDate,
-    //   defaultCustomers,
-    //   defaultContacts,
-    //   name,
+    
     } = this.props;
-    // console.log(customerId);
+ 
     return (
       <>
         <Formik
@@ -73,32 +44,10 @@ class LinkedContactForm extends Component {
                 console.log(values);
                 console.log(values);
     
-    
-                // let testVal = {
-                //   ...values,
-                //   // callCategory: this.state.category,
-                //   // callType: this.state.Type,
-    
-                //   salesUserIds:  [],
-    
-                //   // startDate: `${newStartDate}T${newStartTime}`,
-                //   // endDate: `${newEndDate}T${newEndTime}`,
-    
-                //   // startTime: 0,
-                //   // endTime: 0,
-                // };
-               
                 this.props.linkOpportunityContact(
                   {
                     ...values,
                    
-                    // startDate: dayjs(values.startDate).toISOString(),
-                    // endDate: dayjs(values.endDate).toISOString(),
-                    // startDate: `${newStartDate}T00:00:00Z`,
-                    // endDate: `${newEndDate}T00:00:00Z`,
-                   
-                    // orgId: this.props.organizationId,
-                    // userId: this.props.userId,
                   },
                   this.props.opportunityId,
                   // this.props.customerId,
@@ -117,7 +66,7 @@ class LinkedContactForm extends Component {
               ...rest
             }) => (
               <Form className="form-background">
-                <FlexContainer justifyContent="space-between">
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "80%" }}>
                     <Field
                        name="contactId"
@@ -144,7 +93,7 @@ class LinkedContactForm extends Component {
                       defaultMessage="Add"
                     />
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             )}
           </Formik>

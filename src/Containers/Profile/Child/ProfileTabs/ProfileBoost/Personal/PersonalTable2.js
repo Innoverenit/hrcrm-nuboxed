@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
@@ -16,6 +16,7 @@ import {
   getPersonalDetails,
   setCurrentPersonal,
 } from "../../../../ProfileAction";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { Leaflet } from "../../../../../../Components/Utils";
 import { Field, Form, Formik } from "formik";
 import MapPopupMarker from "../../../ProfileCards/MapPopupMarker";
@@ -198,11 +199,13 @@ class PersonalTable2 extends Component {
           loading={fetchingPersonalDetails || fetchingPersonalDetailsError}
           onChange={console.log("task onChangeHere...")}
         />
-
+   <Suspense fallback={<BundleLoader />}>
         <UpdatePersonalModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           updatePersonalModal={updatePersonalModal}
           handleUpdatePersonalModal={handleUpdatePersonalModal}
-        />
+        /></Suspense>
         <StyledModal
           title={`${contactFirstName || ""} 
              ${contactLastName || ""}`}

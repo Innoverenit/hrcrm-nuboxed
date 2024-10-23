@@ -8,12 +8,10 @@ import {
   getContactListByOpportunityId,
      setContactRoleForOpportunity,
 } from "../../../OpportunityAction";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import {
-  StyledTable,
-  StyledPopconfirm,
+StyledPopconfirm,
 } from "../../../../../Components/UI/Antd";
-import { MultiAvatar, SubTitle } from "../../../../../Components/UI/Elements";
+import { MultiAvatar} from "../../../../../Components/UI/Elements";
 import { ActionIcon } from "../../../../../Components/Utils";
 import Highlighter from "react-highlight-words";
 import {SearchOutlined}  from '@ant-design/icons';
@@ -25,14 +23,37 @@ class LinkedContact extends Component {
     super(props);
     this.state = {
       searchText: "",
-    searchedColumn: "",
+      searchedColumn: "",
+      translatedMenuItems: [],
+      loading: true
     };
   }
 
   componentDidMount() {
-    this.props.getContactListByOpportunityId(
-      this.props.opportunity.opportunityId
-    );
+    this.props.getContactListByOpportunityId(this.props.opportunity.opportunityId);
+    this.fetchMenuTranslations();
+ 
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       '110', // 0
+'325', // 1
+'1206', // 2
+'140', // 3
+'546',//4
+'326'//5 department
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
   }
 
   handleAddPlusClick = (contactId) => {
@@ -190,17 +211,34 @@ class LinkedContact extends Component {
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
     return (
       <>
         <div className=' flex  sticky  z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                  <div className=" flex  w-[99%] p-1 bg-trandivrent font-bold sticky  z-10">
+                  <div className=" flex  w-[100%]  p-1 bg-trandivrent font-bold sticky  z-10">
                   <div className=" md:w-[5.12rem]"></div>
-                      <div className=" md:w-[11.12rem]">Name</div>
-                      <div className=" md:w-[9.5rem]">Designation</div>
-                      <div className=" md:w-[9.8rem] ">Function</div>
-                      <div className="md:w-[10.4rem]">Email #"</div>
-                      <div className="md:w-[6.8rem]">Mobile #"</div>
+                      <div className=" md:w-[11.12rem]">  {translatedMenuItems[0]}    
+                        {/* Name */}
+                        </div>
+                      <div className=" md:w-[9.5rem]">  {translatedMenuItems[1]}    
+                        {/* Designation */}
+                        </div>
+                        <div className=" md:w-[9.5rem]">  {translatedMenuItems[5]}    
+                        {/* Department*/}
+                        </div>
+                      <div className=" md:w-[9.8rem] ">  {translatedMenuItems[2]}    
+                        {/* Function */}
+                        </div>
+                      <div className="md:w-[10.4rem]">  {translatedMenuItems[3]}    
+                        {/* Email #" */}
+                        </div>
+                      <div className="md:w-[6.8rem]">  {translatedMenuItems[4]}    
+                        {/* Mobile #" */}
+                        </div>
                      
                   </div>
                   <div class="overflow-y-auto h-[64vh]">

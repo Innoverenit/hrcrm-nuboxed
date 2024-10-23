@@ -1,11 +1,10 @@
-import React, { Component, Suspense, lazy } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import VoIPHeader from "./Child/VoIPHeader";
 import AddIntegrationModal from "./Child/AddIntegrationModal";
 import { handleIntegrationModal, getTwilioCredentials } from "./VoIPAction";
 import { getEmailCredentials } from "../Email/EmailAction";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { BussinessCard } from "../../../Components/UI/Elements";
 
 class VoIP extends Component {
@@ -34,7 +33,7 @@ class VoIP extends Component {
           addIntegrationModal={addIntegrationModal}
           handleIntegrationModal={handleIntegrationModal}
         />
-        <FlexContainer>
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           {twilioCredential.length
             ? twilioCredential.map(cred => (
                 <BussinessCard
@@ -50,7 +49,7 @@ class VoIP extends Component {
               secondaryTitle={emailCredential.host}
             />
           )}
-        </FlexContainer>
+        </div>
       </React.Fragment>
     );
   }

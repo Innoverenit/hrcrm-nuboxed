@@ -155,22 +155,16 @@ console.log(departmentData.clubName)
                         }}
                     >
 
-                        <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
-                       
-                        <TocIcon  className="text-white !text-icon" />
-                            </Avatar>
-
+<Avatar style={{ background: viewType === "table" ? "#f279ab" : "#28a355" }}>
+                <FormattedMessage id="app.all" defaultMessage="ALL" class=" text-white !text-icon"/>
+              </Avatar>
                     </span>
                   
                 </Tooltip>
-                <Tooltip
+                {/* <Tooltip
           title={<FormattedMessage id="app.teamView" defaultMessage="Team View" />}
         >
-          {/* <Badge
-            size="small"
-            count={(teamCount || props.viewType === "teams" && props.investorTeamRecord.investorTeam) || 0}
-            overflowCount={999}
-          > */}
+        
             <span
               class=" mr-1 text-sm cursor-pointer"
               onClick={() => setClubViewType("teams")}
@@ -178,18 +172,14 @@ console.log(departmentData.clubName)
                 color: viewType === "teams" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: viewType === "teams" ? "#f279ab" : "#28a355" }}>
                 <PeopleIcon  className="text-white !text-icon" />
               </Avatar>
             </span>
-          {/* </Badge> */}
-        </Tooltip>
-        <Tooltip title={<FormattedMessage id="app.all" defaultMessage="All" />}>
-          {/* <Badge
-            size="small"
-            count={(props.viewType === "all" && props.allinvestorRecord.investor) || 0}
-            overflowCount={999}
-          > */}
+         
+        </Tooltip> */}
+        {/* <Tooltip title={<FormattedMessage id="app.all" defaultMessage="All" />}>
+         
             <span
               class=" mr-1 text-sm cursor-pointer"
               onClick={() => setClubViewType("all")}
@@ -197,12 +187,12 @@ console.log(departmentData.clubName)
                 color: viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                 <FormattedMessage id="app.all" defaultMessage="ALL" class=" text-white !text-icon"/>
               </Avatar>
             </span>
-          {/* </Badge> */}
-        </Tooltip>     
+         
+        </Tooltip>      */}
 
              
                 <div class=" ml-6 h-6 w-60 max-sm:w-[11rem]">

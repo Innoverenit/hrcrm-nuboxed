@@ -15,6 +15,20 @@ export const handleSuppliersModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleRecall = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_RECALL_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const emptynotApprovedSuppliers = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_NOT_APPROVED_SUPPLIER_LIST,
+  });
+};
+
 // add supplier
 
 export const addSuppliers = (data, userId) => (dispatch) => {
@@ -817,7 +831,7 @@ export const addSupplierDocument = (data, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.ADD_SUPPLIER_DOCUMENT_REQUEST });
   axios
-    .post(`${base_url}/supplier/suppliers/document/`, data, {
+    .post(`${base_url2}/document/save`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -993,6 +1007,33 @@ export const handleSupplierContactModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_SUPPLIER_CONTACT_MODAL,
     payload: modalProps,
   });
+};
+
+export const getCostShipperList = (shipperId) => (dispatch) => {
+  // const shipperId = getState().shipper.allShipper.shipperId;
+  dispatch({
+    type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/contactPerson/${shipperId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
 };
 
 export const getContactShipperList = (shipperId) => (dispatch) => {
@@ -1667,6 +1708,32 @@ export const getSupplierCount = (userId) => (dispatch) => {
       });
     });
 };
+
+export const getSupplierCountNot = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIER_COUNT_NOT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/user/NotApproved/count/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIER_COUNT_NOT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIER_COUNT_NOT_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const getSupplierAllCount = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_SUPPLIER_COUNT_REQUEST,
@@ -2041,7 +2108,7 @@ export const getCategorylist = () => (dispatch) => {
     type: types.GET_CATEGORYLIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/product/allProductCatagory`, {
+    .get(`${base_url2}/supplies/allSuppliesCatagory`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2244,5 +2311,276 @@ export const linkSupplierNotApproval = (supplierId,approveInd) => (dispatch) => 
         payload: err,
       });
       // message.error("Something went wrong");
+    });
+};
+ 
+export const linkSupplierApproval = (supplierId,approveInd) => (dispatch) => {
+  dispatch({
+    type: types.ADDING_SUPPLIER_APPROVAL_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplier/user/updateApprovedInd/${supplierId}/${approveInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      dispatch({
+        type: types.ADDING_SUPPLIER_APPROVAL_SUCCESS,
+        payload: supplierId,
+      });
+      message.success(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADDING_SUPPLIER_APPROVAL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addContactAddress = (data,type,id) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.ADD_CONTACT_ADDRESS_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/api/v1/saveAddressByType/${type}/${id}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.ADD_CONTACT_ADDRESS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_CONTACT_ADDRESS_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+
+
+
+
+export const getContactAddressData = (id,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_ADDRESS_DATA_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/api/v1/address/type/${id}/${type}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_ADDRESS_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_ADDRESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const updateContactAddress = (data) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.UPDATE_CONTACT_ADDRESS_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/api/v1/address/update`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_CONTACT_ADDRESS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.UPDATE_CONTACT_ADDRESS_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+
+
+export const removeAddressData = (addressId) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_ADDRESS_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/api/v1/delete/address/${addressId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Address Deleted Successfully',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch({
+        type: types.REMOVE_ADDRESS_DATA_SUCCESS,
+        payload: addressId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_ADDRESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addContactMand = (addressId,primaryInd) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.ADD_CONTACT_MAND_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/api/v1/address/makePrimary/${addressId}/${primaryInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.ADD_CONTACT_MAND_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_CONTACT_MAND_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+export const handleSuppliersAddress = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIERS_ADDRESS_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const getSearchPo =(name)=>(dispatch)=>{
+  dispatch({
+    type: types.INPUT_SEARCH_PO_REQUEST,
+  });
+  axios.get(`${base_url2}/po/search/${name}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  .then((res)=>{
+    dispatch({
+      type:types.INPUT_SEARCH_PO_SUCCESS,
+      payload:res.data,
+    });
+  })
+  .catch((err)=>{
+    dispatch({
+  type:types.INPUT_SEARCH_PO_FAILURE,
+  payload:err,
+    });
+  });
+};
+
+export const ClearPoData = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_PO_DATA_PROCESS,
+  });
+};
+
+export const updateDistributorContact = (data, contactPersonId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/contactPerson/${contactPersonId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_FAILURE,
+        payload: err,
+      });
     });
 };

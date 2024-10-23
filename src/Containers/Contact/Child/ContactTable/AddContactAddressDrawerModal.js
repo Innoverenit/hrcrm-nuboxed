@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ContactAddressData from "../ContactTable/ContactAddressData"
 import { StyledDrawer } from "../../../../Components/UI/Antd";
+import AddressData from "../../../Address/AddressData";
 //import MainNotes from "../../CustomNote/MainNotes";
 
 class AddContactAddressDrawerModal extends Component {
@@ -23,9 +24,18 @@ class AddContactAddressDrawerModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
           
-          <ContactAddressData
+          {/* <ContactAddressData
            item={this.props.item}
+          /> */}
+          <AddressData
+          uniqueId={this.props.item.contactId}
+          type={this.props.type}
+          translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+      translatedMenuItems={this.props.translatedMenuItems}
           />
+
+
           </Suspense>
         </StyledDrawer>
       </div>

@@ -132,7 +132,7 @@ function AddProcureExcel(props) {
           <div key={index}>
             <div className="flex justify-around w-[30rem]">
             <div>
-                <label>Category</label>
+                <div class="font-bold text-xs font-poppins text-black">Category</div>
                 <div className="w-[9rem]">
                   <Select
                     style={{ width: 120 }}
@@ -140,14 +140,14 @@ function AddProcureExcel(props) {
                     onChange={(value) => handleCategoryChange(value, index)}
                   >
                     {props.categoryList.map((a) => (
-                      <Option key={a.id} value={a.id}>{a.categoryName}</Option>
+                      <Option key={a.categoryId} value={a.categoryId}>{a.categoryName}</Option>
                     ))}
                   </Select>
                 </div>
               </div>
            
               <div>
-                <label>Brand</label>
+                <div class="font-bold text-xs font-poppins text-black">Brand</div>
                 <div className="w-[13rem]">
                   <Select
                     style={{ width: 200 }}
@@ -155,13 +155,13 @@ function AddProcureExcel(props) {
                     onChange={(value) => handleBrandChange(value, index)}
                   >
                     {props.brand.map((a) => (
-                      <Option key={a.brand} value={a.brand}>{a.brand}</Option>
+                      <Option key={a.brand} value={a.brand}>{a.brandName}</Option>
                     ))}
                   </Select>
                 </div>
               </div>
               <div>
-                <label>Model</label>
+                <div class="font-bold text-xs font-poppins text-black">Model</div>
                 <div className="w-[13rem]">
                   <Select
                     style={{ width: 200 }}
@@ -175,7 +175,7 @@ function AddProcureExcel(props) {
                 </div>
               </div>
               <div>
-                <label>Attribute</label>
+                <div class="font-bold text-xs font-poppins text-black">Attribute</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -183,13 +183,13 @@ function AddProcureExcel(props) {
                     onChange={(value) => handleAttributeChange(value, index)}
                   >
                     {props.allProduct.map((a) => (
-                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
+                      <Option key={a.attributeId} value={a.attributeId}>{a.attributeName}</Option>
                     ))}
                   </Select>
                 </div>
               </div>
               <div>
-                <label>Quality</label>
+                <div class="font-bold text-xs font-poppins text-black">Quality</div>
                 <div className="w-[9rem]">
                   <Select
                     style={{ width: 120 }}
@@ -203,7 +203,7 @@ function AddProcureExcel(props) {
                 </div>
               </div>
               <div class=" ml-2">
-                <label>Location</label>
+                <div class="font-bold text-xs font-poppins text-black">Location</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -217,7 +217,7 @@ function AddProcureExcel(props) {
                 </div>
               </div>
               <div>
-                <label>Specs</label>
+                <div class="font-bold text-xs font-poppins text-black">Specs</div>
                 <div className="w-24 ml-2">
                   <Select
                     style={{ width: 100 }}
@@ -232,7 +232,7 @@ function AddProcureExcel(props) {
                 </div>
               </div>
               <div class=" ml-2">
-                <label>Price</label>
+                <div class="font-bold text-xs font-poppins text-black">Price</div>
                 <div className="w-24">
                   <Input
                     type="text"
@@ -243,7 +243,7 @@ function AddProcureExcel(props) {
                 </div>
               </div>
               <div class=" ml-2">
-                <label>Currency</label>
+                <div class="font-bold text-xs font-poppins text-black">Currency</div>
                 <div className="w-[7rem]">
                   <Select
                     style={{ width: 100 }}
@@ -258,7 +258,7 @@ function AddProcureExcel(props) {
               </div>
              
               <div class=" ml-2">
-                <label>Unit</label>
+                <div class="font-bold text-xs font-poppins text-black">Unit</div>
                 <div className="w-24">
                   <Input
                     type="text"
@@ -461,7 +461,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AddProcureExcel);
 //                         isColumn
 //                       /> */}
 
-// <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Brand</label>
+// <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Brand</div>
 
 // <Select
 //         showSearch

@@ -12,10 +12,33 @@ function SupplierContactTable(props) {
   useEffect(() => {
     props.getSupplierContactList(props.supplier.supplierId);
   }, []);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "110",//0 Name
+          "140",//1 Email
+          "546",//2 mobile
+          "325",//3 Designation
+          "326",//4 Department
+    
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   const [currentSupplierId, setCurrentSupplierId] = useState("");
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   
   function handleSetCurrentSupplierId(supplierId) {
     setCurrentSupplierId(supplierId);
@@ -31,23 +54,23 @@ function SupplierContactTable(props) {
 
   return (
     <>
-    <div className=' flex justify-end sticky  z-auto'>
-        <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-            <div className=" w-[13.8rem] max-xl:text-[0.65rem]">  <FormattedMessage
-              id="app.name"
-              defaultMessage="Name"
-            /></div>
-            <div className=" w-[20.1rem] max-xl:text-[0.65rem]">
-              <FormattedMessage id="app.email" defaultMessage="Email" />
+    <div className=' flex sticky  z-auto'>
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins text-xs z-10">
+            <div className=" w-[12.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[0]}</div>
+            {/* Name */}
+            <div className=" w-[4.1rem] max-xl:text-[0.65rem]">{translatedMenuItems[1]}
+             {/* Email */}
             </div>
-            <div className=" w-[9.8rem] max-xl:text-[0.65rem] ">  <FormattedMessage id="app.mobile" defaultMessage="Mobile No" /></div>
-            <div className="w-[11.8rem] max-xl:text-[0.65rem]">
-              <FormattedMessage id="app.designation" defaultMessage="Designation" />
+            <div className=" w-[1.8rem] max-xl:text-[0.65rem] ">  {translatedMenuItems[2]}
+              {/* mobile */}
+            </div>
+            <div className="w-[3.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[3]}
+            {/* Designation */}
 
             </div>
-            <div className="w-[7.9rem] max-xl:text-[0.65rem]">
-              <FormattedMessage id="app.department" defaultMessage="Department" />
+            <div className="w-[27.9rem] max-xl:text-[0.65rem]">{translatedMenuItems[4]}
+             {/* Department */}
 
             </div>
             
@@ -67,44 +90,44 @@ function SupplierContactTable(props) {
                      const data = {}
                     return (
                       <>
-                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1"
+                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
 
                         >
-                          <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                            <div className=" flex  font-bold w-[13.1rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem] font-poppins max-xl:text-[0.65rem]">
+                          <div class=" flex flex-row  w-wk max-sm:flex-col ">
+                            <div className=" flex  font-bold border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[14.1rem] max-sm:justify-between  max-sm:flex-row  ">
+                              <div class="flex items-center ml-gap font-normal text-xs font-poppins max-xl:text-[0.65rem]">
                                {` ${item.firstName || ""} ${item.middleName || ""} ${item.lastName || ""}`}
                               </div>
                             </div>
 
-                            <div className=" flex   w-[19.2rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" text-xs  font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex items-center h-8 ml-gap bg-[#eef2f9]  w-[14.2rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class="flex items-center ml-gap  text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.emailId}
                               </div>
                             </div>
 
-                            <div className=" flex  w-[8.34rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[11.34rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class="flex items-center  ml-gap text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.dialCode1} {item.mobileNo}                             
                               </div>
                             </div>     
 
-                            <div className=" flex   w-[11.32rem] max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[12.32rem] max-sm:justify-between  max-sm:flex-row ">
+                              <div class="flex items-center ml-gap  text-xs  font-poppins max-xl:text-[0.65rem]">
                                 {item.designationName}
                               
                               </div>
 
                             </div>
-                            <div className=" flex  w-[11.02rem] max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[11.02rem] max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem]">
+                              <div class=" flex items-center ml-gap text-xs  font-poppins max-xl:text-[0.65rem]">
                               {item.departmentName}
                              
                               </div>
 
                             </div>
-                            <div className=" flex   md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                            <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[20.03rem] max-sm:flex-row w-9rem max-sm:justify-between  ">
 
 
 {item.accessInd === 0 ? <div class=" text-xs  font-poppins">
@@ -125,21 +148,13 @@ function SupplierContactTable(props) {
             )
         }}
     ><FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /></Button>
-</div> : item.accessInd === 2 ? <b>Login Applied</b> : <b style={{ color: "#32CD32" }}>Login Approved</b>
+</div> : item.accessInd === 2 ? <b>Login Applied</b> : <b className="text-[#32CD32] text-xs">Login Approved</b>
 
 }
 
 </div>
                             <div className=" flex font-medium  max-sm:justify-between  max-sm:flex-row ">
-                            {/* <Tooltip title="Edit">
-            <EditOutlined
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                props.setEditSupplierContact(item);
-                props.handleUpdateSupplierContactModal(true);
-              }}
-            />
-          </Tooltip> */}
+                           
 </div>
                           </div>
                         </div>

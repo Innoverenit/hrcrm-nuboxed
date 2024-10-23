@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getTaggedSuppliesByBrand, addSpareList } from "../Account/AccountAction";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { message } from "antd";
 import { CloseOutlined } from "@ant-design/icons"
 import { getCurrency } from "../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
@@ -15,22 +16,31 @@ const AddMultipleQCSpare = (props) => {
         props.getTaggedSuppliesByBrand(props.RowData.company, props.RowData.model)
     }, [])
 
-    const [rows, setRows] = useState([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }]);
+    const [rows, setRows] = useState([{  phoneTaskId:props.phoneTaskId,suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }]);
     const [id, setId] = useState(1);
     const [level, setLevel] = useState(1);
 
     function buttonOnClick() {
+
+        const invalidRows = rows.filter(row => !row.suppliesId || !row.noOfSpare);
+
+        if (invalidRows.length > 0) {
+            message.error('Please fill out all required fields for Spare 1 and Units.');
+            return;
+        }
+
         let data = {
             userId: props.userId,
             spareList: rows,
             phoneId: props.RowData.phoneId,
             orderPhoneId: props.RowData.orderPhoneId,
+           // phoneTaskId:props.phoneTaskId
         }
-        props.addSpareList(data, props.RowData.phoneId, props.RowData.orderPhoneId, handleCallBack);
+        props.addSpareList(data,props.phoneTaskId, props.RowData.phoneId, props.RowData.orderPhoneId, handleCallBack);
     };
 
     function handleCallBack() {
-        setRows([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }])
+        setRows([{  phoneTaskId:props.phoneTaskId,suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }])
     }
 
     function handleChangeValues1(value, a) {
@@ -105,7 +115,7 @@ const AddMultipleQCSpare = (props) => {
                     <>
                         <div class="flex justify-between">
                             <div class="w-[50%]">
-                                <label>{`Spare ${i + 1}`}</label>
+                                <div class="font-bold text-xs font-poppins text-black">{`Spare ${i + 1}`}</div>
 
                                 <Select
                                     name={`${row.id}_value`}
@@ -123,13 +133,13 @@ const AddMultipleQCSpare = (props) => {
                             </div>
 
                             <div class="w-[15%]">
-                                <label>
+                                <div class="font-bold text-xs font-poppins text-black">
                                     <FormattedMessage
                                         id="app.units"
                                         defaultMessage="Units"
                                     />
 
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.noOfSpare}`}
@@ -139,9 +149,9 @@ const AddMultipleQCSpare = (props) => {
                                 />
                             </div>
                             <div class="w-[22%]">
-                                <label>
+                                <div class="font-bold text-xs font-poppins text-black">
                                     Effort (hours)
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.hours}`}

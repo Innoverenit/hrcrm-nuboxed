@@ -10,15 +10,17 @@ import {
   handleShipperOrderModal,
   handleShipperActivityTableModal,
   deleteShipperData,
+  handleShipperAddress
 } from "./ShipperAction";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateShipperModal from "./UpdateShipperModal";
 import AddShipperOrderModal from "./AddShipperOrderModal";
 import { Link } from 'react-router-dom';
-import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import ShipperSearchedData from "./ShipperSearchedData";
+import AddShipperAdressModal from "./AddShipperAdressModal";
 
 function AllShipperList(props) {
   const { handleUpdateShipperModal, updateShipperModal } = props;
@@ -64,74 +66,76 @@ function AllShipperList(props) {
      {props.shipperSerachedData.length > 0 ? (
     <ShipperSearchedData
     shipperSerachedData={props.shipperSerachedData}
+    translatedMenuItems={props.translatedMenuItems}
     />
   ) : (
       <div className=' flex  sticky  z-auto'>
       <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[0]}</div>
-            <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[1]} #</div>
-            <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
-            <div className="w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
-            <div className="w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[4]}</div>
-            <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[5]}</div>
-            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div>
-            <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
+      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[0]}</div>
+            <div className="font-poppins font-bold text-xs w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[1]} #</div>
+            <div className="font-poppins font-bold text-xs w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
+            <div className="font-poppins font-bold text-xs w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
+            <div className="font-poppins font-bold text-xs w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[4]}</div>
+            <div className="font-poppins font-bold text-xs w-[3.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[5]}</div>
+            <div className="font-poppins font-bold text-xs w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div>
+            <div className="font-poppins font-bold text-xs w-[8.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
           </div>
           <InfiniteScroll
         dataLength={props.allShipper.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingAllShipper ? <div class="flex justify-center">{props.translatedMenuItems[8]}...</div> : null}
-        height={"79vh"}
+        height={"83vh"}
       >
         {!props.fetchingAllShipper && props.allShipper.length === 0 ? <NodataFoundPage /> : props.allShipper.map((item, index) => {
             return (
               <>
                 <div  >
-                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
-                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex font-medium flex-col w-[11.6rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                      <div className="flex rounded  mt-1 bg-white h-8 items-center max-sm:rounded-lg
+               max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                      <div class="flex items-center border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
+                        <div className=" flex  w-[11.6rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
                           <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                            <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                          <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                              <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
-                                to={`shipper/${item.shipperId}`} title={item.shipperName}>
-                                {item.shipperName}
-                              </Link>
-                            </div>
+<Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+  to={`shipper/${item.shipperId}`} title={item.shipperName}>
+  {item.shipperName}
+</Link>
+</div>
 
                           </div>
                         </div>
-                        <div className=" flex  w-[6.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div className=" flex  w-[6.5rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div class=" font-normal text-xs ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.dialCode} {item.phoneNo}
                           </div>
 
                         </div>
                         </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex  w-[13.3rem] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
+                        <div className=" flex  w-[13.3rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.emailId}
                           </div>
 
                         </div>
 
-                        <div className=" flex   w-[9.12rem] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex   w-[9.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.shipByName}
                           </div>
 
                         </div>
                         </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex   w-[12.31rem] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
+                        <div className=" flex   w-[12.31rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
          
@@ -139,8 +143,8 @@ function AllShipperList(props) {
                           </div>
 
                         </div>
-                        <div className=" flex   w-[12.21rem] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div className=" flex   w-[12.21rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div class=" font-normal text-xs ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {(item.address &&
                               item.address.length &&
                               item.address[0].city) ||
@@ -148,19 +152,19 @@ function AllShipperList(props) {
                           </div>
 
                         </div>
-                        </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex   w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex   w-[8.2rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                          <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {(item.address &&
-                              item.address.length &&
-                              item.address[0].postalCode) ||
-                              ""}
-                          </div>
+<div class=" font-normal text-xs ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+  {(item.address &&
+    item.address.length &&
+    item.address[0].postalCode) ||
+    ""}
+</div>
 
+</div>
                         </div>
-                        <div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
+                       <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] w-[6rem]">                   
                           <Switch
                             className="toggle-clr"
                             //checked={item.productionInd}
@@ -169,8 +173,18 @@ function AllShipperList(props) {
                             unCheckedChildren="No"
                           />
                         </div>
-                        <div class="flex max-sm:justify-end max-sm:w-wk items-center">
-                          <div>
+                        <div className="flex justify-items-end ">
+                          <div class="items-center justify-center h-8  bg-[#eef2f9] flex">
+                        <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleShipperAddress(true);
+            handleRowData(item);
+          }}
+          
+        />    
+        </div>
+        <div class="items-center justify-center h-8   bg-[#eef2f9] flex">
                             <Tooltip title={props.translatedMenuItems[9]}>
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato]"
@@ -184,15 +198,19 @@ function AllShipperList(props) {
                               />
                             </Tooltip>
                           </div>
+                          </div>
                           <div>
+
                             <Popconfirm
                               title={`${props.translatedMenuItems[10]}?`}
                               onConfirm={() => props.deleteShipperData(item.shipperId)}
                             >
+                               <div class="items-center justify-center h-8 bg-[#eef2f9] flex">
                               <DeleteOutlined
                                 className=" !text-icon cursor-pointer text-[red]"
 
                               />
+                              </div>
                             </Popconfirm>
                           </div>
                         </div>
@@ -200,7 +218,7 @@ function AllShipperList(props) {
 
 
                       </div>
-                    </div>
+                    
               </>
             )
           })}
@@ -229,6 +247,12 @@ function AllShipperList(props) {
         shipperId={currentShipperId}
         handleSetCurrentShipperId={handleSetCurrentShipperId}
       /> */}
+        <AddShipperAdressModal 
+        item={rowdata}
+         type="shipper"
+         addShipperAddressModal={props.addShipperAddressModal}
+         handleShipperAddress={props.handleShipperAddress}
+      />
     </>
   )
 }
@@ -241,7 +265,8 @@ const mapStateToProps = ({ shipper, auth }) => ({
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
   orgId:auth.userDetails.organizationId,
-  shipperSerachedData: shipper.shipperSerachedData
+  shipperSerachedData: shipper.shipperSerachedData,
+  addShipperAddressModal: shipper.addShipperAddressModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -253,6 +278,7 @@ const mapDispatchToProps = (dispatch) =>
       deleteShipperData,
       getAllShipperList,
       setEditShipper,
+      handleShipperAddress
     },
     dispatch
   );

@@ -28,11 +28,13 @@ function Contact(props) {
   const [selectedRole, setSelectedRole] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
   const [filterText, setFilterText] = useState('');
+  // const [viewType, setViewType] = useState('table');
   const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
-  const [filter, setFilter] = useState("creationdate");
+  const [filter, setFilter] = useState("CreationDate");
 const [filteredData, setFilteredData] = useState(props.contactByUserId);
 const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+
 
 const setContactsViewType = (viewType) => {
   setViewType(viewType);
@@ -139,6 +141,9 @@ const filterData = filteredData.filter(item =>
         filter={filter}
         selectedCountry={selectedCountry}
         handleCountryChange={handleCountryChange}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+       translatedMenuItems={props.translatedMenuItems}
       />
 
       <AddContactModal
@@ -151,6 +156,9 @@ const filterData = filteredData.filter(item =>
         <AddContactImportModal
         addContactImportModal={addContactImportModal}
         handleContactImportModal={handleContactImportModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <Suspense fallback={<BundleLoader />}>
 
@@ -183,22 +191,7 @@ const filterData = filteredData.filter(item =>
             />}
           </>
         )}
-        {/* {props.viewType === "table" ?(
-        
-        <ContactCardList
-           
-        currentUser={currentUser} 
-        filter={filter}
-         filterData={filterData}
-         />) :
-         props.viewType ==="all" ?(
-         
-             <ContactAllCardList/>)
-         :viewType==="teams" ?(
-         
-          <ContactTeamCardList/>)
-
-        : null} */}
+      
       </Suspense>
     </React.Fragment>
   );

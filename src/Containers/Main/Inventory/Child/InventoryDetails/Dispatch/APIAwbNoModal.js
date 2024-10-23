@@ -27,6 +27,8 @@ class APIAwbNoModal extends Component {
                     <Suspense fallback={<BundleLoader />}>
                         {/* <PickUpForm /> */}
                         <AddAWBNo
+                        translateText={this.props.translateText}
+                        selectedLanguage={this.props.selectedLanguage}
                             rowData={this.props.rowData}
                             formValue={this.props.formValue} />
                     </Suspense>

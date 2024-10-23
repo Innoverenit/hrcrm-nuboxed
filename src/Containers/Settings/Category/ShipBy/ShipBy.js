@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import DownloadIcon from '@mui/icons-material/Download';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { MainWrapper } from "../../../../Components/UI/Layout";
-import { TextInput } from "../../../../Components/UI/Elements";
+
 import {
   getShipByData,
   getShipByCount,
@@ -58,16 +58,7 @@ setEditingId(null);
   }
 
   const handleShipBy = () => {
-      // if (newRegionName.trim() !== '') {
-      //     console.log("New Region:", newRegionName);
-      //     const newRegion = {
-      //         id: Date.now(),
-      //         item: newRegionName
-      //     };
-      //     setRegions([...regions, newRegion]);
-      //     setNewRegionName('');
-      //     setAddingRegion(false);
-      // }
+     
       let data={
         name:newShipByName,
         orgId:props.orgId,
@@ -116,8 +107,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mt-1 mr-4"  >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -127,7 +118,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[20rem]">
+          <div class="w-[3rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"shipBy"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">

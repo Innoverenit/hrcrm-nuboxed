@@ -18,7 +18,9 @@ const RepositoryOrganizationModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
 
-          <OrganizationDocumentTab/>
+          <OrganizationDocumentTab
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

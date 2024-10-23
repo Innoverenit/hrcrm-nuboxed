@@ -24,7 +24,10 @@ const UpdateTaskModal = (props) => {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <UpdateTaskForm />
+            <UpdateTaskForm
+             selectedLanguage={props.selectedLanguage}
+             translateText={props.translateText}
+            />
           </Suspense>
         </StyledDrawer>
       </>

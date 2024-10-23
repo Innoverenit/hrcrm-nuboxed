@@ -17,13 +17,14 @@ function LevelApproveForm(props) {
 
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  console.log(rows)
 
   useEffect(() => {
     if (props.approvalData.level) {
       setRows(
         props.approvalData.level.map((level, index) => ({
           ...level,
-          roleType: props.approvalData.roleType ? props.approvalData.roleType[index] : "",
+          roleType: level.roleType
         }))
       );
       setIsLoading(false);

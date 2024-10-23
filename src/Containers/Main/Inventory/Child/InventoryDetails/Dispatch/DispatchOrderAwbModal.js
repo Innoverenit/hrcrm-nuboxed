@@ -26,7 +26,10 @@ class DispatchOrderAwbModal extends Component {
                 >
                     <Suspense fallback={<BundleLoader />}>
                         {/* <PickUpForm /> */}
-                        <DispatchOrderAwb rowData={this.props.rowData} />
+                        <DispatchOrderAwb rowData={this.props.rowData} 
+                        translateText={this.props.translateText}
+                     
+                        selectedLanguage={this.props.selectedLanguage}/>
                     </Suspense>
 
                 </StyledDrawer>

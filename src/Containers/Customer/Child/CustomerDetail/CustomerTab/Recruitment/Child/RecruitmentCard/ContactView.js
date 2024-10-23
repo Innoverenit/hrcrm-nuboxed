@@ -1,12 +1,5 @@
 import React, { Component } from "react";
 
-import {
-  Title,
-  SubTitle,
-  MultiAvatar,
-} from "../../../../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../../../../Components/UI/Layout";
-
 class ContactView extends Component {
   render() {
     const {
@@ -14,36 +7,24 @@ class ContactView extends Component {
     } = this.props;
     return (
       <>
-        <FlexContainer justifyContent="space-between">
-          <FlexContainer
-            justifyContent="flex-start"
-            flexWrap="nowrap"
-            style={{ width: "85%" }}
-          >
-            {/* <div style={{ width: "20%" }}>
-              {accountName && (
-                <MultiAvatar
-                  primaryTitle={accountName}
-                  imageId={imageId}
-                  imageURL={imageURL}
-                />
-              )}
-            </div> */}
+      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[85%] ">
+          
             &nbsp;
-            <FlexContainer flexDirection="column" style={{ width: "80%" }}>
-              <Title
+            <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[80%] ">
+              <div
                 overflow="hidden"
                 textOverflow="ellipsis"
                 fontSize={"1.375em"}
               >
                 {firstName} {middleName} {lastName}
-              </Title>
-              <SubTitle overflow="hidden" textOverflow="ellipsis">
+              </div>
+              <div overflow="hidden" textOverflow="ellipsis">
                 {/* {"accountName"} */}
-              </SubTitle>
-            </FlexContainer>
-          </FlexContainer>
-        </FlexContainer>
+              </div>
+            </div>
+          </div>
+        </div>
       </>
     );
   }

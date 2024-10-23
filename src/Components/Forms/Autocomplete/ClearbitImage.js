@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { get } from "lodash";
-import { ValidationError, StyledLabel, StyledAsync } from "../../UI/Elements";
+import { ValidationError,  StyledAsync } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
@@ -56,7 +56,7 @@ class ClearbitImage extends Component {
         if (isColumnWithoutNoCreate) {
             return (
                 <>
-                    <StyledLabel style={{ flexBasis: "20%", marginTop: "-55px", marginRight: "-66px" }}>{label}</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%", marginTop: "-55px", marginRight: "-66px" }}>{label}</div>
                     <StyledAsync
                         formatCreateLabel={() => undefined}
                         isRequired={isRequired}
@@ -83,7 +83,7 @@ class ClearbitImage extends Component {
         if (isColumn) {
             return (
                 <>
-                    <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
                     <StyledAsync
                         isRequired={isRequired}
                         classNamePrefix="sales"
@@ -110,7 +110,7 @@ class ClearbitImage extends Component {
             <>
                 <FlexContainer>
                     <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
-                        <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
                         <StyledAsync
                             isRequired={isRequired}
                             classNamePrefix="sales"

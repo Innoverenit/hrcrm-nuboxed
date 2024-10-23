@@ -5,10 +5,6 @@ import { Button, Switch } from "antd";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import {
-  Spacer,
-  StyledLabel,
-} from "../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 
@@ -177,7 +173,7 @@ function RecruitForm(props) {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <div class=" flex justify-between">
                     <div class=" w-2/4">
@@ -196,7 +192,7 @@ function RecruitForm(props) {
                       />
                     </div>
                     <div class=" w-2/4">
-                      <StyledLabel>Type </StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Type </div>
                       <br/>
                     <Switch
                         checked={typeData}
@@ -206,7 +202,7 @@ function RecruitForm(props) {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <Field
                     name="description"
@@ -222,7 +218,7 @@ function RecruitForm(props) {
                       height: "5em",                      
                     }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="recruitmentProcessId"
                   
@@ -235,7 +231,7 @@ function RecruitForm(props) {
                   component={SelectComponent}
                   options={Array.isArray(processOption) ? processOption : []}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                     <div class=" w-2/6">
                       {" "}
@@ -284,14 +280,14 @@ function RecruitForm(props) {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
               &nbsp;
               <div class=" h-full"
                 
                 ></div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <div class=" flex justify-end">
                 <Button
                   type="primary"

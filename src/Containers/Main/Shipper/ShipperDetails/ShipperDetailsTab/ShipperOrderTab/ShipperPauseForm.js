@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { FlexContainer } from "../../../../../../Components/UI/Layout";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { linkPauseOrder } from "../../../../ShipperAction";
 import * as Yup from "yup";
@@ -63,7 +63,7 @@ function ShipperPauseForm(props) {
                 }}
               />
 
-              <Spacer />
+              <div class=" mt-3" />
               <Field
                 name="pauseNoOfDays"
                 label="#Days"

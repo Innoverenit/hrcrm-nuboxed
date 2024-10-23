@@ -2,13 +2,12 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import AddchartIcon from '@mui/icons-material/Addchart'; 
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {handleContactInvestActivityModal} from "../../../ContactInvestAction"
 import { PlusOutlined } from "@ant-design/icons";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
-import WorkIcon from "@mui/icons-material/Work";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
   handleContactOpportunityModal,
   handleContactReactSpeechModal,
@@ -26,8 +25,35 @@ class ContactInvestDetailTab extends Component {
     super(props);
     this.state = {
       activeKey: "1",
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "490",//0"Deals"
+        "1166",//1"Documents"
+        "1325",//2"Upload Document"
+        "1165",//3"Activity"
+       "104", // "Create"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
 
   handleTabChange = (key) => this.setState({ activeKey: key });
   render() {
@@ -48,32 +74,17 @@ class ContactInvestDetailTab extends Component {
               tab={
                 <>
                  
-                 <WorkIcon style={{fontSize:"1.1rem"}}
-                  />
-                    <span class=" ml-1">
-                     <FormattedMessage
+                 <CurrencyExchangeIcon className="!text-icon text-[#fce762]"/>
+                    <span class=" ml-1 !text-tab">
+                    {this.state.translatedMenuItems[0]}
+                     {/* <FormattedMessage
                       id="app.deals"
                       defaultMessage="Deals"
-                    />
+                    /> */}
                   </span>
                   {activeKey === "1" && (
                     <>
-                    {/* <PlusOutlined
-                        type="plus"
-                        // tooltipTitle="Upload Document"
-                        tooltiptitle={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
-                        onClick={() => handleDocumentUploadModal(true)}
-                        size="14px"
-                        style={{
-                          marginLeft: "0.25em",
-                          verticalAlign: "center",
-                        }}
-                      /> */}
+                  
                     </>
                   )}
                 </>
@@ -82,48 +93,23 @@ class ContactInvestDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDealTable contactInVestDetail={this.props.contactInVestDetail}/>
+                <LinkedDealTable contactInVestDetail={this.props.contactInVestDetail}
+                selectedLanguage={this.props.selectedLanguage}
+                translateText={this.props.translateText}/>
               </Suspense>
-            </TabPane>
-
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <NoteAltIcon style={{ fontSize: "1.1rem" }} />
-                    &nbsp;
-                    <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    &nbsp;
-                    {activeKey === "2" && (
-                      <>
-                        <Tooltip title="Voice to Text">
-                          <span
-                            onClick={() => handleContactReactSpeechModal(true)}
-                          >
-                            <MicIcon style={{ fontSize: "1.1rem" }} />
-                          </span>
-                        </Tooltip>
-                      </>
-                    )}
-                  </span>
-                </>
-              }
-              key="2"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LinkedContactInvestNotes contactInVestDetail={this.props.contactInVestDetail}/>
-              </Suspense>
-            </TabPane> */}
+            </TabPane>       
             <TabPane
               tab={
                 <>
-                  <InsertDriveFileIcon style={{ fontSize: "1.1rem" }} />
-                  <span class=" ml-1">
-                    <FormattedMessage
+                <i 
+                  class="far fa-file  !text-icon text-[#41ead4]"
+                  ></i>
+                  <span class=" ml-1 !text-tab">
+                  {this.state.translatedMenuItems[1]}
+                    {/* <FormattedMessage
                       id="app.documents"
                       defaultMessage="Documents"
-                    />
+                    /> */}
                     {/* Documents */}
                   </span>
                   {activeKey === "2" && (
@@ -131,12 +117,7 @@ class ContactInvestDetailTab extends Component {
                       <PlusOutlined
                         type="plus"
                         // tooltipTitle="Upload Document"
-                        tooltiptitle={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
+                        tooltiptitle={this.state.translatedMenuItems[2]}
                         onClick={() => handleDocumentUploadModal(true)}
                         size="14px"
                         style={{
@@ -152,32 +133,27 @@ class ContactInvestDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedContactInvestDocuments contactInVestDetail={this.props.contactInVestDetail}/>
+                <LinkedContactInvestDocuments contactInVestDetail={this.props.contactInVestDetail}
+                   selectedLanguage={this.props.selectedLanguage}
+                   translateText={this.props.translateText}
+                />
               </Suspense>
             </TabPane>
             <TabPane
               tab={
                 <>
-                  <AddchartIcon style={{fontSize:"1.1rem"}}/>
-                  <span class=" ml-1">
-                    {
-                      <FormattedMessage
-                        id="app.activity"
-                        defaultMessage="Activity"
-                      />
-                    }
+               <HourglassFullIcon className="text-[#edf67d] !text-icon" />
+                  <span class=" !text-tab">
+                    
+                      {this.state.translatedMenuItems[3]}
+                    
                     {/* Documents */}
                   </span>
                   {activeKey === "3" && (
                     <>
                       <PlusOutlined
                         type="plus"
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title={this.state.translatedMenuItems[4]}
                          onClick={() => handleContactInvestActivityModal(true)}
                         size="0.875em"
                         style={{
@@ -195,8 +171,9 @@ class ContactInvestDetailTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <ContactInvestTimeLine
-
-contactInVestDetail={this.props.contactInVestDetail}
+                        contactInVestDetail={this.props.contactInVestDetail}
+                        selectedLanguage={this.props.selectedLanguage}
+                        translateText={this.props.translateText}
                 />
               </Suspense>
             </TabPane>
@@ -204,44 +181,30 @@ contactInVestDetail={this.props.contactInVestDetail}
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
         <AddDocumentModals
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
             contactId={contactId}
           />
                <ContactInvestorActivityModal
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage}
+                    translatedMenuItems={this.props.translatedMenuItems}
              contactInVestDetail={this.props.contactInVestDetail}
              contactInvestorActivityModal={contactInvestorActivityModal}
        handleContactInvestActivityModal={handleContactInvestActivityModal}
-        />
-        {/*  <AddContactOpportunityModal
-            addContactOpportunityModal={addContactOpportunityModal}
-            handleContactOpportunityModal={handleContactOpportunityModal}
-            defaultContacts={[
-              {
-                label: `${firstName || ""} ${middleName || ""} ${lastName ||
-                  ""}`,
-                value: contactId,
-              },
-            ]}
-            contactId={{ value: contactId }}
-            callback={() => getOpportunityListByContactId(contactId)}
-          />
-           <ReactContactSpeechModal
-           contactId={ contactId }
-          handleContactReactSpeechModal={handleContactReactSpeechModal}
-          addContactSpeechModal={addContactSpeechModal}
-          /> */}
+        />  
         </Suspense>
       </>
     );
   }
 }
 const mapStateToProps = ({ contact,contactinvest }) => ({
-  //   addContactSpeechModal:contact.addContactSpeechModal,
     documentUploadModal: contact.documentUploadModal,
     contactId:contact.contact.contactId,
     contactInvestorActivityModal:contactinvest.contactInvestorActivityModal,
-  //   addContactOpportunityModal: contact.addContactOpportunityModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

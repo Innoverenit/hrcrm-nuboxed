@@ -20,6 +20,11 @@ class LeadsHeader extends Component {
           leftComponent={
             <LeadsActionLeft
             viewType={viewType}
+            isTransferMode={this.props.isTransferMode}
+            selectedDeals={this.props.selectedDeals}
+            handleTransferClick={this.props.handleTransferClick}
+            showCheckboxes={this.props.showCheckboxes}
+            handleUserSelect={this.props.handleUserSelect}
             teamsAccessInd={teamsAccessInd}
             handleChange={handleChange}
             setLeadsViewType={setLeadsViewType}
@@ -28,6 +33,8 @@ class LeadsHeader extends Component {
               handleFilterChange={this.props.handleFilterChange}
               filter={this.props.filter}
               setCurrentData={this.props.setCurrentData}
+              selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
             />
           }
           rightComponent={
@@ -36,7 +43,11 @@ class LeadsHeader extends Component {
             handleLeadsImportModal={this.props.handleLeadsImportModal}
             currentUser={this.props.currentUser} 
             handleDropChange={this.props.handleDropChange}
-            handleLeadsModal={handleLeadsModal} />
+            handleLeadsModal={handleLeadsModal}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+             />
           }
         />
       </div>

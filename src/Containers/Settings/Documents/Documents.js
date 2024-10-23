@@ -128,8 +128,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw] mt-3"  >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mt-[0.75rem] mr-2"  >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -139,7 +139,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[27rem]">
+          <div class="w-[2rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"documentType"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -196,8 +196,9 @@ return <div><BundleLoader/></div>;
                   <Select
   style={{ width: "50%" }}
   onChange={(value) => handleStageType(value, region.documentTypeId)} // Pass region.documentTypeId here
-  value={region.userType}
+  // value={region.userType}
   placeholder="Select Entity"
+  mode="multiple"
 >
   <option value="User">User</option>
   <option value="Customer">Customer</option>
@@ -217,7 +218,7 @@ return <div><BundleLoader/></div>;
                  
                 {/* </div> */}
             {/* Action buttons */}
-            <div className="actions w-12" >
+            <div className="actions w-12 justify-end" >
   {/* Edit button */}
   {editingId === region.documentTypeId ? (
     <div>

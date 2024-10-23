@@ -1,7 +1,7 @@
 import * as types from "./InvestorActionTypes";
 import axios from "axios";
 import dayjs from "dayjs";
-import { base_url } from "../../Config/Auth";
+import { base_url, base_url2, login_url } from "../../Config/Auth";
 import { message } from "antd";
 import Swal from "sweetalert2";
 
@@ -33,6 +33,36 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
         console.log(err.response);
         dispatch({
           type: types.GET_INVESTORS_BY_ID_FAILURE,
+          payload: err,
+        });
+        Swal.fire({
+          icon: 'error',
+          title: 'Something went wrong , reach out to support!',
+        })
+      });
+  };
+
+  export const getInvestorDeletelist = (orgId) => (dispatch) => {
+    dispatch({
+      type: types.GET_INVESTORS_DELETELIST_REQUEST,
+    });
+    axios
+      .get(`${base_url}/all/deleted/investor/${orgId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_INVESTORS_DELETELIST_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_INVESTORS_DELETELIST_FAILURE,
           payload: err,
         });
         Swal.fire({
@@ -113,6 +143,13 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
   export const handleInvestorModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_INVESTOR_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const handleInvestorAddressDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_INVESTOR_ADDRESS_MODAL,
       payload: modalProps,
     });
   };
@@ -1406,3 +1443,72 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         });
       });
   };
+
+  export const reinstateToggleForInvestor = (data, investorId) => (
+    dispatch
+  ) => {
+    // debugger;
+    dispatch({
+      type: types.REINSTATE_TOGGLE_FOR_INVESTOR_REQUEST,
+    });
+    axios
+      .put(`${base_url}/reinitiate/investor/${investorId}`, data,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+       // dispatch(getSupplierDeletedCount(orgId))
+        dispatch({
+          type: types.REINSTATE_TOGGLE_FOR_INVESTOR_SUCCESS,
+          payload: investorId,
+        });
+        Swal.fire({
+          icon: 'success',
+          title: 'Reinstated Successfully!',
+        })
+        // message.success("Reinstated Successfully");
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.REINSTATE_TOGGLE_FOR_INVESTOR_FAILURE,
+          payload: err,
+        });    
+        message.error("Something went wrong")
+      });
+  };
+
+
+
+
+  export const updateOwnerinvestorById = (data,userId, ) => (dispatch, getState) => {
+    const userId1 = getState().auth.userDetails.userId;
+    dispatch({
+      type: types.UPDATE_INVESTOR_OWNERSHIP_REQUEST,
+    });
+    axios
+      .put(`${base_url}/investor/transfer/${userId}`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        // dispatch(getCustomerListByUserId(userId1,0,"creationdate"));
+        // dispatch(getTeamCustomer(userId1,0,));
+        dispatch({
+          type: types.UPDATE_INVESTOR_OWNERSHIP_SUCCESS,
+          payload: res.data,
+        });
+        // cb && cb("success");
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_INVESTOR_OWNERSHIP_FAILURE,
+          payload: err,
+        });
+        // cb && cb("error");
+      });
+  }

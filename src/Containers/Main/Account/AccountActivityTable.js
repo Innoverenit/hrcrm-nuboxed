@@ -10,13 +10,7 @@ import {
     handleUpdateTaskModal,
     handleUpdateCallModal
 } from "./AccountAction";
-// import { setEditCall } from "../../../../../Call/CallAction";
-// import { setEditEvents } from "../../../../../Event/EventAction";
-// import { setEditTask } from "../../../../../Task/TaskAction";
-import moment from "moment";
-// import DistributorCallUpdateModal from "./DistributorCallUpdateModal";
-// import DistributorEventUpdateModal from "./DistributorEventUpdateModal";
-// import DistributorTaskUpdateModal from "./DistributorTaskUpdateModal";
+import dayjs from "dayjs";
 
 class AccountActivityTable extends Component {
     componentDidMount() {
@@ -73,7 +67,7 @@ class AccountActivityTable extends Component {
                 title: "Start",
                 width: "20%",
                 render: (name, item, i) => {
-                    return <span>{` ${moment(item.startDate).format("lll")}`}</span>;
+                    return <span>{` ${dayjs(item.startDate).format("lll")}`}</span>;
                 },
             },
 
@@ -81,7 +75,7 @@ class AccountActivityTable extends Component {
                 title: "End",
                 width: "20%",
                 render: (name, item, i) => {
-                    return <span>{` ${moment(item.endDate).format("lll")}`}</span>;
+                    return <span>{` ${dayjs(item.endDate).format("lll")}`}</span>;
                 },
             },
 
@@ -154,20 +148,7 @@ class AccountActivityTable extends Component {
 
                     />
                 )}
-                {/* <DistributorEventUpdateModal
-                    updateEventModal={updateEventModal}
-                    handleUpdateEventModal={handleUpdateEventModal}
-                /> */}
-
-                {/* <DistributorCallUpdateModal
-                    updateCallModal={updateCallModal}
-                    handleUpdateCallModal={handleUpdateCallModal}
-                /> */}
-
-                {/* <DistributorTaskUpdateModal
-                    updateTaskModal={updateTaskModal}
-                    handleUpdateTaskModal={handleUpdateTaskModal}
-                /> */}
+               
             </>
         );
     }

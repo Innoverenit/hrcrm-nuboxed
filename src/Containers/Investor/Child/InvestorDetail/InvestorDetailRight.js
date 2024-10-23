@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 const InvestorDetailTab = lazy(() => import("./InvestorDetailTab/InvestorDetailTab"));
@@ -6,7 +6,11 @@ const InvestorDetailTab = lazy(() => import("./InvestorDetailTab/InvestorDetailT
 function InvestorDetailRight (props) {
     return (
       <div class=" w-full">
-        <InvestorDetailTab investorDetails={props.investorDetails} />
+        < Suspense fallback={"Loading..."}>
+        <InvestorDetailTab investorDetails={props.investorDetails}
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage} />
+         </Suspense>
       </div>
     );
 }

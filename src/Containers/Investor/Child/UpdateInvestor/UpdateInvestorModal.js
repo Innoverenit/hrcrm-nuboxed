@@ -17,7 +17,10 @@ const UpdateInvestorModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateInvestorForm RowData={RowData} />{" "}
+          <UpdateInvestorForm RowData={RowData}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>

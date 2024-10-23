@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
 import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import {
   linkRenewalOrder,
   getShipperOrderByShipperId,
@@ -74,7 +74,7 @@ function ShipperRenewalForm(props) {
                     marginLeft: "10px",
                   }}
                 />
-                <Spacer />
+                <div class=" mt-3" />
               </div>
 
               <FlexContainer justifyContent="flex-end">

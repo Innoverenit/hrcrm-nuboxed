@@ -59,9 +59,9 @@ function MaterialbuilderCard (props) {
 return (
     <>
   
-  <div className=' flex justify-end sticky z-auto'> 
-  <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-         <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+  <div className=' flex  sticky z-auto'> 
+  <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins z-10">
          <div className=""></div>
          <div className=" md:w-[7%]">
           {/* Name */}
@@ -129,17 +129,17 @@ return (
     {editlinkSuppliesId === item.linkSuppliesId ? (
                         <>
                       <Button onClick={() => handleUpdateSupplies(item.linkSuppliesId,item.supplySupplyLinkId,item.suppliesName,item.description,item.categoryName,item.subCategoryName)}>
-                        Save
+                      {props.translatedMenuItems[5]}  {/* Save */}
                       </Button>
                         <Button 
                         className="ml-2"
                         onClick={() => handleCancelClick(item.linkSuppliesId)}>
-                        Cancel
+                        {props.translatedMenuItems[6]}
                       </Button>
                       </>
                       
                     ) : (
-                      <Tooltip title="Edit">
+                      <Tooltip title= {props.translatedMenuItems[7]}>
                       <BorderColorIcon
                       className=" flex justify-items-center justify-center !text-icon cursor-pointer  text-[tomato] "
                         onClick={() => handleEditClick(item.linkSuppliesId)}
@@ -149,10 +149,10 @@ return (
     </div>
     <div>
       <StyledPopconfirm
-                          title="Do you want to delete?"
+                          title= {props.translatedMenuItems[8]}
                           onConfirm={() => props.removeMaterialBuilder({active:false},item.supplySupplyLinkId)}
                           >
-                     <Tooltip title="Delete">
+                     <Tooltip title= {props.translatedMenuItems[9]}>
                           <DeleteOutlined
                           className="!text-icon cursor-pointer "
                           style={{

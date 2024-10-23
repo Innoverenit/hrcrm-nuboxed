@@ -4,7 +4,7 @@ import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { SearchOutlined,
   } from '@ant-design/icons';
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { Tooltip,Button,Input } from "antd";
 import Highlighter from 'react-highlight-words';
@@ -227,8 +227,8 @@ function CandidateWhiteTable(props) {
       render: (name, item, i) => {
         const fullName = ` ${item.salutation || ""} ${item.firstName ||
           ""} ${item.middleName || ""} ${item.lastName || ""}`;
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -402,11 +402,11 @@ function CandidateWhiteTable(props) {
        dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
-        const availableDate = moment(item.availableDate).format("ll");
+        const availableDate = dayjs(item.availableDate).format("ll");
         return <>
         {item.availableDate === null ? "None" :
           <span>
-            {moment(item.availableDate).format("l")} 
+            {dayjs(item.availableDate).format("l")} 
           </span>
         }
       </>

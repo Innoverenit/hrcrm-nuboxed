@@ -3,15 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
+import LinkedOpportunity from "../CustomerDetail/CustomerTab/OpportunityTab/LinkedOpportunity";
 
 
-const CustomerOpportunityCardList = lazy(() =>
-  import("./CustomerOpportunityCardList")
-);
+
 
 class CustomerOpportunityDrawerModal extends Component {
   render() {
-      console.log("data5", this.props.customer.name);
+      console.log("data5", this.props.customer.customerId);
 
     return (
       <div>
@@ -25,9 +24,12 @@ class CustomerOpportunityDrawerModal extends Component {
           onClose={() => this.props.handleCustomerOpportunityDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <CustomerOpportunityCardList 
-            customer={this.props.customer}
-            />
+           
+            <LinkedOpportunity customer={this.props.customer}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
+                />
           </Suspense>
         </StyledDrawer>
       </div>

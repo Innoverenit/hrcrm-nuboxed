@@ -4,9 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Spacer, StyledLabel } from "../../../Components/UI/Elements";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 // import { getSalesManagerUser } from "../../Teams/TeamsAction";
@@ -24,13 +22,6 @@ function AddPlantForm(props) {
     props.getProductionManager();
   }, []);
 
-  // const managementOption = props.salesManagementUsers.map((item) => {
-  //   return {
-  //     label: `${item.salutation || ""} ${item.firstName ||
-  //       ""} ${item.middleName || ""} ${item.lastName || ""}`,
-  //     value: item.userId,
-  //   };
-  // });
 
   const productionOption = props.productionManagement.map((item) => {
     return {
@@ -104,10 +95,10 @@ function AddPlantForm(props) {
                     // marginTop: "0px",
                   }}
                 />
-                <Spacer />
+                <div class=" mt-3" />
 
                 <div style={{ width: "100%" }}>
-                  <StyledLabel>Management</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Management</div>
                 </div>
                 <div style={{ width: "100%" }}>
                   <Field
@@ -124,10 +115,10 @@ function AddPlantForm(props) {
                   />
                 </div>
 
-                <Spacer />
+                <div class=" mt-3" />
 
                 <div style={{ width: "100%" }}>
-                  <StyledLabel>Production Manager</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Production Manager</div>
                   <Field
                     name="productionManager"
                     placeholder="Production Manager"
@@ -142,9 +133,9 @@ function AddPlantForm(props) {
                     }}
                   />
                 </div>
-                <Spacer />
+                <div class=" mt-3" />
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <div
                 style={{
                   height: "100%",
@@ -164,8 +155,8 @@ function AddPlantForm(props) {
                 {/* </div> */}
               </div>
             </div>
-            <Spacer />
-            <FlexContainer justifyContent="flex-end">
+            <div class=" mt-3" />
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
               <Button
                 type="primary"
                 htmlType="submit"
@@ -173,7 +164,7 @@ function AddPlantForm(props) {
               >
                 Create
               </Button>
-            </FlexContainer>
+            </div>
           </Form>
         )}
       </Formik>

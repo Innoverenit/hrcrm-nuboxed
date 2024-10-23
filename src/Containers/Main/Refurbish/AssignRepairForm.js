@@ -124,7 +124,7 @@ const AssignRepairForm = (props) => {
 
             <div class="mt-[10px] flex justify-between">
                 <div class=" w-1/5">
-                    <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Due Date</div>
                     <DatePicker
                         className="w-[250px]"
                         value={dueDate}
@@ -133,7 +133,7 @@ const AssignRepairForm = (props) => {
                     />
                 </div>
                 <div class=" w-1/5">
-                    <label class="text-[15px] font-semibold m-[10px]">Department</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Department</div>
                     <Select
                         className="w-[350px]"
                         value={department}
@@ -145,7 +145,7 @@ const AssignRepairForm = (props) => {
                     </Select>
                 </div>
                 <div class=" w-1/5">
-                    <label class="text-[15px] font-semibold m-[10px]">Technician</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Technician</div>
                     <Select
                         className="w-[350px]"
                         value={technician}
@@ -157,12 +157,12 @@ const AssignRepairForm = (props) => {
                     </Select>
                 </div>
                 <div class=" w-1/6">
-                    <label class="text-[15px] font-semibold m-[10px]">AV TAT</label>
+                    <div class="text-[15px] font-semibold m-[10px]">AV TAT</div>
                     {props.tatQuality.length === undefined ? null :
                         <div class=" text-base text-green-600">{props.tatQuality.avgTime}</div>}
                 </div>
                 <div class=" w-1/6">
-                    <label class="text-[15px] font-semibold m-[10px]">Quality</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Quality</div>
                     <div class=" text-base"></div>
                 </div>
 

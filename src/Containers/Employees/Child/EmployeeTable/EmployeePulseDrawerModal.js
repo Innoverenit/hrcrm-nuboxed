@@ -1,27 +1,53 @@
-import React, { Component,Suspense } from "react";
+import React, { Component,Suspense, lazy} from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import SalaryForm from "../EmployeeTable/SalaryForm"
-import styled from 'styled-components'
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import EmployeeTreeMap from "./EmployeeTreeMap";
-import EmployeeDocumentView from "./EmployeeDrawer/EmployeeDocumentView";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import UserKpiList from "./EmployeeDrawer/UserKpiList";
-import EmployeeEquipmentForm from "./EmployeeDrawer/EmployeeEquipmentForm";
-import AssigenedKpiCardList from "../../../Main/Teams/TeamsCard.js/AssigenedKpiCardList";
+
+const EmployeeEquipmentForm  =lazy(()=> import("./EmployeeDrawer/EmployeeEquipmentForm"))
+const  UserKpiList  =lazy(()=> import("./EmployeeDrawer/UserKpiList"));
+const EmployeeTreeMap  =lazy(()=> import("./EmployeeTreeMap"));
+const SalaryForm =lazy(()=> import("../EmployeeTable/SalaryForm"));
+
 const TabPane = StyledTabs.TabPane;
 class EmployeePulseDrawerModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activeKey: "1",
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "1193",//0  Performance
+        "1646",//1  360 View
+        "981",//2 Salary
+        "1202",//3  Equipment
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   handleTabChange = (key) => {
     this.setState({ activeKey: key });
 
@@ -46,16 +72,7 @@ class EmployeePulseDrawerModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
       
-        
-          {/* <EmployeeDocumentView
-           employeeId={employeeId}
-           documentsByEmployeeId={this.props.documentsByEmployeeId}
-          //candidate={candidate}
-          />
-
-          <EmployeeTreeMap
-          employeeTreeMap={this.props.employeeTreeMap}
-          /> */}
+      
            <TabsWrapper style={{ height:"81vh" }}>
           <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
             
@@ -63,40 +80,12 @@ class EmployeePulseDrawerModal extends Component {
               tab={
                 <>
                   <span>
- <ContactsIcon style={{fontSize:"1.1rem"}}/>
-                    <span class=" ml-1">
-                      Performance
+ <ContactsIcon className="!text-icon"/>
+                    <span class=" ml-1 !text-tab">
+                    {this.state.translatedMenuItems[0]}{/* Performance */}
                     </span>
                   </span>
-                  {/* {activeKey === "1" && (
-                    <>
-                      <Tooltip 
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
-                      >
-                      
-                          <PlusOutlined
-                            type="plus"
-                           
-                            tooltiptitle={
-                              <FormattedMessage
-                                id="app.Create"
-                                defaultMessage="Create"
-                              />
-                            }
-                            onClick={() => {
-                              handleInvestorContactModal(true);
-                            }}
-                            size="0.875em"
-                          />
-                       
-                      </Tooltip>
-                    </>
-                  )} */}
+               
                 </>
               }
               key="1"
@@ -104,7 +93,9 @@ class EmployeePulseDrawerModal extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 {/* <AssigenedKpiCardList employeeName={this.props.employeeName}/> */}
-                <UserKpiList employeeName={this.props.employeeName}/>
+                <UserKpiList employeeName={this.props.employeeName}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}/>
               </Suspense>
             </TabPane>
 
@@ -114,10 +105,10 @@ class EmployeePulseDrawerModal extends Component {
               tab={
                 <>
                   <InsertDriveFileIcon 
-                  style={{fontSize:"1.1rem"}}
+                 className="!text-icon"
                   />
-                  <span class=" ml-1">
-                    360 View
+                  <span class=" ml-1  !text-tab">
+                  {this.state.translatedMenuItems[1]}   {/* 360 View */}
                     
                   </span>
               
@@ -128,6 +119,8 @@ class EmployeePulseDrawerModal extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <EmployeeTreeMap
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
           employeeTreeMap={this.props.employeeTreeMap}
           />
               </Suspense>
@@ -139,40 +132,12 @@ class EmployeePulseDrawerModal extends Component {
               tab={
                 <>
                   <span>
- <ContactsIcon style={{fontSize:"1.1rem"}}/>
-                    <span class=" ml-1">
-                      Salary
+ <ContactsIcon  className="!text-icon"/>
+                    <span class=" ml-1  !text-tab">
+                    {this.state.translatedMenuItems[2]} {/* Salary */}
                     </span>
                   </span>
-                  {/* {activeKey === "1" && (
-                    <>
-                      <Tooltip 
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
-                      >
-                      
-                          <PlusOutlined
-                            type="plus"
-                           
-                            tooltiptitle={
-                              <FormattedMessage
-                                id="app.Create"
-                                defaultMessage="Create"
-                              />
-                            }
-                            onClick={() => {
-                              handleInvestorContactModal(true);
-                            }}
-                            size="0.875em"
-                          />
-                       
-                      </Tooltip>
-                    </>
-                  )} */}
+                
                 </>
               }
               key="3"
@@ -181,6 +146,8 @@ class EmployeePulseDrawerModal extends Component {
                 {" "}
                 <SalaryForm
                  employeeName={this.props.employeeName}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
                 />
                 {/* <UserKpiList employeeName={this.props.employeeName}/> */}
               </Suspense>
@@ -189,9 +156,9 @@ class EmployeePulseDrawerModal extends Component {
               tab={
                 <>
                   <span>
- <ContactsIcon style={{fontSize:"1.1rem"}}/>
-                    <span class=" ml-1">
-                    Equipment
+ <ContactsIcon className="!text-icon"/>
+                    <span class=" ml-1  !text-tab">
+                    {this.state.translatedMenuItems[3]}       {/* Equipment */}
                     </span>
                   </span>
                 </>
@@ -201,6 +168,8 @@ class EmployeePulseDrawerModal extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <EmployeeEquipmentForm
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
                  employeeName={this.props.employeeName}
                 />
              
@@ -234,15 +203,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(EmployeePulseDrawerModal);
-const CardWrapper = styled.div`
-border-radius: 1.2rem;
-box-shadow: 0 0.5em 0.375em -0.375em rgb(46 44 44);
-border: 0.0625em solid #eee;
-background-color: #fff;
-color: #444;
-margin: 0.2rem;
-padding: 0.3rem;
-width: 8rem;
-}
-  }
-`

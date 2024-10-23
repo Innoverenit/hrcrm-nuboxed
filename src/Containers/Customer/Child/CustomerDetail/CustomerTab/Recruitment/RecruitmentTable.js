@@ -13,7 +13,7 @@ import {
 } from "antd";
 import { Link } from "../../../../../../Components/Common";
 import Highlighter from 'react-highlight-words';
-import moment from "moment";
+import dayjs from "dayjs";
 import { getCustomerRecruit } from "../../../../CustomerAction";
 import { SearchOutlined } from "@ant-design/icons";
 import { MultiAvatar,SubTitle } from "../../../../../../Components/UI/Elements";
@@ -240,7 +240,7 @@ class RecruitmentTable extends Component {
         return 0;
       },
       render: (text, item) => {
-        const closeByDate = moment(item.closeByDate).format("ll");
+        const closeByDate = dayjs(item.closeByDate).format("ll");
         return <span>{closeByDate}</span>;
       },
   },
@@ -254,7 +254,7 @@ class RecruitmentTable extends Component {
         width: "7%",
         render: (name, item, i) => {
           console.log(item);
-          return <span>{moment(item.avilableDate).format("ll")}</span>;
+          return <span>{dayjs(item.avilableDate).format("ll")}</span>;
         },
         sorter: (a, b) => {
           if (a.avilableDate < b.avilableDate) {

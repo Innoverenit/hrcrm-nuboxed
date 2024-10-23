@@ -54,16 +54,7 @@ class UpdateTrainingForm extends Component {
             values,
             ...rest
           }) => (
-              <Form className="form-background">
-                {/* <div
-                                    style={{
-                                        display: "flex",
-                                        // border: "0.125em solid red",
-                                        width: "100%",
-                                        height: "100%",
-                                        justifyContent: "space-between",
-                                    }}
-                                > */}
+              <Form className="form-background">            
                 <div class=" w-full"
                 >
                <div class=" flex justify-between" >
@@ -87,7 +78,7 @@ class UpdateTrainingForm extends Component {
 
                   <div class=" flex justify-between mt-3" >
                       <div class=" w-[60%]" >
-                      {/* <StyledLabel>Organization/Institution</StyledLabel> */}
+                      {/* <div class=" text-xs font-bold font-poppins text-black">Organization/Institution</div> */}
                       <FastField
                         type="Organization"
                         name="organization"
@@ -103,7 +94,7 @@ class UpdateTrainingForm extends Component {
                        />
                     </div>
                     <div class=" w-[30%]" >
-                      {/* <StyledLabel>Grade</StyledLabel> */}
+                      {/* <div class=" text-xs font-bold font-poppins text-black">Grade</div> */}
                       <FastField
                         name="grade"
                         label={<FormattedMessage
@@ -168,64 +159,7 @@ class UpdateTrainingForm extends Component {
                     </div>
                   </div>
                
-                </div>
-
-                {/* <div
-                                        style={{
-                                            width: "50%",
-                                            // border: "0.125em solid green"
-                                        }}
-                                    >
-                                        <FlexContainer justifyContent="space-between"></FlexContainer> */}
-
-                {/* <div
-                                            style={{
-                                                width: "100%",
-                                                // border: "0.125em solid green"
-                                            }}
-                                        >
-                                            <Field
-                                                name="documentId"
-                                                isRequired
-                                                component={DragableUpload}
-                                            />
-
-                                            <Field
-                                                name="documentTitle"
-                                                label="Name"
-                                                width={"100%"}
-                                                isColumn
-                                                component={InputComponent}
-                                                style={{ height: "2.0625em", marginTop: "0.25em" }}
-                                            />
-                                            <Spacer />
-                                            <Field
-                                                name="documentDescription"
-                                                label="Description"
-                                                isRequired
-                                                isColumn
-                                                width={"100%"}
-                                                component={TextareaComponent}
-                                                style={{ height: "5em", marginTop: "0.25em" }}
-                                            />
-                                            <Spacer style={{ marginBottom: "0.9375em" }} />
-                                        </div>
-
-                                        <Spacer />
-
-                                        {/* <FieldArray
-                                    name="address"
-                                    render={(arrayHelpers) => (
-                                        <AddressFieldArray
-                                            singleAddress
-                                            arrayHelpers={arrayHelpers}
-                                            values={values}
-                                        />
-                                    )}
-                                /> */}
-
-                 {/* </div> */}
-                {/* </div> */}
+                </div>                         
                 <div class=" flex justify-end mt-3" >
                   <Button
                     htmlType="submit"

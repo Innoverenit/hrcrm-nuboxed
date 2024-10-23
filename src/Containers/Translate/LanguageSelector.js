@@ -102,7 +102,7 @@
 //   return (
 //     <div>
 //       {/* <div>
-//         <label htmlFor="sourceLanguage">Source Language: </label>
+//         <div htmlFor="sourceLanguage">Source Language: </div>
 //         <select id="sourceLanguage" value={sourceLanguage} onChange={handleSourceLanguageChange}>
 //           {languages.map((lang) => (
 
@@ -113,7 +113,7 @@
 //         </select>
 //       </div> */}
 //       <div>
-//         {/* <label htmlFor="targetLanguage">Target Language: </label>
+//         {/* <div htmlFor="targetLanguage">Target Language: </div>
 //         <select id="targetLanguage" value={targetLanguage} onChange={handleTargetLanguageChange}>
 //           {languages.map((lang) => (
 //             <option key={lang.language} value={lang.language}>
@@ -171,17 +171,20 @@ function LanguageSelector({ onLanguageChange,supportedLanguages,selectedLanguage
 
   return (
     <div>
-      <select class="notranslate w-14" value={selectedLanguage} onChange={onLanguageChange}>
-      
-        <option value="English">EN</option>
-        <option value="Dutch">NL</option>
-        <option value="German">DE</option>
-        <option value="French">FR</option>
-        <option value="Spanish">ES</option>
-        <option value="Italian">IT</option>
-        <option value="Polish">PL</option>
+      <select class=" rounded notranslate w-18 box-border bg-white p-2 border-2 border-gray-200 " value={selectedLanguage} onChange={onLanguageChange}>
+    
+        <option value="English">English</option>
+        <option value="Dutch">Nederlands</option>
+        <option value="German">Deutsch</option>
+        <option value="French">Français</option>
+        <option value="Spanish">Español</option>
+        <option value="Italian">Italiano</option>
+        <option value="Polish">Polski</option>
         <option value="Arabic">عربي</option>
         <option value="Hindi">हिंदी</option>
+        <option value="Chinese">中国人</option>
+        <option value="Turkish">Türkçe</option>
+    
         
       </select>
     </div>

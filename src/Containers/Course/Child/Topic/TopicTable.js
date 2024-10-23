@@ -2,7 +2,7 @@ import React, { useEffect, useState,useMemo,lazy } from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { FormattedMessage } from 'react-intl';
 import { Tooltip,Button,Input } from "antd";
 import SearchIcon from '@mui/icons-material/Search';

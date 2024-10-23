@@ -3,10 +3,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import { sortedLastIndex } from "lodash";
-import TaskDocumentList from "../Child/TaskDocumentList"
-
-
+const  TaskDocumentList = lazy(() => import("../Child/TaskDocumentList"));
 class AddTaskDocumentDrawerModal extends Component {
   render() {
     

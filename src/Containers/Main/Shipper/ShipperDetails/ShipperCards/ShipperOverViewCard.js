@@ -12,6 +12,8 @@ class ShipperOverViewCard extends Component {
                         viewType === "view" ? (
                             <ShipperOverViewView
                                 shipper={shipper}
+                                translatedMenuItems={this.translatedMenuItems}
+                                selectedLanguage={this.props.selectedLanguage}
                             />
                         ) : null
                     }

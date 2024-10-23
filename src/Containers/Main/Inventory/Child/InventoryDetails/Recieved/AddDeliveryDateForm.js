@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
-import moment from "moment";
+import dayjs from "dayjs";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { addDeliveryDate, getInventory } from "../../../InventoryAction"
 
@@ -11,9 +11,9 @@ function OrderInventoryForm(props) {
   useEffect(() => {
     props.getInventory(props.orgId)
   }, []);
-  moment.addRealYear = function addRealYear(y) {
-    var fm = moment(y).add(10, "Y");
-    var fmEnd = moment(fm).endOf("year");
+  dayjs.addRealYear = function addRealYear(y) {
+    var fm = dayjs(y).add(10, "Y");
+    var fmEnd = dayjs(fm).endOf("year");
     return y.date() != fm.date() && fm.isSame(fmEnd.format("YYYY-MM-DD"))
       ? fm.add(10, "y")
       : fm;

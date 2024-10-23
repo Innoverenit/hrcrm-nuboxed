@@ -5,10 +5,6 @@ import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-import {
-  Spacer,
-  StyledLabel,
-} from "../../../../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import * as Yup from "yup";
 import {
@@ -69,7 +65,7 @@ class CommercialsForm extends Component {
                 >
                   <div class=" w-2/5">
                     <div class=" w-1/2">
-                      <StyledLabel>Permanent</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Permanent</div>
                     </div>
 
                     <div class=" flex justify-between" >
@@ -107,10 +103,10 @@ class CommercialsForm extends Component {
                         </div>
                       ) : null}
                     </div>
-                    <Spacer />
+                    <div class=" mt-3" />
                     <div class=" flex justify-between" >
                     <div class=" w-1/2">
-                        <StyledLabel>Payment after (in days)</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Payment after (in days)</div>
                       </div>
                       <div class=" w-2/5"
                           >
@@ -125,10 +121,10 @@ class CommercialsForm extends Component {
                       </div>
                     </div>
 
-                    <Spacer />
+                    <div class=" mt-3" />
                   </div>
                   <h4>Updated on {dayjs(this.props.commercials && this.props.commercials.length && this.props.commercials[0].lastUpdatedOn).format("ll")} by {this.props.commercials && this.props.commercials.length && this.props.commercials[0].ownerName}</h4>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div  class=" flex justify-end">
                     <Button
                       type="primary"

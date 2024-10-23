@@ -9,14 +9,14 @@ import {
   StyledMenu,
   StyledMenuItem
 } from "../../Components/UI/Antd";
-import { ApplicationWrapper, MainWrapper } from "../../Components/UI/Layout";
+import {MainWrapper } from "../../Components/UI/Layout";
 import { logout } from "../Auth/AuthAction";
 import { FormattedMessage } from "react-intl";
 const Theme = lazy(() => import("../Settings/Theme/Theme"));
 
 
 const ProfileMenu = ({ logout, history }) => (
-  <ApplicationWrapper>
+  <div class=" p-1 bg-light-gray ">
     <MainWrapper>
       <StyledMenu>
         <StyledMenuItem  key="0" >
@@ -60,10 +60,10 @@ const ProfileMenu = ({ logout, history }) => (
         </StyledMenuItem>
         <Menu.Divider />
       </StyledMenu>
-      {/* <ServerCheckbox /> */}
+  
       {/* <Theme /> */}
     </MainWrapper>
-  </ApplicationWrapper>
+  </div>
 );
 class ProfileDropdown extends Component {
   render() {
@@ -85,9 +85,8 @@ class ProfileDropdown extends Component {
             style={{ width: 32, height: 32, borderRadius: "50%" }}
           />
         ) : (
-            <Avatar
-              style={{ backgroundColor: "#1890ff", verticalAlign: "middle", color: "white" }}
-              size="large"
+            <Avatar className=" !text-icon align-middle text-white bg-[#1890ff]"
+              
             >
               {fullName && fullName.split("")[0].toUpperCase()}
             </Avatar>

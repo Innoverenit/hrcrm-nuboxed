@@ -3,7 +3,7 @@ import { Switch, Checkbox, Popconfirm, message, Select } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateValidationInReceive } from "../../../InventoryAction"
-import moment from "moment";
+import dayjs from "dayjs";
 
 function ReceiveValidationToggle(props) {
 
@@ -12,7 +12,7 @@ function ReceiveValidationToggle(props) {
             receivePhoneInd: true,
             mismatchInd: false,
             receivePhoneUser: props.userId,
-            receivePhoneDate: moment(),
+            receivePhoneDate: dayjs(),
             orderPhoneId: props.orderPhoneId
         },
             props.phoneId,

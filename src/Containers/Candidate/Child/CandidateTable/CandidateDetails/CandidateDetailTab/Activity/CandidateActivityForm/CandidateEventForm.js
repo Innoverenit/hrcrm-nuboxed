@@ -342,7 +342,7 @@ class CandidateEventForm extends Component {
                     </div>
                   </div>
 
-                  {/* <Spacer style={{ marginBottom: "15px" }} /> */}
+                  {/* <div class=" mt-3" style={{ marginBottom: "15px" }} /> */}
                   {/* <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
@@ -425,7 +425,7 @@ class CandidateEventForm extends Component {
                     />
                   )} */}
 
-                  {/* <Spacer style={{ marginBottom: "45px" }} /> */}
+                  {/* <div class=" mt-3" style={{ marginBottom: "45px" }} /> */}
                   <Field
                     name="eventDescription"
                     label="Description"
@@ -434,7 +434,7 @@ class CandidateEventForm extends Component {
                     component={TextareaComponent}
                     inlineLabel
                   />
-                  {/* <Spacer />
+                  {/* <div class=" mt-3" />
                   <Field
                     name="location"
                     label="Location"
@@ -450,7 +450,7 @@ class CandidateEventForm extends Component {
                   /> */}
                 </div>
               </div>
-              {/* <Spacer /> */}
+              {/* <div class=" mt-3" /> */}
               <div class=" flex justify-end" >
                 {isEditing && (
                   <>

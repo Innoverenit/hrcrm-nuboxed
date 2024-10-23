@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Select } from "antd";
 
-import moment from "moment";
+import dayjs from "dayjs";
 import HistoryIcon from '@mui/icons-material/History';
 import {
   getActionNotifications,

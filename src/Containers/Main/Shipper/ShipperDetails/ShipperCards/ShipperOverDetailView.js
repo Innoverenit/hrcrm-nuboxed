@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 class ShipperOverDetailView extends Component {
   render() {
@@ -34,11 +33,8 @@ export default ShipperOverDetailView;
 
 const ShipperItemRow = ({ label, value }) => {
   return (
-    <FlexContainer
-      alignItems="center"
-      flexWrap="nowrap"
-      style={{ margin: "0.4rem", fontSize: "13px" }}
-    >
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto m-[0.4rem] font-[13px] ">
+  
       <div
         style={{
           color: "#444",
@@ -58,6 +54,6 @@ const ShipperItemRow = ({ label, value }) => {
       >
         {value}
       </div>
-    </FlexContainer>
+    </div>
   );
 };

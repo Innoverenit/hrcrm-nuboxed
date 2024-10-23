@@ -55,7 +55,10 @@ const initialState = {
   fetchingRejectedExpenseError:false,
   rejectedExpenses:[],
 
-  pexpenseVoucherIdDrawer:false
+  pexpenseVoucherIdDrawer:false,
+
+  fetchingExpenseSearchedList: false,
+  fetchingExpenseSearchedListError: false,
 
 };
 
@@ -277,7 +280,20 @@ export const expenseReducer = (state = initialState, action) => {
                  
                   case types.HANDLE_PEXPENSE_VOUCHERID_DRAWER:
                     return {...state,pexpenseVoucherIdDrawer:action.payload}
-      default:
+    
+                    case types.SEARCH_EXPENSE_LIST_REQUEST:
+                      return { ...state, fetchingExpenseSearchedList: true };
+                    case types.SEARCH_EXPENSE_LIST_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingExpenseSearchedList: false,
+                        Expenses: action.payload,
+                        
+                      };
+                    case types.SEARCH_EXPENSE_LIST_FAILURE:
+                      return { ...state, fetchingExpenseSearchedListError: true };
+    
+                    default:
   return state;
     }
 };

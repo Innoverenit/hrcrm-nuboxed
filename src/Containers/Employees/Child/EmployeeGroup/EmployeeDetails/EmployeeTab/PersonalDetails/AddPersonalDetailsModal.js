@@ -21,7 +21,9 @@ class AddPersonalDetailsModal extends Component {
                     onClose={() => handlePersonalDetailsModal(false)}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <PersonalDetailDocumentForm />
+                        <PersonalDetailDocumentForm 
+                        translateText={this.props.translateText}
+                        selectedLanguage={this.props.selectedLanguage}/>
                     </Suspense>
                 </StyledDrawer>
             </>

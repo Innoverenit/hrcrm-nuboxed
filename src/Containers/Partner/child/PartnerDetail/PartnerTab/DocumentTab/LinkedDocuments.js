@@ -14,7 +14,7 @@ import {
   MultiAvatar,
   SubTitle,
 } from "../../../../../../Components/UI/Elements";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   getPartnerDocument,
   deleteDocument,
@@ -63,7 +63,7 @@ class LinkedDocuments extends Component {
           return 0;
         },
         render: (name, item, i) => {
-          return <span>{` ${moment(item.creationDate).format("ll")}`}</span>;
+          return <span>{` ${dayjs(item.creationDate).format("ll")}`}</span>;
         },
       },
       {

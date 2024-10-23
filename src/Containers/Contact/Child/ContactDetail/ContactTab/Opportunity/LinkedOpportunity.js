@@ -6,16 +6,14 @@ import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {  Menu, Dropdown, Progress } from "antd";
 import { Link } from "../../../../../../Components/Common";
-import { FormattedMessage } from "react-intl";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import { bindActionCreators } from "redux";
-import { StyledTable } from "../../../../../../Components/UI/Antd";
+
 import {
   MultiAvatar,
   MultiAvatar2,
-  SubTitle,
+
 } from "../../../../../../Components/UI/Elements";
-import styled from "styled-components";
 import { getOpportunityListByContactId } from "../../../../ContactAction";
 import { Tooltip } from "antd";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -25,10 +23,37 @@ function onChange(pagination, filters, sorter) {
 }
 
 function OpportunityTable(props) {
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [currentOpportunityId, setCurrentOpportunityId] = useState("");
   useEffect(() => {
     props.getOpportunityListByContactId(props.contactId);
   }, []);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "213",//0 Quotation
+          "97",//1 Prospect
+          "216",//2 Sponsor
+          "176",//3 Start Date
+          "218",//4 Value
+          "219",//5 Stages
+          "220",//6 Sales Rep
+          "77"//7Owner"
+         
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   console.log(props.contactId);
   function handleSetCurrentOpportunityId(opportunityId,opportunityName) {
     setCurrentOpportunityId(opportunityId,opportunityName);
@@ -41,16 +66,24 @@ function OpportunityTable(props) {
 
   return (
     <>
-    <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className="flex max-sm:hidden  w-[99%] max-xl:w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">Quotation ID</div>
-        <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Prospect</div>
-        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Sponsor</div>
-        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
-        <div className="w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Value</div>
-        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Stages</div> 
-        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sales Rep</div>
-        <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">Owner</div>
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+ <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]} ID</div>
+        {/* Quotation ID */}
+        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        {/* Prospect */}
+        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]}</div>
+        {/* Sponsor */}
+        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[3]}</div>
+        {/* Start Date */}
+        <div className="w-[8.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[4]}</div>
+        {/* Value */}
+        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div>
+        {/* Stages */}
+        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div>
+        {/* Sales Rep */}
+        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">{translatedMenuItems[7]}</div>
+        {/* Owner */}
         <div className="w-[4.8rem] "></div>
         <div className="w-12"></div>
       </div>
@@ -63,7 +96,7 @@ function OpportunityTable(props) {
         height={"65vh"}
         style={{ scrollbarWidth:"thin"}}
       >
- <CardWrapper>      
+ <div class="flex">      
  { !props.fetchingContactOpportunity && props.opportunityByContactId.length === 0 ?<NodataFoundPage />: props.opportunityByContactId.map((item,index) =>  {
                  
                  var findProbability = item.probability;
@@ -78,7 +111,7 @@ function OpportunityTable(props) {
                    <div
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex w-[13rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
+                    <div className=" flex w-[11rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
                               <div>
 
           <MultiAvatar
@@ -120,7 +153,7 @@ function OpportunityTable(props) {
                             
                               
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex w-[4rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex w-[6rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 
                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -137,7 +170,7 @@ function OpportunityTable(props) {
        
                                 </div>
                             </div>
-                              <div className=" flex   w-[7rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[8rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                                   <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -157,7 +190,7 @@ function OpportunityTable(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex  w-[4.02rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  w-[7.02rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
            
 
                                   <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -208,7 +241,7 @@ strokeColor={"#005075"}
            
                                   </div>
                               </div>
-                              <div className=" flex  w-20 max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                              <div className=" flex  w-[5rem] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                      
 
 
@@ -298,7 +331,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
 
                  )  
             })}
-              </CardWrapper>
+              </div>
   
 
       </InfiniteScroll>
@@ -326,14 +359,4 @@ const mapDispatchToProps = (dispatch) =>
   );
 export default connect(mapStateToProps, mapDispatchToProps)(OpportunityTable);
 
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`
+

@@ -12,7 +12,7 @@ import { Button, message, Tooltip, Popover, Icon } from "antd";
 import { FormattedMessage } from "react-intl";
 import { StyledModal, StyledTabs } from "../../../Components/UI/Antd";
 import {
-  FlexContainer,
+ 
   TabsWrapper,
 } from "../../../Components/UI/Layout";
 import { ActionIcon } from "../../../Components/Utils";
@@ -112,29 +112,7 @@ class DemandTab extends Component {
                   
                             </Tooltip>
                           
-                          {/* <Tooltip //title="Tag Position"
-                            title={<FormattedMessage
-                              id="app.tagposition"
-                              defaultMessage="Tag Position"
-                            />}
-  
-                          >
-                             {user.userType !== "USER" && user.department !== "Customer" && (
-                            <Icon
-                              type="link"
-                              onClick={() => {
-                                this.handlepartnerPopoverVisibleChange();
-                                handleTagProfileModal(true);
-                              }}
-                              size="0.875em"
-                              style={{
-                                marginLeft: "-5px",
-                                verticalAlign: "center",
-                              }}
-                            />
-                             )}
-                         
-                          </Tooltip> */}
+                        
   
                           <Tooltip title="Summary">
                         <span

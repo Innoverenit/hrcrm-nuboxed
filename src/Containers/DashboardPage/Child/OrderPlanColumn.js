@@ -1,35 +1,26 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Draggable } from "react-beautiful-dnd";
-import OrderPlanGroupCard from "../Child/OrderPlanGroupCard";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { elipsize } from "../../../Helpers/Function/Functions";
-
+const  OrderPlanGroupCard = lazy(() =>import("../Child/OrderPlanGroupCard"));
 
 class OrderPlanColumn extends Component {
   render() {
     const { order, index, history } = this.props;
     return (
    
-        <div
-         
-        >
-  
+        <div >
+   <Suspense fallback={<BundleLoader />}>
             <OrderPlanGroupCard
-            //   isDragging={snapshot.isDragging}
-              //opportunityId={opportunity.opportunityId}
               primaryTitle={`${elipsize(order.contactPersonName, 60)}`} 
               secondaryTitle={`${order.distributorName} `}
-            //   currencyType={opportunity.currency}
-            //   customerName={opportunity.customer}
-            //   contactName={opportunity.contactName}
-            //   user={this.props.user}
             offerValue={order.payableOfferPrice}
             newOrderNo={order.newOrderNo}
             deliveryDate={order.deliveryDate}
             orderCurrencyName={order.orderCurrencyName}
              
-            />
+            /></Suspense>
              
             </div>
           

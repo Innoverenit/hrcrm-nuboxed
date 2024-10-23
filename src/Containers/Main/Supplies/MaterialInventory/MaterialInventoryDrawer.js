@@ -7,11 +7,11 @@ const MaterialInventoryCard = lazy(() => import("./MaterialInventoryCard"));
 const MaterialInventoryDrawer = (props) => {
   const { materialInveDawer, handleMaterialInventory, particularDiscountData, ...formProps } = props;
   const isSmallScreen = window.innerWidth <= 600;
-  const drawerWidth = isSmallScreen ? "90%" : "60%";
+  const drawerWidth = isSmallScreen ? "90%" : "80%";
   return (
     <>
       <StyledDrawer
-        title={`Material Builder - ${particularDiscountData.suppliesName} ${particularDiscountData.hsn}`}
+        title={`Inventory - ${particularDiscountData.suppliesName} ${particularDiscountData.hsn}`}
         width={drawerWidth}
         visible={materialInveDawer}
         maskClosable={false}

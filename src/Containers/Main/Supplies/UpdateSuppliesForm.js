@@ -6,7 +6,6 @@ import * as Yup from "yup";
 import { Formik, Form, Field,FastField } from "formik";
 import { base_url2 } from "../../../Config/Auth";
 import { SwitchComponent } from "../../../Components/Forms/Formik/SwitchComponent";
-import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { updateSupplies } from "./SuppliesAction";
@@ -15,7 +14,7 @@ import { getCurrency } from "../../Auth/AuthAction"
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import MultiImageUpload from "../../../Components/MultiImageUpload";
-// import MaterialImagesView from "./";
+
 
 const SuppliesSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
@@ -28,27 +27,45 @@ function UpdateSuppliesForm (props) {
    props.getCurrency();
   },[]);
 
+  const [availabilityDate, setAvailabilityDate] = useState('');
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+  const handleChange = (event) => {
+    const date = event.target.value;
+    if (date) {
+      // Create a new Date object from the date string
+      const dateTime = new Date(`${date}T00:00:00Z`);
+      // Format the date as ISO string with time component
+      const isoString = dateTime.toISOString();
+      setAvailabilityDate(isoString);
+    } else {
+      setAvailabilityDate('');
+    }
+  };
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Category",//0
-          "Sub Category",//1
-          "Attribute",//1
-          "Sub Attribute",//1
-          "Name",//1
-          "HSN",//1
-          "Re-order",//1
-          "Net Weight",//1
-          "UOM",//1
-          "Gross Weight",
-          "Description",
-          "Update",
-          "Weight",//12
-          "Length",//13
-          "Width",//14
-          "Height",//15
+          "14",//0 
+          "1154",//1
+          "259",//2
+          "263",//3
+          "110",//4
+          "799",//5
+          "815",//6
+          "816",//7
+          "817",//8
+          "818",//9
+          "147",//10
+          "104",//11
+          "1246",//Update
+          "1241",//Weight
+        "1242",//Length
+        "1243",//Width
+        "1244",//Height
+          "1275"
+
       
        
           
@@ -65,8 +82,13 @@ function UpdateSuppliesForm (props) {
   }, [props.selectedLanguage]);
 
   const [newimageId, setnewimageId] = useState("");
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
+  const uomType = props.UOMListData.map((item) => {
+    return {
+      label: item.unitName || "",
+      value: item.unitName,
+    };
+  })
   function setImage(imageId) {
     setnewimageId(imageId);
   }
@@ -116,11 +138,29 @@ function UpdateSuppliesForm (props) {
             netUnit:props.particularDiscountData.netUnit || "",
             netWeight:props.particularDiscountData.netWeight || "",
             reorder:props.particularDiscountData.reorder || "",
-            availabilityDate: formatDateForPayload(props.particularDiscountData.availabilityDate || new Date()),
-            weight: "",
-            width: "",
-             length:"",
-              height: "",
+            availabilityDate: availabilityDate,
+            uom:"",
+            wtUom:"",
+            weight: props.particularDiscountData.weight || "",
+            width: props.particularDiscountData.width || "",
+             length:props.particularDiscountData.length || "",
+              height: props.particularDiscountData.height || "",
+              volume:props.particularDiscountData.volume || "",
+              innerHeight:props.particularDiscountData.innerHeight || "",
+              innerWeight:props.particularDiscountData.innerWeight || "",
+              innerLength:props.particularDiscountData.innerLength || "",
+              innerWidth:props.particularDiscountData.innerWidth || "",
+              innerVolume:props.particularDiscountData.innerVolume || "",
+              masterHeight:props.particularDiscountData.masterHeight || "",
+              masterWeight:props.particularDiscountData.masterWeight || "",
+              masterLength:props.particularDiscountData.masterLength || "",
+              masterWidth:props.particularDiscountData.masterWidth || "",
+              masterVolume:props.particularDiscountData.masterVolume || "",
+              shopify:props.particularDiscountData.shopify || "",
+              seoTitle:props.particularDiscountData.seoTitle || "",
+              seoDescription:props.particularDiscountData.seoDescription || "",
+              tag:props.particularDiscountData.tag || "",
+              msku:props.particularDiscountData.msku || "",
          
           }}
           validationSchema={SuppliesSchema}
@@ -130,7 +170,7 @@ function UpdateSuppliesForm (props) {
               {
                 ...values,
                 fifoInd: values.fifoInd ? true : false,
-                availabilityDate: formatDateForPayload(props.particularDiscountData.availabilityDate || new Date())
+                availabilityDate: availabilityDate
                 // imageId: newimageId !== "" ? newimageId.imageId : props.particularDiscountData.imageId,
                 // imageId: props.particularDiscountData.imageId,
               },
@@ -158,7 +198,7 @@ function UpdateSuppliesForm (props) {
                       </div>
                     </div>
                   </div>
-                  <label>{translatedMenuItems[0]}</label>
+                  <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[0]}</div>
                   <Field
                     defaultValue={{
                       label:props.particularDiscountData.categoryName,
@@ -176,7 +216,7 @@ function UpdateSuppliesForm (props) {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                     <label>{translatedMenuItems[1]}</label>
+                     <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[1]}</div>
                   <Field
                     defaultValue={{
                       label:props.particularDiscountData.subCategoryName,
@@ -194,7 +234,7 @@ function UpdateSuppliesForm (props) {
                   />
                   <div class="flex justify-between">
                     <div class="w-full">
-                    <label>{translatedMenuItems[2]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[2]}</div>
                       <Field
                         defaultValue={{
                           label:props.particularDiscountData.attributeName,
@@ -210,7 +250,7 @@ function UpdateSuppliesForm (props) {
                         isColumn
                         inlineLabel
                       />
-                      <label>{translatedMenuItems[3]}</label>
+                      <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[3]}</div>
                       <Field
                         defaultValue={{
                           label:props.particularDiscountData.subAttributeName,
@@ -230,21 +270,12 @@ function UpdateSuppliesForm (props) {
                     </div>
                   </div>
                   <div class="flex justify-between">
+                   
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[12]}</label>
-                      <Field
-                        name="weight"
-                        isColumn
-                        width={"100%"}
-                        inlineLabel
-                        component={InputComponent}
-                      />
-                    </div>
-                    <div class="w-[47%]">
-                    <label>{translatedMenuItems[13]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[13]}</div>
                       <Field
                         name="length"
-                        //label="UOM"
+      
                         isColumn
                         inlineLabel
                         component={InputComponent}
@@ -254,10 +285,8 @@ function UpdateSuppliesForm (props) {
                         }}
                       />
                     </div>
-                  </div>
-                  <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[14]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[14]}</div>
                       <Field
                         name="width"
                         isColumn
@@ -266,8 +295,11 @@ function UpdateSuppliesForm (props) {
                         component={InputComponent}
                       />
                     </div>
+                  </div>
+                  <div class="flex justify-between">
+                   
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[15]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[15]}</div>
                       <Field
                         name="height"
                         isColumn
@@ -279,12 +311,251 @@ function UpdateSuppliesForm (props) {
                         }}
                       />
                     </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[8]}</div>
+                    <Field
+                        name="uom"
+                        //label="UOM"
+                        isColumn
+                        inlineLabel
+                        value={values.unitName}
+                        component={SelectComponent}
+                        options={Array.isArray(uomType) ? uomType : []}
+                        // options={["g", "kg"]}
+                        style={{
+                          width: "100%",
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Weight</div>
+                    <Field
+                        name="weight"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Volume</div>
+                    <Field
+                        name="volume"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Inner Height</div>
+                    <Field
+                        name="innerHeight"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Inner Weight</div>
+                    <Field
+                        name="innerWeight"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Inner Length</div>
+                    <Field
+                        name="innerLength"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Inner Width</div>
+                    <Field
+                        name="innerWidth"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Inner Volume</div>
+                    <Field
+                        name="innerVolume"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Master Height</div>
+                    <Field
+                        name="masterHeight"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Master Weight</div>
+                    <Field
+                        name="masterWeight"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Master Length</div>
+                    <Field
+                        name="masterLength"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Master Width</div>
+                    <Field
+                        name="masterWidth"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Master Volume</div>
+                    <Field
+                        name="masterVolume"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Shopify</div>
+                    <Field
+                        name="shopify"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Seo Title</div>
+                    <Field
+                        name="seoTitle"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Seo Descrption</div>
+                    <Field
+                        name="seoDescription"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                    <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">Tag</div>
+                    <Field
+                        name="tag"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-between">
+                  <div class="w-[47%]">
+                    <div class="font-bold text-xs font-poppins text-black">MSKU</div>
+                    <Field
+                        name="msku"
+                        //label="Name"
+                        isColumn
+                        width={"100%"}
+                        inlineLabel
+                        component={InputComponent}
+                        // isRequired
+                      />
+                    </div>
+                   
                   </div>
                 </div>
                 <div class="h-full w-[50%]">
                   <div class="flex justify-between">
                     <div class="w-wk">
-                    <label>{translatedMenuItems[4]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[4]}</div>
                       <Field
                         name="name"
                         // label="Name"
@@ -299,7 +570,7 @@ function UpdateSuppliesForm (props) {
 
                   <div class="flex justify-between">
                   <div class="w-[47%]">
-                  <label>{translatedMenuItems[5]}</label>
+                  <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[5]}</div>
                       <Field
                         name="hsn"
                         // label="HSN"
@@ -310,7 +581,7 @@ function UpdateSuppliesForm (props) {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[6]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[6]}</div>
                       <Field
                         name="reorder"
                         // label="Re-order"
@@ -336,7 +607,7 @@ function UpdateSuppliesForm (props) {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[7]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[7]}</div>
                       <Field
                         name="netWeight"
                         // label="Net Weight"
@@ -347,14 +618,16 @@ function UpdateSuppliesForm (props) {
                       />
                     </div>
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[8]}</label>
-                      <Field
-                        name="netUnit"
-                        // label="UOM"
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[8]}</div>
+                    <Field
+                        name="wtUom"
+                        //label="UOM"
                         isColumn
                         inlineLabel
+                        value={values.unitName}
                         component={SelectComponent}
-                        options={["g", "kg"]}
+                        options={Array.isArray(uomType) ? uomType : []}
+                        // options={["g", "kg"]}
                         style={{
                           width: "100%",
                         }}
@@ -363,7 +636,7 @@ function UpdateSuppliesForm (props) {
                   </div>
                   <div class="flex justify-between">
                     <div class="w-[47%]">
-                    <label>{translatedMenuItems[9]}</label>
+                    <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[9]}</div>
                       <Field
                         name="grossWeight"
                         // label="Gross Weight"
@@ -373,20 +646,7 @@ function UpdateSuppliesForm (props) {
                         component={InputComponent}
                       />
                     </div>
-                    <div class="w-[47%]">
-                    <label>{translatedMenuItems[8]}</label>
-                      <Field
-                        name="grossUnit"
-                        // label="UOM"
-                        isColumn
-                        inlineLabel
-                        component={SelectComponent}
-                        options={["g", "kg"]}
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
+                   
                   </div>
                   <div class="flex justify-between mt-2">
                     <div class="w-[47%]">
@@ -401,8 +661,8 @@ function UpdateSuppliesForm (props) {
                     </div>
                 
                   </div>
-                  <div class="flex justify-between mt-4">
-                  <label>{translatedMenuItems[10]}</label>
+                  <div class="flex justify-between mt-4 flex-col">
+                  <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[10]}</div>
                     <div class="w-full">
                       <Field
                         name="description"
@@ -418,22 +678,16 @@ function UpdateSuppliesForm (props) {
                       <MaterialImagesView />
                     </div> */}
                   </div>
-                  <div className="flex justify-between mt-4">
-                  <label>Availability Date</label>
+                  <div className="flex justify-between mt-4 flex-col">
+                  <div class="font-bold text-xs font-poppins text-black">
+                    {/* Availability Date */} {translatedMenuItems[17]}
+                    </div>
                   <div className="w-full">
-                    <Field name="availabilityDate">
-                      {({ field, form }) => (
-                        <input
-                          type="date"
-                          {...field}
-                          value={field.value || formatDateForInput(new Date())}
-                          onChange={e => {
-                            const { value } = e.target;
-                            setFieldValue('availabilityDate', value);
-                          }}
-                        />
-                      )}
-                    </Field>
+                  <input
+        type="date"
+        id="availabilityDate"
+        onChange={handleChange}
+      />
                   </div>
                 </div>
                 </div>
@@ -455,12 +709,13 @@ function UpdateSuppliesForm (props) {
     );
 }
 
-const mapStateToProps = ({ auth, supplies }) => ({
+const mapStateToProps = ({ auth, supplies,settings }) => ({
   addingPurchase: supplies.addingPurchase,
   groupId: auth.userDetails.groupId,
   userId: auth.userDetails.userId,
   currencies: auth.currencies,
   orgId: auth.userDetails.organizationId,
+  UOMListData:settings.UOMListData,
 });
 
 const mapDispatchToProps = (dispatch) =>

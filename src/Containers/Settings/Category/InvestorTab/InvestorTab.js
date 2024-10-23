@@ -52,14 +52,14 @@ class InvestorTab extends Component {
                   tab={
                     <>
                       <CameraIcon className=" !text-icon" />
-                      <Badge
-                count={this.props.investorCount.InvestorCategoryCount}
-                overflowCount={999}
-              >
-                      <span class=" ml-1" >
+                     
+                      <span class=" ml-1 text-sm" >
                         Type
                       </span>
-                      </Badge>
+                      <Badge
+                count={this.props.investorCount.InvestorCategoryCount}
+                overflowCount={999} offset={[ 0, -16]}
+              ></Badge>
                     </>
                   }
                   key="0"
@@ -74,7 +74,7 @@ class InvestorTab extends Component {
                 count={this.props.investorCount.InvestorCategoryCount}
                 overflowCount={999}
               > */}
-                      <span class=" ml-1" >
+                      <span class=" ml-1 text-sm" >
                         Club
                       </span>
                       {/* </Badge> */}

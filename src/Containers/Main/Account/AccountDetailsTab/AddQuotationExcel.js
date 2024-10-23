@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Input, Select } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { bindActionCreators } from "redux"; 
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
 import { addQuotationPhoneDetails, getBrand, getModel,getAllProductList,getLocationList } from "../AccountAction";
 import QuotationDetailsCardList from "./QuotationDetailsCardList";
@@ -18,7 +18,7 @@ function AddQuotationExcel(props) {
     props.getSupplierSuppliesQuality();
   }, []);
 
-  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '' }]);
+  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '',location:''  }]);
 
   const handleUnitChange = (index, key, value) => {
     const updatedRows = [...rows];
@@ -51,7 +51,7 @@ function AddQuotationExcel(props) {
   };
 
   const handleAddRow = () => {
-    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '' }]);
+    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '',location:'' }]);
   };
   const handleCategoryChange = (value, index) => {
     const updatedRows = [...rows];
@@ -91,7 +91,7 @@ function AddQuotationExcel(props) {
 
   const handleSubmit = () => {
     const dataToSend = rows.map((row) => ({
-      orderPhoneId: props.orderDetailsId.orderId,
+      orderPhoneId: props.orderDetailsId.quotationId,
       brandId: row.brand,
       modelId: row.model,
       orderType:"Procure",
@@ -99,38 +99,51 @@ function AddQuotationExcel(props) {
       specs: row.specs,
       category:row.category ,
       attribute:row.attribute,
-      location:row.locationId,
+      // location:row.locationId,
+      location: row.location,
       quality: row.quality,
+      price: row.price
     }));
 
     // Make the API call
-    props.addQuotationPhoneDetails(dataToSend, props.orderDetailsId.orderId);
-    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '' }]);
+    props.addQuotationPhoneDetails(dataToSend, props.orderDetailsId.quotationId);
+    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '',location:'' }]);
   };
 
   return (
     <>
-      <div>
+    <div class="flex justify-between">
+      <div class="w-[18rem] box-content p-2 border-blue border-4">
         {rows.map((row, index) => (
           <div key={index}>
-            <div className="flex justify-around w-[30rem]">
+            <div className="flex-col">
+            <div class=" w-64 max-sm:w-24">
+        <Input
+          placeholder="Search "
+          width={"100%"}
+         // suffix={suffix}
+          // onPressEnter={handleSearch}
+          // onChange={handleChange}
+        //value={currentData}
+        />
+        </div>
             <div>
-                <label>Category</label>
+                <div class="font-bold text-xs font-poppins text-black">Category</div>
                 <div className="w-[9rem]">
                   <Select
-                    style={{ width: 120 }}
+                    style={{ width: 200 }}
                     value={row.category}
                     onChange={(value) => handleCategoryChange(value, index)}
                   >
                     {props.categoryList.map((a) => (
-                      <Option key={a.id} value={a.id}>{a.categoryName}</Option>
+                      <Option key={a.id} value={a.categoryId}>{a.categoryName}</Option>
                     ))}
                   </Select>
                 </div>
               </div>
-           
+           <div class="mt-1" />
               <div>
-                <label>Brand</label>
+                <div class="font-bold text-xs font-poppins text-black">Brand</div>
                 <div className="w-[13rem]">
                   <Select
                     style={{ width: 200 }}
@@ -138,13 +151,14 @@ function AddQuotationExcel(props) {
                     onChange={(value) => handleBrandChange(value, index)}
                   >
                     {props.brand.map((a) => (
-                      <Option key={a.brand} value={a.brand}>{a.brand}</Option>
+                      <Option key={a.brandName} value={a.brandName}>{a.brandName}</Option>
                     ))}
                   </Select>
                 </div>
               </div>
+              <div class="mt-1" />
               <div>
-                <label>Model</label>
+                <div class="font-bold text-xs font-poppins text-black">Model</div>
                 <div className="w-[13rem]">
                   <Select
                     style={{ width: 200 }}
@@ -157,65 +171,40 @@ function AddQuotationExcel(props) {
                   </Select>
                 </div>
               </div>
+              <div class="mt-1" />
               <div>
-                <label>Attribute</label>
+                <div class="font-bold text-xs font-poppins text-black">Attribute</div>
                 <div className="w-[7rem]">
                   <Select
-                    style={{ width: 100 }}
+                    style={{ width: 200 }}
                     value={row.attribute}
                     onChange={(value) => handleAttributeChange(value, index)}
                   >
                     {props.allProduct.map((a) => (
-                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
+                      <Option key={a.attributeId} value={a.attributeId}>{a.attributeName}</Option>
                     ))}
                   </Select>
                 </div>
               </div>
-              <div>
-                <label>Quality</label>
-                <div className="w-[9rem]">
-                  <Select
-                    style={{ width: 120 }}
-                    value={row.quality}
-                    onChange={(value) => handleQualityChange(value, index)}
-                  >
-                    {props.supplierSuppliesQuality.map((a) => (
-                      <Option key={a.qualityId} value={a.qualityId}>{a.code}</Option>
-                    ))}
-                  </Select>
-                </div>
-              </div>
+                                        
+             
+              <div class="mt-1" />
               <div class=" ml-4">
-                <label>Location</label>
-                <div className="w-[7rem]">
-                  <Select
-                    style={{ width: 100 }}
-                    value={row.locationId}
-                    onChange={(value) => handleLocationChange(value, index)}
-                  >
-                    {props.locationlist.map((a) => (
-                      <Option key={a.locationDetailsId} value={a.locationDetailsId}>{a.locationName}</Option>
-                    ))}
-                  </Select>
+                <div class="font-bold text-xs font-poppins text-black">Price per Unit</div>
+                <div className="w-24">
+                  <Input
+                    type="text"
+                    value={row.price}
+                    disabled
+                     onChange={(e) => handleUnitChange(index, 'price', e.target.value)}
+                    placeholder="Enter price"
+                  />
                 </div>
               </div>
-              <div>
-                <label>Specs</label>
-                <div className="w-24 ml-2">
-                  <Select
-                    style={{ width: 100 }}
-                    value={row.specs}
-                    onChange={(value) => handleSpecsChange(value, index)}
-                  >
-                    <Option value="US">US</Option>
-                    <Option value="CE">CE</Option>
-                    <Option value="IND">IND</Option>
-                    <Option value="HK">HK</Option>
-                  </Select>
-                </div>
-              </div>
-              <div class=" ml-4">
-                <label>Unit</label>
+              <div class="mt-1" />
+              <div class=" ml-4 flex">
+                <div className="flex flex-col">
+                <div class="font-bold text-xs font-poppins text-black">Unit</div>
                 <div className="w-24">
                   <Input
                     type="text"
@@ -224,18 +213,32 @@ function AddQuotationExcel(props) {
                     placeholder="Enter unit"
                   />
                 </div>
+                </div>
+                <div className="flex flex-col">
+                <div class="font-bold text-xs font-poppins text-black">Discount</div>
+                <div className="w-24">
+                  <Input
+                    type="text"
+                    value={row.discount}
+                    onChange={(e) => handleUnitChange(index, 'discount', e.target.value)}
+                    placeholder="Enter discount"
+                  />
+                </div>
+                </div>
               </div>
-             
               <div className="w-4 mt-[1.5rem]">
                 <CloseOutlined onClick={() => handleRemoveRow(index)} />
               </div>
             </div>
           </div>
         ))}
-        <Button type="primary" onClick={handleAddRow}>Add</Button>
+        {/* <Button type="primary" onClick={handleAddRow}>Add</Button> */}
         <Button type="primary" loading={props.addingQuotationPhoneDetails} onClick={handleSubmit}>Submit</Button>
       </div>
+      <div class="w-[55rem]">
       <QuotationDetailsCardList />
+      </div>
+      </div>
     </>
   );
 }

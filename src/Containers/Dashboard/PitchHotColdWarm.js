@@ -1,12 +1,15 @@
-import React, { useEffect,lazy } from "react";
+import React, { useEffect,useState,lazy } from "react";
 import { connect } from "react-redux";
+import Chart from "react-apexcharts";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import {getInvHotColdWarm,handlePitchHCWdrawer} from "./DashboardAction";
 const PitchHCWdrawer = lazy(()=>import("./PitchHCWdrawer/PitchHCWdrawer"));
 
 function PitchHotColdWarm (props) {
     
+  const [stdudentSubject, setStudentsubject] = useState([]);
+  const [studentMarks, setStudentMarks] = useState([]);
+  
   useEffect(()=> {
     if (props.timeRangeType === "today") {
    props.getInvHotColdWarm(props.userId,props.startDate,props.endDate);
@@ -17,11 +20,15 @@ function PitchHotColdWarm (props) {
 
   const {investorHotColdWarm,openPitchHCWdrawer,handlePitchHCWdrawer}=props;
 
+  useEffect(() => {
+    setStudentsubject(["Hot", "Warm", "Cold"]);
+    setStudentMarks([1, 3, 2]);
+  }, []);
 
     return (
       <>
    
-          <div className="grid grid-cols-5 gap-4 p-4">
+          {/* <div className="grid grid-cols-5 gap-4 p-4">
         <div className="col-span-2 sm:col-span-1">
           <div className="flex"><FormattedMessage
               id="app.hot"
@@ -29,16 +36,7 @@ function PitchHotColdWarm (props) {
             /></div>
           <div class="text-2xl cursor-pointer" onClick={()=>{handlePitchHCWdrawer(true)}}>{investorHotColdWarm.hotList}</div>
           </div>
-          <div className="col-span-2 sm:col-span-1">
-          <div className="flex">
-          <FormattedMessage
-              id="app.cold"
-              defaultMessage="Cold"
-            />
-            
-            </div>
-          <div class="text-2xl cursor-pointer" onClick={()=>{handlePitchHCWdrawer(true)}}>{investorHotColdWarm.coldList}</div>
-          </div>
+         
           <div className="col-span-2 sm:col-span-1">
           <div className="flex">
           <FormattedMessage
@@ -49,8 +47,29 @@ function PitchHotColdWarm (props) {
             </div>
           <div class="text-2xl cursor-pointer" onClick={()=>{handlePitchHCWdrawer(true)}}>{investorHotColdWarm.warmList}</div>
         </div>
-</div>
-        
+
+        <div className="col-span-2 sm:col-span-1">
+          <div className="flex">
+          <FormattedMessage
+              id="app.cold"
+              defaultMessage="Cold"
+            />
+            
+            </div>
+          <div class="text-2xl cursor-pointer" onClick={()=>{handlePitchHCWdrawer(true)}}>{investorHotColdWarm.coldList}</div>
+          </div>
+</div> */}
+     <div >
+        <Chart
+          type="pie"
+          width={500}
+          height={170}
+          series={props.investorHotColdWarm} 
+          options={{
+            labels: stdudentSubject, 
+          }}
+        />
+      </div>   
 <PitchHCWdrawer
 openPitchHCWdrawer={openPitchHCWdrawer}
 handlePitchHCWdrawer={handlePitchHCWdrawer}

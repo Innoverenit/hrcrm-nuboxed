@@ -52,7 +52,7 @@ import {
   getCandidateById,
   getTopicsByCandidateId,
 } from "../../../../../Candidate/CandidateAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import EditRecruitForm from "./EditRecruitForm";
 import { Suspense } from "react";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
@@ -287,8 +287,8 @@ class RecruitmentDeletedTable extends Component {
         dataIndex: "requirementName",
         width: "13%",
         render: (name, item, i) => {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           console.log(item);
 
           return {
@@ -515,7 +515,7 @@ class RecruitmentDeletedTable extends Component {
         width: "10%",
         dataIndex: "creationDate",
         render: (text, item) => {
-          const creationDate = moment(item.creationDate).format("L");
+          const creationDate = dayjs(item.creationDate).format("L");
 
           return {
             props: {
@@ -562,7 +562,7 @@ class RecruitmentDeletedTable extends Component {
               },
             },
   
-            children:<span>{moment(item.avilableDate).format("L")}</span>
+            children:<span>{dayjs(item.avilableDate).format("L")}</span>
           };
         
         },
@@ -580,14 +580,14 @@ class RecruitmentDeletedTable extends Component {
         title:"Duration",
         width: "8%",
         render: (text, item) => {
-          //const getDate = (date) => moment(date, 'DD/MM/YYYY').startOf('month')
-const diff = Math.abs(moment(item.availableDate).diff(moment(item.endDate), 'months'));
+          //const getDate = (date) => dayjs(date, 'DD/MM/YYYY').startOf('month')
+const diff = Math.abs(dayjs(item.availableDate).diff(dayjs(item.endDate), 'months'));
 const date=diff+1
-         // const availableDate = moment(item.availableDate).subtract(item.endDate);
+         // const availableDate = dayjs(item.availableDate).subtract(item.endDate);
           return <>
           {/* {item.availableDate === null ? "None" : */}
             <span>
-              {/* {moment(item.availableDate).subtract(item.endDate).month()} */}
+              {/* {dayjs(item.availableDate).subtract(item.endDate).month()} */}
               {date} months
             </span>
           {/* } */}
@@ -1287,8 +1287,8 @@ const date=diff+1
       //   render: (name, item, i) => {
       //     // const fullName = ` ${item.salutation || ""} ${item.firstName ||
       //     //   ""} ${item.middleName || ""} ${item.lastName || ""}`;
-      //     //   const currentdate = moment().format("DD/MM/YYYY");
-      //     //   const date = moment(item.creationDate).format("DD/MM/YYYY");
+      //     //   const currentdate = dayjs().format("DD/MM/YYYY");
+      //     //   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
       //     //   console.log(date, currentdate, currentdate === date);
       //     return (
       //       <>

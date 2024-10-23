@@ -83,7 +83,7 @@ const TagInList = (props) => {
         <>
             <div class="m-[10px] flex justify-between">
                 <div class="w-[40%]">
-                    <label className="text-xs font-semibold m-[10px]">Part</label>
+                    <div className="text-xs font-semibold m-[10px]">Part</div>
                     <Select
 
                         value={partName}
@@ -107,8 +107,8 @@ const TagInList = (props) => {
                     />
                 </div>
                 <div class="w-[35%] ml-[10px]">
-                    <label className="text-xs font-semibold m-[10px]">
-                        Part No </label>
+                    <div className="text-xs font-semibold m-[10px]">
+                        Part No </div>
                     <Input
                         value={data ? data : partNo}
 

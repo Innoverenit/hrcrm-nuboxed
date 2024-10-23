@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
@@ -12,8 +12,9 @@ import {
   setEditTraining,
   handleUpdateTrainingModal,
 } from "../../../../ProfileAction";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { deleteTrainingTable } from "../../../../ProfileAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { base_url } from "../../../../../../Config/Auth";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
@@ -52,7 +53,7 @@ class TrainingTable extends Component {
         ),
         dataIndex: "startDate",
         render: (name, item, i) => {
-          return <span>{moment(item.startDate).format("LL")}</span>;
+          return <span>{dayjs(item.startDate).format("LL")}</span>;
         },
       },
       {
@@ -60,7 +61,7 @@ class TrainingTable extends Component {
         title: <FormattedMessage id="app.endDate" defaultMessage="End Date" />,
         dataIndex: "endDate",
         render: (name, item, i) => {
-          return <span>{moment(item.endDate).format("LL")}</span>;
+          return <span>{dayjs(item.endDate).format("LL")}</span>;
         },
       },
       {
@@ -161,10 +162,13 @@ class TrainingTable extends Component {
           loading={fetchingTrainingDetails || fetchingTrainingDetailsError}
           onChange={console.log("task onChangeHere...")}
         />
+        <Suspense fallback={<BundleLoader />}>
         <UpdateTrainingModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           updateTrainingModal={updateTrainingModal}
           handleUpdateTrainingModal={handleUpdateTrainingModal}
-        />
+        /></Suspense>
       </>
     );
   }

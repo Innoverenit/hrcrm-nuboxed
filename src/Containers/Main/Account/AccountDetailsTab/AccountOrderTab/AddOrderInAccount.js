@@ -5,11 +5,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import * as Yup from "yup";
-import { StyledLabel } from '../../../../../Components/UI/Elements';
 import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
 import { Button, Tooltip, message, } from 'antd';
+import {getBrandCategoryData} from "../../../../../Containers/Settings/Category/BrandCategory/BrandCategoryAction"
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
@@ -41,6 +41,7 @@ function AddOrderInAccount(props) {
         props.getContactDistributorList(props.distributorId)
         props.getSaleCurrency()
         props.getLobList(props.orgId)
+        props.getBrandCategoryData(props.orgId);
     }, [])
 
     const [priority, setPriority] = useState("High")
@@ -53,6 +54,12 @@ function AddOrderInAccount(props) {
         return {
             label: item.currency_name || "",
             value: item.currency_id,
+        };
+    });
+    const categoryOption = props.BrandCategoryData.map((item) => {
+        return {
+            label: item.name || "",
+            value: item.shipById,
         };
     });
     const lobOption = props.lobList.map((item) => {
@@ -75,6 +82,7 @@ function AddOrderInAccount(props) {
                 paymentInTerms: "",
                  customPayment: "0",
                 comments: "",
+                shipById:"",
                 lobDetsilsId:"",
                 orderCurrencyId: "",
                 totalPhoneCount: "",
@@ -139,10 +147,10 @@ function AddOrderInAccount(props) {
                         <div class=" flex justify-between">
                             <div class=" w-[47%] flex-col flex">
                                 <div class="mt-3">
-                                    <StyledLabel><h3> <FormattedMessage
+                                    <div class=" text-xs font-bold font-poppins text-black"><h3> <FormattedMessage
                                         id="app.pickupaddress"
                                         defaultMessage="Pickup Address"
-                                    /></h3></StyledLabel>
+                                    /></h3></div>
 
                                     <FieldArray
                                         name="loadingAddress"
@@ -292,13 +300,24 @@ function AddOrderInAccount(props) {
                                     </div>
 
                                 </div>
+                                <div class="w-[45%]">
+                                        <Field
+                                            name="shipById"
+                                            label="Category"
+                                            isColumn
+                                            style={{ borderRight: "3px red solid" }}
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(categoryOption) ? categoryOption : []}
+                                        />
+                                    </div>
                                 <div class="justify-between flex mt-3">
 
                                     <div class="w-[46%]  ml-8 mt-2">
-                                        <StyledLabel><FormattedMessage
+                                        <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
                                             id="app.priority"
                                             defaultMessage="Priority"
-                                        /></StyledLabel>
+                                        /></div>
                                         <div class="justify-between flex">
                                             <div>
                                                 <Tooltip title={<FormattedMessage
@@ -322,7 +341,7 @@ function AddOrderInAccount(props) {
                                                     />
                                                 </Tooltip>
                                                 &nbsp;
-                                                <Tooltip title={<FormattedMessage
+                                                {/* <Tooltip title={<FormattedMessage
                                                     id="app.medium"
                                                     defaultMessage="Medium"
                                                 />}>
@@ -341,8 +360,8 @@ function AddOrderInAccount(props) {
                                                             height: "31px"
                                                         }}
                                                     />
-                                                </Tooltip>
-                                                &nbsp;
+                                                </Tooltip> */}
+                                                
                                                 <Tooltip title={<FormattedMessage
                                                     id="app.low"
                                                     defaultMessage="Low"
@@ -395,12 +414,13 @@ function AddOrderInAccount(props) {
     );
 }
 
-const mapStateToProps = ({ homeStepper, auth, distributor, suppliers }) => ({
+const mapStateToProps = ({ homeStepper, auth, distributor,brandCategory, suppliers }) => ({
     contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     addingOrder: distributor.addingOrder,
     lobList: distributor.lobList,
+    BrandCategoryData: brandCategory.BrandCategoryData,
     orgId: auth.userDetails.organizationId,
 });
 
@@ -410,7 +430,8 @@ const mapDispatchToProps = (dispatch) =>
             addOrderForm,
             getSaleCurrency,
             getLobList,
-            getContactDistributorList
+            getContactDistributorList,
+            getBrandCategoryData
         },
         dispatch
     );

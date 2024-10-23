@@ -18,9 +18,9 @@ const PartNoListItemWise = (props) => {
     };
     return (
         <>
-            <div className=' flex justify-end sticky z-auto'>
-                <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className=' flex sticky z-auto'>
+                <div class="rounded m-1 p-1 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[95%] p-1 bg-transparent font-bold sticky text-xs font-poppins z-10">
                         <div className=""></div>
 
                         {/* <div className=" md:w-[22.12rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div> */}
@@ -41,13 +41,13 @@ const PartNoListItemWise = (props) => {
                                 <div>
                                     <div className="flex rounded-xl  mt-2 bg-white h-12 items-center p-3 ">
                                         <div className=" flex font-medium flex-col md:w-[36.1rem] max-sm:w-full  ">
-                                            <div class="flex justify-between text-sm  font-semibold  font-poppins ">
+                                            <div class="flex justify-between text-xs  font-semibold  font-poppins ">
                                                 {item.supplierSuppliesUniqueNumberId}
                                             </div>
                                         </div>
                                         {/* <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[15.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm  font-semibold  font-poppins ">
+                                                <div class="flex justify-between text-xs  font-semibold  font-poppins ">
                                                     {item.suppliesFullName}
                                                 </div>
                                             </div>

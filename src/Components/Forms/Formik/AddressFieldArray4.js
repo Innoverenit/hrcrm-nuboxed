@@ -3,7 +3,6 @@ import { Tooltip } from "antd";
 import { Field } from "formik";
 import { EnvironmentOutlined } from '@ant-design/icons';
 import { FlexContainer } from "../../UI/Layout";
-import { Spacer, } from "../../UI/Elements";
 import FormikPlacesAutoComplete from "./FormikPlacesAutoComplete";
 import { InputComponent } from "../Formik/InputComponent";
 import { FormattedMessage } from "react-intl";
@@ -14,7 +13,7 @@ class AddressFieldArray4 extends Component {
     console.log(singleAddress);
     return (
       <div >
-        <Spacer />
+        <div class=" mt-3" />
         {values &&
           values.address.map((address, index) => (
             <div>             

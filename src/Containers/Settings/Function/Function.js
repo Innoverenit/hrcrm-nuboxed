@@ -2,24 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import { Button, Divider, message } from "antd";
-import { MainWrapper, FlexContainer } from "../../../Components/UI/Layout";
-import { TextInput, Title } from "../../../Components/UI/Elements";
-// import SingleFunction from "./SingleFunction";
-// import * as Yup from "yup";
+import { Button,message } from "antd";
+import { MainWrapper} from "../../../Components/UI/Layout";
+import { TextInput } from "../../../Components/UI/Elements";
 import {
   getFunctions,
   addFunctions,
   //   removeSectors,
   updateFunctions,
 } from "./FunctionAction";
-import axios from "axios";
-import { base_url } from "../../../Config/Auth";
 import SingleFunctions from "./SingleFunction";
 
-// const SectorsSchema = Yup.object().shape({
-//   sectorName: Yup.string().required("Input needed !"),
-// });
 
 class Function extends Component {
   constructor(props) {
@@ -62,29 +55,12 @@ class Function extends Component {
       isTextInputOpen: false,
     });
   };
-  // handleDeleteSector = (id) => {
-  //   this.props.removeSectors(id);
-  //   this.setState({ sectorName: "", singleSector: "" });
-  // };
+ 
   handleUpdateFunction = (functionType, functionTypeId, cb) => {
     this.props.updateFunctions(functionType, functionTypeId, cb);
     this.setState({ functionType: "", singleFunction: "" });
   };
-  // getLinkedDocuments = () => {
-  //   axios
-  //     .get(`${base_url}/opportunity/source/linkedSources`, {
-  //       headers: {
-  //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //       this.setState({ linkedSources: res.data });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+ 
   componentDidMount() {
     const { getFunctions } = this.props;
     console.log();
@@ -110,7 +86,7 @@ class Function extends Component {
     if (fetchingFunctionsError) return <p>We are unable to load data</p>;
     return (
       <>
-        <FlexContainer flexWrap="nowrap">
+ <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <MainWrapper
             style={{
               flexBasis: "100%",
@@ -119,7 +95,7 @@ class Function extends Component {
               color: "#FFFAFA",
             }}
           >
-            <FlexContainer flexDirection="column">
+           <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
               <MainWrapper style={{ height: "30em", marginTop: "0.625em" }}>
                 {functions.length &&
                   functions.map((Function, i) => (
@@ -136,12 +112,9 @@ class Function extends Component {
                     />
                   ))}
               </MainWrapper>
-            </FlexContainer>
+            </div>
             {isTextInputOpen ? (
-              <FlexContainer
-                alignItems="center"
-                style={{ marginLeft: "0.3125em", marginTop: "0.3125em" }}
-              >
+              <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ml-1 mt-1">           
                 <br />
                 <br />
                 <TextInput
@@ -169,11 +142,11 @@ class Function extends Component {
                   {/* Cancel */}
                   <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
                 </Button>
-              </FlexContainer>
+              </div>
             ) : (
               <>
                 <br />
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     ghost
@@ -187,36 +160,11 @@ class Function extends Component {
                       defaultMessage="Add More"
                     />
                   </Button>
-                </FlexContainer>
+                </div>
               </>
             )}
           </MainWrapper>
-          {/* <MainWrapper>
-            <FlexContainer
-              style={{
-                border: "0.0625em solid #eee",
-                width: "100%",
-                padding: "1.6rem",
-                marginRight: 70,
-              }}
-            >
-              <p style={{ color: "#035b9b", fontSize: "1rem" }}>
-                Here is a list of sample sources, it will help attribute
-                opportunities to their sources thereby identifying the effective
-                channels and further allocating resources accordingly.
-              </p>
-              <p style={{ color: "#035b9b", fontSize: "1rem" }}>
-                Korero allows you to change the sources as per your
-                organization's requirements.
-              </p>
-              <p style={{ color: "#035b9b", fontSize: "1rem" }}>
-                The only exception is if an opportunity is associated with a
-                source then it cannot be deleted from the list till no
-                opportunity exists in that source.
-              </p>
-            </FlexContainer>
-          </MainWrapper> */}
-        </FlexContainer>
+        </div>
       </>
     );
   }

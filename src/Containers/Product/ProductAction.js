@@ -43,6 +43,15 @@ export const emptyProductList = () => (dispatch) => {
     type: types.EMPTY_PRODUCT_LIST, 
   });
 };
+
+
+
+export const handleProductBrandModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCT_BRAND_MODAL,
+    payload: modalProps,
+  });
+};
 export const handleProductQuality =(modalProps)=>(dispatch) => {
   dispatch({
     type: types.HANDLE_PRODUCT_QUALITY_DRAWER,
@@ -100,6 +109,14 @@ export const getService = () => (dispatch) => {
         payload: err,
       });
     });
+};
+
+
+export const handleImageProductModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_IMAGE_PRODUCT_MODAL,
+    payload: modalProps,
+  });
 };
 
 export const getProductsById = (productId) => (dispatch) => {
@@ -336,6 +353,13 @@ export const handleAbsoluteModal = (modalProps) => (dispatch) => {
 export const handleWinModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_WIN_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleProductBrandDetailsModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PRODUCT_BRAND_DETAILS_MODAL,
     payload: modalProps,
   });
 };
@@ -1015,6 +1039,37 @@ export const getCategoryImage = () => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_CATEGORY_IMAGE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getBrandProduct = (pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_BRAND_PRODUCT_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/product/allProductBrand`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BRAND_PRODUCT_FAILURE,
         payload: err,
       });
     });
@@ -2094,5 +2149,346 @@ export const catalogueCategorySearch = (categoryName) => (dispatch) => {
     });
 };
 
+export const getProductsByProductId = (productId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCTS_BY_PRODUCTID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/${productId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCTS_BY_PRODUCTID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCTS_BY_PRODUCTID_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const productPUnpblishToggle = ( data,categoryId) => (dispatch) => {
+  dispatch({
+    type: types.PRODUCT_PUNBLISH_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/product/publish/productCategory/${categoryId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.PRODUCT_PUNBLISH_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.PRODUCT_PUNBLISH_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+export const OnOffwarrentyProduct = ( data,productId) => (dispatch) => {
+  dispatch({
+    type: types.WARRENTY_PRODUCT_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/product/warrenty/${productId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.WARRENTY_PRODUCT_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.WARRENTY_PRODUCT_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+export const updateDateYearProduct = ( data,productId) => (dispatch) => {
+  dispatch({
+    type: types.UPDATE_DATE_YEAR_PRODUCT_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/product/year/${productId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_DATE_YEAR_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_DATE_YEAR_PRODUCT_FAILURE,
+        payload: err,
+      });
+    })
+};
 
 
+
+
+export const addProductBrand = (data, cb) => (dispatch) => {
+  console.log("inside add product");
+  dispatch({ type: types.ADD_PRODUCT_BRAND_REQUEST });
+  axios
+    .post(`${base_url2}/product/saveProductBrand`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_PRODUCT_BRAND_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PRODUCT_BRAND_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
+
+
+
+export const getBrandCatalogueList = (brandId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BRAND_CATALOGUE_LIST_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/product/activeBrand/${brandId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_CATALOGUE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BRAND_CATALOGUE_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const deleteProductBrandData = (data,productBrandId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_PRODUCT_BRAND_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/product/deleteBrand/${productBrandId}`,data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Brand Deleted Successfully',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch(getBrandProduct());
+      
+      dispatch({
+        type: types.DELETE_PRODUCT_BRAND_DATA_SUCCESS,
+        payload: productBrandId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_PRODUCT_BRAND_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const updateBrandProduct = (data, productBrandId, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.UPDATE_BRAND_PRODUCT_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url2}/product/brandUpdate/${productBrandId}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+    
+      // message.success("Document has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_BRAND_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_BRAND_PRODUCT_FAILURE,
+      });
+    });
+};
+
+
+
+export const getBrandDeleteProduct = (pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_BRAND_DELETE_PRODUCT_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/product/allInActiveProductBrand`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_DELETE_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BRAND_DELETE_PRODUCT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getProductBrandDetails = (brandId,) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRODUCT_BRAND_DETAILS_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/inActiveBrand/${brandId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRODUCT_BRAND_DETAILS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_PRODUCT_BRAND_DETAILS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const addBrandProductList = (data, productBrandId, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.ADD_BRAND_PRODUCT_LIST_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url2}/product/deleteBrand/${productBrandId}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+    
+      // message.success("Document has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.ADD_BRAND_PRODUCT_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_BRAND_PRODUCT_LIST_FAILURE,
+      });
+    });
+};

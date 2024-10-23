@@ -14,6 +14,9 @@ class ContactInvestDetailCard extends Component {
               <ContactInvestDetailView
               contactInVestDetail={contactInVestDetail} 
                 toggleViewType={toggleViewType}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+                translatedMenuItems={this.props.translatedMenuItems}
               />
             ) : null
           }

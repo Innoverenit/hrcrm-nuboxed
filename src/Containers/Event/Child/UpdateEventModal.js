@@ -19,7 +19,10 @@ const UpdateEventModal = (props) => {
         onClose={() => handleUpdateEventModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateEventForm {...formProps} />
+          <UpdateEventForm {...formProps}
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText}
+          />
         </Suspense>
       </StyledDrawer>
     </>

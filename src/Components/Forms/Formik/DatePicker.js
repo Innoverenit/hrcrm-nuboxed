@@ -1,8 +1,7 @@
 import React from "react";
 import { get } from "lodash";
-
 import { StyledDatePicker } from "../../UI/Antd";
-import { ValidationError, StyledLabel } from "../../UI/Elements";
+import { ValidationError } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 import dayjs from "dayjs";
 export const DatePicker = ({
@@ -26,9 +25,9 @@ export const DatePicker = ({
     return (
       <>
         {!noLabel && (
-          <StyledLabel style={{ flexBasis: label || "20%" }}>
+          <div class=" text-xs font-bold font-poppins" style={{ flexBasis: label || "20%" }}>
             {label}
-          </StyledLabel>
+          </div>
         )}
         <StyledDatePicker
           allowClear={false}
@@ -59,7 +58,7 @@ export const DatePicker = ({
       <FlexContainer>
         <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
           {!noLabel && (
-            <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+            <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
           )}
           <StyledDatePicker
             allowClear={false}
@@ -91,7 +90,7 @@ export const DatePicker = ({
 // import dayjs from "dayjs";
 
 // import { StyledDatePicker } from "../../UI/Antd";
-// import { ValidationError, StyledLabel } from "../../UI/Elements";
+// import { ValidationError } from "../../UI/Elements";
 // import { FlexContainer } from "../../UI/Layout";
 // export const DatePicker = ({
 //   value,
@@ -108,7 +107,7 @@ export const DatePicker = ({
 //       <FlexContainer>
 //         <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
 //           {!noLabel && (
-//             <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+//             <div class=" text-xs font-bold font-poppins style={{ flexBasis: "20%" }}>{label}</div>
 //           )}
 //           <StyledDatePicker
 //             allowClear={false}

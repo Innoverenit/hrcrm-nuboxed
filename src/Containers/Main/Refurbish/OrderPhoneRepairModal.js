@@ -19,8 +19,12 @@ const OrderPhoneRepairModal = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
                     {props.inspectionRequiredInd ?
-                        <CatalogueListForOrder rowData={rowData} /> :
-                        <PhoneListForRepair rowData={rowData} />}
+                        <CatalogueListForOrder rowData={rowData} 
+                        translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage}/> :
+                        <PhoneListForRepair rowData={rowData}
+                        translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage} />}
                 </Suspense>
             </StyledDrawer>
         </>

@@ -1,9 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import CategoryProductForm from "./CategoryProductForm";
-
-
+const CategoryProductForm = lazy(() => import("./CategoryProductForm"));
 const CategoryProductModal = (props) => {
 
   const { ...formProps } = props;
@@ -19,7 +17,9 @@ const CategoryProductModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <CategoryProductForm/>
+          <CategoryProductForm
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

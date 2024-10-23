@@ -12,12 +12,12 @@ function CategoryProfileCard(props) {
         {({ viewType }, toggleViewType) =>
           viewType === "view" ? (
             <CategoryProfileView
-              rules={props.rules}
+             rules={props.rules}
               handleRuleClick={props.handleRuleClick}
               toggleViewType={toggleViewType}
               currentRulesOpen={props.currentRulesOpen}
-            //   recruitProAdvance={props.recruitProAdvance}
-            //   handleRecruitProAdvance={props.handleRecruitProAdvance}
+              recruitProAdvance={props.recruitProAdvance}
+              handleRecruitProAdvance={props.handleRecruitProAdvance}
             />
           ) : null
         }

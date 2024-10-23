@@ -22,7 +22,9 @@ class AddTrainingModal extends Component {
           onClose={() => handleTrainingModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <TrainingDocumentForm />
+            <TrainingDocumentForm
+                     translateText={this.props.translateText}
+                     selectedLanguage={this.props.selectedLanguage} />
           </Suspense>
         </StyledDrawer>
       </>

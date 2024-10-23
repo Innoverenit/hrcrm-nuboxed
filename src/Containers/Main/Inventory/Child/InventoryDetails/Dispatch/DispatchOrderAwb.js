@@ -5,7 +5,6 @@ import { bindActionCreators } from 'redux';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
-import { StyledLabel } from '../../../../../../Components/UI/Elements';
 import { InputComponent } from '../../../../../../Components/Forms/Formik/InputComponent';
 import dayjs from "dayjs";
 import { Button } from 'antd';
@@ -117,7 +116,7 @@ const DispatchOrderAwb = (props) => {
                         <div>
                             <div class="flex justify-between">
                                 <div class="w-[47%]">
-                                    <StyledLabel><h3> Pickup Address</h3></StyledLabel>
+                                    <div class=" text-xs font-bold font-poppins text-black"> Pickup Address</div>
                                     <FieldArray
                                         disabled
                                         name="pickUpAddress"
@@ -131,7 +130,7 @@ const DispatchOrderAwb = (props) => {
                                     />
                                 </div>
                                 <div class="w-[47%]">
-                                    <StyledLabel><h3> Delivery Address</h3></StyledLabel>
+                                    <div class=" text-xs font-bold font-poppins text-black"> Delivery Address</div>
                                     <FieldArray
                                         name="loadingAddress"
                                         disabled
@@ -253,6 +252,8 @@ const DispatchOrderAwb = (props) => {
                 )}
             </Formik>
             <APIAwbNoModal
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
                 rowData={props.rowData}
                 formValue={formValue}
                 addAwbNo={props.addAwbNo}

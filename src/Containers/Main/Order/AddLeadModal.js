@@ -19,6 +19,8 @@ const AddLeadModal = (props) => {
             >
                 <Suspense fallback={<BundleLoader />}>
                     <AddLeadForm
+                        selectedLanguage={props.selectedLanguage}
+                        translateText={props.translateText}
                         particularRowData={props.particularRowData} />
                 </Suspense>
             </StyledDrawer>
