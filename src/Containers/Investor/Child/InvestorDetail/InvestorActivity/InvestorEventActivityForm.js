@@ -327,7 +327,7 @@ const {
             ...rest
           }) => (
             <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]">
-            <Form className="form-background">
+            <Form className="form-background h-[60vh]">
               <div class=" flex justify-around max-sm:flex-col">
                 <div class=" h-full w-w47.5 max-sm:w-wk">
              <div class="mt-3">

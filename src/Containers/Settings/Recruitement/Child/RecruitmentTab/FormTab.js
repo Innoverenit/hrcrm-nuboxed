@@ -84,7 +84,7 @@ const Form = (props) => {
           tab={
             <>
               <span onClick={props.handleRecruitClick}>
-                <span className=" !text-tab ml-[0.25em]">Customer</span>
+                <span className=" !text-tab ml-[0.25em]">Prospect</span>
               </span>
             </>
           }

@@ -422,7 +422,7 @@ const [priority,setpriority]=useState(props.selectedTask
             ...rest
           }) => (
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
-            <Form className="form-background">
+            <Form className="form-background h-[45vh]">
               <div class="flex justify-around pr-2 max-sm:flex-col">
                
                 <div class=" h-full w-w47.5 max-sm:w-wk">
@@ -546,71 +546,72 @@ const [priority,setpriority]=useState(props.selectedTask
         </select>                
                          
                       </div>                           
-                    <div style={{ width: "24%" }}>
-                     
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                      {translatedMenuItems[3]}
-                      {/* status */}
-
-                      </div>
-
-                      <div style={{ width: "100%" }}>
-                        <ButtonGroup>
-                          <StatusIcon
-                            color="blue"
-                            type="To Start"
-                            iconType="fa-hourglass-start"
-                            tooltip="To Start"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.tostart"
-                                defaultMessage="To Start"
-                              />
-                            }
-                            status={active}
-                            onClick={() => glassButtoClick("To Start")}
-                          />
-
-                          <StatusIcon
-                            type="In Progress"
-                            iconType="fa-hourglass-half"
-                            tooltip="In Progress"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.inprogress"
-                                defaultMessage="In Progress"
-                              />
-                            }
-                            status={active}
-                            onClick={() => glassButtoClick("In Progress")}
-                          />
-
-                          <StatusIcon
-                            type="Completed"
-                            iconType="fa-hourglass"
-                            tooltip="Completed"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.completed"
-                                defaultMessage="Completed"
-                              />
-                            }
-                            status={active}
-                            onClick={() => glassButtoClick("Completed")}
-                            //  status={item.taskStatus}
-                            //  onClick={() =>
-                            //    patchTask(item.taskId, { ...item, taskStatus: "Completed" })
-                            //  }
-                          />
-                        </ButtonGroup>
-                      </div>
-                    </div>
+                 
                   </div>
           
                   <div class=" flex justify-between w-full max-sm:flex-col mt-3">                 
                   </div>
                             
                   <div class=" flex justify-between mt-3">
+                  <div style={{ width: "24%" }}>
+                     
+                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                     {translatedMenuItems[3]}
+                     {/* status */}
+
+                     </div>
+
+                     <div style={{ width: "100%" }}>
+                       <ButtonGroup>
+                         <StatusIcon
+                           color="blue"
+                           type="To Start"
+                           iconType="fa-hourglass-start"
+                           tooltip="To Start"
+                           tooltipTitle={
+                             <FormattedMessage
+                               id="app.tostart"
+                               defaultMessage="To Start"
+                             />
+                           }
+                           status={active}
+                           onClick={() => glassButtoClick("To Start")}
+                         />
+
+                         <StatusIcon
+                           type="In Progress"
+                           iconType="fa-hourglass-half"
+                           tooltip="In Progress"
+                           tooltipTitle={
+                             <FormattedMessage
+                               id="app.inprogress"
+                               defaultMessage="In Progress"
+                             />
+                           }
+                           status={active}
+                           onClick={() => glassButtoClick("In Progress")}
+                         />
+
+                         <StatusIcon
+                           type="Completed"
+                           iconType="fa-hourglass"
+                           tooltip="Completed"
+                           tooltipTitle={
+                             <FormattedMessage
+                               id="app.completed"
+                               defaultMessage="Completed"
+                             />
+                           }
+                           status={active}
+                           onClick={() => glassButtoClick("Completed")}
+                           //  status={item.taskStatus}
+                           //  onClick={() =>
+                           //    patchTask(item.taskId, { ...item, taskStatus: "Completed" })
+                           //  }
+                         />
+                       </ButtonGroup>
+                     </div>
+                   </div>
                     <div class=" w-1/2 ">
                     <div class="font-bold font-poppins text-xs">{translatedMenuItems[4]}</div>
                       <Field
@@ -623,7 +624,7 @@ const [priority,setpriority]=useState(props.selectedTask
                         // defaultValue={dayjs("2015-01-01")}
                         inlineLabel
                         style={{
-                          width: "100%",
+                          width: "90%",
                         }}
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
@@ -645,10 +646,8 @@ const [priority,setpriority]=useState(props.selectedTask
                           <Field
                             isRequired
                             name="taskName"
-                            //label="Name"
-                            // value={values.taskName}
-                    
-                            component={InputComponent}
+                            //label="Name"                                   
+                           component={InputComponent}
                             isColumn
                             width={"100%"}
                             inlineLabel

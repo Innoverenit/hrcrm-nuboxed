@@ -389,7 +389,7 @@ const CustomerActionLeft = (props) => {
              )}
       <div class=" flex items-center justify-between"
       >
-        <div class=" w-72 max-sm:w-24">
+        <div class=" w-[24rem] max-sm:w-24">
           <Input
             placeholder= {translatedMenuItems[4]}
             // "Search by Name or Sector"

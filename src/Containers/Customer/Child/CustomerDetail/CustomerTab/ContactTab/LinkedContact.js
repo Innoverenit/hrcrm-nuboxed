@@ -115,7 +115,7 @@ function LinkedContact(props) {
     <>
       
      
-      <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 p-1 w-[99%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky z-10">
         <div className="font-bold font-poppins text-[#00A2E8] text-base w-[16.5rem]  md:w-[16.5rem]">{translatedMenuItems[0]}
           {/* Name */}
@@ -170,8 +170,8 @@ function LinkedContact(props) {
                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                   <div class="flex">
-                                            <div className=" flex md:w-[2.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs  font-semibold  font-poppins ">
+                                            <div className=" flex justify-center  md:w-[2.1rem] max-sm:w-full  ">
+                                                <div class="flex justify-center  text-xs  font-semibold  font-poppins ">
                                                     <PlusOutlined
                                                         onClick={() => {
                                                             handleItemHistory()
@@ -223,13 +223,13 @@ function LinkedContact(props) {
                                 <div class="flex">
 
                              
-                                <div className=" flex w-[11.2rem] md:w-[11.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex w-[11.2rem] md:w-[11.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                    
                                     <div class="text-xs  font-poppins">
                                          {item.emailId}
                                     </div>
                                 </div>
-                                <div className=" flex w-[9.4rem] md:w-[9.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex w-[9.4rem] md:w-[9.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                 
                                   <div class="text-xs  font-poppins">
                                   {item.countryDialCode} {item.mobileNumber}

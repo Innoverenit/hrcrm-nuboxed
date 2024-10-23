@@ -297,7 +297,7 @@
   position: relative;
   display: inline-block;
   width: -webkit-fill-available;
-  height: 1.44rem;
+  height: 1.88rem;
   min-width: 0;
   padding: 4px 11px;
   color: rgba(0, 0, 0, 0.85);
@@ -310,6 +310,8 @@
   transition: all 0.3s;
   display: inline-flex;
   box-shadow: lightgrey 2px 2px 2px 2px;
+  justify-content: center;
+  align-items: center;
 }
 
 .ant-btn {

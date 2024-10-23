@@ -45,18 +45,19 @@ function CustomerOpportunityForm(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-          '110', // 0
-          '176', // 1
-          '126', // 2
-          '218', // 3
-          '241', // 4
-          "147",//5
-          '76', // 6
-          '75', // 7
-          '248', // 8
-          '73', // 9
-          '141', // 10
+          '110', // 0 Name
+          '176', // 1 Start Date
+          '126', // 2 End Date
+          '218', // 3 Value
+          '241', // 4 cureency
+          "147",//5 Description
+          '76', // 6Assigned
+          '75', // 7 include
+          '248', // 8customer
+          '73', // 9 contact
+          '141', // 10workflow
           '104', // 11
+          '219',//12
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -282,7 +283,7 @@ function CustomerOpportunityForm(props) {
           values,
           ...rest
         }) => (
-          <Form className="form-background">
+          <Form className="form-background h-[56vh]">
             <div  class=" flex justify-between">
           
             <div class=" h-full w-[47.5%] mt-3"
@@ -521,7 +522,7 @@ function CustomerOpportunityForm(props) {
                 <div class=" flex justify-between mt-3">
                   <div class=" w-2/4">
                   <div class="text-xs font-bold w-full max-sm:w-full">
-                  {translatedMenuItems[9]} 
+                  {translatedMenuItems[10]} 
                       <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
@@ -538,7 +539,7 @@ function CustomerOpportunityForm(props) {
                 
                   <div class=" w-2/5 ">
                   <div class="text-xs font-bold w-full max-sm:w-full">
-                  {translatedMenuItems[10]} 
+                  {translatedMenuItems[12]} 
                       <Field
                         name="oppStage"
                         //selectType="initiativeName"

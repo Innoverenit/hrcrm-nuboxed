@@ -31,6 +31,9 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 const ShipperDocumentTable = lazy(() =>
   import("./ShipperDocumentTab/ShipperDocumentTable")
 );
+const ShipperCostTable = lazy (() =>
+import ("./ShipperCostTab/ShipperCostTable")
+);
 const ShipperActivityTable = lazy(() => import("./ShipperActivityTab/ShipperActivityTable")
 );
 
@@ -74,6 +77,7 @@ class ShipperDetailsTab extends Component {
        "316",// "Notes" 2
        "138",  // Document 3
        "73",  // Contact 4
+       "1219",// Cost
        
             ];
 
@@ -339,6 +343,45 @@ class ShipperDetailsTab extends Component {
                 <ContactShipperTable shipperId={this.props.shipper.shipperId}
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
+                />
+              </Suspense>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <>
+                  <span className="!text-tab">
+                    <i class="far fa-file text-[#96bdc6]"></i>
+                    &nbsp;
+                    {this.state.translatedMenuItems[5]}
+                    {/* Cost */}
+                  </span>
+                  {activeKey === "7" && (
+                    <>
+                      <Tooltip title="Create">
+                        <PlusOutlined
+                          type="plus"
+                          tooltipTitle="Create"
+                          onClick={() =>
+                            // this.props.handleShipperDocumentUploadModal(true)
+                            this.props.handleSupplierDocumentUploadModal(true)
+                          }
+                          size="14px"
+                          style={{ verticalAlign: "center", marginLeft: "5px" }}
+                        />
+                      </Tooltip>
+                    </>
+                  )}
+                </>
+              }
+              key="5"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+                <ShipperCostTable
+                  shipperId={this.props.shipper.shipperId}
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
                 />
               </Suspense>
             </TabPane>
