@@ -1009,6 +1009,33 @@ export const handleSupplierContactModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const getCostShipperList = (shipperId) => (dispatch) => {
+  // const shipperId = getState().shipper.allShipper.shipperId;
+  dispatch({
+    type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/contactPerson/${shipperId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const getContactShipperList = (shipperId) => (dispatch) => {
   // const shipperId = getState().shipper.allShipper.shipperId;
   dispatch({

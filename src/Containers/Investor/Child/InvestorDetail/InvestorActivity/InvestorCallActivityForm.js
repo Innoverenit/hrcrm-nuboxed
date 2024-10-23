@@ -27,7 +27,6 @@ import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 import { setClearbitCandidateData } from "../../../../Candidate/CandidateAction";
 import SpeechRecognition, { } from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
-import { Fragment } from 'react'
 import { Listbox,  } from '@headlessui/react'
 import { BundleLoader } from "../../../../../Components/Placeholder";
 const ButtonGroup = Button.Group;
@@ -368,7 +367,7 @@ function InvestorCallActivityForm(props) {
             ...rest
           }) => (
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
-            <Form className="form-background">
+            <Form className="form-background h-[60vh]">
               <div class=" flex justify-around max-sm:flex-col">
               <div class=" h-full w-w47.5 max-sm:w-wk"   >
               <div class=" flex justify-between w-full max-sm:flex-col">

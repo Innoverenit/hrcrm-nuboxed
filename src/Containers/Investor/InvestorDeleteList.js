@@ -255,7 +255,7 @@ function InvestorDeleteList(props) {
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
 
 
-                                     <div className=" flex   w-[10.5rem] ml- border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  items-center">
+                                     <div className=" flex   w-[9.5rem] ml- border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  items-center">
                                 <div>
 
                                                    <MultiAvatar

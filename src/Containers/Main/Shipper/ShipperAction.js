@@ -1312,6 +1312,18 @@ export const setEditShipperContact = (name) => (dispatch) => {
   });
 };
 
+export const setEditShipperCost = (name) => (dispatch) => {
+  dispatch({
+    // type: types.SET_SHIPPER_CONTACT_EDIT,
+    // payload: name,
+  });
+};
+export const handleUpdateShipperCostModal = (modalProps) => (dispatch) => {
+  dispatch({
+    // type: types.HANDLE_UPDATE_SHIPPER_CONTACT_MODAL,
+    // payload: modalProps,
+  });
+};
 export const handleUpdateShipperContactModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_UPDATE_SHIPPER_CONTACT_MODAL,

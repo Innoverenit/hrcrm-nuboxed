@@ -310,7 +310,7 @@ export const getCurrency = () => (dispatch) => {
     type: types.GET_CURRENCY_REQUEST,
   });
   axios
-    .get(`${base_url}/currencies`)
+    .get(`${base_url}/currencies/sales`)
     .then((res) => {
       console.log(res);
       dispatch({

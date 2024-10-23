@@ -283,11 +283,11 @@ function InvestorAllCardList(props) {
               
          </div>
 
-        <div className="font-bold font-poppins text-xs w-[8.813rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
+        {/* <div className="font-bold font-poppins text-xs w-[8.813rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
         {translatedMenuItems[6]}
-        {/* owner */}
+        owner
            
-                </div>
+                </div> */}
        
            
       </div>
@@ -326,7 +326,7 @@ function InvestorAllCardList(props) {
               className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  w-[13.5rem]   max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
+                                <div className=" flex  w-[10.5rem]   max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
                                 <div className=" flex items-center   max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* >Source */}
 
@@ -378,7 +378,7 @@ function InvestorAllCardList(props) {
                                 </div>
                                 </div> 
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[13.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                               {/* Sector  */}
                                     <div class=" text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">   
                                     {item.sector}
@@ -387,14 +387,14 @@ function InvestorAllCardList(props) {
                                                                                                             
                              
                            
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Deals */}
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.oppNo}
                                     </div>
                                 </div>    
                                                     
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.124rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.124rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs flex max-sm:text-sm font-poppins text-center">
                                 <div>
         <CurrencySymbol currencyType={item.userCurrency}/>     </div> 
@@ -407,7 +407,7 @@ function InvestorAllCardList(props) {
                                 </div>
                               
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[5.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Source */}
 
                                     <div class=" text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-xs max-sm:text-sm">
@@ -425,14 +425,14 @@ function InvestorAllCardList(props) {
                                     </div>
                                 </div>
                                 {props.user.aiInd && (
-           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  font-poppins w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  font-poppins w-[5.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
            {item.noteScoreInd}
           
             </div>
             )}  
  </div>
  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-<div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+<div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                    {item.club}
@@ -463,8 +463,8 @@ function InvestorAllCardList(props) {
             </span>          
                                </div>
                                 </div>
-                                <div className=" flex  w-[3.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
-                                          {/* Owner */}
+                                {/* <div className=" flex  w-[3.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
+                                          Owner
                        <span>
                        <Tooltip title={item.ownerName}>
                 <div class="max-sm:flex justify-end w-[1.8rem]">
@@ -479,7 +479,7 @@ function InvestorAllCardList(props) {
             </div>
           </Tooltip>
             </span>                                                             
-              </div>
+              </div> */}
               <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
