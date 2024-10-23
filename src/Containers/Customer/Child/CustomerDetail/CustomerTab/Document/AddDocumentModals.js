@@ -411,7 +411,11 @@ const documentSchema = Yup.object().shape({
 function AddDocumentModal (props){
   const [documentshare, setDocumentshare] = useState(false);
   const [approvalAbove, setApprovalAbove] = useState(false);
+  const [customers, setCustomers] = useState([]);
   const [contract, setContract] = useState(false);
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
   const [ownerAbove, setOwnerAbove] = useState("Specific");
   const [selectedOwnerAbove, setSelectedOwnerAbove] = useState("Specific");
   const [data, setData] = useState([1]);
@@ -488,6 +492,47 @@ function AddDocumentModal (props){
 
 
 
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      fetchCustomers();
+      // fetchSector();
+
+      setTouchedCustomer(true);
+    }
+  };
+
+  const handleCustomerChange = (customerId) => {
+    setSelectedCustomer(customerId);
+    // fetchContacts(customerId);
+  };
+
+
+  const fetchCustomers = async () => {
+    setIsLoadingCustomers(true);
+    try {
+   
+
+      const apiEndpoint = `${base_url}/customer/contact/drop/${customer.customerId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setCustomers(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingCustomers(false);
+    }
+  };
+  
+
+
+
 
   const handleButtonClick = () => {
     setData([...data, data.length + 1]);
@@ -557,7 +602,10 @@ function AddDocumentModal (props){
           }}
           validationSchema={documentSchema}
           onSubmit={(values, { resetForm }) => {
-            addCustomerDocument({ ...values, included:selectedIncludeValues, contract: contract ? "true" : "false" }, callback);
+            addCustomerDocument({ ...values, 
+              included:selectedIncludeValues, 
+              contactId:selectedCustomer,
+              contract: contract ? "true" : "false" }, callback);
             resetForm();
           }}
         >
@@ -582,6 +630,27 @@ function AddDocumentModal (props){
                       inlineLabel
                     />
                   </div>
+
+                  <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  Contact
+  </div>
+      <Select
+       
+        placeholder="Select Contact"
+        loading={isLoadingCustomers}
+        onFocus={handleSelectCustomerFocus}
+        onChange={handleCustomerChange}
+      >
+        {customers.map(customer => (
+          <Option key={customer.contactId} value={customer.contactId}>
+            {customer.fullName}
+          </Option>
+        ))}
+      </Select>
+          
+            </div>
                   <div class=" flex  mt-4">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[1]}
@@ -751,7 +820,8 @@ const mapStateToProps = ({ customer, settings, auth }) => ({
   addingDocumentByCustomerId: customer.addingDocumentByCustomerId,
   organization: auth.userDetails?.metaData?.organization,
   orgId: auth.userDetails.organizationId,
-  selectDrop:customer.selectDrop
+  selectDrop:customer.selectDrop,
+  token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>

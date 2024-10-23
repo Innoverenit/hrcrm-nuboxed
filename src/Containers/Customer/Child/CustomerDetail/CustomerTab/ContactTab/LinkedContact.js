@@ -20,6 +20,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ContactReportData from "./ContactReportData";
+import { NotAccessibleOutlined } from "@mui/icons-material";
 const AddCustomerUpdateContactModal = lazy(() => import("./AddCustomerUpdateContactModal"));
 const CustomerContactActiveToggle = lazy(() => import("./CustomerContactActiveToggle"));
 
@@ -264,7 +265,7 @@ function LinkedContact(props) {
                                     </div>
                                 </div>
                                 <div className=" flex  md:w-[2rem] items-center justify-center h-8  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-                                    
+                                    <NotAccessibleOutlined/>
 
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="LinkedIn">

@@ -6,7 +6,7 @@ import { getContactData } from "../../Contact/ContactAction";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { Button, Tooltip,Select,Switch } from "antd";
+import { Button, Tooltip,Select,Switch,Input } from "antd";
 import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
 import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
@@ -15,6 +15,7 @@ import {
   getInitiative,
   getOppLinkedWorkflow,
   getOppLinkedStages,
+  addMoreContact
 } from "../OpportunityAction";
 import {getAssignedToList} from "../../Employees/EmployeeAction"
 import { getCrm} from "../../Leads/LeadsAction";
@@ -30,6 +31,7 @@ import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {base_url} from "../../../Config/Auth";
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 
 /**
  * yup validation scheme for creating a opportunity
@@ -65,6 +67,14 @@ const [selectedStage, setSelectedStage] = useState(null);
   const [include, setInclude] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [touched, setTouched] = useState(false);
+
+  const [isAddingContact, setIsAddingContact] = useState(false);
+  const [newContact, setNewContact] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    mobile: '',
+  });
 
   const [isLoadingWorkflow, setIsLoadingWorkflow] = useState(false);
 
@@ -509,6 +519,36 @@ const handleStageChange=(value)=>{
     setTranscript('');
     setText('');
   };
+
+
+
+
+
+  const handleMobileKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      console.log('New Contact Added:', newContact);
+      // Reset fields after pressing enter
+      setIsAddingContact(false);
+      setNewContact({ firstName: '', lastName: '', email: '', mobile: '' });
+    }
+    props.addMoreContact()
+  };
+
+  const handleRemoveFields = () => {
+    setIsAddingContact(false);
+    setNewContact({ firstName: '', lastName: '', email: '', mobile: '' });
+  };
+
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewContact((prev) => ({ ...prev, [name]: value }));
+  };
+
+
+  const handleAddContact = () => {
+    setIsAddingContact(true);
+  };
  
  
 
@@ -899,7 +939,9 @@ const handleStageChange=(value)=>{
             <div class=" w-w47.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
-{translatedMenuItems[9]}
+{translatedMenuItems[9]}  <PlusOutlined
+  onClick={handleAddContact}
+/>
   {/* Contact */}
   </div>
       <Select
@@ -916,20 +958,89 @@ const handleStageChange=(value)=>{
       </Select>            
                 </div>
                         </div>
-                        {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow Type</label>
-      <Select
-       
-        placeholder="Select WorkflowType"
-        loading={isLoadingWorkflowType}
-        onFocus={handleSelectWorkflowTypeFocus}
-        onChange={handleWorkFlowTypeChange}// Disable Contact dropdown if no customer is selected
-      >
-        {workFlowType.map(flow => (
-          <Option key={flow.workflowCategoryId} value={flow.workflowCategoryId}>
-            {flow.name}
-          </Option>
-        ))}
-      </Select> */}
+
+
+
+
+
+                        {isAddingContact && (
+                        <div class="flex justify-between max-sm:flex-col mt-[0.75rem]">
+<div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="First Name"
+              name="firstName"
+              value={newContact.firstName}
+              onChange={handleInputChange}
+            />
+          
+            </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="Last Name"
+              name="lastName"
+              value={newContact.lastName}
+              onChange={handleInputChange}
+            />
+          
+            </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+ 
+  {/* Contact */}
+  </div>
+  <Input
+              placeholder="Mobile No"
+              name="mobile"
+              value={newContact.mobile}
+              onChange={handleInputChange}
+             
+              style={{ flex: 1 }} // Allow input to take full width
+            />    
+
+
+                </div>
+
+
+            <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="Email"
+              name="email"
+              value={newContact.email}
+              onChange={handleInputChange}
+              onKeyPress={handleMobileKeyPress}
+            />
+
+
+<MinusOutlined
+              onClick={handleRemoveFields}
+              style={{
+                marginLeft: 8,
+                cursor: 'pointer',
+                color: 'red', // Change color for visibility
+              }}
+            />
+          
+            </div>
+            
+            
+                        </div>
+                        )}
+      
                 
                                           
       <div class="flex justify-between max-sm:flex-col mt-3">
@@ -1052,6 +1163,7 @@ const mapDispatchToProps = (dispatch) =>
       getOppLinkedWorkflow,
       getOppLinkedStages,
       getCrm,
+      addMoreContact,
       getAllEmployeelist,
       getAssignedToList,
       getSaleCurrency

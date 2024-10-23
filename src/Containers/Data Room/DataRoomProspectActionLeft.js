@@ -2,7 +2,7 @@ import React,{lazy,useState,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Spin} from "antd";
+import { Spin,Button} from "antd";
 
 import {
   getAllCustomerlIST,
@@ -52,6 +52,11 @@ function DataRoomProspectActionLeft(props) {
 
   return (
     <div>
+      <div>
+      <Button>By List</Button>
+        <Button>By Sector</Button>
+        <Button>By Source</Button>
+      </div>
       <div class=" flex flex-col flex-block"
       // flexDirection="column" style={{ display: "block" }}
        >

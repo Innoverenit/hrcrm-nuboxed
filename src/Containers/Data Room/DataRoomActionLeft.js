@@ -31,20 +31,20 @@ function RefurbishActionLeft (props) {
               <Tooltip title="Prospect">
                 <span class=" text-sm cursor-pointer"
                   onClick={() => props.setSelectedTab('prospect')}
-                  // style={{
-                  //   color: props. viewType === "list" && "#1890ff",
-                  // }}
+                  style={{
+                    color: props. selectedTab === "prospect" && "#1890ff",
+                  }}
                 >
-                  <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355" }}>
+                  <Avatar style={{ background: props.selectedTab === "prospect" ? "#f279ab" : "#28a355" }}>
                     <HomeRepairServiceIcon className="!text-icon cursor-pointer" /></Avatar>  
                 </span>
               </Tooltip> 
               <Tooltip title="customer">
                 <span class=" text-sm cursor-pointer"
                     onClick={() => props.setSelectedTab('customer')}
-                  // style={{
-                  //   color: props.viewType === "customer" && "#1890ff",
-                  // }}
+                  style={{
+                    color: props.selectedTab === "customer" && "#1890ff",
+                  }}
                 >
                   
                     <AcUnitIcon className="!text-icon cursor-pointer" /> 
@@ -53,6 +53,9 @@ function RefurbishActionLeft (props) {
               <Tooltip title="Investor">
                 <span class=" text-sm cursor-pointer"
                  onClick={() => props.setSelectedTab('list')}
+                 style={{
+                  color: props.selectedTab === "list" && "#1890ff",
+                }}
                 >
                   
                     <ApartmentIcon className="!text-icon cursor-pointer" />
