@@ -26,6 +26,7 @@ import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
 import { Listbox } from "@headlessui/react";
 import { getAllEmployeelist } from "../../Investor/InvestorAction";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -778,9 +779,13 @@ const handleStageChange=(value)=>{
                   </div>
                 </div>
                 <div class="mt-3">
-              <div>
+                <ReactDescription
+                setText={setText}
+                text={text}
+                />
+              {/* <div>
                 <span class="font-bold text-xs">{translatedMenuItems[5]}</span>
-                {/* Description */}
+                Description
                    <span>
                     <span onClick={startListening}>
                       <Tooltip title="Start">
@@ -816,7 +821,7 @@ const handleStageChange=(value)=>{
                       onChange={handleTextChange}
                     ></textarea>
                   </div>
-                  </div>
+                  </div> */}
               </div>
               </div>
 

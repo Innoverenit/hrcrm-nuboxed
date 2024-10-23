@@ -15,6 +15,7 @@ import {
   getCrm
 } from "../../Leads/LeadsAction";
 import {getCustomerConfigure} from "../../Settings/SettingsAction"
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -880,8 +881,8 @@ translatedMenuItems={props.translatedMenuItems}
                 )}
                  {props.customerConfigure.noteInd===true&&
               <div class="mt-3">
-                <div>
-                  {/* Notes */}
+                {/* <div>
+                  
                     <span class=" font-bold text-xs font-poppins">{translatedMenuItems[14]}</span>
                   <span>
                     <span onClick={startListening}>
@@ -919,8 +920,11 @@ translatedMenuItems={props.translatedMenuItems}
       ></textarea>
 
                   </div>
-                  </div>
-          
+                  </div> */}
+            <ReactDescription
+                setText={setText}
+                text={text}
+                />
                   </div>
 }
                 </div>

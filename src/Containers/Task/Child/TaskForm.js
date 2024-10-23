@@ -1842,7 +1842,7 @@ import dayjs from "dayjs";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -2733,7 +2733,11 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                         />
                       </div>
                       <div class="mt-2">
-              <div>
+                      <ReactDescription
+                setText={setText}
+                text={text}
+                />
+              {/* <div>
             <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</span>
             <span>
                     <span onClick={SpeechRecognition.startListening}>
@@ -2773,7 +2777,7 @@ ${base_url}/opportunity/drop-opportunityList/customer/${customerId}`;
                       onChange={handletext}
                     ></textarea>
                   </div>
-                </div>
+                </div> */}
                   </div>
                      
                   <div class=" flex justify-between">

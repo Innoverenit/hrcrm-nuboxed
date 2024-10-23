@@ -7,6 +7,7 @@ import { FormattedMessage } from "react-intl";
 import { Button,  Switch, Tooltip,Select } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
 import { handleCallNotesModal } from "../CallAction";
 import { getFilteredEmailContact } from "../../Candidate/CandidateAction";
@@ -988,7 +989,7 @@ function CallForm(props) {
 {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</div> */}
 
 <Select
-        showSearch
+        showSearch 
         placeholder="Search or select prospect"
         optionFilterProp="children"
         loading={isLoadingCustomer}
@@ -1077,7 +1078,11 @@ function CallForm(props) {
                    </div>
                    */}
                 <div class="mt-2">
-              <div>
+                <ReactDescription
+                setText={setText}
+                text={text}
+                />
+              {/* <div>
             <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</span>
             <span>
                     <span onClick={SpeechRecognition.startListening}>
@@ -1115,7 +1120,7 @@ function CallForm(props) {
                       value={transcript ? transcript : text}
                       onChange={handletext}
                     ></textarea>
-                  </div>
+                  </div> */}
                   </div>
               
                   {/* <div class=" flex justify-between" >

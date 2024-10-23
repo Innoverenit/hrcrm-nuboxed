@@ -8,6 +8,7 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import {getInvestorCurrency} from "../../Auth/AuthAction"
 import {getAllEmployeelist} from "../../Investor/InvestorAction"
 import { Button, Tooltip,Select } from "antd";
@@ -529,10 +530,14 @@ const [selectedStage, setSelectedStage] = useState(null);
                   </div>
                 </div>
                 <div class="mt-3">   
-                <div>
+                <ReactDescription
+                setText={setText}
+                text={text}
+                />
+                {/* <div>
                 <span class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
                   {translatedMenuItems[5]}     
-                {/* Description          */}
+                Description         
                         </span>
                
                   <span>
@@ -568,7 +573,7 @@ const [selectedStage, setSelectedStage] = useState(null);
                       onChange={handletext}
                     ></textarea>
                   </div>
-                  </div>
+                  </div> */}
                   </div>
                   
                 
