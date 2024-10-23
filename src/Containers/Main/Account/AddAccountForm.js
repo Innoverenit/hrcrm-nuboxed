@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
 import { getCrm } from "../../Leads/LeadsAction";
@@ -601,7 +602,11 @@ const AddAccountForm = ({
                 </div>
                 
                 <div class="mt-4">
-                  <div>
+                <ReactDescription
+                setText={setText}
+                text={text}
+                />
+                  {/* <div>
                 <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</span>
                   
                   <span>
@@ -639,7 +644,7 @@ const AddAccountForm = ({
                       onChange={handletext}
                     ></textarea>
                   </div>
-                </div>
+                </div> */}
               
                 </div>
               </div>

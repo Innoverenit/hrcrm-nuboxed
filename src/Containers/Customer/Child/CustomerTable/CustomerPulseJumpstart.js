@@ -132,7 +132,7 @@ render() {
   return(
     <>
 
-<div class="flex">
+<div class="flex flex-row">
 <div className="w-1/2">
     <div class=" flex flex-row w-full" >     
     <div class="flex flex-wrap w-full" >
@@ -145,7 +145,7 @@ render() {
                                 </div>
                                 <JumpStartBox
             noProgress
-            title='{ #Open Quotations}'
+            title=' #Open Quotations'
               // "Open Quotations"      
               
 
@@ -177,7 +177,7 @@ render() {
                                 </div>
                                 <JumpStartBox
   noProgress
- title= '{Pipeline value}'
+ title= 'Pipeline value'
  //'{this.props.translatedMenuItems[1]}'
   // Pipeline value */}
   bgColor="#34495E"
@@ -202,7 +202,7 @@ render() {
                                 </div>
                                 <JumpStartBox
     noProgress
-    title='{Quotations Won}'
+    title='Quotations Won'
     // '{this.props.translatedMenuItems[2]}' 
     // Quotations Won
      
@@ -239,7 +239,7 @@ render() {
                                 </div>
                                 <JumpStartBox
         noProgress
-        title='{Activity} '
+        title='Activity'
   //  Activity
         value={
           this.props.fetchingCustomerActivityCount ? "Loading..." :
@@ -320,7 +320,7 @@ render() {
             <div>
             <JumpStartBox
             noProgress
-            title='{contacts}'
+            title='contacts'
       // #Contacts
             jumpstartClick={() => this.handleCardClick("contacts")}
           
@@ -369,6 +369,11 @@ render() {
      
       </div>
 </div>
+<div>
+    <CustomerTimeLineChart
+     customer={this.props.customer}
+    />
+  </div>
 </div>
 <div class=" flex flex-row w-full mt-4" >
 <Suspense fallback={<BundleLoader />}>
@@ -391,11 +396,7 @@ render() {
         </Suspense>
 
   </div>
-  <div>
-    <CustomerTimeLineChart
-     customer={this.props.customer}
-    />
-  </div>
+  
   <AddCustomerContactJumpstartModal
        customer={this.props.customer}
        translateText={this.props.translateText}

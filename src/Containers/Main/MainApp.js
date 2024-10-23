@@ -517,16 +517,7 @@ function MainApp(props) {
                 >Upgrade</Button>
                  </div> */}
                  
-                  {/* <div class=" text-[tomato]  bg-white h-[1.75rem] ml-8 mr-3 max-sm:hidden"
-                    style={{
-                      border: "1px solid tomato",
-                      borderRadius: "5px",
-                      lineHeight: "24px",
-                      padding: "0px 10px",
-                    }}
-                  >
-                    {props.role}
-                  </div> */}
+                
 
                   {/* <div class=" text-[tomato]  bg-white h-[1.75rem] mr-3 max-sm:hidden"
                     style={{
@@ -547,7 +538,17 @@ function MainApp(props) {
                     supportedLanguages={supportedLanguages}
                   />
                 </div> 
-                  <div class=" text-[tomato]  bg-white h-[1.75rem] mr-3 max-sm:hidden"
+                  <div class=" text-[tomato]  bg-white h-[1.75rem] ml-8 mr-3 max-sm:hidden"
+                    style={{
+                      border: "1px solid tomato",
+                      borderRadius: "5px",
+                      lineHeight: "24px",
+                      padding: "0px 10px",
+                    }}
+                  >
+                    {props.role}
+                  </div>
+                  {/* <div class=" text-[tomato]  bg-white h-[1.75rem] mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",
                       borderRadius: "5px",
@@ -556,7 +557,7 @@ function MainApp(props) {
                     }}
                   >
                     {props.roleType}
-                  </div>
+                  </div> */}
                 
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?

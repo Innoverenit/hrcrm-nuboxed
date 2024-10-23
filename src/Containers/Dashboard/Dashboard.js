@@ -671,9 +671,9 @@ class Dashboard extends Component {
               (<DashRepairOrdrLeftJumstartbox  selectedLanguage={this.props.selectedLanguage}
                 translateText={this.props.translateText}/>)}       
 
-                {viewType==="ME" && this.state.activeButton === "Procure" &&
+                {/* {viewType==="ME" && this.state.activeButton === "Procure" &&
               (<DashInvPayProcureJumstartbox  selectedLanguage={this.props.selectedLanguage}
-                translateText={this.props.translateText}/>)}          
+                translateText={this.props.translateText}/>)}           */}
             </div> 
     </div>
     </div>

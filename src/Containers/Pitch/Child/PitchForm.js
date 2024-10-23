@@ -6,6 +6,7 @@ import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -814,9 +815,13 @@ props.getInvestorCurrency();
                   </div>
                   
                 <div class="mt-3">   
-                  <div>          
+                <ReactDescription
+                setText={setText}
+                text={text}
+                />
+                  {/* <div>          
                 <span class=" font-bold text-xs font-poppins">{translatedMenuItems[15]} </span>  
-                {/* Notes */}
+                Notes
            
                   <span>
                     <span onClick={SpeechRecognition.startListening}>
@@ -853,7 +858,7 @@ props.getInvestorCurrency();
                     ></textarea>
                   </div>
               
-                </div>
+                </div> */}
                   </div>
                 </div>
               </div>

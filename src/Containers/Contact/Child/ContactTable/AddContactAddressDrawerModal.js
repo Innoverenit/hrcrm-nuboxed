@@ -30,6 +30,9 @@ class AddContactAddressDrawerModal extends Component {
           <AddressData
           uniqueId={this.props.item.contactId}
           type={this.props.type}
+          translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
           />
 
 
