@@ -162,218 +162,436 @@ function MaterialsDetailsCardViewId (props) {
 
 
 
-    const CartTable = (props) => {
-      const [data, setData] = useState({
-        Length: {
-          retail: props.materialsBySuppliesId.length
-            ? props.materialsBySuppliesId.length.toFixed(2)
-            : '0',
-          inner: props.materialsBySuppliesId.innerLength
-            ? props.materialsBySuppliesId.innerLength.toFixed(2)
-            : '0',
-          master: props.materialsBySuppliesId.masterLength
-            ? props.materialsBySuppliesId.masterLength.toFixed(2)
-            : '0'
-        },
-        Depth: {
-          retail: props.materialsBySuppliesId.width
-            ? props.materialsBySuppliesId.width.toFixed(2)
-            : '0',
-          inner: props.materialsBySuppliesId.innerWidth
-            ? props.materialsBySuppliesId.innerWidth.toFixed(2)
-            : '0',
-          master: props.materialsBySuppliesId.masterWidth
-            ? props.materialsBySuppliesId.masterWidth.toFixed(2)
-            : '0'
-        },
-        Height: {
-          retail: props.materialsBySuppliesId.height
-            ? props.materialsBySuppliesId.height.toFixed(2)
-            : '0',
-          inner: props.materialsBySuppliesId.innerHeight
-            ? props.materialsBySuppliesId.innerHeight.toFixed(2)
-            : '0',
-          master: props.materialsBySuppliesId.masterHeight
-            ? props.materialsBySuppliesId.masterHeight.toFixed(2)
-            : '0'
-        },
-        Volume: {
-          retail: props.materialsBySuppliesId.volume
-            ? props.materialsBySuppliesId.volume.toFixed(2)
-            : '0',
-          inner: props.materialsBySuppliesId.innerVolume
-            ? props.materialsBySuppliesId.innerVolume.toFixed(2)
-            : '0',
-          master: props.materialsBySuppliesId.masterVolume
-            ? props.materialsBySuppliesId.masterVolume.toFixed(2)
-            : '0'
-        },
-        Weight: {
-          retail: props.materialsBySuppliesId.weight
-            ? props.materialsBySuppliesId.weight.toFixed(2)
-            : '0',
-          inner: props.materialsBySuppliesId.innerWeight
-            ? props.materialsBySuppliesId.innerWeight.toFixed(2)
-            : '0',
-          master: props.materialsBySuppliesId.masterWeight
-            ? props.materialsBySuppliesId.masterWeight.toFixed(2)
-            : '0'
-        },
-      });
-      const [data1, setData1] = useState({
-        Uom: {
-          retail: props.materialsBySuppliesId.length
-            ? props.materialsBySuppliesId.length.toFixed(2)
-            : '0',
-          inner: props.materialsBySuppliesId.innerLength
-            ? props.materialsBySuppliesId.innerLength.toFixed(2)
-            : '0',
-          master: props.materialsBySuppliesId.masterLength
-            ? props.materialsBySuppliesId.masterLength.toFixed(2)
-            : '0'
-        },
-       
-    
-      });
-      const [selectedUom, setSelectedUom] = useState({});
-      const handleBlur = async (key, type, value) => {
-        try {
-          const updatedData = { ...data, [key]: { ...data[key], [type]: parseFloat(value) || 0 } };
-          setData(updatedData); // Update the local state with the new value
+  //   const CartTable = (props) => {
+  //     const [data, setData] = useState({
+  //       Length: {
+  //         retail: props.materialsBySuppliesId.length
+  //           ? props.materialsBySuppliesId.length.toFixed(2)
+  //           : '0',
+  //         inner: props.materialsBySuppliesId.innerLength
+  //           ? props.materialsBySuppliesId.innerLength.toFixed(2)
+  //           : '0',
+  //         master: props.materialsBySuppliesId.masterLength
+  //           ? props.materialsBySuppliesId.masterLength.toFixed(2)
+  //           : '0'
+  //       },
+  //       Depth: {
+  //         retail: props.materialsBySuppliesId.width
+  //           ? props.materialsBySuppliesId.width.toFixed(2)
+  //           : '0',
+  //         inner: props.materialsBySuppliesId.innerWidth
+  //           ? props.materialsBySuppliesId.innerWidth.toFixed(2)
+  //           : '0',
+  //         master: props.materialsBySuppliesId.masterWidth
+  //           ? props.materialsBySuppliesId.masterWidth.toFixed(2)
+  //           : '0'
+  //       },
+  //       Height: {
+  //         retail: props.materialsBySuppliesId.height
+  //           ? props.materialsBySuppliesId.height.toFixed(2)
+  //           : '0',
+  //         inner: props.materialsBySuppliesId.innerHeight
+  //           ? props.materialsBySuppliesId.innerHeight.toFixed(2)
+  //           : '0',
+  //         master: props.materialsBySuppliesId.masterHeight
+  //           ? props.materialsBySuppliesId.masterHeight.toFixed(2)
+  //           : '0'
+  //       },
+  //       Volume: {
+  //         retail: props.materialsBySuppliesId.volume
+  //           ? props.materialsBySuppliesId.volume.toFixed(2)
+  //           : '0',
+  //         inner: props.materialsBySuppliesId.innerVolume
+  //           ? props.materialsBySuppliesId.innerVolume.toFixed(2)
+  //           : '0',
+  //         master: props.materialsBySuppliesId.masterVolume
+  //           ? props.materialsBySuppliesId.masterVolume.toFixed(2)
+  //           : '0'
+  //       },
+  //       Weight: {
+  //         retail: props.materialsBySuppliesId.weight
+  //           ? props.materialsBySuppliesId.weight.toFixed(2)
+  //           : '0',
+  //         inner: props.materialsBySuppliesId.innerWeight
+  //           ? props.materialsBySuppliesId.innerWeight.toFixed(2)
+  //           : '0',
+  //         master: props.materialsBySuppliesId.masterWeight
+  //           ? props.materialsBySuppliesId.masterWeight.toFixed(2)
+  //           : '0'
+  //       },
+  //     });
+  //     const [selectedUom, setSelectedUom] = useState({});
+  
+  //     const handleBlur = async (key, type, value) => {
+  //       try {
+  //         const updatedData = { ...data, [key]: { ...data[key], [type]: parseFloat(value) || 0 } };
+  //         setData(updatedData); // Update the local state with the new value
+  //         const payload = {
+  //           suppliesId: props.materialsBySuppliesId.suppliesId,
+  //           length: updatedData.Length.retail,
+  //           innerLength: updatedData.Length.inner,
+  //           masterLength: updatedData.Length.master,
+  //           width: updatedData.Depth.retail,
+  //           innerWidth: updatedData.Depth.inner,
+  //           masterWidth: updatedData.Depth.master,
+  //           height: updatedData.Height.retail,
+  //           innerHeight: updatedData.Height.inner,
+  //           masterHeight: updatedData.Height.master,
+  //           volume: updatedData.Volume.retail,
+  //           innerVolume: updatedData.Volume.inner,
+  //           masterVolume: updatedData.Volume.master,
+  //           weight: updatedData.Weight.retail,
+  //           innerWeight: updatedData.Weight.inner,
+  //           masterWeight: updatedData.Weight.master,
+  //         };
       
-          const payload = {
-            suppliesId: props.materialsBySuppliesId.suppliesId,
-            length: updatedData.Length.retail,
-            innerLength: updatedData.Length.inner,
-            masterLength: updatedData.Length.master,
-            width: updatedData.Depth.retail,
-            innerWidth: updatedData.Depth.inner,
-            masterWidth: updatedData.Depth.master,
-            height: updatedData.Height.retail,
-            innerHeight: updatedData.Height.inner,
-            masterHeight: updatedData.Height.master,
-            volume: updatedData.Volume.retail,
-            innerVolume: updatedData.Volume.inner,
-            masterVolume: updatedData.Volume.master,
-            weight: updatedData.Weight.retail,
-            innerWeight: updatedData.Weight.inner,
-            masterWeight: updatedData.Weight.master,
-            uomId: selectedUom[key] 
-          };
+  //         // Perform PUT request to the dummy URL
+  //         await axios.put(`${base_url2}/supplies/infoEdit`, payload);
       
-          // Perform PUT request to the dummy URL
-          await axios.put(`${base_url2}/supplies/infoEdit`, payload);
-      
-          console.log('Payload sent:', payload);
-        } catch (error) {
-          console.error('Error updating data', error);
-        }
-      };
-    
-      const handleInputChange = (key, type, e) => {
-        const updatedData = { ...data, [key]: { ...data[key], [type]: e.target.value } };
-        setData(updatedData);
-      };
-      const handleUomChange = (value, key) => {
-        setSelectedUom({ ...selectedUom, [key]: value });
-        console.log('Selected UOM for', key, 'is', value);
-      };
-       
-      return (
-        <>
-        <div className="flex flex-col w-[85%]">
-        <table className="w-[95%] border-collapse border border-gray-200">
-          <thead>
-            <tr className="bg-gray-50">
-              <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
-              <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Retail</th>
-              <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Inner</th>
-              <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Master</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.keys(data).map((key) => (
-              <tr key={key} className="bg-gray-50 odd:bg-white">
-                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">{key}</th>
-                <td className="p-2 border border-gray-200">
-                  <input
-                    type="text"
-                    value={data[key].retail}
-                    onChange={(e) => handleInputChange(key, 'retail', e)}
-                    onBlur={(e) => handleBlur(key, 'retail', e.target.value)}
-                    className="w-full bg-transparent"
-                  />
-                </td>
-                <td className="p-2 border border-gray-200">
-                  <input
-                    type="text"
-                    value={data[key].inner}
-                    onChange={(e) => handleInputChange(key, 'inner', e)}
-                    onBlur={(e) => handleBlur(key, 'inner', e.target.value)}
-                    className="w-full bg-transparent"
-                  />
-                </td>
-                <td className="p-2 border border-gray-200">
-                  <input
-                    type="text"
-                    value={data[key].master}
-                    onChange={(e) => handleInputChange(key, 'master', e)}
-                    onBlur={(e) => handleBlur(key, 'master', e.target.value)}
-                    className="w-full bg-transparent"
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <table className="w-[95%] border-collapse border border-gray-200">
-          <thead>
-            <tr className="bg-gray-50">
-              <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
-              <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">dimension Uom</th>
-              <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">weight Uom</th>
+  //         console.log('Payload sent:', payload);
+  //       } catch (error) {
+  //         console.error('Error updating data', error);
+  //       }
+  //     };
+  //   const handleUomChange = async (uomId) => {
+
+  //     try {
+  //       const payload = {
+  //         uom: uomId, // The selected UOM ID
+  //       };
+        
+  //       // Perform the PUT request to the specified URL
+  //       await axios.put(`${base_url2}/supplies/uomEdit`, payload);
+        
+  //       console.log('UOM Payload sent:', payload);
+        
+  //       // Optionally update selected UOM state
+  //       setSelectedUom((prev) => ({ ...prev, uomId })); 
+  //     } catch (error) {
+  //       console.error('Error updating UOM', error);
+  //     }
+  //   };
+  //     const handleInputChange = (key, type, e) => {
+  //       const updatedData = { ...data, [key]: { ...data[key], [type]: e.target.value } };
+  //       setData(updatedData);
+  //     };
+     
+  //     return (
+  //       <>
+  //       <div className="flex flex-col w-[85%]">
+  //       <table className="w-[95%] border-collapse border border-gray-200">
+  //         <thead>
+  //           <tr className="bg-gray-50">
+  //             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
+  //             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Retail</th>
+  //             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Inner</th>
+  //             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Master</th>
+  //           </tr>
+  //         </thead>
+  //         <tbody>
+  //           {Object.keys(data).map((key) => (
+  //             <tr key={key} className="bg-gray-50 odd:bg-white">
+  //               <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">{key}</th>
+  //               <td className="p-2 border border-gray-200">
+  //                 <input
+  //                   type="text"
+  //                   value={data[key].retail}
+  //                   onChange={(e) => handleInputChange(key, 'retail', e)}
+  //                   onBlur={(e) => handleBlur(key, 'retail', e.target.value)}
+  //                   className="w-full bg-transparent"
+  //                 />
+  //               </td>
+  //               <td className="p-2 border border-gray-200">
+  //                 <input
+  //                   type="text"
+  //                   value={data[key].inner}
+  //                   onChange={(e) => handleInputChange(key, 'inner', e)}
+  //                   onBlur={(e) => handleBlur(key, 'inner', e.target.value)}
+  //                   className="w-full bg-transparent"
+  //                 />
+  //               </td>
+  //               <td className="p-2 border border-gray-200">
+  //                 <input
+  //                   type="text"
+  //                   value={data[key].master}
+  //                   onChange={(e) => handleInputChange(key, 'master', e)}
+  //                   onBlur={(e) => handleBlur(key, 'master', e.target.value)}
+  //                   className="w-full bg-transparent"
+  //                 />
+  //               </td>
+  //             </tr>
+  //           ))}
+  //         </tbody>
+  //       </table>
+  //       <table className="w-[95%] border-collapse border border-gray-200">
+  //         <thead>
+  //           <tr className="bg-gray-50">
+  //             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
+  //             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">dimension Uom</th>
+  //             <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">weight Uom</th>
              
-            </tr>
-          </thead>
-          <tbody>
-            {Object.keys(data1).map((key) => (
-              <tr key={key} className="bg-gray-50 odd:bg-white">
-                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">{key}</th>
-                <td className="p-2 border border-gray-200">
-                {/* <Select
-                  style={{ width: 170 }}
-                  value={selectedUom[key]}
-                 onChange={(value) => handleUomChange(value, key)}
-                >
-                  {props.mydata.map((uom) => (
-                    <Option key={uom.uomId} value={uom.uomId}>
-                      {uom.unitName}
-                    </Option>
-                  ))}
-                </Select> */}
-                </td>
-                <td className="p-2 border border-gray-200">
-                  <input
-                    type="text"
-                    value={data1[key].inner}
-                    onChange={(e) => handleInputChange(key, 'inner', e)}
-                    onBlur={(e) => handleBlur(key, 'inner', e.target.value)}
-                    className="w-full bg-transparent"
-                  />
-                </td>
+  //           </tr>
+  //         </thead>
+  //         <tbody>
+           
+  //             <tr className="bg-gray-50 odd:bg-white">
+  //               <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">UOM</th>
+  //               <td className="p-2 border border-gray-200">
                
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        </div>
-        </>
-      );
-    };
+  //  {/* <Select
+  //                                           style={{ width: "8rem" }}
+  //                                           onChange={(uomId) => handleUomChange(uomId)}
+  //                                       >
+  //                                           {props.mydata.map((uom) => (
+  //                                              <Option key={uom.uomId} value={uom.uomId}>
+  //                                              {uom.unitName}
+  //                                            </Option>
+  //                                           ))}
+  //                                       </Select> */}
+  //                                        <Select style={{ width: "8rem" }}  onChange={(uomId) => handleUomChange(uomId)}>
+  //                               {props.mydata.map((uom) => (
+  //                                   <Option key={uom.uomId} value={uom.uomId}>
+  //                                       {uom.unitName}
+  //                                   </Option>
+  //                               ))}
+  //                           </Select>
+  //               </td>
+  //               <td className="p-2 border border-gray-200">
+               
+  //               </td>
+               
+  //             </tr>
+  //           {/* // ))} */}
+  //         </tbody>
+  //       </table>
+  //       </div>
+  //       </>
+  //     );
+  //   };
     
 
+  
+  const CartTable = (props) => {
+    const [data, setData] = useState({
+      Length: {
+        retail: props.materialsBySuppliesId.length
+          ? props.materialsBySuppliesId.length.toFixed(2)
+          : '0',
+        inner: props.materialsBySuppliesId.innerLength
+          ? props.materialsBySuppliesId.innerLength.toFixed(2)
+          : '0',
+        master: props.materialsBySuppliesId.masterLength
+          ? props.materialsBySuppliesId.masterLength.toFixed(2)
+          : '0',
+      },
+      Depth: {
+        retail: props.materialsBySuppliesId.width
+          ? props.materialsBySuppliesId.width.toFixed(2)
+          : '0',
+        inner: props.materialsBySuppliesId.innerWidth
+          ? props.materialsBySuppliesId.innerWidth.toFixed(2)
+          : '0',
+        master: props.materialsBySuppliesId.masterWidth
+          ? props.materialsBySuppliesId.masterWidth.toFixed(2)
+          : '0',
+      },
+      Height: {
+        retail: props.materialsBySuppliesId.height
+          ? props.materialsBySuppliesId.height.toFixed(2)
+          : '0',
+        inner: props.materialsBySuppliesId.innerHeight
+          ? props.materialsBySuppliesId.innerHeight.toFixed(2)
+          : '0',
+        master: props.materialsBySuppliesId.masterHeight
+          ? props.materialsBySuppliesId.masterHeight.toFixed(2)
+          : '0',
+      },
+      Volume: {
+        retail: props.materialsBySuppliesId.volume
+          ? props.materialsBySuppliesId.volume.toFixed(2)
+          : '0',
+        inner: props.materialsBySuppliesId.innerVolume
+          ? props.materialsBySuppliesId.innerVolume.toFixed(2)
+          : '0',
+        master: props.materialsBySuppliesId.masterVolume
+          ? props.materialsBySuppliesId.masterVolume.toFixed(2)
+          : '0',
+      },
+      Weight: {
+        retail: props.materialsBySuppliesId.weight
+          ? props.materialsBySuppliesId.weight.toFixed(2)
+          : '0',
+        inner: props.materialsBySuppliesId.innerWeight
+          ? props.materialsBySuppliesId.innerWeight.toFixed(2)
+          : '0',
+        master: props.materialsBySuppliesId.masterWeight
+          ? props.materialsBySuppliesId.masterWeight.toFixed(2)
+          : '0',
+      },
+    });
+    
+    // const [selectedUom, setSelectedUom] = useState({});
+    const [selectedUom, setSelectedUom] = useState({
+      uomId: props.materialsBySuppliesId.uomId || null, // Set initial UOM ID from props
+      unitName: props.materialsBySuppliesId.unitName || 'Select UOM', // Set initial UOM name from props
+    });
+    const [isUomDropdownVisible, setIsUomDropdownVisible] = useState(false);
+    // Create a combined payload based on the current state
+    const createPayload = () => {
+      return {
+        suppliesId: props.materialsBySuppliesId.suppliesId,
+        length: data.Length.retail,
+        innerLength: data.Length.inner,
+        masterLength: data.Length.master,
+        width: data.Depth.retail,
+        innerWidth: data.Depth.inner,
+        masterWidth: data.Depth.master,
+        height: data.Height.retail,
+        innerHeight: data.Height.inner,
+        masterHeight: data.Height.master,
+        volume: data.Volume.retail,
+        innerVolume: data.Volume.inner,
+        masterVolume: data.Volume.master,
+        weight: data.Weight.retail,
+        innerWeight: data.Weight.inner,
+        masterWeight: data.Weight.master,
+        uom: selectedUom.unitName || null, // Include UOM only if selected
+        wtUom: selectedUom.unitName || null,
+      };
+    };
+  
+    // Handle blur event for input fields
+    const handleBlur = async (key, type, value) => {
+      try {
+        const updatedData = { ...data, [key]: { ...data[key], [type]: parseFloat(value) || 0 } };
+        setData(updatedData); // Update the local state with the new value
+  
+        const payload = createPayload(); // Create the combined payload
+        await axios.put(`${base_url2}/supplies/infoEdit`, payload);
+        console.log('Payload sent:', payload);
+      } catch (error) {
+        console.error('Error updating data', error);
+      }
+    };
+  
+    // Handle UOM change
+    const handleUomChange = (unitName) => {
+      setSelectedUom({ unitName }); // Update the selected UOM state
+      // The UOM change will be sent in the next blur event of the inputs
+    };
+  
+    // Handle input field changes
+    const handleInputChange = (key, type, e) => {
+      const updatedData = { ...data, [key]: { ...data[key], [type]: e.target.value } };
+      setData(updatedData);
+    };
+  
+    return (
+      <>
+        <div className="flex flex-col w-[85%]">
+          <table className="w-[95%] border-collapse border border-gray-200">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Retail</th>
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Inner</th>
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Master</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(data).map((key) => (
+                <tr key={key} className="bg-gray-50 odd:bg-white">
+                  <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">{key}</th>
+                  <td className="p-2 border border-gray-200">
+                    <input
+                      type="text"
+                      value={data[key].retail}
+                      onChange={(e) => handleInputChange(key, 'retail', e)}
+                      onBlur={(e) => handleBlur(key, 'retail', e.target.value)}
+                      className="w-full bg-transparent"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-200">
+                    <input
+                      type="text"
+                      value={data[key].inner}
+                      onChange={(e) => handleInputChange(key, 'inner', e)}
+                      onBlur={(e) => handleBlur(key, 'inner', e.target.value)}
+                      className="w-full bg-transparent"
+                    />
+                  </td>
+                  <td className="p-2 border border-gray-200">
+                    <input
+                      type="text"
+                      value={data[key].master}
+                      onChange={(e) => handleInputChange(key, 'master', e)}
+                      onBlur={(e) => handleBlur(key, 'master', e.target.value)}
+                      className="w-full bg-transparent"
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <table className="w-[95%] border-collapse border border-gray-200">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Dimension UOM</th>
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Weight UOM</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="bg-gray-50 odd:bg-white">
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">UOM</th>
+                <td className="p-2 border border-gray-200">
+                <div onClick={() => setIsUomDropdownVisible(!isUomDropdownVisible)} className="cursor-pointer">
+              {selectedUom.unitName}
+            </div>
+            {isUomDropdownVisible && (
+                  <Select
+                    style={{ width: "8rem" }}
+                    onChange={handleUomChange}
+                    onBlur={() => handleBlur("UOM", "uom", selectedUom.unitName)} // Optionally trigger blur for UOM
+                  >
+                    {props.mydata.map((uom) => (
+                      <Option key={uom.unitName} value={uom.unitName}>
+                        {uom.unitName}
+                      </Option>
+                    ))}
+                  </Select>
+                   )}
+                </td>
+                <td className="p-2 border border-gray-200">
+                <div onClick={() => setIsUomDropdownVisible(!isUomDropdownVisible)} className="cursor-pointer">
+              {selectedUom.unitName}
+            </div>
+            {isUomDropdownVisible && (
+                <Select
+                    style={{ width: "8rem" }}
+                    onChange={handleUomChange}
+                    onBlur={() => handleBlur("wtUom", "wtUom", selectedUom.unitName)} // Optionally trigger blur for UOM
+                  >
+                    {props.mydata.map((uom) => (
+                      <Option key={uom.unitName} value={uom.unitName}>
+                        {uom.unitName}
+                      </Option>
+                    ))}
+                  </Select>
+                      )}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </>
+    );
+  };
+  
 
-    console.log(props.mydata)
+  
+
+    console.log(props.materialsBySuppliesId)
   return (
   <>
        
@@ -404,7 +622,9 @@ function MaterialsDetailsCardViewId (props) {
      
     </div>
     <div className='mt-8 flex justify-between'>
-    <CartTable materialsBySuppliesId={props.materialsBySuppliesId} />
+    <CartTable materialsBySuppliesId={props.materialsBySuppliesId}
+    mydata={props.mydata}
+    />
     <LocationSuppliesList
           particularDiscountData={props.particularDiscountData}
           />

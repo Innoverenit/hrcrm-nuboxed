@@ -458,7 +458,7 @@ function SuppliesTable(props) {
                                   imgWidth={"1.8rem"}
                                   imgHeight={"1.8rem"}
                                 />
-                                {`${dayjs(item.creationDate).format("DD/MM/YYYY")}`}
+                                {/* {`${dayjs(item.creationDate).format("DD/MM/YYYY")}`} */}
                               </div>
                             </div>
                             <div className=" flex  w-[6.2rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">

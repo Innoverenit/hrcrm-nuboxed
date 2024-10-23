@@ -30,12 +30,7 @@ class LinkedContact extends Component {
   }
 
   componentDidMount() {
-    this.props.getContactListByOpportunityId(
-      this.props.opportunity.opportunityId
-    );
-  }
-
-  componentDidMount() {
+    this.props.getContactListByOpportunityId(this.props.opportunity.opportunityId);
     this.fetchMenuTranslations();
  
   }
