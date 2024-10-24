@@ -5,9 +5,6 @@ import InventoryCommerceTabO from "./InventoryCommerceTabO"
 import InventoryHeader from "./InventoryHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { setInventoryViewType,getInventoryById,setInventoryDetailViewType } from "./InventoryAction";
-import InventoryDetail from "./Child/InventoryDetails/InventoryDetail";
-import InventoryMaterialTab from "./Child/InventoryDetails/InventoryMaterialTab/InventoryMaterialTab";
-import InventoryDetailTab from "./Child/InventoryDetails/InventoryDetailTab/InventoryDetailTab";
 import InventoryMaterialTabO from "./InventoryMaterialTabO";
 import InventoryDetailTabO from "./InventoryDetailTabO";
 import InventorySupplierTable from "./InventorySupplierTable";

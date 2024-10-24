@@ -1,4 +1,4 @@
-import React, { useState, lazy, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button,Badge } from "antd";
@@ -469,7 +469,7 @@ const AWBtst=[
         <div className=' flex  sticky  z-auto'>
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
-              <div className=" w-[14.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
+              <div className=" w-[5.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
               {translatedMenuItems[0]}
                 </div>
               <div className="w-[2.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
@@ -485,7 +485,7 @@ const AWBtst=[
                 {/* <FormattedMessage id="app.packed" defaultMessage="Packed ?" /> */}
                 {translatedMenuItems[3]}
                 </div>
-              <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]">
+              <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]">
                 {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery" /> */}
                 {translatedMenuItems[4]}
                 </div>
@@ -551,33 +551,8 @@ const AWBtst=[
                               ) : null}
                             </div>
                           </div>
-                          <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                        <div class=" text-xs  font-poppins text-center">
-                                                        
-                                                                <Button
-                                                                    style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
-                                                                    class=" bg-green-500"
-                                                                    onClick={() => {
-                                                                        handleCheckAwb();
-                                                                        handleSetParticularOrderData(item)
-                                                                    }
-                                                                    }
-                                                                ><span className='!text-[#faad14]'>AWB</span></Button>
-                                                              <Badge
-                                                                class=" ml-2"
-                                                                size="small"
-                                                                count={item.awbCount || 0}
-                                                                overflowCount={999}
-                                                                offset={[0,-11]}
-                                                            >  </Badge>
-                                                        </div>
-                                                    </div>
-
-
-
-
-
-                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[6.8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                     
+                                                   <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[6.8rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" text-xs  font-poppins text-center">
                                                             {/* <Badge
                                                                 class=" ml-2"
@@ -644,7 +619,27 @@ const AWBtst=[
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
+                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                        <div class=" text-xs  font-poppins text-center">
+                                                        
+                                                                <Button
+                                                                    style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
+                                                                    class=" bg-green-500"
+                                                                    onClick={() => {
+                                                                        handleCheckAwb();
+                                                                        handleSetParticularOrderData(item)
+                                                                    }
+                                                                    }
+                                                                ><span className='!text-[#faad14]'>AWB</span></Button>
+                                                              <Badge
+                                                                class=" ml-2"
+                                                                size="small"
+                                                                count={item.awbCount || 0}
+                                                                overflowCount={999}
+                                                                offset={[0,-11]}
+                                                            >  </Badge>
+                                                        </div>
+                                                    </div>
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[7.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  ml-gap items-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.shipperName === "null" ? "" : item.shipperName}

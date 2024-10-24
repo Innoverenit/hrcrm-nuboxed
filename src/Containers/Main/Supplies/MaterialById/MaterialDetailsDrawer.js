@@ -22,18 +22,20 @@ function MaterialDetailsDrawer(props) {
       switch (key) {
        
         case "1":
-          return  <div> <div class="font-semibold ">Price</div>
+          return  <div class="flex w-full justify-between "><div class="w-[47.5%]"> <div class=" font-poppins  font-semibold ">Price</div>
           <PriceAddCard particularDiscountData={particularDiscountData}
            translateText={props.translateText}
-           selectedLanguage={props.selectedLanguage} />  
-          <div class="font-semibold ">Discount B2B</div>
+           selectedLanguage={props.selectedLanguage} />  </div>
+           <div class="flex flex-col w-[47.5%]">
+          <div class="font-semibold font-poppins w-[47.5%] ">Discount B2B</div>
           <PriceDiscountCard particularDiscountData={particularDiscountData} 
            translateText={props.translateText}
            selectedLanguage={props.selectedLanguage} /> 
-          <div class="font-semibold ">Discount B2C</div>
+          <div class=" font-semibold  font-poppins w-[47.5%]">Discount B2C</div>
           <PriceDiscountCardB2C particularDiscountData={particularDiscountData} 
            translateText={props.translateText}
-           selectedLanguage={props.selectedLanguage} /></div>;
+           selectedLanguage={props.selectedLanguage} /></div></div>;
+
            case "2":
             return     <div> 
                 <MaterialsDetailsbyId 

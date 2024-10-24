@@ -1,9 +1,7 @@
-import React, { Component, lazy, PureComponent, Suspense } from "react";
+import React, {  PureComponent, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { PlusOutlined } from "@ant-design/icons";
 import { StyledTabs } from "../../../Components/UI/Antd";
-import { Tooltip } from "antd";
 import { withRouter } from "react-router";
 import {
   handleAddDispatchModal,

@@ -164,7 +164,7 @@ function PriceDiscountCardB2C(props) {
 
   return (
     <div>
-      <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
+      <Button className="mb-16  w-[8rem]" type="primary" onClick={handleAddRow} >
       {translatedMenuItems[0]} {/* Add Row */}
       </Button>
       {rows.map((row, index) => (

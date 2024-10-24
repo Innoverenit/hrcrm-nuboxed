@@ -42,7 +42,7 @@ function PriceDiscountCard(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-      "1370",  //  "Add Row",//0
+      "85",  //  "Add ",//0
       "1369",  //   "Volume",//1
        "218", //   "Value",
        "126", //   "Start Date",
@@ -166,31 +166,14 @@ function PriceDiscountCard(props) {
 
   return (
     <div>
-      <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
-        {/* Add Row */}{translatedMenuItems[0]}
+      {/* //B2B */}
+      <Button className="mb-16  w-[5rem]" type="primary" onClick={handleAddRow}>
+        {/* Add */}{translatedMenuItems[0]}
       </Button>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center justify-between">
             <div class="flex justify-around w-wk">
-            {/* <div>
-                <div class="font-bold text-xs font-poppins text-black">Currency</div>
-                <div class="w-24">
-                <Select
-                style={{width:"5rem"}}
-                      
-                        value={row.currency_id}
-                        onChange={(value) => handleChange(index, 'currency_id',value)}
-                      >
-                        {props.investorCurrencies.map((s) => (
-                          <Option key={s.currency_id} value={s.currency_id}>
-                            {s.currency_name}
-                          </Option>
-                        ))}
-                      </Select>
-
-                </div>
-              </div> */}
-
+     
               <div>
                 <div class="font-bold text-xs font-poppins text-black">
                 {translatedMenuItems[1]} {/* Volume */}
