@@ -11,7 +11,8 @@ import {
   handlePickupDateModal,
   updateDispatchInspectionButton,
   handleCreateAWB,
-  handleInventoryDispatchModal
+  handleInventoryDispatchModal,
+  handleCreateAddPack
 } from "./InventoryAction"
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import { withRouter } from "react-router";
@@ -23,6 +24,7 @@ import RefurbishNoteAll from "../Refurbish/RefurbishNoteAll";
 import DispatchPackedToggle from "./Child/InventoryDetails/Dispatch/DispatchPackedToggle";
 import DispatchValidationToggle from "./Child/InventoryDetails/Dispatch/DispatchValidationToggle";
 import DispatchOrderAwbModal from "./Child/InventoryDetails/Dispatch/DispatchOrderAwbModal";
+import AddpackDrawer from "./AddpackDrawer";
 // Repair -Dis-2
 
 
@@ -563,11 +565,12 @@ const AWBtst=[
                                                                 <Button
                                                                     style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
                                                                     class=" bg-green-500"
-                                                                    // onClick={() => {
-                                                                    //     handleCheckAwb();
-                                                                    //     handleSetParticularOrderData(item)
-                                                                    // }
-                                                                    // }
+                                                                    onClick={() => {
+                                                                       
+                                                                        props.handleCreateAddPack(true);
+                                                                        handleRowData(item)
+                                                                    }
+                                                                    }
                                                                 ><span className='!text-[#faad14]'>
                                                                   Add Pack
                                                                   </span></Button>
@@ -626,7 +629,7 @@ const AWBtst=[
                                                                     style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
                                                                     class=" bg-green-500"
                                                                     onClick={() => {
-                                                                        handleCheckAwb();
+                                                                      handleCheckAwb();
                                                                         handleSetParticularOrderData(item)
                                                                     }
                                                                     }
@@ -726,6 +729,13 @@ const AWBtst=[
         handleInventoryDispatchModal={props.handleInventoryDispatchModal}
         inventoryDispatchModal={props.inventoryDispatchModal}
       />
+       <AddpackDrawer
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+        rowData={rowData}
+        handleCreateAddPack={props.handleCreateAddPack}
+        addPackData={props.addPackData}
+      />
       <DispatchOrderAwbModal
       translateText={props.translateText}
       selectedLanguage={props.selectedLanguage}
@@ -748,6 +758,7 @@ const mapStateToProps = ({ shipper, inventory, auth, dispatch,refurbish }) => ({
   orgId: auth.userDetails.organizationId,
   fetchingDispatchList: inventory.fetchingDispatchList,
   addCreateAwb: inventory.addCreateAwb,
+  addPackData:inventory.addPackData,
   productioNoteModal: refurbish.productioNoteModal,
   // locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
 });
@@ -763,6 +774,7 @@ const mapDispatchToProps = (dispatch) =>
       handleCreateAWB,
       handleInventoryDispatchModal,
       handleProductionNotesModal,
+      handleCreateAddPack
     },
     dispatch
   );
