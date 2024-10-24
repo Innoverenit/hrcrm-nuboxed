@@ -25,7 +25,10 @@ const ProcureInvoiceListDrawer = (props) => {
                 <Suspense fallback={<BundleLoader />}>
          
                <ProcureInvoiceList  orderPhoneId={props.particularRowData.orderPhoneId}
+               orderId={props.particularRowData.orderId}
+               particularRowData={props.particularRowData}
                translatedMenuItems={props.translatedMenuItems}
+               distributorId={props.distributorId}
                />                  
                 </Suspense>
             </StyledDrawer>

@@ -126,9 +126,7 @@ function InvestorAllCardList(props) {
     props.getAllEmployeelist();
   }, []);
 
-  useEffect(() => {
-    return () => props.emptyInvestor();
-  }, []);
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -241,7 +239,9 @@ const handleLoadMore1 = () => {
   }, 100);
 };
 
-
+useEffect(() => {
+  return () => props.emptyInvestor();
+}, []);
 
 
   const handleButtonClick = (employeeId) => {

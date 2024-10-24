@@ -55,6 +55,7 @@ const OrderPickupForm = (props) => {
             locationId: location,
             userId: props.userId,
             orderPhoneId: props.particularRowData.orderId,
+            orderType:"Repair"
         }
         props.addLocationInOrder(data, props.distributorId)
     }

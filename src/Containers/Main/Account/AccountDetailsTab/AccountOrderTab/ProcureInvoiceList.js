@@ -4,6 +4,8 @@ import { bindActionCreators } from "redux";
 import {  Select,Input,Button } from 'antd';
 import dayjs from "dayjs";
 import { base_url2 } from "../../../../../Config/Auth";
+import { useDispatch } from 'react-redux';
+import {addLocationInOrder} from "../../AccountAction"
 import axios from "axios";
 const { Option } = Select;
 
@@ -21,6 +23,7 @@ function ProcureInvoiceList (props) {
     const [editsuppliesId, setEditsuppliesId] = useState(null);
     const [invoicDataCount, setinvoicDataCount] = useState({});
     const [invoicDataCountLoading, setinvoicDataCountLoading] = useState(true);
+    const dispatch = useDispatch();
 
       const fetchData = async () => {
         try {
@@ -89,31 +92,35 @@ function ProcureInvoiceList (props) {
    
     
 
-    const handlePostChange =  async (item) => {
+      const handlePostChange =  async (item) => {
         let updatedItem={
-            shippingDate: new Date(date).toISOString(),
-          trackId:trackId?trackId:item.trackId,
-          procureOrderInvoiceId:item.procureOrderInvoiceId,
+          dispatchReceivedDate: new Date(date).toISOString(),
+          // trackId:trackId?trackId:item.trackId,Order Successfully dispatched!!!!
+          orderId:props.orderId,
         }
-        // props.updateOrdrSuplrItems(data);
+        let data = {
+          inventoryPickUpDate: new Date(date).toISOString(),
+          transferInd: 1,
+          locationId: "LDS65468903772222023",
+          userId: props.userId,
+          orderPhoneId: props.orderId,
+          orderType:"Procure"
+      }
         try {
-          const headers = {
-            'Content-Type': 'application/json',
-            'Authorization':  `Bearer ${props.token}`  // Replace with your actual token if required
-          };
-
-            const response = await axios.put(`${base_url2}/invoice/order/ship`, updatedItem, { headers });
-            console.log("API Response:", response.data);
-        setData(prevData => 
-              prevData.map(cat =>
-                cat.procureOrderInvoiceId === item.procureOrderInvoiceId ? response.data : cat
-              )
-            );
-        
+          const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch`, updatedItem, {  
+              headers: {
+                  Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+              },
+           });
+           dispatch(addLocationInOrder(data, props.distributorId));
+           if (response.data === 'Order Successfully dispatched!!!!') {
+            const updatedOrderItems = data.filter(itm => itm.orderId !== item.orderId);
+            setData(updatedOrderItems);
+          } else {
+            console.log(response.data);
+          }
             setEditsuppliesId(null);
-        
           } catch (error) {
-            // Handle errors
             console.error("Error updating item:", error);
             setEditsuppliesId(null);
           }
@@ -203,20 +210,20 @@ function ProcureInvoiceList (props) {
                                                     </div>
                                                     <div className=" flex  w-[12.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {editsuppliesId === item.procureOrderInvoiceId ? (
+                                                        {editsuppliesId === props.orderId ? (
                                                          
                                                                 <input
           type="date"
           // value={date}
-          value={dayjs(item.shippingDate).format("YYYY-MM-DD")}
+          value={dayjs(props.particularRowData.dispatchReceivedDate).format("YYYY-MM-DD")}
           onChange={(e) => handleDateChange(e,item)}
         //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
           class="border border-black rounded"
         /> ) : (
             <div className="font-normal text-sm  font-poppins">
-               {item.shippingDate === null ? "" :
+               {props.particularRowData.dispatchReceivedDate === null ? "" :
               <div> 
-              {dayjs(item.shippingDate).format("YYYY/MM/DD")} 
+              {dayjs(props.particularRowData.dispatchReceivedDate).format("YYYY/MM/DD")} 
               </div>}
             </div>
           )}
@@ -230,7 +237,7 @@ function ProcureInvoiceList (props) {
                                                                                                     </div>
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             <div className=" flex w-20 items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[6rem] max-sm:flex-row  max-sm:justify-between ">
-    {editsuppliesId === item.procureOrderInvoiceId ? (
+    {editsuppliesId === props.orderId ? (
                         <>
                       <Button 
                       type="primary"
@@ -240,19 +247,19 @@ function ProcureInvoiceList (props) {
                       </Button>
                         <Button 
                          type="primary"
-                        onClick={() => handleCancelClick(item.procureOrderInvoiceId)} className="ml-[0.5rem]">
+                        onClick={() => handleCancelClick(props.orderId)} className="ml-[0.5rem]">
                         Cancel
                       </Button>
                       </>
                       
                     ) : (
                       <>
-                      {item.paidInd===true &&
+                        {/* {props.user.enaShipInd && ( */}
                       <Button
                       type="primary"
-                        onClick={() => handleEditClick(item.procureOrderInvoiceId)}
+                        onClick={() => handleEditClick(props.orderId)}
                       >Pack</Button>
-                    }
+    {/* ) }   */}
                     </>
                     )}
     </div>
@@ -276,6 +283,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
     orgId: auth.userDetails.organizationId,
     currencies: auth.currencies,
     token: auth.token,
+    user: auth.userDetails,
     fetchingAccountInvoice:distributor.fetchingAccountInvoice,
     accountInvoice:distributor.accountInvoice,
     invoiceOrders:distributor.invoiceOrders,
@@ -289,7 +297,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            
+          addLocationInOrder  
            
         },
         dispatch
