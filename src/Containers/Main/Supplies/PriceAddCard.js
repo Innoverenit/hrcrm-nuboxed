@@ -45,7 +45,7 @@ function PriceAddCard(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-     "1370",   //  "Add Row",//0
+     "85",   //  "Add ",//0
        "241", //   "Currency",//1
       "657",  //   "Price",//2
       "71",  //   "Type",
@@ -178,19 +178,21 @@ function PriceAddCard(props) {
 
   return (
     <div>
-      <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
-      {translatedMenuItems[0]} {/* Add Row */}
+      <div class="flex mb-8 flex-start ">
+        <div className="flex w-[5rem] items-center">
+     <Button  type="primary" onClick={handleAddRow} >
+      {translatedMenuItems[0]} {/* Add */}
       </Button>
+      </div>
       {rows.map((row, index) => (
-          <div key={index} class="flex items-center">
-            <div class="flex justify-around w-[30rem]">
+          <div key={index} class="flex items-center justify-between w-[30rem]">
+                   
               <div>
                 <div class="font-bold text-xs font-poppins text-black">
                   {/* Currency */} {translatedMenuItems[1]}
                   </div>
-                <div class="w-24">
-                <Select
-                        classNames="w-32"
+                <div class="w-16">
+                <Select                   
                         value={row.currency_id}
                         onChange={(value) => handleChange(index, 'currency_id',value)}
                       >
@@ -204,48 +206,29 @@ function PriceAddCard(props) {
                 </div>
               </div>
 
-              <div>
+              <div class="w-24">
                 <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[2]}  (B2B)</div>
-                <div class="w-24"></div>
-                <Input
+              
+                <Input 
                  inputMode="numeric"
-                        className="w-32"
+                    
                         value={row.suppliesPrice}
                         onChange={(e) => handleChange(index,'suppliesPrice',e.target.value)}
                       />
                         {errors[`suppliesPrice${index}`] && <span className="text-red-500">{errors[`suppliesPrice${index}`]}</span>}
                       </div>
-              <div>
-                <div class="font-bold text-xs font-poppins text-black">
-                {translatedMenuItems[2]}{/* Price  */}(B2C)
-                  </div>
-                <div class="w-24">
-                <Input
-                 inputMode="numeric"
-                        className="w-32"
-                        value={row.suppliesPriceB2C}
-                        onChange={(e) => handleChange(index,'suppliesPriceB2C',e.target.value)}
-                      />
-                       {errors[`suppliesPriceB2C${index}`] && <span className="text-red-500">{errors[`suppliesPriceB2C${index}`]}</span>}
-                      </div>
-                      </div>
+           
 
-                      <div>
-                <div class="font-bold text-xs font-poppins text-black">
-                  {/* Type */}  {translatedMenuItems[3]}
-                  </div>
-                <div class="w-24">
-                <div>
-                <div class="font-bold text-xs font-poppins text-black">
-                  {/* Currency */} {translatedMenuItems[1]}
-                  </div>
+                      <div>           
+                <div class="w-28">
+                <div>        
                   <div class="font-bold text-xs font-poppins text-black">
                {/* Catagory */}{translatedMenuItems[7]}
                   
                   </div>
-                <div class="w-24">
+          
                 <Select
-                        classNames="w-32"
+                      
                       value={row.catagoryId}
                       onChange={(value) => handleChange(index, 'catagoryId',value)}
                       >
@@ -256,31 +239,32 @@ function PriceAddCard(props) {
                         ))}
                       </Select>
 
-                </div>
+              
               </div>
                        
                       </div>
                       </div>
-            </div>
-            <div class="mt-4">
-            <Button type="primary" onClick={() => handleSave(index)}>
+                     
+            <Button class="flex items-center"type="primary" onClick={() => handleSave(index)}>
               {/* Submit */} {translatedMenuItems[4]}
             </Button>
-            </div>
+            
+          
+           
             
           </div>
-        ))}
 
+        ))}
+</div>
       <div className=' flex sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">          <div className=""></div>
-            <div className=" md:w-[7%]">  {translatedMenuItems[1]}</div>
-            <div className=" md:w-[6.1rem]">  {translatedMenuItems[2]}(B2B)</div>
-            <div className=" md:w-[4.2rem] ">  {translatedMenuItems[2]}(B2C)</div>
-            <div className=" md:w-[7.2rem] "> {translatedMenuItems[7]} {translatedMenuItems[8]}
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">      
+            <div className="font-poppins font-bold text-xs md:w-[7%]">  {translatedMenuItems[1]}</div>
+            <div className="font-poppins font-bold text-xs md:w-[6.1rem]">  {translatedMenuItems[2]}(B2B)</div>
+            <div className="font-poppins font-bold text-xs md:w-[7.2rem] "> {translatedMenuItems[7]}
               {/* Catagory name */}
               </div>
-            <div className="md:w-[5.8rem]">  {translatedMenuItems[3]}</div>
+            <div className="md:w-[5.8rem] font-poppins font-bold text-xs">  {translatedMenuItems[3]}</div>
             <div className="w-12"></div>         
             </div>
 
@@ -290,7 +274,7 @@ function PriceAddCard(props) {
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
                 >
 
-                  <div className=" flex items-end flex-col md:w-[9.1rem] max-sm:w-full  ">
+                  <div className=" flex font-poppins flex-col md:w-[2.1rem] max-sm:w-full  ">
                     <div class="text-xs font-semibold  font-poppins cursor-pointer">
                     {/* {editsuppliesId === item.id ? (
                       <Select
@@ -315,7 +299,7 @@ function PriceAddCard(props) {
                     </div>
                   </div>
 
-                  <div className=" flex md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex md:w-[3.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.id ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -331,23 +315,6 @@ function PriceAddCard(props) {
 )}
                   </div>
 
-
-
-                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                  {editsuppliesId === item.id ? (
-                    <div class=" text-xs  font-poppins">
-                      <Input
-                        className="w-32"
-                        value={item.suppliesPriceB2C}
-                        onChange={(e) => handleInputChange(e.target.value, item.key, 'suppliesPriceB2C')}
-                      />
-                    </div>
-                     ):(
-                      <div className=" text-sm  font-poppins">
-                      <div> {item.suppliesPriceB2C}</div>
-                    </div>
-                    )}
-                  </div>
                   <div className=" text-xs  font-poppins">
                       <div> {item.SCategoryName}</div>
                     </div>
