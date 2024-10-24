@@ -19,6 +19,8 @@ function DataRoomProspectCard (props) {
        <div class=" flex flex-no-wrap w-full" >
                 <div class=" w-[22%]" >
                   <DataRoomProspectActionLeft
+                  setSelectedButtonTab={props.setSelectedButtonTab}
+                  selectedButtonTab={props.selectedButtonTab}
                    selectedPerson={props.selectedPerson}
                    handleCardClick={props.handleCardClick}
                    setSelectedPerson={props.setSelectedPerson}
@@ -27,13 +29,19 @@ function DataRoomProspectCard (props) {
                     // currentRulesOpen={currentRulesOpen}
                     />
                 </div>
-                {props.selectedPerson && (
+                {/* {props.selectedPerson && ( */}
                 <div class=" w-[78%]" >
-                  <DataRoomProspectActionRight         />
+                  <DataRoomProspectActionRight 
+                   selectedPersonData={props.selectedPersonData}
+                   translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage} 
+                  selectedPerson={props.selectedPerson} 
+                  selectedButtonTab={props.selectedButtonTab}
+                        />
                   {/* current={currentRulesOpen} */}
             
                 </div>
-                )}
+                {/* )} */}
               </div>
         </>
     );

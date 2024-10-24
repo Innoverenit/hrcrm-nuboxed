@@ -13,12 +13,15 @@ const DataRoomProspectCard=lazy(()=> import("../Data Room/DataRoomProspectcard")
 function DataRoom (props) {
 
   const [selectedTab, setSelectedTab] = useState('prospect'); 
+  const [selectedButtonTab, setSelectedButtonTab] = useState('byList');
   const [selectedPerson, setSelectedPerson] = useState(null);
-
+  const[selectedPersonData,setSelectedPersonData] =useState(null)
+console.log(selectedButtonTab)
   const [selectedInvestor, setSelectedInvestor] = useState(null);
 const[selectedCustomer,setSelectedCustomer]=useState(null)
-  const handleCardClick = (person) => {
+  const handleCardClick = (person,prospectData) => {
     setSelectedPerson(person);
+    setSelectedPersonData(prospectData);
   };
 
 
@@ -80,6 +83,9 @@ const[selectedCustomer,setSelectedCustomer]=useState(null)
            selectedTab === "prospect" ? 
             //<DataRoomTab />
                <DataRoomProspectCard
+               selectedPersonData={selectedPersonData}
+               setSelectedButtonTab={setSelectedButtonTab}
+               selectedButtonTab={selectedButtonTab}
                selectedPerson={selectedPerson}
                handleCardClick={handleCardClick}
                setSelectedPerson={setSelectedPerson}

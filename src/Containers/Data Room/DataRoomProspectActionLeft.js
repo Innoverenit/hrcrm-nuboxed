@@ -3,11 +3,18 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Spin,Button} from "antd";
+import {getSources} from "../Settings/Category/Source/SourceAction"
 
 import {
   getAllCustomerlIST,
  
 } from "../Customer/CustomerAction";
+
+
+import {
+  getSectors,
+ 
+} from "../Settings/Sectors/SectorsAction";
 import { MultiAvatar } from "../../Components/UI/Elements";
 
 
@@ -45,6 +52,8 @@ function DataRoomProspectActionLeft(props) {
     
     setPage(page + 1);
     props.getAllCustomerlIST(page,"creationdate");
+    props.getSectors()
+    props.getSources(props.orgId)
     
   }, []);
   console.log(props.rules);
@@ -52,18 +61,26 @@ function DataRoomProspectActionLeft(props) {
 
   return (
     <div>
+        {/* setSelectedButtonTab={props.setSelectedButtonTab}
+        selectedButtonTab={props.selectedButtonTab} */}
       <div>
-      <Button>By List</Button>
-        <Button>By Sector</Button>
-        <Button>By Source</Button>
+      <Button
+       onClick={() => props.setSelectedButtonTab('byList')}
+      >By List</Button>
+        <Button
+         onClick={() => props.setSelectedButtonTab('bySector')}
+        >By Sector</Button>
+        <Button
+         onClick={() => props.setSelectedButtonTab('bySource')}
+        >By Source</Button>
       </div>
+      {props.selectedButtonTab==="byList" && (
       <div class=" flex flex-col flex-block"
-      // flexDirection="column" style={{ display: "block" }}
+    
        >
           <div class="flex flex-col">
   <h2 className="text-xl font-bold mb-4 ">
-  {/* QUOTATION -
-  ({`${props.quotationDashboardCount.countByUserId} `}) */}
+  
 </h2>
   {props.allCustomers.length === 0 &&props.fetchingAllCustomerList? (
     <>
@@ -88,7 +105,7 @@ function DataRoomProspectActionLeft(props) {
         <div className="flex justify-between">
           <div 
           className="font-semibold"
-          onClick={() => props.handleCardClick(lead.name)}
+          onClick={() => props.handleCardClick(lead.name,lead)}
           >{lead.name}</div>
            <div 
           className="font-semibold"
@@ -117,6 +134,141 @@ function DataRoomProspectActionLeft(props) {
   )}
 </div>
       </div>
+      )}
+{/* By Sector */}
+{props.selectedButtonTab==="bySector" && (
+      <div class=" flex flex-col flex-block"
+    
+       >
+          <div class="flex flex-col">
+  <h2 className="text-xl font-bold mb-4 ">
+  
+</h2>
+   {props.sectors.length === 0 &&props.fetchingSectors? (
+    <>
+     <Spin color="#00008b" size={50} /> 
+     <div>No data found</div>
+    </>
+    
+   
+  ) : ( 
+   <>
+    
+   { props.sectors.map((lead, index) => {
+    return ( 
+      <div 
+      // key={index} 
+      className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
+        <div className="flex justify-between">
+          <div 
+          className="font-semibold"
+          // onClick={() => props.handleCardClick(lead.name)}
+          >
+            {lead.sectorName}
+           
+            </div>
+           <div 
+          className="font-semibold"
+         
+          >
+            <MultiAvatar
+                            primaryTitle={lead.sectorName}
+                            // imageId={lead.imageId}
+                            // imageURL={lead.imageURL}
+                            imgWidth={"1.8rem"}
+                            imgHeight={"1.8rem"}
+                          />
+            </div>
+          <div className="text-sm text-gray-500 font-poppins">
+            {/* {lead.phoneNumber} */}
+            </div>
+          
+        </div>
+        <div className="text-sm text-gray-500 font-poppins">
+          {/* {lead.sector}  {lead.source} */}
+          </div>
+        <div class="flex justify-between">
+        <div className="text-sm text-gray-500 font-poppins">
+          {/* {lead.oppNo} */}
+          </div>
+        {/* <Button>To Order</Button> */}
+        </div>
+      </div>
+     )
+   })} 
+   </>
+  
+   )}
+</div>
+      </div>
+)}
+
+{props.selectedButtonTab==="bySource" && (
+      <div class=" flex flex-col flex-block"
+    
+       >
+          <div class="flex flex-col">
+  <h2 className="text-xl font-bold mb-4 ">
+  
+</h2>
+  {props.sources.length === 0 &&props.fetchingSources? (
+    <>
+     <Spin color="#00008b" size={50} /> 
+     <div>No data found</div>
+    </>
+    
+   
+  ) : ( 
+
+    <>
+  {props.sources.map((lead, index) => {
+    return ( 
+      <div 
+      // key={index} 
+      className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
+        <div className="flex justify-between">
+          <div 
+          className="font-semibold"
+          // onClick={() => props.handleCardClick(lead.name)}
+          >
+            {lead.name}
+           
+            </div>
+           <div 
+          className="font-semibold"
+         
+          >
+            <MultiAvatar
+                            primaryTitle={lead.name}
+                            imageId={lead.imageId}
+                            imageURL={lead.imageURL}
+                            imgWidth={"1.8rem"}
+                            imgHeight={"1.8rem"}
+                          />
+            </div>
+          <div className="text-sm text-gray-500 font-poppins">
+            {/* {lead.phoneNumber} */}
+            </div>
+          
+        </div>
+        <div className="text-sm text-gray-500 font-poppins">
+          {/* {lead.sector}  {lead.source} */}
+          </div>
+        <div class="flex justify-between">
+        <div className="text-sm text-gray-500 font-poppins">
+          {/* {lead.oppNo} */}
+          </div>
+        {/* <Button>To Order</Button> */}
+        </div>
+      </div>
+     )
+   })} 
+   </>
+   
+  )} 
+</div>
+      </div>
+)}
     </div>
   );
 }
@@ -126,7 +278,9 @@ const mapStateToProps = ({
   auth,
   customer,
   sector,
+  source,
   opportunity,
+  
   employee,
 }) => ({
   userId: auth.userDetails.userId,
@@ -139,16 +293,23 @@ const mapStateToProps = ({
   fetchingAllCustomerListError: customer.fetchingAllCustomerListError,
   updateCustomerModal: customer.updateCustomerModal,
   user: auth.userDetails,
+  sectors: sector.sectors,
+  fetchingSectors:sector.fetchingSectors,
+  orgId:auth.userDetails.organizationId,
 
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   customerSearch: customer.customerSearch,
+  sources: source.sources,
+  fetchingSources:source.fetchingSources
 
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getAllCustomerlIST,
+      getSectors,
+      getSources
     
     },
     dispatch
