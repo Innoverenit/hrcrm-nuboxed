@@ -215,6 +215,7 @@ function General(props) {
               
                 <div class=" flex justify-between w-full p-3 ">             
                   <div>   
+                 
                   <div class=" text-sm  font-bold">HR</div>           
                     {/* <div class=" flex justify-between mt-2">                    
                      <div class=" text-xs  ">Drop Open Orders (in months)</div>
@@ -277,242 +278,7 @@ function General(props) {
    
                       </div>
                     </div>
-                    <div class=" flex  mt-2">
-                      <div class=" text-sm  font-bold">Production</div>                      
-                      </div>
-                    {props.user.productionInd === true ? (
-   <> 
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Process</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Process")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.processInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("processInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Make To</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Make To")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.typeInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("typeInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
-                
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">AMC</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("AMC")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.amcInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("amcInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
-                    </>
- ) : (
-  <div className="mt-4 ml-4 text-red-500">
-    Production module is Switched off. Switch it on to Access Features.
-  </div>
-)}   
-<div class=" flex  mt-2">
-                      <div class=" text-sm  font-bold">Inventory</div>
-                      </div>
-<div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Inception</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Inception")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.inniInspectInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("inniInspectInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">StuckUpdate</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("StuckUpdate")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.stucUpInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("stucUpInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
-                    <div className="flex justify-between mt-2">
-                  <div className="text-xs">New Arrival Date Range (Days)</div>
-                  <div>
-                  <input
-                      type="number"
-                      name="newArrDay"
-                      value={formValues.newArrDay}
-                      onChange={handleInputChange}
-                      onBlur={handleInputBlur}
-                      className="input-component" // Add styling or class as needed
-                    />
-                  </div>
-                </div>
                     <div class=" flex  justify-between mt-3">
-                      <div class=" text-sm  font-bold ">Repair</div>
-                      </div>
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Auto Generate Part Number For Spares</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Generate Part Number")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.partNoInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("partNoInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  "> Convert Leads To Customer Directly</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Leads To Customer")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.leadsToCustInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("leadsToCustInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
-               
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">QC Required as part of Workflow</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("QC")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.qcInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("qcInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
-                    <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Repair Process</div>
-                      <div>
-                      <div>
-                    <Popconfirm
-                      title="Are you sure to change ?"
-                      onConfirm={() => handleConfirm("Process")}
-                      okText="Yes"
-                      cancelText="No"
-                    >
-                      <Switch
-                        checked={formValues.repairProcessInd}
-                        checkedChildren={"Yes"}
-                        unCheckedChildren={"No"}
-                        onChange={(checked) => handleToggleChange("repairProcessInd", checked)}
-                      />
-                    </Popconfirm>
-                  </div>
-   
-                      </div>
-                    </div>
-                    <div className="flex justify-between mt-2">
-                  <div className="text-xs">Critical Date Range (Days)</div>
-                  <div>
-                  <input
-                      type="number"
-                      name="criticlDateRange"
-                      value={formValues.criticlDateRange}
-                      onChange={handleInputChange}
-                      onBlur={handleInputBlur}
-                      className="input-component" // Add styling or class as needed
-                    />
-                  </div>
-                </div>
-            
-                          <div class=" flex  justify-between mt-3">
                       <div class=" text-sm  font-bold ">CRM</div>
                       </div>
                       <div class=" flex justify-between ] mt-2">           
@@ -532,7 +298,7 @@ function General(props) {
                       </div>
                     </div>
                       <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Convert Prospect to ERP On Quotation win</div>
+                    <div class=" text-xs  ">Quotation win - Transfer Prospect info to ERP </div>
                       <div>
                       <div>
                     <Popconfirm
@@ -691,8 +457,66 @@ function General(props) {
                     />
                   </div>
                 </div>
+                <div class=" flex  mt-2">
+                      <div class=" text-sm  font-bold">Inventory</div>
+                      </div>
+<div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Inception</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Inception")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.inniInspectInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("inniInspectInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">StuckUpdate</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("StuckUpdate")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.stucUpInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("stucUpInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+                    <div className="flex justify-between mt-2">
+                  <div className="text-xs">New Arrival Date Range (Days)</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="newArrDay"
+                      value={formValues.newArrDay}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
                 <div class=" flex justify-between   mt-2">                
-                    <div class=" text-xs  ">Package</div>
+                    <div class=" text-xs  ">Packing-Items updated in Stock </div>
                       <div>
                       <div>
                     <Popconfirm
@@ -712,6 +536,186 @@ function General(props) {
    
                       </div>
                     </div>
+                    <div class=" flex  mt-2">
+                      <div class=" text-sm  font-bold">Production</div>                      
+                      </div>
+                    {props.user.productionInd === true ? (
+   <> 
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Process</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Process")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.processInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("processInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Make To</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Make To")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.typeInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("typeInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+                
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">AMC</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("AMC")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.amcInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("amcInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+                    </>
+ ) : (
+  <div className="mt-4 ml-4 text-red-500">
+    Production module is Switched off. Switch it on to Access Features.
+  </div>
+)}   
+
+                    <div class=" flex  justify-between mt-3">
+                      <div class=" text-sm  font-bold ">Repair</div>
+                      </div>
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Auto Generate Part Number For Spares</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Generate Part Number")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.partNoInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("partNoInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  "> Convert Leads To Customer Directly</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Leads To Customer")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.leadsToCustInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("leadsToCustInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+               
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">QC Required as part of Workflow</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("QC")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.qcInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("qcInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Repair Process</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Process")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.repairProcessInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("repairProcessInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+                    <div className="flex justify-between mt-2">
+                  <div className="text-xs">Critical Date Range (Days)</div>
+                  <div>
+                  <input
+                      type="number"
+                      name="criticlDateRange"
+                      value={formValues.criticlDateRange}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                      className="input-component" // Add styling or class as needed
+                    />
+                  </div>
+                </div>
+            
+                 
+             
 
 
 
