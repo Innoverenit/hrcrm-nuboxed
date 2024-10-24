@@ -4,6 +4,8 @@ const initialState = {
   viewType: "repair",
   addInventoryModal: false,
 
+  addPackData:false,
+
   fetchingMaterialDamageData:false,
   fetchingMaterialDamageDataError:false,
   materialDamageData:[],
@@ -1543,6 +1545,9 @@ export const inventoryReducer = (state = initialState, action) => {
 
     case types.HANDLE_CREATE_AWB_MODAL:
       return { ...state, addCreateAwb: action.payload };
+
+      case types.HANDLE_CREATE_PACK_MODAL:
+        return { ...state, addPackData: action.payload };
 
     case types.GET_PRODUCT_REFURBISH_REQUEST:
       return { ...state, fetchingRefurbishProduct: true };

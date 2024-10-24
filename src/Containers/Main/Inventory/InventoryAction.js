@@ -265,6 +265,13 @@ export const handleCreateAWB = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleCreateAddPack = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CREATE_PACK_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const setInventoryDetailViewType = (viewType1) => (dispatch) => {
   dispatch({
     type: types.SET_INVENTORY_DETAIL_VIEW_TYPE,
