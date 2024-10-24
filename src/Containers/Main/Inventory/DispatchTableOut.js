@@ -34,7 +34,7 @@ function DispatchTableOut(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   useEffect(() => {
     setPageNo(pageNo + 1);
-    props.getDispatchList(props.locationDetailsId,pageNo);
+    props.getDispatchList(props.locationDetailsId,pageNo,"Repair");
     props.getAllShipper(props.orgId)
   }, []);
 

@@ -574,7 +574,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                               {item.status}                                              
                                             </div>
                                         </div>
-                                        <div className=" flex  w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                        {/* <div className=" flex  w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {editsuppliesId === item.orderId ? (
                                                          
@@ -595,7 +595,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
             </div>
           )}
                                                         </div>
-                                                    </div>
+                                                    </div> */}
                                         <div class="flex flex-row  items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
@@ -607,7 +607,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                        
 
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex w-20  md:w-[6rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+                                                            {/* <div className=" flex w-20  md:w-[6rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
     {editsuppliesId === item.orderId ? (
                         <>
                       <Button 
@@ -637,9 +637,9 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                         </>
             
                     )}
-    </div>
+    </div> */}
        <div class="flex w-7 justify-end max-sm:flex-row max-sm:w-[10%]">                                                                                              
-                                                       <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full  md:w-5 h-5 cursor-pointer items-center justify-center h-8  bg-[#eef2f9] flex">
+                                                       {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full  md:w-5 h-5 cursor-pointer items-center justify-center h-8  bg-[#eef2f9] flex">
                                             <Tooltip title={translatedMenuItems[12]}>
                                       
                                                                 <EventRepeatIcon className="!text-base cursor-pointer"
@@ -649,7 +649,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                                     }}
                                                                 />
                                                             </Tooltip>
-                                                            </div> 
+                                                            </div>  */}
                                                  <div class=" flex items-center justify-center h-8   bg-[#eef2f9]">         
         <span onClick={() => exportPDFAnnexure()}>
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
@@ -822,7 +822,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                               {item.status}
                                             </div>
                                         </div>
-                                        <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                                        {/* <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {editsuppliesId === item.orderId ? (
                                                          
@@ -842,7 +842,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
             </div>
           )}
                                                         </div>
-                                                    </div>
+                                                    </div> */}
                   <div class="flex flex-row items-center md:w-[11.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{
                     setopenInvoiceModal(true);
@@ -855,7 +855,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                  
                   <div class="flex w-7 justify-end max-sm:flex-row max-sm:w-[10%]">   
                   <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex">                                                       
-                                                       <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
+                                                       {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
                                             <Tooltip title={translatedMenuItems[12]}>
                                       
                                                                 <EventRepeatIcon className="!text-base cursor-pointer"
@@ -865,7 +865,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                                     }}
                                                                 />
                                                             </Tooltip>
-                                                            </div> 
+                                                            </div>  */}
                                                             </div>
                                                     <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex">      
         <span onClick={() => exportPDFAnnexure()}>
@@ -917,6 +917,7 @@ translateText={props.translateText}
          openInvoiceModal={openInvoiceModal}
          setopenInvoiceModal={setopenInvoiceModal}
          translatedMenuItems={translatedMenuItems}
+         distributorId={props.distributorId}
          />
     </>
   );
