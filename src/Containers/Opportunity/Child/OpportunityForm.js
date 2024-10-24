@@ -1,6 +1,9 @@
 import React, { useState, useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
+import {  getAllDialCodeList } from "../../../Containers/Auth/AuthAction";
 import { getCustomerData } from "../../Customer/CustomerAction";
 import { getContactData } from "../../Contact/ContactAction";
 import SpeechRecognition, {
@@ -52,6 +55,7 @@ function OpportunityForm(props) {
     props.getInitiative(props.userId);
      props.getOppLinkedStages(props.orgId);
      props.getOppLinkedWorkflow(props.orgId);
+     props.getAllDialCodeList();
      props.getCrm();
     //  props.getAssignedToList(props.orgId);
      props.getAllEmployeelist();
@@ -68,13 +72,15 @@ const [selectedStage, setSelectedStage] = useState(null);
   const [include, setInclude] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [touched, setTouched] = useState(false);
-
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [isAddingContact, setIsAddingContact] = useState(false);
   const [newContact, setNewContact] = useState({
     firstName: '',
     lastName: '',
-    email: '',
-    mobile: '',
+    emailId: '',
+    phoneNumber: '',
+    countryDialCode:"",
+   
   });
 
   const [isLoadingWorkflow, setIsLoadingWorkflow] = useState(false);
@@ -95,7 +101,7 @@ const [selectedStage, setSelectedStage] = useState(null);
   const [touchedWorkFlowType, setTouchedWorkFlowType] = useState(false);
   const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
   const [isLoadingContacts, setIsLoadingContacts] = useState(false);
-  const [selectedCustomer, setSelectedCustomer] = useState(null);
+ 
   const [selectedContact, setSelectedContact] = useState(null);
   const [touchedCustomer, setTouchedCustomer] = useState(false);
   const [emailInd, setEmailInd] = useState(false);
@@ -525,19 +531,70 @@ const handleStageChange=(value)=>{
 
 
 
-  const handleMobileKeyPress = (e) => {
+  // const handleMobileKeyPress = (e) => {
+  //   if (e.key === 'Enter') {
+  //     console.log('New Contact Added:', newContact);
+  //     // Reset fields after pressing enter
+  //     setIsAddingContact(false);
+  //     setNewContact({ firstName: '', lastName: '', email: '', mobile: '',dialCode:"" });
+  //     let data={
+  //       firstName: newContact.firstName,
+  //       lastName:newContact.lastName ,
+  //       emailId: newContact.emailId,
+  //       phoneNumber: newContact.phoneNumber,
+  //       countryDialCode:newContact.countryDialCode,
+  //       customerId:selectedCustomer
+  //     }
+  //     props.addMoreContact(data)
+  //     fetchContacts(selectedCustomer);
+     
+  //   }
+   
+    
+  // };
+
+
+
+  const handleMobileKeyPress = async (e) => {
     if (e.key === 'Enter') {
       console.log('New Contact Added:', newContact);
-      // Reset fields after pressing enter
-      setIsAddingContact(false);
-      setNewContact({ firstName: '', lastName: '', email: '', mobile: '' });
+  
+      // Prepare data for adding the contact
+      let data = {
+        firstName: newContact.firstName,
+        lastName: newContact.lastName,
+        emailId: newContact.emailId,
+        phoneNumber: newContact.phoneNumber,
+        countryDialCode: newContact.countryDialCode,
+        customerId: selectedCustomer
+      };
+  
+      try {
+        // Await the addMoreContact function to ensure success before proceeding
+        await props.addMoreContact(data);
+  
+        // Reset fields after success
+        setIsAddingContact(false);
+        setNewContact({ firstName: '', lastName: '', email: '', mobile: '', dialCode: '' });
+  
+        // Fetch updated contact list
+        fetchContacts(selectedCustomer);
+      } catch (error) {
+        // Handle error
+        console.error('Error adding contact:', error);
+      }
     }
-    props.addMoreContact()
   };
-
+  
+  
   const handleRemoveFields = () => {
     setIsAddingContact(false);
-    setNewContact({ firstName: '', lastName: '', email: '', mobile: '' });
+    setNewContact({  firstName: '',
+      lastName: '',
+      emailId: '',
+      phoneNumber: '',
+      countryDialCode:"",
+      customerId:""});
   };
 
 
@@ -549,6 +606,11 @@ const handleStageChange=(value)=>{
 
   const handleAddContact = () => {
     setIsAddingContact(true);
+  };
+
+
+  const handleDialCodeChange = (value) => {
+    setNewContact((prev) => ({ ...prev, countryDialCode: value }));
   };
  
  
@@ -944,9 +1006,13 @@ const handleStageChange=(value)=>{
             <div class=" w-w47.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
-{translatedMenuItems[9]}  <PlusOutlined
+{translatedMenuItems[9]}  
+{selectedCustomer&&(
+<AddCircleIcon
   onClick={handleAddContact}
+  style={{color:"red"}}
 />
+)}
   {/* Contact */}
   </div>
       <Select
@@ -978,6 +1044,7 @@ const handleStageChange=(value)=>{
   <Input
               placeholder="First Name"
               name="firstName"
+              style={{marginLeft:"-6px"}}
               value={newContact.firstName}
               onChange={handleInputChange}
             />
@@ -992,6 +1059,7 @@ const handleStageChange=(value)=>{
   <Input
               placeholder="Last Name"
               name="lastName"
+              style={{marginLeft:"-4px"}}
               value={newContact.lastName}
               onChange={handleInputChange}
             />
@@ -1006,15 +1074,44 @@ const handleStageChange=(value)=>{
   </div>
   <Input
               placeholder="Mobile No"
-              name="mobile"
+              name="phoneNumber"
               value={newContact.mobile}
+             
               onChange={handleInputChange}
              
-              style={{ flex: 1 }} // Allow input to take full width
+              style={{ flex: 1,marginLeft:"-1px" }} // Allow input to take full width
             />    
 
 
                 </div>
+
+
+                <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+ 
+  {/* Contact */}
+  </div>
+  <Select
+        placeholder="Select dialcode"
+        name="countryDialCode"
+        style={{width:"80px"}}
+      onChange={handleDialCodeChange}
+      value={newContact.dialCode}
+       
+      >
+        {props.dialcodeList.map(contact => (
+          <Option key= {`+${contact.country_dial_code}`} value= {`+${contact.country_dial_code}`}>
+            {/* {contact.country_dial_code} */}
+           {`+${contact.country_dial_code}`}
+          </Option>
+        ))}
+      </Select>   
+
+
+                </div>
+
+
 
 
             <div class=" w-w47.5 max-sm:w-wk">                
@@ -1024,14 +1121,14 @@ const handleStageChange=(value)=>{
   </div>
   <Input
               placeholder="Email"
-              name="email"
+              name="emailId"
               value={newContact.email}
               onChange={handleInputChange}
               onKeyPress={handleMobileKeyPress}
             />
 
 
-<MinusOutlined
+<CancelIcon
               onClick={handleRemoveFields}
               style={{
                 marginLeft: 8,
@@ -1156,12 +1253,14 @@ const mapStateToProps = ({ auth, opportunity,employee,currency,investor, contact
   assignedToList:employee.assignedToList,
   currencies: auth.currencies,
   saleCurrencies: auth.saleCurrencies,
+  dialcodeList: auth.dialcodeList,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addOpportunity,
+      getAllDialCodeList,
       getContactData,
       getCustomerData,
       getInitiative,
