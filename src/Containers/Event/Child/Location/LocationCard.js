@@ -103,40 +103,40 @@ const LocationCard = (props) => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-          height={"80vh"}
+          height={"83vh"}
         >
-          <div className=" flex  font-bold font-poppins bg-[#eef2f9] text-base justify-between w-[100%] mt-3 p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-            <div className=" md:w-[7.5rem]">
+          <div className=" flex  font-bold font-poppins  justify-between w-[97%] mt-3 p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+            <div className=" md:w-[7.5rem] text-[#00A2E8] text-base ">
             {translatedMenuItems[0]}</div>
             <div className="   md:w-[9.1rem] font-bold font-poppins text-xs ">
               
             </div>
-            <div className=" md:w-[6.1rem] font-bold font-poppins text-xs ">{translatedMenuItems[1]}
+            <div className=" md:w-[15.1rem] font-bold font-poppins text-xs ">{translatedMenuItems[1]}
               {/* Address */}
               </div>
-            <div className=" md:w-[6.9rem] font-bold font-poppins text-xs ">
+            <div className=" md:w-[3.9rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[2]}
             {/* Production */}
             </div>
-            <div className=" md:w-[5.9rem] font-bold font-poppins text-xs  ">
+            <div className=" md:w-[3.9rem] font-bold font-poppins text-xs  ">
             {translatedMenuItems[3]}{/* Refurbish */}
             </div>
-            <div className="md:w-[7.5rem] font-bold font-poppins text-xs ">
+            <div className="md:w-[4.5rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[4]} {/* Inventory */}
               </div>
-            <div className="md:w-[7.5rem] font-bold font-poppins text-xs ">
+            <div className="md:w-[4.6rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[5]} {/* Billing */}
               </div>
-            <div className="md:w-[6.51rem] font-bold font-poppins text-xs ">
+            <div className="md:w-[4.52rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[6]} {/* Corporate */}
               </div>
-            <div className="md:w-[6.3rem] font-bold font-poppins text-xs ">
+            <div className="md:w-[3.3rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[7]} {/* Project */}
               </div>
-            <div className="md:w-[5.9rem] font-bold font-poppins text-xs ">
+            <div className="md:w-[3.9rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[8]}{/* Retail */}
               </div>
-            <div className="md:w-[8.9rem] font-bold font-poppins text-xs ">
+            <div className="md:w-[7.9rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[9]}{/* Regions */}
               </div>
           </div>
@@ -147,26 +147,26 @@ const LocationCard = (props) => {
                   <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm: scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                     <div class="flex">
-                      <div className=" flex w-[9.12rem] border-l-2 h-8 border-green-500 bg-[#eef2f9] items-center justify-start  md:w-[25.12rem] max-sm:w-full max-sm:justify-between ">
+                      <div className=" flex w-[9.12rem] text-xs border-l-2 h-8 border-green-500 bg-[#eef2f9] items-center justify-start  md:w-[13.12rem] max-sm:w-full max-sm:justify-between ">
 
 
-                        <div class=" text-sm items-center font-poppins md:w-[10.1rem]">
+                        <div class=" text-xs items-center ml-gap font-poppins md:w-[10.1rem]">
                           {item.locationName}
                         </div>
 
                         </div>
-                        <div className=" flex w-[3.25rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  md:w-[7.25rem]  max-sm:w-full mt-1 max-sm:justify-between">
+                        <div className=" flex w-[3.25rem] items-center  h-8 ml-gap bg-[#eef2f9]  md:w-[3.25rem]  max-sm:w-full  max-sm:justify-between">
 
 
-                          <div class=" text-sm  font-poppins">
+                          <div class=" text-xs items-center ml-gap font-poppins">
                             <CountryFlag1 countryCode={item.countryAlpha2Code} />
                             &nbsp;
                             {item.countryAlpha2Code}
                           </div>
                         </div>
-                        <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[13.22rem] md:w-[13.22rem] max-sm:w-full mt-1 max-sm:justify-between">
+                        <div className=" flex items-center  justify-start h-8 ml-gap bg-[#eef2f9] w-[13.22rem] md:w-[16.22rem] max-sm:w-full  max-sm:justify-between">
 
-                          <div class=" text-sm items-center ml-gap font-poppins">
+                          <div class=" text-xs items-center ml-gap font-poppins">
 
                             <span>
                               {item.address && item.address.length > 0 ? (
@@ -180,29 +180,29 @@ const LocationCard = (props) => {
                     </div>
 
 
-                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.22rem] md:w-[7.22rem] max-sm:w-full mt-1 max-sm:justify-between">
+                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.22rem] md:w-[7.22rem] max-sm:w-full  max-sm:justify-between">
 
-                      <div class=" text-sm  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <ProductionToggle
                           locationDetailsId={item.locationDetailsId}
                           productionInd={item.productionInd}
                         />
                       </div>
                     </div>
-                    <div className=" flex w-[7.21rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.21rem] max-sm:w-full mt-1 max-sm:justify-between">
+                    <div className=" flex w-[7.21rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.21rem] max-sm:w-full  max-sm:justify-between">
 
 
-                      <div class=" text-sm  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <RefurbishToggle
                           locationDetailsId={item.locationDetailsId}
                           refurbishInd={item.refurbishInd}
                         />
                       </div>
                     </div>
-                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   w-[7.12rem] md:w-[7.12rem] max-smw-full mt-1 max-sm:justify-between">
+                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   w-[7.12rem] md:w-[7.12rem] max-smw-full  max-sm:justify-between">
 
 
-                      <div class=" text-sm  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <InventoryToggle
                           locationDetailsId={item.locationDetailsId}
                           inventoryInd={item.inventoryInd}
@@ -210,9 +210,9 @@ const LocationCard = (props) => {
                    
                       </div>
                     </div>
-                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.1rem]  md:w-[7.1rem] max-sm:w-full mt-1 max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.1rem]  md:w-[7.1rem] max-sm:w-full  max-sm:justify-between ">
 
-                      <div class=" text-sm  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <BillingToggle
                           locationDetailsId={item.locationDetailsId}
                           billingInd={item.billingInd}
@@ -222,9 +222,9 @@ const LocationCard = (props) => {
                     </div>
 
 
-                    <div className=" flex  w-[7.11rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.11rem] max-sm:w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[4.11rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4.11rem] max-sm:w-full  max-sm:justify-between">
 
-                      <div class=" text-sm  font-poppins">
+                      <div class=" text-xs  font-poppins">
 
                         <CorporateToggle
                           locationDetailsId={item.locationDetailsId}
@@ -233,9 +233,9 @@ const LocationCard = (props) => {
                       
                       </div>
                     </div>
-                    <div className=" flex  w-[6.23rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.23rem] max-sm:w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[3.23rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3.23rem] max-sm:w-full  max-sm:justify-between">
 
-                      <div class=" text-sm  items-center ml-gap font-poppins">
+                      <div class=" text-xs  items-center ml-gap font-poppins">
                         <ProjectToggle
                           locationDetailsId={item.locationDetailsId}
                           projectInd={item.projectInd}
@@ -243,9 +243,9 @@ const LocationCard = (props) => {
                         
                       </div>
                     </div>
-                    <div className=" flex  w-[11.41rem] md:w-[11.41rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[2.9rem] md:w-[11.41rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-full  max-sm:justify-between">
 
-                      <div class=" text-sm  font-poppins">
+                      <div class=" text-xs  font-poppins">
                         <RetailToggle
                           locationDetailsId={item.locationDetailsId}
                           retailInd={item.retailInd}
@@ -253,9 +253,9 @@ const LocationCard = (props) => {
                       
                       </div>
                     </div>
-                    <div className=" w-28  max-md:w-[4.41rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] mt-1 max-sm:justify-between">
+                    <div className=" w-28 flex max-md:w-[4.41rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-sm:justify-between">
 
-                      <div class=" text-sm items-center ml-gap font-poppins">
+                      <div class=" text-xs items-center ml-gap font-poppins">
                         {item.regions}
                       </div>
                     </div>

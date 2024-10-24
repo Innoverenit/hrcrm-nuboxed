@@ -196,7 +196,7 @@ function handleSetCurrentUser(item) {
       </div>
           </div>
           <div className=" flex flex-row justify-between w-full items-center">
-          <div class=" flex justify-start text-xs mt-1  font-poppins "> {translatedMenuItems[2]}:    <span>
+          <div class=" flex justify-start text-xs mt-1  font-poppins "> {translatedMenuItems[2]}: &nbsp;   <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
                         : <span class="text-[red]" > {translatedMenuItems[3]} </span>}

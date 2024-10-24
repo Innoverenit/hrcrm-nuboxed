@@ -412,16 +412,11 @@ function MainApp(props) {
       <ThemeProvider theme={props.theme}>
         <LayoutWrapper>
           <div class="max-sm:hidden overflow-x-auto max-xl:hidden scroller">
-            <Sider
+            <Sider className="bg-[#38445E] min-h-[100vh] overflow-auto"
               trigger={null}
               collapsible
               collapsed={collapsed}
-              width={"10vw"}
-              style={{
-                minHeight: "100vh",
-                background: "#38445E",
-                overflow: "auto",
-              }}
+              width={"10vw"}          
             >
               <div class="  h-3 ml-[2.5rem] "
                 className="logo1"
@@ -453,7 +448,9 @@ function MainApp(props) {
               <div ><Navmenu2 className=" z-10 "
                   translateText={translateText}
                   selectedLanguage={selectedLanguage} /></div>
-                    <div className="flex items-center">            
+
+                  <div class="flex flex-start">
+                    <div className="flex items-center ">            
                 {/* <Button   
                  type="primary"        
                  onClick
@@ -474,6 +471,8 @@ function MainApp(props) {
                     overflowCount={999}
                   ></Badge>
                   </div>
+                  </div>
+
 
                 <div class="flex justify-between items-center">
                   

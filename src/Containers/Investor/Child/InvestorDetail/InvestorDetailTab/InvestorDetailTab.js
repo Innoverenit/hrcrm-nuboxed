@@ -237,7 +237,7 @@ const InvestorDetailTab = (props) => {
           <TabPane
             tab={
               <>
-               <HourglassFullIcon className="text-[#edf67d] !text-icon" />
+               <HourglassFullIcon className="text-blue-500  !text-icon" />
                 <Badge
               count={props.investorActivityCount.count}
               overflowCount={999}

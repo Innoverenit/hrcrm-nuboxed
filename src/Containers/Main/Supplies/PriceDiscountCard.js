@@ -4,10 +4,8 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { Button, DatePicker, Input, Select,Tooltip } from "antd";
 import {createMaterialDiscount,getMaterialDiscount,
-    //createMaterialDiscountUpdate
 } from "./SuppliesAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-// import {getInvestorCurrency} from "../../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 const { Option } = Select;
