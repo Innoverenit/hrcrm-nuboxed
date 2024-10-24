@@ -179,7 +179,7 @@ render() {
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center">
                               <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-1 bg-blue-600">  <HourglassFullIcon className="text-[#edf67d] !text-3xl" /> </div>
+                                  <div class="rounded-full p-1 bg-blue-600">  <HourglassFullIcon className="text-blue-500  !text-3xl" /> </div>
                               </div>
                               <JumpStartBox
         noProgress

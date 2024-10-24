@@ -53,7 +53,7 @@ function EmployeeTable(props) {
         "326",  // "Department",//1
          "980", // "Role",//2
           "299",// "Mobile #",//3
-         "1141", // "Email #",//4
+         "140", // "Email #",//4
          "1142", // "Stop Access",//5
          "1143" // "Multi Org"//6
          
@@ -253,19 +253,19 @@ function EmployeeTable(props) {
         <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-                    <div className="w-[14rem] font-bold font-poppins text-xs md:w-[16.5rem]">{translatedMenuItems[0]}</div>
+                    <div className="w-[14rem] text-[#00A2E8] text-base font-bold font-poppins md:w-[13.5rem]">{translatedMenuItems[0]}</div>
                     {/* Name */}
                     <div className=" md:w-[9.1rem] font-bold font-poppins text-xs">{translatedMenuItems[1]}</div>
                     {/* Department */}
                     <div className=" md:w-[6.8rem] font-bold font-poppins text-xs ">{translatedMenuItems[2]}</div>
                     {/* Role */}
-                    <div className="md:w-[10.7rem] font-bold font-poppins text-xs">{translatedMenuItems[3]}</div>
+                    <div className="md:w-[9.7rem] font-bold font-poppins text-xs">{translatedMenuItems[3]}</div>
                     {/* Mobile # */}
                     <div className="md:w-[13.9rem] font-bold font-poppins text-xs">{translatedMenuItems[4]}</div>
                     {/* Email # */}
-                    <div className="md:w-[11.2rem] font-bold font-poppins text-xs">{translatedMenuItems[5]}</div>
+                    <div className="md:w-[10.2rem] font-bold font-poppins text-xs">{translatedMenuItems[5]}</div>
                     {/* Stop Access */}
-                    <div className="md:w-[11.2rem] font-bold font-poppins text-xs">{translatedMenuItems[6]}</div>
+                    <div className="md:w-[11.4rem] font-bold font-poppins text-xs">{translatedMenuItems[6]}</div>
                     {/* Multi Org */}               
                 </div>
                 {props.employees.map((item) => {
@@ -276,7 +276,7 @@ function EmployeeTable(props) {
                             <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:justify-between   max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
                               <div class="flex  max-sm:w-wk  items-center max-sm:items-center">
-                                    <div className="border-l-2 h-8 border-green-500 bg-[#eef2f9] items-center flex md:w-[12.6rem] max-sm:w-full ">
+                                    <div className="border-l-2 h-8 text-xs border-green-500 bg-[#eef2f9] items-center flex md:w-[12.6rem] max-sm:w-full ">
                                     <EmployeeDetailsView
           employeeId={item.employeeId}
           fullName={item.fullName}

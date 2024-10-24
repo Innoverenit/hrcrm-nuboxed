@@ -234,7 +234,7 @@ render() {
                             <div class="flex flex-row items-center">
                                 <div class="flex-shrink pr-4">
                                     <div class="rounded-full p-1 bg-blue-600">
-                                    <HourglassFullIcon className="text-[#edf67d] !text-icon" />
+                                    <HourglassFullIcon className="text-blue-500  !text-icon" />
                                       </div>
                                 </div>
                                 <JumpStartBox

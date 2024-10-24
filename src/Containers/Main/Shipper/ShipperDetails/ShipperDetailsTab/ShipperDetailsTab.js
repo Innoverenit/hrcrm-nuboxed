@@ -7,6 +7,7 @@ import {
 } from "../../../../../Components/UI/Layout";
 import { message, Tooltip } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import {
   handleLinkShipperOrderConfigureModal,
   handleShipperSubscriptionConfigureModal,
@@ -154,41 +155,20 @@ class ShipperDetailsTab extends Component {
       <>
         <TabsWrapper>
           <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
-            {/* <TabPane
-              tab={
-                <>
-                  <i class="far fa-share-square"></i>&nbsp; Dispatch
-                </>
-              }
-              key="1"
-            >
-              <Suspense fallback={"Loading ..."}>
-                <ShipperDispatchTable
-                  shipperId={this.props.shipper.shipperId}
-                />
-              </Suspense>
-            </TabPane> */}
+       
 
             <TabPane
               tab={
                 <>
                   <span className="!text-tab">
-                  <HourglassFullIcon className="text-[#edf67d] !text-icon" />&nbsp;
+                  <HourglassFullIcon className="text-blue-500  !text-icon !text-tab" />&nbsp;
                   {/* Activity */}
                     {this.state.translatedMenuItems[0]}
 
                   </span>
                   {activeKey === "2" && (
                     <>
-                      {/* <Tooltip title="Create">
-                        <PlusOutlined
-                          onClick={() =>
-                            this.props.handleShipperActivityModal(true)
-                          }
-                          size="14px"
-                          style={{ verticalAlign: "center", marginLeft: "5px" }}
-                        />
-                      </Tooltip> */}
+                
                     </>
                   )}
                 </>
@@ -208,7 +188,7 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span className="!text-tab">
-                    <RocketLaunchIcon className="!text-icon !text-tab text-[#bdd358]">          
+                    <RocketLaunchIcon className="!text-icon !text-tab text-[#bdd358] mr-2">          
                     {/* ship id */}
 </RocketLaunchIcon>
 {this.state.translatedMenuItems[1]} 
@@ -234,8 +214,8 @@ class ShipperDetailsTab extends Component {
             <TabPane
               tab={
                 <>
-                  <span className="!text-tab">
-                    <i className="fa fa-sticky-note" aria-hidden="true"></i>
+              <span className="!text-tab">
+                    <i  className=" fa fa-sticky-note !text-tab text-[#b6465f] " aria-hidden="true"></i>
                     &nbsp; {this.state.translatedMenuItems[2]}
                     {/* notes */}
                   </span>
@@ -273,7 +253,7 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span className="!text-tab">
-                    <i class="far fa-file text-[#96bdc6]"></i>
+                    <i class="far fa-file text-[#41ead4]"></i>
                     &nbsp;
                     {this.state.translatedMenuItems[3]}
                     {/* Document */}
@@ -312,7 +292,7 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span className="!text-tab">
-                    <i class="fas fa-file-contract text-[#96bdc6] !text-tab "></i>
+                  <ContactsIcon className="!text-icon text-[#96bdc6] mr-1" />
                     &nbsp;
                     {this.state.translatedMenuItems[4]}
                     {/* Contact */}

@@ -123,10 +123,10 @@ function ShipperCardList(props) {
                       <div className="flex rounded max-sm:rounded-lg
                 max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white h-8 items-center max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center">
-                          <div className=" flex font-medium flex-col  w-[9.9rem] max-xl:w-[7.6rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                          <div className=" flex font-medium w-[9.9rem] max-xl:w-[7.6rem] items-center justify-start h-8   bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
                   
-                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                              <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
+                         
+                              <div class=" text-xs text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
 
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                   to={`shipper/${item.shipperId}`} title={item.shipperName}>
@@ -136,17 +136,18 @@ function ShipperCardList(props) {
 
                             </div>
                           </div>
-                          <div className=" flex  w-[6.5rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class="  text-xs  font-poppins ml-gap max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.dialCode} {item.phoneNo}
-                            </div>
-                          </div>
-                        </div>
+                          <div className=" flex md:w-44 items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
+<div class="  text-xs ml-gap items-center  font-poppins">
+{item.dialCode} {item.phoneNo}
+</div>
+
+</div>
+                        
 
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
                           <div className=" flex   w-[13.3rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                            <div class="  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                            <div class="flex  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.emailId}
                             </div>
                           </div>
@@ -189,7 +190,7 @@ function ShipperCardList(props) {
                           </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                          <div className="items-center justify-center w-[10rem] h-8 ml-gap  bg-[#eef2f9]">
+                          <div className=" flex items-center justify-center w-[10rem] h-8 ml-gap  bg-[#eef2f9]">
                             <Switch
                               className="toggle-clr"
                               //checked={item.productionInd}

@@ -142,7 +142,7 @@ class ContactInvestDetailTab extends Component {
             <TabPane
               tab={
                 <>
-               <HourglassFullIcon className="text-[#edf67d] !text-icon" />
+               <HourglassFullIcon className="text-blue-500  !text-icon" />
                   <span class=" !text-tab">
                     
                       {this.state.translatedMenuItems[3]}
