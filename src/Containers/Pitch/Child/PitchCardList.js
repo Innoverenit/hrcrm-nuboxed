@@ -301,7 +301,7 @@ const countryCode = item.countryAlpha2Code
                         <div>
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                       <div class="flex flex-row items-center  border-l-2 border-green-500 bg-[#eef2f9]  w-[3rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                       <div class="flex flex-row items-center  border-l-2 border-green-500 bg-[#eef2f9]  w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                         <div>
                                               <ButtonGroup>
                                               <RoleButton
@@ -349,7 +349,7 @@ const countryCode = item.countryAlpha2Code
                                                 </div>  
 
                                                 </div>  
-                                <div className=" flex   items-center h-8 ml-gap bg-[#eef2f9] w-[7rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div className=" flex   items-center h-8 ml-gap bg-[#eef2f9] w-[10rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                                 <div className="flex max-sm:w-full items-center  max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
                                             <div>
 
