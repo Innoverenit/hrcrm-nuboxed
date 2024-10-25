@@ -164,10 +164,13 @@ function PriceDiscountCard(props) {
 
   return (
     <div>
+            <div class="flex mb-8 flex-start ">
       {/* //B2B */}
+      <div className="flex w-[5rem]  items-center">
       <Button className="mb-16  w-[5rem]" type="primary" onClick={handleAddRow}>
         {/* Add */}{translatedMenuItems[0]}
       </Button>
+      </div>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center justify-between">
             <div class="flex justify-around w-wk">
@@ -176,35 +179,37 @@ function PriceDiscountCard(props) {
                 <div class="font-bold text-xs font-poppins text-black">
                 {translatedMenuItems[1]} {/* Volume */}
                   </div>
-                <div ></div>
-                <Input
+                <Input  className="w-[5rem]"
                  inputMode="numeric"
-                        className="w-32"
+                  
                         value={row.volume}
                         onChange={(e) => handleChange(index,'volume',e.target.value)}
                       />
                         {errors[`volume${index}`] && <span className="text-red-500">{errors[`volume${index}`]}</span>}
                       </div>
+
+              <div>
               <div>
                 <div class="font-bold text-xs font-poppins text-black">
                 {translatedMenuItems[2]}{/* Value */}
                    </div>
                 <div>
-                <Input
+                <Input className="w-[5rem]"
                  inputMode="numeric"
-                        className="w-32"
+                    
                         value={row.allowedDiscount}
                         onChange={(e) => handleChange(index,'allowedDiscount',e.target.value)}
                       />
                        {errors[`allowedDiscount${index}`] && <span className="text-red-500">{errors[`allowedDiscount${index}`]}</span>}
                       </div></div>
+                      </div>
                       <div>
         <div class="font-bold text-xs font-poppins text-black">
           {/* Start Date */}{translatedMenuItems[3]}
           </div>
         <div >
-          <DatePicker
-            style={{width:"9rem"}}
+          <DatePicker className="w-[7rem]"
+ 
             value={row.startDate ? dayjs(row.startDate) : null}
             onChange={(date, dateString) => handleChange(index, 'startDate', dateString)}
           />
@@ -213,30 +218,28 @@ function PriceDiscountCard(props) {
       <div>
         <div class="font-bold text-xs font-poppins text-black">End Date</div>
         <div >
-          <DatePicker
-            style={{width:"9rem"}}
+          <DatePicker className="w-[7rem]"
             value={row.endDate ? dayjs(row.endDate) : null}
             onChange={(date, dateString) => handleChange(index, 'endDate', dateString)}
           />
         </div>
       </div>
-            </div>
-            <div class="mt-4">
-            <Button type="primary" onClick={() => handleSave(index)}>
+      <div class="flex items-center">    
+      <Button type="primary" onClick={() => handleSave(index)}>
             {translatedMenuItems[3]} {/* Submit */}
             </Button>
-            </div>
-            
+</div>
+            </div>         
           </div>
         ))}
-
+</div>
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">         
-            <div className=" md:w-[21rem]"> {translatedMenuItems[1]} </div>
-            <div className=" md:w-[11.1rem]"> {translatedMenuItems[2]} </div>
-            <div className=" md:w-[6.2rem] "> {translatedMenuItems[3]} </div>
-            <div className=" md:w-[6.2rem] "> {translatedMenuItems[4]} </div>
+            <div className="font-poppins font-bold text-xs md:w-[21rem]"> {translatedMenuItems[1]} </div>
+            <div className="font-poppins font-bold text-xs md:w-[11.1rem]"> {translatedMenuItems[2]} </div>
+            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> {translatedMenuItems[3]} </div>
+            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> {translatedMenuItems[4]} </div>
             <div className="w-12"></div>           
               </div>
 

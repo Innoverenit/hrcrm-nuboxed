@@ -164,9 +164,12 @@ function PriceDiscountCardB2C(props) {
 
   return (
     <div>
+          <div class="flex mb-8 flex-start ">
+        <div className="flex w-[5rem] items-center">
       <Button className="mb-16  w-[8rem]" type="primary" onClick={handleAddRow} >
       {translatedMenuItems[0]} {/* Add Row */}
       </Button>
+      </div>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center justify-between">
             <div class="flex justify-around w-wk">
@@ -240,13 +243,13 @@ function PriceDiscountCardB2C(props) {
             
           </div>
         ))}
-
+</div>
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-[100%]   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">                
-            <div className=" md:w-[11.1rem]"> {translatedMenuItems[1]}</div>
-            <div className=" md:w-[6.2rem] "> {translatedMenuItems[2]}</div>
-            <div className=" md:w-[6.2rem] "> {translatedMenuItems[3]}</div>
+            <div className="font-poppins font-bold text-xs md:w-[11.1rem]"> {translatedMenuItems[1]}</div>
+            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> {translatedMenuItems[2]}</div>
+            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> {translatedMenuItems[3]}</div>
             <div className="w-12"></div>           
               </div>
 

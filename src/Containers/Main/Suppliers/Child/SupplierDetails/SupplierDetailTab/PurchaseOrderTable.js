@@ -19,6 +19,7 @@ import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import NodataFoundPage from '../../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
+import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { TerminalSharp } from "@mui/icons-material";
 import { getCurrency } from "../../../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -231,7 +232,7 @@ const timerRef = useRef(null);
         value={currentData}
         />
       </div>
-                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=" w-[13.1rem]  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                       <FormattedMessage
@@ -245,14 +246,14 @@ const timerRef = useRef(null);
                         <div className=" w-[13.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
                         {translatedMenuItems[1]} {/* Location" /> */}
                         </div>
-                        <div className=" w-[17.12rem]   max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                        <div className=" w-[13.12rem]   max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                         {translatedMenuItems[2]}  {/* Delivery */}
                         </div>
                         <div className=" w-[17.11rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                         {translatedMenuItems[3]} {/* Contact */}
                         </div>
                                            
-                        <div className=" w-[19.14rem]   max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                        <div className=" w-[23.14rem]   max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
                         {translatedMenuItems[5]} 
                          {/* Value" */}
                         </div>
@@ -322,7 +323,7 @@ const timerRef = useRef(null);
                   ) : (
                     <div className="font-normal text-xs  font-poppins">
  
-                        {item.expectDeliveryDate ? dayjs(item.expectDeliveryDate).format("ll") : ""}
+                        {item.expectDeliveryDate ? dayjs(item.expectDeliveryDate).format("DD/MM/YYYY") : ""}
                         </div>
                   )}
                 </div>
@@ -397,7 +398,7 @@ const timerRef = useRef(null);
                 </div>
                
               </div>
-                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[11.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[15.01rem] max-xl:w-[18.01rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs items-center font-poppins">
                                                             {item.locationName === null ? <Button
                                                                 type="primary"
@@ -406,6 +407,7 @@ const timerRef = useRef(null);
                                                                     props.handlePoLocationModal(true)
                                                                 }}
                                                             >
+                                                              <ShoppingCartCheckoutIcon className="!text-icon"/>
                                                                 <FormattedMessage
                                                                     id="app.movetoinventory"
                                                                     defaultMessage="Move To Inventory"

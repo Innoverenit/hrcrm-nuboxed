@@ -20,7 +20,6 @@ import {
   handleUploadSuppliesModal,
   handleErpDocumentUploadModal
 } from "./SuppliesAction";
-import EuroIcon from '@mui/icons-material/Euro';
 import {getUOM} from "../../Settings/SettingsAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip, Popconfirm,Button } from "antd";
@@ -38,14 +37,7 @@ import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import MaterialStatusToggle from "./MaterialStatusToggle";
-import MaterialFeatureToggle from "./MaterialFeatureToggle";
-import MaterialFifoToggle from "./MaterialFifoToggle";
-import ContactSupportIcon from '@mui/icons-material/ContactSupport';
-import MaterialRecommendToggle from "./MaterialRecommendToggle";
-import FactCheckIcon from '@mui/icons-material/FactCheck';
-import QRCode from "qrcode.react";
 import ReactToPrint from "react-to-print";
-import { LocationCityOutlined } from "@mui/icons-material";
 import AddDocumentErpModals from "./AddDocumentErpModals";
 import { FormattedMessage } from "react-intl";
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
@@ -481,25 +473,13 @@ function SuppliesTable(props) {
                               />
                               </div>
                             </div>
-
-
-                           
-
                           </div> 
 
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center justify-end w-wk">
                      <div className=" flex   h-8 ml-gap bg-[#eef2f9] justify-center items-center w-[5.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        <Tooltip title={translatedMenuItems[23]}
-                                                        // {<FormattedMessage
-                                                        //     id="app.Print"
-                                                        //     defaultMessage="Print"
-                                                        // />}\
-                                                        >
-                                                            {/* <PrintOutlined
-                                                                            // onClick={handlePrint}
-                                                                            className="!text-base cursor-pointer"
-                                                                        /> */}
+                                                        <Tooltip title={translatedMenuItems[23]}                                                  
+                                                        >                                                         
                                                             <ReactToPrint
                                                               trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>
                                                             {translatedMenuItems[23]}   {/* Print  */}
@@ -510,20 +490,8 @@ function SuppliesTable(props) {
 
                                                     </div>
                                                 </div>
-
-                                              
-{/* 
-<div className=" flex flex-col w-5 mt-5 text-sm items-center"
-    ref={(el) => (componentRefs.current[index] = el)}>
-   
-    <div   className=" text-5xl mt-8">
-        <QRCode size={150} value={`material/${item.suppliesId}`} />
-    </div>
-    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>{translatedMenuItems[24]}:</span> {item.suppliesId}</div>
-</div> */}
-
-                      
-                            <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
+                                                          
+                            <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
                               <Tooltip title={translatedMenuItems[19]}>
                                 <ViewQuiltIcon
                                   className="cursor-pointer !text-icon text-[#c589e8]"
@@ -534,7 +502,7 @@ function SuppliesTable(props) {
                                 />
                               </Tooltip>
                             </div>
-                            <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
+                            <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
                               {props.repairInd && <Tooltip title={translatedMenuItems[20]}>
                                 <PhoneFilled
                                   onClick={() => {
@@ -547,7 +515,7 @@ function SuppliesTable(props) {
                             </div>
 
 
-                            <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
+                            <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
                               <Tooltip title={translatedMenuItems[12]}>
                                 <CategoryIcon
                                   onClick={() => {
@@ -559,7 +527,7 @@ function SuppliesTable(props) {
                               </Tooltip>
                             </div>
 
-                            <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
+                            <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
                               <Tooltip title={translatedMenuItems[13]}>
                                 <InventoryIcon className=" !text-icon cursor-pointer text-[#937666]"  onClick={() => {
                                     props.handleMaterialInventory(true);
@@ -567,23 +535,9 @@ function SuppliesTable(props) {
                                   }}/>
                               </Tooltip>
                             </div>
-                          
-                          {/* <div class=" text-xs  font-poppins">
-                        <Tooltip>
-                        <ContactSupportIcon className="!text-icon cursor-pointer text-[#ff4000]"
-                        onClick={() => {
-                          openModal();
-                          handleParticularRowData(item);
-                        }}
-                        />
-                        </Tooltip>
-                      </div>  */}
-                     
-                           
-                           
-                           
-                     <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
-                              <DescriptionIcon
+                                                                                                                                 
+                     <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
+                              <DescriptionIcon className="!text-icon"
                       type="plus"
                       title={
                         <FormattedMessage
@@ -593,16 +547,11 @@ function SuppliesTable(props) {
                       }
                       onClick={() => {handleErpDocumentUploadModal(true);
                         handleParticularRowData(item);
-                      }}
-                      size="0.875em"
-                      style={{
-                        marginLeft: "0.3125em",
-                        verticalAlign: "center",
-                      }}
+                      }}                               
                     />
                               </div>
                               
-                              <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
+                              <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
                               <Tooltip title={translatedMenuItems[14]}>
                                 <BorderColorIcon
                                   onClick={() => {
@@ -613,23 +562,15 @@ function SuppliesTable(props) {
                                 />
                               </Tooltip>
                            </div>
-                           <div className="h-8  bg-[#eef2f9] justify-center items-center"> 
+                           <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
                               <Popconfirm
                                 title={translatedMenuItems[21]}
                                 onConfirm={() => props.deletePurchaseData(item.suppliesId)}
                               >
-
                                 <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
                               </Popconfirm>
-                            </div>
-                           
-
-                 
-                          </div>
-
-                          
-
-                        
+                            </div>                                      
+                          </div>                                              
                       </div>
                     </>
                   );

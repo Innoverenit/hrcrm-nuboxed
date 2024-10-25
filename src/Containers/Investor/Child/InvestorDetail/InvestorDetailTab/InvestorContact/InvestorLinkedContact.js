@@ -206,8 +206,8 @@ const InvestorLinkedContact = (props) => {
         );   
                   return (
                       <div class="">
-                           <div
-            className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                           <div className="flex rounded justify-between  bg-white mt-1  items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99]
+                            hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
           >
              <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
@@ -247,9 +247,9 @@ const InvestorLinkedContact = (props) => {
                                       </div>
                               </div>
                               <div class="flex">                         
-                              <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center  md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className=" flex  ml-gap bg-[#eef2f9]  justify-start md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                  
-                                  <div class="text-xs  font-poppins">
+                                  <div class="flex text-xs h-8 items-center ml-gap font-poppins">
                                        {item.emailId}
                                   </div>
                               </div>
