@@ -19,7 +19,7 @@ import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
-import { emptyLeads,getCrm,}from"./././../../../Leads/LeadsAction";
+import { emptyLeads,getCrm}from"./././../../../Leads/LeadsAction";
 import {
  
   getRecruiterList,
@@ -78,6 +78,7 @@ function OpportunityAllCardList(props) {
     } 
     props. getFullOpportunity(page);
     setPage(page + 1);
+    props.getCrm();
   },[]);
   useEffect(() => {
     const handleResize = () => {
@@ -239,11 +240,11 @@ function OpportunityAllCardList(props) {
     />
   ) : (
     <div className="flex">
-       <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+       <div className=' flex rounded w-[15vw] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
-       <div> Search team Member</div>
+       <div class="w-[14vw]"> Search team Member</div>
         </div>
-        <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex flex-col rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.crmAllData.map((item,index) =>{
            return (
          <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
@@ -251,7 +252,7 @@ function OpportunityAllCardList(props) {
         <div class="flex items-center flex-no-wrap h-16">
           <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
             <MultiAvatar
-              primaryTitle={item.opportunityName}
+              primaryTitle={item.empName}
               imageId={item.imageId}
               imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
@@ -264,7 +265,7 @@ function OpportunityAllCardList(props) {
             onClick={() => handleButtonClick(item.employeeId)} 
           >
         
-          {item.opportunityName}
+          {item.empName}
 
         </div> 
         </div>
@@ -274,13 +275,13 @@ function OpportunityAllCardList(props) {
         <div className="flex flex-col max-sm:justify-between ">
           
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-                97886556738              </div>
+                </div>
             
           <div>
           <div class="font-medium text-xs ">
        
               <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-               itisrichudhuryiti@gmail.com
+
               </div>
            
             
@@ -298,17 +299,16 @@ function OpportunityAllCardList(props) {
    
    <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className="flex max-sm:hidden  w-[100%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
-<div className="   flex justify-between w-[98%] font-bold font-poppins text-xs">
-<div className=" w-[16.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[13]}</div>
-        <div className=" w-[16.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]}</div>
-        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]}</div>
+<div className="flex max-sm:hidden  w-[92%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
+<div className="   flex justify-between w-[93%] font-bold font-poppins text-xs">
+<div className=" w-[12.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[13]}</div>
+        <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]}</div>
+        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]}</div>
         <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> {translatedMenuItems[2]}</div>
-        <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]}</div>
-        <div className=" w-[11.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
-        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
-        <div className="  w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>
-        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>
+        <div className=" w-[8.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]}</div>
+        <div className=" w-[4.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
+        <div className=" w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
+        <div className="  w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>     
         {/* <div className="w-[4.1rem] ">{translatedMenuItems[12]}</div> */}
         <div className="w-12"></div>
         </div>
@@ -334,37 +334,38 @@ function OpportunityAllCardList(props) {
 
                   <div className="max-sm:w-wk">
                    <div
-                className="flex  rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex  rounded   bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
-                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                   <div className=" flex w-[13rem] items-center  border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
-                   {item.newOppId}
-                   
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                   <div className=" flex   w-[9rem]  border-l-2 border-green-500 h-8  bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-                    </div>
-                    <div className=" flex w-[13rem] items-center  justify-start  h-8 ml-gap bg-[#eef2f9]  max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
-                              <div>
+<div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
 
-          <MultiAvatar
-            primaryTitle={item.opportunityName}
-            imageId={item.imageId}
-            imgWidth={"1.8rem"}
-            imgHeight={"1.8rem"}
-          />
-        
+{item.newOppId}
+
 </div>
-                                 <div class="w-[4%]">
+</div>
+                    <div className=" flex  w-[10rem] h-8 ml-gap bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
+                              <div className=" flex items-center">
 
-                                 </div>
+                                  <MultiAvatar
+                                    primaryTitle={item.opportunityName}
+                                    imageId={item.imageId}
+                                    imgWidth={"1.8rem"}
+                                    imgHeight={"1.8rem"}
+                                  />
+        
+                             </div>
+                              
                                  
                                       <Tooltip>
                                       <div class=" flex max-sm:w-full  flex-row items-center">
         
-                                          <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
+                                          <div class=" text-xs items-center text-blue-500  ml-gap font-poppins font-semibold cursor-pointer">
                                               
                                           <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
-    </Link>&nbsp;&nbsp;
+    </Link>
      
                                           </div>
 </div>
@@ -372,10 +373,11 @@ function OpportunityAllCardList(props) {
                             
                               </div>
                               </div>
-                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex  w-44 items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-                                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                              <div className=" flex  w-[11rem] items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+
+                                  <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                   
                                   {item.customer}
                   
@@ -385,7 +387,7 @@ function OpportunityAllCardList(props) {
                             
                               
                            
-                              <div className=" flex  w-[7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 
                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -402,7 +404,7 @@ function OpportunityAllCardList(props) {
        
                                 </div>
                             </div>
-                              <div className=" flex   w-[8.81rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[6.81rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                                   <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -410,10 +412,10 @@ function OpportunityAllCardList(props) {
                                   </div>
                               </div>
                            
-                              <div className=" flex   w-36  items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[5rem]  items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
    
 
-                                  <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs ml-gap  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   <CurrencySymbol currencyType={item.currency} />
           &nbsp;
           {item.proposalAmount}
@@ -422,10 +424,10 @@ function OpportunityAllCardList(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex w-[7.01rem]  items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex w-[3.01rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
            
 
-                                  <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs items-center font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   <Dropdown
 overlay={
 <div>
@@ -458,10 +460,10 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex w-32 items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex w-[5rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                     
 
-                                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   
                                   <span>
                                   <MultiAvatar2
@@ -487,7 +489,7 @@ strokeColor={"#005075"}
                       </span>
                         </Tooltip>
                               </div> */}
-                              <div className=" flex items-center w-[5rem] justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex items-center w-[6rem] justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
                           <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
