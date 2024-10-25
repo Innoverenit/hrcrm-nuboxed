@@ -46,7 +46,7 @@ class EducationTable extends Component {
       const itemsToTranslate = [
         "110",//0 "Name"
         "71",//1  type
-        "",//2Document ID number
+        "1698",//2Document ID number
         "147",//3Description
        "1259" //  "Do you want to delete?"
         

@@ -19,8 +19,8 @@ const EmployeePerformanceTable = (props) => {
         const itemsToTranslate = [
    
          "118", //None Available,//0
-          "",  //  Assigned Value,//1
-          "" , //  Completed Value,//2
+          "1695",  //  Assigned Value,//1
+          "1694" , //  Completed Value,//2
          
 
         ];

@@ -31,8 +31,8 @@ class BankDocumentForm extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-        "",//0"Account Holder Name"
-        "",//1Account Number"
+        "1688",//0"Account Holder Name"
+        "1687",//1Account Number"
         "1190",//2SWIFT Code"
         "1188",//3Branch Name"
       "1187",  //"Bank Name"4

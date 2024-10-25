@@ -36,10 +36,10 @@ class LinkedDocuments extends Component {
     try {
       const itemsToTranslate = [
       
-        "",//0  date
+        "74",//0  date
         "110",//1 "Name"
-        "",//2Description
-        "",//3"Uploaded By
+        "147",//2Description
+        "1207",//3"Uploaded By
  
         
       ];
