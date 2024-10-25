@@ -244,7 +244,7 @@ serachedPitchData={props.serachedPitchData}
                                         </div>
                                         </div>
                                 </div>
-                                <div class="flex flex-row   h-8 ml-gap  bg-[#eef2f9] items-center w-[2.8rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                <div class="flex flex-row   h-8 ml-gap  bg-[#eef2f9] items-center w-[4.8rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                                   <div>
                                                   <ButtonGroup>
                                               <RoleButton
@@ -292,7 +292,7 @@ serachedPitchData={props.serachedPitchData}
                                       </div>  
                                           </div>  
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                      <div className=" flex  w-[9rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                                                      <div className=" flex  w-[10rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                                                              
                                                                 <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                         {item.countryDialCode && item.phoneNumber
@@ -301,7 +301,7 @@ serachedPitchData={props.serachedPitchData}
                                       </div>
 
                                                             </div>
-                                                            <div className=" flex  items-center  h-8 ml-gap  bg-[#eef2f9] w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                          
+                                                            <div className=" flex  items-center  h-8 ml-gap  bg-[#eef2f9] w-[3.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                          
                                                                     </div>
                                                                     <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9] w-[2.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                                                                 {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
@@ -313,14 +313,14 @@ serachedPitchData={props.serachedPitchData}
                                                                     </div>
                                                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             
-                                                            <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9] w-[6.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9] w-[12.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                              {/* Company  */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.source || "None"}
                                       </div>
 
                                                             </div>
-                                                            <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9]   w-[8.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9]   w-[7.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                               {/* Company */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.sector || "None"}
@@ -329,12 +329,12 @@ serachedPitchData={props.serachedPitchData}
                                                             </div>
                                                             {/* Score */}
                                                             {props.user.aiInd && (
-           <div className=" flex  justify-center  items-center  h-8 ml-gap  bg-[#eef2f9]  w-[3.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center  items-center  h-8 ml-gap  bg-[#eef2f9]  w-[4.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>
             )}    
-                                                            <div className=" flex w-[4.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex w-[5.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                                                       {/* Assigned */}
 
                                                                           <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -361,7 +361,7 @@ serachedPitchData={props.serachedPitchData}
                                                             </span>
                                                                     </div>
                                                                  </div>
-                                                             <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  w-[2.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                                          
+                                                             <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  w-[5.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                                          
                                                             <span>
                                                             <Tooltip title={item.ownerName}>
                                                       <div class="max-sm:flex justify-end">
