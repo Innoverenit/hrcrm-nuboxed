@@ -4,12 +4,15 @@ import { bindActionCreators } from "redux";
 import {
   handleUpdateShipperCostModal,
   setEditShipperCost,
+  getCostShipperList,
+  updateCostShipper,
 } from "../../../ShipperAction";
-import { getCostShipperList } from "../../../../Suppliers/SuppliersAction"
-import { Tooltip } from "antd";
+import {  } from "../../../../Suppliers/SuppliersAction"
+import { Tooltip,Input ,Button} from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import UpdateShipperCostModal from "./UpdateShipperCostModal";
+//import UpdateShipperCostModal from "./UpdateShipperCostModal";
 import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
+import { CloseOutlined, EditOutlined, SaveOutlined } from "@ant-design/icons";
 
 
 class ShipperCostTable extends Component {
@@ -23,6 +26,8 @@ class ShipperCostTable extends Component {
       dailyCustomInd: 1,
       showDel: false,
       translatedMenuItems: [],
+      editingId: null, // Track the ID of the row being edited
+      editValues: {}
     };
   }
   componentDidMount() {
@@ -52,11 +57,52 @@ class ShipperCostTable extends Component {
     } catch (error) {
       console.error('Error translating menu items:', error);
     }
+    // this.props.updateCostShipper()
+  };
+
+
+  handleEdit = (item) => {
+    this.setState({
+      editingId: item.shippingTransferCostId,
+      editValues: {
+        source: item.source,
+        destination: item.destination,
+        price: item.price,
+        shippingTransferCostId:item.shippingTransferCostId
+      },
+    });
+  };
+  handleInputChange = (field, value) => {
+    this.setState({
+      editValues: {
+        ...this.state.editValues,
+        [field]: value,
+      },
+    });
   }; 
 
 
-  render() {
+  handleSave = () => {
+    const { editValues } = this.state;
+    console.log("Saved values:", editValues);
+    let data={
+      source:editValues.source,
+      destination:editValues.destination,
+      price:editValues.price,
+      userId:this.props.userId,
+    }
+    this.props.updateCostShipper(data,editValues.shippingTransferCostId)
+    this.setState({ editingId: null }); // Exit editing mode
+  };
 
+  // Function to cancel editing
+  handleCancel = () => {
+    this.setState({ editingId: null }); // Exit editing mode without saving
+  };
+
+
+  render() {
+    const { editingId, editValues } = this.state;
     return (
 <>
 
@@ -64,7 +110,10 @@ class ShipperCostTable extends Component {
           <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
             <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
               <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.1rem]">{this.state.translatedMenuItems[0]}</div>
-              <div className="font-bold font-poppins text-xs md:w-[11.12rem]">{this.state.translatedMenuItems[1]}</div>
+              <div className="font-bold font-poppins text-xs md:w-[11.12rem]">
+                {/* {this.state.translatedMenuItems[1]} */}
+                Destination
+                </div>
               <div className="font-bold font-poppins text-xs md:w-[4.8rem] ">{this.state.translatedMenuItems[2]}</div>
               <div className=" md:w-[3.1rem]"></div>
 
@@ -77,7 +126,7 @@ class ShipperCostTable extends Component {
         height={"75vh"}
       > */}
 
-            {this.props.contactShipper.map((item) => {
+           {/* {this.props.costShipperList.map((item) => {
               return (
                 <div>
                   <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center"
@@ -87,7 +136,7 @@ class ShipperCostTable extends Component {
                       <div className=" flex font-medium flex-col border-l-2 border-green-500 bg-[#eef2f9]   md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                         <h4 class=" text-xs  font-poppins">
-                       
+                       {item.source}
                         </h4>
 
                       </div>
@@ -97,7 +146,7 @@ class ShipperCostTable extends Component {
 
 
                         <h4 class=" text-xs  font-poppins">
-                          {item.emailId}
+                          {item.destination}
                         </h4>
 
                       </div>
@@ -108,7 +157,7 @@ class ShipperCostTable extends Component {
 
 
                       <div class=" text-xs  font-poppins text-center">
-                        {item.designationName}
+                        {item.price}
 
                       </div>
                     </div>
@@ -118,23 +167,103 @@ class ShipperCostTable extends Component {
 
 
               )
-            })}
+            })}  */}
+
+
+{this.props.costShipperList.map((item) => {
+          const isEditing = editingId === item.shippingTransferCostId;
+
+          return (
+            <div key={item.shippingTransferCostId}>
+              <div className="flex rounded justify-between mt-1 bg-white h-8 items-center">
+                <div className="flex">
+                  {/* Source Field */}
+                  <div className="flex font-medium flex-col border-l-2 border-green-500 bg-[#eef2f9] md:w-[10rem] w-full max-sm:justify-between">
+                    {isEditing ? (
+                      <Input
+                        value={editValues.source}
+                        onChange={(e) => this.handleInputChange('source', e.target.value)}
+                        size="small"
+                      />
+                    ) : (
+                      <h4 className="text-xs font-poppins">{item.source}</h4>
+                    )}
+                  </div>
+
+                  {/* Destination Field */}
+                  <div className="flex font-medium flex-col items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[11.1rem] w-full max-sm:justify-between">
+                    {isEditing ? (
+                      <Input
+                        value={editValues.destination}
+                        onChange={(e) => this.handleInputChange('destination', e.target.value)}
+                        size="small"
+                      />
+                    ) : (
+                      <h4 className="text-xs font-poppins">{item.destination}</h4>
+                    )}
+                  </div>
+                </div>
+
+                {/* Price Field */}
+                <div className="flex font-medium flex-col md:w-[24rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] w-full max-sm:justify-between">
+                  {isEditing ? (
+                    <Input
+                      value={editValues.price}
+                      onChange={(e) => this.handleInputChange('price', e.target.value)}
+                      size="small"
+                    />
+                  ) : (
+                    <div className="text-xs font-poppins text-center">{item.price}</div>
+                  )}
+                </div>
+
+                {/* Edit, Save, and Cancel Buttons */}
+                <div className="ml-4">
+                  {isEditing ? (
+                    <>
+                      <Button
+                        icon={<SaveOutlined />}
+                        size="small"
+                        type="primary"
+                        onClick={this.handleSave}
+                        style={{ marginRight: 8 }}
+                      />
+                      <Button
+                        icon={<CloseOutlined />}
+                        size="small"
+                        onClick={this.handleCancel}
+                      />
+                    </>
+                  ) : (
+                    <Button
+                      icon={<EditOutlined />}
+                      size="small"
+                      onClick={() => this.handleEdit(item)}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })}
 
           </OnlyWrapCard>
         </div>
-        <UpdateShipperCostModal
+        {/* <UpdateShipperCostModal
           handleUpdateShipperCostModal={
             this.props.handleUpdateShipperCostModal
           }
           updateShipperContactModal={this.props.updateShipperCostModal}
-        />
+        /> */}
         </>
     );
   }
 }
 
-const mapStateToProps = ({ shipper, suppliers }) => ({
+const mapStateToProps = ({ shipper,auth, suppliers }) => ({
     contactShipper: suppliers.contactShipper,
+    userId: auth.userDetails.userId,
+    costShipperList:shipper.costShipperList,
     fetchingCosttShipperById: shipper.fetchingCostShipperById,
 
   });
@@ -145,6 +274,7 @@ const mapStateToProps = ({ shipper, suppliers }) => ({
         getCostShipperList,
         handleUpdateShipperCostModal,
         setEditShipperCost,
+        updateCostShipper
       },
       dispatch
     );

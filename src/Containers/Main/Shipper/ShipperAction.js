@@ -25,6 +25,16 @@ export const setShipperViewType = (viewType) => (dispatch) => {
   });
 };
 
+
+export const handleShipperCostModal = (modalProps) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.HANDLE_SHIPPER_COST_MODAL,
+    payload: modalProps,
+  });
+};
+
 /**
  * request for adding a Shipper
  */
@@ -1556,4 +1566,99 @@ export const handleShipperAddress = (modalProps) => (dispatch) => {
     type: types.HANDLE_SHIPPER_ADDRESS_MODAL,
     payload: modalProps,
   });
+};
+
+
+
+
+export const addShipperCost = (data, cb) => (dispatch) => {
+  console.log(data);
+  dispatch({ type: types.ADD_SHIPPER_COST_REQUEST });
+  axios
+    .post(`${base_url2}/shipper/shippingTransferCost`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_SHIPPER_COST_SUCCESS,
+        payload: res.data,
+      });
+      // dispatch(getCandidateDocument(candidateId));
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SHIPPER_COST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const updateCostShipper = (data,shippingTransferCostId, cb) => (dispatch) => {
+  console.log(data);
+  dispatch({ type: types.UPDATE_SHIPPER_COST_REQUEST });
+  axios
+    .put(`${base_url2}/shipper/updateShippingTransferCost/${shippingTransferCostId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_SHIPPER_COST_SUCCESS,
+        payload: res.data,
+      });
+      // dispatch(getCandidateDocument(candidateId));
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SHIPPER_COST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getCostShipperList = (shipperId) => (dispatch) => {
+  // let api_url = "";
+  // if (userId) {
+  //   api_url = `/sort/all/contacts/user/${userId}`;
+  // } else {
+  //   api_url = `/contacts`;
+  // }
+  dispatch({
+    type: types.GET_COST_SHIPPER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/shippingTransferCost/${shipperId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COST_SHIPPER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_COST_SHIPPER_LIST_FAILURE,
+        payload: err,
+      });
+    });
 };

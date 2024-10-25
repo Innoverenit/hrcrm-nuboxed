@@ -90,6 +90,14 @@ const initialState = {
   fetchingDeletedShipperRecordsError: false,
   recordDeletedData:{},
 
+
+  fetchingCostShipperList:false,
+  fetchingCostShipperListError:false,
+  costShipperList:[],
+
+
+  addLinkShipperCostModal:false,
+
   fetchingAllShipper: false,
   fetchingAllShipperError: false,
   allShipperList: [],
@@ -97,6 +105,13 @@ const initialState = {
 
   setEditingOrder: {},
   setEditingOrderDetail: {},
+
+
+  addingShipperCost:false,
+  addingShipperCostError:false,
+
+  updateShipperCost:false,
+  updateShipperCostError:false,
 
   fetchingPaymentHistory: false,
   fetchingPaymentHistoryError: false,
@@ -432,6 +447,40 @@ export const shipperReducer = (state = initialState, action) => {
         addingOrderByShipperIdError: true,
         addLinkShipperOrderConfigureModal: false,
       };
+
+
+
+
+
+      case types.UPDATE_SHIPPER_COST_REQUEST:
+        return {
+          ...state,
+          updateShipperCost: true,
+          updateShipperCostError: false,
+        };
+      case types.UPDATE_SHIPPER_COST_SUCCESS:
+        return {
+          ...state,
+          updateShipperCost: false,
+          updateShipperCostError: false,
+          costShipperList: state.costShipperList.map((item) => {
+            if (item.shippingTransferCostId === action.payload.shippingTransferCostId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          })
+         // addLinkShipperCostModal: false,
+        };
+      case types.UPDATE_SHIPPER_COST_FAILURE:
+        return {
+          ...state,
+          updateShipperCost: false,
+          updateShipperCostError: true,
+          // supplierDocumentUploadModal: false,
+        };
+
+
 
     case types.SET_CLEARBIT_ORDER_DATA:
       return { ...state, clearbitOrder: action.payload };
@@ -922,6 +971,51 @@ export const shipperReducer = (state = initialState, action) => {
         addShipperSubscriptionConfigureModal: false,
       };
 
+
+
+
+
+
+      case types.ADD_SHIPPER_COST_REQUEST:
+        return {
+          ...state,
+          addingShipperCost: true,
+          addingShipperCostError: false,
+        };
+      case types.ADD_SHIPPER_COST_SUCCESS:
+        return {
+          ...state,
+          addingShipperCost: false,
+          addingShipperCostError: false,
+          addLinkShipperCostModal: false,
+        };
+      case types.ADD_SHIPPER_COST_FAILURE:
+        return {
+          ...state,
+          addingShipperCost: false,
+          addingShipperCostError: true,
+          // supplierDocumentUploadModal: false,
+        };
+
+
+
+
+
+        case types.GET_COST_SHIPPER_LIST_REQUEST:
+          return { ...state, fetchingCostShipperList: true };
+        case types.GET_COST_SHIPPER_LIST_SUCCESS:
+          return {
+            ...state,
+            fetchingCostShipperList: false,
+            costShipperList: action.payload,
+          };
+        case types.GET_COST_SHIPPER_LIST_FAILURE:
+          return {
+            ...state,
+            fetchingCostShipperList: false,
+            fetchingCostShipperListError: true,
+          };
+
     case types.GET_ORDER_DETAILS_BY_ID_REQUEST:
       return { ...state, fetchingOrderDetailsById: true };
     case types.GET_ORDER_DETAILS_BY_ID_SUCCESS:
@@ -952,6 +1046,13 @@ export const shipperReducer = (state = initialState, action) => {
         fetchingAllShipperList: false,
         fetchingAllShipperListError: true,
       };
+
+
+      case types.HANDLE_SHIPPER_COST_MODAL:
+        return {
+          ...state,
+          addLinkShipperCostModal: action.payload,
+        };
 
     /**
      * update product detail modal

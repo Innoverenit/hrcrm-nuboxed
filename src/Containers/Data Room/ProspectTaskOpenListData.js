@@ -8,11 +8,11 @@ import InfoIcon from '@mui/icons-material/Info';
 import {
   MultiAvatar,
 } from "../../Components/UI/Elements";
+import {getProspectOpenTask} from "../Data Room/DataRoomAction"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {
   SearchOutlined,
 } from "@ant-design/icons";
-import {getProspectOppOpenTask} from "./DataRoomAction"
 import { CurrencySymbol } from "../../Components/Common";
 import { getOpportunityListByCustomerId,handleUpdateCustomerOpportunityModal,
   setEditCustomerOpportunity} from "../Customer/CustomerAction";
@@ -20,7 +20,7 @@ import { Tooltip,Button,Input,Progress } from "antd";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../Components/Placeholder";
 const AddCustomerUpdateOpportunityModal =lazy(()=>import("../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/AddCustomerUpdateOpportunityModal")); 
-function ProspectQuotationListData(props) {
+function ProspectTaskOpenListData(props) {
   const [loading, setLoading] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   console.log(props.selectedPersonData)
@@ -50,7 +50,7 @@ function ProspectQuotationListData(props) {
   }, [props.selectedLanguage]);
   useEffect(() => {
     if(props.selectedPersonData){
-    props.getProspectOppOpenTask(
+    props.getProspectOpenTask(
         // props.customer.customerId
         props.selectedPersonData.customerId
     );
@@ -155,58 +155,17 @@ function ProspectQuotationListData(props) {
   
   function handleSetCurrentOpportunityId(opportunityId) {
     setCurrentOpportunityId(opportunityId);
-    console.log(opportunityId);
+ 
   }
-  const {
-    // customer: { customerId, name },
-    user,
-    handleUpdateCustomerOpportunityModal,
-    fetchingCustomerOpportunity,
-    opportunityByCustomerId,
-    fetchingCustomerOpportunityError,
-    addUpdateCustomerOpportunityModal,
-    setEditCustomerOpportunity,
-  } = props;
 
-if (props.fetchingProspectOppOpenTask) return <BundleLoader/>;
-  const tab = document.querySelector(".ant-layout-sider-children");
-    const tableHeight = tab && tab.offsetHeight * 0.75;
+// if (fetchingCustomerOpportunity) return <BundleLoader/>;
+
   return (
     <>
    {/* <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '> */}
      
    <div className="flex flex-wrap"> {/* Parent container with flex layout */}
-  {props.prospectOppOpenTask.map((item) => {
-    return (
-      <div className="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
-                      text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 
-                      border-solid p-1 leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]" 
-           style={{ display: "flex" }}>
-        <div className="flex items-center h-16">
-          <div className="flex basis-[15%] mr-[0.2rem] h-15">
-            <MultiAvatar
-              primaryTitle={item.opportunityName}
-              imgWidth={"1.8rem"}
-              imgHeight={"1.8rem"}
-            />
-          </div>
-          <div className="flex basis-[100%] overflow-hidden">
-            <div className="font-semibold text-[#337df4] cursor-pointer text-xs">
-              {item.opportunityName}
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col max-sm:justify-between">
-          <div className="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-            {item.customer}
-          </div>
-          <div className="font-medium text-xs">
-            <div className="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center"></div>
-          </div>
-        </div>
-      </div>
-    );
-  })}
+  Hello World
 </div>
 
       
@@ -215,10 +174,9 @@ if (props.fetchingProspectOppOpenTask) return <BundleLoader/>;
   );
 }
 // }
-const mapStateToProps = ({ customer,auth,datRoom }) => ({
+const mapStateToProps = ({ customer,auth ,datRoom}) => ({
   user: auth.userDetails,
-  prospectOppOpenTask:datRoom.prospectOppOpenTask,
-  fetchingProspectOppOpenTask:datRoom.fetchingProspectOppOpenTask,
+  prospectOpenTask:datRoom.prospectOpenTask,
   fetchingCustomerOpportunity: customer.fetchingCustomerOpportunity,
   fetchingCustomerOpportunityError: customer.fetchingCustomerOpportunityError,
   //customerId: customer.customer.customerId,
@@ -228,10 +186,11 @@ const mapStateToProps = ({ customer,auth,datRoom }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getProspectOppOpenTask,
+      getOpportunityListByCustomerId,
       handleUpdateCustomerOpportunityModal,
       setEditCustomerOpportunity,
+      getProspectOpenTask
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(ProspectQuotationListData);
+export default connect(mapStateToProps, mapDispatchToProps)(ProspectTaskOpenListData);

@@ -1,3 +1,18 @@
+// import React, { Component } from 'react'
+
+// export class ProspectQuotationSectorListData extends Component {
+//   render() {
+//     return (
+//       <div>ProspectQuotationSectorListData</div>
+//     )
+//   }
+// }
+
+// export default ProspectQuotationSectorListData
+
+
+
+
 import React, { useEffect,useState,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -12,16 +27,17 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {
   SearchOutlined,
 } from "@ant-design/icons";
-import {getProspectOppOpenTask} from "./DataRoomAction"
+import {getProspectSectorOpenData} from "./DataRoomAction"
 import { CurrencySymbol } from "../../Components/Common";
-import { getOpportunityListByCustomerId,handleUpdateCustomerOpportunityModal,
-  setEditCustomerOpportunity} from "../Customer/CustomerAction";
+
 import { Tooltip,Button,Input,Progress } from "antd";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../Components/Placeholder";
-const AddCustomerUpdateOpportunityModal =lazy(()=>import("../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/AddCustomerUpdateOpportunityModal")); 
-function ProspectQuotationListData(props) {
+//const AddCustomerUpdateOpportunityModal =lazy(()=>import("../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/AddCustomerUpdateOpportunityModal")); 
+function ProspectQuotationSectorListData(props) {
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   console.log(props.selectedPersonData)
   useEffect(() => {
@@ -49,14 +65,30 @@ function ProspectQuotationListData(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
   useEffect(() => {
-    if(props.selectedPersonData){
-    props.getProspectOppOpenTask(
+    if(props.selectedPropsectSector){
+        setPage(page + 1);
+    props.getProspectSectorOpenData(
         // props.customer.customerId
-        props.selectedPersonData.customerId
+    props.selectedPropsectSector.sectorId,page
     );
 }
-  }, [props.selectedPersonData]);
-  console.log(props.selectedPersonData.name);
+  }, [props.selectedPropsectSector]);
+  const handleLoadMore = () => {
+    const callPageMapd = props.prospectSectorOpen && props.prospectSectorOpen.length &&props.prospectSectorOpen[0].pageCount
+    setTimeout(() => {  
+      if  (props.prospectSectorOpen)
+      {
+        if (page < callPageMapd) {    
+    setPage(page + 1);
+    props.getProspectSectorOpenData( props.selectedPropsectSector.sectorId,page);
+            }
+              if (page === callPageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
+  }
+//   console.log(props.selectedPersonData.name);
   const [currentOpportunityId, setCurrentOpportunityId] = useState("");
 
   const [searchText, setSearchText] = useState("");
@@ -168,7 +200,7 @@ function ProspectQuotationListData(props) {
     setEditCustomerOpportunity,
   } = props;
 
-if (props.fetchingProspectOppOpenTask) return <BundleLoader/>;
+if (props.fetchingProspectSectorOpen) return <BundleLoader/>;
   const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
   return (
@@ -176,7 +208,7 @@ if (props.fetchingProspectOppOpenTask) return <BundleLoader/>;
    {/* <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '> */}
      
    <div className="flex flex-wrap"> {/* Parent container with flex layout */}
-  {props.prospectOppOpenTask.map((item) => {
+  {props.prospectSectorOpen.length===0?<NodataFoundPage/>:props.prospectSectorOpen.map((item) => {
     return (
       <div className="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                       text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 
@@ -217,8 +249,8 @@ if (props.fetchingProspectOppOpenTask) return <BundleLoader/>;
 // }
 const mapStateToProps = ({ customer,auth,datRoom }) => ({
   user: auth.userDetails,
-  prospectOppOpenTask:datRoom.prospectOppOpenTask,
-  fetchingProspectOppOpenTask:datRoom.fetchingProspectOppOpenTask,
+  prospectSectorOpen:datRoom.prospectSectorOpen,
+  fetchingProspectSectorOpen:datRoom.fetchingProspectSectorOpen,
   fetchingCustomerOpportunity: customer.fetchingCustomerOpportunity,
   fetchingCustomerOpportunityError: customer.fetchingCustomerOpportunityError,
   //customerId: customer.customer.customerId,
@@ -228,10 +260,11 @@ const mapStateToProps = ({ customer,auth,datRoom }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getProspectOppOpenTask,
-      handleUpdateCustomerOpportunityModal,
-      setEditCustomerOpportunity,
+  
+        getProspectSectorOpenData,
+     
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(ProspectQuotationListData);
+export default connect(mapStateToProps, mapDispatchToProps)(ProspectQuotationSectorListData);
+
