@@ -1,9 +1,11 @@
 import React, { useEffect, lazy, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import axios from "axios";
+import Swal from "sweetalert2";
 import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Button, Tooltip, Input,Badge } from "antd";
+import { Button, Tooltip, Input,Badge,Checkbox } from "antd";
 import QRCode from "qrcode.react";
 import {
   handleReceivedOrderIdPhoneNoteModal,
@@ -57,13 +59,58 @@ function OpenReceivedOrderIdForm(props) {
   const [searchOnEnter, setSearchOnEnter] = useState(false); 
   const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false); 
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
 
-  // const handleLoadMore = () => {
-  //   setPage(page + 1);
-  //   props.getPhonelistByOrderId(props.rowData.orderPhoneId, page)
-  // };
+  const handleSelectAll = () => {
+    if (selectAll) {
+      setSelectedItems([]); // Deselect all
+    } else {
+      setSelectedItems(props.phoneListById); // Select all
+      handleBulkReceive();
+    }
+    setSelectAll(!selectAll);
+  };
+
+  const handleCheckboxChange = (item) => {
+    setSelectedItems((prevSelected) => {
+      if (prevSelected.includes(item)) {
+        return prevSelected.filter((selected) => selected !== item);
+      } else {
+        return [...prevSelected, item];
+      }
+    });
+  };
+  const handleBulkReceive = async () => {
+    try { 
+      const payload = {
+        
+        mismatchInd:false,
+        orderPhoneId:props.rowData.orderPhoneId,
+        receivePhoneInd:true,
+         receivePhoneDate:dayjs().format("YYYY-MM-DD"),
+         receivePhoneUser:props.userId,
+      };
+      const response = await axios
+      .post(`${base_url2}/phone/bulk/phoneReceive`, payload, {
+        headers: {
+          Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+        },
+      })
+      console.log("Response:", response.data);
+      Swal.fire({
+        icon: 'success',
+        title: ' Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+    } catch (error) {
+      console.error("Error sending selected data:", error);
+    }
+  };
+
   const handleLoadMore = () => {
     const callPageMapd = props.phoneListById && props.phoneListById.length &&props.phoneListById[0].pageCount
     setTimeout(() => {
@@ -210,7 +257,7 @@ function OpenReceivedOrderIdForm(props) {
             }
           }
         }, [listening, isRecording, startTime]);
-
+console.log(selectedItems)
   return (
     <>
       <div class=" flex justify-between">
@@ -264,7 +311,9 @@ function OpenReceivedOrderIdForm(props) {
       <div className='flex justify-center sticky ticky z-10 '>
         <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" md:w-[2.01rem]"></div>
+          <div className="md:w-[2.01rem]">
+          <Tooltip title="Select All"><Checkbox checked={selectAll} onChange={handleSelectAll} /></Tooltip>
+          </div>
             <div className=" md:w-[4.74rem]">Brand</div>
             <div className=" md:w-[6.73rem]"><FormattedMessage
               id="app.model"
@@ -312,7 +361,7 @@ function OpenReceivedOrderIdForm(props) {
             >
               {props.phoneListById.length === 0 ? <NodataFoundPageAccount /> :props.phoneListById.map((item, index) => {
                  const isSelected = selectedRow === item.phoneId;
-
+                 const allSelect = (phoneId) => selectedItems.includes(phoneId);
                 return (
                   <div>
                    <div
@@ -321,6 +370,12 @@ function OpenReceivedOrderIdForm(props) {
       }`}
     >
                       <div class="flex">
+                      <div className="md:w-[2rem]">
+                      <Checkbox
+                      checked={selectedItems.includes(item)}
+                      onChange={() => handleCheckboxChange(item)}
+                    />
+                      </div>
                         <div className=" flex   border-l-2  h-8 border-green-500 bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs  font-poppins">
                             <PlusOutlined onClick={() => {

@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Button,Badge } from "antd";
 import { getAllShipper } from "../Shipper/ShipperAction";
 import dayjs from "dayjs";
+import AcUnitIcon from '@mui/icons-material/AcUnit';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
   getDispatchList,
@@ -12,7 +13,8 @@ import {
   updateDispatchInspectionButton,
   handleCreateAWB,
   handleInventoryDispatchModal,
-  handleCreateAddPack
+  handleCreateAddPack,
+  handlepackId
 } from "./InventoryAction"
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import { withRouter } from "react-router";
@@ -25,6 +27,7 @@ import DispatchPackedToggle from "./Child/InventoryDetails/Dispatch/DispatchPack
 import DispatchValidationToggle from "./Child/InventoryDetails/Dispatch/DispatchValidationToggle";
 import DispatchOrderAwbModal from "./Child/InventoryDetails/Dispatch/DispatchOrderAwbModal";
 import AddpackDrawer from "./AddpackDrawer";
+import AddpackID from "./AddpackID";
 // Repair -Dis-2
 
 
@@ -577,7 +580,14 @@ const AWBtst=[
                                                            
                                                         </div>
                                                     </div>
-
+                                                    <div>
+                                                               <AcUnitIcon
+                                                                onClick={() => {
+                                                                  props.handlepackId(true);
+                                                                  handleRowData(item)              
+                                                              }}
+                                                               />
+                                                                   </div>
                         </div>
 
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
@@ -736,6 +746,13 @@ const AWBtst=[
         handleCreateAddPack={props.handleCreateAddPack}
         addPackData={props.addPackData}
       />
+       <AddpackID
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+        rowData={rowData}
+        handlepackId={props.handlepackId}
+        addPackDataID={props.addPackDataID}
+      />
       <DispatchOrderAwbModal
       translateText={props.translateText}
       selectedLanguage={props.selectedLanguage}
@@ -760,6 +777,7 @@ const mapStateToProps = ({ shipper, inventory, auth, dispatch,refurbish }) => ({
   addCreateAwb: inventory.addCreateAwb,
   addPackData:inventory.addPackData,
   productioNoteModal: refurbish.productioNoteModal,
+  addPackDataID:inventory.addPackDataID
   // locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
 });
 
@@ -774,7 +792,8 @@ const mapDispatchToProps = (dispatch) =>
       handleCreateAWB,
       handleInventoryDispatchModal,
       handleProductionNotesModal,
-      handleCreateAddPack
+      handleCreateAddPack,
+      handlepackId
     },
     dispatch
   );
