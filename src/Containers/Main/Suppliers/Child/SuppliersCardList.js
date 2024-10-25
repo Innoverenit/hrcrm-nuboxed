@@ -87,7 +87,7 @@ function SuppliersCardList(props) {
                {/* Supplier ID */}
                {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[5.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
+            <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
             {/* "Name" */}
             {props.translatedMenuItems[0]}
             </div>
@@ -95,19 +95,19 @@ function SuppliersCardList(props) {
               {/* Phone  */}
                {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[9.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+            <div className=" w-[12.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Email */}
                {props.translatedMenuItems[2]}
                </div>
-               <div className=" w-[8.93rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+               <div className=" w-[10.93rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* URL */}
                {props.translatedMenuItems[41]}
                </div>
-               <div className=" w-[3.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+               <div className=" w-[3.50rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Email */}
                {/* {props.translatedMenuItems[17]} */}Disqualify
                </div>     
-            <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[38]}</div>
+            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[38]}</div>
           </div>
           <div class="overflow-x-auto h-[83vh]">
             <InfiniteScroll

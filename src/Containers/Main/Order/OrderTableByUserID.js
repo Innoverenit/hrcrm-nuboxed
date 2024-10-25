@@ -323,7 +323,7 @@ const exportPDFAnnexure = async () => {
                               ) : null}
                         </div>
                         {props.user.accountInfoInd?
-                        <div class="max-sm:w-full md:w-[11.02rem] font-bold  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
+                        <div class="max-sm:w-full md:w-[11.02rem] font-bold text-xs  font-poppins items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between ml-gap flex md:text-xs">
                               {item.distributorName}
@@ -505,7 +505,7 @@ const exportPDFAnnexure = async () => {
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]   bg-transparent  sticky  z-10 max-sm:hidden">
                     <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
-                        <div className="w-[3.54rem] items-center md:w-[5.54rem]  text-[white] flex justify-center bg-[blue]">{translatedMenuItems[9]} </div>
+                        <div className="w-[3.54rem] items-center md:w-[5.54rem]  text-[white] flex justify-center bg-[teal] text-white">{translatedMenuItems[9]} </div>
                         <div className="flex items-center text-[#00A2E8] text-base w-[4rem] md:w-[5rem] ml-2">{translatedMenuItems[1]} ID</div>
           <div className="flex items-center w-[10.6rem] md:w-[5.6rem]">{translatedMenuItems[2]}</div>
           <div className="flex items-center w-[2.051rem] md:w-[3.051rem] ">{translatedMenuItems[3]}</div>
@@ -554,12 +554,12 @@ const exportPDFAnnexure = async () => {
                                                             </div>
                           </Tooltip>
                     </div>
-                    <div className=" flex max-sm:w-full">
+                    <div className=" flex  font-bold  max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[9.43rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                        <div class="w-[9.43rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
                           <Badge size="small" count={item.count}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] ml-gap font-bold text-xs"
+                              class="underline cursor-pointer text-[#1890ff] ml-gap font-bold text-xs "
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -570,22 +570,21 @@ const exportPDFAnnexure = async () => {
                              
                             </span>
                           </Badge>
-                          
                               {date === currentdate ? (
-                                <span className=" text-[0.65rem] text-[tomato] ml-1 font-bold"  >
-                                 {translatedMenuItems[10]} {/* New */}
+                                <span className=" text-[0.65rem] text-[tomato] ml-1 font-bold" >
+                                {translatedMenuItems[10]} {/* New */}
                                 </span>
                               ) : null}
                         </div>
                         {props.user.accountInfoInd?
-                        <div class="max-sm:w-full md:w-[11.02rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] font-bold">
+                        <div class="max-sm:w-full md:w-[11.02rem] font-bold  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:text-xs font-bold">
+                            <div class="max-sm:w-full justify-between ml-gap flex md:text-xs">
                               {item.distributorName}
                             </div>
                           </Tooltip>
                         </div>
-                            :null}
+                         :null}
                       </div>
                     </div>
                     {props.user.accountInfoInd?

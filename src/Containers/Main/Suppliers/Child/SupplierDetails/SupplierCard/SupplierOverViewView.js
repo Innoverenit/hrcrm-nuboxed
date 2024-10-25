@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Title, MultiAvatar } from "../../../../../../Components/UI/Elements";
+import {  MultiAvatar } from "../../../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
+
 
 class SupplierOverViewView extends Component {
   render() {
@@ -30,7 +30,7 @@ class SupplierOverViewView extends Component {
                 {`${name || ""}`}
               {/* </Title> */}
             </div>
-            <Tooltip title={<FormattedMessage id="app.feedback" defaultMessage="Feedback" />}>
+            <Tooltip title="Feedback">
               <span
                 onClick={() => handleFeedbackModal(true)}
                 style={{ cursor: "pointer" }}

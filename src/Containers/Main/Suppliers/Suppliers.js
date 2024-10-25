@@ -31,7 +31,7 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
          "1257", // "Not Approved",//5
          "228", // "ALL",//6
          "1258", // 'Deleted',//7
-        "228",  // 'Search by Name or Sector',//8 (ALL)
+        "1238",  // 'Search by Name or Sector',//8 (ALL)
         "85",  // 'Add',//9
          "82", // 'Loading',//10
         "1277", // 'Export Supplier',//11
@@ -65,6 +65,7 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
           "880",//39 Invenntory
           "1083",//Supplier ID 40
           "302",//url 41
+    
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
