@@ -7,13 +7,13 @@ import {
  
 } from "../../Settings/Category/CategoryList/CategoryListAction";
 
-import { Button, Input, Select,Tooltip,Switch, Popconfirm } from "antd";
+import { Button, Input, Select,Switch, Popconfirm } from "antd";
 import { getMaterialCurrency, createMaterialCurrency,materialPricetype
  } from "./SuppliesAction";
 import {getSaleCurrency} from "../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import MaterialPriceTypeToggle from "./MaterialPriceTypeToggle";
+
 
 const { Option } = Select;
 
@@ -237,18 +237,16 @@ function PriceAddCard(props) {
                             {s.name}
                           </Option>
                         ))}
-                      </Select>
-
-              
+                      </Select>              
               </div>
                        
                       </div>
                       </div>
-                     
+                  <div class="flex items-center">    
             <Button class="flex items-center"type="primary" onClick={() => handleSave(index)}>
               {/* Submit */} {translatedMenuItems[4]}
             </Button>
-            
+            </div>
           
            
             

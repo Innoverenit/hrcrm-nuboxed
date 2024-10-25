@@ -6,6 +6,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { Tooltip } from "antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import HistoryIcon from '@mui/icons-material/History';
 import { handleSuppliersModal,handleRecall } from "../../Main/Suppliers/SuppliersAction";
 import AddRecallModal from "./AddRecallModal"
 
@@ -24,8 +25,9 @@ class SuppliersActionRight extends React.Component {
         <Button
          type="primary"
          onClick={() => handleRecall(true)}>
-            
+            <HistoryIcon className="!text-icon"/>
            Recall
+           {/* {this.props.translatedMenuItems[9]} */}
             </Button>  
           </Tooltip>
           </div>
