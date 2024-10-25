@@ -7,6 +7,7 @@ import Cataloimg from "../../../../Assets/Images/Cataloimg.jpg";
 import Materialimg from "../../../../Assets/Images/Materialimg.jpg";
 import Trading from "../../../../Assets/Images/Trading.jpeg";
 import Timetrack from "../../../../Assets/Images/timetrack.jpg"
+import cbmcal from "../../../../Assets/Images/Cbmcal.jpg"
 
 const { Option } = Select;
 
@@ -185,6 +186,35 @@ class ModuleTrading extends Component {
                     </div>
                     </div>
                     <div class="text-xs text-center"> Time Track.</div>
+                    </div> 
+                    </div>
+                    <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+            <div className=" flex h-28 justify-center "> 
+              <img
+              className="big-logo w-36 h-24 m-2"
+              src={cbmcal}
+              alt="Tekorero logo"
+            /></div>
+            <div class="flex  flex-col justify-center  ">
+            <div class="flex flex-row  justify-center"> 
+              <div class=" text-sm  ml-2 font-semibold">CBM</div>
+                    <div   class=" ml-2">
+                    <Popconfirm
+                        title="Do you wish to change TimeTrack ? "
+                         onConfirm={() => this.props.handleTimetrackClick(!this.props.timeTrackStatus)}                     
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <Switch                         
+                          onChange={() => {}}                    
+                          checked={this.props.timeTrackStatus || this.props.moduleList.timeTrackInd}
+                          checkedChildren="Yes"
+                          unCheckedChildren="No"
+                        />
+                      </Popconfirm>
+                    </div>
+                    </div>
+                    <div class="text-xs text-center"> CBM Calculator.</div>
                     </div> 
                     </div>
                     </>                                           

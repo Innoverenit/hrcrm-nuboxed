@@ -164,15 +164,15 @@ const InvestorLinkedDocuments = (props) => {
                     return (
                         <div >
                               <div
-            className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:h-[9rem] max-sm:flex-colscale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+            className="flex rounded justify-between  bg-white mt-1 h-[2.15rem] items-center max-sm:h-[9rem] max-sm:flex-colscale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
           >
                                 <div class="flex">
                                     <div className=" flex  md:w-[10.8rem] items-center h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                     <div>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</div>
                                     </div>
 
-                                    <div className=" flex h-8 ml-gap bg-[#eef2f9]  md:w-[12.21rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
-                                        <div class=" text-xs  font-poppins">
+                                    <div className=" flex ml-gap bg-[#eef2f9]  md:w-[12.21rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                        <div class=" text-xs h-8 items-center font-poppins">
                                            {item.documentTitle}
                                         </div>
 
@@ -195,8 +195,8 @@ const InvestorLinkedDocuments = (props) => {
             <SubTitle>
               <MultiAvatar
                 primaryTitle={item.uploadedBy}
-                imgWidth={"1.8em"}
-                imgHeight={"1.8em"}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
             </SubTitle>
           </Tooltip>
@@ -209,7 +209,7 @@ const InvestorLinkedDocuments = (props) => {
             href={`${base_url}/document/${item.documentId}`}
           // target="_blank"
           >
-            <DownloadIcon  className="!text-icon cursor-pointer !text-icon "
+            <DownloadIcon  className=" cursor-pointer !text-icon "
               type="download"
             
             />

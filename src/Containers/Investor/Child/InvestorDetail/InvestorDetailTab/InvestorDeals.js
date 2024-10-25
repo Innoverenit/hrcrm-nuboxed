@@ -29,7 +29,7 @@ const InvestorDeals = (props) => {
         const itemsToTranslate = [
           "110",   //        'Name', // 0
           "216", // 'Sponsor', // 1
-          "176", // 'Start Date', // 2
+          "126", // 'Start Date', // 2
          "218",  // 'Value', // 3
         "219",   // 'Stages', // 4
         "142",   // 'Status', // 5
@@ -94,27 +94,27 @@ if (loading) {
                 </div>
         <div className="md:w-[8.1rem]">
         {translatedMenuItems[2]} 
-               {/* startdate */}
+               {/* enddate */}
                 </div>
         <div className="md:w-[5.5rem]">     
-        {translatedMenuItems[2]}   
+        {translatedMenuItems[3]}   
                {/* Value */}            
                 </div>
         <div className="md:w-[4.2rem]">
-        {translatedMenuItems[3]} 
+        {translatedMenuItems[4]} 
          {/* stages               */}
                 </div> 
         <div className="md:w-[4.2rem]">
-        {translatedMenuItems[4]} 
+        {translatedMenuItems[5]} 
        {/* status */}                           
                 </div> 
         <div className="md:w-[7.1rem]">
-        {translatedMenuItems[5]} 
+        {translatedMenuItems[6]} 
        {/* Assign To */}
               
                 </div>
         <div className="md:w-[5.2rem]">
-        {translatedMenuItems[6]}
+        {translatedMenuItems[7]}
         {/* owner  */}
                 </div>
 
@@ -158,7 +158,7 @@ if (loading) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between  bg-white mt-1 h-[2.15rem] items-center p-1 max-sm:h-[9rem] max-sm:  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      
                                 <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  w-[12rem]   max-sm:w-full">
