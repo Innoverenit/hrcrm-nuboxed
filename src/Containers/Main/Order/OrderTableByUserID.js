@@ -251,7 +251,7 @@ const exportPDFAnnexure = async () => {
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]   bg-transparent  sticky  z-10 max-sm:hidden">
                     <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
-                        <div className="w-[3.54rem] md:w-[5.54rem]  text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
+                        <div className="w-[3.54rem] md:w-[5.54rem] items-center  text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
                         <div className="flex items-center text-[#00A2E8] text-base w-[4rem] md:w-[5rem] ml-2">{translatedMenuItems[1]} ID</div>
           <div className="flex items-center w-[10.6rem] md:w-[5.6rem]">{translatedMenuItems[2]}</div>
           <div className="flex items-center w-[2.051rem] md:w-[3.051rem] ">{translatedMenuItems[3]}</div>
@@ -394,7 +394,7 @@ const exportPDFAnnexure = async () => {
                     </div>
                   </div>
                  
-                  <div className=" flex   md:w-[6.05rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex   md:w-[5.05rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
                   <div class=" text-xs  font-semibold items-center font-poppins">
                     {item.noOfownerPhones}
@@ -505,7 +505,7 @@ const exportPDFAnnexure = async () => {
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]   bg-transparent  sticky  z-10 max-sm:hidden">
                     <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
-                        <div className="w-[3.54rem] md:w-[5.54rem]  text-[white] flex justify-center bg-[red]">{translatedMenuItems[9]} </div>
+                        <div className="w-[3.54rem] items-center md:w-[5.54rem]  text-[white] flex justify-center bg-[blue]">{translatedMenuItems[9]} </div>
                         <div className="flex items-center text-[#00A2E8] text-base w-[4rem] md:w-[5rem] ml-2">{translatedMenuItems[1]} ID</div>
           <div className="flex items-center w-[10.6rem] md:w-[5.6rem]">{translatedMenuItems[2]}</div>
           <div className="flex items-center w-[2.051rem] md:w-[3.051rem] ">{translatedMenuItems[3]}</div>
@@ -649,7 +649,7 @@ const exportPDFAnnexure = async () => {
                     </div>
                     </div>
                   
-                  <div className=" flex   md:w-[6.05rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex   md:w-[5.05rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  font-poppins">
                         {item.noOfownerPhones}

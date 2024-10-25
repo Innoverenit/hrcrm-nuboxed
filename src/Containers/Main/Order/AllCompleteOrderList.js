@@ -9,7 +9,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url } from "../../../Config/Auth";
+import relativeTime from 'dayjs/plugin/relativeTime';
 import {
   emptyCompleteOrders,
     getCompletedHighOrderList,
@@ -32,6 +32,20 @@ import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidBu
 import { PersonAddAlt1 } from "@mui/icons-material";
 import OrderSearchedData from "./OrderSearchedData";
 const { Option } = Select;
+
+
+dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+  const now = dayjs();
+  const creationDay = dayjs(creationDate);
+
+  if (creationDay.isSame(now, 'day')) {
+      return 'Today';
+  } else {
+      return creationDay.from(now); 
+  }
+};
 
 function AllCompleteOrderList(props) {
     const [page, setPage] = useState(0);
@@ -253,7 +267,7 @@ const exportPDFAnnexure = async () => {
            
                 >
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                  <div className=" flex items-center md:w-[9.26rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                  <div className=" flex items-center md:w-[4.26rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -273,7 +287,7 @@ const exportPDFAnnexure = async () => {
                                                     </div>
                     <div className=" flex  items-center w-wk   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[10.43rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ">
+                        <div class="w-[9.43rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ">
                           <Badge size="small" count={item.productNum}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
@@ -296,7 +310,7 @@ const exportPDFAnnexure = async () => {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[9.02rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ">
+                        <div class="max-sm:w-full md:w-[11.02rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
                               {item.distributorName}
@@ -307,7 +321,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[9.23rem] items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[5.71rem] items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -322,7 +336,7 @@ const exportPDFAnnexure = async () => {
 
                     </div>
                     <div class="flex">
-                    <div className=" flex   md:w-[4.31rem] items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   md:w-[5.31rem] items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
@@ -333,10 +347,14 @@ const exportPDFAnnexure = async () => {
 
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                  <div className=" flex text-xs md:w-[8.912rem] items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between ">
-                    <span>{date}</span>
-                  </div>
-                  <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[8.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
+                  <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
