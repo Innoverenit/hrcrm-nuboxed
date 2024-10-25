@@ -272,6 +272,13 @@ export const handleCreateAddPack = (modalProps) => (dispatch) => {
   });
 };
 
+export const handlepackId = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CREATE_PACK_ID,
+    payload: modalProps,
+  });
+};
+
 export const setInventoryDetailViewType = (viewType1) => (dispatch) => {
   dispatch({
     type: types.SET_INVENTORY_DETAIL_VIEW_TYPE,
@@ -2407,7 +2414,55 @@ export const getMaterialDamagedData = (locationDetailsId) => (dispatch) => {
     });
 };
 
+export const getPackData = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PACK_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dispatchPacking/dispatch-packing/${orderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PACK_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PACK_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
 
+export const getPackNo = (dispachPackingId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PACK_NO_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dispatchPacking/dispatch-packing-data/${dispachPackingId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PACK_NO_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PACK_NO_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 export const addToWaste = (customer,poSupplierSuppliesId) => (dispatch, getState) => {
   const userId = getState().auth.userDetails.userId;

@@ -6,13 +6,13 @@
 // import { Switch, Popconfirm, message } from 'antd';
 
 // const InputToggleForm = (props) => {
-//   const [inputValue, setInputValue] = useState(props.noOfPacket || '');
-//   const [toggleValue, setToggleValue] = useState(props.packetInd || false);
-//   const [fields, setFields] = useState([{  noOfPacket: "", packetInd: ""  }]); // Form fields state
+//   const [inputValue, setInputValue] = useState(props.packingNo || '');
+//   const [toggleValue, setToggleValue] = useState(props.packingInd || false);
+//   const [fields, setFields] = useState([{  packingNo: "", packingInd: ""  }]); // Form fields state
 
 
 //   const addMoreFields = () => {
-//     setFields([...fields, {  noOfPacket: "", packetInd: ""  }]); // Add a new row to the state
+//     setFields([...fields, {  packingNo: "", packingInd: ""  }]); // Add a new row to the state
 //   };
 
 //   const removeField = (index) => {
@@ -22,13 +22,13 @@
 //   };
 
 //   useEffect(() => {
-//     setInputValue(props.noOfPacket);
-//     setToggleValue(props.packetInd);
-//   }, [props.noOfPacket, props.packetInd]);
+//     setInputValue(props.packingNo);
+//     setToggleValue(props.packingInd);
+//   }, [props.packingNo, props.packingInd]);
 //   const sendPutRequest =  async (item) => {
     
 //     try {
-//         const response = await axios.put(`${base_url2}/phoneOrder/noOfPacket/${props.orderPhoneId}`,item, {  
+//         const response = await axios.put(`${base_url2}/phoneOrder/packingNo/${props.orderPhoneId}`,item, {  
 //           headers: {
 //               Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
 //           },
@@ -47,7 +47,7 @@
 //     const value = e.target.value === '' ? '0' : e.target.value; // Default to '0' if empty
 //     setInputValue(value);
 //     // Send payload in the required format on blur
-//     sendPutRequest({ noOfPacket: value });
+//     sendPutRequest({ packingNo: value });
 //   };
 
 //   // Handle toggle change
@@ -56,7 +56,7 @@
 //       const newValue = !toggleValue;
 //       setToggleValue(newValue);
 //       // Send payload in the required format
-//       sendPutRequest({ packetInd: newValue });
+//       sendPutRequest({ packingInd: newValue });
 //     } else {
 //       message.info('Toggle action cancelled');
 //     }
@@ -114,28 +114,34 @@
 
 // export default InputToggleForm;
 
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { base_url2 } from '../../../Config/Auth';
 import axios from "axios";
 import { Button } from "antd";
+import { withRouter } from "react-router-dom";
+import {getPackData,getPackNo} from "../Inventory/InventoryAction";
+import { useDispatch } from 'react-redux';
 import { CloseOutlined } from "@ant-design/icons";
 import { Switch, Popconfirm, message } from 'antd';
 
 const InputToggleForm = (props) => {
-  const [fields, setFields] = useState([{ noOfPacket: '', packetInd: false }]); // Initial row with empty values
-
+  const [fields, setFields] = useState([{ packingNo: '', packingInd: false }]); // Initial row with empty values
+  const dispatch = useDispatch();
   // This useEffect ensures that when props change, the state is updated.
   useEffect(() => {
-    if (props.noOfPacket !== undefined && props.packetInd !== undefined) {
-      setFields([{ noOfPacket: props.noOfPacket, packetInd: props.packetInd }]);
+    if (props.packingNo !== undefined && props.packingInd !== undefined) {
+      setFields([{ packingNo: props.packingNo, packingInd: props.packingInd }]);
     }
-  }, [props.noOfPacket, props.packetInd]);
+  }, [props.packingNo, props.packingInd]);
 
   // Function to send PUT request with correct payload
   const sendPutRequest = async (item) => {
     try {
-      const response = await axios.put(
-        `${base_url2}/phoneOrder/noOfPacket/${props.orderPhoneId}`,
+      const response = await axios.post(
+        `${base_url2}/dispatchPacking/dispatch-packing`,
         item,
         {
           headers: {
@@ -143,7 +149,7 @@ const InputToggleForm = (props) => {
           },
         }
       );
-
+      dispatch(getPackNo(response.data));
       if (response.data === 'Successfully !!!!') {
         message.success('Update successful');
       } else {
@@ -158,20 +164,21 @@ const InputToggleForm = (props) => {
   const handleInputBlur = (e, index) => {
     const value = e.target.value === '' ? '0' : e.target.value; // Default to '0' if empty
     const updatedFields = [...fields];
-    updatedFields[index].noOfPacket = value;
+    updatedFields[index].packingNo = value;
     setFields(updatedFields);
     // Send payload in the required format on blur
-    sendPutRequest({ noOfPacket: value });
+    sendPutRequest({ packingNo: value,orderId:props.orderPhoneId });
   };
 
   // Handle toggle change for a specific field
   const handleToggleChange = (confirm, index) => {
     if (confirm) {
       const updatedFields = [...fields];
-      updatedFields[index].packetInd = !updatedFields[index].packetInd;
+      updatedFields[index].packingInd = !updatedFields[index].packingInd;
       setFields(updatedFields);
+     
       // Send payload in the required format
-      sendPutRequest({ packetInd: updatedFields[index].packetInd });
+      sendPutRequest({ packingInd: updatedFields[index].packingInd,orderId:props.orderPhoneId,packingNo:props.packNo.packingNo});
     } else {
       message.info('Toggle action cancelled');
     }
@@ -179,7 +186,7 @@ const InputToggleForm = (props) => {
 
   // Add more fields (empty input and toggle set to false)
   const addMoreFields = () => {
-    setFields([...fields, { noOfPacket: '', packetInd: false }]); // Add a new row to the state
+    setFields([...fields, { packingNo: '', packingInd: false }]); // Add a new row to the state
   };
 
   // Remove a field at the specified index
@@ -188,25 +195,29 @@ const InputToggleForm = (props) => {
     newFields.splice(index, 1); // Remove the selected row
     setFields(newFields);
   };
+  // const showData = props.packData.map((item) => item.packingNo);
+  const packingNumbers = props.packData.map(item => item.packingNo);
 
+  // const showData = `${props.packData[0]?.packingNo}`;
+  console.log( packingNumbers)
   return (
     <>
       {fields.map((field, index) => (
         <div key={index} className="flex items-center">
           {/* Input field */}
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={`input-box-${index}`}>
-              Packet
-            </label>
+            <div className="block text-gray-700 text-sm font-bold mb-2" htmlFor={`input-box-${index}`}>
+              Packet ID
+            </div>
             <input
               id={`input-box-${index}`}
               type="text"
               className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-              value={field.noOfPacket}
+              value={field.packingNo}
               onBlur={(e) => handleInputBlur(e, index)}
               onChange={(e) => {
                 const updatedFields = [...fields];
-                updatedFields[index].noOfPacket = e.target.value;
+                updatedFields[index].packingNo = e.target.value;
                 setFields(updatedFields);
               }}
               placeholder="Enter number of packets"
@@ -223,7 +234,7 @@ const InputToggleForm = (props) => {
               cancelText="No"
             >
               <Switch
-                checked={field.packetInd}
+                checked={field.packingInd}
                 className="toggle-checkbox"
                 checkedChildren="Packed"
                 unCheckedChildren="UnPacked"
@@ -245,4 +256,24 @@ const InputToggleForm = (props) => {
   );
 };
 
-export default InputToggleForm;
+const mapStateToProps = ({  inventory, auth }) => ({
+  userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
+  packData:inventory.packData,
+  packNo:inventory.packNo
+});
+
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      getPackData,
+      getPackNo
+    },
+    dispatch
+  );
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(InputToggleForm)
+);
+
+

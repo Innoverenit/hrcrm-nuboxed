@@ -6,6 +6,16 @@ const initialState = {
 
   addPackData:false,
 
+  addPackDataID:false,
+
+  fetchingPackData: false,
+  fetchingPackDataError: false,
+  packData:[],
+
+  fetchingPackNo: false,
+  fetchingPackNoError: false,
+  packNo:{},
+
   fetchingMaterialDamageData:false,
   fetchingMaterialDamageDataError:false,
   materialDamageData:[],
@@ -481,6 +491,36 @@ export const inventoryReducer = (state = initialState, action) => {
           fetchingMaterialDamageData: false,
           fetchingMaterialDamageDataError: true,
         };
+
+        case types.GET_PACK_DATA_REQUEST:
+          return { ...state, fetchingPackData: true };
+        case types.GET_PACK_DATA_SUCCESS:
+          return {
+            ...state,
+            fetchingPackData: false,
+            packData: action.payload
+          };
+        case types.GET_PACK_DATA_FAILURE:
+          return {
+            ...state,
+            fetchingPackData: false,
+            fetchingPackDataError: true,
+          };
+
+          case types.GET_PACK_NO_REQUEST:
+            return { ...state, fetchingPackNo: true };
+          case types.GET_PACK_NO_SUCCESS:
+            return {
+              ...state,
+              fetchingPackNo: false,
+              packNo: action.payload
+            };
+          case types.GET_PACK_NO_FAILURE:
+            return {
+              ...state,
+              fetchingPackNo: false,
+              fetchingPackNoError: true,
+            };
 
     //inventory by id
     case types.GET_INVENTORY_BY_ID_REQUEST:
@@ -1548,6 +1588,9 @@ export const inventoryReducer = (state = initialState, action) => {
 
       case types.HANDLE_CREATE_PACK_MODAL:
         return { ...state, addPackData: action.payload };
+
+        case types.HANDLE_CREATE_PACK_ID:
+          return { ...state, addPackDataID: action.payload };
 
     case types.GET_PRODUCT_REFURBISH_REQUEST:
       return { ...state, fetchingRefurbishProduct: true };

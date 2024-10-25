@@ -39,6 +39,7 @@ import FlashOnIcon from '@mui/icons-material/FlashOn';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
+import EmptyPage from "./EmptyPage";
 import LanguageSelector from "../Translate/LanguageSelector";
 import FAQPage from "./FAQ/FAQPage";
 import DashboardPage from "../DashboardPage/DashboardPage";
@@ -1122,6 +1123,17 @@ function MainApp(props) {
                         />
                       )}
                     />   
+                     <Route
+                      exact
+                      path="/emptypage"
+                      render={(props) => (
+                        <EmptyPage
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />  
                      {/* <Route
                       exact
                       path="/leads/:leadsId"

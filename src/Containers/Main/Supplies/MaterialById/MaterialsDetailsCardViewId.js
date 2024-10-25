@@ -433,7 +433,11 @@ function MaterialsDetailsCardViewId (props) {
     // const [selectedUom, setSelectedUom] = useState({});
     const [selectedUom, setSelectedUom] = useState({
       uomId: props.materialsBySuppliesId.uomId || null, // Set initial UOM ID from props
-      unitName: props.materialsBySuppliesId.unitName || 'Select UOM', // Set initial UOM name from props
+      unitName: props.materialsBySuppliesId.uom || 'Select UOM', // Set initial UOM name from props
+    });
+    const [selectedWtUom, setSelectedWtUom] = useState({
+      uomId: props.materialsBySuppliesId.uomId || null, 
+      unitName: props.materialsBySuppliesId.wtUom || 'Select UOM', 
     });
     const [isUomDropdownVisible, setIsUomDropdownVisible] = useState(false);
     // Create a combined payload based on the current state
@@ -456,7 +460,7 @@ function MaterialsDetailsCardViewId (props) {
         innerWeight: data.Weight.inner,
         masterWeight: data.Weight.master,
         uom: selectedUom.unitName || null, // Include UOM only if selected
-        wtUom: selectedUom.unitName || null,
+        wtUom: selectedWtUom.unitName || null,
       };
     };
   
@@ -479,7 +483,10 @@ function MaterialsDetailsCardViewId (props) {
       setSelectedUom({ unitName }); // Update the selected UOM state
       // The UOM change will be sent in the next blur event of the inputs
     };
-  
+    const handleUomWtChange = (unitName) => {
+      setSelectedWtUom({ unitName }); // Update the selected UOM state
+      // The UOM change will be sent in the next blur event of the inputs
+    };
     // Handle input field changes
     const handleInputChange = (key, type, e) => {
       const updatedData = { ...data, [key]: { ...data[key], [type]: e.target.value } };
@@ -564,13 +571,13 @@ function MaterialsDetailsCardViewId (props) {
                 </td>
                 <td className="p-2 border border-gray-200">
                 <div onClick={() => setIsUomDropdownVisible(!isUomDropdownVisible)} className="cursor-pointer">
-              {selectedUom.unitName}
+              {selectedWtUom.unitName}
             </div>
             {isUomDropdownVisible && (
                 <Select
                     style={{ width: "8rem" }}
-                    onChange={handleUomChange}
-                    onBlur={() => handleBlur("wtUom", "wtUom", selectedUom.unitName)} // Optionally trigger blur for UOM
+                    onChange={handleUomWtChange}
+                    onBlur={() => handleBlur("wtUom", "wtUom", selectedWtUom.unitName)} // Optionally trigger blur for UOM
                   >
                     {props.mydata.map((uom) => (
                       <Option key={uom.unitName} value={uom.unitName}>
