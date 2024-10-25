@@ -10,6 +10,15 @@ const initialState = {
     fetchingDataroomList: false,
     fetchingDataroomListError: false,
     dataRoomlist:[],
+
+
+    fetchingProspectOppOpenTask:false,
+    fetchingProspectOppOpenTaskError:false,
+    prospectOppOpenTask:[],
+
+    fetchingProspectOpenTask:false,
+    fetchingProspectOpenTaskError:false,
+    prospectOpenTask:[],
   
     addingDataroom: false, 
     addingDataroomError: false,
@@ -17,6 +26,20 @@ const initialState = {
     fetchingUserList: false,
     fetchingUserListError: false,
     userRoomlist:[],
+
+
+    fetchingProspectSectorOpen:false,
+    fetchingProspectSectorOpenError:false,
+    prospectSectorOpen:[],
+
+    fetchingProspectOppCloseTask:false,
+    fetchingProspectOppCloseTaskError:false,
+    prospectOppCloseTask:[],
+
+    fetchingProspectOppWonTask:false,
+    fetchingProspectOppWonTaskError:false,
+
+    prospectOppWonTask:[],
     
   };
 
@@ -60,6 +83,102 @@ const initialState = {
           fetchingUserList: false,
           fetchingUserListError: true,
         };
+
+
+
+
+
+        case types.GET_PROSPECT_OPEN_TASK_REQUEST:
+      return { ...state, fetchingProspectOpenTask: true };
+    case types.GET_PROSPECT_OPEN_TASK_SUCCESS:
+      return {
+        ...state,
+        fetchingProspectOpenTask: false,
+        prospectOpenTask: action.payload,
+      };
+    case types.GET_PROSPECT_OPEN_TASK_FAILURE:
+      return {
+        ...state,
+        fetchingProspectOpenTask: false,
+        fetchingProspectOpenTaskError: true,
+      };
+
+
+
+
+
+      case types.GET_PROSPECT_SECTOR_OPEN_REQUEST:
+        return { ...state, fetchingProspectSectorOpen: true };
+      case types.GET_PROSPECT_SECTOR_OPEN_SUCCESS:
+        return {
+          ...state,
+          fetchingProspectSectorOpen: false,
+          prospectSectorOpen: [...state.prospectSectorOpen, ...action.payload],
+        
+        };
+      case types.GET_PROSPECT_SECTOR_OPEN_FAILURE:
+        return {
+          ...state,
+          fetchingProspectSectorOpen: false,
+          fetchingProspectSectorOpenError: true,
+        };
+
+
+
+
+
+      case types.GET_PROSPECT_OPP_CLOSE_TASK_REQUEST:
+        return { ...state, fetchingProspectOppCloseTask: true };
+      case types.GET_PROSPECT_OPP_CLOSE_TASK_SUCCESS:
+        return {
+          ...state,
+          fetchingProspectOppCloseTask: false,
+          prospectOppCloseTask: action.payload,
+        };
+      case types.GET_PROSPECT_OPP_CLOSE_TASK_FAILURE:
+        return {
+          ...state,
+          fetchingProspectOppCloseTask: false,
+          fetchingProspectOppCloseTaskError: true,
+        };
+    
+
+
+
+
+      case types.GET_PROSPECT_OPP_OPEN_TASK_REQUEST:
+        return { ...state, fetchingProspectOppOpenTask: true };
+      case types.GET_PROSPECT_OPP_OPEN_TASK_SUCCESS:
+        return {
+          ...state,
+          fetchingProspectOppOpenTask: false,
+          prospectOppOpenTask: action.payload,
+        };
+      case types.GET_PROSPECT_OPP_OPEN_TASK_FAILURE:
+        return {
+          ...state,
+          fetchingProspectOppOpenTask: false,
+          fetchingProspectOppOpenTaskError: true,
+        };
+
+
+
+        case types.GET_PROSPECT_OPP_WON_REQUEST:
+          return { ...state, fetchingProspectOppWonTask: true };
+        case types.GET_PROSPECT_OPP_WON_SUCCESS:
+          return {
+            ...state,
+            fetchingProspectOppWonTask: false,
+            prospectOppWonTask: action.payload,
+          };
+        case types.GET_PROSPECT_OPP_WON_FAILURE:
+          return {
+            ...state,
+            fetchingProspectOppWonTask: false,
+            fetchingProspectOppWonTaskError: true,
+          };
+      
+    
   
 
       case types.ADD_DATAROOM_REQUEST:

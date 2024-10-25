@@ -19,9 +19,19 @@ function DataRoom (props) {
 console.log(selectedButtonTab)
   const [selectedInvestor, setSelectedInvestor] = useState(null);
 const[selectedCustomer,setSelectedCustomer]=useState(null)
+const[selectedPropsectSector,setSelectedProspectSector]=useState(null)
   const handleCardClick = (person,prospectData) => {
     setSelectedPerson(person);
     setSelectedPersonData(prospectData);
+  };
+
+
+  console.log(selectedPropsectSector)
+
+
+  const handleCardProspectSectorClick = (person) => {
+    setSelectedProspectSector(person);
+    // setSelectedPersonData(prospectData);
   };
 
 
@@ -83,6 +93,9 @@ const[selectedCustomer,setSelectedCustomer]=useState(null)
            selectedTab === "prospect" ? 
             //<DataRoomTab />
                <DataRoomProspectCard
+               handleCardProspectSectorClick={handleCardProspectSectorClick}
+               selectedPropsectSector={selectedPropsectSector}
+               setSelectedProspectSector={setSelectedProspectSector}
                selectedPersonData={selectedPersonData}
                setSelectedButtonTab={setSelectedButtonTab}
                selectedButtonTab={selectedButtonTab}

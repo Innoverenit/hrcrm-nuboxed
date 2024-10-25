@@ -162,7 +162,7 @@ function DataRoomProspectActionLeft(props) {
         <div className="flex justify-between">
           <div 
           className="font-semibold"
-          // onClick={() => props.handleCardClick(lead.name)}
+          onClick={() => props.handleCardProspectSectorClick(lead)}
           >
             {lead.sectorName}
            

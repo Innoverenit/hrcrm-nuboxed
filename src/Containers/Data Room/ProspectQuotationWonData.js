@@ -12,15 +12,14 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {
   SearchOutlined,
 } from "@ant-design/icons";
-import {getProspectOppOpenTask} from "./DataRoomAction"
+import {getProspectOppWonData} from "./DataRoomAction"
 import { CurrencySymbol } from "../../Components/Common";
-import { getOpportunityListByCustomerId,handleUpdateCustomerOpportunityModal,
-  setEditCustomerOpportunity} from "../Customer/CustomerAction";
+
 import { Tooltip,Button,Input,Progress } from "antd";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../Components/Placeholder";
-const AddCustomerUpdateOpportunityModal =lazy(()=>import("../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/AddCustomerUpdateOpportunityModal")); 
-function ProspectQuotationListData(props) {
+//const AddCustomerUpdateOpportunityModal =lazy(()=>import("../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/AddCustomerUpdateOpportunityModal")); 
+function ProspectQuotationWonData(props) {
   const [loading, setLoading] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   console.log(props.selectedPersonData)
@@ -50,7 +49,7 @@ function ProspectQuotationListData(props) {
   }, [props.selectedLanguage]);
   useEffect(() => {
     if(props.selectedPersonData){
-    props.getProspectOppOpenTask(
+    props.getProspectOppWonData(
         // props.customer.customerId
         props.selectedPersonData.customerId
     );
@@ -168,7 +167,7 @@ function ProspectQuotationListData(props) {
     setEditCustomerOpportunity,
   } = props;
 
-if (props.fetchingProspectOppOpenTask) return <BundleLoader/>;
+if (props.fetchingProspectOppWonTask) return <BundleLoader/>;
   const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
   return (
@@ -176,7 +175,7 @@ if (props.fetchingProspectOppOpenTask) return <BundleLoader/>;
    {/* <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '> */}
      
    <div className="flex flex-wrap"> {/* Parent container with flex layout */}
-  {props.prospectOppOpenTask.map((item) => {
+  {props.prospectOppWonTask.length===0?<NodataFoundPage/>:props.prospectOppWonTask.map((item) => {
     return (
       <div className="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                       text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 
@@ -217,8 +216,8 @@ if (props.fetchingProspectOppOpenTask) return <BundleLoader/>;
 // }
 const mapStateToProps = ({ customer,auth,datRoom }) => ({
   user: auth.userDetails,
-  prospectOppOpenTask:datRoom.prospectOppOpenTask,
-  fetchingProspectOppOpenTask:datRoom.fetchingProspectOppOpenTask,
+  prospectOppWonTask:datRoom.prospectOppWonTask,
+  fetchingProspectOppWonTask:datRoom.fetchingProspectOppWonTask,
   fetchingCustomerOpportunity: customer.fetchingCustomerOpportunity,
   fetchingCustomerOpportunityError: customer.fetchingCustomerOpportunityError,
   //customerId: customer.customer.customerId,
@@ -228,10 +227,10 @@ const mapStateToProps = ({ customer,auth,datRoom }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      getProspectOppOpenTask,
-      handleUpdateCustomerOpportunityModal,
-      setEditCustomerOpportunity,
+  
+        getProspectOppWonData,
+     
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(ProspectQuotationListData);
+export default connect(mapStateToProps, mapDispatchToProps)(ProspectQuotationWonData);

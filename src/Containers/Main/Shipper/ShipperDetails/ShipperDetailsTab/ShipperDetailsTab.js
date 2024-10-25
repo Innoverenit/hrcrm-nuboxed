@@ -1,6 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddShipperCostModal from "../ShipperDetailsTab/AddShipperCostModal"
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import {
   TabsWrapper,
@@ -9,6 +10,7 @@ import { message, Tooltip } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import {
+  handleShipperCostModal,
   handleLinkShipperOrderConfigureModal,
   handleShipperSubscriptionConfigureModal,
   handleShipperActivityModal,
@@ -344,7 +346,7 @@ class ShipperDetailsTab extends Component {
                           tooltipTitle="Create"
                           onClick={() =>
                             // this.props.handleShipperDocumentUploadModal(true)
-                            this.props.handleSupplierDocumentUploadModal(true)
+                            this.props.handleShipperCostModal(true)
                           }
                           size="14px"
                           style={{ verticalAlign: "center", marginLeft: "5px" }}
@@ -354,15 +356,16 @@ class ShipperDetailsTab extends Component {
                   )}
                 </>
               }
-              key="5"
+              key="7"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <ShipperCostTable
+                
+                 <ShipperCostTable
                   shipperId={this.props.shipper.shipperId}
                   translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage}
-                />
+                /> 
               </Suspense>
             </TabPane>
           </StyledTabs>
@@ -410,6 +413,17 @@ class ShipperDetailsTab extends Component {
             }
           />
 
+
+
+<AddShipperCostModal
+addLinkShipperCostModal={this.props.addLinkShipperCostModal}
+handleShipperCostModal={this.props.handleShipperCostModal}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            shipperId={this.props.shipper.shipperId}
+            
+          />
+
           <AddSupplierContactModal
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
@@ -429,6 +443,7 @@ const mapStateToProps = ({ shipper, auth, suppliers }) => ({
   addLinkShipperOrderConfigureModal: shipper.addLinkShipperOrderConfigureModal,
   addShipperSubscriptionConfigureModal:
     shipper.addShipperSubscriptionConfigureModal,
+    addLinkShipperCostModal:shipper.addLinkShipperCostModal,
   addShipperActivityModal: shipper.addShipperActivityModal,
   orderForGenerating: shipper.orderForGenerating,
   shipperShipperId: shipper.shipperDetailsByShipperId.shipperId,
@@ -441,6 +456,7 @@ const mapStateToProps = ({ shipper, auth, suppliers }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      handleShipperCostModal,
       handleLinkShipperOrderConfigureModal,
       handleShipperSubscriptionConfigureModal,
       handleShipperActivityModal,
