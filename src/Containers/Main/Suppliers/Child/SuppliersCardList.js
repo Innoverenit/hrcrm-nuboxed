@@ -83,19 +83,19 @@ function SuppliersCardList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex font-poppins text-xs justify-between w-[99%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-          <div className=" w-[11.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+          <div className=" w-[7.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
                {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[7.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
+            <div className=" w-[5.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
             {/* "Name" */}
             {props.translatedMenuItems[0]}
             </div>
-            <div className=" w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
+            <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
               {/* Phone  */}
                {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[2.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+            <div className=" w-[9.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Email */}
                {props.translatedMenuItems[2]}
                </div>
@@ -129,8 +129,8 @@ function SuppliersCardList(props) {
                     return (
                       <>
                         <div
-                          className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:flex-col  max-sm:h-24  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                          <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
+                          className="flex  rounded justify-between bg-white   items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:flex-col  max-sm:h-24  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                          <div class=" flex flex-row justify-between  w-wk max-sm:flex-col">
                             <div class="flex max-sm:justify-start items-center">
                             <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[9.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                             <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -166,10 +166,10 @@ function SuppliersCardList(props) {
                               </div>
                         
                             <div class="flex items-center max-sm:justify-between max-sm:w-wk ">
-                              <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
+                              <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[16.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
 
                                 <div class="  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                  {item.emailId}
+                                {item.emailId}
                                 </div>
 
                               </div>
@@ -181,7 +181,7 @@ function SuppliersCardList(props) {
                               
 </div>
                             </div>
-                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
+                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.1rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
                             <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs">
                            
                            <SuplierNotApprovalPublish
@@ -193,7 +193,7 @@ function SuppliersCardList(props) {
                          </div>
                           
                                    {/* {countryCode}                        */}
-                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
+                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                
                                 <SuplierPublishToggle
