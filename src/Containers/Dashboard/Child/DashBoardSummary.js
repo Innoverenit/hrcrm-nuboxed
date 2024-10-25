@@ -202,7 +202,7 @@ const DashBoardSummary=(props) =>{
 
          {/* Best Before */}
          <div class="flex flex-col ">
-        <h2 className="text-xl font-bold mb-4"> BEST BEFORE-(2) </h2>
+        <h2 className="text-xl font-bold font-poppins mb-4"> BEST BEFORE-(2) </h2>
         <div className="overflow-y-auto max-h-[78vh]">
       {props.fetchingMaterialBestBefore ? (
         <div className="flex justify-center items-center h-full">
@@ -248,7 +248,7 @@ const DashBoardSummary=(props) =>{
 
         {/* ORDER */}
         <div class="flex flex-col">
-        <h2 className="text-xl font-poppins font-bold mb-4">ORDER-(6)</h2>
+        <h2 className="text-xl font-bold font-poppins mb-4">ORDER-(6)</h2>
         {data.notInCrm.map((contact, index) => (
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ">
             <div className="flex justify-between">
