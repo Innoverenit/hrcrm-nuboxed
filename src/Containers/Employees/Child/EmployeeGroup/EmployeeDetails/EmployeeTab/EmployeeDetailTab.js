@@ -89,8 +89,8 @@ fetchMenuTranslations = async () => {
     "248", // 13  "Customer"
     "1152",  //  14 Requirement"
     "870", //  15 "Vendor"
-    "", //   16 Experience
-    "", //   17 Visa
+    "1697", //   16 Experience
+    "1696", //   17 Visa
     "85", // add
     ];
 

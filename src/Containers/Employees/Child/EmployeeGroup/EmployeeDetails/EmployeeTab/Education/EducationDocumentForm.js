@@ -45,13 +45,13 @@ fetchMenuTranslations = async () => {
     const itemsToTranslate = [
       "76",//0Type
       "1195",//1Education"
-      "",//2Course Name
+      "1692",//2Course Name
       "1179",//3 Course Type
       "986",//4"Full Time
       "987",// part time5
-      "",// Distance6
+      "1691",// Distance6
       "1180",// Specialization7
-      "",// University/Institute8
+      "1690",// University/Institute8
       "1175",// year of Passing9
      "1178", // Marks Secured"10
       "1183",// Marks Type"11

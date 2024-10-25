@@ -132,7 +132,7 @@ render() {
   return(
     <>
 
-<div class="flex flex-row">
+<div class="flex flex-row ">
 <div className="w-1/2">
     <div class=" flex flex-row w-full" >     
     <div class="flex flex-wrap w-full" >
@@ -369,7 +369,7 @@ render() {
      
       </div>
 </div>
-<div>
+<div className=" w-1/2">
     <CustomerTimeLineChart
      customer={this.props.customer}
     />

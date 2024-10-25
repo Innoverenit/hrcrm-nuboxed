@@ -40,7 +40,7 @@ fetchMenuTranslations = async () => {
   try {
     const itemsToTranslate = [
       "76",//0Type
-      "",//1Course Name
+      "1692",//1Course Name
       "15",//2"Organization"
       "1184",//3"Grade"
       "176",//4"Start Date"
