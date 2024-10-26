@@ -12,7 +12,7 @@ import {
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { handleEmployeeDrawerForAdmin } from "../../../EmployeeAction";
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const UserAdminForm =lazy(()=>import("../EmployeeDrawer/UserAdminForm"));
 const EmployeeJumpStartForAdmin =lazy(()=>import("./EmployeeJumpStartForAdmin"));
@@ -131,7 +131,7 @@ class EmployeeDrawerForAdmin extends Component {
 
                   <div class=" mt-1">
                     <Button type="primary" onClick={this.handleAddCustomModule}>
-                      <PlusOutlined type="plus" />
+                      <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" />
                     </Button>
                   </div>
                 </div>

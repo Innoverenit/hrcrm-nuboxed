@@ -538,7 +538,7 @@ function SuppliesTable(props) {
                                                                                                                                  
                      <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
                               <DescriptionIcon className="!text-icon"
-                      type="plus"
+                     
                       title={
                         <FormattedMessage
                           id="app.uploaddocument"

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Badge, Tooltip } from "antd";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
@@ -235,18 +235,13 @@ translatedMenuItems={this.props.translatedMenuItems}
                         title= {this.state.translatedMenuItems[7]}
                       >
                         {this.props.user.opportunityCreateInd === true && (
-                          <PlusOutlined
-                            type="plus"
-                            //tooltipTitle="Create"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                             tooltiptitle= {this.state.translatedMenuItems[7]}
                             onClick={() => {
                               handleCustomerOpportunityModal(true);
                             }}
-                            size="0.875em"
-                            style={{
-                              marginLeft: "0.3125em",
-                              verticalAlign: "center",
-                            }}
+                         
                           />
                         )}
                       </Tooltip>
@@ -282,8 +277,8 @@ translatedMenuItems={this.props.translatedMenuItems}
                         title= {this.state.translatedMenuItems[7]}
                       >
                         {this.props.user.contactCreateInd === true && (
-                          <PlusOutlined className="!text-icon ml-1"
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" 
+                          
                             //tooltipTitle="Create"
                             tooltiptitle= {this.state.translatedMenuItems[7]}
                             onClick={() => {
@@ -327,16 +322,11 @@ translatedMenuItems={this.props.translatedMenuItems}
                         title=
                          {this.state.translatedMenuItems[8]}
                       >
-                      <PlusOutlined
-                        type="plus"
-                        //tooltipTitle="Upload Document"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                     
                         tooltiptitle= {this.state.translatedMenuItems[8]}
                         onClick={() => handleDocumentUploadModal(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
+                       
                        
                       />
                      </Tooltip>
@@ -377,15 +367,12 @@ translatedMenuItems={this.props.translatedMenuItems}
                       <Tooltip //title="Create"
                         title= {this.state.translatedMenuItems[7]}
                       >
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         title= {this.state.translatedMenuItems[7]}
                         onClick={() => handleCallActivityModal(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
+                     
+                       
                       />
                       </Tooltip>
                     </>
@@ -455,15 +442,11 @@ translatedMenuItems={this.props.translatedMenuItems}
                         <Tooltip //title="Create"
                         title= {this.state.translatedMenuItems[7]}
                       >
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                
                         title= {this.state.translatedMenuItems[7]}
                         onClick={() => this.props.handleCampaignDrawer(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
+                       
                       />
                       </Tooltip>
                     </>

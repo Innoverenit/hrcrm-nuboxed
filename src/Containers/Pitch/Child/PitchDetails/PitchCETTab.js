@@ -4,10 +4,11 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import {handlePitchActivityModal,getPitchActivityRecords} from "../../PitchAction"
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { FormattedMessage } from "react-intl";
 import { Tooltip,Badge } from "antd";
 import { BundleLoader, } from "../../../../Components/Placeholder";
+
 
 const PitchTimeline =lazy(()=>import("../../../Pitch/Child/PitchTimeline"));
 const AddPitchActivityModal =lazy(()=>import("../PtchActivity/AddPitchActivityModal"));
@@ -56,8 +57,8 @@ const TabPane = StyledTabs.TabPane;
                         }
                       >
                        
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           
                           tooltiptitle={
                             <FormattedMessage
@@ -68,7 +69,7 @@ const TabPane = StyledTabs.TabPane;
                           onClick={() => {
                             handlePitchActivityModal(true);
                           }}
-                          size="0.875em"
+                        
                         />
                        
                       </Tooltip>

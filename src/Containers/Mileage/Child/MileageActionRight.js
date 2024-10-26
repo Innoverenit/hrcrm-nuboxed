@@ -38,7 +38,7 @@ class MileageActionRight extends React.Component {
             type="primary"
             onClick={() => this.props.handleMileageModal(true)}
           >
-            {/* <Icon type="plus" /> */}
+            {/* <Icon /> */}
 
            <DataSaverOnIcon/> Add
           </Button>

@@ -6,10 +6,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import {  getAllDialCodeList } from "../../../Containers/Auth/AuthAction";
 import { getCustomerData } from "../../Customer/CustomerAction";
 import { getContactData } from "../../Contact/ContactAction";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
-import { Button, Tooltip,Select,Switch,Input } from "antd";
+import { Button, Select,Switch,Input } from "antd";
 import { Formik, Form, Field, } from "formik";
 import * as Yup from "yup";
 import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
@@ -30,16 +27,11 @@ import dayjs from "dayjs";
 import { Listbox } from "@headlessui/react";
 import { getAllEmployeelist } from "../../Investor/InvestorAction";
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {base_url} from "../../../Config/Auth";
-import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 
-/**
- * yup validation scheme for creating a opportunity
- */
+
+
 const { Option } = Select; 
 const OpportunitySchema = Yup.object().shape({
   //opportunityName: Yup.string().required("Input needed!"),

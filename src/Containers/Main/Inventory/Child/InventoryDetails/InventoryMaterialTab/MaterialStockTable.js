@@ -10,7 +10,7 @@ import { getMaterialUnitsData, handleSTockItemModal, handleStockUsedDrawer, trna
 import StockItemClickModal from "./StockItemClickModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TheStockUsedDrawer from "./TheStockUsedDrawer";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 
 const { Option } = Select;
@@ -130,7 +130,8 @@ const GrnListOfPO = (props) => {
                                         <div class="flex">
                                             <div className=" flex md:w-[2.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs  font-semibold  font-poppins ">
-                                                    <PlusOutlined
+                                          
+ <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                                                         onClick={() => {
                                                             handleItemHistory()
                                                             handleItemClick(item)

@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddIcon from '@mui/icons-material/Add';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Tooltip, Badge, Button } from "antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { StyledTabs } from "../../../Components/UI/Antd";
@@ -135,7 +135,8 @@ function CommerceTab(props) {
                                  
                                 {/* {activeKey === "2" && (
                                     <Tooltip title="Add Quotation">
-                                        <AddIcon
+                                        <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
                                             fontSize="small"
                                             onClick={() => {
                                                  props.quatationDrawer(true);
@@ -166,8 +167,9 @@ function CommerceTab(props) {
                                 {/* {activeKey === "3" && (
                                     <>
                                         <Tooltip title="Add invoice">
-                                            <AddIcon
-                                                type="plus"
+                                            <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                                               
                                                 
                                                 onClick={() => {
                                                    props.invoiceDrawer(true);

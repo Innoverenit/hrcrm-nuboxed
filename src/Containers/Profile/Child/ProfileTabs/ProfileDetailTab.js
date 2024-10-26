@@ -10,8 +10,7 @@ import { handlePersonalModal } from "../../ProfileAction";
 import { handlePersonalDetailsModal } from "../../ProfileAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { MailOutlined, PlusOutlined, 
-} from '@ant-design/icons';
+import { MailOutlined} from '@ant-design/icons';
 import CommitIcon from '@mui/icons-material/Commit';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import SchoolIcon from '@mui/icons-material/School';
@@ -22,6 +21,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
 import LeakAddIcon from '@mui/icons-material/LeakAdd';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const PerformanceTable = lazy(() => import("./Performance/PerformanceTable"));
 const LinkAccountForm = lazy(() => import("././LinkAccount/LinkAccountForm"));
@@ -35,7 +35,6 @@ const AddPersonalDetailsModal = lazy(() => import("./ProfileBoost/PersonalDetail
 const Signature = lazy(() => import("./ProfileBoost/Signature"));
 const EmailTable = lazy(() => import("./ProfileBoost/Email/EmailTable"));
 const AddEmailModal = lazy(() => import("../ProfileTabs/AddEmailModal"));
-
 const BankTable = lazy(() => import("./ProfileBoost/Bank/BankTable"));
 const EducationTable = lazy(() =>
   import("./ProfileBoost/Education/EducationTable")
@@ -197,12 +196,10 @@ class ProfileDetailTab extends Component {
                   </span>
                   {activeKey === "2" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         onClick={() => handleTrainingModal(true)}
-                        size="1em"
-                        style={{ marginLeft: 10, verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -230,15 +227,11 @@ class ProfileDetailTab extends Component {
                         <></>
                       ) : (
                           <>
-                            <PlusOutlined
-                              type="plus"
+                             <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                             
                               tooltipTitle="Add"
                               onClick={() => handleEducationModal(true)}
-                              size="1em"
-                              style={{
-                                marginLeft: 10,
-                                verticalAlign: "center",
-                              }}
+                             
                             />
                           </>
                         )}
@@ -267,12 +260,10 @@ class ProfileDetailTab extends Component {
                   </span>
                   {activeKey === "4" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         onClick={() => handleEmploymentModal(true)}
-                        size="1em"
-                        style={{ marginLeft: 10, verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -298,12 +289,11 @@ class ProfileDetailTab extends Component {
                   </span>
                   {activeKey === "5" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         onClick={() => handlePersonalModal(true)}
-                        size="1em"
-                        style={{ marginLeft: 10, verticalAlign: "center" }}
+                 
                       />
                     </>
                   )}
@@ -329,12 +319,11 @@ class ProfileDetailTab extends Component {
                   </span>
                   {activeKey === "6" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         onClick={() => handleBankModal(true)}
-                        size="1em"
-                        style={{ marginLeft: 10, verticalAlign: "center" }}
+              
                       />
                     </>
                   )}
@@ -359,12 +348,10 @@ class ProfileDetailTab extends Component {
                   </span>
                   {activeKey === "7" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         onClick={() => handlePersonalDetailsModal(true)}
-                        size="1em"
-                        style={{ marginLeft: 10, verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -407,17 +394,13 @@ class ProfileDetailTab extends Component {
                   {activeKey === "9" && (
                     <>
                       <>
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Add"
                           onClick={() =>
                             this.props.handleEmailProfileModal(true) 
                           }
-                          size="1em"
-                          style={{
-                            marginLeft: 10,
-                            verticalAlign: "center",
-                          }}
+                         
                         />
                       </>
                     </>
@@ -444,8 +427,8 @@ class ProfileDetailTab extends Component {
                   {/* {activeKey === "9" && (
                     <>
                       <>
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Add"
                           onClick={() =>
                             this.props.handleEmailProfileModal(true) 

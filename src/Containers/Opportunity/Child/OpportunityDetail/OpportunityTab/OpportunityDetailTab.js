@@ -14,8 +14,7 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { LinkOutlined, PlusOutlined, 
-} from '@ant-design/icons';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { handleContactModal,handleLinkContactModal } from "../../../../Contact/ContactAction";
 import RecruitmentClosedTable from "../OpportunityTab/RecruitmentClosedTable"
 import {handleReactSpeechModal} from "../../../OpportunityAction"
@@ -201,13 +200,13 @@ return  <BundleLoader />
                      
                         <Tooltip title="Add Requirement">
                         {user.userType !== "USER" && user.department !== "Recruiter" && ( 
-                          <PlusOutlined className="ml-[0.125rem flex items-center ]"
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" 
+                           
                             tooltipTitle="Add Requirement"
                             onClick={() =>
                               this.props.handleRecruitModal(true)
                             }
-                            size="0.875em"                         
+                                               
                           />
                         )}
                           </Tooltip>                                        
@@ -322,16 +321,15 @@ return  <BundleLoader />
                         />}
                       >
                          {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Create"
                           onClick={() => {
                             this.handleContactPopoverVisibleChange();
                             //handleContactModal(true);
                             handleCustomerContactModal(true);
                           }}
-                          size="0.875em"
-                          style={{ verticalAlign: "center", marginLeft: "0.125em" }}
+                    
                         />
                          {/* )} */}
                          
@@ -386,8 +384,8 @@ return  <BundleLoader />
                           defaultMessage="Upload Document"
                         />}
                       >
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltiptitle={<FormattedMessage
                             id="app.uploaddocument"
                             defaultMessage="Upload Document"
@@ -395,8 +393,6 @@ return  <BundleLoader />
                           onClick={() =>
                             handleDocumentUploadModal(true)
                           }
-                          size="0.875em"
-                          style={{ marginLeft: "0.25em", verticalAlign: "center" }}
                         />
                       </Tooltip>
                     </>

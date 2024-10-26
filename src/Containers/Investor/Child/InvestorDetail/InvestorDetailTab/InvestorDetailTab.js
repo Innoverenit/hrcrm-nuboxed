@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { Badge, Tooltip } from "antd";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import { FormattedMessage } from "react-intl";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -149,8 +149,12 @@ const InvestorDetailTab = (props) => {
                       }
                     >
                       {/* {this.props.user.contactCreateInd === true && ( */}
-                        <PlusOutlined
-                          type="plus"
+                      
+                        
+                 
+                    
+                   <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           //tooltipTitle="Create"
                           tooltiptitle={
                             <FormattedMessage
@@ -162,7 +166,7 @@ const InvestorDetailTab = (props) => {
                            // handleInvestorContactModal(true);
                            handleCustomerContactModal(true);
                           }}
-                          size="0.875em"
+                      
                         />
                       {/* )} */}
                     </Tooltip>
@@ -206,8 +210,10 @@ const InvestorDetailTab = (props) => {
                 </span>
                 {activeKey === "2" && (
                   <>
-                    <PlusOutlined
-                      type="plus"
+                  
+                  
+ <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                     
                       title={
                         <FormattedMessage
                           id="app.uploaddocument"
@@ -215,11 +221,7 @@ const InvestorDetailTab = (props) => {
                         />
                       }
                       onClick={() => handleDocumentUploadModal(true)}
-                      size="0.875em"
-                      style={{
-                        marginLeft: "0.3125em",
-                        verticalAlign: "center",
-                      }}
+                    
                     />
                   </>
                 )}
@@ -250,8 +252,9 @@ const InvestorDetailTab = (props) => {
                
                 {activeKey === "3" && (
                   <>
-                    <PlusOutlined
-                      type="plus"
+                    
+ <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                     
                       title={
                         <FormattedMessage
                           id="app.create"
@@ -259,11 +262,7 @@ const InvestorDetailTab = (props) => {
                         />
                       }
                        onClick={() => handleActivityModal(true)}
-                      size="0.875em"
-                      style={{
-                        marginLeft: "0.3125em",
-                        verticalAlign: "center",
-                      }}
+                     
                     />
                   </>
                 )}
@@ -299,8 +298,9 @@ investorDetails={props.investorDetails}
                         />
                       }
                     >
-                    <PlusOutlined
-                      type="plus"
+                    
+ <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                     
                       title={
                         <FormattedMessage
                           id="app.create"
@@ -308,7 +308,7 @@ investorDetails={props.investorDetails}
                         />
                       }
                        onClick={() => handleDealModal(true)}
-                      size="0.875em"
+                     
                      
                     />
                     </Tooltip>
@@ -373,8 +373,8 @@ investorDetails={props.investorDetails}
                 </span>
                 {activeKey === "7" && (
                   <>
-                    <PlusOutlined
-                      type="plus"
+                     <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                     
                       title={
                         <FormattedMessage
                           id="app.create"

@@ -57,7 +57,7 @@ class DraggableTabs extends Component {
                       />}
                     >
                       <Icon
-                        type="plus"
+                       
                         //tooltipTitle="Create"
                         tooltiptitle={<FormattedMessage
                           id="app.create"
@@ -178,7 +178,7 @@ class DraggableTabs extends Component {
                     }
                   >
                     <Icon
-                      type="plus"
+                     
                       //  tooltipTitle="Tag Document"
                       tooltiptitle={<FormattedMessage
                         id="app.tagdocument"
@@ -230,7 +230,7 @@ class DraggableTabs extends Component {
 
                     >
                       <Icon
-                        type="plus"
+                       
                         // tooltipTitle="Add Requirement"
                         tooltiptitle={<FormattedMessage
                           id="app.addrequirement"

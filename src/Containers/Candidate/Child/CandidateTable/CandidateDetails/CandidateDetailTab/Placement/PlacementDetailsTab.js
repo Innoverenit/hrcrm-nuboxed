@@ -1,25 +1,14 @@
-import React, { Component, lazy, Suspense } from "react";
-import { Icon } from "antd";
-// import { FileOutlined, PlusOutlined} from '@ant-design/icons';
+import React, { Component, Suspense } from "react";
 import { StyledTabs } from "../../../../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { handleCandidateEducationModal,handleCandidateTrainingModal,handleCandidateEmploymentModal } from "../../../../../../Candidate/CandidateAction";
 import { ActionIcon } from "../../../../../../../Components/Utils";
 import { TabsWrapper } from "../../../../../../../Components/UI/Layout";
-//  import LinkedDocuments from "../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Document/LinkedDocuments";
-
 import RemarksTable from "../../../../../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/RemarksTable";
  import { handleRemarksModal, } from "../../../../../../Opportunity/OpportunityAction";
 import AddRemarksModal from "../../../../../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/AddRemarksModal";
-// import AddDocumentModal from "../Child/AddDocumentModal";
-import { Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
-
-
 
 const TabPane = StyledTabs.TabPane;
-
 class PlacementDetailsTab extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +43,7 @@ class PlacementDetailsTab extends Component {
                         />} */}
                       
                         <ActionIcon
-                          type="plus"
+                         
                            tooltipTitle="Tag Remarks"
                            onClick={() => handleRemarksModal(true)}
                           size="0.875em"

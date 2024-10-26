@@ -300,12 +300,12 @@ const exportPDFAnnexure = async () => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex  font-bold  max-sm:w-full">
+                    <div className=" flex    max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[9.43rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
+                        <div class="w-[9.43rem] font-semibold items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
                           <Badge size="small" count={item.count}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] ml-gap font-bold text-xs "
+                              class="underline cursor-pointer text-[#1890ff] ml-gap  text-xs "
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -323,7 +323,7 @@ const exportPDFAnnexure = async () => {
                               ) : null}
                         </div>
                         {props.user.accountInfoInd?
-                        <div class="max-sm:w-full md:w-[11.02rem] font-bold text-xs  font-poppins items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
+                        <div class="max-sm:w-full md:w-[11.02rem]  text-xs  font-poppins items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between ml-gap flex md:text-xs">
                               {item.distributorName}
@@ -554,12 +554,12 @@ const exportPDFAnnexure = async () => {
                                                             </div>
                           </Tooltip>
                     </div>
-                    <div className=" flex  font-bold  max-sm:w-full">
+                    <div className=" flex    max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[9.43rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
+                        <div class="w-[9.43rem] font-semibold  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
                           <Badge size="small" count={item.count}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] ml-gap font-bold text-xs "
+                              class="underline cursor-pointer text-[#1890ff] ml-gap font-semi-bold text-xs "
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -577,7 +577,7 @@ const exportPDFAnnexure = async () => {
                               ) : null}
                         </div>
                         {props.user.accountInfoInd?
-                        <div class="max-sm:w-full md:w-[11.02rem] font-bold  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
+                        <div class="max-sm:w-full md:w-[11.02rem] font-poppins  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex">
                           <Tooltip>
                             <div class="max-sm:w-full justify-between ml-gap flex md:text-xs">
                               {item.distributorName}

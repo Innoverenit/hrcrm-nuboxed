@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddIcon from '@mui/icons-material/Add';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
 import { addCarDetails,handleOpenNewModal } from "../../AccountAction"
@@ -69,7 +69,8 @@ function AddPhoneExcel(props) {
                                             component={DraggableUpload1}
                                         />
                                     </div>
-                                    <AddIcon
+                                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
                                 onClick={() => {
                                     props.handleOpenNewModal(true);
                                 }}

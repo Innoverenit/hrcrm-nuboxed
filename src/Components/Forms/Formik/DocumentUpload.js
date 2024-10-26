@@ -1,9 +1,8 @@
 import React from 'react';
-import { Icon } from 'antd';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledUpload, StyledModal } from '../../UI/Antd';
 import { base_url } from '../../../Config/Auth';
 import axios from 'axios';
-import { PlusOutlined } from '@ant-design/icons';
 const token = sessionStorage.getItem('token');
 
 class DocumentUpload extends React.Component {
@@ -49,7 +48,7 @@ class DocumentUpload extends React.Component {
     const { previewVisible, previewImage, fileList } = this.state;
     const uploadButton = (
       <div>
-      <PlusOutlined type="plus" />
+      <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" />
         <div className="ant-upload-text">Upload</div>
       </div>
     );

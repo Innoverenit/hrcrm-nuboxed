@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../Components/UI/Antd";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import {handleOrganizationDocumentDrawer} from "../Auth/AuthAction"
 import { TabsWrapper } from "../../Components/UI/Layout";
 import { connect } from "react-redux";
@@ -44,8 +44,8 @@ class OrganizationDocumentTab extends Component {
                     <span class=" ml-1">Document</span>
                     {(activeKey === "1" && this.props.user.repositoryCreateInd === true || this.props.user.role === "ADMIN") && (
                     <>
-                       <PlusOutlined className=" ml-1  flex items-center text-sm"
-                        type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                          onClick={() => this.props.handleOrganizationDocumentDrawer(true)}
                      

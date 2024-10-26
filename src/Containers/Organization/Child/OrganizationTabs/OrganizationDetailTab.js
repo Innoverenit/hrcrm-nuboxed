@@ -1,8 +1,9 @@
 import React, { Component,lazy,  Suspense } from "react";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { MailOutlined, PlusOutlined, 
+import { MailOutlined,
 } from '@ant-design/icons';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { handleEmailModal,handleWebsiteModal } from "../../../Settings/SettingsAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -13,6 +14,7 @@ const AddWebsiteModal = lazy(() => import('../Website/AddWebsiteModal'));
 const EmailTable = lazy(() => import('../Email/EmailTable'));
 const IndustryForm = lazy(() => import('./IndustryForm'));
 const SignatureView = lazy(() => import('./SignatureView'));
+
 
 const TabPane = StyledTabs.TabPane;
 
@@ -100,17 +102,13 @@ class OrganizationDetailTab extends Component {
                   {activeKey === "2" && (
                     <>
                       <>
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Configure"
                           onClick={() =>
                             this.props.handleEmailModal(true)
                           }
-                          size="1em"
-                          style={{
-                            marginLeft: 10,
-                            verticalAlign: "center",
-                          }}
+                     
                         />
                       </>
                     </>
@@ -151,8 +149,8 @@ class OrganizationDetailTab extends Component {
                   {activeKey === "3" && (
                     <>
                       <>
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Configure"
                           handleIconClick={() =>
                             this.props.handleWebsiteModal(true)

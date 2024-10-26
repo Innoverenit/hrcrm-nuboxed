@@ -52,8 +52,8 @@ console.log(this.props.rowdata)
                         }
                       >
                       
-                          <PlusOutlined
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                           
                            
                             tooltiptitle={
                               <FormattedMessage
@@ -94,8 +94,8 @@ console.log(this.props.rowdata)
                   </span>
                   {/* {activeKey === "2" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         title={
                           <FormattedMessage
                             id="app.uploaddocument"

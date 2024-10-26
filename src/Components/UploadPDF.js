@@ -5,7 +5,7 @@ import { Icon, message } from "antd";
 import axios from "axios";
 import { StyledModal, StyledUpload } from "./UI/Antd";
 import { base_url } from "../Config/Auth";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 const token = sessionStorage.getItem("token");
 
 class UploadPDF extends React.Component {
@@ -67,7 +67,7 @@ class UploadPDF extends React.Component {
     const { previewVisible, previewImage, fileList } = this.state;
     const uploadButton = (
       <div>
-        <PlusOutlined type="plus" />
+        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" />
         <div className="ant-upload-text">Upload</div>
       </div>
     );

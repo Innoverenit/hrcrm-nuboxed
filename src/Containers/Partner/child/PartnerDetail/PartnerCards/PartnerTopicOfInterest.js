@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tag, Input, Tooltip } from "antd";
 import { ViewEditCard, Title } from "../../../../../Components/UI/Elements";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import {
   addTopicByPartnerId,
   getTopicsByPartnerId,
   deleteTopicByPartnerId,
 } from "../../../PartnerAction";
-import { PlusOutlined,
-} from '@ant-design/icons';
 class PartnerTopicOfInterest extends React.Component {
   constructor(props) {
     super(props);
@@ -124,7 +123,7 @@ class PartnerTopicOfInterest extends React.Component {
                   visible={this.props.topicsByPartnerId.length !== 30}
                   style={{ background: "#fff", borderStyle: "dashed" }}
                 >
-                  <PlusOutlined type="plus" /> Skill
+                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Skill
                 </Tag>
               )}
             </div>

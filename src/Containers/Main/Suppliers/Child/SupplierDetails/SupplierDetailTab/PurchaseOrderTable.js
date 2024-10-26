@@ -1,7 +1,6 @@
 import React, { useEffect, useState,lazy, Suspense,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import { DatePicker } from "antd";
 import {
     getPurchaseSuppliersList,
@@ -52,15 +51,14 @@ const timerRef = useRef(null);
    
           // "PO", //0
           "77",   // "Owner",//0
-          "658",  // "Location",//2
-           "772", // "Delivery",//3
-           "73", // "Contact",//4
-            "241",// "Currency ",//5
-           "218", // "Value",//6
-           "1246" //update 7
-          //  "",//Terms and consdtions
-            
-
+          "658",  // "Location",//1
+           "772", // "Delivery",//2
+           "73", // "Contact",//3
+            "241",// "Currency ",//4
+           "218", // "Value",//5
+           "1246" ,//update 6
+            "1438",//Move To Inventory 7
+            "1439",//Terms and consdtions 
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -232,15 +230,12 @@ const timerRef = useRef(null);
         value={currentData}
         />
       </div>
-                <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[99%] mt-3  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=" w-[13.1rem]  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
-                      <FormattedMessage
-                                id="app.po"
-                                defaultMessage="PO ID"
-                            />
+                        PO ID
                             </div>
-                        <div className=" w-[10.1rem]   old max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                        <div className=" w-[10.1rem] text-[#00A2E8] text-base   max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
                         {translatedMenuItems[0]}    {/* Created" /> */}
                         </div>
                         <div className=" w-[13.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
@@ -275,7 +270,7 @@ const timerRef = useRef(null);
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded justify-between mt-1 bg-white h-8 p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
+                                            <div className="flex rounded justify-between py-1  mt-1 bg-white scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                     <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9]  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="ml-gap underline font-bold max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
@@ -296,7 +291,7 @@ const timerRef = useRef(null);
                                                         </div>
                                                     </div>
                                                     <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs h-8  font-poppins flex items-center">
                                                             <MultiAvatar
                                                                 primaryTitle={item.userName}
                                                                 imgWidth={"1.8rem"}
@@ -408,10 +403,7 @@ const timerRef = useRef(null);
                                                                 }}
                                                             >
                                                               <ShoppingCartCheckoutIcon className="!text-icon"/>
-                                                                <FormattedMessage
-                                                                    id="app.movetoinventory"
-                                                                    defaultMessage="Move To Inventory"
-                                                                />
+                                                              {translatedMenuItems[7]} 
                                                             </Button> : null}
                                                         </div>
                                                     </div>

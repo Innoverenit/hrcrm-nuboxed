@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
 import PaymentIcon from '@mui/icons-material/Payment';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
@@ -165,12 +165,9 @@ fetchMenuTranslations = async () => {
                   </span>
                   {activeKey === "2" && user.userCreateInd === true &&(
                     <>
-                       <PlusOutlined
-                        type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleEducationModal(true)}
-                        size="14px"
-                        style={{ marginLeft: "0.25", verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -198,12 +195,9 @@ fetchMenuTranslations = async () => {
                   </span>
                   {activeKey === "3" &&  user.userCreateInd === true && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleTrainingModal(true)}
-                        size="14px"
-                        style={{ marginLeft:"0.25", verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -233,12 +227,11 @@ fetchMenuTranslations = async () => {
                   </span>
                   {activeKey === "4" &&  user.userCreateInd === true &&(
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleEmploymentModal(true)}
-                        size="14px"
-                        style={{ marginLeft:"0.25em", verticalAlign: "center" }}
+                      
                       />
                     </>
                   )}
@@ -270,13 +263,11 @@ fetchMenuTranslations = async () => {
                   </span>
                   {activeKey === "5" && user.userCreateInd === true && (
                     <>
-                       <PlusOutlined
-                        type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handlePersonalModal(true)}
-                        size="14px"
-                        class="ml-1"
-                        style={{ verticalAlign: "center" }}
+                       
                       />
                     </>
                   )}
@@ -302,12 +293,10 @@ fetchMenuTranslations = async () => {
                   </span>
                   {activeKey === "6" && user.userCreateInd === true && (
                     <>
-                       <PlusOutlined
-                        type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleBankModal(true)}
-                        size="14px"
-                        style={{ marginLeft: "0.25em", verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -333,12 +322,10 @@ fetchMenuTranslations = async () => {
                   </span>
                   {activeKey === "7" && user.userCreateInd === true && (
                     <>
-                       <PlusOutlined
-                        type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handlePersonalDetailsModal(true)}
-                        size="14px"
-                        style={{ marginLeft:"0.25em", verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -386,12 +373,11 @@ fetchMenuTranslations = async () => {
                   </span>
                   {activeKey === "9" && user.userCreateInd === true && (
                     <>
-                       <PlusOutlined
-                        type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleSalaryModal(true)}
-                        size="14px"
-                        style={{ marginLeft: "0.25em", verticalAlign: "center" }}
+            
                       />
                     </>
                   )}
@@ -420,8 +406,8 @@ fetchMenuTranslations = async () => {
                   </span>
                   {/* {activeKey === "9" && user.userCreateInd === true && (
                     <>
-                        <PlusOutlined
-                        type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Upload Document"
                         onClick={() => handleDocumentUploadModal(true)}
                         size="14px"
@@ -458,12 +444,10 @@ fetchMenuTranslations = async () => {
                   </span>
                   {activeKey === "11" && user.userCreateInd === true && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleContractModal(true)}
-                        size="14px"
-                        style={{ marginLeft:"0.25em", verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -519,7 +503,7 @@ fetchMenuTranslations = async () => {
                   {activeKey === "13" && (
                     <>
                       {/* <ActionIcon
-                        type="plus"
+                       
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         handleIconClick={() => handleTalentModal(true)}
                         size="14px"
@@ -547,7 +531,7 @@ fetchMenuTranslations = async () => {
                   {activeKey === "14" && (
                     <>
                       {/* <ActionIcon
-                        type="plus"
+                       
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         handleIconClick={() => handleTalentModal(true)}
                         size="14px"
@@ -600,7 +584,7 @@ fetchMenuTranslations = async () => {
                   {activeKey === "16" && (
                     <>
                       {/* <ActionIcon
-                        type="plus"
+                       
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         handleIconClick={() => handleTalentModal(true)}
                         size="14px"
@@ -647,12 +631,10 @@ fetchMenuTranslations = async () => {
                   </span>
                   {activeKey === "18" && user.userCreateInd === true && (
                     <>
-                       <PlusOutlined
-                        type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle={this.state.translatedMenuItems[18]}
                         onClick={() => handleVisaModal(true)}
-                        size="14px"
-                        style={{ marginLeft: "0.25", verticalAlign: "center" }}
                       />
                     </>
                   )}

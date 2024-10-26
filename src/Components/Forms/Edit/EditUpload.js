@@ -1,10 +1,11 @@
 import React from "react";
-import { Icon, message } from "antd";
+import { message } from "antd";
 import { StyledUpload, StyledModal } from "../../UI/Antd";
 import { base_url } from "../../../Config/Auth";
 import axios from "axios";
 import { ProgressiveImage } from "../../Utils";
-import { FormOutlined, PlusOutlined } from "@ant-design/icons";
+import { FormOutlined,  } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 const token = sessionStorage.getItem("token");
 
 class EditUpload extends React.Component {
@@ -102,7 +103,7 @@ class EditUpload extends React.Component {
           )
       ) : (
           <div>
-            <PlusOutlined type="plus" />
+            <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" />
             <div className="ant-upload-text">Upload</div>
           </div>
         );

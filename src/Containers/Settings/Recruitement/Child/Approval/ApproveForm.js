@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { Switch, Select, Form, Button, Input} from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
 import { connect } from "react-redux";
 import { addApprove } from "../../../SettingsAction";
 import { bindActionCreators } from "redux";
 import { getDepartments } from "../../../Department/DepartmentAction";
 import { base_url } from '../../../../../Config/Auth';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const { Option } = Select;
 
@@ -192,7 +192,7 @@ const ApprovalSwitchComponent = (props) => {
 
           <div className=' flex  mt-12 justify-start'>
           <div className="ml-2 text-xs font-bold font-poppins w-[10vw]">
-              <Button type="dashed" onClick={addDepartmentField} icon={<PlusOutlined />}  >
+              <Button type="dashed" onClick={addDepartmentField} icon={ <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" />}  >
                 Add Level
               </Button>
             </div>

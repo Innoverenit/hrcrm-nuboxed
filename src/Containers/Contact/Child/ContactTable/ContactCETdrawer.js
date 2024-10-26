@@ -7,7 +7,7 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 import { Badge, Tooltip } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { handleCETactivityContactModal,
   // getContactActivityRecords
 } from "../../ContactAction";

@@ -7,13 +7,12 @@ import {
   getLibrarys,
 } from "../../../../../Settings/Library/LibraryAction";
 import { ViewEditCard, } from "../../../../../../Components/UI/Elements";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import {
   addTopicByUserId,
   getTopicsByUserId,
   deleteTopicByUserId,
 } from "../../../../../Employees/EmployeeAction";
-import { PlusOutlined,
-} from '@ant-design/icons';
 const EmployeeSelect = lazy(() => import("./EmployeeSelect"));
 class EmployeeTopicOfInterest extends React.Component {
   constructor(props) {
@@ -161,7 +160,7 @@ class EmployeeTopicOfInterest extends React.Component {
                   visible={this.props.topicsByUserId.length !== 30}
                   style={{ background: "#fff", borderStyle: "dashed" }}
                 >
-                  <PlusOutlined type="plus" /> Skill
+                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Skill
                 </Tag>
               )}
             </div>

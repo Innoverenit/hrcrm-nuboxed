@@ -287,10 +287,10 @@ const exportPDFAnnexure = async () => {
                                                     </div>
                     <div className=" flex  items-center w-wk   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                        <div class="w-[9.43rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ">
+                        <div class="w-[9.43rem] font-semibold items-center justify-start ml-gap bg-[#eef2f9] h-8 ">
                           <Badge size="small" count={item.productNum}>
                             <span
-                              class="underline cursor-pointer text-[#1890ff] text-xs font-bold"
+                              class="underline cursor-pointer text-[#1890ff] ml-gap items-center text-xs "
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                 props.handleOrderDetailsModal(true);
@@ -310,9 +310,9 @@ const exportPDFAnnexure = async () => {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[11.02rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ">
+                        <div class="flex max-sm:w-full md:w-[11.02rem]  font-poppins items-center justify-start ml-gap bg-[#eef2f9] h-8 ">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
+                            <div class="max-sm:w-full justify-between ml-gap flex md:flex-col text-xs">
                               {item.distributorName}
 
                             </div>
@@ -592,9 +592,9 @@ const exportPDFAnnexure = async () => {
                         </div>
                       
 
-                        <div class="max-sm:w-full md:w-[9.02rem] h-8 items-center justify-center ml-gap bg-[#eef2f9]">
+                        <div class="flex max-sm:w-full md:w-[9.02rem] h-8 items-center justify-start font-poppins ml-gap bg-[#eef2f9]">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:flex-col text-xs">
+                            <div class="max-sm:w-full justify-between ml-gap flex md:flex-col text-xs">
                               {item.distributorName}
 
                             </div>

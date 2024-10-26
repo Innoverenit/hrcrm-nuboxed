@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip, Select } from "antd";
 import AlarmOnIcon from '@mui/icons-material/AlarmOn';
-import AddchartIcon from "@mui/icons-material/Addchart";
 import DoNotDisturbOnTotalSilenceIcon from '@mui/icons-material/DoNotDisturbOnTotalSilence';
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
@@ -531,15 +530,12 @@ if (loading) {
                                                    
 
       <div class=" items-center justify-center  bg-[#eef2f9] h-8  flex">
-        <PlusOutlined
-                        type="plus"
-                        // tooltipTitle="Upload Document"
+         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                     
                         tooltiptitle={translatedMenuItems[16]}
                         onClick={() => {
                           handleSetCurrentContactId(item);
-                          handleHospitalUploadModal(true)}}
-                        size="14px"
-                        style={{ marginLeft: "0.25em", verticalAlign: "center" }}
+                          handleHospitalUploadModal(true)}}                          
                       /></div>
         {user.contactUpdateInd === true &&  user.crmInd === true && (
       <div class=" items-center justify-center  bg-[#eef2f9] h-8  flex">

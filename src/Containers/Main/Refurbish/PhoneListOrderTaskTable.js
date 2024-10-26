@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
-import AddIcon from '@mui/icons-material/Add';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { bindActionCreators } from "redux";
 import { getTaskByPhoneId ,handleAllSpareProcess} from "./RefurbishAction";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -27,7 +27,8 @@ if (props.fetchingTaskByPhoneId) {
                                 {item.taskName}
                             </div>
                             <div>
-                            <AddIcon
+                            <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
                                   onClick={() => {
                                     props.handleAllSpareProcess(true);
                                     handleSetNewData(item);

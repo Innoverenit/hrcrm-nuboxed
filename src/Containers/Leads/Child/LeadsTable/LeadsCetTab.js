@@ -5,7 +5,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { handleLeadCallModal,getLeadsActivityRecords } from "../../LeadsAction";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Tooltip,Badge } from "antd";
 
 const AddCallTaskModal = lazy(() => import("./AddCallTaskModal"));
@@ -75,8 +75,9 @@ const TabPane = StyledTabs.TabPane;
                         title={translatedMenuItems[1]}
                       >
                        &nbsp;
-                        <PlusOutlined className="text-blue-600 !text-icon"
-                          type="plus"                    
+                        
+ <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                                             
                           tooltiptitle={translatedMenuItems[1]}
                           onClick={() => {
                             handleLeadCallModal(true);

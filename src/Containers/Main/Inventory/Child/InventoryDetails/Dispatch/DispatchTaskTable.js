@@ -1,7 +1,7 @@
 import React, { useState, useEffect, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddIcon from '@mui/icons-material/Add';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { getPhoneTasklist, receiveTaskByDispatch } from "../../../../Account/AccountAction";
 import { Checkbox, Switch, Tooltip } from "antd";
 import { handleSpareProcess } from "../../../../Refurbish/RefurbishAction"
@@ -108,7 +108,8 @@ function DispatchTaskTable(props) {
                         </div>
                         : null}
                          <Tooltip title="Spare">
-                                <AddIcon
+                                <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
                                   onClick={() => {
                                     props.handleSpareProcess(true);
                                    // handleSetNewData(item);  

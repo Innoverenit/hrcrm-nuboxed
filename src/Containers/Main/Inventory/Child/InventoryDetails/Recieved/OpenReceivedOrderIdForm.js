@@ -19,13 +19,11 @@ import {
   ClearReducerData
 } from "../../../InventoryAction";
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
-import { EditOutlined, FileDoneOutlined, PlusOutlined } from "@ant-design/icons";
+import { EditOutlined, FileDoneOutlined,  } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import ReceiveValidationToggle from "./ReceiveValidationToggle";
 import dayjs from "dayjs";
-import AccountPhoneTaskTable from "../../../../Account/AccountDetailsTab/AccountOrderTab/AccountPhoneTaskTable";
-import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ReceivedPhoneModal from "./ReceivedPhoneModal";
 import ReactToPrint from "react-to-print";
 import { base_url2 } from "../../../../../../Config/Auth";
@@ -37,6 +35,7 @@ import InventoryExpandListModal from "./InventoryExpandListModal";
 import NodataFoundPageAccount from "../../../../Account/AccountDetailsTab/AccountOrderTab/NodataFoundPageAccount";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const { Search } = Input;
 
@@ -378,7 +377,7 @@ console.log(selectedItems)
                       </div>
                         <div className=" flex   border-l-2  h-8 border-green-500 bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs  font-poppins">
-                            <PlusOutlined onClick={() => {
+                             <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" onClick={() => {
                               handleMismatchItem();
                               handleSetParticularOrderData(item);
                             }

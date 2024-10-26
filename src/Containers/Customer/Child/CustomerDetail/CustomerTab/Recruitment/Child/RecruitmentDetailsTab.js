@@ -1,18 +1,12 @@
-import React, { Component, lazy, Suspense } from "react";
-import { Icon } from "antd";
-// import { FileOutlined, PlusOutlined} from '@ant-design/icons';
+import React, { Component,  Suspense } from "react";
 import { StyledTabs } from "../../../../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import { ActionIcon } from "../../../../../../../Components/Utils";
 import { TabsWrapper } from "../../../../../../../Components/UI/Layout";
-// import LinkContactDocumentTable from "../../../../../../Contact/Child/ContactDetail/ContactTab/LinkContactDocumentTable";
 import RemarksTable from "../Child/RemarksTable";
-// import { handleRemarksModal } from "../../../../../OpportunityAction";
-import AddRemarksModal from "../Child/AddRemarksModal";
 import { Tooltip } from "antd";
-import { FileOutlined, PlusOutlined } from "@ant-design/icons";
+import { FileOutlined,  } from "@ant-design/icons";
 
 const TabPane = StyledTabs.TabPane;
 
@@ -44,16 +38,14 @@ class RecruitmentDetailsTab extends Component {
                           defaultMessage="Tag Remarks"
                         />}
                       >
-                        <PlusOutlined
-                          type="plus"
-                          //tooltipTitle="Tag Remarks"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                     
                           tooltiptitle={<FormattedMessage
                             id="app.tagremarks"
                             defaultMessage="Tag Remarks"
                           />}
                           // handleIconClick={() => handleRemarksModal(true)}
-                          size="0.875em"
-                          style={{ marginLeft: 10, verticalAlign: "center" }}
+                      
                         />
 
                         {/* <AddRemarksModal
@@ -94,18 +86,13 @@ class RecruitmentDetailsTab extends Component {
                           defaultMessage="Tag Document"
                         />}
                       >
-                        <PlusOutlined
-                          type="plus"
-                          // tooltipTitle="Tag Document"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                      
                           tooltiptitle={<FormattedMessage
                             id="app.tagdocument"
                             defaultMessage="Tag Document"
                           />}
-                          // handleIconClick={() =>
-                          //   handleDocumentUploadModal(true)
-                          // }
-                          size="1em"
-                          style={{ marginLeft: 10, verticalAlign: "center" }}
+                         
                         />
                       </Tooltip>
                     </>
