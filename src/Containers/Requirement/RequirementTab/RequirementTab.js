@@ -97,7 +97,7 @@ class RequirementTab extends Component {
                           // user.userType !== "USER" && user.department !== "Customer" &&user.department !== "Recruiter"&&
                            (
                            <Icon
-                              type="plus"
+                             
                               tooltipTitle="Add Requirement"
                               onClick={() =>
                                 this.props.handleCustomerModal(true)

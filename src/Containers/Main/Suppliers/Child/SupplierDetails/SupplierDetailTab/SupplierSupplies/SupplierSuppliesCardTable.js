@@ -89,19 +89,19 @@ function SupplierSuppliesCardTable(props) {
       <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%] p-1 bg-transparent  text-xs font-poppins font-bold sticky  z-10">
-            <div className=" w-[19.1rem] max-xl:text-[0.65rem] max-xl:w-[6.6rem]">   {translatedMenuItems[0]}
+            <div className="text-[#00A2E8] text-base w-[28.1rem] max-xl:text-[0.65rem] max-xl:w-[6.6rem]">   {translatedMenuItems[0]}
               {/* Name */}
             </div>
-             <div className="w-[11.9rem] max-xl:text-[0.65rem] max-xl:w-[6.9rem]">  {translatedMenuItems[1]}
+             <div className="w-[15.9rem] max-xl:text-[0.65rem] max-xl:w-[6.9rem]">  {translatedMenuItems[1]}
              {/* Category */}
               </div>
-              <div className="w-[7.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">  {translatedMenuItems[2]}
+              <div className="w-[3.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">  {translatedMenuItems[2]}
               {/* Attribute */}
               </div>
-            <div className=" w-[7.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">    {translatedMenuItems[3]}
+            <div className=" w-[10.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">    {translatedMenuItems[3]}
          {/* Tag with Supplier" */}
            </div>
-                <div className=" w-[7.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">   {translatedMenuItems[4]}
+                <div className=" w-[10.12rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">   {translatedMenuItems[4]}
                   {/* Quality */}
                   </div>       
             <div className="w-[1.5rem]">
@@ -122,24 +122,24 @@ function SupplierSuppliesCardTable(props) {
                     const initialSelectedValues = item.quality ? item.quality.map(({ qualityId }) => qualityId) : [];
                     return (
                       <>
-                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                        <div className="flex rounded justify-between py-1 mt-1 bg-white  items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
 
                         >
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
-                            <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[18.1rem] max-xl:w-[9.2rem] items-center  max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] truncate w-[22.1rem] max-xl:w-[9.2rem] items-center  max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs ml-gap font-poppins max-xl:text-[0.65rem]">                        
                                   {item.suppliesName}
                                   {/* </Link> */}
 
                               </div>
                             </div>
-                            <div className=" flex justify-center h-8 ml-gap bg-[#eef2f9]  w-[18.01rem] max-xl:w-[10.01rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex justify-start items-center h-8 ml-gap bg-[#eef2f9] truncate w-[29.01rem] max-xl:w-[10.01rem] items-center max-sm:justify-between  max-sm:flex-row ">
 
                               <div class="  text-xs ml-gap font-poppins max-xl:text-[0.65rem]">
                                 {item.categoryName} {item.subCategoryName}
                               </div>
                             </div>
-                            <div className=" flex  justify-center h-8 ml-gap bg-[#eef2f9] w-[18.9rem] max-xl:w-[8.9rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  justify-center h-8 ml-gap bg-[#eef2f9] w-[6.9rem] max-xl:w-[6.9rem] items-center max-sm:justify-between  max-sm:flex-row ">
                               <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem]">
                               {item.attributeName} {item.subAttributeName}
                               </div>
@@ -155,10 +155,10 @@ supplierId={props.supplier.supplierId}
 
 
 </div>
-<div className="w-[21.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">   
+<div className="w-[20.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">   
 {item.supplierSuppliesInd &&( 
   <>
-<div class="flex flex-row items-center justify-between w-[12rem]  max-sm:flex-row  max-sm:justify-end">
+<div class="flex flex-row items-center  w-[12rem]  max-sm:flex-row  max-sm:justify-end">
 
          <div class=" w-[12rem]">  
   <Select

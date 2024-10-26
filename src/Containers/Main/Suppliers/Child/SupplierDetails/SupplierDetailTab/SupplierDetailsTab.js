@@ -5,6 +5,7 @@ import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import CategoryIcon from '@mui/icons-material/Category';
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import {
   TabsWrapper,
 } from "../../../../../../Components/UI/Layout";
@@ -14,7 +15,7 @@ import {
   handleSupplierDocumentUploadModal, handleSupplierInventoryImportModal,handleSuppliersActivityModal,handleSupplierExcleUploadModal
 } from "../../../SuppliersAction";
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { FileExcelOutlined, PlusOutlined } from "@ant-design/icons";
+import { FileExcelOutlined,  } from "@ant-design/icons";
 import { Tooltip } from "antd";
 import Shop2Icon from '@mui/icons-material/Shop2'; 
 import InventoryIcon from '@mui/icons-material/Inventory';
@@ -93,7 +94,7 @@ class SupplierDetailsTab extends Component {
                   {activeKey === "1" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined className=" !text-icon  ml-1 items-center"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                           onClick={() => this.props.handleLinkSuppliersOrderConfigureModal(true)}                                  
                         />
                       </Tooltip>
@@ -116,12 +117,12 @@ class SupplierDetailsTab extends Component {
               tab={
                 <>
                 <div className="flex items-center">
-                  <InventoryIcon className="!text-icon text-[#ef8354]"/>&nbsp;
-                   <div className="max-xl:text-[0.65rem] font-poppins text-sm">{this.state.translatedMenuItems[1]}</div>
+                  <InventoryIcon className="!text-icon mr-1 text-[#ef8354]"/>
+                   <div className="max-xl:text-[0.65rem]  mr-1 font-poppins text-sm">{this.state.translatedMenuItems[1]}</div>
                   {activeKey === "2" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined className=" !text-icon  ml-1 items-center"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                           onClick={() => this.props.handleSupplierExcleUploadModal(true)}                                               
                         />
                       </Tooltip>
@@ -171,7 +172,7 @@ class SupplierDetailsTab extends Component {
                   {activeKey === "4" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined className=" !text-icon  ml-1 items-center"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                           onClick={() =>
                             this.props.handleSupplierContactModal(
                               true
@@ -203,7 +204,7 @@ class SupplierDetailsTab extends Component {
                   {activeKey === "5" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined className=" !text-icon  ml-1 items-center"                     
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                     
                           onClick={() =>
                             this.props.handleSupplierDocumentUploadModal(true)
                           }                      
@@ -232,8 +233,8 @@ class SupplierDetailsTab extends Component {
                   {activeKey === "6" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined className=" !text-icon  ml-1 items-center"
-                          // type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                          //
                           // tooltipTitle="Create"
                           onClick={() =>
                             this.props.handleSuppliersActivityModal(true)

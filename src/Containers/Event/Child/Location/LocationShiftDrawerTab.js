@@ -2,7 +2,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import {  StyledTabs } from "../../../../Components/UI/Antd";
 import {handleCreateShiftDrawer} from "./LocationAction";
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
@@ -70,12 +70,11 @@ class LocationShiftDrawerTab extends Component {
 
                   {activeKey === "1" && (
                     <>
-                  
-                    <PlusOutlined
-                        type="plus"
+                             
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                      
                         title={this.state.translatedMenuItems[2]}
                         onClick={() => handleCreateShiftDrawer(true)}
-                        className=" flex !text-icon ml-1 items-center"
+                      
                         
                       />
                      

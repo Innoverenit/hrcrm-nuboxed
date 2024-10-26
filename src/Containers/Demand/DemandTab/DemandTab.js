@@ -1,29 +1,19 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  EyeInvisibleOutlined, PlusOutlined,
-
-  
-} from '@ant-design/icons';
 import PieChartIcon from '@mui/icons-material/PieChart';
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
-import { Button, message, Tooltip, Popover, Icon } from "antd";
-import { FormattedMessage } from "react-intl";
-import { StyledModal, StyledTabs } from "../../../Components/UI/Antd";
+import {  Tooltip } from "antd";
+import {  StyledTabs } from "../../../Components/UI/Antd";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import {
- 
   TabsWrapper,
 } from "../../../Components/UI/Layout";
-import { ActionIcon } from "../../../Components/Utils";
-import { AddPopover } from "../../../Components/Common";
 import {
 handleRecruitModal,
 handleTagProfileModal,
 } from "../../Opportunity/OpportunityAction";
 import DemandTable from "./DemandTable";
-// const RequirementRecruitTable = lazy(() => import("./RequirementRecruitTable"));
-// const  RecruitmentTable = lazy(() => import("../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruiterTable"));
 const AddRecruitModal = lazy(() => import("../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRecruitModal"));
 const AddTagProfileModal = lazy(() => import("../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddTagProfileModal"));
 const RecruitProJumpstart = lazy(() => import("../../Opportunity/Child/RecruitProJumpstart/RecruitProJumpstart"));
@@ -96,17 +86,12 @@ class DemandTab extends Component {
                        
                           <Tooltip title="Add Demand">
                           {user.userType !== "USER" && user.department !== "Customer" &&user.department !== "Recruiter"&& (
-                           <PlusOutlined
-                              type="plus"
-                              //tooltipTitle="Add Demand"
+                            <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                               onClick={() =>
                                 this.props.handleRecruitModal(true)
                               }
-                              size="0.875em"
-                              style={{
-                                marginLeft: "0.125em",
-                                verticalAlign: "center",
-                              }}
+                            
                             />
                           )}
                   

@@ -1,10 +1,10 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { handlePartnerReactSpeechModal } from "../../../PartnerAction";
 import { Tooltip } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { FormattedMessage } from "react-intl";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
@@ -22,8 +22,6 @@ import AddDocumentModal from "./DocumentTab/AddDocumentModal";
 import { handlePartnerContactModal } from "../../../PartnerAction";
 import { handlePartnerOpportunityModal } from "../../../PartnerAction";
 import AddPartnerContactModal from "./ContactTab/AddPartnerContactModal";
-import AddPartnerOpportunityModal from "./OpportunityTab/AddPartnerOpportunityModal";
-import LinkedPartnerOpportunity from "./OpportunityTab/LinkedPartnerOpportunity";
 import LinkedPartnerContact from "./ContactTab/LinkedPartnerContact";
 import CommercialsForm from "./Commercials/CommercialsForm";
 import ReactPartnerSpeechModal from "../../../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/ReactPartnerSpeechModal";
@@ -108,8 +106,8 @@ class ContactDetailTab extends Component {
                     <>
                       {/* {this.props.user.contactCreateInd === true && ( */}
                       <Tooltip title="Create">
-                      <PlusOutlined
-                          type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle={
                             <FormattedMessage
                               id="app.create"
@@ -119,8 +117,7 @@ class ContactDetailTab extends Component {
                           onClick={() => {
                             handlePartnerContactModal(true);
                           }}
-                          size="14px"
-                          style={{ verticalAlign: "center", marginLeft: "5px" }}
+                       
                         />
                      
                     
@@ -168,8 +165,8 @@ class ContactDetailTab extends Component {
                   </span>
                   {activeKey === "3" && (
                     <>
-                       <PlusOutlined
-                        type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle={
                           <FormattedMessage
                             id="app.uploaddocument"
@@ -177,8 +174,6 @@ class ContactDetailTab extends Component {
                           />
                         }
                         onClick={() => handleDocumentUploadModal(true)}
-                        size="14px"
-                        style={{ marginLeft: "5px", verticalAlign: "center" }}
                       />
                     </>
                   )}

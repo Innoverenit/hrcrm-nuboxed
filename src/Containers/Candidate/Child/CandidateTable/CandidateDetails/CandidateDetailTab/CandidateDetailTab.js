@@ -4,8 +4,8 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import { translateText, } from '../../../../../Translate/TranslateService';
 import { Tooltip } from "antd";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import MicIcon from '@mui/icons-material/Mic';
-import AddIcon from '@mui/icons-material/Add';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
@@ -136,8 +136,9 @@ function CandidateDetailTab(props) {
                   <>
 
                     {/* {props.user.talentCreateInd === true && props.user.recruitOppsInd === true ( */}
-                    <AddIcon
-                      type="plus"
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
                       tooltiptitle={
                         <FormattedMessage
                           id="app.Create"
@@ -147,7 +148,7 @@ function CandidateDetailTab(props) {
                       onClick={() =>
                         handleCandidateActivityModal(true)
                       }
-                      size="0.875em"
+               
 
                     />
                     {/* )} */}
@@ -216,15 +217,12 @@ function CandidateDetailTab(props) {
                 </span>
                 {activeKey === "4" && (
                   <>
-                    <AddIcon
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
 
                       tooltipTitle="Upload Document"
                       onClick={() => handleDocumentUploadModal(true)}
-                      size="0.875em"
-                      style={{
-                        marginLeft: "0.3125em",
-                        verticalAlign: "center",
-                      }}
+                    
                     />
                   </>
                 )}
@@ -286,17 +284,14 @@ function CandidateDetailTab(props) {
                       <></>
                     ) : (
                       <>
-                        <AddIcon
-                          type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                         
                           tooltipTitle="Add"
                           onClick={() =>
                             handleCandidateEducationModal(true)
                           }
-                          size="1em"
-                          style={{
-                            marginLeft: "0.3125em",
-                            verticalAlign: "center",
-                          }}
+                       
                         />
                       </>
                     )}
@@ -321,14 +316,13 @@ function CandidateDetailTab(props) {
                 </span>
                 {activeKey === "7" && (
                   <>
-                    <AddIcon
-                      type="plus"
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
                       tooltipTitle="Add"
                       onClick={() =>
                         handleCandidateTrainingModal(true)
                       }
-                      size="1em"
-                      style={{ marginLeft: "0.3125em", verticalAlign: "center" }}
                     />
                   </>
                 )}
@@ -351,14 +345,13 @@ function CandidateDetailTab(props) {
                 </span>
                 {activeKey === "8" && (
                   <>
-                    <AddIcon
-                      type="plus"
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
                       tooltipTitle="Add"
                       onClick={() =>
                         handleCandidateEmploymentModal(true)
                       }
-                      size="1em"
-                      style={{ marginLeft: "0.3125em", verticalAlign: "center" }}
                     />
                   </>
                 )}
@@ -385,12 +378,11 @@ function CandidateDetailTab(props) {
                 </span>
                 {activeKey === "9" && (
                   <>
-                    <AddIcon
-                      type="plus"
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
                       tooltipTitle="Add"
                       onClick={() => handleCandidateBankModal(true)}
-                      size="1em"
-                      style={{ marginLeft: "0.3125em", verticalAlign: "center" }}
                     />
                   </>
                 )}

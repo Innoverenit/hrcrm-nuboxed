@@ -1,14 +1,3 @@
-// import React from 'react'
-
-// function MaterialUnitsData() {
-//   return (
-//     <div>MaterialUnitsData</div>
-//   )
-// }
-
-// export default MaterialUnitsData
-
-
 
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
@@ -22,7 +11,7 @@ import { getGrnListOfaPoInStock, handleSTockItemModal, handleStockUsedDrawer, tr
 import StockItemClickModal from "./StockItemClickModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TheStockUsedDrawer from "./TheStockUsedDrawer";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import ItemHistoryInStock from "./ItemHistoryInStock";
 
 const { Option } = Select;
@@ -146,7 +135,7 @@ const GrnListOfPO = (props) => {
                                         <div class="flex">
                                             <div className=" flex  md:w-[2.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins ">
-                                                    <PlusOutlined
+                                                     <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                                                         onClick={() => {
                                                             handleItemHistory()
                                                             handleItemClick(item)

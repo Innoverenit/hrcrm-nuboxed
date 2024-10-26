@@ -129,7 +129,8 @@ class DashboardDetailsTab extends Component {
                   
                   {activeKey === "3" && (
                      <>
-                     <AddIcon
+                     <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
                    
                        onClick={() => handleBillableCandidateModal(true)}
                        size="0.875em"

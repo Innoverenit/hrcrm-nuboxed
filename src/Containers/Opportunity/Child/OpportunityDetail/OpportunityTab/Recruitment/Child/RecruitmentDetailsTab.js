@@ -8,7 +8,7 @@ import RemarksTable from "../Child/RemarksTable";
 import AddSentimentModal from "../Child/AddSentimentModal" 
  import { handleRemarksModal,handleDocumentUploadModal ,handleSentimentModal} from "../../../../../OpportunityAction";
 import AddRemarksModal from "../Child/AddRemarksModal";
-import {  PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 const AddCandidateEducationModal = lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Education/AddCandidateEducationModal"));
 const AddCandidateTrainingModal =lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Training/AddCandidateTrainingModal"));
 const AddCandidateEmploymentModal =lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Employment/AddCandidateEmploymentModal"));
@@ -59,12 +59,10 @@ class RecruitmentDetailsTab extends Component {
                           defaultMessage="tagremarks"
                         />} */}
                       
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                            tooltipTitle="Tag Feedback"
                            onClick={() => handleSentimentModal(true)}
-                          size="0.875em"
-                          style={{ marginLeft: 10, verticalAlign: "center" ,color:"blue"}}
                         />
                         {/* <AddSentimentModalModal
 
@@ -105,9 +103,9 @@ class RecruitmentDetailsTab extends Component {
                   {activeKey === "3" && (
                     <>
             
-            <PlusOutlined
+             <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                         
-                          type="plus"
+                         
                           tooltipTitle="Tag Document"
                           onClick={() =>
                             handleDocumentUploadModal(true)
@@ -146,8 +144,8 @@ class RecruitmentDetailsTab extends Component {
                         <></>
                       ) : (
                         <>
-                          <PlusOutlined
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                           
                             tooltipTitle="Add"
                             handleIconClick={() =>
                               handleCandidateEducationModal(true)
@@ -181,8 +179,8 @@ class RecruitmentDetailsTab extends Component {
                   </span>
                   {activeKey === "6" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         handleIconClick={() =>
                           handleCandidateTrainingModal(true)
@@ -210,8 +208,8 @@ class RecruitmentDetailsTab extends Component {
                   </span>
                   {activeKey === "7" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         handleIconClick={() =>
                           handleCandidateEmploymentModal(true)

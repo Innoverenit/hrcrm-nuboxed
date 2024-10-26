@@ -261,7 +261,7 @@ const ProductBrandModelList = (props) => {
       <span
 
       >
-      <PlusOutlined onClick={() => handleIncrement(item.productId)} />
+       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" onClick={() => handleIncrement(item.productId)} />
       </span>
 
     </div>

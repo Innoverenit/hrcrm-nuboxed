@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { MainWrapper } from "../Layout";
 
 class ViewEditCard extends Component {
   constructor(props) {
@@ -19,9 +18,9 @@ class ViewEditCard extends Component {
   };
   render() {
     return (
-      <MainWrapper Height={this.props.Height}>
+      <div class="rounded shadow-[0em 0.25em 0.625em -0.125em] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto" Height={this.props.Height}>
         {this.props.children(this.state, this.toggleViewType)}
-      </MainWrapper>
+      </div>
     );
   }
 }

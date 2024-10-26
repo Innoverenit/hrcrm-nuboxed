@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import { PlusOutlined } from "@ant-design/icons";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
@@ -24,7 +23,7 @@ import DistributorChart from "../AccountDetailsTab/DistributorChart"
 import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
-import AddIcon from '@mui/icons-material/Add';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import { BundleLoader } from '../../../../Components/Placeholder';
@@ -35,6 +34,7 @@ import ShopIcon from '@mui/icons-material/Shop'
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import OrderTableC from "./OrderTableC"; //4
 import ProcureCommerceShippedOrder from "./AccountOrderTab/ProcureCommerceShippedOrder";
+
 
 const CompleteOrderTable= lazy(() =>import("./AccountOrderTab/CompleteOrderTable"));
 const AddSupplierContactModal   = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal"));
@@ -263,7 +263,7 @@ function AccountDetailsTab(props) {
                                     <>
                                         <Tooltip title={translatedMenuItems[11]}>
                                             <AddShoppingCartIcon
-                                                type="plus"
+                                               
                                                 tooltipTitle={translatedMenuItems[11]}
                                                 onClick={() => {
                                                     props.handleAddOrderModal(true);
@@ -316,7 +316,7 @@ function AccountDetailsTab(props) {
                                     <>
                                         <Tooltip title={translatedMenuItems[17]}>
                                             <AddShoppingCartIcon
-                                                type="plus"
+                                               
                                                 tooltipTitle={translatedMenuItems[1]}
                                                 onClick={() => {
                                                     props.handleLinkDistributorOrderConfigureModal(true);
@@ -367,7 +367,7 @@ function AccountDetailsTab(props) {
                                     </Tooltip>
                                         <Tooltip title={translatedMenuItems[13]}>
                                             <AddShoppingCartIcon
-                                                type="plus"
+                                               
                                                 tooltipTitle={translatedMenuItems[11]}
                                                 onClick={() => {
                                                     props.handleLinkCustomerProcurementModal(true);
@@ -413,9 +413,7 @@ function AccountDetailsTab(props) {
                         // }
                       >
                         {props.user.opportunityCreateInd === true && (
-                          <PlusOutlined
-                            type="plus"
-                            
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                                                    
                             tooltiptitle={translatedMenuItems[11]}
                             //   <FormattedMessage
                             //     id="app.Create"
@@ -520,13 +518,14 @@ function AccountDetailsTab(props) {
                                 {activeKey === "5" && (
                                     <>
                                         <Tooltip title= {translatedMenuItems[11]}                                        >
-                                            <AddIcon
-                                                type="plus"
+                                            <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                                               
                                                 tooltipTitle= {translatedMenuItems[11]}
                                                 onClick={() => {
                                                     props.handleDistributorActivityModal(true);
                                                 }}
-                                                className="!text-icon  cursor-pointer ml-1"
+                                              
                                             />
                                         </Tooltip>
                                     </>
@@ -550,14 +549,15 @@ function AccountDetailsTab(props) {
                                 {activeKey === "10" && (
                                     <>
                                         <Tooltip title={translatedMenuItems[18]}>
-                                            <AddIcon
-                                                type="plus"
+                                            <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                                               
                                                 tooltipTitle={translatedMenuItems[11]}
                                                 onClick={() => {
                                                     //  props.handleDistributorContactModal(true);
                                                     props.handleSupplierContactModal(true)
                                                 }}
-                                                className="!text-icon  cursor-pointer ml-1"
+                                           
                                             />
                                         </Tooltip>
                                     </>
@@ -601,8 +601,9 @@ function AccountDetailsTab(props) {
                                 {activeKey === "7" && (
                                     <>
                                         <Tooltip title={translatedMenuItems[11]}>
-                                            <AddIcon
-                                                // type="plus"
+                                            <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                                                //
                                                 // tooltipTitle="Create"
                                                 onClick={() =>
                                                     // props.handleDistributorDocumentUploadModal(
@@ -610,7 +611,7 @@ function AccountDetailsTab(props) {
                                                     // )
                                                     props.handleSupplierDocumentUploadModal(true)
                                                 }
-                                                className="!text-icon  cursor-pointer ml-1"
+                                             
                                             />
                                         </Tooltip>
                                     </>

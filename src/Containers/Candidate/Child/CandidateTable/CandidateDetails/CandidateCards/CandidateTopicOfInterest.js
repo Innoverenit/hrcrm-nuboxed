@@ -5,8 +5,7 @@ import {
 } from "../../../../../Settings/Library/LibraryAction";
 import { bindActionCreators } from "redux";
 import { Tag, Input, Tooltip, } from "antd";
-import { PlusOutlined,
-} from '@ant-design/icons';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { ViewEditCard, Title } from "../../../../../../Components/UI/Elements";
 import {
   addTopicByCandidateId,
@@ -213,7 +212,7 @@ class CandidateTopicOfInterest extends React.Component {
                   visible={this.props.topicsByCandidateId.length===null?[]:this.props.topicsByCandidateId.length !== 30}
                   style={{ background: "#fff", borderStyle: "dashed" }}
                 >
-                  <PlusOutlined type="plus" /> Skill
+                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Skill
                 </Tag>
               )}
             </div>

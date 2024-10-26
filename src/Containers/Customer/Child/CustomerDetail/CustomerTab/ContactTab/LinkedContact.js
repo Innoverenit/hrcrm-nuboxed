@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { ActionIcon } from "../../../../../../Components/Utils";
 import {
   StyledPopconfirm,
@@ -172,7 +172,7 @@ function LinkedContact(props) {
                                   <div class="flex">
                                             <div className=" flex justify-center  md:w-[2.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-center  text-xs  font-semibold  font-poppins ">
-                                                    <PlusOutlined
+                                                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                                                         onClick={() => {
                                                             handleItemHistory()
                                                             handleSetCurrentContact(item)

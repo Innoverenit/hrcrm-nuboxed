@@ -129,7 +129,7 @@ function SuppliersCardList(props) {
                     return (
                       <>
                         <div
-                          className="flex  rounded justify-between bg-white   items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:flex-col  max-sm:h-24  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                          className="flex  rounded justify-between bg-white   items-center py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:flex-col  max-sm:h-24  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                           <div class=" flex flex-row justify-between  w-wk max-sm:flex-col">
                             <div class="flex max-sm:justify-start items-center">
                             <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[9.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
@@ -138,7 +138,7 @@ function SuppliersCardList(props) {
                             
 </div>
                               </div>
-                              <div className="  flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[11.2rem]  h-8 max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
+                              <div className="  flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[11.2rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                                 <div>
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 ml-gap underline font-bold font-poppins text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}

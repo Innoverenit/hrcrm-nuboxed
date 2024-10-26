@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../../../../../Config/Auth";

@@ -1,7 +1,7 @@
 import React, { useEffect ,useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddIcon from '@mui/icons-material/Add';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { getTaskByPhoneId, deleteTaskList,handleSpareProcess } from "./RefurbishAction"
 import { Popconfirm, Tooltip } from "antd";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -30,7 +30,8 @@ function QCPhoneTaskList(props) {
                                 {item.level}
                             </div>
                             <Tooltip title="Spare">
-                                <AddIcon
+                                <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
                                   onClick={() => {
                                     props.handleSpareProcess(true);
                                     handleSetNewData(item);  

@@ -67,7 +67,7 @@ function SuppliersNotApprovalList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
-          <div className=" w-[8.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+          <div className=" w-[8.91rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
                {props.translatedMenuItems[40]} ID
                </div>
@@ -105,7 +105,7 @@ function SuppliersNotApprovalList(props) {
                     return (
                       <>
                         <div
-                          className="flex  rounded justify-between bg-white   items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:flex-col  max-sm:h-[6rem]  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                          className="flex  rounded justify-between bg-white   items-center py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:flex-col  max-sm:h-[6rem]  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                           <div class=" flex flex-row justify-between  w-wk max-sm:flex-col">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[9.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
@@ -161,7 +161,7 @@ function SuppliersNotApprovalList(props) {
                                 />
                               </div>
                               </div>  
-            <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9] w-[2.2rem]"> 
+            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.2rem]"> 
   <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {

@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { Tooltip } from "antd";
 import { StyledTabs } from "../../../Components/UI/Antd";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -46,15 +46,11 @@ class ProcurementTab extends Component {
                       <>
                         
                           <Tooltip title="Add BOM">
-                            <PlusOutlined
-                            className="ml-1"
-                              type="plus"
+                             <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                                            
                               tooltipTitle="Create"
                               onClick={() => {
                                 this.props.handleBOMdrawer(true);
-                              }}
-                              size="1rem"
-                              
+                              }}                                                      
                             />
                           </Tooltip>
                         &nbsp;
@@ -98,14 +94,12 @@ class ProcurementTab extends Component {
                       <>
                         
                           <Tooltip title="Add Indent">
-                            <PlusOutlined
-                             className="ml-1"
-                              type="plus"
+                             <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                                           
                               tooltipTitle="Create"
                               onClick={() => {
                                 this.props.handleAddIndentModal(true);
                               }}
-                              size="1rem"
+                      
                             />
                           </Tooltip>
                         &nbsp;
@@ -204,14 +198,12 @@ class ProcurementTab extends Component {
                       <>
                         
                           <Tooltip title="Create Dispatch">
-                            <PlusOutlined
-                             className="ml-1"
-                              type="plus"
+                             <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                           
                               tooltipTitle="Create"
                               onClick={() => {
                                 this.props.handleProcDispatchModal(true);
                               }}
-                              size="1rem"
+                           
                             />
                           </Tooltip>
                         &nbsp;

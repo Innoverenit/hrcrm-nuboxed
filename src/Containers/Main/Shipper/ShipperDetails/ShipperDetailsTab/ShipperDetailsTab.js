@@ -2,6 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddShipperCostModal from "../ShipperDetailsTab/AddShipperCostModal"
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import {
   TabsWrapper,
@@ -22,9 +23,6 @@ import {
 import { handleSupplierDocumentUploadModal } from "../../../Suppliers/SuppliersAction";
 import { handleSupplierContactModal } from "../../../Suppliers/SuppliersAction";
 import dayjs from "dayjs";
-import {
-  PlusOutlined,
-} from "@ant-design/icons";
 import AddSupplierContactModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
 import AddSupplierDocumentModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
 import ShipperAwbTable from "./ShipperActivityTab/ShipperAwbTable";
@@ -263,15 +261,14 @@ class ShipperDetailsTab extends Component {
                   {activeKey === "5" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Create"
                           onClick={() =>
                             // this.props.handleShipperDocumentUploadModal(true)
                             this.props.handleSupplierDocumentUploadModal(true)
                           }
-                          size="14px"
-                          style={{ verticalAlign: "center", marginLeft: "5px" }}
+          
                         />
                       </Tooltip>
                     </>
@@ -303,15 +300,14 @@ class ShipperDetailsTab extends Component {
                   {activeKey === "6" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Create"
                           onClick={() =>
                             //this.props.handleShipperContactModal(true)
                             this.props.handleSupplierContactModal(true)
                           }
-                          size="14px"
-                          style={{ verticalAlign: "center", marginLeft: "5px" }}
+                   
                         />
                       </Tooltip>
                     </>
@@ -341,15 +337,14 @@ class ShipperDetailsTab extends Component {
                   {activeKey === "7" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Create"
                           onClick={() =>
                             // this.props.handleShipperDocumentUploadModal(true)
                             this.props.handleShipperCostModal(true)
                           }
-                          size="14px"
-                          style={{ verticalAlign: "center", marginLeft: "5px" }}
+                 
                         />
                       </Tooltip>
                     </>

@@ -2,13 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import {
-    EyeInvisibleOutlined, PlusOutlined,
-  
-    
-  } from '@ant-design/icons';
 import { Button } from "antd";
-
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { handleHolidayModal } from "../HolidayAction"
 
@@ -36,7 +30,7 @@ class HolidayActionRight extends React.Component {
                     onClick={() => handleHolidayModal(true)}
 
                 >
-                    <PlusOutlined type="plus" />
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" />
                 </Button>
             
             </div>

@@ -8,7 +8,7 @@ import {handleDataroomNotesDrawerModal} from "./DataRoomAction";
 import { Tooltip } from 'antd';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import {handleDocumentUploadModal} from "../Customer/CustomerAction";
-  import { PlusOutlined } from "@ant-design/icons";
+  import AddBoxIcon from '@mui/icons-material/AddBox';
 import { FormattedMessage } from 'react-intl';
 const AddDocumentModals=lazy(()=> import("../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
 const AddDataRoomNotesDrawerModal=lazy(()=> import("./AddDataRoomNotesDrawerModal"));
@@ -94,9 +94,8 @@ const DataRoomTab = (props) => {
                         />
                         }
                       >
-                      <PlusOutlined
-                        type="plus"
-                        //tooltipTitle="Upload Document"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                      
                         tooltiptitle={
                           <FormattedMessage
                             id="app.uploaddocument"
@@ -104,11 +103,7 @@ const DataRoomTab = (props) => {
                           />
                         }
                         onClick={() => handleDocumentUploadModal(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
+                     
                        
                       />
                      </Tooltip>

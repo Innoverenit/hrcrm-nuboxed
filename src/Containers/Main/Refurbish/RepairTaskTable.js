@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Clock from 'react-clock';
 import 'react-clock/dist/Clock.css';
-import AddIcon from '@mui/icons-material/Add';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import QcTaskNwToggle from './QcTaskNwToggle'
 import ProcessSpareDrawer from './ProcessSpareDrawer'
 
@@ -43,7 +43,8 @@ const RepairTaskTable = (props) => {
 
                                 />
                                  <Tooltip title="Spare">
-                                <AddIcon
+                                <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
                                   onClick={() => {
                                     props.handleSpareProcess(true);
                                     handleSetNewData(item);

@@ -2,7 +2,7 @@ import React, { useEffect ,useState, lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
-import AddIcon from '@mui/icons-material/Add';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { getTaskByPhoneId,handleSpareProcess } from "../../../Refurbish/RefurbishAction"
 
@@ -29,7 +29,8 @@ console.log(props.particularRowData)
                             </div>
                             <div>
                             <Tooltip title="Spare">
-                                <AddIcon
+                                <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
                                   onClick={() => {
                                     props.handleSpareProcess(true);
                                     handleSetNewData(item);  

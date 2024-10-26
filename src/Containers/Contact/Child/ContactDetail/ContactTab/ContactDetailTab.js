@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import LinkedOpportunity from "../ContactTab/Opportunity/LinkedOpportunity"
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
@@ -151,16 +151,14 @@ class ContactDetailTab extends Component {
                   </span>
                   {activeKey === "1" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                 <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+              
                         // tooltipTitle="Upload Document"
                         tooltiptitle={<FormattedMessage
                           id="app.uploaddocument"
                           defaultMessage="Upload Document"
                         />}
-                        onClick={() => handleDocumentUploadModal(true)}
-                        size="14px"
-                        style={{ marginLeft: "0.25em", verticalAlign: "center" }}
+                        onClick={() => handleDocumentUploadModal(true)}                      
                       />
                     </>
                   )}
@@ -189,12 +187,11 @@ class ContactDetailTab extends Component {
                   </span>
                   {/* {activeKey === "2" && ( */}
                     <>
-                      <PlusOutlined                  
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                  
                         onClick={() => {
                           handleContactOpportunityModal(true);
                         }}
-                        size="14px"
-                        style={{ marginLeft: "0.25em", verticalAlign: "center" }}
+                      
                       />
                     </>
                   {/* )} */}

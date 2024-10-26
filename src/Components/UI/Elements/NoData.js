@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { PlusOutlined,FileFilled
+import { FileFilled
 } from '@ant-design/icons';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 import { Title, SubTitle } from "./";
 
@@ -25,7 +26,7 @@ class NoData extends Component {
                 }}
                 onClick={this.props.onClick || undefined}
               >
-                Let us help you get started, click <PlusOutlined type="plus" /> Create{" "}
+                Let us help you get started, click <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Create{" "}
                 {this.props.content || "Data"}
               </SubTitle>
             </div>

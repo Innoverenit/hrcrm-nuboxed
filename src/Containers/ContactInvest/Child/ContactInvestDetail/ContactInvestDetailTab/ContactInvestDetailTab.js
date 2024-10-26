@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {handleContactInvestActivityModal} from "../../../ContactInvestAction"
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
@@ -114,16 +114,12 @@ class ContactInvestDetailTab extends Component {
                   </span>
                   {activeKey === "2" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                    
                         // tooltipTitle="Upload Document"
                         tooltiptitle={this.state.translatedMenuItems[2]}
                         onClick={() => handleDocumentUploadModal(true)}
-                        size="14px"
-                        style={{
-                          marginLeft: "0.25em",
-                          verticalAlign: "center",
-                        }}
+                       
                       />
                     </>
                   )}
@@ -151,15 +147,11 @@ class ContactInvestDetailTab extends Component {
                   </span>
                   {activeKey === "3" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                  
                         title={this.state.translatedMenuItems[4]}
                          onClick={() => handleContactInvestActivityModal(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
+                       
                       />
                     </>
                   )}

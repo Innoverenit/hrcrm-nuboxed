@@ -2,12 +2,11 @@ import React, { lazy,Suspense,useEffect } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 import { Badge, Tooltip } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { handleCETactivityContactModal,getContactActivityRecords} from "../../ContactAction";
 const ContactCETdr =lazy(()=>import("./ContactCETdr"));
 const ContactCETcard =lazy(()=>import("./ContactCETcard"));
@@ -42,7 +41,7 @@ function ContactCETTab (props) {
                 count={props.contactActivityCount.count}
                 overflowCount={999}
               > 
-                             <i class="fas fa-phone-square"></i>&nbsp;
+                             <i class="fas fa-phone-square mr-1"></i>
                         Activity
                      </Badge>
                         </span>
@@ -56,10 +55,8 @@ function ContactCETTab (props) {
                                 />
                               }
                             >
-                             &nbsp;
-                              <PlusOutlined
-                                type="plus"
-                                style={{color:"blue"}}
+                          
+                               <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                                                       
                                 tooltiptitle={
                                   <FormattedMessage
                                     id="app.Create"
@@ -69,7 +66,7 @@ function ContactCETTab (props) {
                                 onClick={() => {
                                     handleCETactivityContactModal(true);
                                 }}
-                                size="0.875em"
+                              
                               />
                              
                             </Tooltip>

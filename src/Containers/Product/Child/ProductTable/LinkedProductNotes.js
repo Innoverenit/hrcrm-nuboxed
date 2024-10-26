@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { addProductDesc ,getProductDesc} from "../../ProductAction";
 import { Form, Input, Button, Upload, message , Col, Row } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import { MultiAvatar } from '../../../../Components/UI/Elements';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const beforeUpload = (file, setImageId, setImageUrl) => {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
@@ -99,8 +99,8 @@ const UploadForm = (props) => {
             <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
           ) : (
             <div>
-              <PlusOutlined />
-              <div style={{ marginTop: 8 }}>Upload</div>
+               <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" />
+              <div class="mt-2">Upload</div>
             </div>
           )}
         </Upload>

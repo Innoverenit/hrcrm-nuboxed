@@ -8,7 +8,7 @@ import { Tooltip, Button, Select } from "antd";
 import { getRoomRackByLocId, getRackList } from "./InventoryAction";
 import { getGrnListOfaPoInStock, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "./InventoryAction"
 import InfiniteScroll from "react-infinite-scroll-component";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import TheStockUsedDrawer from "./Child/InventoryDetails/InventoryMaterialTab/TheStockUsedDrawer";
 import ItemHistoryInStock from "./Child/InventoryDetails/InventoryMaterialTab/ItemHistoryInStock";
 import StockItemClickModal from "./Child/InventoryDetails/InventoryMaterialTab/StockItemClickModal";
@@ -134,7 +134,7 @@ const MaterialUnitsDataOut = (props) => {
                                         <div class="flex">
                                             <div className=" flex   border-l-2 border-green-500 h-8 bg-[#eef2f9] md:w-[2.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs font-bold  font-poppins ">
-                                                    <PlusOutlined
+                                <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                                                         onClick={() => {
                                                             handleItemHistory()
                                                             handleItemClick(item)

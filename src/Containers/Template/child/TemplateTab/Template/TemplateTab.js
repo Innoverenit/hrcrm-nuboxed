@@ -1,8 +1,7 @@
 
 import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
-import { PlusOutlined,  
-} from '@ant-design/icons';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
@@ -72,17 +71,13 @@ class TemplateTab extends Component {
                       <>                     
                         <Tooltip title="Create">
                        
-                          <PlusOutlined
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                           
                             tooltipTitle="Create"
                             onClick={() =>
                               this.props.handleTemplateModal(true)
                             }
-                            size="0.875em"
-                            style={{
-                              marginLeft: "0.125em",
-                              verticalAlign: "center",
-                            }}
+                        
                           />
                           </Tooltip>             
                        
@@ -112,8 +107,8 @@ class TemplateTab extends Component {
                       <>                     
                         {/* <Tooltip title="Create">
                        
-                          <PlusOutlined
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                           
                             tooltipTitle="Create"
                             onClick={() =>
                               this.props.handleTemplateModal(true)
@@ -151,8 +146,8 @@ class TemplateTab extends Component {
                       <>                     
                         {/* <Tooltip title="Create">
                        
-                          <PlusOutlined
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                           
                             tooltipTitle="Create"
                             onClick={() =>
                               this.props.handleTemplateModal(true)
@@ -190,8 +185,8 @@ class TemplateTab extends Component {
                       <>                     
                         {/* <Tooltip title="Create">
                        
-                          <PlusOutlined
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                           
                             tooltipTitle="Create"
                             onClick={() =>
                               this.props.handleTemplateModal(true)
@@ -229,8 +224,8 @@ class TemplateTab extends Component {
                       <>                     
                         {/* <Tooltip title="Create">
                        
-                          <PlusOutlined
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                           
                             tooltipTitle="Create"
                             onClick={() =>
                               this.props.handleTemplateModal(true)
@@ -268,8 +263,8 @@ class TemplateTab extends Component {
                       <>                     
                         {/* <Tooltip title="Create">
                        
-                          <PlusOutlined
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                           
                             tooltipTitle="Create"
                             onClick={() =>
                               this.props.handleTemplateModal(true)
@@ -306,8 +301,8 @@ class TemplateTab extends Component {
                       <>                     
                         <Tooltip title="Create">
                        
-                          <PlusOutlined
-                            type="plus"
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                           
                             tooltipTitle="Create"
                             onClick={() =>
                               this.props.handleTemplateNotificatonModal(true)

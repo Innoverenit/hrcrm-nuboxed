@@ -112,7 +112,7 @@ class ContactCatagory extends React.Component {
             visible={catagoryByContactId.length !== 5}
             // disabled={false}
           >
-            <Icon type="plus" /> category
+            <Icon /> category
           </Tag>
         )} */}
       </div>

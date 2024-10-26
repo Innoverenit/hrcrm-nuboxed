@@ -5,9 +5,8 @@ import {
 } from "../../../../../Settings/Recruitement/Child/Certification/CertificationAction";
 import { bindActionCreators } from "redux";
 import { Tag, Input, Tooltip, } from "antd";
-import { PlusOutlined,
-} from '@ant-design/icons';
 import { ViewEditCard, } from "../../../../../../Components/UI/Elements";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import {
   addCertificationByUserId,
   getCertificationByUserId,
@@ -170,7 +169,7 @@ class EmployeeCertificationLibrary extends React.Component {
                    visible={this.props.certificationByUserId.length===null?[]:this.props.certificationByUserId.length !== 30}
                   style={{ background: "#fff", borderStyle: "dashed" }}
                 >
-                  <PlusOutlined type="plus" /> Certification
+                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Certification
                 </Tag>
               )}
             </div>

@@ -57,15 +57,15 @@ function SupplierContactTable(props) {
     <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins text-xs z-10">
-            <div className=" w-[12.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[0]}</div>
+            <div className="text-[#00A2E8] text-base w-[16.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[0]}</div>
             {/* Name */}
-            <div className=" w-[4.1rem] max-xl:text-[0.65rem]">{translatedMenuItems[1]}
+            <div className=" w-[14.1rem] max-xl:text-[0.65rem]">{translatedMenuItems[1]}
              {/* Email */}
             </div>
-            <div className=" w-[1.8rem] max-xl:text-[0.65rem] ">  {translatedMenuItems[2]}
+            <div className=" w-[10.8rem] max-xl:text-[0.65rem] ">  {translatedMenuItems[2]}
               {/* mobile */}
             </div>
-            <div className="w-[3.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[3]}
+            <div className="w-[11.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[3]}
             {/* Designation */}
 
             </div>

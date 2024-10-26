@@ -6,7 +6,7 @@ import { BundleLoader } from '../../../../../../Components/Placeholder';
 import { getPhonelistByOrderId } from "../../../InventoryAction"
 import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { PlusOutlined } from '@ant-design/icons';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const ReceivedMismatchPhoneList = (props) => {
     useEffect(() => {
@@ -73,7 +73,7 @@ const ReceivedMismatchPhoneList = (props) => {
                                                     <div class="flex">
                                                         <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                             <div class=" text-xs  font-poppins">
-                                                                <PlusOutlined onClick={() => {
+                                                                 <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" onClick={() => {
                                                                     handleMismatchItem();
                                                                     handleSetParticularOrderData(item);
                                                                 }

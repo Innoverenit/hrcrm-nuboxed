@@ -215,10 +215,10 @@ function InventoryTable(props) {
                   
 
                 </div>
-            <div className=' flex justify-end sticky  z-auto'>
+            <div className=' flex justify-end sticky mt-3  z-auto'>
                 <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold sticky top-0 z-10">
-                    <div className=" w-[17.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[0]}
+                    <div className="text-[#00A2E8] text-base w-[17.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[0]}
                             {/* Trade ID */}
                             </div>
                             <div className=" w-[19.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[1]}
@@ -233,9 +233,7 @@ function InventoryTable(props) {
                         <div className=" w-[27.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]"> {translatedMenuItems[4]}
                            {/* Model */}
                         </div>
-                        <div className=" w-[15.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[5]}
-                          {/* Availability Date */}
-                        </div>
+                       
                         <div className=" w-[13.24rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[6]}
                           {/* Attribute */}
                         </div>
@@ -245,13 +243,16 @@ function InventoryTable(props) {
                         <div className=" w-[11.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]"> {translatedMenuItems[8]}
                             {/* Specs */}
                         </div>
-                        <div className=" md:w-[14.9rem]"> {translatedMenuItems[9]}
+                        <div className=" w-[15.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[5]}
+                          {/* Availability Date */}
+                        </div>
+                        <div className="w-[7.9rem] md:w-[7.9rem]"> {translatedMenuItems[9]}
                            {/* Unit */}
                         </div>
-                        <div className=" md:w-[9.8rem]"> {translatedMenuItems[10]}
+                        <div className="w-[15.8rem] md:w-[15.8rem]"> {translatedMenuItems[10]}/{translatedMenuItems[9]}
                          {/* Price */}
                         </div>
-                        <div className=" md:w-[16.9rem]"> {translatedMenuItems[11]}
+                        <div className="w-[15.9rem] md:w-[15.9rem]"> {translatedMenuItems[11]}
                          {/* Publish */}
                         </div>
                     </div>
@@ -270,7 +271,7 @@ function InventoryTable(props) {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div key={item.inventorySupplieId} className="flex rounded justify-between mt-1 bg-white h-8 items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" > 
+                                            <div key={item.inventorySupplieId} className="flex rounded justify-between mt-1 py-1 bg-white items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" > 
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                 <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] font-medium justify-between items-center  w-[8.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row  ">
                                                         <div class=" font-normal ml-gap max-xl:text-[0.65rem] text-xs font-poppins flex items-center">
@@ -291,7 +292,7 @@ function InventoryTable(props) {
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-                                                    <div className=" flex  justify-between items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[12.24rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  justify-between items-center truncate justify-start h-8 ml-gap bg-[#eef2f9] w-[12.24rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" max-xl:text-[0.65rem] ml-gap text-xs font-poppins flex items-center">
                                                             {item.categoryName}
                                                            
@@ -299,7 +300,7 @@ function InventoryTable(props) {
                                                         </div>
                                                         
                                                     </div>
-                                                    <div className=" flex   w-[14.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex   w-[14.1rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="flex items-center ml-gap  max-xl:text-[0.65rem] text-xs font-poppins">
                                                             {item.brand}
                                                         </div>
@@ -308,6 +309,24 @@ function InventoryTable(props) {
                                                         <div class=" flex items-center ml-gap  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.model}
+                                                        </div>
+                                                    </div>
+                                             
+                                                    <div className=" flex  w-[8.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.3rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
+
+                                                            {item.attributeName}
+                                                        </div>
+                                                    </div>
+                                                    <div className=" flex  w-[5.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="flex items-center  max-xl:text-[0.65rem] text-xs font-poppins">
+
+                                                            {item.quality}
+                                                        </div>
+                                                    </div>
+                                                    <div className=" flex  w-[4.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="flex items-center  max-xl:text-[0.65rem] text-xs font-poppins w-20">
+                                                            {item.spces}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[8.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.2rem] max-sm:justify-between  max-sm:flex-row ">
@@ -326,23 +345,6 @@ function InventoryTable(props) {
             </div>
           )}
                                                         
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex  w-[8.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.3rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.attributeName}
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex  w-[5.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="flex items-center  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.quality}
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex  w-[4.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="flex items-center  max-xl:text-[0.65rem] text-xs font-poppins w-20">
-                                                            {item.spces}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[4.41rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
