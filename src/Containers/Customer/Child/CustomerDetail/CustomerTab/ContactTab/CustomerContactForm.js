@@ -68,20 +68,20 @@ class ContactForm extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-'295', // 0
-'353', // 1
-'354', // 2
-'357', // 3
+        '295', // 0 First name
+        '353', // 1 middle name
+       '354', // 2 last name
+       '357',// 3 Dial Code
 '546', // 4
 '1157', // 5
-'140',//6
-'547', // 7
+'140', // 6 Email 
+'547', // 7 Linkdin
 '361', // 8
-'325' ,// 9
-'326', // 10
- '185',//12
-'316',//13
-  '104'
+'325', // 9 designation
+'326', // 10 department
+'185',//11 Address
+'316',//12 notes
+  '104',// create
         
       ];
 
