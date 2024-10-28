@@ -2889,7 +2889,7 @@ const userOptions = ["Access", "Create", "Update", "Delete", "Access Plus"];
 const defaultCheckedList = ["Full List"];
 const melCheckedList = ["Access", "Full List"];
 const dashboardCheckedList = ["Access", "Full List", "Regional", "Location"];
-const refurbishCheckedList = ["Workshop", "Adminview", "Adminassign", "QC", "process"];
+const refurbishCheckedList = ["Workshop", "Adminview", "Adminassign", "Qc", "Process"];
 const settingsCheckedList = ["Access"];
 const accountingCheckedList = ["Access"];
 const collectionCheckedList = ["Access", "Approve"];
@@ -2904,7 +2904,7 @@ const callCheckedList = ["Access"];
 const eventCheckedList = ["Access"];
 const plannerCheckedList = ["Access"];
 const downloadCheckedList = ["All"];
-const calculateCheckedList = ["Calculate"];
+const calculateCheckedList = ["Calculator"];
 const warrentyCheckedList = ["Access" , "Update"]
 
 const AccessForm = (props) => {
@@ -3246,11 +3246,11 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
   const [checkAllMaterial, setCheckAllMaterial] = useState(false);
 
 
-  const [checkedCatalougeList, setCheckedCatalougeList] = useState(
-    props.departmentAcces.catalouge || []
-  );
-  const [indeterminateCatalouge, setIndeterminateCatalouge] = useState(true);
-  const [checkAllCatalouge, setCheckAllCatalouge] = useState(false);
+  // const [checkedCatalougeList, setCheckedCatalougeList] = useState(
+  //   props.departmentAcces.catalouge || []
+  // );
+  // const [indeterminateCatalouge, setIndeterminateCatalouge] = useState(true);
+  // const [checkAllCatalouge, setCheckAllCatalouge] = useState(false);
 
 
   const [checkedCollectionList, setCheckedCollectionList] = useState(
@@ -3318,7 +3318,7 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
 //Calculate
 
   const [checkedCalculateList, setCheckedCalculateList] = useState(
-    props.departmentAcces.calculate || []
+    props.departmentAcces.calculator || []
   );
   const [indeterminateCalculate, setIndeterminateCalculate] = useState(true);
   const [checkAllCalculate, setCheckAllCalculate] = useState(false);
@@ -3327,7 +3327,7 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
 //Warrenty
 
 const [checkedWarrentyList, setCheckedWarrentyList] = useState(
-  props.departmentAcces.warranty || []
+  props.departmentAcces.warrenty || []
 );
 const [indeterminateWarrenty, setIndeterminateWarrenty] = useState(true);
 const [checkAllWarrenty, setCheckAllWarrenty] = useState(false);
@@ -3392,7 +3392,7 @@ useEffect(() => {
     setCheckedTeamsList(props.departmentAcces.teams || []);
     setCheckedPaymentsList(props.departmentAcces.payment || []);
     setCheckedMaterialList([]);
-    setCheckedCatalougeList(props.departmentAcces.catalouge || []);
+    // setCheckedCatalougeList(props.departmentAcces.catalouge || []);
     setCheckedCollectionList(props.departmentAcces.collection || []);
     setCheckedPlanner(props.departmentAcces.planner || []);
     setCheckedEvents(props.departmentAcces.event || []);
@@ -3403,8 +3403,8 @@ useEffect(() => {
     setCheckedAccessmentList(props.departmentAcces.assessment || []);
     setCheckedCatalogList(props.departmentAcces.catalog || []);
     setCheckedVendorList( props.departmentAcces.vendor || []);
-    setCheckedCalculateList(props.departmentAcces.calculate || [])
-    setCheckedWarrentyList(props.departmentAcces.warranty || [])
+    setCheckedCalculateList(props.departmentAcces.calculator || [])
+    setCheckedWarrentyList(props.departmentAcces.warrenty || [])
 }, [props.departmentAcces]);
 
   const updateAccessForCategory = (category, selectedList) => {
@@ -3463,7 +3463,7 @@ useEffect(() => {
       report: checkedReportList || [],
       dataRoom: checkedDataRoomList || [],
       scanner: checkedScannerList || [],
-      catalouge: checkedCatalougeList || [],
+      // catalouge: checkedCatalougeList || [],
       promotion: checkedPromotionsList || [],
       departmentId: props.departmentId,
       roleTypeId: props.roleTypeId,
@@ -3472,8 +3472,8 @@ useEffect(() => {
       download: downloadCheckedList || [],
       event: eventCheckedList || [],
       planner: plannerCheckedList || [],
-      calculate : calculateCheckedList || [],
-      warranty : warrentyCheckedList || []
+      calculator : calculateCheckedList || [],
+      warrenty : warrentyCheckedList || []
     };
   
     // Update only the specified category with the selectedList
@@ -4441,22 +4441,22 @@ useEffect(() => {
   // Catalouge
   
 
-  const onCatalougeChange = (list) => {
-    setCheckedCatalougeList(list);
-    setIndeterminateCatalouge(
-      !!list.length && list.length < ecomChecklist.length
-    );
-    setCheckAllCatalouge(list.length === ecomChecklist.length);
-    updateAccessForCategory('catalouge', list);
-  };
+  // const onCatalougeChange = (list) => {
+  //   setCheckedCatalougeList(list);
+  //   setIndeterminateCatalouge(
+  //     !!list.length && list.length < ecomChecklist.length
+  //   );
+  //   setCheckAllCatalouge(list.length === ecomChecklist.length);
+  //   updateAccessForCategory('catalouge', list);
+  // };
 
-  const onCheckAllCatalougeChange = (e) => {
-    const checked = e.target.checked ? ecomChecklist : [];
-    setCheckedCatalougeList(checked);
-    setIndeterminateCatalouge(false);
-    setCheckAllCatalouge(e.target.checked);
-    updateAccessForCategory('catalouge', checked);
-  };
+  // const onCheckAllCatalougeChange = (e) => {
+  //   const checked = e.target.checked ? ecomChecklist : [];
+  //   setCheckedCatalougeList(checked);
+  //   setIndeterminateCatalouge(false);
+  //   setCheckAllCatalouge(e.target.checked);
+  //   updateAccessForCategory('catalouge', checked);
+  // };
   // Collections
  
 
@@ -4637,7 +4637,7 @@ const onCheckAllDownloadChange = (e) => {
       !!list.length && list.length < calculateCheckedList.length
     );
     setCheckAllCalculate(list.length === calculateCheckedList.length);
-    updateAccessForCategory('calculate', list);
+    updateAccessForCategory('calculator', list);
   };
 
   const onCheckAllCalculateChange = (e) => {
@@ -4645,7 +4645,7 @@ const onCheckAllDownloadChange = (e) => {
     setCheckedCalculateList(checked);
     setIndeterminateCalculate(false);
     setCheckAllCalculate(e.target.checked);
-    updateAccessForCategory('calculate', checked);
+    updateAccessForCategory('calculator', checked);
   };
 
  //Warrenty
@@ -4657,7 +4657,7 @@ const onCheckAllDownloadChange = (e) => {
     !!list.length && list.length < warrentyCheckedList.length
   );
   setCheckAllWarrenty(list.length === warrentyCheckedList.length);
-  updateAccessForCategory('warranty', list);
+  updateAccessForCategory('warrenty', list);
 };
 
 const onCheckAllWarrentyChange = (e) => {
@@ -4665,7 +4665,7 @@ const onCheckAllWarrentyChange = (e) => {
   setCheckedWarrentyList(checked);
   setIndeterminateWarrenty(false);
   setCheckAllWarrenty(e.target.checked);
-  updateAccessForCategory('warranty', checked);
+  updateAccessForCategory('warrenty', checked);
 };
 
 
@@ -5291,7 +5291,7 @@ const onCheckAllWarrentyChange = (e) => {
                         />
                       </div>
                       <div>
-                        <div class="text-sm font-semibold">Warranty</div>
+                        <div class="text-sm font-semibold">Warrenty</div>
                         <Checkbox
                           indeterminate={indeterminateWarrenty}
                           onChange={onCheckAllWarrentyChange}
@@ -5386,22 +5386,7 @@ const onCheckAllWarrentyChange = (e) => {
                           onChange={onRefurbishChange}
                         />
                       </div>
-                      <div>
-                        <div class="text-sm font-semibold">Scanner</div>
-                        <Checkbox
-                          indeterminate={indeterminateScanner}
-                          onChange={onCheckAllScannerChange}
-                          checked={checkAllScanner}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={settingsCheckedList}
-                          value={checkedScannerList}
-                          onChange={onScannerChange}
-                        />
-                      </div>
+                    
                     </div>
                     <div class="flex justify-between mt-4">
                       <div>
@@ -5418,6 +5403,22 @@ const onCheckAllWarrentyChange = (e) => {
                           options={materialOptions}
                           value={checkedSubscriptionList}
                           onChange={onSubscriptionChange}
+                        />
+                      </div>
+                      <div>
+                        <div class="text-sm font-semibold">Scanner</div>
+                        <Checkbox
+                          indeterminate={indeterminateScanner}
+                          onChange={onCheckAllScannerChange}
+                          checked={checkAllScanner}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        <Divider />
+                        <CheckboxGroup
+                          options={settingsCheckedList}
+                          value={checkedScannerList}
+                          onChange={onScannerChange}
                         />
                       </div>
                     </div>

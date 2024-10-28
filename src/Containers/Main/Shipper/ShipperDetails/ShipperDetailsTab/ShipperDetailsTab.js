@@ -146,8 +146,57 @@ class ShipperDetailsTab extends Component {
   };
 
   handleTabChange = (key) => this.setState({ activeKey: key });
-
+  
   render() {
+    const renderTabContent = (key) => {
+      switch (key) {
+        case "1":
+          return     <div> 
+                 <ShipperActivityTable
+                  shipperId={this.props.shipper.shipperId}
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                />
+              </div>;
+        case "2":
+          return  <div>  <ShipperAwbTable
+          shipperId={this.props.shipper.shipperId}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        /></div>;
+          case "3":
+              return  <div>  <ErpNote
+              type="shipper"
+              id={this.props.shipper.shipperId}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+             /> </div>;
+              case "4":
+                  return  <div> 
+                   <ShipperDocumentTable
+                  shipperId={this.props.shipper.shipperId}
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                />
+                      </div>;
+                   case "5":
+                      return  <div> <ContactShipperTable shipperId={this.props.shipper.shipperId}
+                      translateText={this.props.translateText}
+                      selectedLanguage={this.props.selectedLanguage}
+                     /></div>;
+                      case "6":
+                      return  <div> 
+                        <ShipperCostTable
+                  shipperId={this.props.shipper.shipperId}
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                /> 
+                          </div>;
+                  
+        default:
+          return null;
+      }
+    };
     const { activeKey } = this.state;
     const { orderForGenerating } = this.props;
     console.log(this.props.shipper.shipperId);
@@ -161,26 +210,26 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span className="!text-tab">
-                  <HourglassFullIcon className="text-blue-500  !text-icon !text-tab" />&nbsp;
+                  <HourglassFullIcon className="text-blue-500   !text-tab" />&nbsp;
                   {/* Activity */}
                     {this.state.translatedMenuItems[0]}
 
                   </span>
-                  {activeKey === "2" && (
+                  {activeKey === "1" && (
                     <>
                 
                     </>
                   )}
                 </>
               }
-              key="2"
+              key="1"
             >
               <Suspense fallback={"Loading ..."}>
-                <ShipperActivityTable
+                {/* <ShipperActivityTable
                   shipperId={this.props.shipper.shipperId}
                   translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage}
-                />
+                /> */}
               </Suspense>
             </TabPane>
 
@@ -188,26 +237,26 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span className="!text-tab">
-                    <RocketLaunchIcon className="!text-icon !text-tab text-[#bdd358] mr-2">          
+                    <RocketLaunchIcon className=" !text-tab text-[#bdd358] mr-2">          
                     {/* ship id */}
 </RocketLaunchIcon>
 {this.state.translatedMenuItems[1]} 
                   </span>
-                  {activeKey === "3" && (
+                  {activeKey === "2" && (
                     <>
                     
                     </>
                   )}
                 </>
               }
-              key="3"
+              key="2"
             >
               <Suspense fallback={"Loading ..."}>
-                <ShipperAwbTable
+                {/* <ShipperAwbTable
                   shipperId={this.props.shipper.shipperId}
                   translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage}
-                />
+                /> */}
               </Suspense>
             </TabPane>
 
@@ -221,16 +270,16 @@ class ShipperDetailsTab extends Component {
                   </span>
                 </>
               }
-              key="4"
+              key="3"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <ErpNote
+                {/* <ErpNote
                          type="shipper"
                          id={this.props.shipper.shipperId}
                          translateText={this.props.translateText}
                          selectedLanguage={this.props.selectedLanguage}
-                        />
+                        /> */}
               </Suspense>
             </TabPane>
             {/* <TabPane
@@ -258,7 +307,7 @@ class ShipperDetailsTab extends Component {
                     {this.state.translatedMenuItems[3]}
                     {/* Document */}
                   </span>
-                  {activeKey === "5" && (
+                  {activeKey === "4" && (
                     <>
                       <Tooltip title="Create">
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
@@ -275,15 +324,15 @@ class ShipperDetailsTab extends Component {
                   )}
                 </>
               }
-              key="5"
+              key="4"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <ShipperDocumentTable
+                {/* <ShipperDocumentTable
                   shipperId={this.props.shipper.shipperId}
                   translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage}
-                />
+                /> */}
               </Suspense>
             </TabPane>
 
@@ -297,7 +346,7 @@ class ShipperDetailsTab extends Component {
                     {/* Contact */}
 
                   </span>
-                  {activeKey === "6" && (
+                  {activeKey === "5" && (
                     <>
                       <Tooltip title="Create">
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
@@ -314,14 +363,14 @@ class ShipperDetailsTab extends Component {
                   )}
                 </>
               }
-              key="6"
+              key="5"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <ContactShipperTable shipperId={this.props.shipper.shipperId}
+                {/* <ContactShipperTable shipperId={this.props.shipper.shipperId}
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
-                />
+                /> */}
               </Suspense>
             </TabPane>
 
@@ -334,7 +383,7 @@ class ShipperDetailsTab extends Component {
                     {this.state.translatedMenuItems[5]}
                     {/* Cost */}
                   </span>
-                  {activeKey === "7" && (
+                  {activeKey === "6" && (
                     <>
                       <Tooltip title="Create">
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
@@ -351,19 +400,22 @@ class ShipperDetailsTab extends Component {
                   )}
                 </>
               }
-              key="7"
+              key="6"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 
-                 <ShipperCostTable
+                 {/* <ShipperCostTable
                   shipperId={this.props.shipper.shipperId}
                   translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage}
-                /> 
+                />  */}
               </Suspense>
             </TabPane>
           </StyledTabs>
+          <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
           {/* <LinkShipperOrderConfigureModal

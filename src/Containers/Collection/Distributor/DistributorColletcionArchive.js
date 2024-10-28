@@ -29,6 +29,10 @@ function DistributorColletcionArchive(props) {
            "86", // "Mode"7
         
          "1681", //  Paid by"8
+         
+         "176", //    startDate,//9
+         "126",      //  enddate"//10
+         "154",  // "Submit",//11
            
         ];
 
@@ -49,6 +53,7 @@ function DistributorColletcionArchive(props) {
         <DistributorColletcionArchiveForm 
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={translatedMenuItems}
         />
       </Suspense>
 

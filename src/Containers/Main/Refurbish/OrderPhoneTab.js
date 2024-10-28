@@ -71,7 +71,7 @@ const OrderPhoneTab = (props) => {
         switch (key) {
           case "1":
             return     <div> 
-                {props.user.qcInd && (
+                {props.user.refurbishQcInd && (
                 openQc ? <OpenQcTable 
                   translateText={props.translateText}
                   selectedLanguage={props.selectedLanguage} /> : qcMain ? <ProductionOrderListById 
@@ -79,7 +79,7 @@ const OrderPhoneTab = (props) => {
                   selectedLanguage={props.selectedLanguage} /> : null)}
                 </div>;
           case "2":
-            return  <div>{props.user.repairProcessInd && (repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} 
+            return  <div>{props.user.refurbishProcesInd && (repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} 
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}/> :
             openRepair ? <OpenRepairTable 
@@ -97,7 +97,7 @@ const OrderPhoneTab = (props) => {
             <StyledTabs
            defaultActiveKey={activeKey} onChange={handleTabChange}
             >
-                {!props.inspectionRequiredInd && props.user.qcInd &&
+                {!props.inspectionRequiredInd && props.user.refurbishQcInd &&
                     <TabPane
                         tab={
                             <>
@@ -116,7 +116,7 @@ const OrderPhoneTab = (props) => {
                             {openQc ? <OpenQcTable /> : qcMain ? <ProductionOrderListById /> : null}
                         </Suspense> */}
                     </TabPane>}
-                    { props.user.repairProcessInd &&
+                    { props.user.refurbishProcesInd &&
                 <TabPane
                     tab={
                         <>

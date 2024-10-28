@@ -9,32 +9,8 @@ import { DistributorCollectionArchiveToday } from "../CollectionAction";
 
 
 function EventForm(props) {
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchMenuTranslations = async () => {
-      try {
-        setLoading(true); 
-        const itemsToTranslate = [
-   
-           "176", //    startDate,//0
-           "126",      //  enddate"
-           "154",  // "Submit",//1
-         
-           
-        ];
 
-        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-        setTranslatedMenuItems(translations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.error('Error translating menu items:', error);
-      }
-    };
 
-    fetchMenuTranslations();
-  }, [props.selectedLanguage]);
   const {
     user: { userId, timeZone },
     DistributorCollectionArchiveToday,
@@ -145,7 +121,7 @@ function EventForm(props) {
                   isRequired
                   name="startDate"
                   //label="Start "
-                  label= {translatedMenuItems[0]}                  
+                  label= {props.translatedMenuItems[9]}                  
                   isColumn
                   component={DatePicker}
                   value={values.startDate}
@@ -160,7 +136,7 @@ function EventForm(props) {
                   isRequired
                   name="endDate"
                   // label="End "
-                  label={translatedMenuItems[1]} 
+                  label={props.translatedMenuItems[10]} 
                   // {
                   //   <FormattedMessage
                   //     id="app.enddate"
@@ -194,7 +170,7 @@ function EventForm(props) {
                 loading={props.DistributorCollectionArchive}
               >
 
-                        <div class="text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>    {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                        <div class="text-xs font-bold font-poppins"> {props.translatedMenuItems[11]}</div>    {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
 
               </Button>
             </div>
