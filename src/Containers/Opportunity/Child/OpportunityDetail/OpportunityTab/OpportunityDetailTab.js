@@ -87,8 +87,8 @@ class OpportunityDetailTab extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       '73', // 0
-       '1166', // 1
+       '73', // 0 contacts
+       '1166', // 1 Document
        "1255" // 'Version', // 2
 
       ];
@@ -306,8 +306,8 @@ return  <BundleLoader />
               tab={
                 <>
                   <span>
-                    <ContactsIcon className="!text-icon"/>
-                    <span className="ml-[0.25rem] !text-tab">     
+                  <ContactsIcon className="!text-icon text-[#96bdc6]" />
+                    <span className="ml-[0.25rem] !text-tab">       
                     {translatedMenuItems[0]}           
                     </span>
                   </span>
@@ -372,10 +372,12 @@ return  <BundleLoader />
             <TabPane
               tab={
                 <>
-                  <InsertDriveFileIcon className="!text-icon"/>
-                    <span className="ml-[0.25rem] !text-tab">
-                    {translatedMenuItems[1]}
-                  </span>
+                  <i class="far fa-file text-[#41ead4]"></i>
+              
+                  <span class="ml-1 !text-tab font-poppins ">
+                                    {translatedMenuItems[1]}
+                                    {/* Documents */}
+                                        </span>
                   {activeKey === "3" && (
                     <>
                       <Tooltip 

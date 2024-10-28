@@ -72,26 +72,26 @@ function PoSupplierDetailsTable(props) {
             {props.fetchingPoDetailsList ? <BundleLoader /> : <div className=' flex justify-end sticky z-auto'>
                 <div class="rounded m-1 p-1   w-[100%] h-77vh  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" md:w-[16.1rem]">
+                        <div className="text-[#00A2E8] text-base w-[28.1rem] font-poppins font-bold md:w-[28.1rem]">
                         {translatedMenuItems[0]} 
                         {/* Name" */}
                            
                             </div>
-                        <div className=" md:w-[13.1rem]">
+                        <div className="w-[16.1rem] font-poppins font-bold text-xs md:w-[13.1rem]">
                         {translatedMenuItems[1]} 
                         {/* Category */}
                         </div>
 
-                        <div className=" md:w-[10.12rem]">
+                        <div className="w-[15.12rem] font-poppins font-bold text-xs md:w-[10.12rem]">
                         {translatedMenuItems[2]} 
                          {/* Attribute */}
                         </div>
 
-                        <div className=" md:w-[8.13rem]">
+                        <div className="w-[13.13rem] font-poppins font-bold text-xs md:w-[8.13rem]">
                         {translatedMenuItems[3]}  
                         {/* Unit */}
                         </div>
-                        <div className=" md:w-[21.14rem]">
+                        <div className="w-[9.14rem] font-poppins font-bold text-xs md:w-[9.14rem]">
                         {translatedMenuItems[4]}  
                         {/* Price/Unit */}
                         </div>
@@ -108,27 +108,27 @@ function PoSupplierDetailsTable(props) {
                         {props.poDetails.map((item) => {
                             return (
                                 <>
-                                    <div className="flex rounded justify-between mt-[0.5rem] bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                                    <div className="flex rounded justify-between mt-[0.5rem] bg-white items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center"></div> 
                                         <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
-                                            <div className=" flex font-medium flex-col w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                <div class=" font-normal text-xs font-poppins">
+                                            <div className=" flex font-medium  justify-start  border-l-2 border-green-500 bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex font-normal items-center  ml-gap text-xs font-poppins">
                                                     <span>
                                                         {item.suppliesFullName}
                                                     </span>
 
                                                 </div>
                                             </div>
-                                            <div className=" flex  w-[9.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                <div class="  text-xs font-poppins">
+                                            <div className=" flex  w-[13.2rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex items-center text-xs ml-gap font-poppins">
                                                     <span>
                                                         {item.categoryName} {item.subCategoryName}
                                                     </span>
 
                                                 </div>
                                             </div>
-                                            <div className=" flex w-[6.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                <div class="  text-xs font-poppins">
+                                            <div className=" flex w-[12.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex items-center  text-xs ml-gap font-poppins">
                                                     <span>
                                                         {item.attributeName} {item.subAttributeName}
                                                     </span>
@@ -136,16 +136,16 @@ function PoSupplierDetailsTable(props) {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex  w-[5.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                <div class=" text-xs font-poppins">
+                                            <div className=" flex  w-[8.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex items-center text-xs font-poppins">
                                                     <span>
                                                         {item.unit}
                                                     </span>
 
                                                 </div>
                                             </div>
-                                            <div className=" flex   w-[12.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                <div class=" text-xs font-poppins">
+                                            <div className=" flex   w-[8.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex items-center text-xs font-poppins">
 
                                                     {edit && row.suppliesId === item.suppliesId ?
                                                         <>
@@ -174,7 +174,7 @@ function PoSupplierDetailsTable(props) {
 
                                                 </div>
                                             </div>
-                                            <div className=" flex  w-[1.5rem] max-sm:justify-between  max-sm:flex-row ">
+                                            <div className=" flex  w-[1.5rem] max-sm:justify-between items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row ">
                                                 <div class="  text-xs font-poppins">
                                                     <BorderColorIcon
                                                         className=" !text-icon cursor-pointer text-[tomato]"

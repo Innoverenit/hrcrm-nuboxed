@@ -8,7 +8,7 @@ class SupplierDetailsLeft extends Component {
     const { supplier } = this.props;
     return (
       <>
-        <div class="flex-col block">
+        <div class="flex-col block w-1/4">
         <Suspense fallback={<BundleLoader />}>
           <SupplierOverViewCard  supplier={supplier}
             translateText={this.props.translateText}

@@ -39,12 +39,12 @@ class LinkedContact extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       '110', // 0
-'325', // 1
-'1206', // 2
-'140', // 3
-'546',//4
-'326'//5 department
+       '110', // 0 name     
+'325', // 1      Designation
+'1206', // 2   Department
+'140', // 3       Function
+'546',//4   Email
+'326'//5  Mobile
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -221,16 +221,16 @@ class LinkedContact extends Component {
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                   <div className=" flex  w-[100%]  p-1 bg-trandivrent font-bold sticky  z-10">
                   <div className=" md:w-[5.12rem]"></div>
-                      <div className=" md:w-[11.12rem]">  {translatedMenuItems[0]}    
+                      <div className=" md:w-[18.12rem]">  {translatedMenuItems[0]}    
                         {/* Name */}
                         </div>
                       <div className=" md:w-[9.5rem]">  {translatedMenuItems[1]}    
                         {/* Designation */}
                         </div>
-                        <div className=" md:w-[9.5rem]">  {translatedMenuItems[5]}    
+                        <div className=" md:w-[10.01rem]">  {translatedMenuItems[5]}    
                         {/* Department*/}
                         </div>
-                      <div className=" md:w-[9.8rem] ">  {translatedMenuItems[2]}    
+                      <div className=" md:w-[12.18rem] ">  {translatedMenuItems[2]}    
                         {/* Function */}
                         </div>
                       <div className="md:w-[10.4rem]">  {translatedMenuItems[3]}    
@@ -247,53 +247,63 @@ class LinkedContact extends Component {
                       return (
                           <div >
                                <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                   <div class="flex">
-                                      <div className=" flex   md:w-[5.1rem] max-sm:w-full  ">
-                                      <MultiAvatar
+                                      <div className="  flex  border-l-2 border-green-500 bg-[#eef2f9] items-center h-8  md:w-[3.1rem] max-sm:w-full  ">
+                                        <div class="ml-gap">
+                                      <MultiAvatar 
                 primaryTitle={item.firstName}
                 // imageId={item.imageId}
                 // imageURL={item.imageURL}
                 imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
               />
+              </div>
                                       </div>
 
-                                      <div className=" flex   md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
-                                          <div class=" text-xs  font-poppins">
+                                      <div className=" flex  items-center justify-start ml-gap bg-[#eef2f9] h-8   md:w-[16.5rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                          <div class="flex text-xs ml-gap items-center font-poppins">
                                              {item.fullName}
                                           </div>
 
                                       </div>
-                                      <div className=" flex  md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
-                                          <div class=" text-xs  font-poppins">
+                                      <div className=" flex  items-center justify-start ml-gap bg-[#eef2f9] h-8  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
+                                          <div class=" flex text-xs ml-gap items-center font-poppins">
                                               {item.designation}
                                           </div>
                                       </div>
                                   </div>
-                                  <div className=" flex md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex md:w-[30.5rem]   items-center justify-start ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                                      <div class=" text-xs  font-poppins text-center">
+                                      <div class=" flex text-xs ml-gap items-center font-poppins text-center">
                                       {item.department}
 
                                       </div>
                                   </div>
-                                  <div className=" flex  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs  font-poppins text-center">
+                                  <div className=" flex md:w-[30.6rem]   items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between ">
+
+
+<div class=" flex text-xs ml-gap items-center font-poppins text-center">
+{/* {item.department} */}
+
+</div>
+</div>
+                                  <div className=" flex  md:w-[35.21rem]  items-center justify-start ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between ">
+                                      <div class="flex text-xs ml-gap items-center  font-poppins text-center">
                                         {item.emailId}
 
                                       </div>
                                   </div>
-                                  <div className=" flex md:w-[10.22rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs  font-poppins text-center">
+                                  <div className=" flex md:w-[25.22rem]  items-center justify-start ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between ">
+                                      <div class=" flex text-xs ml-gap items-center font-poppins text-center">
                                       {item.countryDialCode} {item.mobileNumber}
 
                                       </div>
                                   </div>
-                                  <div className=" flex  md:w-[10.23rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                      <div class=" text-xs  font-poppins text-center">
+                                  <div className=" flex  md:w-[25.23rem]  items-center justify-end ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-full max-sm:justify-between ">
+                                      <div class=" flex text-xs ml-gap items-center font-poppins text-center">
                                       <div class=" flex justify-evenly" >
               <ButtonGroup>
                 <RoleButton
@@ -354,7 +364,7 @@ class LinkedContact extends Component {
 
                                       </div>
                                   </div>
-                                  <div className=" flex  md:w-[10.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex  md:w-[0.24rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
               placement="bottom"
