@@ -16,7 +16,7 @@ import {
   getOppLinkedWorkflow,
   getOppLinkedStages,
 } from "../../../../../Opportunity/OpportunityAction";
-import {getAssignedToList} from "../../../../../Employees/EmployeeAction"
+// import {getAssignedToList} from "../../../../../Employees/EmployeeAction"
 import { getCrm} from "../../../../../Leads/LeadsAction";
 import {getSaleCurrency} from "../../../../../Auth/AuthAction"
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
@@ -760,7 +760,7 @@ const mapDispatchToProps = (dispatch) =>
       getOppLinkedStages,
       getCrm,
       getAllEmployeelist,
-      getAssignedToList,
+      // getAssignedToList,
       addContactOpportunity,
       getSaleCurrency
     },

@@ -21,6 +21,7 @@ import {
   handleCustomerDrawerModal,
   getCustomerDetailsById,
   getCustomerKeySkill,
+  handleUpdateUserModal,
   handleCustomerEmailDrawerModal,
   handleCustomerNotesDrawerModal,
   getCustomerById,
@@ -29,7 +30,8 @@ import {
   handleCustomerPulseDrawerModal,
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
-  handleAddressCutomerModal
+  handleAddressCutomerModal,
+  
 } from "../../CustomerAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -38,6 +40,7 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import CustomerContactDrawerModal from "./CustomerContactDrawerModal";
+import UpdateUserModal from "../CustomerTable/UpdateUserModal"
 import CustomerOpportunityDrawerModal from "./CustomerOpportunityDrawerModal";
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -512,11 +515,20 @@ const [rowdata, setrowdata] = useState("");
 
                                   null
                                 ) : (
+                                  <div
+                                  style={{cursor:"pointer"}}
+                                onClick={() => {
+                                  handleSetCurrentCustomerId(item.customerId)
+                                  props.handleUpdateUserModal(true);
+                                  
+                                }}
+                                  >
                                   <MultiAvatar2
                                     primaryTitle={item.assignedTo}
                                     imgWidth={"1.8rem"}
                                     imgHeight={"1.8rem"}
                                   />
+                                  </div>
                                 )}
                               </>
                             )}
@@ -768,6 +780,12 @@ const [rowdata, setrowdata] = useState("");
         selectedLanguage={props.selectedLanguage}
         translatedMenuItems={props.translatedMenuItems}
       />
+
+      <UpdateUserModal
+      currentCustomerId={currentCustomerId}
+      updateUserModal={props.updateUserModal}
+      handleUpdateUserModal={props.handleUpdateUserModal}
+      />
     </>
   );
 }
@@ -780,6 +798,7 @@ const mapStateToProps = ({
   employee,
 }) => ({
   userId: auth.userDetails.userId,
+  updateUserModal:customer.updateUserModal,
   addDrawerCustomerNotesModal:customer.addDrawerCustomerNotesModal,
   teamCustomer: customer.teamCustomer,
   sales: opportunity.sales,
@@ -808,6 +827,7 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
       setEditCustomer,
+      handleUpdateUserModal,
       customerToAccount,
       emptyCustomer,
       updateOwnercustomerById,

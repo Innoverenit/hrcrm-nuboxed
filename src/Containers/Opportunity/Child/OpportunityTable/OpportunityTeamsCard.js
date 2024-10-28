@@ -74,7 +74,7 @@ function OpportunityTeamsCard(props) {
     } 
     props. getTeamOpportunity(props.userId,pageNo);
     setPageNo(pageNo + 1);
-    props.getCrm();
+    // props.getCrm();
   },[]);
   useEffect(() => {
     const handleResize = () => {

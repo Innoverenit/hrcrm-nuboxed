@@ -38,6 +38,14 @@ export const emptyCustomer = () => (dispatch) => {
   });
 };
 
+
+export const handleUpdateUserModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPDATE_USER_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleCustomerReactSpeechModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CUSTOMER_REACT_SPEECH_MODAL,
@@ -2794,6 +2802,39 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       type: types.HANDLE_CUSTOMER_CONTACT_JUMPSTART_MODAL,
       payload: modalProps,
     });
+  };
+
+
+
+
+  export const updateProspectUser = ( customerId,userId) => (dispatch) => {
+    dispatch({ type: types.UPDATE_PROSPECT_USER_REQUEST });
+    axios
+      .put(`${base_url}/customer/changesAssign/${customerId}/${userId}`, {}, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Prospect User updated Successfully!',
+          // showConfirmButton: false,
+          // timer: 1500
+        })
+        console.log(res);
+        dispatch({
+          type: types.UPDATE_PROSPECT_USER_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_PROSPECT_USER_FAILURE,
+          payload: err,
+        });
+      });
   };
   export const handleCustomerActivityJumpstartModal = (modalProps) => (dispatch) => {
     dispatch({

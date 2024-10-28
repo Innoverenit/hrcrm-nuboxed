@@ -126,6 +126,7 @@ class Leads extends Component {
     return (
       <React.Fragment>
         <LeadsHeader
+          selectedDeals={this.state.selectedDeals}
          isTransferMode={this.state.isTransferMode}
          showCheckboxes={this.state.showCheckboxes}
          handleTransferClick={this.handleTransferClick}
