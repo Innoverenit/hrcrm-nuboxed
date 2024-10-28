@@ -323,7 +323,9 @@ const handleGenerateInvoice= async () => {
         title: 'Success!',
         text: 'Invoice generated successfully!',
         icon: 'success',
-        confirmButtonText: 'OK'
+        showConfirmButton: false,
+        timer: 1500,
+
     });
 
     props.handleProcureDetailsModal(false);
@@ -335,7 +337,8 @@ const handleGenerateInvoice= async () => {
         title: 'Error!',
         text: 'There was an issue generating the invoice.',
         icon: 'error',
-        confirmButtonText: 'OK'
+  showConfirmButton: false,
+        timer: 1500,
     });
     } finally {
       setLoading(false);
