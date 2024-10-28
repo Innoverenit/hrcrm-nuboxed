@@ -1,10 +1,12 @@
 import React, { useEffect, useState, lazy, Suspense } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import UpdateAccountUserModal from "../Account/UpdateAccountUserModal"
 import {
   getAllDistributorsList,
   handleUpdateAccountModal,
-  handleAccountAddress
+  handleAccountAddress,
+  handleUpdateAccountUserModal
 } from "./AccountAction"
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -261,12 +263,21 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           <div class="max-sm:flex justify-end">
                           {item.salesExecutive?
                             <Tooltip title={item.salesExecutive}>
+                                 <div
+                                  style={{cursor:"pointer"}}
+                                onClick={() => {
+                                  //handleSetCurrentCustomerId(item.customerId)
+                                  props.handleUpdateAccountUserModal(true);
+                                  handleCurrentRowData(item);
+                                }}
+                                >
                               <MultiAvatar
                                 primaryTitle={item.salesExecutive}
                                 imageId={item.ownerImageId}
                                 imgWidth={"1.8rem"}
                                 imgHeight={"1.8rem"}
                               />
+                              </div>
                             </Tooltip>:""}
                           </div>                      
                       </div>     
@@ -379,18 +390,25 @@ ${(item.address && item.address.length && item.address[0].country) || ""
         handleAccountPulse={props.handleAccountPulse}
         showPulseModal={props.showPulseModal}
       />
+        <UpdateAccountUserModal 
+        RowData={RowData}
+        handleUpdateAccountUserModal={props.handleUpdateAccountUserModal}  
+        updateAccountUserModal={props.updateAccountUserModal}
+      />
        <AddAccountAdressModal   
         item={RowData}
          type="Distributor"
          addAccountAddressModal={props.addAccountAddressModal}
          handleAccountAddress={props.handleAccountAddress}
-      /> </Suspense>
+      /> 
+      </Suspense>
     </>
   )
 }
 
 const mapStateToProps = ({ distributor,auth }) => ({
   allDistributors: distributor.allDistributors,
+  updateAccountUserModal:distributor.updateAccountUserModal,
   fetchingAllDistributors: distributor.fetchingAllDistributors,
   showPulseModal: distributor.showPulseModal,
   updateAccountModal: distributor.updateAccountModal,
@@ -404,7 +422,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       getAllDistributorsList,
       handleUpdateAccountModal,
-      handleAccountAddress
+      handleAccountAddress,
+      handleUpdateAccountUserModal
     },
     dispatch
   );

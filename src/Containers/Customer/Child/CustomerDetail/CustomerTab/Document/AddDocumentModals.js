@@ -939,18 +939,19 @@ const AddDocumentModal = (props) => {
     formData.append('contract', values.contract);
   
     // Example API call using axios
-    try {
-      const response = await axios.post('https://your-api-url.com/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log('Response:', response.data);
-      message.success('Documents uploaded successfully');
-    } catch (error) {
-      console.error('Error uploading documents:', error);
-      message.error('Error uploading documents');
-    }
+    // try {
+    //   const response = await axios.post('https://your-api-url.com/upload', formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data',
+    //     },
+    //   });
+    //   console.log('Response:', response.data);
+    //   message.success('Documents uploaded successfully');
+    // } catch (error) {
+    //   console.error('Error uploading documents:', error);
+    //   message.error('Error uploading documents');
+    // }
+    props.addCustomerDocument(formData)
   
     // Reset form and file list after submission
     setFileList([]);
@@ -967,14 +968,19 @@ const AddDocumentModal = (props) => {
               }
               width="60%"
               visible={props.documentUploadModal}
-              onClose={() => this.handleClose()}
+              onClose={() =>props.handleDocumentUploadModal(false)}
             >
     <Formik
       initialValues={{
-        name: '',
-        contact: null,
-        description: '',
+        documentTitle: '',
+        contact:"",
+        documentDescription: '',
         contract: false,
+                    customerId: props.customerId,
+            contactId: props.contactId,
+            opportunityId: props.opportunityId,
+            invOpportunityId:props.invOpportunityId,
+            investorId:props.investorId
       }}
       onSubmit={handleSubmit}
     >
@@ -1026,13 +1032,14 @@ const AddDocumentModal = (props) => {
           </Form.Item>
 
           {/* Extra Fields */}
-          <Form.Item label="Name" required>
+          <Form.Item label="Name" labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} required>
             <Field
-              name="name"
+            
+              name="documentTitle"
               as={Input}
               placeholder="Enter your name"
-              value={values.name}
-              onChange={(e) => setFieldValue('name', e.target.value)}
+              value={values.documentTitle}
+              onChange={(e) => setFieldValue('documentTitle', e.target.value)}
             />
           </Form.Item>
 
@@ -1052,11 +1059,11 @@ const AddDocumentModal = (props) => {
 
           <Form.Item label="Description">
             <Field
-              name="description"
+              name="documentDescription"
               as={Input.TextArea}
               placeholder="Enter description"
-              value={values.description}
-              onChange={(e) => setFieldValue('description', e.target.value)}
+              value={values.documentDescription}
+              onChange={(e) => setFieldValue('documentDescription', e.target.value)}
             />
           </Form.Item>
 

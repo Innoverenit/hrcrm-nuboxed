@@ -13,6 +13,7 @@ import {
   deleteEvent, getEventListRangeByUserId,
   handleUpdateEventModal,
   setEditEvents,
+  addeventLocation,
 } from "../../EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -105,13 +106,20 @@ function EventCardList (props) {
 }
 
 
-const getLocation = () => {
+const getLocation = (item) => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
         setLocation({ lat: latitude, lng: longitude });
         console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+        let data={
+          complitionInd:item.complitionInd===false?true:false,
+          latitude:latitude,
+          longitude:longitude,
+
+        }
+        props.addeventLocation(data,item.eventId)
         message.success('Location fetched successfully!');
       },
       (error) => {
@@ -318,7 +326,10 @@ const getLocation = () => {
 
                                 <div className="flex w-[6.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">                                
                    <div class="max-sm:flex justify-end">
-          <Button onClick={getLocation}>Complete</Button>
+          <Button 
+       onClick={() => getLocation(item)}
+       >
+            Complete</Button>
         
           </div>
                    </div>
@@ -441,6 +452,7 @@ const mapDispatchToProps = (dispatch) =>
       deleteEvent,
       handleUpdateEventModal,
       setEditEvents,
+      addeventLocation
 
     },
     dispatch

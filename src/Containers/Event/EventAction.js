@@ -399,3 +399,47 @@ export const searchEventList = (name,type) => (dispatch) => {
       });
     });
 };
+
+
+
+export const addeventLocation = (data,eventId, cb) => (dispatch, getState) => {
+  //debugger
+  // const { userId } = getState("auth").auth.userDetails;
+  // console.log(data);
+  dispatch({ type: types.ADD_EVENT_LOCATION_REQUEST });
+  axios
+    .put(
+      `${base_url}/event/completion/${eventId}`,data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      //debugger
+
+      //   dispatch(getEventsListByUserId(userId));
+      console.log(res);
+
+      dispatch({
+        type: types.ADD_EVENT_LOCATION_SUCCESS,
+        payload: res.data,
+      });
+      // dispatch({
+      //   type: UPDATE_TODOEVENT_SUCCESS,
+      //   payload: res.data
+      // })
+      // dispatch({type:UPDATE_EVENTS_LIST_BY_USER_ID_SUCCESS,
+      // payload:res.data})
+      cb();
+    })
+    .catch((err) => {
+      //debugger
+      console.log(err);
+      dispatch({
+        type: types.ADD_EVENT_LOCATION_FAILURE,
+        payload: err,
+      });
+    });
+};

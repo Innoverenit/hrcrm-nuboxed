@@ -174,6 +174,9 @@ const initialState = {
   addingDistributorActivityTask: false,
   addingDistributorActivityTaskError: false,
 
+
+  updateAccountUserModal:false,
+
   fetchingNotesListByDistributorId: false,
   fetchingNotesListByDistributorIdError: false,
   notesListByDistributorId: [],
@@ -340,6 +343,9 @@ const initialState = {
   addCatalogueOrderModal: false,
 
   generateOrderModal: false,
+
+  updateAccountUserById:false,
+  updateAccountUserByIdError:false,
 
   updatingOrderStep1: false,
   updatingOrderStep1Error: false,
@@ -712,6 +718,10 @@ export const distributorReducer = (state = initialState, action) => {
 
     case types.HANDLE_ACCOUNT_IMPORT_MODAL:
       return { ...state, addAccountImportModal: action.payload };
+
+
+      case types.HANDLE_UPDATE_ACCOUNT_USER_MODAL:
+        return { ...state, updateAccountUserModal: action.payload };
 
     /**
      * Add a distributor
@@ -2810,6 +2820,35 @@ export const distributorReducer = (state = initialState, action) => {
         addingProductionLocationInOrderError: true,
         accountOrderProduction: false,
       };
+
+
+
+
+      case types.UPDATE_ACCOUNT_USER_REQUEST:
+        return { ...state, updateAccountUserById: true };
+      case types.UPDATE_ACCOUNT_USER_SUCCESS:
+        return {
+          ...state,
+          updateAccountUserById: false,
+          updateAccountUserModal: false,
+          allDistributors: state.allDistributors.map((item) => {
+            if (item.distributorId === action.payload.distributorId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+
+
+
+         
+        };
+      case types.UPDATE_ACCOUNT_USER_FAILURE:
+        return {
+          ...state,
+          updateAccountUserById: false,
+          updateAccountUserByIdError: true,
+        };
 
     case types.GET_PAYMENT_MODE_REQUEST:
       return { ...state, fetchingPaymentMode: true };
