@@ -347,7 +347,7 @@ const LeadsActionLeft = (props) => {
         </div>
 
         <div class="w-[40%]  ml-2 max-sm:w-[45%]">
-      {/* {props.showCheckboxes && props.selectedDeals.length > 0 && (  */}
+       {props.showCheckboxes && props.selectedDeals.length > 0 && (  
         <Select
        
        placeholder="Select User"
@@ -361,7 +361,7 @@ const LeadsActionLeft = (props) => {
          </Option>
        ))}
      </Select>
-   {/* )}  */}
+    )}  
         </div>
     </div>
   );

@@ -78,7 +78,7 @@ function OpportunityAllCardList(props) {
     } 
     props. getFullOpportunity(page);
     setPage(page + 1);
-    props.getCrm();
+    // props.getCrm();
   },[]);
   useEffect(() => {
     const handleResize = () => {

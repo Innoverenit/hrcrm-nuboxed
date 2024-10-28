@@ -32,7 +32,8 @@ import {
   handleCustomerPulseDrawerModal,
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
-  handleAddressCutomerModal
+  handleAddressCutomerModal,
+  handleUpdateUserModal
  
 } from "../../CustomerAction";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
@@ -46,7 +47,7 @@ import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
 import { emptyLeads,getCrm,}from"./././../../../Leads/LeadsAction";
-
+import UpdateUserModal from "../CustomerTable/UpdateUserModal"
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
 const CustomerOpportunityDrawerModal =lazy(()=> import("./CustomerOpportunityDrawerModal"));
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
@@ -487,11 +488,20 @@ const [rowdata, setrowdata] = useState("");
               {item.assignedTo === null ? (
                 "None"
               ) : (
+                <div
+                style={{cursor:"pointer"}}
+              onClick={() => {
+                handleSetCurrentCustomerId(item.customerId)
+                props.handleUpdateUserModal(true);
+                
+              }}
+                >
                 <MultiAvatar2
                   primaryTitle={item.assignedTo}
                   imgWidth={"1.8rem"}
                   imgHeight={"1.8rem"}
                 />
+                </div>
               )}
             </div>
              
@@ -765,6 +775,11 @@ translatedMenuItems={props.translatedMenuItems}
         handleCustomerNotesDrawerModal={handleCustomerNotesDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
       /> 
+        <UpdateUserModal
+      currentCustomerId={currentCustomerId}
+      updateUserModal={props.updateUserModal}
+      handleUpdateUserModal={props.handleUpdateUserModal}
+      />
     </>
   );
 }
@@ -788,6 +803,7 @@ const mapStateToProps = ({
   recruiterName: opportunity.recruiterName,
   fetchingAllCustomers: customer.fetchingAllCustomers,
   sectors: sector.sectors,
+  updateUserModal:customer.updateUserModal,
   fetchingAllCustomerList: customer.fetchingAllCustomerList,
   fetchingAllCustomerListError: customer.fetchingAllCustomerListError,
   updateCustomerModal: customer.updateCustomerModal,
@@ -807,6 +823,7 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
       setEditCustomer,
+      handleUpdateUserModal,
       // getSectors,
       customerToAccount,
       emptyCustomer,

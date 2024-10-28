@@ -89,6 +89,9 @@ const initialState = {
   fetchingAllCustomerByPosition: false,
   fetchingAllCustomerByPosition: false,
 
+
+  updateUserModal:false,
+
   fetchingCustomerRequirement: false,
   fetchingCustomerRequirementError: false,
   customerRequirement: [],
@@ -367,6 +370,10 @@ const initialState = {
   fetchingCustomerActivityCount: false,
   fetchingCustomerActivityCountError: false,
   customerActivityCount: {},
+
+
+  updateProspectUserById:false,
+  updateProspectUserByIdError:false,
 
   fetchingCustomerCloser: false,
   fetchingCustomerCloserError: false,
@@ -786,6 +793,10 @@ export const customerReducer = (state = initialState, action) => {
         fetchingDocumentsByCustomerIdError: true,
       };
 
+
+      case types.HANDLE_UPDATE_USER_MODAL:
+      return { ...state, updateUserModal: action.payload };
+
     case types.ADD_LOCATION_DETAILS_REQUEST:
       return { ...state, addingLocationDetails: true };
     case types.ADD_LOCATION_DETAILS_SUCCESS:
@@ -1066,7 +1077,38 @@ export const customerReducer = (state = initialState, action) => {
 
 
 
+      case types.UPDATE_PROSPECT_USER_REQUEST:
+        return { ...state, updateProspectUserById: true };
+      case types.UPDATE_PROSPECT_USER_SUCCESS:
+        return {
+          ...state,
+          updateProspectUserById: false,
+          updateUserModal: false,
+          teamCustomer: state.teamCustomer.map((item) => {
+            if (item.customerId === action.payload.customerId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
 
+
+
+          allCustomers: state.allCustomers.map((item) => {
+            if (item.customerId === action.payload.customerId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+        };
+      case types.UPDATE_PROSPECT_USER_FAILURE:
+        return {
+          ...state,
+          updateProspectUserById: false,
+          updateProspectUserByIdError: true,
+        };
+  
       case types.GET_CUSTOMER_DONUT_REQUEST:
         return { ...state, fetchingCustomerDonut: true };
       case types.GET_CUSTOMER_DONUT_SUCCESS:

@@ -381,8 +381,17 @@ if (loading) {
                               <div class="text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                               {item.thirdPartyAccessInd === true
-?<Tooltip title= {translatedMenuItems[10]}><AlarmOnIcon   className=" !text-icon text-[green]"/></Tooltip> 
-:  <Tooltip title= {translatedMenuItems[11]}> <DoNotDisturbOnTotalSilenceIcon  className=" !text-icon text-[red]"/></Tooltip>}
+?<Tooltip title= {translatedMenuItems[10]}>
+    <div className="text-green-600 font-bold bg-green-100 inline-block px-2 py-1 rounded max-h-max">
+  Yes
+  </div>
+  </Tooltip> 
+:  <Tooltip title= {translatedMenuItems[11]}> 
+  <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded max-h-max">
+No
+</div>
+{/* <DoNotDisturbOnTotalSilenceIcon  className=" !text-icon text-[red]"/> */}
+</Tooltip>}
 
                               </div>
                           </div>
