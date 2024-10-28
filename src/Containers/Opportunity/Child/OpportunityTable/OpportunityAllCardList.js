@@ -40,6 +40,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { base_url2 } from "../../../../Config/Auth";
 
 
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
@@ -526,9 +527,12 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       </div>
          
                       <div class="w-6">
-        <span onClick={() => exportPDFAnnexure()}>
+                      <a
+              href={`${base_url2}/customer/pdf/${item.opportunityId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div> 
                  
                   <div>

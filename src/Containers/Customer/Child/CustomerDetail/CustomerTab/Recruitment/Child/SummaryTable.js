@@ -11,7 +11,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 import styled from "styled-components";
-import { base_url } from "../../../../../../../Config/Auth";
+import { base_url, base_url2 } from "../../../../../../../Config/Auth";
 import dayjs from "dayjs";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 function onChange(pagination, filters, sorter) {
@@ -279,9 +279,13 @@ class SummaryTable extends Component {
               style={{ padding: "0em 1.25em" }}
             >
               <Tooltip title={"Generate PDF"}>
+              <a
+              href={`${base_url2}/customer/pdf/${"id"}`}
+            target="_blank"
+            >
                 <Button
                   type="primary"
-                  onClick={this.handleDownloadPdf}
+                  // onClick={this.handleDownloadPdf}
                   style={{
                     color: "white",
                     border: "0.125em solid red",
@@ -292,6 +296,7 @@ class SummaryTable extends Component {
                    <PictureAsPdfIcon 
                    />
                 </Button>
+                </a>
               </Tooltip>
               <Tooltip title={"Generate XL"}>
                 <Button

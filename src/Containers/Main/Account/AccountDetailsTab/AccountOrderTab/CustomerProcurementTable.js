@@ -651,9 +651,12 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                             </Tooltip>
                                                             </div>  */}
                                                  <div class=" flex items-center justify-center h-8   bg-[#eef2f9]">         
-        <span onClick={() => exportPDFAnnexure()}>
+                                                 <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </span>
+                           </a>
                            </div> 
                   
                                                         </div>
@@ -868,9 +871,12 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                             </div>  */}
                                                             </div>
                                                     <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex">      
-        <span onClick={() => exportPDFAnnexure()}>
+                                                    <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </span>
+                           </a>
                                  </div>   
                   
                                                         </div>

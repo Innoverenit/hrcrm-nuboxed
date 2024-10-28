@@ -22,7 +22,7 @@ import {
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import styled from "styled-components";
-import { base_url } from "../../../../../../../Config/Auth";
+import { base_url, base_url2 } from "../../../../../../../Config/Auth";
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
 function onChange(pagination, filters, sorter) {
@@ -518,6 +518,10 @@ class SummaryTable extends Component {
                   />
                 }
               >
+                 <a
+              href={`${base_url2}/customer/pdf/${'item.orderId'}`}
+            target="_blank"
+            >
                 <Button
                   // icon="file-pdf"
                   // icon={<FilePdfOutlined />}
@@ -533,6 +537,7 @@ class SummaryTable extends Component {
                 >
                   <PictureAsPdfIcon />
                 </Button>
+                </a>
               </Tooltip>
               &nbsp;&nbsp;
               <Tooltip //title={"Generate XL"}

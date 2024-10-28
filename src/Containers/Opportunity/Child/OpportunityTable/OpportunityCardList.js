@@ -48,7 +48,7 @@ import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal"
 import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OpportunityRowEmailModal from "./OpportunityRowEmailModal";
-import { base_url } from "../../../../Config/Auth";
+import { base_url, base_url2 } from "../../../../Config/Auth";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 const Option =Select;
@@ -505,9 +505,12 @@ imgHeight={"1.8rem"}
   </div>
 
 <div >
-        <span onClick={() => exportPDFAnnexure()}>
+<a
+              href={`${base_url2}/customer/pdf/${item.opportunityId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div>
 <div class="flex items-center">
 <Tooltip

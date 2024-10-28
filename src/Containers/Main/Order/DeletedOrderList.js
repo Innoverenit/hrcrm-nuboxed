@@ -30,6 +30,7 @@ import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidBu
 import { PersonAddAlt1 } from "@mui/icons-material";
 import ReInstateOrderToggle from "./ReInstateOrderToggle";
 import OrderSearchedData from "./OrderSearchedData";
+import { base_url2 } from "../../../Config/Auth";
 const { Option } = Select;
 
 function DeletedOrderList(props) {
@@ -402,9 +403,12 @@ const exportPDFAnnexure = async () => {
                     </div>
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
                     <div class="w-6 items-center justify-center h-8  bg-[#eef2f9]">
-        <span onClick={() => exportPDFAnnexure()}>
+                    <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div>        
                       {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
                       <div class=" text-xs  font-poppins items-center justify-center h-8   bg-[#eef2f9]">
@@ -683,9 +687,12 @@ const exportPDFAnnexure = async () => {
                       {item.orderStatus}
                     </div>
                     <div class="w-6  items-center justify-center  bg-[#eef2f9] h-8">
-        <span onClick={() => exportPDFAnnexure()}>
+                    <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div>        
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
 

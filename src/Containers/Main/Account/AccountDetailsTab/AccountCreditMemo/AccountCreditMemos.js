@@ -233,9 +233,12 @@ function AccountCreditMemos(props) {
                         </div>
 
                         <div class="w-6 ">
-        <span onClick={() => exportPDFAnnexure()}>
+                        <a
+              href={`${base_url2}/customer/pdf/${item.creditMemoId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </span>
+                           </a>
           </div>
                       </div>
 

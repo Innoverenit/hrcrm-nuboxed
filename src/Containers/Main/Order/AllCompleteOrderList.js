@@ -31,6 +31,7 @@ import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/Sta
 import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import { PersonAddAlt1 } from "@mui/icons-material";
 import OrderSearchedData from "./OrderSearchedData";
+import { base_url2 } from "../../../Config/Auth";
 const { Option } = Select;
 
 
@@ -435,9 +436,12 @@ const exportPDFAnnexure = async () => {
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     <div class="w-6 items-center justify-center  bg-[#eef2f9] h-8 ">
-        <span onClick={() => exportPDFAnnexure()}>
+                    <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div> 
                     <div class=" font-poppins items-center justify-center  bg-[#eef2f9] h-8">
                         <Tooltip title={translatedMenuItems[12]}>
@@ -708,9 +712,12 @@ const exportPDFAnnexure = async () => {
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     <div class="w-6 items-center justify-center h-8 bg-[#eef2f9]">
-        <span onClick={() => exportPDFAnnexure()}>
+                    <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon"/>
-                           </span>
+                           </a>
           </div>
                     
                       <div class=" text-xs  font-poppins items-center justify-center h-8 bg-[#eef2f9]">

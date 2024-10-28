@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import { base_url } from "../../../../Config/Auth";
+import { base_url, base_url2 } from "../../../../Config/Auth";
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import SimCardDownloadIcon from '@mui/icons-material/SimCardDownload';
 
@@ -26,7 +26,12 @@ class ReportDocumentsView extends Component {
                     {/* > */}
                         <Tooltip title={"Generate PDF"}>
                             {/* <Button > */}
+                            <a
+              href={`${base_url2}/customer/pdf/${"id"}`}
+            target="_blank"
+            >
                                  <PictureAsPdfIcon className=" !text-xl !text-red !text-tab"/>
+                                 </a>
                             {/* </Button> */}
                         </Tooltip>
                      

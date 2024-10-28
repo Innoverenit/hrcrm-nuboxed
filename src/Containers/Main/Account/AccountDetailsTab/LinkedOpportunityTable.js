@@ -23,6 +23,7 @@ import OpportuniyConvertDrawer from "./OpportuniyConvertDrawer";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { base_url2 } from "../../../../Config/Auth";
 
 const AccountProcureDetailsModal = lazy(() => import('../AccountDetailsTab/AccountProcureDetailsModal'));
 
@@ -367,9 +368,12 @@ const handleConfirm = (quotationId) => {
                      
                   </div>
                   <div class="w-[14.40rem] items-center  ml-gap bg-[#eef2f9] h-8 justify-end flex">
-        <span onClick={() => exportPDFAnnexure()}>
+                  <a
+              href={`${base_url2}/customer/pdf/${item.quotationId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </span>
+                           </a>
           </div>            
                                       </div>
                                     </div>
@@ -525,9 +529,12 @@ const handleConfirm = (quotationId) => {
                       
                   </div>
                   <div class="w-[14.40rem] items-center  ml-gap bg-[#eef2f9] h-8 justify-end flex">
-        <span onClick={() => exportPDFAnnexure()}>
+                  <a
+              href={`${base_url2}/customer/pdf/${item.quotationId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </span>
+                           </a>
           </div>
                          </div>
                           </div>  )

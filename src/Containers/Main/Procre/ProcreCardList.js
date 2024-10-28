@@ -23,6 +23,7 @@ import { MultiAvatar } from "../../../Components/UI/Elements";
 import ProcureOrderModal from "./Child/ProcureOrderModal";
 import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
 import ProcureSearchedData from "./ProcureSearchedData";
+import { base_url2 } from "../../../Config/Auth";
 
 
 function ProcreCardList(props) {
@@ -460,9 +461,12 @@ const {handleProcureNotesDrawerModal,
                   </div>
                   <div className=" flex   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                   <div class="w-6 items-center justify-center h-8  bg-[#eef2f9] ">
-        <span onClick={() => exportPDFAnnexure()}>
+                  <a
+              href={`${base_url2}/customer/pdf/${item.iteamId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div>          
                   <div class="items-center justify-center h-8   bg-[#eef2f9] " >
                       <Tooltip title={translatedMenuItems[16]}>

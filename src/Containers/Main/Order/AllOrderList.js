@@ -9,7 +9,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url } from "../../../Config/Auth";
+import { base_url, base_url2 } from "../../../Config/Auth";
 import {
   // getAllOrderList,
   getAllHighOrderList,
@@ -426,9 +426,12 @@ const exportPDFAnnexure = async () => {
                     <div class="flex max-sm:justify-between items-center max-sm:w-wk max-sm:items-center">
                     
                     <div class="w-6 items-center justify-center h-8   bg-[#eef2f9]">
-        <span onClick={() => exportPDFAnnexure()}>
+                    <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div>
                       <div class=" text-xs  font-poppins items-center justify-center h-8   bg-[#eef2f9]">
                         <Tooltip title={translatedMenuItems[12]}>
