@@ -11,7 +11,7 @@ const EmptyPage = (props) => {
     return (
         <>
     
-           <div className="flex flex-col justify-center items-center h-[90vh]">
+           <div className="flex flex-col justify-center items-center h-[70vh]">
           
            <img
                   className="big-logo"
@@ -26,10 +26,10 @@ const EmptyPage = (props) => {
               
     
   <div
-    className="text-xs cursor-pointer underline text-[#6245C6] font-[Poppins] font-medium"
+    className="text-xs cursor-pointer  font-[Poppins] font-medium"
    
   >
-    Create 
+      Click on "Add" Button to get Started.
   </div>
 
           
