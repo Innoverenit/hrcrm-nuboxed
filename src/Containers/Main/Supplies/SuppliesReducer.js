@@ -11,6 +11,12 @@ const initialState = {
     fetchingItemDataError: false,
     newStepItemData:[],
 
+    fetchingbestBefore: false,
+    fetchingbestBeforeError: false,
+    bestBeforeData:[],
+
+    bestBeforemodal:false,
+
     erpDocumentUploadModal:false,
 
     deletingSuppliesDocumentData: false,
@@ -329,6 +335,22 @@ export const suppliesReducer = (state = initialState, action) => {
             fetchingItemData: false,
             fetchingItemDataError: true,
           };
+
+          case types.GET_BEST_BEFORE_REQUEST:
+            return { ...state, fetchingbestBefore: true };
+          case types.GET_BEST_BEFORE_SUCCESS:
+            return {
+              ...state,
+              fetchingbestBefore: false,
+           bestBeforeData: action.payload
+            };
+          case types.GET_BEST_BEFORE_FAILURE:
+            return {
+              ...state,
+              fetchingbestBefore: false,
+              fetchingbestBeforeError: true,
+            };
+  
 
         case types.UPDATE_SUPPLIES_BY_ID_REQUEST:
             return { ...state, updateSuppliesById: true };
@@ -1293,6 +1315,9 @@ export const suppliesReducer = (state = initialState, action) => {
 
           case types.HANDLE_NEWARRIVAL_MODAL:
             return { ...state, newArivalmodal: action.payload };
+
+            case types.HANDLE_BESTBEFORE_MODAL:
+              return { ...state, bestBeforemodal: action.payload };
   
           case types.HANDLE_ERP_DOCUMENT_UPLOAD_MODAL:
             return { ...state, erpDocumentUploadModal: action.payload };

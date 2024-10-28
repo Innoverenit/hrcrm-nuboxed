@@ -1481,6 +1481,12 @@ export const handleNewAriival = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+export const handleBestbefore = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_BESTBEFORE_MODAL,
+    payload: modalProps,
+  });
+};
 
 export const getLocationSupplies = (orgId,suppliesId) => (dispatch) => {
   dispatch({
@@ -1619,7 +1625,30 @@ export const getItemData = (orgId) => (dispatch) => {
     });
 };
 
-
+export const getBestBefore = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BEST_BEFORE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getBestBeforeItemList/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_BEST_BEFORE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BEST_BEFORE_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 export const addLocationSuppliesValue = (documents,suppliesId, cb) => (dispatch) => {
   console.log(documents);

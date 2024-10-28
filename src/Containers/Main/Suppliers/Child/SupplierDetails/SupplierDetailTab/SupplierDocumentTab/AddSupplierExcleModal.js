@@ -50,7 +50,8 @@ class AddSupplierExcleModal extends Component {
         <Suspense fallback={<div>Loading...</div>}>
           {this.state.isManual ? (
            
-           <AddManualForm/>
+           <AddManualForm  translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}/>
           ) : (
             <AddSupplierExcleForm />
           )}

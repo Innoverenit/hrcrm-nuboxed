@@ -198,6 +198,7 @@ const initialState = {
 
   addingManual: false,
   addingManualError:false,
+  preViewList:[],
 
   feedbackModal: false,
 
@@ -1803,8 +1804,9 @@ export const suppliersReducer = (state = initialState, action) => {
                   return {
                     ...state,
                     addingManual: false,
-                    supplierExcleUploadModal: false,
-                    inventoryList: [...action.payload, ...state.inventoryList],
+                   // supplierExcleUploadModal: false,
+                   preViewList:action.payload,
+                    // inventoryList: [...action.payload, ...state.inventoryList],
                     
                     // inventoryList: state.inventoryList.map((item) => {
                     //   if (item.userId === action.payload.userId) {
