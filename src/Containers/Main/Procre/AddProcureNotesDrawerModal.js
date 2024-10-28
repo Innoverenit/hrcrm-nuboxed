@@ -15,7 +15,7 @@ class AddProcureNotesDrawerModal extends Component {
         <StyledDrawer
          title="Notes"
          // title={this.props.particularRowData.name}
-          width="64%"
+         width="38%"
           destroyOnClose
           closable
           placement="right"

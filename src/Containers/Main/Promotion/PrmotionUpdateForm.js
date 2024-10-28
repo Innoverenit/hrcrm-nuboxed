@@ -1,22 +1,15 @@
-import React, {useEffect, useState,Component } from "react";
+import React, {Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch,Select } from "antd";
-import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
-import { Formik, Form, Field, FieldArray } from "formik";
+import { Formik, Form, Field } from "formik";
 import {updatePromotions} from "./PrmotionAction";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
-// const FormSchema = Yup.object().shape({
-//   name: Yup.string().required("Input required!"),
-//   management: Yup.string().required("Input required!"),
-//   locationtypeId: Yup.string().required("Input required!"),
-// });
+import ApartmentIcon from '@mui/icons-material/Apartment';
+
 const { Option } = Select;
 
 class PrmotionUpdateForm extends Component {
@@ -191,7 +184,7 @@ endDate: this.props.storedLoc.endDate ? dayjs(this.props.storedLoc.endDate) : da
                       <div class="font-bold text-xs">
                        {/* {this.state.translatedMenuItems[4]} */}
                         Material
-                         &nbsp;<i class="fas fa-building text-base"></i></div>
+                         &nbsp; <ApartmentIcon className="!text-tab text-[#f0386b]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
@@ -205,7 +198,7 @@ endDate: this.props.storedLoc.endDate ? dayjs(this.props.storedLoc.endDate) : da
                     <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">
                        {/* {this.state.translatedMenuItems[4]}  */}Discount type
-                         &nbsp;<i class="fas fa-building text-base"></i></div>
+                         &nbsp; <ApartmentIcon className="!text-tab text-[#f0386b]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}

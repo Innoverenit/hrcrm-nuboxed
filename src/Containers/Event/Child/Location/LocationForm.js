@@ -13,6 +13,7 @@ import { getTimeZone } from "../../../Auth/AuthAction";
 import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
 import { getRoles } from "../../../Settings/Category/Role/RoleAction"
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const { Option } = Select;
 
@@ -265,7 +266,7 @@ class LocationForm extends Component {
                     <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs font-poppins">
                        {this.state.translatedMenuItems[4]} {/* Corporate */}
-                         &nbsp;<i class="fas fa-building text-base"></i></div>
+                         &nbsp; <ApartmentIcon className="!text-tab text-[#f0386b]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}

@@ -6,14 +6,12 @@ import { BundleLoader } from "../../Components/Placeholder";
 import {
     handleCustomerModal,
     getCustomerListByUserId,
-    // setCustomerViewType,
     getCustomerPagination,
     emptyCustomer,
     getLatestCustomer,
     getCustomerCloser,
     handleCustomerImportModal,
     getCustomerFilterData, 
-    deleteCustomer  ,
     updateOwnercustomerById
   } from "./CustomerAction";
 import CustomerMap from "./CustomerMap"
