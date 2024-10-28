@@ -7,6 +7,7 @@ import { addProcureDetails, getBrand, getModel } from "../../../../../Account/Ac
 import {addManual,getCategorylist} from "../../../../SuppliersAction";
 import {getSaleCurrency} from "../../../../../../Auth/AuthAction";
 import {getAllProductList,getLocationList} from "../../../../../Account/AccountAction";
+import InventoryTableList from "./InventoryTableList";
 const { Option } = Select;
 
 function AddManualForm(props) {
@@ -176,16 +177,18 @@ function AddManualForm(props) {
 
   return (
     <>
-      <div>
+
+    <div className="flex justify-between">
+      <div class="w-[30%] box-content p-2 border-blue border-4">
         {rows.map((row, index) => (
           <div key={index}>
-            <div className="flex justify-around w-[30rem]">
+            <div className="flex justify-around  flex-col">
 
             <div>
                 <div class="font-bold text-xs font-poppins text-black">Category</div>
-                <div className="w-[7rem]">
+                <div className="w-full">
                   <Select
-                    style={{ width: 100 }}
+                   
                     value={row.category}
                     onChange={(value) => handleCategoryChange(value, index)}
                  >
@@ -199,9 +202,9 @@ function AddManualForm(props) {
 
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Brand</div>
-                <div className="w-[7rem]">
+                <div className="w-full">
                   <Select
-                    style={{ width: 100 }}
+                   
                     value={row.brand}
                     onChange={(value) => handleBrandChange(value, index)}
                    // disabled={!fieldEnabled.brand}
@@ -214,9 +217,9 @@ function AddManualForm(props) {
               </div>
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Model</div>
-                <div className="w-[12rem]">
+                <div className="w-full">
                   <Select
-                    style={{ width: 170 }}
+                 
                     value={row.model}
                     onChange={(value) => handleModelChange(value, index)}
                    // disabled={!fieldEnabled.model}
@@ -229,9 +232,9 @@ function AddManualForm(props) {
               </div>
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Attribute</div>
-                <div className="w-[7rem]">
+                <div className="">
                   <Select
-                    style={{ width: 100 }}
+                 
                     value={row.attribute}
                     onChange={(value) => handleAttributeChange(value, index)}
                   //  disabled={!fieldEnabled.attribute}
@@ -279,9 +282,9 @@ function AddManualForm(props) {
               </div> */}
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Type</div>
-                <div className="w-28 ">
+                <div className="w-full">
                   <Select
-                    style={{ width: 100 }}
+                   
                     value={row.type}
                     onChange={(value) => handleTypeChange(value, index)}
                     //disabled={!fieldEnabled.type}
@@ -309,9 +312,9 @@ function AddManualForm(props) {
               </div> */}
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Currency</div>
-                <div className="w-[7rem]">
+                <div className="">
                   <Select
-                    style={{ width: 100 }}
+                   
                     value={row.currencyId}
                     onChange={(value) => handleCurrencyChange(value, index)}
                     //disabled={!fieldEnabled.currencyId}
@@ -324,7 +327,7 @@ function AddManualForm(props) {
               </div>
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Price / Unit</div>
-                <div className="w-28">
+                <div className="w-full">
                   <Input
                     type="text"
                     value={row.price}
@@ -337,7 +340,7 @@ function AddManualForm(props) {
              
               <div>
                 <div class="font-bold text-xs font-poppins text-black">Units</div>
-                <div className="w-28">
+                <div className="w-full">
                   <Input
                     type="text"
                     value={row.unit}
@@ -348,16 +351,20 @@ function AddManualForm(props) {
                 </div>
               </div>
 
-              <div className="w-4 mt-[1.5rem]">
+              {/* <div className="w-4 mt-[1.5rem]">
                 <CloseOutlined onClick={() => handleRemoveRow(index)} />
-              </div>
+              </div> */}
             </div>
           </div>
         ))}
-        <Button type="primary" onClick={handleAddRow}>Add</Button>
-        <Button type="primary" loading={props.addingManual} onClick={handleSubmit}>Submit</Button>
+        {/* <Button type="primary" onClick={handleAddRow}>Add</Button> */}
+        <Button type="primary" loading={props.addingManual} onClick={handleSubmit}>Add</Button>
       </div>
-      {/* <ProcureDetailsCardList /> */}
+
+      <InventoryTableList
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
+          </div>
     </>
   );
 }

@@ -8,12 +8,13 @@ import UploadMaterialModal from "./UploadMaterialModal"
 import UploadIcon from '@mui/icons-material/Upload';
 import { Tooltip } from "antd";
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import { handleSuppliesModal,handleUploadMaterialModal,handleImageSuppliesModal,handleNewAriival } from "./SuppliesAction";
+import { handleSuppliesModal,handleUploadMaterialModal,handleImageSuppliesModal,handleNewAriival,handleBestbefore } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import CloudDownloadIcon from '@mui/icons-material/CloudDownload';
 import UploadImageModalSupplies from "./UploadImageModalSupplies";
 import NewArrivalAddModal from "./NewArrivalAddModal";
+import BestbeforeModal from "./BestbeforeModal";
 
 const SuppliesAddModal=lazy(()=>import("./SuppliesAddModal"));
 
@@ -53,11 +54,22 @@ class SuppliesActionRight extends React.Component {
     }
   };
   render() {
-    const { handleSuppliesModal, addSuppliesModal, user, viewType,handleNewAriival,newArivalmodal } = this.props;
+    const { handleSuppliesModal, addSuppliesModal,bestBeforemodal, user, viewType,handleNewAriival,handleBestbefore,newArivalmodal } = this.props;
 
     return (
       <>
       <div className="flex">
+      <Tooltip title="Best Before">
+        <Button
+         type="primary"
+         onClick={() => handleBestbefore(true)}>
+            <DateRangeIcon
+            className="cursor-pointer !text-base"
+             
+            />   
+           Best Before
+            </Button>  
+          </Tooltip>
       <Tooltip title="New Arrivals">
         <Button
          type="primary"
@@ -127,6 +139,13 @@ class SuppliesActionRight extends React.Component {
          newArivalmodal={newArivalmodal}
           translatedMenuItems={this.state.translatedMenuItems}
         />
+          <BestbeforeModal
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
+         handleBestbefore={handleBestbefore}
+         bestBeforemodal={bestBeforemodal}
+          translatedMenuItems={this.state.translatedMenuItems}
+        />
          <UploadImageModalSupplies
         uploadImageListSupplies={this.props.uploadImageListSupplies}
         handleImageSuppliesModal={this.props.handleImageSuppliesModal}
@@ -147,7 +166,8 @@ const mapStateToProps = ({ supplies, auth }) => ({
   user: auth.userDetails,
   uploadMaterialModal:supplies.uploadMaterialModal,
   uploadImageListSupplies:supplies.uploadImageListSupplies,
-  newArivalmodal: supplies.newArivalmodal
+  newArivalmodal: supplies.newArivalmodal,
+  bestBeforemodal:supplies.bestBeforemodal
 
 });
 const mapDispatchToProps = (dispatch) =>
@@ -156,7 +176,8 @@ const mapDispatchToProps = (dispatch) =>
       handleSuppliesModal,
       handleUploadMaterialModal,
       handleImageSuppliesModal,
-      handleNewAriival
+      handleNewAriival,
+      handleBestbefore
     },
     dispatch
   );
