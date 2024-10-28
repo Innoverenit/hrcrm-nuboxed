@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Tooltip,Button,Select } from "antd";
 import SupplierSuppliesToggle from "./SupplierSuppliesToggle";
+import NewSupploesForm from "./NewSupploesForm";
 
 const { Option } = Select;
 
@@ -86,7 +87,9 @@ function SupplierSuppliesCardTable(props) {
 
   return (
     <>
-      <div className=' flex sticky  z-auto'>
+    <div className="flex">
+      <NewSupploesForm/>
+      <div className=' flex sticky w-[70%]  z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%] p-1 bg-transparent  text-xs font-poppins font-bold sticky  z-10">
             <div className="text-[#00A2E8] text-base w-[28.1rem] max-xl:text-[0.65rem] max-xl:w-[6.6rem]">   {translatedMenuItems[0]}
@@ -196,6 +199,7 @@ supplierId={props.supplier.supplierId}
           </div>
         </div>
       </div>
+      </div>
     </>
   )
 }
@@ -296,3 +300,4 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
     </Tooltip>
   );
 }
+

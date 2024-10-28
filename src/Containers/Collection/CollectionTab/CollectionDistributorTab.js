@@ -86,7 +86,42 @@ function CollectionDistributorTab(props) {
       );
     },
   };
+  const renderTabContent = (key) => {
+    switch (key) {
+      case "1":
+        return     <div> 
+               <DistributorCollectionTableToday
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+                rowSelectionTodayForDistributor={
+                  rowSelectionTodayForDistributor
+                }
+                handleClearCheck={handleClearCheck}
+              />
+            </div>;
+      case "2":
+        return  <div>  <DistributorColletcionArchive
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+       handleClearReturnCheck={handleClearReturnCheck}
+     /></div>;
+        case "3":
+            return  <div>   <Suspense fallback={"Loading ..."}>
+            {showCloseCreditMemoList ? (
+              <CloseCreditMemoList 
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>
+            ) : (
+              <CreditMemoList 
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>
+            )}
+          </Suspense></div>;
 
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
@@ -110,14 +145,14 @@ function CollectionDistributorTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <DistributorCollectionTableToday
+              {/* <DistributorCollectionTableToday
                translateText={props.translateText}
                selectedLanguage={props.selectedLanguage}
                 rowSelectionTodayForDistributor={
                   rowSelectionTodayForDistributor
                 }
                 handleClearCheck={handleClearCheck}
-              />
+              /> */}
             </Suspense>
           </TabPane>
 
@@ -140,11 +175,11 @@ function CollectionDistributorTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
 
-              <DistributorColletcionArchive
+              {/* <DistributorColletcionArchive
                  translateText={props.translateText}
                  selectedLanguage={props.selectedLanguage}
                 handleClearReturnCheck={handleClearReturnCheck}
-              />
+              /> */}
             </Suspense>
           </TabPane>
 
@@ -178,7 +213,7 @@ function CollectionDistributorTab(props) {
   }
   key="3"
 >
-  <Suspense fallback={"Loading ..."}>
+  {/* <Suspense fallback={"Loading ..."}>
     {showCloseCreditMemoList ? (
       <CloseCreditMemoList 
       translateText={props.translateText}
@@ -188,7 +223,7 @@ function CollectionDistributorTab(props) {
       translateText={props.translateText}
       selectedLanguage={props.selectedLanguage}/>
     )}
-  </Suspense>
+  </Suspense> */}
 </TabPane>
 
 
@@ -220,6 +255,9 @@ function CollectionDistributorTab(props) {
 
 
         </StyledTabs>
+        <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
       </TabsWrapper>
     </>
   );

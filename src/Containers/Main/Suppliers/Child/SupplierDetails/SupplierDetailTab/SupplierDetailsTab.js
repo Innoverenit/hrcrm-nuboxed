@@ -77,6 +77,46 @@ class SupplierDetailsTab extends Component {
   }; 
   render() {
     const { activeKey } = this.state
+    const renderTabContent = (key) => {
+      switch (key) {
+        case "1":
+          return     <div> 
+                  <PurchaseOrderTable supplier={this.props.supplier}           
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}/>
+              </div>;
+        case "2":
+          return  <div>   <InventoryTable 
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}/></div>;
+          case "3":
+              return  <div>  <SupplierSuppliesCardTable
+              supplier={this.props.supplier}
+              translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+            /></div>;
+              case "4":
+                  return  <div> 
+                  <SupplierContactTable
+                  supplier={this.props.supplier}
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}/>
+                      </div>;
+                   case "5":
+                      return  <div> <SupplierDocumentTable supplier={this.props.supplier} 
+                      translateText={this.props.translateText}
+                      selectedLanguage={this.props.selectedLanguage}/></div>;
+                      case "6":
+                      return  <div> 
+                       <SuppliersActivityTable supplierId={this.props.supplier && this.props.supplier.supplierId } 
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage}/>
+                          </div>;
+                  
+        default:
+          return null;
+      }
+    };
     return (
       <>
         <TabsWrapper>
@@ -106,9 +146,9 @@ class SupplierDetailsTab extends Component {
               key="1"
             >
               <Suspense fallback={"Loading ..."}>
-                <PurchaseOrderTable supplier={this.props.supplier}           
+                {/* <PurchaseOrderTable supplier={this.props.supplier}           
                 translateText={this.props.translateText}
-                selectedLanguage={this.props.selectedLanguage}/>
+                selectedLanguage={this.props.selectedLanguage}/> */}
                 
               </Suspense>
             </TabPane>
@@ -138,9 +178,9 @@ class SupplierDetailsTab extends Component {
               key="2"
             >
               <Suspense fallback={"Loading ..."}>
-                <InventoryTable 
+                {/* <InventoryTable 
                 translateText={this.props.translateText}
-                selectedLanguage={this.props.selectedLanguage}/>
+                selectedLanguage={this.props.selectedLanguage}/> */}
               </Suspense>
             </TabPane>
 
@@ -155,11 +195,11 @@ class SupplierDetailsTab extends Component {
               key="3"
             >
               <Suspense fallback={"Loading ..."}>
-                <SupplierSuppliesCardTable
+                {/* <SupplierSuppliesCardTable
                   supplier={this.props.supplier}
                   translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
-                />
+                /> */}
               </Suspense>
             </TabPane>
             <TabPane
@@ -188,10 +228,10 @@ class SupplierDetailsTab extends Component {
               key="4"
             >
               <Suspense fallback={"Loading ..."}>
-                <SupplierContactTable
+                {/* <SupplierContactTable
                   supplier={this.props.supplier}
                   translateText={this.props.translateText}
-                  selectedLanguage={this.props.selectedLanguage}/>
+                  selectedLanguage={this.props.selectedLanguage}/> */}
               </Suspense>
             </TabPane>
             <TabPane
@@ -218,9 +258,9 @@ class SupplierDetailsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <SupplierDocumentTable supplier={this.props.supplier} 
+                {/* <SupplierDocumentTable supplier={this.props.supplier} 
                 translateText={this.props.translateText}
-                selectedLanguage={this.props.selectedLanguage}/>
+                selectedLanguage={this.props.selectedLanguage}/> */}
               </Suspense>
             </TabPane>
             <TabPane
@@ -249,15 +289,17 @@ class SupplierDetailsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <SuppliersActivityTable supplierId={this.props.supplier && this.props.supplier.supplierId } 
+                {/* <SuppliersActivityTable supplierId={this.props.supplier && this.props.supplier.supplierId } 
                     translateText={this.props.translateText}
-                    selectedLanguage={this.props.selectedLanguage}/>
+                    selectedLanguage={this.props.selectedLanguage}/> */}
                 
               </Suspense>
             </TabPane>
           
           </StyledTabs>
-
+          <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
         </TabsWrapper>
         <Suspense fallback={<BundleLoader />}>
         <AddPoModal

@@ -226,14 +226,14 @@ function AddQuotationExcel(props) {
                 </div>
                 </div>
               </div>
-              <div className="w-4 mt-[1.5rem]">
+              {/* <div className="w-4 mt-[1.5rem]">
                 <CloseOutlined onClick={() => handleRemoveRow(index)} />
-              </div>
+              </div> */}
             </div>
           </div>
         ))}
         {/* <Button type="primary" onClick={handleAddRow}>Add</Button> */}
-        <Button type="primary" loading={props.addingQuotationPhoneDetails} onClick={handleSubmit}>Submit</Button>
+        <Button type="primary" loading={props.addingQuotationPhoneDetails} onClick={handleSubmit}>Add</Button>
       </div>
       <div class="w-[55rem]">
       <QuotationDetailsCardList />
