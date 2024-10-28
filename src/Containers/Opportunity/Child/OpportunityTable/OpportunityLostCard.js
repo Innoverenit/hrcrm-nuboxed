@@ -42,6 +42,7 @@ import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal"
 import ReinstateToggleForLost from "../../Child/OpportunityTable/ReinstateToggleForLost"
 import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import { base_url2 } from "../../../../Config/Auth";
 
 function OpportunityLostCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -445,9 +446,12 @@ handleSetCurrentOpportunityId(item.opportunityName);
    </Tooltip> 
                   </div>
                   <div >
-        <span onClick={() => exportPDFAnnexure()}>
+                  <a
+              href={`${base_url2}/customer/pdf/${item.opportunityId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div> 
                   <div><Tooltip
           placement="right"

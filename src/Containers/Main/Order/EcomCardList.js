@@ -22,6 +22,7 @@ import EcomInvoiceListDrawer from "../Account/AccountDetailsTab/AccountOrderTab/
 import ProcureItemViewDrawer from "./ProcureItemViewDrawer";
 import CBMdrawer from "./CBMdrawer";
 import { MultiAvatar } from "../../../Components/UI/Elements";
+import { base_url2 } from "../../../Config/Auth";
 
 function EcomCardList(props) {
   const [page, setPage] = useState(0);
@@ -360,9 +361,12 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center   max-sm
                             </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center"> 
                         <div class="w-6 items-center justify-center h-8   bg-[#eef2f9] flex">
-        <span onClick={() => exportPDFAnnexure()}>
+                        <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div>                                                 
                         <div class=" items-center justify-center h-8   bg-[#eef2f9] flex">                       
                         <Tooltip title={translatedMenuItems[6]}

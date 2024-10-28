@@ -12,6 +12,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
+import { base_url2 } from "../../../../../Config/Auth";
 
 const { Option } = Select;
 
@@ -258,9 +259,12 @@ function OrderPaymentTable(props) {
                   </div>
 
                   <div class="w-6">
-        <span onClick={() => exportPDFAnnexure()}>
+                  <a
+              href={`${base_url2}/customer/pdf/${item.paymentId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon"/>
-                           </span>
+                           </a>
           </div>
                   <div class="flex  md:w-[6rem] max-sm:flex-row max-sm:w-[10%]">
                     <div>

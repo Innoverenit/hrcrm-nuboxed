@@ -21,6 +21,7 @@ import dayjs from "dayjs";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
+import { base_url2 } from "../../../Config/Auth";
 
 function ProductionAllCardList(props) {
   const [particularRowData, setParticularRowData] = useState({});
@@ -274,9 +275,12 @@ console.log(page)
                     </div>
                   <div class=" flex">
                   <div class="w-6">
-        <span onClick={() => exportPDFAnnexure()}>
+                  <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div>  
                     <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 

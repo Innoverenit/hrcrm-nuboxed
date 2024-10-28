@@ -36,6 +36,7 @@ import { PersonAddAlt1 } from "@mui/icons-material";
 import AddLeadModal from "./AddLeadModal";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OrderSearchedData from "./OrderSearchedData";
+import { base_url2 } from "../../../Config/Auth";
 const { Option } = Select;
 
 dayjs.extend(relativeTime);
@@ -407,9 +408,12 @@ const exportPDFAnnexure = async () => {
                   <div class="flex  items-center bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk max-sm:items-center">
                    
                   <div class="  items-center ml-gap flex">
-        <span onClick={() => exportPDFAnnexure()}>
+                  <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div>            
                       <div class=" text-xs  font-poppins  items-center justify-center h-8  bg-[#eef2f9] flex">
                         {item.qcStartInd !== 0 && <Tooltip title={translatedMenuItems[11]}>
@@ -660,9 +664,12 @@ const exportPDFAnnexure = async () => {
                     </div>
                     <div class="flex justify-end max-sm:justify-between max-sm:w-wk max-sm:items-center">
                     <div class=" items-center justify-center h-8   bg-[#eef2f9] flex">
-        <span onClick={() => exportPDFAnnexure()}>
+                    <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div>            
                     <div className=" flex    max-sm:flex-row  max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins  items-center justify-center h-8  bg-[#eef2f9] flex">

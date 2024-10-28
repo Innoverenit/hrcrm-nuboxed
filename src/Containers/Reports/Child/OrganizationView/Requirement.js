@@ -2,7 +2,7 @@ import React, { } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { base_url } from "../../../../Config/Auth";
+import { base_url, base_url2 } from "../../../../Config/Auth";
 import { Empty, Button, Tooltip, Modal } from "antd";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -295,14 +295,19 @@ class Requirement extends React.Component {
                         style={{ padding: "0em 1.25em" }}
                     >
                         <Tooltip title={"Generate PDF"}>
+                        <a
+              href={`${base_url2}/customer/pdf/${'item.orderId'}`}
+            target="_blank"
+            >
                         <Button
             type="primary"
            // onClick={this.showModal}
-             onClick={() => exportPDF()}
+            //  onClick={() => exportPDF()}
           >
               <PictureAsPdfIcon
               style={{ fontSize: "large" }} />
           </Button>
+          </a>
             <Modal
               title="Select your Header for Download Report"
               open={this.state.isModalOpen}

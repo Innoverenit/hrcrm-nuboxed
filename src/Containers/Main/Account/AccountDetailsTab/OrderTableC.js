@@ -11,6 +11,7 @@ import ProcureStatusShowDrawer from "./AccountOrderTab/ProcureStatusShowDrawer";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { base_url2 } from "../../../../Config/Auth";
 
 function OrderTableC(props) {
   const [page, setPage] = useState(0);
@@ -287,9 +288,12 @@ className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:
                                           
 
                                             <div class="w-6">
-        <span onClick={() => exportPDFAnnexure()}>
+                                            <a
+              href={`${base_url2}/customer/pdf/${item.orderId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </span>
+                           </a>
           </div>
                        
 

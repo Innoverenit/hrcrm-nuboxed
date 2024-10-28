@@ -43,6 +43,7 @@ import ReinstateToggleForLost from "../../Child/OpportunityTable/ReinstateToggle
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import { base_url2 } from "../../../../Config/Auth";
 
 function OpportunityWonCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -487,9 +488,12 @@ function OpportunityWonCard(props) {
          </span>
                         </div>
                         <div >
-        <span onClick={() => exportPDFAnnexure()}>
+                        <a
+              href={`${base_url2}/customer/pdf/${item.opportunityId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </span>
+                           </a>
           </div> 
 <div><Tooltip
           placement="right"

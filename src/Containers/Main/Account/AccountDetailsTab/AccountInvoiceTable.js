@@ -519,9 +519,12 @@ function AccountInvoiceTable(props) {
                                   </Tooltip>
                               </div>
                               <div class="w-6 items-center justify-center  bg-[#eef2f9] h-8">
-        <span onClick={() => exportPDFAnnexure()}>
+                              <a
+              href={`${base_url2}/customer/pdf/${item.invoiceId}`}
+            target="_blank"
+            >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </span>
+                           </a>
           </div>
                          
                           

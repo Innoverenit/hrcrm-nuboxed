@@ -257,16 +257,16 @@ const handleGenerateInvoice= async () => {
         setLoading(false);
         return null; 
       }
-      if (selectedData < 1) {
-        Swal.fire({
-          title: 'Validation Error!',
-          text: 'Credit memo has not valid amount',
-          icon: 'error',
-          confirmButtonText: 'OK'
-        });
-        setLoading(false);
-        return null; 
-      }
+      // if (selectedData < 1) {
+      //   Swal.fire({
+      //     title: 'Validation Error!',
+      //     text: 'Credit memo has not valid amount',
+      //     icon: 'error',
+      //     confirmButtonText: 'OK'
+      //   });
+      //   setLoading(false);
+      //   return null; 
+      // }
       return {
         price: item.price,
         procureOrderProductId: item.id,
@@ -538,7 +538,7 @@ const handleGenerateInvoice= async () => {
                 </div>
                 <div className="ml-2 ">
                 <Select
-                     style={{width:"10rem"}}
+                     style={{width:"18rem"}}
                      placeholder="Apply Credit"
                       value={CreditMemo}
                       onChange={(value) => handleCreditMemo(value)}
@@ -546,7 +546,7 @@ const handleGenerateInvoice= async () => {
                     >
    {creditmemoData.map((critem, crindex) => (
       <option  key={critem.creditMemoId} value={critem.creditMemo}>
-       {critem.creditMemoId} {critem.creditMemo}
+       {critem.creditMemoId} - {critem.creditMemo}
       </option>
     ))}
 
