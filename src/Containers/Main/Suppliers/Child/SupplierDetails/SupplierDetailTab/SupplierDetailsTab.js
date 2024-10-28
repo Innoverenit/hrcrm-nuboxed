@@ -86,7 +86,7 @@ class SupplierDetailsTab extends Component {
                 <>
                 <div className="flex items-center">
                 <Shop2Icon className="!text-icon text-[#96bdc6] mr-1 "/>
-                   <div className="max-xl:text-[0.65rem] font-poppins text-sm">
+                   <div className="max-xl:text-[0.65rem] !text-tab font-poppins text-sm">
                    {this.state.translatedMenuItems[0]}
                    {/* Purchase Order */}
                    </div>
@@ -118,7 +118,7 @@ class SupplierDetailsTab extends Component {
                 <>
                 <div className="flex items-center">
                   <InventoryIcon className="!text-icon mr-1 text-[#ef8354]"/>
-                   <div className="max-xl:text-[0.65rem]  mr-1 font-poppins text-sm">{this.state.translatedMenuItems[1]}</div>
+                   <div className="max-xl:text-[0.65rem] !text-tab  mr-1 font-poppins text-sm">{this.state.translatedMenuItems[1]}</div>
                   {activeKey === "2" && (
                     <>
                       <Tooltip title="Create">
@@ -149,7 +149,7 @@ class SupplierDetailsTab extends Component {
                 <>
 
                   <CategoryIcon className="!text-icon text-[#42bfdd]"/>
-                  <span className="max-xl:text-[0.65rem] font-poppins text-sm ml-1" >{this.state.translatedMenuItems[2]}</span>
+                  <span className="max-xl:text-[0.65rem] !text-tab font-poppins text-sm ml-1" >{this.state.translatedMenuItems[2]}</span>
                 </>
               }
               key="3"
@@ -167,7 +167,7 @@ class SupplierDetailsTab extends Component {
                 <>
 
                   <ContactsIcon className="!text-icon text-[#96bdc6] "/>
-                  <span className="max-xl:text-[0.65rem] ml-1 font-poppins text-sm">{this.state.translatedMenuItems[3]}</span>
+                  <span className="max-xl:text-[0.65rem] ml-1 font-poppins !text-tab text-sm">{this.state.translatedMenuItems[3]}</span>
 
                   {activeKey === "4" && (
                     <>
@@ -199,7 +199,7 @@ class SupplierDetailsTab extends Component {
                 <>
                   <span>
                     <i class="far fa-file text-[#96bdc6]"></i>
-                    <span className="max-xl:text-[0.65rem] ml-1 font-poppins text-sm ">{this.state.translatedMenuItems[4]}</span>
+                    <span className="max-xl:text-[0.65rem] ml-1 !text-tab font-poppins text-sm ">{this.state.translatedMenuItems[4]}</span>
                   </span>
                   {activeKey === "5" && (
                     <>
@@ -228,7 +228,7 @@ class SupplierDetailsTab extends Component {
                 <>
                   <span>
                   <HourglassFullIcon className="text-blue-500  !text-icon" />
-                    <span className="max-xl:text-[0.65rem] ml-1 font-poppins text-sm ">{this.state.translatedMenuItems[5]}</span>
+                    <span className="max-xl:text-[0.65rem] !text-tab ml-1 font-poppins text-sm ">{this.state.translatedMenuItems[5]}</span>
                   </span>
                   {activeKey === "6" && (
                     <>

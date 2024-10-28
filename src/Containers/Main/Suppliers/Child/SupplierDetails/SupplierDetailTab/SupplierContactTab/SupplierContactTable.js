@@ -57,7 +57,7 @@ function SupplierContactTable(props) {
     <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins text-xs z-10">
-            <div className=" w-[16.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[0]}</div>
+            <div className="text-[#00A2E8] text-base w-[16.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[0]}</div>
             {/* Name */}
             <div className=" w-[14.1rem] max-xl:text-[0.65rem]">{translatedMenuItems[1]}
              {/* Email */}
@@ -90,7 +90,7 @@ function SupplierContactTable(props) {
                      const data = {}
                     return (
                       <>
-                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                        <div className="flex rounded justify-between mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
 
                         >
                           <div class=" flex flex-row  w-wk max-sm:flex-col ">

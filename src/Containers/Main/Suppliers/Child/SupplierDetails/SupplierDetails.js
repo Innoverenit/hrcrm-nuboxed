@@ -20,22 +20,23 @@ class SupplierDetails extends Component {
       <>
         <>
         <Suspense fallback={<BundleLoader />}>
+        <div class="flex">
           <SupplierDetailsHeader 
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}/>
-              <div class="flex">
+            
         <Suspense fallback={<BundleLoader />}>
-        <div className="flex flex-col h-[4rem] w-[27%]">
+        <div className="flex flex-col">
           <SupplierOverViewCard  supplier={supplier}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}/>
-            </div>
-             <div className="flex flex-col w-[20%]">
+           
+           
           <SupplierDetailCard supplier={supplier}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage} />
-            </div>
-            <div className="flex h-[4rem] w-[60%] overflow-x-auto">
+           
+         
           <SupplierOverViewDetailCard supplier={supplier}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage} />
@@ -44,22 +45,26 @@ class SupplierDetails extends Component {
         </div>
           </Suspense>
           {fetchingSupplierDetailsBySupplierId ? (
-          <div class="rounded shadow-[0em 0.25em 0.625em -0.125em] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto">
+          <div class="rounded shadow-[0em 0.25em 0.625em -0.125em] border-solid text-black m-1 p-1 w-full  font-poppins overflow-auto">
+          
+
               <BundleLoader />
             </div>
           ) : (
             <div>
               <Suspense fallback={"Loading..."}>
-                <div class="flex flex-nowrap w-full max-sm:flex-col">
+                <div class="flex flex-nowrap w-3/4 max-sm:flex-col">
                  
-                  <div class="w-[100%] max-sm:w-wk">
+                  <div class="w-full max-sm:w-wk">
                     <SupplierDetailsRight supplier={supplier} 
                       translateText={this.props.translateText}
                       selectedLanguage={this.props.selectedLanguage}/>
                   </div>
                 </div>
+                
               </Suspense>
             </div>
+            
           )}
         </>
       </>
