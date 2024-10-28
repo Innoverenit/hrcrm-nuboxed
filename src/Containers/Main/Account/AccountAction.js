@@ -20,6 +20,14 @@ export const handleOpenNewModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+export const handleUpdateAccountUserModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPDATE_ACCOUNT_USER_MODAL,
+    payload: modalProps,
+  });
+};
+
 /**
  * SET DISTRIBUTOR VIEW TYPE
  * TABLE VIEW/CARD VIEW/MAP VIEW
@@ -5209,3 +5217,32 @@ Swal.fire({
     //  cb && cb ("error",err && err.response && err.response.data.error)
     });
 };       
+export const updateAccountUser = ( id,userId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ACCOUNT_USER_REQUEST });
+  axios
+    .put(`${base_url2}/distributor/changesAssignTo/${id}/${userId}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Account User updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_ACCOUNT_USER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ACCOUNT_USER_FAILURE,
+        payload: err,
+      });
+    });
+};

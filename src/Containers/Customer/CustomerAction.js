@@ -2816,7 +2816,7 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
   export const updateProspectUser = ( customerId,userId) => (dispatch) => {
     dispatch({ type: types.UPDATE_PROSPECT_USER_REQUEST });
     axios
-      .put(`${base_url}/customer/changesAssign/${customerId}/${userId}`, {}, {
+      .put(`${base_url}/customer/changesAssignTo/${customerId}/${userId}`, {}, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
