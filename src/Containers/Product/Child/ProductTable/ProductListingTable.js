@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../Components/UI/Antd";
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import {
   getProducts,
   getAllProductCatagory,
@@ -610,7 +611,7 @@ function ProductListingTable(props) {
                     cursor: "pointer",
                   }}
                 >
-                  <i class="far fa-building"></i>
+            <ApartmentIcon className="!text-tab text-[#f0386b]"/>
                 </span>
               </Tooltip>
             </span>
@@ -744,7 +745,7 @@ function ProductListingTable(props) {
                     cursor: "pointer",
                   }}
                 >
-                  <i class="far fa-building"></i>
+               <ApartmentIcon className="!text-tab text-[#f0386b]"/>
                 </span>
               </Tooltip>
             </span>

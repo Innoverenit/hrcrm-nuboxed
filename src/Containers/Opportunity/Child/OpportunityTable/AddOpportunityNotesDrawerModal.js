@@ -15,7 +15,7 @@ class AddOpportunityNotesDrawerModal extends Component {
         <StyledDrawer
         // title="Notes"
           title={this.props.opportunityData.opportunityName}
-          width="64%"
+       width="38%"
           visible={this.props.addDrawerOpportunityNotesModal}
           destroyOnClose
           closable

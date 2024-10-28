@@ -12,7 +12,7 @@ class AddProductNotesDrawerModal extends Component {
         <StyledDrawer
         // title="Notes"
           title={this.props.rowdata.suppliesName}
-          width="64%"
+           width="38%"
           visible={this.props.addDrawerProductNotesModal}
           destroyOnClose
           closable

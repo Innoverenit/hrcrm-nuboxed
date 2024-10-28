@@ -16,7 +16,7 @@ class UpdateLeadsNotesListDrawerModal extends Component {
  <StyledDrawer 
           // title="Notes"
           title={this.props.rowdata.notes}
-          width="64%"
+            width="38%"
           destroyOnClose
           closable
           visible={this.props.updatingLeadsNoteDrawerModal}

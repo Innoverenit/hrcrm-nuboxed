@@ -14,6 +14,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button, Popconfirm,Checkbox } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import SourceIcon from '@mui/icons-material/Source';
+import FactoryIcon from '@mui/icons-material/Factory';
+import ScoreIcon from '@mui/icons-material/Score';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -243,45 +251,54 @@ if (loading) {
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
-            <div class=" flex justify-between font-poppins w-[89%]">
-            <div className="font-poppins font-bold  text-[#00A2E8] text-base w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div class=" flex justify-between font-poppins w-[89%] items-end">
+         
+            <div className="font-poppins font-bold  text-[#00A2E8] text-base w-[20.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <ApartmentIcon className="!text-icon mr-1 "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className="font-poppins  font-bold text-xs  w-[8.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className="font-poppins  font-bold text-xs  w-[16.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+                <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
             </div>
-            <div className="font-poppins font-bold text-xs  w-[9.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className="font-poppins font-bold text-xs  w-[12.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
               {/* "Sector" */}
           
             </div>
-            <div className="font-poppins font-bold text-xs  w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className="font-poppins font-bold text-xs  w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> 
             {translatedMenuItems[3]}
              {/* "Source" */}
          
             </div>         
-            <div className="font-poppins font-bold text-xs w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-            {translatedMenuItems[4]}
+            <div className="font-poppins font-bold text-xs w-[8.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/> 
+            {translatedMenuItems[4]} 
               {/* Quotation" */}
      
             </div>
-            <div className="font-poppins font-bold text-xs  w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            <div className="font-poppins font-bold text-xs  w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> 
             {translatedMenuItems[5]}
              {/* Pipeline" */}
             </div>   
             {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            {/* Score */}
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            {/* Score */}      <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
             {translatedMenuItems[18]}
             </div>
             )}    
-            <div className="font-poppins font-bold text-xs w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-            {translatedMenuItems[6]}
+            <div className="font-poppins font-bold text-xs w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
+            {translatedMenuItems[6]}   
             {/* Assigned */}
             </div>          
-            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <AcUnitIcon className="!text-icon mr-1 text-[#92dce5]"/> 
             {translatedMenuItems[7]}
               {/* Customer" */}
           
@@ -448,7 +465,7 @@ if (loading) {
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">  
                       {props.user.aiInd && (
-           <div className=" flex  w-[5.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  w-[5.12rem] items-center font-poppins justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
          {item.noteScoreInd}
           
             </div>
@@ -494,7 +511,7 @@ if (loading) {
                             <Button className="justify-start" type="primary"
                               style={{ width: "7rem", background: item.convertInd === 1 ? "tomato" :"linear-gradient(to right, #2BBCCF, #38C98D)" }}>
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex items-center w-wk " >
-                              <NextPlanIcon  className="!text-icon "/>
+                              <NextPlanIcon  className="!text-icon mr-1 "/>
                                 {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}
                                 {item.convertInd === 2 && translatedMenuItems[18]}

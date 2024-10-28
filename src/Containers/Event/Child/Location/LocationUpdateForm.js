@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch,Select } from "antd";
-import { FormattedMessage } from "react-intl";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { Formik, Form, Field, FieldArray } from "formik";
@@ -13,6 +12,7 @@ import { updateLocation } from "../../../Event/Child/Location/LocationAction";
 import { getTimeZone } from "../../../Auth/AuthAction";
 import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const { Option } = Select;
 class LocationUpdateForm extends Component {
@@ -288,7 +288,7 @@ handleInventory = () => {
                       </div>
                     </div>
                     <div  class=" w-[47%] mt-2">
-                    <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[7]}<i class="fas fa-building text-base"></i></div>
+                    <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[7]} <ApartmentIcon className="!text-tab text-[#f0386b]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}

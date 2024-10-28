@@ -7,6 +7,7 @@ import { TabsWrapper } from "../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import {  Badge } from "antd";
 import AccessibilityIcon from '@mui/icons-material/Accessibility';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const Designation = lazy(() => import("../Designation/Designation"));
 const Department = lazy(() => import("../Department/Department"));
@@ -56,8 +57,8 @@ class Category extends Component {
  <TabPane
     tab={
         <>
-            <i className="fas fa-building"></i>
-            <span className="ml-1 text-sm">Department 
+         <ApartmentIcon className="!text-tab text-[#f0386b]"/>
+            <span className="ml-1 !text-tab">Department 
             </span>
             <Badge 
             count={this.props.departmentCount.DepartmentCount}

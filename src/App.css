@@ -611,10 +611,10 @@ iframe#webpack-dev-server-client-overlay {
 .matrix-table button:hover {
   background-color: #45a049;
 }
-.ant-drawer-content-wrapper {
+/* .ant-drawer-content-wrapper {
   margin-top: 3rem !important;
   right: 0;
-}
+} */
 .ant-drawer .ant-drawer-mask {
   position: absolute;
   inset: 0;

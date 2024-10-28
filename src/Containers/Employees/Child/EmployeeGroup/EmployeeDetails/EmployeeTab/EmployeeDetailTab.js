@@ -15,6 +15,7 @@ import SchoolIcon from '@mui/icons-material/School';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import {
   handlePersonalModal,
   handleEmploymentModal,
@@ -521,7 +522,7 @@ fetchMenuTranslations = async () => {
             <TabPane
               tab={
                 <>
-                 <i class="far fa-building" aria-hidden="true"></i>
+                 <ApartmentIcon className="!text-icon "/>
                   <span class=" font-poppins ml-1">
                   {/* <FormattedMessage
                 id="app.customer"

@@ -13,6 +13,12 @@ import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import dayjs from "dayjs";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import ScoreIcon from '@mui/icons-material/Score';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import ArchitectureIcon from '@mui/icons-material/Architecture';
 import {
   getAllContact,
   handleUpdateContactModal,
@@ -237,30 +243,30 @@ if (loading) {
         </div>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className="font-bold  font-poppins text-xs max-sm:hidden flex justify-between w-[100%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent sticky  z-10">
-      <div class=" flex justify-between w-[85%] font-bold  font-poppins text-xs  ">
-      <div className=" w-[45.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
-        {translatedMenuItems[0]}</div>
-        <div className=" w-[35.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
-        {translatedMenuItems[1]}</div>
-        <div className=" md:w-[28.1rem] w-[24.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
-        {translatedMenuItems[2]}</div>
-        <div className="  md:w-[18.1rem] w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
-        {translatedMenuItems[3]}</div>
+      <div class=" flex justify-between w-[89%] font-bold  font-poppins text-xs items-end ">
+        <div className=" w-[56.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
+        <div className=" w-[32.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
+        <div className=" md:w-[32.1rem] w-[24.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
+        <ArchitectureIcon className="!text-icon mr-1 text-[#6b2d5c] "/>{translatedMenuItems[2]}</div>
+        <div className="  md:w-[20.1rem] w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+      {translatedMenuItems[3]}</div>
         <div className=" md:w-[17.2rem] w-[15.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
-        {translatedMenuItems[4]}</div>
+        <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
         <div className=" md:w-[14.3rem]  w-[13.3rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
-        {translatedMenuItems[5]}</div>
+        <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div>
         <div className=" w-[22.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[6]}</div>
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[2.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            {translatedMenuItems[8]} {/* Score */}
+            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+             <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[8]}   {/* Score */}
           
             </div>
             )}
-            <div className="w-[5rem]"></div>
-        <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
-        {translatedMenuItems[7]}</div>
+               <div className="w-[5rem]"></div>
+        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
+      {translatedMenuItems[7]} </div>
       
         <div className="w-[4.2rem]"></div>
         </div>
@@ -341,19 +347,19 @@ if (loading) {
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk">
 
-                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap bg-[#eef2f9] w-[14.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap bg-[#eef2f9] w-[11.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
                              
                               <div class=" text-xs   ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-auto w-[10.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex max-sm:w-auto w-[7.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
                              
                               <div class="text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex  max-sm:w-auto w-[8.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
+                          <div className=" flex  max-sm:w-auto w-[6.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
                           
                             <div class="text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                  {item.department}
@@ -361,13 +367,13 @@ if (loading) {
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk">
-                        <div className="flex w-[6.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className="flex w-[3.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 <div className="text-xs  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.oppNo}
 </div>
 </div>
-<div className=" flex  w-[5.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex  w-[3.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
                               
 
                               <div class=" text-xs  max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -376,30 +382,31 @@ if (loading) {
                               </div>
                           </div>
       
-                          <div className="flex  w-[5.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                          <div className="flex items-center justify-center   w-[5.1rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                           
-                              <div class="text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          <div class="flex items-center text-xs font-poppins w-wk h-8  max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
-                              {item.thirdPartyAccessInd === true
-?<Tooltip title= {translatedMenuItems[10]}>
-    <div className="text-green-600 font-bold bg-green-100 inline-block px-2 py-1 rounded max-h-max">
+                          {item.thirdPartyAccessInd === true
+?<Tooltip title={translatedMenuItems[9]}>
+  <div className="flex text-green-600 w-wk font-bold bg-green-100 justify-center   py-1 rounded max-h-max">
   Yes
   </div>
+  {/* <AlarmOnIcon   className=" !text-xl text-[green]"/> */}
   </Tooltip> 
-:  <Tooltip title= {translatedMenuItems[11]}> 
-  <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded max-h-max">
+:  <Tooltip title={translatedMenuItems[10]}> 
+  <div className="flex text-red-600 w-wk font-bold bg-red-100 justify-center   py-1 rounded max-h-max">
 No
 </div>
-{/* <DoNotDisturbOnTotalSilenceIcon  className=" !text-icon text-[red]"/> */}
+{/* <DoNotDisturbOnTotalSilenceIcon  className=" !text-xl text-[red]"/> */}
 </Tooltip>}
 
-                              </div>
                           </div>
+                      </div>
                           </div>
                           <div class="flex items-center max-sm:justify-between max-sm:w-wk">
                                  {/* score */}
              {props.user.aiInd && (
-           <div className=" flex  w-[7.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  w-[5.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
            {item.noteScoreInd}
           
             </div>

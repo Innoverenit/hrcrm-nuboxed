@@ -15,7 +15,7 @@ class AddContactNotesDrawerModal extends Component {
         <StyledDrawer
         // title="Notes"
           title={this.props.contactData.fullName}
-          width="64%"
+          width="38%"
           visible={this.props.addDrawerContactNotesModal}
           closable
           placement="right"

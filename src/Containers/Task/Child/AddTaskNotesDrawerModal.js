@@ -14,7 +14,7 @@ class AddTaskNotesDrawerModal extends Component {
         <StyledDrawer
         // title="Notes"
           title={`${this.props.currentNameId.taskName} by ${this.props.currentNameId.ownerName}`}
-          width="64%"
+        width="38%"
           destroyOnClose
           closable
           placement="right"

@@ -14,7 +14,7 @@ class AddDataRoomNotesDrawerModal extends Component {
         <StyledDrawer
         // title="Notes"
           title={this.props.rowdata.name}
-          width="64%"
+     width="38%"
           destroyOnClose
           closable
           placement="right"
