@@ -443,6 +443,8 @@ export const searchExpenseList = (name,type) => (dispatch) => {
       Swal.fire({
         icon: 'error',
         title: 'Contact list is empty',
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.SEARCH_EXPENSE_LIST_FAILURE,

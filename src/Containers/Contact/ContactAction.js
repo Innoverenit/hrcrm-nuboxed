@@ -93,8 +93,8 @@ export const addContact = (contact) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Contact created Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
       console.log(res);
       dispatch(getOpportunityRecord(userId));
@@ -428,8 +428,8 @@ export const addContactDocument = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
       dispatch({
         type: types.ADD_CONTACT_DOCUMENT_SUCCESS,
@@ -578,8 +578,8 @@ export const addContactOpportunity = (opportunity, cb) => (
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
       console.log(res);
       const startDate = dayjs()
@@ -640,8 +640,8 @@ export const updateContact = (data, contactId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Contact Info Updated Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
     })
     .catch((err) => {
@@ -681,6 +681,8 @@ export const inputContactDataSearch = (name,type,contactType) => (dispatch) => {
       Swal.fire({
         icon: 'error',
         title: 'Contact list is empty',
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.INPUT_CONTACT_SEARCH_DATA_FAILURE,
@@ -802,8 +804,8 @@ export const addLinkContactByOpportunityId = (contact, opportunityId) => (
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
     })
     .catch((err) => {
@@ -892,8 +894,8 @@ export const shareContactPartnerPermission = (data, userId, a) => (
       Swal.fire({
         icon: 'success',
         title: 'Created Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
     })
     .catch((err) => {
@@ -1284,6 +1286,8 @@ export const getTeamContact = (userId,pageNo) => (dispatch) => {
       Swal.fire({
         icon: 'error',
         title: 'Something went wrong , reach out to support!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     });
 };
@@ -1680,8 +1684,8 @@ export const removeAddressData = (addressId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Address Deleted Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500,
       })
       // if (res.data) {
       //   Swal.fire({

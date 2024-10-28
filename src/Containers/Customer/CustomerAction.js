@@ -740,16 +740,16 @@ export const addCustomerContact = (contact,userId) => (dispatch, getState) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Contact created Successfully',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500
         });
       }
       console.log(res);
@@ -2371,6 +2371,8 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         Swal.fire({
           icon: 'error',
           title: 'Something went wrong , reach out to support!',
+          showConfirmButton: false,
+        timer: 1500,
         })
       });
   };
@@ -2686,6 +2688,8 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         Swal.fire({
           icon: 'success',
           title: 'Event has been created successfully!',
+          showConfirmButton: false,
+        timer: 1500,
         })
       })
       .catch((err) => {
@@ -2711,6 +2715,8 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         Swal.fire({
           icon: 'success',
           title: 'Campaign has been created successfully!',
+          showConfirmButton: false,
+        timer: 1500,
         })
         console.log(res);
         dispatch({
@@ -2819,8 +2825,8 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         Swal.fire({
           icon: 'success',
           title: 'Prospect User updated Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500
         })
         console.log(res);
         dispatch({

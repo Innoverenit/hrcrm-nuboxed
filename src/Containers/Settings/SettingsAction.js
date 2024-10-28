@@ -6099,16 +6099,16 @@ export const addSupplierCategory = (sectors,cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'SUPPLIERCATEGORY added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       console.log(res);
@@ -6179,16 +6179,16 @@ export const addShipperCategory = (sectors,cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'SUPPLIERCATEGORY added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       console.log(res);
@@ -6254,16 +6254,16 @@ export const addWorkFlowCategory = (sectors,cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Workflow added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       console.log(res);
@@ -6553,6 +6553,8 @@ export const addGloalType = (sectors,cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Type added Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       });
 
       dispatch({
@@ -6598,6 +6600,8 @@ export const addConfigureGlobalType = (orgId,workflowId,workflowType,  cb) => (
         Swal.fire({
           icon: 'error',
           title: res.data.message,
+          showConfirmButton: false,
+        timer: 1500,
         });
   
         dispatch({
@@ -6607,6 +6611,8 @@ export const addConfigureGlobalType = (orgId,workflowId,workflowType,  cb) => (
         Swal.fire({
           icon: 'success',
           title: 'Type added Successfully!',
+          showConfirmButton: false,
+        timer: 1500,
         });
   
         dispatch({
@@ -6703,8 +6709,8 @@ export const removeSkillData = (skillLevelLinkId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Skill Deleted Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500,
       })
       // if (res.data) {
       //   Swal.fire({
@@ -6904,16 +6910,16 @@ export const addUOM = (sectors,cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Machinary added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       dispatch(getUOMCount());
@@ -6954,6 +6960,8 @@ export const removeUOM = ( uomId,orgId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Machinary deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("MACHINARY has been deleted successfully!");
       console.log(res);
@@ -6992,6 +7000,8 @@ export const updateUOM = ( data,uomId,cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Machinary updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("MACHINARY has been updated successfully!");
       console.log(res);
