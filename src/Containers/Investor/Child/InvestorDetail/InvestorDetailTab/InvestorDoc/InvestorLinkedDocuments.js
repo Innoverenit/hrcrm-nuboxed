@@ -6,6 +6,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import Highlighter from "react-highlight-words";
 import { base_url } from "../../../../../../Config/Auth";
 import { getDocuments } from "../../../../../Settings/Documents/DocumentsAction";
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
@@ -22,6 +23,10 @@ import {
 import { getInvestorDocument } from "../../../../InvestorAction";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ContactPageIcon from '@mui/icons-material/ContactPage'
 
 const InvestorLinkedDocuments = (props) => {
   const [searchText, setSearchText] = useState("");
@@ -136,24 +141,25 @@ const InvestorLinkedDocuments = (props) => {
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                 
-                <div className="md:w-[15.7rem]">
-                {translatedMenuItems[0]}   
+                <div className=" font-poppins font-bold text-xs md:w-[15.7rem]">
+
+                <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[0]}   
                   {/* Date */}
                 </div>
-                    <div className=" md:w-[11.12rem]">
-                    {translatedMenuItems[1]}   
+                    <div className="font-poppins font-bold text-xs md:w-[11.12rem]">
+                    <LocationCityIcon className='!text-icon  '  />  {translatedMenuItems[1]}   
                       {/* Name */}
                       </div>
-                    <div className=" md:w-[12.122rem]">
-                    {translatedMenuItems[2]}   
+                    <div className="font-poppins font-bold text-xs md:w-[12.122rem]">
+                    < MergeTypeIcon className='!text-icon  '  /> {translatedMenuItems[2]}   
                       {/* Type */}
                       </div>
-                    <div className=" md:w-[9.5rem]">
-                    {translatedMenuItems[3]}   
+                    <div className="font-poppins font-bold text-xs md:w-[9.5rem]">
+                    <DescriptionIcon className='!text-icon  '  />  {translatedMenuItems[3]}   
                       {/* Description */}
                       </div>
-                    <div className=" md:w-[9.81rem] ">
-                    {translatedMenuItems[4]}   
+                    <div className="font-poppins font-bold text-xs md:w-[9.81rem] ">
+                    <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[4]}   
                       {/* Uploaded By */}
                       </div>
                    

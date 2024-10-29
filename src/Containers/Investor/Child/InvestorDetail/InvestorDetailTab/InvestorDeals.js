@@ -12,7 +12,11 @@ import { Button, Tooltip,Dropdown ,Menu,Progress} from "antd";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import StairsIcon from '@mui/icons-material/Stairs';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 const ButtonGroup = Button.Group;
 
 const InvestorDeals = (props) => {
@@ -85,36 +89,36 @@ if (loading) {
   <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[15rem]">
-        {translatedMenuItems[0]} 
+        <LocationCityIcon className='!text-icon  '  />   {translatedMenuItems[0]} 
        {/* name */}             
                 </div>
         <div className=" md:w-[13.2rem] ">
-        {translatedMenuItems[1]} 
+        <ContactPageIcon className='!text-icon  '  />    {translatedMenuItems[1]} 
          {/* sponsor */}               
                 </div>
         <div className="md:w-[8.1rem]">
-        {translatedMenuItems[2]} 
+        <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[2]} 
                {/* enddate */}
                 </div>
         <div className="md:w-[5.5rem]">     
-        {translatedMenuItems[3]}   
+        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[3]}   
                {/* Value */}            
                 </div>
         <div className="md:w-[4.2rem]">
-        {translatedMenuItems[4]} 
+        <StairsIcon className='!text-icon  '  />   {translatedMenuItems[4]} 
          {/* stages               */}
                 </div> 
         <div className="md:w-[4.2rem]">
-        {translatedMenuItems[5]} 
+        <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]} 
        {/* status */}                           
                 </div> 
         <div className="md:w-[7.1rem]">
-        {translatedMenuItems[6]} 
+        <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[6]} 
        {/* Assign To */}
               
                 </div>
         <div className="md:w-[5.2rem]">
-        {translatedMenuItems[7]}
+        <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[7]}
         {/* owner  */}
                 </div>
 

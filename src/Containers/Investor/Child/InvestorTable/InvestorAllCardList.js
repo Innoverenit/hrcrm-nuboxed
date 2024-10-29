@@ -12,11 +12,21 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Checkbox} from "antd";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import ReactCountryFlag from 'react-country-flag';
 import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
 import { Link } from 'react-router-dom';
+import FactoryIcon from '@mui/icons-material/Factory';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import SourceIcon from '@mui/icons-material/Source';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GolfCourseIcon from '@mui/icons-material/GolfCourse';
+import ScoreIcon from '@mui/icons-material/Score';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import {
   updateOwnercustomerById,
@@ -89,7 +99,8 @@ function InvestorAllCardList(props) {
            "77",//6  Owner
            "1581", //Score 7
            "592",//Club 8
-           "1161"//Shares9
+           "1161",//Shares9
+           "14",//10 Category
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -323,13 +334,14 @@ console.log(selectedEmployee)
         <div className="flex flex-col max-sm:justify-between ">
           
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
+              {item.email}
                        </div>
             
           <div>
           <div class="font-medium text-xs ">
        
               <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-             
+              {item.dailCode1} {item.mobileNo}
               </div>
            
             
@@ -347,56 +359,7 @@ console.log(selectedEmployee)
         {selectedEmployee ?
         <>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between max-sm:hidden  w-[80%]  p-1 bg-transparent text-xs font-poppins font-bold sticky  z-10">
-              <div className=" w-[16.6rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
-              {translatedMenuItems[0]}
-              {/* "Name" */}           
-                      </div>
-              <div className=" w-[5.1rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
-              {translatedMenuItems[1]} 
-              {/* Sector" */}            
-                      </div>     
-              <div className="  w-[5.12rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># 
-              {translatedMenuItems[2]}
-              {/* "Deals" */}          
-                      </div>
-              <div className=" w-[6.2rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-              {translatedMenuItems[3]}
-               {/* "Pipeline Value" */}
-                   
-                </div>
-                <div className="  w-[8.34rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-              {translatedMenuItems[4]} 
-              {/* Source */}               
-              </div>
-              <div className="  w-[6.212rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                {translatedMenuItems[9]}
-             {/* Shares # */}
-                </div> 
-              {props.user.aiInd && (
-                  <div className=" w-[4.81rem] font-poppins font-bold text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-               {translatedMenuItems[7]}
-                {/* Score */}
-                  </div>
-                  )}
-                     <div className=" w-[5.21rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-                {translatedMenuItems[8]}
-              {/* Club */}
-                </div>
-              <div className="  w-[6.3rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
-              {translatedMenuItems[5]}
-               {/* Assigned" */}
-                    
-               </div>
       
-              <div className=" w-[7.813rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
-              {translatedMenuItems[6]}
-              {/* owner */}
-                 
-                      </div>
-             
-                 
-            </div>
             <InfiniteScroll
         dataLength={investorsbyId.length}
         next={handleLoadMore1}
@@ -409,6 +372,7 @@ console.log(selectedEmployee)
               
               {investorsbyId.map((item,index) =>  {
                const currentdate = dayjs().format("DD/MM/YYYY");
+               const Category=item.pvtAndIntunlInd?"Institutional":"Private"
                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                const diff = Math.abs(
                 dayjs().diff(dayjs(item.lastRequirementOn), "days")
@@ -429,7 +393,7 @@ console.log(selectedEmployee)
                           return (
                             <div>
                                   <div
-                    className="flex rounded justify-between  bg-white mt-1 h-[2.15rem] items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                    className="flex rounded justify-between  bg-white mt-1 py-1 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                   >
                                            <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                       <div className=" flex  w-[13.5rem]   max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
@@ -484,23 +448,43 @@ console.log(selectedEmployee)
                                       </div>
                                       </div> 
                                       <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                      <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[13.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                      <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                                     {/* Sector  */}
                                           <div class=" text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">   
                                           {item.sector}
                                           </div>
                                       </div>
-                                                                                                                  
-                                   
-                                 
-                                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                          {/* Deals */}
-                                          <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                          {item.oppNo}
-                                          </div>
-                                      </div>    
+                                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.30rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
+                                 {/* Country */}
+                                  <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <ReactCountryFlag
+                        countryCode={item.countryAlpha2Code}
+                        svg
+                        style={{
+                          width: '1rem',
+                          height: '1rem',
+                        }}
+                      />
+                      &nbsp;
+                     {item.countryAlpha2Code}
+                                  </div>
+                              </div>                                                                         
+                              <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.12rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Category */}
+
+                                    <div class=" text-xs justify-center ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {Category}
+                                    </div>
+                                </div>    
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Source */}
+                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.source}
+                                    </div>
+                                </div>
+                                     
                                                           
-                                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.124rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+                                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.11rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
       <div class=" text-xs flex max-sm:text-sm font-poppins text-center">
                                       <div>
               <CurrencySymbol currencyType={item.userCurrency}/>     </div> 
@@ -513,29 +497,28 @@ console.log(selectedEmployee)
                                       </div>
                                     
                                       <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                      <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[5.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                        {/* Source */}
-      
-                                          <div class=" text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-xs max-sm:text-sm">
-                                          {item.source}
-                                          </div>
-                                      </div>
-                                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Deals */}
-      
-                                          <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                        <div  onClick={() => {
-                                    props.handleInvestorPriceDrawer(true);
-                                    handleCurrentRowData(item);
-                                  }}>{item.allTotalQuantityOfShare}</div>
-                                          </div>
-                                      </div>
-                                      {props.user.aiInd && (
-                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  font-poppins w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-                 {item.noteScoreInd}
-                
-                  </div>
-                  )}  
+                                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+
+<div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.01rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+{/* sHARES*/}
+
+    <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+  <div  onClick={() => {
+props.handleInvestorPriceDrawer(true);
+handleCurrentRowData(item);
+}}>{item.allTotalQuantityOfShare}</div>
+    </div>
+</div>
+
+<div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.918rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+    {/* # Value */}
+    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+   {item.allTotalAmountOfShare}
+    </div>
+</div>
+</div>
+                                     
+              
        </div>
        <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
       <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -544,6 +527,12 @@ console.log(selectedEmployee)
                                          {item.club}
                                           </div>
                                       </div>
+                                      {props.user.aiInd && (
+                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  font-poppins w-[6.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                 {item.noteScoreInd}
+                
+                  </div>
+                  )}  
                                       <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                          {/* Assigned */}
                                           <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -569,8 +558,8 @@ console.log(selectedEmployee)
                   </span>          
                                      </div>
                                       </div>
-                                      <div className=" flex  w-[3.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
-                                                {/* Owner */}
+                                      {/* <div className=" flex  w-[3.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
+                                                {/* Owner 
                              <span>
                              <Tooltip title={item.ownerName}>
                       <div class="max-sm:flex justify-end w-[1.8rem]">
@@ -585,7 +574,7 @@ console.log(selectedEmployee)
                   </div>
                 </Tooltip>
                   </span>                                                             
-                    </div>
+                    </div> */}
                     <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
       <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -715,44 +704,56 @@ console.log(selectedEmployee)
      :
 
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-  <div className=" flex justify-between max-sm:hidden  w-[91%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[16.6rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
-        {translatedMenuItems[0]}
+  <div className=" flex justify-between max-sm:hidden  w-[81%]  p-1 bg-transparent font-bold sticky items-end  z-10">
+        <div className="text-[#00A2E8] text-base w-[14.6rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
+        <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}
+     
         {/* "Name" */}           
                 </div>
-        <div className=" w-[11.1rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
-        {translatedMenuItems[1]} 
+        <div className=" w-[8.1rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <FactoryIcon className="!text-icon   text-[#84a59d]"/> {translatedMenuItems[1]}  
         {/* Sector" */}            
-                </div>     
-        <div className="  w-[5.12rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># 
-        {translatedMenuItems[2]}
+                </div>
+
+                <div className=" w-[7.23rem] font-poppins font-bold text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[10]}
+          {/* "Category */}
+          </div> 
+
+          <div className="  w-[5.34rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <SourceIcon className="!text-icon   text-[#4b5043]"/>{translatedMenuItems[4]}      
+        {/* Source */}               
+        </div>  
+        <div className="  w-[6.12rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
+        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[2]}
+   
         {/* "Deals" */}          
                 </div>
-        <div className=" w-[6.2rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        {/* <div className=" w-[6.2rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
         {translatedMenuItems[3]}
-         {/* "Pipeline Value" */}
+         "Pipeline Value"
              
-          </div>
-          <div className="  w-[8.34rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        {translatedMenuItems[4]} 
-        {/* Source */}               
-        </div>
-        <div className="  w-[6.212rem]  font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[9]}
+          </div> */}
+        
+        <div className="  w-[7.212rem]  font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        <ShowChartIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[9]}
        {/* Shares # */}
           </div> 
+          <div className=" w-[5.21rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <GolfCourseIcon className='!text-base  text-[#f42c04]'/>  {translatedMenuItems[8]}
+        {/* Club */}
+          </div>
+      
         {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-         {translatedMenuItems[7]}
+        <ScoreIcon className="!text-icon   text-[#f28482]"/> {translatedMenuItems[7]}
+                           
           {/* Score */}
             </div>
             )}
-               <div className=" w-[5.21rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[8]}
-        {/* Club */}
-          </div>
-        <div className="  w-[6.3rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
-        {translatedMenuItems[5]}
+              
+        <div className="  w-[5.3rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[5]}
          {/* Assigned" */}
               
          </div>
@@ -776,7 +777,8 @@ console.log(selectedEmployee)
       >
         
         { !fetchingAllInvestors && allInvestorsbyId.length === 0 ?<NodataFoundPage />:allInvestorsbyId.map((item,index) =>  {
-         const currentdate = dayjs().format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const Category=item.pvtAndIntunlInd?"Institutional":"Private"
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
           dayjs().diff(dayjs(item.lastRequirementOn), "days")
@@ -852,44 +854,59 @@ console.log(selectedEmployee)
                                 </div>
                                 </div> 
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                              {/* Sector  */}
-                                    <div class=" text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">   
+                                <div className=" flex   w-[8.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                         
+                                     {/* Sector  */}
+                                    <div class=" text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                     {item.sector}
                                     </div>
                                 </div>
-                                                                                                            
-                             
-                           
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* Deals */}
-                                    <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.oppNo}
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.30rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                           
+                                 {/* Country */}
+                                  <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <ReactCountryFlag
+                        countryCode={item.countryAlpha2Code}
+                        svg
+                        style={{
+                          width: '1rem',
+                          height: '1rem',
+                        }}
+                      />
+                      &nbsp;
+                     {item.countryAlpha2Code}
+                                  </div>
+                              </div>
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.12rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Category */}
+
+                                    <div class=" text-xs justify-center ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {Category}
                                     </div>
-                                </div>    
+                                </div>
+
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.14rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Source */}
+                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.source}
+                                    </div>
+                                </div>   
                                                     
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.124rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-<div class=" text-xs flex max-sm:text-sm font-poppins text-center">
-                                <div>
-        <CurrencySymbol currencyType={item.userCurrency}/>     </div> 
-        <div>
-        {`${Math.floor(item.totalProposalValue / 1000)}K`}
-        </div>
-                          </div>
-                                </div>                    
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                     {/*signed */}
+
+                                    <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.totalWonOppProposalValue}
+                                    </div>
+                                </div>                  
                                
                                 </div>
                               
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                  {/* Source */}
+                             
+                                <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 
-                                    <div class=" text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-xs max-sm:text-sm">
-                                    {item.source}
-                                    </div>
-                                </div>
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                             {/* Deals */}
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.01rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                             {/* sHARES*/}
 
                                     <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                   <div  onClick={() => {
@@ -898,30 +915,44 @@ console.log(selectedEmployee)
                             }}>{item.allTotalQuantityOfShare}</div>
                                     </div>
                                 </div>
-                                {props.user.aiInd && (
-           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  font-poppins w-[5.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-           {item.noteScoreInd}
-          
-            </div>
-            )}  
- </div>
- <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-<div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Deals */}
+
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.918rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* # Value */}
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                   {item.allTotalAmountOfShare}
+                                    </div>
+                                </div>
+                                </div>
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.100rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* Club */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                    {item.club}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Assigned */}
-                                    <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                          </div>
+                   
+          
+ </div>
+ <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+ <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center ">
+                                {props.user.aiInd && (
+           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] font-poppins w-[4.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* Assigned */}
+
+                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                     
                                     <span>
               {item.assignedTo === null ? (
                 "None"
               ) : (
                 <>
-                {item.assignedTo === item.ownerName ? (                 
+                {item.assignedTo === item.ownerName ? (
+                  
                   null
                 ) : (
                   <Tooltip title={item.assignedTo}> 
@@ -934,14 +965,15 @@ console.log(selectedEmployee)
                 )}
                 </>
               )}
-            </span>          
-                               </div>
+            </span>           
+                                    </div>
                                 </div>
-                                {/* <div className=" flex  w-[3.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
-                                          Owner
+                              
+                                {/* <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.12rem]  max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
+                                         Owner
                        <span>
                        <Tooltip title={item.ownerName}>
-                <div class="max-sm:flex justify-end w-[1.8rem]">
+                <div class="max-sm:flex justify-end">
                 <Tooltip title={item.ownerName}>
               <MultiAvatar
                 primaryTitle={item.ownerName}
@@ -952,15 +984,19 @@ console.log(selectedEmployee)
             </Tooltip>
             </div>
           </Tooltip>
-            </span>                                                             
-              </div> */}
-              <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+            </span>
+                   </div> */}
+                   <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.5rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
+                  </div>
+                                
+                              
+            
            </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                                 <div class="flex items-center justify-evenly w-wk">            

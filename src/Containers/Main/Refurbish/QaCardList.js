@@ -200,14 +200,14 @@ function QaCardList(props) {
 
                     <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
                         <div className='w-[7.2rem]'></div>
-                        <div className=" w-[9.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}  
+                        <div className=" w-[11.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}  
                           {/* Order ID */}
                           </div>
-                        <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
+                        <div className="w-[17.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
                         {translatedMenuItems[1]}
                         {/* Inspection */}
                           </div>
-                        <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[26.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[2]} 
                         {/* Due Date */}
                         </div>                                        
@@ -290,7 +290,7 @@ function QaCardList(props) {
                                     null}
                             </div>
                           </div>
-                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[34rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[27rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
@@ -298,7 +298,7 @@ function QaCardList(props) {
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[25.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.lead}
                                                     </div>

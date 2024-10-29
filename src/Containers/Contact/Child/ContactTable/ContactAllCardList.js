@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
-import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import { Link } from 'react-router-dom';
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -15,10 +14,9 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import ScoreIcon from '@mui/icons-material/Score';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import ArchitectureIcon from '@mui/icons-material/Architecture';
+
 import {
   getAllContact,
   handleUpdateContactModal,
@@ -249,13 +247,13 @@ if (loading) {
         <div className=" w-[32.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
         <div className=" md:w-[32.1rem] w-[24.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
-        <ArchitectureIcon className="!text-icon mr-1 text-[#6b2d5c] "/>{translatedMenuItems[2]}</div>
+        <i className="fab fa-artstation mr-1"></i> {translatedMenuItems[2]}</div>
         <div className="  md:w-[20.1rem] w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
       {translatedMenuItems[3]}</div>
         <div className=" md:w-[17.2rem] w-[15.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
-        <div className=" md:w-[14.3rem]  w-[13.3rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
-        <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div>
+        {/* <div className=" md:w-[14.3rem]  w-[13.3rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
+        <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> pipeline */} 
         <div className=" w-[22.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         {translatedMenuItems[6]}</div>
         {props.user.aiInd && (
@@ -305,7 +303,7 @@ if (loading) {
                     return (
                       <div>
                       <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
                           <div className=" flex  w-[14rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk  ">
@@ -367,6 +365,8 @@ if (loading) {
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk">
+                        <div className=" flex  w-[6.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
+
                         <div className="flex w-[3.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 <div className="text-xs  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -380,6 +380,7 @@ if (loading) {
                               {item.totalProposalValue}
 
                               </div>
+                          </div>
                           </div>
       
                           <div className="flex items-center justify-center   w-[5.1rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
