@@ -16,14 +16,12 @@ class AddpackID extends Component {
         return (
             <>
                 <StyledDrawer
-                    title="Add Pack"
+                   title={`Order ID - ${this.props.rowData.newOrderNo}`}
                     width="60%"
-                    height="45%"
                     visible={addPackDataID}
                     destroyOnClose
                     maskClosable={false}
                     maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-                    style={{ top: 40 }}
                     onClose={() => handlepackId(false)}
                     footer={null}
                 >

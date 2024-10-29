@@ -151,12 +151,13 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { base_url2 } from '../../../Config/Auth';
-import { Button } from "antd";
+import { Button, DatePicker } from "antd";
 import { withRouter } from "react-router-dom";
 import { Switch, Popconfirm, Input, message } from "antd";
 import axios from "axios";
 import { useDispatch } from 'react-redux';
 import { getPackData,  getPackAndTrack } from "../Inventory/InventoryAction";
+
 
 const AddPackFormID = (props) => {
   const [isMultiple, setIsMultiple] = useState(false); // Toggle between single and multiple
@@ -235,9 +236,10 @@ const AddPackFormID = (props) => {
 
   return (
     <div className="p-5">
-      <div className="flex items-center space-x-4 mb-4">
+      <div className="font-semibold text-sm">Tag Track ID ?</div>
+      <div className="flex items-center space-x-4 mb-4 mt-1">
         <Popconfirm
-          title={`Switch to ${isMultiple ? "Single" : "Multiple"} Mode`}
+          title={`Switch to ${isMultiple ? "Single" : "Multiple"} Packet Mode`}
           onConfirm={() => handleToggle(!isMultiple)}
           okText="Yes"
           cancelText="No"
@@ -254,7 +256,21 @@ const AddPackFormID = (props) => {
       {isMultiple ? (
         <div className="flex">
           {/* Multiple mode: render Track ID and Packet ID based on noOfPacket */}
-          <div className="flex flex-col">
+          <div className="flex flex-col ">
+            <div className="block font-bold">Packing No</div>
+            {props.packData.map((item, index) => (
+              <div key={index} className="mt-2">
+                <Input
+                  // placeholder={`Enter Track ID ${index + 1}`}
+                value={item.packingNo || 0}
+                  className="border p-2 w-full"
+                  disabled
+                />
+                {/* {item.packingNo} */}
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col ml-4">
             <div className="block font-bold">Track ID </div>
             {props.packData.map((item, index) => (
               <div key={index} className="mt-2">
@@ -267,16 +283,12 @@ const AddPackFormID = (props) => {
             ))}
           </div>
           <div className="flex flex-col ml-4">
-            <div className="block font-bold">Packing No</div>
+            <div className="block font-bold">Date</div>
             {props.packData.map((item, index) => (
               <div key={index} className="mt-2">
-                <Input
-                  // placeholder={`Enter Track ID ${index + 1}`}
-                value={item.packingNo || 0}
-                  className="border p-2 w-full"
-                  disabled
-                />
-                {/* {item.packingNo} */}
+               <DatePicker
+               
+               />
               </div>
             ))}
           </div>

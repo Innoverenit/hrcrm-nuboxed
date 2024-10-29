@@ -7,6 +7,7 @@ import { withRouter } from "react-router";
 import UploadMaterialModal from "./UploadMaterialModal"
 import UploadIcon from '@mui/icons-material/Upload';
 import { Tooltip } from "antd";
+import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { handleSuppliesModal,handleUploadMaterialModal,handleImageSuppliesModal,handleNewAriival,handleBestbefore } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -63,7 +64,7 @@ class SuppliesActionRight extends React.Component {
         <Button
          type="primary"
          onClick={() => handleBestbefore(true)}>
-            <DateRangeIcon
+            <StarBorderPurple500Icon
             className="cursor-pointer !text-base"
              
             />   

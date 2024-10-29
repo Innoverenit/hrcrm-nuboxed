@@ -84,10 +84,10 @@ class Login extends Component {
             //   margin: "auto",
             // }}
           >
-             <div className=" text-xxl font-bold font-poppins"> Welcome to Korero.</div>
+             {/* <div className=" text-xxl font-bold font-poppins"> Welcome to Korero.</div> */}
             <img
               className="big-logo w-[13rem]"
-              src={DevelopTk}
+              src={FWLogo2}
               alt="Tekorero logo"
             />
             <br />

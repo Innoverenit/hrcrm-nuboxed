@@ -98,11 +98,11 @@ function DistributorColletcionArchive(props) {
           ...rest
         }) => (
           <Form>
-            <div class="flex justify-evenly h-full w-[52%]  items-center max-sm:w-wk">
+            <div class="flex  h-full w-[52%]  items-center max-sm:w-wk">
               <div class="w-[52%] max-sm:w-wk">
-                <div class=" font-bold font-poppins mb-2 text-xs  flex flex-row">
+                <div class=" font-bold font-poppins mb-2 text-xs  flex flex-row items-center">
                 {translatedMenuItems[0]}   {/* Search by Payment Date */}
-
+<div className="ml-2">
                   <Field
                     isRequired
                     name="date"
@@ -110,10 +110,11 @@ function DistributorColletcionArchive(props) {
                     component={DatePicker}
                     value={values.date}
                   />
+                  </div>
                 </div>
 
               </div>
-              <div class="md:w-[0%] mb-2 font-bold font-poppins text-xs">
+              <div class="md:mb-2 font-bold font-poppins text-xs">
                 <Button
                   type="primary"
                   htmlType="submit"
