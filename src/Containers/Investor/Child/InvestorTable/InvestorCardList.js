@@ -3,14 +3,18 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ExploreIcon from "@mui/icons-material/Explore";
 import {  DeleteOutlined } from "@ant-design/icons";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ArticleIcon from '@mui/icons-material/Article';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component"; 
 import { Tooltip, Select,Checkbox } from "antd";
 import dayjs from "dayjs";
+import ScoreIcon from '@mui/icons-material/Score';
+
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -27,6 +31,15 @@ import {
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import ReactCountryFlag from 'react-country-flag';
+import FactoryIcon from '@mui/icons-material/Factory';
+import SourceIcon from '@mui/icons-material/Source';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GolfCourseIcon from '@mui/icons-material/GolfCourse';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+
+
 import {getInvestorsbyId,
   handleInvestorContModal,
   handleUpdateInvestorModal,
@@ -201,58 +214,61 @@ function InvestorCardList(props) {
     />
   ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
+        <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent items-end font-bold text-xs font-poppins sticky  z-10">
           <div className="w-2"></div>
-        <div className=" w-[19.6rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
-        {translatedMenuItems[0]} 
+        <div className="text-[#00A2E8] text-base w-[18.6rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
+        <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]} 
         {/* "Name" */}          
                      </div>
-        <div className=" w-[11.55rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
-        {translatedMenuItems[1]}
+        <div className=" w-[13.55rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <FactoryIcon className="!text-icon   text-[#84a59d]"/>  {translatedMenuItems[1]}
         {/* "Sector" */}
                     </div>
-        <div className="  w-[7.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">#
-        {translatedMenuItems[2]}
+                    <div className=" w-[10.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <FormatListNumberedIcon className='!text-icon    text-[#42858c]' />   {translatedMenuItems[5]}
+          {/* "Category" */}            
+          </div>
+          <div className=" w-[9.34rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <SourceIcon className="!text-icon   text-[#4b5043]"/> {translatedMenuItems[6]}
+        {/* "Source"         */}
+          </div>
+          <div className=" w-[11.22rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {/* {translatedMenuItems[7]} */}
+      {/* First Meeting */} <EventAvailableIcon className="!text-icon   text-[#4b5043]"/>  1st Meeting
+          </div>
+        <div className="  w-[10.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
+        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />
+             {translatedMenuItems[2]}
          {/* "Deals" */}          
                 </div>
       
-          <div className=" w-[7.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[4]}
-          {/* "Signed" */}            
-          </div>
-          <div className=" w-[6.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[5]}
-          {/* "Category" */}            
-          </div>
-          <div className=" w-[5.34rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        {translatedMenuItems[6]}
-        {/* "Source"         */}
-          </div>
-          <div className=" w-[9.22rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {/* {translatedMenuItems[7]} */}
-      {/* First Meeting */} 1st Meeting
-          </div>
-          <div className="  w-[6.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[8]}
+          {/* <div className=" w-[9.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <SensorOccupiedIcon className='!text-icon    text-[#397367]' />   {translatedMenuItems[4]}
+          "Signed"            
+          </div> */}
+       
+          <div className="  w-[8.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <ShowChartIcon className='!text-icon    text-[#776871]' /> {translatedMenuItems[8]}
        {/* Shares # */}
           </div>         
-          <div className=" w-[7.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[9]}
-        {/* Value */}
-          </div>
-          <div className=" w-[6.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[10]}
+          {/* <div className=" w-[9.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />
+           {translatedMenuItems[9]}
+        Value
+          </div> */}
+          <div className=" w-[7.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <GolfCourseIcon className='!text-base   text-[#f42c04]'/> {translatedMenuItems[10]}
         {/* Club */}
           </div>
       
          {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-              {translatedMenuItems[20]}
+            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+             <ScoreIcon className="!text-icon   text-[#f28482]"/>  {translatedMenuItems[20]}
             {/* Score          */}
             </div>            
             )}
-         <div className=" w-[5.33rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
-        {translatedMenuItems[11]}
+         <div className=" w-[10.33rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+         <AccountCircleIcon className="!text-icon   text-[#d64933]"/>  {translatedMenuItems[11]}
       {/* Assigned" */}         
          </div>
      
@@ -289,7 +305,7 @@ function InvestorCardList(props) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[10rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
+              className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[10rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                      <div className=" flex items-center  max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -305,7 +321,7 @@ function InvestorCardList(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex   w-[10.5rem] ml- border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  items-center">
+                                <div className=" flex   w-[10.5rem]  border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto  items-center">
                                 <div>
 
                                                    <MultiAvatar
@@ -363,6 +379,26 @@ function InvestorCardList(props) {
                                 {item.countryAlpha2Code}
                                               </div>
                                           </div>
+                                          <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[7.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* # Category */}
+
+                                    <div class="text-xs justify-center ml-gap  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.category}
+                                    </div>
+                                </div>
+                                <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[6.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* >Source */}
+
+                                    <div class="text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    {item.source}
+                                    </div>
+                                </div>
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[6.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* Deals */}
+                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                               
+                                    {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
+                                    </div>
+                                </div>
                                 <div className=" flex  iitems-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
 
@@ -371,36 +407,18 @@ function InvestorCardList(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                  {/* # Deals */}
+                                {/* <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                               
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.signed}
                                     </div>
-                                </div>
-                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] w-[5.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* # Category */}
-
-                                    <div class="text-xs justify-center ml-gap  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.category}
-                                    </div>
-                                </div>
-                                <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[4.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* >Source */}
-
-                                    <div class="text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.source}
-                                    </div>
-                                </div>
+                                </div> */}
+                              
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[6.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* Deals */}
-                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                               
-                                    {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
-                                    </div>
-                                </div>
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                             {/* Deals */}
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center w-[3.212rem]  max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                             {/* shares */}
 
                                     <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                   <div  onClick={() => {
@@ -409,27 +427,28 @@ function InvestorCardList(props) {
                             }}>{item.allTotalQuantityOfShare}</div>
                                     </div>
                                 </div>
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.918rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* # Deals */}
+                                <div className=" flex items-center justify-center h-8 w-[5.918rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* # value */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                    {item.allTotalAmountOfShare}
                                     </div>
                                 </div>
                                 </div>
+                                </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                   {/* Deals */}
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                   {/* club */}
                                     <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                    {item.club}
                                     </div>
                                 </div>
                                 {props.user.aiInd && (
-           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  font-poppins w-[4.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  font-poppins w-[5.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>
             )}
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Assigned */}
                                     <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                                    
                                     <span>

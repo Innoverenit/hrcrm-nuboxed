@@ -22,6 +22,10 @@ import dayjs from "dayjs";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import AddInvestorAdressModal from "../../../InvestorTable/AddInvestorAdressModal";
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const InvestorUpdateContactModal = lazy(() =>
   import("../InvestorContact/InvestorUpdateContactModal")
@@ -159,25 +163,25 @@ const InvestorLinkedContact = (props) => {
     <>
       <div class="rounded m-1 p-1 w-[99%]   overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className=" md:w-[16.1rem]">
-        {translatedMenuItems[0]}     
+        <div className="text-[#00A2E8] text-base md:w-[16.1rem]">
+        <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}     
         {/* Name      */}
               </div>
-      <div className=" md:w-[15.1rem]">
-     {translatedMenuItems[1]}  
+      <div className="font-poppins font-bold text-xs md:w-[12.1rem]">
+      <MarkEmailUnreadIcon className='!text-icon  '  />  {translatedMenuItems[1]}  
        {/* Email */}
-              
+   
               </div>
-      <div className="md:w-[8.1rem]">
-      {translatedMenuItems[2]}  
+      <div className="font-poppins font-bold text-xs md:w-[8.1rem]">
+       <MobileFriendlyIcon className='!text-icon  '  /> {translatedMenuItems[2]}  
         {/* Mobile #" */}
            </div>
-      <div className="md:w-[8.2rem]">
-      {translatedMenuItems[3]}  
+      <div className="font-poppins font-bold text-xs md:w-[8.2rem]">
+      <ApartmentIcon className='!text-icon  '  /> {translatedMenuItems[3]}  
         {/* Department" */}
               </div>
-                   <div className="md:w-[9.2rem]">
-                   {translatedMenuItems[4]}  
+                   <div className="font-poppins font-bold text-xs md:w-[9.2rem]">
+                   <i className=" fab fa-artstation mr-1"></i> {translatedMenuItems[4]}  
                                  {/* Designation" */}            
               </div>      
       <div className="w-[5.2rem]"></div>
