@@ -143,7 +143,30 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
         });
       });
   };
-
+  export const getTeamUserList = (reptMngrId) => (dispatch) => {
+    dispatch({ type: types.GET_TEAM_USERLIST_REQUEST });
+    axios
+      .get(`${base_url}/employee/user-list/reptMngr/${reptMngrId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_TEAM_USERLIST_SUCCESS,
+          payload: res.data,
+        });
+        // cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_TEAM_USERLIST_FAILURE,
+          payload: err,
+        });
+      });
+  };
   export const handleInvestorModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_INVESTOR_MODAL,

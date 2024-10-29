@@ -39,7 +39,6 @@ import FactoryIcon from '@mui/icons-material/Factory';
 import SourceIcon from '@mui/icons-material/Source';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import ScoreIcon from '@mui/icons-material/Score';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";

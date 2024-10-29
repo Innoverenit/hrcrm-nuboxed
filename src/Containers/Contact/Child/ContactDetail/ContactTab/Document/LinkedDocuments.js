@@ -18,6 +18,12 @@ import { DeleteOutlined, } from "@ant-design/icons";
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import DescriptionIcon from '@mui/icons-material/Description';
+import ContactPageIcon from '@mui/icons-material/ContactPage'
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 
 class LinkedDocuments extends Component {
   
@@ -84,17 +90,23 @@ class LinkedDocuments extends Component {
       <>
          <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
-          <div className="w-[6.9rem] md:w-[11.9rem]">{this.state.translatedMenuItems[0]} </div>
+          <div className="w-[6.9rem] md:w-[11.9rem]"> <DateRangeIcon className='!text-icon  '  />
+          {this.state.translatedMenuItems[0]} </div>
           {/* Date */}
-        <div className="md:w-[6.1rem]"> {this.state.translatedMenuItems[1]}      </div>
+        <div className="md:w-[6.1rem]"> <LocationCityIcon className='!text-icon  '  /> 
+         {this.state.translatedMenuItems[1]}      </div>
            {/* Name */}   
-        <div className="w-[1.1rem] md:w-[5.1rem]"> {this.state.translatedMenuItems[2]}</div>
+        <div className="w-[1.1rem] md:w-[5.1rem]">< MergeTypeIcon className='!text-icon  '  />
+         {this.state.translatedMenuItems[2]}</div>
           {/* type */}          
-        <div className=" w-[3.1rem] md:w-[5.1rem]"> {this.state.translatedMenuItems[3]}</div>
+        <div className=" w-[3.1rem] md:w-[5.1rem]"> <ShowChartIcon className='!text-icon    text-[#776871]' />
+           {this.state.translatedMenuItems[3]}</div>
           {/* Share */}      
-        <div className=" w-[7.12rem] md:w-[8.12rem]"> {this.state.translatedMenuItems[4]}</div>
+        <div className=" w-[7.12rem] md:w-[8.12rem]">     <DescriptionIcon className='!text-icon  '  /> 
+        {this.state.translatedMenuItems[4]}</div>
           {/* Description */}    
-        <div className="w-[3.1rem]  md:w-[7.1rem]"> {this.state.translatedMenuItems[5]}</div>
+        <div className="w-[3.1rem]  md:w-[7.1rem]"> <ContactPageIcon className='!text-icon  '  /> 
+         {this.state.translatedMenuItems[5]}</div>
           {/* UploadedBy */}       
         <div className="w-[4.2rem]"></div>
 

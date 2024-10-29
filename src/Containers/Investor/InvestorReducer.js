@@ -216,7 +216,11 @@ export const investorReducer = (state = initialState, action) => {
         fetchingInvestors: false,
         fetchingInvestorsError: true,
       };
-
+        return {
+          ...state,
+          fetchingTeamUserList: false,
+          fetchingTeamUserListError: true,
+        };
       case types.GET_INVESTORS_DELETELIST_REQUEST:
       return { ...state, fetchingDeleteInvestors: true };
     case types.GET_INVESTORS_DELETELIST_SUCCESS:
@@ -851,7 +855,20 @@ export const investorReducer = (state = initialState, action) => {
                                   case types.GET_WON_INVESTOR_WEIGHTED_VALUE_FAILURE:
                                     return { ...state, fetchingWonINVWeightedValue: false, fetchingWonINVWeightedValueError: true };
   
-
+                                    case types.GET_TEAM_USERLIST_REQUEST:
+                                      return {
+                                        ...state,
+                                        fetchingTeamUserList: true,
+                                        fetchingTeamUserListError: false,
+                                      };
+                                    case types.GET_TEAM_USERLIST_SUCCESS:
+                                      return {
+                                        ...state,
+                                        fetchingTeamUserList: false,
+                                        fetchingTeamUserListError: false,
+                                        teamUserList: action.payload,
+                                      };
+                                    case types.GET_TEAM_USERLIST_FAILURE:
 
                                   case types.GET_INVESTOR_CONTACT_VALUE_REQUEST:
                                     return { ...state, fetchingInvContactValue: true, fetchingInvContactValueError: false };
