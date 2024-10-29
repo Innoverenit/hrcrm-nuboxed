@@ -7,6 +7,20 @@ const initialState = {
     uploadingMaterialList:false,
     uploadingMaterialListError:false,
 
+    fetchingbestBeforeEmailList: false,
+    fetchingbestBeforeEmailListError: false,
+    bestBeforeEmailList:[],
+
+    deletingEmailList: false,
+    deletingEmailListError: false,
+
+    fetchingNewArrivalList: false,
+    fetchingNewArrivalListError: false,
+    newArrivalDataList:[],
+
+    deletingNewArrival: false,
+    deletingNewArrivalError: false,
+
     fetchingItemData: false,
     fetchingItemDataError: false,
     newStepItemData:[],
@@ -351,6 +365,37 @@ export const suppliesReducer = (state = initialState, action) => {
               fetchingbestBeforeError: true,
             };
   
+            case types.GET_BEST_BEFORE_EMAILLIST_REQUEST:
+              return { ...state, fetchingbestBeforeEmailList: true };
+            case types.GET_BEST_BEFORE_EMAILLIST_SUCCESS:
+              return {
+                ...state,
+                fetchingbestBeforeEmailList: false,
+             bestBeforeEmailList: action.payload
+              };
+            case types.GET_BEST_BEFORE_EMAILLIST_FAILURE:
+              return {
+                ...state,
+                fetchingbestBeforeEmailList: false,
+                fetchingbestBeforeEmailListError: true,
+              };
+
+
+              case types.GET_NEW_ARRIVALLIST_REQUEST:
+                return { ...state, fetchingNewArrivalList: true };
+              case types.GET_NEW_ARRIVALLIST_SUCCESS:
+                return {
+                  ...state,
+                  fetchingNewArrivalList: false,
+               newArrivalDataList: action.payload
+                };
+              case types.GET_NEW_ARRIVALLIST_FAILURE:
+                return {
+                  ...state,
+                  fetchingNewArrivalList: false,
+                  fetchingNewArrivalListError: true,
+                };
+
 
         case types.UPDATE_SUPPLIES_BY_ID_REQUEST:
             return { ...state, updateSuppliesById: true };
@@ -1321,6 +1366,43 @@ export const suppliesReducer = (state = initialState, action) => {
   
           case types.HANDLE_ERP_DOCUMENT_UPLOAD_MODAL:
             return { ...state, erpDocumentUploadModal: action.payload };
+
+            case types.DELETE_EMAILLIST_REQUEST:
+              return { ...state, deletingEmailList: true };
+          case types.DELETE_EMAILLIST_SUCCESS:
+              return {
+                  ...state,
+                  deletingEmailList: false,
+                  bestBeforeEmailList: state.bestBeforeEmailList.filter(
+                      (item) => item.orgId !== action.payload
+                  ),
+              };
+          case types.DELETE_EMAILLIST_FAILURE:
+              return {
+                  ...state,
+                  deletingEmailList: false,
+                  deletingEmailListError: true,
+              };
+  
+              case types.DELETE_NEWARRIVAL_REQUEST:
+                return { ...state, deletingNewArrival: true };
+            case types.DELETE_NEWARRIVAL_SUCCESS:
+                return {
+                    ...state,
+                    deletingNewArrival: false,
+                    newArrivalDataList: state.newArrivalDataList.filter(
+                        (item) => item.orgId !== action.payload
+                    ),
+                };
+            case types.DELETE_NEWARRIVAL_FAILURE:
+                return {
+                    ...state,
+                    deletingNewArrival: false,
+                    deletingNewArrivalError: true,
+                };
+    
+
+
         default:
             return state;
     }

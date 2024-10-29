@@ -111,7 +111,7 @@ class PastNotification extends Component {
                             item.notificationReadInd === true ? "grey" : "white"
                         }}
                       >
-                        {dayjs(item.notificationDate).format("LLL")}
+                        {dayjs(item.notificationDate).format("MMM DD")}
                       </h4>
                     }
                     onClick={

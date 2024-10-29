@@ -19,6 +19,7 @@ function DataRoomProspectCard (props) {
        <div class=" flex flex-no-wrap w-full" >
                 <div class=" w-[22%]" >
                   <DataRoomProspectActionLeft
+                  handleCardProspectSourceClick={props.handleCardProspectSourceClick}
                           handleCardProspectSectorClick={props.handleCardProspectSectorClick}
                           selectedPropsectSector={props.selectedPropsectSector}
                           setSelectedProspectSector={props.setSelectedProspectSector}
@@ -35,6 +36,7 @@ function DataRoomProspectCard (props) {
                 {/* {props.selectedPerson && ( */}
                 <div class=" w-[78%]" >
                   <DataRoomProspectActionRight 
+                  selectedPropsectSource={props.selectedPropsectSource}
                           handleCardProspectSectorClick={props.handleCardProspectSectorClick}
                           selectedPropsectSector={props.selectedPropsectSector}
                           setSelectedProspectSector={props.setSelectedProspectSector}
