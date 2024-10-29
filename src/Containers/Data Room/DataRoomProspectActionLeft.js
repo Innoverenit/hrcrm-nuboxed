@@ -87,12 +87,15 @@ const handleLoadMore = () => {
         selectedButtonTab={props.selectedButtonTab} */}
       <div>
       <Button
+      style={{backgroundColor:props.selectedButtonTab==='byList'?"tomato":null}}
        onClick={() => props.setSelectedButtonTab('byList')}
       >By List</Button>
         <Button
+        style={{backgroundColor:props.selectedButtonTab==='bySector'?"tomato":null}}
          onClick={() => props.setSelectedButtonTab('bySector')}
         >By Sector</Button>
         <Button
+         style={{backgroundColor:props.selectedButtonTab==='bySource'?"tomato":null}}
          onClick={() => props.setSelectedButtonTab('bySource')}
         >By Source</Button>
       </div>
@@ -123,7 +126,7 @@ const handleLoadMore = () => {
     
    {props.allCustomers.map((lead, index) => {
     return (
-      <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
+      <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2" style={{backgroundColor:props.selectedPersonData===lead.name?"aquamarine":null}}>
         <div className="flex justify-between">
           <div 
           className="font-semibold"

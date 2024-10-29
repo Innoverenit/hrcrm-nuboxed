@@ -242,7 +242,7 @@ const handleViewSourceChange = (view) => {
 
 
 
-{props.selectedButtonTab==="bySector" && (
+{props.selectedButtonTab==="bySector" && props.selectedPropsectSector&&(
          
            <Tabs defaultActiveKey="1">
           <TabPane
