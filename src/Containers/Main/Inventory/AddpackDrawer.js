@@ -15,7 +15,7 @@ class AddpackDrawer extends Component {
         return (
             <>
                 <StyledDrawer
-                    title="Add Pack"
+                    title={`Order ID - ${this.props.rowData.newOrderNo}`}
                     width="60%"
                     height="45%"
                     visible={addPackData}

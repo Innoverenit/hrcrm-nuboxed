@@ -529,7 +529,11 @@ export const DistributorCollectionReceivableToday = (payment) => (dispatch) => {
     type: types.DISTRIBUTOR_COLLECTION_RECEIVABLE_REQUEST,
   });
   axios
-    .post(`${base_url2}/report/orderPaymentList/notApperovedByFinance`, payment)
+    .post(`${base_url2}/orderPayment/orderPaymentList/notApperovedByFinance`, payment, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
