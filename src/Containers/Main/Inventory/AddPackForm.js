@@ -124,6 +124,7 @@ import { Button } from "antd";
 import { withRouter } from "react-router-dom";
 import {getPackData,getPackNo} from "../Inventory/InventoryAction";
 import { useDispatch } from 'react-redux';
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { CloseOutlined } from "@ant-design/icons";
 import { Switch, Popconfirm, message } from 'antd';
 
@@ -220,7 +221,7 @@ const InputToggleForm = (props) => {
                 updatedFields[index].packingNo = e.target.value;
                 setFields(updatedFields);
               }}
-              placeholder="Enter number of packets"
+              placeholder="Enter Packet ID"
             />
           </div>
 
@@ -250,7 +251,7 @@ const InputToggleForm = (props) => {
       ))}
 
       <Button type="primary" onClick={addMoreFields}>
-        Add Row
+       <ControlPointIcon/> Add Packet
       </Button>
     </>
   );

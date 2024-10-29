@@ -27,6 +27,7 @@ import DispatchPackedToggle from "./Child/InventoryDetails/Dispatch/DispatchPack
 import DispatchValidationToggle from "./Child/InventoryDetails/Dispatch/DispatchValidationToggle";
 import DispatchOrderAwbModal from "./Child/InventoryDetails/Dispatch/DispatchOrderAwbModal";
 import AddpackDrawer from "./AddpackDrawer";
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import AddpackID from "./AddpackID";
 // Repair -Dis-2
 
@@ -581,7 +582,7 @@ const AWBtst=[
                                                         </div>
                                                     </div>
                                                     <div>
-                                                               <AcUnitIcon
+                                                               <GpsFixedIcon className="!cursor-pointer"
                                                                 onClick={() => {
                                                                   props.handlepackId(true);
                                                                   handleRowData(item)              
