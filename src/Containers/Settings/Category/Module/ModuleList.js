@@ -174,6 +174,24 @@ const handleFinanceClick = (checked) => {
     props.addingModules(data, props.orgId);
   };
 
+
+  const { cbmInd   } = props.moduleList;
+  console.log(cbmInd);
+  const [cbmStatus, setcbmStatus] = useState(cbmInd);
+  useEffect(() => {
+    setcbmStatus(cbmInd);
+  }, [cbmInd]);
+  const handleCbmClick = (checked) => {
+    setcbmStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "cbm",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
+
   const { imInd } = props.moduleList;
   console.log(imInd);
   const [imStatus, setImStatus] = useState(imInd);
@@ -598,6 +616,8 @@ logisticsStatus={logisticsStatus}
                     materialStatus={materialStatus}
                     handleTimetrackClick={handleTimetrackClick}
                     timeTrackStatus={timeTrackStatus}
+                    handleCbmClick={handleCbmClick}
+                    cbmStatus={cbmStatus}
                     />              
               </MainWrapper>
             </div>

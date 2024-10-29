@@ -5,6 +5,7 @@ import SuppliesLocationTable from "./SuppliesLocationTable"
 import SuppliesBrandModelTable from "./SuppliesBrandModelTable"
 import { setSuppliesViewType, handleSuppliesModal } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
+import SuppliesTab from "./SuppliesTab";
 const SuppliesBrandTable =lazy(()=>import("./SuppliesBrandTable"))
 const SuppliesHeader =lazy(()=>import("./SuppliesHeader"));
 const SuppliesTable =lazy(()=>import("./SuppliesTable"));
@@ -77,7 +78,9 @@ function Supplies(props) {
                 ) : viewType === "category" ? (
                 <SuppliesCategoryCard translateText={props.translateText}
                 selectedLanguage={props.selectedLanguage}/>) :
-                
+            viewType === "newList" ? (
+                <SuppliesTab translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}/>) :
                 null}
             </Suspense>
         </React.Fragment>

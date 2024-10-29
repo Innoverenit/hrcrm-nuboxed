@@ -2464,6 +2464,31 @@ export const getPackNo = (dispachPackingId) => (dispatch) => {
     });
 };
 
+export const getPackAndTrack = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PACK_TRACK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dispatchPacking/dispatch-packing-track/${orderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PACK_TRACK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PACK_TRACK_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const addToWaste = (customer,poSupplierSuppliesId) => (dispatch, getState) => {
   const userId = getState().auth.userDetails.userId;
 

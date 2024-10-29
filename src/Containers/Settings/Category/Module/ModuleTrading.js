@@ -201,13 +201,13 @@ class ModuleTrading extends Component {
                     <div   class=" ml-2">
                     <Popconfirm
                         title="Do you wish to change TimeTrack ? "
-                         onConfirm={() => this.props.handleTimetrackClick(!this.props.timeTrackStatus)}                     
+                         onConfirm={() => this.props.handleCbmClick(!this.props.cbmStatus)}                     
                         okText="Yes"
                         cancelText="No"
                       >
                         <Switch                         
                           onChange={() => {}}                    
-                          checked={this.props.timeTrackStatus || this.props.moduleList.timeTrackInd}
+                          checked={this.props.cbmStatus || this.props.moduleList.cbmInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />

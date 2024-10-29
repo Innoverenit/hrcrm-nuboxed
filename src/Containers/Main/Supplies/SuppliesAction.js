@@ -1685,3 +1685,103 @@ export const addLocationSuppliesValue = (documents,suppliesId, cb) => (dispatch)
      
 
 };
+
+export const getBestBeforeEmailList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BEST_BEFORE_EMAILLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getBestBeforeEmailList/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_BEST_BEFORE_EMAILLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BEST_BEFORE_EMAILLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getNewArrivalList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_NEW_ARRIVALLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/getNewArrivals/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_NEW_ARRIVALLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_NEW_ARRIVALLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const deleteEmailList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_EMAILLIST_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/po/bestBfrUseHistory/${orgId}`)
+    .then((res) => {
+      console.log(res);
+      // dispatch(getDeletedPurchaseById());
+      dispatch({
+        type: types.DELETE_EMAILLIST_SUCCESS,
+        payload: orgId,
+      });
+      message.success("Supplies deleted Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_EMAILLIST_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
+    });
+};
+
+export const deleteNewArrival = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_NEWARRIVAL_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/newArrivalHistory/${orgId}`)
+    .then((res) => {
+      console.log(res);
+      // dispatch(getDeletedPurchaseById());
+      dispatch({
+        type: types.DELETE_NEWARRIVAL_SUCCESS,
+        payload: orgId,
+      });
+      message.success("Supplies deleted Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_NEWARRIVAL_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
+    });
+};

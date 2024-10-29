@@ -156,7 +156,7 @@ import { withRouter } from "react-router-dom";
 import { Switch, Popconfirm, Input, message } from "antd";
 import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { getPackData } from "../Inventory/InventoryAction";
+import { getPackData,  getPackAndTrack } from "../Inventory/InventoryAction";
 
 const AddPackFormID = (props) => {
   const [isMultiple, setIsMultiple] = useState(false); // Toggle between single and multiple
@@ -167,6 +167,7 @@ const AddPackFormID = (props) => {
   // Fetch pack data on component mount
   useEffect(() => {
     props.getPackData(props.orderPhoneId);
+    props.getPackAndTrack(props.orderPhoneId)
   }, []);
 
   // Function to send data to server when blur occurs
@@ -265,6 +266,20 @@ const AddPackFormID = (props) => {
               </div>
             ))}
           </div>
+          <div className="flex flex-col ml-4">
+            <div className="block font-bold">Packing No</div>
+            {props.packData.map((item, index) => (
+              <div key={index} className="mt-2">
+                <Input
+                  // placeholder={`Enter Track ID ${index + 1}`}
+                value={item.packingNo || 0}
+                  className="border p-2 w-full"
+                  disabled
+                />
+                {/* {item.packingNo} */}
+              </div>
+            ))}
+          </div>
         </div>
       ) : (
         <div>
@@ -294,6 +309,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getPackData,
+      getPackAndTrack
     },
     dispatch
   );
