@@ -40,13 +40,35 @@ function DataRoomProspectActionLeft(props) {
   const [hasMore, setHasMore] = useState(true);
 
 
-  const handleLoadMore = () => {
+//   const handleLoadMore = () => {
    
-    setPage(page + 1);
-    props.getAllCustomerlIST( page,
-      "creationdate"
-    );
-};
+//     setPage(page + 1);
+//     props.getAllCustomerlIST( page,
+//       "creationdate"
+//     );
+// };
+
+
+
+const handleLoadMore = () => {
+  const callPageMapd = props.allCustomers && props.allCustomers.length &&props.allCustomers[0].pageCount
+  setTimeout(() => {  
+    if  (props.allCustomers)
+    {
+      if (page < callPageMapd) {    
+  setPage(page + 1);
+  props.getAllCustomerlIST(
+    
+    page,
+    "creationdate"
+  );
+          }
+            if (page === callPageMapd){
+              setHasMore(false)
+            }
+          }
+          }, 100);
+}
 
   useEffect(() => {
     
@@ -105,6 +127,7 @@ function DataRoomProspectActionLeft(props) {
         <div className="flex justify-between">
           <div 
           className="font-semibold"
+          style={{cursor:"pointer"}}
           onClick={() => props.handleCardClick(lead.name,lead)}
           >{lead.name}</div>
            <div 
@@ -153,6 +176,10 @@ function DataRoomProspectActionLeft(props) {
    
   ) : ( 
    <>
+   <div
+  style={{ height: '530px', overflowY: 'auto' }} // Adjust height as needed
+  className="scroll-container"
+>
     
    { props.sectors.map((lead, index) => {
     return ( 
@@ -162,6 +189,7 @@ function DataRoomProspectActionLeft(props) {
         <div className="flex justify-between">
           <div 
           className="font-semibold"
+          style={{cursor:"pointer"}}
           onClick={() => props.handleCardProspectSectorClick(lead)}
           >
             {lead.sectorName}
@@ -196,6 +224,7 @@ function DataRoomProspectActionLeft(props) {
       </div>
      )
    })} 
+   </div>
    </>
   
    )}
@@ -221,6 +250,10 @@ function DataRoomProspectActionLeft(props) {
   ) : ( 
 
     <>
+     <div
+  style={{ height: '530px', overflowY: 'auto' }} // Adjust height as needed
+  className="scroll-container"
+>
   {props.sources.map((lead, index) => {
     return ( 
       <div 
@@ -229,7 +262,8 @@ function DataRoomProspectActionLeft(props) {
         <div className="flex justify-between">
           <div 
           className="font-semibold"
-          // onClick={() => props.handleCardClick(lead.name)}
+          style={{cursor:"pointer"}}
+        onClick={() => props.handleCardProspectSourceClick(lead)}
           >
             {lead.name}
            
@@ -263,6 +297,7 @@ function DataRoomProspectActionLeft(props) {
       </div>
      )
    })} 
+   </div>
    </>
    
   )} 

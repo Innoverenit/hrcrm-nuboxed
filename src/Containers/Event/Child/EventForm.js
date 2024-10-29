@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import {Tooltip, Button ,Select} from "antd";
+import {Tooltip, Button ,Radio,Select} from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import {getAllCustomerData} from "../../Customer/CustomerAction"
@@ -203,13 +203,15 @@ const [customer, setCustomer] = useState([]);
    const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
    const [touchedOpportunity, setTouchedOpportunity] = useState(false);
 
-
+   const [selectedValue, setSelectedValue] = useState('Prospect');
    const [include, setInclude] = useState([]);
   const [isLoadingInclude, setIsLoadingInclude] = useState(false);
   const [touchedInclude, setTouchedInclude] = useState(false);
   const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
 
-
+  const handleRadioChange = (e) => {
+    setSelectedValue(e.target.value);
+  };
 
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
@@ -668,13 +670,18 @@ const {
                     component={SearchSelect}
                     inlineLabel
                   />
-                       
+                  <Radio.Group onChange={handleRadioChange} value={selectedValue}>
+        <Radio value="Prospect">Prospect</Radio>
+        <Radio value="Investor">Investor</Radio>
+      </Radio.Group> 
+      {selectedValue === 'Prospect' && ( 
+        <div>    
                    <div class="mt-3" >
                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                   {props.user.crmInd === true &&(
               
      <>        
-{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</div> */}
+
 
 <Select
         showSearch
@@ -699,7 +706,7 @@ const {
                   {props.user.crmInd === true &&(
                   
                   <>
-                  {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</div> */}
+                 
 
 <Select
         showSearch
@@ -722,30 +729,9 @@ const {
                   <div class="mt-3">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                   {props.user.crmInd === true &&(
-              //    <Field
-              //    name="opportunityId"
-              //    // selectType="customerList"
-              //    isColumnWithoutNoCreate
-              //    label={
-              //      <FormattedMessage
-              //        id="app.opportunity"
-              //        defaultMessage="opportunity"
-              //      />
-              //    }
-              //    //component={SearchSelect}
-              //    component={SelectComponent}
-              //    options={
-              //      Array.isArray(opportunityNameOption)
-              //        ? opportunityNameOption
-              //        : []
-              //    }
-              //    isColumn
-              //    margintop={"0"}
-              //    value={values.opportunityId}
-              //    inlineLabel
-              //  />
+             
               <>
-{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</div> */}
+
               <Select
         showSearch
       
@@ -764,6 +750,97 @@ const {
       </>
                   )} 
                   </div>
+                  </div>
+                   )}
+
+
+
+{selectedValue === 'Investor' && ( 
+        <div>    
+                   <div class="mt-3" >
+                   <div class=" text-xs font-bold font-poppins"> 
+                    {/* {translatedMenuItems[7]} */}
+Investor
+                   </div>
+                  {props.user.crmInd === true &&(
+              
+     <>        
+
+
+<Select
+        showSearch
+      
+        placeholder="Search or select prospect"
+        optionFilterProp="children"
+        loading={isLoadingCustomer}
+        onFocus={handleSelectCustomerFocus}
+        onChange={handleSelectChangeCustomer}
+      >
+        {customer.map(customers => (
+          <Option key={customers.customerId} value={customers.customerId}>
+            {customers.name}
+          </Option>
+        ))}
+      </Select>
+      </> 
+                  )} 
+                  </div>
+                  <div class="mt-3 "  >
+                  <div class=" text-xs font-bold font-poppins"> 
+                  Investor Contact
+                    </div>
+                  {props.user.crmInd === true &&(
+                  
+                  <>
+                 
+
+<Select
+        showSearch
+      
+        placeholder="Search or select contact"
+        optionFilterProp="children"
+        loading={isLoadingContact}
+        onFocus={handleSelectContactFocus}
+        onChange={handleSelectChangeContact}
+      >
+        {contact.map(contacts => (
+          <Option key={contacts.contactId} value={contacts.contactId}>
+            {contacts.fullName}
+          </Option>
+        ))}
+      </Select>
+      </>
+                  )} 
+                  </div>
+                  <div class="mt-3">
+                  <div class=" text-xs font-bold font-poppins"> 
+                    {/* {translatedMenuItems[9]} */}
+                    Deal
+                    </div>
+                  {props.user.crmInd === true &&(
+             
+              <>
+
+              <Select
+        showSearch
+      
+        placeholder="Search or select opportunity"
+        optionFilterProp="children"
+        loading={isLoadingOpportunity}
+        onFocus={handleSelectOpportunityFocus}
+        onChange={handleSelectChangeOpportunity}
+      >
+        {opportunity.map(opp => (
+          <Option key={opp.opportunityId} value={opp.opportunityId}>
+            {opp.opportunityName}
+          </Option>
+        ))}
+      </Select>
+      </>
+                  )} 
+                  </div>
+                  </div>
+                   )}
                 
                                
                 </div>

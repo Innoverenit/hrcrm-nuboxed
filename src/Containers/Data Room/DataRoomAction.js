@@ -2,6 +2,8 @@ import { base_url } from "../../Config/Auth";
 import * as types from "./DataRoomActionTypes";
 import axios from "axios";
 
+import {message} from "antd"
+
 export const setDataRoomViewType = (viewType) => (dispatch) =>
     dispatch({ type: types.SET_DATAROOM_VIEW_TYPE, payload: viewType });
   
@@ -187,6 +189,64 @@ export const handleDataroomModal = (modalProps) => (dispatch) => {
 
 
 
+  export const updateOpportunitydragstage = (
+    data,
+      
+    sourceStageId,
+    destinationStageId,
+    opportunityId,
+    cb
+  ) => (dispatch) => {
+    console.log(sourceStageId, destinationStageId, opportunityId);
+    if (destinationStageId === "won") {
+      message.success("stage is won");
+    }
+    if (destinationStageId === "loss") {
+      message.error("stage is loss");
+    }
+    dispatch({
+      type: types.UPDATE_OPPORTUNITY_DRAG_STAGE_REQUEST,
+      payload: {
+        sourceStageId,
+        destinationStageId,
+        opportunityId,
+      },
+    });
+    axios
+      .put(
+        `${base_url}/opportunity/update/stage`,data, {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        // if (res.data.stageName === "Won") {
+        //   message.error("Won");
+        // } else {
+        //   message.error("Loss");
+        // }
+  
+        dispatch({
+          type: types.UPDATE_OPPORTUNITY_DRAG_STAGE_SUCCESS,
+          payload: res.data,
+        });
+        cb && cb(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+  
+        dispatch({
+          type: types.UPDATE_OPPORTUNITY_DRAG_STAGE_FAILURE,
+          payload: err,
+        });
+        cb && cb("failure");
+      });
+  };
+
+
+
 
 
   export const getProspectOppWonData = (customerId) => (dispatch) => {
@@ -223,7 +283,7 @@ export const handleDataroomModal = (modalProps) => (dispatch) => {
       type: types.GET_PROSPECT_SECTOR_OPEN_REQUEST,
     });
     axios
-      .get(`${base_url}/customer/open/sector/${sectorId}/${pageNo}`, {
+      .get(`${base_url}/customer/open/opp/sector/${sectorId}`, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -239,6 +299,95 @@ export const handleDataroomModal = (modalProps) => (dispatch) => {
         console.log(err.response);
         dispatch({
           type: types.GET_PROSPECT_SECTOR_OPEN_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+  export const getProspectSourceOpenData = (sourceId,pageNo) => (dispatch) => {
+    dispatch({
+      type: types.GET_PROSPECT_SOURCE_OPEN_REQUEST,
+    });
+    axios
+      .get(`${base_url}/customer/open/opp/source/${sourceId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PROSPECT_SOURCE_OPEN_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PROSPECT_SOURCE_OPEN_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+  export const getProspectSectorOppWonData = (sectorId,pageNo) => (dispatch) => {
+    dispatch({
+      type: types.GET_PROSPECT_SECTOR_OPP_WON_REQUEST,
+    });
+    axios
+      .get(`${base_url}/customer/won/opp/sector/${sectorId}/${pageNo}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PROSPECT_SECTOR_OPP_WON_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PROSPECT_SECTOR_OPP_WON_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+
+
+  
+  export const getProspectSectorOppLostData = (sectorId,pageNo) => (dispatch) => {
+    dispatch({
+      type: types.GET_PROSPECT_SECTOR_OPP_LOST_REQUEST,
+    });
+    axios
+      .get(`${base_url}/customer/lost/opp/sector/${sectorId}/${pageNo}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PROSPECT_SECTOR_OPP_LOST_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PROSPECT_SECTOR_OPP_LOST_FAILURE,
           payload: err,
         });
       });

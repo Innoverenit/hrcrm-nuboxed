@@ -121,7 +121,10 @@ import React, { Component, useState } from 'react'
 import ProspectTaskOpenListData from "./ProspectTaskOpenListData"
 import ProspectQuotationListData from "./ProspectQuotationListData"
 import ProspectQuotationSectorListData from "./ProspectQuotationSectorListData"
+import ProspectQuotationSource from "./ProspectQuotationSource"
+import ProspectQuotationSectorLostData from "./ProspectQuotationSectorLostData"
 import { Button, Row, Col, Card, Tabs } from 'antd';
+import ProspectQuotationSectorWonData from "./ProspectQuotationSectorWonData"
 import ProspectQuotationWonData from "./ProspectQuotationWonData"
 import { CheckCircleOutlined, CloseCircleOutlined, CloseOutlined, EditOutlined } from '@ant-design/icons';
 import ProspectQuotationClosedData from "./ProspectQuotationClosedData"
@@ -133,7 +136,8 @@ function DataRoomProspectActionRight (props) {
   const [activeTab, setActiveTab] = useState("1");
   const [customerView, setCustomerView] = useState('all'); // 'all', 'won', 'lost'
   const [loading, setLoading] = useState(false); 
-  const [isEditing, setIsEditing] = useState(false); 
+  const [isEditing, setIsEditing] = useState(false);
+  const[prospectSourceView,setProspectSourceView] =useState('all')
   const[prospectSectorView,setProspectSectorView]=useState('all');
 
   const handleViewChange = (view) => {
@@ -151,7 +155,16 @@ function DataRoomProspectActionRight (props) {
     
 };
 
+
+const handleViewSourceChange = (view) => {
+   
+   
+  setProspectSourceView(view);
+  
+};
+
     console.log(props.selectedPerson)
+    console.log(props.selectedPropsectSource)
     return (
       <div>
         {/* By List */}
@@ -274,16 +287,101 @@ function DataRoomProspectActionRight (props) {
                 </p>
               }
               {prospectSectorView === 'won' && <p>
-                {/* <ProspectQuotationWonData
-              selectedPersonData={props.selectedPersonData}
+                <ProspectQuotationSectorWonData
+                selectedPropsectSector={props.selectedPropsectSector}
+              
+              translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+         />
+         {/* Hello Won */}
+                </p>}
+              {prospectSectorView === 'lost' && <p>
+                <ProspectQuotationSectorLostData
+                selectedPropsectSector={props.selectedPropsectSector}
+              
+              translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+         />
+         {/* Hello Lost */}
+                </p>}
+            </>
+         
+        </div>
+      </TabPane>
+          <TabPane tab="Task" key="2">
+            Task content for 
+            {/* {selectedPerson.name} */}
+          </TabPane>
+        
+        </Tabs>
+)}
+
+{props.selectedButtonTab==="bySource" && (
+        
+           <Tabs defaultActiveKey="1">
+          {/* <TabPane tab="Quotation" key="1">
+        <ProspectQuotationSource
+        selectedPropsectSource={props.selectedPropsectSource}
+        />
+           
+          </TabPane> */}
+               <TabPane
+        tab={
+          <span>
+            {/* Customer Tab */}
+            <span
+              style={{ cursor: 'pointer' }}
+              onClick={() => handleViewSourceChange('all')}
+            >
+              Quotation
+            </span>
+            {/* Won Icon */}
+            <CheckCircleOutlined
+              style={{ color: 'green', marginLeft: 8, cursor: 'pointer' }}
+              onClick={() => handleViewSourceChange('won')}
+              title="Won"
+            />
+            {/* Lost Icon */}
+            <CloseCircleOutlined
+              style={{ color: 'red', marginLeft: 4, cursor: 'pointer' }}
+              onClick={() => handleViewSourceChange('lost')}
+              title="Lost"
+            />
+          </span>
+        }
+        key="1"
+      >
+        {/* Fixed height container to prevent jumping */}
+        <div style={{ minHeight: '150px', padding: '16px' }}>
+          {/* Show a spinner if loading is true */}
+         
+            <>
+           
+              {prospectSourceView === 'all' && <p>
+                {/* <ProspectQuotationSectorListData
+              selectedPropsectSector={props.selectedPropsectSector}
+              translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+            /> */}
+             <ProspectQuotationSource
+        selectedPropsectSource={props.selectedPropsectSource}
+        />
+           
+                </p>
+              }
+              {prospectSourceView === 'won' && <p>
+                {/* <ProspectQuotationSectorWonData
+                selectedPropsectSector={props.selectedPropsectSector}
+              
               translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}
          /> */}
          Hello Won
                 </p>}
-              {prospectSectorView === 'lost' && <p>
-                {/* <ProspectQuotationClosedData
-              selectedPersonData={props.selectedPersonData}
+              {prospectSourceView === 'lost' && <p>
+                {/* <ProspectQuotationSectorLostData
+                selectedPropsectSector={props.selectedPropsectSector}
+              
               translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}
          /> */}
@@ -297,28 +395,7 @@ function DataRoomProspectActionRight (props) {
             Task content for 
             {/* {selectedPerson.name} */}
           </TabPane>
-          <TabPane tab="Closed" key="3">
-            Event content for 
-            {/* {selectedPerson.name} */}
-          </TabPane>
-        </Tabs>
-)}
-
-{props.selectedButtonTab==="bySource" && (
-        
-           <Tabs defaultActiveKey="1">
-          <TabPane tab="Quotation" key="1">
-            Quotation content for 
-            {/* {selectedPerson.name} */}
-          </TabPane>
-          <TabPane tab="Task" key="2">
-            Task content for 
-            {/* {selectedPerson.name} */}
-          </TabPane>
-          <TabPane tab="Closed" key="3">
-            Event content for 
-            {/* {selectedPerson.name} */}
-          </TabPane>
+         
         </Tabs>
 )}
         </div>
