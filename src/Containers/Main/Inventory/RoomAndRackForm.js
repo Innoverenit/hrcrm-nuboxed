@@ -592,7 +592,7 @@ const RoomAndRackForm = (props) => {
               <div className="md:w-[9.1rem]">Weight</div>
               <div className="md:w-[9.1rem]">UOM</div>
               <div className="md:w-[9.1rem]">Zone Type</div>
-              <div className="md:w-[9.1rem]">Restock Unit</div>
+              <div className="md:w-[9.1rem]">Restock Percentage</div>
               
               <div className="w-12"></div>
             </div>

@@ -20,6 +20,9 @@ console.log(selectedButtonTab)
   const [selectedInvestor, setSelectedInvestor] = useState(null);
 const[selectedCustomer,setSelectedCustomer]=useState(null)
 const[selectedPropsectSector,setSelectedProspectSector]=useState(null)
+
+
+const[selectedPropsectSource,setSelectedProspectSource]=useState(null)
   const handleCardClick = (person,prospectData) => {
     setSelectedPerson(person);
     setSelectedPersonData(prospectData);
@@ -31,6 +34,14 @@ const[selectedPropsectSector,setSelectedProspectSector]=useState(null)
 
   const handleCardProspectSectorClick = (person) => {
     setSelectedProspectSector(person);
+    // setSelectedPersonData(prospectData);
+  };
+
+
+
+
+  const handleCardProspectSourceClick = (person) => {
+    setSelectedProspectSource(person);
     // setSelectedPersonData(prospectData);
   };
 
@@ -93,6 +104,8 @@ const[selectedPropsectSector,setSelectedProspectSector]=useState(null)
            selectedTab === "prospect" ? 
             //<DataRoomTab />
                <DataRoomProspectCard
+               handleCardProspectSourceClick={handleCardProspectSourceClick}
+               selectedPropsectSource={selectedPropsectSource}
                handleCardProspectSectorClick={handleCardProspectSectorClick}
                selectedPropsectSector={selectedPropsectSector}
                setSelectedProspectSector={setSelectedProspectSector}

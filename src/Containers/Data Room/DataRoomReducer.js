@@ -7,6 +7,10 @@ const initialState = {
 
     addDrawerDataroomNotesModal:false,
 
+    fetchingProspectSourceOpen:false,
+    fetchingProspectSourceOpenError:false,
+    prospectSourceOpen:[],
+
     fetchingDataroomList: false,
     fetchingDataroomListError: false,
     dataRoomlist:[],
@@ -15,6 +19,13 @@ const initialState = {
     fetchingProspectOppOpenTask:false,
     fetchingProspectOppOpenTaskError:false,
     prospectOppOpenTask:[],
+
+
+    fetchingProspectSectorOppWonTask:false,
+    fetchingProspectSectorOppWonTaskError:false,
+    prospectSectorOppWonTask:[],
+
+    updatingDragStage: false,
 
     fetchingProspectOpenTask:false,
     fetchingProspectOpenTaskError:false,
@@ -36,11 +47,27 @@ const initialState = {
     fetchingProspectOppCloseTaskError:false,
     prospectOppCloseTask:[],
 
+    fetchingProspectSectorOppLostTask:false,
+    fetchingProspectSectorOppLostTaskError:false,
+    prospectSectorOppLostTask:[],
+
     fetchingProspectOppWonTask:false,
     fetchingProspectOppWonTaskError:false,
 
     prospectOppWonTask:[],
     
+  };
+
+  const updatedDragOpportunity = (item, newProps) => {
+    return item.map((opp, index) => {
+      console.log("Author7", opp);
+      console.log("Author8", newProps);
+      if (opp.opportunityId === newProps.opportunityId) {
+        console.log("inside opp");
+        opp.opportunityStagesId = newProps.opportunityStagesId;
+      }
+      return opp;
+    });
   };
 
   export const dataRoomReducer = (state = initialState, action) => {
@@ -107,13 +134,48 @@ const initialState = {
 
 
 
+      case types.UPDATE_OPPORTUNITY_DRAG_STAGE_REQUEST:
+        return {
+          ...state,
+          updatingDragStage: true,
+  
+          // candidateRequirement: action.payload,
+        };
+      case types.UPDATE_OPPORTUNITY_DRAG_STAGE_SUCCESS:
+        return {
+          ...state,
+          updatingDragStage: false,
+          prospectOppOpenTask: updatedDragOpportunity(
+            state.prospectOppOpenTask,
+            action.payload
+          ),
+
+          prospectSectorOpen: updatedDragOpportunity(
+            state.prospectSectorOpen,
+            action.payload
+          ),
+
+          prospectSourceOpen: updatedDragOpportunity(
+            state.prospectSourceOpen,
+            action.payload
+          ),
+        
+          // candidateRequirement: [action.payload]prospectSectorOpen
+        };
+      case types.UPDATE_OPPORTUNITY_DRAG_STAGE_FAILURE:
+        return { ...state };
+
+
+
+
+
       case types.GET_PROSPECT_SECTOR_OPEN_REQUEST:
         return { ...state, fetchingProspectSectorOpen: true };
       case types.GET_PROSPECT_SECTOR_OPEN_SUCCESS:
         return {
           ...state,
           fetchingProspectSectorOpen: false,
-          prospectSectorOpen: [...state.prospectSectorOpen, ...action.payload],
+          prospectSectorOpen: action.payload,
         
         };
       case types.GET_PROSPECT_SECTOR_OPEN_FAILURE:
@@ -122,6 +184,26 @@ const initialState = {
           fetchingProspectSectorOpen: false,
           fetchingProspectSectorOpenError: true,
         };
+
+
+
+
+
+        case types.GET_PROSPECT_SECTOR_OPP_LOST_REQUEST:
+          return { ...state, fetchingProspectSectorOppLostTask: true };
+        case types.GET_PROSPECT_SECTOR_OPP_LOST_SUCCESS:
+          return {
+            ...state,
+            fetchingProspectSectorOppLostTask: false,
+            prospectSectorOppLostTask: action.payload,
+          };
+        case types.GET_PROSPECT_SECTOR_OPP_LOST_FAILURE:
+          return {
+            ...state,
+            fetchingProspectSectorOppLostTask: false,
+            fetchingProspectSectorOppLostTaskError: true,
+          };
+      
 
 
 
@@ -160,6 +242,49 @@ const initialState = {
           fetchingProspectOppOpenTask: false,
           fetchingProspectOppOpenTaskError: true,
         };
+
+
+
+
+
+        case types.GET_PROSPECT_SECTOR_OPP_WON_REQUEST:
+          return { ...state, fetchingProspectSectorOppWonTask: true };
+        case types.GET_PROSPECT_SECTOR_OPP_WON_SUCCESS:
+          return {
+            ...state,
+            fetchingProspectSectorOppWonTask: false,
+            prospectSectorOppWonTask: action.payload,
+          };
+        case types.GET_PROSPECT_SECTOR_OPP_WON_FAILURE:
+          return {
+            ...state,
+            fetchingProspectSectorOppWonTask: false,
+            fetchingProspectSectorOppWonTaskError: true,
+          };
+      
+
+
+
+
+
+
+        case types.GET_PROSPECT_SOURCE_OPEN_REQUEST:
+        return { ...state, fetchingProspectSourceOpen: true };
+      case types.GET_PROSPECT_SOURCE_OPEN_SUCCESS:
+        return {
+          ...state,
+          fetchingProspectSourceOpen: false,
+          prospectSourceOpen: action.payload
+        
+        };
+      case types.GET_PROSPECT_SOURCE_OPEN_FAILURE:
+        return {
+          ...state,
+          fetchingProspectSourceOpen: false,
+          fetchingProspectSourceOpenError: true,
+        };
+
+
 
 
 
