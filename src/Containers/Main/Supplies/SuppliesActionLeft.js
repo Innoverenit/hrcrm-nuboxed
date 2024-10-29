@@ -11,6 +11,7 @@ import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition
 import CategoryIcon from '@mui/icons-material/Category';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import { LocalActivityOutlined } from "@mui/icons-material";
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 
 function SuppliesActionLeft (props) {
 
@@ -290,7 +291,25 @@ function SuppliesActionLeft (props) {
                         </span>
                     </Badge>
                 </Tooltip>
+                <Tooltip 
+                title="Tab"
+                >
+               
+                        <span class=" md:mr-2 text-sm cursor-pointer"
+                            onClick={() => setSuppliesViewType("newList")}
+                            style={{
+                                color: "blue",
+                            }}
+                        >
+                            <Avatar style={{ background: viewType === "newList" ? "#f279ab" : "#28a355" }}>
+                                <AccountTreeIcon 
+                                className="text-white cursor-pointer !text-icon"
+                                />
+                                </Avatar>
 
+                        </span>
+                   
+                </Tooltip>
                 <div class=" w-64 max-sm:w-24">
                 {viewType === "all" &&         
         <Input

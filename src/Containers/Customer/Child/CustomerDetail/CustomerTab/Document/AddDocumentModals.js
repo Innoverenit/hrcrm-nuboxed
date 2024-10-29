@@ -922,21 +922,22 @@ const AddDocumentModal = (props) => {
     const formData = new FormData();
   
     // Create a structured listUpload array
-    const listUpload = fileList.map((file) => {
+    const docList = fileList.map((file) => {
       return {
-        file: file.originFileObj,  // This is the binary file
-        type: file.type,  // This is the file type
+        uploadfile: file.originFileObj,  // This is the binary file
+        documentTypeId: file.type,  // This is the file type
       };
     });
   
     // Append the listUpload array as a single entry
-    formData.append('listUpload', new Blob([JSON.stringify(listUpload)], { type: 'application/json' }));
+    formData.append('docList', new Blob([JSON.stringify(docList)], { documentTypeId: 'application/json' }));
   
     // Append other form fields
-    formData.append('name', values.name);
-    formData.append('contact', values.contact);
-    formData.append('description', values.description);
+    formData.append('documentTitle', values.documentTitle);
+    //formData.append('contact', values.contact);
+    formData.append('documentDescription', values.documentDescription);
     formData.append('contract', values.contract);
+    formData.append('customerId',  props.customerId);
   
     // Example API call using axios
     // try {
