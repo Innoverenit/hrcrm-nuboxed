@@ -31,7 +31,7 @@ import {
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
   handleAddressCutomerModal,
-  
+  getTeamUserList
 } from "../../CustomerAction";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
@@ -110,6 +110,7 @@ function CustomerTeamCardList(props) {
    
     props.getTeamCustomer(props.userId, pageNo);
     setPageNo(pageNo + 1);
+    props.getTeamUserList(props.userId)
     //   props.getSectors();
     // props.getCountries();
     // props.getAllCustomerEmployeelist();
@@ -237,18 +238,20 @@ const [rowdata, setrowdata] = useState("");
   ) : (
     <div className=" flex "> 
      
-      <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+      <div className=' flex rounded w-[15%]  flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
        <div> Search team Member</div>
         </div>
-        <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex rounded  flex-col p-1 overflow-x-auto h-[78vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        {props.teamUserList.map((item,index) =>{
+           return (
          <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                   text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center flex-no-wrap h-16">
           <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
             <MultiAvatar
-              // primaryTitle={item.opportunityName}
-              // imageId={item.imageId}
+               primaryTitle={item.firstName}
+              imageId={item.imageId}
               imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
             />
@@ -258,7 +261,7 @@ const [rowdata, setrowdata] = useState("");
           
           <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
         
-    Itisri Chaudhury
+ {item.fullName}
 
         </div> 
         </div>
@@ -268,13 +271,14 @@ const [rowdata, setrowdata] = useState("");
         <div className="flex flex-col max-sm:justify-between ">
           
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-                97886556738              </div>
+                {item.mobileNo}             
+                 </div>
             
           <div>
           <div class="font-medium text-xs ">
        
               <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-               itisrichudhuryiti@gmail.com
+              {item.emailId}
               </div>
            
             
@@ -285,7 +289,8 @@ const [rowdata, setrowdata] = useState("");
       
        
       </div>
-
+     )
+    })}
         </div>
         </div>
          <div className=' flex sticky  w-[85%] z-auto'>
@@ -837,7 +842,8 @@ const mapStateToProps = ({
   fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
-  addAddressCustomerModal:customer.addAddressCustomerModal
+  addAddressCustomerModal:customer.addAddressCustomerModal,
+  teamUserList:customer.teamUserList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -858,7 +864,8 @@ const mapDispatchToProps = (dispatch) =>
       getCustomerById,
       handleCustomerContactDrawerModal,
       handleCustomerOpportunityDrawerModal,
-      handleAddressCutomerModal
+      handleAddressCutomerModal,
+      getTeamUserList
     },
     dispatch
   );

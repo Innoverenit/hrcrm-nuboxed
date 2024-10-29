@@ -621,7 +621,7 @@ export const getCloseCollection = (orgId) => (dispatch) => {
     type: types.GET_CLOSE_COLLECTION_REQUEST,
   });
   axios
-    .get(`${base_url}/creditMemo/closed/all-creditMemo/${orgId}`,{
+    .get(`${base_url2}/creditMemo/closed/all-creditMemo/${orgId}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

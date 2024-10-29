@@ -8,6 +8,10 @@ const initialState = {
 
   addPackDataID:false,
 
+  fetchingPackTrack: false,
+  fetchingPackTrackError: false,
+  packTrack:[],
+
   fetchingPackData: false,
   fetchingPackDataError: false,
   packData:[],
@@ -520,6 +524,21 @@ export const inventoryReducer = (state = initialState, action) => {
               ...state,
               fetchingPackNo: false,
               fetchingPackNoError: true,
+            };
+
+            case types.GET_PACK_TRACK_REQUEST:
+            return { ...state, fetchingPackTrack: true };
+          case types.GET_PACK_TRACK_SUCCESS:
+            return {
+              ...state,
+              fetchingPackTrack: false,
+              packTrack: action.payload
+            };
+          case types.GET_PACK_TRACK_FAILURE:
+            return {
+              ...state,
+              fetchingPackTrack: false,
+              fetchingPackTrackError: true,
             };
 
     //inventory by id
