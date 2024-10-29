@@ -6,6 +6,10 @@ const initialState = {
 
   addCustomerContactJumpstartModal: false,
 
+  fetchingTeamUserList: false,
+  fetchingTeamUserListError: false,
+  teamUserList:[],
+
   fetchingWonCusmWeightedValue: false,
   fetchingWonCusmWeightedValueError: false,
   WonCustomerWeighted: {},
@@ -2424,6 +2428,27 @@ export const customerReducer = (state = initialState, action) => {
         fetchingDocumentsByInvestorId: false,
         fetchingDocumentsByInvestorIdError: true,
       };
+
+      case types.GET_TEAM_USERLIST_REQUEST:
+      return {
+        ...state,
+        fetchingTeamUserList: true,
+        fetchingTeamUserListError: false,
+      };
+    case types.GET_TEAM_USERLIST_SUCCESS:
+      return {
+        ...state,
+        fetchingTeamUserList: false,
+        fetchingTeamUserListError: false,
+        teamUserList: action.payload,
+      };
+    case types.GET_TEAM_USERLIST_FAILURE:
+      return {
+        ...state,
+        fetchingTeamUserList: false,
+        fetchingTeamUserListError: true,
+      };
+
 
       case types.HANDLE_CUSTOMER_ACTIVITY_MODAL:
         return { ...state, addCustomerActivityDrawerModal: action.payload };
