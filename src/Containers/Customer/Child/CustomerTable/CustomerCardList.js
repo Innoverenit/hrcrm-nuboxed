@@ -254,51 +254,51 @@ if (loading) {
             <div class=" flex justify-between font-poppins w-[89%] items-end">
          
             <div className="font-poppins font-bold  text-[#00A2E8] text-base w-[20.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-            <ApartmentIcon className="!text-icon mr-1 "/>
+            <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
             <div className="font-poppins  font-bold text-xs  w-[16.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-                <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
+                <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
             </div>
             <div className="font-poppins font-bold text-xs  w-[12.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-            <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
+            <FactoryIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[2]}
               {/* "Sector" */}
           
             </div>
             <div className="font-poppins font-bold text-xs  w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-            <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> 
+            <SourceIcon className="!text-icon  text-[#4b5043]"/> 
             {translatedMenuItems[3]}
              {/* "Source" */}
          
             </div>         
             <div className="font-poppins font-bold text-xs w-[8.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-            <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/> 
+            <LightbulbIcon className="!text-icon text-[#84a59d]"/> 
             {translatedMenuItems[4]} 
               {/* Quotation" */}
      
             </div>
             <div className="font-poppins font-bold text-xs  w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-            <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> 
+            <FilterAltIcon className="!text-icon  text-[#ff66b3]"/> 
             {translatedMenuItems[5]}
              {/* Pipeline" */}
             </div>   
             {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            {/* Score */}      <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
+            {/* Score */}      <ScoreIcon className="!text-icon  text-[#f28482]"/> 
             {translatedMenuItems[18]}
             </div>
             )}    
             <div className="font-poppins font-bold text-xs w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-            <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
             {translatedMenuItems[6]}   
             {/* Assigned */}
             </div>          
             <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            <AcUnitIcon className="!text-icon mr-1 text-[#92dce5]"/> 
+            <AcUnitIcon className="!text-icon  text-[#92dce5]"/> 
             {translatedMenuItems[7]}
               {/* Customer" */}
           

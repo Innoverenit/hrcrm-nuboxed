@@ -8,12 +8,16 @@ import {  Menu, Dropdown, Progress } from "antd";
 import { Link } from "../../../../../../Components/Common";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import { bindActionCreators } from "redux";
-
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {
   MultiAvatar,
   MultiAvatar2,
 
 } from "../../../../../../Components/UI/Elements";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import StairsIcon from '@mui/icons-material/Stairs';
 import { getOpportunityListByContactId } from "../../../../ContactAction";
 import { Tooltip } from "antd";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -68,21 +72,27 @@ function OpportunityTable(props) {
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]} ID</div>
+        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> 
+           <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
         {/* Quotation ID */}
         <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
         {/* Prospect */}
-        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]}</div>
+        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> <ContactPageIcon className='!text-icon  '  /> 
+          {translatedMenuItems[2]}</div>
         {/* Sponsor */}
-        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[3]}</div>
+        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[3]}</div>
         {/* Start Date */}
-        <div className="w-[8.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[4]}</div>
+        <div className="w-[8.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+           <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
         {/* Value */}
-        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div>
+        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <StairsIcon className='!text-icon  '  /> 
+          {translatedMenuItems[5]}</div>
         {/* Stages */}
         <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div>
         {/* Sales Rep */}
-        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">{translatedMenuItems[7]}</div>
+        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">
+        <ContactPageIcon className='!text-icon  '  />{translatedMenuItems[7]}</div>
         {/* Owner */}
         <div className="w-[4.8rem] "></div>
         <div className="w-12"></div>

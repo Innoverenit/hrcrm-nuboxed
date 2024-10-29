@@ -26,6 +26,7 @@ import {
   getCustomerKeySkill,
   handleCustomerEmailDrawerModal,
   getCustomerById,
+  getTeamUserList
 } from "../../../Customer/CustomerAction";
 import ReactCountryFlag from 'react-country-flag';
 import FactoryIcon from '@mui/icons-material/Factory';
@@ -128,8 +129,10 @@ function InvestorTeamCardList(props) {
         }
       }
     })
+
     props.getTeamInvestor(props.userId, page);
     setPage(page + 1);
+    props.getTeamUserList(props.userId)
   }, []);
 
   useEffect(() => {
@@ -199,52 +202,45 @@ function InvestorTeamCardList(props) {
     <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
      <div> Search team Member</div>
       </div>
-      <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
-       <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
+      <div class="flex  flex-col rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+      {props.teamUserList.map((item,index) =>{
+           return (
+             <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                 text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
       <div class="flex items-center flex-no-wrap h-16">
         <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
           <MultiAvatar
-            // primaryTitle={item.opportunityName}
-            // imageId={item.imageId}
+           primaryTitle={item.empName}
+          imageId={item.imageId}
             imgWidth={"1.8rem"}
               imgHeight={"1.8rem"}
           />
         </div>
         
-        <div class="flex basis-[100%] overflow-hidden">
-        
-        <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
-      
-        {/* {item.empName} */}
-
+        <div class="flex basis-[100%] overflow-hidden">    
+        <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >     
+       {item.empName}
       </div> 
+      </div>        
       </div>
-        
-     
-      </div>
+
       <div className="flex flex-col max-sm:justify-between ">
         
             <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-            {/* {item.email}        */}
+    {item.emailId}    
                 </div>
           
         <div>
-        <div class="font-medium text-xs ">
-     
+        <div class="font-medium text-xs ">     
             <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-            {/* {item.dailCode1} {item.mobileNo} */}
-            </div>
-         
-          
+        {item.dailCode1} {item.mobileNo}
+            </div>                
         </div>
         </div>
-        </div>
-        
-    
-     
+        </div>              
     </div>
-
+  )
+})}
       </div>
       </div>
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] max-sm:bg-gradient-to-b from-white to-gray-100  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -723,6 +719,7 @@ const mapStateToProps = ({
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   addDrawerInvestorPulseModal:investor.addDrawerInvestorPulseModal,
   addDrawerInvestorContactModal:investor.addDrawerInvestorContactModal,
+  teamUserList:investor.teamUserList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -740,7 +737,8 @@ const mapDispatchToProps = (dispatch) =>
       handleInvestorPulseDrawerModal,
       deleteInvestorData,
       handleInvestorContModal,
-      handleInvestorAddressDrawerModal
+      handleInvestorAddressDrawerModal,
+      getTeamUserList
     },
     dispatch
   );
