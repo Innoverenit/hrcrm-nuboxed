@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { Tooltip,Button,Input,Select, Badge } from "antd";
 import dayjs from "dayjs";
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import {
   // getOrderProcurement,
   getDistributorOrderOfHigh,
@@ -19,11 +20,9 @@ import {
 
 } from "../../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
-import LogoutIcon from '@mui/icons-material/Logout';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
 import { base_url2 } from "../../../../../Config/Auth";
@@ -32,6 +31,11 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import relativeTime from 'dayjs/plugin/relativeTime';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import UpdateIcon from '@mui/icons-material/Update';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const { Option } = Select;
 const { Search } = Input;
@@ -417,7 +421,7 @@ const handleLoadMoreLow = () => {
       </div>
 
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-[84%] p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
+        <div className=" flex justify-between w-[84%] p-1 bg-transparent font-bold sticky items-end text-xs font-poppins  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
            </div>
@@ -425,27 +429,29 @@ const handleLoadMoreLow = () => {
                         {translatedMenuItems[1]} ID{/*Order ID"/> */}
                           </div>
                           <div className="w-[5.5rem] md:w-[5rem]">  
-                          {translatedMenuItems[9]}
+                          <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[9]}
                           </div>
                         <div className="w-[3.5rem] md:w-[4.1rem]">
-                        {translatedMenuItems[2]} {/* Delivery"/> */}
+                        <LocalShippingIcon
+                         className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
                         <div className="w-[11.12rem] md:w-[12.8rem] ">
-                        {translatedMenuItems[3]} {/* Location"/> */}
+                        <LocationOnIcon
+              className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[3]} {/* Location"/> */}
                           </div>
                           <div className="w-[2.1rem] md:w-[2.8rem]">
-                        {translatedMenuItems[5]} {/* Contact"/> */}
+                          <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]} {/* Contact"/> */}
                           </div>
                           <div className="w-[4.8rem] md:w-[4.1rem]">
                         {/* {translatedMenuItems[2]}  */} Items
                           </div>
-                          <div className="w-[2.2rem] md:w-[2.8rem]">
+                          <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' /> <div className="w-[2.2rem] md:w-[2.8rem]">
                         {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
                         <div className="w-[2rem] md:w-[2.8rem]">
-                        {translatedMenuItems[6]}{/* "Payment"/> */}
+                        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[6]}{/* "Payment"/> */}
                           </div>
-                       
+                   
                       
                         
 
@@ -479,7 +485,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                       <div>
                                         <div key={item.orderId} className="flex rounded  mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
-                                          <div className=" flex  w-wk items-center   max-sm:w-full">
+                                          <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
                                             <div className=" flex  items-center  md:w-[7.56rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                                               <Tooltip>
@@ -522,7 +528,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                               </div>
                                               </div>
                                               </div>
-                                            <div className=" flex  w-[12.1rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex  w-[10.1rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -531,7 +537,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
 </span></div>
                                       
                                         
-                                          <div class="flex flex-row text-xs  items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
+                                          <div class="flex flex-row text-xs  items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md:text-xs">
@@ -542,7 +548,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   md:w-[16.01rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   md:w-[18.01rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class=" font-poppins text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -596,7 +602,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
           )}
                                                         </div>
                                                     </div> */}
-                                        <div class="flex flex-row  items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row  items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[11.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
                   }}>
@@ -675,7 +681,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
       </div>
      
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[84%] p-1 bg-transparent font-bold sticky text-xs font-poppins z-10">
+      <div className=" flex justify-between w-[91%] p-1 bg-transparent font-bold sticky text-xs items-end font-poppins z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
         {translatedMenuItems[8]} {/* Normal */}
            </div>
@@ -683,25 +689,27 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                         {translatedMenuItems[1]} ID{/* Order ID"/> */}
                           </div>
                           <div className="w-[5.5rem] md:w-[5rem]">  
-                          {translatedMenuItems[9]}
+                          <DateRangeIcon className='!text-icon  '  />{translatedMenuItems[9]}
                           </div>
                           <div className="w-[3.5rem] md:w-[4.1rem]">
-                        {translatedMenuItems[2]} {/* Delivery"/> */}
+                          <LocalShippingIcon
+                         className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
                           <div className="w-[11.12rem] md:w-[12.8rem] ">
-                        {translatedMenuItems[3]} {/* Location"/> */}
+                          <LocationOnIcon
+              className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[3]} {/* Location"/> */}
                           </div>
                           <div className="w-[2.1rem] md:w-[2.8rem]">
-                        {translatedMenuItems[5]} {/* Contact"/> */}
+                          <ContactPageIcon className='!text-icon  '  />   {translatedMenuItems[5]} {/* Contact"/> */}
                           </div>
-                          <div className="w-[4.8rem] md:w-[4.1rem]">
+                          <div className="w-[4.8rem] md:w-[6.1rem]">
                         {/* {translatedMenuItems[2]}  */} Items
                           </div>
-                          <div className="w-[2.2rem] md:w-[2.8rem]">
-                        {translatedMenuItems[7]} {/*Status"/> */}
+                          <div className="w-[2.2rem] md:w-[5.8rem]">
+                          <UpdateIcon className='!text-icon text-[#e4eb2f]' /> {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
-                        <div className="w-[2rem] md:w-[2.8rem]">
-                        {translatedMenuItems[6]}{/* "Payment"/> */}
+                        <div className="w-[2rem] md:w-[7.8rem]">
+                        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[6]}{/* "Payment"/> */}
                           </div>
                       
                        
@@ -728,7 +736,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                       <div>
                <div className="flex rounded  mt-1 bg-white h-8 items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                   <div class="flex">
-                    <div className=" flex w-wk items-center   max-sm:w-full">
+                    <div className=" flex  items-center   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
                       <div className=" flex  items-center  md:w-[7.56rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                         <Tooltip>

@@ -119,14 +119,14 @@ function LinkedContact(props) {
     <>
       
      
-      <div class="rounded m-1 p-1 w-[99%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 p-1 w-[99%] h-[77vh] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold sticky z-10">
         <div className="font-bold font-poppins text-[#00A2E8] text-base w-[16.5rem]  md:w-[16.5rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}
           {/* Name */}
         </div>
         <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[9.1rem]">
-        <MarkEmailUnreadIcon className='!text-icon text-[#ff9f1c] '  />
+        <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />
          {translatedMenuItems[1]}
 {/* Email */}
         </div>
@@ -139,7 +139,7 @@ function LinkedContact(props) {
           {/* Department */}
         </div>
                      <div className="font-bold font-poppins text-xs  w-[7.2rem] md:w-[7.2rem]">
-                     <i className=" fab fa-artstation text-[#b744b8]"></i>{translatedMenuItems[4]}
+                     <i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[4]}
                       {/* Designation */}
                      </div>
                 
