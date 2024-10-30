@@ -79,6 +79,7 @@ const handleLoadMore = () => {
     
   }, []);
   console.log(props.rules);
+  console.log(props.selectedPersonData)
 
 
   return (
@@ -126,7 +127,7 @@ const handleLoadMore = () => {
     
    {props.allCustomers.map((lead, index) => {
     return (
-      <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2" style={{backgroundColor:props.selectedPersonData===lead.name?"aquamarine":null}}>
+      <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2" style={{backgroundColor:props.selectedPersonData&&props.selectedPersonData.name===lead.name?"aquamarine":null}}>
         <div className="flex justify-between">
           <div 
           className="font-semibold"
@@ -188,7 +189,7 @@ const handleLoadMore = () => {
     return ( 
       <div 
       // key={index} 
-      className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
+      className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2" style={{backgroundColor:props.selectedPropsectSector&&props.selectedPropsectSector.sectorName===lead.sectorName?"aquamarine":null}}>
         <div className="flex justify-between">
           <div 
           className="font-semibold"
@@ -261,7 +262,7 @@ const handleLoadMore = () => {
     return ( 
       <div 
       // key={index} 
-      className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2">
+      className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2" style={{backgroundColor:props.selectedPropsectSource&&props.selectedPropsectSource.name===lead.name?"aquamarine":null}}>
         <div className="flex justify-between">
           <div 
           className="font-semibold"

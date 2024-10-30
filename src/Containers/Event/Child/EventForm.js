@@ -53,6 +53,12 @@ function EventForm (props) {
       const [defaultOption, setDefaultOption] = useState(props.fullName);
       const [selected, setSelected] = useState(defaultOption);
 
+
+
+      const [isLoadingContacts, setIsLoadingContacts] = useState(false);
+      const [contacts, setContacts] = useState([]);
+
+
  function handleCallback  () {
     const { handleChooserModal, handleEventModal, callback }= props;
     handleChooserModal(false);
@@ -209,9 +215,148 @@ const [customer, setCustomer] = useState([]);
   const [touchedInclude, setTouchedInclude] = useState(false);
   const [selectedIncludeValues, setSelectedIncludeValues] = useState([]);
 
+
+
+
+  const [investor, setInvestor] = useState([]);
+  const [selectedInvestor, setSelectedInvestor] = useState(null);
+  const [isLoadingInvestor, setIsLoadingInvestor] = useState(false);
+  const [touchedInvestor, setTouchedInvestor] = useState(false);
+
+
+
+
+
+  const [investorContact, setInvestorContact] = useState([]);
+  const [selectedContactInvestor, setSelectedContactInvestor] = useState(null);
+  const [isLoadingContactInvestor, setIsLoadingCOntactInvestor] = useState(false);
+
+
+  const [deal, setDeal] = useState([]);
+  const [selectedDeal, setSelectedDeal] = useState(null);
+  const [isLoadingDeal, setIsLoadingDeal] = useState(false);
+  
+
   const handleRadioChange = (e) => {
     setSelectedValue(e.target.value);
   };
+
+
+
+
+
+
+
+  const handleSelectChangeInvestorContact = (value) => {
+    setSelectedContactInvestor(value)
+   
+    // fetchContacts(value);
+    // fetchOpportunity(value)
+    // console.log('Selected user:', value);
+  };
+
+
+
+
+  const handleSelectInvestorFocus = () => {
+    if (!touchedInvestor) {
+     
+    fetchInvestor();
+
+      setTouchedInvestor(true);
+    }
+  };
+
+
+  const fetchInvestor = async () => {
+    setIsLoadingInvestor(true);
+    try {
+      const apiEndpoint = `
+     ${base_url}/investor/user/${props.userId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setInvestor(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingInvestor(false);
+    }
+  };
+
+
+  const handleSelectChangeInvestor = (value) => {
+    setSelectedInvestor(value)
+    fetchContactInvestor(value);
+    fetchDeal(value)
+    // fetchContacts(value);
+    // fetchOpportunity(value)
+    // console.log('Selected user:', value);
+  };
+
+
+
+
+
+  const fetchContactInvestor = async (value) => {
+    setIsLoadingCOntactInvestor(true);
+    try {
+   
+      const apiEndpoint = `${base_url}/investor/contacts/${value}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setInvestorContact(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingCOntactInvestor(false);
+    }
+  };
+
+
+
+
+
+
+  const fetchDeal = async (value) => {
+    setIsLoadingDeal(true);
+    try {
+   
+      const apiEndpoint = `${base_url}/investorOpportunity/details/investor/${value}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setDeal(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingDeal(false);
+    }
+  };
+
+
+  const handleContactChange=(value)=>{
+    setSelectedContact(value);
+  }
 
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
@@ -273,6 +418,8 @@ const [customer, setCustomer] = useState([]);
 
   const handleSelectChangeCustomer = (value) => {
     setSelectedCustomer(value)
+    fetchContacts(value);
+    fetchOpportunity(value)
     console.log('Selected user:', value);
   };
 
@@ -326,12 +473,12 @@ const [customer, setCustomer] = useState([]);
 
 
 
-  const fetchOpportunity = async () => {
+  const fetchOpportunity = async (value) => {
     setIsLoadingOpportunity(true);
     try {
       const apiEndpoint = `
       
-${base_url}/opportunity/drop-opportunityList/${props.userId}`;
+${base_url}/opportunity/open/${value}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -355,6 +502,11 @@ ${base_url}/opportunity/drop-opportunityList/${props.userId}`;
     console.log('Selected user:', value);
   };
 
+  const handleSelectChangeDeal = (value) => {
+    setSelectedDeal(value)
+    
+  };
+
   const handleSelectOpportunityFocus = () => {
     if (!touchedOpportunity) {
      
@@ -363,6 +515,35 @@ ${base_url}/opportunity/drop-opportunityList/${props.userId}`;
       setTouchedOpportunity(true);
     }
   };
+
+
+  const fetchContacts = async (value) => {
+    setIsLoadingContacts(true);
+    try {
+   
+      const apiEndpoint = `${base_url}/customer/contact/drop/${value}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContacts(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingContacts(false);
+    }
+  };
+
+
+
+
+
+ 
    
 const {
       user: { userId, firstName,empName, fullName, middleName, lastName, timeZone },
@@ -713,11 +894,12 @@ const {
       
         placeholder="Search or select contact"
         optionFilterProp="children"
-        loading={isLoadingContact}
-        onFocus={handleSelectContactFocus}
-        onChange={handleSelectChangeContact}
+        loading={isLoadingContacts}
+      
+        onChange={handleContactChange}
+        disabled={!selectedCustomer}
       >
-        {contact.map(contacts => (
+        {contacts.map(contacts => (
           <Option key={contacts.contactId} value={contacts.contactId}>
             {contacts.fullName}
           </Option>
@@ -738,7 +920,8 @@ const {
         placeholder="Search or select opportunity"
         optionFilterProp="children"
         loading={isLoadingOpportunity}
-        onFocus={handleSelectOpportunityFocus}
+        // onFocus={handleSelectOpportunityFocus}
+        disabled={!selectedContact}
         onChange={handleSelectChangeOpportunity}
       >
         {opportunity.map(opp => (
@@ -770,15 +953,15 @@ Investor
 <Select
         showSearch
       
-        placeholder="Search or select prospect"
+        placeholder="Search or select investor"
         optionFilterProp="children"
-        loading={isLoadingCustomer}
-        onFocus={handleSelectCustomerFocus}
-        onChange={handleSelectChangeCustomer}
+        loading={isLoadingInvestor}
+        onFocus={handleSelectInvestorFocus}
+        onChange={handleSelectChangeInvestor}
       >
-        {customer.map(customers => (
-          <Option key={customers.customerId} value={customers.customerId}>
-            {customers.name}
+        {investor.map(investor => (
+          <Option key={investor.investorId} value={investor.investorId}>
+            {investor.name}
           </Option>
         ))}
       </Select>
@@ -799,13 +982,14 @@ Investor
       
         placeholder="Search or select contact"
         optionFilterProp="children"
-        loading={isLoadingContact}
-        onFocus={handleSelectContactFocus}
-        onChange={handleSelectChangeContact}
+        loading={isLoadingContactInvestor}
+        disabled={!selectedInvestor}
+        //onFocus={handleSelectContactFocus}
+        onChange={handleSelectChangeInvestorContact}
       >
-        {contact.map(contacts => (
-          <Option key={contacts.contactId} value={contacts.contactId}>
-            {contacts.fullName}
+        {investorContact.map(inv => (
+          <Option key={inv.contactId} value={inv.contactId}>
+            {inv.fullName}
           </Option>
         ))}
       </Select>
@@ -824,13 +1008,14 @@ Investor
               <Select
         showSearch
       
-        placeholder="Search or select opportunity"
+        placeholder="Search or select deal"
         optionFilterProp="children"
-        loading={isLoadingOpportunity}
-        onFocus={handleSelectOpportunityFocus}
-        onChange={handleSelectChangeOpportunity}
+        loading={isLoadingDeal}
+        disabled={!selectedContactInvestor}
+        //onFocus={handleSelectOpportunityFocus}
+        onChange={handleSelectChangeDeal}
       >
-        {opportunity.map(opp => (
+        {deal.map(opp => (
           <Option key={opp.opportunityId} value={opp.opportunityId}>
             {opp.opportunityName}
           </Option>

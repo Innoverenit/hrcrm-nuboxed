@@ -146,7 +146,7 @@ function InventoryTable(props) {
           const handleSearch = () => {
             if (currentData.trim() !== "") {
               // Perform the search
-              props.inputInventorySearch(currentData);
+              props.inputInventorySearch(props.supplier.supplierId,currentData);
               setSearchOnEnter(true);  //Code for Search
             } else {
               console.error("Input is empty. Please provide a value.");

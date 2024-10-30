@@ -13,19 +13,19 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {
   SearchOutlined,
 } from "@ant-design/icons";
-import {getProspectSectorOppLostData} from "./DataRoomAction"
+import {getProspectSourceOppLostData} from "./DataRoomAction"
 import { CurrencySymbol } from "../../Components/Common";
 
 import { Tooltip,Button,Input,Progress } from "antd";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../Components/Placeholder";
 //const AddCustomerUpdateOpportunityModal =lazy(()=>import("../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/AddCustomerUpdateOpportunityModal")); 
-function ProspectQuotationSectorLostData(props) {
+function ProspectQuotationSourceLostData(props) {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-  console.log(props.selectedPropsectSector)
+  //console.log(props.selectedPropsectSector)
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -51,14 +51,14 @@ function ProspectQuotationSectorLostData(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
   useEffect(() => {
-    if(props.selectedPropsectSector){
+    if(props.selectedPropsectSource){
         setPage(page + 1);
-    props.getProspectSectorOppLostData(
+    props.getProspectSourceOppLostData(
         // props.customer.customerId
-        props.selectedPropsectSector.sectorId,page
+        props.selectedPropsectSource.sourceId,page
     );
 }
-  }, [props.selectedPropsectSector]);
+  }, [props.selectedPropsectSource]);
   
   const [currentOpportunityId, setCurrentOpportunityId] = useState("");
 
@@ -159,15 +159,15 @@ function ProspectQuotationSectorLostData(props) {
 
 
   const handleLoadMore = () => {
-    const callPageMapd = props.prospectSectorOppLostTask && props.prospectSectorOppLostTask.length &&props.prospectSectorOppLostTask[0].pageCount
+    const callPageMapd = props.prospectSourceOppLostTask && props.prospectSourceOppLostTask.length &&props.prospectSourceOppLostTask[0].pageCount
     setTimeout(() => {  
-      if  (props.prospectSectorOppLostTask)
+      if  (props.prospectSourceOppLostTask)
       {
         if (page < callPageMapd) {    
     setPage(page + 1);
-    props.getProspectSectorOppLostData(
+    props.getProspectSourceOppLostData(
         // props.customer.customerId
-        props.selectedPropsectSector.sectorId,page
+        props.selectedPropsectSource.sourceId,page
     );
    
             }
@@ -201,18 +201,18 @@ if (props.fetchingProspectSectorOppWonTask) return <BundleLoader/>;
    {/* <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '> */}
      
    <div className="flex flex-wrap"> {/* Parent container with flex layout */}
-  {props.prospectSectorOppLostTask.length===0?<NodataFoundPage/>:    <InfiniteScroll
-    dataLength={props.prospectSectorOppLostTask.length}
+  {props.prospectSourceOppLostTask.length===0?<NodataFoundPage/>:    <InfiniteScroll
+    dataLength={props.prospectSourceOppLostTask.length}
     next={handleLoadMore}
     hasMore={hasMore}
-    loader={props.fetchingProspectSectorOppLostTask?<div class="flex justify-center">Loading...</div>:null}
+    loader={props.fetchingProspectSourceOppLostTask?<div class="flex justify-center">Loading...</div>:null}
     height={"83vh"}
     style={{ scrollbarWidth:"thin"}}
   >
 
  
   
-  {props.prospectSectorOppLostTask.map((item) => {
+  {props.prospectSourceOppLostTask.map((item) => {
     return (
       <div className="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                       text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 
@@ -255,8 +255,8 @@ if (props.fetchingProspectSectorOppWonTask) return <BundleLoader/>;
 // }
 const mapStateToProps = ({ customer,auth,datRoom }) => ({
   user: auth.userDetails,
-  prospectSectorOppLostTask:datRoom.prospectSectorOppLostTask,
-  fetchingProspectSectorOppLostTask:datRoom.fetchingProspectSectorOppLostTask,
+  prospectSourceOppLostTask:datRoom.prospectSourceOppLostTask,
+  fetchingProspectSourceOppLostTask:datRoom.fetchingProspectSourceOppLostTask,
   fetchingCustomerOpportunity: customer.fetchingCustomerOpportunity,
   fetchingCustomerOpportunityError: customer.fetchingCustomerOpportunityError,
   //customerId: customer.customer.customerId,
@@ -267,9 +267,9 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
   
-        getProspectSectorOppLostData,
+        getProspectSourceOppLostData,
      
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(ProspectQuotationSectorLostData);
+export default connect(mapStateToProps, mapDispatchToProps)(ProspectQuotationSourceLostData);

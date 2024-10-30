@@ -87,6 +87,7 @@ class SupplierDetailsTab extends Component {
               </div>;
         case "2":
           return  <div>   <InventoryTable 
+          supplier={this.props.supplier}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}/></div>;
           case "3":

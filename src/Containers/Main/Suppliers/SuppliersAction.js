@@ -2161,12 +2161,12 @@ export const updatePOContact = (data,poSupplierDetailsId) => (dispatch) => {
     });
 };
 
-export const inputInventorySearch = (treadId) => (dispatch) => {
+export const inputInventorySearch = (supplierId,treadId) => (dispatch) => {
   dispatch({
     type: types.GET_SEARCH_INVENTORY_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/inventory/supplier/search/tread/${treadId}`, {
+    .get(`${base_url2}/supplier/inventory/search/tread/${supplierId}/${treadId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2528,11 +2528,11 @@ export const handleSuppliersAddress = (modalProps) => (dispatch) => {
 };
 
 
-export const getSearchPo =(name)=>(dispatch)=>{
+export const getSearchPo =(supplierId,name)=>(dispatch)=>{
   dispatch({
     type: types.INPUT_SEARCH_PO_REQUEST,
   });
-  axios.get(`${base_url2}/po/search/${name}`,{
+  axios.get(`${base_url2}/po/search/${supplierId}/${name}`,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
