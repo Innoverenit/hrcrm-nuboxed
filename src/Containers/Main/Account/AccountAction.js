@@ -519,7 +519,7 @@ export const addQuotationOrderForm = (customer) => (dispatch, getState) => {
   });
 
   axios
-    .post(`${base_url2}/quotation/tt`, customer, {
+    .post(`${base_url2}/quotation`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
