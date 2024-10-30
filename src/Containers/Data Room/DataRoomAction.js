@@ -392,3 +392,63 @@ export const handleDataroomModal = (modalProps) => (dispatch) => {
         });
       });
   };
+
+
+
+
+
+  export const getProspectSourceOppWonData = (sourceId,pageNo) => (dispatch) => {
+    dispatch({
+      type: types.GET_PROSPECT_SOURCE_OPP_WON_REQUEST,
+    });
+    axios
+      .get(`${base_url}/customer/won/opp/source/${sourceId}/${pageNo}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PROSPECT_SOURCE_OPP_WON_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PROSPECT_SOURCE_OPP_WON_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+
+  export const getProspectSourceOppLostData = (sourceId,pageNo) => (dispatch) => {
+    dispatch({
+      type: types.GET_PROSPECT_SOURCE_OPP_LOST_REQUEST,
+    });
+    axios
+      .get(`${base_url}/customer/lost/opp/source/${sourceId}/${pageNo}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_PROSPECT_SOURCE_OPP_LOST_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_PROSPECT_SOURCE_OPP_LOST_FAILURE,
+          payload: err,
+        });
+      });
+  };

@@ -77,6 +77,23 @@ function PoSupplierDetailsTable(props) {
                         {/* Name" */}
                            
                             </div>
+
+                            <div className="text-[#00A2E8] text-base w-[28.1rem] font-poppins font-bold md:w-[28.1rem]">
+                        Supplies Id
+                        {/* Name" */}
+                           
+                            </div>
+
+                            <div className="text-[#00A2E8] text-base w-[28.1rem] font-poppins font-bold md:w-[28.1rem]">
+                       HSN
+                        {/* Name" */}
+                           
+                            </div>
+                            <div className="text-[#00A2E8] text-base w-[28.1rem] font-poppins font-bold md:w-[28.1rem]">
+                       Contact
+                        {/* Name" */}
+                           
+                            </div>
                         <div className="w-[16.1rem] font-poppins font-bold text-xs md:w-[13.1rem]">
                         {translatedMenuItems[1]} 
                         {/* Category */}
@@ -115,6 +132,33 @@ function PoSupplierDetailsTable(props) {
                                                 <div class="flex font-normal items-center  ml-gap text-xs font-poppins">
                                                     <span>
                                                         {item.suppliesFullName}
+                                                    </span>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div className=" flex font-medium  justify-start  border-l-2 border-green-500 bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex font-normal items-center  ml-gap text-xs font-poppins">
+                                                    <span>
+                                                       {item.suppliesId}
+                                                    </span>
+
+                                                </div>
+                                            </div>
+
+                                            <div className=" flex font-medium  justify-start  border-l-2 border-green-500 bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex font-normal items-center  ml-gap text-xs font-poppins">
+                                                    <span>
+                                                       {item.hsn}
+                                                    </span>
+
+                                                </div>
+                                            </div>
+                                            <div className=" flex font-medium  justify-start  border-l-2 border-green-500 bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex font-normal items-center  ml-gap text-xs font-poppins">
+                                                    <span>
+                                                      {item.poContactPersonName}
                                                     </span>
 
                                                 </div>

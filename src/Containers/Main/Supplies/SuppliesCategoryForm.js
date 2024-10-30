@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, } from "antd";
+import { Button,Space,Input } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import * as Yup from "yup";
 import {addMaterialCategory} from "./SuppliesAction";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 
 // async function addSuppliesCategory(values, setLoading,callback) {
 //     try {
@@ -35,10 +36,37 @@ const formSchema = Yup.object().shape({
     categoryName: Yup.string().required("Input Required!"),
   });
 
+
+
 function SuppliesCategoryForm (props) {
 
     const [loading, setLoading] = useState(false);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+    const [qualityFields, setQualityFields] = useState([0]); // Start with one Quality input
+    const [specFields, setSpecFields] = useState([0]);
+
+
+    
+  const addQualityField = () => {
+    setQualityFields([...qualityFields, qualityFields.length]);
+  };
+
+  const removeQualityField = () => {
+    if (qualityFields.length > 1) {
+      setQualityFields(qualityFields.slice(0, -1));
+    }
+  };
+
+  const addSpecField = () => {
+    setSpecFields([...specFields, specFields.length]);
+  };
+
+  const removeSpecField = () => {
+    if (specFields.length > 1) {
+      setSpecFields(specFields.slice(0, -1));
+    }
+  };
     useEffect(() => {
       const fetchMenuTranslations = async () => {
         try {
@@ -72,6 +100,8 @@ function SuppliesCategoryForm (props) {
             imageId: "",
             qualityList:"",
             specsList:"",
+            qualityList: [''], // Initialize with one quality input
+            specsList: [''],
           }}
           validationSchema={formSchema}
           onSubmit={(values, { resetForm }) => {
@@ -80,8 +110,8 @@ function SuppliesCategoryForm (props) {
               {
                 ...values,
                 alert:(parseInt(values.alert, 10) || 0),
-                qualityList: values.qualityList.split(','), 
-                specsList: values.specsList.split(',') 
+                //qualityList: values.qualityList.split(','), 
+                //specsList: values.specsList.split(',') 
                 
               },
               setLoading, 
@@ -133,7 +163,7 @@ function SuppliesCategoryForm (props) {
                     </div>
                     <div class="">
                   <div class="font-bold text-xs font-poppins text-black">Quality</div>
-                      <Field
+                      {/* <Field
                         name="qualityList"
                         //label="HSN"
                         placeholder="Quality"
@@ -141,11 +171,35 @@ function SuppliesCategoryForm (props) {
                         width={"100%"}
                         inlineLabel
                         component={InputComponent}
-                      />
+                      /> */}
+
+<Space align="baseline">
+              {qualityFields.map((field, index) => (
+                <Space key={index} align="baseline">
+                  <Field
+                    name={`qualityList[${index}]`}
+                    render={({ field }) => (
+                      <Input {...field} placeholder="Enter Quality" style={{ width: 200 }} />
+                    )}
+                  />
+                  {index === qualityFields.length - 1 && (
+                    <>
+                      <PlusOutlined onClick={addQualityField} style={{ fontSize: '20px', color: 'green' }} />
+                      {qualityFields.length > 1 && (
+                        <MinusCircleOutlined
+                          onClick={removeQualityField}
+                          style={{ fontSize: '20px', color: 'red' }}
+                        />
+                      )}
+                    </>
+                  )}
+                </Space>
+              ))}
+            </Space>
                     </div>
                     <div class="">
                   <div class="font-bold text-xs font-poppins text-black">Spec</div>
-                      <Field
+                      {/* <Field
                         name="specsList"
                         //label="HSN"
                         placeholder="Spec"
@@ -153,7 +207,30 @@ function SuppliesCategoryForm (props) {
                         width={"100%"}
                         inlineLabel
                         component={InputComponent}
-                      />
+                      /> */}
+                        <Space align="baseline">
+              {specFields.map((field, index) => (
+                <Space key={index} align="baseline">
+                  <Field
+                    name={`specsList[${index}]`}
+                    render={({ field }) => (
+                      <Input {...field} placeholder="Enter Spec" style={{ width: 200 }} />
+                    )}
+                  />
+                  {index === specFields.length - 1 && (
+                    <>
+                      <PlusOutlined onClick={addSpecField} style={{ fontSize: '20px', color: 'green' }} />
+                      {specFields.length > 1 && (
+                        <MinusCircleOutlined
+                          onClick={removeSpecField}
+                          style={{ fontSize: '20px', color: 'red' }}
+                        />
+                      )}
+                    </>
+                  )}
+                </Space>
+              ))}
+            </Space>
                     </div> 
                       </div>
                     </div>

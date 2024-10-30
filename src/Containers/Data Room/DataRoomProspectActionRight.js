@@ -128,6 +128,8 @@ import ProspectQuotationSectorWonData from "./ProspectQuotationSectorWonData"
 import ProspectQuotationWonData from "./ProspectQuotationWonData"
 import { CheckCircleOutlined, CloseCircleOutlined, CloseOutlined, EditOutlined } from '@ant-design/icons';
 import ProspectQuotationClosedData from "./ProspectQuotationClosedData"
+import ProspectQuotationSourceWonData from "./ProspectQuotationSourceWonData"
+import ProspectQuotationSourceLostData from "./ProspectQuotationSourceLostData"
 import { CheckCircleOutlineOutlined } from '@mui/icons-material';
 
 
@@ -316,7 +318,7 @@ const handleViewSourceChange = (view) => {
         </Tabs>
 )}
 
-{props.selectedButtonTab==="bySource" && (
+{props.selectedButtonTab==="bySource" && props.selectedPropsectSource&&(
         
            <Tabs defaultActiveKey="1">
           {/* <TabPane tab="Quotation" key="1">
@@ -370,21 +372,21 @@ const handleViewSourceChange = (view) => {
                 </p>
               }
               {prospectSourceView === 'won' && <p>
-                {/* <ProspectQuotationSectorWonData
-                selectedPropsectSector={props.selectedPropsectSector}
+                <ProspectQuotationSourceWonData
+                selectedPropsectSource={props.selectedPropsectSource}
               
               translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}
-         /> */}
-         Hello Won
+         />
+         {/* Hello Won */}
                 </p>}
               {prospectSourceView === 'lost' && <p>
-                {/* <ProspectQuotationSectorLostData
-                selectedPropsectSector={props.selectedPropsectSector}
+                <ProspectQuotationSourceLostData
+                selectedPropsectSource={props.selectedPropsectSource}
               
               translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}
-         /> */}
+         />
          Hello Lost
                 </p>}
             </>

@@ -160,7 +160,7 @@ const timerRef = useRef(null);
     const handleSearch = () => {
       if (currentData.trim() !== "") {
         // Perform the search
-        props.getSearchPo(currentData);
+        props.getSearchPo(props.supplier.supplierId,currentData);
         setSearchOnEnter(true);  //Code for Search
       } else {
         console.error("Input is empty. Please provide a value.");
@@ -193,7 +193,7 @@ const timerRef = useRef(null);
       setIsRecording(false);
       if (transcript.trim() !== "") {
         setCurrentData(transcript);
-        props.getSearchPo(transcript);
+        props.getSearchPo(props.supplier.supplierId,transcript);
         setSearchOnEnter(true);
       }
     };
@@ -222,7 +222,7 @@ const timerRef = useRef(null);
             <div className=' flex  sticky z-auto flex-col'>
             <div class=" w-64 max-sm:w-40">
         <Input
-          placeholder="Search By Po ID"
+          placeholder="Search By PO ID"
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}

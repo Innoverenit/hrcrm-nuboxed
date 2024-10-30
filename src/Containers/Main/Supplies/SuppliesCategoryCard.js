@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import { Button, Tooltip,Input,Popconfirm } from "antd";
+import SuppliesQualityCheckModal from "./SuppliesQualityCheckModal"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { getMaterialCategory } from "./SuppliesAction";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import SuppliesCategoryPUnblishToggle from "./SuppliesCategoryPUnblishToggle";
 
 const SuppliesCategoryModal = lazy(() => import("./SuppliesCategoryModal"));
@@ -29,6 +30,9 @@ function SuppliesCategoryCard(props) {
 
   const [modalVisible, setModalVisible] = useState(false);
 
+  const [modalVisible1, setModalVisible1] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState("");
+
   const openModal = () => {
     setModalVisible(true);
   };
@@ -36,9 +40,30 @@ function SuppliesCategoryCard(props) {
   const closeModal = () => {
     setModalVisible(false);
   };
+
+
+
+  const openModal1 = () => {
+    setModalVisible1(true);
+  };
+
+  const closeModal1 = () => {
+    setModalVisible1(false);
+  };
   const handleSuppliesCategoryModal = () => {
     openModal(); 
   };
+
+
+  const handleSuppliesQualityModal = () => {
+    openModal1(); 
+  };
+
+
+  function handleSetCurrentCategory(item) {
+    setCurrentCategory(item);
+    // console.log("opp",item);
+  }
 
 
   useEffect(() => {
@@ -263,6 +288,21 @@ console.log("drb2",data)
                                 />
                               </div>
                             </div>
+
+
+
+
+                            <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <EditOutlined
+                               onClick={() => {
+                                handleSuppliesQualityModal();
+                                handleSetCurrentCategory(item);
+                              }}
+                              
+                              />
+                              </div>
+                            </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                      
@@ -321,6 +361,14 @@ console.log("drb2",data)
            modalVisible={modalVisible}
            closeModal={closeModal}
            handleSuppliesCategoryModal={handleSuppliesCategoryModal}
+        />
+          <SuppliesQualityCheckModal
+      translateText={props.translateText}
+      currentCategory={currentCategory}
+      selectedLanguage={props.selectedLanguage}
+          modalVisible1={modalVisible1}
+          closeModal1={closeModal1}
+          handleSuppliesQualityModal={handleSuppliesQualityModal}
         />
       </Suspense>
     </>

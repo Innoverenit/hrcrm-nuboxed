@@ -325,11 +325,21 @@ const getLocation = (item) => {
                                 </div>
 
                                 <div className="flex w-[6.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">                                
-                   <div class="max-sm:flex justify-end">
-          <Button 
-       onClick={() => getLocation(item)}
-       >
-            Complete</Button>
+               <div class="max-sm:flex justify-end">
+                {item.complitionInd===false&&(
+   <Button 
+   onClick={() => getLocation(item)}
+   >
+        Complete</Button>
+                )}
+                              {item.complitionInd===true&&(
+   <CheckCircleIcon 
+   onClick={() => getLocation(item)}
+   style={{color:"green"}}
+   />
+       
+                )}
+       
         
           </div>
                    </div>
@@ -360,7 +370,7 @@ const getLocation = (item) => {
                   </span>)}
                         </div>
                         <div>
-                        {item.completionInd === false ? (
+                        {/* {item.completionInd === false ? (
                 <CheckCircleIcon 
                 className="!text-icon cursor-pointer text-[#eeeedd]"
                   />
@@ -369,7 +379,10 @@ const getLocation = (item) => {
                 className="!text-icon cursor-pointer text-[#67d239]"
                  />
                 </span>
-              )}
+              )} */}
+
+{Math.round(item.compDistance)}km
+           
         
                         </div>
                     

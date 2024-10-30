@@ -51,6 +51,14 @@ const initialState = {
     fetchingProspectSectorOppLostTaskError:false,
     prospectSectorOppLostTask:[],
 
+    fetchingProspectSourceOppWonTask:false,
+    fetchingProspectSourceOppWonTaskError:false,
+    prospectSourceOppWonTask:[],
+
+    fetchingProspectSourceOppLostTask:false,
+    fetchingProspectSourceOppLostTaskError:false,
+    prospectSourceOppLostTask:[],
+
     fetchingProspectOppWonTask:false,
     fetchingProspectOppWonTaskError:false,
 
@@ -166,7 +174,21 @@ const initialState = {
         return { ...state };
 
 
-
+        case types.GET_PROSPECT_SOURCE_OPP_LOST_REQUEST:
+          return { ...state, fetchingProspectSourceOppLostTask: true };
+        case types.GET_PROSPECT_SOURCE_OPP_LOST_SUCCESS:
+          return {
+            ...state,
+            fetchingProspectSourceOppLostTask: false,
+            prospectSourceOppLostTask: action.payload,
+          };
+        case types.GET_PROSPECT_SOURCE_OPP_LOST_FAILURE:
+          return {
+            ...state,
+            fetchingProspectSourceOppLostTask: false,
+            fetchingProspectSourceOppLostTaskError: true,
+          };
+      
 
 
       case types.GET_PROSPECT_SECTOR_OPEN_REQUEST:
@@ -225,6 +247,21 @@ const initialState = {
         };
     
 
+        case types.GET_PROSPECT_SOURCE_OPP_WON_REQUEST:
+          return { ...state, fetchingProspectSourceOppWonTask: true };
+        case types.GET_PROSPECT_SOURCE_OPP_WON_SUCCESS:
+          return {
+            ...state,
+            fetchingProspectSourceOppWonTask: false,
+            prospectSourceOppWonTask: action.payload,
+          };
+        case types.GET_PROSPECT_SOURCE_OPP_WON_FAILURE:
+          return {
+            ...state,
+            fetchingProspectSourceOppWonTask: false,
+            fetchingProspectSourceOppWonTaskError: true,
+          };
+      
 
 
 

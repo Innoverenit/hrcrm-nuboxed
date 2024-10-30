@@ -155,7 +155,10 @@ const AddPurchaseOrder = (props) => {
                             <div class="flex w-wk">
                                 <div class=" flex flex-col w-wk">
                                     <div class="w-[47.5%]">
-                                    <div className='font-bold font-poppins text-xs'> {translatedMenuItems[0]} </div>
+                                    <div className='font-bold font-poppins text-xs'> 
+                                        {/* {translatedMenuItems[0]}  */}
+                                        Tagged Material
+                                        </div>
                       <Select
                         className="w-[250px]"
                         value={material}
