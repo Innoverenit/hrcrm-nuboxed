@@ -10,6 +10,7 @@ import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import InfiniteScroll from "react-infinite-scroll-component";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {
   getCustomerByUser,
   setEditDistributor,
@@ -32,7 +33,10 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
 import { DeleteOutlined } from "@ant-design/icons";
-
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import ContactsIcon from '@mui/icons-material/Contacts';
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
@@ -174,28 +178,28 @@ function AccountTable(props) {
            <div class=" flex justify-between text-xs font-poppins  font-bold  w-[100%]  ">
             <div className="w-1"></div>
             <div className=" w-[16.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
-            {translatedMenuItems[0]}
+            <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
             {/* Name */}
             </div>
             <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]">
-            {translatedMenuItems[1]}
+            <ApartmentIcon className="!text-icon mr-1 "/>{translatedMenuItems[1]}
            {/* Work */}
             </div>
             <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
-            {translatedMenuItems[2]}
+            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[2]}
               {/* Category */}
               </div>
             <div className="w-[6.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
-            {translatedMenuItems[3]}
+            < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
           {/* Type */}
              </div>
              <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
             {translatedMenuItems[20]}
-          {/* Type */}
+          {/* Orders */}
              </div>
              <div className="w-[6.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
-            {translatedMenuItems[21]}
-          {/* Type */}
+             <LightbulbIcon className="!text-icon text-[#84a59d]"/>  {translatedMenuItems[21]}
+          {/* Quotation*/}
              </div>
              <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
             {/* Club */} {translatedMenuItems[17]}
@@ -212,7 +216,7 @@ function AccountTable(props) {
             {/* Credit */}          
             </div>
   <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-          {translatedMenuItems[7]}
+  <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[7]}
             {/* Assigned */}          
             </div>         
                  

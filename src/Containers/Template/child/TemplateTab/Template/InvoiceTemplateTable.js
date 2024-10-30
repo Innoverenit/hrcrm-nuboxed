@@ -104,9 +104,93 @@ useEffect(() => {
         </div>
         <div className="w-3/4 bg-white font-sans h-[80vh] overflow-x-auto p-5">
         {selectedInvoice ? (
-            <>
-                <div className="flex justify-between">
-                    <div className="flex flex-col text-sm">
+            <>   
+        <style>
+        {`
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+          }
+
+          .company-info {
+            display: inline-block; 
+            width: 100%;
+          }
+
+          .company-details {
+            display: inline-block;
+            vertical-align: top; 
+            width: calc(100% - 120px); 
+          }
+
+          .company-logo {
+            display: inline-block; 
+            vertical-align: top; 
+            width: 100px; 
+            margin-left: 20px;
+          }
+
+          footer {
+            margin-top: 20px;
+            text-align: center;
+          }
+
+          .text-black {
+            color: black;
+          }
+
+          .font-bold {
+            font-weight: bold;
+          }
+
+          .text-sm {
+            font-size: 0.875rem; 
+          }
+        `}
+      </style>
+      <div className="container">
+      <div className="company-info">
+            <div className='company-details text-sm '>
+              <p className='text-black font-bold'>   {selectedInvoice.name}</p>
+              <p className='text-black'>{selectedInvoice.address}</p>
+              <p className='text-black'>{selectedInvoice.phone}</p>
+              <p className='text-black'>{selectedInvoice.email}</p>
+              <p className='text-black'>GST/HST Registration No.: {selectedInvoice.gstNo}</p>
+            </div>
+            </div>
+           <div className="company-logo"> 
+            <img src={selectedInvoice.logo} alt="Company Logo" width="100px" />
+            </div>
+            </div>
+    
+            
+             {/* <div class="container">
+             <div class="sub-container">
+               <table>
+              <thead className="text-sm">
+                <tr>
+                <p className='text-black font-bold'>{selectedInvoice.name}</p>
+          
+                </tr>
+                <tr>
+               <p className='text-black'>{selectedInvoice.address}</p>
+              <p className='text-black'>{selectedInvoice.phone}</p>
+              <p className='text-black'>{selectedInvoice.email}</p>
+              <p className='text-black'>GST/HST Registration No.: {selectedInvoice.gstNo}</p>
+                </tr>
+              </thead>
+            </table> 
+            </div>
+             <div class="logo"> 
+            <img src={selectedInvoice.logo} alt="Company Logo" width="100px" />
+            </div> 
+           </div> */}
+
+                {/* <div className="flex justify-between">
+                    <div className="flex  text-sm">
                         <div className="font-bold">{selectedInvoice.name}</div>
                         <div>{selectedInvoice.address}</div>
                         <div>{selectedInvoice.phone}</div>
@@ -114,7 +198,7 @@ useEffect(() => {
                         <div>GST/HST Registration No.: {selectedInvoice.gstNo}</div>
                     </div>
                     <img src={selectedInvoice.logo} alt="Company Logo" width="100px" />
-                </div>
+                </div> */}
 
                 <h1 className="text-teal-600 font-medium text-2xl mt-2">INVOICE</h1>
 

@@ -378,7 +378,7 @@ function ProspectTableData (props) {
                         <div>
                           <Tooltip title="Contact">
                             <ContactsIcon
-                              className=" !text-xl cursor-pointer text-[#709ab3]"
+                              className=" !text-xl cursor-pointer text-[#4f7cac]"
                               // onClick={() => {
                               //   handleCustomerContactDrawerModal(true);
                               //   handleSetCurrentCustomer(item);

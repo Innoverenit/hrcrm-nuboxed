@@ -6,7 +6,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import Highlighter from "react-highlight-words";
 import { base_url } from "../../../../../../Config/Auth";
 import { getDocuments } from "../../../../../Settings/Documents/DocumentsAction";
-import LocationCityIcon from '@mui/icons-material/LocationCity';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
 import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
@@ -26,7 +26,7 @@ import { BundleLoader } from "../../../../../../Components/Placeholder";
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import DescriptionIcon from '@mui/icons-material/Description';
-import ContactPageIcon from '@mui/icons-material/ContactPage'
+import ArticleIcon from '@mui/icons-material/Article';
 
 const InvestorLinkedDocuments = (props) => {
   const [searchText, setSearchText] = useState("");
@@ -139,27 +139,27 @@ const InvestorLinkedDocuments = (props) => {
     <>
         <div className=' flex  sticky  z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky items-end z-10">
                 
-                <div className=" font-poppins font-bold text-xs md:w-[15.7rem]">
+                <div className=" font-poppins font-bold text-[#00A2E8] text-base  md:w-[15.7rem]">
 
                 <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[0]}   
                   {/* Date */}
                 </div>
                     <div className="font-poppins font-bold text-xs md:w-[11.12rem]">
-                    <LocationCityIcon className='!text-icon  '  />  {translatedMenuItems[1]}   
+                    <ArticleIcon className='!text-icon text-[#a379c9] '  />  {translatedMenuItems[1]}   
                       {/* Name */}
                       </div>
                     <div className="font-poppins font-bold text-xs md:w-[12.122rem]">
-                    < MergeTypeIcon className='!text-icon  '  /> {translatedMenuItems[2]}   
+                    < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[2]}   
                       {/* Type */}
                       </div>
                     <div className="font-poppins font-bold text-xs md:w-[9.5rem]">
-                    <DescriptionIcon className='!text-icon  '  />  {translatedMenuItems[3]}   
+                    <DescriptionIcon className='!text-icon text-[#9ad5ca] '  />  {translatedMenuItems[3]}   
                       {/* Description */}
                       </div>
                     <div className="font-poppins font-bold text-xs md:w-[9.81rem] ">
-                    <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[4]}   
+                    <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[4]}   
                       {/* Uploaded By */}
                       </div>
                    
@@ -170,7 +170,7 @@ const InvestorLinkedDocuments = (props) => {
                     return (
                         <div >
                               <div
-            className="flex rounded justify-between  bg-white mt-1 h-[2.15rem] items-center max-sm:h-[9rem] max-sm:flex-colscale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+            className="flex rounded justify-between  bg-white mt-1 py-1 items-center max-sm:h-[9rem] max-sm:flex-colscale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
           >
                                 <div class="flex">
                                     <div className=" flex  md:w-[10.8rem] items-center h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">

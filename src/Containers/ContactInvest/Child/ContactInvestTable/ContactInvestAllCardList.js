@@ -24,6 +24,12 @@ import { getDesignations } from "../../../Settings/Designation/DesignationAction
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import ScoreIcon from '@mui/icons-material/Score';
+import SourceIcon from '@mui/icons-material/Source';
 import {getAllContactInvest,
   handleDealModal,
   handleContactInvestNotesDrawerModal,
@@ -216,50 +222,55 @@ if (loading) {
         </div>
         </div>
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  justify-between max-sm:hidden w-[93%]  p-1 bg-transparent font-bold sticky z-10">
-      <div className=" flex justify-between w-[100%]">
-        <div className="font-bold font-poppins text-xs md:w-[16.32rem]">
-        {translatedMenuItems[0]} 
-        {/* name */}
-                </div>
-        <div className="font-bold font-poppins text-xs md:w-[8.72rem]">
-        {translatedMenuItems[1]}
-        {/* company */}
-                </div>
-        <div className="font-bold font-poppins text-xs md:w-[10.6rem] ">
-        {translatedMenuItems[2]} 
-        {/* designation */}
-                </div>
-        <div className="font-bold font-poppins text-xs md:w-[11.3rem]">
-        {translatedMenuItems[3]} 
-        {/* department */}
-                </div>
-        <div className="font-bold font-poppins text-xs md:w-[5.1rem]"># 
-        {translatedMenuItems[4]} 
-        {/* deals */}
-                </div>
-        <div className="font-bold font-poppins text-xs md:w-[9.21rem]"> 
-        {translatedMenuItems[5]} 
-        {/* dealValue */}
-                </div>
-        <div className="font-bold font-poppins text-xs md:w-[7.2rem]">
-        {translatedMenuItems[6]}
-        {/* source */}
-                </div>
-                {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            {/* Score */}
-            {translatedMenuItems[8]}
-            </div>
-            )}
-        <div className=" font-bold font-poppins text-xs md:w-[6.8rem]">
-        {translatedMenuItems[7]} 
-        {/* owner */}
-                </div>
-           
-        {/* <div className="w-12">Action</div> */}
-    </div>
-      </div>
+    
+      <div className=" flex  justify-between max-sm:hidden w-[94%]  p-1 bg-transparent font-bold sticky items-end  z-10">
+     
+     <div className=" font-bold font-poppins w-[20.32rem] text-[#00A2E8] text-base  md:w-[21.32rem]">
+       <ContactEmergencyIcon className='!text-base mr-1  '
+             />{translatedMenuItems[0]}
+       {/* name" */}         
+               </div>
+       <div className="font-bold font-poppins text-xs w-[12.72rem] md:w-[13.72rem]">
+       <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}
+       {/* company */}             
+               </div>
+       <div className="font-bold font-poppins text-xs w-[12.6rem] md:w-[12.6rem] ">
+       <i className="fab fa-artstation mr-1"></i> {translatedMenuItems[2]} 
+       {/* designation */}             
+               </div>
+       {/* <div className=" font-bold font-poppins text-xs w-[11.3rem] md:w-[11.3rem]">
+       <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[3]} 
+       department               
+               </div> */}
+                 <div className="font-bold font-poppins text-xs w-[5.2rem] md:w-[11.2rem]">
+       <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> {translatedMenuItems[6]}
+       {/* source" */}           
+               </div>
+       <div className="font-bold font-poppins text-xs w-[10.1rem] md:w-[10.1rem]">
+       <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#e4eb2f]' />{translatedMenuItems[4]}
+       {/* deals" */}           
+               </div>
+       {/* <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[11.21rem]"> 
+       {translatedMenuItems[5]}
+        dealValue"              
+               </div> */}
+     
+               {props.user.aiInd && (
+           <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.81rem]">
+              <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>  Score
+         
+           </div>
+           )}
+       <div className=" font-bold font-poppins text-xs md:w-[9.8rem]">
+       <AccountCircleIcon className="!text-icon   text-[#d64933]"/>    {translatedMenuItems[7]}
+       {/* owner             */}
+               </div>
+         
+       {/* <div className="w-12">Action</div> */}
+
+   
+     </div>
+      
           <InfiniteScroll
         dataLength={props.allContactInvestData.length}
         next={handleLoadMore}
@@ -294,7 +305,7 @@ if (loading) {
                     return (
                       <div>
                       <div
-        className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+        className="flex rounded justify-between  bg-white mt-1  items-center py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                           <div className=" flex md:w-[15.1rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
@@ -333,72 +344,71 @@ if (loading) {
                
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
-                          <div className=" flex max-sm:w-full max-sm:justify-between    w-[9.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
-                         {/* Company  */}
-                              <div class=" text-xs  font-poppins">   
+                          <div className=" flex max-sm:w-full max-sm:justify-between   items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[12.01rem]">
+                              {/* Company  */}
+                              <div class=" text-xs ml-gap font-poppins">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-full max-sm:justify-between    w-[10.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
-                           {/* Designation */}
-                              <div class="text-xs  font-poppins">
+                          <div className=" flex max-sm:w-full max-sm:justify-between    w-[7.5rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]">
+                            {/* Designation */}
+                              <div class="text-xs ml-gap font-poppins">
                                    {item.designation}
                               </div>
-                          </div>
-                        
-                          <div className=" flex max-sm:w-full max-sm:justify-between   items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.2rem]">
-                           {/* Department */}
-                            <div class="text-xs  font-poppins">
+                          </div>         
+                          <div className=" flex max-sm:w-full max-sm:justify-between    w-[8.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]">
+                          {/* Department */}
+                            <div class="text-xs ml-gap font-poppins">
                                  {item.department}
                             </div>
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
-                          <div className=" flex  md:w-[5.22rem] max-sm:w-full items-center justify-center h-8 ml-gap bg-[#eef2f9]  ">
-                              {/* # Deals */}
+                    
+                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[10.22rem] max-sm:w-full  ">
+                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.22rem] max-sm:w-full  ">
+                                {/* Deals */}
+                                <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
+                                  onClick={() => {
+                                    props.handleDealModal(true);
+                                    handleCurrentContactIdata(item);
+                                  }}
+                                >
+                                 {item.oppNo}
+                                </div>
+                            </div>
+                            <div className=" flex   md:w-[7.05rem] max-sm:w-full items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
+                               {/* Deal Value */}
 
-                               <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
-                                onClick={() => {
-                                  props.handleDealModal(true);
-                                  handleCurrentContactIdata(item);
-                                }}
-                              >
-                               {item.oppNo}
-                              </div>
-                          </div>
-                          <div className=" flex  md:w-[5.05rem] max-sm:w-full items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
-                         {/* Deal Value */}
-                              <div class=" text-xs  font-poppins">
-                               {item.totalProposalValue}
-                              </div>
-                          </div>
-                          <div className="flex max-sm:justify-between  md:w-[6.81rem] max-sm:w-full items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
-                             {/* Source */}
-                              <div class="text-xs  font-poppins">
-                              </div>
-                          </div>
-                          {/* Score */}
-                          {props.user.aiInd && (
-           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
-          {item.noteScoreInd}
-          
-            </div>
-            )}
-                         
-        <div className="flex   md:w-[3.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:w-full max-sm:justify-between">       
-        <Tooltip title={item.ownerName}>
-          <div class="max-sm:flex justify-end mt-1">      
-        <MultiAvatar
-          primaryTitle={item.ownerName}
-          imageId={item.ownerImageId}
-          imgWidth={"1.8rem"}
-          imgHeight={"1.8rem"}
-        />  
-      </div>
-    </Tooltip>
-
-             </div>
-             </div>
+                                <div class=" text-xs  font-poppins">
+                                 {item.totalProposalValue}
+                                </div>
+                            </div>
+                            </div>
+                    
+                      {/* Score */}
+                      {props.user.aiInd && (
+       <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
+        {item.noteScoreInd}
+      
+        </div>
+        )}                   
+                      <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4rem]  max-sm:w-full max-sm:justify-between">             
+           {/* Owner */}
+         
+    <Tooltip title={item.ownerName}>
+      <div class="max-sm:flex justify-end mt-1">
+  
+    <MultiAvatar
+      primaryTitle={item.ownerName}
+      imageId={item.ownerImageId}
+      imgWidth={"1.8rem"}
+      imgHeight={"1.8rem"}
+    /> 
+  </div>
+</Tooltip>
+         </div>   
+         </div> 
            
              <div class=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9] w-wk max-sm:flex   max-sm:w-full">   
              <Tooltip title= {translatedMenuItems[9]}>

@@ -95,7 +95,7 @@ function AccountDeleteTable(props) {
        <div class="flex">
    
     <div className=" flex  md:w-[15.1rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
-    <div class="text-xs  font-semibold  font-poppins cursor-pointer">
+    <div class="text-xs flex  items-center  font-semibold  font-poppins cursor-pointer">
 
         {item.name}
                             </div>

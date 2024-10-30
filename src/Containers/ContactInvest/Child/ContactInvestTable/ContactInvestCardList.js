@@ -34,8 +34,15 @@ import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
 import AddContactInvestDealModal from "./AddContactInvestDealModal";
+import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import ScoreIcon from '@mui/icons-material/Score';
+import SourceIcon from '@mui/icons-material/Source';
+
 const AddContactInvestNotesDrawerModal = lazy(() =>  import("../AddContactInvestNotesDrawerModal"));
 const UpdateContactInvestModal = lazy(() => import("../UpdateContactInvest/UpdateContactInvestModal"));
+
 
 function ContactInvestCardList(props) {
 
@@ -150,39 +157,41 @@ function ContactInvestCardList(props) {
   return (
     <>     
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex  justify-between max-sm:hidden w-[90%]  p-1 bg-transparent font-bold sticky z-10">
+          <div className=" flex  justify-between max-sm:hidden w-[90%]  p-1 bg-transparent font-bold items-end sticky z-10">
           <div className=" flex justify-between w-[93%]">
         <div className=" font-bold font-poppins w-[20.32rem] text-xs md:w-[21.32rem]">
-        {translatedMenuItems[0]}
+        <ContactEmergencyIcon className='!text-base mr-1  text-[#00A2E8] text-base'
+              />{translatedMenuItems[0]}
         {/* name" */}         
                 </div>
         <div className="font-bold font-poppins text-xs w-[12.72rem] md:w-[13.72rem]">
-        {translatedMenuItems[1]}
+        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}
         {/* company */}             
                 </div>
-        <div className="font-bold font-poppins text-xs w-[8.6rem] md:w-[9.6rem] ">
-        {translatedMenuItems[2]} 
+        <div className="font-bold font-poppins text-xs w-[12.6rem] md:w-[12.6rem] ">
+        <i className="fab fa-artstation mr-1"></i> {translatedMenuItems[2]} 
         {/* designation */}             
                 </div>
-        <div className=" font-bold font-poppins text-xs w-[11.3rem] md:w-[11.3rem]">
-        {translatedMenuItems[3]} 
-        {/* department */}               
-                </div>
-        <div className="font-bold font-poppins text-xs w-[6.1rem] md:w-[9.1rem]">
-        {translatedMenuItems[4]}
-        {/* deals" */}           
-                </div>
-        <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[11.21rem]"> 
-        {translatedMenuItems[5]}
-         {/* dealValue" */}              
-                </div>
-        <div className="font-bold font-poppins text-xs w-[5.2rem] md:w-[11.2rem]">
-        {translatedMenuItems[6]}
+        {/* <div className=" font-bold font-poppins text-xs w-[11.3rem] md:w-[11.3rem]">
+        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[3]} 
+        department               
+                </div> */}
+                    <div className="font-bold font-poppins text-xs w-[5.2rem] md:w-[11.2rem]">
+        <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> {translatedMenuItems[6]}
         {/* source" */}           
                 </div>
+        <div className="font-bold font-poppins text-xs w-[10.1rem] md:w-[10.1rem]">
+        <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#e4eb2f]' />{translatedMenuItems[4]}
+        {/* deals" */}           
+                </div>
+        {/* <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[11.21rem]"> 
+        {translatedMenuItems[5]}
+         dealValue"              
+                </div> */}
+    
                 {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
+            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+               <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>  Score
           
             </div>
             )}
@@ -224,7 +233,7 @@ function ContactInvestCardList(props) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-28 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+              className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-28 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  md:w-[15.1rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
@@ -262,27 +271,35 @@ function ContactInvestCardList(props) {
                                 </div>                     
                                 </div>
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center items-center">
-                                <div className=" flex max-sm:w-full max-sm:justify-between items-center  h-8 ml-gap bg-[#eef2f9] w-[11.01rem]">
+                                <div className=" flex max-sm:w-full max-sm:justify-between items-center  h-8 ml-gap bg-[#eef2f9] w-[15.01rem]">
                                    {/* Company  */}
-                                    <div class=" text-xs  font-poppins">   
+                                    <div class=" text-xs  ml-gap font-poppins">   
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex max-sm:w-full max-sm:justify-between  h-8 ml-gap bg-[#eef2f9]  w-[7.5rem] items-center">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  h-8 ml-gap bg-[#eef2f9]  w-[10.5rem] items-center">
                                {/* Designation */}
-                                    <div class="text-xs  font-poppins">
+                                    <div class="text-xs  ml-gap font-poppins">
                                          {item.designation}
                                     </div>
                                 </div>
                            
-                                <div className=" flex max-sm:w-full max-sm:justify-between    w-[8.2rem] items-center  h-8 ml-gap bg-[#eef2f9]">
-                                {/* Department */}
+                                {/* <div className=" flex max-sm:w-full max-sm:justify-between    w-[8.2rem] items-center  h-8 ml-gap bg-[#eef2f9]">
+                                Department
                                   <div class="text-xs  font-poppins">
                                        {item.department}
                                   </div>
-                              </div>
+                              </div> */}
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
+                              <div className="flex max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[12.81rem] max-sm:w-full ">
+                                     {/* Source */}
+
+                                    <div class="text-xs  ml-gap font-poppins">
+
+                                    </div>
+                                </div>
+                              <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[12.22rem] max-sm:w-full  ">
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.22rem] max-sm:w-full  ">
                                     {/* Deals */}
                                     <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
@@ -294,22 +311,17 @@ function ContactInvestCardList(props) {
                                      {item.oppNo}
                                     </div>
                                 </div>
-                                <div className=" flex   md:w-[5.05rem] max-sm:w-full items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
+                                <div className=" flex   md:w-[7.05rem] max-sm:w-full items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                                    {/* Deal Value */}
 
                                     <div class=" text-xs  font-poppins">
                                      {item.totalProposalValue}
                                     </div>
                                 </div>
-                                <div className="flex max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3.81rem] max-sm:w-full ">
-                                     {/* Source */}
-
-                                    <div class="text-xs  font-poppins">
-
-                                    </div>
                                 </div>
+                             
                                 {props.user.aiInd && (
-           <div className=" flex  justify-center  w-[16.12rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
+           <div className=" flex  justify-center  w-[9.12rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
             {item.noteScoreInd}
           
             </div>

@@ -125,7 +125,7 @@ const InvestorDetailTab = (props) => {
   } = props;
   return (
     <>
-      <TabsWrapper style={{height:"85vh"}}>
+      <TabsWrapper style={{height:"87vh"}}>
         <StyledTabs defaultActiveKey="1" onChange={handleTabChange}>
          
 

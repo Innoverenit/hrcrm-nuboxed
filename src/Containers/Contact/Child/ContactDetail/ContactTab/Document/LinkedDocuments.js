@@ -19,12 +19,11 @@ import dayjs from "dayjs";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ShowChartIcon from '@mui/icons-material/ShowChart';
-import DateRangeIcon from '@mui/icons-material/DateRange';
-import MergeTypeIcon from '@mui/icons-material/MergeType';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ContactPageIcon from '@mui/icons-material/ContactPage'
 import LocationCityIcon from '@mui/icons-material/LocationCity';
-
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
 class LinkedDocuments extends Component {
   
   constructor(props) {
@@ -88,15 +87,16 @@ class LinkedDocuments extends Component {
   } 
     return (
       <>
-         <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+         <div class="rounded m-1 p-1 w-[100%] h-[77vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
           <div className="w-[6.9rem] md:w-[11.9rem]"> <DateRangeIcon className='!text-icon  '  />
           {this.state.translatedMenuItems[0]} </div>
           {/* Date */}
-        <div className="md:w-[6.1rem]"> <LocationCityIcon className='!text-icon  '  /> 
+        <div className="md:w-[6.1rem]"> <LocationCityIcon className='!text-icon '  /> 
          {this.state.translatedMenuItems[1]}      </div>
            {/* Name */}   
-        <div className="w-[1.1rem] md:w-[5.1rem]">< MergeTypeIcon className='!text-icon  '  />
+        <div className="w-[1.1rem] md:w-[5.1rem]">
+          < MergeTypeIcon className='!text-icon text-[#c42847] '  />
          {this.state.translatedMenuItems[2]}</div>
           {/* type */}          
         <div className=" w-[3.1rem] md:w-[5.1rem]"> <ShowChartIcon className='!text-icon    text-[#776871]' />
@@ -105,7 +105,7 @@ class LinkedDocuments extends Component {
         <div className=" w-[7.12rem] md:w-[8.12rem]">     <DescriptionIcon className='!text-icon  '  /> 
         {this.state.translatedMenuItems[4]}</div>
           {/* Description */}    
-        <div className="w-[3.1rem]  md:w-[7.1rem]"> <ContactPageIcon className='!text-icon  '  /> 
+        <div className="w-[3.1rem]  md:w-[7.1rem]"> <ContactPageIcon className='!text-icon text-[#ffb400]  '  /> 
          {this.state.translatedMenuItems[5]}</div>
           {/* UploadedBy */}       
         <div className="w-[4.2rem]"></div>
@@ -115,7 +115,7 @@ class LinkedDocuments extends Component {
              
                     return (
                         <div>
-                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                            <div className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                      
                              <div className=" flex  md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div className="flex max-sm:w-full items-center"> 
