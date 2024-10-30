@@ -313,8 +313,7 @@ class LinkedDocuments extends Component {
                       >
                          <Tooltip title= {this.state.translatedMenuItems[11]}>
       
-            <DeleteOutlined
-className="cursor-pointer !text-icon text-[red]"
+            <DeleteOutlined className="cursor-pointer !text-icon text-[red]"
             />
             </Tooltip>
           </Popconfirm>
