@@ -118,12 +118,12 @@ function BestbeforeEmailList(props) {
 
 
 //   const handleLoadMore = () => {
-//     const callPageMapd = props.newArrivalDataList && props.newArrivalDataList.length &&props.newArrivalDataList[0].pageCount
+//     const callPageMapd = props.bestBeforeEmailList && props.bestBeforeEmailList.length &&props.bestBeforeEmailList[0].pageCount
 //     setTimeout(() => {
 //       const {
 //         getBestBeforeEmailList, 
 //       } = props;
-//       if  (props.newArrivalDataList)
+//       if  (props.bestBeforeEmailList)
 //       {
 //         if (page < callPageMapd) {
 //           setPage(page + 1);
@@ -140,7 +140,7 @@ function BestbeforeEmailList(props) {
 //     }, 100);
 //   };
   const {
-    newArrivalDataList,
+    bestBeforeEmailList,
     deleteNewArrival,
   } = props;
   console.log("ee");
@@ -148,7 +148,7 @@ function BestbeforeEmailList(props) {
   if (loading) {
     return <div><BundleLoader/></div>;
   }
-  const packingNumbers = newArrivalDataList.map(item => item.newArrivals);
+  const packingNumbers = bestBeforeEmailList.map(item => item.newArrivals);
   console.log(packingNumbers)
   return (
     <>
@@ -161,7 +161,7 @@ function BestbeforeEmailList(props) {
           <div className="w-20">Contact #</div>
       </div>
         {/* <InfiniteScroll
-        dataLength={newArrivalDataList.length}
+        dataLength={bestBeforeEmailList.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingInvestors?<div  class="flex justify-center">Loading...</div>:null}
@@ -170,8 +170,8 @@ function BestbeforeEmailList(props) {
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       > */}
    
-        { newArrivalDataList.map((item,index) =>  {
-         const date = dayjs(item.date).format("DD/MM/YYYY");
+        {bestBeforeEmailList.map((item,index) =>  {
+         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
      
          return (
                        
@@ -180,11 +180,18 @@ function BestbeforeEmailList(props) {
               className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[10rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
             >
                                      <div class="flex max-sm:justify-between h-8 max-sm:w-wk max-sm:items-center">
-                                     <div className=" flex items-center  max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                     <div className=" flex items-center w-[32rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
                                    {date}
                                 </div>
-                               
+                                <div className=" flex items-center w-[33rem] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                  
+                                  {item.itmCnt}
+                               </div>
+                               <div className=" flex items-center  max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                  
+                                  {/* {item.contacts[0].contact} */}
+                               </div>
                                 </div>
                                
                             </div>
@@ -209,7 +216,7 @@ const mapStateToProps = ({
   supplies
 }) => ({
   userId: auth.userDetails.userId,
-  newArrivalDataList:supplies.newArrivalDataList,
+  bestBeforeEmailList:supplies.bestBeforeEmailList,
   orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>

@@ -719,7 +719,7 @@ const mapStateToProps = ({
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   addDrawerInvestorPulseModal:investor.addDrawerInvestorPulseModal,
   addDrawerInvestorContactModal:investor.addDrawerInvestorContactModal,
-  teamUserList:investor.teamUserList
+  teamUserList:customer.teamUserList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
