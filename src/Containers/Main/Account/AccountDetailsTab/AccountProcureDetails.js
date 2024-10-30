@@ -17,10 +17,11 @@ import {
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
 import { DeleteOutlined } from "@ant-design/icons";
-import { base_url2 } from "../../../../Config/Auth";
+import { base_url, base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import Swal from 'sweetalert2';
 import IosShareIcon from '@mui/icons-material/IosShare'; 
+import { MultiAvatar } from "../../../../Components/UI/Elements";
 
 const { Option } = Select;
 
@@ -357,7 +358,9 @@ const handleGenerateInvoice= async () => {
     <>
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[83vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className="flex justify-between font-bold font-poppins text-xs w-[99%]   p-1 bg-transparent  sticky z-10">
-      
+        <div className="w-[2.5%]">
+ 
+          </div>
           <div className="w-[10.4%] md:w-[10.4%]">
         {translatedMenuItems[13]}
           </div>
@@ -418,35 +421,34 @@ const handleGenerateInvoice= async () => {
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
               <div className="flex  md:w-[0.5%] max-sm:flex-row w-[2.5%] max-sm:justify-between">
               <div className="text-xs  font-poppins">
-           {item.imageId}</div>
+           <MultiAvatar
+           imageId={item.imageId}
+           />
+           </div>
               </div>
-              <div className="flex  md:w-[4%] ml-1 max-sm:flex-row w-[4%] max-sm:justify-between">
-              <div className="text-xs  font-poppins">
+              <div className="flex ml-1 max-sm:flex-row truncate w-36 h-4 max-sm:justify-between">
+              <div className="text-xs font-poppins">
            {item.productFullName}</div>
               </div>
 
-<div className="flex  md:w-[10%] max-sm:flex-row w-[10%] max-sm:justify-between">
+<div className="flex max-sm:flex-row truncate w-36 h-4 max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                
-                                      <div className=" text-xs  font-poppins">{item.category}</div>
+                    {item.category}
                 </div>
               </div>
               <div className="flex  md:w-[5%] max-sm:flex-row w-[5%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                 
-                                   <div className=" text-xs  font-poppins">{item.brand}</div>
+                                   {item.brandName}
+                </div>
+              </div>
+              <div className="flex  md:w-[4%] max-sm:flex-row w-[7%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                            {item.model}
                 </div>
               </div>
               <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  
-                             <div className=" text-xs  font-poppins">{item.model}</div>
-                </div>
-              </div>
-              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
-                <div className="text-xs  font-poppins">
-                 
-                   <div className=" text-xs  font-poppins">{item.attribute}</div>
+                  {item.attribute}
                 </div>
               </div>
               {/* <div className="flex  md:w-[4%] max-sm:flex-row w-[5%] max-sm:justify-between">                          
@@ -456,7 +458,7 @@ const handleGenerateInvoice= async () => {
                 <div className="text-xs  font-poppins">
                 
                  
-                  <div className=" text-xs  font-poppins">{item.location}</div>
+                  {item.location}
                 </div>
               </div>
               {/* <div className="flex  md:w-[4%]  max-sm:flex-row w-[4%] max-sm:justify-between">

@@ -26,8 +26,7 @@ const addressSchema = Yup.object().shape({
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
     advancePayment: Yup.number()
-    .required("Input needed!")
-    .typeError('Number Required!'),
+    .positive().typeError('Number Required!'),
     contactPersonId: Yup.string().required("Input needed!"),
     orderCurrencyId: Yup.string().required("Input needed!"),
     customPayment: Yup.number()
@@ -48,7 +47,8 @@ const handleOnSelectType =(ontype)=> {
             value: item.contactPersonId,
             label: `${item.firstName || ""} ${item.lastName || ""}`
         }
-    })
+    });
+
     useEffect(() => {
         props.getContactDistributorList(props.distributorId)
         props.getSaleCurrency()
@@ -97,7 +97,7 @@ const handleOnSelectType =(ontype)=> {
                 orderCurrencyId: "",
                 shipById:"",
                 totalPhoneCount: "",
-                advancePayment: 50,
+                advancePayment: "",
                 distributorId: props.distributorId,
                 userId: props.userId,
                 orderId: "",
@@ -128,7 +128,7 @@ const handleOnSelectType =(ontype)=> {
             onSubmit={(values, { resetForm }) => {
                 console.log(priority)
 
-                if (values.advancePayment < 100) {
+                // if (values.advancePayment < 100) {
                     props.addQuotationOrderForm({
                         ...values,
                         orderSource: "B2B ERP",
@@ -138,9 +138,9 @@ const handleOnSelectType =(ontype)=> {
 
                     }, props.distributorId,);
                     // "0","High","Medium","Low"
-                } else {
-                    message.success("Advance payment should be less than 100")
-                }
+                // } else {
+                //     message.success("Advance payment should be less than 100")
+                // }
             }}
         >
             {({ values, handleChange }) => (
@@ -166,23 +166,22 @@ const handleOnSelectType =(ontype)=> {
                                                 { label: "Commerce", value: "Procure" },
                                             ]}
                                         /> */}
-                                       
-                                        <button className={`${props.moduleMapper.ecomModInd === true || props.moduleMapper.ecomModInd === false && 
-                                        selectOnType === "Commerce" ? 
-                                        "bg-green-400 text-white border rounded-md":"bg-purple-400 text-black border rounded-md"}`}
+                                       <div class="flex h-fit">
+                                        <div className={selectOnType === "Commerce" ? 
+                                        "bg-green-400 text-white border rounded-md":"bg-purple-400 text-black border rounded-md"}
                                         onClick={() => handleOnSelectType("Commerce")}
                                         >
                                             Commerce
-                                        </button>
+                                        </div>
                                         &nbsp;
-                                        <button className={`${props.moduleMapper.repairInd=== true  &&  selectOnType==="Repair" ? 
-                                        "bg-green-400 text-white rounded-md":"bg-purple-400 text-black border rounded-md"}`}
+                                        <div className={selectOnType==="Repair" ? 
+                                        "bg-green-400 text-white rounded-md":"bg-purple-400 text-black border rounded-md"}
                                         onClick={() => handleOnSelectType("Repair")}
                                         >
                                             Repair
-                                        </button>
-                                       
-                                    </div>
+                                        </div>
+                                        </div>
+                                   </div> 
 
 
 <div class="w-[46%]  ml-8 mt-2">
@@ -334,7 +333,7 @@ const handleOnSelectType =(ontype)=> {
                                     <div class="w-[45%]">
                                         <Field
                                             width={"100%"}
-                                            style={{ borderRight: "3px red solid" }}
+                                            // style={{ borderRight: "3px red solid" }}
                                             name="advancePayment"
                                             label="Advance Payment(%)"
                                             isColumn
@@ -398,7 +397,7 @@ const handleOnSelectType =(ontype)=> {
 
                                         />
                                     </div>
-                                <div class="w-[45%]">
+                                {/* <div class="w-[45%]">
   {values.orderType === "Procure" ? null : (
     <Field
       name="availabilityDate"
@@ -411,7 +410,7 @@ const handleOnSelectType =(ontype)=> {
       value={values.availabilityDate}
     />
   )}
-</div>
+</div> */}
 
                                
 
