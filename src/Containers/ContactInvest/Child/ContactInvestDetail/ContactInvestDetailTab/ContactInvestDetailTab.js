@@ -64,7 +64,29 @@ class ContactInvestDetailTab extends Component {
       handleContactInvestActivityModal,
       contactInvestorActivityModal,
     } = this.props;
-
+    const renderTabContent = (key) => {
+      switch (key) {
+        case "1":
+          return     <div> 
+                 <LinkedDealTable contactInVestDetail={this.props.contactInVestDetail}
+                selectedLanguage={this.props.selectedLanguage}
+                translateText={this.props.translateText}/>
+              </div>;
+        case "2":
+          return  <div>    <LinkedContactInvestDocuments contactInVestDetail={this.props.contactInVestDetail}
+          selectedLanguage={this.props.selectedLanguage}
+          translateText={this.props.translateText}
+       /></div>;
+          case "3":
+              return  <div>  <ContactInvestTimeLine
+              contactInVestDetail={this.props.contactInVestDetail}
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
+      /></div>;
+        default:
+          return null;
+      }
+    };
     return (
       <>
         <TabsWrapper style={{height:"85vh"}}>
@@ -92,9 +114,9 @@ class ContactInvestDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDealTable contactInVestDetail={this.props.contactInVestDetail}
+                {/* <LinkedDealTable contactInVestDetail={this.props.contactInVestDetail}
                 selectedLanguage={this.props.selectedLanguage}
-                translateText={this.props.translateText}/>
+                translateText={this.props.translateText}/> */}
               </Suspense>
             </TabPane>       
             <TabPane
@@ -128,10 +150,10 @@ class ContactInvestDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedContactInvestDocuments contactInVestDetail={this.props.contactInVestDetail}
+                {/* <LinkedContactInvestDocuments contactInVestDetail={this.props.contactInVestDetail}
                    selectedLanguage={this.props.selectedLanguage}
                    translateText={this.props.translateText}
-                />
+                /> */}
               </Suspense>
             </TabPane>
             <TabPane
@@ -161,14 +183,17 @@ class ContactInvestDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <ContactInvestTimeLine
+                {/* <ContactInvestTimeLine
                         contactInVestDetail={this.props.contactInVestDetail}
                         selectedLanguage={this.props.selectedLanguage}
                         translateText={this.props.translateText}
-                />
+                /> */}
               </Suspense>
             </TabPane>
           </StyledTabs>
+          <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
         <AddDocumentModals

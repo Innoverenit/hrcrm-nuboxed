@@ -95,7 +95,38 @@ const InvestorDetailTab = (props) => {
   const handleTabChange = (key) => {
     setActiveKey(key);
   };
+  const renderTabContent = (key) => {
+    switch (key) {
+      case "1":
+        return     <div> 
+           <InvestorLinkedContact investorDetails={props.investorDetails}
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+            </div>;
+      case "2":
+        return  <div>
+           <InvestorLinkedDocuments investorDetails={props.investorDetails}
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+        </div>;
+    case "3":
+      return  <div>
+         <InvestorTimeLine
 
+investorDetails={props.investorDetails}
+              />
+      </div>;
+         case "4":
+          return  <div>
+              <InvestorDeals
+            investorDetails={props.investorDetails}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}       />
+          </div>;
+      default:
+        return null;
+    }
+  };
   if (loading) {
     return <div><BundleLoader /></div>;
   }
@@ -178,9 +209,9 @@ const InvestorDetailTab = (props) => {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <InvestorLinkedContact investorDetails={props.investorDetails}
+              {/* <InvestorLinkedContact investorDetails={props.investorDetails}
                translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+               selectedLanguage={props.selectedLanguage}/> */}
             </Suspense>
           </TabPane>
 
@@ -231,9 +262,9 @@ const InvestorDetailTab = (props) => {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <InvestorLinkedDocuments investorDetails={props.investorDetails}
+              {/* <InvestorLinkedDocuments investorDetails={props.investorDetails}
                translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+               selectedLanguage={props.selectedLanguage}/> */}
             </Suspense>
           </TabPane>
           <TabPane
@@ -273,10 +304,10 @@ const InvestorDetailTab = (props) => {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <InvestorTimeLine
+              {/* <InvestorTimeLine
 
 investorDetails={props.investorDetails}
-              />
+              /> */}
             </Suspense>
           </TabPane>
 
@@ -321,10 +352,10 @@ investorDetails={props.investorDetails}
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <InvestorDeals
+              {/* <InvestorDeals
             investorDetails={props.investorDetails}
             translateText={props.translateText}
-            selectedLanguage={props.selectedLanguage}       />
+            selectedLanguage={props.selectedLanguage}       /> */}
             </Suspense>
           </TabPane>
           {/* <TabPane
@@ -401,6 +432,9 @@ investorDetails={props.investorDetails}
           </TabPane> */}
          
         </StyledTabs>
+        <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
       </TabsWrapper>
       <Suspense fallback={null}>
       <AddInvestorContactModal
