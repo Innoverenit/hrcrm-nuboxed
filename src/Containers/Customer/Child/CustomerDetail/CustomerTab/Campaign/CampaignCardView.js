@@ -9,6 +9,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip,Input,Button,Avatar,Select } from "antd";
 import { StyledPopconfirm } from "../../../../../../Components/UI/Antd";
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import {
   deleteEvent,
   setEditEvents,
@@ -155,26 +158,17 @@ if(fetchingCustomerCampaign){
               };
                       return (
                           <div>
-                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  ">
+                             <div className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col  ">
                                       <div class="flex items-center  justify-between">
-                                 
- 
-           
+      
                                           <Tooltip>
-                                         
-                                            
-                                              <div class="text-[0.82rem]  font-poppins cursor-pointer">                                       
+                                        <div class="text-[0.82rem]  font-poppins cursor-pointer">                                       
                                               {item.eventType}
          
                                               </div>
                                                 
                                           </Tooltip>
-                                         
-                                         
-                                 
-  
-                                 
-                                     
+                     
                                       <div class=" text-[0.82rem]  font-poppins">   
                                       {item.eventSubject}
                                       </div>
@@ -338,22 +332,26 @@ if(fetchingCustomerCampaign){
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
-         <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.8rem]">{translatedMenuItems[0]} </div>
+         <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky items-end  z-10">
+        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.8rem]">
+        <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]} </div>
         {/* Type */}
         <div className="font-bold font-poppins text-xs md:w-[6.23rem]">{translatedMenuItems[1]} </div>
         {/* Subject */}
         <div className="font-bold font-poppins text-xs md:w-[7.25rem] ">{translatedMenuItems[2]} </div>
         {/* Start */}
-        <div className="font-bold font-poppins text-xs md:w-[5.43rem] ">{translatedMenuItems[3]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[5.43rem] ">
+        <MarkEmailUnreadIcon className='!text-icon text-[#ff9f1c] '  />{translatedMenuItems[3]} </div>
         {/* End */}
      
         <div className="font-bold font-poppins text-xs md:w-[5.32rem]">{translatedMenuItems[4]} </div>
-     {/* Include */}
-        <div className="font-bold font-poppins text-xs md:w-[6.15rem]">{translatedMenuItems[5]} </div>
-        {/* Assigned */}
-        <div className="font-bold font-poppins text-xs md:w-[24rem]">{translatedMenuItems[6]} </div>
-                {/* Owner    */}
+     {/* dial code */}
+        <div className="font-bold font-poppins text-xs md:w-[6.15rem]">
+          {translatedMenuItems[5]} </div>
+        {/* phone no */}
+        <div className="font-bold font-poppins text-xs md:w-[24rem]">
+        <ApartmentIcon className="!text-icon mr-1 "/>{translatedMenuItems[6]} </div>
+                {/* company    */}
       </div>
       <InfiniteScroll
         dataLength={props.customerCampaign.length}

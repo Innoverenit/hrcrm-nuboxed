@@ -22,8 +22,12 @@ import {
 } from "../../../../CustomerAction";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import dayjs from "dayjs";
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import DescriptionIcon from '@mui/icons-material/Description';
+import ArticleIcon from '@mui/icons-material/Article';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
+import FileOpenIcon from '@mui/icons-material/FileOpen';
 const ContractToggle =lazy(()=>import("./ContractToggle")); 
 
 class LinkedDocuments extends Component {
@@ -178,20 +182,26 @@ class LinkedDocuments extends Component {
     return (
       <>
         <div class="rounded m-1 p-1 w-[100%]  ">
-          <div className=" flex justify-between w-[100%]  p-1  font-bold sticky  z-10">
+          <div className=" flex justify-between w-[100%]  p-1  font-bold sticky items-end z-10">
           
         <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[16.1rem]">
-        {this.state.translatedMenuItems[0]}</div>
+        <DateRangeIcon className='!text-icon  '  />  {this.state.translatedMenuItems[0]}</div>
         {/* Date */}
-                <div className="font-bold font-poppins text-xs  md:w-[16.2rem]">{this.state.translatedMenuItems[1]}</div>
+                <div className="font-bold font-poppins text-xs  md:w-[16.2rem]">
+                <ArticleIcon className='!text-icon text-[#a379c9] '  />{this.state.translatedMenuItems[1]}</div>
                 {/* Name */}
-        <div className="font-bold font-poppins text-xs  md:w-[13.13rem]">{this.state.translatedMenuItems[2]}</div>
+        <div className="font-bold font-poppins text-xs  md:w-[13.13rem]">
+        <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {this.state.translatedMenuItems[2]}</div>
        
-        <div className="font-bold font-poppins text-xs  md:w-[15.1rem]">{this.state.translatedMenuItems[3]}</div>
+        <div className="font-bold font-poppins text-xs  md:w-[15.1rem]">
+        <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {this.state.translatedMenuItems[3]}</div>
      
-        <div className="font-bold font-poppins text-xs  md:w-[12.2rem]">{this.state.translatedMenuItems[4]}</div>
+        <div className="font-bold font-poppins text-xs  md:w-[12.2rem]">
+        <  FileOpenIcon className='!text-icon text-[#7fb800] '  />  {this.state.translatedMenuItems[4]}</div>
+          {/* fileName */}
         
-                     <div className="font-bold font-poppins text-xs  md:w-[9.2rem]">{this.state.translatedMenuItems[5]}</div>
+                     <div className="font-bold font-poppins text-xs  md:w-[9.2rem]">
+                      {this.state.translatedMenuItems[5]}</div>
                      {/* Contract */}
         
         
@@ -205,7 +215,7 @@ class LinkedDocuments extends Component {
                     return (
                       <div>
                        <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9.1rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-sm:h-[9.1rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
                           <div className=" flex  md:w-[9rem] h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
@@ -215,7 +225,7 @@ class LinkedDocuments extends Component {
     <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-xs   font-poppins   cursor-pointer">
+                                            <div class="flex text-xs ml-gap items-center   font-poppins   cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
@@ -229,9 +239,9 @@ class LinkedDocuments extends Component {
                           <div class="flex">
 
                        
-                          <div className=" flex  md:w-[12.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex  md:w-[12.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                              
-                              <div class="text-xs  font-poppins">
+                              <div class="flex text-xs ml-gap items-center  font-poppins">
                                    {item.documentTitle}
                                    &nbsp;&nbsp;
         {date === currentdate ? (
@@ -265,8 +275,8 @@ class LinkedDocuments extends Component {
                      </div>
 </div>
 </div>
-<div className=" flex   md:w-[12.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-                              <div class=" text-xs  font-poppins text-center">
+<div className=" flex   md:w-[12.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div class="flex text-xs ml-gap items-center font-poppins text-center">
                               {item.fileName}
 
                               </div>
@@ -283,7 +293,7 @@ class LinkedDocuments extends Component {
                        
                               
 
-                              <div class="items-center justify-center h-8 bg-[#eef2f9]">
+                              <div class="flex items-center justify-center h-8 bg-[#eef2f9]">
                               <a
             href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
@@ -293,7 +303,7 @@ class LinkedDocuments extends Component {
             /></Tooltip>
           </a>  
                  </div>
-                 <div class="items-center justify-center h-8 bg-[#eef2f9]">
+                 <div class="flex items-center justify-center h-8 bg-[#eef2f9]">
             
           <Popconfirm
                         title= {this.state.translatedMenuItems[10]}

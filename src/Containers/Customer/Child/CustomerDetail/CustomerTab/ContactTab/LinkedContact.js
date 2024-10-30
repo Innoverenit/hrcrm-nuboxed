@@ -16,6 +16,10 @@ import {
   handleUpdateCustomerContactModal,
   putCustomerContactToggle
 } from "../../../../CustomerAction";
+import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -116,26 +120,33 @@ function LinkedContact(props) {
       
      
       <div class="rounded m-1 p-1 w-[99%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className="font-bold font-poppins text-[#00A2E8] text-base w-[16.5rem]  md:w-[16.5rem]">{translatedMenuItems[0]}
+          <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold sticky z-10">
+        <div className="font-bold font-poppins text-[#00A2E8] text-base w-[16.5rem]  md:w-[16.5rem]">
+        <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}
           {/* Name */}
         </div>
-        <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[9.1rem]">{translatedMenuItems[1]}
+        <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[9.1rem]">
+        <MarkEmailUnreadIcon className='!text-icon text-[#ff9f1c] '  />
+         {translatedMenuItems[1]}
 {/* Email */}
         </div>
-        <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[8.1rem]">{translatedMenuItems[2]}
+        <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[8.1rem]">
+        <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {translatedMenuItems[2]}
           {/* Mobile */}
         </div>
-        <div className="font-bold font-poppins text-xs  w-[10.2rem] md:w-[8.2rem]">{translatedMenuItems[3]}
+        <div className="font-bold font-poppins text-xs  w-[10.2rem] md:w-[8.2rem]">
+        <ApartmentIcon className='!text-icon text-[#f0386b] '  />   {translatedMenuItems[3]}
           {/* Department */}
         </div>
-                     <div className="font-bold font-poppins text-xs  w-[7.2rem] md:w-[7.2rem]">{translatedMenuItems[4]}
+                     <div className="font-bold font-poppins text-xs  w-[7.2rem] md:w-[7.2rem]">
+                     <i className=" fab fa-artstation text-[#b744b8]"></i>{translatedMenuItems[4]}
                       {/* Designation */}
                      </div>
                 
         
         <div className="w-[4.21rem]"></div>
-        <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[7.21rem]">{translatedMenuItems[5]}
+        <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[7.21rem]">
+          {translatedMenuItems[5]}
 {/* Portal */}
         </div>
 
@@ -167,7 +178,7 @@ function LinkedContact(props) {
         
                     return (
                         <div>
-                           <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                           <div className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                   <div class="flex">
                                             <div className=" flex justify-center  md:w-[2.1rem] max-sm:w-full  ">
@@ -225,7 +236,7 @@ function LinkedContact(props) {
                              
                                 <div className=" flex w-[11.2rem] md:w-[11.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                    
-                                    <div class="text-xs  font-poppins">
+                                    <div class="text-xs flex items-center ml-gap font-poppins">
                                          {item.emailId}
                                     </div>
                                 </div>
@@ -238,14 +249,14 @@ function LinkedContact(props) {
                               </div>
                               <div className="flex w-31  md:w-32 items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
-  <div className="text-xs  font-poppins text-center">
+  <div className="text-xs flex items-center ml-gap  font-poppins text-center">
     {item.department}
   </div>
 </div>
 <div className=" flex  md:w-36 items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
-                                    <div class=" text-xs  font-poppins text-center">
+                                    <div class=" text-xs flex items-center ml-gap  font-poppins text-center">
                                     {item.designation}
 
                                     </div>
@@ -338,7 +349,7 @@ function LinkedContact(props) {
                                     </div>
                                    
                                 </div>
-                                <div className=" flex   md:w-[7.03rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                <div className=" flex   md:w-[10.45rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
 {item.accessInd === 0 ? <div class=" text-xs  font-poppins">
