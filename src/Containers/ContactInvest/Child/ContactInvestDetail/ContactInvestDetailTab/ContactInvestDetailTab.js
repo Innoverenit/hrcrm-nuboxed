@@ -1,7 +1,6 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {handleContactInvestActivityModal} from "../../../ContactInvestAction"
 import AddBoxIcon from '@mui/icons-material/AddBox';

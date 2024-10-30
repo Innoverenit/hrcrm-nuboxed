@@ -162,26 +162,26 @@ const InvestorLinkedContact = (props) => {
   return (
     <>
       <div class="rounded m-1 p-1 w-[99%]   overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky z-10">
+        <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky items-end z-10">
         <div className="text-[#00A2E8] text-base md:w-[16.1rem]">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}     
         {/* Name      */}
               </div>
       <div className="font-poppins font-bold text-xs md:w-[12.1rem]">
-      <MarkEmailUnreadIcon className='!text-icon  '  />  {translatedMenuItems[1]}  
+      <MarkEmailUnreadIcon className='!text-icon text-[#ff9f1c] '  />  {translatedMenuItems[1]}  
        {/* Email */}
    
               </div>
       <div className="font-poppins font-bold text-xs md:w-[8.1rem]">
-       <MobileFriendlyIcon className='!text-icon  '  /> {translatedMenuItems[2]}  
+       <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {translatedMenuItems[2]}  
         {/* Mobile #" */}
            </div>
       <div className="font-poppins font-bold text-xs md:w-[8.2rem]">
-      <ApartmentIcon className='!text-icon  '  /> {translatedMenuItems[3]}  
+      <ApartmentIcon className='!text-icon text-[#f0386b] '  /> {translatedMenuItems[3]}  
         {/* Department" */}
               </div>
                    <div className="font-poppins font-bold text-xs md:w-[9.2rem]">
-                   <i className=" fab fa-artstation mr-1"></i> {translatedMenuItems[4]}  
+                   <i className=" fab fa-artstation text-[#b744b8]"></i> {translatedMenuItems[4]}  
                                  {/* Designation" */}            
               </div>      
       <div className="w-[5.2rem]"></div>
@@ -210,7 +210,7 @@ const InvestorLinkedContact = (props) => {
         );   
                   return (
                       <div class="">
-                           <div className="flex rounded justify-between  bg-white mt-1  items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99]
+                           <div className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99]
                             hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
           >
              <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">

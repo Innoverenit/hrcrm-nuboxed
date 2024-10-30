@@ -11,7 +11,10 @@ import {deleteDocument } from "../../../../../Contact/ContactAction";
 import {  getContactDocument } from "../../../../../Customer/CustomerAction";
 import { DeleteOutlined} from "@ant-design/icons";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
-
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import FileOpenIcon from '@mui/icons-material/FileOpen';
 class LinkedContactInvestDocuments extends Component {
   
   constructor(props) {
@@ -56,23 +59,24 @@ class LinkedContactInvestDocuments extends Component {
       <>
           <div className=' flex sticky z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                  <div className=" flex  w-[100%]  p-1 bg-transparent font-bold text-xs sticky  z-10">
+                  <div className=" flex  w-[100%]  p-1 bg-transparent font-bold text-xs sticky items-end z-10">
                   
-                  <div className="md:w-[9.7rem]">
-                  {this.state.translatedMenuItems[0]}  
+                  <div className="md:w-[9.7rem] text-[#00A2E8] text-base">
+                  <DateRangeIcon className='!text-icon  '  /> {this.state.translatedMenuItems[0]}  
                   {/* Date */}
                     </div>
                       <div className=" md:w-[14.12rem]">
-                      {this.state.translatedMenuItems[1]}  
+                      <LocationCityIcon className='!text-icon  '  />  {this.state.translatedMenuItems[1]}  
                       {/* Name */}
                         </div>
                       <div className=" md:w-[10.5rem]">
-                      {this.state.translatedMenuItems[2]}  
-                      {/* Description*/}
+                      < MergeTypeIcon className='!text-icon text-[#c42847] '  />  {this.state.translatedMenuItems[2]}  
+                      {/* type*/}
                         </div>
                       <div className=" md:w-[9.8rem] ">
+                      <  FileOpenIcon className='!text-icon text-[#7fb800] '  /> 
                       {this.state.translatedMenuItems[3]}  
-                      {/* Uploaded By */}
+                      {/* filename */}
                         </div>
                      
                   </div>
@@ -82,7 +86,7 @@ class LinkedContactInvestDocuments extends Component {
                       return (
                           <div >
                               <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between  bg-white mt-1 items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                   <div class="flex">
                                       <div className=" flex  h-8 border-l-2 border-green-500 bg-[#eef2f9] md:w-[9.8rem] max-sm:w-full  ">

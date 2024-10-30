@@ -10,7 +10,7 @@ import {  Tooltip, Select } from "antd";
 import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import ScoreIcon from '@mui/icons-material/Score';
 // import ArchitectureIcon from '@mui/icons-material/Architecture'; department
 import {
@@ -197,11 +197,11 @@ function ContactCardList(props) {
         <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
          {/* Company */}
         <div className=" md:w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
-        <i className="fab fa-artstation mr-1"></i>
+        <i className="fab fa-artstation text-[#b744b8]"></i>
      {translatedMenuItems[2]}</div>
         {/* Designation */}
-        <div className="w-[18rem]  md:w-[18.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
-       {translatedMenuItems[3]}</div>
+        <div className="w-[16rem]  md:w-[16.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[3]}</div>
         {/* Department */}
         <div className=" md:w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/> {translatedMenuItems[4]}</div>
@@ -209,11 +209,11 @@ function ContactCardList(props) {
         {/* <div className=" md:w-[12.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
         <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> */}
         {/* Pipeline */}
-        <div className=" w-[11.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
-        {translatedMenuItems[6]}</div>
+        <div className=" w-[12.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
            {/* Portal Access */}
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins font-bold text-xs w-[11.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
                      {/* Score */}      <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[7]} 
           
             </div>
@@ -277,7 +277,7 @@ function ContactCardList(props) {
                                   <Tooltip>
                                     <div class=" flex max-sm:w-full justify-between  md:flex-col">
                                     
-                                      <div class="text-xs flex  text-blue-500  font-poppins  font-semibold  cursor-pointer">
+                                      <div class="text-xs flex items-center text-blue-500  font-poppins  font-semibold  cursor-pointer">
                                       <Link class="overflow-ellipsis whitespace-nowrap h-8 flex  items-center text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               

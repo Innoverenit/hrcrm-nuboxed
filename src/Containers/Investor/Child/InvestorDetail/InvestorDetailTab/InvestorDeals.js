@@ -17,6 +17,8 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import StairsIcon from '@mui/icons-material/Stairs';
 import DateRangeIcon from '@mui/icons-material/DateRange';
+import UpdateIcon from '@mui/icons-material/Update';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const ButtonGroup = Button.Group;
 
 const InvestorDeals = (props) => {
@@ -86,14 +88,14 @@ if (loading) {
 
   return (
     <>
-  <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[15rem]">
+  <div class="rounded m-1 p-1 w-[99%] h-[77vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end  z-10">
+        <div className="text-[#00A2E8] text-base md:w-[15rem]">
         <LocationCityIcon className='!text-icon  '  />   {translatedMenuItems[0]} 
        {/* name */}             
                 </div>
         <div className=" md:w-[13.2rem] ">
-        <ContactPageIcon className='!text-icon  '  />    {translatedMenuItems[1]} 
+        <ContactPageIcon className='!text-icon text-[#ffb400] '  />    {translatedMenuItems[1]} 
          {/* sponsor */}               
                 </div>
         <div className="md:w-[8.1rem]">
@@ -109,16 +111,16 @@ if (loading) {
          {/* stages               */}
                 </div> 
         <div className="md:w-[4.2rem]">
-        <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]} 
+        <UpdateIcon className='!text-icon text-[#e4eb2f]' />  {translatedMenuItems[5]} 
        {/* status */}                           
                 </div> 
         <div className="md:w-[7.1rem]">
-        <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[6]} 
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/>  {translatedMenuItems[6]} 
        {/* Assign To */}
               
                 </div>
         <div className="md:w-[5.2rem]">
-        <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[7]}
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[7]}
         {/* owner  */}
                 </div>
 
@@ -128,7 +130,7 @@ if (loading) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllDealsData?<div  class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
+      
       > */}
   { !fetchingInvestorDealsData && props.investorDealsData.length === 0 ?<NodataFoundPage />:props.investorDealsData.map((item,index) =>  {
        var findProbability = item.probability;
@@ -162,7 +164,7 @@ if (loading) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-[2.15rem] items-center p-1 max-sm:h-[9rem] max-sm:  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between  bg-white mt-1 items-center py-1 max-sm:h-[9rem] max-sm:  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      
                                 <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  w-[12rem]   max-sm:w-full">
