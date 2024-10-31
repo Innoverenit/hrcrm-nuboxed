@@ -26,7 +26,7 @@ function AddQuotationExcel(props) {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
- 
+  const [SuppliesId, setSuppliesId] = useState("")
 
   const handleSearch = async (value) => {
     setSearchTerm(value);
@@ -47,7 +47,8 @@ function AddQuotationExcel(props) {
   };
 
   const handleSelect = (item, setFieldValue) => {
-    setSearchTerm(item.name); 
+    setSearchTerm(item.name);
+    setSuppliesId(item.suppliesId); 
     setSearchResults([]); 
 
     setFieldValue('brandId', item.brand || ''); 
@@ -66,6 +67,7 @@ function AddQuotationExcel(props) {
             modelId: "",
             orgId: props.orgId,
             userId: props.userId,
+            suppliesId:SuppliesId,
             unit: "",
             // spces: spces,
             // type: type,
@@ -75,14 +77,13 @@ function AddQuotationExcel(props) {
             category:"",
             attribute:"",
             // location:locationId,
-            source:"portal",  
           }}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
             props.addQuotationPhoneDetails(
               {
                 ...values,
-                  
+                suppliesId:SuppliesId,
               },
               props.orderDetailsId.quotationId
             );
@@ -127,14 +128,10 @@ function AddQuotationExcel(props) {
                       disabled
                         name="category"
                         label="Category"
-                        // placeholder="Start typing to search or create..."
-                        // optionLabel="brandName"
-                        // optionValue="brandName"
-                        // url={`${base_url2}/supplies/supplies-brand`}
-                        // component={LazySelect}
                         component={InputComponent}
                         isColumn
-                        inlineLabel    
+                        inlineLabel 
+                        style={{cursor:"not-allowed"}}   
                       />
                     </div>
               
@@ -143,13 +140,10 @@ function AddQuotationExcel(props) {
                 disabled
                         name="attribute"
                         label="Attribute"
-                        // placeholder="Start typing to search or create..."
-                        // optionLabel="attributeName"
-                        // optionValue="attributeName"
-                        // url={`${base_url2}/supplies/attribute`}
                         component={InputComponent}
                         isColumn
                         inlineLabel 
+                        style={{cursor:"not-allowed"}}
                         />
                 </div>
                 </div>
@@ -161,15 +155,10 @@ function AddQuotationExcel(props) {
                 disabled
                         name="brandId"
                         label="Brand"
-                        // placeholder="Start typing to search or create..."
-                        // optionLabel="brandName"
-                        // optionValue="brandName"
-                        // url={`${base_url2}/supplies/supplies-brand`}
-                        // component={LazySelect}
                         component={InputComponent}
                         isColumn
                         inlineLabel
-      
+                        style={{cursor:"not-allowed"}}
                       />
                 </div>
                 <div className="w-wk">
@@ -177,14 +166,10 @@ function AddQuotationExcel(props) {
                 disabled
                         name="modelId"
                         label="Model"
-                        // placeholder="Start typing to search or create..."
-                        // optionLabel="modelName"
-                        // optionValue="modelName"
-                        // url={`${base_url2}/supplies/model`}
-                        // component={LazySelect}
                         component={InputComponent}
                         isColumn
                         inlineLabel 
+                        style={{cursor:"not-allowed"}}
                         />
                 </div>
               </div>
@@ -200,10 +185,25 @@ function AddQuotationExcel(props) {
                 width={"100%"}
                 component={InputComponent}
                 inlineLabel
-                
+                style={{cursor:"not-allowed"}}
                />
                 </div>
                 <div className="w-wk">
+                <Field
+                disabled
+                name="discount"
+                label="Discount"
+                placeholder="Discount"
+                isColumn
+                width={"100%"}
+                component={InputComponent}
+                inlineLabel
+                style={{cursor:"not-allowed"}}
+               />
+                </div>
+              </div>
+              <div className="mt-4 w-[22rem]">
+              <div className="w-wk">
                 <Field
                 name="unit"
                 label="Units"
@@ -214,8 +214,6 @@ function AddQuotationExcel(props) {
                 inlineLabel
                /></div>
               </div>
-             
-        {/* <Button type="primary" onClick={handleAddRow}>Add</Button> */}
         <Button htmlType="submit" type="primary" loading={props.addingQuotationPhoneDetails}>Submit</Button>
       </div>
       <div class="w-[55rem]">

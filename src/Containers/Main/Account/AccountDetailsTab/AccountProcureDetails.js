@@ -400,7 +400,7 @@ const handleGenerateInvoice= async () => {
           <div className=" w-[5.8%] md:w-[5.8%]">
           {translatedMenuItems[9]}
           </div>
-              <div className="w-[5%] md:w-[5%]">
+              <div className="w-[5%] md:w-[6%]">
           Supplies ID
           </div>
       
@@ -428,27 +428,28 @@ const handleGenerateInvoice= async () => {
               </div>
               <div className="flex ml-1 max-sm:flex-row truncate w-36 h-4 max-sm:justify-between">
               <div className="text-xs font-poppins">
-           {item.productFullName}</div>
+           {item.productFullName ? item.productFullName : "No Data"}
+           </div>
               </div>
 
 <div className="flex max-sm:flex-row truncate w-36 h-4 max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                    {item.category}
+                    {item.category ? item.category : "No Data"}
                 </div>
               </div>
               <div className="flex  md:w-[5%] max-sm:flex-row w-[5%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                                   {item.brandName}
+                                   {item.brandName ? item.brandName:"No Data"}
                 </div>
               </div>
               <div className="flex  md:w-[4%] max-sm:flex-row w-[7%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                            {item.model}
+                            {item.model ? item.model:"No Data"}
                 </div>
               </div>
               <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                  {item.attribute}
+                  {item.attribute ? item.attribute :"No Data"}
                 </div>
               </div>
               {/* <div className="flex  md:w-[4%] max-sm:flex-row w-[5%] max-sm:justify-between">                          
@@ -458,7 +459,7 @@ const handleGenerateInvoice= async () => {
                 <div className="text-xs  font-poppins">
                 
                  
-                  {item.location}
+                  {item.location?item.location:"No Data"}
                 </div>
               </div>
               {/* <div className="flex  md:w-[4%]  max-sm:flex-row w-[4%] max-sm:justify-between">
@@ -471,7 +472,7 @@ const handleGenerateInvoice= async () => {
             <div className="flex   md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                  
-<div className=" text-xs  font-poppins">{item.price}{item.currency} </div>
+<div className=" text-xs  font-poppins">{item.price?item.price:"No Data"}{item.price ? item.currency:""} </div>
                 </div>
               </div>
               <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
