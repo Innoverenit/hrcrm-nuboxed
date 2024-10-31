@@ -11,6 +11,22 @@ const initialState = {
     fetchingbestBeforeEmailListError: false,
     bestBeforeEmailList:[],
 
+    fetchingBestBeforeContactList: false,
+    fetchingBestBeforeContactListError: false,
+    bestBeforeContactList:[],
+
+    fetchingNewArrivalContactList: false,
+    fetchingNewArrivalContactListError: false,
+    newArrivalContactList:[],
+
+    fetchingArrivalContact: false,
+    fetchingArrivalContactError: false,
+    arrivalContact:[],
+
+    fetchingEmailContact: false,
+    fetchingEmailContactError: false,
+    emailContact:[],
+
     deletingEmailList: false,
     deletingEmailListError: false,
 
@@ -395,6 +411,67 @@ export const suppliesReducer = (state = initialState, action) => {
                   fetchingNewArrivalList: false,
                   fetchingNewArrivalListError: true,
                 };
+
+                case types.GET_BEST_BEFORE_CONTACTLIST_REQUEST:
+                  return { ...state, fetchingBestBeforeContactList: true };
+                case types.GET_BEST_BEFORE_CONTACTLIST_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingBestBeforeContactList: false,
+                 bestBeforeContactList: action.payload
+                  };
+                case types.GET_BEST_BEFORE_CONTACTLIST_FAILURE:
+                  return {
+                    ...state,
+                    fetchingBestBeforeContactList: false,
+                    fetchingBestBeforeContactListError: true,
+                  };
+
+                  case types.GET_NEW_ARRIVAL_CONTACTLIST_REQUEST:
+                    return { ...state, fetchingNewArrivalContactList: true };
+                  case types.GET_NEW_ARRIVAL_CONTACTLIST_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingNewArrivalContactList: false,
+                   newArrivalContactList: action.payload
+                    };
+                  case types.GET_NEW_ARRIVAL_CONTACTLIST_FAILURE:
+                    return {
+                      ...state,
+                      fetchingNewArrivalContactList: false,
+                      fetchingNewArrivalContactListError: true,
+                    };
+
+
+                    case types.GET_ARRIVAL_CONTACT_REQUEST:
+                      return { ...state, fetchingArrivalContact: true };
+                    case types.GET_ARRIVAL_CONTACT_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingArrivalContact: false,
+                     arrivalContact: action.payload
+                      };
+                    case types.GET_ARRIVAL_CONTACT_FAILURE:
+                      return {
+                        ...state,
+                        fetchingArrivalContact: false,
+                        fetchingArrivalContactError: true,
+                      };
+
+                      case types.GET_EMAIL_CONTACT_REQUEST:
+                      return { ...state, fetchingEmailContact: true };
+                    case types.GET_EMAIL_CONTACT_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingEmailContact: false,
+                     emailContact: action.payload
+                      };
+                    case types.GET_EMAIL_CONTACT_FAILURE:
+                      return {
+                        ...state,
+                        fetchingEmailContact: false,
+                        fetchingEmailContactError: true,
+                      };
 
 
         case types.UPDATE_SUPPLIES_BY_ID_REQUEST:

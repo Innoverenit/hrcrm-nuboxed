@@ -1736,12 +1736,116 @@ export const getNewArrivalList = (orgId) => (dispatch) => {
     });
 };
 
+export const getBestBeforeContactList = (bstBfrUseId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BEST_BEFORE_CONTACTLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getBestBeforeSuppliesDetails/${bstBfrUseId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_BEST_BEFORE_CONTACTLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BEST_BEFORE_CONTACTLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getNewArrivalContactList = (newArrId) => (dispatch) => {
+  dispatch({
+    type: types.GET_NEW_ARRIVAL_CONTACTLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/getNewArrivalsSuppliesDetails/${newArrId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_NEW_ARRIVAL_CONTACTLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_NEW_ARRIVAL_CONTACTLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getArrivalContact = (newArrId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ARRIVAL_CONTACT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/getNewArrivalsContactDetails/${newArrId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ARRIVAL_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ARRIVAL_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getEmailContact = (bstBfrUseId) => (dispatch) => {
+  dispatch({
+    type: types.GET_EMAIL_CONTACT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getBestBfrContactDetails/${bstBfrUseId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_EMAIL_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_EMAIL_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const deleteEmailList = (orgId) => (dispatch) => {
   dispatch({
     type: types.DELETE_EMAILLIST_REQUEST,
   });
   axios
-    .delete(`${base_url2}/po/bestBfrUseHistory/${orgId}`)
+    .delete(`${base_url2}/po/bestBfrUseHistory/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       // dispatch(getDeletedPurchaseById());
@@ -1766,7 +1870,11 @@ export const deleteNewArrival = (orgId) => (dispatch) => {
     type: types.DELETE_NEWARRIVAL_REQUEST,
   });
   axios
-    .delete(`${base_url2}/newArrivalHistory/${orgId}`)
+    .delete(`${base_url2}/newArrivalHistory/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       // dispatch(getDeletedPurchaseById());

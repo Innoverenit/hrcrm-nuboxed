@@ -29,7 +29,7 @@ const EmptyPage = (props) => {
     className="text-xs cursor-pointer  font-[Poppins] font-medium"
    
   >
-      Click on "Add" Button to get Started.
+      Creat a new one to get Started.
   </div>
 
           
