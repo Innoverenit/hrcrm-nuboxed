@@ -55,9 +55,30 @@ class ContactDetailTab extends Component {
       console.error('Error translating menu items:', error);
     }
   }
-  handleTabChange = (key) => this.setState(  key );
+  handleTabChange = (key) => this.setState({ activeKey: key });
   render() {
     const { activeKey } = this.state;
+    const renderTabContent = (key) => {
+      switch (key) {
+        case "1":
+          return     <div> 
+                  <LinkedDocuments 
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
+                />
+              </div>;
+        case "2":
+          return  <div>   <LinkedOpportunity
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+         /></div>;
+         
+        default:
+          return null;
+      }
+    };
     const {
       contact: { contactId, firstName, middleName, lastName },
       handleDocumentUploadModal,
@@ -168,11 +189,11 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments 
+                {/* <LinkedDocuments 
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
                translatedMenuItems={this.props.translatedMenuItems}
-                />
+                /> */}
               </Suspense>
             </TabPane>
 
@@ -201,15 +222,18 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedOpportunity
+                {/* <LinkedOpportunity
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
                translatedMenuItems={this.props.translatedMenuItems}
-                />
+                /> */}
               
               </Suspense>
             </TabPane>
           </StyledTabs>
+          <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
         <AddDocumentModals
