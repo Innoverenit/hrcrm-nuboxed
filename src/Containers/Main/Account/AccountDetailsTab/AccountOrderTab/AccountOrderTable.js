@@ -10,6 +10,11 @@ import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { DeleteOutlined } from "@ant-design/icons";
 import AddPickupModal from "./AddPickupModal"
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import GroupsIcon from '@mui/icons-material/Groups';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import UpdateIcon from '@mui/icons-material/Update';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import {
     getDistributorOrderByDistributorId,
@@ -180,26 +185,19 @@ const AccountOrderTable = (props) => {
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
                     {translatedMenuItems[0]}   {/* Urgent */}
                          </div>
-                        <div className=" md:w-[10.41rem] ml-2">
-                            {/* Order ID"
-                             */}
-                             {translatedMenuItems[1]} ID
+                        <div className=" md:w-[10.41rem] ml-2">     {/* Order ID"*/}                  
+                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[1]} ID
                         </div>
-                        <div className=" md:w-[9.012rem]">
-                        {translatedMenuItems[13]}
+                      <div className=" md:w-[9.012rem]">    {/*Created */}
+                        <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[13]}
                         </div>
                         <div className=" md:w-[9.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
-                        </div>
-                        {/* <div className=" md:w-[5.08rem]">
-                        {translatedMenuItems[3]} 
-                           
-                        </div> */}
-
+                        </div>              
                         <div className="md:w-[2.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                        {translatedMenuItems[4]}   {/*Contact"
+                        <ContactPageIcon className='!text-icon'/> {translatedMenuItems[4]}   {/*Contact"
                             /> */}
                         </div>
                         <div className="md:w-[6.11rem]">
@@ -225,12 +223,12 @@ const AccountOrderTable = (props) => {
                             /> */}
                         </div>
                         <div className=" md:w-[8.12rem]">
-                        {translatedMenuItems[10]}  {/*Lead"
+                        <GroupsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[10]}  {/*Lead"
                             /> */}
                         </div>
 
                         <div className=" md:w-[8.02rem]">
-                        {translatedMenuItems[32]}   
+                        <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' />  {translatedMenuItems[32]}   
                         </div>
                     </div>
              </div>

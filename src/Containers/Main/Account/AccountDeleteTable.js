@@ -59,7 +59,7 @@ function AccountDeleteTable(props) {
         <>
             <div className=' flex  sticky  z-auto'>
             <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-         <div className=" flex justify-between w-[100%]  p-1 bg-transparent  sticky  z-10">
+         <div className=" flex justify-between w-[100%]  p-1 bg-transparent  sticky items-end z-10">
          <div class=" flex justify-between text-xs font-poppins  font-bold  w-[100%]  ">
          <div className="text-[#00A2E8] text-base w-[10%] ml-2 md:w-[23%]"> {translatedMenuItems[0]}
             {/* Name */}
@@ -90,20 +90,20 @@ function AccountDeleteTable(props) {
                        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           return (
 <div>
-<div className="flex rounded justify-between mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+<div className="flex rounded justify-between mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
     >
        <div class="flex">
    
     <div className=" flex  md:w-[15.1rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
-    <div class="text-xs flex  items-center  font-semibold  font-poppins cursor-pointer">
+    <div class="text-xs flex ml-gap items-center  font-semibold  font-poppins cursor-pointer">
 
         {item.name}
                             </div>
     </div>
 
-    <div className=" flex   md:w-[12.1rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+    <div className=" flex   md:w-[12.1rem]  justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
 
-    <div class=" text-xs  font-poppins">
+    <div class="flex ml-gap items-center text-xs  font-poppins">
     {item.dialCode} {item.phoneNo} 
                     </div>
     
@@ -111,8 +111,8 @@ function AccountDeleteTable(props) {
  
     </div>
     
-    <div className=" flex  md:w-[14.5rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-    <div class=" text-xs  font-poppins">
+    <div className=" flex  md:w-[14.5rem]  justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+    <div class="flex ml-gap items-center text-xs  font-poppins">
                       
                       {item.url}
                     </div>
@@ -128,12 +128,12 @@ function AccountDeleteTable(props) {
     <div className=" flex  md:w-[13.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-        <div class=" text-xs  font-semibold  font-poppins">
+        <div class=" text-xs flex ml-gap items-center font-semibold  font-poppins">
         {/* {item.address[0].city || ""} */}
              </div>
     </div>
     <div className=" flex  md:w-[13.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-        <div class=" text-xs  font-semibold  font-poppins">
+        <div class=" text-xs flex ml-gap items-center  font-semibold  font-poppins">
         {/* {item.address[0].pinCode || ""} */}
              </div>
     </div>

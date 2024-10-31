@@ -25,8 +25,10 @@ import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFound
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ContactReportData from "./ContactReportData";
 import { NotAccessibleOutlined } from "@mui/icons-material";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 const AddCustomerUpdateContactModal = lazy(() => import("./AddCustomerUpdateContactModal"));
 const CustomerContactActiveToggle = lazy(() => import("./CustomerContactActiveToggle"));
+
 
 
 const Option = Select;
@@ -98,9 +100,6 @@ function LinkedContact(props) {
     debugger;
     setContactId(contactId);
 
-    // Assuming this.props.getContactDocument(contactId) is a function passed as a prop
-    // Uncomment the line below if you want to call the function
-    // this.props.getContactDocument(contactId);
   };
 
   const {
@@ -146,7 +145,7 @@ function LinkedContact(props) {
         
         <div className="w-[4.21rem]"></div>
         <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[7.21rem]">
-          {translatedMenuItems[5]}
+        <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>   {translatedMenuItems[5]}
 {/* Portal */}
         </div>
 

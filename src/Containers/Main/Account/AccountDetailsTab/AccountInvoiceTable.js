@@ -32,6 +32,11 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import MultipleOrderDrawer from "./MultipleOrderDrawer";
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import UpdateIcon from '@mui/icons-material/Update';
+import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 
 const { Option } = Select;
 
@@ -61,9 +66,9 @@ function AccountInvoiceTable(props) {
     '218', // 2
     '71', // 3
     '142', // 4
-    "1485",// Search by Invoice ID"
-   "1484", // Outstanding
- "1357",  // Credit Memo
+    "1485",//5 Search by Invoice ID"
+   "1484", //6 Outstanding
+ "1357",  //7 Credit Memo
   "100",  // New
   "1089",  // Generate
    "1483", // Payment link
@@ -396,18 +401,23 @@ function AccountInvoiceTable(props) {
 
             <div className=' flex sticky  z-auto mt-1'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[86%] p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
+                    <div className=" flex justify-between w-[86%] items-end p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
                   
-                    <div class="text-[#00A2E8] text-base w-[8.5rem]">{translatedMenuItems[0]} ID</div>
-                        <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>
+                    <div class="text-[#00A2E8] text-base w-[8.5rem]">
+                    <ReceiptIcon className="!text-icon text-[#b91372]"/> {translatedMenuItems[0]} ID</div>
+                        <div className=" md:w-[7.4rem]">
+                        <OnDeviceTrainingIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[1]} ID</div>
            
-                        <div className=" md:w-[7.1rem]">{translatedMenuItems[2]}</div>
+                        <div className=" md:w-[7.1rem]">
+                        <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />{translatedMenuItems[2]}</div>
                
                         <div className=" md:w-[8rem]">{translatedMenuItems[6]}</div>
-                        <div className=" md:w-[8rem]">{translatedMenuItems[7]}</div>
-                       
+                        <div className=" md:w-[8rem]">
+                        <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>{translatedMenuItems[7]}</div>
+                        {/* Credit Memo */}
                         <div className=" md:w-[8rem]"></div>
-                        <div className=" md:w-[8rem]">{translatedMenuItems[4]}</div>
+                        <div className=" md:w-[8rem]">
+                        <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' /> {translatedMenuItems[4]}</div>
                     </div>
                     <div class="h-[69vh]" style={{scrollbarWidth:"thin"}}>
                       
@@ -417,7 +427,7 @@ function AccountInvoiceTable(props) {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
+                                            <div className="flex rounded justify-between mt-1 bg-white  items-center py-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:">
                                                     <div className=" flex w-[6.25rem]  border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[16.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins  font-bold flex items-center">
@@ -469,14 +479,9 @@ function AccountInvoiceTable(props) {
                                                                     }}
                                                                 >{translatedMenuItems[9]}</Button>
                                                             </Tooltip>)}
-                                                      
-                          
-                          </div>                  
-                                                   
-                                                    </div>
-                                                    
-                                                  
 
+                          </div>                  
+        </div>           
                                                     <div className=" flex   w-[8rem] max-xl:w-[20.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  max-sm:flex-row ">
                                                         <Tooltip title="">
                                                                 <Button
@@ -503,7 +508,6 @@ function AccountInvoiceTable(props) {
                                                                         props.handlePaidModal(true);
                                                                         handleSetParticularOrderData(item);
                                                                     }}
-
                                                                 />
                                                             </Tooltip>      
                        </div>
@@ -526,9 +530,7 @@ function AccountInvoiceTable(props) {
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </a>
           </div>
-                         
-                          
-                                                   
+                                                  
                                                     </div>
                                                 </div>
                                             </div>

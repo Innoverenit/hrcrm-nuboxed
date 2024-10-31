@@ -86,21 +86,21 @@ if (fetchingDealList) return <BundleLoader/>;
         {/* Name */}
 
         </div>
-        <div className=" md:w-[11.2rem] w-[5.2rem]">
+        <div className="font-poppins font-bold text-xs md:w-[11.2rem] w-[5.2rem]">
         <DateRangeIcon className='!text-icon mr-1 '  /> 
         {translatedMenuItems[2]}  
         {/* End Date */}
           </div>
-          <div className="md:w-[5.02rem] w-[5.02rem]">
+          <div className="font-poppins font-bold text-xs md:w-[5.02rem] w-[5.02rem]">
           <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />
         {translatedMenuItems[3]}</div>
 
-        <div className="md:w-[4.5rem] w-[4.5rem]">
+        <div className="font-poppins font-bold text-xs md:w-[4.5rem] w-[4.5rem]">
            <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' />
         {translatedMenuItems[4]}  
         {/* Status */}
           </div>
-        <div className="w-[3.8rem] md:w-[5.8rem]">
+        <div className="font-poppins font-bold text-xs w-[3.8rem] md:w-[5.8rem]">
         <ContactsIcon className="!text-icon text-[#4f7cac] "/>{translatedMenuItems[5]}  
         {/*Sponser */}
           </div> 

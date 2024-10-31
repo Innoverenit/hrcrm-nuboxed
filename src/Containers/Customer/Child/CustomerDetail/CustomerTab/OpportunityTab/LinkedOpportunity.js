@@ -18,9 +18,27 @@ import { getOpportunityListByCustomerId,handleUpdateCustomerOpportunityModal,
 import { Tooltip,Button,Input,Progress } from "antd";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import UpdateIcon from '@mui/icons-material/Update';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
 const AddCustomerUpdateOpportunityModal =lazy(()=>import("./AddCustomerUpdateOpportunityModal")); 
 
+dayjs.extend(relativeTime);
 
+const getRelativeTime = (creationDate) => {
+    const now = dayjs();
+    const creationDay = dayjs(creationDate);
+
+    if (creationDay.isSame(now, 'day')) {
+        return 'Today';
+    } else {
+        return creationDay.from(now); 
+    }
+};
 function OpportunityTable(props) {
   const [loading, setLoading] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -171,18 +189,25 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
     <>
     <div className=' flex  sticky z-auto'>
     <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] h-[79vh] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className="font-bold font-poppins  text-[#00A2E8] text-base md:w-[14rem]">{translatedMenuItems[0]} ID</div>
+      <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end  z-10">
+        <div className="font-bold font-poppins  text-[#00A2E8] text-base md:w-[14rem]">
+        <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
         {/* Quotation ID */}
-        <div className="font-bold font-poppins text-xs md:w-[7.1rem]">{translatedMenuItems[1]}</div>
+        {/* <div className="font-bold font-poppins text-xs md:w-[7.1rem]">
+          {translatedMenuItems[1]}</div> */}
         {/* Start Date         */}
-        <div className="font-bold font-poppins text-xs md:w-[6.21rem] ">{translatedMenuItems[2]}</div>
+        <div className="font-bold font-poppins text-xs md:w-[6.21rem] ">
+        <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[2]}</div>
         {/* End Date */}   
-        <div className="font-bold font-poppins text-xs md:w-[6.2rem]">{translatedMenuItems[3]}</div>
+        <div className="font-bold font-poppins text-xs md:w-[6.2rem]">
+        <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />  {translatedMenuItems[3]}</div>
         {/* Value */}  
-        <div className="font-bold font-poppins text-xs md:w-[5.51rem]">{translatedMenuItems[4]}</div>
+        <div className="font-bold font-poppins text-xs md:w-[5.51rem]">
+        <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' /> {translatedMenuItems[4]}</div>
           {/* Status */}      
-        <div className="font-bold font-poppins text-xs md:w-[1.8rem]">{translatedMenuItems[5]}</div>
+        <div className="font-bold font-poppins text-xs md:w-[8.8rem]">
+        <ContactPageIcon className='!text-icon  '  />
+         {translatedMenuItems[5]}</div>
         {/* Sponsor */}
        
         <div className="w-[7rem]"></div>
@@ -227,7 +252,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                 className="flex rounded justify-between items-center bg-white mt-1 h-8  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                 <div class="flex ">
-                <div className=" flex font-medium flex-col border-l-2 border-green-500 bg-[#eef2f9] md:w-[13.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                <div className=" flex font-medium flex-col border-l-2 border-green-500 bg-[#eef2f9] md:w-[15.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
           &nbsp;
           <div class="max-sm:w-full">
@@ -264,13 +289,13 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
                                 </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  {/* <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
          
                     <div class=" text-xs  font-poppins">
                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                  
                     </div>
-                  </div>
+                  </div> */}
                   <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
          
          <div class=" text-xs  font-poppins">
@@ -329,7 +354,13 @@ width={30}
                  
                     </div>
                   </div>
-      
+                  <div className=" flex items-center w-[8rem]  justify-center h-8 ml-gap bg-[#eef2f9] mr-1 max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
                 </div>
               
                 <div class="flex md:items-center ">

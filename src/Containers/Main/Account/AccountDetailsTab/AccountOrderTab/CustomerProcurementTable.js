@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import { Tooltip,Button,Input,Select, Badge } from "antd";
 import dayjs from "dayjs";
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import {
   // getOrderProcurement,
   getDistributorOrderOfHigh,
@@ -36,6 +37,7 @@ import UpdateIcon from '@mui/icons-material/Update';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 
 const { Option } = Select;
 const { Search } = Input;
@@ -421,43 +423,36 @@ const handleLoadMoreLow = () => {
       </div>
 
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-[84%] p-1 bg-transparent font-bold sticky items-end text-xs font-poppins  z-10">
+        <div className=" flex justify-between w-[94%] p-1 bg-transparent font-bold sticky items-end text-xs font-poppins  z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
            </div>
                         <div className=" text-[#00A2E8] text-base w-[7.3rem] md:w-[7.4rem] ml-2">
-                        {translatedMenuItems[1]} ID{/*Order ID"/> */}
+                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[1]} ID{/*Order ID"/> */}
                           </div>
-                          <div className="w-[5.5rem] md:w-[5rem]">  
+                          <div className="w-[5.5rem] md:w-[7rem]">  
                           <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[9]}
                           </div>
-                        <div className="w-[3.5rem] md:w-[4.1rem]">
+                        <div className="w-[3.5rem] md:w-[9.1rem]">
                         <LocalShippingIcon
                          className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
-                        <div className="w-[11.12rem] md:w-[12.8rem] ">
-                        <LocationOnIcon
-              className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[3]} {/* Location"/> */}
+                        <div className="w-[11.12rem] md:w-[10.8rem] ">
+                        <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[3]} {/* Location"/> */}
                           </div>
-                          <div className="w-[2.1rem] md:w-[2.8rem]">
+                          <div className="w-[2.1rem] md:w-[4.4rem]">
                           <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]} {/* Contact"/> */}
                           </div>
                           <div className="w-[4.8rem] md:w-[4.1rem]">
-                        {/* {translatedMenuItems[2]}  */} Items
+                        {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
-                          <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' /> <div className="w-[2.2rem] md:w-[2.8rem]">
+                          <div className="w-[2.2rem] md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' />
                         {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
-                        <div className="w-[2rem] md:w-[2.8rem]">
+                        <div className="w-[2rem] md:w-[4.8rem]">
                         <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[6]}{/* "Payment"/> */}
                           </div>
-                   
-                      
-                        
-
-
                     </div>
-    
                     <InfiniteScroll
                         dataLength={data.length}
                         next={handleLoadMore}
@@ -483,7 +478,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
 
                                     return (
                                       <div>
-                                        <div key={item.orderId} className="flex rounded  mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                        <div key={item.orderId} className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
@@ -504,11 +499,11 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                                               </Tooltip>
                                                                           </div>
                                                                      
-                                              <div class="max-sm:w-full  md:w-[6.60rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                                              <div class="max-sm:w-full flex md:w-[6.60rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
                                                 <Tooltip>
-                                                  <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
+                                                  <div class="max-sm:w-full   flex md:flex flex-row text-xs">
                                                   <span
-                                                                                          class="underline font-bold cursor-pointer text-[#1890ff]"
+                                                                                          class="flex justify-start ml-gap underline font-bold cursor-pointer text-[#1890ff]"
                                                                                           onClick={() => {
                                                                                               props.handleProcureDetailsModal(true);
                                                                                               handleSetParticularOrderData(item);
@@ -528,7 +523,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                               </div>
                                               </div>
                                               </div>
-                                            <div className=" flex  w-[10.1rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex  w-[12.1rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -537,7 +532,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
 </span></div>
                                       
                                         
-                                          <div class="flex flex-row text-xs  items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between">
+                                          <div class="flex flex-row text-xs  items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between">
                                         
                                             
                                             <div class="max-sm:w-full justify-between flex md:text-xs">
@@ -548,8 +543,8 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   md:w-[18.01rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-                                            <div class=" font-poppins text-xs">
+                                          <div className=" flex   md:w-[16.01rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div class="flex font-poppins ml-gap items-center text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
                                
@@ -580,28 +575,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                               {item.status}                                              
                                             </div>
                                         </div>
-                                        {/* <div className=" flex  w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {editsuppliesId === item.orderId ? (
-                                                         
-                                                                <input
-          type="date"
-          // value={date}
-          value={dayjs(item.dispatchReceivedDate).format("YYYY-MM-DD")}
-          onChange={(e) => handleDateChange(e,item)}
-        //   min={moment(item.deliveryDate).format("YYYY-MM-DD")}
-          class="border border-black rounded"
-        /> 
-      ) : (
-            <div className="font-normal text-xs  font-poppins">
-               {item.dispatchReceivedDate === null ? "" :
-              <div> 
-              {dayjs(item.dispatchReceivedDate).format("YYYY/MM/DD")} 
-              </div>}
-            </div>
-          )}
-                                                        </div>
-                                                    </div> */}
+                                   
                                         <div class="flex flex-row  items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[11.03rem] max-sm:flex-row w-full max-sm:justify-between">
                   <Button type="primary" onClick={()=>{setopenInvoiceModal(true);
                      handleSetParticularOrderData(item);
@@ -663,62 +637,50 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
             >
             <PictureAsPdfIcon className="!text-icon text-[red]"/>
                            </a>
-                           </div> 
-                  
-                                                        </div>
-                                            </div>
-
-
-                                      </div>
-                                    
-                                    </div>
-
-
-                                    )
+                           </div>             
+</div>
+   </div>
+ </div>
+ </div>
+    )
                                 })}
                             </> : !data.length && !props.fetchingDistributorOfHigh ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
       </div>
      
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[91%] p-1 bg-transparent font-bold sticky text-xs items-end font-poppins z-10">
+      <div className=" flex justify-between w-[94%] p-1 bg-transparent font-bold sticky text-xs items-end font-poppins z-10">
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
         {translatedMenuItems[8]} {/* Normal */}
            </div>
                         <div className="w-[7.3rem] text-[#00A2E8] text-base md:w-[7.4rem] ml-2">
-                        {translatedMenuItems[1]} ID{/* Order ID"/> */}
+                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'
+                        />   {translatedMenuItems[1]} ID{/* Order ID"/> */}
                           </div>
-                          <div className="w-[5.5rem] md:w-[5rem]">  
+                          <div className="w-[5.5rem] md:w-[7rem]">  
                           <DateRangeIcon className='!text-icon  '  />{translatedMenuItems[9]}
                           </div>
-                          <div className="w-[3.5rem] md:w-[4.1rem]">
+                          <div className="w-[3.5rem] md:w-[9.1rem]">
                           <LocalShippingIcon
                          className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
-                          <div className="w-[11.12rem] md:w-[12.8rem] ">
+                          <div className="w-[11.12rem] md:w-[10.8rem] ">
                           <LocationOnIcon
               className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[3]} {/* Location"/> */}
                           </div>
-                          <div className="w-[2.1rem] md:w-[2.8rem]">
+                          <div className="w-[2.1rem] md:w-[4.4rem]">
                           <ContactPageIcon className='!text-icon  '  />   {translatedMenuItems[5]} {/* Contact"/> */}
                           </div>
-                          <div className="w-[4.8rem] md:w-[6.1rem]">
-                        {/* {translatedMenuItems[2]}  */} Items
+                          <div className="w-[4.8rem] md:w-[4.1rem]">
+                        {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
-                          <div className="w-[2.2rem] md:w-[5.8rem]">
+                          <div className="w-[2.2rem] md:w-[3.8rem]">
                           <UpdateIcon className='!text-icon text-[#e4eb2f]' /> {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
-                        <div className="w-[2rem] md:w-[7.8rem]">
+                        <div className="w-[2rem] md:w-[4.8rem]">
                         <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[6]}{/* "Payment"/> */}
                           </div>
-                      
-                       
-                     
-                     
-
-
                     </div>
-    
                     <InfiniteScroll
                         dataLength={props.lowDistributorOrder.length}
                         next={handleLoadMoreLow}
@@ -734,7 +696,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-               <div className="flex rounded  mt-1 bg-white h-8 items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+               <div className="flex rounded  mt-1 bg-white py-1 items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                   <div class="flex">
                     <div className=" flex  items-center   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
@@ -758,12 +720,12 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                     </div>
                                                     </div>
 
-                        <div class="max-sm:w-full items-center  md:w-[6.60rem] justify-center h-8 ml-gap  bg-[#eef2f9]">
+                        <div class="flex max-sm:w-full items-center  md:w-[6.60rem] justify-start h-8 ml-gap  bg-[#eef2f9]">
                           <Tooltip>
-                            <div class="max-sm:w-full  justify-between flex md:flex flex-row text-xs">
+                            <div class="max-sm:w-full  flex md:flex flex-row text-xs">
                             <Badge size="small" count={`${item.itemCount}`} overflowCount={5000}>
                             <span
-                                                                    class="underline cursor-pointer font-bold text-[#1890ff]"
+                                                                    class="flex justify-start ml-gap underline cursor-pointer font-bold text-[#1890ff]"
                                                                     onClick={() => {
                                                                         handleSetParticularOrderData(item);
                                                                         props.handleProcureDetailsModal(true);
@@ -801,8 +763,8 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex  md:w-[16.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between text-xs ">
-                      <div class=" font-poppins text-xs">
+                    <div className=" flex  md:w-[16.01rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between text-xs ">
+                      <div class=" font-poppins ml-gap items-center text-xs">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
          
@@ -866,17 +828,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                  
                   <div class="flex w-7 justify-end max-sm:flex-row max-sm:w-[10%]">   
                   <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex">                                                       
-                                                       {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full bg-white md:w-5 h-5 cursor-pointer">
-                                            <Tooltip title={translatedMenuItems[12]}>
-                                      
-                                                                <EventRepeatIcon className="!text-base cursor-pointer"
-                                                                    onClick={() => {
-                                                                        props.handleStatuShowDrawer(true);
-                                                                        handleSetParticularOrderData(item);
-                                                                    }}
-                                                                />
-                                                            </Tooltip>
-                                                            </div>  */}
+                                                    
                                                             </div>
                                                     <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex">      
                                                     <a

@@ -41,7 +41,7 @@ const AddSupplierContactModal   = lazy(() => import("../../Suppliers/Child/Suppl
 const SalesMapTable  = lazy(() => import("./AccountDocumentTab/SalesMapTable"));
 const AddSupplierDocumentModal = lazy(() => import("../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal"));
 const AddCustomerProcurementModal = lazy(() => import("./AccountOrderTab/AddCustomerProcurementModal"));
-const AccountInvoiceTable = lazy(() => import("./AccountInvoiceTable"));
+const AccountInvoiceTable = lazy(() => import("./AccountInvoiceTable"));//5
 const ErpNote = lazy(() => import("../../ErpNote/ErpNote"));
 const AddAccountOpportunityModal = lazy(() => import("./AddAccountOpportunityModal"));
 const LinkedOpportunityTable = lazy(() => import("./LinkedOpportunityTable"));//2
@@ -90,7 +90,7 @@ function AccountDetailsTab(props) {
    "1212", //  'Commerce', //12              
    "1213", // 'Add Commerce',//13
    '1357',// Memo 14
-     "202",       //    Order
+     "202",       //    Order 15
      "667",      //    Completed Orders
      "1475",       //    Add Order
  "1474",       //    Add Contact
