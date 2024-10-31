@@ -1,34 +1,19 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import ExploreIcon from "@mui/icons-material/Explore";
 import {  DeleteOutlined } from "@ant-design/icons";
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import ArticleIcon from '@mui/icons-material/Article';
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import InfiniteScroll from "react-infinite-scroll-component"; 
 import { Tooltip, Select,Checkbox } from "antd";
 import dayjs from "dayjs";
-import {
-  MultiAvatar,
-  MultiAvatar2,
-} from "../../../Components/UI/Elements";
-import { Link } from 'react-router-dom';
-import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
-import ReactCountryFlag from 'react-country-flag';
 import {getBestBeforeEmailList,
-  deleteNewArrival,
+  deleteEmailList,
 } from "./SuppliesAction";
 import { BundleLoader } from "../../../Components/Placeholder";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import SuppliesListOfItem from "./SuppliesListOfItem";
+import ContactListOfEmailList from "./ContactListOfEmailList";
+import EmptyPage from "../EmptyPage";
 
-const Option = Select;
-function onChange(pagination, filters, sorter) {
-  console.log("params", pagination, filters, sorter);
-}
+
 
 function BestbeforeEmailList(props) {
 
@@ -37,6 +22,8 @@ function BestbeforeEmailList(props) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [contacrOpen,setcontactOpen] = useState(false);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -44,26 +31,7 @@ function BestbeforeEmailList(props) {
         setLoading(true); 
         const itemsToTranslate = [         
             "110",//0 Name
-            "278",//1Sector
-            "490",//2Deals
-            "144",//3In Progress
-            "579",//4signed
-            "14",//5 Category
-            "279",//6Source
-            "589",//7 First Meeting
-            "1161",//8 Shares
-            "218",//9Value
-            "592",//10Club
-            "76",//11 Assigned
-            "77",//12 Owner
-          "138",//  document     13  
-          "392", // pulse14 
-          "185", // 185ADDress 15
-          "316", // notes 16
-          "608",// investor contact 17 
-          "170",// 170edit  18 
-          "84", // 84delete 19
-          "1581", //Score
+           
        
         ];
 
@@ -115,41 +83,24 @@ function BestbeforeEmailList(props) {
   function handleCurrentRowData(datas) {
     setRowData(datas);
   }
-
-
-//   const handleLoadMore = () => {
-//     const callPageMapd = props.bestBeforeEmailList && props.bestBeforeEmailList.length &&props.bestBeforeEmailList[0].pageCount
-//     setTimeout(() => {
-//       const {
-//         getBestBeforeEmailList, 
-//       } = props;
-//       if  (props.bestBeforeEmailList)
-//       {
-//         if (page < callPageMapd) {
-//           setPage(page + 1);
-//           getBestBeforeEmailList(
-//                   props.currentUser ? props.currentUser : props.userId,
-//                   page,
-//                   props.filter?props.filter:"creationdate"
-//                 );
-//       }
-//       if (page === callPageMapd){
-//         setHasMore(false)
-//       }
-//     }
-//     }, 100);
-//   };
+  function handleOpen(item) {
+    setOpen(item);
+  }
+  function handleContactOpen(item) {
+    setcontactOpen(item);
+  }
   const {
     bestBeforeEmailList,
-    deleteNewArrival,
+    deleteEmailList,
+    fetchingbestBeforeEmailList
   } = props;
   console.log("ee");
  
   if (loading) {
     return <div><BundleLoader/></div>;
   }
-  const packingNumbers = bestBeforeEmailList.map(item => item.newArrivals);
-  console.log(packingNumbers)
+  // const packingNumbers = bestBeforeEmailList.map(item => item.newArrivals);
+  // console.log(packingNumbers)
   return (
     <>
 
@@ -160,17 +111,9 @@ function BestbeforeEmailList(props) {
           <div className="w-12">Item</div>
           <div className="w-20">Contact #</div>
       </div>
-        {/* <InfiniteScroll
-        dataLength={bestBeforeEmailList.length}
-        next={handleLoadMore}
-        hasMore={hasMore}
-        loader={fetchingInvestors?<div  class="flex justify-center">Loading...</div>:null}
-        height={"83vh"}
-        style={{scrollbarWidth:"thin"}}
-        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
-      > */}
+      
    
-        {bestBeforeEmailList.map((item,index) =>  {
+        {!fetchingbestBeforeEmailList && bestBeforeEmailList.length === 0 ?<EmptyPage />:bestBeforeEmailList.map((item,index) =>  {
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
      
          return (
@@ -184,13 +127,43 @@ function BestbeforeEmailList(props) {
                                   
                                    {date}
                                 </div>
-                                <div className=" flex items-center w-[33rem] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center w-[33rem] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "
+                                onClick={() => {
+                                  handleOpen(true);
+                                  handleCurrentRowData(item);
+                                }}
+                                >
+                                  
+                                  {item.itmCnt}
+                               </div>
+                               <div className=" flex items-center w-[33rem] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "
+                                onClick={() => {
+                                  handleContactOpen(true);
+                                  handleCurrentRowData(item);
+                                }}
+                                >
                                   
                                   {item.itmCnt}
                                </div>
                                <div className=" flex items-center  max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
-                                  {/* {item.contacts[0].contact} */}
+                               <div >
+            <StyledPopconfirm
+                        title="Do you want to delete?"
+                        onConfirm={() =>
+                          deleteEmailList(props.orgId)
+                        }
+                      >
+                         <Tooltip title="Delete" >
+                       
+                          <DeleteOutlined
+                            type="delete"
+                            className="!text-icon text-[red] cursor-pointer max-sm:!text-xl"
+                          />
+                       
+                        </Tooltip>
+                      </StyledPopconfirm>        
+                  </div>
                                </div>
                                 </div>
                                
@@ -201,11 +174,20 @@ function BestbeforeEmailList(props) {
                   
                 })}
 
-     {/* </InfiniteScroll>  */}
+
      </div>
  
  <Suspense fallback={<BundleLoader />}>
-     
+     <SuppliesListOfItem
+     handleOpen={handleOpen}
+     open={open}
+     RowData={RowData}
+     />
+      <ContactListOfEmailList
+     handleContactOpen={handleContactOpen}
+     contacrOpen={contacrOpen}
+     RowData={RowData}
+     />
       </Suspense>
     </>
   );
@@ -218,12 +200,13 @@ const mapStateToProps = ({
   userId: auth.userDetails.userId,
   bestBeforeEmailList:supplies.bestBeforeEmailList,
   orgId: auth.userDetails.organizationId,
+  fetchingbestBeforeEmailList:supplies.fetchingbestBeforeEmailList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getBestBeforeEmailList,
-      deleteNewArrival,
+      deleteEmailList,
 
     },
     dispatch
