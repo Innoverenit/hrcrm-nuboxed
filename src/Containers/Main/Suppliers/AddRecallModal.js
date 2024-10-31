@@ -2,6 +2,7 @@ import React, { Component,lazy,Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import NewRecallStepper from "./NewRecallStepper";
+import NewRecallListStep1 from "./NewRecallListStep1"
 
 
 
@@ -21,12 +22,13 @@ class AddRecallModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader/>}>
-                    <NewRecallStepper
-                     translateText={this.props.translateText}
-                     selectedLanguage={this.props.selectedLanguage}
-                    />
                    
-                    </Suspense>
+                   
+                   <NewRecallListStep1
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage}
+                   />
+                   </Suspense>
                 </StyledDrawer>
             </div>
         );

@@ -162,7 +162,7 @@ const NewRecallListStep1 = (props) => {
 
     //     resetForm(); // Reset the form after submission
     // };
-    const [fields, setFields] = useState([{  supplierId: "", suppliesFullName: ""  }]); // Form fields state
+    const [fields, setFields] = useState([{  supplierId: "", suppliesFullName: "",batchNo:""  }]); // Form fields state
     const [formData, setFormData] = useState(null); // State to save submitted form data
   
     const addMoreFields = () => {

@@ -170,6 +170,10 @@ const initialState = {
     updateMaterialImage:false,
     updateMaterialImageError:false,
 
+
+    addingQualityCategory:false,
+    addingQualityCategoryError:false,
+
     updateToCatalogue: false,
     updateToCatalogueError: false,
 
@@ -564,6 +568,32 @@ export const suppliesReducer = (state = initialState, action) => {
                   deletingSuppliesDocumentDataError: true,
                   //addDeleteSuppliesModal: false,
               };
+
+
+
+
+
+              case types.ADD_QUALITY_CATEGORY_REQUEST:
+                return { ...state, addingQualityCategory: true };
+              case types.ADD_QUALITY_CATEGORY_SUCCESS:
+                return {
+                  ...state, addingQualityCategory: false, 
+                  materialCategorys: state.materialCategorys.map((item) => {
+                    if (item.categoryId === action.payload.categoryId) {
+                      return action.payload;
+                    } else {
+                      return item;
+                    }
+                  }),
+                  //materialCategorys: [action.payload, ...state.materialCategorys]
+                };
+              case types.ADD_QUALITY_CATEGORY_FAILURE:
+                return {
+                  ...state,
+                  addingQualityCategory: false,
+                  addingQualityCategoryError: true,
+                }
+                  
 
         case types.GET_DELETE_HISTORY_REQUEST:
             return { ...state, fetchingDeletedSuppliesHistory: true };

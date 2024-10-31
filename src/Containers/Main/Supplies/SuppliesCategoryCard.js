@@ -10,8 +10,9 @@ import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { BellOutlined, DeleteOutlined, EditOutlined, GifOutlined, PullRequestOutlined } from "@ant-design/icons";
 import SuppliesCategoryPUnblishToggle from "./SuppliesCategoryPUnblishToggle";
+import SuppliesAddQualityCheckModal from "./SuppliesAddQualityCheckModal"
 
 const SuppliesCategoryModal = lazy(() => import("./SuppliesCategoryModal"));
 
@@ -31,6 +32,8 @@ function SuppliesCategoryCard(props) {
   const [modalVisible, setModalVisible] = useState(false);
 
   const [modalVisible1, setModalVisible1] = useState(false);
+
+  const [modalVisible2, setModalVisible2] = useState(false);
   const [currentCategory, setCurrentCategory] = useState("");
 
   const openModal = () => {
@@ -39,6 +42,17 @@ function SuppliesCategoryCard(props) {
 
   const closeModal = () => {
     setModalVisible(false);
+  };
+
+
+
+
+  const openModal2 = () => {
+    setModalVisible2(true);
+  };
+
+  const closeModal2 = () => {
+    setModalVisible2(false);
   };
 
 
@@ -150,6 +164,9 @@ useEffect(() => {
       };
 
   
+      const handleSuppliesEditQualityModal = () => {
+        openModal2(); 
+      };
 
       const handleSave = async (item) => {
         console.log(item)
@@ -290,11 +307,21 @@ console.log("drb2",data)
                             </div>
 
 
-
+                            <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <BellOutlined
+                               onClick={() => {
+                                handleSuppliesEditQualityModal();
+                                handleSetCurrentCategory(item);
+                              }}
+                              
+                              />
+                              </div>
+                            </div>
 
                             <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                              <EditOutlined
+                              <PullRequestOutlined
                                onClick={() => {
                                 handleSuppliesQualityModal();
                                 handleSetCurrentCategory(item);
@@ -369,6 +396,18 @@ console.log("drb2",data)
           modalVisible1={modalVisible1}
           closeModal1={closeModal1}
           handleSuppliesQualityModal={handleSuppliesQualityModal}
+        />
+
+
+
+<SuppliesAddQualityCheckModal
+
+      translateText={props.translateText}
+      currentCategory={currentCategory}
+      selectedLanguage={props.selectedLanguage}
+          modalVisible2={modalVisible2}
+          closeModal2={closeModal2}
+          handleSuppliesEditQualityModal={handleSuppliesEditQualityModal}
         />
       </Suspense>
     </>

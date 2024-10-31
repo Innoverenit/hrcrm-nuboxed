@@ -3,12 +3,13 @@ import React, { lazy, Suspense } from "react";
 import SuppliesQualityCheckList from "./SuppliesQualityCheckList"
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import SuppliesQualityCheckData from "./SuppliesQualityCheckData"
+import SuppliesAddQualitySpecs from "./SuppliesAddQualitySpecs"
+//import SuppliesQualityCheckData from "./SuppliesQualityCheckData"
 
 //const  SuppliesCategoryForm  =lazy(()=>import("./SuppliesCategoryForm"));
 
 
-const SuppliesQualityCheckModal = (props) => {
+const SuppliesAddQualityCheckModal = (props) => {
 
   const { ...formProps } = props;
   return (
@@ -16,23 +17,25 @@ const SuppliesQualityCheckModal = (props) => {
       <StyledDrawer
         title="Quality Spec"
         width="60%"
-        visible={props.modalVisible1}
+        visible={props.modalVisible2}
         maskClosable={false}
         destroyOnClose
-        onClose={() => props.closeModal1()}
+        onClose={() => props.closeModal2()}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
   {/* <SuppliesQualityCheckList
    currentCategory={props.currentCategory}
   /> */}
-<SuppliesQualityCheckData
-currentCategory={props.currentCategory}
+<SuppliesAddQualitySpecs
+ currentCategory={props.currentCategory}
+ closeModal2={props.closeModal2}
 />
+
         </Suspense>
       </StyledDrawer>
     </>
   );
 };
 
-export default SuppliesQualityCheckModal;
+export default SuppliesAddQualityCheckModal;
