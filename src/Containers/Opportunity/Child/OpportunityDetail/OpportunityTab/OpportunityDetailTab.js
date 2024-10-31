@@ -168,6 +168,53 @@ class OpportunityDetailTab extends Component {
       documentUploadModal,
     } = this.props;
     const { deliveryInd, stageName } = this.props;
+    const renderTabContent = (key) => {
+      switch (key) {
+        case "1":
+          return     <div> 
+                  {this.state.recriutmentdashboard ? (
+                <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  <RecruitProJumpstart />
+                  <SummaryTable />
+                </Suspense>
+              ) :this.state.closedPopover ? 
+              (
+                <Suspense fallback={"Loading ..."}>
+                <RecruitmentClosedTable  opportunityId={opportunityId}/>
+                </Suspense>
+              ):this.state.deletePopover ? 
+                 
+                (
+                  <Suspense fallback={"Loading ..."}>
+                  <RecruitmentDeletedTable  opportunityId={opportunityId}/>
+                  </Suspense>
+                ):(
+                  <Suspense fallback={"Loading ..."}>
+                    {" "}
+                    <RecruitmentTable  opportunityId={opportunityId}/>
+                  </Suspense>
+                  
+                )}
+              </div>;
+        case "2":
+          return  <div>    <LinkedContact
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+         translatedMenuItems={this.props.translatedMenuItems}
+         /></div>;
+         case "3":
+          return  <div>     <LinkedDocuments opportunity={opportunity} 
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+          /></div>;
+          case "4":
+            return  <div>    </div>;
+        default:
+          return null;
+      }
+    };
     if(fetchingOpportunityDetailsById){
 return  <BundleLoader />
     }
@@ -275,7 +322,7 @@ return  <BundleLoader />
               key="1"
             >
                
-              {this.state.recriutmentdashboard ? (
+              {/* {this.state.recriutmentdashboard ? (
                 <Suspense fallback={"Loading ..."}>
                   {" "}
                   <RecruitProJumpstart />
@@ -299,7 +346,7 @@ return  <BundleLoader />
                   </Suspense>
                   
                 )}
-                  
+                   */}
             </TabPane>
             ):null}
              <TabPane
@@ -362,11 +409,11 @@ return  <BundleLoader />
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedContact
+                {/* <LinkedContact
                  translateText={this.props.translateText}
                  selectedLanguage={this.props.selectedLanguage}
                 translatedMenuItems={this.props.translatedMenuItems}
-                />
+                /> */}
               </Suspense>
             </TabPane>
             <TabPane
@@ -405,11 +452,11 @@ return  <BundleLoader />
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments opportunity={opportunity} 
+                {/* <LinkedDocuments opportunity={opportunity} 
                 translateText={this.props.translateText}
                 selectedLanguage={this.props.selectedLanguage}
               translatedMenuItems={this.props.translatedMenuItems}
-                />
+                /> */}
               </Suspense>
             </TabPane>
 
@@ -465,6 +512,9 @@ return  <BundleLoader />
               </Suspense>
             </TabPane> */}
           </StyledTabs>
+          <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
         </TabsWrapper>
         <Suspense fallback={null}>
 
