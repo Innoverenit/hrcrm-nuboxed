@@ -6,7 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
-  getProcureDetails,
+  getQuotationExcelDetails,
   deleteProcureData,
   getBrand,
   getModel,
@@ -86,7 +86,7 @@ function OpportunitytProcureDetails(props) {
     props.getSupplierSuppliesQuality();
     props.getLocationList(props.orgId);
     props.getSaleCurrency()
-    props.getProcureDetails(props.particularRowItem.quotationId);
+    props.getQuotationExcelDetails(props.particularRowItem.quotationId);
   }, []);
 
   const handleChange = (id, fieldName, value) => {
@@ -214,15 +214,15 @@ function OpportunitytProcureDetails(props) {
           <div className="md:w-[2rem]"></div>
         </div>
         <InfiniteScroll
-        dataLength={props.procureDetails.length}
+        dataLength={props.quotationPhoneDetails.length}
       //   next={handleLoadMore}
       // hasMore={hasMore}
-        loader={props.fetchingProcureDetails?<div class="flex justify-center">Loading...</div>:null}
+        loader={props.fetchingQuotationExcelDetails?<div class="flex justify-center">Loading...</div>:null}
         height={"79vh"}
         style={{scrollbarWidth:"thin"}}
         // endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-        {props.procureDetails.map((item, index) => {
+        {props.quotationPhoneDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center ">
 
@@ -468,11 +468,11 @@ function OpportunitytProcureDetails(props) {
 }
 
 const mapStateToProps = ({ distributor,suppliers,auth }) => ({
-  procureDetails: distributor.procureDetails,
+  quotationPhoneDetails: distributor.quotationPhoneDetails,
   orderDetailsId: distributor.orderDetailsId,
   brand: distributor.brand,
   model: distributor.model,
-  fetchingProcureDetails: distributor.fetchingProcureDetails,
+  fetchingQuotationExcelDetails: distributor.fetchingQuotationExcelDetails,
   categoryList:suppliers.categoryList,
   allProduct:distributor.allProduct,
   supplierSuppliesQuality:suppliers.supplierSuppliesQuality,
@@ -487,7 +487,7 @@ const mapDispatchToProps = (dispatch) =>
          getSaleCurrency,
       getAllProductList,
       getCategorylist,
-      getProcureDetails,
+      getQuotationExcelDetails,
       deleteProcureData,
       getBrand,
       getModel,
