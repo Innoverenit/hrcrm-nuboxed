@@ -17,6 +17,11 @@ const initialState = {
   fetchingEventListRangeByTypeError: false,
   eventListRangeByType: [],
 
+
+  fetchingEventAllListRangeByUserId:false,
+  fetchingEventAllListRangeByUserIdError:false,
+  eventallListRangeByUserId:[],
+
   fetchingOpportunityRecord: false,
   fetchingOpportunityRecordError: false,
   opportunityRecord:[],
@@ -200,6 +205,29 @@ export const EventReducer = (state = initialState, action) => {
         fetchingNotesListByEventId: false,
         fetchingNotesListByEventIdError: true,
       };
+
+
+
+
+
+
+      case types.GET_EVENT_ALL_LIST_RANGE_BY_USER_ID_REQUEST:
+        return { ...state, fetchingEventAllListRangeByUserId: true };
+      case types.GET_EVENT_ALL_LIST_RANGE_BY_USER_ID_SUCCESS:
+        return {
+          ...state,
+          fetchingEventAllListRangeByUserId: false,
+          // eventListRangeByUserId: action.payload,
+          eventallListRangeByUserId: [
+            ...state.eventallListRangeByUserId,
+            ...action.payload],
+        };
+      case types.GET_EVENT_ALL_LIST_RANGE_BY_USER_ID_FAILURE:
+        return {
+          ...state,
+          fetchingEventAllListRangeByUserId: false,
+          fetchingEventAllListRangeByUserIdError: true,
+        };
 
    
     /**

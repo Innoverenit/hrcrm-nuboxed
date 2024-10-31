@@ -1785,3 +1785,33 @@ export const deleteNewArrival = (orgId) => (dispatch) => {
       message.error("Something went wrong")
     });
 };
+
+
+
+
+
+export const addQualityCategory = (product, categoryId,cb) => (dispatch) => {
+  dispatch({ type: types.ADD_QUALITY_CATEGORY_REQUEST });
+  axios
+    .put(`${base_url2}/supplies/suppliescatagory/qualitySpecs/${categoryId}`, product, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_QUALITY_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_QUALITY_CATEGORY_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};

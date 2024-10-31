@@ -445,3 +445,32 @@ export const addeventLocation = (data,eventId, cb) => (dispatch, getState) => {
       });
     });
 };
+
+
+
+
+export const getEventAllListRangeByUserId = (orgId,pageNo, ) => (
+  dispatch
+) => {
+ 
+  axios
+    .get(`${base_url}/event/all/${orgId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_EVENT_ALL_LIST_RANGE_BY_USER_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_EVENT_ALL_LIST_RANGE_BY_USER_ID_FAILURE,
+        payload: err,
+      });
+    });
+};

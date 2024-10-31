@@ -717,9 +717,14 @@ const {
                     endDate: `${newEndDate}T20:00:00Z`,
                     startTime: 0,
                     endTime: 0,
-                    contactId: selectedContact,
-                    opportunityId:selectedOpportunity,
-                    customerId:selectedCustomer,
+                    customer:selectedCustomer,
+                    contacts:selectedValue === 'Investor'?selectedContactInvestor:selectedContact,
+                    oppertunity:selectedOpportunity,
+                    investorId:selectedInvestor,
+                    invOpp:selectedDeal,
+                    // contactId: selectedContact,
+                    // opportunityId:selectedOpportunity,
+                    // customerId:selectedCustomer,
                     remindInd: reminder ? true : false,
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },
@@ -895,7 +900,7 @@ const {
         placeholder="Search or select contact"
         optionFilterProp="children"
         loading={isLoadingContacts}
-      
+      mode="multiple"
         onChange={handleContactChange}
         disabled={!selectedCustomer}
       >
@@ -952,7 +957,7 @@ Investor
 
 <Select
         showSearch
-      
+       
         placeholder="Search or select investor"
         optionFilterProp="children"
         loading={isLoadingInvestor}
@@ -984,6 +989,7 @@ Investor
         optionFilterProp="children"
         loading={isLoadingContactInvestor}
         disabled={!selectedInvestor}
+        mode="multiple"
         //onFocus={handleSelectContactFocus}
         onChange={handleSelectChangeInvestorContact}
       >
