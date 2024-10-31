@@ -125,15 +125,15 @@ const AccountContactTable = (props) => {
                     <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins text-xs z-10">
                         <div className="w-[5.1rem] text-[#00A2E8] text-base md:w-[7.1rem]">
                         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
-                        <div className="w-[6.01rem] md:w-[6.01rem]">
-                        <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[1]}</div>
-                        <div className="w-[4.8rem] md:w-[3.8rem]">
-                              <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {translatedMenuItems[2]}</div>
-                        <div className="w-[5.9rem] md:w-[5.9rem]">
-                        <i className="fab fa-artstation text-[#b744b8]"></i>{translatedMenuItems[3]}</div>
+                        <div className="w-[6.01rem] md:w-[11.01rem]">
+                        <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '/>{translatedMenuItems[1]}</div>
+                        <div className="w-[4.8rem] md:w-[6.8rem]">
+                              <MobileFriendlyIcon className='!text-icon text-[#41ead4] '/> {translatedMenuItems[2]}</div>
+                        <div className="w-[5.9rem] md:w-[7.9rem]">
+                        <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[3]}</div>
                         <div className="w-[16.6rem] md:w-[19.6rem]">
                         <ApartmentIcon className="!text-icon text-[#f0386b] "/>{translatedMenuItems[4]}</div>
-                        <div className="w-[4.7rem] md:w-[4.7rem]">{translatedMenuItems[5]}</div>
+                        <div className="w-[4.7rem] md:w-[10.7rem]">{translatedMenuItems[5]}</div>
                         <div className=" w-[18.8rem] md:w-[18.8rem]">{translatedMenuItems[6]}</div>
                     </div>
 
@@ -152,10 +152,10 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[13.023rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex md:w-[19.023rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">{`${item.dialCode1 || ""} ${item.mobileNo || ""}`}</div>
                                 </div>
-                                <div className="flex md:w-[12.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex md:w-[19.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">{item.designationName}</div>
                                 </div>
 
@@ -230,7 +230,7 @@ const AccountContactTable = (props) => {
                                 <div className="flex md:w-[10.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <Select
-                                            style={{ width: "6rem" }}
+                                            style={{ width: "5rem" }}
                                             onChange={(currencyId) => handleChange1(currencyId, item.contactPersonId)}
                                         >
                                             {props.saleCurrencies.map((sd) => (
@@ -262,11 +262,11 @@ const AccountContactTable = (props) => {
                     </Button>
                 </div>
             ) : item.accessInd === 2 ? (
-                <b>
+                <b className="flex items-center text-[#32CD32] font-poppins text-xs w-[7rem]">
                    {translatedMenuItems[9]} {/* Login Applied */}
                     </b>
             ) : (
-                <b style={{ color: "#32CD32" ,font:"12px" }}>
+                <b className="flex items-center text-[#32CD32] font-poppins text-xs w-[7rem]">
                   {translatedMenuItems[10]}  {/* Login Approved */}
                     </b>
             )}

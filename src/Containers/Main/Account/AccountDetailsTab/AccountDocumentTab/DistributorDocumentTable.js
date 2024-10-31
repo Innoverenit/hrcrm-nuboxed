@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
 import {
     getDistributorTable,
 } from "../../AccountAction";
@@ -57,10 +60,14 @@ class DistributorDocumentTable extends Component {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                         <div className=" md:w-[0.5rem]"></div>
-                        <div className="text-[#00A2E8] text-base md:w-[7.4rem]">{translatedMenuItems[0]}</div>
-                        <div className=" md:w-[5.1rem]">{translatedMenuItems[1]}</div>
-                        <div className=" md:w-[8.8rem] ">{translatedMenuItems[2]}</div>
-                        <div className=" md:w-[8.8rem] ">{translatedMenuItems[3]}</div>
+                        <div className="text-[#00A2E8] text-base md:w-[7.4rem]">
+                        <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
+                        <div className=" md:w-[5.1rem]">
+                        <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[1]}</div>
+                        <div className=" md:w-[8.8rem] ">
+                        < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[2]}</div>
+                        <div className=" md:w-[8.8rem] ">
+                            {translatedMenuItems[3]}</div>
                      
 
 
