@@ -44,8 +44,8 @@ const AddCustomerProcurementModal = lazy(() => import("./AccountOrderTab/AddCust
 const AccountInvoiceTable = lazy(() => import("./AccountInvoiceTable"));//5
 const ErpNote = lazy(() => import("../../ErpNote/ErpNote"));
 const AddAccountOpportunityModal = lazy(() => import("./AddAccountOpportunityModal"));
-const LinkedOpportunityTable = lazy(() => import("./LinkedOpportunityTable"));//2
-const CustomerProcurementTable = lazy(() => import("./AccountOrderTab/CustomerProcurementTable"));//1
+const LinkedOpportunityTable = lazy(() => import("./LinkedOpportunityTable"));//3
+const CustomerProcurementTable = lazy(() => import("./AccountOrderTab/CustomerProcurementTable"));//2
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));

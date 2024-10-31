@@ -372,17 +372,18 @@ function AccountInvoiceTable(props) {
       }
     return (
         <>
-         <div class=" w-64 max-sm:w-24 ">
-        <Input
+         <div class=" w-[30vw] flex justify-end max-sm:w-24 ">
+     
+        <Input 
           placeholder={translatedMenuItems[5]}
-          width={"100%"}
+       
           suffix={suffix}
           onPressEnter={handleSearch}
           onChange={handleChanges}
         value={currentData}
         />
 
-<Button class="mt-1" type="primary" onClick={()=> setmodalMultiple(true)}>
+<Button type="primary" onClick={()=> setmodalMultiple(true)}>
       Create from multipule orders 
     </Button>
         </div>
@@ -399,7 +400,7 @@ function AccountInvoiceTable(props) {
         <>
         
 
-            <div className=' flex sticky  z-auto mt-1'>
+            <div className=' flex sticky  z-auto mt-3'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[86%] items-end p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
                   
@@ -409,7 +410,7 @@ function AccountInvoiceTable(props) {
                         <OnDeviceTrainingIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[1]} ID</div>
            
                         <div className=" md:w-[7.1rem]">
-                        <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />{translatedMenuItems[2]}</div>
+                        <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[2]}</div>
                
                         <div className=" md:w-[8rem]">{translatedMenuItems[6]}</div>
                         <div className=" md:w-[8rem]">

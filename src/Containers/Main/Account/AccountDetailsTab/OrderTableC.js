@@ -203,13 +203,13 @@ const {handleProcureNotesDrawerModal,
                         <div className="font-bold text-[#00A2E8] text-base w-[25rem] font-poppins  md:w-[25rem]">
                         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} </div>
                         <div className="font-bold w-[14.01rem] font-poppins text-xs md:w-[14.4rem]">
-                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]} ID</div>
+                        <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[1]} ID</div>
                         <div className="font-bold  w-[16rem] font-poppins text-xs md:w-[16.4rem]">
                         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[2]}</div>
                         <div className="font-bold  w-[7rem] font-poppins text-xs md:w-[7.4rem]">
                         <ContactPageIcon className='!text-icon  '  /> {translatedMenuItems[3]}</div>
                         <div className="font-bold w-[7.01rem] font-poppins text-xs md:w-[7.4rem]">
-                         <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
+                         <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
                         <div className="font-bold  w-[6rem] font-poppins text-xs md:w-[6.14rem]">
                         <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' /> {translatedMenuItems[5]}</div>
                       
@@ -232,7 +232,7 @@ const {handleProcureNotesDrawerModal,
             return (
                 <div>
                 <div
-className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 border-l-2 border-green-500 bg-[#eef2f9]
+className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 border-l-2 border-green-500 bg-[#eef2f9]
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
                         <div className=" flex   md:w-[12rem] max-sm:flex-row max-sm:justify-between items-center justify-start bg-[#eef2f9] h-8 ">

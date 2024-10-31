@@ -248,9 +248,9 @@ const AccountOrderTable = (props) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div >
-                                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                            <div className="flex rounded  mt-1 bg-white  items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                 <div class="flex ">
-                                                    <div className=" flex items-center   md:w-[2.56rem] max-sm:w-full  ">
+                                                    <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9]  md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -270,8 +270,8 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex items-center md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
-                                                        <div class=" text-xs font-poppins">
+                                                    <div className=" flex items-center justify-start ml-gap bg-[#eef2f9] h-8 md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                                                        <div class=" text-xs ml-gap items-center font-poppins">
                                                           
                                                                 <span
                                                                     class="underline cursor-pointer font-bold text-[#1890ff]"
@@ -297,7 +297,7 @@ const AccountOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex md:w-[4.81rem] text-xs items-center max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex items-center justify-start ml-gap bg-[#eef2f9] h-8 md:w-[4.81rem] text-xs  max-sm:flex-row w-full max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                                     <div className=" flex md:w-[6.31rem] text-xs max-sm:flex-row w-full max-sm:justify-between ">
@@ -305,7 +305,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
                                                     
 
-                                                    <div className=" flex md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex md:w-[4.9rem] items-center justify-start ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between ">
                                                         <div class=" font-poppins ">
                                                             <Badge
                                                                 class=" ml-2"
@@ -328,7 +328,7 @@ const AccountOrderTable = (props) => {
                                                             </Badge>
                                                         </div>
                                                     </div>
-                                                    <div className=" flex md:w-[5.9rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex md:w-[5.9rem] items-center justify-start ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div >
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
@@ -341,13 +341,13 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex  items-center  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex  items-center justify-start ml-gap bg-[#eef2f9] h-8  md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex  items-center  md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex items-center justify-start ml-gap bg-[#eef2f9] h-8 md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.finalPrice / 1000).toFixed(2)}k
@@ -356,7 +356,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex items-center  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                    <div className=" flex items-center justify-start ml-gap bg-[#eef2f9] h-8  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} /> {visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input
@@ -369,7 +369,7 @@ const AccountOrderTable = (props) => {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex  md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex  md:w-[6.06rem] items-center justify-start ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.orderId === particularRowData.orderId) ? (
@@ -625,7 +625,7 @@ const AccountOrderTable = (props) => {
             </div >
             
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded  py-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  bg-transparent  sticky z-10">
                 <div className='flex   justify-between w-[85%]  text-xs font-bold font-poppins'>
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
@@ -633,10 +633,10 @@ const AccountOrderTable = (props) => {
                          </div>
                         <div className=" md:w-[10.41rem] ml-2">
                         
-                             {translatedMenuItems[1]}ID
+                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[1]}ID
                         </div>
                         <div className=" md:w-[9.012rem]">
-                        {translatedMenuItems[13]}
+                        <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[13]}
                         </div>
                         <div className=" md:w-[9.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
@@ -648,7 +648,7 @@ const AccountOrderTable = (props) => {
                         <div className="md:w-[2.81rem]">
                         </div>
                         <div className="md:w-[7.91rem]">
-                        {translatedMenuItems[4]}
+                        <ContactPageIcon className='!text-icon'/> {translatedMenuItems[4]}
                         </div>
                         <div className="md:w-[6.11rem]">
                         {translatedMenuItems[5]}  
@@ -668,10 +668,10 @@ const AccountOrderTable = (props) => {
                         {translatedMenuItems[9]}   
                         </div>
                         <div className=" md:w-[8.12rem]">
-                        {translatedMenuItems[10]}  
+                        <GroupsIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[10]}  
                         </div>
                         <div className=" md:w-[8.02rem]">
-                        {translatedMenuItems[32]}   
+                        <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' />  {translatedMenuItems[32]}   
                         </div>
                         </div>
                     </div>
@@ -692,7 +692,7 @@ const AccountOrderTable = (props) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <div >
-                                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                            <div className="flex rounded  mt-1 bg-white  items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                                 <div class="flex ">
                                                     <div className=" flex items-center  md:w-[2.56rem] max-sm:w-full  ">
                                                         <Tooltip>

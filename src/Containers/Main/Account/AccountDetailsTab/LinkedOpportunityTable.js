@@ -246,7 +246,7 @@ const handleConfirm = (quotationId) => {
                         <div className="w-[14.8rem] md:w-[14.8rem] ">
                         <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[3]}</div>
                         <div className=":w-[7.8rem] md:w-[7.8rem]"> 
-                        <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
+                        <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
                         <div className="w-[8.7rem] md:w-[8.7rem]">
                         <ContactPageIcon className='!text-icon '/>   {translatedMenuItems[5]}</div>
                     
@@ -370,7 +370,7 @@ const handleConfirm = (quotationId) => {
                               setopenConvertModal(true)}}
                               >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
-                              <NextPlanIcon  className="!text-icon"/>
+                              <NextPlanIcon  className="mr-1 !text-icon"/>
                               {translatedMenuItems[13]} {/* Convert */}
                           
                               </div>
@@ -413,7 +413,7 @@ const handleConfirm = (quotationId) => {
                         <div className="w-[14.8rem] md:w-[14.8rem] ">
                         <LocationOnIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[3]}</div>
                         <div className="w-[7.8rem] md:w-[7.8rem]">
-                          <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' /> {translatedMenuItems[4]}</div>
+                          <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' /> {translatedMenuItems[4]}</div>
                         <div className="w-[8.7rem] md:w-[8.7rem]"> 
                           <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]}</div>           
                         <div className="w-[8.8rem] md:w-[8.8rem]">
@@ -532,7 +532,7 @@ const handleConfirm = (quotationId) => {
                   onClick={()=>{  handleRowItem(item); setopenConvertModal(true)}}
                   >
                   <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex justify-between items-center " >
-                  <NextPlanIcon  className="!text-icon"/>
+                  <NextPlanIcon  className=" mr-1 !text-icon"/>
                   {translatedMenuItems[13]}  {/* Convert */}
                        
                               </div>
