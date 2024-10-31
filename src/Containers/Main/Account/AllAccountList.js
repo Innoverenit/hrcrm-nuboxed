@@ -20,7 +20,14 @@ import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GolfCourseIcon from '@mui/icons-material/GolfCourse';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
 const AccountPulseModal = lazy(() => import("./AccountPulseModal"));
@@ -122,33 +129,35 @@ const AllAccountList = (props) => {
   ) : (
       <div className=' flex  sticky z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex max-sm:hidden  w-[90%]   justify-between p-1 bg-transparent  sticky  z-10">
+        <div className=" flex max-sm:hidden  w-[90%]   justify-between p-1 bg-transparent  sticky items-end  z-10">
         <div class=" flex justify-between text-xs font-poppins  font-bold  w-[94%]  ">
-            <div className=" w-[20.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  
-            {translatedMenuItems[0]}
+            <div className=" w-[22.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  
+            <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
             {/* Name */}
             </div>
             <div className=" w-[10.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]">
-              {translatedMenuItems[1]}
-            {/* Work */}</div>
-            <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
-            {translatedMenuItems[2]}
+            <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[1]}
+             {/* Work */}</div>
+            <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
+            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[2]}
             {/*category */}</div>
-            <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
-            {translatedMenuItems[3]}
+            <div className="w-[10.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
+            < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
             {/* type % */}</div>
-            <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
-            {translatedMenuItems[4]}
+            <div className="w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
+            <DynamicFeedIcon
+              className='!text-base  text-[#e4eb2f]'
+              /> {translatedMenuItems[4]}
             {/* Paymentdays % */}</div>
-            <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
-            {/* Club */}{translatedMenuItems[12]}
+            <div className="w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
+            <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {/* Club */}{translatedMenuItems[12]}
             </div>       
                 <div className="w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
-            {translatedMenuItems[11]}
-           {/* Owner */}        
+                <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[11]}
+           {/* credit */}        
             </div>
-            <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-          {translatedMenuItems[10]}
+            <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[10]}
             {/* Assigned */}          
             </div>      
             </div>
@@ -178,7 +187,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 `;
                   return (
                     <div>
-                    <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                    <div className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex  w-[14rem] max-xl:w-[11rem] border-l-2 border-green-500 bg-[#eef2f9] max-lg:w-[8rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-auto">

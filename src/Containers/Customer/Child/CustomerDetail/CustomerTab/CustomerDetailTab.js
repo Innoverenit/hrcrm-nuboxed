@@ -338,11 +338,7 @@ translatedMenuItems={this.props.translatedMenuItems}
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                {/* <LinkedDocuments
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}
-               translatedMenuItems={this.props.translatedMenuItems}
-                /> */}
+              
               </Suspense>
             </TabPane>      
                   <TabPane

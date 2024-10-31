@@ -23,8 +23,15 @@ import OpportuniyConvertDrawer from "./OpportuniyConvertDrawer";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { base_url2 } from "../../../../Config/Auth";
-
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 const AccountProcureDetailsModal = lazy(() => import('../AccountDetailsTab/AccountProcureDetailsModal'));
 
 
@@ -225,19 +232,26 @@ const handleConfirm = (quotationId) => {
     <>
      { props.user.repairInd === true &&(
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
+        <div className=" flex justify-between w-full p-1 bg-transparent  sticky  items-end z-10">
         <div className='flex   justify-between w-[81%]  text-xs font-bold font-poppins'>
-             <div class="text-[#00A2E8] text-base w-[6.55rem]"> {translatedMenuItems[0]}</div>
-                        <div className="  w-[11.4rem] md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
-                        <div className=" md:w-[8rem]">
-                        {translatedMenuItems[10]}  
+             <div class="text-[#00A2E8] text-base w-[6.55rem]">
+             <OnDeviceTrainingIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[0]}</div>
+                        <div className="  w-[11.4rem] md:w-[7.4rem]">
+                        <LightbulbIcon className="!text-icon text-[#bfa89e]" />  {translatedMenuItems[1]} ID</div>
+                        <div className="w-[8rem] md:w-[8rem]">
+                        <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[10]}  
                           </div>
-                        <div className=" md:w-[12.1rem]"> {translatedMenuItems[2]}</div>
-                        <div className=" md:w-[14.8rem] "> {translatedMenuItems[3]}</div>
-                        <div className="md:w-[7.8rem]"> {translatedMenuItems[4]}</div>
-                        <div className="md:w-[8.7rem]"> {translatedMenuItems[5]}</div>
+                        <div className="w-[12.1rem] md:w-[12.1rem]">
+                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}</div>
+                        <div className="w-[14.8rem] md:w-[14.8rem] ">
+                        <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[3]}</div>
+                        <div className=":w-[7.8rem] md:w-[7.8rem]"> 
+                        <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
+                        <div className="w-[8.7rem] md:w-[8.7rem]">
+                        <ContactPageIcon className='!text-icon '/>   {translatedMenuItems[5]}</div>
                     
-                        <div className="md:w-[8.8rem]"> {translatedMenuItems[8]}</div>
+                        <div className="md:w-[8.8rem] w-[8.8rem]"> 
+                           <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[8]}</div>
                         
                        </div>
                         </div>
@@ -257,7 +271,7 @@ const handleConfirm = (quotationId) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                        <div className="flex rounded mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                        <div className="flex rounded mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
@@ -387,23 +401,24 @@ const handleConfirm = (quotationId) => {
      )}
      { props.user.moduleMapper.ecomModInd === true &&(
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent  sticky  z-10">
-        <div className='flex   justify-between w-[86%]  text-xs font-bold font-poppins'>
+        <div className=" flex justify-between w-full p-1 bg-transparent  sticky  items-end z-10">
+        <div className='flex   justify-between w-[81%]  text-xs font-bold font-poppins'>
 <div class="text-[#00A2E8] text-base w-[6.55rem]"> {translatedMenuItems[9]}</div>
-<div className=" md:w-[7.4rem]"> {translatedMenuItems[1]} ID</div>
-<div className=" md:w-[8rem]">
-{translatedMenuItems[10]}
-                        </div>
-                        <div className=" md:w-[12.1rem]"> {translatedMenuItems[2]}</div>
-                        <div className=" md:w-[14.8rem] "> {translatedMenuItems[3]}</div>
-                        <div className="md:w-[7.8rem]"> {translatedMenuItems[4]}</div>
-                        <div className="md:w-[8.7rem]"> {translatedMenuItems[5]}</div>           
-                        <div className="md:w-[8.8rem]"> {translatedMenuItems[8]}</div>
-                      
-                   </div>
-                     
-
-
+<div className="w-[7.4rem] md:w-[7.4rem]"> 
+<LightbulbIcon className="!text-icon text-[#bfa89e]" />{translatedMenuItems[1]} ID</div>
+           <div className="w-[8rem] md:w-[8rem]">
+                      <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[10]}  </div>
+                        <div className=" w-[12.1rem] md:w-[12.1rem]"> 
+                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[2]}</div>
+                        <div className="w-[14.8rem] md:w-[14.8rem] ">
+                        <LocationOnIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[3]}</div>
+                        <div className="w-[7.8rem] md:w-[7.8rem]">
+                          <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' /> {translatedMenuItems[4]}</div>
+                        <div className="w-[8.7rem] md:w-[8.7rem]"> 
+                          <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]}</div>           
+                        <div className="w-[8.8rem] md:w-[8.8rem]">
+                           <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[8]}</div>                   
+                   </div>                   
                     </div>
     
                     <InfiniteScroll
@@ -422,11 +437,11 @@ const handleConfirm = (quotationId) => {
                                     const date1 =  dayjs(item.deliveryDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                      <div className="flex rounded  mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                      <div className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex items-center  md:w-[3.56rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                                            <div className=" flex  items-center  md:w-[3.56rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                                       <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -443,13 +458,13 @@ const handleConfirm = (quotationId) => {
                                                                               </Tooltip>
                                                                           </div>
                       
-                                              <div class="max-sm:w-full text-xs items-center justify-start ml-gap bg-[#eef2f9] h-8  md:w-[8.02rem]">
+                                                                          <div class="max-sm:w-full flex  md:w-[8.02rem] items-center justify-start ml-gap bg-[#eef2f9] h-8">
                                                 <Tooltip>
-                                                  <div class="font-bold max-sm:w-full   flex md:flex flex-row text-xs">
+                                                  <div class="max-sm:w-full   flex md:flex flex-row text-xs">
                                                   <span
-                                                                                          class="underline font-bold cursor-pointer text-[#1890ff] justify-start ml-gap"
+                                                                                          class="underline cursor-pointer font-bold text-[#1890ff] ml-gap justify-start "
                                                                                           onClick={() => {
-                                                                                              handleRowItem(item);
+                                                                                            handleRowItem(item);
                                                                                               props.handleProcureDetailsModal(true);
                                                                                           }}
                                                                                       >{item.newOrderNo}</span>

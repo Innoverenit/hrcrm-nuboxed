@@ -9,12 +9,14 @@ import { Link } from "../../../../../../Components/Common";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import { bindActionCreators } from "redux";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import {
   MultiAvatar,
   MultiAvatar2,
 
 } from "../../../../../../Components/UI/Elements";
-import DateRangeIcon from '@mui/icons-material/DateRange';
+
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import StairsIcon from '@mui/icons-material/Stairs';
@@ -75,7 +77,8 @@ function OpportunityTable(props) {
         <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> 
            <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
         {/* Quotation ID */}
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <ApartmentIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
         {/* Prospect */}
         <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> <ContactPageIcon className='!text-icon  '  /> 
           {translatedMenuItems[2]}</div>

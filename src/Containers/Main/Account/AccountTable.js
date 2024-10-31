@@ -11,6 +11,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GolfCourseIcon from '@mui/icons-material/GolfCourse';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import {
   getCustomerByUser,
   setEditDistributor,
@@ -174,10 +177,10 @@ function AccountTable(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-white" >
-          <div className=" flex max-sm:hidden   w-[96%]  justify-between p-1 bg-transparentsticky  z-10">
+          <div className=" flex max-sm:hidden   w-[91%]  justify-between p-1 bg-transparentsticky items-end z-10">
            <div class=" flex justify-between text-xs font-poppins  font-bold  w-[100%]  ">
             <div className="w-1"></div>
-            <div className=" w-[16.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
+            <div className=" w-[12.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
             <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
             {/* Name */}
             </div>
@@ -193,16 +196,18 @@ function AccountTable(props) {
             < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
           {/* Type */}
              </div>
-             <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
-            {translatedMenuItems[20]}
+             <div className="w-[4.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
+             <DynamicFeedIcon
+              className='!text-base  text-[#e4eb2f]'
+              />  {translatedMenuItems[20]}
           {/* Orders */}
              </div>
-             <div className="w-[6.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
+             <div className="w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
              <LightbulbIcon className="!text-icon text-[#84a59d]"/>  {translatedMenuItems[21]}
           {/* Quotation*/}
              </div>
              <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
-            {/* Club */} {translatedMenuItems[17]}
+            {/* Club */}  <GolfCourseIcon className='!text-base   text-[#f42c04]'/> {translatedMenuItems[17]}
          
             </div> 
 
@@ -212,10 +217,10 @@ function AccountTable(props) {
             </div>
            {/* "billingaddress" */}
            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-          {translatedMenuItems[8]}
+           <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[8]}
             {/* Credit */}          
             </div>
-  <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+  <div className="w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
   <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[7]}
             {/* Assigned */}          
             </div>         
@@ -250,9 +255,9 @@ function AccountTable(props) {
             `;
                   return (
                     <div>
-                      <div className="flex  justify-between  bg-white mt-1 h-8 items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
+                      <div className="flex  justify-between  bg-white mt-1 py-1 items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
-                          <div className=" flex w-[13rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
+                          <div className=" flex w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
                               <div>
                                 <MultiAvatar
@@ -287,9 +292,9 @@ function AccountTable(props) {
                         
                             </div>
                           </div>
-                          <div className=" flex  items-center justify-center h-8 ml-gap  bg-[#eef2f9] w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
+                          <div className=" flex  items-center justify-start h-8 ml-gap  bg-[#eef2f9] w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
 
-                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
+                            <div class="flex ml-gap text-xs items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
                               {item.dialCode} {item.phoneNo}
                             </div>
 
@@ -297,14 +302,14 @@ function AccountTable(props) {
 
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex items-center justify-center max-sm:w-auto w-[10.2rem] max-xl:w-[5.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          <div className=" flex items-center justify-start max-sm:w-auto w-[10.2rem] max-xl:w-[5.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class="flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {/* {item.url} */}
                               {item.dcategoryName}
                             </div>
                           </div>
-                          <div className=" flex items-center justify-center  max-sm:w-auto w-[8.2rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          <div className=" flex items-center justify-start  max-sm:w-auto w-[8.2rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clientName}
 
                             </div>
@@ -389,8 +394,7 @@ function AccountTable(props) {
                                         
                       <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                            <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;
-                            
+                            <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
                           <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.currencyPrice}
@@ -398,7 +402,7 @@ function AccountTable(props) {
                             </div>                  
                         </div>
 
-                        <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[4.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[2.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {/* Assigned */}
                                   {item.assignToUser?
                                   <span>
@@ -408,10 +412,9 @@ function AccountTable(props) {
             imgHeight={"1.8rem"}
           />
           </span>:""}
-           
-                                  </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">   
+                      </div>
 
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">   
                               <div className=" flex items-center justify-center bg-[#eef2f9] h-8  ml-gap  max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                                 <Tooltip title={translatedMenuItems[12]}>

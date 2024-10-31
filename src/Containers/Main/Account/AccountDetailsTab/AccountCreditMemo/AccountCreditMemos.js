@@ -8,6 +8,10 @@ import {base_url2} from "../../../../../Config/Auth";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 function AccountCreditMemos(props) {
 
@@ -24,12 +28,12 @@ function AccountCreditMemos(props) {
             setLoading(true); 
             const itemsToTranslate = [
 
-            "248",  // Customer
-             "660" ,// Order #
-             "1169" ,// Invoice
-             "926" ,  // Transaction
-             "71" ,  // Type
-             "74" ,   // Date
+            "248",  // Customer 0
+             "660" ,// Order # 1
+             "1169" ,// Invoice 2
+             "926" ,  // Transaction 3
+             "71" ,  // Type 4
+             "74" ,   // Date 5
              "929" ,  // Amount
              "86" ,  // "Mode
              "1085" , // Received
@@ -161,23 +165,23 @@ function AccountCreditMemos(props) {
     <>
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
-            {/* <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}</div> */}
-            <div className="text-[#00A2E8] text-base  w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]} #</div>
-            <div className=" w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[2]}</div>
-            {/* <div className=" w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[3]} ID</div> */}
-            {/* <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[4]}</div> */}
-            <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div>
-            <div className="w-[4.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div>
-            {/* <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div>
-            <div className="w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div> */}
-            <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold text-xs font-poppins sticky items-end  z-10">
+            <div className="text-[#00A2E8] text-base  w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]} </div>
+            <div className=" w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <ReceiptIcon className="!text-icon text-[#b91372]"/>{translatedMenuItems[2]}</div>         
+            <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {/* Date */}
+            <DateRangeIcon className='!text-icon'  /> {translatedMenuItems[5]}</div>
+            <div className="w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {/* Amount */}
+            <CurrencyExchangeIcon className="!text-icon text-[#b91372]"/> {translatedMenuItems[6]}</div>         
+            <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <DateRangeIcon className='!text-icon '  />  {translatedMenuItems[9]}</div>   {/* Created */}
           </div>
           <div className=" overflow-scroll h-[73vh]">
             {data1.map((item) => {
               return (
                 <div>
-                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  <div className="flex rounded justify-between mt-1 bg-white py-1 items-center  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]   w-[19.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
