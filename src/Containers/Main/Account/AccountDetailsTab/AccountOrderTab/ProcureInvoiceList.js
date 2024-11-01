@@ -137,23 +137,23 @@ function ProcureInvoiceList (props) {
                     <div className=" flex justify-between w-[91.5%] p-1 bg-transparent font-bold  font-poppins text-xs sticky z-10">
                    
                     <div class=" text-[#00A2E8] text-base w-[9.5rem]">
-                    {props.translatedMenuItems[12]} ID 
+                    {props.translatedMenuItems[14]} ID 
                         </div>
                         <div className=" md:w-[7.4rem]">
-                            {props.translatedMenuItems[14]}
-                             {/*value*/}
+                            {props.translatedMenuItems[15]}
+                            
                             </div>
                         <div className=" md:w-[7.4rem]">
-                            {props.translatedMenuItems[13]} ID
-                             {/* Track ID  */}
+                            {props.translatedMenuItems[16]} 
+                           
                             </div>
                          
                             <div className=" md:w-[7.4rem]">
-                            {props.translatedMenuItems[8]} 
-                             {/*Ship */}
+                            {props.translatedMenuItems[17]} 
+                            
                             </div>
-                        <div className=" md:w-[7.1rem]">
-                            {props.translatedMenuItems[6]} 
+                        <div className=" md:w-[12.1rem]">
+                            {props.translatedMenuItems[18]} 
                         </div>
                     </div>
                     <div class="h-[78vh]">
@@ -187,11 +187,17 @@ function ProcureInvoiceList (props) {
                                                     </div>
 
                                                     <div className=" flex   w-[11rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                       
+                                                       {item.totalValue}
                                                      
-                                                       </div>   {/*Value */}
-                                                    
-                                                   
+                                                       </div>   
+                                                       <div className=" flex   w-[11rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                       {item.remainingTotalValue}
+                                                     
+                                                       </div> 
+                                                       <div className=" flex   w-[11rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                       
+                                                   {item.paidInd ? "Paid":"Unpaid"}
+                                                    </div>
                                                     <div className=" flex  w-[12.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {editsuppliesId === item.procureOrderInvoiceId ? (
@@ -203,7 +209,7 @@ function ProcureInvoiceList (props) {
                        
                     ) : (
                       <div className="font-normal text-sm  font-poppins">
-                        <div> {item.trackId}</div>
+                        <div> {item.trackId?item.trackId:"No Data"}</div>
                       </div>
                     )}
                                                         </div>
@@ -230,10 +236,7 @@ function ProcureInvoiceList (props) {
                                                         </div>
                                                     </div>
                                                    
-                                                       <div className=" flex   w-[11rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                       
-                                                   {item.paidInd ? "Paid":"Unpaid"}
-                                                    </div>
+                                                   
                                                                                                     </div>
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             <div className=" flex w-20 items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[6rem] max-sm:flex-row  max-sm:justify-between ">

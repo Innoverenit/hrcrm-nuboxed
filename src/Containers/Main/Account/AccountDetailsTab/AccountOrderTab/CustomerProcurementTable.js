@@ -109,6 +109,11 @@ function CustomerProcurementTable(props) {
                "100", // New11
                "142", // "Status"12
                "14", //Category/13
+               "1169",//Invoice
+               "218",//Value
+               "1093",//Balance
+               "142",//Status
+               "1486",//Track//18
 
           ];
     

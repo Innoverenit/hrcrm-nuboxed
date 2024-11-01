@@ -358,23 +358,20 @@ const handleGenerateInvoice= async () => {
     <>
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[83vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className="flex justify-between font-bold font-poppins text-xs w-[99%]   p-1 bg-transparent  sticky z-10">
-        <div className="w-[2.5%]">
- 
-          </div>
-          <div className="w-[10.4%] md:w-[10.4%]">
+          <div className="w-[18.2rem] ">
         {translatedMenuItems[13]}
           </div>
 
-        <div className=" w-[7.4%] md:w-[7.4%]">
+        <div className=" w-[5.2rem] ">
         {translatedMenuItems[0]} {/* Category" /> */}
           </div>
-          <div className="w-[7.4%] md:w-[7.4%]">
+          <div className="w-[6.2rem] ">
           {translatedMenuItems[1]}{/* Brand" /> */}
           </div>
-          <div className="w-[7.1%] md:w-[7.1%]">
+          <div className="w-[4.2rem] ">
           {translatedMenuItems[2]} {/* Model" /> */}
           </div>
-          <div className="w-[7.1%] md:w-[7.1%]">
+          <div className="w-[4.6rem] ">
           {translatedMenuItems[3]} {/* Attribute" /> */}
           </div>
 
@@ -388,19 +385,19 @@ const handleGenerateInvoice= async () => {
           {/* <div className=" w-[8%] md:w-[8%]">
           {translatedMenuItems[6]}  Specs  
           </div> */}
-          <div className="w-[4.8%] md:w-[5.8%]">
+          <div className="w-[6.21rem] ">
           {translatedMenuItems[8]} {/*Price" /> */}
           </div>
-          <div className="w-[5%] md:w-[5%]">
+          <div className="w-[5.21rem] ">
           {translatedMenuItems[7]} {/* Units" /> */}
           </div>
-          <div className="w-[5%] md:w-[5%]">
+          <div className="w-[5.31rem] ">
           {translatedMenuItems[10]} 
           </div>
-          <div className=" w-[5.8%] md:w-[5.8%]">
+          <div className=" w-[5.8rem] ">
           {translatedMenuItems[9]}
           </div>
-              <div className="w-[5%] md:w-[6%]">
+              <div className="w-[5.01rem] ">
           Supplies ID
           </div>
       
@@ -419,35 +416,35 @@ const handleGenerateInvoice= async () => {
         props.procureDetails.map((item, index) => {
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1">
-              <div className="flex  md:w-[0.5%] max-sm:flex-row w-[2.5%] max-sm:justify-between">
+              {/* <div className="flex  md:w-[0.5%] max-sm:flex-row w-[2.5%] max-sm:justify-between">
               <div className="text-xs  font-poppins">
            <MultiAvatar
            imageId={item.imageId}
            />
            </div>
-              </div>
-              <div className="flex ml-1 max-sm:flex-row truncate w-36 h-4 max-sm:justify-between">
+              </div> */}
+              <div className="flex items-center h-8 ml-gap bg-[#eef2f9]   max-sm:flex-row truncate w-[20rem]  max-sm:justify-between">
               <div className="text-xs font-poppins">
            {item.productFullName ? item.productFullName : "No Data"}
            </div>
               </div>
 
-<div className="flex max-sm:flex-row truncate w-36 h-4 max-sm:justify-between">
+<div className="flex max-sm:flex-row items-center h-8 ml-gap bg-[#eef2f9]  truncate w-32  max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                     {item.category ? item.category : "No Data"}
                 </div>
               </div>
-              <div className="flex  md:w-[5%] max-sm:flex-row w-[5%] max-sm:justify-between">
+              <div className="flex  md:w-[5rem] items-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-[5rem] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                                   {item.brandName ? item.brandName:"No Data"}
+                                   {item.brand ? item.brand:"No Data"}
                 </div>
               </div>
-              <div className="flex  md:w-[4%] max-sm:flex-row w-[7%] max-sm:justify-between">
+              <div className="flex  md:w-[15.2rem] items-center h-8 ml-gap bg-[#eef2f9]  truncate max-sm:flex-row w-[7%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                             {item.model ? item.model:"No Data"}
                 </div>
               </div>
-              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+              <div className="flex  md:w-[3rem] items-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {item.attribute ? item.attribute :"No Data"}
                 </div>
@@ -455,13 +452,13 @@ const handleGenerateInvoice= async () => {
               {/* <div className="flex  md:w-[4%] max-sm:flex-row w-[5%] max-sm:justify-between">                          
                   <div className=" text-xs  font-poppins">{item.quality}</div>      
               </div> */}
-              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+              {/* <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 
                  
                   {item.location?item.location:"No Data"}
                 </div>
-              </div>
+              </div> */}
               {/* <div className="flex  md:w-[4%]  max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   
@@ -469,13 +466,13 @@ const handleGenerateInvoice= async () => {
                 </div>
               </div> */}
 
-            <div className="flex   md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+            <div className="flex   md:w-[5.1rem] items-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                  
 <div className=" text-xs  font-poppins">{item.price?item.price:"No Data"}{item.price ? item.currency:""} </div>
                 </div>
               </div>
-              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+              <div className="flex  md:w-[3rem] items-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {item.unit}
                     
@@ -484,11 +481,11 @@ const handleGenerateInvoice= async () => {
                  
                 </div>
               </div>
-              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+              <div className="flex  md:w-[5.8rem] items-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                 {/* {item.reaminingInvoiceUnit === 0 ? `$` : */}
                 <input
-  placeholder="Invoice Units"
+  placeholder="Units"
   style={{ border: "1px solid grey",width:"4rem" }}
   min="1"
   value={inputValues[item.id] || ''}
@@ -500,15 +497,18 @@ const handleGenerateInvoice= async () => {
              
                 </div>
               </div>
-              <div className="flex  md:w-[4%] max-sm:flex-row w-[4%] max-sm:justify-between">
+              <div className="flex  md:w-[7rem] items-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-[4%] max-sm:justify-between">
                 <div className="text-xs  font-poppins">
-                {item.reaminingInvoiceUnit}
-                
+                {item.reaminingInvoiceUnit ? item.reaminingInvoiceUnit :"No Data"}
                 </div>
               </div>
-             
-           
-              <div className="flex justify-end  max-sm:flex-row max-sm:w-auto">
+
+              <div className="flex items-center h-8 ml-gap bg-[#eef2f9]   md:w-[7rem] max-sm:flex-row w-[4%] max-sm:justify-between">
+                <div className="text-xs  font-poppins">
+                {item.productId ? item.productId :"No Data"}
+                </div>
+              </div>
+              <div className="flex justify-end w-4 items-center h-8 ml-gap bg-[#eef2f9]   max-sm:flex-row max-sm:w-auto">
                
                 <div>
                   <StyledPopconfirm
@@ -535,8 +535,8 @@ const handleGenerateInvoice= async () => {
                 <div className="text-xs  font-poppins shadow-sm">
                    <input
                   //  className=" border-red-600 h-6 shadow-sm "
-                   placeholder="invoice"
-                   style={{border:"1px solid red",height:"1.5rem", }}
+                   placeholder="invoice ID"
+                   style={{border:"1px solid red",height:"2rem", }}
                    type="text"
                    value={invoices}
                    onChange={(e) => setInvoices(e.target.value)}
@@ -544,7 +544,7 @@ const handleGenerateInvoice= async () => {
                 </div>
                 <div className="ml-2 ">
                 <Select
-                     style={{width:"18rem"}}
+                     style={{width:"9rem"}}
                      placeholder="Apply Credit"
                       value={CreditMemo}
                       onChange={(value) => handleCreditMemo(value)}
@@ -571,7 +571,7 @@ const handleGenerateInvoice= async () => {
                    
               </div>
               </div>
-          
+             
           </InfiniteScroll>
       </div>
     </>
