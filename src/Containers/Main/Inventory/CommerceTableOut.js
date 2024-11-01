@@ -746,7 +746,9 @@ import {
   handlePickupDateModal,
   updateDispatchInspectionButton,
   handleCreateAWB,
-  handleInventoryDispatchModal
+  handleInventoryDispatchModal,
+  handleCreateAddPack,
+  handlepackId
 } from "./InventoryAction"
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import { withRouter } from "react-router";
@@ -758,6 +760,9 @@ import RefurbishNoteAll from "../Refurbish/RefurbishNoteAll";
 import DispatchPackedToggle from "./Child/InventoryDetails/Dispatch/DispatchPackedToggle";
 import DispatchValidationToggle from "./Child/InventoryDetails/Dispatch/DispatchValidationToggle";
 import DispatchOrderAwbModal from "./Child/InventoryDetails/Dispatch/DispatchOrderAwbModal";
+import AddpackDrawer from "./AddpackDrawer";
+import AddpackID from "./AddpackID";
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 // Repair -Dis-2
 
 
@@ -1272,7 +1277,7 @@ const AWBtst=[
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                           <div className=" flex  w-[7.2rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                            <div class="text-xs flex  font-bold underline font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
+                            <div class="text-xs flex items-center font-bold underline font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
                               <div
                                 onClick={() => {
                                   handleRowData(item);
@@ -1323,18 +1328,26 @@ const AWBtst=[
                                                                 <Button
                                                                     style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
                                                                     class=" bg-green-500"
-                                                                    // onClick={() => {
-                                                                    //     handleCheckAwb();
-                                                                    //     handleSetParticularOrderData(item)
-                                                                    // }
-                                                                    // }
+                                                                    onClick={() => {
+                                                                       
+                                                                      props.handleCreateAddPack(true);
+                                                                      handleRowData(item)
+                                                                  }
+                                                                  }
                                                                 ><span className='!text-[#faad14]'>
                                                                   Add Pack
                                                                   </span></Button>
                                                            
                                                         </div>
                                                     </div>
-
+                                                    <div>
+                                                               <GpsFixedIcon className="!cursor-pointer"
+                                                                onClick={() => {
+                                                                  props.handlepackId(true);
+                                                                  handleRowData(item)              
+                                                              }}
+                                                               />
+                                                                   </div>
                         </div>
 
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
@@ -1473,6 +1486,20 @@ const AWBtst=[
         addCreateAwb={props.addCreateAwb}
         handleCreateAWB={props.handleCreateAWB}
       />
+       <AddpackDrawer
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+        rowData={rowData}
+        handleCreateAddPack={props.handleCreateAddPack}
+        addPackData={props.addPackData}
+      />
+       <AddpackID
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+        rowData={rowData}
+        handlepackId={props.handlepackId}
+        addPackDataID={props.addPackDataID}
+      />
     </>
   );
 }
@@ -1489,6 +1516,8 @@ const mapStateToProps = ({ shipper, inventory, auth, dispatch,refurbish }) => ({
   fetchingDispatchList: inventory.fetchingDispatchList,
   addCreateAwb: inventory.addCreateAwb,
   productioNoteModal: refurbish.productioNoteModal,
+  addPackData:inventory.addPackData,
+  addPackDataID:inventory.addPackDataID
   // locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
 });
 
@@ -1503,6 +1532,8 @@ const mapDispatchToProps = (dispatch) =>
       handleCreateAWB,
       handleInventoryDispatchModal,
       handleProductionNotesModal,
+      handleCreateAddPack,
+      handlepackId
     },
     dispatch
   );

@@ -225,7 +225,7 @@ function AccountInvoiceTable(props) {
                    <input
                   //  className=" border-red-600 h-6 shadow-sm "
                    placeholder="invoice"
-                   style={{border:"1px solid red",height:"1.5rem", }}
+                   style={{border:"1px solid red",height:"2rem", }}
                    type="text"
                    value={invoices}
                    onChange={(e) => setInvoices(e.target.value)}

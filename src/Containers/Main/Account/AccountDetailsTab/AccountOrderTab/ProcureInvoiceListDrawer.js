@@ -8,7 +8,7 @@ const ProcureInvoiceList =lazy(()=> import("./ProcureInvoiceList"));
 
 const ProcureInvoiceListDrawer = (props) => {
     const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "70%";
+    const drawerWidth = isSmallScreen ? "90%" : "89%";
     return (
         <>
             <StyledDrawer  
