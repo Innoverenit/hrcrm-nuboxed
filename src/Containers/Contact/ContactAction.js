@@ -1603,7 +1603,30 @@ export const addContactAddress = (data,type,id) => (dispatch) => {
     });
 };
 
-
+export const getTeamUserList = (reptMngrId) => (dispatch) => {
+  dispatch({ type: types.GET_TEAM_USERLIST_REQUEST });
+  axios
+    .get(`${base_url}/employee/user-list/reptMngr/${reptMngrId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TEAM_USERLIST_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_TEAM_USERLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 
 

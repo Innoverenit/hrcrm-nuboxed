@@ -1180,7 +1180,12 @@ export const contactReducer = (state = initialState, action) => {
         fetchingContactActivityCount: false,
         fetchingContactActivityCountError: true,
       };
-
+      case types.GET_TEAM_USERLIST_REQUEST:
+        return {
+          ...state,
+          fetchingTeamUserList: true,
+          fetchingTeamUserListError: false,
+        };
 
       case types.GET_CONTACT_ALL_RECORDS_REQUEST:
         return { ...state, fetchingContactAllRecords: true };

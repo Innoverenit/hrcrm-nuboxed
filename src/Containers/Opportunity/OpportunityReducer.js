@@ -1456,6 +1456,8 @@ export const OpportunityReducer = (state = initialState, action) => {
         updatingRecruitmentError: true,
       };
 
+   
+
     case types.HANDLE_REACT_SPEECH_MODAL:
       return { ...state, addSpeechModal: action.payload };
 
@@ -1581,6 +1583,12 @@ export const OpportunityReducer = (state = initialState, action) => {
         fetchingRecruiterRequirementError: true,
       };
 
+      case types.GET_TEAM_USERLIST_REQUEST:
+        return {
+          ...state,
+          fetchingTeamUserList: true,
+          fetchingTeamUserListError: false,
+        }; 
     case types.GET_OPPORTUNITY_RECORD_REQUEST:
       return { ...state, fetchingOpportunityRecord: true };
     case types.GET_OPPORTUNITY_RECORD_SUCCESS:

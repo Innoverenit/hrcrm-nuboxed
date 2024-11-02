@@ -31,7 +31,8 @@ import {
   emptyContact,
   handleContactPulseDrawerModal,
   handleHospitalUploadModal,
-  handleContactAddressDrawerModal
+  handleContactAddressDrawerModal,
+  getTeamUserList
 } from "../../ContactAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -91,6 +92,7 @@ function ContactTeamCardList(props) {
     })
     props.getTeamContact(props.userId, pageNo);
     setPageNo(pageNo + 1);
+    props.getTeamUserList(props.userId)
   }, []);
 
   useEffect(()=>{
@@ -212,7 +214,9 @@ if (loading) {
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
        <div> Search team Member</div>
         </div>
-        <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex rounded flex-col w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        {props.teamUserList.map((item,index) =>{
+          return (
          <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                   text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center flex-no-wrap h-16">
@@ -229,8 +233,7 @@ if (loading) {
           
           <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
         
-    Itisri Chaudhury
-
+          {item.fullName} 
         </div> 
         </div>
           
@@ -239,13 +242,13 @@ if (loading) {
         <div className="flex flex-col max-sm:justify-between ">
           
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-                97886556738              </div>
+              {item.mobileNo}                     </div>
             
           <div>
           <div class="font-medium text-xs ">
        
               <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-               itisrichudhuryiti@gmail.com
+                       {item.emailId}  
               </div>
            
             
@@ -256,7 +259,8 @@ if (loading) {
       
        
       </div>
-
+  )
+})}
         </div>
         </div>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -668,6 +672,7 @@ const mapStateToProps = ({
   designations,
   departments,
   opportunity,
+  customer
 }) => ({
   userId: auth.userDetails.userId,
   teamContact: contact.teamContact,
@@ -685,6 +690,7 @@ const mapStateToProps = ({
   fetchingTeamContact:contact.fetchingTeamContact,
   hospitalUploadModal: contact.hospitalUploadModal,
   addDrawerContactAddressModal:contact.addDrawerContactAddressModal,
+  teamUserList:customer.teamUserList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -703,7 +709,8 @@ const mapDispatchToProps = (dispatch) =>
       handleContactEmailDrawerModal,
       emptyContact,
       handleHospitalUploadModal,
-      handleContactAddressDrawerModal
+      handleContactAddressDrawerModal,
+      getTeamUserList
     },
     dispatch
   );

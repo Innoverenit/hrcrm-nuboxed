@@ -113,17 +113,7 @@ class InventoryDetailTabO extends PureComponent {
                     {/* Dispatch */}  {this.props.translatedMenuItems[18]}
 
                   </span>
-                  {/* {activeKey === "2" && (
-                    <>
-                      <Tooltip title="Dispatch">
-                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                          onClick={() => this.props.handleAddDispatchModal(true)}
-                          size="14px"
-                          style={{ verticalAlign: "center", marginLeft: "5px" }}
-                        />
-                      </Tooltip>{" "}
-                    </>
-                  )} */}
+                
                 </>
               }
               key="2"

@@ -762,7 +762,9 @@ import DispatchValidationToggle from "./Child/InventoryDetails/Dispatch/Dispatch
 import DispatchOrderAwbModal from "./Child/InventoryDetails/Dispatch/DispatchOrderAwbModal";
 import AddpackDrawer from "./AddpackDrawer";
 import AddpackID from "./AddpackID";
-import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import UpdateIcon from '@mui/icons-material/Update';
 // Repair -Dis-2
 
 
@@ -1209,29 +1211,29 @@ const AWBtst=[
         <div className=' flex  sticky  z-auto'>
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
-              <div className=" w-[14.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
-              {translatedMenuItems[0]}
+              <div className=" w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
+              <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[0]}
                 </div>
-              <div className="w-[2.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
+              <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
                 {/* <FormattedMessage id="app.units" defaultMessage="Units" /> */}
                 {translatedMenuItems[1]}
                 </div>
-              <div className="w-[4.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
+              <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
                 {/* <FormattedMessage id="app.inspection" defaultMessage="Inspection" /> */}
                 {translatedMenuItems[2]}
                 </div>
 
-              <div className="w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.03rem]">
+              <div className="w-[4.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.03rem]">
                 {/* <FormattedMessage id="app.packed" defaultMessage="Packed ?" /> */}
                 {translatedMenuItems[3]}
                 </div>
-              <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]">
+              <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]">
                 {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery" /> */}
-                {translatedMenuItems[4]}
+                <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[4]}
                 </div>
               <div className=" w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.03rem]">
                 {/* <FormattedMessage id="app.shipper" defaultMessage="Shipper" /> */}
-                {translatedMenuItems[5]}
+                <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[5]}
                 </div>
               < div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
               {/* <FormattedMessage id="app.pickup" defaultMessage="pickup" /> */}
@@ -1239,11 +1241,11 @@ const AWBtst=[
               </div>
               <div className=" w-[4.10rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.10rem]">
                 {/* <FormattedMessage id="app.awb" defaultMessage="AWB" /> */}
-                {translatedMenuItems[7]}
+                <GpsFixedIcon className='!text-icon    text-[#42bfdd]' />  {translatedMenuItems[7]}
                 </div>
-              <div className=" w-[3.20rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.20rem]">
+              <div className=" w-[5.20rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.20rem]">
                 {/* <FormattedMessage id="app.status" defaultMessage="Status" /> */}
-                {translatedMenuItems[8]}
+                <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[8]}
                 </div>
               <div className="w-[3.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
                 {/* <FormattedMessage id="app.pickup" defaultMessage="Pick Up" /> */}
@@ -1273,11 +1275,11 @@ const AWBtst=[
                   const date = dayjs(item.createAt).format("DD/MM/YYYY");
                   return (
                     <div>
-                      <div className="flex rounded justify-between mt-1 bg-white items-center  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                      <div className="flex rounded justify-between mt-1 bg-white items-center py-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                           <div className=" flex  w-[7.2rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                            <div class="text-xs flex items-center font-bold underline font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
+                            <div class="text-xs flex items-center ml-gap font-bold underline font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
                               <div
                                 onClick={() => {
                                   handleRowData(item);
@@ -1353,7 +1355,7 @@ const AWBtst=[
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
 
 
-                          <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[6.4rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[6.14rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchPhoneCount}/{item.phoneReceiveCount}
                             </div>
@@ -1393,12 +1395,12 @@ const AWBtst=[
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[7.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[7.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  ml-gap items-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.shipperName === "null" ? "" : item.shipperName}
                             </div>
                           </div>
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
                             </div>

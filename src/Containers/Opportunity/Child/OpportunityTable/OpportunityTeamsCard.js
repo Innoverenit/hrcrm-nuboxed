@@ -40,6 +40,7 @@ import {
          getAllRecruitmentDetailsByOppId,
          getOpportunitySKill,
          getTeamOpportunity,
+         getTeamUserList,
 } from "../../OpportunityAction";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
@@ -82,6 +83,7 @@ function OpportunityTeamsCard(props) {
     } 
     props. getTeamOpportunity(props.userId,pageNo);
     setPageNo(pageNo + 1);
+    props.getTeamUserList(props.userId)
     // props.getCrm();
   },[]);
   useEffect(() => {
@@ -272,14 +274,14 @@ function OpportunityTeamsCard(props) {
        <div class="w-[13vw]"> Search team Member</div>
         </div>
         <div class="flex flex-col rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
-        {props.crmAllData.map((item,index) =>{
+        {props.teamUserList.map((item,index) =>{
            return (
          <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                   text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center flex-no-wrap h-16">
           <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
             <MultiAvatar
-              primaryTitle={item.empName}
+              primaryTitle={item.opportunityName}
               imageId={item.imageId}
               imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
@@ -292,7 +294,7 @@ function OpportunityTeamsCard(props) {
         
 
 
-          {item.empName}
+          {item.opportunityName}
         </div> 
         </div>
           
@@ -301,13 +303,13 @@ function OpportunityTeamsCard(props) {
         <div className="flex flex-col max-sm:justify-between ">
           
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-                       </div>
+              {item.mobileNo}    </div>
             
           <div>
           <div class="font-medium text-xs ">
        
               <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-           
+                {item.emailId}  
               </div>
            
             
@@ -690,7 +692,7 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
 }
 
 
-const mapStateToProps = ({ auth, account, opportunity,leads }) => ({
+const mapStateToProps = ({ auth, account, opportunity,leads,customer }) => ({
   crmAllData:leads.crmAllData,
   userId: auth.userDetails.userId,
   user: auth.userDetails,
@@ -718,7 +720,8 @@ const mapStateToProps = ({ auth, account, opportunity,leads }) => ({
     allRecruitmentDetailsByOppId:opportunity.allRecruitmentDetailsByOppId,
     allOpportunity:opportunity.allOpportunity,
     teamOpportunity:opportunity.teamOpportunity,
-    ooportunitySerachedData: opportunity.ooportunitySerachedData
+    ooportunitySerachedData: opportunity.ooportunitySerachedData,
+    teamUserList:customer.teamUserList
   
 });
 const mapDispatchToProps = (dispatch) =>
@@ -739,6 +742,7 @@ const mapDispatchToProps = (dispatch) =>
          getAllRecruitmentPositionFilledByOppId,
          getAllRecruitmentDetailsByOppId,
          getTeamOpportunity,
+       getTeamUserList,
     //      LinklostdOpportunity,
     //      deleteLostOpportunity,
     },
