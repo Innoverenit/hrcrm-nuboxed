@@ -5,15 +5,11 @@ import {
     getInventorylist,inputInventorySearch,ClearReducerDataOfInventory 
 } from "../Suppliers/SuppliersAction"
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import { Input, Select, Button } from 'antd';
-import dayjs from "dayjs";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { Input, Select } from 'antd';
 import { AudioOutlined } from "@ant-design/icons"
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import SuplierInventoryPublishToggle from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/SuplierInventoryPublishToggle";
+
 
 const { Option } = Select;
 
