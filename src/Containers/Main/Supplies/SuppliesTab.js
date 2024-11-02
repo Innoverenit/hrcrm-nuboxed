@@ -90,7 +90,7 @@ const SuppliesTab = (props) => {
                         tab={
                             <>
                                 <span >
-                                   Email List
+                                Best Before
                                 </span>
                                
                               
@@ -106,7 +106,7 @@ const SuppliesTab = (props) => {
                         <>
                             <span >
 
-                            Arrival List
+                            New Arrivals
                             </span>
                             
 

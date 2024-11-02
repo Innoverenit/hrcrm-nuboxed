@@ -212,8 +212,9 @@ function AccountTable(props) {
             </div> 
 
             <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
-            {translatedMenuItems[5]}
-              {/* Payment % */}
+            <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[5]}
+            {/* Payment % */}
+       
             </div>
            {/* "billingaddress" */}
            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">

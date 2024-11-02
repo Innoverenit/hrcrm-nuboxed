@@ -8,9 +8,8 @@ import { AudioOutlined } from '@ant-design/icons';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {materialCategorySearch,getMaterialCategory, getSuppliesCount,getSuppliesDeletedCount,getSuppliesList,ClearReducerDataOfMaterial,inputSuppliesDataSearch } from "./SuppliesAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import CategoryIcon from '@mui/icons-material/Category';
+import WidgetsIcon from '@mui/icons-material/Widgets';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
-import { LocalActivityOutlined } from "@mui/icons-material";
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 
 function SuppliesActionLeft (props) {
@@ -206,7 +205,7 @@ function SuppliesActionLeft (props) {
           onClick={() => setSuppliesViewType("category")}
         >
           <Avatar style={{ background: viewType === "category" ? "#f279ab" : "#28a355" }}>
-            <CategoryIcon className="text-white cursor-pointer !text-icon" />
+            <WidgetsIcon className="text-white cursor-pointer !text-icon" /> 
           </Avatar>
 
         </div>
@@ -215,7 +214,7 @@ function SuppliesActionLeft (props) {
                 
 
 
-                <Tooltip title={translatedMenuItems[4]}>
+        {/* Brand */}       <Tooltip title={translatedMenuItems[4]}> 
         <div
           class=" ml-2 text-xs cursor-pointer"
           style={{
@@ -270,7 +269,7 @@ function SuppliesActionLeft (props) {
 
 
                 <Tooltip 
-                title="Location"
+                title="Inventory"
                 >
                 <Badge size="small"
                         //count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
@@ -292,7 +291,7 @@ function SuppliesActionLeft (props) {
                     </Badge>
                 </Tooltip>
                 <Tooltip 
-                title="Tab"
+                title="Updates"
                 >
                
                         <span class=" md:mr-2 text-sm cursor-pointer"

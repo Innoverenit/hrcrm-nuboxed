@@ -15,6 +15,13 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import StairsIcon from '@mui/icons-material/Stairs';
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -203,15 +210,23 @@ function OpportunityLostCard(props) {
   <>
  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
- <div className="   flex justify-between w-[88%] font-bold font-poppins text-xs">
-        <div className=" w-[18.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]}</div>
-        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]}</div>
-        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> {translatedMenuItems[2]}</div>
-        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]}</div>
-        <div className=" w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
-        <div className=" w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
-        <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>
-        <div className=" w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>  
+ <div className="   flex justify-between w-[88%] font-bold font-poppins items-end text-xs">
+ <div className=" w-[12.8rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">
+        <ContactsIcon className="!text-icon mr-1  "/> {translatedMenuItems[0]}</div>
+        <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
+        <div className=" w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
+        <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[2]}</div>
+        <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <DateRangeIcon className='!text-icon mr-1 '  />{translatedMenuItems[3]}</div>   {/*  date */}
+        <div className="  w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' /> {translatedMenuItems[4]}</div>
+        <div className=" w-[4.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <StairsIcon className='!text-icon  '  /> {translatedMenuItems[5]}</div> 
+        <div className="  w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
+        <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> 
+        <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[7]}</div> 
      </div> </div>
 
       <InfiniteScroll
@@ -235,10 +250,10 @@ function OpportunityLostCard(props) {
 
                   <div className="max-sm:w-wk">
                   <div
-                className="flex  items-center rounded justify-between  bg-white mt-1 h-8  p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex  items-center rounded justify-between  bg-white mt-1   py-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium w-[14.5rem] items-center  border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[9.5rem] max-lg:w-[6.5rem] max-sm:flex-row  ">
+                    <div className=" flex font-medium w-[12.5rem] items-center  border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[9.5rem] max-lg:w-[6.5rem] max-sm:flex-row  ">
                               <div>
 {/* <div>
           <MultiAvatar
@@ -256,7 +271,7 @@ function OpportunityLostCard(props) {
                                           {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                           Name
                                           </div> */}
-                                          <div class=" text-xs flex text-blue-500  font-poppins font-semibold cursor-pointer">
+                                          <div class=" text-xs flex text-blue-500 items-center font-poppins font-semibold cursor-pointer">
                                               
                                         <Link class="overflow-ellipsis whitespace-nowrap max-sm:text-sm h-8 text-xs p-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`opportunity/${item.newOppId}`} title={item.newOppId}>
     {item.newOppId}  
@@ -268,10 +283,10 @@ function OpportunityLostCard(props) {
                             
                               </div>
 
-                              <div className=" flex   w-[9.4rem] items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.7rem]   max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[9.4rem] items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.7rem]   max-sm:flex-row  max-sm:justify-between ">
                          
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                  <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                   
                                   {item.customer}
                   
@@ -307,7 +322,7 @@ function OpportunityLostCard(props) {
                                   </div>
                               </div>
                            
-                              <div className=" flex items-center justify-center   w-[7rem]   h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.81rem] max-lg:w-[2.81rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex items-center justify-start   w-[7rem]   h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.81rem] max-lg:w-[2.81rem] max-sm:flex-row  max-sm:justify-between ">
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
                                   <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">

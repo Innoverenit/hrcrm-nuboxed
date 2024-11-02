@@ -418,7 +418,7 @@ function AccountInvoiceTable(props) {
                         {/* Credit Memo */}
                         <div className=" md:w-[8rem]"></div>
                         <div className=" md:w-[8rem]">
-                        <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' /> {translatedMenuItems[4]}</div>
+                        <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
                     </div>
                     <div class="h-[69vh]" style={{scrollbarWidth:"thin"}}>
                       

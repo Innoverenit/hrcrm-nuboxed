@@ -96,7 +96,7 @@ if (fetchingDealList) return <BundleLoader/>;
         {translatedMenuItems[3]}</div>
 
         <div className="font-poppins font-bold text-xs md:w-[4.5rem] w-[4.5rem]">
-           <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' />
+           <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
         {translatedMenuItems[4]}  
         {/* Status */}
           </div>

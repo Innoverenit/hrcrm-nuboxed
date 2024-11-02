@@ -41,7 +41,13 @@ import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { base_url2 } from "../../../../Config/Auth";
-
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import StairsIcon from '@mui/icons-material/Stairs';
 
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
 const UpdateOpportunityModal =lazy(()=> import("../UpdateOpportunity/UpdateOpportunityModal"));
@@ -300,15 +306,22 @@ function OpportunityAllCardList(props) {
    
    <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className="flex max-sm:hidden  w-[92%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
-<div className="   flex justify-between w-[93%] font-bold font-poppins text-xs">
-<div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[13]}</div>
-        <div className=" w-[12.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]}</div>
-        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]}</div>
-        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> {translatedMenuItems[2]}</div>
-        <div className=" w-[7.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
-        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
-        <div className="  w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>     
+<div className="flex max-sm:hidden  w-[92%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky   z-10">
+<div className="   flex justify-between w-[93%] font-bold font-poppins items-end  text-xs">
+<div className=" w-[12.8rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">
+<LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/> {translatedMenuItems[13]}</div>
+        <div className=" w-[12.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> 
+        <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
+        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
+        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
+        <ContactPageIcon className='!text-icon  '  /> {translatedMenuItems[2]}</div>
+        <div className=" w-[8.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+        <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
+        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+        <StairsIcon className='!text-icon  '  /> {translatedMenuItems[5]}</div> 
+        <div className="  w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+        <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[6]}</div>     
         {/* <div className="w-[4.1rem] ">{translatedMenuItems[12]}</div> */}
         <div className="w-12"></div>
         </div>
@@ -334,7 +347,7 @@ function OpportunityAllCardList(props) {
 
                   <div className="max-sm:w-wk">
                    <div
-                className="flex  rounded   bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex  rounded   bg-white mt-1  items-center py-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                    <div className=" flex   w-[7.65rem]  border-l-2 border-green-500   bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
@@ -405,7 +418,7 @@ function OpportunityAllCardList(props) {
                                 </div>
                             </div>                         
                            
-                              <div className=" flex   w-[7rem]  items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[7rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
    
 
                                   <div class=" text-xs ml-gap  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddSuppliesRowImageModal from "./AddSuppliesRowImageModal"
 import DescriptionIcon from '@mui/icons-material/Description';
-
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import {
   getSuppliesList,
@@ -28,7 +27,13 @@ import {
   PhoneFilled,
   UploadOutlined,
 } from "@ant-design/icons";
+
+import WidgetsIcon from '@mui/icons-material/Widgets';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import CategoryIcon from '@mui/icons-material/Category';
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
+import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import ContactsIcon from '@mui/icons-material/Contacts';
 import dayjs from "dayjs";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -294,40 +299,40 @@ function SuppliesTable(props) {
           </div>
       <div className=" flex sticky z-auto mt-4">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[81%] justify-between  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[3.25rem] max-xl:w-[2rem]"></div>
-            <div className="font-bold text-[#00A2E8] text-base font-poppins  w-[4.522rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          <div className=" flex max-sm:hidden  w-[81%] justify-between  p-1 bg-transparent font-bold sticky items-end z-10">
+            <div className=" w-[4.25rem] max-xl:w-[2rem]"></div>
+            <div className="font-bold text-[#00A2E8] text-base font-poppins  w-[6.522rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* HSN */}
               {translatedMenuItems[0]} ID
               </div>
-              <div className="font-bold font-poppins text-xs w-[5.53rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className="font-bold font-poppins text-xs w-[9.53rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Supplies */}
-              {translatedMenuItems[24]} 
+              <QrCodeIcon className="!text-icon text-[#b91372]"/>   {translatedMenuItems[24]} 
               </div>
-            <div className="font-bold font-poppins text-xs w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Name */}
-              {translatedMenuItems[2]}
+              <ContactsIcon className="!text-icon mr-1 "/> {translatedMenuItems[2]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Category */}
-              {translatedMenuItems[3]}
+              <WidgetsIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[3]}
               </div>
             
-              <div className="font-bold font-poppins text-xs w-[8.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className="font-bold font-poppins text-xs w-[11.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Brand*/}
-              {translatedMenuItems[15]}
+              <BrandingWatermarkIcon className="!text-icon" />   {translatedMenuItems[15]}
               </div>
               <div className="font-bold font-poppins text-xs w-[8.135rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Model*/}
-              {translatedMenuItems[16]}
+              <ModelTrainingIcon className=" !text-icon" />  {translatedMenuItems[16]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[8.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[10.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Attribute */}
-              {translatedMenuItems[5]}
+              <AttractionsIcon className="  !text-icon" />  {translatedMenuItems[5]}
               </div>
            
             
-            <div className="font-bold font-poppins text-xs w-[16.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-bold font-poppins text-xs w-[15.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Created */}
               {translatedMenuItems[7]}
               </div>
@@ -350,7 +355,7 @@ function SuppliesTable(props) {
                   
                   return (
                     <>
-                      <div className="flex rounded  bg-white mt-1  h-8  max-sm:h-[7.5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                      <div className="flex rounded  bg-white mt-1 py-1 max-sm:h-[7.5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                      <div className="flex max-sm:w-wk max-sm:justify-between ">
                                 <div className=" flex items-center w-[2rem] border-l-2 border-green-500 bg-[#eef2f9]">
                                   {item.imageId && (
@@ -390,7 +395,7 @@ function SuppliesTable(props) {
                             </div>
                            
                                 </div>
-                                <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center  w-[4.52rem] items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                                <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center   items-center w-[6.52rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                                     <div class=" text-[0.65rem] max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                       {item.msku} 
                                     </div>
@@ -403,7 +408,7 @@ function SuppliesTable(props) {
                                       ) : null} </span>
                               </div>
 
-                            <div className=" flex  h-8 ml-gap bg-[#eef2f9] justify-center w-[6.1rem] items-center max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  h-8 ml-gap bg-[#eef2f9] justify-center w-[46.1rem] items-center max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs truncate max-w-[100px]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer text-blue-600" title={item.suppliesName}
                                onClick={() => {
                                 openModal();
@@ -415,7 +420,7 @@ function SuppliesTable(props) {
                             </div>
                           
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex  h-8 ml-gap bg-[#eef2f9] justify-center items-center  w-[7.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  h-8 ml-gap bg-[#eef2f9] justify-center items-center  w-[8.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs truncate max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {item.categoryName}  {item.subCategoryName}
                               </div>
@@ -453,7 +458,7 @@ function SuppliesTable(props) {
                                 {/* {`${dayjs(item.creationDate).format("DD/MM/YYYY")}`} */}
                               </div>
                             </div>
-                            <div className=" flex  w-[6.2rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[8.2rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialStatusToggle
                                   publishInd={item.publishInd}
