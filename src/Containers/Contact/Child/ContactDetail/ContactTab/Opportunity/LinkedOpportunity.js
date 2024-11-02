@@ -89,7 +89,8 @@ function OpportunityTable(props) {
         <div className="w-[8.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
            <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
         {/* Value */}
-        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <StairsIcon className='!text-icon  '  /> 
+        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
+          <StairsIcon className='!text-icon  '  /> 
           {translatedMenuItems[5]}</div>
         {/* Stages */}
         <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div>

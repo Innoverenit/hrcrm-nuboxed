@@ -228,7 +228,7 @@ const AccountOrderTable = (props) => {
                         </div>
 
                         <div className=" md:w-[8.02rem]">
-                        <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' />  {translatedMenuItems[32]}   
+                        <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />  {translatedMenuItems[32]}   
                         </div>
                     </div>
              </div>
@@ -671,7 +671,7 @@ const AccountOrderTable = (props) => {
                         <GroupsIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[10]}  
                         </div>
                         <div className=" md:w-[8.02rem]">
-                        <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' />  {translatedMenuItems[32]}   
+                        <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />  {translatedMenuItems[32]}   
                         </div>
                         </div>
                     </div>

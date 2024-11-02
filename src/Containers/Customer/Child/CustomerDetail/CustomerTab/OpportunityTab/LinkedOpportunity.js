@@ -203,7 +203,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
         <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />  {translatedMenuItems[3]}</div>
         {/* Value */}  
         <div className="font-bold font-poppins text-xs md:w-[5.51rem]">
-        <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' /> {translatedMenuItems[4]}</div>
+        <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
           {/* Status */}      
         <div className="font-bold font-poppins text-xs md:w-[8.8rem]">
         <ContactPageIcon className='!text-icon  '  />

@@ -582,7 +582,7 @@ const AWBtst=[
                                                         </div>
                                                     </div>
                                                     <div>
-                                                               <GpsFixedIcon className="!cursor-pointer"
+                                                               <GpsFixedIcon className="!cursor-pointer text-[#42bfdd]"
                                                                 onClick={() => {
                                                                   props.handlepackId(true);
                                                                   handleRowData(item)              

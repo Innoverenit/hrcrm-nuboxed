@@ -451,7 +451,7 @@ const handleLoadMoreLow = () => {
                           <div className="w-[4.8rem] md:w-[4.1rem]">
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
-                          <div className="w-[2.2rem] md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' />
+                          <div className="w-[2.2rem] md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
                         {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
                         <div className="w-[2rem] md:w-[4.8rem]">
@@ -680,7 +680,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
                           <div className="w-[2.2rem] md:w-[3.8rem]">
-                          <UpdateIcon className='!text-icon text-[#e4eb2f]' /> {translatedMenuItems[7]} {/*Status"/> */}
+                          <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
                         <div className="w-[2rem] md:w-[4.8rem]">
                         <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[6]}{/* "Payment"/> */}

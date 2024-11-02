@@ -199,14 +199,14 @@ console.log("drb2",data)
     <>
 
       <div className=' flex  sticky  z-auto'>
-        <div class="rounded m-1 h-[85vh] max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">          
-            <div className="font-bold font-poppins text-xs w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+        <div class="rounded m-1 h-[87vh] max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky items-end z-10">          
+            <div className="font-bold font-poppins text-[#00A2E8] text-base w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
             {translatedMenuItems[0]}   {/* Category */}
               </div>
             <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div>
 
-            <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]">Alert</div>
+            <div className="font-bold font-poppins text-xs w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]">Alert</div>
             <div className=" flex  w-[9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Add">
@@ -224,11 +224,11 @@ console.log("drb2",data)
             {data.map((item) => {
               return (
                 <div>
-                  <div key={item.categoryId} className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  <div key={item.categoryId} className="flex rounded justify-between mt-1 bg-white  items-center py-1 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                  
-                    <div className=" flex   w-[5.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8  w-[5.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                <div class=" text-xs  max-sm:text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                <div class=" text-xs flex items-center max-sm:text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                 {editsuppliesId === item.categoryId ? (
                     
                     <EditUpload
@@ -249,31 +249,17 @@ console.log("drb2",data)
                              
                             />
                           ) : (
-                            <div class="font-bold text-xs" >
+                            <div class="font-bold ml-gap flex text-xs" >
                               No Image
                             </div>
                           )}
                           </div>
                       </div>
-                    )}
-                          {/* {item.imageId ? (
-                            <MultiAvatar
-                              imageId={item.imageId ? item.imageId : ''}
-                              imgHeight={"1.8em"}
-                              imgWidth={"1.8em"}
-                              imgRadius={20}
-                            />
-                          ) : (
-                            <div class="font-bold text-xs" >
-                              No Image
-                            </div>
-                          )} */}
-                      
+                    )}                                    
 </div>
-
-                    </div>
+     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex  w-[35.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  w-[43.1rem] items-center h-8 ml-gap bg-[#eef2f9]   max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-[0.65rem]  cursor-pointer max-sm:text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {editsuppliesId === item.categoryId ? (
@@ -282,21 +268,18 @@ console.log("drb2",data)
                             value={item.categoryName}
                             onChange={(e) => handleInputChange(e.target.value, item.categoryId, 'categoryName')}
                           />
-                      
-                       
+    
                     ) : (
-                      <div className=" text-xs  font-poppins">
+                      <div className=" text-xs ml-gap font-poppins">
                         <div>  {item.categoryName}</div>
                       </div>
                     )}
-                         
-                        </div>
-
+              </div>
                       </div>
       
                     </div>
 
-     <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+     <div className=" flex  w-[11.02rem] h-8 ml-gap bg-[#eef2f9] justify-center  items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <SuppliesCategoryPUnblishToggle
                                 
@@ -307,7 +290,7 @@ console.log("drb2",data)
                             </div>
 
 
-                            <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[10.03rem] h-8 ml-gap bg-[#eef2f9] justify-center   items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <BellOutlined
                                onClick={() => {
@@ -319,7 +302,7 @@ console.log("drb2",data)
                               </div>
                             </div>
 
-                            <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[10.04rem] h-8 ml-gap bg-[#eef2f9] justify-center   items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <PullRequestOutlined
                                onClick={() => {
@@ -335,7 +318,7 @@ console.log("drb2",data)
                      
                      
                     
-                   <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                   <div className=" flex font-medium h-8 ml-gap bg-[#eef2f9] justify-center   items-center md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.categoryId ? (
                         <>
                       <Button 
@@ -355,15 +338,15 @@ console.log("drb2",data)
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center h-8 ml-gap bg-[#eef2f9] justify-center   items-center mt-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.categoryId)}
                       />
                     )}
-    </div>
+   
     {item.categoryCount===1 &&
-    <div>
+    <div className="h-8 flex bg-[#eef2f9] justify-center   items-center">
                               <Popconfirm
                                 title="Do you want to delete?"
                                 // onConfirm={() => DeleteOnClick(item)}
@@ -373,7 +356,7 @@ console.log("drb2",data)
                               </Popconfirm>
                             </div>}
                     </div>
-                   
+                    </div>
                   </div>
                 </div>
                );

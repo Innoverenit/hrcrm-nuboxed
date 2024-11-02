@@ -102,7 +102,7 @@ function SuppliesDeletedTable(props) {
                     const currentDate = dayjs().format("DD/MM/YYYY");
                   return (
                     <>
-                      <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
+                      <div className="flex rounded justify-center bg-white mt-1  py-1 max-sm:h-[7.5rem] max-sm:flex-col  hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex  w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">

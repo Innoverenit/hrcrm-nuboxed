@@ -211,7 +211,7 @@ const {handleProcureNotesDrawerModal,
                         <div className="font-bold w-[7.01rem] font-poppins text-xs md:w-[7.4rem]">
                          <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
                         <div className="font-bold  w-[6rem] font-poppins text-xs md:w-[6.14rem]">
-                        <UpdateIcon className='!text-icon mr-1 text-[#e4eb2f]' /> {translatedMenuItems[5]}</div>
+                        <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' /> {translatedMenuItems[5]}</div>
                       
         </div>
         <InfiniteScroll

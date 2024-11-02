@@ -188,23 +188,23 @@ function ContactCardList(props) {
       
       
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" max-sm:hidden flex justify-between w-[99%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky  z-10">
-      <div class=" flex justify-between w-[92%] font-bold  font-poppins text-xs items-end ">
-        <div className=" w-[33.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+      <div className=" max-sm:hidden flex justify-between w-[97%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky  z-10">
+      <div class=" flex justify-between w-[100%] font-bold  font-poppins text-xs items-end ">
+        <div className=" w-[30.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>
         {translatedMenuItems[0]}</div>
-        <div className=" w-[23.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[29.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
          {/* Company */}
-        <div className=" md:w-[17.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
-        <i className="fab fa-artstation text-[#b744b8]"></i>
+        <div className=" md:w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
+        <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
      {translatedMenuItems[2]}</div>
         {/* Designation */}
-        <div className="w-[16rem]  md:w-[16.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <div className="w-[16rem]  md:w-[23.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[3]}</div>
         {/* Department */}
-        <div className=" md:w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
-        <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/> {translatedMenuItems[4]}</div>
+        <div className=" md:w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[4]}</div>
          {/* Quotation */}
         {/* <div className=" md:w-[12.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
         <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> */}
@@ -213,8 +213,8 @@ function ContactCardList(props) {
         <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
            {/* Portal Access */}
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[11.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-                     {/* Score */}      <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[7]} 
+            <div className="font-poppins font-bold text-xs w-[13.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+                     {/* Score */}      <ScoreIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[7]} 
           
             </div>
             )}   
@@ -305,13 +305,13 @@ function ContactCardList(props) {
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap w-[10.2rem] bg-[#eef2f9]  max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap w-[13.2rem] bg-[#eef2f9]  max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
                              
                               <div class="text-xs  ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex   max-sm:w-auto items-center  w-[11.3rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
+                          <div className=" flex   max-sm:w-auto items-center  w-[12.3rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
                           
                             <div class="text-xs  ml-gap max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                  {item.department}
@@ -319,7 +319,7 @@ function ContactCardList(props) {
                         </div>
                         </div>
                         <div class="flex max-sm:justify-evenly max-sm:w-wk">
-                        <div className=" flex items-center justify-center   w-[7.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex items-center justify-center   w-[8.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
                         <div className="flex items-center justify-center   w-[3.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 <div className="text-xs font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -356,7 +356,7 @@ No
                           </div>
                       </div>
                           {props.user.aiInd && (
-           <div className=" flex   items-center justify-center   w-[10.12rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex   items-center justify-center   w-[5.12rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
            {item.noteScoreInd}
           
             </div>
