@@ -131,10 +131,14 @@
 
 import React, { useState } from "react";
 import { Button } from "antd";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { CloseOutlined } from "@ant-design/icons";
 import { Formik, Form, Field } from "formik";
+import {addRecallData} from "./SuppliersAction"
 import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { base_url2 } from "../../../Config/Auth";
+import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 
 const NewRecallListStep1 = (props) => {
     // // Manage the rows locally within the step
@@ -166,7 +170,7 @@ const NewRecallListStep1 = (props) => {
     const [formData, setFormData] = useState(null); // State to save submitted form data
   
     const addMoreFields = () => {
-      setFields([...fields, {  supplierId: "", suppliesFullName: "" }]); // Add a new row to the state
+      setFields([...fields, {  supplierId: "", suppliesFullName: "",batchNo:"" }]); // Add a new row to the state
     };
   
     const removeField = (index) => {
@@ -184,8 +188,17 @@ const NewRecallListStep1 = (props) => {
                            
                         }}
                         onSubmit={(values, { resetForm }) => {
-                            setFormData(values); // Save data to state
+                            //setFormData(values); // Save data to state
                             console.log('Saved form data:', values); 
+                            props.addRecallData(
+                                {
+                                  ...values,
+                                
+                                },
+                                // props.userId,
+                                // props.customerId,
+                                resetForm()
+                              );
                           
                         }}
                     >
@@ -240,12 +253,41 @@ const NewRecallListStep1 = (props) => {
                                             </div>
                                         </div>
 
+
+
+                                        <div className="flex flex-col w-[35%]">
+                                            <div className="font-bold text-xs font-poppins text-black">
+                                               Batch No
+                                            </div>
+                                            <div className="w-[100%]">
+                                                <Field
+                                                    isRequired
+                                                    name="batchNo"
+                                                    options={["PassPort", "ID Card"]}
+                                                    component={SelectComponent}
+                                                    isColumn
+                                                    inlineLabel
+                                                    style={{ flexBasis: "80%" }}
+                                                />
+                                            </div>
+                                        </div>
+
                                         <div className="w-4 mt-[1.5rem]">
                                             <CloseOutlined onClick={() => removeField(index)} />
                                         </div>
                                     </div>
                                 ))}
                                 </div>
+                                <div class="flex justify-end w-wk bottom-[3.5rem] mr-2 absolute mt-3 ">
+              <Button
+                type="primary"
+                htmlType="submit"
+                loading={props.addingRecallData}
+              >
+
+                Create
+              </Button>
+            </div>
                             </Form>
                         )}
                     </Formik>
@@ -256,23 +298,34 @@ const NewRecallListStep1 = (props) => {
                 Add Row
             </Button>
            
-            {/* Proceed Button */}
-            <Button 
-                type="primary" 
-                onClick={() => {
-                    const lastRow = fields[fields.length - 1]; // Get the last row's values
-                    props.setSelectedItems([...fields, lastRow]); // Store all selected items
-                    props.nextStep(); // Move to the next step
-                }}
-                style={{ marginTop: '1rem' }} // Add some margin for spacing
-            >
-                Proceed
-            </Button>
+       
         </div>
     );
 };
 
-export default NewRecallListStep1;
+
+const mapStateToProps = ({ auth, opportunity,employee,currency,investor, contact,suppliers, customer,leads }) => ({
+   
+    userId: auth.userDetails.userId,
+    addingRecallData:suppliers.addingRecallData,
+  
+    token: auth.token,
+    
+    organizationId: auth.userDetails.organizationId,
+   
+  });
+  
+  const mapDispatchToProps = (dispatch) =>
+    bindActionCreators(
+      {
+        addRecallData
+      },
+      dispatch
+    );
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(NewRecallListStep1);
+
+
 
 
 
