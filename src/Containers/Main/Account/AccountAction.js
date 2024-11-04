@@ -21,6 +21,16 @@ export const handleOpenNewModal = (modalProps) => (dispatch) => {
 };
 
 
+
+
+export const handleSupplierTicketModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIER_TICKET_MODAL,
+    payload: modalProps,
+  });
+};
+
+
 export const handleUpdateAccountUserModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_UPDATE_ACCOUNT_USER_MODAL,
@@ -2324,6 +2334,51 @@ export const addBillingAddress = (data, distributorId) => (dispatch) => {
 /**
  * get all contact distributor list
  */
+
+
+
+
+export const addTicket = (customer) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_TICKET_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/ticket/save`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     
+     
+      console.log(res);
+      // dispatch(
+      //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
+      // );
+     
+     
+
+      dispatch({
+        type: types.ADD_TICKET_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_TICKET_FAILURE,
+        payload: err,
+      });
+      message.error(err.data.message)
+      // cb && cb();
+    });
+};
 export const getBillingAddress = (distributorId) => (dispatch) => {
   dispatch({
     type: types.GET_BILLING_ADDRESS_BY_ID_REQUEST,
