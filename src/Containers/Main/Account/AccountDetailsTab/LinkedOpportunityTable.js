@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip} from "antd";
 import dayjs from "dayjs";
+import ShopIcon from '@mui/icons-material/Shop';
 import {
   getQuotationRepairOrder,
   getQuotationProcureOrder,
@@ -232,8 +233,8 @@ const handleConfirm = (quotationId) => {
     <>
      { props.user.repairInd === true &&(
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent  sticky  items-end z-10">
-        <div className='flex   justify-between w-[81%]  text-xs font-bold font-poppins'>
+        <div className=" flex justify-between w-full p-1 bg-transparent  sticky   z-10">
+        <div className='flex   justify-between w-[81%] items-end text-xs font-bold font-poppins'>
              <div class="text-[#00A2E8] text-base w-[6.55rem]">
              <OnDeviceTrainingIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[0]}</div>
                         <div className="  w-[11.4rem] md:w-[7.4rem]">
@@ -305,6 +306,7 @@ const handleConfirm = (quotationId) => {
                                                                                        <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                                           <span className="text-[0.65rem] text-[tomato] font-bold ml-1">
                                            {translatedMenuItems[11]} {/* New */}
+                                          
                                           </span>
                                         ) : null} </span>
                                                    
@@ -401,9 +403,12 @@ const handleConfirm = (quotationId) => {
      )}
      { props.user.moduleMapper.ecomModInd === true &&(
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-full p-1 bg-transparent  sticky  items-end z-10">
-        <div className='flex   justify-between w-[81%]  text-xs font-bold font-poppins'>
-<div class="text-[#00A2E8] text-base w-[6.55rem]"> {translatedMenuItems[9]}</div>
+        <div className=" flex justify-between w-full p-1 bg-transparent  sticky   z-10">
+        <div className='flex   justify-between w-[81%] items-end text-xs font-bold font-poppins'>
+<div class="text-[#00A2E8] text-base w-[8.25rem]"> 
+
+  {translatedMenuItems[9]}
+  <ShopIcon className="text-[#00A2E8] !text-icon" /></div>
 <div className="w-[7.4rem] md:w-[7.4rem]"> 
 <LightbulbIcon className="!text-icon text-[#bfa89e]" />{translatedMenuItems[1]} ID</div>
            <div className="w-[8rem] md:w-[8rem]">

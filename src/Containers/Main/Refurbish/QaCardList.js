@@ -15,6 +15,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import DispatchPhoneListModal from '../Inventory/Child/InventoryDetails/Dispatch/DispatchPhoneListModal';
 import RefurbishToggle from './RefurbishToggle';
 import RefurbishNoteAll from './RefurbishNoteAll';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+
 
 
 
@@ -200,9 +203,13 @@ function QaCardList(props) {
 
                     <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
                         <div className='w-[7.2rem]'></div>
+                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'
+                        /> 
                         <div className=" w-[11.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}  
+                         
                           {/* Order ID */}
                           </div>
+                        <LightbulbIcon className="!text-icon text-[#84a59d]"/>
                         <div className="w-[17.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
                         {translatedMenuItems[1]}
                         {/* Inspection */}
