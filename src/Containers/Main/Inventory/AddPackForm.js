@@ -127,6 +127,7 @@ import { useDispatch } from 'react-redux';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import { CloseOutlined } from "@ant-design/icons";
 import { Switch, Popconfirm, message } from 'antd';
+import AddPacketTable from "./AddPacketTable";
 
 const InputToggleForm = (props) => {
   const [fields, setFields] = useState([{ packingNo: '', packingInd: false }]); // Initial row with empty values
@@ -253,6 +254,9 @@ const InputToggleForm = (props) => {
       <Button type="primary" onClick={addMoreFields}>
        <ControlPointIcon/> Add Packet
       </Button>
+      <AddPacketTable
+      orderPhoneId={props.orderPhoneId}
+      />
     </>
   );
 };

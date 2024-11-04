@@ -52,7 +52,72 @@ class InventoryMaterialTabO extends PureComponent {
     render() {
         const { activeKey } = this.state;
         console.log(this.props.match);
-
+        const renderTabContent = (key) => {
+          switch (key) {
+            case "1":
+              return     <div> 
+                       <MaterialReceivedTableOut  
+                                translateText={this.props.translateText}
+                                selectedLanguage={this.props.selectedLanguage}
+                    translatedMenuItems={this.props.translatedMenuItems}
+                    locationDetailsId={this.props.user.locationId}
+             />
+                  </div>;
+            case "2":
+              return  <div>  <MaterialIntransitList
+              locationDetailsId={this.props.user.locationId}
+           selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}
+           inventory={this.props.inventory}
+            translatedMenuItems={this.props.translatedMenuItems}
+           /></div>;
+              case "3":
+                  return  <div>   {this.state.shipperPopover ? (
+                    <Suspense fallback={"Loading..."}>
+                          <MaterialUnitsDataOut
+                           inventory={this.props.inventory}
+                           locationDetailsId={this.props.user.locationId}
+                        //    storedLoc={this.props.storedLoc} 
+                        translatedMenuItems={this.props.translatedMenuItems}
+                           />
+                       
+                    </Suspense>
+                     ) :(
+                        <Suspense fallback={"Loading ..."}>
+                          {" "}
+                          <MaterialStockTableOut
+                           locationDetailsId={this.props.user.locationId}
+                           selectedLanguage={this.props.selectedLanguage}
+                           translateText={this.props.translateText}
+                        inventory={this.props.inventory}
+                        translatedMenuItems={this.props.translatedMenuItems}
+                        />
+                        </Suspense>
+                        
+                      )}</div>;
+                  case "4":
+                      return  <div> 
+                      <MaterialCellCardViewOut 
+                                 locationDetailsId={this.props.user.locationId}
+                                 inventory={this.props.inventory}
+                                 translatedMenuItems={this.props.translatedMenuItems}
+                                />
+                          </div>;
+                       case "5":
+                          return  <div>  <InventoryMaterialDamagedData
+                          locationDetailsId={this.props.user.locationId}
+                          /></div>;
+                          case "6":
+                          return  <div> 
+                           <InventoryMaterialBestBefore
+                                   locationDetailsId={this.props.user.locationId}
+                                  />
+                              </div>;
+                      
+            default:
+              return null;
+          }
+        };
         return (
             <>
                 <TabsWrapper>
@@ -72,12 +137,12 @@ class InventoryMaterialTabO extends PureComponent {
                         >
                             {" "}
                             <Suspense fallback={"Loading..."}>
-                                <MaterialReceivedTableOut  
+                                {/* <MaterialReceivedTableOut  
                                 translateText={this.props.translateText}
                                 selectedLanguage={this.props.selectedLanguage}
                     translatedMenuItems={this.props.translatedMenuItems}
                     locationDetailsId={this.props.user.locationId}
-             />
+             /> */}
                             </Suspense>
                         </TabPane>
 
@@ -117,13 +182,13 @@ class InventoryMaterialTabO extends PureComponent {
                                 <Suspense fallback={"Loading ..."}>
                                   {" "}
                                  
-                                  <MaterialIntransitList
+                                  {/* <MaterialIntransitList
                                    locationDetailsId={this.props.user.locationId}
                                 selectedLanguage={this.props.selectedLanguage}
                                   translateText={this.props.translateText}
                                 inventory={this.props.inventory}
                                  translatedMenuItems={this.props.translatedMenuItems}
-                                />
+                                /> */}
                                 </Suspense>
                                 
                              
@@ -158,7 +223,7 @@ class InventoryMaterialTabO extends PureComponent {
                             }
                             key="3"
                         >
-                             {this.state.shipperPopover ? (
+                             {/* {this.state.shipperPopover ? (
                             <Suspense fallback={"Loading..."}>
                                   <MaterialUnitsDataOut
                                    inventory={this.props.inventory}
@@ -180,7 +245,7 @@ class InventoryMaterialTabO extends PureComponent {
                                 />
                                 </Suspense>
                                 
-                              )}
+                              )} */}
                         </TabPane>
 {this.props.user.moduleMapper.productionInd===true && (
                         <TabPane
@@ -198,11 +263,11 @@ class InventoryMaterialTabO extends PureComponent {
                         >
                             <Suspense fallback={"Loading..."}>
                                 {/* <MaterialCellStock /> */}
-                                <MaterialCellCardViewOut 
+                                {/* <MaterialCellCardViewOut 
                                  locationDetailsId={this.props.user.locationId}
                                  inventory={this.props.inventory}
                                  translatedMenuItems={this.props.translatedMenuItems}
-                                />
+                                /> */}
                             </Suspense> 
                         </TabPane>
     )}
@@ -217,7 +282,7 @@ class InventoryMaterialTabO extends PureComponent {
                                         {/* {this.props.translatedMenuItems[19]} */}
 
                                     </span>
-                                    {activeKey === "4" && (
+                                    {activeKey === "5" && (
                         <>
                          
                              <span
@@ -236,14 +301,14 @@ class InventoryMaterialTabO extends PureComponent {
 
                                 </>
                             }
-                            key="4"
+                            key="5"
                         >
                             
                                 <Suspense fallback={"Loading ..."}>
                                   {" "}
-                               <InventoryMaterialDamagedData
+                               {/* <InventoryMaterialDamagedData
                                locationDetailsId={this.props.user.locationId}
-                               />
+                               /> */}
                                   {/* <MaterialIntransitList
                                    locationDetailsId={this.props.user.locationId}
                                 selectedLanguage={this.props.selectedLanguage}
@@ -267,7 +332,7 @@ class InventoryMaterialTabO extends PureComponent {
                                        
 
                                     </span>
-                                    {activeKey === "5" && (
+                                    {activeKey === "6" && (
                         <>
                          
                              <span
@@ -289,14 +354,14 @@ class InventoryMaterialTabO extends PureComponent {
 
                                 </>
                             }
-                            key="5"
+                            key="6"
                         >
                             
                                 <Suspense fallback={"Loading ..."}>
                                   {" "}
-                                  <InventoryMaterialBestBefore
+                                  {/* <InventoryMaterialBestBefore
                                    locationDetailsId={this.props.user.locationId}
-                                  />
+                                  /> */}
                                   {/* <MaterialIntransitList
                                    locationDetailsId={this.props.user.locationId}
                                 selectedLanguage={this.props.selectedLanguage}
@@ -309,6 +374,9 @@ class InventoryMaterialTabO extends PureComponent {
                              
                         </TabPane>
                     </StyledTabs>
+                    <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
                 </TabsWrapper>
 
             </>

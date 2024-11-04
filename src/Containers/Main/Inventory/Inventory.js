@@ -99,7 +99,7 @@ function Inventory(props) {
       setIsInitialLoad(false);  // Mark as no longer the initial load
     }
 
-    props.getInventoryById(props.match.params.locationDetailsId || props.locationId);
+   // props.getInventoryById(props.match.params.locationDetailsId || props.locationId);
 
     // Set tabData based on URL params
     if (props.match.params.data === "Receive") {

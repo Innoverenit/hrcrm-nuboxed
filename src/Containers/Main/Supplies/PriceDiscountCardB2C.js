@@ -8,6 +8,7 @@ import {createMaterialDiscountB2C,getMaterialDiscountB2C,
 } from "./SuppliesAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import EmptyPage from "../EmptyPage";
 
 const { Option } = Select;
 
@@ -252,7 +253,7 @@ function PriceDiscountCardB2C(props) {
             <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> {translatedMenuItems[3]}</div>
             <div className="w-12"></div>           
               </div>
-
+              <div className="h-[23vh] overflow-x-auto">
           {data.length ? data.map((item) => {
             return (
               <div key={item.suppliesId}>
@@ -364,7 +365,8 @@ function PriceDiscountCardB2C(props) {
                 </div>
               </div>
             );
-          }) : !data.length && !props.fetchingMaterialDiscountB2C ? <NodataFoundPage /> : null}
+          }) : !data.length && !props.fetchingMaterialDiscountB2C ? <EmptyPage /> : null}
+          </div>
         </div>
       </div>
     </div>

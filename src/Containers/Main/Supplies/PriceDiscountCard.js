@@ -7,6 +7,7 @@ import {createMaterialDiscount,getMaterialDiscount,
 } from "./SuppliesAction";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import EmptyPage from "../EmptyPage";
 
 const { Option } = Select;
 
@@ -242,7 +243,7 @@ function PriceDiscountCard(props) {
             <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> {translatedMenuItems[4]} </div>
             <div className="w-12"></div>           
               </div>
-
+<div className="h-[23vh] overflow-x-auto">
           {data.length ? data.map((item) => {
             return (
               <div key={item.suppliesId}>
@@ -374,8 +375,8 @@ function PriceDiscountCard(props) {
                 </div>
               </div>
             );
-          }) : !data.length && !props.fetchingMaterialDiscount ? <NodataFoundPage /> : null}
-
+          }) : !data.length && !props.fetchingMaterialDiscount ? <EmptyPage /> : null}
+</div>
         </div>
       </div>
 
