@@ -462,16 +462,17 @@ function MainApp(props) {
       </Button>
     </Link>
                  </div>
-                 <div class=" text-base cursor-pointer font-normal text-[blue]  ml-1 max-sm:hidden "
-                    onClick={() => {
-                      props.handleActionDrawerModal(true);
+                 <Badge 
+  count={`${props.actionCount.ActionRecordCount === 0 ? "0" : props.actionCount.ActionRecordCount}`}
+  overflowCount={999}
+>
+  <div className="text-base cursor-pointer font-normal text-[blue] ml-1 max-sm:hidden" onClick={() => {
+    props.handleActionDrawerModal(true);
+  }}>
+    <Button type="primary"><FlashOnIcon className="!text-icon"/> Action </Button>
 
-                    }}
-                  >   <Button type="primary"><FlashOnIcon  className=" !text-icon"/> Action </Button><Badge
-                    count={props.actionCount.ActionRecordCount}
-                    overflowCount={999}
-                  ></Badge>
-                  </div>
+  </div>
+</Badge>
                   </div>
 
 

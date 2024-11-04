@@ -51,10 +51,10 @@ function AddQuotationExcel(props) {
     setSuppliesId(item.suppliesId); 
     setSearchResults([]); 
 
-    setFieldValue('brandId', item.brand || ''); 
-    setFieldValue('modelId', item.modelId || ''); 
-    setFieldValue('attribute', item.attribute || ''); 
-    setFieldValue('category', item.categoryId || ''); 
+    setFieldValue('brandId', item.brandName || ''); 
+    setFieldValue('modelId', item.modelName || ''); 
+    setFieldValue('attribute', item.attributeName || ''); 
+    setFieldValue('category', item.categoryName || ''); 
     setFieldValue('price', item.price || '');
   
   };
@@ -63,27 +63,29 @@ function AddQuotationExcel(props) {
     <>
     <Formik
           initialValues={{
-            brandId: "",
-            modelId: "",
+            // brandId: "",
+            // modelId: "",
             orgId: props.orgId,
             userId: props.userId,
-            suppliesId:SuppliesId,
-            unit: "",
+            // unit: "",
             // spces: spces,
             // type: type,
             price: "",
             // quality: quality,
             // currencyId:currencyId,
-            category:"",
-            attribute:"",
+            // category:"",
+            // attribute:"",
             // location:locationId,
+            productId:SuppliesId,
+            productType:"material",
+            orderPhoneId:props.orderDetailsId.quotationId
           }}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
             props.addQuotationPhoneDetails(
               {
                 ...values,
-                suppliesId:SuppliesId,
+                productId:SuppliesId,
               },
               props.orderDetailsId.quotationId
             );

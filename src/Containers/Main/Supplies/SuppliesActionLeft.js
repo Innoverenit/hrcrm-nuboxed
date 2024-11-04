@@ -182,7 +182,7 @@ function SuppliesActionLeft (props) {
                         count={(viewType === "all" && suppliesCount.count) || 0}
                         overflowCount={999}
                     >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" md:mr-1 text-sm cursor-pointer"
                             onClick={() => setSuppliesViewType("all")}
                             style={{
 
@@ -253,7 +253,7 @@ function SuppliesActionLeft (props) {
                         count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
                         overflowCount={999}
                     >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" md:mr-1 text-sm cursor-pointer"
                             onClick={() => setSuppliesViewType("dashboard")}
                             style={{
                                 color: viewType === "dashboard" && "#1890ff",
@@ -275,7 +275,7 @@ function SuppliesActionLeft (props) {
                         //count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
                         //overflowCount={999}
                     >
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" md:mr-1 text-sm cursor-pointer"
                             onClick={() => setSuppliesViewType("suppliesLocation")}
                             style={{
                                 color: "blue",
@@ -294,7 +294,7 @@ function SuppliesActionLeft (props) {
                 title="Updates"
                 >
                
-                        <span class=" md:mr-2 text-sm cursor-pointer"
+                        <span class=" md:mr-1 text-sm cursor-pointer"
                             onClick={() => setSuppliesViewType("newList")}
                             style={{
                                 color: "blue",
