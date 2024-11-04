@@ -25,7 +25,7 @@ const { Option } = Select;
 const MaterialIntransitList = (props) => {
     useEffect(() => {
         props.getMaterialReceiveData(props.locationDetailsId);
-        props.getRoomRackByLocId(props.locationId, props.orgId);
+        //props.getRoomRackByLocId(props.locationId, props.orgId);
     }, [])
     const [clickStore, setclickStore] = useState(false)
     const [selectedChamberId, setSelectedChamberId] = useState("");

@@ -79,17 +79,17 @@ const InventoryCard = (props) => {
                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                               <div class="flex text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                {/* <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                   to={`locationDetails/${item.locationDetailsId}`}
                                   title={`${item.locationName}`}
-                                >{item.locationName}</Link> */}
-                              <div
+                                >{item.locationName}</Link>
+                              {/* <div
   onClick={() => window.location.assign(`/locationDetails/${item.locationDetailsId}`)}
   className="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
   title={item.locationName}
 >
   {item.locationName}
-</div>
+</div> */}
 
                                 &nbsp;&nbsp;
                                 {date === currentdate ? (

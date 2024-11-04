@@ -112,13 +112,14 @@ function ProcureInvoiceList (props) {
     
 
       const handlePostChange =  async (item) => {
+        const currentDate = new Date().toISOString();
         let updatedItem={
-          dispatchReceivedDate: new Date(date).toISOString(),
+            dispatchReceivedDate: currentDate,
           // trackId:trackId?trackId:item.trackId,Order Successfully dispatched!!!!
           orderId:props.orderId,
         }
         let data = {
-          inventoryPickUpDate: new Date(date).toISOString(),
+           inventoryPickUpDate: currentDate,
           transferInd: 1,
           locationId: "LDS65468903772222023",
           userId: props.userId,
@@ -246,7 +247,7 @@ function ProcureInvoiceList (props) {
                                                                                                     </div>
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             <div className=" flex w-20 items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[6rem] max-sm:flex-row  max-sm:justify-between ">
-    {editsuppliesId === props.orderId ? (
+    {/* {editsuppliesId === props.orderId ? (
                         <>
                       <Button 
                       type="primary"
@@ -261,16 +262,16 @@ function ProcureInvoiceList (props) {
                       </Button>
                       </>
                       
-                    ) : (
+                    ) : ( */}
                       <>
                         {/* {props.user.enaShipInd && ( */}
                       <Button className="w-[5rem]"
                       type="primary"
-                        onClick={() => handleEditClick(props.orderId)}
+                      onClick={() => handlePostChange(item)}
                       > <InputIcon className="!text-icon text-white"/>Pack</Button>
     {/* ) }   */}
                     </>
-                    )}
+                    {/* // )} */}
     </div>
     </div>
                                             </div>
