@@ -20,6 +20,9 @@ const initialState = {
   fetchingOrderCustomerError: false,
   orderCustomerList:[],
 
+  addingTicket:false,
+  addingTicketError:false,
+
   fetchingPiByItem: false,
   fetchingPiByItemError: false,
   piByItem: [],
@@ -265,6 +268,8 @@ const initialState = {
   fetchingOrderHistoryById: false,
   fetchingOrderHistoryByIdError: true,
   orderHistory: [],
+
+  addSupplierTicketModal:false,
 
   fetchingModel: false,
   fetchingModelError: false.valueOf,
@@ -715,6 +720,10 @@ export const distributorReducer = (state = initialState, action) => {
 
     case types.HANDLE_OPENNEW_MODAL:
       return { ...state, addNewModal: action.payload };
+
+
+      case types.HANDLE_SUPPLIER_TICKET_MODAL:
+        return { ...state, addSupplierTicketModal: action.payload };
 
     case types.HANDLE_ACCOUNT_IMPORT_MODAL:
       return { ...state, addAccountImportModal: action.payload };
@@ -1436,6 +1445,22 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingOrderHistoryById: false,
         fetchingOrderHistoryByIdError: true,
       };
+
+
+
+      case types.ADD_TICKET_REQUEST:
+      return { ...state, addingTicket: true };
+    case types.ADD_TICKET_SUCCESS:
+      return {
+        ...state,
+        addSupplierTicketModal:false,
+       
+        //allCustomers: [action.payload, ...state.allCustomers],
+        
+      };
+    case types.ADD_TICKET_FAILURE:
+      return { ...state, addingTicket: false, addingTicketError: false };
+
 
     case types.UPDATE_DISTRIBUTOR_CARD_REQUEST:
       return { ...state, updatingDistributorById: true };
