@@ -4430,7 +4430,7 @@ export const addQuotationCarDetails = (customer, id, cb) => (dispatch, getState)
   });
 
   axios
-    .post(`${base_url2}/quotation/procure/order`, customer, {
+    .post(`${base_url2}/DUMMY`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

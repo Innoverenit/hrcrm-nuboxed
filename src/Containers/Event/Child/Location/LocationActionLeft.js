@@ -96,7 +96,7 @@ const LocationActionLeft = (props) => {
                         count={(props.viewType === "delete" && props.locationDeletedCount.locCount) || 0}
                         overflowCount={999}
                     >
-                        <span class="  mr-1 md:mr-2 text-sm cursor-pointer"
+                        <span class="  mr-1 md:mr-1 text-sm cursor-pointer"
                             onClick={() => props.setLocationViewType("delete")}
                             style={{
                                 color: props.viewType === "delete" && "#1890ff",
