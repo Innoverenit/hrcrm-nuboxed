@@ -2584,3 +2584,38 @@ export const updateDistributorContact = (data, contactPersonId) => (
       });
     });
 };
+
+
+export const addRecallData = (opportunity, cb) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADD_RECALL_DATA_REQUEST,
+  });
+  axios
+    .post(`${base_url}/opportunity`, opportunity, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Opportunity created Successfully!',
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // })
+     
+      dispatch({
+        type: types.ADD_RECALL_DATA_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_RECALL_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};

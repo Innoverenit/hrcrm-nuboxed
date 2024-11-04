@@ -190,6 +190,11 @@ const initialState = {
   fetchingSuppliesListByIdError: false,
   suppliesBySupplier: [],
 
+
+
+  addingRecallData:false,
+  addingRecallDataError:false,
+
   addingSuppliersToggle: false,
   addingSuppliersToggleError: false,
 
@@ -992,6 +997,34 @@ export const suppliersReducer = (state = initialState, action) => {
           addingSupplierApproval: false,
           addingSupplierApprovalError: true,
         };
+
+
+
+
+
+
+        case types.ADD_RECALL_DATA_REQUEST:
+      return { ...state, addingRecallData: true };
+    case types.ADD_RECALL_DATA_SUCCESS:
+      return {
+        ...state,
+        addingRecallData: false,
+        //addOpportunityModal: false,
+        //addedOpportunity:action.payload,
+        //opportunityByUserId: [action.payload, ...state.opportunityByUserId],
+        // clearbit: null,
+      };
+    case types.ADD_RECALL_DATA_FAILURE:
+      return {
+        ...state,
+        addingRecallData: false,
+        addingRecallDataError: true,
+        //addOpportunityModal: false,
+      };
+
+
+
+
 
 
     case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_REQUEST:
