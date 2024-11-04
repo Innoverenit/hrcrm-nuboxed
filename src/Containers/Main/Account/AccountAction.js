@@ -5301,3 +5301,38 @@ export const updateAccountUser = ( id,userId) => (dispatch) => {
       });
     });
 };
+
+
+
+
+export const getTicket = (orgId) => (dispatch) => {
+  // let api_url = "";
+  // if (userId) {
+  //   api_url = `/sort/all/contacts/user/${userId}`;
+  // } else {
+  //   api_url = `/contacts`;
+  // }
+  dispatch({
+    type: types.GET_TICKET_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/ticket/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TICKET_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_TICKET_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};

@@ -233,7 +233,7 @@ const [selectedStage, setSelectedStage] = useState(null);
                
                   <div class=" mt-3">
                   <Field
-                    name="url"
+                    name="title"
                     type="text"
                 label="Title"                       
                     isColumn

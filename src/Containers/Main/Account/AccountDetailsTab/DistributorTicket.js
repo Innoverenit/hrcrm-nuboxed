@@ -26,6 +26,7 @@ import {
     getProcessForOpportunity,
     getProcessStagesForOpportunity,
 } from "../../../../Containers/Settings/SettingsAction";
+import {getTicket} from "../AccountAction"
 // import {
 //     // getAllOpportunityListByUserId,
 //     updateOpportunitydragstage,emptyOpportunity} from "../OpportunityAction"
@@ -96,6 +97,7 @@ console.log("publishIndTrueItem",publishIndTrueItem)
 let type="Quotation"
   useEffect(() => {
     props.getProcessForOpportunity(props.orgId,type);
+    props.getTicket(props.orgId)
     // props.getAllOpportunityListByUserId(props.userId)
   }, []);
 
@@ -273,10 +275,13 @@ const mapStateToProps = ({
   opportunity,
   auth,
   settings,
+  distributor,
 }) => ({
     opportunityProcess: settings.opportunityProcess,
     orgId: auth.userDetails && auth.userDetails.organizationId,
    userId: auth.userDetails.userId,
+   ticketList:distributor.ticketList,
+   fetchingTicketList:distributor.fetchingTicketList,
    opportunityByUserId:opportunity.opportunityByUserId,
 opportunityProcessStages: settings.opportunityProcessStages,
 });
@@ -285,6 +290,7 @@ const mapDispatchToProps = (dispatch) =>
     {
         getProcessForOpportunity,
         getProcessStagesForOpportunity,
+        getTicket
        // getAllOpportunityListByUserId,
         // emptyOpportunity,
         //updateOpportunitydragstage

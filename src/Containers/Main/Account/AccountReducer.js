@@ -171,6 +171,12 @@ const initialState = {
   addingDistributorActivityCall: false,
   addingDistributorActivityCallError: false,
 
+
+
+  fetchingTicketList:false,
+  fetchingTicketListError:false,
+  ticketList:[],
+
   addingDistributorActivityEvent: false,
   addingDistributorActivityEventError: false,
 
@@ -807,6 +813,24 @@ export const distributorReducer = (state = initialState, action) => {
           orderCustomerList: [...state.orderCustomerList, ...action.payload],
           //  orderCustomerList: action.payload,
         };
+
+
+
+
+        case types.GET_TICKET_LIST_REQUEST:
+          return { ...state, fetchingTicketList: true };
+        case types.GET_TICKET_LIST_SUCCESS:
+          return {
+            ...state,
+            fetchingTicketList: false,
+            ticketList: action.payload,
+          };
+        case types.GET_TICKET_LIST_FAILURE:
+          return {
+            ...state,
+            fetchingTicketList: false,
+            fetchingTicketListError: true,
+          };
       case types.GET_CUSTOMER_ORDER_FAILURE:
         return {
           ...state,
