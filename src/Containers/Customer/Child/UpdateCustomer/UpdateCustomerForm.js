@@ -1,6 +1,5 @@
 import React, {useState,useEffect } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button,Select} from "antd";
 import {getCustomer} from "../../../Settings/Category/Customer/CustomerAction"
@@ -240,6 +239,7 @@ function UpdateCustomerForm (props) {
             <Form className="form-background">
               <div class=" flex justify-around max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk" >
+                  <div className=" flex flex-nowrap justify-between">
                 <div>
                 {clearbit && Object.keys(clearbit).length === 0 && (
          <ProgressiveImage
@@ -277,7 +277,8 @@ function UpdateCustomerForm (props) {
                       </a>
                     ) : null}
                   </div>
-                
+                  <div className=" flex justify-between flex-wrap">
+                  <div class=" w-wk max-sm:w-full">
                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs  mt-3">
                   {/* name */}
                     {translatedMenuItems[0]}
@@ -297,6 +298,8 @@ function UpdateCustomerForm (props) {
                     accounts={accounts}
                     inlineLabel
                     />
+                    </div>
+                    <div class=" w-wk max-sm:w-full">
                     <div class="font-bold text-xs"> {translatedMenuItems[1]}  </div>
                   <Field
                     name="url"
@@ -307,7 +310,9 @@ function UpdateCustomerForm (props) {
                     component={InputComponent}
                     inlineLabel
                     />
-             
+                 </div>
+                    </div>
+                    </div>
                    <div class=" flex justify-between mt-2">
                    <div class=" w-3/12 max-sm:w-[31%]">
                    <div class="font-bold text-xs"> {translatedMenuItems[2]}  </div>
@@ -340,7 +345,8 @@ function UpdateCustomerForm (props) {
                      <div class=" flex justify-between mt-3">
                      <div class="w-w47.5 max-sm:w-w47.5">
                      <div class="font-bold text-xs"> {translatedMenuItems[4]}  </div>
-                      <FastField                      
+                      <FastField  
+                       style={{ width: "11.5rem" }}                    
                         name="sectorId"
                         isColumnWithoutNoCreate
                         selectType="sectorName"                   
@@ -352,6 +358,7 @@ function UpdateCustomerForm (props) {
                     <div class=" w-w47.5">
                     <div class="font-bold text-xs"> {translatedMenuItems[5]}  </div>
                     <FastField
+                     style={{ width: "11.5rem" }}
                           name="source"
                           isColumnWithoutNoCreate                    
                           selectType="sourceName"
@@ -366,13 +373,29 @@ function UpdateCustomerForm (props) {
            </div>
            </div>
            <div class="flex justify-between mt-2">
+           <div class="w-w47.5">
+  <div class="font-bold text-xs"> {translatedMenuItems[8]}  </div>
+    <Field
+      name="type"
+      isColumn
+      width={"100%"}
+      component={SelectComponent}
+      options={
+        Array.isArray(typeOption)
+          ? typeOption
+          : []
+      }
+      inlineLabel
+    />
+  </div>
   <div class="w-w47.5 flex">
     <div class="w-24">
     <div class="font-bold text-xs"> {translatedMenuItems[6]}  </div>
       <Field
+       style={{ width: "5.5rem" }}
         name="potentialValue"    
         isColumn
-        width={"100%"}
+        // width={"100%"}
         component={InputComponent}
         inlineLabel
       />
@@ -385,7 +408,7 @@ function UpdateCustomerForm (props) {
       </div>
       <Select
         showSearch
-        style={{ width: 100 }}
+        style={{ width: "5.5rem" }}
         placeholder="Search or select currency"
         optionFilterProp="children"
         loading={isLoadingCurrency}
@@ -401,21 +424,7 @@ function UpdateCustomerForm (props) {
       </Select>
     </div>
   </div>
-  <div class="w-w47.5">
-  <div class="font-bold text-xs"> {translatedMenuItems[8]}  </div>
-    <Field
-      name="type"
-      isColumn
-      width={"100%"}
-      component={SelectComponent}
-      options={
-        Array.isArray(typeOption)
-          ? typeOption
-          : []
-      }
-      inlineLabel
-    />
-  </div>
+  
 </div>            
            <div class=" mt-3">
            <div class="font-bold text-xs"> {translatedMenuItems[9]}  </div>

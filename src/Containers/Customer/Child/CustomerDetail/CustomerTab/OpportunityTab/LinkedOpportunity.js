@@ -16,7 +16,6 @@ import { CurrencySymbol } from "../../../../../../Components/Common";
 import { getOpportunityListByCustomerId,handleUpdateCustomerOpportunityModal,
   setEditCustomerOpportunity} from "../../../../CustomerAction";
 import { Tooltip,Button,Input,Progress } from "antd";
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
@@ -25,6 +24,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
+const EmptyPage =lazy(()=>import("../../../../../Main/EmptyPage")); 
 const AddCustomerUpdateOpportunityModal =lazy(()=>import("./AddCustomerUpdateOpportunityModal")); 
 
 dayjs.extend(relativeTime);
@@ -214,7 +214,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
 
       </div>
 
-      { !fetchingCustomerOpportunity && opportunityByCustomerId.length === 0 ?<NodataFoundPage />:opportunityByCustomerId.map((item,index) =>  {
+      { !fetchingCustomerOpportunity && opportunityByCustomerId.length === 0 ?<EmptyPage/>:opportunityByCustomerId.map((item,index) =>  {
               var findProbability = item.probability;
               item.stageList.forEach((element) => {
                 if (element.oppStage === item.oppStage) {

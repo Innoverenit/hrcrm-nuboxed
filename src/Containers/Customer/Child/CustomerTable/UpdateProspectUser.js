@@ -91,7 +91,7 @@ function UpdateProspectUser(props) {
             <div class=" flex justify-between max-sm:flex-col">
               <div class=" h-full w-[47.5%] mt-3 max-sm:w-wk">
               <div class="font-bold text-xs">
-              User
+            List of Users with CRM access
                 </div>
                      <Select
        
