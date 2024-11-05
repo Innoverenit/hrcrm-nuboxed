@@ -85,11 +85,7 @@ const InventoryActionLeft = (props) => {
                 color: props.viewType === "commerce" && "#1890ff",
               }}
             >
-              
-              <Button 
-              // type={props.viewType === "repair" ? "primary" : ""} 
-              style={{ backgroundColor:  "tomato" }}
-              >
+              <Button type={props.viewType === "commerce" ? "primary" : ""} style={{ backgroundColor: props.viewType === "commerce" ? "" : "tomato" }}>
              <div class="text-white ">
              Commerce
               </div>

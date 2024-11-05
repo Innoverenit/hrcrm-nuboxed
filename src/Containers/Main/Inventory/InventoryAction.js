@@ -516,6 +516,33 @@ export const getDispatchList = (locationId,pageNo,type) => (dispatch) => {
     });
 };
 
+export const getCompleteDispatchList = (locationId,pageNo,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLETE_DISPATCH_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderInventoryLocationLink/get-completeDispatchData/${locationId}/${pageNo}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETE_DISPATCH_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETE_DISPATCH_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 export const getCommerceList = (orgId,pageNo) => (dispatch) => {
   // const dispatchId = getState().inventory.dispatch.dispatchId;
   dispatch({
@@ -2359,7 +2386,17 @@ export const ClearReducerData= () => (dispatch) => {
   });
 }
 
+export const clearDispatch= () => (dispatch) => {
+  dispatch({
+    type: types.CLAER_DISPATCH_DATA,
+  });
+}
 
+export const clearCompleteDispatch= () => (dispatch) => {
+  dispatch({
+    type: types.CLAER_COMPLETE_DISPATCH_DATA,
+  });
+}
 
 export const getMaterialBestBefore = (locationDetailsId) => (dispatch) => {
   dispatch({

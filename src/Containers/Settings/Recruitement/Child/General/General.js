@@ -22,6 +22,8 @@ function General(props) {
   const [formValues, setFormValues] = useState({
     timePeriod: props.requirementDuration.timePeriod === 0 ? "Not Applicable" : props.requirementDuration.timePeriod || "",
     oppTimePeriod: props.requirementDuration.oppTimePeriod === 0 ? "Not Applicable" : props.requirementDuration.oppTimePeriod || "",
+    ordDelvry: props.requirementDuration.ordDelvry === 0 ? "Not Applicable" : props.requirementDuration.ordDelvry || "",
+    qtionInclItem: props.requirementDuration.qtionInclItem === 0 ? "Not Applicable" : props.requirementDuration.qtionInclItem || "",
     jobAniEmailInd: props.requirementDuration.jobAniEmailInd,
     birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
     trnsfrEvthngToErpInd: props.requirementDuration.trnsfrEvthngToErpInd,
@@ -82,6 +84,8 @@ function General(props) {
       setFormValues({
         timePeriod: props.requirementDuration.timePeriod === 0 ? "Not Applicable" : props.requirementDuration.timePeriod || "",
     oppTimePeriod: props.requirementDuration.oppTimePeriod === 0 ? "Not Applicable" : props.requirementDuration.oppTimePeriod || "",
+    ordDelvry: props.requirementDuration.ordDelvry === 0 ? "Not Applicable" : props.requirementDuration.ordDelvry || "",
+    qtionInclItem: props.requirementDuration.qtionInclItem === 0 ? "Not Applicable" : props.requirementDuration.qtionInclItem || "",
     jobAniEmailInd: props.requirementDuration.jobAniEmailInd,
     birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
     trnsfrEvthngToErpInd: props.requirementDuration.trnsfrEvthngToErpInd,
@@ -156,6 +160,8 @@ function General(props) {
       ...formValues,
       timePeriod: props.requirementDuration.timePeriod === 0 ? "Not Applicable" : props.requirementDuration.timePeriod || "",
           oppTimePeriod: formValues.oppTimePeriod === 0 ? "Not Applicable" : props.requirementDuration.oppTimePeriod || "",
+          ordDelvry: formValues.ordDelvry === 0 ? "Not Applicable" : props.requirementDuration.ordDelvry || "",
+          qtionInclItem: formValues.qtionInclItem === 0 ? "Not Applicable" : props.requirementDuration.qtionInclItem || "",
           userId: props.userId,
           orgId: props.orgId,
           jobAniEmailInd: formValues.jobAniEmailInd,
@@ -457,6 +463,36 @@ function General(props) {
                     />
                   </div>
                 </div>
+
+                <div class=" flex justify-between ] mt-2">           
+                        <div class=" text-xs  ">Order Delivery</div>    
+                      <div className="w-[10rem]">
+                      <Select
+  value={formValues.ordDelvry}
+  onChange={(value) => handleDropdownChange("ordDelvry", value)}
+>
+  <Option value="Associates trackId with packetId">Associates trackId with packetId</Option>
+  <Option value="All packets are derivered">All packets are derivered</Option>
+  <Option value="Not Applicable">Not Applicable</Option>
+</Select>
+                      </div>
+                    </div>
+
+                    <div class=" flex justify-between ] mt-2">           
+                        <div class=" text-xs  ">Quotation Include Item</div>    
+                        <div className="w-[10rem]">
+                      <Select
+  value={formValues.qtionInclItem}
+  onChange={(value) => handleDropdownChange("qtionInclItem", value)}
+>
+  <Option value="Material">Material</Option>
+  <Option value="Product">Product</Option>
+  <Option value="Inventory Material">Inventory Material</Option>
+  <Option value="Not Applicable">Not Applicable</Option>
+</Select>
+                      </div>
+                    </div>
+
                 <div class=" flex  mt-2">
                       <div class=" text-sm  font-bold">Inventory</div>
                       </div>

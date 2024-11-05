@@ -6,6 +6,7 @@ import { TabsWrapper } from "../../../Components/UI/Layout";
 import { withRouter } from "react-router";
 import DispatchTableOut from "./DispatchTableOut";
 import CommerceTableOut from "./CommerceTableOut";
+import CompleteDispatchTable from "./CompleteDispatchTable";
 
 
                                            
@@ -104,7 +105,29 @@ class InventoryCommerceDetailTabO extends PureComponent {
               </Suspense>
             </TabPane>
 
-          
+            <TabPane
+              tab={
+                <>
+                  <span>
+                    <i class="far fa-share-square"></i>&nbsp;
+                   Complete Dispatch  
+
+                  </span>
+                
+                </>
+              }
+              key="2"
+            >
+              <Suspense fallback={"Loading..."}>
+                <CompleteDispatchTable
+                viewType={this.props.viewType}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+                locationDetailsId={this.props.user.locationId}
+                   inventory={this.props.inventory}
+                />
+              </Suspense>
+            </TabPane>
 
           </StyledTabs>
         </TabsWrapper>
