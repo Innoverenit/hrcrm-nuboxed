@@ -265,10 +265,10 @@ function ProcureInvoiceList (props) {
                     ) : ( */}
                       <>
                         {/* {props.user.enaShipInd && ( */}
-                      <Button className="w-[5rem]"
+                      {/* <Button className="w-[5rem]"
                       type="primary"
                       onClick={() => handlePostChange(item)}
-                      > <InputIcon className="!text-icon text-white"/>Pack</Button>
+                      > <InputIcon className="!text-icon text-white"/>Pack</Button> */}
     {/* ) }   */}
                     </>
                     {/* // )} */}

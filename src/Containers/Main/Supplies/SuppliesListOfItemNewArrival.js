@@ -15,7 +15,7 @@ const SuppliesListOfItemNewArrival = (props) => {
     <>
       <StyledDrawer
         // title={`Share Own ${props.RowData.}`}
-        title="Contact List"
+        title="Item"
         width={drawerWidth}
         visible={open}
         destroyOnClose

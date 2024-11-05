@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { bindActionCreators } from "redux";
 import { Tooltip,Button,Input,Select, Badge } from "antd";
 import dayjs from "dayjs";
+import InputIcon from '@mui/icons-material/Input';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import {
@@ -18,7 +19,7 @@ import {
   handleStatuShowDrawer,
   searchCustomerOrderNoData,
   ClearReducerData,
-
+  addLocationInOrder
 } from "../../AccountAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
@@ -38,6 +39,7 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import ItemListListDrawer from "./itemListListDrawer";
 
 const { Option } = Select;
 const { Search } = Input;
@@ -71,6 +73,7 @@ function CustomerProcurementTable(props) {
   const [isRecording, setIsRecording] = useState(false); 
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
+  const [openDrawer , setOpenDrawer]= useState(false); 
 
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
@@ -263,19 +266,29 @@ const handleLoadMoreLow = () => {
  
   
 
-  const handlePostChange =  async (item) => {
+
+    const handlePostChange =  async (item) => {
+      const currentDate = new Date().toISOString();
       let updatedItem={
-        dispatchReceivedDate: new Date(date).toISOString(),
+          dispatchReceivedDate: currentDate,
         // trackId:trackId?trackId:item.trackId,Order Successfully dispatched!!!!
         orderId:item.orderId,
       }
+      let data = {
+         inventoryPickUpDate: currentDate,
+        transferInd: 1,
+        locationId: "LDS65468903772222023",
+        userId: props.userId,
+        orderPhoneId: item.orderId,
+        orderType:"Procure"
+    }
       try {
-          const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch`, updatedItem, {  
+        const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch`, updatedItem, {  
             headers: {
                 Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
             },
          });
-        
+         dispatch(addLocationInOrder(data, props.distributorId));
          if (response.data === 'Order Successfully dispatched!!!!') {
           const updatedOrderItems = data.filter(itm => itm.orderId !== item.orderId);
           setData(updatedOrderItems);
@@ -288,7 +301,6 @@ const handleLoadMoreLow = () => {
           setEditsuppliesId(null);
         }
     };
-
 
     const exportPDFAnnexure = async () => {
       var doc = new jsPDF();
@@ -454,9 +466,7 @@ const handleLoadMoreLow = () => {
                           <div className="w-[2.2rem] md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
                         {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
-                        <div className="w-[2rem] md:w-[4.8rem]">
-                        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[6]}{/* "Payment"/> */}
-                          </div>
+                       
                     </div>
                     <InfiniteScroll
                         dataLength={data.length}
@@ -571,8 +581,12 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                             </div>
                                         </div>
                                         <div class="flex flex-row md:w-[7.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-xs">
-                                              {item.paymentInTerms}
+                                        <div class=" font-poppins text-xs"
+                                       onClick={()=>{setOpenDrawer(true);
+                                        handleSetParticularOrderData(item);
+                                     }}
+                                        >
+                                              {item.itemCount}
                                             </div>
                                         </div>
                                         <div class="flex flex-row  md:w-[10.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
@@ -623,6 +637,10 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
             
                     )}
     </div> */}
+     <Button className="w-[5rem]"
+                      type="primary"
+                      onClick={() => handlePostChange(item)}
+                      > <InputIcon className="!text-icon text-white"/>Pack</Button>
        <div class="flex w-7 justify-end max-sm:flex-row max-sm:w-[10%]">                                                                                              
                                                        {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full  md:w-5 h-5 cursor-pointer items-center justify-center h-8  bg-[#eef2f9] flex">
                                             <Tooltip title={translatedMenuItems[12]}>
@@ -791,8 +809,12 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                       </div>
                   </div>
                   <div class="flex flex-row items-center md:w-[7.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
-                  <div class=" font-poppins text-xs">
-                        {item.paymentInTerms}
+                  <div class=" font-poppins text-xs"
+                   onClick={()=>{setOpenDrawer(true);
+                    handleSetParticularOrderData(item);
+                 }}
+                  >
+                        {item.itemCount}
                       </div>
                   </div>
                   <div class="flex flex-row items-center md:w-[10.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
@@ -890,6 +912,14 @@ translateText={props.translateText}
          translatedMenuItems={translatedMenuItems}
          distributorId={props.distributorId}
          />
+          <ItemListListDrawer
+                    particularRowData={particularRowData}
+                    openDrawer={openDrawer}
+                    setOpenDrawer={setOpenDrawer}
+                    selectedLanguage={props.selectedLanguage}
+                    translateText={props.translateText}
+         distributorId={props.distributorId}
+         />
     </>
   );
 
@@ -926,7 +956,8 @@ const mapDispatchToProps = (dispatch) =>
       handleProcureDetailsModal,
       handleStatuShowDrawer,
       ClearReducerData,
-      searchCustomerOrderNoData
+      searchCustomerOrderNoData,
+      addLocationInOrder
     },
     dispatch
   );

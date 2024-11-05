@@ -74,7 +74,7 @@ function NewArrivalListData(props) {
         <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
           <div className="w-2">Date</div>
         
-          <div className="w-12">Item</div>
+          <div className="w-12">Items</div>
           <div className="w-20">Contact #</div>
       </div>
       {!fetchingNewArrivalList && newArrivalDataList.length === 0 ?<EmptyPage />:newArrivalDataList.map((item,index) =>  {

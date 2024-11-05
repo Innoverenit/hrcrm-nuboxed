@@ -38,17 +38,16 @@ function SuppliesActionLeft (props) {
       transcript,
       listening,
       resetTranscript,
-      browserSupportsSpeechRecognition
+      browserSupportsSpeechRecognition,
     } = useSpeechRecognition();
 
-      useEffect(() => {
-        // props.getCustomerRecords();
-        if (transcript) {
-          console.log(">>>>>>>", transcript);
-          setCurrentData(transcript);
-          setCurrentCatData(transcript);
-        }
-        }, [ transcript]);
+    useEffect(() => {
+      // props.getCustomerRecords();
+      if (transcript) {
+        console.log(">>>>>>>", transcript);
+        setCurrentData(transcript);
+      }
+      }, [ transcript]);
 
         const {
             viewType,
@@ -57,40 +56,21 @@ function SuppliesActionLeft (props) {
             suppliesDeletedCount,
         } = props;
 
-        const handleChange = (e) => {
+     
+          const handleChange = (e) => {
             setCurrentData(e.target.value);
         
-            if (searchOnEnter&& e.target.value.trim() === "") {  //Code for Search
+            if (searchOnEnter && e.target.value.trim() === "") {
               setPage(pageNo + 1);
-               props.getSuppliesList(pageNo);
+              props.getSuppliesList(pageNo);
               props.ClearReducerDataOfMaterial()
               setSearchOnEnter(false);
             }
           };
           const handleSearch = () => {
             if (currentData.trim() !== "") {
-              // Perform the search
-               props.inputSuppliesDataSearch(currentData);
-              setSearchOnEnter(true);  //Code for Search
-            } else {
-              console.error("Input is empty. Please provide a value.");
-            }
-          };
-
-          const handleCatChange = (e) => {
-            setCurrentCatData(e.target.value);
-        
-            if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
-               
-              props.getMaterialCategory();
-              setSearchOnEnter(false);
-            }
-          };
-          const handleCatSearch = () => {
-            if (currentCatData.trim() !== "") {
-              // Perform the search
-              props.materialCategorySearch(currentCatData);
-              setSearchOnEnter(true);  //Code for Search
+              props.inputSuppliesDataSearch(currentData);
+              setSearchOnEnter(true);  // Code for Search
             } else {
               console.error("Input is empty. Please provide a value.");
             }
@@ -118,33 +98,65 @@ function SuppliesActionLeft (props) {
         
             />
           );
-        const handleStopListening = () => {
+          const handleStopListening = () => {
             SpeechRecognition.stopListening();
             setIsRecording(false);
             if (transcript.trim() !== "") {
               setCurrentData(transcript);
               props.inputSuppliesDataSearch(transcript);
-              setCurrentCatData(transcript);
-              props.materialCategorySearch(transcript);
               setSearchOnEnter(true);
             }
           };
-          useEffect(() => {
-            if (!listening && isRecording) {
-              handleStopListening();
+
+
+          const handleCatChange = (e) => {
+            setCurrentCatData(e.target.value);
+        
+            if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
+               
+              props.getMaterialCategory();
+              setSearchOnEnter(false);
             }
-          }, [listening]);
-          useEffect(() => {
-            if (isRecording && !listening) {
-              // If recording was stopped but less than 5 seconds have passed, restart listening
-              const elapsedTime = Date.now() - startTime;
-              if (elapsedTime < minRecordingTime) {
-                SpeechRecognition.startListening();
-              } else {
-                setIsRecording(false);
-              }
+          };
+          const handleCatSearch = () => {
+            if (currentCatData.trim() !== "") {
+              // Perform the search
+              props.materialCategorySearch(currentCatData);
+              setSearchOnEnter(true);  //Code for Search
+            } else {
+              console.error("Input is empty. Please provide a value.");
             }
-          }, [listening, isRecording, startTime]);
+          };
+
+       
+       
+        // const handleStopListening = () => {
+        //     SpeechRecognition.stopListening();
+        //     setIsRecording(false);
+        //     if (transcript.trim() !== "") {
+        //       setCurrentData(transcript);
+        //       props.inputSuppliesDataSearch(transcript);
+        //       setCurrentCatData(transcript);
+        //       props.materialCategorySearch(transcript);
+        //       setSearchOnEnter(true);
+        //     }
+        //   };
+        useEffect(() => {
+          if (!listening && isRecording) {
+            handleStopListening();
+          }
+        }, [listening]);
+        useEffect(() => {
+          if (isRecording && !listening) {
+            // If recording was stopped but less than 5 seconds have passed, restart listening
+            const elapsedTime = Date.now() - startTime;
+            if (elapsedTime < minRecordingTime) {
+              SpeechRecognition.startListening();
+            } else {
+              setIsRecording(false);
+            }
+          }
+        }, [listening, isRecording, startTime]);
 
 
           useEffect(() => {
@@ -311,14 +323,16 @@ function SuppliesActionLeft (props) {
                 </Tooltip>
                 <div class=" w-64 max-sm:w-24">
                 {viewType === "all" &&         
-        <Input
-          placeholder=""
-          width={"100%"}
-          suffix={suffix}
-          onPressEnter={handleSearch}
-          onChange={handleChange}
-        value={currentData}
-        />}
+         <Input
+         placeholder="Search by All"
+         class="w-96"
+         suffix={suffix}
+         onPressEnter={handleSearch}
+         onChange={handleChange}
+         value={currentData}
+       />
+        
+        }
 {viewType === "category" &&
 <Input
           placeholder=""
