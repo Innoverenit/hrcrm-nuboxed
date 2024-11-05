@@ -45,7 +45,7 @@ import MaterialStatusToggle from "./MaterialStatusToggle";
 import ReactToPrint from "react-to-print";
 import AddDocumentErpModals from "./AddDocumentErpModals";
 import { FormattedMessage } from "react-intl";
-import SuppliesSearchedData from "./SuppliesSearchedData";
+import EmptyPage from "../EmptyPage";
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
@@ -78,8 +78,8 @@ function SuppliesTable(props) {
     window.print();
 };
   useEffect(() => {
-    setPage(page + 1);
-    props.getSuppliesList(page);
+    // setPage(page + 1);
+    // props.getSuppliesList(page);
     props.getUOM()
   }, []);
 
@@ -175,138 +175,8 @@ function SuppliesTable(props) {
   return (
     <>
 
-     <div class=" flex w-full max-sm:flex-col mt-4" >
-          
-          <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                     
-                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                         <div class="flex flex-row items-center  text-xs">
-                             <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
-                             </div>
-                             <JumpStartBox
-              bgColor="linear-gradient(270deg,#F15753,orange)"
-              noProgress
-              title= {translatedMenuItems[25]}
-             // jumpstartClick={()=> handleClick("Added")}
-              cursorData={"pointer"}
-              value={"0"}
-            // isLoading={props.fetchingorderDetails}
-            />
-                         </div>
-                     </div>
-                 
-                 </div> 
-                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                       
-                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                           <div class="flex flex-row items-center text-xs">
-                               <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
-                               </div>
-                               <JumpStartBox
-            bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-              noProgress
-              title= {translatedMenuItems[26]} 
-            //jumpstartClick={()=> handleClick("Open")}
-              cursorData={"pointer"}
-            // value={ pendingOrder}
-            // isLoading={props.fetchingorderDetails}
-            />
-                           </div>
-                       </div>
-                    
-                   </div>  
-                    
-                <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                       
-                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                           <div class="flex flex-row items-center text-xs">
-                               <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
-                               </div>
-                               <JumpStartBox
-                bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-              noProgress
-              title= {translatedMenuItems[27]}
-          
-              //jumpstartClick={()=> handleClick("Closed")}
-              cursorData={"pointer"}
-            // value={completeOrder}
-            // isLoading={props.fetchingorderDetails}
-            />
-                           </div>
-                       </div>
-                     
-                   </div>  
-                   
-                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                      
-                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                          <div class="flex flex-row items-center text-xs">
-                              <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
-                              </div>
-                              <JumpStartBox
-                             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-                              noProgress
-                              title= {translatedMenuItems[28]} 
-                             // jumpstartClick={()=> handleClick("Cancelled")}
-                              cursorData={"pointer"}
-                              value={"0"}
-                            // isLoading={props.fetchingorderDetails}
-                            />
-                          </div>
-                      </div>      
-                  </div>
-                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                     
-                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                         <div class="flex flex-row items-center  text-xs">
-                             <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
-                             </div>
-                             <JumpStartBox
-              bgColor="linear-gradient(270deg,#F15753,orange)"
-              noProgress
-              title= {translatedMenuItems[25]}
-             // jumpstartClick={()=> handleClick("Added")}
-              cursorData={"pointer"}
-              value={"0"}
-            // isLoading={props.fetchingorderDetails}
-            />
-                         </div>
-                     </div>
-                 
-                 </div> 
-                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                      
-                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                          <div class="flex flex-row items-center text-xs">
-                              <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
-                              </div>
-                              <JumpStartBox
-                             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-                              noProgress
-                              title= {translatedMenuItems[28]} 
-                             // jumpstartClick={()=> handleClick("Cancelled")}
-                              cursorData={"pointer"}
-                              value={"0"}
-                            // isLoading={props.fetchingorderDetails}
-                            />
-                          </div>
-                      </div>      
-                  </div>
-          </div>
-          {props.suppliesSerachedData.length > 0 ? (
-    <SuppliesSearchedData
-    translateText={props.translateText}
-    selectedLanguage={props.selectedLanguage}
-    suppliesSerachedData={props.suppliesSerachedData}
-    fetchingSuppliesInputSearchData={props.fetchingSuppliesInputSearchData}
-    />
-  ) : (  
+    
+        
       <div className=" flex sticky z-auto mt-4">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[81%] justify-between  p-1 bg-transparent font-bold sticky items-end z-10">
@@ -350,17 +220,10 @@ function SuppliesTable(props) {
              
           </div>
 
-          <InfiniteScroll
-            dataLength={props.purchaseList.length}
-            next={handleLoadMore}
-            hasMore={hasMore}
-            loader={props.fetchingPurchaseList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-            height={"83vh"}
-            style={{ scrollbarWidth:"thin" }}
-          >
-            {props.purchaseList.length ?
+        
+            {props.suppliesSerachedData.length ?
               <>
-                {props.purchaseList.map((item,index) => {
+                {props.suppliesSerachedData.map((item,index) => {
                   const currentDate = dayjs().format("DD/MM/YYYY");
                   
                   return (
@@ -591,12 +454,12 @@ function SuppliesTable(props) {
                   );
                 })}
               </> :
-              !props.purchaseList.length
-                && !props.fetchingPurchaseList ? <NodataFoundPage /> : null}
-          </InfiniteScroll>
+              !props.suppliesSerachedData.length
+                && !props.fetchingSuppliesInputSearchData ? <EmptyPage /> : null}
+        
         </div>
       </div>
-  )}  
+  
       <Suspense fallback={<BundleLoader />}>
         <TagBrandModel
            translateText={props.translateText}
@@ -684,8 +547,6 @@ const mapStateToProps = ({ supplies, auth,settings }) => ({
   priceOpenModal: supplies.priceOpenModal,
   locationSuppliesModal:supplies.locationSuppliesModal,
   UOMListData:settings.UOMListData,
-  suppliesSerachedData:supplies.suppliesSerachedData,
-  fetchingSuppliesInputSearchData:supplies.fetchingSuppliesInputSearchData
 });
 
 const mapDispatchToProps = (dispatch) =>

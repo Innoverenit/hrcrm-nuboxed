@@ -15,7 +15,7 @@ const ContactListOfItemNewArrival = (props) => {
     <>
       <StyledDrawer
         // title={`Share Own ${props.RowData.}`}
-        title="Contact List"
+        title="Contact"
         width={drawerWidth}
         visible={contacrOpen}
         destroyOnClose

@@ -64,6 +64,7 @@ function General(props) {
     bestBfrDayRng: props.requirementDuration.bestBfrDayRng,
     packageInd: props.requirementDuration.packageInd,
     stucUpInd: props.requirementDuration.stucUpInd,
+    disPackInd: props.requirementDuration.disPackInd,
     userId: props.userId,
     orgId: props.orgId,
   });
@@ -126,6 +127,7 @@ function General(props) {
     processInd: props.requirementDuration.processInd,
     enaShipInd: props.requirementDuration.enaShipInd,
     stucUpInd: props.requirementDuration.stucUpInd,
+    disPackInd: props.requirementDuration.disPackInd,
     userId: props.userId,
     orgId: props.orgId,
       });
@@ -205,6 +207,7 @@ function General(props) {
           enaShipInd: formValues.enaShipInd,
           bestBfrDayRng: formValues.bestBfrDayRng,
           packageInd: formValues.packageInd,
+          disPackInd: formValues.disPackInd,
 
     };
 
@@ -1020,7 +1023,27 @@ function General(props) {
   
       </div>
     </div> 
-    
+    <div class=" flex justify-between   mt-2">                
+    <div class=" text-xs  ">Dispatch to Packing</div>
+      <div>
+      <div>
+    <Popconfirm
+      title="Are you sure to change ?"
+      onConfirm={() => handleConfirm("Dispatch to Packing")}
+      okText="Yes"
+      cancelText="No"
+    >
+      <Switch
+        checked={formValues.disPackInd}
+        checkedChildren={"Item"}
+        unCheckedChildren={"Order"}
+        onChange={(checked) => handleToggleChange("disPackInd", checked)}
+      />
+    </Popconfirm>
+  </div>
+  
+      </div>
+    </div> 
     <div class=" text-sm mt-3 font-bold ">Logistics</div>
     <div class=" flex justify-between   mt-2">                
                     <div class=" text-xs  ">Enable shipment on part payment</div>

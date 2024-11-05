@@ -153,22 +153,25 @@ import { bindActionCreators } from "redux";
 import { base_url2 } from '../../../Config/Auth';
 import { Button, DatePicker } from "antd";
 import { withRouter } from "react-router-dom";
-import { Switch, Popconfirm, Input, message } from "antd";
+import { Switch, Popconfirm, Input, message,Select } from "antd";
 import axios from "axios";
 import { useDispatch } from 'react-redux';
+import {getAllShipper} from "../Shipper/ShipperAction"
 import { getPackData,  getPackAndTrack } from "../Inventory/InventoryAction";
-
+const { Option } = Select;
 
 const AddPackFormID = (props) => {
   const [isMultiple, setIsMultiple] = useState(false); // Toggle between single and multiple
   const [trackIds, setTrackIds] = useState([]); // Store multiple Track IDs
   const [singleTrackId, setSingleTrackId] = useState(""); // Store single Track ID for single mode
   const dispatch = useDispatch();
+  const [selectedShipper, setSelectedShipper] = useState("Select UOM");
 
   // Fetch pack data on component mount
   useEffect(() => {
     props.getPackData(props.orderPhoneId);
     props.getPackAndTrack(props.orderPhoneId)
+    props.getAllShipper(props.orgId)
   }, []);
 
   // Function to send data to server when blur occurs
@@ -207,7 +210,19 @@ const AddPackFormID = (props) => {
     };
     sendDataToServer(payload); // Send data on blur
   };
-
+  const handleShipperChange = (shipperId) => {
+    setSelectedShipper(shipperId); // Set selected shipper ID
+  
+    // Define the payload for the server request
+    const payload = {
+      orderId: props.orderPhoneId,
+      userId: props.userId,
+      orgId: props.orgId,
+      shipperId: shipperId,
+    };
+  
+    sendDataToServer(payload); // Send data on selection
+  };
   // Handle trackId blur for multiple mode (individual submissions for each input)
   const handleTrackIdBlur = (index, packingNo,dispatchPackingId) => (e) => {
     const value = e.target.value;
@@ -235,6 +250,20 @@ const AddPackFormID = (props) => {
   };
 
   return (
+    <>
+   <div className="p-5">
+                 <Select
+                    style={{ width: "12rem" }}
+                    onChange={handleShipperChange}
+                    placeholder="Select Shipper"
+                  >
+                    {props.allShipperList.map((shipper) => (
+                      <Option key={shipper.shipperId} value={shipper.shipperId}>
+                        {shipper.shipperName}
+                      </Option>
+                    ))}
+                  </Select>
+   </div>
     <div className="p-5">
       <div className="font-semibold text-sm">Tag Track ID ?</div>
       <div className="flex items-center space-x-4 mb-4 mt-1">
@@ -307,21 +336,24 @@ const AddPackFormID = (props) => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
-const mapStateToProps = ({ inventory, auth }) => ({
+const mapStateToProps = ({ inventory,shipper, auth }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
   packData: inventory.packData,
   packNo: inventory.packNo,
+  allShipperList:shipper.allShipperList
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getPackData,
-      getPackAndTrack
+      getPackAndTrack,
+      getAllShipper
     },
     dispatch
   );

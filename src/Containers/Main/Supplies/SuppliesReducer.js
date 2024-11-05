@@ -11,6 +11,10 @@ const initialState = {
     fetchingbestBeforeEmailListError: false,
     bestBeforeEmailList:[],
 
+    fetchingSuppliesInputSearchData:false,
+    fetchingSuppliesInputSearchDataError: false,
+    suppliesSerachedData:[],
+
     fetchingBestBeforeContactList: false,
     fetchingBestBeforeContactListError: false,
     bestBeforeContactList:[],
@@ -1062,12 +1066,12 @@ export const suppliesReducer = (state = initialState, action) => {
                     return {
                       ...state,
                       fetchingSuppliesInputSearchData: false,
-                      purchaseList: action.payload,
-                       deleteSuppliesHistory: action.payload,
+                      suppliesSerachedData: action.payload,
                    
                     };
                   case types.INPUT_SUPPLIES_SEARCH_DATA_FAILURE:
-                    return { ...state, fetchingSuppliesInputSearchDataError: true };
+                    return { ...state, 
+                      fetchingSuppliesInputSearchDataError: true };
 
 
 
@@ -1087,6 +1091,7 @@ export const suppliesReducer = (state = initialState, action) => {
                     case types.HANDLE_CLAER_REDUCER_DATA_MATERIAL:
                         return {
                           ...state,
+                          suppliesSerachedData:[],
                           purchaseList: [],
                           materialCategorys:[],
                           // deletedTruck: []
