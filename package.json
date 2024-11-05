@@ -79,7 +79,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "styled-components": "^4.4.1",
-    "sweetalert2": "^11.7.32",
+    "sweetalert2": "^11.14.4",
     "twilio-client": "^1.15.1",
     "video-react": "^0.13.6",
     "webrtc-adapter": "^8.2.3",

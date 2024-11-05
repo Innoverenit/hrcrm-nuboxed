@@ -89,7 +89,7 @@ const DashBoardSummary=(props) =>{
           <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23]">
             <div className="flex justify-between">
               <div>
-                <div className="font-semibold font-poppins">{deal.taskName}</div>
+                <div className="font-semibold font-poppins truncate ">{deal.taskName}</div>
                 <div className="text-sm text-gray-500 font-poppins">
                   <ButtonGroup>
                     <StatusIcon
@@ -136,11 +136,17 @@ const DashBoardSummary=(props) =>{
                   </ButtonGroup>
                 </div>
               </div>
+              <div>
+              <div className="text-red-600 font-bold inline-block px-2 py-1 rounded max-h-max">
+               
+              </div>
               <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded max-h-max">
                 {`${dayjs(deal.endDate).format("DD/MM/YYYY")}`}
               </div>
+              </div>
+              
             </div>
-          </div>
+          </div> 
         )
        
 })

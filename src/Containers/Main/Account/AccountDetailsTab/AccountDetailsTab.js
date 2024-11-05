@@ -1,9 +1,12 @@
 import React, { lazy, Suspense, useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddDistributorTicketModal from "./AddDistributorTicketModal"
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import DistributorTicket from "./DistributorTicket"
+import DistributorCompletedTicket from "./DistributorCompletedTicket"
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
@@ -16,6 +19,7 @@ import {
     handleOrderGenerateModal,
     handleAddOrderModal,
     getOrderRecords,
+    handleSupplierTicketModal,
     handleAccountOpportunityModal,
 } from "../AccountAction";
 import LayersIcon from '@mui/icons-material/Layers';// salesmap
@@ -28,7 +32,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import { BundleLoader } from '../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { HistoryOutlined } from "@ant-design/icons";
+import { CompassFilled, HistoryOutlined } from "@ant-design/icons";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import ShopIcon from '@mui/icons-material/Shop'
 import CreditCardIcon from '@mui/icons-material/CreditCard';
@@ -61,6 +65,7 @@ const TabPane = StyledTabs.TabPane;
 function AccountDetailsTab(props) {
  
     const [activeKey, setactiveKey] = useState("1")
+    const[view,setView]=useState(" ")
     const [breadCumb, setBreadCumb] = useState(false)
     const [openOrder, setOpenOrder] = useState(false)
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -114,6 +119,13 @@ function AccountDetailsTab(props) {
     const handleOrderClick = () => {
         setBreadCumb(true);
         setOpenOrder(false)
+    };
+
+    const handleView = (view) => {
+   
+   
+        setView(view);
+        
     };
 
 
@@ -236,6 +248,19 @@ function AccountDetailsTab(props) {
                             distributorId={props.distributorData.distributorId}
                             selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText} /></div>;
+
+
+                            
+                            case "15":
+                                return  <div>  
+                                 {/* <DistributorChart
+                            distributorId={props.distributorData.distributorId}
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText} /> */}
+                            {view==="Completed"?
+                            <DistributorCompletedTicket/>:<DistributorTicket/>}
+                           
+                            </div>;
 
           default:
             return null;
@@ -696,6 +721,64 @@ function AccountDetailsTab(props) {
                         </Suspense> */}
                     </TabPane>
 
+
+                    <TabPane
+                        tab={
+                            <>
+                                <span class="!text-tab font-poppins ">
+                                <SummarizeIcon 
+                                 onClick={() => handleView('ticket')}
+                                className="!text-icon text-[#55d6c2] mr-1"/>
+                                    
+                                  Ticket
+                                    {/* Summary */}
+                                       
+                                </span>
+                                {activeKey === "15" && (
+                                    <>
+                                        <Tooltip title={translatedMenuItems[11]}>
+                                            <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                                                //
+                                                // tooltipTitle="Create"
+                                                onClick={() =>
+                                                   
+                                                    props.handleSupplierTicketModal(true)
+                                                }
+                                             
+                                            />
+                                        </Tooltip>
+                                       
+                                            <CompassFilled className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                                                //
+                                                onClick={() => handleView('Completed')}
+                                                // tooltipTitle="Create"
+                                                // onClick={() =>
+                                                   
+                                                //     props.handleSupplierTicketModal(true)
+                                                // }
+                                             
+                                            />
+                                       
+                                    </>
+                                )}
+
+                            </>
+                        }
+                        key="15"
+                    >
+                        {/* <Suspense fallback={"Loading ..."}>
+                            <SalesMapTable
+                            selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText}
+                            />
+                            <SummaryTable
+                               
+                            />
+                        </Suspense> */}
+                    </TabPane>
+
                 </StyledTabs>
                 <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
                 {renderTabContent(activeKey)}
@@ -763,6 +846,14 @@ function AccountDetailsTab(props) {
                 handleAddOrderModal={props.handleAddOrderModal}
                 addCatalogueOrderModal={props.addCatalogueOrderModal}
             />
+
+<AddDistributorTicketModal
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
+                distributorId={props.distributorData.distributorId}
+                handleSupplierTicketModal={props.handleSupplierTicketModal}
+                addSupplierTicketModal={props.addSupplierTicketModal}
+            />
             </Suspense>
             {/* <OrderGenerateModal
                 generateOrderModal={props.generateOrderModal}
@@ -775,6 +866,7 @@ function AccountDetailsTab(props) {
 const mapStateToProps = ({ distributor, auth, suppliers,customer }) => ({
     orderRecordData: distributor.orderRecordData,
     user: auth.userDetails,
+    addSupplierTicketModal:distributor.addSupplierTicketModal,
     addLinkCustomerProcurementModal:distributor.addLinkCustomerProcurementModal,
     addLinkDistributorOrderConfigureModal: distributor.addLinkDistributorOrderConfigureModal,
     distributorContactModal: distributor.distributorContactModal,
@@ -796,6 +888,7 @@ const mapDispatchToProps = (dispatch) =>
         {
             handleLinkDistributorOrderConfigureModal,
             handleLinkCustomerProcurementModal,
+            handleSupplierTicketModal,
             handleDistributorContactModal,
             handleDistributorActivityModal,
             handleDistributorDocumentUploadModal,

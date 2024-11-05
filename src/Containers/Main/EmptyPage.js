@@ -11,12 +11,12 @@ const EmptyPage = (props) => {
     return (
         <>
     
-           <div className="flex flex-col justify-center items-center h-[70vh]">
+           <div className="flex flex-col justify-center items-center">
           
            <img
                   className="big-logo"
                   src={FWLogo}
-                  style={{ width: "24rem"}}
+                  style={{ width: "10rem"}}
                   alt="Tekorero logo"
 
                 /> 

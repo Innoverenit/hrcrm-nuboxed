@@ -7,12 +7,13 @@ import {
  
 } from "../../Settings/Category/CategoryList/CategoryListAction";
 
-import { Button, Input, Select,Switch, Popconfirm } from "antd";
+import { Button, Input, Select,Switch, Popconfirm,message } from "antd";
 import { getMaterialCurrency, createMaterialCurrency,materialPricetype
  } from "./SuppliesAction";
 import {getSaleCurrency} from "../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import EmptyPage from "../EmptyPage";
 
 
 const { Option } = Select;
@@ -28,6 +29,7 @@ function PriceAddCard(props) {
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
   const [isBestSeller, setIsBestSeller] = useState(false); 
+  const [rowToggleStates, setRowToggleStates] = useState({});
 
   useEffect(() => {
     props.getMaterialCurrency(props.particularDiscountData.suppliesId);
@@ -124,9 +126,9 @@ function PriceAddCard(props) {
       setIsBestSeller(false);
     }
   }
-  const handleToggleChange = (checked) => {
-    setIsBestSeller(checked);
-  };
+  // const handleToggleChange = (checked) => {
+  //   setIsBestSeller(checked);
+  // };
   
   const handleInputChange = (value, key, dataIndex) => {
     const updatedData = data.map((row) =>
@@ -147,7 +149,8 @@ function PriceAddCard(props) {
         suppliesId: props.particularDiscountData.suppliesId,
         userId: props.userId,
         orgId: props.orgId,
-        SCategory:row.catagoryId
+        SCategory:row.catagoryId,
+         type:"mrp"
       };
       props.createMaterialCurrency(result)
       setRows([{ currency: '', suppliesPrice: '', suppliesPriceB2C: '', vat: '',catagoryId:"" }]);
@@ -170,12 +173,27 @@ function PriceAddCard(props) {
       suppliesId: props.particularDiscountData.suppliesId,
       userId: props.userId,
       orgId: props.orgId,
-      type: isBestSeller ? "baseprice" : "mrp"
+      //  type: isBestSeller ? "baseprice" : "mrp"
+     
     };
     props.materialPricetype(updatedData);
     setEditsuppliesId(null);
   };
-
+  const handleToggleChange = (key, confirm) => {
+    if (confirm) {
+      setRowToggleStates((prevState) => ({
+        ...prevState,
+        [key]: !prevState[key], // Toggle the specific row
+      }));
+      const newType = !rowToggleStates[key] ? "baseprice" : "mrp"; 
+      props.materialPricetype({
+        type: newType, 
+      });
+    } else {
+      message.info("Toggle action cancelled");
+    }
+  };
+  
   return (
     <div>
       <div class="flex mb-8 flex-start ">
@@ -265,7 +283,7 @@ function PriceAddCard(props) {
             <div className="md:w-[5.8rem] font-poppins font-bold text-xs">  {translatedMenuItems[3]}</div>
             <div className="w-12"></div>         
             </div>
-
+            <div className="h-[23vh] overflow-x-auto">
           {data.length ? data.map((item) => {
             return (
               <div key={item.id}>
@@ -318,7 +336,7 @@ function PriceAddCard(props) {
                     </div>
                     
                   
-                  <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  {/* <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                   <Popconfirm
         title="Are you sure you want to change status ?"
         // onConfirm={handleToggleChange}
@@ -334,7 +352,24 @@ function PriceAddCard(props) {
           unCheckedChildren="MRP"
         />
       </Popconfirm>
-                  </div>
+                  </div> */}
+                   <div className="flex items-center ml-4">
+                   <Popconfirm
+  title="Are you sure to change the toggle state?"
+  onConfirm={() => handleToggleChange(item.key, true)}
+  onCancel={() => handleToggleChange(item.key, false)}
+  okText="Yes"
+  cancelText="No"
+>
+  <Switch
+    checked={rowToggleStates[item.key] || false}
+    className="toggle-checkbox"
+    checkedChildren="Base price"
+    unCheckedChildren="MRP"
+  />
+</Popconfirm>
+
+        </div>
 
                   <div class="flex md:items-center">
        
@@ -379,7 +414,8 @@ function PriceAddCard(props) {
                 </div>
               </div>
             );
-          }) : !data.length && !props.fetchingMaterialCurrency ? <NodataFoundPage /> : null}
+          }) : !data.length && !props.fetchingMaterialCurrency ? <EmptyPage /> : null}
+          </div>
 
         </div>
       </div>

@@ -56,7 +56,7 @@ const ReceivedTable = (props) => {
 '73', // 2
 '875', // 3
 '1051', // 4 Inspected 
-'', // 5 Pick up
+'1606', // 5 Pick up
 '658', // 6
 
             

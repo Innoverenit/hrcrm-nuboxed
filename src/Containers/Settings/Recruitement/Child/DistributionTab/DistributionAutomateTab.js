@@ -80,6 +80,8 @@ function DistributionAutomateTab(props) {
         },
         { key: "3", label: "Customer", 
             },
+            { key: "3", label: "Ticket", 
+            },
     ];
 
 

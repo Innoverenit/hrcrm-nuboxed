@@ -64,7 +64,7 @@ const AccountActionLeft = (props) => {
             // Perform the search
             // props.inputDataSearch(currentData);
             if (props.viewType === "list") {
-                props.inputDataSearch(currentData,'list')
+                props.inputDataSearch(currentData,'user')
             }
             else if (props.viewType === "all") {
                 props.inputDataSearch(currentData,'all')
@@ -102,7 +102,7 @@ const AccountActionLeft = (props) => {
         if (transcript.trim() !== "") {
           setCurrentData(transcript);
           if (props.viewType === "list") {
-            props.inputDataSearch(transcript,'list')
+            props.inputDataSearch(transcript,'user')
         }
         else if (props.viewType === "all") {
             props.inputDataSearch(transcript,'all')

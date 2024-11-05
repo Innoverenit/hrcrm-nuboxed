@@ -20,6 +20,9 @@ const initialState = {
   fetchingOrderCustomerError: false,
   orderCustomerList:[],
 
+  addingTicket:false,
+  addingTicketError:false,
+
   fetchingPiByItem: false,
   fetchingPiByItemError: false,
   piByItem: [],
@@ -168,6 +171,12 @@ const initialState = {
   addingDistributorActivityCall: false,
   addingDistributorActivityCallError: false,
 
+
+
+  fetchingTicketList:false,
+  fetchingTicketListError:false,
+  ticketList:[],
+
   addingDistributorActivityEvent: false,
   addingDistributorActivityEventError: false,
 
@@ -265,6 +274,8 @@ const initialState = {
   fetchingOrderHistoryById: false,
   fetchingOrderHistoryByIdError: true,
   orderHistory: [],
+
+  addSupplierTicketModal:false,
 
   fetchingModel: false,
   fetchingModelError: false.valueOf,
@@ -716,6 +727,10 @@ export const distributorReducer = (state = initialState, action) => {
     case types.HANDLE_OPENNEW_MODAL:
       return { ...state, addNewModal: action.payload };
 
+
+      case types.HANDLE_SUPPLIER_TICKET_MODAL:
+        return { ...state, addSupplierTicketModal: action.payload };
+
     case types.HANDLE_ACCOUNT_IMPORT_MODAL:
       return { ...state, addAccountImportModal: action.payload };
 
@@ -798,6 +813,24 @@ export const distributorReducer = (state = initialState, action) => {
           orderCustomerList: [...state.orderCustomerList, ...action.payload],
           //  orderCustomerList: action.payload,
         };
+
+
+
+
+        case types.GET_TICKET_LIST_REQUEST:
+          return { ...state, fetchingTicketList: true };
+        case types.GET_TICKET_LIST_SUCCESS:
+          return {
+            ...state,
+            fetchingTicketList: false,
+            ticketList: action.payload,
+          };
+        case types.GET_TICKET_LIST_FAILURE:
+          return {
+            ...state,
+            fetchingTicketList: false,
+            fetchingTicketListError: true,
+          };
       case types.GET_CUSTOMER_ORDER_FAILURE:
         return {
           ...state,
@@ -1436,6 +1469,22 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingOrderHistoryById: false,
         fetchingOrderHistoryByIdError: true,
       };
+
+
+
+      case types.ADD_TICKET_REQUEST:
+      return { ...state, addingTicket: true };
+    case types.ADD_TICKET_SUCCESS:
+      return {
+        ...state,
+        addSupplierTicketModal:false,
+       
+        //allCustomers: [action.payload, ...state.allCustomers],
+        
+      };
+    case types.ADD_TICKET_FAILURE:
+      return { ...state, addingTicket: false, addingTicketError: false };
+
 
     case types.UPDATE_DISTRIBUTOR_CARD_REQUEST:
       return { ...state, updatingDistributorById: true };

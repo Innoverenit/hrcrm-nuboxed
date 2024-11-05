@@ -440,6 +440,7 @@ function MaterialsDetailsCardViewId (props) {
       unitName: props.materialsBySuppliesId.wtUom || 'Select UOM', 
     });
     const [isUomDropdownVisible, setIsUomDropdownVisible] = useState(false);
+    const [iswtUomDropdownVisible, setIswtUomDropdownVisible] = useState(false);
     // Create a combined payload based on the current state
     const createPayload = () => {
       return {
@@ -570,10 +571,10 @@ function MaterialsDetailsCardViewId (props) {
                    )}
                 </td>
                 <td className="p-2 border border-gray-200">
-                <div onClick={() => setIsUomDropdownVisible(!isUomDropdownVisible)} className="cursor-pointer">
+                <div onClick={() => setIswtUomDropdownVisible(!iswtUomDropdownVisible)} className="cursor-pointer">
               {selectedWtUom.unitName}
             </div>
-            {isUomDropdownVisible && (
+            {iswtUomDropdownVisible && (
                 <Select
                     style={{ width: "8rem" }}
                     onChange={handleUomWtChange}
