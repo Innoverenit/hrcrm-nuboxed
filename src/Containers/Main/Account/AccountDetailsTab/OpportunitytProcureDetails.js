@@ -17,8 +17,7 @@ import {
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
 import { DeleteOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
-import { BundleLoader } from "../../../../Components/Placeholder";
+
 
 const { Option } = Select;
 

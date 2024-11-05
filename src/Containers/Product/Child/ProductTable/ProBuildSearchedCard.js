@@ -84,7 +84,7 @@ function ProBuildSearchedCard (props) {
           return (
 <div key={item.suppliesId}>
 <div
-                  className="flex rounded justify-between bg-white mt-1 h-8 items-center p-1"
+                  className="flex rounded justify-between  mt-1 h-8 items-center p-1  shadow-[#a3abb980] bg-[#eaedf1]"
                 >
                   <div class="flex items-center w-wk ">
                     <div className=" flex  w-[14rem]   max-sm:w-full">
@@ -175,15 +175,15 @@ return (
          <div className="md:w-[5.8rem]">Equipment</div>
          <div className=" md:w-[4.2rem]">Unit</div>
          <div className=" md:w-[4.2rem]">Step</div>
-         <div className=" md:w-[4.2rem]">Description</div>
+         <div className=" md:w-[4.2rem]">Description aaa</div>
       <div className="w-12"></div>
              </div>
                     {data.map((item) => {
           return (
 <div key={item.suppliesId}>
-<div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
-<div className=" flex  w-[10rem]   max-sm:w-full">
-                    <div className="flex max-sm:w-full ">
+<div className="flex rounded justify-between mt-1 bg-white  items-center p-1 "    >
+<div className=" flex  w-[10rem]   max-sm:w-full h-8 shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className="flex max-sm:w-full  shadow-[#a3abb980] bg-[#eaedf1] ">
                       <div>
                        
                          <MultiAvatar
@@ -194,10 +194,10 @@ return (
                        
                       </div>
       
-                      <div class="max-sm:w-full md:flex items-center">
+                      <div class="max-sm:w-full md:flex items-center h-8  shadow-[#a3abb980] bg-[#eaedf1]">
                      
-                      <div className=" flex  md:w-[7.1rem] max-sm:w-full  ">
-    <div class=" text-xs  font-semibold  font-poppins cursor-pointer">
+                      <div className=" flex  md:w-[7.1rem] max-sm:w-full h-8  shadow-[#a3abb980] bg-[#eaedf1]">
+    <div class=" text-xs  font-semibold  font-poppins cursor-pointer h-8 shadow-[#a3abb980] bg-[#eaedf1]">
                               {item.hsn}
                             </div>
     </div>
@@ -205,27 +205,27 @@ return (
                     </div>
                   </div>
          
-                     <div className=" flex  md:w-[7.1rem] max-sm:w-full  ">
-   <div class=" text-xs  font-semibold  font-poppins cursor-pointer">
+                     <div className=" flex  md:w-[7.1rem] max-sm:w-full h-8  shadow-[#a3abb980] bg-[#eaedf1]">
+   <div class=" text-xs  font-semibold  font-poppins cursor-pointer h-8 shadow-[#a3abb980] bg-[#eaedf1]">
                              {item.suppliesName}
                            </div>
    </div>
                    
-    <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between h-8 shadow-[#a3abb980] bg-[#eaedf1] ">
     <div class=" text-xs  font-poppins">
                       
                       {item.categoryName}  {item.subCategoryName}
                     </div>
     </div>
-    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between h-8  shadow-[#a3abb980] bg-[#eaedf1]">
       
-        <div class=" text-xs  font-semibold  font-poppins">
+        <div class=" text-xs  font-semibold  font-poppins h-8 shadow-[#a3abb980] bg-[#eaedf1]">
                       {item.attributeName}  {item.subAttributeName}
                     </div>
     </div>
-    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between  h-8 shadow-[#a3abb980] bg-[#eaedf1]">
       
-      <div class=" text-xs  font-semibold  font-poppins">
+      <div class=" text-xs  font-semibold  font-poppins h-8 shadow-[#a3abb980] bg-[#eaedf1]">
       <Select
                         classNames="w-32"
                         showSearch
@@ -243,9 +243,9 @@ return (
                       </Select>
                   </div>
   </div>
-    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between h-8 shadow-[#a3abb980] bg-[#eaedf1] ">
       
-      <div class=" text-xs  font-semibold  font-poppins">  
+      <div class=" text-xs  font-semibold  font-poppins h-8 shadow-[#a3abb980] bg-[#eaedf1]">  
                        <Input
   style={{ width: "4rem" }}
   value={item.quantity}
@@ -253,9 +253,9 @@ return (
 />
                     </div>
   </div>
-  <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between h-8  shadow-[#a3abb980] bg-[#eaedf1]">
       
-      <div class=" text-xs  font-semibold  font-poppins">  
+      <div class=" text-xs  font-semibold  font-poppins h-8 shadow-[#a3abb980] bg-[#eaedf1]">  
                     
                        <Input
   style={{ width: "4rem" }}
@@ -264,7 +264,7 @@ return (
 />
                     </div>
   </div>
-  <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between h-8  shadow-[#a3abb980] bg-[#eaedf1] ">
       
       <div class=" text-xs  font-semibold  font-poppins">  
                        <Input
@@ -274,7 +274,7 @@ return (
 />
                     </div>
   </div>
-  <div className=" flex  md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex  md:w-[3.2rem] max-sm:flex-row w-full max-sm:justify-between h-8 shadow-[#a3abb980] bg-[#eaedf1] ">
   <Button type="primary" onClick={() => handleSave(item.key)}>
           Save
         </Button>

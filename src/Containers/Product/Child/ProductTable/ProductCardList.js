@@ -3,6 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { DeleteOutlined } from "@ant-design/icons";
+import ContactsIcon from '@mui/icons-material/Contacts';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
+import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import ExploreIcon from "@mui/icons-material/Explore";
+// import ConstructionIcon from"@mui/icons-material/ConstructionIcon";
+
 import {
   getProducts,
   getProductByGroup,
@@ -23,7 +31,6 @@ import Token from '@mui/icons-material/Token';
 import ProductPublishToggle from "./ProductPublishToggle";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
 import {  Tooltip,Button,Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -38,6 +45,8 @@ const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
 const ProductCellDrawer=lazy(()=>import("./ProductCellDrawer"));
 const ProductDetailsDrawer=lazy(()=>import("./ProductDetailsDrawer"));
 const ProductQualityDrawer=lazy(()=>import("../ProductTable/ProductQualityDrawer"));
+
+
 
 function ProductCardList(props) {
 
@@ -75,7 +84,7 @@ function ProductCardList(props) {
             "264",//5Brand
             "265",//5 Model
             "700",//6Website
-            "1203",//7 Feature
+            "1203", //7 Feature
             "1204",//8 Warranty
               "1371",//9 year
               "654",//Quality10
@@ -198,30 +207,38 @@ useEffect(() => {
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between max-sm:hidden w-[90%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">  
           <div className="w-[3.51rem]"></div>        
-            <div className=" w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+            <div className=" w-[4.5rem] text-[#00A2E8] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
             {translatedMenuItems[0]} {/* Article # */}
               </div>
-            <div className=" w-[11.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
+              
+            <div className=" w-[11.71rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
+            <ContactsIcon className="!text-icon  "/>
             {translatedMenuItems[1]}  {/* Name */}
               </div>
-            <div className=" w-[4.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
+            <div className=" w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
+            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' />
             {translatedMenuItems[2]}
             {/* Category */}
               </div>
             <div className=" w-[5.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">
+            <AttractionsIcon className="  !text-icon" />
             {translatedMenuItems[3]} {/* Attribute */}
               </div>
             <div className=" w-[7.151rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">
+            <BrandingWatermarkIcon className="!text-icon" />
             {translatedMenuItems[4]}{/* Brand */}
               </div>
             <div className=" w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
+            <ModelTrainingIcon className=" !text-icon" />
             {translatedMenuItems[5]} {/* Model */}
             
             </div>
-            <div className=" w-[3.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            <div className=" w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            <ExploreIcon className=" !text-icon cursor-pointer text-[green]"/>
             {translatedMenuItems[6]}  {/* Website */}
               </div>
-              <div className=" w-[2.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              <div className=" w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              
             {translatedMenuItems[7]}  
               </div>
               <div className=" w-[3.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
@@ -246,9 +263,9 @@ useEffect(() => {
                 {data.map((item,index) => {
                return (
                 <div>
-                  <div key={item.productId} className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  <div key={item.productId} className="flex rounded justify-between mt-1  bg-white  items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
-                      <div className=" flex w-[4.5rem] max-sm:w-auto   ">
+                      <div className=" flex w-[4.5rem] items-center max-sm:w-auto h-8  border-l-2 border-green-500 bg-[#eef2f9] ">
                         <SubTitle>
                           {item.imageId ? (
                             <MultiAvatar
@@ -264,7 +281,7 @@ useEffect(() => {
                           )}
                         </SubTitle>
                       </div>
-                      <div className=" flex w-[4.5rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                      <div className=" flex w-[4.5rem] h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
                         <div class="text-xs  text-blue-600   max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
                         onClick={() => {
                           openModal();
@@ -275,7 +292,7 @@ useEffect(() => {
                         </div>
                       </div>
 
-                      <div className=" flex  w-[14.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  w-[14.5rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <div class=" text-xs text-blue-600 cursor-pointer max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
                         onClick={() => {
@@ -289,15 +306,15 @@ useEffect(() => {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex w-[6.1rem] max-xl:w-[7.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div className=" flex w-[6.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ml-gap">
 
                         {item.categoryName}  {item.subCategoryName}
                       </div>
                     </div>
                    
 
-                    <div className=" flex w-[6.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[6.5rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
                       <div class=" text-xs  max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -306,13 +323,13 @@ useEffect(() => {
                     </div>
 </div>
     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-    <div className=" flex w-[9.51rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+    <div className=" flex w-[9.51rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.brand}
                       </div>
                     </div>
-                    <div className=" flex w-[8.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[8.8rem] h-8 ml-gap items-center bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.model}
@@ -320,22 +337,22 @@ useEffect(() => {
                     </div>
 </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                     <div className=" flex  w-[5.96rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                     <div className=" flex  w-[5.96rem] h-8 ml-gap items-center bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <ProductPublishToggle item={item} />
 
                       </div>
-                      <div className=" flex  w-[3.7rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  w-[3.7rem] h-8 ml-gap items-center bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                      <FeatureProductToggle item={item}    featureInd={item.featureInd}  productId={item.productId}/>
 
                     </div>
-                    <div className=" flex  w-[3.8rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                    <div className=" flex  w-[3.8rem]  items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <WarrentyProductToggle item={item}    warrantyInd={item.warrantyInd}  productId={item.productId}/>
 
 </div>
-<div className=" flex  w-[3.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+<div className=" flex  w-[3.9rem] items-center max-xl:w-[6.9rem] h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 {item.warrantyInd ? 
 <> 
 {editsuppliesId === item.productId ? (
@@ -350,7 +367,7 @@ useEffect(() => {
                         <div> {item.year}</div>
                       </div>
                     )}
-<div className=" flex    md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex   items-center md:w-[2rem]  h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.productId ? (
                         <>
                       <Button 
@@ -377,6 +394,8 @@ useEffect(() => {
   </>
     :null}  
 </div>
+
+<div className="flex h-8 ml-gap bg-[#eef2f9] items-center">
 
 
                       <div>
@@ -464,6 +483,7 @@ useEffect(() => {
                           </StyledPopconfirm>
                         </div>
 
+                        </div>
                    
                     
                 

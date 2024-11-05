@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useMemo, lazy } from 'react'
+import React, {  useState } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip,Avatar } from "antd";
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ShopIcon from '@mui/icons-material/Shop';
-import styled from 'styled-components';
+
 import OrderRepairOrgCard from './OrderRepairOrgCard';
 import OrderRepairCompletedOrgCard from './OrderRepairCompletedOrgCard';
 import OrderRepairLocationOrgCard from './OrderRepairLocationOrgCard';

@@ -163,11 +163,11 @@ useEffect(() => {
       </button>
       </div>
     <div className='flex sticky z-auto'>
-            <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] ">
                 <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                    <div className=""></div>
-                    <div className="md:w-[22.12rem]"> {translatedMenuItems[1]}</div>
-                    <div className="md:w-[15.5rem]"> {translatedMenuItems[0]}</div>
+                    <div className=""> </div>
+                    <div className="md:w-[22.12rem]   max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between"> {translatedMenuItems[1]}</div>
+                    <div className="md:w-[15.5rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between"> {translatedMenuItems[0]}</div>
                    
                   
                 </div>
@@ -186,9 +186,9 @@ useEffect(() => {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className="flex rounded mt-1 bg-white h-8 items-center p-1"
+                        className="flex rounded mt-1 bg-white  items-center p-1"
                       >
-                        <div className="flex md:w-[36.1rem] max-sm:w-full">
+                        <div className="flex md:w-[36.1rem] h-8 border-l-2 border-green-500   max-sm:w-full shadow-[#a3abb980] bg-[#eaedf1]">
                           <div className="flex justify-between text-xs font-semibold font-poppins">
                             {/* {item.qualityName} */}
                             {editingIndex === index ? (
@@ -203,13 +203,13 @@ useEffect(() => {
                           </div>
                         </div>
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {item.steps}
                           </div>
                         </div>
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
 
@@ -226,7 +226,7 @@ useEffect(() => {
 
 
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]aQ1 ">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
 
@@ -243,7 +243,7 @@ useEffect(() => {
 
 
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
                             <StyledPopconfirm
@@ -277,7 +277,7 @@ useEffect(() => {
                        
                         className="flex rounded mt-1 bg-white h-8 items-center p-1"
                       >
-                        <div className="flex md:w-[36.1rem] max-sm:w-full">
+                        <div className="flex md:w-[36.1rem] max-sm:w-full  h-8  ml-gap border-l-2 border-green-500  shadow-[#a3abb980] bg-[#eaedf1]">
                           <div className="flex justify-between text-sm font-semibold font-poppins">
                             {/* {item.qualityName} */}
 
@@ -293,13 +293,13 @@ useEffect(() => {
                           </div>
                         </div>
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {item.steps}
                           </div>
                         </div>
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
 
@@ -314,7 +314,7 @@ useEffect(() => {
                         </div>
 
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row ">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
 
