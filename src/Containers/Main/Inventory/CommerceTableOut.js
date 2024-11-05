@@ -748,7 +748,8 @@ import {
   handleCreateAWB,
   handleInventoryDispatchModal,
   handleCreateAddPack,
-  handlepackId
+  handlepackId,
+  clearDispatch
 } from "./InventoryAction"
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import { withRouter } from "react-router";
@@ -778,6 +779,7 @@ function CommerceTableOut(props) {
     setPageNo(pageNo + 1);
     props.getDispatchList(props.locationDetailsId,pageNo,"Procure");
     //props.getAllShipper(props.orgId)
+    props. clearDispatch();
   }, []);
 
 
@@ -1514,7 +1516,8 @@ const mapDispatchToProps = (dispatch) =>
       handleInventoryDispatchModal,
       handleProductionNotesModal,
       handleCreateAddPack,
-      handlepackId
+      handlepackId,
+      clearDispatch
     },
     dispatch
   );

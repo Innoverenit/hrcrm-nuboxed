@@ -12,6 +12,10 @@ const initialState = {
   fetchingPackTrackError: false,
   packTrack:[],
 
+  fetchingCompleteDispatchList: false,
+  fetchingCompleteDispatchListError: false,
+  completeDispatchList:[],
+
   fetchingPackData: false,
   fetchingPackDataError: false,
   packData:[],
@@ -869,6 +873,21 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         fetchingDispatchList: false,
         fetchingDispatchListError: true,
+      };
+
+      case types.GET_COMPLETE_DISPATCH_LIST_REQUEST:
+      return { ...state, fetchingCompleteDispatchList: true };
+    case types.GET_COMPLETE_DISPATCH_LIST_SUCCESS:
+      return {
+        ...state,
+        fetchingCompleteDispatchList: false,
+        completeDispatchList: [...state.completeDispatchList, ...action.payload],
+      };
+    case types.GET_COMPLETE_DISPATCH_LIST_FAILURE:
+      return {
+        ...state,
+        fetchingCompleteDispatchList: false,
+        fetchingCompleteDispatchListError: true,
       };
 
       case types.GET_COMMERCE_LIST_REQUEST:
@@ -2111,6 +2130,18 @@ export const inventoryReducer = (state = initialState, action) => {
             ...state,
             phoneListById: [],
           };   
+
+          case types.CLAER_DISPATCH_DATA:
+            return {
+              ...state,
+              allDispatchList: [],
+            };
+
+            case types.CLAER_COMPLETE_DISPATCH_DATA:
+            return {
+              ...state,
+              completeDispatchList: [],
+            };
 
     default:
       return state;

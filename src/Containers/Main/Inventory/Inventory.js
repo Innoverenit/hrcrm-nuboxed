@@ -140,6 +140,7 @@ function Inventory(props) {
           : props.viewType === "repair" ? 
           <InventoryDetailTabO
           viewType1={viewType1}
+          viewType={props.viewType}
           inventory={inventory}
           tabData={tabData}
           translateText={props.translateText}
@@ -150,6 +151,7 @@ function Inventory(props) {
         : props.viewType === "commerce" ? 
           <InventoryCommerceTabO
           viewType1={viewType1}
+          viewType={props.viewType}
           inventory={inventory}
           tabData={tabData}
           translateText={props.translateText}

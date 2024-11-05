@@ -10,6 +10,7 @@ import {
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import DispatchTableOut from "./DispatchTableOut";
 import ReceivedTableOut from "./ReceivedTableOut";
+import CompleteDispatchTable from "./CompleteDispatchTable";
 
                                            
 const TabPane = StyledTabs.TabPane;
@@ -127,7 +128,29 @@ class InventoryDetailTabO extends PureComponent {
                 />
               </Suspense>
             </TabPane>
+            <TabPane
+              tab={
+                <>
+                  <span>
+                    <i class="far fa-share-square"></i>&nbsp;
+                   Complete Dispatch  
 
+                  </span>
+                
+                </>
+              }
+              key="3"
+            >
+              <Suspense fallback={"Loading..."}>
+                <CompleteDispatchTable
+                translateText={this.props.translateText}
+                viewType={this.props.viewType}
+                selectedLanguage={this.props.selectedLanguage}
+                locationDetailsId={this.props.user.locationId}
+                   inventory={this.props.inventory}
+                />
+              </Suspense>
+            </TabPane>
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
