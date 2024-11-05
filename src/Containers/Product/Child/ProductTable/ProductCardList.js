@@ -84,7 +84,7 @@ function ProductCardList(props) {
             "264",//5Brand
             "265",//5 Model
             "700",//6Website
-            "1203",//7 Feature
+            "1203", //7 Feature
             "1204",//8 Warranty
               "1371",//9 year
               "654",//Quality10
