@@ -29,7 +29,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import FileOpenIcon from '@mui/icons-material/FileOpen';
 const ContractToggle =lazy(()=>import("./ContractToggle")); 
-
+const EmptyPage = lazy(() => import("../../../../../Main/EmptyPage"));
 class LinkedDocuments extends Component {
   constructor(props) {
     super(props);
@@ -208,7 +208,7 @@ class LinkedDocuments extends Component {
       </div>
    
         
-      { documentsByCustomerId.map((item,index) =>  {
+      { !fetchingDocumentsByCustomerId && documentsByCustomerId.length === 0 ?<EmptyPage/>: documentsByCustomerId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , lazy,} from 'react';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
@@ -14,6 +14,9 @@ import { getCustomerActivityTimeline,
 import { BundleLoader } from '../../../../Components/Placeholder';
 import AddCustomerActivityDrawerModal from '../CustomerActivity/AddCustomerActivityDrawerModal';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import EmptyPage from '../../../Main/EmptyPage';
+
+
 const ButtonGroup = Button.Group;
 const CustomerActivityTable = (props) => {
   useEffect(() => {
@@ -33,7 +36,7 @@ const CustomerActivityTable = (props) => {
     props.getCustomerNoteList(status.category,status.category==="Task"?status.taskId:status.category==="Event"?status.eventId:status.category==="Call"?status.callId:null);
   };
 
-  const { customerActivityTimeline, ratingValue } = props;
+  const { customerActivityTimeline, ratingValue,fetchingCusActivityTimelineStatus  } = props;
 
   const currentDate = dayjs().format("DD/MM/YYYY");
   if (props.fetchingCusActivityTimelineStatus) return <BundleLoader/>;
@@ -41,7 +44,7 @@ const CustomerActivityTable = (props) => {
     <div className="mt-4 ml-4 ">
       {/* scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] */}
       <Timeline>
-        {customerActivityTimeline &&
+        {fetchingCusActivityTimelineStatus && customerActivityTimeline.length ===0 ? <EmptyPage/>:
           customerActivityTimeline.map((status, index) => {
             const currentDate = dayjs();
         const completionDate = dayjs(status.completionDate);

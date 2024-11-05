@@ -291,29 +291,29 @@ const [rowdata, setrowdata] = useState("");
         </div>
          <div className=' flex sticky w-[85%] z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky text-xs  z-10">
-        <div class=" flex justify-between font-poppins w-[86%] items-end">
-            <div className="font-poppins text-[#00A2E8] text-base w-[9.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
-            <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[0]}
+        <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent  sticky  z-10">
+        <div class=" flex justify-between font- text-xs font-bold w-[98%] items-end">
+            <div className=" text-[#00A2E8] text-base w-[9.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
+            <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[0]}
               {/* name */}
             </div> 
-            <div className="font-poppins w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-            <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>{translatedMenuItems[1]}          
+            <div className=" w-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[1]}          
                 {/* defaultMessage="Work" */}
             
             </div>
-            <div className="font-poppins w-[6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
-            <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> {translatedMenuItems[2]}     
+            <div className=" w-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
+            <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[2]}     
                 {/* defaultMessage="Sector" */}
             </div>
-            <div className="font-poppins w-[5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-            <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> {translatedMenuItems[3]}      
+            <div className=" w-[5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[3]}      
                 {/* defaultMessage="Source" */}
            
             </div>
           
-            <div className="font-poppins w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
-            <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/>  {translatedMenuItems[4]}            
+            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
+            <LightbulbIcon className="!text-icon  text-[#84a59d]"/>  {translatedMenuItems[4]}            
                 {/* defaultMessage="Quotation" */}
       
             </div>
@@ -323,19 +323,23 @@ const [rowdata, setrowdata] = useState("");
        
             </div>     */}
             {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>{/* Score */}
+            <div className=" font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <ScoreIcon className="!text-icon  text-[#f28482]"/>{/* Score */}
             {translatedMenuItems[19]}  
             </div>
             )}  
-            <div className="font-poppins w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
-            <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/>  {translatedMenuItems[6]}            
+            <div className=" w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[6]}            
            {/* ="Assigned" */}
              
             </div>
-        
-            <div className="font-poppins w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            <AcUnitIcon className="!text-icon mr-1 text-[#92dce5]"/>   {translatedMenuItems[8]}
+            <div className="font-poppins w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[7]}            
+           {/* ="Assigned" */}
+             
+            </div>
+            <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <AcUnitIcon className="!text-icon  text-[#92dce5]"/>   {translatedMenuItems[8]}
              {/* customer */}
             </div>
       
@@ -482,7 +486,7 @@ const [rowdata, setrowdata] = useState("");
             )}
 
 
-                                <div className=" flex   flex-col w-[4.90rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
+                                <div className=" flex w-[4.90rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
                                   
 
                                     <div class=" text-xs  font-poppins">
@@ -507,11 +511,21 @@ const [rowdata, setrowdata] = useState("");
                 </div>
               )}
             </div>
-             
+           
                                     </div>
                                 </div>
                           
-                               
+                                <div className=" flex  w-[4.90rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
+                                  
+
+                                  <div class=" text-xs  font-poppins">
+                                  <MultiAvatar2
+                  primaryTitle={item.ownerName}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
+                />
+                                    </div>
+                                    </div>
                       <div className=" flex   w-[7.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-xs  font-poppins"></div>
@@ -523,11 +537,11 @@ const [rowdata, setrowdata] = useState("");
                         >
                           {user.erpInd === true && (
                             <Button className="justify-start" type="primary"
-                            style={{ width: "7rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                            style={{ width: "6.5rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
                            
                             >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] w-wk flex items-center" >
-                              <NextPlanIcon className="!text-icon mr-1" />
+                              <NextPlanIcon className="!text-icon " />
                               {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}
                                 {item.convertInd === 2 && translatedMenuItems[18]}
@@ -537,8 +551,8 @@ const [rowdata, setrowdata] = useState("");
                           )}
                         </Popconfirm>
                       </div>
-                       <div className=" flex  w-[7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                       <div className=" flex  w-[5.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.2rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
 </svg>

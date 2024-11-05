@@ -21,11 +21,11 @@ import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ContactReportData from "./ContactReportData";
 import { NotAccessibleOutlined } from "@mui/icons-material";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+const EmptyPage = lazy(() => import("../../../../../Main/EmptyPage"));
 const AddCustomerUpdateContactModal = lazy(() => import("./AddCustomerUpdateContactModal"));
 const CustomerContactActiveToggle = lazy(() => import("./CustomerContactActiveToggle"));
 
@@ -152,7 +152,7 @@ function LinkedContact(props) {
       </div>
    
         
-      { !fetchingCustomerContact && contactByCustomerId.length === 0 ?<NodataFoundPage />:contactByCustomerId.map((item,index) =>  {
+      { !fetchingCustomerContact && contactByCustomerId.length === 0 ?<EmptyPage/>:contactByCustomerId.map((item,index) =>  {
          const dataLoc = ` Address : ${
           item.address && item.address.length && item.address[0].address1
         } 

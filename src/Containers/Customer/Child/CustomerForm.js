@@ -613,7 +613,7 @@ country_dial_code
                  
 
                   <div class=" flex justify-between mt-3">
-                    <div class="w-w47.5 max-sm:w-w47.5" style={{display:"flex",flexDirection:"column"}}>                  
+                    <div class= " flex flex-col w-w47.5 max-sm:w-w47.5">                  
                        {props.customerConfigure.sectorInd===true&&
                    <div className="font-bold text-[0.75rem]">
                         {translatedMenuItems[4]}
@@ -623,7 +623,7 @@ country_dial_code
                       {props.customerConfigure.sectorInd===true&&
 <Select
         showSearch
-        style={{ width: 200 }}
+        style={{ width: "11.5rem" }}
         placeholder={translatedMenuItems[17]}
         optionFilterProp="children"
         loading={isLoadingSector}
@@ -638,7 +638,7 @@ country_dial_code
       </Select>
 }
                     </div>
-                    <div class="w-w47.5" style={{display:"flex",flexDirection:"column"}}>                
+                    <div class="w-w47.5 flex flex-col">                
                 
  {props.customerConfigure.sourceInd===true&&
 <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>
@@ -649,7 +649,7 @@ country_dial_code
 {props.customerConfigure.sourceInd===true&&
 <Select
         showSearch
-        style={{ width: 200 }}
+        style={{  width: "11.5rem" }}
         placeholder= {translatedMenuItems[16]}
         optionFilterProp="children"
         loading={isLoading}
@@ -666,7 +666,25 @@ country_dial_code
                     </div>
                   </div>
                   <div class="flex justify-between mt-2">
+                  <div class="w-w47.5">
+  <div class="font-bold text-xs"> {translatedMenuItems[8]}  </div>
+  {props.customerConfigure.typeInd===true&&
+    <Field
+      name="type" 
+      isColumn
+      width={"100%"}
+      component={SelectComponent}
+      options={
+        Array.isArray(typeOption)
+          ? typeOption
+          : []
+      }
+      inlineLabel
+    />
+}
+  </div>
   <div class="w-w47.5 flex">
+    
     <div class="w-24">
     <div class="font-bold text-xs"> {translatedMenuItems[6]}  </div>
     {props.customerConfigure.potentialInd===true&&
@@ -706,23 +724,7 @@ country_dial_code
     </div>
   </div>
 
-  <div class="w-w47.5">
-  <div class="font-bold text-xs"> {translatedMenuItems[8]}  </div>
-  {props.customerConfigure.typeInd===true&&
-    <Field
-      name="type" 
-      isColumn
-      width={"100%"}
-      component={SelectComponent}
-      options={
-        Array.isArray(typeOption)
-          ? typeOption
-          : []
-      }
-      inlineLabel
-    />
-}
-  </div>
+ 
 </div>
 
 {/* {props.customerConfigure.noteInd===true&& */}

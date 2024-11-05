@@ -17,8 +17,8 @@ class UpdateUserModal extends Component {
     return (
       <div>
         <StyledDrawer
-          title="Address"
-          width="60%"
+          title="Reassigned"
+          width="35%"
           visible={this.props.updateUserModal}
           closable
           placement="right"
