@@ -840,15 +840,289 @@
 
 
 
+// import React, { useState } from 'react';
+// // // import React, { Suspense, Component } from "react";
+// import { connect } from "react-redux";
+// import { FormattedMessage } from "react-intl";
+// import { bindActionCreators } from "redux";
+
+
+// import { StyledDrawer } from "../../../../../../Components/UI/Antd";
+
+// import * as Yup from "yup";
+// import {
+//   handleDocumentUploadModal,
+//   addCustomerDocument,
+//   getCustomerDocument,
+// } from "../../../../CustomerAction";
+// import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
+// import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
+
+
+// import { Upload, Button,Form,  message, Select, Switch, Input } from 'antd';
+// import { InboxOutlined } from '@ant-design/icons';
+// import { Formik, Field, Form as FormikForm } from 'formik';
+// import axios from 'axios';
+
+
+
+// const { Dragger } = Upload;
+// const { Option } = Select;
+// const ButtonGroup = Button.Group;
+// const documentSchema = Yup.object().shape({
+//   documentId: Yup.string().required("Input needed !"),
+// });
+
+// // Hardcoded document type options
+// const documentTypes = [
+//   { id: 1, name: 'PDF' },
+//   { id: 2, name: 'Word' },
+//   { id: 3, name: 'Image' },
+//   { id: 4, name: 'Text' },
+// ];
+
+// // Hardcoded contact options
+// const contactOptions = [
+//   { id: 1, name: 'Contact 1' },
+//   { id: 2, name: 'Contact 2' },
+//   { id: 3, name: 'Contact 3' },
+// ];
+
+// const AddDocumentModal = (props) => {
+//   const [fileList, setFileList] = useState([]);
+
+//   const handleFileChange = (info) => {
+//     let files = [...info.fileList];
+//     files = files.map((file) => ({
+//       ...file,
+//       type: file.type || null,
+//     }));
+//     setFileList(files);
+//   };
+
+//   const handleTypeChange = (file, value) => {
+//     const updatedFiles = fileList.map((f) =>
+//       f.uid === file.uid ? { ...f, type: value } : f
+//     );
+//     setFileList(updatedFiles);
+//   };
+//   const handleSubmit = async (values) => {
+//     if (fileList.length === 0) {
+//       message.error('Please upload at least one file');
+//       return;
+//     }
+  
+//     const incomplete = fileList.some((file) => !file.type);
+//     if (incomplete) {
+//       message.error('Please select a type for each file');
+//       return;
+//     }
+  
+//     // Create a FormData object to send the data as multipart/form-data
+//     const formData = new FormData();
+  
+    
+//     const docList = fileList.map((file) => {
+//       return {
+//         uploadfile: file.originFileObj,  // This is the binary file
+//         documentTypeId: file.type,  // This is the file type
+//       };
+//     });
+  
+//     // Append the listUpload array as a single entry
+//     formData.append('docList', new Blob([JSON.stringify(docList)], { documentTypeId: 'application/json' }));
+  
+//     // Append other form fields
+//     formData.append('documentTitle', values.documentTitle);
+//     //formData.append('contact', values.contact);
+//     formData.append('documentDescription', values.documentDescription);
+//     formData.append('contract', values.contract);
+//     formData.append('customerId',  props.customerId);
+  
+//     // Example API call using axios
+//     // try {
+//     //   const response = await axios.post('https://your-api-url.com/upload', formData, {
+//     //     headers: {
+//     //       'Content-Type': 'multipart/form-data',
+//     //     },
+//     //   });
+//     //   console.log('Response:', response.data);
+//     //   message.success('Documents uploaded successfully');
+//     // } catch (error) {
+//     //   console.error('Error uploading documents:', error);
+//     //   message.error('Error uploading documents');
+//     // }
+//     props.addCustomerDocument(formData)
+  
+//     // Reset form and file list after submission
+//     setFileList([]);
+//   };
+  
+  
+  
+  
+
+//   return (
+//     <StyledDrawer
+//               title={
+//                 <FormattedMessage id="app.document" defaultMessage="Document" />
+//               }
+//               width="60%"
+//               visible={props.documentUploadModal}
+//               onClose={() =>props.handleDocumentUploadModal(false)}
+//             >
+//     <Formik
+//       initialValues={{
+//         documentTitle: '',
+//         contact:"",
+//         documentDescription: '',
+//         contract: false,
+//                     customerId: props.customerId,
+//             contactId: props.contactId,
+//             opportunityId: props.opportunityId,
+//             invOpportunityId:props.invOpportunityId,
+//             investorId:props.investorId
+//       }}
+//       onSubmit={handleSubmit}
+//     >
+//       {({ values, setFieldValue, handleSubmit }) => (
+//         <FormikForm onSubmit={handleSubmit}>
+//           <Form.Item>
+//             <Dragger
+//               multiple={true}
+//               fileList={fileList}
+//               beforeUpload={() => false}
+//               onChange={handleFileChange}
+//               onRemove={(file) => {
+//                 setFileList(fileList.filter((item) => item.uid !== file.uid));
+//               }}
+//               itemRender={(originNode, file) => (
+//                 <div
+//                   style={{
+//                     display: 'flex',
+//                     justifyContent: 'space-between',
+//                     alignItems: 'center',
+//                   }}
+//                 >
+//                   {originNode}
+//                   <Select
+//                     placeholder="Select document type"
+//                     onChange={(value) => handleTypeChange(file, value)}
+//                     style={{ width: 200, marginLeft: 16 }}
+//                     value={file.type}
+//                   >
+//                     {documentTypes.map((type) => (
+//                       <Option key={type.id} value={type.name}>
+//                         {type.name}
+//                       </Option>
+//                     ))}
+//                   </Select>
+//                 </div>
+//               )}
+//             >
+//               <p className="ant-upload-drag-icon">
+//                 <InboxOutlined />
+//               </p>
+//               <p className="ant-upload-text">
+//                 Click or drag file to this area to upload
+//               </p>
+//               <p className="ant-upload-hint">
+//                 Support for a single or bulk upload.
+//               </p>
+//             </Dragger>
+//           </Form.Item>
+
+//           {/* Extra Fields */}
+//           <Form.Item label="Name" labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} required>
+//             <Field
+            
+//               name="documentTitle"
+//               as={Input}
+//               placeholder="Enter your name"
+//               value={values.documentTitle}
+//               onChange={(e) => setFieldValue('documentTitle', e.target.value)}
+//             />
+//           </Form.Item>
+
+//           <Form.Item label="Contact" required>
+//             <Select
+//               placeholder="Select a contact"
+//               value={values.contact}
+//               onChange={(value) => setFieldValue('contact', value)}
+//             >
+//               {contactOptions.map((contact) => (
+//                 <Option key={contact.id} value={contact.id}>
+//                   {contact.name}
+//                 </Option>
+//               ))}
+//             </Select>
+//           </Form.Item>
+
+//           <Form.Item label="Description">
+//             <Field
+//               name="documentDescription"
+//               as={Input.TextArea}
+//               placeholder="Enter description"
+//               value={values.documentDescription}
+//               onChange={(e) => setFieldValue('documentDescription', e.target.value)}
+//             />
+//           </Form.Item>
+
+//           <Form.Item label="Contract">
+//             <Switch
+//               checked={values.contract}
+//               onChange={(checked) => setFieldValue('contract', checked)}
+//             />
+//           </Form.Item>
+
+//           <Form.Item>
+//             <Button type="primary" htmlType="submit">
+//               Submit
+//             </Button>
+//           </Form.Item>
+//         </FormikForm>
+//       )}
+//     </Formik>
+//     </StyledDrawer>
+//   );
+// };
+
+
+// const mapStateToProps = ({ customer, settings, auth }) => ({
+//   customer: customer.customer,
+//   documentUploadModal: customer.documentUploadModal,
+//   addingDocumentByCustomerId: customer.addingDocumentByCustomerId,
+//   organization: auth.userDetails?.metaData?.organization,
+//   orgId: auth.userDetails.organizationId,
+//   selectDrop:customer.selectDrop,
+//   token: auth.token,
+// });
+
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators(
+//     {
+//       handleDocumentUploadModal,
+//       addCustomerDocument,
+//       getCustomerDocument,
+//       // getselectdrop
+//     },
+//     dispatch
+//   );
+
+// export default connect(mapStateToProps, mapDispatchToProps)(AddDocumentModal);
+
+
+
+
+
+
+
 import React, { useState } from 'react';
-// // import React, { Suspense, Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 
-
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-
 import * as Yup from "yup";
 import {
   handleDocumentUploadModal,
@@ -858,22 +1132,13 @@ import {
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 
-
-import { Upload, Button,Form,  message, Select, Switch, Input } from 'antd';
+import { Upload, Button, Form, message, Select, Switch, Input } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import { Formik, Field, Form as FormikForm } from 'formik';
 import axios from 'axios';
 
-
-
 const { Dragger } = Upload;
 const { Option } = Select;
-const ButtonGroup = Button.Group;
-const documentSchema = Yup.object().shape({
-  documentId: Yup.string().required("Input needed !"),
-});
-
-// Hardcoded document type options
 const documentTypes = [
   { id: 1, name: 'PDF' },
   { id: 2, name: 'Word' },
@@ -881,221 +1146,168 @@ const documentTypes = [
   { id: 4, name: 'Text' },
 ];
 
-// Hardcoded contact options
-const contactOptions = [
-  { id: 1, name: 'Contact 1' },
-  { id: 2, name: 'Contact 2' },
-  { id: 3, name: 'Contact 3' },
-];
-
 const AddDocumentModal = (props) => {
   const [fileList, setFileList] = useState([]);
 
-  const handleFileChange = (info) => {
+  // const handleFileChange = (info) => {
+
+
+  //   let files = info.fileList.map((file) => ({
+  //     ...file,
+  //     type: file.type || null,
+  //     name:  '',
+  //     description: '',
+  //     contract: false
+  //   }));
+  //   setFileList(files);
+  // };
+
+
+    const handleFileChange = (info) => {
     let files = [...info.fileList];
     files = files.map((file) => ({
       ...file,
-      type: file.type || null,
+           type: file.type || null,
+           documentTitle:  '',
+           documentDescription: '',
+      contract: false
     }));
     setFileList(files);
   };
 
-  const handleTypeChange = (file, value) => {
+  const handleFieldChange = (file, field, value) => {
     const updatedFiles = fileList.map((f) =>
-      f.uid === file.uid ? { ...f, type: value } : f
+      f.uid === file.uid ? { ...f, [field]: value } : f
     );
     setFileList(updatedFiles);
   };
+
   const handleSubmit = async (values) => {
     if (fileList.length === 0) {
       message.error('Please upload at least one file');
       return;
     }
-  
-    const incomplete = fileList.some((file) => !file.type);
+
+    const incomplete = fileList.some((file) => !file.type || !file.documentTitle || !file.documentDescription);
     if (incomplete) {
-      message.error('Please select a type for each file');
+      message.error('Please complete all fields for each file');
       return;
     }
-  
-    // Create a FormData object to send the data as multipart/form-data
+
     const formData = new FormData();
-  
-    // Create a structured listUpload array
-    const docList = fileList.map((file) => {
-      return {
-        uploadfile: file.originFileObj,  // This is the binary file
-        documentTypeId: file.type,  // This is the file type
-      };
-    });
-  
-    // Append the listUpload array as a single entry
-    formData.append('docList', new Blob([JSON.stringify(docList)], { documentTypeId: 'application/json' }));
-  
-    // Append other form fields
-    formData.append('documentTitle', values.documentTitle);
-    //formData.append('contact', values.contact);
-    formData.append('documentDescription', values.documentDescription);
-    formData.append('contract', values.contract);
-    formData.append('customerId',  props.customerId);
-  
-    // Example API call using axios
-    // try {
-    //   const response = await axios.post('https://your-api-url.com/upload', formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data',
-    //     },
-    //   });
-    //   console.log('Response:', response.data);
-    //   message.success('Documents uploaded successfully');
-    // } catch (error) {
-    //   console.error('Error uploading documents:', error);
-    //   message.error('Error uploading documents');
-    // }
-    props.addCustomerDocument(formData)
-  
-    // Reset form and file list after submission
+    const docList = fileList.map((file) => ({
+      uploadfile: file.originFileObj,
+      documentTypeId: file.type,
+      documentTitle: file.documentTitle,
+      documentDescription: file.documentDescription,
+      contract: file.contract
+    }));
+
+    formData.append('docList', new Blob([JSON.stringify(docList)], { type: 'application/json' }));
+    //formData.append('customerId', props.customerId);
+
+    props.addCustomerDocument(formData);
+
     setFileList([]);
   };
-  
-  
-  
-  
 
   return (
     <StyledDrawer
-              title={
-                <FormattedMessage id="app.document" defaultMessage="Document" />
-              }
-              width="60%"
-              visible={props.documentUploadModal}
-              onClose={() =>props.handleDocumentUploadModal(false)}
-            >
-    <Formik
-      initialValues={{
-        documentTitle: '',
-        contact:"",
-        documentDescription: '',
-        contract: false,
-                    customerId: props.customerId,
-            contactId: props.contactId,
-            opportunityId: props.opportunityId,
-            invOpportunityId:props.invOpportunityId,
-            investorId:props.investorId
-      }}
-      onSubmit={handleSubmit}
+      title={<FormattedMessage id="app.document" defaultMessage="Document" />}
+      width="60%"
+      visible={props.documentUploadModal}
+      onClose={() => props.handleDocumentUploadModal(false)}
     >
-      {({ values, setFieldValue, handleSubmit }) => (
-        <FormikForm onSubmit={handleSubmit}>
-          <Form.Item>
-            <Dragger
-              multiple={true}
-              fileList={fileList}
-              beforeUpload={() => false}
-              onChange={handleFileChange}
-              onRemove={(file) => {
-                setFileList(fileList.filter((item) => item.uid !== file.uid));
-              }}
-              itemRender={(originNode, file) => (
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                >
-                  {originNode}
-                  <Select
-                    placeholder="Select document type"
-                    onChange={(value) => handleTypeChange(file, value)}
-                    style={{ width: 200, marginLeft: 16 }}
-                    value={file.type}
+      <Formik
+        initialValues={{
+          documentTitle: '',
+          documentDescription: '',
+          contract: false,
+          customerId: props.customerId
+        }}
+        onSubmit={handleSubmit}
+      >
+        {({ handleSubmit }) => (
+          <FormikForm onSubmit={handleSubmit}>
+            <Form.Item>
+              <Dragger
+                multiple={true}
+                fileList={fileList}
+                beforeUpload={() => false}
+                onChange={handleFileChange}
+                onRemove={(file) => setFileList(fileList.filter((item) => item.uid !== file.uid))}
+                itemRender={(originNode, file) => (
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      gap: '10px',
+                      alignItems: 'center',
+                      padding: '10px',
+                      border: '1px solid #d9d9d9',
+                      borderRadius: '4px',
+                      marginBottom: '10px'
+                    }}
                   >
-                    {documentTypes.map((type) => (
-                      <Option key={type.id} value={type.name}>
-                        {type.name}
-                      </Option>
-                    ))}
-                  </Select>
-                </div>
-              )}
-            >
-              <p className="ant-upload-drag-icon">
-                <InboxOutlined />
-              </p>
-              <p className="ant-upload-text">
-                Click or drag file to this area to upload
-              </p>
-              <p className="ant-upload-hint">
-                Support for a single or bulk upload.
-              </p>
-            </Dragger>
-          </Form.Item>
+                    {originNode}
+                    <Select
+                      placeholder="Select document type"
+                      onChange={(value) => handleFieldChange(file, 'type', value)}
+                      style={{ width: '120px' }}
+                      value={file.type}
+                    >
+                      {documentTypes.map((type) => (
+                        <Option key={type.id} value={type.name}>
+                          {type.name}
+                        </Option>
+                      ))}
+                    </Select>
+                    <Input
+                      placeholder="Enter name"
+                      value={file.documentTitle}
+                      onChange={(e) => handleFieldChange(file, 'documentTitle', e.target.value)}
+                      style={{ width: '120px' }}
+                    />
+                    <Input.TextArea
+                      placeholder="Enter description"
+                      value={file.documentDescription}
+                      onChange={(e) => handleFieldChange(file, 'documentDescription', e.target.value)}
+                      style={{ width: '200px' }}
+                    />
+                    <Switch
+                      checked={file.contract}
+                      onChange={(checked) => handleFieldChange(file, 'contract', checked)}
+                    />
+                  </div>
+                )}
+              >
+                <p className="ant-upload-drag-icon">
+                  <InboxOutlined />
+                </p>
+                <p className="ant-upload-text">
+                  Click or drag file to this area to upload
+                </p>
+                <p className="ant-upload-hint">
+                  Support for a single or bulk upload.
+                </p>
+              </Dragger>
+            </Form.Item>
 
-          {/* Extra Fields */}
-          <Form.Item label="Name" labelCol={{ span: 24 }} wrapperCol={{ span: 24 }} required>
-            <Field
-            
-              name="documentTitle"
-              as={Input}
-              placeholder="Enter your name"
-              value={values.documentTitle}
-              onChange={(e) => setFieldValue('documentTitle', e.target.value)}
-            />
-          </Form.Item>
-
-          <Form.Item label="Contact" required>
-            <Select
-              placeholder="Select a contact"
-              value={values.contact}
-              onChange={(value) => setFieldValue('contact', value)}
-            >
-              {contactOptions.map((contact) => (
-                <Option key={contact.id} value={contact.id}>
-                  {contact.name}
-                </Option>
-              ))}
-            </Select>
-          </Form.Item>
-
-          <Form.Item label="Description">
-            <Field
-              name="documentDescription"
-              as={Input.TextArea}
-              placeholder="Enter description"
-              value={values.documentDescription}
-              onChange={(e) => setFieldValue('documentDescription', e.target.value)}
-            />
-          </Form.Item>
-
-          <Form.Item label="Contract">
-            <Switch
-              checked={values.contract}
-              onChange={(checked) => setFieldValue('contract', checked)}
-            />
-          </Form.Item>
-
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
-        </FormikForm>
-      )}
-    </Formik>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Form.Item>
+          </FormikForm>
+        )}
+      </Formik>
     </StyledDrawer>
   );
 };
 
-
-const mapStateToProps = ({ customer, settings, auth }) => ({
-  customer: customer.customer,
+const mapStateToProps = ({ customer, auth }) => ({
+  customerId: customer.customerId,
   documentUploadModal: customer.documentUploadModal,
-  addingDocumentByCustomerId: customer.addingDocumentByCustomerId,
-  organization: auth.userDetails?.metaData?.organization,
-  orgId: auth.userDetails.organizationId,
-  selectDrop:customer.selectDrop,
-  token: auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -1104,7 +1316,6 @@ const mapDispatchToProps = (dispatch) =>
       handleDocumentUploadModal,
       addCustomerDocument,
       getCustomerDocument,
-      // getselectdrop
     },
     dispatch
   );
