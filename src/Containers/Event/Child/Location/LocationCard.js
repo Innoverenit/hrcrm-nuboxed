@@ -26,6 +26,9 @@ import BillingToggle from "./BillingToggle";
 import CorporateToggle from "./CorporateToggle";
 import ProjectToggle from "./ProjectToggle";
 import RetailToggle from "./RetailToggle";
+import ContactsIcon from '@mui/icons-material/Contacts';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 
 const LocationCellDrawer = lazy(() => import("./LocationCellDrawer"));
 const LocationCustomerDrawer = lazy(() => import("./LocationCustomerDrawer"));
@@ -105,16 +108,19 @@ const LocationCard = (props) => {
           loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
           height={"83vh"}
         >
-          <div className=" flex  font-bold font-poppins  justify-between w-[97%] mt-3 p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+          <div className=" flex  font-bold font-poppins  justify-between w-[97%] mt-3 p-1 bg-transparent  sticky  z-10 max-sm:hidden">
             <div className=" md:w-[7.5rem] text-[#00A2E8] text-base ">
+            <ContactsIcon className="!text-icon  "/>
             {translatedMenuItems[0]}</div>
             <div className="   md:w-[9.1rem] font-bold font-poppins text-xs ">
               
             </div>
-            <div className=" md:w-[15.1rem] font-bold font-poppins text-xs ">{translatedMenuItems[1]}
+            <div className=" md:w-[15.1rem] font-bold font-poppins text-xs ">
+            {translatedMenuItems[1]}
               {/* Address */}
               </div>
-            <div className=" md:w-[3.9rem] font-bold font-poppins text-xs ">
+            <div className=" md:w-[5.9rem] font-bold font-poppins text-xs ">
+            <PrecisionManufacturingIcon/>
             {translatedMenuItems[2]}
             {/* Production */}
             </div>
@@ -125,15 +131,18 @@ const LocationCard = (props) => {
             {translatedMenuItems[4]} {/* Inventory */}
               </div>
             <div className="md:w-[4.6rem] font-bold font-poppins text-xs ">
+            <i class="far fa-money-bill-alt text-base"></i>
             {translatedMenuItems[5]} {/* Billing */}
               </div>
-            <div className="md:w-[4.52rem] font-bold font-poppins text-xs ">
+            <div className="md:w-[5.52rem] font-bold font-poppins text-xs ">
+            <ApartmentIcon className="!text-tab "/>
             {translatedMenuItems[6]} {/* Corporate */}
               </div>
             <div className="md:w-[3.3rem] font-bold font-poppins text-xs ">
             {translatedMenuItems[7]} {/* Project */}
               </div>
             <div className="md:w-[3.9rem] font-bold font-poppins text-xs ">
+            <i class="fas fa-money-check text-base"></i>
             {translatedMenuItems[8]}{/* Retail */}
               </div>
             <div className="md:w-[7.9rem] font-bold font-poppins text-xs ">

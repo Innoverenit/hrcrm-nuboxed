@@ -51,6 +51,7 @@ class AddressFieldArray extends Component {
                   }}
                 >
                                             {/* {translatedMenuItems[0]} */}
+                                          
                                             Address input is only allowed using Location feature
                  </p>
                 
