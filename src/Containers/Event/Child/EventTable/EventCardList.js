@@ -124,7 +124,7 @@ const getLocation = (item) => {
       },
       (error) => {
         console.error('Error fetching location:', error);
-        message.error('Error fetching location. Please try again.');
+        // message.error('Error fetching location. Please try again.');
       }
     );
   } else {
@@ -369,6 +369,7 @@ const getLocation = (item) => {
                     className="!text-icon cursor-pointer text-[#FFD700]"/>}
                   </span>)}
                         </div>
+                        {item.complitionInd===true&&(
                         <div>
                         {/* {item.completionInd === false ? (
                 <CheckCircleIcon 
@@ -380,11 +381,13 @@ const getLocation = (item) => {
                  />
                 </span>
               )} */}
+              
 
 {Math.round(item.compDistance)}km
            
         
                         </div>
+                        )}
                     
                          <Tooltip title={
       <div>
