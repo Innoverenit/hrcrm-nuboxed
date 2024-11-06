@@ -40,7 +40,7 @@ class ContactForm extends Component {
       currentOption: "",
       candidate: false,
       availability: false,
-      selectedCustomer: this.props.customerId,
+      selectedCustomer: "",
       selectedContact:null,
       translatedMenuItems: [],
       customers: [],
@@ -55,11 +55,12 @@ class ContactForm extends Component {
     this.handleSelectCustomerFocus=this.handleSelectCustomerFocus.bind(this)
     this.handleCustomerChange = this.handleCustomerChange.bind(this);
     this.fetchCustomers = this.fetchCustomers.bind(this);
+    this.fetchContacts=this.fetchContacts.bind(this);
     
   }
   componentDidMount() {
     this.fetchMenuTranslations();
-    // this.props.getDocuments();
+    this.fetchContacts();
   }
 
   componentDidUpdate(prevProps) {
@@ -155,15 +156,15 @@ class ContactForm extends Component {
 
   handleCustomerChange(customerId) {
     this.setState({ selectedCustomer: customerId });
-  this.fetchContacts(customerId);
+  //this.fetchContacts(customerId);
   }
 
 
-  async fetchContacts(customerId) {
+  async fetchContacts() {
     this.setState({ isLoadingContacts: true });
 
     try {
-      const apiEndpoint = `${base_url}/customer/contact/drop/${customerId}`;
+      const apiEndpoint = `${base_url}/customer/contact/drop/${this.props.customer.customerId}`;
       const response = await fetch(apiEndpoint, {
         method: 'GET',
         headers: {
@@ -279,7 +280,7 @@ class ContactForm extends Component {
             addCustomerContact(
               {
                 ...values,
-                customerId:this.state.selectedCustomer,
+                customerId:this.props.customer.customerId,
                   reportsTo:this.state.selectedContact,
                 // reportsTo:this.state.selectedCustomer,
                 // customerId: this.props.customerId,
@@ -545,7 +546,8 @@ class ContactForm extends Component {
                    
                     
                       <Select
-       
+       value={this.props.customer.name}
+       disabled={this.props.customer.name}
                       placeholder="Select Customer"
                       loading={this.state.isLoadingCustomers}
                       onFocus={this.handleSelectCustomerFocus}
@@ -572,7 +574,7 @@ class ContactForm extends Component {
         placeholder="Select Contact"
       loading={this.state.isLoadingContacts}
         onChange={this.handleContactChange}
-      disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+      //disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
       >
         {this.state.contacts.map(contact => (
           <Option key={contact.contactId} value={contact.contactId}>
