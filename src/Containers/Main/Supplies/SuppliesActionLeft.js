@@ -190,11 +190,8 @@ function SuppliesActionLeft (props) {
 
                          {/* All Materials  */}
                 <Tooltip title={translatedMenuItems[0]}>
-                    <Badge size="small"
-                        count={(viewType === "all" && suppliesCount.count) || 0}
-                        overflowCount={999}
-                    >
-                        <span class=" md:mr-1 text-sm cursor-pointer"
+               
+                        <div class="  text-sm cursor-pointer"
                             onClick={() => setSuppliesViewType("all")}
                             style={{
 
@@ -203,13 +200,20 @@ function SuppliesActionLeft (props) {
                         >
                             <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                                 <div className="text-white">{translatedMenuItems[1]}</div></Avatar>
-
-                        </span>
+                                <Badge size="small"
+                        count={(viewType === "all" && suppliesCount.count) || 0}
+                        overflowCount={999}
+                        offset={[ -10, -16]}
+                    >
                     </Badge>
+
+                        </div>
+                        
+                      
                 </Tooltip>
                 <Tooltip title={translatedMenuItems[2]}>
         <div
-          class=" ml-2 text-sm cursor-pointer"
+          class="  text-sm cursor-pointer"
           style={{
 
             color: viewType === "category" && "red",
@@ -228,7 +232,7 @@ function SuppliesActionLeft (props) {
 
         {/* Brand */}       <Tooltip title={translatedMenuItems[4]}> 
         <div
-          class=" ml-2 text-xs cursor-pointer"
+          class="  text-xs cursor-pointer"
           style={{
 
             color: viewType === "brand" && "red",
@@ -245,7 +249,7 @@ function SuppliesActionLeft (props) {
 
       <Tooltip title={translatedMenuItems[5]}>
         <div
-          class=" ml-2 text-xs cursor-pointer"
+          class="  text-xs cursor-pointer"
           style={{
 
             color: viewType === "brandModel" && "red",
@@ -265,7 +269,7 @@ function SuppliesActionLeft (props) {
                         count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
                         overflowCount={999}
                     >
-                        <span class=" md:mr-1 text-sm cursor-pointer"
+                        <span class="  text-sm cursor-pointer"
                             onClick={() => setSuppliesViewType("dashboard")}
                             style={{
                                 color: viewType === "dashboard" && "#1890ff",
@@ -287,7 +291,7 @@ function SuppliesActionLeft (props) {
                         //count={(viewType === "dashboard" && suppliesDeletedCount.deleteCount) || 0}
                         //overflowCount={999}
                     >
-                        <span class=" md:mr-1 text-sm cursor-pointer"
+                        <span class="  text-sm cursor-pointer"
                             onClick={() => setSuppliesViewType("suppliesLocation")}
                             style={{
                                 color: "blue",
@@ -306,7 +310,7 @@ function SuppliesActionLeft (props) {
                 title="Updates"
                 >
                
-                        <span class=" md:mr-1 text-sm cursor-pointer"
+                        <span class="  text-sm cursor-pointer"
                             onClick={() => setSuppliesViewType("newList")}
                             style={{
                                 color: "blue",

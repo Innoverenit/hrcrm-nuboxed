@@ -6,7 +6,6 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { Formik, Form, FastField, } from "formik";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import {  Input,Select, Button } from "antd";
 import {
   MultiAvatar,
@@ -21,6 +20,7 @@ import {addProductBrand,getBrandProduct,
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { DeleteOutlined } from "@ant-design/icons";
+import EmptyPage from "../../Main/EmptyPage";
 
 
 
@@ -281,7 +281,7 @@ const handleSave = (item) => {
           </div>
        
 
-            {data.length === 0 ? <NodataFoundPage /> : data.map((item, index) => {
+            {data.length === 0 ? <EmptyPage /> : data.map((item, index) => {
         
               return (
                 <div>

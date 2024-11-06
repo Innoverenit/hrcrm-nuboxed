@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import AddSuppliesRowImageModal from "./AddSuppliesRowImageModal"
 import DescriptionIcon from '@mui/icons-material/Description';
 import QrCodeIcon from '@mui/icons-material/QrCode';
+import PinIcon from '@mui/icons-material/Pin';
 import {
   getSuppliesList,
   handleLocationuppliesModal,
@@ -40,12 +41,12 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { JumpStartBox, MultiAvatar } from "../../../Components/UI/Elements";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import InfiniteScroll from "react-infinite-scroll-component";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import MaterialStatusToggle from "./MaterialStatusToggle";
 import ReactToPrint from "react-to-print";
 import AddDocumentErpModals from "./AddDocumentErpModals";
 import { FormattedMessage } from "react-intl";
 import SuppliesSearchedData from "./SuppliesSearchedData";
+import EmptyPage from "../EmptyPage";
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
@@ -313,7 +314,7 @@ function SuppliesTable(props) {
             <div className=" w-[4.25rem] max-xl:w-[2rem]"></div>
             <div className="font-bold text-[#00A2E8] text-base font-poppins  w-[6.522rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* HSN */}
-              {translatedMenuItems[0]} ID
+             < PinIcon className=" !text-base"/>{translatedMenuItems[0]} ID
               </div>
               <div className="font-bold font-poppins text-xs w-[9.53rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Supplies */}
@@ -592,7 +593,7 @@ function SuppliesTable(props) {
                 })}
               </> :
               !props.purchaseList.length
-                && !props.fetchingPurchaseList ? <NodataFoundPage /> : null}
+                && !props.fetchingPurchaseList ? <EmptyPage/> : null}
           </InfiniteScroll>
         </div>
       </div>

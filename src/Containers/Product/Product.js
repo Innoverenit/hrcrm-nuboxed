@@ -1,17 +1,18 @@
 import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import BrandList from "../Product/Child/BrandList"
 import { BundleLoader } from "../../Components/Placeholder";
-import ProductBrandModelList from "./ProductBrandModelList"
-import BrandDeletedList from "./BrandDeletedList"
 import { handleConfigureModal, setProductViewType } from "./ProductAction";
+
 const ProductHeader=lazy(()=>import("./Child/ProductHeader"));
 const ProductDeleteList =lazy(()=>import("./Child/ProductTable/ProductDeleteList"));
 const ProductCategory =lazy(()=>import("./Child/ProductTable/ProductCategory"));
 const ProductListingTable =lazy(()=>import("./Child/ProductTable/ProductListingTable"));
 const ProductCardList =lazy(()=>import("./Child/ProductTable/ProductCardList"));
 const ConfigureModal=lazy(()=>import("./Child/ConfigureModal"));
+const BrandDeletedList=lazy(()=>import("./BrandDeletedList"));
+const ProductBrandModelList =lazy(()=>import("./ProductBrandModelList"));
+const  BrandList=lazy(()=>import("../Product/Child/BrandList"));
 
 class Product extends Component {
   render() {

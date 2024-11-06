@@ -236,7 +236,7 @@ function UpdateCustomerForm (props) {
             ...rest
           }) => (
             <div class="max-sm:h-[30rem] overflow-y-auto">
-            <Form className="form-background">
+            <Form className="form-background h-[87vh]">
               <div class=" flex justify-around max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk" >
                   <div className=" flex flex-nowrap justify-between">

@@ -247,7 +247,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
             </Link>
           </Menu.Item>
         )}
-        {(user.basicAccessInd === true || user.role === "ADMIN") && (
+        {(user.basicAccessInd === true && user.eventAccessInd === true || user.role === "ADMIN") &&  (
           <Menu.Item key="/event" style={{ height: "1.45rem",
            color: selectedMenuItem === '/event' ? 'tomato' : '#28a355',paddingLeft:"1px" }}>
             <Link to="/event" onClick={() => handleSelect('/event')}>
@@ -500,24 +500,24 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
             </Link>
           </Menu.Item>
           )}
-          {(user.imInd === true && user.dataRoomAccessInd === true
-            //  || user.role === "ADMIN" && user.imInd === true 
-            ) && (
-                      <Menu.Item key="/dataroom " style={{ height: "1.45rem",
+          {/* {(user.imInd === true && user.dataRoomAccessInd === true */}
+            {/* //  || user.role === "ADMIN" && user.imInd === true  */}
+            {/* ) && ( */}
+                      {/* <Menu.Item key="/dataroom " style={{ height: "1.45rem",
                         color: selectedMenuItem === '/dataroom' ? 'tomato' : '#28a355',paddingLeft:"1px" }}>
                         <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
                           <MarkUnreadChatAltIcon
                           className='!text-base  text-[#e4eb2f]'
                           />
                           <span class="text-white text-ls ml-1">
-                          {/* Data Room */}
+                          Data Room
                             {translatedMenuItems[11]}
                             &nbsp;&nbsp;&nbsp;
                             
                           </span>
                         </Link>
-                      </Menu.Item>
-            )}
+                      </Menu.Item> */}
+            {/* )} */}
        
         <hr/>
        
@@ -820,7 +820,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
 
     
         <hr />
-        {(user.leaveAccessInd === true   
+        {(user.leaveAccessInd === true   && user.moduleMapper.hrInd === true
         // || user.role === "ADMIN"
       ) && ( 
         <Menu.Item key="/report" style={{ height: "1.45rem", 
@@ -840,7 +840,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
           </Link>
         </Menu.Item>
        )} 
-        {(user.mileageAccessInd === true
+        {(user.mileageAccessInd === true  && user.moduleMapper.hrInd === true
         // ||
         //  user.role === "ADMIN"
         ) &&( 
@@ -862,7 +862,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
           </Link>
         </Menu.Item>
         )}
-     {(user.expenseAccessInd === true   
+     {(user.expenseAccessInd === true    && user.moduleMapper.hrInd === true
     //  || user.role === "ADMIN"
     ) && ( 
         <Menu.Item key="/expense" style={{ height: "1.45rem",
