@@ -22,7 +22,7 @@ import {
   handleAssimodal,
   handleAddresspitchModal
 } from "../PitchAction"; 
-import { Button, Tooltip } from "antd";
+import { Button, Tooltip,Checkbox } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -207,6 +207,14 @@ serachedPitchData={props.serachedPitchData}
               >
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex w-[12rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                                <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {props.showCheckboxes && (
+                        <Checkbox
+                onChange={() => props.handleCheckboxChange(item.investorLeadsId)}
+              checked={props.selectedDeals.includes(item.investorLeadsId)}
+              />
+                        )}
+                        </div>  
                                 <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
 <div>
 

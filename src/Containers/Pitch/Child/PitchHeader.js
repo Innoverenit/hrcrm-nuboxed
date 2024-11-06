@@ -24,6 +24,11 @@ class PitchHeader extends Component {
           leftComponent={
             <Suspense fallback={<BundleLoader />}>
             <PitchActionLeft
+            isTransferMode={this.props.isTransferMode}
+            handleUserSelect={this.props.handleUserSelect}
+            selectedDeals={this.props.selectedDeals}
+            handleTransferClick={this.props.handleTransferClick}
+            showCheckboxes={this.props.showCheckboxes}
             setPitchViewType={setPitchViewType}
             viewType={viewType}
             teamsAccessInd={teamsAccessInd}
