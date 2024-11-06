@@ -11,6 +11,10 @@ import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition
 import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import RefurbishNoteAll from './RefurbishNoteAll';
+import GroupsIcon from '@mui/icons-material/Groups';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import UpdateIcon from '@mui/icons-material/Update';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 const OrderPhoneModal = lazy(() => import('./OrderPhoneModal'));
 
 function ProductionOrderListById(props) {
@@ -194,16 +198,17 @@ function ProductionOrderListById(props) {
 
                     <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                         <div className='w-[5.2rem]'></div>
-                        <div className=" w-[13.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]} ID</div>
+                        <div className=" w-[13.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+                          <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[0]} ID</div>
                         <div className=" w-[20.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[1]}
+                        <DateRangeIcon className="!text-icon "/> {translatedMenuItems[1]}
                         </div>
                         <div className=" w-[21.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[2]}
+                        <GroupsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}
                         </div>
 
                         <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[3]}
+                        <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[3]}
                         </div>
                         <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
                     </div>

@@ -6,6 +6,11 @@ import { MultiAvatar } from "../../../Components/UI/Elements";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import { Tooltip, Button, Badge } from "antd";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import GroupsIcon from '@mui/icons-material/Groups';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import {
     getProductionOrderId,
     getProductionUrgent,
@@ -183,42 +188,43 @@ const ProductionOrderList = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                 <div className=" flex max-sm:hidden  justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10 ">
+                 <div className=" flex max-sm:hidden  justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10 ">
                     <div className=" md:w-[3rem] text-[white] flex justify-center mr-1 bg-[red]"> {translatedMenuItems[6]} </div>
-                        <div className=" w-[7.2rem] flex justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[12.2rem] flex justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                          
                         {/* orderid" */}
-                        {translatedMenuItems[0]}
+                        <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/> {translatedMenuItems[0]}
                         </div>
                         {props.accountInfoInd &&(
-                        <div className=" w-[3.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[7.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {/* customer  */}
-                           {translatedMenuItems[1]}
+                           <AcUnitIcon className='!text-base  text-[#92dce5]'
+              /> {translatedMenuItems[1]}
                         </div>)}                                      
-                        <div className="w-[2.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}
+                        <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}
                             {/* Quoted */}
                         </div>
-                        <div className="w-[2.8rem]"> {translatedMenuItems[9]}
+                        <div className="w-[2.6rem]"> {translatedMenuItems[9]}
                            {/* final */}
                         </div>
-                        <div className="w-[5.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[7]}  {/* Delivery */}
+                        <div className="w-[4.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
-                            <div className="w-[23.2rem]"></div>
-                            <div className="w-[2.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className="w-[25.2rem]"></div>
+                            <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {/* lead */}
-                            {translatedMenuItems[2]}
+                                <GroupsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}
                         </div>
-                        <div className="w-[3.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[4.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {/* Assigned */}
-                            {translatedMenuItems[3]}
+                           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[3]}
                         </div>
                         <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {/* Owner */}
-                            {translatedMenuItems[4]}
+                           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[4]}
                          </div>
 
-                        <div className="w-[4.2rem]"></div>
+                        <div className="w-[2.2rem]"></div>
                     </div>
                     <InfiniteScroll
                     className=" max-sm:h-[34vh]"
@@ -226,7 +232,7 @@ const ProductionOrderList = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingProductionUrgent ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"38vh"} 
+                        height={"39vh"} 
                         style={{ overflowX: "hidden",scrollbarWidth:"thin" }}
                         endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
@@ -235,7 +241,7 @@ const ProductionOrderList = (props) => {
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center justify-between p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                    <div className="flex rounded  mt-1 bg-white  items-center justify-between py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={item.orderPhoneId}>
                                         <div class="flex  max-sm:w-wk items-center   max-sm:items-center">
                                         <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9]  items-center md:w-[3.26rem]  " >
@@ -254,10 +260,10 @@ const ProductionOrderList = (props) => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                                            <div className=" flex w-[10.7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto ">
+                                            <div className=" flex w-[10.7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
-                                                        class=" underline font-bold  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        class=" underline font-bold ml-gap  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                         onClick={() => {
                                                             handleRowData(item);
                                                             props.handleProductBuilder(true)
@@ -274,8 +280,8 @@ const ProductionOrderList = (props) => {
                                                 ) : null}
                                             </div>
                                             {props.accountInfoInd &&(
-                                            <div className=" flex  w-[4.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                            <div className=" flex  w-[10.5rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
                                                 </div>
                                             </div> )}
@@ -302,14 +308,14 @@ const ProductionOrderList = (props) => {
                                         </div>
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  max-sm:items-center">
 
-                                            <div className="flex w-[10.22rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.qcStartInd === 0 ?<div class=" font-bold text-[#ff1862] text-[0.65rem] text-center">QC to be approved by Sales Owner/ Customer </div>
+                                            <div className="flex w-[13.22rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs flex items-center justify-start font-poppins justify-start text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    {item.qcStartInd === 0 ?<div class="ml-gap font-bold text-[#ff1862] text-[0.65rem] text-center">QC to be approved by Sales Owner/ Customer </div>
                                                         : item.qcStartInd === 1 ?
                                                             // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
                                                             <Tooltip title={translatedMenuItems[14]}>
                                                                 <Button
-                                                                    className="bg-[#1685e6] text-white"
+                                                                    className="bg-[#1685e6] ml-gap text-white"
                                                                     onClick={() => {
                                                                         props.handleAssignOrderById(true);
                                                                         handleRowData(item);
@@ -323,8 +329,8 @@ const ProductionOrderList = (props) => {
                                                                     {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
-                                            <div className=" flex w-[10.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                            <div className=" flex w-[10.18rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class="flex text-xs ml-gap font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcRepairInd === 1 ?
                                                         <Tooltip title="Assign For Repair">
                                                             <Button
@@ -448,49 +454,50 @@ const ProductionOrderList = (props) => {
 
 <div className=' flex  sticky  z-auto'>
                 <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex max-sm:hidden  justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
+                <div className=" flex max-sm:hidden  justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
-                        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* orderID */}
-                            {translatedMenuItems[0]}
+                            <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[0]}
                         </div>
                         {props.accountInfoInd &&(
-                        <div className=" w-[3.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[7.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* customer */}
-                        {translatedMenuItems[1]}
+                            <AcUnitIcon className='!text-base  text-[#92dce5]'
+              /> {translatedMenuItems[1]}
                         </div>)}                                    
-                        <div className="w-[2.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* Quoted */}
                           {translatedMenuItems[5]}
                         </div>
-                        <div className="md:w-[2.8rem]"> {translatedMenuItems[9]}
+                        <div className="md:w-[2.6rem]"> {translatedMenuItems[9]}
                         {/* final */}
                         </div>
-                        <div className="w-[5.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[7]}  {/* Delivery */}
+                        <div className="w-[4.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
-                            <div className="w-[23.2rem]"></div>
-                            <div className="w-[2.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className="w-[25.2rem]"></div>
+                            <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {/* lead */}
-                          {translatedMenuItems[2]}
+                          <GroupsIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[2]}
                         </div>
-                        <div className="w-[3.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[4.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {/* Assigned */}
-                           {translatedMenuItems[3]}
+                          <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[3]}
                         </div>
                         <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            
                            {/* Owner  */}
-                            {translatedMenuItems[4]}
+                           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[4]}
                          </div>
-                        <div className="w-[4.2rem]"></div>
+                        <div className="w-[2.2rem]"></div>
                     </div>
                     <InfiniteScroll
                         dataLength={props.productionNormal.length}
                         next={handleLoadMore2}
                         hasMore={hasMore}
                         loader={props.fetchingProductionNormal ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"38vh"}
+                        height={"39vh"}
                         style={{ overflowX: "hidden",scrollbarWidth:"thin" }}
                         endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                     >
@@ -499,7 +506,7 @@ const ProductionOrderList = (props) => {
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center justify-between p-1   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                    <div className="flex rounded  mt-1 bg-white  items-center justify-between py-1   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={item.orderPhoneId}>
                                         <div class="flex  max-sm:w-wk items-center max-sm:items-center">
                                         <div className=" flex items-center md:w-[3.26rem] border-l-2 h-8 border-green-500 bg-[#eef2f9] " >
@@ -518,7 +525,7 @@ const ProductionOrderList = (props) => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.7rem] max-sm:w-auto ">
+                                            <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[10.7rem] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
                                                         class=" underline font-bold  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
@@ -538,8 +545,8 @@ const ProductionOrderList = (props) => {
                                                 ) : null}
                                             </div>
                                             {props.accountInfoInd && (
-                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                            <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]   w-[10.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.distributorName}
                                                 </div>
                                             </div> )}
@@ -547,7 +554,7 @@ const ProductionOrderList = (props) => {
                                         
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
                                             <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs ml-gap  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.expectedPrice}
                                                 </div>
                                             </div>
@@ -570,14 +577,14 @@ const ProductionOrderList = (props) => {
                                         </div>
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
 
-                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center text- max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.qcStartInd === 0 ? <div class=" font-bold text-[#ff1862] text-xs text-center">QC to be approved by Sales Owner/ Customer </div>
+                                        <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[13.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                        <div class="flex items-center justify-start text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    {item.qcStartInd === 0 ?<div class="ml-gap font-bold text-[#ff1862] text-[0.65rem] text-center">QC to be approved by Sales Owner/ Customer </div>
                                                         : item.qcStartInd === 1 ?
                                                             // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
                                                             <Tooltip title={translatedMenuItems[14]}>
                                                                 <Button
-                                                                    className="bg-[#1685e6] text-white"
+                                                                    className="bg-[#1685e6] ml-gap text-white"
                                                                     onClick={() => {
                                                                         props.handleAssignOrderById(true);
                                                                         handleRowData(item);
@@ -591,8 +598,8 @@ const ProductionOrderList = (props) => {
                                                                     {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
-                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                            <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[10.18rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs ml-gap  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcRepairInd === 1 ?
                                                         <Tooltip title="Assign For Repair">
                                                             <Button
@@ -608,7 +615,7 @@ const ProductionOrderList = (props) => {
                                                                 <CheckCircleIcon className="!text-[#03c04a]" /> {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</div> : null}
                                                 </div>
                                             </div>
-                                            <div className=" flex  w-[4.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  w-[4.22rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.rejectOrderCount > 0 &&
                                                         <Tooltip title={translatedMenuItems[12]}>
