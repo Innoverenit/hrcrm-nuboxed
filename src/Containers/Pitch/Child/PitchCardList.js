@@ -27,7 +27,7 @@ import {
   handlePitchConvertModal,
   handleAddresspitchModal
 } from "../PitchAction";
-import { Button, Tooltip } from "antd";
+import { Button, Tooltip ,Checkbox} from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
@@ -302,6 +302,14 @@ const countryCode = item.countryAlpha2Code
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                        <div class="flex flex-row items-center  border-l-2 border-green-500 bg-[#eef2f9]  w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                       <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {props.showCheckboxes && (
+                        <Checkbox
+                onChange={() => props.handleCheckboxChange(item.investorLeadsId)}
+              checked={props.selectedDeals.includes(item.investorLeadsId)}
+              />
+                        )}
+                        </div>  
                                         <div>
                                               <ButtonGroup>
                                               <RoleButton
@@ -730,6 +738,14 @@ const countryCode = item.countryAlpha2Code
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                        <div class="flex flex-row border-l-2 border-green-500 bg-[#eef2f9]  items-center w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                       <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {props.showCheckboxes && (
+                        <Checkbox
+                onChange={() => props.handleCheckboxChange(item.investorLeadsId)}
+              checked={props.selectedDeals.includes(item.investorLeadsId)}
+              />
+                        )}
+                        </div>  
                                         <div>
                                               <ButtonGroup>
                                               <RoleButton
@@ -1157,6 +1173,14 @@ const countryCode = item.countryAlpha2Code
                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                        <div class="flex flex-row items-center border-l-2 border-green-500 bg-[#eef2f9]  w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
+                                       <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {props.showCheckboxes && (
+                        <Checkbox
+                onChange={() => props.handleCheckboxChange(item.investorLeadsId)}
+              checked={props.selectedDeals.includes(item.investorLeadsId)}
+              />
+                        )}
+                        </div>  
                                         <div>
                                               <ButtonGroup>
                                               <RoleButton
