@@ -16,7 +16,6 @@ import {
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import { DeleteOutlined, } from "@ant-design/icons";
 import dayjs from "dayjs";
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import DescriptionIcon from '@mui/icons-material/Description';
@@ -24,6 +23,7 @@ import ContactPageIcon from '@mui/icons-material/ContactPage'
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
+import EmptyPage from "../../../../../Main/EmptyPage";
 class LinkedDocuments extends Component {
   
   constructor(props) {
@@ -112,7 +112,7 @@ class LinkedDocuments extends Component {
         <div className="w-[4.2rem]"></div>
 
       </div>
-      { !fetchingDocumentsByContactId && documentsByContactId.length === 0 ?<NodataFoundPage />:documentsByContactId.map((item,index) =>  {
+      { !fetchingDocumentsByContactId && documentsByContactId.length === 0 ?<EmptyPage/>:documentsByContactId.map((item,index) =>  {
              
                     return (
                         <div>

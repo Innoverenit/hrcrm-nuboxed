@@ -15,7 +15,7 @@ import { MultiAvatar} from "../../../../../Components/UI/Elements";
 import { ActionIcon } from "../../../../../Components/Utils";
 import Highlighter from "react-highlight-words";
 import {SearchOutlined}  from '@ant-design/icons';
-import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import EmptyPage from "../../../../Main/EmptyPage";
 
 const ButtonGroup = Button.Group;
 class LinkedContact extends Component {
@@ -242,7 +242,7 @@ class LinkedContact extends Component {
                      
                   </div>
                   <div class="overflow-y-auto h-[64vh]">
-                  { !fetchingContactListByOpportunityId && contactListByOpportunityId.length === 0 ?<NodataFoundPage />:contactListByOpportunityId.map((item,index) =>  {
+                  { !fetchingContactListByOpportunityId && contactListByOpportunityId.length === 0 ?<EmptyPage/>:contactListByOpportunityId.map((item,index) =>  {
                       
                       return (
                           <div >
@@ -262,13 +262,13 @@ class LinkedContact extends Component {
               </div>
                                       </div>
 
-                                      <div className=" flex  items-center justify-start ml-gap bg-[#eef2f9] h-8   md:w-[16.5rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
+                                      <div className=" flex   justify-start ml-gap bg-[#eef2f9] h-8   md:w-[16.5rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
                                           <div class="flex text-xs ml-gap items-center font-poppins">
                                              {item.fullName}
                                           </div>
 
                                       </div>
-                                      <div className=" flex  items-center justify-start ml-gap bg-[#eef2f9] h-8  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
+                                      <div className=" flex  justify-start ml-gap bg-[#eef2f9] h-8  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
                                           <div class=" flex text-xs ml-gap items-center font-poppins">
                                               {item.designation}
                                           </div>

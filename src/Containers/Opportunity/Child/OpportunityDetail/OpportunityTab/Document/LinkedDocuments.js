@@ -18,7 +18,7 @@ import {
 import { Tooltip } from "antd";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import ContractToggle from "./ContractToggle";
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import EmptyPage from "../../../../../Main/EmptyPage";
 
 class LinkedDocuments extends Component {
 
@@ -112,7 +112,7 @@ class LinkedDocuments extends Component {
           </div>
        
             
-          { !fetchingDocumentsByOpportunityId && documentsByOpportunityId.length === 0 ?<NodataFoundPage />:documentsByOpportunityId.map((item,index) =>  {
+          { !fetchingDocumentsByOpportunityId && documentsByOpportunityId.length === 0 ?<EmptyPage />:documentsByOpportunityId.map((item,index) =>  {
             
             
                         return (
