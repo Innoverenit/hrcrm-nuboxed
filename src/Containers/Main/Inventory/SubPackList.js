@@ -90,7 +90,7 @@ function SubPackList(props) {
   const sendInputPutRequest =  async (item) => {
     
     try {
-        const response = await axios.put(`${base_url2}/phoneOrder/packingNo/${props.orderPhoneId}`,item, {  
+        const response = await axios.put(`${base_url2}/dispatchPacking/dispatch-packing-item-link/unit`,item, {  
           headers: {
               Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
           },
@@ -104,15 +104,31 @@ function SubPackList(props) {
         console.error("Error updating item:", error);
       }
   };
-  const handleInputBlur = (e) => {
+  const handleInputBlur = (productId,type,e) => {
     const value = e.target.value === '' ? '0' : e.target.value; 
     setInputValue(value);
-    sendInputPutRequest({ packingUnits: value });
+    sendInputPutRequest({ packingUnits: value,
+      orderId:props.rowData.orderId,
+itemId:productId,
+dispatchPackingId:props.rowData.dispatchPackingId,
+ type:type,
+userId:props.userId,
+orgId:props.orgId,
+
+     });
   };
-  const handleInputBlur1 = (e) => {
+  const handleInputBlur1 = (productId,type,e) => {
     const value = e.target.value === '' ? '0' : e.target.value; 
     setNumberInput(value);
-    sendInputPutRequest({ manualNo : value });
+    sendInputPutRequest({ manualNo : value ,
+      orderId:props.rowData.orderId,
+      itemId:productId,
+      dispatchPackingId:props.rowData.dispatchPackingId,
+      type:type,
+      userId:props.userId,
+      orgId:props.orgId,
+
+    });
   };
     return (
         <>
@@ -135,25 +151,32 @@ function SubPackList(props) {
                                 return ( 
                                     <div>
                                         <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
-                                           <div>{item.productFullName}</div> 
+                                           <div className="w-[12.1rem]">{item.productFullName}</div> 
+                                           <div className="w-36" >
                                            <input
             id="packingUnits"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={inputValue}
-            onBlur={handleInputBlur}  
+            onBlur={(e) => handleInputBlur(item.productId,item.type, e)}
             onChange={(e) => setInputValue(e.target.value)}
            placeholder="Enter number of packets"
           />
+          </div>
+          <div className="w-28" ></div>
+          <div className="w-28" ></div>
+          <div className="w-[12rem]" ></div>
+          <div className="w-32" >
            <input
             id="manualNo"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={numberInput}
-            onBlur={handleInputBlur1}  
+            onBlur={(e) => handleInputBlur1(item.productId,item.type, e)}
             onChange={(e) => setNumberInput(e.target.value)}
            placeholder="Enter number "
           />
+          </div>
                                             <Button
                                              onClick={() => {
                                               props.handleScanModal(true);
@@ -185,6 +208,7 @@ function SubPackList(props) {
 const mapStateToProps = ({ inventory, auth }) => ({
     userId: auth.userDetails.userId,
     subList:inventory.subList,
+  orgId: auth.userDetails.organizationId,
     addScanModal:inventory.addScanModal
 });
 
