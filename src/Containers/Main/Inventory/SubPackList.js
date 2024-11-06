@@ -7,7 +7,8 @@ import { Badge, Button, Input } from "antd";
 import dayjs from "dayjs";
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
-import {getSubList} from "./InventoryAction";
+import AddScanModal from "./AddScanModal"
+import {getSubList,handleScanModal} from "./InventoryAction";
 
 
 function SubPackList(props) {
@@ -51,8 +52,15 @@ function SubPackList(props) {
         setAwbUpdate(!awbUpdate)
     }
     const [awbNo, setAwbNo] = useState("")
+    const[scandata,setScanData]= useState("")
     const handleAwbUpdate = (val) => {
         setAwbNo(val)
+    }
+
+
+    function handleSetScandata(item) {
+      setScanData(item);
+      // console.log("opp",item);
     }
     function handleCallback2() {
         setAwbUpdate(false)
@@ -146,7 +154,12 @@ function SubPackList(props) {
             onChange={(e) => setNumberInput(e.target.value)}
            placeholder="Enter number "
           />
-                                            <Button>Scan</Button>
+                                            <Button
+                                             onClick={() => {
+                                              props.handleScanModal(true);
+                                            handleSetScandata(item);
+                                            }}
+                                            >Scan</Button>
                                         </div>
                                     </div>
                                  )
@@ -155,6 +168,15 @@ function SubPackList(props) {
                     </div>
                 </div>
             </div>
+
+            <AddScanModal
+            scandata={scandata}
+            orderId={props.rowData.orderId}
+            newOrderNo={props.newOrderNo}
+            dispatchPackingId={props.dispatchPackingId}
+            addScanModal={props.addScanModal}
+            handleScanModal={props.handleScanModal}
+            />
            
         </>
     );
@@ -162,13 +184,15 @@ function SubPackList(props) {
 
 const mapStateToProps = ({ inventory, auth }) => ({
     userId: auth.userDetails.userId,
-    subList:inventory.subList
+    subList:inventory.subList,
+    addScanModal:inventory.addScanModal
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getSubList     
+            getSubList  ,
+            handleScanModal   
         },
         dispatch
     );

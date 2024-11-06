@@ -28,6 +28,7 @@ class AddpackDrawer extends Component {
                 >
                     <Suspense fallback={<BundleLoader />}>
                         <AddPackForm
+                       newOrderNo={this.props.rowData.newOrderNo}
                         orderPhoneId={this.props.rowData.orderPhoneId}
                         />
                        
