@@ -3,7 +3,7 @@ import { MultiAvatar } from "../../Components/UI/Elements";
 import { getOpportunityListByUserId } from "../Opportunity/OpportunityAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
+import EmptyPage from "../Main/EmptyPage";
 
 class OpportunityCardView extends Component {
   componentDidMount() {
@@ -14,7 +14,7 @@ class OpportunityCardView extends Component {
     return (
       <>
      <div class="flex"> 
-        { !this.props.fetchingOpportunity && this.props.opportunityByUserId.length === 0 ?<NodataFoundPage />:this.props.opportunityByUserId.map((item,index) =>  {
+        { !this.props.fetchingOpportunity && this.props.opportunityByUserId.length === 0 ?<EmptyPage/>:this.props.opportunityByUserId.map((item,index) =>  {
             return (
               <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
           <div class="w-7 h-7" >

@@ -31,9 +31,9 @@ import { Button, Tooltip } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../Components/Placeholder";
 import AddPitchAdressModal from "./AddPitchAdressModal";
+import EmptyPage from "../../Main/EmptyPage";
 const PitchSearchedData =lazy(()=>import("./PitchSearchedData"));
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
@@ -272,7 +272,7 @@ const handleLoadMore2 = () => {
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<NodataFoundPage />:props.pitchDataHot.map((item,index) =>  {
+    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<EmptyPage/>:props.pitchDataHot.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -700,7 +700,7 @@ const countryCode = item.countryAlpha2Code
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<NodataFoundPage />:props.pitchDataHot.map((item,index) =>  {
+    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<EmptyPage/>:props.pitchDataHot.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -1127,7 +1127,7 @@ const countryCode = item.countryAlpha2Code
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<NodataFoundPage />:props.pitchDataHot.map((item,index) =>  {
+    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<EmptyPage/>:props.pitchDataHot.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");

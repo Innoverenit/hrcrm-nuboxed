@@ -9,16 +9,12 @@ import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import "jspdf-autotable";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import NextPlanIcon from '@mui/icons-material/NextPlan';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import SourceIcon from '@mui/icons-material/Source';
 import FactoryIcon from '@mui/icons-material/Factory';
 import ScoreIcon from '@mui/icons-material/Score';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -44,10 +40,10 @@ import {
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button, Tooltip,Popconfirm ,Checkbox} from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedData from "./SearchedData";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import AddLeadsAddressModal from "./AddLeadsAddressModal";
+import EmptyPage from "../../../Main/EmptyPage";
 const UpdateLeadsModal =lazy(()=>import("../UpdateLeads/UpdateLeadsModal"));
 const AddLeadsEmailDrawerModal =lazy(()=>import("../UpdateLeads/AddLeadsEmailDrawerModal"));
 const BorderColorIcon =lazy(()=>import("@mui/icons-material/BorderColor"));
@@ -266,7 +262,7 @@ const LeadsAllCardList = (props) => {
         style={{scrollbarWidth:"thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
-             { !fetchingAllLeadsHot && allleadsInfoHot.length === 0 ?<NodataFoundPage />:allleadsInfoHot.map((item,index) =>  {
+             { !fetchingAllLeadsHot && allleadsInfoHot.length === 0 ?<EmptyPage/>:allleadsInfoHot.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.countryAlpha2Code
@@ -704,7 +700,7 @@ const LeadsAllCardList = (props) => {
         style={{scrollbarWidth:"thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
-       { !fetchingAllLeadsWarm && allleadsInfoWarm.length === 0 ?<NodataFoundPage />:allleadsInfoWarm.map((item,index) =>  {
+       { !fetchingAllLeadsWarm && allleadsInfoWarm.length === 0 ?<EmptyPage/>:allleadsInfoWarm.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.countryAlpha2Code
@@ -1136,7 +1132,7 @@ const LeadsAllCardList = (props) => {
         style={{scrollbarWidth:"thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
-       { !fetchingAllLeadsCold && allleadsInfoCold.length === 0 ?<NodataFoundPage />:allleadsInfoCold.map((item,index) =>  {
+       { !fetchingAllLeadsCold && allleadsInfoCold.length === 0 ?<EmptyPage/>:allleadsInfoCold.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.countryAlpha2Code

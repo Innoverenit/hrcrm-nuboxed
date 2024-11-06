@@ -42,11 +42,11 @@ import {
          getTeamOpportunity,
          getTeamUserList,
 } from "../../OpportunityAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { base_url2 } from "../../../../Config/Auth";
+import EmptyPage from "../../../Main/EmptyPage";
 
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
 const UpdateOpportunityModal =lazy(()=> import("../UpdateOpportunity/UpdateOpportunityModal"));
@@ -356,7 +356,7 @@ function OpportunityTeamsCard(props) {
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
      
- { !fetchingTeamOpportunity && teamOpportunity.length === 0 ?<NodataFoundPage />:teamOpportunity.map((item,index) =>  {
+ { !fetchingTeamOpportunity && teamOpportunity.length === 0 ?<EmptyPage/>:teamOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {

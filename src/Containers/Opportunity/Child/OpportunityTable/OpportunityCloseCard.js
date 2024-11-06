@@ -33,7 +33,7 @@ import {
 } from "../../OpportunityAction";
 import AddOpportunityDrawerModal from "./AddOpportunityDrawerModal";
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import EmptyPage from "../../../Main/EmptyPage";
 
 function OpportunityCloseCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -74,7 +74,7 @@ function OpportunityCloseCard(props) {
         height={"86vh"}
       >
 <div class="flex  justify-center flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">    
-{ !fetchingCloseOpportunity && closeOpportunity.length === 0 ?<NodataFoundPage />:closeOpportunity.map((item,index) =>  {
+{ !fetchingCloseOpportunity && closeOpportunity.length === 0 ?<EmptyPage/>:closeOpportunity.map((item,index) =>  {
                  
                  var findProbability = 0;
                  return (

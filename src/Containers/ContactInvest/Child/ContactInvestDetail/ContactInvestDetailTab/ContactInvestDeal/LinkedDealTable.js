@@ -15,13 +15,13 @@ import { Progress, Tooltip } from "antd";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import InfoIcon from '@mui/icons-material/Info';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import UpdateIcon from '@mui/icons-material/Update';
+import EmptyPage from "../../../../../Main/EmptyPage";
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
@@ -108,7 +108,7 @@ if (fetchingDealList) return <BundleLoader/>;
 
       </div>
 
-      { !fetchingDealList && dealAllList.length === 0 ?<NodataFoundPage />:dealAllList.map((item,index) =>  {
+      { !fetchingDealList && dealAllList.length === 0 ?<EmptyPage/>:dealAllList.map((item,index) =>  {
               var findProbability = item.probability;
               item.stageList.forEach((element) => {
                 if (element.oppStage === item.oppStage) {

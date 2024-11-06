@@ -1,6 +1,5 @@
 import React, { useEffect, useState ,lazy,Suspense} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { connect } from "react-redux";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { bindActionCreators } from "redux";
@@ -28,6 +27,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
 import AddPitchAdressModal from "./AddPitchAdressModal";
+import EmptyPage from "../../Main/EmptyPage";
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("./UpdateLPitchModal"));
@@ -177,7 +177,7 @@ serachedPitchData={props.serachedPitchData}
         height={"83vh"}
         style={{overflowX:"hidden",scrollbarWidth:"thin"}}
       >
-  { !fetchingTeamPitch && props.teamPitch.length === 0 ?<NodataFoundPage />:props.teamPitch.map((item,index) =>  {
+  { !fetchingTeamPitch && props.teamPitch.length === 0 ?<EmptyPage />:props.teamPitch.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 //  const countryCode = item.address[0].country_alpha2_code    

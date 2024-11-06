@@ -39,9 +39,9 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,
   handleInvestorPulseDrawerModal,  handleInvestorAddressDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData} from "../../InvestorAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { BundleLoader } from "../../../../Components/Placeholder";
+import EmptyPage from "../../../Main/EmptyPage";
 const InvestorPulseDrawerModal = lazy(() =>import("./InvestorPulseDrawerModal"));
 const InvestorSearchedData = lazy(() =>import("./InvestorSearchedData"));
 const ContactsInvestorModal = lazy(() =>import("./ContactsInvestorModal"));
@@ -310,7 +310,7 @@ function InvestorTeamCardList(props) {
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         
-        { !fetchingTeamInvestor && teamInvestor.length === 0 ?<NodataFoundPage />:teamInvestor.map((item,index) =>  {
+        { !fetchingTeamInvestor && teamInvestor.length === 0 ?<EmptyPage/>:teamInvestor.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const Category=item.pvtAndIntunlInd?"Institutional":"Private"
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");

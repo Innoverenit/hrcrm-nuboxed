@@ -29,7 +29,6 @@ import {
   handleDealModal,
   getContactInvestByUserId,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal,handleContactAddressDrawerModal} from "../../ContactInvestAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
@@ -39,6 +38,7 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import ScoreIcon from '@mui/icons-material/Score';
 import SourceIcon from '@mui/icons-material/Source';
+import EmptyPage from "../../../Main/EmptyPage";
 
 const AddContactInvestNotesDrawerModal = lazy(() =>  import("../AddContactInvestNotesDrawerModal"));
 const UpdateContactInvestModal = lazy(() => import("../UpdateContactInvest/UpdateContactInvestModal"));
@@ -160,7 +160,7 @@ function ContactInvestCardList(props) {
           <div className=" flex  justify-between max-sm:hidden w-[90%]  p-1 bg-transparent font-bold items-end sticky z-10">
           <div className=" flex justify-between w-[93%]">
         <div className=" font-bold font-poppins w-[20.32rem] text-xs md:w-[21.32rem]">
-        <ContactEmergencyIcon className='!text-base mr-1  text-[#00A2E8] text-base'
+        <ContactEmergencyIcon className='!text-base mr-1  text-[#00A2E8] '
               />{translatedMenuItems[0]}
         {/* name" */}         
                 </div>
@@ -208,7 +208,7 @@ function ContactInvestCardList(props) {
         style={{scrollbarWidth:"thin"}}
       >
        
-       { !fetchingContactsInvest && filterData.length === 0 ?<NodataFoundPage />:filterData.map((item,index) =>  {
+       { !fetchingContactsInvest && filterData.length === 0 ?<EmptyPage />:filterData.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");

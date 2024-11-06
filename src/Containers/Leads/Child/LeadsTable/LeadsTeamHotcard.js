@@ -45,8 +45,8 @@ import OpenCETmodal from "./OpenCETmodal";
 import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import EmptyPage from "../../../Main/EmptyPage";
 
 const ButtonGroup = Button.Group;
 
@@ -197,7 +197,7 @@ const LeadsTeamHotcard = (props) => {
         style={{ scrollbarWidth: "thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
-       { !fetchingTeamLeadsHot && teamLeadsHot.length === 0 ?<NodataFoundPage />:teamLeadsHot.map((item,index) =>  {
+       { !fetchingTeamLeadsHot && teamLeadsHot.length === 0 ?<EmptyPage/>:teamLeadsHot.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.countryAlpha2Code

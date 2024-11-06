@@ -508,7 +508,7 @@ console.log(selectedSource)
           ...rest
         }) => (
           <div class="max-sm:h-[30rem] overflow-y-auto">
-            <Form className="form-background">
+            <Form className="form-background h-[87vh]" >
               <div class="flex justify-between  pr-2 max-sm:flex-col">
                 <div class=" h-full w-w47.5 max-sm:w-wk"   >
                   <div>

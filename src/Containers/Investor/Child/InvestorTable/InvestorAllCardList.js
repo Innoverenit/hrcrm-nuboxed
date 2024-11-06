@@ -47,8 +47,8 @@ import {getAllInvestorsbyId,handleInvestorNotesDrawerModal,emptyInvestor,
 } from "../../InvestorAction";
 import {  DeleteOutlined } from "@ant-design/icons";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import EmptyPage from "../../../Main/EmptyPage";
 
 const AddInvestorNotesDrawerModal = lazy(() =>  import("../InvestorDetail/AddInvestorNotesDrawerModal"));
 const InvestorPulseDrawerModal = lazy(() =>  import("./InvestorPulseDrawerModal"));
@@ -705,7 +705,7 @@ handleCurrentRowData(item);
 
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
   <div className=" flex justify-between max-sm:hidden  w-[81%]  p-1 bg-transparent font-bold sticky items-end  z-10">
-        <div className="text-[#00A2E8] text-base w-[14.6rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
+        <div className="text-[#00A2E8] text-base w-[14.6rem] font-poppins font-bold max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}
      
         {/* "Name" */}           
@@ -776,7 +776,7 @@ handleCurrentRowData(item);
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         
-        { !fetchingAllInvestors && allInvestorsbyId.length === 0 ?<NodataFoundPage />:allInvestorsbyId.map((item,index) =>  {
+        { !fetchingAllInvestors && allInvestorsbyId.length === 0 ?<EmptyPage/>:allInvestorsbyId.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const Category=item.pvtAndIntunlInd?"Institutional":"Private"
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");

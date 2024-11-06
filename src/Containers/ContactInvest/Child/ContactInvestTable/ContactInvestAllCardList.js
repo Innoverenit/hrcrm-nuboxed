@@ -34,11 +34,12 @@ import {getAllContactInvest,
   handleDealModal,
   handleContactInvestNotesDrawerModal,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactAddressDrawerModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+
 import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
 import AddContactInvestDealModal from "./AddContactInvestDealModal";
+import EmptyPage from "../../../Main/EmptyPage";
 const AddContactInvestNotesDrawerModal = lazy(() =>
   import("../AddContactInvestNotesDrawerModal")
 );
@@ -280,7 +281,7 @@ if (loading) {
         style={{scrollbarWidth:"thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >       
-       { !fetchingAllContactInvest && props.allContactInvestData.length === 0 ?<NodataFoundPage />:props.allContactInvestData.map((item,index) =>  {
+       { !fetchingAllContactInvest && props.allContactInvestData.length === 0 ?<EmptyPage/>:props.allContactInvestData.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");

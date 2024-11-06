@@ -14,7 +14,7 @@ import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
-import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import EmptyPage from "../../../../Main/EmptyPage";
 const SearchedDataDeal =lazy(()=>import("../../../SearchedDataDeal"));
 const ButtonGroup = Button.Group;
 
@@ -200,7 +200,7 @@ const DealsAllCardList = (props) => {
           height={"83vh"}
           style={{ scrollbarWidth: "thin"}}
         >
-          {!fetchingAllDealsData && props.allDealsData.length === 0 ? <NodataFoundPage /> : props.allDealsData.map((item, index) => {
+          {!fetchingAllDealsData && props.allDealsData.length === 0 ? <EmptyPage/> : props.allDealsData.map((item, index) => {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
               if (element.oppStage === item.oppStage) {

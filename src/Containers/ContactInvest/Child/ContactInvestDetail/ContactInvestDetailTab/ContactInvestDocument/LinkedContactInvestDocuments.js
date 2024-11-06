@@ -10,11 +10,11 @@ import DownloadIcon from '@mui/icons-material/Download';
 import {deleteDocument } from "../../../../../Contact/ContactAction";
 import {  getContactDocument } from "../../../../../Customer/CustomerAction";
 import { DeleteOutlined} from "@ant-design/icons";
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import FileOpenIcon from '@mui/icons-material/FileOpen';
+import EmptyPage from "../../../../../Main/EmptyPage";
 class LinkedContactInvestDocuments extends Component {
   
   constructor(props) {
@@ -81,7 +81,7 @@ class LinkedContactInvestDocuments extends Component {
                      
                   </div>
                   <div class="overflow-y-auto h-[72vh]">
-                  { !this.props.fetchingDocumentsByContactId && this.props.documentsByContactId.length === 0 ?<NodataFoundPage />:this.props.documentsByContactId.map((item,index) =>  {
+                  { !this.props.fetchingDocumentsByContactId && this.props.documentsByContactId.length === 0 ?<EmptyPage/>:this.props.documentsByContactId.map((item,index) =>  {
                       
                       return (
                           <div >

@@ -50,8 +50,8 @@ import {getInvestorsbyId,
   handleInvestorPriceDrawer,
   handleInvestorAddressDrawerModal
 } from "../../InvestorAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import EmptyPage from "../../../Main/EmptyPage";
 
 const InvestorSearchedData = lazy(() => import("./InvestorSearchedData"));
 const InvestorPulseDrawerModal = lazy(() => import("./InvestorPulseDrawerModal"));
@@ -283,7 +283,7 @@ function InvestorCardList(props) {
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
         
-        { !fetchingInvestors && investorsbyId.length === 0 ?<NodataFoundPage />:investorsbyId.map((item,index) =>  {
+        { !fetchingInvestors && investorsbyId.length === 0 ?<EmptyPage />:investorsbyId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
