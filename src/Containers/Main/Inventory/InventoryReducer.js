@@ -8,6 +8,10 @@ const initialState = {
 
   addPackDataID:false,
 
+  fetchingSubList: false,
+  fetchingSubListError: false,
+  subList:[],
+
   fetchingPackTrack: false,
   fetchingPackTrackError: false,
   packTrack:[],
@@ -543,6 +547,21 @@ export const inventoryReducer = (state = initialState, action) => {
               ...state,
               fetchingPackTrack: false,
               fetchingPackTrackError: true,
+            };
+
+            case types.GET_SUB_LIST_REQUEST:
+            return { ...state, fetchingSubList: true };
+          case types.GET_SUB_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingSubList: false,
+              subList: action.payload
+            };
+          case types.GET_SUB_LIST_FAILURE:
+            return {
+              ...state,
+              fetchingSubList: false,
+              fetchingSubListError: true,
             };
 
     //inventory by id

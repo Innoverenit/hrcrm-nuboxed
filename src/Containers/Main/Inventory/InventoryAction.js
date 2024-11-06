@@ -2526,6 +2526,32 @@ export const getPackAndTrack = (orderId) => (dispatch) => {
     });
 };
 
+
+export const getSubList = (orderPhoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUB_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/dispatchProcure/item/${orderPhoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SUB_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUB_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const addToWaste = (customer,poSupplierSuppliesId) => (dispatch, getState) => {
   const userId = getState().auth.userDetails.userId;
 

@@ -581,7 +581,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                             </div>
                                         </div>
                                         <div class="flex flex-row md:w-[7.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-xs"
+                                        <div class=" font-poppins text-xs cursor-pointer text-blue-500"
                                        onClick={()=>{setOpenDrawer(true);
                                         handleSetParticularOrderData(item);
                                      }}
@@ -809,7 +809,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                       </div>
                   </div>
                   <div class="flex flex-row items-center md:w-[7.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
-                  <div class=" font-poppins text-xs"
+                  <div class=" font-poppins text-xs cursor-pointer text-blue-500"
                    onClick={()=>{setOpenDrawer(true);
                     handleSetParticularOrderData(item);
                  }}

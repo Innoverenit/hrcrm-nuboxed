@@ -1,8 +1,9 @@
 import React, { useState,useEffect } from "react";
-import { Switch, Popconfirm } from "antd";
+import { Switch, Popconfirm,message } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { linkMaterialToggle } from "../Supplies/SuppliesAction";
+import axios from "axios";
+import { base_url2 } from "../../../Config/Auth";
 
 function AddPackToggle(props) {
 
@@ -10,28 +11,51 @@ function AddPackToggle(props) {
   useEffect(()=>{
     setData(props.packData)
   },[props.packData])
-  const [toggle, setToggle] = useState(props.publishInd);
+
+  const sendPutRequest = async (item) => {
+    try {
+      const response = await axios.post(
+        `${base_url2}/dispatchPacking/dispatch-packing`,
+        item,
+        {
+          headers: {
+            Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+        }
+      );
+      // dispatch(getPackNo(response.data));
+      if (response.data === 'Successfully !!!!') {
+        message.success('Update successful');
+      } else {
+        console.log(response.data);
+      }
+    } catch (error) {
+      console.error("Error updating item:", error);
+    }
+  };
+
+  const [toggle, setToggle] = useState(props.packingInd);
 
   function handleToggleClick(item) {
-    if (props.publishInd) {
-      props.linkMaterialToggle({
-        suppliesId: props.suppliesId,
-        publishInd: props.publishInd ? false : true,
+    if (props.packingInd) {
+      sendPutRequest({
+        orderId: props.orderId,
+        packingInd: props.packingInd ? false : true,
          
-      },props.suppliesId);
-      setToggle( props.publishInd ? false : true);
+      },props.orderId);
+      setToggle( props.packingInd ? false : true);
  
     } else {
-      props.linkMaterialToggle({
-        suppliesId: props.suppliesId,
-        publishInd: props.publishInd ? false : true,
-      },props.suppliesId);
-      setToggle( props.publishInd ? false : true);
+      sendPutRequest({
+        orderId: props.orderId,
+        packingInd: props.packingInd ? false : true,
+      },props.orderId);
+      setToggle( props.packingInd ? false : true);
     }
   }
 
   function handleCancel() {
-    if (props.publishInd) {
+    if (props.packingInd) {
       setToggle(true);
     } else {
       setToggle(false);
@@ -49,7 +73,7 @@ function AddPackToggle(props) {
       >
         <Switch
          className="toggle-clr"
-         checked={props.publishInd || toggle}
+         checked={props.packingInd || toggle}
          isLoading={true}
           checkedChildren="Packed"
           unCheckedChildren="UnPacked"
@@ -68,7 +92,7 @@ const mapStateToProps = ({ auth, inventory }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      linkMaterialToggle,
+     
     },
     dispatch
   );
