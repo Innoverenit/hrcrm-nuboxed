@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import axios from "axios";
+import dayjs from "dayjs";
 import AddIcon from '@mui/icons-material/Add';
 import { Popconfirm, message, Switch } from 'antd';
 import {
@@ -29,9 +30,12 @@ function AddPacketTable(props) {
     setRowToggleStates(initialToggleStates);
   }, [props.packData]);
   const [checkAwb, setCheckAwb] = useState(false)
-
+  const [rowData, setRowData] = useState({})
   const handleCheckAwb = () => {
       setCheckAwb(!checkAwb)
+  }
+  const handleRowData = (item) => {
+    setRowData(item)
   }
   const sendPutRequest = async (packingNo, newType) => {
     try {
@@ -58,18 +62,27 @@ function AddPacketTable(props) {
     }
   };
 
-
-
-
   return (
-    <div className="flex sticky z-auto">
-      <div className="rounded m-1 p-1 w-full overflow-auto shadow bg-[#eaedf1]">
-        <div className="flex justify-between w-full p-1 font-bold text-xs sticky z-10">
+    <>
+  
+        
+        <div className=' flex sticky  z-auto'>
+            <div class="rounded  py-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className="flex justify-between w-full p-1 font-bold text-xs sticky z-10">
           <div className="w-[6.51rem]">Pack ID</div>
           <div className="w-[3.5rem]"></div>
         </div>
-        {props.packData.map((item) => (
-          <div key={item.key} className="flex rounded justify-between mt-1 bg-white items-center py-1 hover:shadow flex-col">
+
+               
+              
+                   
+                        <>
+                            {props.packData.map((item) => {
+                                const currentdate = dayjs().format("DD/MM/YYYY");
+                                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                                return (
+                                    <div >
+                                         <div key={item.key} className="flex rounded justify-between mt-1 bg-white items-center py-1 hover:shadow flex-col">
             <div className="flex justify-start w-wk">
                 <div className=" flex   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                          <div class=" text-xs  font-poppins text-center">
@@ -78,7 +91,7 @@ function AddPacketTable(props) {
 
                                                                      onClick={() => {
                                                                          handleCheckAwb();
-                                                                        //handleSetParticularOrderData(item)
+                                                                         handleRowData(item)
                                                                      }
                                                                      }
                                                                  />
@@ -92,19 +105,35 @@ function AddPacketTable(props) {
               </div>
               <div className="flex items-center ml-4">
               <AddPackToggle
-                                
+                packingInd={item.packingInd}  
+                orderId={item.orderId}              
                                 />
               </div>
-            </div>
-            {checkAwb &&
-                   
-                   <SubPackList />
-               }
+            </div>  
           </div>
-        ))}
-      </div>
-    </div>
-  );
+
+                                        {checkAwb && (item.dispatchPackingId === rowData.dispatchPackingId) &&
+                                             <SubPackList 
+                                                              rowData={rowData}
+                                                              />
+                                        }
+                                    </div>
+
+
+                                )
+                            })}
+                        </> 
+              
+
+
+            </div>
+        </div >
+       
+      
+           
+       
+    </>
+)
 }
 
 const mapStateToProps = ({ inventory, auth }) => ({

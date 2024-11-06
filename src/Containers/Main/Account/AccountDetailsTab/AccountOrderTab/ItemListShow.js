@@ -11,13 +11,16 @@ import {
   getModel,
   updateProcureDetails,
   getAllProductList,
-  getLocationList
+  getLocationList,
+  addLocationInOrder
 } from "../../AccountAction";
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../../Suppliers/SuppliersAction"
 import { DeleteOutlined } from "@ant-design/icons";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import { useDispatch } from 'react-redux';
+import InputIcon from '@mui/icons-material/Input';
 import IosShareIcon from '@mui/icons-material/IosShare'; 
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -34,6 +37,7 @@ import { base_url2 } from "../../../../../Config/Auth";
 const { Option } = Select;
 
 function ItemListShow(props) {
+  const dispatch = useDispatch();
   const [editedFields, setEditedFields] = useState({});
   const [editContactId, setEditContactId] = useState(null);
   const [attribute, setAttribute] = useState("");
@@ -48,6 +52,7 @@ function ItemListShow(props) {
   const [currency, setCurrency] = useState("");
   const [newPrice, setPrice] = useState('');
   const [invoices, setInvoices] = useState('');
+  const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [RowInvoices, setRowInvoices] = useState('');
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -148,6 +153,41 @@ function ItemListShow(props) {
   const handleCurrencyChange = async (value) => {
     setCurrency(value);
    
+  };
+
+  const handlePostChange =  async (item) => {
+    const currentDate = new Date().toISOString();
+    let updatedItem={
+        dispatchReceivedDate: currentDate,
+      // trackId:trackId?trackId:item.trackId,Order Successfully dispatched!!!!
+      orderId:props.particularRowData.orderId,
+    }
+    let data = {
+       inventoryPickUpDate: currentDate,
+      transferInd: 1,
+      locationId: "LDS65468903772222023",
+      userId: props.userId,
+      orderPhoneId: props.particularRowData.orderPhoneId,
+      orderType:"Procure"
+  }
+    try {
+      const response = await axios.put(`${base_url2}/phoneOrder/procureDispatch`, updatedItem, {  
+          headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+       });
+       dispatch(addLocationInOrder(data, props.distributorId));
+       if (response.data === 'Order Successfully dispatched!!!!') {
+        const updatedOrderItems = data.filter(itm => itm.orderId !== item.orderId);
+        setData(updatedOrderItems);
+      } else {
+        console.log(response.data);
+      }
+        setEditsuppliesId(null);
+      } catch (error) {
+        console.error("Error updating item:", error);
+        setEditsuppliesId(null);
+      }
   };
 
   const handleCancelClick = (id) => {
@@ -430,7 +470,10 @@ const handleGenerateInvoice= async () => {
                  
                 </div>
               </div>
-            
+              <Button className="w-[5rem]"
+                      type="primary"
+                      onClick={() => handlePostChange(item)}
+                      > <InputIcon className="!text-icon text-white"/>Pack</Button>
               <div className="flex justify-end w-[1.06rem] items-center h-8 ml-gap bg-[#eef2f9]   max-sm:flex-row max-sm:w-auto">
                
                 <div>
@@ -491,7 +534,8 @@ const mapDispatchToProps = (dispatch) =>
       getModel,
       getSupplierSuppliesQuality,
       updateProcureDetails,
-      getLocationList
+      getLocationList,
+      addLocationInOrder
     },
     dispatch
   );
