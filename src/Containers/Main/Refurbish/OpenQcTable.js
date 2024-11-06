@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getOpenQcByUser } from "./RefurbishAction";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+import GroupsIcon from '@mui/icons-material/Groups';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import UpdateIcon from '@mui/icons-material/Update';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+
 import { Badge } from "antd";
 import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -55,24 +59,18 @@ function OpenQcTable(props) {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                        <div className=" md:w-[34.12rem]">{translatedMenuItems[0]} #</div>
+                        <div className=" md:w-[34.12rem]">   <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/> {translatedMenuItems[0]} #</div>
                         <div className=" md:w-[35.1rem]">
-                        {translatedMenuItems[1]}  {/* <FormattedMessage
-                            id="app.duedate"
-                            defaultMessage="duedate"
+                     <DateRangeIcon className="!text-icon "/>    {translatedMenuItems[1]}  {/* "duedate"
                         /> */}
                         </div>
                         <div className=" md:w-[9.8rem] ">
-                        {translatedMenuItems[2]}   {/* <FormattedMessage
-                                id="app.lead"
-                                defaultMessage="Lead"
+                        <GroupsIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[2]}   {/*Lead"
                             /> */}
                             </div>
                         <div className="md:w-[6.6rem]"></div>
                         <div className="md:w-[5.8rem]">
-                        {translatedMenuItems[3]}  {/* <FormattedMessage
-                            id="app.status"
-                            defaultMessage="Status"
+                        <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[3]}  {/* "Status"
                         /> */}
                         </div>
                         {/* <div className="md:w-[4.3rem]"></div> */}

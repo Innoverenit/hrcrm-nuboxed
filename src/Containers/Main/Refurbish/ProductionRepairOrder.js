@@ -9,7 +9,10 @@ import { getRepairOrderByUser, handleRepairPhone,
     import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import { Button, Badge,Input, Tooltip } from "antd";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+import GroupsIcon from '@mui/icons-material/Groups';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import UpdateIcon from '@mui/icons-material/Update';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
@@ -186,22 +189,20 @@ function ProductionRepairOrder(props) {
                     <div className=" flex max-sm:hidden w-[100%] p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                         <div className="w-[5.5rem]"></div>
                         <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[0]} ID {/* Order ID */}
+                        <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>  {translatedMenuItems[0]} ID {/* Order ID */}
                           </div>
                         <div className=" w-[20.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[1]}  {/* <FormattedMessage
-                            id="app.duedate"
-                            defaultMessage="duedate"
-                        /> */}
+                        <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[1]} 
+                         {/* Due Date/> */}
                         </div>
                         <div className=" w-[21.1rem] ">
-                        {translatedMenuItems[2]}  {/* <FormattedMessage
+                        <GroupsIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[2]}  {/* <FormattedMessage
                                 id="app.lead"
                                 defaultMessage="Lead"
                             /> */}
                         </div>
                         <div className="w-[10.8rem]">
-                        {translatedMenuItems[3]} {/* Status */}
+                        <UpdateIcon className='!text-icon text-[#ff66b3]' />   {translatedMenuItems[3]} {/* Status */}
                           </div>
                         <div className="w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
                     </div>
