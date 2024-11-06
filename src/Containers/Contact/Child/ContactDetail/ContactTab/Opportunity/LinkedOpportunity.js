@@ -22,7 +22,7 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 import StairsIcon from '@mui/icons-material/Stairs';
 import { getOpportunityListByContactId } from "../../../../ContactAction";
 import { Tooltip } from "antd";
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import EmptyPage from "../../../../../Main/EmptyPage";
 
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -111,7 +111,7 @@ function OpportunityTable(props) {
         style={{ scrollbarWidth:"thin"}}
       >
  <div class="flex">      
- { !props.fetchingContactOpportunity && props.opportunityByContactId.length === 0 ?<NodataFoundPage />: props.opportunityByContactId.map((item,index) =>  {
+ { !props.fetchingContactOpportunity && props.opportunityByContactId.length === 0 ?<EmptyPage />: props.opportunityByContactId.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {
