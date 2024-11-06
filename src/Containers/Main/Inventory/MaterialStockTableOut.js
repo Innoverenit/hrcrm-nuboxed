@@ -11,8 +11,9 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import ItemHistoryInStockData from "./Child/InventoryDetails/InventoryMaterialTab/ItemHistoryInStockData";
 import StockItemClickModal from "./Child/InventoryDetails/InventoryMaterialTab/StockItemClickModal";
 import TheStockUsedDrawer from "./Child/InventoryDetails/InventoryMaterialTab/TheStockUsedDrawer";
-
-
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import AttractionsIcon from '@mui/icons-material/Attractions'; 
 const { Option } = Select;
 
 const MaterialStockTableOut = (props) => {
@@ -88,27 +89,27 @@ const MaterialStockTableOut = (props) => {
         <>
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
+                    <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins items-end text-xs sticky  z-10">
                         <div className="w-[9.5rem]"></div>
                    {/* po # */}
-                        <div className=" md:w-[8.21rem]">
+                        <div className="text-[#00A2E8] w-[8.21rem] text-base md:w-[11.21rem]">
                    {/* name */}
-                            {props.translatedMenuItems[0]}
+                   <LocationCityIcon className='!text-icon  '  />  {props.translatedMenuItems[0]}
                             </div>
-                        <div className=" md:w-[6.82rem]">
+                        <div className="w-[6.82rem] md:w-[9.82rem]">
                             {/* Category */}
-                    {props.translatedMenuItems[24]}
+                            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {props.translatedMenuItems[24]}
                             </div>
                     {/* price */}
-                        <div className=" md:w-[4.25rem]">
+                        <div className="w-[5.25rem] md:w-[9.25rem]">
                             {/* attribute */}
-                               {props.translatedMenuItems[25]}
+                            <AttractionsIcon className="  !text-icon" />  {props.translatedMenuItems[25]}
                             </div>
-                        <div className=" md:w-[4.25rem]">
+                        <div className="w-[4.25rem] md:w-[16.25rem]">
                        {/* cell  {props.translatedMenuItems[7]} */}
                         </div>
-                        <div className=" md:w-[7.11rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
-                        <div className=" md:w-[6.10rem]">
+                        <div className="w-[7.11rem] md:w-[4.11rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
+                        <div className="w-[6.10rem] md:w-[6.10rem]">
                             {/* in stock  */}
                              {props.translatedMenuItems[29]}
                         </div>
@@ -126,7 +127,7 @@ const MaterialStockTableOut = (props) => {
                         {props.materialUnitsData.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                    <div className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex">
                                             <div className=" flex md:w-[2.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs  font-semibold  font-poppins ">

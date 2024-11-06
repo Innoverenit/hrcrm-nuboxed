@@ -1206,8 +1206,8 @@ const handleStageChange=(value)=>{
                 htmlType="submit"
                 loading={addingOpportunity}
               >
-                <div class="font-bold font-poppins text-xs">{translatedMenuItems[12]}</div>
-                Create
+                <div class="font-bold font-poppins text-xs"> Create</div>
+             
               </Button>
             </div>
           </Form>

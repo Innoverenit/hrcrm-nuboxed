@@ -11,7 +11,7 @@ import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition
 import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import RefurbishNoteAll from './RefurbishNoteAll';
-import GroupsIcon from '@mui/icons-material/Groups';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import UpdateIcon from '@mui/icons-material/Update';
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -197,14 +197,14 @@ function ProductionOrderListById(props) {
       </div>
 
                     <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
-                        <div className='w-[5.2rem]'></div>
-                        <div className=" w-[13.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+                        <div className='w-[3.2rem]'></div>
+                        <div className=" w-[18.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
                           <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[0]} ID</div>
-                        <div className=" w-[20.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[11.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <DateRangeIcon className="!text-icon "/> {translatedMenuItems[1]}
                         </div>
-                        <div className=" w-[21.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        <GroupsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}
+                        <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <ContactsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}
                         </div>
 
                         <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -227,10 +227,11 @@ function ProductionOrderListById(props) {
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div >
-                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-24 max-sm:justify-between max-sm:flex-col max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                        <div className="flex rounded  mt-1 bg-white  items-center py-1 max-sm:h-24 max-sm:justify-between max-sm:flex-col max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                           <div class="flex  max-sm:w-wk items-center">
-                                            <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-[3.26rem] ">
+                                            <div className=" flex border-l-2 h-8  border-green-500 bg-[#eef2f9] items-center md:w-[2.26rem] ">
+                                              <div class="ml-gap">
                                                     {item.priority === "High" && (
                                                         <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                     )}
@@ -238,10 +239,11 @@ function ProductionOrderListById(props) {
                                                     {item.priority === "Low" && (
                                                         <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                                                     )}
+                                                    </div>
                                                 </div>
-                                                <div className=" flex w-[15.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                <div className=" flex w-[15.01rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.qcCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
-                                                        <span class="underline font-bold text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        <span class="underline font-bold ml-gap text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
                                                             onClick={() => {
                                                                 handleRowData(item);
@@ -268,21 +270,21 @@ function ProductionOrderListById(props) {
 
                                                 </div>
                                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.lead}
                                                     </div>
 
                                                 </div>
 
                                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInProgressPhoneCount} {translatedMenuItems[11]}
                                                         {/* In Progress */}
                                                     </div>
 
                                                 </div>
                                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs ml-gap font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcInspectionInd === 0 ?
                                                             <Button
                                                                 className="w-32"
@@ -300,7 +302,7 @@ function ProductionOrderListById(props) {
                                                               {translatedMenuItems[7]}  {/* Start Inspection */}
 
                                                             </Button> : item.qcInspectionInd === 1 ?
-                                                                <Button className="w-32" onClick={handlePauseResume}>{hide ? translatedMenuItems[8] : translatedMenuItems[9]}</Button> : <div class="text-green-600">{translatedMenuItems[10]}</div>}
+                                                                <Button className="w-32" onClick={handlePauseResume}>{hide ? translatedMenuItems[8] : translatedMenuItems[9]}</Button> : <div class="flex items-center justify-center text-white w-[10.2rem] h-8 bg-green-600">{translatedMenuItems[10]}</div>}
 
                                                     </div>
                                                 </div>

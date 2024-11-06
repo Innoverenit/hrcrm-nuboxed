@@ -9,15 +9,12 @@ import {
     // handlegrnlistmodal
 } from "../Inventory/InventoryAction";
 import dayjs from "dayjs";
-import { Card, Switch, Input, message } from 'antd';
+import {  Switch, Input, message } from 'antd';
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
-import { MultiAvatar } from "../../../Components/UI/Elements";
-// import ReceivedDetailModal from "./ReceivedDetailModal";
-// import GrnListOfPOModal from "./GrnListOfPOModal";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button } from "antd";
-//import { getRoomRackByLocId, getRackList } from "../../../../Inventory/InventoryAction";
+import {  Select, Button } from "antd";
+import CategoryIcon from '@mui/icons-material/Category'
+import FactoryIcon from '@mui/icons-material/Factory';
 
 const { Option } = Select;
 
@@ -73,46 +70,42 @@ const InventoryMaterialDamagedData = (props) => {
         <>
             <div className=' flex sticky  z-auto h-[79vh]'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins text-xs z-10">
                         <div className=""></div>
-                        <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
-                        <div className=" w-[13.52rem]">
+                        <div className="text-[#00A2E8] text-base w-[17.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
+                        <div className=" w-[12.52rem]">
                             {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
                          Item Name
                         </div>
 
                         <div className=" w-[11.12rem]">       
-                       Supplier Name
+                        <FactoryIcon className='!text-base  text-[#e4eb2f]' /> Supplier Name
 
                         </div>
 
-                        <div className=" w-[11.13rem]">       
+                        <div className=" w-[6.13rem]">       
                       HSN
 
                         </div>
 
-                        <div className=" w-[11.14rem]">       
-                      Supplies Id
+                        <div className=" w-[9.14rem]">       
+                        <CategoryIcon
+              className='!text-base  text-[#e4eb2f]'
+              /> Supplies Id
 
                         </div>
-                        <div className=" w-[11.15rem]">       
+                        <div className=" w-[15.15rem]">       
                       Repacked
 
                         </div>
-                        <div className=" w-[11.16rem]">       
+                        <div className=" w-[7.16rem]">       
                    
 
                         </div>
-                        <div className=" w-[11.17rem]">       
+                        <div className=" w-[4.17rem]">       
                     Units
 
-                        </div>
-                        {/* <div className=" w-[11.122rem]">       
-                    Terms and Condition
-
-                        </div> */}
-
-                        <div className=" w-[11.322rem]"></div>
+                        </div>                                 
                     </div>
                     {/* <InfiniteScroll
                         dataLength={props.materialReceiveData.length}
@@ -127,11 +120,11 @@ const InventoryMaterialDamagedData = (props) => {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                                    <div className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                         <div class="flex">
 
-                                            <div className=" flex  border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[9.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
+                                            <div className=" flex  border-l-2 items-center h-8 border-green-500 bg-[#eef2f9] justify-start w-[9.1rem] max-sm:w-full  ">
+                                                <div class="flex ml-gap text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         // onClick={() => {
                                                         //     handleRow(item);
@@ -157,9 +150,9 @@ const InventoryMaterialDamagedData = (props) => {
 
                                         </div>
                                         <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] w-[19.32rem] max-sm:flex-row  max-sm:justify-between  ">
-
+                                        <div class=" text-xs   ml-gap font-poppins">
                                             {item.supplierName}
-
+</div>
                                         </div>
                                         <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.24rem] max-sm:flex-row  max-sm:justify-between  ">
 
@@ -168,8 +161,10 @@ const InventoryMaterialDamagedData = (props) => {
                                             </div>
                                         </div>
                                       
-                                        <div className=" flex  items-center justify-start  h-8 ml-gap bg-[#eef2f9] w-[28.2rem] md:w-[19.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex  items-center justify-start font-poppins  h-8 ml-gap bg-[#eef2f9] w-[28.2rem] md:w-[19.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs   ml-gap font-poppins">
                                           {item.suppliesId}
+                                          </div>
                                         </div>
                                         <div className=" flex  items-center justify-center ml-gap  h-8 ml-gap bg-[#eef2f9] w-[17.01rem] md:w-[13.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           {item.unitDamaged != 0 &&(
@@ -186,7 +181,7 @@ const InventoryMaterialDamagedData = (props) => {
               value={item.repackedUnit} // Display unitData as the input value
               onChange={(e) => handleInputChange(e, index, item.unitDamaged)}
               onKeyPress={(e) => handleKeyPress(e, index,item.poSupplierSuppliesId)}
-              style={{ marginTop: 10 }}
+           
               type="number"
             />
          )} 

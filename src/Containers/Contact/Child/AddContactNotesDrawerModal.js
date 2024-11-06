@@ -7,6 +7,7 @@ import MainNotes from "../../CustomNote/MainNotes";
 
 
 class AddContactNotesDrawerModal extends Component {
+
   render() {
       console.log("data5", this.props.contactData.contactId);
 

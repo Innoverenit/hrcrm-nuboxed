@@ -8,9 +8,9 @@ import HandymanIcon from '@mui/icons-material/Handyman';
 
 const AddCatalogueInProduction = lazy(() => import('./ProductionTab/AddCatalogueInProduction'));
 const OpenRepairTable = lazy(() => import('./OpenRepairTable'));
-const ProductionRepairOrder = lazy(() => import('./ProductionRepairOrder'));
+const ProductionRepairOrder = lazy(() => import('./ProductionRepairOrder'));//2
 const OpenQcTable = lazy(() => import('./OpenQcTable'));
-const ProductionOrderListById = lazy(() => import('./ProductionOrderListById'));
+const ProductionOrderListById = lazy(() => import('./ProductionOrderListById'));//1
 const QaCardList = lazy(() => import('./QaCardList'));
 
 const OrderPhoneTab = (props) => {
@@ -47,12 +47,9 @@ const OrderPhoneTab = (props) => {
         const fetchMenuTranslations = async () => {
           try {
             setLoading(true); 
-            const itemsToTranslate = [
-       
+            const itemsToTranslate = [ 
              "1068", //  " Process",//0
               "203",  // " Production",//1
-              
-    
             ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

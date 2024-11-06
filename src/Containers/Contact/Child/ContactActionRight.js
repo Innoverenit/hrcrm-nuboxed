@@ -121,11 +121,7 @@ class ContactActionRight extends React.Component {
         </Tooltip>
         </div>
          )}
-        {/* {this.props.viewType === "table" ? ( */}
-          
-       
-         
-        {/* ): null} */}
+
       </div>
     );
   }

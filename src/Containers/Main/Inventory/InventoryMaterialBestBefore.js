@@ -5,27 +5,18 @@ import {
     getMaterialBestBefore,
     addToWaste,
     addAsileInbest
-    // handleMaterialReceived,
-    // handlegrnlistmodal
+  
 } from "../Inventory/InventoryAction";
 import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"
 import { TerminalSharp } from "@mui/icons-material";
 import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
-// import {
-//     getMaterialReceiveData,
-//     handleMaterialReceived,
-//     handlegrnlistmodal
-// } from "../../../InventoryAction";
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
-import { MultiAvatar } from "../../../Components/UI/Elements";
-// import ReceivedDetailModal from "./ReceivedDetailModal";
-// import GrnListOfPOModal from "./GrnListOfPOModal";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button,Input } from "antd";
 import { base_url2 } from "../../../Config/Auth";
-//import { getRoomRackByLocId, getRackList } from "../../../../Inventory/InventoryAction";
+import CategoryIcon from '@mui/icons-material/Category'
+import FactoryIcon from '@mui/icons-material/Factory';
 
 const { Option } = Select;
 
@@ -180,56 +171,47 @@ console.log(selectedZones)
         <>
             <div className=' flex sticky  z-auto h-[79vh]'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky z-10">
                         <div className=""></div>
-                        <div className=" w-[13.52rem]" style={{marginLeft:"-132px"}}>
+                        <div className="text-[#00A2E8] text-base w-[19.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
+                        <div className=" w-[11.52rem]" >
                             {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
                          Item 
                         </div>
-                        <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
+             
                        
                
-                        <div className=" w-[11.122rem]" style={{marginLeft:"-104px"}}>       
-                       Supplier Name
-
+                        <div className=" w-[12.122rem]" >       
+                        <FactoryIcon className='!text-base  text-[#e4eb2f]' />   Supplier Name
                         </div>
 
-                        <div className=" w-[11.122rem]">       
+                        <div className=" w-[4.122rem]">       
                       HSN
-
                         </div>
 
-                        <div className=" w-[11.122rem]">       
-                      Supplies Id
+                        <div className=" w-[8.12rem]">       
+                        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> Supplies Id
 
-                        </div>
-                        {/* <div className=" w-[11.122rem]">       
-                      Repacked
-
-                        </div>
-                        <div className=" w-[11.122rem]">       
-                     Credit Note
-
-                        </div> */}
-                        <div className=" w-[11.122rem]" style={{marginLeft:"-52px"}}>       
+                        </div>                  
+                        <div className=" w-[5.12rem]" >       
                     Units
 
                         </div>
-                        <div className=" w-[11.122rem]" style={{marginLeft:"-52px"}}>       
+                        <div className=" w-[9.2rem]" >       
                     Zone
 
                         </div>
-                        <div className=" w-[11.122rem]" style={{marginLeft:"-52px"}}>       
+                        <div className=" w-[13.2rem]">       
                     Aisle
 
                         </div>
-                        <div className=" w-[11.122rem]" style={{marginLeft:"-52px"}}>       
+                        <div className=" w-[7.12rem]">       
                     Rack
 
                         </div>
                    
 
-                        <div className=" w-[11.322rem]"></div>
+                        <div className=" w-[3.22rem]"></div>
                     </div>
                     {/* <InfiniteScroll
                         dataLength={props.materialReceiveData.length}
@@ -244,11 +226,11 @@ console.log(selectedZones)
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                    <div className="flex rounded py-1 mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                       
 
-                                            <div className=" flex  border-l-2  h-8 border-green-500 bg-[#eef2f9] w-[10.1rem] max-sm:w-full ">
-                                                <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600 border-l-2 border-green-500 bg-[#eef2f9]">
+                                            <div className=" flex items-center border-l-2  h-8 border-green-500 bg-[#eef2f9] w-[10.1rem] max-sm:w-full ">
+                                                <div class="flex ml-gap text-xs font-bold  font-poppins cursor-pointer underline text-blue-600 border-l-2 border-green-500 bg-[#eef2f9]">
                                                     <div
                                                         // onClick={() => {
                                                         //     handleRow(item);
@@ -277,34 +259,34 @@ console.log(selectedZones)
                                         </div>
 
                                        
-                                        <div className=" flex w-[14.02rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[11.02rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
                                         <div className="  text-xs  ml-gap font-poppins " >
 
                                             {item.supplierName}
 
                                         </div>
                                         </div>
-                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[4.25rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            <div class=" text-xs  font-poppins">
+                                            <div class=" text-xs ml-gap font-poppins">
                                                 {item.hsn}
                                             </div>
                                         </div>
                                       
-                                        <div className=" flex  md:w-[10.4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs  font-poppins">
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
                                         {item.newSuppliesNo}
                                             </div>
                                           
                                         </div>
-                                        <div className=" flex  md:w-[8.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex  md:w-[3.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs  font-poppins">
                                         {item.remainingCorrectUnit}
                                             </div>
                                        
                                         </div>
 
-                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4.6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.6rem] max-sm:flex-row w-full max-sm:justify-between ">
                                         <Button
                                         onClick={() => {
                                           props.addToWaste({
@@ -323,11 +305,11 @@ console.log(selectedZones)
                          
                                         >To Waste</Button>
                                         </div>
-                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4.023rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins" style={{display:"flex",marginLeft:"-29rem"}} >
+                                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[24.023rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div class="flex text-xs  font-semibold  font-poppins" >
                                                         
                                                     <Select placeholder="Select zone" 
-                                                    style={{ width: 146 }}
+                                                    style={{ width: 119 }}
                                                     loading={isLoadingZone}
                                                     value={item.zone}
                                                     onFocus={handleSelectZoneFocus}
@@ -340,34 +322,16 @@ console.log(selectedZones)
           </Option>
         ))}
       </Select>
-                                                    
 
-    
-
-
-
-    {/* <Select placeholder="Select aisle" 
-      style={{ width: 146,marginLeft:"1em" }}
-      loading={isLoadingRack}
-      onChange={handleRackChange}
-      disabled={!selectedZone} 
-      >
-      
-      {rack.map((rack) => (
-        <Option key={rack.roomRackChamberLinkId} value={rack.roomRackChamberLinkId}>
-          {rack.chamber}
-        </Option>
-      ))}
-    </Select> */}
     <Input
         placeholder="Aisle"
-        style={{ width: 200 }}
+        style={{ width: 100 }}
         value={item.aisle}
         disabled
       />
 
     <Select placeholder="Select rack" 
-      style={{ width: 146,marginLeft:"1em" }}
+      style={{ width: 119 }}
       loading={isLoadingRack}
    value={item.chamber}
       onChange={(value) => handleRackChange(value, item.poSupplierSuppliesId)}
@@ -380,12 +344,9 @@ console.log(selectedZones)
         </Option>
       ))}
     </Select>
-
                                                     </div>
                                                 </div>
-
-
-                                        <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9] w-[4.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                        <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9] w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
                                                             <Tooltip title="Terms and conditions">
                                                                 <TerminalSharp className="!text-icon text-[#c3b20b]"

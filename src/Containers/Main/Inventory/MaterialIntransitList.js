@@ -7,18 +7,12 @@ import {
     handlegrnlistmodal,
     getRoomRackByLocId, getRackList
 } from "./InventoryAction";
-//import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-import { TerminalSharp } from "@mui/icons-material";
-import { FormattedMessage } from "react-intl";
-import { MultiAvatar } from "../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button } from "antd";
-// import ReceivedDetailModal from "./Child/InventoryDetails/InventoryMaterialTab/ReceivedDetailModal";
-// import GrnListOfPOModal from "./Child/InventoryDetails/InventoryMaterialTab/GrnListOfPOModal";
-// import ReceivedDetailModalOut from "./ReceivedDetailModalOut";
-// import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal";
+import {  Select } from "antd";
+import CategoryIcon from '@mui/icons-material/Category'
+
 
 const { Option } = Select;
 
@@ -47,13 +41,15 @@ const MaterialIntransitList = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex  w-[100%] font-poppins font-bold text-xs items-end p-1 bg-transparent font-bold sticky z-10">
                         <div className=""></div>
-                        <div className=" w-[15.5rem]">
+                        <div className="text-[#00A2E8] text-base w-[15.5rem]">
                             Po Id
                             </div>
                         <div className=" w-[23.52rem]">
-                          Supplies
+                        <CategoryIcon
+              className='!text-base  text-[#e4eb2f]'
+              /> Supplies
                           
                         </div>
                        
@@ -73,11 +69,11 @@ const MaterialIntransitList = (props) => {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                    <div className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex">
 
                                             <div className=" flex  w-[16.1rem] h-8  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
+                                                <div class="flex ml-gap items-center text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         onClick={() => {
                                                             handleRow(item);

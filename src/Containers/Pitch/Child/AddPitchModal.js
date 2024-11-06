@@ -1,11 +1,40 @@
-import React, { lazy, Suspense, Component } from "react";
-import { FormattedMessage } from "react-intl";
+import React, { lazy, Suspense ,Component} from 'react';
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer, StyledTabs } from "../../../Components/UI/Antd";
 const PitchForm =lazy(()=>import("../Child/PitchForm"));
 const TabPane = StyledTabs.TabPane;
 
 class AddPitchModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+     "426",//pitch
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "60%";
@@ -16,12 +45,7 @@ class AddPitchModal extends Component {
     return (
       <>
         <StyledDrawer
-        title={
-          <FormattedMessage
-                  id="app.pitch"
-                  defaultMessage="Pitch"
-                />
-        }
+         title= {this.state.translatedMenuItems[0]}
      
         width={drawerWidth}
           visible={this.props.addPitchModal}
@@ -35,8 +59,9 @@ class AddPitchModal extends Component {
         >
         <Suspense fallback={<BundleLoader />}>
           <PitchForm
-          selectedLanguage={this.props.selectedLanguage}
-          translateText={this.props.translateText}
+               translateText={this.props.translateText}
+               selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
           />{" "}      
         </Suspense>       
         </StyledDrawer>

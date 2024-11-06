@@ -86,37 +86,35 @@ const MaterialUnitsDataOut = (props) => {
         <>
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                    <div className=" flex justify-between  w-[100%]  p-1 bg-transparent  sticky items-end font-poppins font-bold  z-10">
                         <div className="w-[2.5rem]"></div>
                         <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
                         <div className=" md:w-[9.21rem]">
                             {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
                             {props.translatedMenuItems[0]}
-                            </div>
-                        {/* <div className=" md:w-[3.82rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div> */}
-                        {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
+                            </div>       
                         <div className=" md:w-[4.25rem]">
-                            {/* <FormattedMessage id="app.ordered" defaultMessage="Ordered" /> */}  {props.translatedMenuItems[30]}
+                            {/* Ordered" /> */}  {props.translatedMenuItems[30]}
 
                             </div>
                         <div className=" md:w-[6.10rem]">
-                            {/* <FormattedMessage id="app.received" defaultMessage="Receive" /> */}  {props.translatedMenuItems[17]}
+                            {/* Receive" /> */}  {props.translatedMenuItems[17]}
 
                             </div>
                         <div className=" md:w-[4.42rem]">
-                            {/* <FormattedMessage id="app.damaged" defaultMessage="Damaged" /> */}  {props.translatedMenuItems[27]}
+                            {/* "Damaged" /> */}  {props.translatedMenuItems[27]}
                         </div>
                         <div className=" md:w-[5.01rem]">
-                            {/* <FormattedMessage id="app.balance" defaultMessage="Balance" /> */}  {props.translatedMenuItems[31]}
+                            {/* Balance" /> */}  {props.translatedMenuItems[31]}
                         </div>
                         <div className=" md:w-[5.01rem]">
-                            {/* <FormattedMessage id="app.remark" defaultMessage="Remark" /> */}  {props.translatedMenuItems[28]}
+                            {/* "Remark" /> */}  {props.translatedMenuItems[28]}
                             </div>
                         <div className=" md:w-[4.51rem]">
-                            {/* <FormattedMessage id="app.room" defaultMessage="Zone" /> */}  {props.translatedMenuItems[32]}
+                            {/*Zone" /> */}  {props.translatedMenuItems[32]}
                         </div>
                         <div className=" md:w-[6.01rem]">
-                            {/* <FormattedMessage id="app.rack" defaultMessage="#Rack" /> */} #{props.translatedMenuItems[33]}
+                            {/* "#Rack" /> */} #{props.translatedMenuItems[33]}
                         </div>
                         <div className=""></div>
                     </div>

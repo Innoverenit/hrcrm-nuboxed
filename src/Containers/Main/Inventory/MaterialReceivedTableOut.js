@@ -15,7 +15,7 @@ import { FormattedMessage } from "react-intl";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button } from "antd";
-import ReceivedDetailModal from "./Child/InventoryDetails/InventoryMaterialTab/ReceivedDetailModal";
+import FactoryIcon from '@mui/icons-material/Factory';
 import GrnListOfPOModal from "./Child/InventoryDetails/InventoryMaterialTab/GrnListOfPOModal";
 import ReceivedDetailModalOut from "./ReceivedDetailModalOut";
 import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal";
@@ -77,15 +77,15 @@ const MaterialReceivedTableOut = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex  w-[100%] font-poppins font-bold text-xs  p-1 bg-transparent font-bold sticky items-end z-10">
                        
-                        <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
-                        <div className=" w-[13.52rem]">
-                            {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
+                        <div className="text-[#00A2E8] text-base w-[19.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
+                        <div className=" w-[15.52rem]">
+                            {/* Created" */}
                             {props.translatedMenuItems[21]}
                         </div>
                         <div className=" w-[11.122rem]">       
-                             {props.translatedMenuItems[22]} 
+                        <FactoryIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[22]} 
                             {/* Supplier */}
 
                         </div>
@@ -105,11 +105,11 @@ const MaterialReceivedTableOut = (props) => {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                                    <div className="flex rounded py-1 mt-1 bg-white items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                         <div class="flex">
 
-                                            <div className=" flex  w-[18.1rem]  h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
+                                            <div className=" flex  w-[18.1rem] items-center  h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                                                <div class="flex ml-gap text-xs font-bold  font-poppins cursor-pointer underline text-blue-600">
                                                     <div
                                                         onClick={() => {
                                                             handleRow(item);

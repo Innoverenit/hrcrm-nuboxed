@@ -6,7 +6,7 @@ import InventoryHeader from "./InventoryHeader";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { setInventoryViewType,getInventoryById,setInventoryDetailViewType } from "./InventoryAction";
 import InventoryMaterialTabO from "./InventoryMaterialTabO";
-import InventoryDetailTabO from "./InventoryDetailTabO";
+import InventoryDetailTabO from "./InventoryDetailTabO";//2
 import InventorySupplierTable from "./InventorySupplierTable";
 
 const InventoryCard = lazy(() => import("./InventoryCard"));
