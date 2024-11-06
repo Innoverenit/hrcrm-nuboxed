@@ -5,7 +5,6 @@ import {  Button, Select, Switch } from "antd";
 import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import {getDepartments} from "../../Settings/Department/DepartmentAction"
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
@@ -72,10 +71,6 @@ class ContactForm extends Component {
     this.props.getCustomerConfigure(this.props.orgId,"add","contact")
   }
 
-
-
-
-
   async fetchCustomers() {
     this.setState({ isLoadingCustomers: true });
 
@@ -119,7 +114,8 @@ class ContactForm extends Component {
 //  'Bedrooms',
  '657',//14
   // 'Property Type',
-  '104'//15
+  '104',//15
+  '73'//16
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
       this.setState({ translatedMenuItems: translations ,loading: false});
@@ -364,7 +360,7 @@ class ContactForm extends Component {
             setFieldTouched,
           }) => (
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
-            <Form className="form-background">
+            <Form className="form-background h-[70vh]">
               <div class=" flex justify-around max-sm:flex-col"
               >
                 <div class=" h-full w-w47.5 max-sm:w-wk"
@@ -395,7 +391,7 @@ class ContactForm extends Component {
                         </div>
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
-                        <div class=" w-2/5 max-sm:w-full">
+                        <div class=" w-[45%] max-sm:w-full">
                         {this.props.customerConfigure.middleNameInd===true&&
                         <div class=" text-xs font-bold font-poppins"> 
                         {translatedMenuItems[1]}</div>
@@ -413,9 +409,10 @@ class ContactForm extends Component {
                         }
                         </div>
 
-                        <div class=" w-1/2 max-sm:w-full flex flex-col">
+                        <div class=" w-[45%] max-sm:w-full ">
                         {this.props.customerConfigure.lastNameInd===true&&
-                        <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
+                        <div class=" text-xs font-bold font-poppins">
+                           {translatedMenuItems[2]}</div>
   }
                         {this.props.customerConfigure.lastNameInd===true&&
                           <FastField
@@ -659,7 +656,7 @@ class ContactForm extends Component {
                   </div>
                   <div class=" w-w47.5 ">
                     {this.props.customerConfigure.sourceInd===true&&
-                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
+                    <div class=" text-xs font-bold font-poppins mt-1"> {translatedMenuItems[10]}</div>
                     
   }
                     {this.props.customerConfigure.sourceInd===true&&
@@ -716,7 +713,7 @@ class ContactForm extends Component {
                   <div class="mt-6" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div class="mt-3">
                       {this.props.customerConfigure.addressInd===true&&
-                      <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</div>
+                      <div class=" text-xs font-bold font-poppins mt-2"> {translatedMenuItems[13]}</div>
   }
                   </div>
                     </div>
@@ -804,7 +801,7 @@ class ContactForm extends Component {
                   htmlType="submit"
                   loading={addingContact}
                 >
-                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[17]}</div>        
+                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[15]}</div>        
                   {/*                     
                     Create */}
                 </Button>

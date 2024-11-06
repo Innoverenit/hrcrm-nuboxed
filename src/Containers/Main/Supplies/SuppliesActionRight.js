@@ -1,7 +1,7 @@
 import React,{lazy,Suspense} from "react";
 import Button from "antd/lib/button";
 import { connect } from "react-redux";
-import { base_url, base_url2 } from "../../../Config/Auth";
+import { base_url2 } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import UploadMaterialModal from "./UploadMaterialModal"

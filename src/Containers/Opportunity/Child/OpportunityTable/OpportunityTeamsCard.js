@@ -311,14 +311,9 @@ function OpportunityTeamsCard(props) {
               <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
                 {item.emailId}  
               </div>
-           
-            
           </div>
           </div>
-          </div>
-          
-      
-       
+          </div>    
       </div>
   )
 })}
@@ -327,21 +322,23 @@ function OpportunityTeamsCard(props) {
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className="flex max-sm:hidden  w-[94%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
  <div className="   flex justify-between w-[93%] font-bold items-end font-poppins text-xs">
-   <div className=" w-[14.1rem] text-[#00A2E8] text-base ">
+   <div className=" w-[17.1rem] text-[#00A2E8] text-base ">
    <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/>{translatedMenuItems[12]} ID</div>
-        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">
+        <div className=" w-[16.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">
         <ContactsIcon className="!text-icon mr-1 "/> {translatedMenuItems[0]}</div>
-        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className=" w-[17.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
       
-        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
+        <div className=" w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
         <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[2]}</div>
         <div className=" w-[10.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' /> {translatedMenuItems[4]}</div>
-        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className=" w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         <StairsIcon className='!text-icon  '  />  {translatedMenuItems[5]}</div> 
+        <div className=" w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+        <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[6]}</div> 
         <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
-        <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[6]}</div>      
+        <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[7]}</div>      
         <div className="w-12"></div>
         </div>
       </div>
@@ -380,7 +377,7 @@ function OpportunityTeamsCard(props) {
 
 </div>
 </div>
-                    <div className=" flex  w-[12rem] h-8 ml-gap bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
+                    <div className=" flex  w-[10rem] h-8 ml-gap bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
                               <div className=" flex items-center">
 
                                   <MultiAvatar
@@ -409,7 +406,7 @@ function OpportunityTeamsCard(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex   w-[11rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[8rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
                                   <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                   
@@ -501,7 +498,7 @@ strokeColor={"#005075"}
            
                                   </div>
                               </div>
-                              {/* <div className=" flex w-20 items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                              <div className=" flex w-20 items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                      
 
 
@@ -516,7 +513,7 @@ strokeColor={"#005075"}
             />
           </span>
           </Tooltip>
-                 </div> */}
+                 </div>
                  <div className=" flex justify-center items-center w-[6rem] h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

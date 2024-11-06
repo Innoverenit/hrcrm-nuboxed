@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Select, Progress, Badge } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import {
   getReceivedUserList,
   handleReceivedModal,
@@ -16,13 +18,10 @@ import {
 } from "./InventoryAction";
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import { getLocationList } from "../Account/AccountAction"
-import InfoIcon from '@mui/icons-material/Info'; 
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-import { FormattedMessage } from "react-intl";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { BundleLoader } from "../../../Components/Placeholder";
 import LabelOffIcon from '@mui/icons-material/LabelOff';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import RefurbishNoteAll from "../Refurbish/RefurbishNoteAll";
@@ -131,20 +130,19 @@ const ReceivedTableOut = (props) => {
         <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex justify-between max-sm:hidden  w-[94%]  p-1 bg-transparent font-bold text-xs font-poppins  z-10">
-              <div className=" w-[11.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {translatedMenuItems[0]}
+              <div className=" w-[8.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[0]}
                 </div>
               {props.accountInfoInd && (
                 <>
               <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-              {translatedMenuItems[1]}
+              <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>   {translatedMenuItems[1]}
                 </div>
               <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {translatedMenuItems[2]}
                 </div>
               </>
               )}
-              {/* <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage id="app.owner" defaultMessage="owner" /></div> */}
               <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {translatedMenuItems[3]}
                 </div>
@@ -177,10 +175,10 @@ const ReceivedTableOut = (props) => {
                   const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                   return (
                     <div>
-                      <div className="flex justify-between rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                      <div className="flex justify-between rounded  mt-1 bg-white  items-center py-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex w-[9.62rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto   ">
-                          <span className="text-xs  font-bold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                          <div className=" flex w-[9.62rem] border-l-2 items-center h-8 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto   ">
+                          <span className="text-xs ml-gap font-bold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
                                   onClick={() => {
                                     handleRowData(item);
                                     props.handleReceivedOrderIdModal(true);
@@ -246,7 +244,7 @@ const ReceivedTableOut = (props) => {
                               />
                             </div>
                           </div>
-                          <div className=" flex w-[9.81rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex w-[6.81rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
                             </div>
@@ -261,7 +259,7 @@ const ReceivedTableOut = (props) => {
                               />}
                             </div>
                           </div>
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[13.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[17.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {/* {item.phoneReceiveCount}/{item.phoneCount} */}
                               {isValidPercentage ? (

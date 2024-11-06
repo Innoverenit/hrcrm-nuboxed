@@ -1,24 +1,41 @@
-import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+import React, { useState, lazy, Suspense, useEffect } from 'react';
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const CustomerForm = lazy(() => import("./CustomerForm"));
 
 const AddCustomerModal = (props) => {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const isSmallScreen = window.innerWidth <= 600;
     const drawerWidth = isSmallScreen ? "90%" : "60%";
     const handleClose = () => {
       window.location.reload(true);
     };
-
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [ 
+           "248", //  customer",//0
+           
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
     
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.prospect"
-          defaultMessage="Prospect"
-        />}
+         title={translatedMenuItems[0]}  
         width={drawerWidth}
         visible={props.addCustomerModal}
         destroyOnClose

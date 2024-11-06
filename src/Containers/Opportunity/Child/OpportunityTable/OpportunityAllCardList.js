@@ -295,9 +295,6 @@ function OpportunityAllCardList(props) {
           </div>
           </div>
           </div>
-          
-      
-       
       </div>
            )
           })}
@@ -350,9 +347,9 @@ function OpportunityAllCardList(props) {
                 className="flex  rounded   bg-white mt-1  items-center py-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                   <div className=" flex   w-[7.65rem]  border-l-2 border-green-500   bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                  <div className=" flex   w-[7rem] items-center   border-l-2 border-green-500 h-8  bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-<div class=" text-xs h-8 ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+<div class=" text-xs ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
 
 {item.newOppId}
 
@@ -360,21 +357,17 @@ function OpportunityAllCardList(props) {
 </div>
                     <div className=" flex  w-[11rem] h-8 ml-gap bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
                               <div className=" flex items-center">
-
                                   <MultiAvatar
                                     primaryTitle={item.opportunityName}
                                     imageId={item.imageId}
                                     imgWidth={"1.8rem"}
                                     imgHeight={"1.8rem"}
                                   />
-        
                              </div>
-                              
-                                 
-                                      <Tooltip>
+                                        <Tooltip>
                                       <div class=" flex max-sm:w-full  flex-row items-center">
         
-                                          <div class=" text-xs items-center text-blue-500  ml-gap font-poppins font-semibold cursor-pointer">
+                                          <div class="flex text-xs items-center text-blue-500  ml-gap font-poppins font-semibold cursor-pointer">
                                               
                                           <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}

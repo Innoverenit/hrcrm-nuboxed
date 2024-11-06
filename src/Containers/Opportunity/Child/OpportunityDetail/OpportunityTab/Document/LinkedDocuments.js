@@ -86,11 +86,9 @@ class LinkedDocuments extends Component {
       <>
         {true && (
               <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-              <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+              <div className=" flex justify-between w-[100%] items-end font-bold font-poppins text-xs p-1 bg-transparent  sticky  z-10">
               <div className=" md:w-[6.5rem]">{translatedMenuItems[0]}
-            </div>
-     
-          
+            </div>  
             <div className="md:w-[10.1rem]"> {translatedMenuItems[1]} 
               {/* Name */}
             </div>
@@ -108,13 +106,10 @@ class LinkedDocuments extends Component {
                          </div>
     
             <div className="w-[10.2rem]"></div>
-    
           </div>
-       
-            
+      
           { !fetchingDocumentsByOpportunityId && documentsByOpportunityId.length === 0 ?<EmptyPage />:documentsByOpportunityId.map((item,index) =>  {
-            
-            
+        
                         return (
                             <div>
                                  <div

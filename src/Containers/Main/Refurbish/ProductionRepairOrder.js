@@ -9,7 +9,7 @@ import { getRepairOrderByUser, handleRepairPhone,
     import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import { Button, Badge,Input, Tooltip } from "antd";
 import dayjs from "dayjs";
-import GroupsIcon from '@mui/icons-material/Groups';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import UpdateIcon from '@mui/icons-material/Update';
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -187,19 +187,16 @@ function ProductionRepairOrder(props) {
         />
       </div>
                     <div className=" flex max-sm:hidden w-[100%] p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
-                        <div className="w-[5.5rem]"></div>
-                        <div className=" w-[14.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[3.5rem]"></div>
+                        <div className=" w-[18.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>  {translatedMenuItems[0]} ID {/* Order ID */}
                           </div>
-                        <div className=" w-[20.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[1]} 
                          {/* Due Date/> */}
                         </div>
-                        <div className=" w-[21.1rem] ">
-                        <GroupsIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[2]}  {/* <FormattedMessage
-                                id="app.lead"
-                                defaultMessage="Lead"
-                            /> */}
+                        <div className=" w-[12.1rem] ">
+                        <ContactsIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[2]}  {/*"Lead" /> */}
                         </div>
                         <div className="w-[10.8rem]">
                         <UpdateIcon className='!text-icon text-[#ff66b3]' />   {translatedMenuItems[3]} {/* Status */}
@@ -220,10 +217,10 @@ function ProductionRepairOrder(props) {
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div>
-                                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                        <div className="flex rounded justify-between mt-1 bg-white items-center py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"   >
                                             <div class="flex  max-sm:w-wk items-center">
-                                            <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-[3.26rem]">
+                                            <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-[2.26rem]">
                                                 {item.priority === "High" && (
                       <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                     )}
@@ -259,21 +256,21 @@ function ProductionRepairOrder(props) {
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                               
-                                            <div className=" flex w-[19rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[15rem] max-lg:w-[9rem]  max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex w-[14rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[15rem] max-lg:w-[9rem]  max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairDueDate === null ? "" : dayjs(item.repairDueDate).format("DD-MM-YYYY")}
                                                     </div>
 
                                                 </div>
                                                 
-                                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[14.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInProgressPhoneCount} {item.repairStatus}
                                                     </div>
 
                                                 </div>
                                            
-                                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[18.6rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-xl:w-[19rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.repairInspectionInd === 0 ?
                                                             <Button
@@ -297,7 +294,7 @@ function ProductionRepairOrder(props) {
                                                             item.repairInspectionInd === 1 ?
                                                                 <Button style={{ width: "8rem" }}
                                                                     onClick={handlePauseResume}>
-                                                                    {hide ?  translatedMenuItems[8] :  translatedMenuItems[9]}</Button> : <div class="text-green-600"> {translatedMenuItems[10]}</div>}
+                                                                    {hide ?  translatedMenuItems[8] :  translatedMenuItems[9]}</Button> : <div class="flex items-center justify-center text-white w-[10.2rem] h-8 bg-green-600"> {translatedMenuItems[10]}</div>}
 
                                                     </div>
                                                 </div>
@@ -308,7 +305,7 @@ function ProductionRepairOrder(props) {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto max-sm:justify-between justify-end ">
+                                            <div className=" flex  items-center w-wk h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto max-sm:justify-between justify-end ">
                                                 <div class="  text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-2xl">
                                                     <Tooltip title={translatedMenuItems[6]}>
                                                         <NoteAltIcon

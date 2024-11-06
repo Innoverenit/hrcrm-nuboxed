@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getOpenQcByUser } from "./RefurbishAction";
 import dayjs from "dayjs";
-import GroupsIcon from '@mui/icons-material/Groups';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import UpdateIcon from '@mui/icons-material/Update';
 import DateRangeIcon from '@mui/icons-material/DateRange';
@@ -59,13 +59,13 @@ function OpenQcTable(props) {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                        <div className=" md:w-[34.12rem]">   <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/> {translatedMenuItems[0]} #</div>
+                        <div className="text-base text-[#00A2E8] md:w-[34.12rem]">   <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/> {translatedMenuItems[0]} #</div>
                         <div className=" md:w-[35.1rem]">
                      <DateRangeIcon className="!text-icon "/>    {translatedMenuItems[1]}  {/* "duedate"
                         /> */}
                         </div>
                         <div className=" md:w-[9.8rem] ">
-                        <GroupsIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[2]}   {/*Lead"
+                        <ContactsIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[2]}   {/*Lead"
                             /> */}
                             </div>
                         <div className="md:w-[6.6rem]"></div>
@@ -86,8 +86,8 @@ function OpenQcTable(props) {
                             {props.openQc.map((item) => {
                                 return (
                                     <div>
-                                        <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-3  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                                            <div class="flex">
+                                        <div className="flex rounded justify-between mt-1 bg-white  items-center py-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                            <div class="flex items-center">
                                                 <div className=" flex font-medium  md:w-[32.6rem] max-sm:w-full  ">
                                                     <Badge size="small" count={`${item.qcCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
                                                         <span class=" cursor-pointer w-[7rem] flex">
@@ -101,23 +101,14 @@ function OpenQcTable(props) {
                                                     <div class=" text-xs  font-poppins">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
-
-                                                </div>
-                                                {/* <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                               <div class=" text-sm  font-poppins">
-                               {item.qcCompletePhoneCount}/{item.totalPhone}
-                               </div>
-                           </div> */}
+                                                </div>                                       
                                             </div>
 
                                             <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     {item.reason}
-
                                                 </div>
                                             </div>
-
-
                                         </div>
                                     </div>
                                 )

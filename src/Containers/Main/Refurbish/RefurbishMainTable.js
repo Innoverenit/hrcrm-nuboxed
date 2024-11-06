@@ -65,12 +65,6 @@ const ProductionOrderList = (props) => {
     //     setPageNo(pageNo + 1);
     //     props.getProductionOrderId(props.userId)
     // };
-
-   
-
-
-
-
     const handleLoadMore = () => {
         const callPageMapd = props.productionUrgent && props.productionUrgent.length &&props.productionUrgent[0].pageCount
         setTimeout(() => {
@@ -400,7 +394,7 @@ const ProductionOrderList = (props) => {
                                              </div>
                                          </div>
                                      </div>
-                                        <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  max-sm:items-center justify-end h-8 ml-gap bg-[#eef2f9]">
+                                        <div class="flex w-wk max-sm:justify-evenly max-sm:w-wk items-center  max-sm:items-center justify-end h-8 ml-gap bg-[#eef2f9]">
                                            
                                                 <div class="  text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                                                     <Tooltip title={translatedMenuItems[11]}>
@@ -453,7 +447,7 @@ const ProductionOrderList = (props) => {
 
 
 <div className=' flex  sticky  z-auto'>
-                <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded  max-sm:m-1  py-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex max-sm:hidden  justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
                         <div className=" w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getOpenRepair } from "./RefurbishAction";
 import dayjs from "dayjs";
-import GroupsIcon from '@mui/icons-material/Groups';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import { Badge } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -56,13 +56,10 @@ function OpenRepairTable(props) {
                 <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                         <div className=" w-[34.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            {/* <FormattedMessage
-                            id="app.order"
-                            defaultMessage="order"
-                        /> */} <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[0]}
+                            {/* "order */} <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[0]}
                         </div>
                         <div className=" w-[35.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <DateRangeIcon className="!text-icon "/>{translatedMenuItems[1]}</div>
-                        <div className=" md:w-[9.8rem] "> <GroupsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}</div>
+                        <div className=" md:w-[9.8rem] "> <ContactsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}</div>
                         <div className="w-[6.6rem]"></div>
                         <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[3]}
                         </div>
