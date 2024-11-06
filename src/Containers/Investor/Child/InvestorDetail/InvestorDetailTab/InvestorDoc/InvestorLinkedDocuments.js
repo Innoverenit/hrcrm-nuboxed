@@ -21,12 +21,12 @@ import {
   SubTitle,
 } from "../../../../../../Components/UI/Elements";
 import { getInvestorDocument } from "../../../../InvestorAction";
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import DescriptionIcon from '@mui/icons-material/Description';
 import ArticleIcon from '@mui/icons-material/Article';
+import EmptyPage from "../../../../../Main/EmptyPage";
 
 const InvestorLinkedDocuments = (props) => {
   const [searchText, setSearchText] = useState("");
@@ -165,7 +165,7 @@ const InvestorLinkedDocuments = (props) => {
                    
                 </div>
                 <div class="overflow-y-auto h-[69vh]">
-                { !props.fetchingDocumentsByInvestorId && props.documentsByInvestorId.length === 0 ?<NodataFoundPage />:props.documentsByInvestorId.map((item,index) =>  {
+                { !props.fetchingDocumentsByInvestorId && props.documentsByInvestorId.length === 0 ?<EmptyPage />:props.documentsByInvestorId.map((item,index) =>  {
                     
                     return (
                         <div >

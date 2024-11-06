@@ -12,7 +12,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
-import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
+import EmptyPage from "../Main/EmptyPage";
 const SearchedDataDeal=lazy(()=>import ("./SearchedDataDeal"));
 const ButtonGroup = Button.Group;
 
@@ -217,7 +217,7 @@ const DealsTeamCardList = (props) => {
           endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
           style={{scrollbarWidth:"thin"}}
         >
-          {!fetchingTeamsDealsData && props.teamsDealsData.length === 0 ? <NodataFoundPage /> : props.teamsDealsData.map((item, index) => {
+          {!fetchingTeamsDealsData && props.teamsDealsData.length === 0 ? <EmptyPage /> : props.teamsDealsData.map((item, index) => {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
               if (element.oppStage === item.oppStage) {

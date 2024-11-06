@@ -11,16 +11,13 @@ import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { DeleteOutlined } from "@ant-design/icons";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import NextPlanIcon from '@mui/icons-material/NextPlan';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import SourceIcon from '@mui/icons-material/Source';
 import FactoryIcon from '@mui/icons-material/Factory';
 import ScoreIcon from '@mui/icons-material/Score';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import EmptyPage from "../../../Main/EmptyPage";
 import {
     getTeamLeadsCold,
   deleteLeadsData,
@@ -45,7 +42,6 @@ import OpenCETmodal from "./OpenCETmodal";
 import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
@@ -197,7 +193,7 @@ const LeadsTeamColdCard = (props) => {
         style={{ scrollbarWidth:" thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
-       { !fetchingTeamLeadsCold && teamLeadsCold.length === 0 ?<NodataFoundPage />:teamLeadsCold.map((item,index) =>  {
+       { !fetchingTeamLeadsCold && teamLeadsCold.length === 0 ?<EmptyPage/>:teamLeadsCold.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const countryCode = item.countryAlpha2Code

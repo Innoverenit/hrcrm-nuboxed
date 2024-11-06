@@ -27,16 +27,13 @@ import {
   convertCustomerStatus
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import NextPlanIcon from '@mui/icons-material/NextPlan';
+
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import SourceIcon from '@mui/icons-material/Source';
 import FactoryIcon from '@mui/icons-material/Factory';
 import ScoreIcon from '@mui/icons-material/Score';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Button, Tooltip,Popconfirm,Checkbox } from "antd";
 import { FormattedMessage } from "react-intl";
 import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
@@ -46,8 +43,8 @@ import OpenCETmodal from "./OpenCETmodal";
 import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import EmptyPage from "../../../Main/EmptyPage";
 
 const ButtonGroup = Button.Group;
 
@@ -201,7 +198,7 @@ const LeadsTeamWarmcard = (props) => {
         style={{ scrollbarWidth: "thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >
-       { !fetchingTeamLeadsWarm && teamLeadsWarm.length === 0 ?<NodataFoundPage />:teamLeadsWarm.map((item,index) =>  {
+       { !fetchingTeamLeadsWarm && teamLeadsWarm.length === 0 ?<EmptyPage />:teamLeadsWarm.map((item,index) =>  {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           const countryCode = item.countryAlpha2Code

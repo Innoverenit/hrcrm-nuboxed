@@ -34,8 +34,8 @@ import {
          deleteLostOpportunity,
 } from "../../../Opportunity/OpportunityAction";
 import {getLostDeals,handleUpdateDealModal,handleDealsNotesDrawerModal} from "../../DealAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import EmptyPage from "../../../Main/EmptyPage";
 const AddDealsNotesDrawerModal =lazy(()=>import("../AddDealsNotesDrawerModal"));
 const UpdateDealModal =lazy(()=>import("../UpdateDeal/UpdateDealModal"));
 
@@ -133,7 +133,7 @@ function DealLostCard(props) {
                 height={"83vh"}
                 style={{scrollbarWidth:"thin"}}
               >
-                { !fetchingLostDeals && lostDeals.length === 0 ?<NodataFoundPage />:lostDeals.map((item,index) =>  {
+                { !fetchingLostDeals && lostDeals.length === 0 ?<EmptyPage />:lostDeals.map((item,index) =>  {
                          
                          var findProbability = item.probability;
                          item.stageList.forEach((element) => {
@@ -428,7 +428,7 @@ function DealLostCard(props) {
         height={"75vh"}
     
       >
-          { !fetchingLostDeals && lostDeals.length === 0 ?<NodataFoundPage />:lostDeals.map((item,index) =>  {
+          { !fetchingLostDeals && lostDeals.length === 0 ?<EmptyPage/>:lostDeals.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {

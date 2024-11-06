@@ -39,14 +39,13 @@ import {
   handleCustomerPulseDrawerModal,
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
-  handleAddressCutomerModal,
+  handleAddressCutomerModal, 
   handleUpdateUserModal
  
 } from "../../CustomerAction";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -55,6 +54,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
 import { emptyLeads,getCrm,}from"./././../../../Leads/LeadsAction";
 import UpdateUserModal from "../CustomerTable/UpdateUserModal"
+import EmptyPage from "../../../Main/EmptyPage";
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
 const CustomerOpportunityDrawerModal =lazy(()=> import("./CustomerOpportunityDrawerModal"));
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
@@ -355,7 +355,7 @@ const [rowdata, setrowdata] = useState("");
         style={{ scrollbarWidth:"thin"}}
       >
       
-      { !fetchingAllCustomerList && allCustomers.length === 0 ?<NodataFoundPage />:allCustomers.map((item,index) =>  {
+      { !fetchingAllCustomerList && allCustomers.length === 0 ?<EmptyPage/>:allCustomers.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          //const countryCode = item.countryAlpha2Code

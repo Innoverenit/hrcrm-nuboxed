@@ -19,13 +19,13 @@ import {getContactListByInvestorId,handleUpdateInvestorContactModal,
 } from "../../../../InvestorAction";
 import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
 import dayjs from "dayjs";
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import AddInvestorAdressModal from "../../../InvestorTable/AddInvestorAdressModal";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import ApartmentIcon from '@mui/icons-material/Apartment';
+import EmptyPage from "../../../../../Main/EmptyPage";
 
 const InvestorUpdateContactModal = lazy(() =>
   import("../InvestorContact/InvestorUpdateContactModal")
@@ -186,7 +186,7 @@ const InvestorLinkedContact = (props) => {
               </div>      
       <div className="w-[5.2rem]"></div>
     </div>         
-    { !fetchingsInvestorContact && contactsbyInvestorId.length === 0 ?<NodataFoundPage />:contactsbyInvestorId.map((item,index) =>  {
+    { !fetchingsInvestorContact && contactsbyInvestorId.length === 0 ?<EmptyPage/>:contactsbyInvestorId.map((item,index) =>  {
       const dataLoc = ` Address : ${
           item.address && item.address.length && item.address[0].address1
         } 

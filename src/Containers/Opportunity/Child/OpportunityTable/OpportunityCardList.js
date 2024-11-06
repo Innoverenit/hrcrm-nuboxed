@@ -46,11 +46,11 @@ import "jspdf-autotable";
 import AddOpportunityDrawerModal from "../../Child/OpportunityTable/AddOpportunityDrawerModal"
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OpportunityRowEmailModal from "./OpportunityRowEmailModal";
 import { base_url, base_url2 } from "../../../../Config/Auth";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import EmptyPage from "../../../Main/EmptyPage";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -249,7 +249,7 @@ console.log(props.userDetails.imageId)
             > */}
 
 <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
-{ !fetchingOpportunity && opportunityByUserId.length === 0 ?<NodataFoundPage />:opportunityByUserId.map((item,index) =>  {
+{ !fetchingOpportunity && opportunityByUserId.length === 0 ?<EmptyPage/>:opportunityByUserId.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                    item.stageList.forEach((element) => {

@@ -36,7 +36,6 @@ import {
          getOpportunitySKill,
          getFullOpportunity,
 } from "../../OpportunityAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -48,6 +47,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import StairsIcon from '@mui/icons-material/Stairs';
+import EmptyPage from "../../../Main/EmptyPage";
 
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
 const UpdateOpportunityModal =lazy(()=> import("../UpdateOpportunity/UpdateOpportunityModal"));
@@ -335,7 +335,7 @@ function OpportunityAllCardList(props) {
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
- { !fetchingAllOpportunity && allOpportunity.length === 0 ?<NodataFoundPage />:allOpportunity.map((item,index) =>  {
+ { !fetchingAllOpportunity && allOpportunity.length === 0 ?<EmptyPage/>:allOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {

@@ -9,16 +9,12 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import "jspdf-autotable";
-import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
-import NextPlanIcon from '@mui/icons-material/NextPlan';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import SourceIcon from '@mui/icons-material/Source';
 import FactoryIcon from '@mui/icons-material/Factory';
 import ScoreIcon from '@mui/icons-material/Score';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { DeleteOutlined, Html5Outlined } from "@ant-design/icons";
@@ -45,10 +41,10 @@ import { Button, Tooltip,Popconfirm,Checkbox } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedData from "./SearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddLeadsAddressModal from "./AddLeadsAddressModal";
+import EmptyPage from "../../../Main/EmptyPage";
 const UpdateLeadsModal = lazy(() => import("../UpdateLeads/UpdateLeadsModal"));
 const OpenCETmodal = lazy(() => import("./OpenCETmodal")); //ActivityModal
 const AddLeadsEmailDrawerModal = lazy(() => import("../UpdateLeads/AddLeadsEmailDrawerModal"));
@@ -285,7 +281,7 @@ const LeadsCardList = (props) => {
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
      
-           { !props.fetchingLeadsHot && props.leadsAllDataHot.length === 0 ?<NodataFoundPage />:props.leadsAllDataHot.map((item,index) =>  {
+           { !props.fetchingLeadsHot && props.leadsAllDataHot.length === 0 ?<EmptyPage/>:props.leadsAllDataHot.map((item,index) =>  {
           //  {leadsAllData.map((item,index) => {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -718,7 +714,7 @@ const LeadsCardList = (props) => {
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       
-           { !props.fetchingLeadsWarm && props.leadsAllDataWarm.length === 0 ?<NodataFoundPage />:props.leadsAllDataWarm.map((item,index) =>  {
+           { !props.fetchingLeadsWarm && props.leadsAllDataWarm.length === 0 ?<EmptyPage/>:props.leadsAllDataWarm.map((item,index) =>  {
           
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -1157,7 +1153,7 @@ const LeadsCardList = (props) => {
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >    
-           { !props.fetchingLeadsCold && props.leadsAllDataCold.length === 0 ?<NodataFoundPage />:props.leadsAllDataCold.map((item,index) =>  {
+           { !props.fetchingLeadsCold && props.leadsAllDataCold.length === 0 ?<EmptyPage/>:props.leadsAllDataCold.map((item,index) =>  {
           //  {leadsAllData.map((item,index) => {
           const currentdate = dayjs().format("DD/MM/YYYY");
           const date = dayjs(item.creationDate).format("DD/MM/YYYY");

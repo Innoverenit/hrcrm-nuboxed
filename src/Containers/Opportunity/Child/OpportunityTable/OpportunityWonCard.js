@@ -47,10 +47,10 @@ import {
 import AddOpportunityDrawerModal from "./AddOpportunityDrawerModal";
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import ReinstateToggleForLost from "../../Child/OpportunityTable/ReinstateToggleForLost"
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { base_url2 } from "../../../../Config/Auth";
+import EmptyPage from "../../../Main/EmptyPage";
 
 function OpportunityWonCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -234,7 +234,7 @@ function OpportunityWonCard(props) {
         height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
       >
-{ !fetchingWonOpportunity && wonOpportunity.length === 0 ?<NodataFoundPage />:wonOpportunity.map((item,index) =>  {
+{ !fetchingWonOpportunity && wonOpportunity.length === 0 ?<EmptyPage/>:wonOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {

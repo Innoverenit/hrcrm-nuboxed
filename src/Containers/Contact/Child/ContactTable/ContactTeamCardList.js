@@ -45,11 +45,11 @@ import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerMo
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import DocumentUpload from "./DocumentUpload";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactAddressDrawerModal from "./AddContactAddressDrawerModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
+import EmptyPage from "../../../Main/EmptyPage";
 
 const Option = Select;
 const UpdateContactModal = lazy(() =>
@@ -302,7 +302,7 @@ if (loading) {
         style={{scrollbarWidth:"thin"}}
       >
         
-        { !fetchingTeamContact && teamContact.length === 0 ?<NodataFoundPage />:teamContact.map((item,index) =>  {
+        { !fetchingTeamContact && teamContact.length === 0 ?<EmptyPage/>:teamContact.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");

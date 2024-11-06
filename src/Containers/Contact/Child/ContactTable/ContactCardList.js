@@ -39,11 +39,11 @@ import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerMo
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactAddressDrawerModal from "../ContactTable/AddContactAddressDrawerModal"
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import EmptyPage from "../../../Main/EmptyPage";
 
 
 const ContactCETdrawer =lazy(()=>import("./ContactCETdrawer"));
@@ -232,7 +232,7 @@ function ContactCardList(props) {
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         
-        { !fetchingContacts && filterData.length === 0 ?<NodataFoundPage />:filterData.map((item,index) =>  {
+        { !fetchingContacts && filterData.length === 0 ?<EmptyPage/>:filterData.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");

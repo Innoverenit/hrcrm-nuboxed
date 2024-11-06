@@ -13,8 +13,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
-import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
-
+import EmptyPage from "../Main/EmptyPage";
 const ButtonGroup = Button.Group;
 
 const DealDeletedCard = (props) => {
@@ -120,7 +119,7 @@ const DealDeletedCard = (props) => {
           height={"83vh"}
           style={{scrollbarWidth:"thin"}}
         >
-          {!fetchingDeletedDeal && props.deletedDeal.length === 0 ? <NodataFoundPage /> : props.deletedDeal.map((item, index) => {
+          {!fetchingDeletedDeal && props.deletedDeal.length === 0 ? <EmptyPage/> : props.deletedDeal.map((item, index) => {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
               if (element.oppStage === item.oppStage) {

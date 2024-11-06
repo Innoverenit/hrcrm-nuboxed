@@ -10,7 +10,6 @@ import {getInvestorDeals
 import { CurrencySymbol } from "../../../../../Components/Common"; 
 import { Button, Tooltip,Dropdown ,Menu,Progress} from "antd";
 import { Link } from "react-router-dom/cjs/react-router-dom";
-import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
@@ -19,6 +18,7 @@ import StairsIcon from '@mui/icons-material/Stairs';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import UpdateIcon from '@mui/icons-material/Update';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import EmptyPage from "../../../../Main/EmptyPage";
 const ButtonGroup = Button.Group;
 
 const InvestorDeals = (props) => {
@@ -132,7 +132,7 @@ if (loading) {
         loader={fetchingAllDealsData?<div  class="flex justify-center">Loading...</div>:null}
       
       > */}
-  { !fetchingInvestorDealsData && props.investorDealsData.length === 0 ?<NodataFoundPage />:props.investorDealsData.map((item,index) =>  {
+  { !fetchingInvestorDealsData && props.investorDealsData.length === 0 ?<EmptyPage/>:props.investorDealsData.map((item,index) =>  {
        var findProbability = item.probability;
        item.stageList.forEach((element) => {
          if (element.oppStage === item.oppStage) {

@@ -42,10 +42,10 @@ import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerMo
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
 import {  Tooltip, Select } from "antd";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactAddressDrawerModal from "./AddContactAddressDrawerModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
+import EmptyPage from "../../../Main/EmptyPage";
 
 const Option = Select;
 const UpdateContactModal = lazy(() =>
@@ -281,7 +281,7 @@ if (loading) {
         style={{scrollbarWidth:"thin"}}
       >
         
-        { !fetchingAllContacts && allContacts.length === 0 ?<NodataFoundPage />:allContacts.map((item,index) =>  {
+        { !fetchingAllContacts && allContacts.length === 0 ?<EmptyPage/>:allContacts.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");

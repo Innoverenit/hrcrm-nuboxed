@@ -45,7 +45,6 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import CustomerContactDrawerModal from "./CustomerContactDrawerModal";
 import UpdateUserModal from "../CustomerTable/UpdateUserModal"
 import CustomerOpportunityDrawerModal from "./CustomerOpportunityDrawerModal";
@@ -54,6 +53,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
+import EmptyPage from "../../../Main/EmptyPage";
 
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
@@ -370,7 +370,7 @@ const [rowdata, setrowdata] = useState("");
         style={{ scrollbarWidth:"thin"}}
       >
       
-      { !fetchingTeamCustomer && teamCustomer.length === 0 ?<NodataFoundPage />:teamCustomer.map((item,index) =>  {
+      { !fetchingTeamCustomer && teamCustomer.length === 0 ?<EmptyPage/>:teamCustomer.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const countryCode = item.countryAlpha2Code
