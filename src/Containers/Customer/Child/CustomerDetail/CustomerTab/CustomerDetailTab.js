@@ -519,6 +519,7 @@ translatedMenuItems={this.props.translatedMenuItems}
           />
 
           <AddCustomerContactModal
+          customer={this.props.customer}
           handleCustomerContactModal={handleCustomerContactModal}
             addCustomerContactModal={addCustomerContactModal}
             defaultCustomers={[{ label: name, value: customerId }]}
