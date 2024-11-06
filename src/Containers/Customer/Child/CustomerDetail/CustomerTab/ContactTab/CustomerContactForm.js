@@ -40,19 +40,22 @@ class ContactForm extends Component {
       currentOption: "",
       candidate: false,
       availability: false,
-      selectedCustomer: null,
+      selectedCustomer: this.props.customerId,
       selectedContact:null,
       translatedMenuItems: [],
       customers: [],
       contacts:[],
       isLoadingCustomers: false,
       isLoadingContacts:false,
+      loading: true,
+      touchedCustomer: false,
       translatedMenuItems: [],
       loading: true
     };
     this.handleSelectCustomerFocus=this.handleSelectCustomerFocus.bind(this)
     this.handleCustomerChange = this.handleCustomerChange.bind(this);
     this.fetchCustomers = this.fetchCustomers.bind(this);
+    
   }
   componentDidMount() {
     this.fetchMenuTranslations();
@@ -149,9 +152,33 @@ class ContactForm extends Component {
     }
   }
 
+
   handleCustomerChange(customerId) {
     this.setState({ selectedCustomer: customerId });
-  //this.fetchContacts(customerId);
+  this.fetchContacts(customerId);
+  }
+
+
+  async fetchContacts(customerId) {
+    this.setState({ isLoadingContacts: true });
+
+    try {
+      const apiEndpoint = `${base_url}/customer/contact/drop/${customerId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      this.setState({ contacts: data });
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      this.setState({ isLoadingContacts: false });
+    }
   }
 
 
@@ -159,7 +186,7 @@ class ContactForm extends Component {
     this.setState({ isLoadingCustomers: true });
 
     try {
-      const apiEndpoint = `${base_url}/customer/contact/drop/${this.props.customerId}`;
+      const apiEndpoint = `${base_url}/customer/user/${this.props.userId}`;
       const response = await fetch(apiEndpoint, {
         method: 'GET',
         headers: {
@@ -252,8 +279,10 @@ class ContactForm extends Component {
             addCustomerContact(
               {
                 ...values,
-                reportsTo:this.state.selectedCustomer,
-                customerId: this.props.customerId,
+                customerId:this.state.selectedCustomer,
+                  reportsTo:this.state.selectedContact,
+                // reportsTo:this.state.selectedCustomer,
+                // customerId: this.props.customerId,
                 opportunityId:this.props.opportunityId,
                 investorId:this.props.investorId,
                 whatsapp: this.state.whatsapp ? "Different" : "Same",
@@ -457,13 +486,13 @@ class ContactForm extends Component {
                   </div>
               
 
-                  <div class=" flex justify-between mt-2">
+                  {/* <div class=" flex justify-between mt-2">
                     <div class=" w-2/4">
                       <>
                       <div class=" text-xs font-bold font-poppins"> 
                          {translatedMenuItems[8]}             
                           </div>
-                          {/* TagCompany */}
+                         
                         <Field
                           name="customerId"
                           isColumnWithoutNoCreate
@@ -485,7 +514,7 @@ class ContactForm extends Component {
                     <div class=" text-xs font-bold font-poppins"> Reports To</div>
                     
  
-                    {/* {this.props.customerConfigure.sourceInd===true&& */}
+                   
                     <Select
        
        placeholder="Select Contact"
@@ -499,23 +528,62 @@ class ContactForm extends Component {
          </Option>
        ))}
      </Select>
+                 
+                        </div>
+                  
+                  </div> */}
+
+<div class="  flex justify-between max-sm:mt-20">
+        <div class="flex flex-col w-w47.5">
+                 
+                  <div class=" text-xs font-bold font-poppins">
+                    Tag Company
+                     </div>
+                 
+  
+                    <div class="  w-wk">
+                   
+                    
+                      <Select
+       
+                      placeholder="Select Customer"
+                      loading={this.state.isLoadingCustomers}
+                      onFocus={this.handleSelectCustomerFocus}
+                      onChange={this.handleCustomerChange}
+                    >
+                      {this.state.customers.map(customer => (
+                        <Option key={customer.customerId} value={customer.customerId}>
+                          {customer.name}
+                        </Option>
+                      ))}
+                    </Select>
+                  
+                    </div>
+                    </div>              
+               
+
+<div class=" w-w47.5 ">
+                  
+                    <div class=" text-xs font-bold font-poppins"> Reports To</div>
+                    
+
+                    {/* {this.props.customerConfigure.sourceInd===true&& */}
+                    <Select
+        placeholder="Select Contact"
+      loading={this.state.isLoadingContacts}
+        onChange={this.handleContactChange}
+      disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+      >
+        {this.state.contacts.map(contact => (
+          <Option key={contact.contactId} value={contact.contactId}>
+            {contact.fullName}
+          </Option>
+        ))}
+      </Select> 
                     {/* } */}
                         </div>
-                    {/* <div class=" w-2/5">
-                    <div class=" text-xs font-bold font-poppins"> 
-                         {translatedMenuItems[9]}             
-                          </div>
-
-                      <FastField
-                        name="designationTypeId"                  
-                        selectType="designationType"
-                        isColumn
-                        component={SearchSelect}
-                        value={values.designationTypeId}
-                        isColumnWithoutNoCreate
-                        inlineLabel
-                      />
-                    </div> */}
+                     
+                     
                   </div>
                    <div class=" w-2/5">
                     <div class=" text-xs font-bold font-poppins"> 
@@ -537,14 +605,14 @@ class ContactForm extends Component {
                          {translatedMenuItems[10]}             
                           </div>
                           {/* Department */}
-                    <FastField
+                    {/* <FastField
                       name="departmentId"                
                       width="100%"
                       isColumn
                       isColumnWithoutNoCreate
                       component={InputComponent}                 
                       inlineLabel
-                    />
+                    /> */}
                   </div>
                 </div>
                 <div class=" h-4/6 w-w47.5">

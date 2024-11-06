@@ -589,17 +589,7 @@ class ContactForm extends Component {
   }
                     <div class="  w-wk">
                     {this.props.customerConfigure.tagCompanyInd===true&&
-                      // <Field
-                      //   name="customerId"            
-                      //   isColumnWithoutNoCreate           
-                      //   component={SelectComponent}
-                      //   isColumn
-                      //   value={values.customerId}
-                      //   isDisabled={defaultCustomers}
-                      //   options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                      //   // defaultValue={defaultCustomers ? defaultCustomers : null}
-                      //   inlineLabel
-                      // />
+                    
                       <Select
        
                       placeholder="Select Customer"
@@ -616,23 +606,7 @@ class ContactForm extends Component {
                     }
                     </div>
                     </div>              
-                    {/* <div class=" w-w47.5 ">
-                    {this.props.customerConfigure.sourceInd===true&&
-                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
-                    
-  }
-                    {this.props.customerConfigure.sourceInd===true&&
-                    <FastField
-                            name="source"              
-                            isColumnWithoutNoCreate
-                            selectType="sourceName"
-                            component={SearchSelect}
-                            value={values.source}
-                            isColumn
-                            inlineLabel
-                          />
-                    }
-                        </div> */}
+               
 
 <div class=" w-w47.5 ">
                     {this.props.customerConfigure.sourceInd===true&&
