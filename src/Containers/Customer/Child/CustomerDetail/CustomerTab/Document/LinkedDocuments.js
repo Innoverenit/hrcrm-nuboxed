@@ -276,7 +276,7 @@ class LinkedDocuments extends Component {
 </div>
 </div>
 <div className=" flex   md:w-[12.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-                              <div class="flex text-xs ml-gap items-center font-poppins text-center">
+                              <div class="flex text-xs truncate ml-gap items-center font-poppins text-center">
                               {item.fileName}
 
                               </div>

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddProductBrandDetailsModal from "./AddProductBrandDetailsModal"
-
-import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Select,Switch,  Popconfirm } from "antd";
 
 import {
@@ -17,6 +15,7 @@ import {
     handleProductBrandDetailsModal
 
 } from "./ProductAction"
+import EmptyPage from "../Main/EmptyPage";
 
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -143,7 +142,7 @@ function handleSetCurrentPhoneId(item) {
           </div>
        
 
-         {props.brandDeleteProduct.length === 0 ? <NodataFoundPage /> : props.brandDeleteProduct.map((item, index) => {
+         {props.brandDeleteProduct.length === 0 ? <EmptyPage /> : props.brandDeleteProduct.map((item, index) => {
         
               return (
                 <div>

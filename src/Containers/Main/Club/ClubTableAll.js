@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import {
     getClubAlllist,
     clearInitialData  
@@ -9,11 +8,11 @@ import {
 import dayjs from "dayjs";
 import ReactCountryFlag from 'react-country-flag';
 import { Link } from 'react-router-dom';
-import { Button, Select, Tooltip } from 'antd';
+import {  Select, Tooltip } from 'antd';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../Components/Placeholder";
+import EmptyPage from "../EmptyPage";
 
 const { Option } = Select;
 
@@ -148,7 +147,7 @@ function ClubTableAll(props) {
         height={"80vh"}
       >
         
-        { !props.fetchingClub && props.clubAllData.length === 0 ?<NodataFoundPage />:props.clubAllData.map((item,index) =>  {
+        { !props.fetchingClub && props.clubAllData.length === 0 ?<EmptyPage/>:props.clubAllData.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(

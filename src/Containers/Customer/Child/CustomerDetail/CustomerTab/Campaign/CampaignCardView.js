@@ -22,6 +22,7 @@ import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {geCustomerCampaignEvent,addCustomerCampaignEvent} from "../../../../CustomerAction";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
+import EmptyPage from "../../../../../Main/EmptyPage";
 
 
 const { Option } = Select;
@@ -360,7 +361,7 @@ if(fetchingCustomerCampaign){
         loader={fetchingCustomerCampaign?<div class="flex items-center">Loading...</div>:null}
         height={"79vh"}
       >
-      {data.map((item) => { 
+      { ! props.fetchingCustomerCampaign && props.customerCampaign.length === 0 ?<EmptyPage/> :  props.customerCampaign.map((item,index) => { 
                     return (
                         <div key={item.eventId}>
                              <div

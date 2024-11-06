@@ -37,8 +37,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
 import FeatureProductToggle from "./FeatureProductToggle";
-import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import WarrentyProductToggle from "./WarrentyProductToggle";
+import EmptyPage from "../../../Main/EmptyPage";
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
@@ -494,7 +494,7 @@ useEffect(() => {
              )
             })}
              </>
-              : !products.length && !fetchingProducts ? <NodataFoundPage /> : null}
+              : !products.length && !fetchingProducts ? <EmptyPage/> : null}
           </InfiniteScroll>
         </div>
       </div>

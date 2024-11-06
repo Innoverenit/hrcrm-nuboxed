@@ -44,8 +44,7 @@ const CustomerActivityTable = (props) => {
     <div className="mt-4 ml-4 ">
       {/* scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] */}
       <Timeline>
-        {fetchingCusActivityTimelineStatus && customerActivityTimeline.length ===0 ? <EmptyPage/>:
-          customerActivityTimeline.map((status, index) => {
+         { ! fetchingCusActivityTimelineStatus && customerActivityTimeline.length ===0 ? <EmptyPage/>:customerActivityTimeline.map((status, index) => {
             const currentDate = dayjs();
         const completionDate = dayjs(status.completionDate);
         const endDate = dayjs(status.endDate);

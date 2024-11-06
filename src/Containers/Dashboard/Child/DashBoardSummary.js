@@ -7,6 +7,8 @@ import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import {Button,Tooltip,Spin} from "antd"
 import dayjs from "dayjs";
+import PinIcon from '@mui/icons-material/Pin';
+import CategoryIcon from '@mui/icons-material/Category';
 
 import {
   getMaterialBestBefore,
@@ -19,7 +21,35 @@ import { getQuotationDashboard,getReorderdata,getQuotationDashboardCount ,getTak
 const ButtonGroup = Button.Group;
 const DashBoardSummary=(props) =>{
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+      "199",//   "TASK",0
+      "",//   No data found1
+      "213",//   QUOTATION  2
+     "1172", //   To Order3
+     "805", //   RE-ORDER 4
+     "104", //   Create 5
+     "", //  BEST BEFORE6
+     "", //  To Waste7
+      "660",//  ORDER8
+     "490", //  DEALS9
+     "143",//  "To Start"
+     "144",//  "In Progress",
+     "78",//  "Completed"
+        ];
 
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
 
 
@@ -68,15 +98,15 @@ const DashBoardSummary=(props) =>{
   };
 
   return (
-    <div className="container mx-auto p-4 grid grid-cols-5 gap-6  rounded mt-1  bg-white h-[87vh] ">
+    <div className=" container  mx-auto  p-4 flex rounded mt-1  bg-white h-[87vh]  overflow-x-auto ">
       {/* TASK */}
-      <div class="flex flex-col">
-        <h2 className="text-xl font-bold font-poppins mb-4">TASK-({`${props.taskperCount.totalTask} `})</h2>
+      <div class="flex flex-col w-[16rem] ml-8">
+        <h2 className="text-xl font-bold font-poppins mb-4">{translatedMenuItems[0]}-({`${props.taskperCount.totalTask} `})</h2>
         <div className="overflow-y-auto max-h-[78vh]">
       {props.fetchingTaskDashboardGantt ? (
         <div className="flex justify-center items-center h-full">
           <Spin color="#00008b" size={50} /> 
-          <div>No data found</div>
+          <div>{translatedMenuItems[1]}</div>
           {/* Spinner component */} 
         </div>
       ) : (
@@ -86,7 +116,7 @@ const DashBoardSummary=(props) =>{
           const endDate = dayjs(deal.endDate);
         const difference = currentDate.diff(endDate, 'days');
         return (
-          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23]">
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] w-[14rem]">
             <div className="flex justify-between">
               <div>
                 <div className="font-semibold font-poppins truncate ">{deal.taskName}</div>
@@ -96,12 +126,12 @@ const DashBoardSummary=(props) =>{
                       class="!text-icon"
                       type="To Start"
                       iconType={<HourglassEmptyIcon className="!text-icon" />}
-                      tooltip="To Start"
+                      tooltip={translatedMenuItems[10]}
                       status={deal.taskStatus}
                       difference={difference} 
                       onClick={() =>
                         props.linkTaskStatusDashboard(deal.taskId, {
-                          taskStatus: "To Start",
+                          taskStatus: translatedMenuItems[10]
                         })
                       }
                     />
@@ -109,13 +139,13 @@ const DashBoardSummary=(props) =>{
                       class="!text-icon"
                       type="In Progress"
                       iconType={<HourglassTopIcon className="!text-icon" />}
-                      tooltip="In Progress"
+                      tooltip={translatedMenuItems[11]}
                       status={deal.taskStatus}
               difference={difference}
               onClick={() =>
                 props.linkTaskStatusDashboard(deal.taskId, {
                   //  ...item,
-                   taskStatus: "In Progress",
+                   taskStatus:translatedMenuItems[11]
                 })
               }
                     />
@@ -123,13 +153,13 @@ const DashBoardSummary=(props) =>{
                       class="!text-icon"
                       type="Completed"
                       iconType={<HourglassBottomIcon className="!text-icon" />}
-                      tooltip="Completed"
+                      tooltip={translatedMenuItems[12]}
                       status={deal.taskStatus}
                       difference={difference}
                       onClick={() =>
                         props.linkTaskStatusDashboard(deal.taskId, {
                           //  ...item,
-                           taskStatus: "Completed",
+                           taskStatus: translatedMenuItems[12]
                         })
                       }
                     />
@@ -153,23 +183,24 @@ const DashBoardSummary=(props) =>{
       )}
     </div>
       </div>
-{/* <div class="relative   sm:after:content-[''] sm:after:absolute sm:after:w-[3px] sm:after:min-h-[500vh] sm:after:bg-black sm:after:right-[-1rem]"></div> */}
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
+
       {/* QUOTATION */}
-      <div class="flex flex-col">
+      <div class="flex flex-col w-[16rem] ml-8">
   <h2 className="text-xl font-poppins font-bold mb-4 ">
-  QUOTATION -
+  {translatedMenuItems[2]} -
   ({`${props.quotationDashboardCount.countByUserId} `})
 </h2>
   {props.quotationDashboard.length === 0 &&props.fetchingQuotationDashboard? (
     <>
      <Spin color="#00008b" size={50} /> 
-     <div>No data found</div>
+     <div>{translatedMenuItems[1]}</div>
     </>
     
    
   ) : (
     props.quotationDashboard.map((lead, index) => (
-      <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ">
+      <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] w-[14rem] ">
         <div className="flex justify-between">
           <div className="font-semibold font-poppins">{lead.quotationId}</div>
           <div className="text-sm text-gray-500 font-poppins">{lead.time}</div>
@@ -177,38 +208,38 @@ const DashBoardSummary=(props) =>{
         </div>
         <div className="text-sm text-gray-500 font-poppins">{lead.amount}</div>
         <div class="flex justify-between">
-        <div className="text-sm text-gray-500 font-poppins">{lead.contactPersonName}</div>
-        <Button>To Order</Button>
+        <div className="text-sm text-gray-500 font-poppins  truncate ">{lead.contactPersonName}</div>
+        <Button>{translatedMenuItems[3]}</Button>
         </div>
       </div>
     ))
   )}
 </div>
 
-
+<div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
     
 
   {/* Re Order */}
-  <div class="flex flex-col ">
-        <h2 className="text-xl font-poppins font-bold mb-4"> RE-ORDER-(0) </h2>
+  <div class="flex flex-col w-[16rem] ml-8 ">
+        <h2 className="text-xl font-poppins font-bold mb-4">{translatedMenuItems[4]}-(0) </h2>
         {props.reOrderData.map((colleague, index) => (
-          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ">
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] w-[14rem]">
             <div className="flex justify-between">
-              <div className="font-semibold font-poppins">{colleague.suppliesFullName} {colleague.batchNo}</div>
+              <div className="font-semibold font-poppins  truncate ">{colleague.suppliesFullName} {colleague.batchNo}</div>
               <div className="text-red-600 font-bold font-poppins bg-red-100 inline-block px-2 py-1 rounded">
              {colleague.reorderLevel}
                 </div>
             </div>
             <div className="text-sm text-gray-500 font-poppins">{colleague.zone} {colleague.aisle} {colleague.chamber} </div>
             <div className="text-sm text-gray-500 font-poppins">{colleague.locationName}</div>
-            <Button>Create PO</Button>
+            <Button>{translatedMenuItems[5]} PO</Button>
           </div>
         ))}
       </div>
-
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
          {/* Best Before */}
-         <div class="flex flex-col ">
-        <h2 className="text-xl font-bold font-poppins mb-4"> BEST BEFORE-(2) </h2>
+         <div class="flex flex-col w-[16rem] ml-8">
+        <h2 className="text-xl font-bold font-poppins mb-4"> {translatedMenuItems[6]}-(2) </h2>
         <div className="overflow-y-auto max-h-[78vh]">
       {props.fetchingMaterialBestBefore ? (
         <div className="flex justify-center items-center h-full">
@@ -216,16 +247,19 @@ const DashBoardSummary=(props) =>{
         </div>
       ) : (
         props.materialBestBefore.map((colleague, index) => (
-          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ">
-            <div className="flex justify-between">
-              <div className="font-semibold font-poppins">{colleague.suppliesFullName} {colleague.batchNo}</div>
-              <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded">
-              {`${dayjs(colleague.bestBeforeUse).format("DD/MM/YYYY")}`}
-                </div>
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] w-[14rem]">
+            <div className="flex  w-full truncate">
+              <div className="font-semibold font-poppins  truncate "><CategoryIcon className=" !text-icon"/>{colleague.suppliesFullName} {colleague.batchNo}</div>
+            
             </div>
-            <div className="text-sm text-gray-500 font-poppins">{colleague.newPoNumber} {colleague.hsn} </div>
+            <div className="text-sm text-gray-500 font-poppins">{colleague.newPoNumber} <PinIcon className=" !text-icon"/>{colleague.hsn} </div>
             <div class="flex justify-between">
                       <div className="text-sm text-gray-500 font-poppins">{colleague.zone} {colleague.aisle} {colleague.chamber} </div>
+                      </div>
+                      <div className=" flex justify-between"> 
+                         <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded">
+              {`${dayjs(colleague.bestBeforeUse).format("DD/MM/YYYY")}`}
+                </div>
             <Button
               onClick={() => {
                 props.addToWaste({
@@ -241,9 +275,10 @@ const DashBoardSummary=(props) =>{
               );
                 
               }}
-            >To Waste</Button>
+            >{translatedMenuItems[7]}</Button>
             </div>
-          </div>
+            </div>
+         
         ))
 
       )}
@@ -251,12 +286,12 @@ const DashBoardSummary=(props) =>{
         </div>
       </div>
 
-
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
         {/* ORDER */}
-        <div class="flex flex-col">
-        <h2 className="text-xl font-bold font-poppins mb-4">ORDER-(6)</h2>
+        <div class="flex flex-col w-[16rem] ml-8">
+        <h2 className="text-xl font-bold font-poppins mb-4">{translatedMenuItems[8]}-(6)</h2>
         {data.notInCrm.map((contact, index) => (
-          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ">
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] w-[14rem]">
             <div className="flex justify-between">
               <div className="font-semibold font-poppins">{contact.name}</div>
               <div className="text-sm text-gray-500 font-poppins">{contact.time}</div>
@@ -266,12 +301,12 @@ const DashBoardSummary=(props) =>{
           </div>
         ))}
       </div>
-
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
       {/* DEALS */}
-      {/* <div class="flex flex-col border-l-2 box-border border-black ">
-        <h2 className="text-xl font-bold font-poppins mb-4"> DEALS-(5) </h2>
+      <div class="flex flex-col w-[16rem] ml-8">
+        <h2 className="text-xl font-bold font-poppins mb-4"> {translatedMenuItems[9]}-(5) </h2>
         {data.colleagues.map((colleague, index) => (
-          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] ">
+          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] w-[14rem] ">
             <div className="flex justify-between">
               <div className="font-semibold">{colleague.name}  </div>
               <div className="text-sm text-gray-500 font-poppins">
@@ -282,7 +317,7 @@ const DashBoardSummary=(props) =>{
             <div className="text-sm text-gray-500 font-poppins">{colleague.description}</div>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>   
   );
 };
