@@ -241,6 +241,11 @@ const initialState = {
 
 
 
+  fetchingScanData:false,
+  fetchingScanDataError:false,
+
+
+
   updateQualityStatus:false,
   updateQualityStatusError:false,
   //getshipperDetailsList
@@ -395,6 +400,8 @@ const initialState = {
 
   addingToWaste:false,
   addingToWasteError:false,
+
+  addScanModal:false,
 
   roomRackbyLoc: [],
   fetchingRoomRack: false,
@@ -763,6 +770,11 @@ export const inventoryReducer = (state = initialState, action) => {
       };
 
 
+
+      case types.HANDLE_SCAN_MODAL:
+        return { ...state, addScanModal: action.payload };
+
+
     case types.UPDATE_QUALITY_STATUS_REQUEST:
       return { ...state,updateQualityStatus: true };
     case types.UPDATE_QUALITY_STATUS_SUCCESS:
@@ -940,6 +952,24 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingReceivedDetailsList: false,
         fetchingReceivedDetailsListError: true,
       };
+
+
+
+      case types.ADD_SCAN_DATA_REQUEST:
+            return { ...state, fetchingScanData: true };
+          case types.ADD_SCAN_DATA_SUCCESS:
+            return {
+              ...state,
+              fetchingScanData: false,
+              addScanModal:false,
+              //subList: action.payload
+            };
+          case types.ADD_SCAN_DATA_FAILURE:
+            return {
+              ...state,
+              fetchingScanData: false,
+              fetchingScanDataError: true,
+            };
 
     case types.HANDLE_DISPTCH_MODAL:
       return {

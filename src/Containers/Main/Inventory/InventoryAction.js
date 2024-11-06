@@ -19,6 +19,15 @@ export const handleQualityManufactureModal = (modalProps) => (dispatch) => {
 
 
 
+export const handleScanModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SCAN_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+
 export const emptyQualityManufactureData = () => (dispatch) => {
   dispatch({
     type: types.EMPTY_QUALITY_MANUFACTURE_DATA, 
@@ -2723,5 +2732,32 @@ export const addAsileInbest = (customer,poSupplierS7ppliesId) => (dispatch, getS
       });
       message.error(err.data.message)
       // cb && cb();
+    });
+};
+
+
+
+export const addScandata = (data) => (dispatch) => {
+  dispatch({
+    type: types.ADD_SCAN_DATA_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/dispatchPacking/dispatch-packing-item-link`, data,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.ADD_SCAN_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SCAN_DATA_FAILURE,
+        payload: err,
+      });
     });
 };

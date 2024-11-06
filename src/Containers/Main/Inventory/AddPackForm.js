@@ -255,6 +255,7 @@ const InputToggleForm = (props) => {
        <ControlPointIcon/> Add Packet
       </Button>
       <AddPacketTable
+      newOrderNo={props.newOrderNo}
       orderPhoneId={props.orderPhoneId}
       />
     </>

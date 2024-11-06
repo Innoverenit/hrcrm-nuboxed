@@ -114,7 +114,9 @@ function AddPacketTable(props) {
 
                                         {checkAwb && (item.dispatchPackingId === rowData.dispatchPackingId) &&
                                              <SubPackList 
+                                             newOrderNo={props.newOrderNo}
                                                               rowData={rowData}
+                                                              dispatchPackingId={item.dispatchPackingId}
                                                               />
                                         }
                                     </div>
