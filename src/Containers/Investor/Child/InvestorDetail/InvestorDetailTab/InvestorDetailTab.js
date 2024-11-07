@@ -444,6 +444,7 @@ investorDetails={props.investorDetails}
           openInvestorContactModal={openInvestorContactModal}
           defaultInvestor={[{ label: name, value: investorId }]}
           investorId={{ value: investorId }}
+          id={props.investorDetails.investorId}
           callback={() => getContactListByInvestorId(investorId)}
       />
         <AddDocumentModals
@@ -454,11 +455,13 @@ investorDetails={props.investorDetails}
                selectedLanguage={props.selectedLanguage}
         />
         <AddCustomerContactModal
+        name={props.investorDetails.name}
          translateText={props.translateText}
          selectedLanguage={props.selectedLanguage}
         handleCustomerContactModal={handleCustomerContactModal}
           addCustomerContactModal={addCustomerContactModal}
           investorId={investorId}
+          id={investorId}
         />
         <CreateDealModal 
         translateText={props.translateText}

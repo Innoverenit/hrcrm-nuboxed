@@ -382,6 +382,8 @@ const initialState = {
   updatingDistributorEvent: false,
   updatingDistributorEventError: false,
 
+  updatingTicketStage:false,
+
   updatingDistributorTask: false,
   updatingDistributorTaskError: false,
 
@@ -713,6 +715,19 @@ const initialState = {
   statusActivityTimeline: [],
 
   fetchingCustomerOrderNo: false,
+};
+
+
+const updatedDragTicket = (item, newProps) => {
+  return item.map((opp, index) => {
+    console.log("Author7", opp);
+    console.log("Author8", newProps);
+    if (opp.tckId === newProps.tckId) {
+      console.log("inside opp");
+      opp.stageId = newProps.stageId;
+    }
+    return opp;
+  });
 };
 
 export const distributorReducer = (state = initialState, action) => {
@@ -1484,6 +1499,32 @@ export const distributorReducer = (state = initialState, action) => {
       };
     case types.ADD_TICKET_FAILURE:
       return { ...state, addingTicket: false, addingTicketError: false };
+
+
+
+      case types.UPDATE_TICKET_STAGE_REQUEST:
+        return {
+          ...state,
+          updatingTicketStage: true,
+  
+          // candidateRequirement: action.payload,
+        };
+      case types.UPDATE_TICKET_STAGE_SUCCESS:
+        return {
+          ...state,
+          updatingTicketStage: false,
+          ticketList: updatedDragTicket(
+            state.ticketList,
+            action.payload
+          ),
+          // regionQuotationSalesList: updatedDragQuotation(
+          //   state.regionQuotationSalesList,
+          //   action.payload
+          // ),
+          // candidateRequirement: [action.payload]
+        };
+      case types.UPDATE_TICKET_STAGE_FAILURE:
+        return { ...state };
 
 
     case types.UPDATE_DISTRIBUTOR_CARD_REQUEST:

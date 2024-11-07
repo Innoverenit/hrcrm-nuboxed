@@ -114,10 +114,7 @@ function ContactCallForm(props) {
         value: item.employeeId,
       };
     });
-    const filteredEmployeesData = employeesData.filter(
-      (item) => item.value !== userId
-    );
-   
+
     const {
       user: { userId, firstName, empName,middleName, fullName, lastName, timeZone },
       isEditing,
@@ -139,6 +136,11 @@ function ContactCallForm(props) {
       updatingCall,
       defaultOpportunities,
     } = props;
+    const filteredEmployeesData = employeesData.filter(
+      (item) => item.value !== userId
+    );
+   
+  
 
     if (props.selectedCall) {
       var data = props.selectedCall.callCategory === "New" ? false : true;

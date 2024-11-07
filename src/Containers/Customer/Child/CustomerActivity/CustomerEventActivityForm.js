@@ -194,7 +194,7 @@ const {
                   eventVenue: "",
                   remindAt: "",
                   // opportunity:"",
-                   contact:[],
+                   contacts:[],
                   notificationEmail: false,
                   eventDescription: "",
                   timeZone: timeZone,
@@ -602,7 +602,7 @@ const {
                   <div className="font-bold font-poppins text-xs"> {translatedMenuItems[10]}  </div>
                   {props.user.crmInd === true &&(
                   <Field
-                    name="contact"
+                    name="contacts"
                     //selectType="contactList"
                     //isColumnWithoutNoCreate
                      //label="Contact"

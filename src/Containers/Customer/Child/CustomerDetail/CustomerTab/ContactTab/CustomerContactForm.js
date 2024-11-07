@@ -164,7 +164,7 @@ class ContactForm extends Component {
     this.setState({ isLoadingContacts: true });
 
     try {
-      const apiEndpoint = `${base_url}/customer/contact/drop/${this.props.customer.customerId}`;
+      const apiEndpoint = `${base_url}/contact-list/drop-down/${this.props.id}`;
       const response = await fetch(apiEndpoint, {
         method: 'GET',
         headers: {
@@ -206,6 +206,7 @@ class ContactForm extends Component {
   }
 
   render() {
+    console.log(this.props.id)
     const {
       user: { userId, firstName, lastName },
       addCustomerContact,
@@ -546,8 +547,8 @@ class ContactForm extends Component {
                    
                     
                       <Select
-       value={this.props.customer.name}
-       disabled={this.props.customer.name}
+       value={this.props.name}
+       disabled={this.props.name}
                       placeholder="Select Customer"
                       loading={this.state.isLoadingCustomers}
                       onFocus={this.handleSelectCustomerFocus}
