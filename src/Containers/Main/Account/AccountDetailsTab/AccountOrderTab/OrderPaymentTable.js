@@ -125,7 +125,8 @@ function OrderPaymentTable(props) {
     }
 
   useEffect(() => {
-    props.getDistributorOrderPayment(props.particularRowData.procureOrderInvoiceId ? props.particularRowData.procureOrderInvoiceId:props.particularRowData.orderPhoneId);
+    // props.getDistributorOrderPayment(props.particularRowData.procureOrderInvoiceId ? props.particularRowData.procureOrderInvoiceId:props.particularRowData.orderPhoneId);
+    props.getDistributorOrderPayment(props.particularRowData.orderPhoneId ? props.particularRowData.orderPhoneId:props.particularRowData.procureOrderInvoiceId);
     props.getPaymentMode(props.orgId)
   }, [])
   const [mode, setMode] = useState("");

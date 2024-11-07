@@ -8,6 +8,9 @@ const initialState = {
 
   addPackDataID:false,
 
+  fetchingCompleteDispatchSearch: false,
+fetchingCompleteDispatchSearchError: false,
+
   fetchingSubList: false,
   fetchingSubListError: false,
   subList:[],
@@ -919,6 +922,21 @@ export const inventoryReducer = (state = initialState, action) => {
         ...state,
         fetchingCompleteDispatchList: false,
         fetchingCompleteDispatchListError: true,
+      };
+
+      case types.GET_COMPLETE_DISPATCH_SEARCH_REQUEST:
+      return { ...state, fetchingCompleteDispatchSearch: true };
+    case types.GET_COMPLETE_DISPATCH_SEARCH_SUCCESS:
+      return {
+        ...state,
+        fetchingCompleteDispatchSearch: false,
+        allDispatchList: action.payload,
+      };
+    case types.GET_COMPLETE_DISPATCH_SEARCH_FAILURE:
+      return {
+        ...state,
+        fetchingCompleteDispatchSearch: false,
+        fetchingCompleteDispatchSearchError: true,
       };
 
       case types.GET_COMMERCE_LIST_REQUEST:

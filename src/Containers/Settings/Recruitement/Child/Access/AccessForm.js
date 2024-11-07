@@ -2900,9 +2900,10 @@ const calenderCheckList = ["View", "Manage"];
 const repositoryCheckedList = ["Create"];
 const junkCheckedList = ["Access", "Transfer"];
 const multiLanguageCheckedList = ["Multiple"];
-const callCheckedList = ["Access"];
+// const callCheckedList = ["Access"];
 const eventCheckedList = ["Access"];
 const plannerCheckedList = ["Access"];
+const newCallCheckedList = ["Access"];
 const downloadCheckedList = ["All"];
 const calculateCheckedList = ["Calculator"];
 const warrentyCheckedList = ["Access" , "Update"]
@@ -3269,9 +3270,14 @@ const [checkAllCustomerCommercials, setCheckAllCustomerCommercials] =
   const [indeterminateEvents, setIndeterminateEvents] = useState(true);
   const [checkAllEvents, setCheckAllEvents] = useState(false);
 
-  const [checkedCalls, setCheckedCalls] = useState(props.departmentAcces.call || []);
-  const [indeterminateCalls, setIndeterminateCalls] = useState(true);
-  const [checkAllCalls, setCheckAllCalls] = useState(false);
+  // const [checkedCalls, setCheckedCalls] = useState(props.departmentAcces.call || []);
+  // const [indeterminateCalls, setIndeterminateCalls] = useState(true);
+  // const [checkAllCalls, setCheckAllCalls] = useState(false);
+  const [checkedCall, setCheckedCall] = useState(props.departmentAcces.call || []);
+  const [indeterminateCall, setIndeterminateCall] = useState(true);
+  const [checkAllCall, setCheckAllCall] = useState(false);
+
+
 
   const [checkedDownload, setCheckedDownload] = useState(props.departmentAcces.download || []);
   const [indeterminateDownload, setIndeterminateDownload] = useState(true);
@@ -3396,7 +3402,8 @@ useEffect(() => {
     setCheckedCollectionList(props.departmentAcces.collection || []);
     setCheckedPlanner(props.departmentAcces.planner || []);
     setCheckedEvents(props.departmentAcces.event || []);
-    setCheckedCalls(props.departmentAcces.call || []);
+    // setCheckedCalls(props.departmentAcces.call || []);
+    setCheckedCall(props.departmentAcces.call || []);
     setCheckedDownload(props.departmentAcces.download || []);
     setCheckedLanguage( props.departmentAcces.language || []);
     setCheckedTopicList(props.departmentAcces.topic || []);
@@ -3468,7 +3475,8 @@ useEffect(() => {
       departmentId: props.departmentId,
       roleTypeId: props.roleTypeId,
       language: multiLanguageCheckedList || [],
-      call: callCheckedList || [],
+      call:newCallCheckedList || [],
+      // call: callCheckedList || [],
       download: downloadCheckedList || [],
       event: eventCheckedList || [],
       planner: plannerCheckedList || [],
@@ -4552,21 +4560,37 @@ useEffect(() => {
   };
   // Calls
  
-  const onCallsChange = (list) => {
-    setCheckedCalls(list);
-    setIndeterminateCalls(
-      !!list.length && list.length < callCheckedList.length
-    );
-    setCheckAllCalls(list.length === callCheckedList.length);
-    updateAccessForCategory('call', list);
-  };
+  // const onCallsChange = (list) => {
+  //   setCheckedCalls(list);
+  //   setIndeterminateCalls(
+  //     !!list.length && list.length < callCheckedList.length
+  //   );
+  //   setCheckAllCalls(list.length === callCheckedList.length);
+  //   updateAccessForCategory('call', list);
+  // };
 
-  const onCheckAllCallsChange = (e) => {
-    const checked = e.target.checked ? callCheckedList : [];
-    setCheckedCalls(checked);
-    setIndeterminateCalls(false);
-    setCheckAllPayments(e.target.checked);
-    updateAccessForCategory('call', checked);
+  // const onCheckAllCallsChange = (e) => {
+  //   const checked = e.target.checked ? callCheckedList : [];
+  //   setCheckedCalls(checked);
+  //   setIndeterminateCalls(false);
+  //   setCheckAllCalls(e.target.checked);
+  //   updateAccessForCategory('call', checked);
+  // };
+  const onCallChange = (list) => {
+    setCheckedCall(list);
+    setIndeterminateCall(
+      !!list.length && list.length < newCallCheckedList.length
+    );
+    setCheckAllCall(list.length === newCallCheckedList.length);
+    updateAccessForCategory('download', list);
+  };
+  
+  const onCheckAllCallChange = (e) => {
+    const checked = e.target.checked ? newCallCheckedList : [];
+    setCheckedCall(checked);
+    setIndeterminateCall(false);
+    setCheckAllCall(e.target.checked);
+    updateAccessForCategory('download', checked);
   };
 
  // Download
@@ -4916,7 +4940,7 @@ const onCheckAllWarrentyChange = (e) => {
                       </div>
                     </div>
                     <div class="flex justify-between mt-4">
-                    <div>
+                    {/* <div>
                         <div class="text-sm font-semibold">Calls</div>
                         <Checkbox
                           indeterminate={indeterminateCalls}
@@ -4931,7 +4955,24 @@ const onCheckAllWarrentyChange = (e) => {
                           value={checkedCalls}
                           onChange={onCallsChange}
                         />
+                      </div> */}
+ <div>
+                        <div class="text-sm font-semibold">Calls</div>
+                        <Checkbox
+                          indeterminate={indeterminateCall}
+                          onChange={onCheckAllCallChange}
+                          checked={checkAllCall}
+                        >
+                          <div class="text-xs"> Check all </div>
+                        </Checkbox>
+                        <Divider />
+                        <CheckboxGroup
+                          options={newCallCheckedList}
+                          value={checkedCall}
+                          onChange={onCallChange}
+                        />
                       </div>
+
                       <div>
                         <div class="text-sm font-semibold">Download</div>
                         <Checkbox
