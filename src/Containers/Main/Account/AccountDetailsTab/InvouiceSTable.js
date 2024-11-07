@@ -37,10 +37,12 @@ function InvouiceSTable(props) {
     '260', // 4
     '142', // 5
    '259',//6
-    "1492",// Value
-  "1379", // Ship on
-   "1486", // track ID
-   "1169"
+    "1492",// Value 7
+  "1379", // Ship on 8
+   "1486", // track ID 9 
+   "1169",//10
+   "1044",//Item 11
+   "660",//Order
 
 
           ];
@@ -120,11 +122,11 @@ function InvouiceSTable(props) {
           trackId:trackId?trackId:item.trackId,
           procureOrderInvoiceId:item.procureOrderInvoiceId,
         }
-        // props.updateOrdrSuplrItems(data);
+      
         try {
           const headers = {
             'Content-Type': 'application/json',
-            'Authorization':  `Bearer ${props.token}`  // Replace with your actual token if required
+            'Authorization':  `Bearer ${props.token}` 
           };
 
             const response = await axios.put(`${base_url2}/invoice/order/ship`, updatedItem, { headers });
@@ -150,12 +152,14 @@ function InvouiceSTable(props) {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold text-xs font-poppins sticky z-10">
-                    <div class=" w-[8.5rem]">{translatedMenuItems[10]}ID </div>
-                        <div className=" md:w-[12.4rem]">{translatedMenuItems[1]} </div>
-                        <div className=" md:w-[5rem] ">{translatedMenuItems[6]}</div>
+                    <div class="w-[8.5rem]">{translatedMenuItems[11]} </div>
+                    <div class="w-[8.5rem]">{translatedMenuItems[0]}</div>
+                    <div class="w-[8.5rem]">{translatedMenuItems[12]}</div>
+                    <div className=" md:w-[5.1rem]">{translatedMenuItems[4]}</div>
                         <div className=" md:w-[5.1rem]">{translatedMenuItems[2]}</div>
+                        <div className=" md:w-[5.01rem] ">Additional</div>
                         <div className="md:w-[13rem]">{translatedMenuItems[7]}</div>
-                        <div className=" md:w-[5.01rem] ">{translatedMenuItems[4]}</div>
+                       
                         {/* <div className="md:w-[3.8rem]">{translatedMenuItems[9]} ID</div>
                         <div className="md:w-[3.8rem]">{translatedMenuItems[8]}</div> */}
                     </div>
@@ -178,7 +182,7 @@ function InvouiceSTable(props) {
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex items-center font-medium justify-between  ml-gap bg-[#eef2f9] h-8 w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
-                                                           {item.invoiceId}
+                                                           {item.newProductId}
                                                            
 
                                                         </div>
@@ -188,15 +192,20 @@ function InvouiceSTable(props) {
                                                                 </div>
                                                             ) : null} */}
                                                     </div>
-                                                    <div className=" flex items-center ml-gap bg-[#eef2f9] h-8 truncate w-[14.12rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {item.category}
+
+                                                            {item.productFullName}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex items-center ml-gap bg-[#eef2f9] h-8 w-[7.12rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {item.attribute}
+
+                                                            {item.newOrderNo}
                                                         </div>
+                                                    </div>
+                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8  w-[7.21rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    {item.unit}
                                                     </div>
                                                     <div className="flex items-center ml-gap bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
@@ -207,26 +216,16 @@ function InvouiceSTable(props) {
                                                     <div className="flex items-center ml-gap bg-[#eef2f9] h-8  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
+                                                            {item.additional}
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+
                                                             {item.totalPrice}
                                                         </div>
                                                     </div>
-                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8  w-[7.21rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                    {item.unit}
-                                                        {/* <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {editsuppliesId === item.procureOrderInvoiceId ? (
-                       <Input
-                       style={{ width: "5rem" }}
-                       value={item.trackId}
-                       onChange={(e) => handleInputChange(e.target.value, item.procureOrderInvoiceId, 'trackId')}
-                     />
-                       
-                    ) : (
-                      <div className="font-normal text-sm  font-poppins">
-                        <div> {item.trackId}</div>
-                      </div>
-                    )}
-                                                        </div> */}
-                                                    </div>
+                                                   
                                                     
                                                       
                                                         {/* {editsuppliesId === item.procureOrderInvoiceId ? (
