@@ -43,7 +43,6 @@ import GolfCourseIcon from '@mui/icons-material/GolfCourse';
 import FactoryIcon from '@mui/icons-material/Factory';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import DonutSmallIcon from '@mui/icons-material/DonutSmall';

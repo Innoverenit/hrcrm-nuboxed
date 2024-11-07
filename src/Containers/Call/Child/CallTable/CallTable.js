@@ -7,7 +7,10 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip, Avatar } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
-
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {
   deleteCall,
   getCallListRangeByUserId,
@@ -100,18 +103,18 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
     <>
        <div className=' flex   sticky  z-auto'>
        <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-       <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+       <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold items-end sticky  z-10">
         <div className=" flex justify-between w-[87%] text-xs font-poppins">
         <div className="flex justify-center w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">            
-        {props.translatedMenuItems[1]} 
+        < MergeTypeIcon className='!text-icon text-[#c42847] '  />  {props.translatedMenuItems[1]} 
         {/* Type */}
         </div>
-        <div className="flex justify-center w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
-        <div className=" flex justify-center w-[7.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[3]}</div>
-        <div className="flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[4]}</div>
+        <div className="flex justify-center w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">    {props.translatedMenuItems[2]}</div>
+        <div className=" flex justify-center w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> <ContactsIcon className="!text-icon mr-1 "/>{props.translatedMenuItems[3]}</div>
+        <div className="flex justify-center w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <DateRangeIcon className="!text-icon "/>{props.translatedMenuItems[4]}</div>
         <div className="flex justify-center w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[5]}</div>
-        <div className=" flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div> 
-        <div className=" flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[7]} </div>
+        <div className=" flex justify-center w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div> 
+        <div className=" flex justify-center w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <AccountCircleIcon className="!text-icon   text-[#d64933]"/>{props.translatedMenuItems[7]} </div>
          {/* <div className="w-[6.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[8]}</div> */}
          </div>    
       </div>
@@ -137,7 +140,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             }));
              return (
               <div>
-            <div className="flex rounded justify-between bg-white  h-8  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+            <div className="flex rounded justify-between bg-white   max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               <div class="flex  w-[8.9rem]  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
