@@ -11,7 +11,6 @@ import { CurrencySymbol } from "../../../../../../Components/Common";
 import UpdateOrderDetailModal from "./UpdateOrderDetailModal";
 import { Tooltip } from "antd";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 class ShipperOrderGeneratorTable extends Component {
   componentDidMount() {

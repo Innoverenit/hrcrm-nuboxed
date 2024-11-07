@@ -1,17 +1,14 @@
-import React, { useEffect,lazy,useState  } from "react";
+import React, { useEffect,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {Input } from "antd";
-import { MainWrapper } from "../../Components/UI/Layout";
+import {Tooltip,Input } from "antd";
 import { BundleLoader } from "../../Components/Placeholder";
 import {
     getBrandModel,
     addBrandModel,
 } from "../Settings/Category/Brand&Model/BrandModelAction";
 import dayjs from "dayjs"; 
-import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 import "./Product.scss";
-import Tooltip from '@mui/material/Tooltip';
 import styled from "styled-components";
 import Carousel from "react-elastic-carousel";
 

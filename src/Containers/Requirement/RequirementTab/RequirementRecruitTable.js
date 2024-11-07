@@ -10,10 +10,9 @@ import {
   StyledPopconfirm,
   StyledModal,
 } from "../../../Components/UI/Antd";
-import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import RecruitmentFilter from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentFilter";
 import AddRecruiterModal from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRecruiterModal"
-import RecruitmentContact from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentContact";
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import {
   getRecruitByRecruiterId,
   LinkSkillsRecruit,
@@ -628,7 +627,7 @@ class RecruitmentTable extends Component {
                     this.props.handleRecruiterModal(true);
                   }}
                 >
-                  <FontAwesomeIcon icon={solid('person-circle-question')} />
+                  <RecentActorsIcon  />
                 </span>
               }
             </>
