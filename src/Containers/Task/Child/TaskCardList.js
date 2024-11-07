@@ -1,7 +1,7 @@
 import React, { useState,lazy,Suspense,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
+import MergeTypeIcon from '@mui/icons-material/MergeType';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { FormattedMessage } from "react-intl";
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
@@ -23,6 +23,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { StyledPopconfirm, } from "../../../Components/UI/Antd";
  import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
+ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {
   // getTaskListRangeByUserId,
   getHighTaskListRange,
@@ -46,6 +47,8 @@ import {
 import { MultiAvatar, MultiAvatar2, } from "../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../Components/Placeholder";
+import CategoryIcon from '@mui/icons-material/Category'
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const AddTaskDocumentDrawerModal = lazy(() => import("../Child/AddTaskDocumentDrawerModal"));
 const AddTaskStepperDrawerModal = lazy(() => import("./TaskStepper/AddTaskStepperDrawerModal"));
@@ -249,17 +252,17 @@ const TaskCardList = (props) => {
     
           <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[65%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[63%]  p-1 bg-transparent font-bold sticky  z-10">
           <div className="flex justify-center w-[3.54] md:w-[4.54rem] bg-red-600 text-white">
           {translatedMenuItems[7]}</div>
         <div className=" flex  w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
-        {translatedMenuItems[0]} 
+        < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} 
                         </div>
-        <div className="flex justify-center w-[6.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
-                        {translatedMenuItems[1]}
+        <div className="flex justify-center w-[9.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <CategoryIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]}
                         </div>
              <div className="flex justify-center w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
-             {translatedMenuItems[2]}
+             <DateRangeIcon className="!text-icon "/>  {translatedMenuItems[2]}
                         </div>
              <div className="flex justify-center w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
        
@@ -268,10 +271,10 @@ const TaskCardList = (props) => {
                          
                           </div>
         <div className="flex justify-center w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
-        {translatedMenuItems[5]} 
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[5]} 
                         </div>
         <div className="flex justify-center w-[5.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
-        {translatedMenuItems[6]}
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[6]}
         {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div> */}
@@ -298,7 +301,7 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                          <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                          <div className="flex rounded mt-1 bg-white  items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                                 <div className=" flex w-[9.1rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
@@ -678,17 +681,17 @@ const TaskCardList = (props) => {
 
 <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
-          <div className=" flex max-sm:hidden justify-between w-[65%]  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
+          <div className=" flex max-sm:hidden justify-between w-[63%]  p-1 bg-transparent font-poppins text-xs font-bold sticky items-end  z-10">
           <div className=" flex justify-center w-[3.54] md:w-[4.54rem] bg-orange-600 text-white">
           {translatedMenuItems[8]}</div>
         <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
-        {translatedMenuItems[0]} 
+        < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} 
                         </div>
-        <div className="flex justify-center w-[6.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
-                        {translatedMenuItems[1]}
+        <div className="flex justify-center w-[9.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <CategoryIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[1]}
                         </div>
              <div className="flex justify-center w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
-             {translatedMenuItems[2]}
+             <DateRangeIcon className="!text-icon "/>{translatedMenuItems[2]}
                         </div>
              <div className="flex justify-center w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
         
@@ -697,10 +700,10 @@ const TaskCardList = (props) => {
                          
                           </div>
         <div className="flex justify-center text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
-        {translatedMenuItems[5]} 
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[5]} 
                         </div>
         <div className="flex justify-center w-[5.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
-        {translatedMenuItems[6]}
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/>{translatedMenuItems[6]}
                         </div>
                         {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
@@ -724,7 +727,7 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                           <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                           <div className="flex rounded mt-1 bg-white  items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                                 <div className=" flex w-[9.1rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
@@ -778,7 +781,7 @@ const TaskCardList = (props) => {
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
-                                <div class="flex  w-[8.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                                <div class="flex  w-[6.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
                     <ButtonGroup >
@@ -1088,18 +1091,18 @@ const TaskCardList = (props) => {
 </div>
 
 <div className=' flex sticky  z-auto'>
-          <div class="rounded  m-1 max-sm:m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
-          <div className=" flex max-sm:hidden justify-between w-[65%] font-poppins text-xs p-1 bg-transparent font-bold sticky  z-10">
+          <div class="rounded max-sm:m-1  py-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
+          <div className=" flex max-sm:hidden justify-between w-[63%] font-poppins text-xs p-1 bg-transparent font-bold sticky items-end  z-10">
           <div className="flex justify-center w-[3.54] md:w-[4.54rem] bg-teal-600 text-white">
           {translatedMenuItems[9]}</div>
         <div className=" text-xs w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
-        {translatedMenuItems[0]} 
+        < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[0]} 
                         </div>
-        <div className="flex justify-center w-[6.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
-                        {translatedMenuItems[1]}
+        <div className="flex justify-center w-[9.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[1]}
                         </div>
              <div className="flex justify-center w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
-             {translatedMenuItems[2]}
+             <DateRangeIcon className="!text-icon "/> {translatedMenuItems[2]}
                         </div>
              <div className="flex justify-center w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
        
@@ -1108,10 +1111,10 @@ const TaskCardList = (props) => {
                          
                           </div>
         <div className="flex justify-center w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
-        {translatedMenuItems[5]} 
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/>{translatedMenuItems[5]} 
                         </div>
         <div className="flex justify-center w-[5.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
-        {translatedMenuItems[6]}
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[6]}
                         </div>
 
                         {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
@@ -1137,7 +1140,7 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                           <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                           <div className="flex rounded mt-1 bg-white items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                                 <div className=" flex w-[9.1rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full"> 
@@ -1195,7 +1198,7 @@ const TaskCardList = (props) => {
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
-                                <div class="flex  w-[8.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                                <div class="flex  w-[6.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
                     <ButtonGroup >
@@ -1324,7 +1327,7 @@ const TaskCardList = (props) => {
      </div> 
      )}
      </div>                                  
-                   <div class="flex  w-[8.21rem]  items-center h-8 ml-gap bg-[#eef2f9]max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
+                   <div class="flex  w-[8.21rem]  items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <div class=" w-36">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>
