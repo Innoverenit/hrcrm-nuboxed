@@ -273,6 +273,7 @@ const handleLoadMoreLow = () => {
           dispatchReceivedDate: currentDate,
         // trackId:trackId?trackId:item.trackId,Order Successfully dispatched!!!!
         orderId:item.orderId,
+        type:"Order"
       }
       let data = {
          inventoryPickUpDate: currentDate,
@@ -487,7 +488,7 @@ const handleLoadMoreLow = () => {
     const currencyPrice = props.distributorData.currencyPrice
     const payStand = totalPay + outStand;
     const canPack = payStand < currencyPrice || payStand === currencyPrice;
-
+const newpack = item.receiveOfferPricePercentage === item.dispatchPaymentPercentage || item.receiveOfferPricePercentage > item.dispatchPaymentPercentage
 console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",canPack)
 
 
@@ -637,10 +638,12 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
             
                     )}
     </div> */}
+    {!props.user.disPackInd && canPack && newpack &&
      <Button className="w-[5rem]"
                       type="primary"
                       onClick={() => handlePostChange(item)}
                       > <InputIcon className="!text-icon text-white"/>Pack</Button>
+    }
        <div class="flex w-7 justify-end max-sm:flex-row max-sm:w-[10%]">                                                                                              
                                                        {/* <div style={{ filter: "drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))" }} class="rounded-full  md:w-5 h-5 cursor-pointer items-center justify-center h-8  bg-[#eef2f9] flex">
                                             <Tooltip title={translatedMenuItems[12]}>
@@ -915,6 +918,7 @@ translateText={props.translateText}
           <ItemListListDrawer
                     particularRowData={particularRowData}
                     openDrawer={openDrawer}
+                    distributorData={props.distributorData}
                     setOpenDrawer={setOpenDrawer}
                     selectedLanguage={props.selectedLanguage}
                     translateText={props.translateText}
@@ -927,7 +931,7 @@ translateText={props.translateText}
 
 }
 
-const mapStateToProps = ({ distributor }) => ({
+const mapStateToProps = ({ distributor,auth }) => ({
   addProcureDetailsModal:distributor.addProcureDetailsModal,
   procurementOrder: distributor.procurementOrder,
   updateProcureDetailModal:distributor.updateProcureDetailModal,
@@ -940,6 +944,7 @@ const mapStateToProps = ({ distributor }) => ({
     lowDistributorOrder:distributor.lowDistributorOrder,
     fetchingDistributorOfLow:distributor.fetchingDistributorOfLow,
     showStatusDrwr:distributor.showStatusDrwr,
+    user: auth.userDetails,
 
 });
 
