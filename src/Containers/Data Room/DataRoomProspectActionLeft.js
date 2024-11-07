@@ -39,6 +39,30 @@ function DataRoomProspectActionLeft(props) {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);  
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    '', // 0By List
+'1594', // 1By Sector  
+'1595', // 2 By Source
+""// No data found
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
 //   const handleLoadMore = () => {
    
@@ -90,15 +114,15 @@ const handleLoadMore = () => {
       <Button
       style={{backgroundColor:props.selectedButtonTab==='byList'?"tomato":null}}
        onClick={() => props.setSelectedButtonTab('byList')}
-      >By List</Button>
+      >{translatedMenuItems[0]}</Button>
         <Button
         style={{backgroundColor:props.selectedButtonTab==='bySector'?"tomato":null}}
          onClick={() => props.setSelectedButtonTab('bySector')}
-        >By Sector</Button>
+        >{translatedMenuItems[1]}</Button>
         <Button
          style={{backgroundColor:props.selectedButtonTab==='bySource'?"tomato":null}}
          onClick={() => props.setSelectedButtonTab('bySource')}
-        >By Source</Button>
+        >{translatedMenuItems[2]}</Button>
       </div>
       {props.selectedButtonTab==="byList" && (
       <div class=" flex flex-col flex-block"
@@ -111,7 +135,7 @@ const handleLoadMore = () => {
   {props.allCustomers.length === 0 &&props.fetchingAllCustomerList? (
     <>
      <Spin color="#00008b" size={50} /> 
-     <div>No data found</div>
+     <div>{translatedMenuItems[3]}</div>
     </>
     
    
@@ -174,7 +198,7 @@ const handleLoadMore = () => {
    {props.sectors.length === 0 &&props.fetchingSectors? (
     <>
      <Spin color="#00008b" size={50} /> 
-     <div>No data found</div>
+     <div>{translatedMenuItems[3]}</div>
     </>
     
    
@@ -247,7 +271,7 @@ const handleLoadMore = () => {
   {props.sources.length === 0 &&props.fetchingSources? (
     <>
      <Spin color="#00008b" size={50} /> 
-     <div>No data found</div>
+     <div>{translatedMenuItems[3]}</div>
     </>
     
    

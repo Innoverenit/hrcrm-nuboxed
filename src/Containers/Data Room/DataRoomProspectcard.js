@@ -6,7 +6,7 @@ const DataRoomProspectActionLeft= lazy(() =>import("./DataRoomProspectActionLeft
 
 
 function DataRoomProspectCard (props) {
-
+ 
     // const [rules, setRules] = useState(name);
     // const [currentRulesOpen, setCurrentRulesOpen] = useState(name[0]); 
     
@@ -19,6 +19,8 @@ function DataRoomProspectCard (props) {
        <div class=" flex flex-no-wrap w-full" >
                 <div class=" w-[22%]" >
                   <DataRoomProspectActionLeft
+                    translateText={props.translateText}
+                    selectedLanguage={props.selectedLanguage} 
                    selectedPropsectSource={props.selectedPropsectSource}
                       selectedPersonData={props.selectedPersonData}
                   handleCardProspectSourceClick={props.handleCardProspectSourceClick}
