@@ -81,7 +81,7 @@ export const handleContactInvestModal = (modalProps) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
           showConfirmButton: false,
         timer: 1500,
         })
@@ -293,7 +293,7 @@ export const getAllContactInvest = (pageNo,type) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
         showConfirmButton: false,
         timer: 1500,
       })
@@ -326,7 +326,7 @@ export const getTeamsContactInvest = (userId,pageNo) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
         showConfirmButton: false,
         timer: 1500,
       })

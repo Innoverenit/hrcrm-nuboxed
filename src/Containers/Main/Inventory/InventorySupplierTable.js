@@ -187,7 +187,7 @@ function InventorySupplierTable(props) {
         
     return (
         <>
-        <div class=" ml-2 h-6 w-60 max-sm:w-[11rem]">
+        <div class=" ml-2 h-6 mt-2 w-60 max-sm:w-[11rem]">
                 <Input
           placeholder="Search by Name"
           width={"100%"}
@@ -199,11 +199,11 @@ function InventorySupplierTable(props) {
                   
 
                 </div>
-            <div className=' flex justify-end sticky  z-auto'>
+            <div className=' flex justify-end sticky mt-3  z-auto'>
                 <div class="rounded  w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold sticky items-end top-0 z-10 ">
                         <div className="w-4"></div>
-                    <div className=" w-[18.69rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[12]}
+                    <div className="text-[#00A2E8] text-base w-[18.69rem] font-poppins  font-bold max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[12]}
                             {/* Name*/}
                             </div>
                     <div className=" w-[13.69rem] font-poppins text-xs font-bold  max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[0]}

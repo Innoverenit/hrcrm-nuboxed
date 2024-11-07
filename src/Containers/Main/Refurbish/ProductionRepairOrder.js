@@ -191,11 +191,11 @@ function ProductionRepairOrder(props) {
                         <div className=" w-[18.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>  {translatedMenuItems[0]} ID {/* Order ID */}
                           </div>
-                        <div className=" w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[16.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[1]} 
                          {/* Due Date/> */}
                         </div>
-                        <div className=" w-[12.1rem] ">
+                        <div className=" w-[14.1rem] ">
                         <ContactsIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[2]}  {/*"Lead" /> */}
                         </div>
                         <div className="w-[10.8rem]">
@@ -229,7 +229,7 @@ function ProductionRepairOrder(props) {
                       <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
                     </div>
-                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[15.01rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
+                                            <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[15.01rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
                                                         <span class="underline text-xs text-[#1890ff] font-bold cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                             onClick={() => {
