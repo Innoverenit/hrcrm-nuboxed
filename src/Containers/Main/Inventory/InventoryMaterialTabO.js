@@ -9,6 +9,7 @@ import { withRouter } from "react-router";
 import TokenIcon from '@mui/icons-material/Token';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import MaterialReceivedTableOut from "./MaterialReceivedTableOut";//1
+import InventoryWastetab from "../Inventory/InventoryWastetab"//waste
 import InventoryMaterialDamagedData from "../Inventory/InventoryMaterialDamagedData"//4
 import MaterialStockTableOut from "./MaterialStockTableOut";//3
 import MaterialUnitsDataOut from "./MaterialUnitsDataOut";
@@ -113,6 +114,10 @@ class InventoryMaterialTabO extends PureComponent {
                                    locationDetailsId={this.props.user.locationId}
                                   />
                               </div>;
+                               case "7":
+                                return  <div> 
+                                 <InventoryWastetab/>
+                                    </div>;
                       
             default:
               return null;
@@ -373,6 +378,55 @@ class InventoryMaterialTabO extends PureComponent {
                                 
                              
                         </TabPane>
+                        <TabPane
+                            tab={
+                                <>
+                                    <span onClick={this.handleRecruitClick}>
+                                    <FolderDeleteIcon className="!text-icon"/>&nbsp;
+                                        {/* Stock */} 
+                                      Waste
+                                        {/* {this.props.translatedMenuItems[19]} */}
+
+                                    </span>
+                                    {activeKey === "7" && (
+                        <>
+                         
+                             <span
+                    className="ml-4"
+                          type="area-chart"
+                         
+                          onClick={() => {
+                            this.handleSubscr();
+                          }}
+                          size="0.875em"                         
+                          >
+                          <WarehouseIcon className=" !text-icon text-red-600" />
+                          </span>
+                        </>
+                      )}
+
+                                </>
+                            }
+                            key="7"
+                        >
+                            
+                                <Suspense fallback={"Loading ..."}>
+                                  {" "}
+                               {/* <InventoryMaterialDamagedData
+                               locationDetailsId={this.props.user.locationId}
+                               /> */}
+                                  {/* <MaterialIntransitList
+                                   locationDetailsId={this.props.user.locationId}
+                                selectedLanguage={this.props.selectedLanguage}
+                                  translateText={this.props.translateText}
+                                inventory={this.props.inventory}
+                                 translatedMenuItems={this.props.translatedMenuItems}
+                                /> */}
+                                </Suspense>
+                                
+                             
+                        </TabPane>
+
                     </StyledTabs>
                     <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
                 {renderTabContent(activeKey)}
