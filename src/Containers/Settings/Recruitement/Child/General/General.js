@@ -488,10 +488,10 @@ function General(props) {
   value={formValues.qtionInclItem}
   onChange={(value) => handleDropdownChange("qtionInclItem", value)}
 >
-  <Option value="Material">Material</Option>
-  <Option value="Product">Product</Option>
-  <Option value="Inventory Material">Inventory Material</Option>
-  <Option value="Not Applicable">Not Applicable</Option>
+<Option value="material">Material</Option>
+  <Option value="product">Product</Option>
+  <Option value="inventorySuppllier">Inventory Supplier</Option>
+  <Option value="notApplicable">Not Applicable</Option>
 </Select>
                       </div>
                     </div>

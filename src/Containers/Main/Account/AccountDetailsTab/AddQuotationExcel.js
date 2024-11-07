@@ -19,20 +19,20 @@ const { Option } = Select;
 function AddQuotationExcel(props) {
 
   useEffect(() => {
-    props.getCategorylist();
+    // props.getCategorylist();
     props.getLocationList(props.orgId);
-    props.getSupplierSuppliesQuality();
+    // props.getSupplierSuppliesQuality();
   }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [SuppliesId, setSuppliesId] = useState("")
 
-  const handleSearch = async (value) => {
+  const handleMaterialSearch = async (value) => {
     setSearchTerm(value);
     if (value) {
       try {
-        const response = await axios.get(`${base_url2}/supplies/suppliesName/${value}`, {
+        const response = await axios.get(`${base_url2}/supplies/search/${value}`, {
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("token") || ""}`,
           },
@@ -45,9 +45,8 @@ function AddQuotationExcel(props) {
       setSearchResults([]); 
     }
   };
-
-  const handleSelect = (item, setFieldValue) => {
-    setSearchTerm(item.name);
+  const handleMaterialSelect = (item, setFieldValue) => {
+    setSearchTerm(item.suppliesName);
     setSuppliesId(item.suppliesId); 
     setSearchResults([]); 
 
@@ -58,6 +57,69 @@ function AddQuotationExcel(props) {
     setFieldValue('price', item.price || '');
   
   };
+
+  const handleInventorySupplierSearch = async (value) => {
+    setSearchTerm(value);
+    if (value) {
+      try {
+        const response = await axios.get(`${base_url2}/supplier/inventory/supplier/search/${value}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token") || ""}`,
+          },
+        });
+        setSearchResults(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    } else {
+      setSearchResults([]); 
+    }
+  };
+  const handleInventorySupplierSelect = (item, setFieldValue) => {
+    setSearchTerm(item.categoryName);
+    setSuppliesId(item.inventorySupplieId); 
+    setSearchResults([]); 
+
+    setFieldValue('brandId', item.brand || ''); 
+    setFieldValue('modelId', item.model || ''); 
+    setFieldValue('attribute', item.attributeName || ''); 
+    setFieldValue('category', item.categoryName || ''); 
+    setFieldValue('price', item.price || '');
+  };
+
+  const handleProductSearch = async (value) => {
+    setSearchTerm(value);
+    if (value) {
+      try {
+        const response = await axios.get(`${base_url2}/product/productName/${value}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token") || ""}`,
+          },
+        });
+        setSearchResults(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    } else {
+      setSearchResults([]); 
+    }
+  };
+  const handleProductSelect = (item, setFieldValue) => {
+    setSearchTerm(item.name);
+    setSuppliesId(item.productId); 
+    setSearchResults([]); 
+
+    setFieldValue('brandId', item.brandName || ''); 
+    setFieldValue('modelId', item.modelName || ''); 
+    setFieldValue('attribute', item.attributeName || ''); 
+    setFieldValue('category', item.categoryName || ''); 
+    setFieldValue('price', item.price || '');
+  
+  };
+
+ const qPtype="Product";
+ console.log("QTN",props.qtionInclItem)
+
 
   return (
     <>
@@ -77,7 +139,14 @@ function AddQuotationExcel(props) {
             // attribute:"",
             // location:locationId,
             productId:SuppliesId,
-            productType:"material",
+            productType:props.qtionInclItem === "inventorySuppllier" ? "inventorySuppllier" :
+            props.qtionInclItem === "material" ? "material" :
+            props.qtionInclItem === "product" ? "product" : "",
+
+            // productType:qPtype === "Inventory Material" ? "Inventory Material" :
+            // qPtype === "Material" ? "Material" :
+            // qPtype === "Product" ? "Product" : "",
+
             orderPhoneId:props.orderDetailsId.quotationId
           }}
           onSubmit={(values, { resetForm }) => {
@@ -105,9 +174,11 @@ function AddQuotationExcel(props) {
       <div class="w-[22rem] box-content p-2 border-blue border-4">
       <div className="mt-4 w-[22rem]">
                       <div className="font-semibold text-xs font-poppins text-gray-800">Search</div>
+                    {props.qtionInclItem === "material" && (
+                        <> 
                       <Input
                         value={searchTerm}
-                        onChange={(e) => handleSearch(e.target.value)}
+                        onChange={(e) => handleMaterialSearch(e.target.value)}
                         placeholder="Type to search..."
                       />
                       {searchResults.length > 0 && (
@@ -115,7 +186,52 @@ function AddQuotationExcel(props) {
                           {searchResults.map(item => (
                             <div 
                               key={item.id} 
-                              onClick={() => handleSelect(item, setFieldValue)} 
+                              onClick={() => handleMaterialSelect(item, setFieldValue)} 
+                              className="text-black cursor-pointer"
+                            >
+                              {item.suppliesName} 
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      </> 
+                    )}
+
+{props.qtionInclItem === "inventorySuppllier" && (
+  <>
+<Input
+                        value={searchTerm}
+                        onChange={(e) => handleInventorySupplierSearch(e.target.value)}
+                        placeholder="Type to search..."
+                      />
+                      {searchResults.length > 0 && (
+                        <div className="bg-[pink] overflow-auto h-32">
+                          {searchResults.map(item => (
+                            <div 
+                              key={item.id} 
+                              onClick={() => handleInventorySupplierSelect(item, setFieldValue)} 
+                              className="text-black cursor-pointer"
+                            >
+                              {item.categoryName} 
+                            </div>
+                          ))}
+                        </div>
+                      )}
+</>
+)}
+{props.qtionInclItem === "product" && (
+  <>
+<Input
+                        value={searchTerm}
+                        onChange={(e) => handleProductSearch(e.target.value)}
+                        placeholder="Type to search..."
+                      />
+                      {searchResults.length > 0 && (
+                        <div className="bg-[pink] overflow-auto h-32">
+                          {searchResults.map(item => (
+                            <div 
+                              key={item.id} 
+                              onClick={() => handleProductSelect(item, setFieldValue)} 
                               className="text-black cursor-pointer"
                             >
                               {item.name} 
@@ -123,6 +239,11 @@ function AddQuotationExcel(props) {
                           ))}
                         </div>
                       )}
+                      </>
+                    )} 
+
+
+
                     </div>
                     <div class="flex w-wk justify-between mt-4">
                     <div className="w-wk">
@@ -240,7 +361,8 @@ const mapStateToProps = ({ distributor,suppliers, brandmodel, auth }) => ({
   categoryList:suppliers.categoryList,
   allProduct:distributor.allProduct,
   locationlist:distributor.locationlist,
-  supplierSuppliesQuality:suppliers.supplierSuppliesQuality
+  supplierSuppliesQuality:suppliers.supplierSuppliesQuality,
+  qtionInclItem:auth.userDetails.qtionInclItem
 });
 
 const mapDispatchToProps = (dispatch) =>
