@@ -110,7 +110,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
               // date: `${newEndDate}T00:00:00Z`,
             },
             props.particularRowData.procureOrderInvoiceId,
-            props.particularRowData.orderId ? props.particularRowData.orderId:props.particularRowData.orderPhoneId,
+            props.particularRowData.orderPhoneId ? props.particularRowData.orderPhoneId:props.particularRowData.procureOrderInvoiceId,
             props.distributorId,
           ); 
         }

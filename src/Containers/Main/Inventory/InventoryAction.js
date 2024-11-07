@@ -551,6 +551,33 @@ export const getCompleteDispatchList = (locationId,pageNo,type) => (dispatch) =>
     });
 };
 
+export const getCompleteDispatchSearch = (locationId,type,newOrderNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLETE_DISPATCH_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderInventoryLocationLink/searchNewDispatchData/${locationId}/${type}/${newOrderNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETE_DISPATCH_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETE_DISPATCH_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 
 export const getCommerceList = (orgId,pageNo) => (dispatch) => {
   // const dispatchId = getState().inventory.dispatch.dispatchId;
