@@ -184,7 +184,7 @@ const LeadsTeamWarmcard = (props) => {
         <div className=" w-[4.23rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[8]} </div>
         <div className=" w-[2.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
         <div className=" w-[3.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
-        <div className=" w-[5.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+        <div className=" w-[5.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>{translatedMenuItems[11]}</div>
    
        
 
@@ -209,7 +209,7 @@ const LeadsTeamWarmcard = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+              className="flex rounded justify-between  bg-white mt-1  items-center py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">

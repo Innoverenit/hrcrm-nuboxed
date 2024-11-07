@@ -376,7 +376,7 @@ serachedPitchData={props.serachedPitchData}
                                                             </span>
                                                                     </div>
                                                                  </div>
-                                                             <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  w-[4.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                                          
+                                                             <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  w-[3.50rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                                          
                                                             <span>
                                                             <Tooltip title={item.ownerName}>
                                                       <div class="max-sm:flex justify-end">
