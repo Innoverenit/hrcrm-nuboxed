@@ -1,7 +1,8 @@
 import { bindActionCreators } from "redux";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { FaEdit, FaSave } from "react-icons/fa";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
+import SaveIcon from '@mui/icons-material/Save';
 import { Button } from "antd";
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -261,12 +262,12 @@ const ErpAddressData = (props) => {
               <td>
                 {editingIndex === index ? (
                   <>
-                    <FaSave onClick={() => handleSave(index)} />
+                    <SaveIcon onClick={() => handleSave(index)} />
                    
                         <Button onClick={() => handleCancel(index)}>Cancel</Button>
                   </>
                 ) : (
-                  <FaEdit onClick={() => handleEdit(index)} />
+                  <BorderColorIcon onClick={() => handleEdit(index)} />
                 )}
               </td>
             

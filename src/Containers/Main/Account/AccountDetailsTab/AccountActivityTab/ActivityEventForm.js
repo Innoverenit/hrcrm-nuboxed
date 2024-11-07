@@ -1,8 +1,8 @@
-import React, { Component, useState, useMemo, useEffect } from "react";
+import React, {useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import { Button, Switch } from "antd";
+import { Button, } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { getAllCustomerData,addCustomerActivityEvent } from "../../../../Customer/CustomerAction"
@@ -26,10 +26,9 @@ import { TextareaComponent } from "../../../../../Components/Forms/Formik/Textar
 import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 import { getAssignedToList } from "../../../../Employees/EmployeeAction";
 import { getEvents } from "../../../../Settings/Event/EventAction";
-// import CandidateClearbit from "../../../Components/Forms/Autocomplete/CandidateClearbit";
 import { setClearbitCandidateData } from "../../../../Candidate/CandidateAction";
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { Listbox,  } from '@headlessui/react'
+
 // yup validation scheme for creating a opportunity
 const EventSchema = Yup.object().shape({
     eventTypeId: Yup.string().required("Select event type"),

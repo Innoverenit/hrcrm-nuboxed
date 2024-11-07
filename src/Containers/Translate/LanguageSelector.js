@@ -185,6 +185,8 @@ function LanguageSelector({ onLanguageChange,supportedLanguages,selectedLanguage
         <option value="Chinese">中国人</option>
         <option value="Turkish">Türkçe</option>
         <option value="Bangla">বাংলা</option>
+        <option value="Bangla"> গুরুমুখী</option>
+       
         
       </select>
     </div>
