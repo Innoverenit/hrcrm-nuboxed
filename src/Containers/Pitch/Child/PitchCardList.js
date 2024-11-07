@@ -10,9 +10,19 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CategoryIcon from '@mui/icons-material/Category'
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import SourceIcon from '@mui/icons-material/Source';
+import FactoryIcon from '@mui/icons-material/Factory';
+import ScoreIcon from '@mui/icons-material/Score';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {
   getPitch,
   getPitchHot,
@@ -209,52 +219,52 @@ const handleLoadMore2 = () => {
   ) : (
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex justify-between max-sm:hidden w-[99%]  p-1 bg-transparent font-bold sticky  z-10">
+    <div className=" flex justify-between max-sm:hidden w-[99%]  p-1 bg-transparent font-bold sticky items-end  z-10">
     <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-red-600  justify-center ">Hot</div>
-        <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
-       {translatedMenuItems[0]}  
+        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
+        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[0]}  
                 {/* name */}           
                </div>
         <div className=" w-[4.1rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[10.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
-        {translatedMenuItems[1]}
+        <div className=" w-[8.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+        <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {translatedMenuItems[1]}
         {/* Mobile */}
                 </div>      
-        <div className="w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
-        {translatedMenuItems[2]} 
+        <div className="w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
+        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[2]} 
         {/* company */}
                 </div>
                     <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
-                    {translatedMenuItems[3]} 
+                    <SourceIcon className="!text-icon  text-[#4b5043]"/>   {translatedMenuItems[3]} 
                      {/* source */}
                 </div>
-                     <div className="w-[7.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
-                     {translatedMenuItems[4]}  
+                     <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+                     <FactoryIcon className="!text-icon  text-[#84a59d]"/>   {translatedMenuItems[4]}  
                      {/* sector */}
                 </div>
                  <div className="w-[7.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
-                 {translatedMenuItems[5]} 
+                 <FormatListNumberedIcon className='!text-icon text-[#42858c]' /> {translatedMenuItems[5]} 
                  {/* Category */}
           </div>
-          <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[6]}   {/* Shares # */}      
+          <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
+          <ShowChartIcon className='!text-icon    text-[#776871]' /> {translatedMenuItems[6]}   {/* Shares # */}      
           </div>
           <div className="w-[7.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
-          1st {translatedMenuItems[7]}  {/* First Meeting */}   
+          <EventAvailableIcon className="!text-icon   text-[#4b5043]"/> 1st {translatedMenuItems[7]}  {/* First Meeting */}   
           </div>
           <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
-          {translatedMenuItems[8]}  
+          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[8]}  
          {/* Value */}  
           </div>
           {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
+            <ScoreIcon className="!text-icon  text-[#f28482]"/>  Score
           
             </div>
             )}
-        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
+        <div className="w-[6.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
           {/* Assigned */}
-        {translatedMenuItems[9]}
+          <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[9]}
         </div> 
        
         <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem] font-bold font-poppins text-xs">
@@ -299,7 +309,7 @@ const countryCode = item.countryAlpha2Code
                } `;
                     return (
                         <div>
-                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                            <div className="flex rounded justify-between  bg-white mt-1  items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                        <div class="flex flex-row items-center  border-l-2 border-green-500 bg-[#eef2f9]  w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -421,7 +431,7 @@ const countryCode = item.countryAlpha2Code
 
                        </div>
                       
-                              <div className=" flex   w-[10.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[8.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                           {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "None"}
@@ -468,7 +478,7 @@ const countryCode = item.countryAlpha2Code
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -481,7 +491,7 @@ const countryCode = item.countryAlpha2Code
           
             </div>
             )}
-                       <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                    {/* Assigned */}
 
                                     <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -647,50 +657,50 @@ const countryCode = item.countryAlpha2Code
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[99%]  p-1 bg-transparent font-bold sticky  z-10">
     <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-orange-600  justify-center ">Warm</div>
-        <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
-       {translatedMenuItems[0]}  
+        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
+        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[0]}  
                 {/* name */}           
                </div>
         <div className=" w-[4.1rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[10.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
-        {translatedMenuItems[1]}
+        <div className=" w-[8.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+        <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {translatedMenuItems[1]}
         {/* Mobile */}
                 </div>      
-        <div className="w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
-        {translatedMenuItems[2]} 
+        <div className="w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
+        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[2]} 
         {/* company */}
                 </div>
                     <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
-                    {translatedMenuItems[3]} 
+                    <SourceIcon className="!text-icon  text-[#4b5043]"/>   {translatedMenuItems[3]} 
                      {/* source */}
                 </div>
-                     <div className="w-[7.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
-                     {translatedMenuItems[4]}  
+                     <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+                     <FactoryIcon className="!text-icon  text-[#84a59d]"/>  {translatedMenuItems[4]}  
                      {/* sector */}
                 </div>
                  <div className="w-[7.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
-                 {translatedMenuItems[5]} 
+                 <FormatListNumberedIcon className='!text-icon    text-[#42858c]' />  {translatedMenuItems[5]} 
                  {/* Category */}
           </div>
-          <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[6]}   {/* Shares # */}      
+          <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
+          <ShowChartIcon className='!text-icon    text-[#776871]' /> {translatedMenuItems[6]}   {/* Shares # */}      
           </div>
           <div className="w-[7.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
-          1st {translatedMenuItems[7]}  {/* First Meeting */}   
+          <EventAvailableIcon className="!text-icon   text-[#4b5043]"/> 1st {translatedMenuItems[7]}  {/* First Meeting */}   
           </div>
           <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
-          {translatedMenuItems[8]}  
+          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[8]}  
          {/* Value */}  
           </div>
           {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
+             <ScoreIcon className="!text-icon  text-[#f28482]"/> Score
           
             </div>
             )}
-        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
+        <div className="w-[6.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
           {/* Assigned */}
-        {translatedMenuItems[9]}
+          <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[9]}
         </div> 
        
         <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem] font-bold font-poppins text-xs">
@@ -735,7 +745,7 @@ const countryCode = item.countryAlpha2Code
                } `;
                     return (
                         <div>
-                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                            <div className="flex rounded justify-between  bg-white mt-1  items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                        <div class="flex flex-row border-l-2 border-green-500 bg-[#eef2f9]  items-center w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -857,7 +867,7 @@ const countryCode = item.countryAlpha2Code
 
                        </div>
                       
-                              <div className=" flex  h-8 ml-gap bg-[#eef2f9]  w-[10.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                           {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "None"}
@@ -904,7 +914,7 @@ const countryCode = item.countryAlpha2Code
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -917,7 +927,7 @@ const countryCode = item.countryAlpha2Code
           
             </div>
             )}
-                       <div className=" flex  justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex  justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                    {/* Assigned */}
 
                                     <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -1082,50 +1092,50 @@ const countryCode = item.countryAlpha2Code
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
     <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-blue-600  justify-center ">Cold</div>
-        <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
-       {translatedMenuItems[0]}  
+        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem] text-black font-bold font-poppins text-xs">
+        <CategoryIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[0]}  
                 {/* name */}           
                </div>
         <div className=" w-[4.1rem] max-xl:w-[3rem]"></div>
-        <div className=" w-[10.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
-        {translatedMenuItems[1]}
+        <div className=" w-[8.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+        <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {translatedMenuItems[1]}
         {/* Mobile */}
                 </div>      
-        <div className="w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
-        {translatedMenuItems[2]} 
+        <div className="w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]  font-bold font-poppins  text-xs">
+        <ApartmentIcon className="!text-icon mr-1 "/>   {translatedMenuItems[2]} 
         {/* company */}
                 </div>
                     <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
-                    {translatedMenuItems[3]} 
+                    <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[3]} 
                      {/* source */}
                 </div>
-                     <div className="w-[7.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
-                     {translatedMenuItems[4]}  
+                     <div className="w-[5.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-bold font-poppins text-xs">
+                     <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[4]}  
                      {/* sector */}
                 </div>
                  <div className="w-[7.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
-                 {translatedMenuItems[5]} 
+                 <FormatListNumberedIcon className='!text-icon    text-[#42858c]' />{translatedMenuItems[5]} 
                  {/* Category */}
           </div>
-          <div className="w-[4.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[6]}   {/* Shares # */}      
+          <div className="w-[5.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] font-bold font-poppins text-xs">
+          <ShowChartIcon className='!text-icon    text-[#776871]' />  {translatedMenuItems[6]}   {/* Shares # */}      
           </div>
           <div className="w-[7.236rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">     
-          1st {translatedMenuItems[7]}  {/* First Meeting */}   
+          <EventAvailableIcon className="!text-icon   text-[#4b5043]"/>1st {translatedMenuItems[7]}  {/* First Meeting */}   
           </div>
           <div className="w-[4.238rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]  font-bold font-poppins text-xs">
-          {translatedMenuItems[8]}  
+          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />{translatedMenuItems[8]}  
          {/* Value */}  
           </div>
           {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            Score
+               <ScoreIcon className="!text-icon  text-[#f28482]"/>  Score
           
             </div>
             )}
-        <div className="w-[5.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
+        <div className="w-[6.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold font-poppins text-xs">
           {/* Assigned */}
-        {translatedMenuItems[9]}
+           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>{translatedMenuItems[9]}
         </div> 
        
         <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem] font-bold font-poppins text-xs">
@@ -1170,7 +1180,7 @@ const countryCode = item.countryAlpha2Code
                } `;
                     return (
                         <div>
-                            <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                            <div className="flex rounded justify-between  bg-white mt-1 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                        <div class="flex flex-row items-center border-l-2 border-green-500 bg-[#eef2f9]  w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
                                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -1292,7 +1302,7 @@ const countryCode = item.countryAlpha2Code
 
                        </div>
                       
-                              <div className=" flex   h-8 ml-gap bg-[#eef2f9] w-[10.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   h-8 ml-gap bg-[#eef2f9] w-[8.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                           {/* Company  */}
                            <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                            {item.companyName || "None"}
@@ -1339,7 +1349,7 @@ const countryCode = item.countryAlpha2Code
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.121rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* # Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -1352,7 +1362,7 @@ const countryCode = item.countryAlpha2Code
           
             </div>
             )}
-                       <div className=" flex justify-center h-8 ml-gap bg-[#eef2f9] w-[3.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex justify-center h-8 ml-gap bg-[#eef2f9] w-[4.1rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                                    {/* Assigned */}
 
                                     <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">

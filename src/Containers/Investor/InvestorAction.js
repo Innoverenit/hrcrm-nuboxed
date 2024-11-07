@@ -37,7 +37,7 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
           showConfirmButton: false,
         timer: 1500,
         })
@@ -69,7 +69,7 @@ export const getInvestorsbyId = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
           showConfirmButton: false,
         timer: 1500,
         })
@@ -681,7 +681,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
           showConfirmButton: false,
           timer: 1500,
         })
@@ -876,7 +876,7 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
           showConfirmButton: false,
         timer: 1500,
         })

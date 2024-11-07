@@ -1,6 +1,10 @@
 import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import UpdateIcon from '@mui/icons-material/Update';
 import {
     getPhoneOrderIdByUser,
     handleQCPhoneNotesOrderModal,
@@ -18,17 +22,13 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip, Progress,Input,Badge } from "antd";
 import ButtonGroup from "antd/lib/button/button-group";
 import dayjs from "dayjs";
-import QRCode from "qrcode.react";
-import { FormattedMessage } from "react-intl";
-import InfiniteScroll from "react-infinite-scroll-component";
+import QRCode from "qrcode.react";import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
-import { BundleLoader } from "../../../Components/Placeholder";
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import QCSpareListModal from "./QCSpareListModal";
 import QCExpandListModal from "./QCExpandListModal";
 import RefurbishLevelModal from "./RefurbishLevelModal"
-import { base_url } from "../../../Config/Auth";
 import Barcode from 'react-barcode';
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
@@ -329,56 +329,41 @@ function OrderPhoneListById(props) {
 
                                                 </div>
                                                 </div>
-                    <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex max-sm:hidden  w-[90%] font-poppins font-bold text-xs  justify-between p-1 items-end bg-transparent font-bold sticky z-10">
                    
-                        <div className=" w-[4.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[2]} {/* Brand */}
+                        <div className="text-[#00A2E8] text-base w-[4.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <BrandingWatermarkIcon className="!text-icon" /> {translatedMenuItems[2]} {/* Brand */}
                             </div>
-                        <div className=" w-[8.012rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[3]}  {/* <FormattedMessage
-                            id="app.model"
-                            defaultMessage="model"
-                        /> */}
+                        <div className=" w-[6.012rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <ModelTrainingIcon className=" !text-icon" />  {translatedMenuItems[3]}  {/* model"*/}
                         </div>
-                        <div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                        IMEI {/* <FormattedMessage
-                            id="app.iMEI"
-                            defaultMessage="IMEI"
-                        /> */}
+                        <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                        IMEI {/* iMEI" */}
                         </div>
-                        <div className="w-[8.001rem]">
+                        <div className="w-[10.001rem]">
                         {translatedMenuItems[4]}    {/* Issue */}
                         </div>
                         <div className="w-[6.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[5]}  {/* Estimate (hours) */}
                         </div>
                         <div className="w-[3.510rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[6]}   {/* <FormattedMessage
-                            id="app.start"
-                            defaultMessage="Start"
-                        /> */}
+                        {translatedMenuItems[6]}   {/* "Start" /> */}
                         </div>
                         <div className="w-[4.52rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[7]}   {/* <FormattedMessage
-                            id="app.end"
-                            defaultMessage="End"
-                        /> */}
+                        {translatedMenuItems[7]}   {/* End" /> */}
                         </div>
 
                         <div className="w-[6.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">TAT</div>
 
                         <div className="w-[5.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[15]}    {/* <FormattedMessage
-                            id="app.status"
-                            defaultMessage="Status"
-                        /> */}
+                        <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[15]}    {/* Status"/> */}
                         </div>
 
-                        <div className="w-[4.212rem]">
+                        <div className="w-[5.212rem]">
                         {translatedMenuItems[14]}  {/* Spare */}
                             </div>
                         <div className="w-[13.523rem]">
-                        {translatedMenuItems[8]}  {/* Task */}
+                        <FactCheckIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[8]}  {/* Task */}
                             </div>
                         
                     </div>
@@ -389,7 +374,7 @@ function OrderPhoneListById(props) {
                              next={handleLoadMore}
                              hasMore={hasMore}
                             loader={props.fetchingOrderIdByUserId ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                            height={"72vh"}
+                            height={"82vh"}
                             style={{ scrollbarWidth:"thin"}}
                             endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                         >
@@ -415,15 +400,17 @@ function OrderPhoneListById(props) {
                                 console.log(acivedPercentage)
                                 return (
                                     <div>
-                                        <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                        <div className="flex rounded justify-between  mt-1 bg-white  items-center py-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-24 max-sm:flex-col max-sm:justify-between  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex  w-[5.21rem] max-xl:w-[4.21rem] max-lg:w-[3.1rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                                <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] h-8 w-[3.60rem] max-xl:w-[4.21rem] max-lg:w-[3.1rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
+                                                <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.company}
+                                                    </div>
                                                 </div>
 
-                                                <div className=" flex   w-[6.35rem] max-xl:w-[2.5rem] max-lg:w-[2.5rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex items-center justify-start ml-gap bg-[#eef2f9] h-8  w-[3.35rem] max-xl:w-[2.5rem] max-lg:w-[2.5rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.model}
                                                     </div>
 
@@ -432,18 +419,18 @@ function OrderPhoneListById(props) {
                                                 </div>
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                     
-                                                <div className=" flex  w-[9.2rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex items-center justify-start ml-gap bg-[#eef2f9] h-8  w-[7.2rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.imei}
                                                     </div>
                                                 </div>
-                                                <div className=" flex  w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div className=" flex items-center justify-start ml-gap bg-[#eef2f9] h-8 w-[7.03rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 20 && '...'}</span>
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex  w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[4.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.levelCount&&item.levelCount.map((level)=>{
                                                             return(
@@ -469,7 +456,7 @@ function OrderPhoneListById(props) {
                                             
                                            
                                                 
-                                                <div className=" flex  w-[4.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[2.32rem] max-xl:w-[3.32rem] max-lg:w-[3.32rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" >
                                                         <div>
                                                         {props.updatingQCStatus && <span>Loading...</span>}
@@ -508,7 +495,7 @@ function OrderPhoneListById(props) {
                                                     </div>
                                                 </div>
                                                 
-                                                <div className=" flex  w-[4.2rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[4.2rem] max-xl:w-[3.52rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.totalhours}
 
@@ -516,27 +503,27 @@ function OrderPhoneListById(props) {
                                                 </div>
                                            
                                            
-                                                <div className=" flex  w-[4.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[4.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.qcStartTime === null ? "" : dayjs(item.qcStartTime).format('HH:mm:ss')}
 
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex  w-[4.81rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[3.81rem] max-xl:w-[5.11rem] max-lg:w-[3.51rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <>{item.qcEndTime === null ? "" : dayjs(item.qcEndTime).format('HH:mm:ss')}</>
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex w-[4rem] max-xl:w-[6rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[3.82rem] max-xl:w-[6rem] max-lg:w-[3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.estimateQcTimeHours || "0"}H:{item.estimateQcTimeMinutes || "0"}M:{item.estimateQcTimeSeconds || "0"}S
 
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className=" flex  md:w-[7.08rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[4.08rem] md:w-[4.08rem] max-sm:flex-row  max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     {item.qcStatus === "In Progress" &&
                                                         <>
@@ -573,13 +560,13 @@ function OrderPhoneListById(props) {
                                                     }
                                                 </div>
                                             </div>
-                                            <div className=" flex   md:w-[10.64rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] w-[5.64rem] h-8  md:w-[4.64rem] max-sm:flex-row  max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins">
                                                     {item.cannotRepairInd ? translatedMenuItems[18]:translatedMenuItems[20]}
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex w-[4.51rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[4.51rem] max-xl:w-[5.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={translatedMenuItems[15]}>
                                                             <Button
@@ -613,7 +600,7 @@ function OrderPhoneListById(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex  w-[9.51rem] max-xl:w-[5.01rem] max-lg:w-[4.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex  w-[9.51rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-xl:w-[5.01rem] max-lg:w-[4.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {/* <Tooltip title="Task">
                                                         <Button
@@ -658,7 +645,7 @@ function OrderPhoneListById(props) {
                                                        {/* ) : null}   */}
                                                     </div>
                                                 </div>
-                                                <div className=" flex  w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[1rem] max-xl:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={translatedMenuItems[10]}>
                                                         <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
@@ -674,7 +661,7 @@ function OrderPhoneListById(props) {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[7.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={translatedMenuItems[11]}
                                                         // {<FormattedMessage
@@ -711,7 +698,7 @@ function OrderPhoneListById(props) {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8   w-[7.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={translatedMenuItems[11]}
                                                        

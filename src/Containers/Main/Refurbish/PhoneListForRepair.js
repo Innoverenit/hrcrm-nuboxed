@@ -2,6 +2,10 @@ import React, { useState, useEffect, lazy, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Barcode from 'react-barcode';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import UpdateIcon from '@mui/icons-material/Update';
 import {
     getRepairPhoneByUser,
     updaterepairStatus,
@@ -322,49 +326,36 @@ function PhoneListForRepair(props) {
 
                                                 </div>
                                                 </div>
-                    <div className=" flex  w-[100%]  max-sm:hidden p-1 bg-transparent font-bold sticky z-10">
-                        <div className=" w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                           {translatedMenuItems[2]} {/* Brand */}
+                    <div className=" flex  w-[95%] font-bold font-poppins text-xs  max-sm:hidden py-1 bg-transparent font-bold sticky items-end z-10">
+                        <div className="text-[#00A2E8] text-base w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <BrandingWatermarkIcon className="!text-icon" />   {translatedMenuItems[2]} {/* Brand */}
                             </div>
-                        <div className=" w-[7.31rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[3]} {/* <FormattedMessage
-                            id="app.model"
-                            defaultMessage="model"
-                        /> */}
+                        <div className=" w-[5.31rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <ModelTrainingIcon className=" !text-icon" />     {translatedMenuItems[3]} 
+                        {/* "model" */}
                         </div>
-                        <div className=" w-[10.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
-                         IMEI   {/* <FormattedMessage
-                            id="app.iMEI"
-                            defaultMessage="IMEI"
-                        /> */}
+                        <div className=" w-[9.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                         IMEI   
                         </div>
-                        <div className="w-[4.01rem]">{translatedMenuItems[4]}</div>
-                        <div className="w-[8.31rem]"></div>
+                        <div className="w-[8.01rem]">{translatedMenuItems[4]}</div>
+                        <div className="w-[6.31rem]"></div>
                         <div className="w-[8.58rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {translatedMenuItems[5]} {/* Estimate (hours) */}
                         </div>
-                        <div className="w-[6.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[6]}  {/* <FormattedMessage
-                            id="app.start"
-                            defaultMessage="Start"
-                        /> */}
+                        <div className="w-[4.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[6]}  {/* Start" /> */}
                         </div>
                         <div className="w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {translatedMenuItems[7]}   {/* <FormattedMessage
-                            id="app.end"
-                            defaultMessage="End"
-                        /> */}
+                        {translatedMenuItems[7]}   {/*End"/> */}
                         </div>
 
-                        <div className="w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                         TAT   {/* <FormattedMessage
-                            id="app.tat"
-                            defaultMessage="TAT"
-                        /> */}
+                        <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                         TAT   {/*TAT"*/}
                         </div>
 
                         {/* <div className="w-[10.81rem]">Spare</div> */}
-                        <div className="w-[10.43rem]">{translatedMenuItems[8]}</div>
+                        <div className="w-[10.43rem]">
+                        <FactCheckIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[8]}</div>
                         <div className="w-[2.03rem]"></div>
                         <div className="w-[2rem]"></div>
                     </div>
@@ -372,7 +363,7 @@ function PhoneListForRepair(props) {
                         dataLength={props.repairPhone.length}
 
                         loader={props.fetchingRepairPhoneByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                        height={"72vh"}
+                        height={"82vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
                         {props.repairPhone.map((item, index) => {
@@ -397,27 +388,27 @@ function PhoneListForRepair(props) {
                             const time = dayjs(item.qcEndTime).add(5, 'hours').add(30, 'minutes');
                             return (
                                 <div>
-                                    <div className="flex rounded  w-full   bg-white h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                    <div className="flex rounded  w-full   bg-white  items-center py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-24 max-sm:flex-col max-sm:justify-between scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
 
                                     >
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex  w-[5.99rem] max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs  ">
+                                            <div className=" flex  w-[4.99rem] items-center border-l-2 border-green-500 bg-[#eef2f9] h-8 max-sm:w-auto max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs  ">
                                                 {item.company}
                                             </div>
 
-                                            <div className=" flex   w-[5.07rem] max-sm:flex-row  max-sm:justify-between  ">
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[4.07rem] max-sm:flex-row  max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.model}
                                                 </div>
 
                                             </div>
-                                            <div className=" flex  w-[8.08rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex   items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[7.08rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.imei}
                                                 </div>
                                             </div>
-                                            <div className=" flex  w-[7.98rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[7.98rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 {/* <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 20 && '...'}</span> */}
                                                 <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div>
@@ -425,7 +416,7 @@ function PhoneListForRepair(props) {
                                             </div>
 
 
-                                            <div className=" flex  w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[4.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.levelCount&&item.levelCount.map((level)=>{
                                                             return(
@@ -451,7 +442,7 @@ function PhoneListForRepair(props) {
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                           
-                                            <div className=" flex  w-[5.3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[4.3rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 {props.rowData.repairInspectionInd !== 0 &&
                                                 <div class=" text-xs  flex w-[3.5rem] font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {(x === true && y === true) &&
@@ -519,7 +510,7 @@ function PhoneListForRepair(props) {
                                                 </div>
                                                }
                                             </div>
-                                            <div className=" flex  w-[5.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.totalhours}
 
@@ -527,29 +518,29 @@ function PhoneListForRepair(props) {
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex  w-[5.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[5.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.repairStartTime === null ? "" : dayjs(item.repairStartTime).format('HH:mm:ss')}
 
                                                 </div>
                                             </div>
 
-                                            <div className=" flex  w-[5.27rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[5.27rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <>{item.repairEndTime === null ? "" : dayjs(item.repairEndTime).format('HH:mm:ss')}</>
 
                                                 </div>
                                             </div>
-                                            <div className=" flex w-[5.812rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[5.812rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.totalTimeTakenInHours}H:{Math.floor(item.totalTimeTakenInMinutes)}M
 
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                                        <div class="flex  max-sm:justify-between max-sm:w-wk items-center">
                                         {props.rowData.repairInspectionInd !== 0 &&
-                                            <div className=" flex w-[8.79rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[4.79rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center mr-2 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                  
                                                 
@@ -557,7 +548,7 @@ function PhoneListForRepair(props) {
                                             </div>
                         }
                          {props.rowData.repairInspectionInd !== 0 &&
-                                            <div className=" flex  w-[9.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[9.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                   
                                                   
@@ -581,7 +572,7 @@ function PhoneListForRepair(props) {
                         }
                                         
                                        
-                                            <div className=" flex  w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center ml-gap bg-[#eef2f9] h-8 w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title={translatedMenuItems[10]}>
                                                     <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
@@ -596,7 +587,7 @@ function PhoneListForRepair(props) {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex ml-1   w-[4.023rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex   items-center bg-[#eef2f9] ml-gap h-8  w-[5.023rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     <Tooltip title={translatedMenuItems[11]}>
 
@@ -630,7 +621,7 @@ function PhoneListForRepair(props) {
                                                 <div style={{ fontSize: "1.5rem" }}> {item.imei}</div>
                                             </div>
                                         </div>
-                                        <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                        <div className=" flex ml-1  w-[4.01rem] items-center justify-center bg-[#eef2f9] h-8 max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={translatedMenuItems[11]}
                                                        

@@ -5,6 +5,7 @@ import { Tooltip, Button, Select, Progress, Badge } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
   getReceivedUserList,
   handleReceivedModal,
@@ -154,7 +155,9 @@ const ReceivedTableOut = (props) => {
               {translatedMenuItems[5]}
                 </div>
               <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {translatedMenuItems[6]}
+              <LocationOnIcon
+              className='!text-base  text-[#e4eb2f]'
+              /> {translatedMenuItems[6]}
                 </div>
           
             </div>

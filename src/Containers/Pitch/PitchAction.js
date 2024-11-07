@@ -31,7 +31,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -62,7 +64,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -93,7 +97,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -124,7 +130,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -174,7 +182,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Created Succefully',
+          title: 'Created Succefully!',
+          showConfirmButton: false,
+          timer: 1500
        
         })
         // cb && cb();
@@ -220,6 +230,8 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
          Swal.fire({
           icon: 'success',
           title: 'Pitch deleted Succefully!',
+          showConfirmButton: false,
+          timer: 1500
        
         })
         dispatch({
@@ -302,7 +314,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Qualified Succefully',
+          title: 'Qualified Succefully!',
+          showConfirmButton: false,
+          timer: 1500
        
         })
       })
@@ -783,7 +797,9 @@ export const getAllPitch = (pageNo,filter) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
+        showConfirmButton: false,
+        timer: 1500
       })
     });
 };
@@ -947,7 +963,9 @@ export const getTeamPitch = (userId,pageNo) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
+        showConfirmButton: false,
+        timer: 1500
       })
     });
 };

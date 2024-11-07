@@ -69,7 +69,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Lead created Successfully!',
           showConfirmButton: false,
-          timer: 2000
+          timer: 1500
       
         })
         dispatch(getOpportunityRecord(userId));
@@ -261,7 +261,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Lead converted Successfully!',
           showConfirmButton: false,
-          timer: 2000
+          timer: 1500
        
         })
         dispatch(getLeads(userId));
@@ -305,7 +305,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Deleted Successfully!',
           showConfirmButton: false,
-          timer: 2000
+          timer: 1500
       
         })
         console.log(res);
@@ -378,7 +378,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Lead Info  updated Successfully!',
           showConfirmButton: false,
-          timer: 2000
+          timer: 1500
        
         })
         console.log(res);
@@ -1169,7 +1169,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Reinstated Successfully',
           showConfirmButton: false,
-          timer: 2000
+          timer: 1500
         })
       })
       .catch((err) => {
@@ -1423,7 +1423,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         });
         // Swal.fire({
         //   icon: 'error',
-        //   title: 'Something went wrong , reach out to support!',
+        //   title: 'Something went wrong, reach out to support!',
         // })
       });
   };
@@ -1454,7 +1454,9 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -1485,7 +1487,9 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -1516,7 +1520,9 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -2010,7 +2016,7 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Subscription added Successfully!',
           showConfirmButton: false,
-          timer: 2000
+        timer: 1500
       
         })
         //dispatch(getOpportunityRecord(userId));
