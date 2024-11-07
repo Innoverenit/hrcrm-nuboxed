@@ -61,6 +61,29 @@ function ContactEventForm (props) {
    props.getAllOpportunityData(userId)
    props.getFilteredEmailContact(userId);
   },[])
+  const {
+    user: { userId, firstName, empName,fullName, middleName, lastName, timeZone },
+    isEditing,
+    prefillEvent,
+    addingContactActivityEvent,
+    addContactActivityEvent,
+    deletingEvent,
+    deleteEvent,
+    startDate,
+    endDate,
+    contactId,
+    startTime,
+    endTime,
+    defaultContacts,
+    ownerId,
+    defaultAccounts,
+    eventType,
+    updateEvent,
+    updatingEvent,
+    defaultOpportunities,
+    creatorId,
+    employeeId,
+  } = props;
   
     const employeesData =props.assignedToList.map((item) => {
       return {
@@ -75,29 +98,7 @@ function ContactEventForm (props) {
   
 const selectedOption = props.assignedToList.find((item) => item.empName === selected);
    
-const {
-      user: { userId, firstName, empName,fullName, middleName, lastName, timeZone },
-      isEditing,
-      prefillEvent,
-      addingContactActivityEvent,
-      addContactActivityEvent,
-      deletingEvent,
-      deleteEvent,
-      startDate,
-      endDate,
-      contactId,
-      startTime,
-      endTime,
-      defaultContacts,
-      ownerId,
-      defaultAccounts,
-      eventType,
-      updateEvent,
-      updatingEvent,
-      defaultOpportunities,
-      creatorId,
-      employeeId,
-    } = props;
+
     return (
       <>
         <Formik
@@ -224,7 +225,7 @@ const {
               : addContactActivityEvent(
                   {
                     ...values,
-                    contact:props.currentContact.contactId,
+                    contacts:[props.currentContact.contactId],
                     ownerIds: userId === userId ? [userId] : [],
                     startDate: `${newStartDate}T${newStartTime}`,
                     endDate: `${newEndDate}T${newEndTime}`,

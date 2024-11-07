@@ -520,10 +520,11 @@ translatedMenuItems={this.props.translatedMenuItems}
 
           <AddCustomerContactModal
           customer={this.props.customer}
+          name={this.props.customer.name}
           handleCustomerContactModal={handleCustomerContactModal}
             addCustomerContactModal={addCustomerContactModal}
             defaultCustomers={[{ label: name, value: customerId }]}
-            customerId={{ value: customerId }}
+            id={this.props.customer.customerId}
             selectedLanguage={this.props.selectedLanguage}
             translateText={this.props.translateText}
             // callback={() => getContactListByCustomerId(customerId)}

@@ -126,7 +126,7 @@ class ContactInvestForm extends Component {
     this.setState({ isLoadingContacts: true });
 
     try {
-      const apiEndpoint = `${base_url}/customer/contact/drop/${customerId}`;
+      const apiEndpoint = `${base_url}/contact-list/drop-down/${customerId}`;
       const response = await fetch(apiEndpoint, {
         method: 'GET',
         headers: {

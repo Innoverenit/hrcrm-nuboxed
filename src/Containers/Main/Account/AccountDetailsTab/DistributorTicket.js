@@ -26,7 +26,8 @@ import {
     getProcessForOpportunity,
     getProcessStagesForOpportunity,
 } from "../../../../Containers/Settings/SettingsAction";
-import {getTicket} from "../AccountAction"
+import {getTicket,updateTicketStage} from "../AccountAction"
+import StageColumnsTicket from "./StageColumnsTicket"
 // import {
 //     // getAllOpportunityListByUserId,
 //     updateOpportunitydragstage,emptyOpportunity} from "../OpportunityAction"
@@ -131,20 +132,20 @@ let type="Quotation"
       return;
     }
 
-    // const {
-    //   updateOpportunitydragstage,
+    const {
+      updateTicketStage,
 
-    // } = props;
-    // let data={
-    //   opportunityStagesId:destination.droppableId,
-    //   opportunityId:result.draggableId,
-    // }
-    // updateOpportunitydragstage(data,
-    //   source.droppableId,
-    //   destination.droppableId,
-    //   draggableId,
+    } = props;
+    let data={
+      opportunityStagesId:destination.droppableId,
+      opportunityId:result.draggableId,
+    }
+    updateTicketStage(data,
+      source.droppableId,
+      destination.droppableId,
+      draggableId,
 
-    // );
+    );
   }
 
   function dragStart() {
@@ -232,27 +233,27 @@ let type="Quotation"
                                       id="style-3"
                                       style={{scrollbarWidth:"thin"}}
                                     >
-                                      {/* {props.opportunityByUserId
+                                      {props.ticketList
                                         .filter(
                                           (opp, index) =>
-                                            opp.opportunityStagesId === stage.stagesId
+                                            opp.stageId === stage.stagesId
                                         )
                                         .map((opp, index) => {
                                           return (
-                                            <StageColumns1
+                                            <StageColumnsTicket
                                               key={index}
                                               opportunity={opp}
                                               index={index}
                                               history={props.history}
                                             />
                                           );
-                                        })} */}
-                                         {/* {props.opportunityByUserId.length === 0 && (
+                                        })}
+                                         {props.ticketList.length === 0 && (
     <div className="loader-container">
       <Spin/>
     </div>
-  )} */}
-  Hello
+  )}
+  
                                     </StageColumn>
                                   {/* </Spin> */}
                                   
@@ -290,7 +291,8 @@ const mapDispatchToProps = (dispatch) =>
     {
         getProcessForOpportunity,
         getProcessStagesForOpportunity,
-        getTicket
+        getTicket,
+        updateTicketStage
        // getAllOpportunityListByUserId,
         // emptyOpportunity,
         //updateOpportunitydragstage

@@ -2,8 +2,9 @@ import React, { useEffect, useState , lazy,} from 'react';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import { Timeline, Button, Popconfirm, Tooltip } from 'antd';
+import { Timeline, Button, Popconfirm, Tooltip,message } from 'antd';
 import { connect } from 'react-redux';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {linkTaskStatus} from "../../../Task/TaskAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { bindActionCreators } from 'redux';
@@ -19,6 +20,7 @@ import EmptyPage from '../../../Main/EmptyPage';
 
 const ButtonGroup = Button.Group;
 const CustomerActivityTable = (props) => {
+  const [location, setLocation] = useState({ lat: null, lng: null });
   useEffect(() => {
       props.getCustomerActivityTimeline(props.customer.customerId);
       props.getCustomerActivityRecords(props.customer.customerId);
@@ -34,6 +36,32 @@ const CustomerActivityTable = (props) => {
     setSelectedStatus(status);
     props.handleCustomerNoteDrawerModal(true);
     props.getCustomerNoteList(status.category,status.category==="Task"?status.taskId:status.category==="Event"?status.eventId:status.category==="Call"?status.callId:null);
+  };
+
+  const getLocation = (item) => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation({ lat: latitude, lng: longitude });
+          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+          let data={
+            complitionInd:item.complitionInd===false?true:false,
+            latitude:latitude,
+            longitude:longitude,
+  
+          }
+          //props.addeventLocation(data,item.eventId)
+          message.success('Location fetched successfully!');
+        },
+        (error) => {
+          console.error('Error fetching location:', error);
+          // message.error('Error fetching location. Please try again.');
+        }
+      );
+    } else {
+      message.error('Geolocation is not supported by your browser.');
+    }
   };
 
   const { customerActivityTimeline, ratingValue,fetchingCusActivityTimelineStatus  } = props;
@@ -64,15 +92,47 @@ const CustomerActivityTable = (props) => {
                   Completion by {dayjs(status.endDate).format('DD/MM/YYYY')}
                   {status.category === 'Task' ? status.statusTask : null}
                 </div>
+                {status.complitionInd===true&&(
+                        <div>
+                        {/* {item.completionInd === false ? (
+                <CheckCircleIcon 
+                className="!text-icon cursor-pointer text-[#eeeedd]"
+                  />
+              ) : (
+                <span><CheckCircleIcon 
+                className="!text-icon cursor-pointer text-[#67d239]"
+                 />
+                </span>
+              )} */}
+              
+
+{Math.round(status.compDistance)}km
+           
+        
+                        </div>
+                        )}
           <div class="flex  items-end  justify-end">
           {(status.category === "Call" || status.category === "Event") && (
   <div class="">
-    <Button
+    {/* <Button
       style={{ margin: '0 8px', padding: 0 }}
       onClick={() => handleNotesClick(status)}
     >
       Complete
-    </Button>
+    </Button> */}
+     {status.complitionInd===false&&(
+   <Button 
+   //onClick={() => getLocation(item)}
+   >
+        Complete</Button>
+                )}
+                              {status.complitionInd===true&&(
+   <CheckCircleIcon 
+   onClick={() => getLocation(status)}
+   style={{color:"green"}}
+   />
+       
+                )}
   </div>
 )}
 {status.category==="Task"&&(
