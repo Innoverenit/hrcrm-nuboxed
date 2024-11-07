@@ -94,6 +94,14 @@ const InventoryMaterialDamagedData = (props) => {
               /> Supplies Id
 
                         </div>
+                        <div className=" w-[9.14rem]">       
+              Received
+
+                        </div>
+                        <div className=" w-[9.14rem]">       
+              Damaged
+
+                        </div>
                         <div className=" w-[15.15rem]">       
                       Repacked
 
@@ -103,7 +111,7 @@ const InventoryMaterialDamagedData = (props) => {
 
                         </div>
                         <div className=" w-[4.17rem]">       
-                    Units
+                  Final
 
                         </div>                                 
                     </div>
@@ -166,6 +174,16 @@ const InventoryMaterialDamagedData = (props) => {
                                           {item.suppliesId}
                                           </div>
                                         </div>
+                                        <div className=" flex  items-center justify-start font-poppins  h-8 ml-gap bg-[#eef2f9] w-[28.2rem] md:w-[19.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs   ml-gap font-poppins">
+                                          {item.unitReceived}
+                                          </div>
+                                        </div>
+                                        <div className=" flex  items-center justify-start font-poppins  h-8 ml-gap bg-[#eef2f9] w-[28.2rem] md:w-[19.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs   ml-gap font-poppins">
+                                          {item.unitDamaged}
+                                          </div>
+                                        </div>
                                         <div className=" flex  items-center justify-center ml-gap  h-8 ml-gap bg-[#eef2f9] w-[17.01rem] md:w-[13.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           {item.unitDamaged != 0 &&(
                                         <Switch
@@ -187,7 +205,16 @@ const InventoryMaterialDamagedData = (props) => {
          )} 
                                         </div>
 
-                                        <div className=" flex w-[7.22rem]  justify-center items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+ 
+                                        <div className=" flex  w-[25.02rem] items-center h-8 ml-gap bg-[#eef2f9] md:w-[13.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                         
+                                         </div>
+                                         <div className=" flex w-[18.1rem] justify-center items-center h-8 ml-gap bg-[#eef2f9] md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                         {item.unitCorrect}
+                                         </div>
+
+
+                                         <div className=" flex w-[7.22rem]  justify-center items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
 <div class=" text-xs   font-poppins">
   <Button
@@ -206,12 +233,6 @@ const InventoryMaterialDamagedData = (props) => {
 </div>
 
 </div>
-                                        <div className=" flex  w-[25.02rem] items-center h-8 ml-gap bg-[#eef2f9] md:w-[13.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                         
-                                         </div>
-                                         <div className=" flex w-[18.1rem] justify-center items-center h-8 ml-gap bg-[#eef2f9] md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                         {item.unitDamaged}
-                                         </div>
                                        
                                     </div>
 

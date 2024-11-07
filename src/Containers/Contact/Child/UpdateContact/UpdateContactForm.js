@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select, } from "antd";
+import { base_url } from "../../../../Config/Auth";
 import { Formik, Form, FastField, Field } from "formik";
 import * as Yup from "yup";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
@@ -44,13 +45,95 @@ class UpdateContactForm extends Component {
       candidate: false,
       availability: false,
       translatedMenuItems: [],
-      loading: true
+      loading: true,
+      customers: [],
+      contacts:[],
+      isLoadingCustomers: false,
+      isLoadingContacts:false,
+      loading: true,
+      touchedCustomer: false,
+      selectedCustomer: props.setEditingContact.customerId,
+      selectedContact:props.setEditingContact.contactId,
 
     };
+    this.handleSelectCustomerFocus=this.handleSelectCustomerFocus.bind(this)
+    this.handleCustomerChange = this.handleCustomerChange.bind(this);
+    this.fetchCustomers = this.fetchCustomers.bind(this);
+    this.fetchContacts=this.fetchContacts.bind(this)
   }
 
   componentDidMount() {
     this.fetchMenuTranslations();
+    this.fetchContacts()
+    this.fetchCustomers()
+  }
+
+
+
+  async fetchCustomers() {
+    this.setState({ isLoadingCustomers: true });
+
+    try {
+      const apiEndpoint = `${base_url}/customer/user/${this.props.userId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      this.setState({ customers: data });
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      this.setState({ isLoadingCustomers: false });
+    }
+  }
+
+
+  handleSelectCustomerFocus() {
+    const { touchedCustomer } = this.state;
+    if (!touchedCustomer) {
+      this.fetchCustomers();
+      // this.fetchSector();
+
+      this.setState({ touchedCustomer: true });
+    }
+  }
+
+
+  handleCustomerChange(customerId) {
+    this.setState({ selectedCustomer: customerId });
+  this.fetchContacts(customerId);
+  }
+
+  handleContactChange=(contactId)=>{
+    this.setState({ selectedContact: contactId });
+  }
+
+
+  async fetchContacts(customerId) {
+    this.setState({ isLoadingContacts: true });
+
+    try {
+      const apiEndpoint = `${base_url}/contact-list/drop-down/${this.props.setEditingContact.customerId||customerId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      this.setState({ contacts: data });
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      this.setState({ isLoadingContacts: false });
+    }
   }
 
   async fetchMenuTranslations() {
@@ -226,6 +309,8 @@ class UpdateContactForm extends Component {
               {
                 ...values,
                 contactId: this.props.contactId,
+                customerId:this.state.selectedCustomer,
+                reportsTo:this.state.selectedContact,
               },
               this.props.contactId,
               () => this.handleReset(resetForm)
@@ -393,26 +478,61 @@ class UpdateContactForm extends Component {
                 
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 > 
-                <div class=" flex  justify-between max-sm:mt-20">
-                <div class=" text-xs font-bold font-poppins w-1/2">
-                {translatedMenuItems[9]}
-                      <Field
-                        name="customerId"
-                        // selectType="customerList"
-                        isColumnWithoutNoCreate
-                       
-                        //Tag Company
-                        component={SelectComponent}
-                        isColumn
-                        value={values.customerId}
-                        isDisabled={defaultCustomers}
-                        options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
-                        inlineLabel
-                      />
+               <div class="  flex justify-between max-sm:mt-20">
+        <div class="flex flex-col w-w47.5">
+                
+                  <div class=" text-xs font-bold font-poppins"> 
+                    {/* {translatedMenuItems[9]} */}
+                    Tag Company
                     </div>
+                  {/* Tag Company */}
+
+                    <div class="  w-wk">
+                   
+                    
+                      <Select
+        value={this.state.selectedCustomer}
+                      placeholder="Select Customer"
+                      loading={this.state.isLoadingCustomers}
+                      onFocus={this.handleSelectCustomerFocus}
+                      onChange={this.handleCustomerChange}
+                    >
+                      {this.state.customers.map(customer => (
+                        <Option key={customer.customerId} value={customer.customerId}>
+                          {customer.name}
+                        </Option>
+                      ))}
+                    </Select>
+                    
+                    </div>
+                    </div>              
                
-                <div class=" text-xs font-bold font-poppins w-w47.5">
+
+<div class=" w-w47.5 ">
+                   
+                    <div class=" text-xs font-bold font-poppins"> Reports To</div>
+                    
+  
+                    {/* {this.props.customerConfigure.sourceInd===true&& */}
+                    <Select
+                    value={this.state.selectedContact}
+        placeholder="Select Contact"
+      loading={this.state.isLoadingContacts}
+        onChange={this.handleContactChange}
+      disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+      >
+        {this.state.contacts.map(contact => (
+          <Option key={contact.contactId} value={contact.contactId}>
+            {contact.fullName}
+          </Option>
+        ))}
+      </Select> 
+                    {/* } */}
+                        </div>
+                     
+                     
+                  </div>
+              <div class=" text-xs font-bold font-poppins w-w47.5">
                 {translatedMenuItems[10]}
                     <FastField
                             name="source"
@@ -424,8 +544,6 @@ class UpdateContactForm extends Component {
                             isColumn
                           />
                         </div>
-               
-              </div>
               
                   <div class=" flex justify-between mt-3">      
               <div class="text-xs font-bold font-poppins w-1/2">
@@ -554,6 +672,7 @@ const mapStateToProps = ({ auth, contact,customer, departments, designations, op
   updateContactById: contact.updateContactById,
   updateContactByIdError: contact.updateContactByIdError,
   user: auth.userDetails,
+  token: auth.token,
   orgType:auth.userDetails.orgType,
   customerData:customer.customerData,
   userId: auth.userDetails.userId,

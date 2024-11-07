@@ -2370,7 +2370,7 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
           showConfirmButton: false,
         timer: 1500,
         })

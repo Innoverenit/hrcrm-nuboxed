@@ -12,6 +12,13 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import SourceIcon from '@mui/icons-material/Source';
+import FactoryIcon from '@mui/icons-material/Factory';
+import ScoreIcon from '@mui/icons-material/Score';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CategoryIcon from '@mui/icons-material/Category'
 import {
     getTeamPitch,
   deletePitchData,
@@ -123,48 +130,48 @@ serachedPitchData={props.serachedPitchData}
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div class="w-[90%]">
- <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+ <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky items-end z-10">
         <div className=" text-xs font-bold font-poppins w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
-        {translatedMenuItems[0]}
+        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[0]}
         {/* Name */}
                 </div>
-        <div className=" w-[6.1rem] max-xl:w-[3rem]"></div>
-        <div className="  text-xs font-bold font-poppins w-[6.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[1]} 
+        <div className=" w-[11.1rem] max-xl:w-[3rem]"></div>
+        <div className="  text-xs font-bold font-poppins w-[10.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {translatedMenuItems[1]} 
         {/* Mobile */}
                 </div>
-        <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="text-xs font-bold font-poppins w-[16.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
-        {translatedMenuItems[2]}
+        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className="text-xs font-bold font-poppins w-[19.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[2]}
         {/* Company */}
            </div>
-         <div className="text-xs font-bold font-poppins w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {translatedMenuItems[3]}
+         <div className="text-xs font-bold font-poppins w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+         <SourceIcon className="!text-icon  text-[#4b5043]"/>{translatedMenuItems[3]}
                {/* Source */}
            </div>
-          <div className="text-xs font-bold font-poppins w-[6.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                {translatedMenuItems[4]} 
+          <div className="text-xs font-bold font-poppins w-[12.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[4]} 
                      {/* Sector */}
                 </div>
 
                 {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-               {translatedMenuItems[19]} 
+            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+             <ScoreIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[19]} 
             {/* Score */}
           
             </div>
             )}
-        <div className="text-xs font-bold font-poppins w-[3.522rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[5]}
+        <div className="text-xs font-bold font-poppins w-[7.522rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[5]}
           {/* Assigned */}
           </div>
-          <div className="text-xs font-bold font-poppins w-[3.521rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[6]}
+          <div className="text-xs font-bold font-poppins w-[5.521rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[6]}
           {/* Owner */}
           </div>
          
-        <div className="text-xs font-bold font-poppins w-[4.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
-        {translatedMenuItems[7]}
+        <div className="text-xs font-bold font-poppins w-[5.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        <ExploreIcon  className="!text-icon cursor-pointer text-[green]" /> {translatedMenuItems[7]}
         {/* Qualify */}
                 </div>
                 </div>
@@ -203,7 +210,7 @@ serachedPitchData={props.serachedPitchData}
                     return (
                       <div>
                             <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex w-[12rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
@@ -300,7 +307,7 @@ serachedPitchData={props.serachedPitchData}
                                       </div>  
                                           </div>  
                                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                      <div className=" flex  w-[10rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                                                      <div className=" flex  w-[9rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                                                              
                                                                 <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                         {item.countryDialCode && item.phoneNumber
@@ -309,9 +316,9 @@ serachedPitchData={props.serachedPitchData}
                                       </div>
 
                                                             </div>
-                                                            <div className=" flex  items-center  h-8 ml-gap  bg-[#eef2f9] w-[3.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                          
+                                                            <div className=" flex  items-center  h-8 ml-gap  bg-[#eef2f9] w-[2.1rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                                          
                                                                     </div>
-                                                                    <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9] w-[2.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                                                                    <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9] w-[14.5rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                                                                 {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden"> Company </div> */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.companyName || "None"}
@@ -321,14 +328,14 @@ serachedPitchData={props.serachedPitchData}
                                                                     </div>
                                                                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                                             
-                                                            <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9] w-[12.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9] w-[8.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                              {/* Company  */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.source || "None"}
                                       </div>
 
                                                             </div>
-                                                            <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9]   w-[7.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                                            <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9]   w-[8.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                                               {/* Company */}
                                                                 <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                                                 {item.sector || "None"}
@@ -337,7 +344,7 @@ serachedPitchData={props.serachedPitchData}
                                                             </div>
                                                             {/* Score */}
                                                             {props.user.aiInd && (
-           <div className=" flex  justify-center  items-center  h-8 ml-gap  bg-[#eef2f9]  w-[4.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  justify-center  items-center  h-8 ml-gap  bg-[#eef2f9]  w-[5.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>
@@ -369,7 +376,7 @@ serachedPitchData={props.serachedPitchData}
                                                             </span>
                                                                     </div>
                                                                  </div>
-                                                             <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  w-[5.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                                          
+                                                             <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  w-[3.50rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                                          
                                                             <span>
                                                             <Tooltip title={item.ownerName}>
                                                       <div class="max-sm:flex justify-end">

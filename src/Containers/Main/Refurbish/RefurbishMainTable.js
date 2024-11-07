@@ -182,9 +182,9 @@ const ProductionOrderList = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                 <div className=" flex max-sm:hidden  justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10 ">
+                 <div className=" flex max-sm:hidden  justify-between w-[86%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10 ">
                     <div className=" md:w-[3rem] text-[white] flex justify-center mr-1 bg-[red]"> {translatedMenuItems[6]} </div>
-                        <div className=" w-[12.2rem] flex justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[10.2rem] flex justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                          
                         {/* orderid" */}
                         <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/> {translatedMenuItems[0]}
@@ -448,9 +448,9 @@ const ProductionOrderList = (props) => {
 
 <div className=' flex  sticky  z-auto'>
                 <div class="rounded  max-sm:m-1  py-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex max-sm:hidden  justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10">
+                <div className=" flex max-sm:hidden  justify-between w-[86%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
-                        <div className=" w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* orderID */}
                             <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[0]}
                         </div>
