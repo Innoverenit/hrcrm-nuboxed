@@ -184,7 +184,8 @@ function AccountInvoiceTable(props) {
             title: 'Success!',
             text: 'Invoice generated successfully!',
             icon: 'success',
-            confirmButtonText: 'OK'
+            showConfirmButton: false,
+            timer: 1500,
           });
           props.setmodalMultiple(false);
           props.getGeneratedInvoiveList(props.distributorId);
