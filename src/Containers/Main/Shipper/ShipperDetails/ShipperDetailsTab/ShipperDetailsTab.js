@@ -1,6 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import AddShipperCostModal from "../ShipperDetailsTab/AddShipperCostModal"
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
@@ -378,7 +379,7 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span className="!text-tab">
-                    <i class="far fa-file text-[#96bdc6]"></i>
+                  <RequestQuoteIcon/>
                     &nbsp;
                     {this.state.translatedMenuItems[5]}
                     {/* Cost */}
