@@ -8,6 +8,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { DeleteOutlined } from "@ant-design/icons";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
+import { SketchPicker } from "react-color"; 
 
 const { Option } = Select;
 
@@ -20,6 +21,7 @@ function ClubList(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
+  const [colorPickerVisible, setColorPickerVisible] = useState(false); // State for showing color picker
 
   useEffect(() => {
     props.getclubShare();
@@ -36,7 +38,7 @@ function ClubList(props) {
   }, []);
 
   useEffect(() => {
-    setData(props.clubShareData.map((item, index) => ({ ...item, key: String(index) })));
+    setData(props.clubShareData.map((item, index) => ({ ...item, key: String(index), color: item.color || '#4A90E2', })));
   }, [props.clubShareData]);
 
 
@@ -48,8 +50,8 @@ function ClubList(props) {
       // key: String(data.length + 1),
       clubName: '',
       noOfShare: '',
-      discount:''
-      
+      discount:'',
+      color: '#4A90E2', 
 
 
     };
@@ -72,7 +74,11 @@ function ClubList(props) {
       setRows(updatedRows);
     }
   };
-
+  const handleColorChange = (color, index) => {
+    const updatedRows = [...rows];
+    updatedRows[index].color = color.hex;
+    setRows(updatedRows);
+  };
   const handleSelectChange = (value, key, dataIndex) => {
     const updatedData = data.map((row) =>
       row.key === key ? { ...row, [dataIndex]: value, currency_id: value } : row
@@ -96,17 +102,19 @@ function ClubList(props) {
         clubName: row.clubName,
         noOfShare: row.noOfShare,
         discount: row.discount,
-       
+        color: row.color, 
       };
       props.clubShare(result)
-      setRows([{  noOfShare: '', clubName: '', }]);
+      setRows([{  noOfShare: '', clubName: '', color: '#4A90E2' }]);
   };
   const handleEditClick = (clubId) => {
     setEditsuppliesId(clubId);
+    setColorPickerVisible(true); // Show color picker on edit
   };
   const handleCancelClick = (clubId) => {
     setEditedFields((prevFields) => ({ ...prevFields, [clubId]: undefined }));
     setEditsuppliesId(null);
+    setColorPickerVisible(false); // Hide color picker on cancel
   };
 //   const { clubShareData } = props;
 //   if (clubShareData && clubShareData.length > 0) {
@@ -145,6 +153,7 @@ function handleUpdate(key) {
     clubName: key.clubName,
     noOfShare: key.noOfShare,
     discount: key.discount,
+    color: key.color || '#4A90E2', // Ensure color is not null
   };
   // if (clubId) {
     props.updateClub(updatedData, key.clubId);
@@ -152,6 +161,7 @@ function handleUpdate(key) {
   //   console.error("clubId is undefined");
   // }
   setEditsuppliesId(null);
+  setColorPickerVisible(false); // Hide color picker after update
 };
 console.log(props.clubShareData)
   return (
@@ -161,7 +171,7 @@ console.log(props.clubShareData)
       </Button>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
-            <div class="flex justify-around w-[30rem]  ">
+            <div class="flex justify-between w-wk  ">
               
 
               <div>
@@ -199,9 +209,29 @@ console.log(props.clubShareData)
                       />
                         {errors[`discount${index}`] && <span className="text-red-500">{errors[`discount${index}`]}</span>}
                 </div>
-
+               
 
               </div>
+              <div>
+              <div className="font-bold text-xs font-poppins text-black">Color</div>
+              <SketchPicker
+              styles={{
+                default: {
+                  picker: {
+                    boxShadow: 'none',
+                    borderRadius: '8px',
+                    width: '16rem', // Adjust width as needed 
+                    height:"5rem",overflowX:"auto"
+                  },
+                  saturation: {
+                    borderRadius: '8px',
+                  },
+                },
+              }}
+                color={row.color}
+                onChange={(color) => handleColorChange(color, index)}
+              />
+            </div>
             </div>
             <div class="mt-4">
             <Button type="primary" onClick={() => handleSave(index)}>
@@ -224,7 +254,7 @@ console.log(props.clubShareData)
           {data.length ? data.map((item) => {
             return (
               <div key={item.clubId}>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                <div className="flex rounded justify-between mt-1 bg-white h-16 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 >
 
 <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -285,7 +315,36 @@ console.log(props.clubShareData)
                                   // suppliesId={item.suppliesId}
                                 />
                 </div>
-
+                <div>
+                  {editsuppliesId === item.clubId ? (
+                    <SketchPicker
+                    styles={{
+                      default: {
+                        picker: {
+                          boxShadow: 'none',
+                          borderRadius: '8px',
+                          width: '10rem', // Adjust width as needed 
+                          height:"3rem",overflowX:"auto"
+                        },
+                        saturation: {
+                          borderRadius: '8px',
+                        },
+                      },
+                    }}
+                      color={item.color || '#4A90E2'} // Ensure default color is used if null
+                      onChange={(color) => handleInputChange(color.hex, item.key, 'color')}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: item.color || '#4A90E2', // Ensure color shows even if null
+                        borderRadius: '50%',
+                      }}
+                    ></div>
+                  )}
+                </div>
                   <div class="flex md:items-center">
 
 
@@ -366,4 +425,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClubList);
-

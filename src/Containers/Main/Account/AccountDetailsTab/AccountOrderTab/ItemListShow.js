@@ -159,6 +159,8 @@ function ItemListShow(props) {
     const currentDate = new Date().toISOString();
     let updatedItem={
         dispatchReceivedDate: currentDate,
+        type:"Item",
+        procureOrderInvoiceId:item.id,
       // trackId:trackId?trackId:item.trackId,Order Successfully dispatched!!!!
       orderId:props.particularRowData.orderId,
     }
@@ -379,7 +381,7 @@ const handleGenerateInvoice= async () => {
       [id]: value
     });
   };
-  
+  console.log(props.distributorData)
   return (
     <>
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[89vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -423,6 +425,12 @@ const handleGenerateInvoice= async () => {
       >
         {props.procureDetails.length > 0 ? 
         props.procureDetails.map((item, index) => {
+          const totalPay = item.totalPrice;
+          const outStand = props.distributorData.outstanding;
+          const currencyPrice = props.distributorData.currencyPrice
+          const payStand = totalPay + outStand;
+          const canPack = payStand < currencyPrice || payStand === currencyPrice;
+          const newpack = props.particularRowData.receiveOfferPricePercentage === props.particularRowData.dispatchPaymentPercentage || props.particularRowData.receiveOfferPricePercentage > props.particularRowData.dispatchPaymentPercentage
           return (
             <div key={index} className="flex rounded justify-between bg-white mt-1  items-center py-1 hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]
               >">
@@ -470,10 +478,11 @@ const handleGenerateInvoice= async () => {
                  
                 </div>
               </div>
+              {props.user.disPackInd && canPack && newpack &&
               <Button className="w-[5rem]"
                       type="primary"
                       onClick={() => handlePostChange(item)}
-                      > <InputIcon className="!text-icon text-white"/>Pack</Button>
+                      > <InputIcon className="!text-icon text-white"/>Pack</Button>}
               <div className="flex justify-end w-[1.06rem] items-center h-8 ml-gap bg-[#eef2f9]   max-sm:flex-row max-sm:w-auto">
                
                 <div>
@@ -519,6 +528,7 @@ const mapStateToProps = ({ distributor,suppliers,auth }) => ({
   saleCurrencies: auth.saleCurrencies,
   orgId: auth.userDetails.organizationId,
   userId: auth.userDetails.userId,
+  user: auth.userDetails,
   distributorId: distributor.distributorDetailsByDistributorId.distributorId,
 });
 

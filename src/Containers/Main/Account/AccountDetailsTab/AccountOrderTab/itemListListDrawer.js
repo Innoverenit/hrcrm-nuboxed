@@ -26,6 +26,8 @@ const itemListListDrawer = (props) => {
           particularRowData={props.particularRowData}
           selectedLanguage={props.selectedLanguage}
           translateText={props.translateText}
+          distributorData={props.distributorData}
+          
          />
                               
                 </Suspense>

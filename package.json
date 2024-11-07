@@ -49,6 +49,7 @@
     "react-big-calendar": "^0.22.0",
     "react-chat-widget": "^3.1.4",
     "react-clock": "^4.6.0",
+    "react-color": "^2.19.3",
     "react-content-loader": "^3.2.0",
     "react-country-flag": "^3.1.0",
     "react-d3-speedometer": "^0.6.1",
