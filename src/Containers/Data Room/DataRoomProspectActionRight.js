@@ -117,20 +117,20 @@
 
 
 
-import React, { Component, useState } from 'react'
+import React, {  useState, useEffect , lazy} from 'react'
 import ProspectTaskOpenListData from "./ProspectTaskOpenListData"
 import ProspectQuotationListData from "./ProspectQuotationListData"
 import ProspectQuotationSectorListData from "./ProspectQuotationSectorListData"
 import ProspectQuotationSource from "./ProspectQuotationSource"
 import ProspectQuotationSectorLostData from "./ProspectQuotationSectorLostData"
-import { Button, Row, Col, Card, Tabs } from 'antd';
+import { Tabs } from 'antd';
 import ProspectQuotationSectorWonData from "./ProspectQuotationSectorWonData"
 import ProspectQuotationWonData from "./ProspectQuotationWonData"
-import { CheckCircleOutlined, CloseCircleOutlined, CloseOutlined, EditOutlined } from '@ant-design/icons';
+import { CheckCircleOutlined, CloseCircleOutlined,  } from '@ant-design/icons';
 import ProspectQuotationClosedData from "./ProspectQuotationClosedData"
 import ProspectQuotationSourceWonData from "./ProspectQuotationSourceWonData"
 import ProspectQuotationSourceLostData from "./ProspectQuotationSourceLostData"
-import { CheckCircleOutlineOutlined } from '@mui/icons-material';
+
 
 
 const { TabPane } = Tabs;
@@ -141,6 +141,30 @@ function DataRoomProspectActionRight (props) {
   const [isEditing, setIsEditing] = useState(false);
   const[prospectSourceView,setProspectSourceView] =useState('all')
   const[prospectSectorView,setProspectSectorView]=useState('all');
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+ 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    '', // 0 Quotation
+'', // 1  Task content for
+'', // 2 By Source
+""// No data found
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   const handleViewChange = (view) => {
    
