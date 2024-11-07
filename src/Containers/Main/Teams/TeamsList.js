@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Select, Tooltip } from "antd"
 import {getTeamteamsList} from "./TeamsAction"
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import GroupsIcon from '@mui/icons-material/Groups';
 import { MultiAvatar2 } from "../../../Components/UI/Elements";
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -44,16 +46,16 @@ function TeamsList(props) {
   return (
     <>
   
-  <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+  <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] h-[88vh]">
 <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-<div className="font-bold font-poppins text-xs md:w-[44.5rem]">
+<div className="font-bold font-poppins text-xs md:w-[44.5rem]">< ApartmentIcon className=" text-base"/>
 {props.translatedMenuItems[0]}</div>
 
 <div className="font-bold font-poppins text-xs md:w-[28.12rem]"> 
-{props.translatedMenuItems[1]}</div>
+<GroupsIcon className=" text-base"/>{props.translatedMenuItems[1]}</div>
 
  <div className="font-bold font-poppins text-xs md:w-[22.1rem]"> 
- {props.translatedMenuItems[2]}</div>
+ <GroupsIcon className=" text-base"/>{props.translatedMenuItems[2]}</div>
 
 
 
@@ -67,15 +69,15 @@ const empName = firstTeamMember ? firstTeamMember.empName : null;
 console.log(empName)
           return (
               <div>
-                  <div className="flex rounded border-l-2 border-green-500 bg-[#eef2f9] justify-between bg-white mt-[0.5rem] h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                  <div className="flex rounded justify-between bg-white mt-[0.5rem]  items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                       >
                            
-                           <div className=" flex  md:w-[27rem] items-center justify-start h-8 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                           <div className=" flex  md:w-[27rem] items-center justify-start h-8  border-l-2 border-green-500 bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 
 <div class="max-sm:w-full">
                               <Tooltip>
-                                <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
+                                <div class=" flex max-sm:w-full  bg-[#eef2f9]  ml-gap h-8 justify-between flex-row md:flex-col w-[8rem]">
                                 
                                   <div class="text-xs text-blue-500  font-poppins ml-gap items-center font-semibold  cursor-pointer">
                                       
@@ -92,7 +94,7 @@ console.log(empName)
 
                    
                     
-                      <div className=" flex  md:w-[28.3rem]  items-center justify-center h-8 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                      <div className=" flex  md:w-[28.3rem] ml-gap items-center justify-center h-8 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       
                         
                         <div >
@@ -107,7 +109,7 @@ console.log(empName)
                          </div>
                     </div>
 
-                    <div className=" flex  md:w-[28.4rem] items-center justify-start h-8 bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
+                    <div className=" flex  md:w-[28.4rem] ml-gap items-center justify-start h-8 bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
                       
                         <div class="text-xs ml-gap items-center font-poppins">
                         {empName}

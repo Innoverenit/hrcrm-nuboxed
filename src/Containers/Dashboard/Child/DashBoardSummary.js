@@ -27,13 +27,13 @@ const DashBoardSummary=(props) =>{
       try {
         const itemsToTranslate = [
       "199",//   "TASK",0
-      "",//   No data found1
+      "1704",//   No data found1
       "213",//   QUOTATION  2
      "1172", //   To Order3
      "805", //   RE-ORDER 4
      "104", //   Create 5
-     "", //  BEST BEFORE6
-     "", //  To Waste7
+     "1703", //  BEST BEFORE6
+     "1702", //  To Waste7
       "660",//  ORDER8
      "490", //  DEALS9
      "143",//  "To Start"

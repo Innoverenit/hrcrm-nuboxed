@@ -192,7 +192,15 @@ console.log(selectedZones)
                         <div className=" w-[8.12rem]">       
                         <CategoryIcon className='!text-base  text-[#e4eb2f]'/> Supplies Id
 
-                        </div>                  
+                        </div>   
+                        <div className=" w-[5.12rem]" >       
+                   Country
+
+                        </div>
+                        <div className=" w-[8.12rem]" >       
+                   Best Use Date
+
+                        </div>               
                         <div className=" w-[5.12rem]" >       
                     Units
 
