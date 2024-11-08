@@ -74,6 +74,7 @@ class CustomerActionRight extends React.Component {
          </Tooltip>
       )}
       </div>
+       {this.props.viewType==="table"&&( 
         <Tooltip placement="left" title={this.state.translatedMenuItems[2]}>
           {this.props.user.customerCreateInd ===true && user.crmInd === true &&(
           <Button
@@ -86,6 +87,8 @@ class CustomerActionRight extends React.Component {
           </Button>
            )} 
         </Tooltip>
+       )}
+        
         <div className="max-sm:hidden">
           <Button type="primary"  
         onClick={() => this.props.handleCustomerImportModal(true)}

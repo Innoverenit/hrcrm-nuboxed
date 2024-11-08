@@ -717,6 +717,21 @@ export const customerReducer = (state = initialState, action) => {
             return item;
           }
         }),
+        teamCustomer: state.teamCustomer.map((item) => {
+          if (item.customerId === action.payload.customerId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+
+        allCustomers: state.allCustomers.map((item) => {
+          if (item.customerId === action.payload.customerId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_CUSTOMER_BY_ID_FAILURE:
       return {

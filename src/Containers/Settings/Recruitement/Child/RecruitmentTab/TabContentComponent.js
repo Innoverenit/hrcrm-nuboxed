@@ -553,7 +553,7 @@ fetchType = async () => {
                   
                    {this.state.currentProcess.workflowName && (
                       <Button
-                      style={{ color: "white",marginLeft:"1rem"}}
+                      style={{ color: "black",marginLeft:"1rem"}}
                        onClick={this.handlePublishClick}
                       >
                       
