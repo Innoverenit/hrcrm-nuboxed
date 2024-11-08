@@ -37,6 +37,7 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import UpdateIcon from '@mui/icons-material/Update';
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
+import InvoiceMultipleDrawer from "./InvoiceMultipleDrawer";
 
 const { Option } = Select;
 
@@ -55,6 +56,8 @@ function AccountInvoiceTable(props) {
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
     const [openStatus,setopenStatus] = useState(false);
+const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
+
 
     useEffect(() => {
         const fetchMenuTranslations = async () => {
@@ -440,14 +443,18 @@ function AccountInvoiceTable(props) {
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:">
                                                     <div className=" flex w-[9.25rem] h-8  border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[16.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins  font-bold flex items-center">
-                                                          
+                                                        
                                                            <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
-                                                                        handleSetParticularOrderData(item);
+                                                                      handleSetParticularOrderData(item);
                                                                         props.handleInvoiceModal(true);
+                                                                        
                                                                     }}
-                                                                > {item.invoiceId} </span>
+                                                                > 
+                                                                {item.invoiceId} 
+                                                                
+                                                                </span>
 
                                                         </div>
                                                         <div class="ml-1">
@@ -458,9 +465,15 @@ function AccountInvoiceTable(props) {
                                                             ) : null}</div>
                                                     </div>
                                                     <div className=" flex  text-xs w-[20.1rem] max-xl:w-[10.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs underline cursor-pointer text-[#1890ff] font-poppins"
+                                                        onClick={() => {
+                                                          handleSetParticularOrderData(item);
+                                                              setopenMultipleDrawer(true)
+                                                            
+                                                        }}
+                                                        >
                                                         
-                                                                {item.newOrderNo}
+                                                                {item.newOrderNo ? item.newOrderNo :"Multiple"}
                                                         </div>
                                                     </div>
                                                  
@@ -590,6 +603,14 @@ function AccountInvoiceTable(props) {
                        particularRowData={particularRowData}
                 modalMultiple={modalMultiple}
                 setmodalMultiple={setmodalMultiple}
+                distributorId={props.distributorId}
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
+                />
+                <InvoiceMultipleDrawer 
+                particularRowData={particularRowData}
+               openMultipleDrawer={openMultipleDrawer}
+                setopenMultipleDrawer={setopenMultipleDrawer}
                 distributorId={props.distributorId}
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText} 
