@@ -536,7 +536,9 @@ console.log(selectedSource)
                     ) : null}
                   </div>
                   <div class=" mt-3">
+                  {props.customerConfigure.nameInd===true&&
                     <div class="font-bold text-xs"> {translatedMenuItems[0]}  </div>
+                  }
                   {props.customerConfigure.nameInd===true&&
                     <Field
                       isRequired
@@ -588,7 +590,9 @@ country_dial_code
 }
                     </div>
                     <div class=" w-8/12">
+                    {props.customerConfigure.phoneNoInd===true&&
                     <div class="font-bold text-xs"> {translatedMenuItems[3]}  </div>
+}
                     {props.customerConfigure.phoneNoInd===true&&
                       <FastField
                         name="phoneNumber"                           
@@ -667,7 +671,9 @@ country_dial_code
                   </div>
                   <div class="flex justify-between mt-2">
                   <div class="w-w47.5">
+                  {props.customerConfigure.typeInd===true&&
   <div class="font-bold text-xs"> {translatedMenuItems[8]}  </div>
+                  }
   {props.customerConfigure.typeInd===true&&
     <Field
       name="type" 

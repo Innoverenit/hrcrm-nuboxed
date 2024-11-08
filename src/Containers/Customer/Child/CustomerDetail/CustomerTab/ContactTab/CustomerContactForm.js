@@ -180,6 +180,12 @@ class ContactForm extends Component {
     } finally {
       this.setState({ isLoadingContacts: false });
     }
+
+
+  }
+
+  handleContactChange=(contactId)=>{
+    this.setState({ selectedContact: contactId });
   }
 
 
@@ -206,6 +212,7 @@ class ContactForm extends Component {
   }
 
   render() {
+    console.log(this.state.selectedContact)
     console.log(this.props.id)
     const {
       user: { userId, firstName, lastName },
@@ -283,8 +290,7 @@ class ContactForm extends Component {
                 ...values,
                 customerId:this.props.customer.customerId,
                   reportsTo:this.state.selectedContact,
-                // reportsTo:this.state.selectedCustomer,
-                // customerId: this.props.customerId,
+                
                 opportunityId:this.props.opportunityId,
                 investorId:this.props.investorId,
                 whatsapp: this.state.whatsapp ? "Different" : "Same",
