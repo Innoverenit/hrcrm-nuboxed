@@ -8,7 +8,14 @@ import {
   handleSuppliersListDrawer,
   handleSuppliersAddress
 } from "../SuppliersAction"
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+import PublishIcon from '@mui/icons-material/Publish';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import CategoryIcon from '@mui/icons-material/Category';
+import LinkIcon from '@mui/icons-material/Link';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
@@ -83,31 +90,33 @@ function SuppliersCardList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex font-poppins text-xs justify-between w-[99%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-          <div className=" w-[7.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+          <div className=" w-[7.91rem] text-[#00A2E8] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
-               {props.translatedMenuItems[40]} ID
+              <CategoryIcon className=" text-base"/> {props.translatedMenuItems[40]} ID
                </div>
             <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
             {/* "Name" */}
-            {props.translatedMenuItems[0]}
+            <ApartmentIcon className="!text-icon text-[#4f5d75] "/>  {props.translatedMenuItems[0]}
             </div>
             <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
               {/* Phone  */}
-               {props.translatedMenuItems[1]}
+              <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[1]}
             </div>
             <div className=" w-[12.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
-               {/* Email */}
+            <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/> {/* Email */}
                {props.translatedMenuItems[2]}
                </div>
                <div className=" w-[10.93rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* URL */}
-               {props.translatedMenuItems[41]}
+               <LinkIcon  className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[41]}
                </div>
                <div className=" w-[3.50rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
-               {/* Email */}
+               {/* Email */} <ConnectWithoutContactIcon
+          className="!text-icon  text-[blue]"
+          />
                {/* {props.translatedMenuItems[17]} */}Disqualify
                </div>     
-            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[38]}</div>
+            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> <PublishIcon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[38]}</div>
           </div>
           <div class="overflow-x-auto h-[83vh]">
             <InfiniteScroll

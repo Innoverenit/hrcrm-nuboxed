@@ -6,6 +6,12 @@ import {
   emptynotApprovedSuppliers,
   handleSuppliersAddress
 } from "../SuppliersAction"
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import CategoryIcon from '@mui/icons-material/Category';
+import LinkIcon from '@mui/icons-material/Link';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import SuplierNotApprovalPublishToggle from "../Child/SuplierNotApprovalPublishToggle"
@@ -69,20 +75,20 @@ function SuppliersNotApprovalList(props) {
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
           <div className=" w-[8.91rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
-               {props.translatedMenuItems[40]} ID
+               <CategoryIcon className="!text-icon"/> {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[11.4rem] max-xl:text-[0.65rem] max-lg:text-text-xs max-xl:w-[11.8rem]">  {props.translatedMenuItems[0]} </div>
+            <div className=" w-[11.4rem] max-xl:text-[0.65rem] max-lg:text-text-xs max-xl:w-[11.8rem]"> <ApartmentIcon className="!text-icon text-[#4f5d75] "/> {props.translatedMenuItems[0]} </div>
             <div className=" w-[15.8rem] max-xl:text-[0.65rem] max-lg:text-text-xs max-xl:w-[9.8rem]">
-            {props.translatedMenuItems[1]}
+            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>     {props.translatedMenuItems[1]}
             </div>
             <div className=" w-[11.91rem] max-xl:text-[0.65rem] max-lg:text-text-xs max-xl:w-[14.9rem] "> 
-            {props.translatedMenuItems[2]}</div>
+            <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[2]}</div>
             <div className=" w-[8.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* url */}
-               {props.translatedMenuItems[41]}
+               <LinkIcon  className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[41]}
                </div>
             <div className="w-[9.9rem] max-xl:text-[0.65rem] max-lg:text-text-xs max-xl:w-[9.5rem]">
-            {props.translatedMenuItems[17]}
+            <CheckCircleIcon className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[17]}
             {/* Approve */}
             </div>
 
@@ -116,7 +122,7 @@ function SuppliersNotApprovalList(props) {
 
 
 </div>
-                              <div className=" h-8  flex items-center h-8 ml-gap bg-[#eef2f9] w-[13.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
+                              <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[13.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                                 <div class=" font-semibold text-[0.85rem] font-poppins">
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 underline text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
