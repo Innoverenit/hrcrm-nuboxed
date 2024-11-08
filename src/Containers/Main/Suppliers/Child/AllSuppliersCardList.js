@@ -11,6 +11,12 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import { DeleteOutlined } from "@ant-design/icons";
 import SupplierSearchedData from "./SupplierSearchedData";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CategoryIcon from '@mui/icons-material/Category';
+import LinkIcon from '@mui/icons-material/Link'; 
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 
@@ -120,20 +126,20 @@ return(
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex max-sm:hidden ml-4 justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
-<div className=" w-[3.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+<div className=" w-[3.91rem] text-[#00A2E8] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
-               {props.translatedMenuItems[40]} ID
+               <CategoryIcon className=" !text-icon"/>  {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  {props.translatedMenuItems[0]}</div>
+            <div className=" w-[3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">   <ApartmentIcon className="!text-icon text-[#4f5d75] "/>    {props.translatedMenuItems[0]}</div>
             <div className=" w-[3.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
-            {props.translatedMenuItems[1]}
+            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[3.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">  {props.translatedMenuItems[2]}</div>  
+            <div className=" w-[3.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">    <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[2]}</div>  
             <div className=" w-[3.94rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
-               {props.translatedMenuItems[41]}
+               <LinkIcon  className="!text-icon  text-[#4f5d75]"/>   {props.translatedMenuItems[41]}
                </div>   
-          <div className=" w-[8.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">Owner</div>
+          <div className=" w-[8.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> <AccountCircleIcon className="!text-icon  text-[#f28482]"/>Owner</div>
           </div>
         <InfiniteScroll
         dataLength={props.allSupplierList.length}
