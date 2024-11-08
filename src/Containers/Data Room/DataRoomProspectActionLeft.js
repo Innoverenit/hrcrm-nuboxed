@@ -46,10 +46,10 @@ function DataRoomProspectActionLeft(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-    '', // 0By List
+    '1705', // 0By List
 '1594', // 1By Sector  
 '1595', // 2 By Source
-""// No data found
+"1704"// No data found
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
