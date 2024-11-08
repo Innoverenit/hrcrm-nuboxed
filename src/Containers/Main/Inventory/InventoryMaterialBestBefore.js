@@ -112,7 +112,7 @@ const InventoryMaterialBestBefore = (props) => {
         setIsLoadingZone(true);
         try {
        
-          const apiEndpoint = `${base_url2}/roomrack/roomAndRackDetails/${props.locationId}/${props.orgId}`;
+          const apiEndpoint = `${base_url2}/roomrack/notUsed/roomAndRackDetails/${props.locationId}/${props.orgId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
             headers: {

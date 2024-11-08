@@ -47,6 +47,9 @@ class UpdateCustomerContactForm extends Component {
       selectedCustomer: props.setEditingCustomerContact.customerId,
       selectedContact:props.setEditingCustomerContact.contactId,
     };
+    this.handleSelectCustomerFocus=this.handleSelectCustomerFocus.bind(this)
+    this.handleCustomerChange = this.handleCustomerChange.bind(this);
+    this.fetchCustomers = this.fetchCustomers.bind(this);
   }
   
   componentDidMount() {
@@ -86,7 +89,7 @@ class UpdateCustomerContactForm extends Component {
       this.fetchCustomers();
       // this.fetchSector();
 
-      this.setState({ touchedCustomer: true });
+     this.setState({ touchedCustomer: true });
     }
   }
 
