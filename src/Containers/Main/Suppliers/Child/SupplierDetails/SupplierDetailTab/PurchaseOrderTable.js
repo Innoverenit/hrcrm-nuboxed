@@ -270,7 +270,7 @@ const timerRef = useRef(null);
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded justify-between py-1  mt-1 bg-white scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
+                                            <div className="flex rounded justify-between py-ygap  mt-1 bg-white scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                     <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9]  w-[14.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="ml-gap underline font-bold max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">

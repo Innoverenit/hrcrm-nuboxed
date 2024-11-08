@@ -62,7 +62,8 @@ module.exports = {
         'margin58':'58%',
             },
             padding:{
-              'pd4':'4%'
+              'pd4':'4%',
+              'ygap': '0.1rem'
             }
 
     },
