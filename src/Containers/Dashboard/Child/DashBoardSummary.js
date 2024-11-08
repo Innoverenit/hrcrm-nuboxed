@@ -183,7 +183,7 @@ const DashBoardSummary=(props) =>{
       )}
     </div>
       </div>
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-8"></div> 
 
       {/* QUOTATION */}
       <div class="flex flex-col w-[16rem] ml-8">
@@ -216,7 +216,7 @@ const DashBoardSummary=(props) =>{
   )}
 </div>
 
-<div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
+<div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-8"></div> 
     
 
   {/* Re Order */}
@@ -236,7 +236,7 @@ const DashBoardSummary=(props) =>{
           </div>
         ))}
       </div>
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-8"></div> 
          {/* Best Before */}
          <div class="flex flex-col w-[16rem] ml-8">
         <h2 className="text-xl font-bold font-poppins mb-4"> {translatedMenuItems[6]}-(2) </h2>
@@ -286,7 +286,7 @@ const DashBoardSummary=(props) =>{
         </div>
       </div>
 
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-8"></div> 
         {/* ORDER */}
         <div class="flex flex-col w-[16rem] ml-8">
         <h2 className="text-xl font-bold font-poppins mb-4">{translatedMenuItems[8]}-(6)</h2>
@@ -301,7 +301,7 @@ const DashBoardSummary=(props) =>{
           </div>
         ))}
       </div>
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem]"></div> 
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-8"></div> 
       {/* DEALS */}
       <div class="flex flex-col w-[16rem] ml-8">
         <h2 className="text-xl font-bold font-poppins mb-4"> {translatedMenuItems[9]}-(5) </h2>

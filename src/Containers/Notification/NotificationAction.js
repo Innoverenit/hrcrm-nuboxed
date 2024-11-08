@@ -32,6 +32,12 @@ export const getPastNotifications = (userId) => dispatch => {
     });
 };
 
+export const handlenotificationdrawer = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_NOTIFICATION_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
 export const getPresentNotifications = (userId) => dispatch => {
   console.log("inside notification action");
   dispatch({

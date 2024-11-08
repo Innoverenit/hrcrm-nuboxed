@@ -1,9 +1,8 @@
 
-import React, { useEffect, useState, useMemo, lazy } from 'react'
+import React, {  useState } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Avatar } from "antd";
-import styled from 'styled-components';
 import OrderRepairCard from './OrderRepairCard';
 import OrderRepairCompletedCard from './OrderRepairCompletedCard';
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';

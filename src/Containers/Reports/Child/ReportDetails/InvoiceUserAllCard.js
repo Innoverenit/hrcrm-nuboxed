@@ -21,6 +21,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
 import InfiniteScroll from "react-infinite-scroll-component";
+import EmptyPage from "../../../Main/EmptyPage";
 
 
 const ButtonGroup = Button.Group;
@@ -135,7 +136,7 @@ const InvoiceUserAllCard = (props) => {
         height={"75vh"}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-      {data1.map((item) => { 
+      {!loading1 && data1.length===  0 ? <EmptyPage/>:data1.map((item) => { 
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);

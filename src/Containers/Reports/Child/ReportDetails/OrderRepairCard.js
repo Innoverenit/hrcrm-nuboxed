@@ -1,26 +1,14 @@
-import React, { useState,lazy,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
 import dayjs from "dayjs";
-import FeedbackIcon from '@mui/icons-material/Feedback';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Tooltip, Button,  } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
-import { StyledPopconfirm, } from "../../../../Components/UI/Antd";
-import StairsIcon from '@mui/icons-material/Stairs';
+import { Button,  } from "antd";
 import { MultiAvatar, } from "../../../../Components/UI/Elements";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
 import InfiniteScroll from "react-infinite-scroll-component";
+import EmptyPage from "../../../Main/EmptyPage";
 
 
 const ButtonGroup = Button.Group;
@@ -91,9 +79,9 @@ const OrderRepairCard = (props) => {
   return (
     <>
     
-    <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div className=' flex sticky  z-auto'>
+          <div class="rounded max-sm:m-1 m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
                           id="app.type"
                           defaultMessage="type"
@@ -131,7 +119,7 @@ const OrderRepairCard = (props) => {
         height={"75vh"}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-      {data1.map((item) => { 
+      { !loading1 && data1.length===  0 ? <EmptyPage/>: data1.map((item) => { 
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);

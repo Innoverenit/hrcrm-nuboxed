@@ -18,6 +18,8 @@ import { StyledPopconfirm, } from "../../../../Components/UI/Antd";
 import StairsIcon from '@mui/icons-material/Stairs';
 import { MultiAvatar, } from "../../../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import EmptyPage from "../../../Main/EmptyPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 
@@ -54,15 +56,15 @@ const ReportTaskList = (props) => {
     userDetails: { employeeId },
   } = props;
 
-  // if (fetchingTaskListRangeByUserId) 
-  // {
-  //  return <BundleLoader/>
-  // }
+  if (props.gettingReportTask) 
+  {
+   return <BundleLoader/>
+  }
 
   return (
     <>
     
-          <div className=' flex  sticky  z-auto'>
+          <div className=' flex  sticky  z-auto h-[88vh]'>
           <div class="rounded max-sm:m-1 m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent text-xs font-poppins font-bold sticky  z-10">
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
@@ -98,15 +100,8 @@ const ReportTaskList = (props) => {
         <div className="w-12"></div>
         {/* <div className="w-12"></div> */}
       </div>
-      {/* <InfiniteScroll
-        dataLength={taskListRangeByUserId.length}
-        next={handleLoadMore}
-      hasMore={hasMore}
-        loader={fetchingTaskListRangeByUserId?<div class="flex justify-center" >Loading...</div>:null}
-        height={"75vh"}
-        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
-      > */}
-      {props.reportTask.map((item) => { 
+     
+      {!props.gettingReportTask &&  props.reportTask.length=== 0 ? <EmptyPage/> :props.reportTask.map((item) => { 
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);
@@ -576,39 +571,12 @@ const ReportTaskList = (props) => {
   const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
       {
-      
+       
       },
       dispatch
     );
     export default connect(mapStateToProps, mapDispatchToProps)(ReportTaskList);
    
-    // function StatusIcon(props) {
-    //   const { type, iconType, tooltip, status, onClick, difference } = props; // Receive the difference prop
-    //   const start = type;
-    //   let size;
-    
-    //   if (status === type) {
-    //     size = "1.875em";
-    //   } else {
-    //     size = "1em";
-    //   }
-    
-    //   return (
-    //     <Tooltip title={`${tooltip} (${difference} days)`}> {/* Use difference prop in the tooltip */}
-    //       <Button
-    //         ghost={status !== type}
-    //         style={{
-    //           padding: "0.375em",
-    //           borderColor: "transparent",
-    //           color: status === type ? "rgb(251, 133, 0)" : "grey",
-    //         }}
-    //         onClick={onClick}
-    //       >
-    //         <i className={`fas ${iconType}`} style={{ fontSize: "1.375em" }}></i>
-    //       </Button>
-    //     </Tooltip>
-    //   );
-    // }
     function StatusIcon(props) {
       const { type, iconType, tooltip, status, onClick, difference } = props;
     

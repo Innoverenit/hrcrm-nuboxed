@@ -99,6 +99,8 @@ export const notificationReducer = (state = initialState, action) => {
         updatingNotificationError: false
       };
 
+      case types.HANDLE_NOTIFICATION_DRAWER_MODAL:
+        return { ...state, addCallModal: action.payload };
     default:
       return state;
   }
