@@ -8,6 +8,7 @@ import { MultiAvatar, } from "../../../../Components/UI/Elements";
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
 import {getlocation} from "../../../Event/Child/Location/LocationAction";
+import EmptyPage from "../../../Main/EmptyPage";
 
 
 const ButtonGroup = Button.Group;
@@ -139,7 +140,7 @@ const OrderRepairLocationCard = (props) => {
 
                     </div>
     
-                         {data1.map((item) => { 
+                         {!loading1 && data1.length===  0 ? <EmptyPage/>:data1.map((item) => { 
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);
@@ -270,7 +271,7 @@ const OrderRepairLocationCard = (props) => {
 
                     </div>
     
-                         {data2.map((item) => { 
+                         {!loading2 && data2.length===  0 ? <EmptyPage/>:data2.map((item) => { 
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);
@@ -402,7 +403,7 @@ const OrderRepairLocationCard = (props) => {
 
                     </div>
     
-                         {data3.map((item) => { 
+                         {!loading3 && data3.length===  0 ? <EmptyPage/>:data3.map((item) => { 
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);

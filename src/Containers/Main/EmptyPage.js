@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import FWLogo from "../../Assets/Images/image 21.png";
@@ -11,12 +11,12 @@ const EmptyPage = (props) => {
     return (
         <>
     
-           <div className="flex flex-col justify-center items-center">
+           <div className="flex flex-col justify-center items-center md:h-[20rem] h-[79vh]">
           
            <img
-                  className="big-logo"
+                  className="big-logo w-[15rem]"
                   src={FWLogo}
-                  style={{ width: "10rem"}}
+                //   style={{ width: "10rem"}}
                   alt="Tekorero logo"
 
                 /> 

@@ -7,7 +7,6 @@ import Requirement from "../MyViewReports/Requirement";
 import Selected from "../OrganizationView/Selected";
 import OrgSelected from "../OrganizationView/Selected";
 import OrgRequirement from "../OrganizationView/Requirement";
-import ReportsCardList from "../ReportsCardList";
 import { setTimeRangeReport,getAllReportInvestors } from "../../ReportAction";
 import ReportsProspectList from "../../ReportsProspectList";
 import OrdeRepairTab from "./OrdeRepairTab";
@@ -61,6 +60,7 @@ class ReportDetailRight extends Component {
   )}
             {this.props.selectedCategory === "Task" && (
     <ReportsTaskList 
+  
     reportTask={this.props.reportTask}      
     gettingReportTask={this.props.gettingReportTask} />
   )}

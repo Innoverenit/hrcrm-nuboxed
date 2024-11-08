@@ -1,28 +1,24 @@
 
-import React, { useEffect, useState, lazy } from "react";
+import React, {  useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
-
 import dayjs from "dayjs";
-
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
-
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button, Popconfirm } from "antd";
+import { Tooltip, Select } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 
 import { Link } from 'react-router-dom';
 
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { FormattedMessage } from "react-intl";
-import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar, MultiAvatar2 } from "../../Components/UI/Elements";
 import CountryFlag1 from "../Settings/Category/Country/CountryFlag1";
 import { BundleLoader } from "../../Components/Placeholder";
+import EmptyPage from "../Main/EmptyPage";
 
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -47,7 +43,7 @@ if(props.gettingReportProspect){
 const {user}=props
   return (
     <>
-       <div className=' flex  sticky  z-auto'>
+       <div className=' flex  sticky  z-auto h-[89vh]'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[98%] justify-between p-1 bg-transparent font-bold sticky font-poppins text-xs  z-10">
             <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[9.31rem]">
@@ -129,7 +125,7 @@ const {user}=props
           </div>
        
 
-            {!props.gettingReportProspect && props.reportProspect.length === 0 ? <NodataFoundPage /> : props.reportProspect.map((item, index) => {
+            {!props.gettingReportProspect && props.reportProspect.length === 0 ? <EmptyPage /> : props.reportProspect.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
               const countryCode = item.address[0].countryAlpha2Code

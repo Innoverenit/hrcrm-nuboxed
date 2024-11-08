@@ -1,23 +1,10 @@
-import React, { useState,lazy,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FormattedMessage } from "react-intl";
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
 import dayjs from "dayjs";
-import FeedbackIcon from '@mui/icons-material/Feedback';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Tooltip, Button,  } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
-import { StyledPopconfirm, } from "../../../../Components/UI/Antd";
-import StairsIcon from '@mui/icons-material/Stairs';
+import {  Button,  } from "antd";
 import { MultiAvatar, } from "../../../../Components/UI/Elements";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -135,7 +122,7 @@ const InvoiceUserInCompleteCard = (props) => {
         height={"75vh"}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-      {data1.map((item) => { 
+      {!loading1 && data1.length===  0 ? <EmptyPage/>:data1.map((item) => { 
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);

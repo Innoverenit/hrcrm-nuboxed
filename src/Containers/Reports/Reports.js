@@ -3,14 +3,10 @@ import { BundleLoader } from "../../Components/Placeholder";
 import { connect } from "react-redux";
 import { setTimeRangeReport,getAllReportInvestors,getReportProspect,getReportTask,getTaskData } from "./ReportAction";
 import { bindActionCreators } from "redux";
-import ReportsProspectList from "../Reports/ReportsProspectList"
-import ReportsCardList from "./Child/ReportsCardList";
+
 const ReportHeader =lazy(()=> import("./Child/ReportHeader"));
 const ReportDetails =lazy(()=> import("./Child/ReportDetails/ReportDetails"));
-const Requirement =lazy(()=> import("./Child/MyViewReports/Requirement"));
-const OrgSelected =lazy(()=> import("./Child/OrganizationView/Selected"));
-const OrgRequirement =lazy(()=> import("./Child/OrganizationView/Requirement"));
-const Selected =lazy(()=> import("./Child/MyViewReports/Selected"));
+
 const buttonData = [
   { name: 'Task' },
   { name: 'Calls' },

@@ -131,7 +131,7 @@ const OrderRepairCompletedCard = (props) => {
         height={"75vh"}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-      {data1.map((item) => { 
+      {!loading1 && data1.length===  0 ? <EmptyPage/>:data1.map((item) => { 
         const currentDate = dayjs();
         const completionDate = dayjs(item.completionDate);
         const endDate = dayjs(item.endDate);

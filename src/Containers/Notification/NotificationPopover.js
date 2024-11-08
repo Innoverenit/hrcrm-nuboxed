@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Badge, Tooltip, Popover } from "antd";
 import NotificationTab from "./NotificationTab";
-import {
-  BellOutlined
-
-} from '@ant-design/icons';
-
+import { bindActionCreators } from "redux";
+import { BellOutlined} from '@ant-design/icons';
+import { handlenotificationdrawer } from "./NotificationAction";
 class NotificationPopover extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +36,8 @@ class NotificationPopover extends Component {
             count={this.props.notificationCount}
             style={{ fontSize: 8, boxSizing: 8 }}
           >
-            <BellOutlined type="bell" className="!text-icon cursor-pointer text-[#1890ff] " />
+            <BellOutlined type="bell" className="!text-icon cursor-pointer text-[#1890ff]" 
+            onClick={() => this.props.handlenotificationdrawer(true)}/>
           </Badge>
         </Popover>
       </Tooltip>
@@ -50,5 +49,11 @@ const mapStateToProps = ({ notification }) => ({
     notification.presentNotifications &&
     notification.presentNotifications.length
 });
-
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      handlenotificationdrawer,
+    },
+    dispatch
+  );
 export default connect(mapStateToProps)(NotificationPopover);

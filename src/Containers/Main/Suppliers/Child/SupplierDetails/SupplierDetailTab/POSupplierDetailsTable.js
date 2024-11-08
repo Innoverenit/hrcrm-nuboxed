@@ -78,18 +78,18 @@ function PoSupplierDetailsTable(props) {
                            
                             </div>
 
-                            <div className="text-[#00A2E8] text-base w-[28.1rem] font-poppins font-bold md:w-[28.1rem]">
+                            <div className=" w-[28.1rem] font-poppins font-bold md:w-[28.1rem]">
                         Supplies Id
                         {/* Name" */}
                            
                             </div>
 
-                            <div className="text-[#00A2E8] text-base w-[28.1rem] font-poppins font-bold md:w-[28.1rem]">
+                            <div className=" w-[28.1rem] font-poppins font-bold md:w-[28.1rem]">
                        HSN
                         {/* Name" */}
                            
                             </div>
-                            <div className="text-[#00A2E8] text-base w-[28.1rem] font-poppins font-bold md:w-[28.1rem]">
+                            <div className=" w-[28.1rem] font-poppins font-bold md:w-[28.1rem]">
                        Contact
                         {/* Name" */}
                            
@@ -128,7 +128,7 @@ function PoSupplierDetailsTable(props) {
                                     <div className="flex rounded justify-between mt-[0.5rem] bg-white items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center"></div> 
                                         <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
-                                            <div className=" flex font-medium  justify-start  border-l-2 border-green-500 bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                            <div className=" flex  justify-start  border-l-2 border-green-500 bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class="flex font-normal items-center  ml-gap text-xs font-poppins">
                                                     <span>
                                                         {item.suppliesFullName}
@@ -138,7 +138,7 @@ function PoSupplierDetailsTable(props) {
                                             </div>
 
 
-                                            <div className=" flex font-medium  justify-start  border-l-2 border-green-500 bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                            <div className=" flex  justify-start  h-8 ml-gap  bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class="flex font-normal items-center  ml-gap text-xs font-poppins">
                                                     <span>
                                                        {item.suppliesId}
@@ -147,7 +147,7 @@ function PoSupplierDetailsTable(props) {
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium  justify-start  border-l-2 border-green-500 bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                            <div className=" flex  justify-start  h-8 ml-gap  bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class="flex font-normal items-center  ml-gap text-xs font-poppins">
                                                     <span>
                                                        {item.hsn}
@@ -155,7 +155,7 @@ function PoSupplierDetailsTable(props) {
 
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium  justify-start  border-l-2 border-green-500 bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                            <div className=" flex  justify-start  h-8 ml-gap  bg-[#eef2f9] w-[23.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class="flex font-normal items-center  ml-gap text-xs font-poppins">
                                                     <span>
                                                       {item.poContactPersonName}
