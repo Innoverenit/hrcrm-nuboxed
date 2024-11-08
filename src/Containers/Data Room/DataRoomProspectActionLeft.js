@@ -176,6 +176,16 @@ const handleLoadMore = () => {
         <div className="text-sm text-gray-500 font-poppins">{lead.sector}  {lead.source}</div>
         <div class="flex justify-between">
         <div className="text-sm text-gray-500 font-poppins">{lead.oppNo}</div>
+        <div className="text-sm text-gray-500 font-poppins">
+          {/* {lead.oppNo} */}
+          <MultiAvatar
+                            primaryTitle={lead.ownerName}
+                            // imageId={lead.imageId}
+                            // imageURL={lead.imageURL}
+                            imgWidth={"1.8rem"}
+                            imgHeight={"1.8rem"}
+                          />
+          </div>
         {/* <Button>To Order</Button> */}
         </div>
       </div>
