@@ -102,8 +102,8 @@ function OpenReceivedOrderIdForm(props) {
       Swal.fire({
         icon: 'success',
         title: ' Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
     } catch (error) {
       console.error("Error sending selected data:", error);

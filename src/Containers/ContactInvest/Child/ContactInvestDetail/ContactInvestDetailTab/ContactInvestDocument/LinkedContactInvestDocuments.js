@@ -59,17 +59,17 @@ class LinkedContactInvestDocuments extends Component {
       <>
           <div className=' flex sticky z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                  <div className=" flex  w-[100%]  p-1 bg-transparent font-bold text-xs sticky items-end z-10">
+                  <div className=" flex  w-[100%] font-bold font-poppins text-xs  p-1 bg-transparent text-xs sticky items-end z-10">
                   
-                  <div className="md:w-[9.7rem] text-[#00A2E8] text-base">
+                  <div className="md:w-[12.7rem] text-[#00A2E8] text-base">
                   <DateRangeIcon className='!text-icon  '  /> {this.state.translatedMenuItems[0]}  
                   {/* Date */}
                     </div>
-                      <div className=" md:w-[14.12rem]">
+                      <div className=" md:w-[16.12rem]">
                       <LocationCityIcon className='!text-icon  '  />  {this.state.translatedMenuItems[1]}  
                       {/* Name */}
                         </div>
-                      <div className=" md:w-[10.5rem]">
+                      <div className=" md:w-[14.5rem]">
                       < MergeTypeIcon className='!text-icon text-[#c42847] '  />  {this.state.translatedMenuItems[2]}  
                       {/* type*/}
                         </div>
@@ -86,29 +86,29 @@ class LinkedContactInvestDocuments extends Component {
                       return (
                           <div >
                               <div
-              className="flex rounded justify-between  bg-white mt-1 items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between py-ygap bg-white mt-1 items-center max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                   <div class="flex">
-                                      <div className=" flex  h-8 border-l-2 border-green-500 bg-[#eef2f9] md:w-[9.8rem] max-sm:w-full  ">
-                                      <div>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</div>
+                                      <div className=" flex items-center h-8 border-l-2 border-green-500 bg-[#eef2f9] md:w-[9.8rem] max-sm:w-full  ">
+                                      <div class="text-xs ml-gap font-poppins">{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</div>
                                       </div>
 
                                       <div className=" flex  h-8 ml-gap bg-[#eef2f9]    md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between items-center  ">
-                                          <div class=" text-xs  font-poppins">
+                                          <div class=" text-xs ml-gap  font-poppins">
                                              {item.documentTitle}
                                           </div>
 
                                       </div>
-                                      <div className=" flex h-8 ml-gap bg-[#eef2f9]  justify-center  md:w-[10.8rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
-                                          <div class=" text-xs  font-poppins">
+                                      <div className=" flex h-8 ml-gap bg-[#eef2f9]  justify-start  md:w-[16.8rem] max-sm:flex-row w-full max-sm:justify-between items-center ">
+                                          <div class=" text-xs  ml-gap font-poppins">
                                               {item.documentDescription}
                                           </div>
                                       </div>
                                   </div>
-                                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-start md:w-[15.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                                      <div class=" text-xs  font-poppins text-center">
+                                      <div class=" text-xs ml-gap font-poppins text-center">
                                       {item.uploadedBy}
 
                                       </div>
@@ -135,12 +135,12 @@ class LinkedContactInvestDocuments extends Component {
 
                                       </div>
                                   </div>
-                                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[5.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[2.23rem] max-sm:flex-row w-full max-sm:justify-between ">
                                       <div class=" text-xs  font-poppins text-center">
                                       <StyledPopconfirm
               title="Do you want to delete?"
            >
-            <DeleteOutlined type="delete" style={{ cursor: "pointer", fontSize:"1.25rem",color: "red" }} />
+            <DeleteOutlined className="!text-icon cursor-pointer text-red-600" type="delete" />
             </StyledPopconfirm>
 
                                       </div>

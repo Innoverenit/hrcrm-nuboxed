@@ -194,7 +194,7 @@ function ContactCardList(props) {
         <ContactsIcon className="!text-icon mr-1 "/>
         {translatedMenuItems[0]}</div>
         <div className=" w-[29.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
+        <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
          {/* Company */}
         <div className=" md:w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
         <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
@@ -210,7 +210,7 @@ function ContactCardList(props) {
         <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> */}
         {/* Pipeline */}
         <div className=" w-[12.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
-        <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
+        <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[6]}</div>
            {/* Portal Access */}
         {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[13.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
@@ -257,7 +257,7 @@ function ContactCardList(props) {
                     return (
                       <div>
                      
-          <div className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+          <div className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
       <div className=" flex   w-[15rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk  ">
@@ -273,7 +273,7 @@ function ContactCardList(props) {
       />
     </div>
   
-    <div class="max-sm:w-full">
+    <div class="max-sm:w-full flex items-center">
                                   <Tooltip>
                                     <div class=" flex max-sm:w-full justify-between  md:flex-col">
                                     
@@ -284,7 +284,7 @@ function ContactCardList(props) {
   
 
   {date === currentdate ? (
- <div class="text-[0.65rem]  mt-[0.4rem] text-[tomato] font-bold"
+ <div class="text-[0.65rem]   text-[tomato] font-bold"
                             
  >
       {/* New */}{translatedMenuItems[8]}

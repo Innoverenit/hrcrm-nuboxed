@@ -68,7 +68,8 @@ export const createProductionLink = (data,) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Process Started Successfully',
-        showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {

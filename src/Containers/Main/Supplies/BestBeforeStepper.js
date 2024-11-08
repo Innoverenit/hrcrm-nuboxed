@@ -51,6 +51,8 @@ const BestBeforeStepper = (props) => {
             Swal.fire({
                 icon: "success",
                 title: "Email sent Successfully!",
+                showConfirmButton: false,
+                timer: 1500,
             });
             props.handleOpportunityModal(false);
         } catch (error) {

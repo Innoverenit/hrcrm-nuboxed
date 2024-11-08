@@ -48,16 +48,16 @@ export const addExpenses = (expense,orgId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Expense added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       dispatch(getExpenseCount(orgId));
@@ -96,6 +96,8 @@ export const updateExpenses = (data,expenseTypeId, cb) => (
       Swal.fire({
         icon: 'success',
         title: 'Expense updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Expense has been updated successfully!");
       console.log(res);
@@ -153,6 +155,8 @@ export const removeExpense = ( expenseTypeId,orgId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Expense deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Expense has been deleted successfully!");
       console.log(res);

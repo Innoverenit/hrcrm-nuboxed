@@ -48,16 +48,16 @@ export const addEducations = (education,orgId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Education added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       // message.success("Education added successfully!");
@@ -97,6 +97,8 @@ export const updateEducations = (data,educationTypeId, cb) => (
       Swal.fire({
         icon: 'success',
         title: 'Education updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Education updated successfully!");
       console.log(res);
@@ -154,6 +156,8 @@ export const removeEducation = (educationTypeId,orgId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Education deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Education deleted successfully!");
       console.log(res);

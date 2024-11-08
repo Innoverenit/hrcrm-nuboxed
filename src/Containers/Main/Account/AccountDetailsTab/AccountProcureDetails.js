@@ -190,7 +190,9 @@ function AccountProcureDetails(props) {
         title: 'Validation Error!',
         text: 'Unit value must be at least 1.',
         icon: 'error',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        showConfirmButton: false,
+        timer: 1500,
       });
       return;
     }
@@ -261,7 +263,9 @@ const handleGenerateInvoice= async () => {
           title: 'Validation Error!',
           text: 'Unit value must be at least 1 for all items.',
           icon: 'error',
-          confirmButtonText: 'OK'
+          confirmButtonText: 'OK',
+          showConfirmButton: false,
+          timer: 1500,
         });
         setLoading(false);
         return null; 
@@ -294,7 +298,9 @@ const handleGenerateInvoice= async () => {
         title: 'Validation Error',
         text: 'Invoice field cannot be blank.',
         icon: 'error',
-        confirmButtonText: 'OK'
+        confirmButtonText: 'OK',
+        showConfirmButton: false,
+        timer: 1500,
       });
       return;
     }

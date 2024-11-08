@@ -52,16 +52,16 @@ export const addDocuments = (documents, orgId,cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Document Type added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         dispatch(getDocumentCount(orgId));
@@ -103,6 +103,8 @@ export const removeDocuments = (documentTypeId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Document Type deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Document  deleted successfully!");
         console.log(res);
@@ -145,6 +147,8 @@ export const removeDocuments = (documentTypeId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Document Type updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Document  updated successfully!");
         console.log(res);

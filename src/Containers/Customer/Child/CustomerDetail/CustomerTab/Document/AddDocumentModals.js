@@ -652,7 +652,7 @@ function AddDocumentModal (props){
           
             </div>
                   <div class=" flex  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[1]}
                       {/* Contract */}
                       </div>

@@ -1373,7 +1373,7 @@ export const updateActualValue= (data,employeeId,year,quarter, cb) => (dispatch)
         icon: 'success',
         title: 'KPI Value updated Successfully!',
         showConfirmButton: false,
-        timer: 2000
+        timer: 1500
       })
       console.log(res);
       //  dispatch(getUserKpiList(employeeId,year,quarter));

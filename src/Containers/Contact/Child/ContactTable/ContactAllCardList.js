@@ -20,6 +20,7 @@ import ScoreIcon from '@mui/icons-material/Score';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import {
+  // getAllCustomerlIST,
   getAllContact,
   handleUpdateContactModal,
   handleContactReactSpeechModal,
@@ -89,6 +90,7 @@ function ContactAllCardList(props) {
     })
     props.getAllContact(page,"Customer");
     setPage(page + 1);
+    // props.getAllCustomerlIST(page,props.filter?props.filter:"creationdate");
   }, []);
 
   useEffect(() => {
@@ -153,6 +155,8 @@ function ContactAllCardList(props) {
 
   const handleLoadMore = () => {
             setPage(page + 1);
+        //       props.getAllCustomerlIST( page,
+        // props.filter?props.filter:"creationdate"
             props.getAllContact(page,
               "Customer"
               );
@@ -221,13 +225,13 @@ if (loading) {
         <div className="flex flex-col max-sm:justify-between ">
           
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-              {item.dailCode1} {item.mobileNo}      </div>
-            
+                  </div>
+                  {item.email} 
           <div>
           <div class="font-medium text-xs ">
        
               <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-              {item.email} 
+            {item.dailCode1} {item.mobileNo}  
               </div>
            
             
@@ -248,17 +252,17 @@ if (loading) {
         <div className=" w-[43.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
         <div className=" w-[30.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
+        <ApartmentIcon className="!text-icon "/> {translatedMenuItems[1]}</div>
         <div className=" md:w-[21.1rem] w-[20.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
-        <i className="fab fa-artstation mr-1"></i> {translatedMenuItems[2]}</div>
+        <i className="fab fa-artstation "></i> {translatedMenuItems[2]}</div>
         <div className="  md:w-[20.1rem] w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/>{translatedMenuItems[3]}</div>
+        <ApartmentIcon className="!text-icon  "/>{translatedMenuItems[3]}</div>
         <div className=" md:w-[17.2rem] w-[15.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
-        <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
+        <LightbulbIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
         {/* <div className=" md:w-[14.3rem]  w-[13.3rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
         <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> pipeline */} 
         <div className=" w-[21.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
-        <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[6]}</div>
+        <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[6]}</div>
         {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[10.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
              <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[8]}   {/* Score */}
@@ -306,7 +310,7 @@ if (loading) {
                     return (
                       <div>
                       <div
-                className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
                           <div className=" flex  w-[14rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk  ">
@@ -322,18 +326,18 @@ if (loading) {
       />
     </div>
     &nbsp;
-    <div class="max-sm:w-full">
+    <div class="max-sm:w-full  flex items-center">
                                   <Tooltip>
                                     <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
                                     
                                       <div class="text-xs flex items-center text-blue-500  font-poppins  font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis flex whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+                                      <Link class=" flex  items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   
   
   {date === currentdate ? (
- <div class="text-[0.65rem]  mt-[0.4rem] text-[tomato] font-bold"
+ <div class="text-[0.65rem] text-[tomato] font-bold"
                             
  >
     {translatedMenuItems[9]}   {/* New */}
@@ -354,15 +358,15 @@ if (loading) {
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-auto w-[7.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex max-sm:w-auto w-[7.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
                              
-                              <div class="text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex  max-sm:w-auto w-[6.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
+                          <div className=" flex  max-sm:w-auto w-[8.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
                           
-                            <div class="text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class="text-xs ml-gap  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                  {item.department}
                             </div>
                         </div>
@@ -664,6 +668,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      // getAllCustomerlIST,
       getAllContact,
       handleUpdateContactModal,
       handleDonotCallModal,

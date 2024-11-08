@@ -81,12 +81,12 @@ if (fetchingDealList) return <BundleLoader/>;
     <div className=' flex sticky z-auto h-[77vh]'>
     <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-[93%]  p-1 bg-transparent text-xs items-end font-bold sticky z-10">
-        <div className="text-[#00A2E8] text-base w-[24rem] md:w-[23rem]">
+        <div className="text-[#00A2E8] text-base w-[24rem] md:w-[22rem]">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}  
         {/* Name */}
 
         </div>
-        <div className="font-poppins font-bold text-xs md:w-[11.2rem] w-[5.2rem]">
+        <div className="font-poppins font-bold text-xs md:w-[7.2rem] w-[5.2rem]">
         <DateRangeIcon className='!text-icon mr-1 '  /> 
         {translatedMenuItems[2]}  
         {/* End Date */}
@@ -143,7 +143,7 @@ if (fetchingDealList) return <BundleLoader/>;
           return (
             <div>
               <div
-                className="flex rounded justify-between bg-white mt-[0.5rem]  items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                className="flex rounded justify-between  py-ygap bg-white mt-[0.5rem]  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div class="flex ">
                 <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  md:w-[22rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
@@ -153,12 +153,12 @@ if (fetchingDealList) return <BundleLoader/>;
                                           <div class=" flex max-sm:w-full justify-between flex-row md:max-sm:w-full ">
                                           
                                             <div class="text-xs flex text-blue-500  font-poppins font-bold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                            <Link class="flex items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>                                     
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <div class="text-[0.65rem] mt-[0.4rem]"
+          <div class="text-[0.65rem] "
             style={{
               color: "tomato",
               fontWeight: "bold",
@@ -184,9 +184,9 @@ if (fetchingDealList) return <BundleLoader/>;
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center  justify-center max-sm:w-full  md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center  justify-start max-sm:w-full  md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <div class=" text-xs  font-poppins">
+                    <div class=" text-xs ml-gap font-poppins">
                     <div>
             <CurrencySymbol currencyType={item.currency} />
             &nbsp;&nbsp;{item.proposalAmount}
@@ -246,9 +246,9 @@ width={30}
                   <div className=" flex   max-sm:flex-row w-full max-sm:justify-between">
                   <Tooltip title="Edit">       
           <BorderColorIcon 
-          
+          className="cursor-pointer !text-icon text-red-600"
               type="edit"
-              style={{ cursor: "pointer",fontSize:"1.25rem" }}
+         
               onClick={() => {
                 props.setEditCustomerOpportunity(item);           
               }}

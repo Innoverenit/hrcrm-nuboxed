@@ -54,16 +54,16 @@ export const addMasterKpi = (sectors,orgId,cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Master KPI added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+   timer: 1500,
           });
         }
         console.log(res);
@@ -101,6 +101,8 @@ export const addMasterKpi = (sectors,orgId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Master KPI deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         console.log(res);
         dispatch({
@@ -138,6 +140,8 @@ export const updateMasterKpi = (data, performanceManagementId,cb) => (dispatch) 
         Swal.fire({
           icon: 'success',
           title: 'Master KPI updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Sector has been updated successfully!");
         console.log(res);

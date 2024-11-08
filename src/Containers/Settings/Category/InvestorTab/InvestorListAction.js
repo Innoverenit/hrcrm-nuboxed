@@ -105,6 +105,8 @@ export const addInvestorData = (sectors, orgId) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
         });
 
         dispatch({
@@ -114,6 +116,8 @@ export const addInvestorData = (sectors, orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Investor Type added Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         });
 
         dispatch({
@@ -151,6 +155,8 @@ export const removeInvestor = ( investorCategoryId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Investor Type deleted successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Investor has been deleted successfully!");
         console.log(res);
@@ -196,6 +202,8 @@ export const updateInvestor = (data, investorCategoryId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Investor Type updated successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
       })
       .catch((err) => {

@@ -54,16 +54,16 @@ export const addQuality = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Quality added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         dispatch(getQualityCount());
@@ -104,6 +104,8 @@ export const removeQuality = ( qualityId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Quality deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("QUALITY has been deleted successfully!");
         console.log(res);
@@ -142,6 +144,8 @@ export const updateQuality = ( data,qualityId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Quality updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("QUALITY has been updated successfully!");
         console.log(res);

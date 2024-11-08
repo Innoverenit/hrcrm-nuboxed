@@ -18,16 +18,16 @@ export const addBrandModel = (brand) => (dispatch) => {
                 Swal.fire({
                   icon: 'error',
                   title: res.data.message,
-                  // showConfirmButton: false,
-                  // timer: 1500
+                  showConfirmButton: false,
+                  timer: 1500,
                 });
               } else {
                
                 Swal.fire({
                   icon: 'success',
                   title: 'BrandModel added Successfully!',
-                  // showConfirmButton: false,
-                  // timer: 1500
+                  showConfirmButton: false,
+   timer: 1500,
                 });
               }
             console.log(res);
@@ -92,6 +92,8 @@ export const updateBrandModel = (phoneMasterListId, brand, model) => (dispatch) 
             Swal.fire({
                 icon: 'success',
                 title: 'BrandModel Updated Successfully!',
+                showConfirmButton: false,
+                timer: 1500,
               })
             dispatch({
                 type: types.UPDATE_BRAND_MODEL_SUCCESS,
@@ -124,16 +126,16 @@ export const addModel = (model,orgId,cb) => (dispatch,getState) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Model added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         // dispatch(getRoles(orgId));

@@ -145,7 +145,9 @@ function AccountInvoiceTable(props) {
             title: 'Validation Error',
             text: 'Invoice field cannot be blank.',
             icon: 'error',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            showConfirmButton: false,
+            timer: 1500,
           });
           return;
         }
@@ -200,7 +202,9 @@ function AccountInvoiceTable(props) {
             title: 'Error!',
             text: 'There was an issue generating the invoice.',
             icon: 'error',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            showConfirmButton: false,
+            timer: 1500,
           });
         } finally {
           setLoading(false);

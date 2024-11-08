@@ -89,7 +89,7 @@ if (loading) {
   return (
     <>
   <div class="rounded m-1 p-1 w-[99%] h-[77vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end  z-10">
+    <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins text-xs sticky items-end  z-10">
         <div className="text-[#00A2E8] text-base md:w-[15rem]">
         <LocationCityIcon className='!text-icon  '  />   {translatedMenuItems[0]} 
        {/* name */}             

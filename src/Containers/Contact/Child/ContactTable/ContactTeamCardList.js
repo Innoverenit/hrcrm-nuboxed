@@ -266,21 +266,21 @@ if (loading) {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[100%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent  sticky  z-10">
         <div class=" flex justify-between w-[89%] font-bold  font-poppins text-xs items-end ">
-        <div className=" w-[36.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div className=" w-[39.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
         <div className=" w-[32.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
+        <ApartmentIcon className="!text-icon "/> {translatedMenuItems[1]}</div>
         <div className=" md:w-[19.1rem] w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
         <i className="fab fa-artstation mr-1"></i>
             {translatedMenuItems[2]}</div>
         <div className="  md:w-[20.1rem] w-[15.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[3]}</div>
-        <div className=" md:w-[22.2rem] w-[19.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
-        <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
+        <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[3]}</div>
+        <div className=" md:w-[17.2rem] w-[19.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <LightbulbIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
         {/* <div className=" md:w-[14.3rem]  w-[13.3rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
         <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> */}
         <div className=" w-[20.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
-        <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>   {translatedMenuItems[6]}</div>
+        <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/>   {translatedMenuItems[6]}</div>
         {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[11.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
              <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[8]}   {/* Score */}
@@ -327,7 +327,7 @@ if (loading) {
                     return (
                       <div>
                       <div
-                className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 py-ygap items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
                           <div className=" flex   w-[14rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk  ">
@@ -343,17 +343,17 @@ if (loading) {
       />
     </div>
     &nbsp;
-    <div class="max-sm:w-full">
+    <div class="max-sm:w-full  flex items-center">
                                   <Tooltip>
-                                    <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
+                                  <div class=" flex max-sm:w-full justify-between  md:flex-col">
                                     
                                       <div class="flex items-center text-xs  text-blue-500  font-poppins  font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis flex whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+                                      <Link class="flex  items-center overflow-ellipsis flex whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   
   {date === currentdate ? (
- <div class="text-[0.65rem] mt-[0.4rem] text-[tomato] font-bold"
+ <div class="text-[0.65rem]  text-[tomato] font-bold"
                             
  >
     {translatedMenuItems[9]}  {/* New */}

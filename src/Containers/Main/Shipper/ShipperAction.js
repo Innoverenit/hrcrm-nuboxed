@@ -1251,6 +1251,8 @@ export const deleteShipperData = (id,userId) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       console.log(res);
       dispatch(getShipperRecords(userId));
@@ -1548,6 +1550,8 @@ export const reinstateToggleForShipper = (data, shipperId,userId) => (
       Swal.fire({
         icon: 'success',
         title: 'Reinstated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Reinstated Successfully");
     })

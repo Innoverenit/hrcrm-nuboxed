@@ -1348,6 +1348,8 @@ export const updateInspection = (data, orderPhoneId) => (dispatch) => {
         icon: 'success',
         title: 'Inspection Status Updated',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       // dispatch(getReceivedUserList(locationId))
       dispatch({
@@ -1608,6 +1610,8 @@ export const updateReceivedDamagedUnit = (data, poSupplierDetailsId, suppliesId)
         icon: 'success',
         title: 'Updated Successfully',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       console.log(res);
       dispatch({
@@ -1694,6 +1698,8 @@ export const generateGrnForPo = (data) => (dispatch) => {
         icon: 'success',
         title: 'Grn Created Successfully',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.GENERATE_GRN_FOR_PO_SUCCESS,
@@ -1780,6 +1786,8 @@ export const trnasferGrnItemToStock = (data, poSupplierSuppliesId, cb) => (dispa
         icon: 'success',
         title: 'Updated Successfully',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.TRANSFER_PO_GRN_TO_STOCK_SUCCESS,
@@ -1850,6 +1858,8 @@ export const updatePartIdOfAnItem = (data, supplierSuppliesUniqueNumberId) => (d
         icon: 'success',
         title: 'Part no updated successfully',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.UPDATE_PART_ID_OF_AN_ITEM_SUCCESS,

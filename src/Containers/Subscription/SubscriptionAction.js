@@ -157,9 +157,9 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: "Subscription added Successfully"
-          ,
-          showConfirmButton: false,
-          timer: 1500
+          ,    showConfirmButton: false,
+          timer: 1500,
+       
         })
         dispatch({
           type: types.ADD_SUSCRIPTIONS_SUCCESS,
@@ -280,8 +280,8 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Subscription Deleted Successfully',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         })
         // if (res.data) {
         //   Swal.fire({
@@ -331,8 +331,8 @@ export const handleCreateSubscriptionDrawer = (modalProps) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Subscription Rules Deleted Successfully',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         })
         // if (res.data) {
         //   Swal.fire({

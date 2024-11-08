@@ -119,7 +119,9 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
               title: 'Validation Error!',
               text: 'Amount can not exceed remaining total value or be less than 0!',
               icon: 'error',
-              confirmButtonText: 'OK'
+              confirmButtonText: 'OK',
+              showConfirmButton: false,
+              timer: 1500,
             });
           }
 

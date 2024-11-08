@@ -53,16 +53,16 @@ export const addEquipment = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+   timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Equipment added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         dispatch(getEquipmentCount());
@@ -103,6 +103,8 @@ export const removeEquipment = ( equipmentId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Equipment deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("EQUIPMENT has been deleted successfully!");
         console.log(res);
@@ -141,6 +143,8 @@ export const updateEquipment = ( data,equipmentId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Equipment updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("EQUIPMENT has been updated successfully!");
         console.log(res);
