@@ -73,32 +73,32 @@ function OpportunityTable(props) {
   return (
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> 
+ <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
+        <div className=" w-[15.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> 
            <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
         {/* Quotation ID */}
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         <ApartmentIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
         {/* Prospect */}
-        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> <ContactPageIcon className='!text-icon  '  /> 
+        <div className=" w-[10.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> <ContactPageIcon className='!text-icon  '  /> 
           {translatedMenuItems[2]}</div>
         {/* Sponsor */}
-        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className="w-[12.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[3]}</div>
         {/* Start Date */}
-        <div className="w-[8.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-           <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
+        <div className="w-[12.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+           <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
         {/* Value */}
-        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
+        <div className="w-[10.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
           <StairsIcon className='!text-icon  '  /> 
           {translatedMenuItems[5]}</div>
         {/* Stages */}
         <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div>
         {/* Sales Rep */}
-        <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">
+        <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">
         <ContactPageIcon className='!text-icon text-[#ffb400] '  />{translatedMenuItems[7]}</div>
         {/* Owner */}
-        <div className="w-[4.8rem] "></div>
+        <div className="w-[2.8rem] "></div>
         <div className="w-12"></div>
       </div>
 
@@ -107,7 +107,7 @@ function OpportunityTable(props) {
         //next={handleLoadMore}
         // hasMore={hasMore}
         loader={props.fetchingContactOpportunity?<div class="flex justify-center" >Loading...</div> :null}
-        height={"65vh"}
+        height={"77vh"}
         style={{ scrollbarWidth:"thin"}}
       >
  <div class="flex">      
@@ -125,8 +125,8 @@ function OpportunityTable(props) {
                    <div
                 className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex w-[11rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
-                              <div>
+                    <div className=" flex w-[8rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
+                              <div className="ml-gap">
 
           <MultiAvatar
             primaryTitle={item.opportunityName}
@@ -136,26 +136,24 @@ function OpportunityTable(props) {
           />
         
 </div>
-                                 <div class="w-[4%]">
-
-                                 </div>
-                                 
+                              
+<div className="flex max-sm:w-full items-center"> 
                                       <Tooltip>
-                                      <div class=" flex max-sm:w-full  flex-row md:flex-col">
+                                      <div class=" flex items-center max-sm:w-full  flex-row md:flex-col">
         
-                                          <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
+                                          <div class="flex text-xs text-blue-500 ml-gap font-poppins font-semibold cursor-pointer">
                                               
-                                          <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                          <Link class="flex ml-gap overflow-ellipsis max-sm:text-sm whitespace-nowrap max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>&nbsp;&nbsp;
      
                                           </div>
 </div>
                                       </Tooltip>
-                            
+                            </div>
                               </div>
 
-                              <div className=" flex  w-[7.01rem] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  items-center justify-center  ml-gap bg-[#eef2f9] h-8 w-[8.01rem] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
                                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                   
@@ -167,7 +165,7 @@ function OpportunityTable(props) {
                             
                               
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex w-[6rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex w-[7rem] items-center justify-center  ml-gap bg-[#eef2f9] h-8 max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 
                                 <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -184,18 +182,18 @@ function OpportunityTable(props) {
        
                                 </div>
                             </div>
-                              <div className=" flex   w-[8rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex items-center justify-start  ml-gap bg-[#eef2f9] h-8  w-[8rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                                  <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs ml-gap justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {dayjs(item.startDate).format("DD/MM/YYYY")}
                                   </div>
                               </div>
                            
-                              <div className=" flex  w-[6.01rem] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex items-center justify-start  ml-gap bg-[#eef2f9] h-8  w-[6.01rem] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
    
 
-                                  <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs ml-gap font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   <CurrencySymbol currencyType={item.currency} />
           &nbsp;
           {item.proposalAmount}
@@ -204,7 +202,7 @@ function OpportunityTable(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex  w-[7.02rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex items-center justify-center  ml-gap bg-[#eef2f9] h-8  w-[7.02rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
            
 
                                   <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -240,7 +238,7 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex  w-[6.02rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex items-center justify-center  ml-gap bg-[#eef2f9] h-8  w-[6.02rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                     
 
                                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -255,7 +253,7 @@ strokeColor={"#005075"}
            
                                   </div>
                               </div>
-                              <div className=" flex  w-[5rem] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                              <div className=" flex items-center justify-center  ml-gap bg-[#eef2f9] h-8 w-[5rem] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                      
 
 
@@ -281,7 +279,7 @@ strokeColor={"#005075"}
           /> */}
                   </div>
                
-                 <div class="flex  w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-auto">
+                 <div class="flex items-center justify-center  ml-gap bg-[#eef2f9] h-8 w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-auto">
                  <div>
                  <span
        
@@ -308,7 +306,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                       </div>
           </div>
         
-                 <div class="flex w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-auto">
+                 <div class="flex items-center justify-center  ml-gap bg-[#eef2f9] h-8 w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-auto">
                   <div>
                   <Tooltip title='Click to Open'><span
        onClick={() => {
@@ -330,17 +328,12 @@ handleSetCurrentOpportunityId(item.opportunityName);
                   </div>
                 
                 </div>
-                <div class="flex w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-auto">
-                 
-                    
-                  
-          
+                <div class="flex items-center justify-center  ml-gap bg-[#eef2f9] h-8 w-6 max-lg:w-[1rem] max-sm:flex-row max-sm:w-auto">
+                
                 </div>  
                 </div>
                 </div> 
-                            
-                    
-                          </div>
+                       </div>
                   
 
                  )  
