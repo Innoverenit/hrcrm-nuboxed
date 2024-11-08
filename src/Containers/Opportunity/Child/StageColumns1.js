@@ -31,6 +31,7 @@ class StageColumns1 extends Component {
               secondaryTitle={`${opportunity.proposalAmount} `}
               currencyType={opportunity.currency}
               customerName={opportunity.customer}
+              ownerName={opportunity.ownerName}
               contactName={opportunity.contactName}
               user={this.props.user}
               handleClick={() =>

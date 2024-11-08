@@ -54,16 +54,16 @@ class DataRoomActionRight extends React.Component {
       <>
                <div class=" flex  items-center">
        
-           {this.props.user.dataRoomCreateInd ===true && user.imInd === true &&(
+           {/* {this.props.user.dataRoomCreateInd ===true && user.imInd === true &&(
 <Button
   type="primary"
   onClick={() => this.props.handleDataroomModal(true)}
 >
   <DataSaverOnIcon className="!text-icon"/> 
        {this.state.translatedMenuItems[0]}
-       {/* Add */}
+     
 </Button>
-   )} 
+   )}  */}
         </div>    
       </>
     );

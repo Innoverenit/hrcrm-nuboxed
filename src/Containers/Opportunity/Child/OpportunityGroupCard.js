@@ -22,6 +22,7 @@ const BussinessCard = (props) => {
     handleDelete,
     user,
     customerName,
+    ownerName,
     contactName
   } = props;
   
@@ -53,7 +54,19 @@ const BussinessCard = (props) => {
               {customerName || ""} 
               </div>
               <div class="text-xs">          
-              {contactName || ""} 
+              {/* {contactName || ""}  */}
+              <MultiAvatar
+              primaryTitle={contactName}
+              imgHeight={"1.56em"}
+              imgWidth={"1.56em"}
+            />
+              </div>
+              <div class="text-xs">          
+              <MultiAvatar
+              primaryTitle={ownerName}
+              imgHeight={"1.56em"}
+              imgWidth={"1.56em"}
+            />
               </div>
             </div>
            
