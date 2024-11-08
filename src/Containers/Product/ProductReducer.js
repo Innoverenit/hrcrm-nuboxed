@@ -1932,6 +1932,27 @@ export const productReducer = (state = initialState, action) => {
                                                     updateDateYearProductError: true,
                                                   };
   
+                                                  case types.ADD_QUALITY_PRODUCT_REQUEST:
+                                                    return { ...state, addingQualityProduct: true };
+                                                  case types.ADD_QUALITY_PRODUCT_SUCCESS:
+                                                    return {
+                                                      ...state, addingQualityProduct: false, 
+                                                      categoryProducts: state.categoryProducts.map((item) => {
+                                                        if (item.categoryId === action.payload.categoryId) {
+                                                          return action.payload;
+                                                        } else {
+                                                          return item;
+                                                        }
+                                                      }),
+                                                      
+                                                    };
+                                                  case types.ADD_QUALITY_PRODUCT_FAILURE:
+                                                    return {
+                                                      ...state,
+                                                      addingQualityProduct: false,
+                                                      addingQualityProductError: true,
+                                                    }
+
 
     default:
       return state;

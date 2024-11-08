@@ -3,7 +3,7 @@
 // import { bindActionCreators } from "redux";
 // import { Formik, Field, Form } from 'formik';
 // import { Input, Space, Button } from 'antd';
-// import {addQualityCategory} from "../../../../Containers/Main/Supplies/SuppliesAction";
+// import {addQualityProduct} from "../../../../Containers/Main/Supplies/SuppliesAction";
 // import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
 // const ProductAddQulitySpec = (props) => {
@@ -36,7 +36,7 @@
 //     //   onSubmit={handleSubmit}
 //     onSubmit={(values, { resetForm }) => {
 //         console.log(values);
-//         props.addQualityCategory(
+//         props.addQualityProduct(
 //           {
 //             ...values,
             
@@ -44,7 +44,7 @@
 //           },
 //           props.particularDiscountData.categoryId,
 //           setLoading, 
-//           props.closeModal2(),
+//           props.setOpen(),
 //           () => resetForm(),
 //         );
 //       }}
@@ -132,7 +132,7 @@
 //     const mapDispatchToProps = (dispatch) =>
 //       bindActionCreators(
 //         {
-//             addQualityCategory
+//             addQualityProduct
 //         },
 //         dispatch
 //       );
@@ -145,7 +145,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Formik, Field, Form } from 'formik';
 import { Input, Space, Button } from 'antd';
-import { addQualityCategory } from "../../../../Containers/Main/Supplies/SuppliesAction";
+import {addQualityProduct} from "../../ProductAction";
 import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
 
 const ProductAddQulitySpec = (props) => {
@@ -178,11 +178,11 @@ const ProductAddQulitySpec = (props) => {
       }}
       onSubmit={(values, { resetForm }) => {
         console.log(values);
-        props.addQualityCategory(
+        props.addQualityProduct(
           { ...values },
           particularDiscountData?.categoryId, // Safely access categoryId
           setLoading,
-          props.closeModal2(),
+          props.setOpen(),
           () => resetForm(),
         );
       }}
@@ -264,7 +264,7 @@ const mapStateToProps = ({ supplies }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      addQualityCategory
+      addQualityProduct
     },
     dispatch
   );

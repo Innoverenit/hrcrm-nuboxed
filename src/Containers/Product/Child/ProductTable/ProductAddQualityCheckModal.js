@@ -22,6 +22,7 @@ const ProductAddQualityCheckModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
 <ProductAddQulitySpec
 particularDiscountData={props.particularDiscountData}
+setOpen={props.setOpen}
 />
 
         </Suspense>
