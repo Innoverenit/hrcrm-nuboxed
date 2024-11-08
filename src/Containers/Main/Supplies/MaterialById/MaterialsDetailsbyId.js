@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 // import { getmaterialsBySuppliesId } from "./InventoryAction";
 import {getUOM} from "../../../Settings/SettingsAction"
 import styled from "styled-components";
+import axios from "axios";
 import { Select } from "../../../../Components/UI/Elements";
 import MaterialFastMovingToggle from "../MaterialById/MaterialFastMovingToggle"
 import MaterialsDetailsCardViewId from "./MaterialsDetailsCardViewId";
@@ -14,29 +15,70 @@ import img from "../../../../Assets/Images/Erp.jpg";
 import MaterialRecommendToggle from "../MaterialRecommendToggle";
 import MaterialFifoToggle from "../MaterialFifoToggle";
 import MaterialFeatureToggle from "../MaterialFeatureToggle";
+import { base_url2 } from "../../../../Config/Auth";
+import TextArea from "antd/es/input/TextArea";
 
 const { Option } = Select;
 
 function MaterialsDetailsbyId(props) {
+
+  const [sName, setsName] = useState(props.materialsBySuppliesId.suppliesName);
+  const [sDesc, setsDesc] = useState(props.materialsBySuppliesId.description);
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [isEditingDesc, setIsEditingDesc] = useState(false);
   useEffect(() => {
   
       props.getMaterialsBySuppliesId(props.particularDiscountData.suppliesId);
     props.getUOM()
   }, []);
-
+  // useEffect(() => {
+  //   if (props.materialsBySuppliesId.suppliesName) {
+  //     setsName(props.materialsBySuppliesId.suppliesName);
+  //   }
+  // }, [props.materialsBySuppliesId]);
+  useEffect(() => {
+    if (props.materialsBySuppliesId.suppliesName) {
+      setsName(props.materialsBySuppliesId.suppliesName);
+    }
+    if (props.materialsBySuppliesId.description) {
+      setsDesc(props.materialsBySuppliesId.description);
+    }
+  }, [props.materialsBySuppliesId]);
 //   if (props.fetchingProductsList) {
 //     return <BundleLoader />;PD10985606347262024
 //   }
-const puzzleDescription = `
-  Elephants are the largest existing land animals! They are strong, unique in their built, and caring. Watch these
-  majestic animals travel with their herd in this 3D, immersive puzzle.
-  Each piece is made with great detail and quality craftsmanship doing justice to the vibrant colours that pop out
-  (pun intended!) as you assemble this unique illustration. High-quality pieces that don’t break and are easy to fit.
-  Develop a new hobby, or engage in some brain training as puzzles are known to stimulate the brain, and improve
-  our spatial reasoning, memory, problem-solving abilities and even increase our IQ! Puzzles are also a great way
-  to boost the mood, relieve stress and increase self-confidence!
-  You can do it yourself, with your family and friends or even use it for gifting!
-`;
+const sendPutRequest =  async (item) => {
+    
+  try {
+      const response = await axios.put(`${base_url2}/supplies/infoEdit`,item);
+    
+     if (response.data === 'Successfully !!!!') {
+    } else {
+      console.log(response.data);
+    }
+    } catch (error) {
+      console.error("Error updating item:", error);
+    }
+};
+
+const handleUpdateName = () => {
+  const updatedName = {
+    name:sName,
+      suppliesId: props.particularDiscountData.suppliesId, // Use the updated quiz name from local state
+  };
+ sendPutRequest(updatedName);
+  setIsEditingName(false); // Close the input box after updating
+};
+const handleUpdateDesc = () => {
+  const updatedName = {
+    description:sDesc,
+      suppliesId: props.particularDiscountData.suppliesId, // Use the updated quiz name from local state
+  };
+ sendPutRequest(updatedName);
+ setIsEditingDesc(false); // Close the input box after updating
+};
+
+
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
   { width: 500, itemsToShow: 2 },
@@ -51,7 +93,19 @@ console.log(props.UOMListData)
  <div className="flex justify-between items-center w-[44rem]">
       <div >
         <div>
-          {props.materialsBySuppliesId.suppliesName}
+        {isEditingName ? (
+        <input
+          type="text"
+          value={sName}
+          onChange={(e) => setsName(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleUpdateName()} // Trigger update on 'Enter'
+          onBlur={handleUpdateName} // Optional: Update on blur as well
+          autoFocus // Focus the input automatically when editing
+        />
+      ) : (
+        <div onClick={() => setIsEditingName(true)} className="cursor-pointer text-xl font-[Poppins]">{sName  }</div> // Click to enter edit mode
+      )}
+          {/* {props.materialsBySuppliesId.suppliesName} */}
           </div>
         <div>
           {props.materialsBySuppliesId.newSuppliesNo}
@@ -123,7 +177,19 @@ console.log(props.UOMListData)
                             </div>
                             </div>
                             </div>
-    <div dangerouslySetInnerHTML={{ __html: `<p>${props.materialsBySuppliesId.description}</p>` }} />
+                            {isEditingDesc ? (
+        <TextArea
+          type="text"
+          value={sDesc}
+          onChange={(e) => setsDesc(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleUpdateDesc()} // Trigger update on 'Enter'
+          onBlur={handleUpdateDesc} // Optional: Update on blur as well
+          autoFocus // Focus the input automatically when editing
+        />
+      ) : (
+        <div onClick={() => setIsEditingDesc(true)} className="cursor-pointer text-sm font-[Poppins]"><div dangerouslySetInnerHTML={{ __html: `<p>${sDesc}</p>` }} /></div> // Click to enter edit mode
+      )}
+    {/* <div dangerouslySetInnerHTML={{ __html: `<p>${props.materialsBySuppliesId.description}</p>` }} /> */}
     
     <div className="cardDs-bottom">
       <MaterialsDetailsCardViewId 

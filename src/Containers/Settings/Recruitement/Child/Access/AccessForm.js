@@ -3475,7 +3475,7 @@ useEffect(() => {
       departmentId: props.departmentId,
       roleTypeId: props.roleTypeId,
       language: multiLanguageCheckedList || [],
-      call:newCallCheckedList || [],
+      call: [],
       // call: callCheckedList || [],
       download: downloadCheckedList || [],
       event: eventCheckedList || [],
@@ -4582,7 +4582,7 @@ useEffect(() => {
       !!list.length && list.length < newCallCheckedList.length
     );
     setCheckAllCall(list.length === newCallCheckedList.length);
-    updateAccessForCategory('download', list);
+    updateAccessForCategory("call", list);
   };
   
   const onCheckAllCallChange = (e) => {
@@ -4590,7 +4590,7 @@ useEffect(() => {
     setCheckedCall(checked);
     setIndeterminateCall(false);
     setCheckAllCall(e.target.checked);
-    updateAccessForCategory('download', checked);
+    updateAccessForCategory("call",checked);
   };
 
  // Download

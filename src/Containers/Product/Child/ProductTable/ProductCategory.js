@@ -6,6 +6,7 @@ import {
     getCategory
 } from "../../ProductAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { MultiAvatar} from "../../../../Components/UI/Elements";
 import { Button, Input,Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -19,6 +20,7 @@ import styled from "styled-components";
 import "../../Product.scss";
 import dayjs from "dayjs"; 
 import Carousel from "react-elastic-carousel";
+import ProductAddQualityCheckModal from "./ProductAddQualityCheckModal";
 
 const CategoryProductModal = lazy(() => import("../CategoryProductModal"));
 
@@ -35,6 +37,7 @@ function ProductCategory(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null)
+  const [open,setOpen]= useState(false)
 
 
   useEffect(() => {
@@ -209,7 +212,7 @@ const breakPoints = [
                     )}
 
 </div>
-<div class="max-sm:mr-0 md:flex  my-2 h-hwk">
+<div class="max-sm:mr-0 md:flex  my-2 h-hwk flex-col">
                               <div class="object-cover object-center  flex items-center">
                                 <div>
                                 {editsuppliesId === item.categoryId ? (
@@ -293,7 +296,7 @@ const breakPoints = [
                                                           </Tooltip>
                                                         )}
                                                       </div> */}
-                                                      <div class="mt-px flex  justify-end w-wk m-1">
+                                                      <div class="mt-px flex  justify-end w-wk m-5 items-center">
                    {/* <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue cursor-pointer"
                                                             
                                       
@@ -307,6 +310,12 @@ const breakPoints = [
                                                         Add +
                                                           </label>
                                                           </div> */}
+<div><CircleNotificationsIcon className="!cursor-pointer" onClick={() => {
+                                setOpen(true);
+                                handleParticularRowData(item);
+                              }}/></div>
+
+
                                                               <div>
                               <Popconfirm
                                 title="Do you want to delete?"
@@ -361,6 +370,13 @@ const breakPoints = [
           categoryProductModal={categoryProductModal}
           handleCategoryModal={handleCategoryModal}
         />
+        <ProductAddQualityCheckModal
+translateText={props.translateText}
+selectedLanguage={props.selectedLanguage}
+setOpen={setOpen}
+open={open}
+particularDiscountData={particularDiscountData}
+  />
       </Suspense>
     </>
   );
