@@ -1626,6 +1626,8 @@ export const verifyUserEmailurL = (data) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: res.data.message,
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1654,6 +1656,8 @@ export const validateEmailOtpurL = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'OTP validiated successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1691,6 +1695,8 @@ export const addEmailLinkSave = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: res.data.message,
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {

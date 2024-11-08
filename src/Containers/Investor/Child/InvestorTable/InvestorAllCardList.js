@@ -393,7 +393,7 @@ console.log(selectedEmployee)
                           return (
                             <div>
                                   <div
-                    className="flex rounded justify-between  bg-white mt-1 py-1 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                    className="flex rounded justify-between  py-ygap  bg-white mt-1  items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                   >
                                            <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                       <div className=" flex  w-[13.5rem]   max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
@@ -799,7 +799,7 @@ handleCurrentRowData(item);
                     return (
                       <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between  bg-white mt-1  py-ygap items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  w-[10.5rem]   max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
@@ -936,7 +936,7 @@ handleCurrentRowData(item);
  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center ">
                                 {props.user.aiInd && (
-           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] font-poppins w-[4.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] font-poppins w-[5.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
             {item.noteScoreInd}
           
             </div>

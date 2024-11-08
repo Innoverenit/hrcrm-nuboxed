@@ -1090,6 +1090,8 @@ export const addSupplierContact = (supplier, id, type) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Contact created Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1117,6 +1119,8 @@ export const applyForLoginInContact = (data, contactPersonId, userId,type,suppli
         icon: 'success',
         title: 'Applied for login',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch(getSupplierContactList(supplierId))
       dispatch(getContactDistributorList(id))
@@ -1829,6 +1833,8 @@ export const deleteSupplierData = (supplierId,userId) => (dispatch, getState) =>
       Swal.fire({
         icon: 'success',
         title: 'Supplier deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.DELETE_SUPPLIER_DATA_SUCCESS,
@@ -1859,6 +1865,8 @@ export const updateSupplierById = (data, id, userId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Supplier updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.UPDATE_SUPPLIERS_BY_ID_SUCCESS,
@@ -2002,6 +2010,8 @@ export const reinstateToggleForSupplier = (data, supplierId,orgId) => (
       Swal.fire({
         icon: 'success',
         title: 'Reinstated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Reinstated Successfully");
     })
@@ -2145,6 +2155,8 @@ export const updatePOContact = (data,poSupplierDetailsId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.UPDATE_PO_CONTACT_SUCCESS,
@@ -2454,8 +2466,8 @@ export const removeAddressData = (addressId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Address Deleted Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
       // if (res.data) {
       //   Swal.fire({

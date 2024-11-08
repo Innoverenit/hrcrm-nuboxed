@@ -157,19 +157,19 @@ function ContactInvestCardList(props) {
   return (
     <>     
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex  justify-between max-sm:hidden w-[90%]  p-1 bg-transparent font-bold items-end sticky z-10">
-          <div className=" flex justify-between w-[93%]">
-        <div className=" font-bold font-poppins w-[20.32rem] text-xs md:w-[21.32rem]">
+          <div className=" flex  justify-between max-sm:hidden w-[94%]  p-1 bg-transparent font-bold items-end sticky z-10">
+          <div className=" flex justify-between w-[96%]">
+        <div className=" font-bold font-poppins w-[18.32rem] text-[#00A2E8] text-base md:w-[18.32rem]">
         <ContactEmergencyIcon className='!text-base mr-1  text-[#00A2E8] '
               />{translatedMenuItems[0]}
         {/* name" */}         
                 </div>
         <div className="font-bold font-poppins text-xs w-[12.72rem] md:w-[13.72rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}
+        <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}
         {/* company */}             
                 </div>
         <div className="font-bold font-poppins text-xs w-[12.6rem] md:w-[12.6rem] ">
-        <i className="fab fa-artstation mr-1"></i> {translatedMenuItems[2]} 
+        <i className="fab fa-artstation "></i> {translatedMenuItems[2]} 
         {/* designation */}             
                 </div>
         {/* <div className=" font-bold font-poppins text-xs w-[11.3rem] md:w-[11.3rem]">
@@ -177,10 +177,10 @@ function ContactInvestCardList(props) {
         department               
                 </div> */}
                     <div className="font-bold font-poppins text-xs w-[5.2rem] md:w-[11.2rem]">
-        <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> {translatedMenuItems[6]}
+        <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}
         {/* source" */}           
                 </div>
-        <div className="font-bold font-poppins text-xs w-[10.1rem] md:w-[10.1rem]">
+        <div className="font-bold font-poppins text-xs w-[12.1rem] md:w-[10.1rem]">
         <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#e4eb2f]' />{translatedMenuItems[4]}
         {/* deals" */}           
                 </div>
@@ -190,8 +190,8 @@ function ContactInvestCardList(props) {
                 </div> */}
     
                 {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-               <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>  Score
+            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+               <ScoreIcon className="!text-icon  text-[#f28482]"/>  Score
           
             </div>
             )}
@@ -233,7 +233,7 @@ function ContactInvestCardList(props) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-28 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+              className="flex rounded justify-between  py-ygap bg-white mt-1  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-28 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  md:w-[15.1rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
@@ -258,7 +258,7 @@ function ContactInvestCardList(props) {
       
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <span class="text-[tomato] text-[0.65rem] mt-[0.4rem] font-bold"        
+          <span class="text-[tomato] text-[0.65rem]  font-bold"        
           >
             New
           </span>
@@ -277,7 +277,7 @@ function ContactInvestCardList(props) {
                                     {item.tagWithCompany}
                                     </div>
                                 </div>
-                                <div className=" flex max-sm:w-full max-sm:justify-between  h-8 ml-gap bg-[#eef2f9]  w-[10.5rem] items-center">
+                                <div className=" flex max-sm:w-full max-sm:justify-between  h-8 ml-gap bg-[#eef2f9]  w-[11.5rem] items-center">
                                {/* Designation */}
                                     <div class="text-xs  ml-gap font-poppins">
                                          {item.designation}
@@ -329,10 +329,10 @@ function ContactInvestCardList(props) {
                                
                    </div>
                  
-      <div class=" flex   marker:items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7rem] max-sm:flex   max-sm:w-full">                 
+      <div class=" flex  items-center marker:items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7rem] max-sm:flex   max-sm:w-full">                 
                   
                     <Tooltip title= {translatedMenuItems[7]}>
-                  <MonitorHeartIcon className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl"
+                  <MonitorHeartIcon className="flex !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl"
                    onClick={() => {
                   handleContactInvestPulseDrawerModal(true);
                   handleCurrentContactIdata(item);
@@ -345,12 +345,12 @@ function ContactInvestCardList(props) {
                   props.handleContactInvestNotesDrawerModal(true);
                   handleCurrentContactIdata(item);
                 }}
-                className="text-green-800 cursor-pointer !text-icon max-sm:!text-xl "
+                className="flex text-green-800 cursor-pointer !text-icon max-sm:!text-xl "
               />
            </Tooltip> 
            <Tooltip title= {translatedMenuItems[9]}>
                    <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
+          className="flex !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
           onClick={() => {
             props.handleContactAddressDrawerModal(true);
             handleCurrentContactIdata(item);
@@ -367,7 +367,7 @@ function ContactInvestCardList(props) {
                   handleCurrentContactIdata(item);
                 }}
               >
-               <PhoneInTalkIcon className=" !text-icon cursor-pointer max-sm:!text-xl"/>
+               <PhoneInTalkIcon className="flex !text-icon cursor-pointer max-sm:!text-xl"/>
               </span>
             )}
             {item.doNotCallInd === true && (
@@ -377,13 +377,13 @@ function ContactInvestCardList(props) {
                   handleCurrentContactIdata(item);
                 }}
               >
-                <PhoneDisabledIcon className="!text-icon text-[gold] max-sm:!text-xl"/>
+                <PhoneDisabledIcon className="flex !text-icon text-[gold] max-sm:!text-xl"/>
               </span>
             )}
           </Tooltip>                                             
                         <Tooltip title={item.emailId}>
            
-            <MailOutlineIcon className="!text-icon cursor-pointer text-green-800 max-sm:!text-xl"
+            <MailOutlineIcon className="flex !text-icon cursor-pointer text-green-800 max-sm:!text-xl"
               type="mail"
              
               onClick={() => {
@@ -396,7 +396,7 @@ function ContactInvestCardList(props) {
             {user.imInd === true  && user.investorContactUpdateInd === true &&  (
             <Tooltip title=    {translatedMenuItems[10]}>
               <BorderColorIcon
-                className="!text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
+                className="flex !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
                 onClick={() => {
                   handleUpdateContactInvestModal(true);
                   handleCurrentContactIdata(item);                

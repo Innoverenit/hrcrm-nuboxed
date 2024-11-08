@@ -116,7 +116,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Info Updated Succefully',
           showConfirmButton: false,
-          timer: 2000
+          timer: 1500
         })
         cb();
       })
@@ -149,7 +149,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Deleted Successfully',
           showConfirmButton: false,
-          timer: 2000
+          timer: 1500
         })
       })
       .catch((err) => {
@@ -301,7 +301,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Cell Deleted Succefully!',
           showConfirmButton: false,
-          timer: 2000
+          timer: 1500
         })
         //dispatch(getProducts(0))
         console.log(res);
@@ -480,7 +480,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Status has been changed successfully!',
           showConfirmButton: false,
-          timer: 2000
+           timer: 1500
         })
       })
       .catch((err) => {
@@ -735,7 +735,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Reinstated Successfully',
           showConfirmButton: false,
-          timer: 2000
+           timer: 1500
         })
         // message.success("Reinstated Successfully");
       })
@@ -796,7 +796,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Reinstated Successfully',
           showConfirmButton: false,
-          timer: 2000
+           timer: 1500
         })
         // message.success("Reinstated Successfully");
       })

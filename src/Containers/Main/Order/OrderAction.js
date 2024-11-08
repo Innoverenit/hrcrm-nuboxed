@@ -717,7 +717,8 @@ export const deleteOrderData = (orderPhoneId,userId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Order Deleted Successfully',
-      
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.DELETE_ORDER_DATA_SUCCESS,
@@ -756,6 +757,8 @@ export const reinstateToggleOfOrder = (data, orderPhoneId,userId) => (
       Swal.fire({
         icon: 'success',
         title: 'Reinstated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Reinstated Successfully");
     })

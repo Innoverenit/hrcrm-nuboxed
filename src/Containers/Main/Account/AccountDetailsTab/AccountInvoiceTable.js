@@ -312,7 +312,9 @@ function AccountInvoiceTable(props) {
             title: 'Success!',
             text: 'Generated successfully!',
             icon: 'success',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            showConfirmButton: false,
+            timer: 1500,
         });
         } 
         
@@ -322,7 +324,9 @@ function AccountInvoiceTable(props) {
             title: 'Error!',
             text: 'There was an issue generating the invoice.',
             icon: 'error',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            showConfirmButton: false,
+            timer: 1500,
         });
         } finally {
           setLoading(false);
@@ -350,7 +354,9 @@ function AccountInvoiceTable(props) {
             title: 'Success!',
             text: 'Payment successfull',
             icon: 'success',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            showConfirmButton: false,
+            timer: 1500,
         });
         } 
         
@@ -360,7 +366,9 @@ function AccountInvoiceTable(props) {
             title: 'Error!',
             text: 'There was an issue generating the invoice.',
             icon: 'error',
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
+            showConfirmButton: false,
+            timer: 1500,
         });
         } finally {
           setLoading(false);

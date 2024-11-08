@@ -807,7 +807,7 @@ export const deleteOpportunityData = (id) => (dispatch) => {
         icon: 'success',
         title: 'Opportunity Deleted Successfully',
         showConfirmButton: false,
-        timer: 2000
+        timer: 1500,
       })
       // if (res.data) {
       //   Swal.fire({
@@ -2594,8 +2594,8 @@ export const lostStatusRecruit = ( opportunityId,data,userId ) => (dispatch) => 
         Swal.fire({
           icon: 'success',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
@@ -2603,7 +2603,7 @@ export const lostStatusRecruit = ( opportunityId,data,userId ) => (dispatch) => 
           icon: 'error',
           title: 'Not updated',
           showConfirmButton: false,
-          // timer: 1500
+          timer: 1500,
         });
       }
       // message.success("Opportunity move to lost category.Better luck next time!");
@@ -2961,8 +2961,8 @@ export const reinstateToggleForLost = (data, opportunityId,userId) => (dispatch)
         Swal.fire({
           icon: 'success',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        

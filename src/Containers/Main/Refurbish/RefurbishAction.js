@@ -575,6 +575,8 @@ export const UpdateTechnicianByPhone = (data, id, locationDetailsId) => (dispatc
         icon: 'success',
         title: 'Items Assigned Technician',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.UPDATE_TECHNICIAN_BY_PHONE_SUCCESS,
@@ -609,6 +611,8 @@ export const UpdateTechnicianForRepairPhone = (data, id, locationDetailsId) => (
         icon: 'success',
         title: 'Items Assigned For Repair',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.UPDATE_TECHNICIAN_FOR_REPAIR_PHONE_SUCCESS,
@@ -1834,6 +1838,8 @@ export const deleteTaskList = (data, phoneTaskId) => (dispatch) => {
         icon: 'success',
         title: 'Task Deleted Successfully',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1997,6 +2003,8 @@ export const addLeadInRefurbish = (data, orderPhoneId, cb) => (dispatch) => {
         icon: 'success',
         title: 'Lead Tagged',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.ADD_LEAD_SUCCESS,
@@ -2055,6 +2063,8 @@ export const assignRejectedPhones = (data, orderPhoneId, cb) => (dispatch) => {
         icon: 'success',
         title: 'Lead Tagged',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.ASSIGN_REJECTED_PHONES_SUCCESS,

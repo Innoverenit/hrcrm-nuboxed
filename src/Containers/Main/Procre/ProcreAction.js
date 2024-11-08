@@ -99,6 +99,8 @@ export const updateProcures = (data) => (dispatch) => {
       Swal.fire({
         icon: "success",
         title: "Updated Successfully",
+        showConfirmButton: false,
+        timer: 1500,
       });
     })
     .catch((err) => {

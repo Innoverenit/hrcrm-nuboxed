@@ -550,6 +550,8 @@ export const deleteCatalogData = (data,productId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: res.data,
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -561,6 +563,8 @@ export const deleteCatalogData = (data,productId) => (dispatch) => {
       Swal.fire({
         icon: 'error',
         title: err.data,
+        showConfirmButton: false,
+        timer: 1500,
       })
     });
 };
@@ -1426,6 +1430,8 @@ export const removeProductBuilder = (productionBuilderId,productId) => (dispatch
       Swal.fire({
         icon: 'success',
         title: 'Items Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1437,6 +1443,8 @@ export const removeProductBuilder = (productionBuilderId,productId) => (dispatch
       Swal.fire({
         icon: 'error',
         title: 'Something went wrong',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
 };
@@ -1583,8 +1591,8 @@ export const PstoProductionBuilder = (data) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Updated Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1658,6 +1666,8 @@ export const updateProductSuplrBuilder = (data,productionBuilderId) => (dispatch
     Swal.fire({
       icon:'success',
       title:'Updated Successfully',
+      showConfirmButton: false,
+      timer: 1500,
     })
   }
     })
@@ -1688,6 +1698,8 @@ export const removeProductPrice = (productCurrencyId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Items Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1699,6 +1711,8 @@ export const removeProductPrice = (productCurrencyId) => (dispatch) => {
       Swal.fire({
         icon: 'error',
         title: 'Something went wrong',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
 };
@@ -2032,8 +2046,8 @@ export const deleteQualityProductData = (qualityCheckBuilderId,productId) => (di
       Swal.fire({
         icon: 'success',
         title: res.data,
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500,
       })
       // if (res.data) {
       //   Swal.fire({
@@ -2330,8 +2344,8 @@ export const deleteProductBrandData = (data,productBrandId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Brand Deleted Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500,
       })
       // if (res.data) {
       //   Swal.fire({

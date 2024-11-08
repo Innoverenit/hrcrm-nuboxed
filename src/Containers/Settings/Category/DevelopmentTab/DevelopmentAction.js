@@ -48,16 +48,16 @@ export const getDevelopment = (orgId) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Development added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+   timer: 1500,
           });
         }
         
@@ -110,6 +110,8 @@ export const getDevelopment = (orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Development updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         
         })
         // message.success("Development updated successfully!");
@@ -166,7 +168,8 @@ export const getDevelopment = (orgId) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Development deleted Successfully!',
-          
+            showConfirmButton: false,
+            timer: 1500,
           })
           // message.success("Development deleted successfully!");
             console.log(res);

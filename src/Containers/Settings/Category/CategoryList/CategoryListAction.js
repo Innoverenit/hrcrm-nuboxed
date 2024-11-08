@@ -53,16 +53,16 @@ export const addCategory = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Category added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         dispatch(getCategoryCount(orgId));
@@ -103,6 +103,8 @@ export const removeCategory = ( categoryId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Category deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("CATEGORY has been deleted successfully!");
         console.log(res);
@@ -141,6 +143,8 @@ export const updateCategory = ( data,categoryId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Category updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("CATEGORY has been updated successfully!");
         console.log(res);

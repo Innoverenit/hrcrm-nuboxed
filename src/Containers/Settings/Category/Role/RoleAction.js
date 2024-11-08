@@ -48,16 +48,16 @@ export const getRoles = (orgId) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Role added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         dispatch(getRoles(orgId));
@@ -109,7 +109,8 @@ export const getRoles = (orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Role updated Successfully!',
-        
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Role updated successfully!");
         console.log(res);
@@ -165,6 +166,8 @@ export const getRoles = (orgId) => (dispatch) => {
           Swal.fire({
             icon: 'success',
             title: 'Role deleted Successfully!',
+            showConfirmButton: false,
+            timer: 1500,
           
           })
           // message.success("Role deleted successfully!");
@@ -227,16 +230,16 @@ export const addTalentRoles = (roleType,orgId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+   timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Role added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       console.log(res);
@@ -280,7 +283,8 @@ export const updateTalentRoles = (data,roleTypeExternalId, cb) => (dispatch) => 
       Swal.fire({
         icon: 'success',
         title: 'Role updated Successfully!',
-     
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Role updated successfully!");
       console.log(res);
@@ -313,7 +317,8 @@ export const removeTalentRole = (roleTypeExternalId,orgId, cb) => (dispatch) => 
         Swal.fire({
           icon: 'success',
           title: 'Role deleted Successfully!',
-        
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Role deleted successfully!");
           console.log(res);

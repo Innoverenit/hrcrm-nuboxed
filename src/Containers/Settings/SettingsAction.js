@@ -116,7 +116,9 @@ export const updateSuppliers = ( data,supplierCategoryId) => (dispatch) => {
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Suppliers updated Successfully!',
+        title: 'Supplier updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("CATEGORY has been updated successfully!");
       console.log(res);
@@ -5891,16 +5893,16 @@ export const addFeedBack = (sectors,orgId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Feedback added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       dispatch(getFeedBackCount());
@@ -5941,6 +5943,8 @@ export const removeFeedBack = ( feedbackId,orgId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Feedback deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("QUALITY has been deleted successfully!");
       console.log(res);
@@ -5979,6 +5983,8 @@ export const updateFeedBack = ( data,feedbackId,cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Feedback updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     
       console.log(res);
@@ -6544,6 +6550,8 @@ export const addGloalType = (sectors,cb) => (dispatch) => {
       Swal.fire({
         icon: 'error',
         title: res.data.message,
+        showConfirmButton: false,
+        timer: 1500,
       });
 
       dispatch({

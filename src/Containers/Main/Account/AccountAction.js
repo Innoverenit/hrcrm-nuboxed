@@ -4361,6 +4361,8 @@ export const deleteProcureData = (id,orgId) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Item deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       console.log(res);
       //  dispatch(getScheduler(orgId));
@@ -4398,6 +4400,8 @@ export const updateProcureDetails = (data, id,cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Item updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Sector has been updated successfully!");
       console.log(res);
@@ -5343,8 +5347,8 @@ export const updateAccountUser = ( id,userId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Account User updated Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500,
       })
       console.log(res);
       dispatch({

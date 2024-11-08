@@ -18,6 +18,7 @@ import {
   handleDonotCallModal,
   handleContactDrawerModal,
   handleContactEmailDrawerModal,
+  getTeamUserList
 } from "../../../Contact/ContactAction";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
@@ -72,6 +73,7 @@ function ContactInvestTeamsCardList(props) {
     })
     props.getTeamsContactInvest(props.userId,pageNo);
     setPage(pageNo + 1);
+    props.getTeamUserList(props.userId)
   }, []);
 
   useEffect(() => {
@@ -171,14 +173,16 @@ if (loading) {
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
        <div> Search team Member</div>
         </div>
-        <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
-         <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
+        <div class="flex flex-col rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        {props.teamUserList.map((item,index) =>{
+           return (
+             <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                   text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center flex-no-wrap h-16">
           <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
             <MultiAvatar
-              // primaryTitle={item.opportunityName}
-              // imageId={item.imageId}
+                  primaryTitle={item.empName}
+                  imageId={item.imageId}
               imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
             />
@@ -188,7 +192,7 @@ if (loading) {
           
           <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
         
-    Itisri Chaudhury
+          {item.empName}
 
         </div> 
         </div>
@@ -198,13 +202,13 @@ if (loading) {
         <div className="flex flex-col max-sm:justify-between ">
           
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-                97886556738              </div>
+              {item.emailId}        </div>
             
           <div>
           <div class="font-medium text-xs ">
        
               <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-               itisrichudhuryiti@gmail.com
+              {item.dailCode1} {item.mobileNo}
               </div>
            
             
@@ -215,7 +219,8 @@ if (loading) {
       
        
       </div>
-
+  )
+})}
         </div>
         </div>
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -227,11 +232,11 @@ if (loading) {
         {/* name" */}         
                 </div>
         <div className="font-bold font-poppins text-xs w-[12.72rem] md:w-[13.72rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}
+        <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}
         {/* company */}             
                 </div>
         <div className="font-bold font-poppins text-xs w-[12.6rem] md:w-[12.6rem] ">
-        <i className="fab fa-artstation mr-1"></i> {translatedMenuItems[2]} 
+        <i className="fab fa-artstation "></i> {translatedMenuItems[2]} 
         {/* designation */}             
                 </div>
         {/* <div className=" font-bold font-poppins text-xs w-[11.3rem] md:w-[11.3rem]">
@@ -239,7 +244,7 @@ if (loading) {
         department               
                 </div> */}
                   <div className="font-bold font-poppins text-xs w-[5.2rem] md:w-[11.2rem]">
-        <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> {translatedMenuItems[6]}
+        <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}
         {/* source" */}           
                 </div>
         <div className="font-bold font-poppins text-xs w-[10.1rem] md:w-[10.1rem]">
@@ -253,7 +258,7 @@ if (loading) {
       
                 {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.81rem]">
-               <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>  Score
+               <ScoreIcon className="!text-icon  text-[#f28482]"/>  Score
           
             </div>
             )}
@@ -299,7 +304,7 @@ if (loading) {
             item.address[0].postalCode} `;
                     return (
                       <div>
-                      <div className="flex rounded justify-between  bg-white mt-1   items-center py-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                      <div className="flex rounded justify-between  bg-white mt-1  py-ygap  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                           <div className=" flex   md:w-[15.1rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
@@ -324,7 +329,7 @@ if (loading) {
 </Link>                                               
   &nbsp;&nbsp;
   {date === currentdate ? (
-    <span class="text-[tomato] mt-[0.4rem] font-bold text-[0.65rem]">  New </span>
+    <span class="text-[tomato]  font-bold text-[0.65rem]">  New </span>
   ) : null} 
                                       </div>
                                       </div>
@@ -563,7 +568,8 @@ const mapStateToProps = ({
   designations,
   departments,
   opportunity,
-  contactinvest
+  contactinvest,
+  customer
 }) => ({
   userId: auth.userDetails.userId,
   contactByUserId: contact.contactByUserId,
@@ -582,7 +588,8 @@ const mapStateToProps = ({
   teamsContactInvestData:contactinvest.teamsContactInvestData,
   addContactAddressModal:contactinvest.addContactAddressModal,
   addDrawerDealModal: contactinvest.addDrawerDealModal,
-  addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal
+  addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal,
+  teamUserList:customer.teamUserList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -602,7 +609,8 @@ const mapDispatchToProps = (dispatch) =>
       handleContactInvestNotesDrawerModal,
       handleContactInvestPulseDrawerModal,
       handleContactAddressDrawerModal,
-      handleDealModal
+      handleDealModal,
+      getTeamUserList
     },
     dispatch
   );

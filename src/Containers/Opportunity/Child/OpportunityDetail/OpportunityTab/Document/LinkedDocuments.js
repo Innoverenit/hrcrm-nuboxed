@@ -85,7 +85,7 @@ class LinkedDocuments extends Component {
     return (
       <>
         {true && (
-              <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+              <div class="rounded m-1 p-1 w-[99%] h-[69vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               <div className=" flex justify-between w-[100%] items-end font-bold font-poppins text-xs p-1 bg-transparent  sticky  z-10">
               <div className=" md:w-[6.5rem]">{translatedMenuItems[0]}
             </div>  

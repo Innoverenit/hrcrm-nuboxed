@@ -383,6 +383,8 @@ export const searchMileageList = (name,type) => (dispatch) => {
       Swal.fire({
         icon: 'error',
         title: 'Contact list is empty',
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.SEARCH_MILEAGE_LIST_FAILURE,

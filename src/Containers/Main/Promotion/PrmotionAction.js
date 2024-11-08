@@ -223,6 +223,8 @@ export const handlePromotionsDrawer = (modalProps) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Info Updated Succefully',
+          showConfirmButton: false,
+          timer: 1500,
         })
         cb();
       })

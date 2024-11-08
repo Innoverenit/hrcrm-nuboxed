@@ -53,16 +53,16 @@ export const addIndustry = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+   timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Industry added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         dispatch(getIndustryCount(orgId));
@@ -103,6 +103,8 @@ export const removeIndustry = ( industryId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Industry deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("INDUSTRY has been deleted successfully!");
         console.log(res);
@@ -141,6 +143,8 @@ export const updateIndustry = ( data,industryId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Industry updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("INDUSTRY has been updated successfully!");
         console.log(res);
