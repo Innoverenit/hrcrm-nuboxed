@@ -456,10 +456,10 @@ function InvestorCardList(props) {
                 "None"
               ) : (
                 <>
-                {item.assignedTo === item.ownerName ? (
+                {/* {item.assignedTo === item.ownerName ? (
                   
                   null
-                ) : (
+                ) : ( */}
                   <Tooltip title={item.assignedTo}> 
                 <MultiAvatar2
                   primaryTitle={item.assignedTo}
@@ -467,7 +467,7 @@ function InvestorCardList(props) {
                   imgHeight={"1.8rem"}
                 />
                    </Tooltip>
-                )}
+                {/* )} */}
                 </>
               )}
             </span>          
