@@ -2492,3 +2492,29 @@ export const addBrandProductList = (data, productBrandId, cb) => (dispatch) => {
       });
     });
 };
+
+export const addQualityProduct = (product, categoryId,cb) => (dispatch) => {
+  dispatch({ type: types.ADD_QUALITY_PRODUCT_REQUEST });
+  axios
+    .put(`${base_url2}/product/productcatagory/qualitySpecs/${categoryId}`, product, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_QUALITY_PRODUCT_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_QUALITY_PRODUCT_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
