@@ -314,6 +314,13 @@ export const investorReducer = (state = initialState, action) => {
             return item;
           }
         }),
+        teamInvestor: state.teamInvestor.map((item) => {
+          if (item.investorId === action.payload.investorId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_INVESTOR_BY_ID_FAILURE:
       return {
