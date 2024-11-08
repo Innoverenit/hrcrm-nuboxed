@@ -529,10 +529,10 @@ const [rowdata, setrowdata] = useState("");
                               <div class="text-xs  font-poppins">None</div>
                             ) : (
                               <>
-                                {item.assignedTo === item.ownerName ? (
+                                {/* {item.assignedTo === item.ownerName ? (
 
                                   null
-                                ) : (
+                                ) : ( */}
                                   <div
                                   style={{cursor:"pointer"}}
                                 onClick={() => {
@@ -547,7 +547,7 @@ const [rowdata, setrowdata] = useState("");
                                     imgHeight={"1.8rem"}
                                   />
                                   </div>
-                                )}
+                                {/* )} */}
                               </>
                             )}
                           </div>

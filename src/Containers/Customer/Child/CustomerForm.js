@@ -686,7 +686,9 @@ country_dial_code
   <div class="w-w47.5 flex">
     
     <div class="w-24">
+    {props.customerConfigure.potentialInd===true&&
     <div class="font-bold text-xs"> {translatedMenuItems[6]}  </div>
+}
     {props.customerConfigure.potentialInd===true&&
       <Field
         name="potentialValue"     
