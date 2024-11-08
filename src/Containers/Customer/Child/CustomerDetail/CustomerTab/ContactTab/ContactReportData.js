@@ -2,7 +2,10 @@ import React,{useEffect,useState} from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-// import { getItemHistoryDataInstock } from "../../../InventoryAction"
+import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import { BundleLoader } from '../../../../../../Components/Placeholder';
 
 function ItemHistoryInStockData(props) {
@@ -46,30 +49,29 @@ function ItemHistoryInStockData(props) {
   return (
     <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
+                    <div className=" flex justify-between  w-[100%] px-2 bg-transparent font-poppins text-xs font-bold items-end sticky top-0 z-10">
                         <div className="w-[2.5rem]"></div>
-                        <div className=" md:w-[4.5rem]"> 
-                             {translatedMenuItems[0]}
-                        </div>
-                        <div className=" md:w-[9.21rem]">     
-                               {translatedMenuItems[1]}
-                            
-                             </div>
-                
-                        <div className=" md:w-[4.25rem]">
-                      
-                        {translatedMenuItems[2]}
-                               </div>
-
-                        <div className=" md:w-[6.10rem]">  
-                        {translatedMenuItems[3]}
-                           
-                              </div>
-
-                        <div className=" md:w-[4.42rem]">  
-                          
-                        {translatedMenuItems[4]}
-                              </div>
+                        <div className="font-bold font-poppins text-[#00A2E8] text-base w-[16.5rem]  md:w-[10.5rem]">
+        <LocationCityIcon className='!text-icon ml-1 '  />{translatedMenuItems[0]}
+          {/* Name */}
+        </div>
+        <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[9.1rem]">
+        <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />
+         {translatedMenuItems[1]}
+{/* Email */}
+        </div>
+        <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[8.1rem]">
+        <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {translatedMenuItems[2]}
+          {/* Mobile */}
+        </div>
+        <div className="font-bold font-poppins text-xs  w-[10.2rem] md:w-[8.2rem]">
+        <ApartmentIcon className='!text-icon text-[#f0386b] '  />   {translatedMenuItems[3]}
+          {/* Department */}
+        </div>
+                     <div className="font-bold font-poppins text-xs  w-[7.2rem] md:w-[7.2rem]">
+                     <i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[4]}
+                      {/* Designation */}
+                     </div>
 
                        
                     </div>

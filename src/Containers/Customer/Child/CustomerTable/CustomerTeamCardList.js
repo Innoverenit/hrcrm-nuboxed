@@ -387,7 +387,7 @@ const [rowdata, setrowdata] = useState("");
                     return (
                       <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex   w-[11.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
@@ -583,7 +583,7 @@ const [rowdata, setrowdata] = useState("");
                              
                               >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex  items-center  w-wk" >
-                              <NextPlanIcon className="!text-icon "  />
+                              <NextPlanIcon className="!text-icon mr-1"  />
                               {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}
                                 {item.convertInd === 2 && translatedMenuItems[18]}

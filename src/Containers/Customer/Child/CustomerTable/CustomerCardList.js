@@ -264,36 +264,36 @@ if (loading) {
              {/* work */}
             </div>
             <div className="font-poppins font-bold text-xs  w-[12.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-            <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
+            <FactoryIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[2]}
               {/* "Sector" */}
           
             </div>
             <div className="font-poppins font-bold text-xs  w-[9.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-            <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> 
+            <SourceIcon className="!text-icon  text-[#4b5043]"/> 
             {translatedMenuItems[3]}
              {/* "Source" */}
          
             </div>         
-            <div className="font-poppins font-bold text-xs w-[8.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className="font-poppins font-bold text-xs w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon text-[#84a59d]"/> 
             {translatedMenuItems[4]} 
               {/* Quotation" */}
      
             </div>
-            <div className="font-poppins font-bold text-xs  w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            {/* <div className="font-poppins font-bold text-xs  w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
             <FilterAltIcon className="!text-icon  text-[#ff66b3]"/> 
             {translatedMenuItems[5]}
-             {/* Pipeline" */}
-            </div>   
+             Pipeline"
+            </div>    */}
             {props.user.aiInd && (
             <div className="font-poppins font-bold text-xs w-[9.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {/* Score */}      <ScoreIcon className="!text-icon  text-[#f28482]"/> 
             {translatedMenuItems[18]}
             </div>
             )}    
-            <div className="font-poppins font-bold text-xs w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-            <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
+            <div className="font-poppins font-bold text-xs w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[6]}   
             {/* Assigned */}
             </div>          
@@ -437,8 +437,8 @@ if (loading) {
                         </div>
 
                       </div>
-                   
-                      <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex   max-sm:w-auto w-[11.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -448,7 +448,7 @@ if (loading) {
                       </div>
                     
                    
-                      <div className=" flex max-sm:w-auto w-[5.82rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto w-[5.82rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                        {/* Pipeline Value */}
 
                         {/* {item.totalProposalValue > 0 && (
@@ -462,6 +462,7 @@ if (loading) {
       </div>
     )}
                       </div> 
+                      </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">  
                       {props.user.aiInd && (

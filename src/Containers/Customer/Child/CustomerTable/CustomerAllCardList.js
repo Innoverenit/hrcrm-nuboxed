@@ -52,7 +52,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
-import { emptyLeads,getCrm,}from"./././../../../Leads/LeadsAction";
+import {getCrm,}from"./././../../../Leads/LeadsAction";
 import UpdateUserModal from "../CustomerTable/UpdateUserModal"
 import EmptyPage from "../../../Main/EmptyPage";
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
@@ -302,7 +302,7 @@ const [rowdata, setrowdata] = useState("");
                 {/* defaultMessage="Work" */}
             
             </div>
-            <div className=" w-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[2]}     
                 {/* defaultMessage="Sector" */}
             </div>
@@ -536,7 +536,7 @@ const [rowdata, setrowdata] = useState("");
                            
                             >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] w-wk flex items-center" >
-                              <NextPlanIcon className="!text-icon " />
+                              <NextPlanIcon className="!text-icon mr-1" />
                               {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}
                                 {item.convertInd === 2 && translatedMenuItems[18]}

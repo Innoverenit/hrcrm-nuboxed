@@ -177,7 +177,7 @@ function LinkedContact(props) {
         
                     return (
                         <div>
-                           <div className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                           <div className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                   <div class="flex">
                                             <div className=" flex justify-center  md:w-[2.1rem] max-sm:w-full  ">
@@ -252,7 +252,7 @@ function LinkedContact(props) {
     {item.department}
   </div>
 </div>
-<div className=" flex  md:w-[11rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex  md:w-[11rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs flex items-center ml-gap  font-poppins text-center">
@@ -292,7 +292,7 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex  md:w-[2.3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  md:w-[1.3rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs flex  font-poppins text-center items-center justify-center h-8  bg-[#eef2f9]">
@@ -351,7 +351,7 @@ function LinkedContact(props) {
                                 <div className=" flex   md:w-[11.45rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
-{item.accessInd === 0 ? <div class=" text-xs  font-poppins">
+{item.accessInd === 0 ? <div class=" text-xs font-bold  font-poppins">
     <Button
         type="primary"
         //loading={currentSupplierId.contactPersonId === item.contactPersonId && props.applyingForLoginInContact}
@@ -371,7 +371,7 @@ function LinkedContact(props) {
     >
      {translatedMenuItems[12]} {/* <FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /> */}
       </Button>
-</div> : item.accessInd === 2 ? <b>{translatedMenuItems[10]}</b> : <b style={{ color: "#32CD32" }}>{translatedMenuItems[11]}</b>
+</div> : item.accessInd === 2 ? <b class=" font-bold font-poppins text-xs">{translatedMenuItems[10]}</b> : <b class="text-[#32CD32] font-bold font-poppins text-xs">{translatedMenuItems[11]}</b>
 
 }
 
