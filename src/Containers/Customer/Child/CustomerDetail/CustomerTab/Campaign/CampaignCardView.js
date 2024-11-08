@@ -9,7 +9,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip,Input,Button,Avatar,Select } from "antd";
 import { StyledPopconfirm } from "../../../../../../Components/UI/Antd";
-import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import {
@@ -45,18 +44,10 @@ function CampaignCardView (props) {
        "72", //   Subject,//1
        "176", //   startDate,//2
           "126",  //EndDate 3
-     
-       "277", //   "Company",//4
-
-       "302", //   "Url",//7
-        "14",//   "Category",//10
-        "74",//   "Date",//11
-        "241",//   "Currency",//12
-        "76",//   "Assigned",//13
-          
-        "316",  // "Notes",//14
-         "1078", // "Save"
-         "84", // "Delete"
+       "277", //   "Company",//4   
+        "316",  // "Notes",5
+         "1078", // "Save"6
+         "84", // "Delete"7
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -163,7 +154,7 @@ if(fetchingCustomerCampaign){
                                       <div class="flex items-center  justify-between">
       
                                           <Tooltip>
-                                        <div class="text-[0.82rem]  font-poppins cursor-pointer">                                       
+                                        <div class="text-xs font-poppins cursor-pointer">                                       
                                               {item.eventType}
          
                                               </div>
@@ -202,7 +193,7 @@ if(fetchingCustomerCampaign){
                      console.log("datas", data1);
                       return (
                         <Tooltip title={candidate.empName} key={i}>
-                        <Avatar style={{ backgroundColor: "#f56a00" }}>
+                        <Avatar className="bg-[#f56a00]">
                         {data1}
                       
                       </Avatar>
@@ -337,12 +328,12 @@ if(fetchingCustomerCampaign){
         <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[10.8rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]} </div>
         {/* Type */}
-        <div className="font-bold font-poppins text-xs md:w-[8.23rem]">{translatedMenuItems[1]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[7.23rem]">{translatedMenuItems[1]} </div>
         {/* Subject */}
-        <div className="font-bold font-poppins text-xs md:w-[4.25rem] "><DateRangeIcon className="!text-icon "/>{translatedMenuItems[2]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[6.25rem] "><DateRangeIcon className="!text-icon "/>{translatedMenuItems[2]} </div>
         {/* Start */}
         <div className="font-bold font-poppins text-xs md:w-[5.43rem] ">
-        <MarkEmailUnreadIcon className='!text-icon text-[#ff9f1c] '  /><DateRangeIcon className="!text-icon "/>{translatedMenuItems[3]} </div>
+      <DateRangeIcon className="!text-icon "/>{translatedMenuItems[3]} </div>
         {/* End */}
      
         {/* <div className="font-bold font-poppins text-xs md:w-[5.32rem]">{translatedMenuItems[4]} </div> */}
@@ -376,7 +367,7 @@ if(fetchingCustomerCampaign){
                                             {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="flex items-center text-[0.82rem] ml-gap font-poppins cursor-pointer">                                       
+                                            <div class="flex items-center text-[0.82rem] ml-gap font-poppins text-xs cursor-pointer">                                       
                                             {item.eventType}
        
                                             </div>
@@ -483,8 +474,7 @@ if(fetchingCustomerCampaign){
                                     
                                     <div class="text-[0.82rem]  font-poppins">
                                     {/* {item.budgetValue} */}
-                                    <Input
-  style={{ width: "5rem" }}
+                                    <Input className="w-[5rem]"
   value={item.budgetValue}
   onChange={(e) => handleInputChange(e.target.value, item.key, 'budgetValue')}
 />
@@ -494,8 +484,8 @@ if(fetchingCustomerCampaign){
                                     
                                     <div class="text-[0.82rem]  font-poppins">
                                     
-                                    <Select
-                        style={{width:"5rem"}}
+                                    <Select className="w-[5rem]"
+                   
                         value={item.currencyName}
                         onChange={(value) => handleSelectChange(value, item.key, 'currencyName')}
                       >
@@ -509,7 +499,7 @@ if(fetchingCustomerCampaign){
   </div>
   <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
   <Button type="primary" onClick={() => handleSave(item.key)}>
-  {translatedMenuItems[14]}   {/* Save */}
+  {translatedMenuItems[7]}   {/* Save */}
         </Button>
                                     </div>
                                 </div>     

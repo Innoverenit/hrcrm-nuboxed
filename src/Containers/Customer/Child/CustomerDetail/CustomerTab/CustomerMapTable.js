@@ -70,7 +70,7 @@ const CustomerMapTable = (props) => {
                             
                             return (
                                 <div >
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex">
                                             <div className=" flex items-center justify-center  border-l-2 border-green-500 bg-[#eef2f9] h-8  ml-gap md:w-[15.56rem] max-sm:w-full  ">
 

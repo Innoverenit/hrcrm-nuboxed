@@ -190,7 +190,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
     <div className=' flex  sticky z-auto'>
     <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] h-[79vh] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end  z-10">
-        <div className="font-bold font-poppins  text-[#00A2E8] text-base md:w-[14rem]">
+        <div className="font-bold font-poppins  text-[#00A2E8] text-base md:w-[16rem]">
         <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
         {/* Quotation ID */}
         {/* <div className="font-bold font-poppins text-xs md:w-[7.1rem]">
@@ -249,15 +249,23 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
           return (
             <div>
                <div
-                className="flex rounded justify-between items-center bg-white mt-1 py-1  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between items-center bg-white mt-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                 <div class="flex ">
                 <div className=" flex font-medium flex-col border-l-2 border-green-500 bg-[#eef2f9] md:w-[16.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                        <div className="flex max-sm:w-full items-center">      
+                        <div className="flex max-sm:w-full items-center">   
+
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class="font-bold font-poppins text-xs">
+                        {item.newOppId} 
+                        </div>
+                       </div>
+
+
                                         <Tooltip>
-                                          <div class=" flex max-sm:w-full justify-start flex-row md:flex-col ">
+                                        <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                           
-                                            <div class="flex text-xs items-center text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
+                                          <div class="flex text-xs ml-gap text-blue-500  font-poppins font-semibold  cursor-pointer">
                                             <Link class="flex items-center overflow-ellipsis whitespace-nowrap h-8 text-xs text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.newOppId}`} title={item.opportunityName}>
                                             {item.opportunityName} 
                                             {/* {item.newOppId} */}
@@ -269,11 +277,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
         >{item.opportunityName}</Link> */}
         
         {date === currentdate ? (
-          <span class="text-xs mt-[0.4rem]"
-            style={{
-              color: "tomato",
-              fontWeight: "bold",
-            }}
+          <span class="flex items-center text-[0.65rem] text-[tomato] font-bold ml-1 "     
           >
             New
           </span>
