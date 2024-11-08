@@ -23,6 +23,7 @@ import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {geCustomerCampaignEvent,addCustomerCampaignEvent} from "../../../../CustomerAction";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import EmptyPage from "../../../../../Main/EmptyPage";
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 
 const { Option } = Select;
@@ -39,16 +40,15 @@ function CampaignCardView (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-       "295", //  "First Name",//0
-       "353", //   "Middle Name",//1
-       "354", //   "Last Name",//2
-       "140", //   "Email",//3
-       "357", //   "Dial Code",//4
-       "300", //   "Phone No",//5
-       "277", //   "Company",//6
+ 
+       "71", //  //0Type
+       "72", //   Subject,//1
+       "176", //   startDate,//2
+          "126",  //EndDate 3
+     
+       "277", //   "Company",//4
+
        "302", //   "Url",//7
-       "454", //   "Share Quantity",//8
-       "455", //   "Share Value",//9
         "14",//   "Category",//10
         "74",//   "Date",//11
         "241",//   "Currency",//12
@@ -159,7 +159,7 @@ if(fetchingCustomerCampaign){
               };
                       return (
                           <div>
-                             <div className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col  ">
+                             <div className="flex rounded justify-between  bg-white mt-1  items-center max-sm:h-[9rem] max-sm:flex-col  ">
                                       <div class="flex items-center  justify-between">
       
                                           <Tooltip>
@@ -334,24 +334,24 @@ if(fetchingCustomerCampaign){
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
          <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky items-end  z-10">
-        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.8rem]">
+        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[10.8rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]} </div>
         {/* Type */}
-        <div className="font-bold font-poppins text-xs md:w-[6.23rem]">{translatedMenuItems[1]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[8.23rem]">{translatedMenuItems[1]} </div>
         {/* Subject */}
-        <div className="font-bold font-poppins text-xs md:w-[7.25rem] ">{translatedMenuItems[2]} </div>
+        <div className="font-bold font-poppins text-xs md:w-[4.25rem] "><DateRangeIcon className="!text-icon "/>{translatedMenuItems[2]} </div>
         {/* Start */}
         <div className="font-bold font-poppins text-xs md:w-[5.43rem] ">
-        <MarkEmailUnreadIcon className='!text-icon text-[#ff9f1c] '  />{translatedMenuItems[3]} </div>
+        <MarkEmailUnreadIcon className='!text-icon text-[#ff9f1c] '  /><DateRangeIcon className="!text-icon "/>{translatedMenuItems[3]} </div>
         {/* End */}
      
-        <div className="font-bold font-poppins text-xs md:w-[5.32rem]">{translatedMenuItems[4]} </div>
+        {/* <div className="font-bold font-poppins text-xs md:w-[5.32rem]">{translatedMenuItems[4]} </div> */}
      {/* dial code */}
-        <div className="font-bold font-poppins text-xs md:w-[6.15rem]">
-          {translatedMenuItems[5]} </div>
+        {/* <div className="font-bold font-poppins text-xs md:w-[6.15rem]">
+          {translatedMenuItems[5]} </div> */}
         {/* phone no */}
         <div className="font-bold font-poppins text-xs md:w-[24rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/>{translatedMenuItems[6]} </div>
+        <ApartmentIcon className="!text-icon mr-1 "/>{translatedMenuItems[4]} </div>
                 {/* company    */}
       </div>
       <InfiniteScroll
@@ -365,18 +365,18 @@ if(fetchingCustomerCampaign){
                     return (
                         <div key={item.eventId}>
                              <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                      <div class="flex ">
                                 <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]  w-[7.98rem] max-sm:w-full ">
-<div className="flex max-sm:w-full"> 
+<div className="flex items-center max-sm:w-full"> 
           <div class="max-sm:w-full">
                                         <Tooltip>
-                                        <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
+                                        <div class=" flex  max-sm:justify-between flex-row w-full md:flex-col">
                                             {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-[0.82rem]  font-poppins cursor-pointer">                                       
+                                            <div class="flex items-center text-[0.82rem] ml-gap font-poppins cursor-pointer">                                       
                                             {item.eventType}
        
                                             </div>
@@ -386,9 +386,9 @@ if(fetchingCustomerCampaign){
                                         </div>
                                 </div>
 
-                                <div className=" flex    md:w-[9.26rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  w-full ">
+                                <div className=" flex    md:w-[9.26rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
-                                    <div class=" text-[0.82rem]  font-poppins">   
+                                    <div class=" text-[0.82rem] ml-gap flex  font-poppins">   
                                     {item.eventSubject}
                                     </div>
                                 </div>
@@ -436,10 +436,7 @@ if(fetchingCustomerCampaign){
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[4.69rem] max-sm:flex-row  w-full ">
-
-                                  
-                                  
+                                <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[4.69rem] max-sm:flex-row  w-full ">                   
               <SubTitle>
               <span>
               {item.assignedTo === null ? (
@@ -460,8 +457,7 @@ if(fetchingCustomerCampaign){
               )}
             </span>
               </SubTitle>
-
-                                   
+           
                                 </div>
                                 <div className="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[4.12rem] max-sm:flex-row  w-full ">
                    <div class="max-sm:flex justify-end">

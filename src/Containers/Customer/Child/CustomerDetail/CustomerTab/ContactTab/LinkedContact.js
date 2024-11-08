@@ -119,7 +119,7 @@ function LinkedContact(props) {
       
      
       <div class="rounded m-1 p-1 w-[99%] h-[77vh] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold sticky z-10">
+          <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold sticky items-end  z-10">
         <div className="font-bold font-poppins text-[#00A2E8] text-base w-[16.5rem]  md:w-[16.5rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}
           {/* Name */}
@@ -191,7 +191,7 @@ function LinkedContact(props) {
                                                 </div>
                                             </div>
                                         </div>    
-                                <div className=" flex  md:w-[14rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                <div className=" flex  md:w-[19rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 <div>
                                 <SubTitle>
@@ -233,26 +233,26 @@ function LinkedContact(props) {
                                 <div class="flex">
 
                              
-                                <div className=" flex w-[11.2rem] md:w-[11.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex w-[9.2rem] md:w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                    
-                                    <div class="text-xs flex items-center ml-gap font-poppins">
+                                    <div class="flex text-xs flex items-center ml-gap font-poppins">
                                          {item.emailId}
                                     </div>
                                 </div>
-                                <div className=" flex w-[9.4rem] md:w-[9.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                                <div className=" flex w-[7.4rem] md:w-[7.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                 
-                                  <div class="text-xs  font-poppins">
+                                  <div class="flex items-center text-xs  font-poppins">
                                   {item.countryDialCode} {item.mobileNumber}
                                   </div>
                               </div>
                               </div>
-                              <div className="flex w-31  md:w-32 items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className="flex w-[12.1rem]  md:w-[13rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
   <div className="text-xs flex items-center ml-gap  font-poppins text-center">
     {item.department}
   </div>
 </div>
-<div className=" flex  md:w-36 items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex  md:w-[11rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs flex items-center ml-gap  font-poppins text-center">
@@ -260,7 +260,7 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex  md:w-[2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  md:w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs  font-poppins text-center">
@@ -292,7 +292,7 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  md:w-[2.3rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs flex  font-poppins text-center items-center justify-center h-8  bg-[#eef2f9]">
@@ -348,7 +348,7 @@ function LinkedContact(props) {
                                     </div>
                                    
                                 </div>
-                                <div className=" flex   md:w-[10.45rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                <div className=" flex   md:w-[11.45rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
 
 
 {item.accessInd === 0 ? <div class=" text-xs  font-poppins">

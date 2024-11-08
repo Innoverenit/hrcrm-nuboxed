@@ -87,7 +87,7 @@ class LinkedDocuments extends Component {
   } 
     return (
       <>
-         <div class="rounded m-1 p-1 w-[100%] h-[77vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+         <div class="rounded m-1 p-1 w-[99%] h-[78vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%] font-poppins font-bold text-xs p-1 bg-transparent font-bold sticky top-0 z-10">
           <div className="w-[6.9rem] md:w-[11.9rem]"> 
             <DateRangeIcon className='!text-icon  '  />
@@ -118,18 +118,17 @@ class LinkedDocuments extends Component {
                         <div>
                             <div className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                      
-                             <div className=" flex  md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                             <div className=" flex  md:w-[13rem] border-l-2 border-green-500 bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div className="flex max-sm:w-full items-center"> 
 
                                       <div class="max-sm:w-full">
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-xs  font-poppins  font-medium cursor-pointer">
+                                            <div class="text-xs  font-poppins ml-gap font-medium cursor-pointer">
                                                 
                                             <span>{` ${dayjs(item.creationDate).format("DD/MM/YYYY")}`}</span>
      
-       
                                             </div>
                                             </div>
                                         </Tooltip>
@@ -137,36 +136,31 @@ class LinkedDocuments extends Component {
                                         </div>
                                 </div>
                                 <div class="flex">
-
-                             
-                              
-                                <div className=" flex  w-[8.3rem] md:w-[8.3rem]  max-sm:flex-row  max-sm:justify-between">
+                                <div className=" flex  w-[12.3rem] items-center justify-start  ml-gap bg-[#eef2f9] h-8  md:w-[11.3rem]  max-sm:flex-row  max-sm:justify-between">
                                 
-                                  <div class="text-xs  font-poppins">
+                                  <div class="text-xs ml-gap font-poppins">
                                   {item.documentTitle}
                                   </div>
                               </div>
 
-                              <div className=" flex  md:w-[25.3rem]  max-sm:flex-row w-[20.3] max-sm:justify-between">
+                              <div className=" flex  md:w-[11.3rem] items-center justify-start  ml-gap bg-[#eef2f9] h-8  max-sm:flex-row w-[20.3] max-sm:justify-between">
                                 
-                                <div class="text-xs  font-poppins">
+                                <div class="text-xs ml-gap font-poppins">
                                 <span>{elipsize(item.documentDescription || "", 15)}</span>
                                 </div>
                             </div>
-                            <div className=" flex  md:w-[9.2rem] max-sm:flex-row w-[4.2rem] max-sm:justify-between ">
+                            <div className=" flex  md:w-[13.2rem] items-center justify-start  ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-[4.2rem] max-sm:justify-between ">
                                    
                                    <div class="text-xs  font-poppins">
                  
-                     <div className="font-normal text-xs  font-poppins">
+                     <div className="font-normal text-xs ml-gap font-poppins">
                        <span>{item.uploadedBy}</span>
                      </div>
                  
                                    </div>
                                </div>
-
-                         
                               </div>
-                              <div className=" flex  " style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
+                              <div className=" flex items-center justify-center w-[8rem] ml-gap bg-[#eef2f9] h-8  " style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                    
                               <>
                               <a
@@ -177,17 +171,15 @@ class LinkedDocuments extends Component {
               type="download" class=" cursor-pointer !text-icon bg-green-500"/>
           </a>
           </>
-                 
-                  </div>
+                </div>
                                 <div className=" flex  ml-2 md:w-[2rem] max-sm:flex-row w-[2rem] max-sm:justify-between ">
-                                    
-
+                          
                                     <div class=" text-xs  font-poppins text-center">
                                     <a href={`${base_url}/download/${item.documentTypeId}`}></a>
 
                                     </div>
                                 </div>
-                                <div className=" flex ml-2  md:w-[2rem] max-sm:flex-row w-[2rem] max-sm:justify-between ">
+                                <div className=" flex ml-2 items-center justify-center  ml-gap bg-[#eef2f9] h-8 md:w-[2rem] max-sm:flex-row w-[2rem] max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs  font-poppins text-center">
@@ -211,23 +203,6 @@ class LinkedDocuments extends Component {
                 })}
                     
       </div>
-        {/* {true && (
-          <StyledTable
-            pagination={false}
-            scroll={{ y: tableHeight }}
-            expandedRowRender={(record) => {
-              //debugger;
-              return <div>{record.documentDescription}</div>;
-            }}
-            rowKey="ContactId"
-            columns={columns}
-            dataSource={documentsByContactId}
-            Loading={
-              fetchingDocumentsByContactId || fetchingDocumentsByContactIdError
-            }
-            onChange={console.log("task onChangeHere...")}
-          />
-        )} */}
       </>
     );
   }
