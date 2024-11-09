@@ -3,6 +3,7 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import FWLogo1 from "../../../../../src/Assets/Images/smallLogo.png";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import OpenInBrowserIcon from "@mui/icons-material/OpenInBrowser";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
@@ -151,7 +152,10 @@ const LeadsTeamHotcard = (props) => {
   } = props;
 
   if (loading) {
-    return <div><BundleLoader/></div>;
+    return   <div className="custom-loader">
+    <div className="loader !block"> </div>
+<div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+</div>;
   }
 
    return (
@@ -188,7 +192,11 @@ const LeadsTeamHotcard = (props) => {
         dataLength={teamLeadsHot.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingTeamLeadsHot?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingTeamLeadsHot?
+          <div className="custom-loader">
+          <div className="loader !block"> </div>
+      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+    </div>:null}
         height={"24vh"}
         style={{ scrollbarWidth: "thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
