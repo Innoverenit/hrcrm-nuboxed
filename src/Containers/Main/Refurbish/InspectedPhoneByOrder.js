@@ -10,6 +10,7 @@ import ReactToPrint from "react-to-print";
 import QRCode from "qrcode.react";
 import Barcode from 'react-barcode';
 import { Button,Input,Tooltip,Progress } from "antd"
+import InfoIcon from '@mui/icons-material/Info';
 import {
     searchimeiNamePhone,
     ClearPhoneDataOfrefurbish,
@@ -27,6 +28,10 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import NodataFoundPageRefubish from "./NodataFoundPageRefubish";
 import ProcessTaskAllDrawer from "./ProcessTaskAllDrawer";
 import RepairPhoneNotesOrderModal from "./RepairPhoneNotesOrderModal";
+import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import RuleIcon from '@mui/icons-material/Rule';
+
+
 const QRCodeModal = lazy(() => import("../../../Components/UI/Elements/QRCodeModal"));
 
 function InspectedPhoneByOrder(props) {
@@ -215,32 +220,32 @@ function InspectedPhoneByOrder(props) {
                             <ModelTrainingIcon className=" !text-icon" /> {translatedMenuItems[1]}  
                              {/*model" */}
                             </div>
-                            <div className=" md:w-[6.8rem] ">
+                            <div className=" md:w-[5.8rem] ">
                             IMEI
                                 {/* imei"*/}
                             </div>
                             <div className="md:w-[7.6rem]">
-                            {translatedMenuItems[4]} {/* Issue  */}
+                            <ConfirmationNumberIcon className=" !text-icon" />       {translatedMenuItems[4]} {/* Issue  */}
                                 </div>
 
-                            <div className="md:w-[4.7rem]">
-                            {translatedMenuItems[5]} {/* Info */}
+                            <div className="md:w-[6.7rem]">
+                               <InfoIcon className='!text-base  text-[#e4eb2f]' />  {translatedMenuItems[5]} {/* Info */}
                                 </div>
                             <div className="md:w-[3.9rem]">
                             {translatedMenuItems[6]}  {/* conditions" */}
                             </div>
-                            <div className="md:w-[7rem]">
-                            <ContactsIcon className='!text-base  text-[#e4eb2f]' />   {translatedMenuItems[7]}  {/* Technician */}
+                            <div className="md:w-[6rem]">
+                            <ContactsIcon className='!text-base  text-[#52a13d]' />   {translatedMenuItems[7]}  {/* Technician */}
                                 </div> 
-                            <div className="md:w-[3rem]">
-                        QC  
+                            <div className="md:w-[4rem]">
+                             < RuleIcon className=" !text-icon" />   QC  
                                 </div>
                             <div className="md:w-[16rem]">
                             {translatedMenuItems[9]}  {/* Repair */}
                                 </div>
                             {/* <div className="md:w-[5rem]">Qa</div> */}
                             <div className="md:w-[11.2rem]">
-                            <FactCheckIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[10]}  {/* Task */}
+                            <FactCheckIcon className='!text-base  text-[#a1a622]'/>  {translatedMenuItems[10]}  {/* Task */}
                                 </div>
                         </div>
                         <div class="overflow-y-auto h-[82vh]"  style={{ scrollbarWidth:"thin"}}>
@@ -248,20 +253,20 @@ function InspectedPhoneByOrder(props) {
                                 const acivedPercentage = isNaN(Math.floor((item.totalExtraCost / item.totalPrice) * 100)) ? 0 : Math.floor((item.totalExtraCost / item.totalPrice) * 100)
                                 return (
                                     <div>
-                                        <div className="flex rounded  mt-1 bg-white  items-center py-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                                        <div className="flex rounded  mt-1 bg-white  items-center py-ygap-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                             <div class="flex">
                                                 <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] md:w-[4.6rem] max-sm:w-full  ">
                                                 <div class=" text-xs ml-gap font-poppins">  {item.company}
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-start ml-gap bg-[#eef2f9] h-8  md:w-[5.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs ml-gap font-poppins">
                                                         {item.model}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                <div className=" flex items-center justify-start ml-gap bg-[#eef2f9] h-8  md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                               <div class=" text-xs ml-gap font-poppins">
 
                                                         {item.imei}
@@ -282,12 +287,12 @@ function InspectedPhoneByOrder(props) {
                                             </div>
 
 
-                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     {item.conditions}
                                                 </div>
                                             </div>
-                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {item.repairTechnicianName && <MultiAvatar
                                                         primaryTitle={item.repairTechnicianName}
@@ -312,14 +317,15 @@ function InspectedPhoneByOrder(props) {
                                                 </div>
                                             </div> */}
                                            
-                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     {item.cannotRepairInd ? "Can't Repair" : null}
                                                 </div>
                                             </div>
-                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     <Button
+                                                    className="w-[8rem]"
                                                         type="primary"
                                                         style={{ color: show && item.phoneId === data.phoneId ? "black" : "white" }}
                                                         onClick={() => {
@@ -331,22 +337,12 @@ function InspectedPhoneByOrder(props) {
                                                     </Button>
                                                 </div>
                                             </div>
-                                            <div class='w-[5.011rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 '>
-                                                                    <Tooltip title={translatedMenuItems[4]}>
-                                                                        {/* <FormatListBulletedIcon
-                                                                            className="!text-base cursor-pointer"
-                                                                            style={{ color: expand && item.phoneId === data.phoneId ? "red" : "black" }}
-                                                                            onClick={() => {
-                                                                                handlePhoneListOrderTask();
-                                                                                handleParticularRow(item);
-                                                                                handleExpand(item.phoneId);
-                                                                            }}
-                                                                        /> */}
-                                                                        <Progress
+                                            <div class='w-[7.011rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 '>
+                                                                    <Tooltip title={translatedMenuItems[4]}>                                                              
+                                                                        <Progress className="w-[6.5rem] cursor-pointer"
                                                                    percent={acivedPercentage}
                                                                     success={{acivedPercentage}}
-                                                                    format={() => `${acivedPercentage}%`} 
-                                                                    style={{ width: "8rem", cursor: "pointer" }}
+                                                                    format={() => `${acivedPercentage}%`}                     
                                                                     onClick={() => {
                                                                         handlePhoneListOrderTask();
                                                                      handleParticularRow(item);
@@ -356,22 +352,9 @@ function InspectedPhoneByOrder(props) {
                                                                     </Tooltip>
 
                                                                 </div>
-                                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <Tooltip title= {translatedMenuItems[2]}>
-                                                    <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
-                                                            onClick={() => {
-                                                                handleSetRowData(item);
-                                                                props.handleRepairPhoneNotesOrderModal(true);
-                                                            }}
-                                                        />
+                                                             
 
-                                                    </Tooltip>
-
-                                                </div>
-                                            </div>
-
-                                            <div className=" flex items-center justify-around ml-gap bg-[#eef2f9] h-8  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex items-center justify-around ml-gap bg-[#eef2f9] h-8  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                     <ReactToPrint
                                                         trigger={() => <Button
@@ -405,7 +388,7 @@ function InspectedPhoneByOrder(props) {
                                                     </div>
                                                 </div>
                                             </div>
-                                        
+                                         
                                             <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[7.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title={translatedMenuItems[11]}
@@ -433,6 +416,20 @@ function InspectedPhoneByOrder(props) {
                                                        
                                                     </div>
                                                     <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                                </div>
+                                            </div>
+                                            <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title= {translatedMenuItems[2]}>
+                                                    <NoteAltIcon className="!text-icon mr-1 cursor-pointer text-[green]" 
+                                                            onClick={() => {
+                                                                handleSetRowData(item);
+                                                                props.handleRepairPhoneNotesOrderModal(true);
+                                                            }}
+                                                        />
+
+                                                    </Tooltip>
+
                                                 </div>
                                             </div>
                                                 </div>

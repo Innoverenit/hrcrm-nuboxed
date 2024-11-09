@@ -9,6 +9,9 @@ import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import AttractionsIcon from '@mui/icons-material/Attractions'; 
 import ExploreIcon from "@mui/icons-material/Explore";
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
+import AddModeratorIcon from '@mui/icons-material/AddModerator';
+import PixIcon from '@mui/icons-material/Pix';
 // import ConstructionIcon from"@mui/icons-material/ConstructionIcon";
 
 import {
@@ -205,30 +208,30 @@ useEffect(() => {
 
       <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between max-sm:hidden w-[90%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">  
-          <div className="w-[3.51rem]"></div>        
-            <div className=" w-[4.5rem] text-[#00A2E8] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+          <div className=" flex justify-between max-sm:hidden w-[91%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">  
+          <div className="w-[5.51rem]"></div>        
+            <div className=" w-[6.5rem] text-[#00A2E8] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
             {translatedMenuItems[0]} {/* Article # */}
               </div>
               
             <div className=" w-[11.71rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
-            <ContactsIcon className="!text-icon  "/>
+            <ContactsIcon className="!text-icon mr-1 "/>
             {translatedMenuItems[1]}  {/* Name */}
               </div>
-            <div className=" w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
-            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' />
+            <div className=" w-[9.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
+            <FormatListNumberedIcon className='!text-icon  mr-1   text-[#42858c]' />
             {translatedMenuItems[2]}
             {/* Category */}
               </div>
-            <div className=" w-[5.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">
+            <div className=" w-[7.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">
             <AttractionsIcon className="  !text-icon" />
             {translatedMenuItems[3]} {/* Attribute */}
               </div>
-            <div className=" w-[7.151rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">
-            <BrandingWatermarkIcon className="!text-icon" />
+            <div className=" w-[11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">
+            <BrandingWatermarkIcon className="!text-icon  mr-1" />
             {translatedMenuItems[4]}{/* Brand */}
               </div>
-            <div className=" w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
+            <div className=" w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
             <ModelTrainingIcon className=" !text-icon" />
             {translatedMenuItems[5]} {/* Model */}
             
@@ -238,14 +241,16 @@ useEffect(() => {
             {translatedMenuItems[6]}  {/* Website */}
               </div>
               <div className=" w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
-              
-            {translatedMenuItems[7]}  
+              {/* Feature */}
+               <  PixIcon  className=" !text-icon" />   {translatedMenuItems[7]}  
               </div>
-              <div className=" w-[3.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
-            {translatedMenuItems[8]}  
+              <div className=" w-[5.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              < AddModeratorIcon className=" !text-icon" />   {translatedMenuItems[8]}  
+            {/* Warranty */}
               </div>
-              <div className=" w-[3.20rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
-            {translatedMenuItems[9]}  
+              <div className=" w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              < WatchLaterIcon className=" !text-icon" />   {translatedMenuItems[9]}  
+            {/* Year */}
               </div>
             {/* <div className="w-[7rem]"></div> */}
           </div>
@@ -263,7 +268,7 @@ useEffect(() => {
                 {data.map((item,index) => {
                return (
                 <div>
-                  <div key={item.productId} className="flex rounded justify-between mt-1  bg-white  items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  <div key={item.productId} className="flex rounded justify-between mt-1  bg-white  items-center py-ygap max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
                       <div className=" flex w-[4.5rem] items-center max-sm:w-auto h-8  border-l-2 border-green-500 bg-[#eef2f9] ">
                         <SubTitle>
@@ -275,14 +280,14 @@ useEffect(() => {
                              
                             />
                           ) : (
-                            <div class="font-bold text-[0.65rem]" >
+                            <div class="font-bold ml-gap text-[0.65rem]" >
                               No Image
                             </div>
                           )}
                         </SubTitle>
                       </div>
                       <div className=" flex w-[4.5rem] h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                        <div class="text-xs  text-blue-600   max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                        <div class="text-xs  text-blue-600  ml-gap  max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
                         onClick={() => {
                           openModal();
                           handleParticularRowData(item);
@@ -294,7 +299,7 @@ useEffect(() => {
 
                       <div className=" flex  w-[14.5rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                        <div class=" text-xs text-blue-600 cursor-pointer max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                        <div class=" text-xs  ml-gap text-blue-600 cursor-pointer max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
                         onClick={() => {
                           openModal();
                           handleParticularRowData(item);
@@ -307,30 +312,30 @@ useEffect(() => {
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex w-[6.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ml-gap">
+                      <div class=" text-xs  ml-gap  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ml-gap">
 
                         {item.categoryName}  {item.subCategoryName}
                       </div>
                     </div>
                    
 
-                    <div className=" flex w-[6.5rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[8.5rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                      <div class=" text-xs  max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs   ml-gap max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {item.attributeName}  {item.subAttributeName}
                       </div>
                     </div>
 </div>
     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
     <div className=" flex w-[9.51rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  ml-gap max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.brand}
                       </div>
                     </div>
                     <div className=" flex w-[8.8rem] h-8 ml-gap items-center bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  ml-gap max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.model}
                       </div>
@@ -456,9 +461,7 @@ useEffect(() => {
                                                             />
                                                           </Tooltip>
 </div>
-
-                    
-              
+ 
                       <div class=" text-xs  font-poppins mt-1">
                         <Tooltip title={translatedMenuItems[14]}  >
                           <BorderColorIcon
