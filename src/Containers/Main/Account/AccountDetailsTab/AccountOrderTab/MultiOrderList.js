@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-    getOrderInvoiveList,
-    handleInvoiceModal
-} from "../AccountAction";
 import {  Select } from 'antd';
 import dayjs from "dayjs";
-import InfiniteScroll from "react-infinite-scroll-component";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import InvoiceOrderModal from "./InvoiceOrderModal";
-import InvoiceModal from "./InvoiceModal";
-import { BundleLoader } from "../../../../Components/Placeholder";
-import { base_url2 } from "../../../../Config/Auth";
+import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../../../Components/Placeholder";
+import { base_url2 } from "../../../../../Config/Auth";
 import axios from "axios";
 import Swal from 'sweetalert2';
 
 const { Option } = Select;
 
-function InvoiceMultipleDrawerCard(props) {
+function MultiOrderList(props) {
     const [pageNo, setPageNo] = useState(0);
     
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -56,7 +49,7 @@ function InvoiceMultipleDrawerCard(props) {
 
       const fetchData = async () => {
         try {
-          const response = await axios.get(`${base_url2}/invoice/procureFullInvoiceData/${props.particularRowData.procureOrderInvoiceId}`,{
+          const response = await axios.get(`${base_url2}/invoice/procureFullInvoiceData/invoice/${props.row.procureOrderInvoiceId}`,{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
@@ -142,9 +135,7 @@ function InvoiceMultipleDrawerCard(props) {
 
     const [hasMore, setHasMore] = useState(true);
 
-    if (loading) {
-        return <div><BundleLoader/></div>;
-      }
+
     return (
         <>
             <div className=' flex sticky  z-auto'>
@@ -157,22 +148,15 @@ function InvoiceMultipleDrawerCard(props) {
                         <div className=" md:w-[8.8rem] ">{translatedMenuItems[4]}</div> */}
                       
                     </div>
-                    <div class="">
-                        {/* <InfiniteScroll
-                            dataLength={props.orderInvoice.length}
-                            next={handleLoadMore}
-                            hasMore={hasMore}
-                            loader={props.fetchingOrderInvoice ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                            height={"79vh"}
-                            style={{scrollbarWidth:"thin"}}
-                        > */}
+                    <div class="overflow-x-auto ">
+                    
                             {data.length ? <>
                                 {data.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
+                                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
                                                     <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
@@ -190,10 +174,10 @@ function InvoiceMultipleDrawerCard(props) {
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
-                                                                    onClick={() => {
-                                                                       // handleRowData(item);
-                                                                        props.handleInvoiceModal(true);
-                                                                    }}
+                                                                    // onClick={() => {
+                                                                    //    // handleRowData(item);
+                                                                       
+                                                                    // }}
                                                                 > 
                                                                 {item.newOrderNo}
                                                                 </span>
@@ -224,18 +208,12 @@ function InvoiceMultipleDrawerCard(props) {
                                 })}
                             </>
                                 : !data.length
-                                    && !props.fetchingOrderInvoice ? <NodataFoundPage /> : null}  
-                        {/* </InfiniteScroll> */}
+                                    && !props.fetchingOrderInvoice ? "No data" : null}  
+                      
                     </div>
                 </div>
             </div>
-            <InvoiceModal
-                    particularRowData={particularRowData}
-                    handleInvoiceModal={props.handleInvoiceModal}
-                    invoiceO={props.invoiceO}
-                    selectedLanguage={props.selectedLanguage}
-                            translateText={props.translateText}
-                />  
+
         </>
     )
 }
@@ -252,10 +230,10 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
            // getOrderInvoiveList,
-            handleInvoiceModal
+            
            
         },
         dispatch
     );
 
-export default connect(mapStateToProps, mapDispatchToProps)(InvoiceMultipleDrawerCard);
+export default connect(mapStateToProps, mapDispatchToProps)(MultiOrderList);
