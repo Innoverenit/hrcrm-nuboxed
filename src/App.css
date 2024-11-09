@@ -823,6 +823,25 @@ scrollbar-width: thin;
   box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5); /* Optional: Add a shadow effect to the highlighted image */
 }
 
+.loader {
+  border: 5px dashed  #1677ff;
+  /* border-top: 8px solid #3498db; */
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  animation: spin 1s linear infinite;
+}
+.custom-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+}
 
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 

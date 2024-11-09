@@ -33,6 +33,7 @@ import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import SourceIcon from '@mui/icons-material/Source';
 import FactoryIcon from '@mui/icons-material/Factory';
 import ScoreIcon from '@mui/icons-material/Score';
+import FWLogo1 from "../../../../../src/Assets/Images/smallLogo.png";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button, Tooltip,Popconfirm,Checkbox } from "antd";
 import { FormattedMessage } from "react-intl";
@@ -43,7 +44,6 @@ import OpenCETmodal from "./OpenCETmodal";
 import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import EmptyPage from "../../../Main/EmptyPage";
 
 const ButtonGroup = Button.Group;
@@ -154,7 +154,10 @@ const LeadsTeamWarmcard = (props) => {
   } = props;
 
   if (loading) {
-    return <div><BundleLoader/></div>;
+    return  <div className="custom-loader">
+    <div className="loader !block"> </div>
+<div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+</div>;
   }
 
    return (
@@ -193,7 +196,10 @@ const LeadsTeamWarmcard = (props) => {
         dataLength={teamLeadsWarm.length}
         next={handleLoadMore1}
         hasMore={hasMore}
-        loader={fetchingTeamLeadsWarm?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingTeamLeadsWarm?<div class="flex justify-center"> <div className="custom-loader">
+          <div className="loader !block"> </div>
+      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+    </div></div>:null}
         height={"24vh"}
         style={{ scrollbarWidth: "thin"}}
         endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
