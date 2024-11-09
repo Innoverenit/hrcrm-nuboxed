@@ -86,6 +86,8 @@ class ContactForm extends Component {
 '185',//11 Address
 '316',//12 notes
   '104',// create
+   "361",
+   "995"
         
       ];
 
@@ -308,7 +310,7 @@ class ContactForm extends Component {
             setFieldValue,
             setFieldTouched,
           }) => (
-            <Form className="form-background">
+            <Form className="form-background h-[87vh]">
               <div class=" flex justify-between">
                 <div class=" h-full w-w47.5" >
                  
@@ -545,7 +547,7 @@ class ContactForm extends Component {
         <div class="flex flex-col w-w47.5">
                  
                   <div class=" text-xs font-bold font-poppins">
-                    Tag Company
+                    {/* Tag Company */}{this.state.translatedMenuItems[14]}
                      </div>
                  
   
@@ -573,7 +575,7 @@ class ContactForm extends Component {
 
 <div class=" w-w47.5 ">
                   
-                    <div class=" text-xs font-bold font-poppins"> Reports To</div>
+                    <div class=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[15]}</div>
                     
 
                     {/* {this.props.customerConfigure.sourceInd===true&& */}
@@ -594,7 +596,7 @@ class ContactForm extends Component {
                      
                      
                   </div>
-                   <div class=" w-2/5">
+                   <div class=" w-2/5 mt-2">
                     <div class=" text-xs font-bold font-poppins"> 
                          {translatedMenuItems[9]}             
                           </div>

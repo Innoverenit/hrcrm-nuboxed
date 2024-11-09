@@ -145,7 +145,9 @@ class UpdateCustomerContactForm extends Component {
    "325",//10
    "326",//11
    "316",//12
-   "104"//13
+   "104",//13
+   "361",
+   "995"
 
       ];
 
@@ -292,7 +294,7 @@ class UpdateCustomerContactForm extends Component {
             setFieldValue,
             setFieldTouched,
           }) => (
-              <Form className="form-background">
+              <Form className="form-background h-[87vh]">
                 <div  class=" flex justify-between">
                 <div class=" h-full w-[47.5%] mt-3"
                 >
@@ -445,7 +447,7 @@ class UpdateCustomerContactForm extends Component {
                 
                   <div class=" text-xs font-bold font-poppins"> 
                     {/* {translatedMenuItems[9]} */}
-                    Tag Company
+                    {this.state.translatedMenuItems[14]} {/* Tag Company */}
                     </div>
                   {/* Tag Company */}
 
@@ -472,7 +474,7 @@ class UpdateCustomerContactForm extends Component {
 
 <div class=" w-w47.5 ">
                    
-                    <div class=" text-xs font-bold font-poppins"> Reports To</div>
+                    <div class=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[15]}</div>
                     
   
                     {/* {this.props.customerConfigure.sourceInd===true&& */}

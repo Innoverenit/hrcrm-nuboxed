@@ -84,10 +84,10 @@ class InventoryDetailTabO extends PureComponent {
                 <>
                   {/* <span
                   //    onClick={() => this.handleOrderCreateClick(false)}
-                  > */}
+                  > */}  <span class="!text-tab">
                   <i class="fas fa-satellite-dish"></i>&nbsp;
                   {/* Receive */}  {this.props.translatedMenuItems[17]}
-                  {/* </span> */}
+                  </span>
                   {/* {activeKey === "1" && (
                  
                   )} */}
@@ -109,7 +109,7 @@ class InventoryDetailTabO extends PureComponent {
             <TabPane
               tab={
                 <>
-                  <span>
+                  <span class="!text-tab">
                     <i class="far fa-share-square"></i>&nbsp;
                     {/* Dispatch */}  {this.props.translatedMenuItems[18]}
 
@@ -131,7 +131,7 @@ class InventoryDetailTabO extends PureComponent {
             <TabPane
               tab={
                 <>
-                  <span>
+                   <span class="!text-tab">
                     <i class="far fa-share-square"></i>&nbsp;
                    Complete Dispatch  
 

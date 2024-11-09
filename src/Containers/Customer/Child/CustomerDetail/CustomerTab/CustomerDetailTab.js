@@ -527,6 +527,7 @@ translatedMenuItems={this.props.translatedMenuItems}
             id={this.props.customer.customerId}
             selectedLanguage={this.props.selectedLanguage}
             translateText={this.props.translateText}
+            translatedMenuItems={this.state.translatedMenuItems}
             // callback={() => getContactListByCustomerId(customerId)}
           />
 

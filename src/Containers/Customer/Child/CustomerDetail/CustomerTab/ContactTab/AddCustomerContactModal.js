@@ -19,10 +19,7 @@ const AddCustomerContactModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.contact"
-          defaultMessage="Contact"
-        />}
+        title={`${props.translatedMenuItems[1]}`}
         width="60%"
         visible={addCustomerContactModal}
         onClose={() => handleCustomerContactModal(false)}

@@ -82,9 +82,10 @@ class InventoryCommerceDetailTabO extends PureComponent {
                   {/* <span
                   //    onClick={() => this.handleOrderCreateClick(false)}
                   > */}
+                    <span class="!text-tab">
                   <i class="fas fa-satellite-dish"></i>&nbsp;
                   {/* Receive */}  Dispatch
-                  {/* </span> */}
+                  </span>
                   {/* {activeKey === "1" && (
                  
                   )} */}
@@ -108,7 +109,7 @@ class InventoryCommerceDetailTabO extends PureComponent {
             <TabPane
               tab={
                 <>
-                  <span>
+                   <span class="!text-tab">
                     <i class="far fa-share-square"></i>&nbsp;
                    Complete Dispatch  
 

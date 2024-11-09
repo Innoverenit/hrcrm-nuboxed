@@ -148,10 +148,10 @@ function DataRoomProspectActionRight (props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-    '', // 0 Quotation
-'', // 1  Task content for
-'', // 2 By Source
-""// No data found
+    '213', // 0 Quotation
+// '', // 1  Task content for
+// '', // 2 By Source
+// ""// No data found
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -204,7 +204,7 @@ const handleViewSourceChange = (view) => {
               style={{ cursor: 'pointer' }}
               onClick={() => handleViewChange('all')}
             >
-              Quotation
+              {/* Quotation */}{translatedMenuItems[0]}
             </span>
             {/* Won Icon */}
             <CheckCircleOutlined
@@ -279,7 +279,7 @@ const handleViewSourceChange = (view) => {
               style={{ cursor: 'pointer' }}
               onClick={() => handleViewSectorChange('all')}
             >
-              Quotation
+              {/* Quotation */}{translatedMenuItems[0]}
             </span>
             {/* Won Icon */}
             <CheckCircleOutlined

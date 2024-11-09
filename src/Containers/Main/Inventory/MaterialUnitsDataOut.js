@@ -12,6 +12,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import TheStockUsedDrawer from "./Child/InventoryDetails/InventoryMaterialTab/TheStockUsedDrawer";
 import ItemHistoryInStock from "./Child/InventoryDetails/InventoryMaterialTab/ItemHistoryInStock";
 import StockItemClickModal from "./Child/InventoryDetails/InventoryMaterialTab/StockItemClickModal";
+import EmptyPage from "../EmptyPage";
 
 const { Option } = Select;
 
@@ -125,7 +126,7 @@ const MaterialUnitsDataOut = (props) => {
                         loader={props.fetchingGrnListOfAPo ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
                         height={"73vh"}
                     >
-                        {props.poGrnList.map((item, index) => {
+                        {!props.fetchingGrnListOfAPo && props.poGrnList.length===  0 ? <EmptyPage/>: props.poGrnList.map((item, index) => {
                             return (
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white  items-center p-1 ">
