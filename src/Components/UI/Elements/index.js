@@ -16,6 +16,7 @@ export { default as SelectInput } from "./SelectInput";
 export { default as ValidationError } from "./ValidationError";
 export { default as StyledReactSelect } from "./StyledReactSelect";
 export { default as StyledCreatable } from "./StyledCreatable";
+export { default as StyledCreatable1 } from "./StyledCreatable1";
 export { default as StyledAsync } from "./StyledAsync";
 export { default as NoData } from "./NoData";
 export { default as JumpStartBox } from "./JumpStartBox";
