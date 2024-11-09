@@ -134,8 +134,10 @@ class InventoryMaterialTabO extends PureComponent {
                         <TabPane
                             tab={
                                 <>
+                                 <span class="!text-tab">
                                     <i class="fas fa-satellite-dish"></i>&nbsp; 
                                     {/* Receive */} {this.props.translatedMenuItems[17]}
+                                    </span>
                                 </>
                             }
                             key="1"
@@ -155,7 +157,7 @@ class InventoryMaterialTabO extends PureComponent {
                         <TabPane
                             tab={
                                 <>
-                                    <span onClick={this.handleRecruitClick}>
+                                    <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <LocalShippingIcon className=" !text-icon"/>&nbsp;
                                         {/* Stock */} 
                                         In transit
@@ -201,7 +203,7 @@ class InventoryMaterialTabO extends PureComponent {
                         <TabPane
                             tab={
                                 <>
-                                    <span onClick={this.handleRecruitClick}>
+                                    <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <WarehouseIcon  className=" !text-icon text-red-600"/>&nbsp;
                                         {/* Stock */} 
                                         {this.props.translatedMenuItems[19]}
@@ -256,7 +258,7 @@ class InventoryMaterialTabO extends PureComponent {
                         <TabPane
                             tab={
                                 <>
-                                    <span>
+                                   <span class="!text-tab">
                                         <TokenIcon className=" !text-icon "/>&nbsp;
                                         {/* Cell */}
                                         {this.props.translatedMenuItems[20]}
@@ -280,7 +282,7 @@ class InventoryMaterialTabO extends PureComponent {
 <TabPane
                             tab={
                                 <>
-                                    <span onClick={this.handleRecruitClick}>
+                                    <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <FolderDeleteIcon className="!text-icon"/>&nbsp;
                                         {/* Stock */} 
                                       Damaged
@@ -330,7 +332,7 @@ class InventoryMaterialTabO extends PureComponent {
                         <TabPane
                             tab={
                                 <>
-                                    <span onClick={this.handleRecruitClick}>
+                                    <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <CookieIcon className=" !text-icon"/>&nbsp;
                                       Best Before
                                      
@@ -381,7 +383,7 @@ class InventoryMaterialTabO extends PureComponent {
                         <TabPane
                             tab={
                                 <>
-                                    <span onClick={this.handleRecruitClick}>
+                                    <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <FolderDeleteIcon className="!text-icon"/>&nbsp;
                                         {/* Stock */} 
                                       Waste

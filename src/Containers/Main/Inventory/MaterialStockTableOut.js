@@ -14,6 +14,7 @@ import TheStockUsedDrawer from "./Child/InventoryDetails/InventoryMaterialTab/Th
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import EmptyPage from "../EmptyPage";
 const { Option } = Select;
 
 const MaterialStockTableOut = (props) => {
@@ -124,7 +125,7 @@ const MaterialStockTableOut = (props) => {
                         height={"73vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
-                        {props.materialUnitsData.map((item, index) => {
+                        {!props.fetchingMaterialUnitsData  && props.materialUnitsData.length===  0 ? <EmptyPage/>: props.materialUnitsData.map((item, index) => {
                             return (
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">

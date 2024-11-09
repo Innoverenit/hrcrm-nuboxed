@@ -58,6 +58,7 @@ function LinkedContact(props) {
        "1347", //  Login Applied10
        "1348", //  Login Approved11
        "1349", // Apply For Login12
+     "1140" //  Update Contact13
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -119,7 +120,7 @@ function LinkedContact(props) {
       
      
       <div class="rounded m-1 p-1 w-[99%] h-[77vh] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold sticky items-end  z-10">
+          <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold sticky   z-10">
         <div className="font-bold font-poppins text-[#00A2E8] text-base w-[16.5rem]  md:w-[16.5rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}
           {/* Name */}
@@ -235,7 +236,7 @@ function LinkedContact(props) {
                              
                                 <div className=" flex w-[9.2rem] md:w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                    
-                                    <div class="flex text-xs flex items-center ml-gap font-poppins">
+                                    <div class="flex text-xs  items-center ml-gap font-poppins">
                                          {item.emailId}
                                     </div>
                                 </div>
@@ -246,7 +247,7 @@ function LinkedContact(props) {
                                   </div>
                               </div>
                               </div>
-                              <div className="flex w-[12.1rem]  md:w-[13rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                              <div className="flex w-[12.1rem]  md:w-[13rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
 
   <div className="text-xs flex items-center ml-gap  font-poppins text-center">
     {item.department}

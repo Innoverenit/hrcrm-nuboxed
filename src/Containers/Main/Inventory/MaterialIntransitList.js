@@ -12,6 +12,7 @@ import { withRouter } from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {  Select } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
+import EmptyPage from "../EmptyPage";
 
 
 const { Option } = Select;
@@ -41,7 +42,7 @@ const MaterialIntransitList = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%] font-poppins font-bold text-xs items-end p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex  w-[100%] font-poppins  text-xs items-end p-1 bg-transparent font-bold sticky z-10">
                         <div className=""></div>
                         <div className="text-[#00A2E8] text-base w-[15.5rem]">
                             Po Id
@@ -64,7 +65,7 @@ const MaterialIntransitList = (props) => {
                         height={"73vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
-                        {props.materialReceiveData.map((item) => {
+                        {!props.fetchingMaterialReceiveData && props.materialReceiveData.length===  0 ? <EmptyPage/>: props.materialReceiveData.map((item) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
@@ -94,7 +95,7 @@ const MaterialIntransitList = (props) => {
                                        
                                         <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[21.22rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                                            <div class=" text-xs ml-gap items-center ml-gap font-poppins">
+                                            <div class=" text-xs  items-center ml-gap font-poppins">
                                                 {item.supplierName}
                                             </div>
                                         </div>
