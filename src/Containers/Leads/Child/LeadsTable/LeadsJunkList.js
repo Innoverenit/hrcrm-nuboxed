@@ -18,16 +18,29 @@ import {
   handleLeadsEmailDrawerModal,
   getLeadDetailsById,
   updateTypeForLead,
-  reInstateJunkLeads
+  reInstateJunkLeads,
+  handleLeadsNotesDrawerModal
 } from "../../../Leads/LeadsAction";
-import { Button, Tooltip,  } from "antd";
+import { Button, Tooltip,Checkbox ,Popconfirm } from "antd";
 import { FormattedMessage } from "react-intl";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
 import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import SourceIcon from '@mui/icons-material/Source';
+import FactoryIcon from '@mui/icons-material/Factory';
+import ScoreIcon from '@mui/icons-material/Score';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import EmptyPage from "../../../Main/EmptyPage";
+import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
+
 
 const ButtonGroup = Button.Group;
 
@@ -35,11 +48,52 @@ const LeadsJunkList = (props) => {
 
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   useEffect(() => {
     props.getJunkedLeads(props.userId);
     setPage(page + 1);
   }, []);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+              '271', // 0
+          '110', // 1
+          '102', // 2
+          '1109', // 3
+          '277', // 4
+          '278', // 5
+          '279', // 6
+          '280', // 7
+          '76', // 8
+          '1335', // 9
+          '77', // 10
+          '1114', // 11
+          '272', //12
+          '273', //13
+          '185',//Address 14
+'316',//notes15
+'1165',// 16activity
+'140',// 17 email
+'170',//18 edit
+'1259',//19 "Do you want to delete?"
+'1581',//20
+            ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -50,11 +104,15 @@ const LeadsJunkList = (props) => {
     };
   }, []);
   const [currentLeadsId, setCurrentLeadsId] = useState("");
+  const [rowdata, setrowData] = useState({});
 
+  const handleRowData = (data) => {
+    setrowData(data);
+  };
   function handleSetCurrentLeadsId(item) {
     setCurrentLeadsId(item);
   }
-  const { deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingJunkedLeads,junkedLeadsData  } = props;
+  const { deleteLeadsData, handleUpdateLeadsModal, updateLeadsModal,fetchingJunkedLeads,junkedLeadsData,handleLeadsNotesDrawerModal,user  } = props;
 
   const handleLoadMore = () => {
     const callPageMapd = props.junkedLeadsData && props.junkedLeadsData.length &&props.junkedLeadsData[0].pageCount
@@ -75,217 +133,245 @@ const LeadsJunkList = (props) => {
     }
     }, 100);
   };
-//   const handleLoadMore = () => {
-//       setPage(page + 1);
-//       props.getJunkedLeads(props.userId);
-// };
-if (isMobile){
+
+
   return (
     <>
- <div class="rounded-lg  p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <InfiniteScroll
-        dataLength={junkedLeadsData.length}
-        next={handleLoadMore}
-      hasMore={hasMore}
-        loader={fetchingJunkedLeads?<div class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
-        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
-      >
-      {/* <InfiniteScroll
+    <div className=' flex  sticky  z-auto'>
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className=" flex  w-[96%]  max-sm:hidden p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
+        <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]   justify-center "> Type</div>
+        <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">    <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
+        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[2]} #</div>
+        {/* 333333 */}
+        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[4]}</div>
+        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[5]}</div> 
+        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}</div> 
+        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
+        {props.user.aiInd && (
+            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}   {translatedMenuItems[22]}
+          
+            </div>
+            )}
+        <div className=" w-[6.23rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[8]} </div>
+        <div className=" w-[2.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
+        <div className=" w-[3.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
+        <div className=" w-[5.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>{translatedMenuItems[11]}</div>
+      
+        {/* <div className="w-12"></div> */}
+
+      </div>
+      <InfiniteScroll
         dataLength={junkedLeadsData.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingJunkedLeads?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"75vh"}
-      > */}
-      {junkedLeadsData.map((item) => { 
-         const currentdate = dayjs().format("DD/MM/YYYY");
-         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-         const countryCode = item.address[0].country_alpha2_code
-         const diff = Math.abs(
-          dayjs().diff(dayjs(item.lastRequirementOn), "days")
+        loader={fetchingJunkedLeads?<div class="flex justify-center">Loading...</div>:null}
+        height={"80vh"}
+        style={{ scrollbarWidth: "thin"}}
+        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+      >
+       { !fetchingJunkedLeads && junkedLeadsData.length === 0 ?<EmptyPage/>:junkedLeadsData.map((item,index) =>  {
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+          const countryCode = item.countryAlpha2Code
+          const diff = Math.abs(
+            dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
-          const dataLoc = ` Address : ${
-            item.address && item.address.length && item.address[0].address1
-          } 
-               Street : ${
-                 item.address && item.address.length && item.address[0].street
-               }   
-              State : ${
-                item.address && item.address.length && item.address[0].state
-              }
-             Country : ${
-               (item.address && item.address.length && item.address[0].country) ||
-               ""
-             } 
-               PostalCode : ${
-                 item.address && item.address.length && item.address[0].postalCode
-               } `;
-                    return (
-                      <div>
-                    <div
-                className="flex flex-col rounded-xl justify-between bg-white mt-[0.5rem] h-[9rem] items-center p-3"
+        
+          return (
+            <div>
+              <div
+                className="flex rounded justify-between  bg-white mt-1  items-center py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-colscale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
               >
-                              <div class="flex justify-between items-center w-wk ">
-                          <div className=" flex font-medium flex-col w-[13rem]   max-sm:w-full">
-                          <div className="flex max-sm:w-full"> 
-<div>
-
-      <MultiAvatar
-        primaryTitle={item.name}
-        imageId={item.imageId}
-        imageURL={item.imageURL}
-        imgWidth={"1.8em"}
-        imgHeight={"1.8em"}
-      />
-    
-</div>
-                             <div class="w-[4%]">
-
-                             </div>
-
-                                  <div class="max-sm:w-full" >
-                                  <Tooltip>
-                                    <div class="max-sm:w-full justify-between flex md:flex-col">
-                                     
-                                      <div class="text-xs flex  font-semibold  font-poppins cursor-pointer">
-                                      {item.name}
-                                     &nbsp;&nbsp;
-                                     {date === currentdate ? (
-    <span
-    class="text-xs text-[tomato] mt-[0.4rem] font-bold"
-    >
-      New
-    </span>
-  ) : null}   
-
-                                      </div>
-                                      </div>
-                                  </Tooltip>
-                                  </div>
-                                  </div>
+              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+              <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {props.showCheckboxesJunk && (
+                        <Checkbox
+                onChange={() => props.handleCheckboxChangeJunk(item.leadsId)}
+              checked={props.selectedJunk.includes(item.leadsId)}
+              />
+                        )}
+                        </div>
+               <div class="flex flex-row mr-1 items-center w-[6.2rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+                    <div>
+                      <ButtonGroup>
+                        <RoleButton
+                          className="!text-icon"
+                          type="Hot"
+                          iconType="fas fa-mug-hot"
+                          // tooltip="Hot"
+                          tooltip={
+                            <FormattedMessage
+                              id="app.hot"
+                              defaultMessage="Hot"
+                            />
+                          }
+                          role={item.type}
+                          onClick={() => {
+                            const typ = "Hot";
+                            props.updateTypeForLead(item.leadsId, typ);
+                          }}
+                        />
+                      </ButtonGroup>
+                    </div>
+                    <div>
+                      <ButtonGroup>
+                        <RoleButton1
+                          className="!text-icon"
+                          type="Warm"
+                          iconType="	fas fa-burn"
+                          // tooltip="Warm"
+                          tooltip={
+                            <FormattedMessage
+                              id="app.warm"
+                              defaultMessage="Warm"
+                            />
+                          }
+                          role={item.type}
+                          onClick={() => {
+                            const typ = "Warm";
+                            props.updateTypeForLead(item.leadsId, typ);
+                          }}
+                        />
+                      </ButtonGroup>
+                    </div>
+                    <div>
+                      <ButtonGroup>
+                        <RoleButton2
+                          className="!text-icon"
+                          type="Cold"
+                          iconType="far fa-snowflake"
+                          // tooltip="Cold"
+                          tooltip={
+                            <FormattedMessage
+                              id="app.cold"
+                              defaultMessage="Cold"
+                            />
+                          }
+                          role={item.type}
+                          onClick={() => {
+                            const typ = "Cold";
+                            props.updateTypeForLead(item.leadsId, typ);
+                          }}
+                        />
+                      </ButtonGroup>
+                    </div>
+                  </div>
+                  <div className=" flex w-[12rem] h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.5rem] max-lg:w-[5rem] max-sm:w-auto">
+                    <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                      <div>
+                       
+                          <MultiAvatar
+                            primaryTitle={item.name}
+                            imageId={item.imageId}
+                            imageURL={item.imageURL}
+                            imgWidth={"1.8rem"}
+                            imgHeight={"1.8rem"}
+                          />
+                       
+                      </div>
+                     
+                      <div class="max-sm:w-full md:flex items-center ml-1">
+                        <Tooltip>
+                          <div class="max-sm:w-full justify-between flex md:flex-col">
+                            <div class="text-xs flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                              {item.name}
+                              &nbsp;&nbsp;
+                              {date === currentdate ? (
+                                <div class="text-[0.65rem]  text-[tomato] font-bold"
+                                  
+                                >
+                                  New
+                                </div>
+                              ) : null}
+                            </div>
                           </div>
+                        </Tooltip>
+                      </div>
+                    </div>
+                  </div>
 
-                          <div class="flex flex-row items-center md:w-[11%] max-sm:flex-row w-full max-sm:justify-between">
-
-<div>
-<ButtonGroup>
-<RoleButton
-type="Warm"
-iconType="	fas fa-burn"
-// tooltip="Warm"
-tooltip={<FormattedMessage
-id="app.warm"
-defaultMessage="Warm"
-/>}
-role={item.type}
-onClick={() =>{
-const typ="Warm"
-props.updateTypeForLead(item.leadsId,typ)
-}}
-/>
-</ButtonGroup>
-</div>    
-
-
-<div>
-<ButtonGroup>
-<RoleButton
-type="Hot"
-iconType="fas fa-mug-hot"
-// tooltip="Hot"
-tooltip={<FormattedMessage
-id="app.hot"
-defaultMessage="Hot"
-/>}
-role={item.type}
-onClick={() =>{
-const typ="Hot"
-props.updateTypeForLead(item.leadsId,typ)
-}}
-/>
-</ButtonGroup>
-</div>
-<div>
-<ButtonGroup>
-<RoleButton
-type="Cold"
-iconType="far fa-snowflake"
-// tooltip="Cold"
-tooltip={<FormattedMessage
-id="app.cold"
-defaultMessage="Cold"
-/>}
-role={item.type}
-onClick={() => {
-const typ="Cold"
-props.updateTypeForLead(item.leadsId,typ)
-}}
-/>
-</ButtonGroup>
-</div>
-</div>  
-</div>
-<div class="flex justify-between items-center w-wk "> 
-                          <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                     <div class=" text-xs  font-poppins">  
-                     {item.countryDialCode && item.phoneNumber ? (
-`${item.countryDialCode} ${item.phoneNumber}`
-) : (
-"None"
-)} 
-                    
-                     </div>
-                 </div>
-                 <div className=" flex  justify-center md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins">
-                            <CountryFlag1 countryCode={countryCode} />
+                  
+                </div>
+                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                <div className=" flex w-[2.5rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
+                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                     
+                       <CountryFlag1 countryCode={countryCode} />
                       &nbsp;
                       {countryCode}
-                            </div>
-                        </div>
-               
-                 </div>
-                 <div class="flex justify-between items-center w-wk "> 
-                 <div className=" flex  justify-center  md:w-40 max-sm:flex-row w-full max-sm:justify-between ">
-                     <div class=" text-xs  font-semibold  font-poppins">   
-                     <Link to={`leads/${item.leadsId}`} title={item.companyName || "None"}>
-{item.companyName || "None"}
-</Link>
-
-                     </div>
-                 </div>
-                 <div class="rounded-full bg-white  h-5 cursor-pointer w-8">
-              {item.url !== null ? (
-        <Tooltip title={item.url}>
-          <span
-            //type="edit"
-            style={{ cursor: "pointer" }}
-            onClick={() => {}}
-          >
-            {" "}
-            <a href={`https://www.${item.url}`} target="_blank">
-              <OpenInBrowserIcon
-                className=" !!text-icon cursor-pointer text-green-800"
-              />
-            </a>
-          </span>
-        </Tooltip>
-      ) : null}
+                     
+                    </div>
+                  </div>
+                  <div className=" flex  w-[6.8rem]  items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
+         
+                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                      {item.countryDialCode && item.phoneNumber
+                        ? `${item.countryDialCode} ${item.phoneNumber}`
+                        : "None"}
+                 
+                    </div>
                   </div>
                  
-                          <div className=" flex   md:w-28 max-sm:flex-row w-full max-sm:justify-between ">
-                              <div class=" text-xs  font-poppins">   
-                              {item.sector}
-                              </div>
-                          </div>
-                          </div>
-                          <div class="flex justify-between items-center w-wk "> 
-                          <div className=" flex  justify-center md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  w-[6rem] items-center  h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
+                    <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
+                      {item.companyName || "None"}
+                    </div>
+                  </div>
+                </div>
+                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                 
+                  <div class=" flex items-center  h-8 ml-gap bg-[#eef2f9] cursor-pointer w-8 justify-center">
+                    {item.url !== null ? (
+                      <Tooltip title={item.url}>
+                        <div class="cursor-pointer"
+                          onClick={() => {}}
+                        >
+                          {" "}
+                          <a href={`https://www.${item.url}`} target="_blank">
+                            <OpenInBrowserIcon
+                               className=" !text-icon cursor-pointer text-green-800"
+                            />
+                          </a>
+                        </div>
+                      </Tooltip>
+                    ) : null}
+                  </div>
 
-                              <div class=" text-xs  font-poppins">
-                              
-                              <div>
+                  <div className=" flex w-[7.35rem] justify-center items-center  h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
+           
+                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                      {item.sector}
+                    </div>
+                  </div>
+                  <div className=" flex  w-[6.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
+           
+           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+             {item.source}
+           </div>
+         </div>
+         <div className=" flex w-[5.5rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
+           
+           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+             {item.lob}
+           </div>
+         </div>
+               
+                <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
+                {props.user.aiInd && (
+           <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+        {item.noteScoreInd}
+          
+            </div>
+            )}
+             </div>
+             </div>
+             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                  <div className=" flex w-[2.02rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
+                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                      <div>
                       {item.assignedTo === null ? (
                 "None"
               ) : (
@@ -294,442 +380,206 @@ props.updateTypeForLead(item.leadsId,typ)
                   
                   null
                 ) : (
-                          <MultiAvatar
-                            primaryTitle={item.assignedTo}
-                            imgWidth={"1.8rem"}
-                            imgHeight={"1.8rem"}
-                          />
+                  <MultiAvatar
+                  style={{ backgroundColor: "rgb(148, 179, 228)", color: "#fff" }} 
+                  primaryTitle={item.assignedTo}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
+              />
                         )}
                         </>
               )}
                       </div>
-       
-                              </div>
-                          </div>
-                          <div className=" flex  justify-center md:w-20  max-sm:flex-row w-full max-sm:justify-between">
-                 
-                 <span>
-        <MultiAvatar
-          primaryTitle={item.ownerName}
-          imageId={item.ownerImageId}
-          imageURL={item.imageURL}
-          imgWidth={"1.8rem"}
-          imgHeight={"1.8rem"}
-        />
-      </span>
-             </div>
-             <div className=" flex  md:w-32 max-sm:flex-row w-full justify-between ">
-                              <div class=" text-[0.75rem]  font-poppins">
-
-                              </div>
-                              <div>
-<Button type="primary"
-onClick={()=>{props.reInstateJunkLeads(item.leadsId)}}
->
-Resinstate
-</Button>
-</div>
-                          </div>
-                         
-                          <div class="flex  w-[5%] max-sm:flex-row max-sm:w-[10%]">
-                          <div>
-      <Tooltip title="Edit">
-        <BorderColorIcon
-        className="!!text-icon cursor-pointer text-[tomato]"
-          onClick={() => {
-            props.setEditLeads(item);
-            handleUpdateLeadsModal(true);
-            handleSetCurrentLeadsId(item);
-              
-          }}
-        />
-      </Tooltip>
-  
-      </div>
-                  <div>
-                  <StyledPopconfirm
-      title="Do you want to delete?"
-      onConfirm={() => deleteLeadsData(item.leadsId)}
-    >
-      <DeleteOutlined
-        type="delete"
-        className=" !!text-icon cursor-pointer text-[red]"
-      />
-    </StyledPopconfirm>
+                    </div>
                   </div>
-                  <div>
-      
-
-              </div>
-              </div>
-              <div class="flex  w-[2%] max-sm:flex-row max-sm:w-[10%]">
-                <div>
-              <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-      <span
-        style={{
-          cursor: "pointer",
-        }}
-      >
-      <LocationOnIcon    className="!!text-icon cursor-pointer text-[#960a0a]"/>
-      </span>
-    </Tooltip>
-    </div>
-    <div>
-    <Tooltip title={item.email}>
-        <MailOutlineIcon
-          type="mail"
-          className="!!text-icon cursor-pointer text-green-400"
-          onClick={() => {
-            handleSetCurrentLeadsId(item);
-            props.handleLeadsEmailDrawerModal(true);
-          }}
-        />
-      </Tooltip> </div>
-     
-                </div>  
-                <div class="w-[2%]"></div> 
-                </div>  
-                </div>
-                      </div>
-                    )
-                })}
-                </InfiniteScroll>
-      </div>
-      <UpdateLeadsModal
-        item={currentLeadsId}
-        updateLeadsModal={updateLeadsModal}
-        handleUpdateLeadsModal={handleUpdateLeadsModal}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-      />
-      <AddLeadsEmailDrawerModal
-        item={currentLeadsId}
-        handleSetCurrentLeadsId={handleSetCurrentLeadsId}
-        addDrawerLeadsEmailModal={props.addDrawerLeadsEmailModal}
-        handleLeadsEmailDrawerModal={props.handleLeadsEmailDrawerModal}
-      />
-    </>
-  );
-}
-
-
-  return (
-    <>
-  <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className=" flex  w-[100%]  max-lg:w-[94%] max-xl:w-[94%] p-2 bg-transparent font-bold sticky top-0 z-10">
- <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Name</div>
-        <div className=" w-[9.1rem] max-xl:w-[11.1rem] max-lg:w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Phone #</div>
-        <div className="w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Country</div>
-        <div className="w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Company</div>
-        <div className="w-[6.8rem] max-xl:w-[4.81rem] max-lg:w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sector</div> 
-        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned</div>
-        <div className="w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Owner</div>
-        <div className="w-[7.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Reinstate</div>
-        <div className="w-12 max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Action</div>
-
-      </div>
-      <InfiniteScroll
-        dataLength={junkedLeadsData.length}
-        next={handleLoadMore}
-        hasMore={hasMore}
-        loader={fetchingJunkedLeads?<div class="flex justify-center">Loading...</div>:null}
-        height={"75vh"}
-      >
- { !fetchingJunkedLeads && junkedLeadsData.length === 0 ?<NodataFoundPage />:junkedLeadsData.map((item,index) =>  {
-         const currentdate = dayjs().format("DD/MM/YYYY");
-         const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-         const countryCode = item.address[0].country_alpha2_code
-         const diff = Math.abs(
-            dayjs().diff(dayjs(item.lastRequirementOn), "days")
-          );
-          const dataLoc = ` Address : ${
-            item.address && item.address.length && item.address[0].address1
-          } 
-               Street : ${
-                 item.address && item.address.length && item.address[0].street
-               }   
-              State : ${
-                item.address && item.address.length && item.address[0].state
-              }
-             Country : ${
-               (item.address && item.address.length && item.address[0].country) ||
-               ""
-             } 
-               PostalCode : ${
-                 item.address && item.address.length && item.address[0].postalCode
-               } `;
-                    return (
-                      <div>
-                      <div className="flex rounded-xl justify-between  bg-white mt-[0.5rem] h-[2.75rem] items-center p-3">
-                              <div class="flex"> 
-                          <div className=" flex font-medium flex-col w-[13rem] max-xl:w-[9rem] max-lg:w-[5rem]   max-sm:w-full">
-                          <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
-<div>
-
-      <MultiAvatar
-        primaryTitle={item.name}
-        imageId={item.imageId}
-        imageURL={item.imageURL}
-        imgWidth={"1.8em"}
-        imgHeight={"1.8em"}
-      />
-   
-</div>
-                             <div class="w-[4%]">
-
-                             </div>
-
-                                  <div class="max-sm:w-full" >
-                                  <Tooltip>
-                                    <div class="max-sm:w-full justify-between flex md:flex-col">
-                                     
-                                      <div class="text-xs flex  font-semibold  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">
-                                      {item.name}
-                                     &nbsp;&nbsp;
-                                     {date === currentdate ? (
-    <div class="text-xs text-[tomato] mt-[0.4rem] font-bold" 
-      
-    >
-      New
-    </div>
-  ) : null}   
-
- 
-                                      </div>
-                                      </div>
-                                  </Tooltip>
-                                  </div>
-                                  </div>
-                          </div>
-
-                          <div class="flex flex-row items-center w-[7rem] max-sm:flex-row  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">
-
-<div>
-<ButtonGroup>
-<RoleButton
-type="Hot"
-iconType="fas fa-mug-hot"
-// tooltip="Hot"
-tooltip={<FormattedMessage
-id="app.hot"
-defaultMessage="Hot"
-/>}
-role={item.type}
-onClick={() =>{
-const typ="Hot"
-props.updateTypeForLead(item.leadsId,typ)
-}}
-/>
-</ButtonGroup>
-</div>    
-
-
-<div>
-<ButtonGroup>
-<RoleButton
-type="Warm"
-iconType="	fas fa-burn"
-// tooltip="Warm"
-tooltip={<FormattedMessage
-id="app.warm"
-defaultMessage="Warm"
-/>}
-role={item.type}
-onClick={() =>{
-const typ="Warm"
-props.updateTypeForLead(item.leadsId,typ)
-}}
-/>
-</ButtonGroup>
-
-</div>
-<div>
-<ButtonGroup>
-<RoleButton
-type="Cold"
-iconType="far fa-snowflake"
-// tooltip="Cold"
-tooltip={<FormattedMessage
-id="app.cold"
-defaultMessage="Cold"
-/>}
-role={item.type}
-onClick={() => {
-const typ="Cold"
-props.updateTypeForLead(item.leadsId,typ)
-}}
-/>
-</ButtonGroup>
-</div>
-</div>  
-</div>
-<div class="flex"> 
-                          <div className=" flex font-medium flex-col  w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
-                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
-                     {item.countryDialCode && item.phoneNumber ? (
-`${item.countryDialCode} ${item.phoneNumber}`
-) : (
-"None"
-)} 
-                    
-                     </div>
-                 </div>
-                 <div className=" flex  justify-center w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[3rem] ">
-                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <CountryFlag1 countryCode={countryCode} />
-                      &nbsp;
-                      {countryCode}
-                            </div>
-                        </div>
-               
-                 </div>
-                 <div class="flex"> 
-                 <div className=" flex  justify-center  w-40 max-sm:flex-row  max-sm:justify-between max-xl:w-[7rem] max-lg:w-[4rem] ">
-                     <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
-                     <Link to={`leads/${item.leadsId}`} title={item.companyName || "None"}>
-{item.companyName || "None"}
-</Link>
-
-                     </div>
-                 </div>
-                 <div class="rounded-full bg-white  h-5 cursor-pointer w-8">
-              {item.url !== null ? (
-        <Tooltip title={item.url}>
-          <div
-            //type="edit"
-            class="cursor-pointer"
-            onClick={() => {}}
-          >
-            {" "}
-            <a href={`https://www.${item.url}`} target="_blank">
-              <OpenInBrowserIcon
-                className=" !!text-icon cursor-pointer text-green-800"
+                     <div className=" flex w-[4rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                      {item.assignedBy && (
+                    <div>
+                <div class="max-sm:flex justify-end">
+              <MultiAvatar
+                primaryTitle={item.assignedBy}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
               />
-            </a>
-          </div>
-        </Tooltip>
-      ) : null}
+            </div>
+                    </div>
+                    )}
                   </div>
-                 
-                          <div className=" flex   w-28 max-sm:flex-row  max-sm:justify-between max-xl:w-[4rem] max-lg:w-[4rem] max-lg:max-w-[10ch] truncate">
-                              <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">   
-                              {item.sector}
-                              </div>
-                          </div>
-                          </div>
-                          <div class="flex mb-1"> 
-                          <div className=" flex  justify-center w-32 max-sm:flex-row  max-sm:justify-between max-xl:w-[3rem] max-lg:w-[2rem] ">
-
-                              <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                              
-                              <div>
-        {item.assignedTo === null ? (
-          "None"
-        ) : (
-          <MultiAvatar
-            primaryTitle={item.assignedTo}
-            imgWidth={"1.8em"}
-            imgHeight={"1.8em"}
-          />
-        )}
-      </div>
-       
-                              </div>
-                          </div>
-                          <div className=" flex font-medium flex-col justify-center w-20  max-sm:flex-row  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[1.75rem]">
-                 
-                 <div>
-        <MultiAvatar
-          primaryTitle={item.ownerName}
-          imageId={item.ownerImageId}
-          imageURL={item.imageURL}
-          imgWidth={"1.8rem"}
-          imgHeight={"1.8rem"}
-        />
-      </div>
-             </div>
-             <div className=" flex  items-center  md:w-32 max-sm:flex-row w-full  ">
-                              <div class=" text-[0.75rem]  font-poppins">
-
-                              </div>
-                              <div>
-<Button type="primary"
-onClick={()=>{props.reInstateJunkLeads(item.leadsId)}}
->
-Resinstate
-</Button>
-</div>
-                          </div>
-                         
-                          <div class="flex  w-[5%] max-sm:flex-row max-sm:w-[10%]">
-                          <div>
-      <Tooltip title="Edit">
-        <BorderColorIcon
-          className="!!text-icon cursor-pointer text-[tomato]"
-          onClick={() => {
-            props.setEditLeads(item);
-            handleUpdateLeadsModal(true);
-            handleSetCurrentLeadsId(item);
-              
-          }}
-        />
-      </Tooltip>
-  
-      </div>
-                  <div>
-                  <StyledPopconfirm
-      title="Do you want to delete?"
-      onConfirm={() => deleteLeadsData(item.leadsId)}
-    >
-         <Tooltip title="Delete">
-      <DeleteOutlined
-        type="delete"
-        className=" !!text-icon cursor-pointer text-[red]"
-      />
-      </Tooltip>
-    </StyledPopconfirm>
+                  <div className=" flex  w-[3.11rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                    <div>
+                <div class="max-sm:flex justify-end">
+              <MultiAvatar
+                primaryTitle={item.ownerName}
+                imageId={item.ownerImageId}
+                imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
+              />
+            </div>
+                    </div>
                   </div>
-                  <div>
-      
-
-              </div>
-              </div>
-              <div class="flex flex-col w-[2%] max-sm:flex-row max-sm:w-[10%]">
-                <div>
-              <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-      <div className=""
        
+                  <div className=" flex w-[2.1rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                    <div class=" text-xs  font-poppins"></div>
+                    <div>
+  {!item.companyName && item.leadType === "BtoC" ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Popconfirm
+        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+        onConfirm={() => {
+          handleRowData(item);
+          if (item.leadType === "BtoB") {
+            props.handleLeadsConfirmationModal(true);
+          } else {
+            props.convertCustomerStatus(item.leadsId,props.userId);
+          }
+        }}
+        okText="Yes"
+        cancelText="No"
       >
-      <LocationOnIcon  className="!!text-icon cursor-pointer text-[#960a0a]"/>
-      </div>
-    </Tooltip>
-    </div>
-    <div>
-    <Tooltip title={item.email}>
-        <MailOutlineIcon
-          type="mail"
-          className="!!text-icon cursor-pointer text-green-400"
-          onClick={() => {
-            handleSetCurrentLeadsId(item);
-            props.handleLeadsEmailDrawerModal(true);
-          }}
+        <ConnectWithoutContactIcon
+          className="!text-icon cursor-pointer text-[blue]"
         />
-      </Tooltip> </div>
-     
-                </div>  
-                <div class="w-[2%]"></div> 
-                </div>  
-                </div>
+      </Popconfirm>
+    </Tooltip>
+  ) : item.companyName ? (
+    <Tooltip title="Qualify? Lead will move to Prospect section!">
+      <Popconfirm
+        title={item.leadType === "BtoB" ? "Would you like to open the modal?" : "Would you like to convert the lead to contact?"}
+        onConfirm={() => {
+          handleRowData(item);
+          if (item.leadType === "BtoB") {
+            props.handleLeadsConfirmationModal(true);
+          } else {
+            props.convertCustomerStatus(item.leadsId,props.userId);
+          }
+        }}
+        okText="Yes"
+        cancelText="No"
+      >
+        <ConnectWithoutContactIcon
+          className="!text-icon cursor-pointer text-[blue]"
+        />
+      </Popconfirm>
+    </Tooltip>
+  ) : (
+    <Tooltip title="Company name is required to enable qualification action">
+      <ConnectWithoutContactIcon
+        className="!text-icon cursor-not-allowed text-gray-400"
+      />
+    </Tooltip>
+  )}
+</div>
+
+                  </div>
+                  </div>
+                 
+                  <div class="flex max-sm:justify-evenly max-sm:w-wk  items-center justify-center h-8 ml-gap bg-[#eef2f9]"> 
+                 
+                    <div >
+                      <Tooltip title={translatedMenuItems[15]}>
+                        <NoteAltIcon
+                         className=" !text-icon cursor-pointer text-green-800"
+                          onClick={() => {
+                            handleRowData(item);
+                            handleLeadsNotesDrawerModal(true);
+                         
+                          }}
+                         
+                        />
+                      </Tooltip>
+                    </div>
+                    <Tooltip title="Address">
+                    <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleLeadsAddressDrawerModal(true);
+            handleRowData(item);
+          }}
+          
+        /> 
+        </Tooltip>
+                    <div >
+                      <Tooltip
+                        title={translatedMenuItems[16]}
+                      >
+                        {/* activity */}
+                        <HourglassFullIcon
+                         className="!text-icon cursor-pointer text-blue-500"
+                          onClick={() => {
+                                handleRowData(item);
+                            props.handleCETmodal(true);
+                        
+                          }}
+                        />
+                      </Tooltip>
+                    </div>
+                  
+                    <div >
+                      <Tooltip title={translatedMenuItems[17]}>
+                        <MailOutlineIcon
+                          type="mail"
+                          className="!text-icon cursor-pointer text-green-400"
+                          onClick={() => {
+                            handleSetCurrentLeadsId(item);
+                            props.handleLeadsEmailDrawerModal(true);
+                          }}
+                        />
+                      </Tooltip>{" "}
+                    </div>
+                    {user.leadsUpdateInd === true && user.crmInd === true && (
+                     <div >
+                        <Tooltip title={translatedMenuItems[18]}>
+                          <BorderColorIcon
+                           className="!text-icon cursor-pointer text-[tomato]"
+                            onClick={() => {
+                              props.setEditLeads(item);
+                              handleUpdateLeadsModal(true);
+                              handleSetCurrentLeadsId(item);
+                            }}
+                          />
+                        </Tooltip>
                       </div>
-                    )
-                })}
-                </InfiniteScroll>
+                    )}
+                    {user.leadsDeleteInd === true && user.crmInd === true && (
+                      <div >
+                       
+                        <StyledPopconfirm
+                          title={translatedMenuItems[19]}
+                          onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
+                     <Tooltip title="Delete">
+                          <DeleteOutlined
+                            type="delete"
+                            className=" !text-icon cursor-pointer text-[red]"
+                          />
+                       </Tooltip>
+                        </StyledPopconfirm>
+                      </div>
+                    )}
+                  
+               </div>
+               
+              </div>
+            </div>
+          
+          );
+        })}
+         </InfiniteScroll>
       </div>
+      </div>
+
       <UpdateLeadsModal
         item={currentLeadsId}
         updateLeadsModal={updateLeadsModal}
         handleUpdateLeadsModal={handleUpdateLeadsModal}
         handleSetCurrentLeadsId={handleSetCurrentLeadsId}
+      />
+       <AddLeadsNotesDrawerModal
+        rowdata={rowdata}
+        addDrawerLeadsNotesModal={props.addDrawerLeadsNotesModal}
+        handleLeadsNotesDrawerModal={props.handleLeadsNotesDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems} 
       />
       <AddLeadsEmailDrawerModal
         item={currentLeadsId}
@@ -745,6 +595,7 @@ const mapStateToProps = ({ auth, leads, sector }) => ({
   junkedLeadsData: leads.junkedLeadsData,
   userId: auth.userDetails.userId,
   lead: leads.lead,
+  user: auth.userDetails,
   updateLeadsModal: leads.updateLeadsModal,
   addDrawerLeadsEmailModal: leads.addDrawerLeadsEmailModal,
   fetchingJunkedLeads:leads.fetchingJunkedLeads
@@ -758,7 +609,7 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateLeadsModal,
       handleLeadsEmailDrawerModal,
       getLeadDetailsById,
-      // getCountries,
+       handleLeadsNotesDrawerModal,
       updateTypeForLead,
       reInstateJunkLeads
     },
@@ -766,6 +617,7 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeadsJunkList);
+
 function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
   console.log(role);
   console.log(type);
@@ -780,12 +632,63 @@ function RoleButton({ type, iconType, tooltip, role, size, onClick }) {
         style={{
           padding: "0.37em",
           borderColor: "transparent",
-          color: role === type ? "#1890ff" : "grey",
+          color: role === type ? "red" : "grey",
+          height:"1.875rem"
         }}
         ghost={role !== type}
         onClick={onClick}
       >
         <i className={`${iconType} !text-icon max-xl:text-[0.65rem] max-lg:text-[0.45rem]`}  ></i>
+      </Button>
+    </Tooltip>
+  );
+}
+function RoleButton1({ type, iconType, tooltip, role, size, onClick }) {
+  console.log(role);
+  console.log(type);
+  if (role === type) {
+    size = "1.37em";
+  } else {
+    size = "1em";
+  }
+  return (
+    <Tooltip title={tooltip}>
+      <Button
+        style={{
+          padding: "0.37em",
+          borderColor: "transparent",
+          color: role === type ? "orange" : "grey",
+          height:"1.875rem"
+        }}
+        ghost={role !== type}
+        onClick={onClick}
+      >
+        <i className={`${iconType} !text-icon max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
+      </Button>
+    </Tooltip>
+  );
+}
+function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
+  console.log(role);
+  console.log(type);
+  if (role === type) {
+    size = "1.37em";
+  } else {
+    size = "1em";
+  }
+  return (
+    <Tooltip title={tooltip}>
+      <Button
+        style={{
+          padding: "0.37em",
+          borderColor: "transparent",
+          color: role === type ? "blue" : "grey",
+          height:"1.875rem"
+        }}
+        ghost={role !== type}
+        onClick={onClick}
+      >
+        <i className={`${iconType} !text-icon max-xl:text-[0.65rem] max-lg:text-[0.45rem]`} ></i>
       </Button>
     </Tooltip>
   );

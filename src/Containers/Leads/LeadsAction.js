@@ -1732,6 +1732,36 @@ export const setLeadsViewType = (viewType) => (dispatch) => {
       });
   };
 
+  export const updateJunkLeadById = (data,userId ) => (dispatch, getState) => {
+    const userId1 = getState().auth.userDetails.userId;
+    dispatch({
+      type: types.UPDATE_LEAD_JUNK_REQUEST,
+    });
+    axios
+      .put(`${base_url}/leads/junkLeads/reinstate/transfer/${userId}`, data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+       //  dispatch(getJunkedLeads(userId));
+        dispatch({
+          type: types.UPDATE_LEAD_JUNK_SUCCESS,
+          payload: res.data,
+        });
+        // cb && cb("success");
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_LEAD_JUNK_FAILURE,
+          payload: err,
+        });
+        // cb && cb("error");
+      });
+  };
+
   export const getLeadsActivityRecords = (leadsId) => (dispatch) => {
     dispatch({
       type: types.GET_LEADS_ACTIVITY_RECORDS_REQUEST,

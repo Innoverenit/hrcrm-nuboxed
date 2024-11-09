@@ -25,6 +25,11 @@ class LeadsHeader extends Component {
             handleTransferClick={this.props.handleTransferClick}
             showCheckboxes={this.props.showCheckboxes}
             handleUserSelect={this.props.handleUserSelect}
+            selectedJunk={this.props.selectedJunk}
+            isTransferModeJunk={this.props.isTransferModeJunk}
+            showCheckboxesJunk={this.props.showCheckboxesJunk}
+            handleTransferClickJunk={this.props.handleTransferClickJunk}
+            handleUserSelectJunk={this.props.handleUserSelectJunk}
             teamsAccessInd={teamsAccessInd}
             handleChange={handleChange}
             setLeadsViewType={setLeadsViewType}
