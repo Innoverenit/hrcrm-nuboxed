@@ -481,7 +481,7 @@ const AWBtst=[
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex max-sm:hidden justify-between w-[98%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
               <div className=" w-[7.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
-              <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[0]}
+              <DynamicFeedIcon className='!text-base  text-[#3ac427]'/> {translatedMenuItems[0]}
                 </div>            
               <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
                 {/* Inspection" /> */}
@@ -521,7 +521,7 @@ const AWBtst=[
                next={handleLoadMore}
                hasMore={hasMore}
                loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"73vh"}
+              height={"75vh"}
               style={{ overflowX: "hidden", scrollbarWidth:"thin" }}
               endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
             >

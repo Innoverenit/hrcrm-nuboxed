@@ -132,7 +132,7 @@ const ReceivedTableOut = (props) => {
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className=" flex justify-between max-sm:hidden  w-[94%]  p-1 bg-transparent font-bold text-xs font-poppins  z-10">
               <div className=" w-[8.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[0]}
+              <DynamicFeedIcon className='!text-base  text-[#3ac427]'/>{translatedMenuItems[0]}
                 </div>
               {props.accountInfoInd && (
                 <>
@@ -166,7 +166,7 @@ const ReceivedTableOut = (props) => {
               next={handleLoadMore}
               hasMore={hasMore}
               loader={props.fetchingReceivedUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"73vh"}
+              height={"75vh"}
               style={{overflowX:"hidden", scrollbarWidth:"thin"}}
               endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
             >

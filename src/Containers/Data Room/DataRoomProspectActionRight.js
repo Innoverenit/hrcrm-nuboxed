@@ -117,7 +117,7 @@
 
 
 
-import React, {  useState, useEffect , lazy} from 'react'
+import React, {  useState, useEffect , } from 'react'
 import ProspectTaskOpenListData from "./ProspectTaskOpenListData"
 import ProspectQuotationListData from "./ProspectQuotationListData"
 import ProspectQuotationSectorListData from "./ProspectQuotationSectorListData"
@@ -149,7 +149,7 @@ function DataRoomProspectActionRight (props) {
         setLoading(true); 
         const itemsToTranslate = [
     '213', // 0 Quotation
-// '', // 1  Task content for
+    '105', // 1  Task 
 // '', // 2 By Source
 // ""// No data found
         ];
@@ -200,21 +200,18 @@ const handleViewSourceChange = (view) => {
         tab={
           <span>
             {/* Customer Tab */}
-            <span
-              style={{ cursor: 'pointer' }}
+            <span className=' cursor-pointer'
               onClick={() => handleViewChange('all')}
             >
               {/* Quotation */}{translatedMenuItems[0]}
             </span>
             {/* Won Icon */}
-            <CheckCircleOutlined
-              style={{ color: 'green', marginLeft: 8, cursor: 'pointer' }}
+            <CheckCircleOutlined  className=' cursor-pointer ml-2 text-green-600'
               onClick={() => handleViewChange('won')}
               title="Won"
             />
             {/* Lost Icon */}
-            <CloseCircleOutlined
-              style={{ color: 'red', marginLeft: 4, cursor: 'pointer' }}
+            <CloseCircleOutlined  className=' cursor-pointer ml-1 text-red-600'
               onClick={() => handleViewChange('lost')}
               title="Lost"
             />
@@ -223,7 +220,7 @@ const handleViewSourceChange = (view) => {
         key="1"
       >
         {/* Fixed height container to prevent jumping */}
-        <div style={{ minHeight: '150px', padding: '16px' }}>
+        <div className='min-h-[14vh] p-4'>
           {/* Show a spinner if loading is true */}
          
             <>
@@ -254,7 +251,7 @@ const handleViewSourceChange = (view) => {
          
         </div>
       </TabPane>
-          <TabPane tab="Task" key="2">
+          <TabPane tab={translatedMenuItems[1]} key="2">
           <ProspectTaskOpenListData
            selectedPersonData={props.selectedPersonData}
            translateText={props.translateText}
@@ -275,8 +272,7 @@ const handleViewSourceChange = (view) => {
         tab={
           <span>
             {/* Customer Tab */}
-            <span
-              style={{ cursor: 'pointer' }}
+            <span className=' cursor-pointer'
               onClick={() => handleViewSectorChange('all')}
             >
               {/* Quotation */}{translatedMenuItems[0]}

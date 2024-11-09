@@ -531,14 +531,14 @@ iframe#webpack-dev-server-client-overlay {
   color: #fff;
   cursor: pointer;
   display: inline-flex;
-  font-family: "JetBrains Mono", monospace;
+  font-family: "Poppins", monospace;
   height: 1.8rem;
   justify-content: center;
   line-height: 1;
   list-style: none;
   overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
+  padding-left: "0.5rem";
+  padding-right:"0.5rem";
   position: relative;
   text-align: left;
   text-decoration: none;
@@ -548,7 +548,7 @@ iframe#webpack-dev-server-client-overlay {
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
-  font-size: 18px;
+  font-size: "0.8rem";
 }
 .ant-btn-primary:hover {
   background-image: linear-gradient(to right, tomato, tomato);
