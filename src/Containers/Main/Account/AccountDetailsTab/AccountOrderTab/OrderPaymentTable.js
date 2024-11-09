@@ -13,12 +13,16 @@ import "jspdf-autotable";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import { base_url2 } from "../../../../../Config/Auth";
+import AddIcon from '@mui/icons-material/Add';
+import MultiOrderList from "./MultiOrderList";
 
 const { Option } = Select;
 
 function OrderPaymentTable(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showPay, setShowPay] = useState(false);
+
   useEffect(() => {
       const fetchMenuTranslations = async () => {
         try {
@@ -51,79 +55,6 @@ function OrderPaymentTable(props) {
     }, [props.selectedLanguage]);
 
 
-    const exportPDFAnnexure = async () => {
-      var doc = new jsPDF();
-      // const {
-      //   userDetails:
-      //   {address},
-      //     imageId
-      // }=props
-     
-      // let cityd=`${address.city}`
-      // let countryd=`${address.country}`
-      // let addressde=`${address.state}`
-      // let cityde=`${address.street}`
-      // var imageUrl = `${base_url}/image/${imageId || ""}`;
-      var name1 = `East Repair Inc `
-      var name2 =`1912 Harvest Lane New York ,NY 12210 `
-      var name3 =`BILL TO`
-      var name4 = `SHIP TO`
-      var name5 = `PAYMENT #`
-      var name6 = `PAYMENT DATE`
-      var name7 = `P.O.#`
-      var name8 = `PAYMENT Total`
-      var name9 = `QTY`
-      var name10 = `DESCRIPTION`
-      var name11 = `UNIT PRICE`
-      var name12 = `AMOUNT`
-      var name13= `TERM & CONDITIONS`
-      var name14= `Payement id due within 15 days`
-      var name15= `Please make checks payble to: East repair Inc. `
-    
-    
-      doc.setFont("Montserrat");
-      doc.setFillColor(62, 115, 185);
-      doc.rect(0, 0, 230, 13, 'F');
-      doc.setFontSize(25);
-      doc.setFontSize(14);
-      doc.setDrawColor(0, 0, 0)
-      // doc.addImage(imageUrl, 'JPEG', 20, 18, 165, 20);
-      doc.text(name1, 8, 25);
-      doc.setFontSize(10);
-      let yPosition = 32;
-    //   address.forEach(item => {
-    //     doc.text(` ${item.city}  ${item.country}  ${item.state}  ${item.street}`, 8, yPosition);
-    //     yPosition += 4
-    // });
-      // doc.text(name2, 8, 32);
-      doc.setFontSize(12);
-      doc.text(name3, 8, 50);
-      doc.text(name4, 60, 50);
-      doc.text(name5, 120, 50);
-      doc.text(name6, 120, 58);
-      doc.text(name7, 120, 66);
-      doc.line(8, 80, 200, 80);
-      doc.setFontSize(22);
-      doc.text(name8, 8, 90);
-      doc.line(8, 100, 200, 100);
-      doc.setFontSize(10);
-      doc.text(name9, 8, 110);
-      doc.text(name10, 30, 110);
-      doc.text(name11, 90, 110);
-      doc.text(name12, 140, 110);
-      doc.setFontSize(12);
-      doc.text(name13, 8, 250);
-      doc.setFontSize(9);
-      doc.text(name14, 8, 260);
-      doc.text(name15, 8, 270);
-      //footer
-      doc.setFillColor(62, 115, 185);
-      doc.rect(0, 276, 230, 15, 'F');
-    
-      doc.save("Payment.pdf")
-    
-    }
-
   useEffect(() => {
     // props.getDistributorOrderPayment(props.particularRowData.procureOrderInvoiceId ? props.particularRowData.procureOrderInvoiceId:props.particularRowData.orderPhoneId);
     props.getDistributorOrderPayment(props.particularRowData.orderPhoneId ? props.particularRowData.orderPhoneId:props.particularRowData.procureOrderInvoiceId);
@@ -133,6 +64,10 @@ function OrderPaymentTable(props) {
   const [amount, setAmount] = useState("");
   const [edit, setEdit] = useState(false);
   const [row, setRow] = useState({});
+
+  const handleShowPay = () => {
+    setShowPay(!showPay)
+}
 
   const handlePaymentMode = (val) => {
     setMode(val)
@@ -158,16 +93,16 @@ function OrderPaymentTable(props) {
       {props.fetchingPaymentHistory ? <BundleLoader /> : <div className=' flex sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-
-            <div className=" md:w-[6.1rem]">{translatedMenuItems[0]}  ID</div>
+          <div className=" md:w-[4rem] font-semibold  font-poppins"></div>
+            <div className=" md:w-[7rem] font-semibold  font-poppins">{translatedMenuItems[0]}  ID</div>
             {/* <div className=" md:w-[4.21rem] ">Invoice Id</div>  */}
-            <div className=" md:w-[4.5rem] ">{translatedMenuItems[1]} </div>
-            <div className="md:w-[5.8rem]">{translatedMenuItems[2]}</div>
-            <div className=" md:w-[4.2rem] ">{translatedMenuItems[3]}</div>  {/* 929 */}
-            <div className=" md:w-[4.2rem] ">{translatedMenuItems[4]}</div>
+            <div className=" md:w-[4.5rem] font-semibold  font-poppins">{translatedMenuItems[1]}</div>
+            <div className="md:w-[5.8rem] font-semibold  font-poppins">{translatedMenuItems[2]}</div>
+            <div className=" md:w-[4.2rem] font-semibold  font-poppins">{translatedMenuItems[3]}</div>  {/* 929 */}
+            <div className=" md:w-[4.2rem] font-semibold  font-poppins">{translatedMenuItems[4]}</div>
             {/* 86 */}
-            <div className=" md:w-[4.2rem] ">{translatedMenuItems[5]}</div>
-            <div className=" md:w-[6.2rem] ">{translatedMenuItems[6]} </div>
+            <div className=" md:w-[4.2rem] font-semibold  font-poppins">{translatedMenuItems[5]}</div>
+            <div className=" md:w-[6.2rem] font-semibold  font-poppins">{translatedMenuItems[6]} </div>
             <div className="md:w-[6rem]"></div>
           </div>
 
@@ -176,8 +111,22 @@ function OrderPaymentTable(props) {
               <div>
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
                   <div class="flex">
-                    <div className=" flex  md:w-[6.1rem] max-sm:w-full  ">
-                      <div class="text-xs  font-semibold  font-poppins cursor-pointer">
+                  <div className=" flex   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                         <div class=" text-xs  font-poppins text-center">
+                                                        
+                                                                 <AddIcon
+
+                                                                     onClick={() => {
+                                                                         handleShowPay();
+                                                                         handleRowData(item)
+                                                                     }
+                                                                     }
+                                                                 />
+                                                              
+                                                         </div>
+                                                   </div>
+                    <div className=" flex  md:w-[7rem] max-sm:w-full  ">
+                      <div class="text-xs text-ellipsis overflow-hidden font-semibold  font-poppins cursor-pointer">
                         {item.transactionNumber}
                       </div>
                     </div>
@@ -188,7 +137,7 @@ function OrderPaymentTable(props) {
                     </div> */}
                   </div>
 
-                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex md:w-[6.5rem] max-sm:flex-row">
                   <div class=" text-xs  font-poppins">
                           <span>
                           <MultiAvatar
@@ -333,7 +282,18 @@ function OrderPaymentTable(props) {
                     }
                   </div>
                 </div>
+
+                {showPay &&
+                                             <MultiOrderList 
+                                             newOrderNo={props.newOrderNo}
+                                             row={row}
+                                                              // dispatchPackingId={item.dispatchPackingId}
+                                                            selectedLanguage={props.selectedLanguag}e  
+                                                              
+                                                              />
+                                        }
               </div>
+
             );
           })}
 

@@ -138,10 +138,10 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
           ...rest
         }) => (
           <Form>
-            <div class="flex justify-around max-sm:flex-col">
-              <div class=" h-full w-w47.5 max-sm:w-wk">
-                <div class="flex justify-evenly">
-                  <div class="w-[31%]">
+            <div class="max-sm:flex-col">
+              <div class=" h-full w-wk max-sm:w-wk">
+                <div class="flex justify-between">
+                  <div class="w-[40%]">
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[0]}</div>
                     <Field
                       name="entryAmount"
@@ -159,7 +159,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                     />
                   </div>
                 
-                  <div class="w-[31%]">
+                  <div class="w-[40%]">
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[1]}</div>
                     <Field
                       name="orderCurrencyId"
@@ -176,7 +176,9 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                       options={Array.isArray(currencyOption) ? currencyOption : []}
                     />
                   </div>
-                  <div class="w-[31%]">
+                </div>
+                <div class="flex justify-between">
+                <div class="w-[40%]">
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[2]}</div>
                     <Field
                       isRequired
@@ -191,27 +193,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                     />
 
                   </div>
-                </div>
-                <div class="flex justify-between ">
-                <div class="w-[47.5%]">
-                <div class="text-xs font-poppins font-bold">{translatedMenuItems[3]}</div>
-                  <Field
-                    name="remarks"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.reason"
-                    //     defaultMessage="Reason"
-                    //   />}
-                    component={TextareaComponent}
-                     style={{height:"9rem"}}
-                  />
-                </div>
-               
-                </div>
-              </div>
-              <div class=" h-full w-w47.5 max-sm:w-wk">
-                <div class="flex justify-evenly">
-                  <div class="w-[30%]">
+                  <div class="w-[40%]">
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[4]} ID</div>
                     <Field
                       isRequired
@@ -229,7 +211,10 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
 
                     />
                   </div>
-                  <div class="w-[30%]">
+                  </div>
+                  <div class="flex justify-between">
+                  
+                  <div class="w-[42%]">
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[5]} ID</div>
                     <Field
                       name="invoiceId"
@@ -242,7 +227,7 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                       value={values.invoiceId}
                     />
                   </div>
-                  <div class="w-[30%]">
+                  <div class="w-[42%]">
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[6]}</div>
                     <Field
                       isRequired
@@ -263,8 +248,26 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                   
                 </div>
                 <div class="flex justify-between ">
-                  <div class="w-[47.5%] mt-4  flex justify-end">
-                    <div class="text-xs font-poppins font-bold">{translatedMenuItems[7]}</div>
+                <div class="w-[47.5%]">
+                <div class="text-xs font-poppins font-bold">{translatedMenuItems[3]}</div>
+                  <Field
+                    name="remarks"
+                    // label={
+                    //   <FormattedMessage
+                    //     id="app.reason"
+                    //     defaultMessage="Reason"
+                    //   />}
+                    component={TextareaComponent}
+                     style={{height:"3rem",width:"16em"}}
+                  />
+               
+                
+                </div>
+               
+                </div>
+                <div class=" ">
+                  <div class="mt-1 justify-end">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[7]}</div>
                   <Field
                     name="docId"
                     // label={
@@ -275,10 +278,13 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                     // }
                     isRequired
                     component={DragableUpload}
+                    // style={{height:"3rem",width:"27rem"}}
                   />
                 </div>
                 </div>
+               
               </div>
+              
             </div>
 
 
