@@ -84,15 +84,6 @@ const LeadsActionLeft = (props) => {
       setSearchOnEnter(false);
     }
   };
-  // const handleSearch = () => {
-  //   if (currentData.trim() !== "") {
-  //     // Perform the search
-  //     props.inputLeadsDataSearch(currentData);
-  //     setSearchOnEnter(true);  //Code for Search
-  //   } else {
-  //     console.error("Input is empty. Please provide a value.");
-  //   }
-  // };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       if (props.teamsAccessInd) {
@@ -335,6 +326,7 @@ const LeadsActionLeft = (props) => {
           <Option value="descending">Z To A</Option>
         </StyledSelect>
       </div>
+      {props.viewType !== "list" &&
       <div class="w-[40%]  ml-2 max-sm:w-[45%]">
        {/* {!props.showCheckboxes && (  */}
         <Button type="primary" 
@@ -345,7 +337,9 @@ const LeadsActionLeft = (props) => {
         </Button>
        {/* )} */}
         </div>
+}
 
+{props.viewType !== "list" &&
         <div class="w-[40%]  ml-2 max-sm:w-[45%]">
        {props.showCheckboxes && props.selectedDeals.length > 0 && (  
         <Select
@@ -363,6 +357,38 @@ const LeadsActionLeft = (props) => {
      </Select>
     )}  
         </div>
+}
+{props.viewType === "list" &&
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {/* {!props.showCheckboxes && (  */}
+        <Button type="primary" 
+        onClick={props.handleTransferClickJunk}
+        >
+          {props.isTransferModeJunk ? 'Transfer' : 'Cancel'}
+          {/* {props.isTransferMode ? 'Transfer' : 'Cancel'} */}
+        </Button>
+       {/* )} */}
+        </div>
+}
+{props.viewType === "list" &&
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {props.showCheckboxesJunk && props.selectedJunk.length > 0 && (  
+        <Select
+       
+       placeholder="Select User"
+       loading={isLoadingUser}
+       onFocus={handleSelectUserFocus}
+       onChange={props.handleUserSelectJunk}
+     >
+       {userData.map(customer => (
+         <Option key={customer.employeeId} value={customer.employeeId}>
+           {customer.empName}
+         </Option>
+       ))}
+     </Select>
+    )}  
+        </div>
+}
     </div>
   );
 };

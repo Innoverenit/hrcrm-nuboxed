@@ -7,6 +7,9 @@ const initialState = {
   removingLeadsNote: false,
   removingLeadsNoteError: false,
 
+  updatingLeadjunk: false,
+  updatingLeadjunkError: false, 
+
   addDrawerLeadsSubscriptionModal:false,
 
   addingLeadsActivityCall: false,
@@ -1169,7 +1172,32 @@ case types.HANDLE_LEADS_MODAL:
         updatingLeadOwenership: false,
         updatingLeadOwenershipError: true,
       };
-                         
+           
+      
+      case types.UPDATE_LEAD_JUNK_REQUEST:
+        return { ...state, updatingLeadjunk: true };
+      case types.UPDATE_LEAD_JUNK_SUCCESS:
+        return {
+          ...state,
+          updatingLeadjunk: false,
+  
+          junkedLeadsData:state.junkedLeadsData.filter(
+            (item)=>{
+              console.log("abc",item,action.payload);
+  
+            return !action.payload.includes(item.leadsId)  
+            }
+          ),
+
+        };
+      case types.UPDATE_LEAD_JUNK_FAILURE:
+        return {
+          ...state,
+          updatingLeadjunk: false,
+          updatingLeadjunkError: true,
+        };
+
+
                   case types.HANDLE_CET_MODAL:
                     return { ...state, openCETmodal: action.payload };
 
