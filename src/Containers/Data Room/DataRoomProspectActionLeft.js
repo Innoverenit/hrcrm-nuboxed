@@ -107,10 +107,10 @@ const handleLoadMore = () => {
 
 
   return (
-    <div>
+    <div >
         {/* setSelectedButtonTab={props.setSelectedButtonTab}
         selectedButtonTab={props.selectedButtonTab} */}
-      <div>
+      <div className=" mt-2">
       <Button
       style={{backgroundColor:props.selectedButtonTab==='byList'?"tomato":null}}
        onClick={() => props.setSelectedButtonTab('byList')}
@@ -170,12 +170,14 @@ const handleLoadMore = () => {
                             imgHeight={"1.8rem"}
                           />
             </div>
-          <div className="text-sm text-gray-500 font-poppins">{lead.phoneNumber}</div>
+          {/* <div className="text-sm text-gray-500 font-poppins">{lead.phoneNumber}</div> */}
           
         </div>
-        <div className="text-sm text-gray-500 font-poppins">{lead.sector}  {lead.source}</div>
+        <div className=" h-[1.25rem] text-sm text-gray-500 font-poppins flex justify-between">
+          <div>{lead.sector}</div>
+          <div>{lead.source}</div>  </div>
         <div class="flex justify-between">
-        <div className="text-sm text-gray-500 font-poppins">{lead.oppNo}</div>
+        <div className=" flex items-center text-sm text-gray-500 font-poppins">{lead.oppNo}</div>
         <div className="text-sm text-gray-500 font-poppins">
           {/* {lead.oppNo} */}
           <MultiAvatar
@@ -215,19 +217,18 @@ const handleLoadMore = () => {
   ) : ( 
    <>
    <div
-  style={{ height: '530px', overflowY: 'auto' }} // Adjust height as needed
-  className="scroll-container"
+   // Adjust height as needed
+  className="scroll-container h-[79vh] overflow-auto"
 >
     
    { props.sectors.map((lead, index) => {
     return ( 
       <div 
       // key={index} 
-      className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2" style={{backgroundColor:props.selectedPropsectSector&&props.selectedPropsectSector.sectorName===lead.sectorName?"aquamarine":null}}>
-        <div className="flex justify-between">
+      className="mb-2 p-2 box-content border-2 border-[#00008b23] w-[90%]" style={{backgroundColor:props.selectedPropsectSector&&props.selectedPropsectSector.sectorName===lead.sectorName?"#f3e1e4":null}}>
+        <div className="flex justify-between ">
           <div 
-          className="font-semibold"
-          style={{cursor:"pointer"}}
+          className="font-semibold underline text-[#337df4] cursor-pointer"
           onClick={() => props.handleCardProspectSectorClick(lead)}
           >
             {lead.sectorName}
@@ -289,27 +290,24 @@ const handleLoadMore = () => {
 
     <>
      <div
-  style={{ height: '530px', overflowY: 'auto' }} // Adjust height as needed
-  className="scroll-container"
+ // Adjust height as needed
+  className="scroll-container  h-[79vh] overflow-auto"
 >
   {props.sources.map((lead, index) => {
     return ( 
       <div 
       // key={index} 
-      className="mb-4 p-2 box-content border-2 border-[#00008b23] ml-2" style={{backgroundColor:props.selectedPropsectSource&&props.selectedPropsectSource.name===lead.name?"aquamarine":null}}>
+      className="mb-4 p-2 box-content border-2 border-[#00008b23] w-[90%]" style={{backgroundColor:props.selectedPropsectSource&&props.selectedPropsectSource.name===lead.name?"#f3e1e4":null}}>
         <div className="flex justify-between">
           <div 
-          className="font-semibold"
-          style={{cursor:"pointer"}}
+          className="font-semibold cursor-default"
+       
         onClick={() => props.handleCardProspectSourceClick(lead)}
           >
             {lead.name}
            
             </div>
-           <div 
-          className="font-semibold"
-         
-          >
+           <div  className="font-semibold" >
             <MultiAvatar
                             primaryTitle={lead.name}
                             imageId={lead.imageId}

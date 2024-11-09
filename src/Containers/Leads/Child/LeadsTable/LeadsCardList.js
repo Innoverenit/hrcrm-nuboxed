@@ -581,11 +581,15 @@ const LeadsCardList = (props) => {
                       
                         <Html5Outlined
                          className=" !text-icon cursor-pointer text-green-800"
-                          onClick={() => {
-                            handleSetCurrentLeadsId(item);
-                            // handleRowData(item);
-                            props.handleLeadsSubscriptionModal(true);                      
-                          }}                     
+                         onMouseEnter={() => {
+                          handleSetCurrentLeadsId(true);
+                          props.handleLeadsSubscriptionModal(item);
+                              }}
+                          // onClick={() => {
+                          //   handleSetCurrentLeadsId(item);
+                          //   // handleRowData(item);
+                          //   props.handleLeadsSubscriptionModal(true);                      
+                          // }}                     
                         />
                       </Tooltip>
                     </div>
