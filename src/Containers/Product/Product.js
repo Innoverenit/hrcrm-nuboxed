@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
 import { handleConfigureModal, setProductViewType } from "./ProductAction";
-
+import FWLogo1 from "../../../src/Assets/Images/cashShake.svg";
 const ProductHeader=lazy(()=>import("./Child/ProductHeader"));
 const ProductDeleteList =lazy(()=>import("./Child/ProductTable/ProductDeleteList"));
 const ProductCategory =lazy(()=>import("./Child/ProductTable/ProductCategory"));
@@ -27,7 +27,12 @@ class Product extends Component {
     } = this.props;
     return (
       <React.Fragment>
-         <Suspense fallback={<BundleLoader />}>
+         <Suspense fallback={
+          
+          <div className="custom-loader">
+          <div className="loader !block"> </div>
+      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+    </div>}>
         <ProductHeader
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
@@ -50,6 +55,7 @@ class Product extends Component {
               selectedLanguage={this.props.selectedLanguage} />) :
             // this.props.viewType === "dashboard" ? (
             //   <SuspendProductList />) :
+            
               this.props.viewType === "table" ? (
                 <ProductCardList 
                 translateText={this.props.translateText}

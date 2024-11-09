@@ -156,7 +156,10 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("table")}
         >
-          <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
+          <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355",
+                 boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+           }}>
             <MenuIcon className="text-white !text-icon" />
           </Avatar>
 

@@ -66,15 +66,7 @@ class ProductActionRight extends React.Component {
 
         <div class=" flex items-center">
  
-          <Tooltip placement="left" title= {this.state.translatedMenuItems[2]}>
-            <Button
-              type="primary"
-              onClick={() => handleConfigureModal(true)}
-            ><DataSaverOnIcon className="!text-icon"/>
-            {/* Add */}
-            {this.state.translatedMenuItems[0]}
-            </Button>
-          </Tooltip>
+         
 
           <Tooltip title= {this.state.translatedMenuItems[3]}>
             <Button
@@ -109,6 +101,15 @@ class ProductActionRight extends React.Component {
              <UploadIcon className=" !text-icon"/>
               {/* Upload */}
               {this.state.translatedMenuItems[1]}
+            </Button>
+          </Tooltip>
+          <Tooltip placement="left" title= {this.state.translatedMenuItems[2]}>
+            <Button
+              type="primary"
+              onClick={() => handleConfigureModal(true)}
+            ><DataSaverOnIcon className="!text-icon"/>
+            {/* Add */}
+            {this.state.translatedMenuItems[0]}
             </Button>
           </Tooltip>
          

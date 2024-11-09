@@ -6,7 +6,9 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { Formik, Form, FastField, } from "formik";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import {  Input,Select, Button } from "antd";
+import ContactsIcon from '@mui/icons-material/Contacts';
 import {
   MultiAvatar,
  
@@ -239,34 +241,34 @@ const handleSave = (item) => {
  
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[85%]  justify-between p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">         
-            <div className=" w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">         
+          <div className=" flex max-sm:hidden  w-[90%]  justify-between p-1 bg-transparent font-bold font-poppins h-[70vh] text-xs sticky z-10">         
+            <div className=" w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">         
             </div>
             <div className="  w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-            {translatedMenuItems[0]}
+            <BrandingWatermarkIcon className="!text-icon  mr-1" />  {translatedMenuItems[0]}
              {/* Name */}
             </div>
-            <div className="  w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className="  w-[11.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
              {/* Brand Id */}
-           {`${translatedMenuItems[1]} ID`}
+             <BrandingWatermarkIcon className="!text-icon  mr-1" />  {`${translatedMenuItems[1]} ID`}
               {/* "Sector" */}
             </div>
-            <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className=" w-[5.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
           
             {/* Live */}
             {translatedMenuItems[2]}
          
             </div>
-            <div className=" w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
+            <div className=" w-[1.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
      
             </div>
-            <div className="  w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className="  w-[11.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
            {/* Inactive */}
            {translatedMenuItems[3]}
               {/* Quotation" */}
      
             </div>
-            <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            <div className=" w-[1.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
           {/* Delete */}
           {translatedMenuItems[4]}
              {/* Pipeline" */}
@@ -285,9 +287,9 @@ const handleSave = (item) => {
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex  w-[6.5rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8 w-[6.5rem] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
-                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs flex items-center  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
 {editsuppliesId === item.brand ? (
     
@@ -308,7 +310,7 @@ const handleSave = (item) => {
                               imgWidth={"1.8rem"}
                             />
                           ) : (
-                            <div class="font-bold text-[0.65rem]" >
+                            <div class="flex font-bold ml-gap items-center text-[0.65rem]" >
                               No Image
                             </div>
                           )}
@@ -322,9 +324,9 @@ const handleSave = (item) => {
                           
                         </div>
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto justify-start items-center h-8 ml-gap bg-[#eef2f9]  w-[7.54rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs ml-gap max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {editsuppliesId === item.brand ? (
                             <Input
                             style={{ width: "3rem" }}
@@ -336,16 +338,16 @@ const handleSave = (item) => {
                       
                        
                     ) : (
-                      <div className=" text-xs  font-poppins">
+                      <div className=" text-xs ml-gap font-poppins">
                         <div>  {item.brandName}</div>
                       </div>
                     )}
                         </div>
 
                       </div>
-                      <div className=" flex  items-center max-sm:w-auto  w-[16.81rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex justify-start items-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto   w-[16.81rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                   
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
                          onClick={() => {
                           props.handleProductBrandModal(true);
                           handleSetCurrentBrandId(item);
@@ -355,7 +357,7 @@ const handleSave = (item) => {
                         </div>
 
                       </div>
-                      <div className=" flex max-sm:w-auto  items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  justify-center items-center h-8 ml-gap bg-[#eef2f9]  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -364,30 +366,19 @@ const handleSave = (item) => {
 
                       </div>
                     </div>
-                    <div class="flex justify-end max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      
-
-
-                      <div className=" flex max-sm:w-auto  items-center   max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
-
-
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        <StyledPopconfirm
-            title= {translatedMenuItems[9]}
-            onConfirm={() => props.deleteProductBrandData({active:false},item.brand)}
-          >
-           
-           
-            <DeleteOutlined
-           
-            type="delete" className="!text-icon cursor-pointer text-[red]" />
-          
-          </StyledPopconfirm>
-                        </div>
-
+                    <div class="flex justify-end  max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                    <div className=" flex max-sm:w-auto w-[20.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]   max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      {/* Inactive */}
+                      </div>
+                      <div className=" flex max-sm:w-auto w-[19.615rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]   max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      {/* Delete */}
                       </div>
 
-                      <div className=" flex   max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex max-sm:w-auto  w-[3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]   max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+
+
+                     
+                        <div className=" flex  items-center justify-center h-8  bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.brand ? (
                         <>
                       <Button 
@@ -414,9 +405,19 @@ const handleSave = (item) => {
                       />
                     )}
     </div> 
+   
+                        <StyledPopconfirm
+            title= {translatedMenuItems[9]}
+            onConfirm={() => props.deleteProductBrandData({active:false},item.brand)}
+          >
+           
+            <DeleteOutlined         
+            type="delete" className="!text-icon cursor-pointer text-[red]" />
+          
+          </StyledPopconfirm>
+          
+                      </div>
 
-                      
-                   
                     </div>
                 
                   </div>

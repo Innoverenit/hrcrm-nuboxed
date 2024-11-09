@@ -152,7 +152,11 @@ function RefurbishActionLeft (props) {
                     color: viewType === "list" && "#1890ff",
                   }}
                 >
-                  <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#28a355" }}>
+                  <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#28a355",
+                     boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+                   }}             
+                  >
                     <BuildCircleIcon className="text-white cursor-pointer !text-icon" /></Avatar>
     
                 </span>
