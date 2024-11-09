@@ -272,7 +272,7 @@ const handleConfirm = (quotationId) => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                        <div className="flex rounded mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                        <div className="flex rounded mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
@@ -442,7 +442,7 @@ const handleConfirm = (quotationId) => {
                                     const date1 =  dayjs(item.deliveryDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                      <div className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                      <div className="flex rounded  mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">

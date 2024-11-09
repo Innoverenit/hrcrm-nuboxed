@@ -187,7 +187,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 `;
                   return (
                     <div>
-                    <div className="flex rounded justify-between  bg-white mt-1 py-1 items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                    <div className="flex rounded justify-between  bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex  w-[14rem] max-xl:w-[11rem] border-l-2 border-green-500 bg-[#eef2f9] max-lg:w-[8rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-auto">

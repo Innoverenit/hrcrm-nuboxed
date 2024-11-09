@@ -198,7 +198,7 @@ function ContactCardList(props) {
          {/* Company */}
         <div className=" md:w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
         <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
-     {translatedMenuItems[2]}</div>
+        {translatedMenuItems[2]}</div>
         {/* Designation */}
         <div className="w-[16rem]  md:w-[23.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[3]}</div>

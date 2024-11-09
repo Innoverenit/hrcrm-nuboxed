@@ -10,8 +10,7 @@ import {
   ClearSearchedDataOfAll
 
 } from "../Refurbish/RefurbishAction"
-import { FlexContainer } from "../../../Components/UI/Layout";
-import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 
 function RefurbishActionLeft (props) {
   const [currentData, setCurrentData] = useState("");
@@ -154,7 +153,7 @@ function RefurbishActionLeft (props) {
                   }}
                 >
                   <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#28a355" }}>
-                    <HomeRepairServiceIcon className="text-white cursor-pointer !text-icon" /></Avatar>
+                    <BuildCircleIcon className="text-white cursor-pointer !text-icon" /></Avatar>
     
                 </span>
               </Tooltip>

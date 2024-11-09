@@ -14,6 +14,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import GolfCourseIcon from '@mui/icons-material/GolfCourse';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import CategoryIcon from '@mui/icons-material/Category'
 import {
   getCustomerByUser,
   setEditDistributor,
@@ -39,7 +40,6 @@ import { DeleteOutlined } from "@ant-design/icons";
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import ContactsIcon from '@mui/icons-material/Contacts';
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
@@ -181,11 +181,13 @@ function AccountTable(props) {
            <div class=" flex justify-between text-xs font-poppins  font-bold  w-[100%]  ">
             <div className="w-1"></div>
             <div className=" w-[12.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
-            <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
+            <CategoryIcon
+              className='!text-base  text-[#e4eb2f]'
+              />{translatedMenuItems[0]}
             {/* Name */}
             </div>
             <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]">
-            <ApartmentIcon className="!text-icon mr-1 "/>{translatedMenuItems[1]}
+            <ApartmentIcon className="!text-icon  "/>{translatedMenuItems[1]}
            {/* Work */}
             </div>
             <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
@@ -256,10 +258,10 @@ function AccountTable(props) {
             `;
                   return (
                     <div>
-                      <div className="flex  justify-between  bg-white mt-1 py-1 items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
+                      <div className="flex  justify-between  bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
                           <div className=" flex w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
-                            <div className="flex max-sm:w-auto">
+                            <div className="flex items-center max-sm:w-auto">
                               <div>
                                 <MultiAvatar
                                   primaryTitle={item.name}
@@ -269,14 +271,12 @@ function AccountTable(props) {
                                   imgHeight={"1.8rem"}
                                 />
                               </div>
-                              <div class="w-[0.25rem]"></div>
-                             
-                                <Tooltip>
+                           <Tooltip>
                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                   <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
 
                                       <Link
-                                        class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-xs text-[#042E8A] font-bold font-poppins flex items-center cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
+                                        class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 ml-gap max-sm:text-xs text-[#042E8A] font-bold font-poppins flex items-center cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] "
                                         to={`distributor/${item.distributorId}`}
                                         title={`${item.name}`}>
                                         {item.name.substring(0, 25)}

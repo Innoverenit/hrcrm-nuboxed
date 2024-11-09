@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
-
+import CategoryIcon from '@mui/icons-material/Category'
+import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import ExploreIcon from "@mui/icons-material/Explore";
 import {
     getDeletedDistributors,
     handleDistributorActivityTableModal,
@@ -61,22 +64,28 @@ function AccountDeleteTable(props) {
             <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex justify-between w-[100%]  p-1 bg-transparent  sticky items-end z-10">
          <div class=" flex justify-between text-xs font-poppins  font-bold  w-[100%]  ">
-         <div className="text-[#00A2E8] text-base w-[10%] ml-2 md:w-[23%]"> {translatedMenuItems[0]}
+         <div className="text-[#00A2E8] text-base w-[10%] ml-2 md:w-[23%]">    <CategoryIcon
+              className='!text-base  text-[#e4eb2f]'
+              /> {translatedMenuItems[0]}
             {/* Name */}
             </div>
-        <div className=" md:w-[13.1rem]"> {translatedMenuItems[1]}
+        <div className="w-[13.1rem] md:w-[13.1rem]">     <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {translatedMenuItems[1]}
             {/* Mobile */}
             </div>
-        <div className=" md:w-[15.2rem] "> {translatedMenuItems[2]}
+        <div className=" md:w-[15.2rem] w-[15.2rem]">   <ExploreIcon
+                                    className=" !text-icon cursor-pointer text-[green]"
+
+                                  />{translatedMenuItems[2]}
             {/* Website */}
             </div>
-        <div className="md:w-[13.8rem]"> {translatedMenuItems[3]}
+        <div className="md:w-[13.8rem] w-[13.8rem]">     <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"/>{translatedMenuItems[3]}
             {/* Address */}
             </div>
-        <div className="md:w-[13.5rem]"> {translatedMenuItems[4]}
+        <div className="md:w-[13.5rem] w-[13.5rem]"> {translatedMenuItems[4]}
             {/* City */}
             </div>
-                <div className="md:w-[5.2rem]"> {translatedMenuItems[5]}
+                <div className="md:w-[5.2rem] w-[5.2rem]"> {translatedMenuItems[5]}
                   {/* Pin Code */}
                     </div>
                 <div className="md:w-[2.2rem]"></div>
@@ -90,7 +99,7 @@ function AccountDeleteTable(props) {
                        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           return (
 <div>
-<div className="flex rounded justify-between mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+<div className="flex rounded justify-between mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
     >
        <div class="flex">
    

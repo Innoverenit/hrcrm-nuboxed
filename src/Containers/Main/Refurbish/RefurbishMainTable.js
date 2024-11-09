@@ -11,6 +11,9 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import GroupsIcon from '@mui/icons-material/Groups';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import { CurrencySymbol } from '../../../../src/Components/Common';
 import {
     getProductionOrderId,
     getProductionUrgent,
@@ -182,7 +185,7 @@ const ProductionOrderList = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                 <div className=" flex max-sm:hidden  justify-between w-[86%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10 ">
+                 <div className=" flex max-sm:hidden  justify-between w-[95%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10 ">
                     <div className=" md:w-[3rem] text-[white] flex justify-center mr-1 bg-[red]"> {translatedMenuItems[6]} </div>
                         <div className=" w-[10.2rem] flex justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                          
@@ -195,17 +198,21 @@ const ProductionOrderList = (props) => {
                            <AcUnitIcon className='!text-base  text-[#92dce5]'
               /> {translatedMenuItems[1]}
                         </div>)}                                      
-                        <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}
+                        <div className="w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <LightbulbIcon
+              className='!text-base  text-[#84a59d]'
+              /> {translatedMenuItems[5]}
                             {/* Quoted */}
                         </div>
-                        <div className="w-[2.6rem]"> {translatedMenuItems[9]}
+                        <div className="w-[3.6rem]">    <CurrencyExchangeIcon
+              className='!text-base  text-[#e4eb2f]'
+              /> {translatedMenuItems[9]}
                            {/* final */}
                         </div>
-                        <div className="w-[4.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[5.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
-                            <div className="w-[25.2rem]"></div>
-                            <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className="w-[27.2rem]"></div>
+                            <div className="w-[3.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 {/* lead */}
                                 <GroupsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}
                         </div>
@@ -218,7 +225,7 @@ const ProductionOrderList = (props) => {
                            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[4]}
                          </div>
 
-                        <div className="w-[2.2rem]"></div>
+                    
                     </div>
                     <InfiniteScroll
                     className=" max-sm:h-[34vh]"
@@ -235,12 +242,12 @@ const ProductionOrderList = (props) => {
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white  items-center justify-between py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                    <div className="flex rounded  mt-1 bg-white  items-center justify-between py-ygap  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={item.orderPhoneId}>
                                         <div class="flex  max-sm:w-wk items-center   max-sm:items-center">
-                                        <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9]  items-center md:w-[3.26rem]  " >
+                                        <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9]  items-center md:w-2.26rem]  " >
                                                         <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                            <div class="flex max-sm:flex-row items-center justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -254,7 +261,7 @@ const ProductionOrderList = (props) => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                                            <div className=" flex w-[10.7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:w-auto ">
+                                            <div className=" flex w-[9.7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
                                                         class=" underline font-bold ml-gap  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
@@ -268,7 +275,7 @@ const ProductionOrderList = (props) => {
                                             
                                                 {date === currentdate ? (
                                                     <span
-                                                        class="text-[tomato] font-bold text-[0.65rem]">
+                                                        class="text-[tomato] flex items-center font-bold text-[0.65rem]">
                                                       {translatedMenuItems[15]}  {/* New */}
                                                     </span>
                                                 ) : null}
@@ -282,14 +289,14 @@ const ProductionOrderList = (props) => {
                                         </div>
                                        
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  max-sm:items-center">
-                                            <div className=" flex  w-[3.61rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] vmax-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  w-[4.61rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] vmax-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.expectedPrice}
+                                                <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
                                                 </div>
                                             </div>
-                                            <div className=" flex w-[2.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex w-[4.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                   {item.payableOfferPrice} 
+                                                <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.finalPrice / 1000).toFixed(2)}k
                                                 </div>
                                             </div>
 
@@ -371,7 +378,7 @@ const ProductionOrderList = (props) => {
                                                  }
                                              </div>
                                          </div>
-                                         <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.84rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                         <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.84rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                              <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                  {item.supervisorUserName && 
@@ -447,8 +454,8 @@ const ProductionOrderList = (props) => {
 
 
 <div className=' flex  sticky  z-auto'>
-                <div class="rounded  max-sm:m-1  py-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex max-sm:hidden  justify-between w-[86%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10">
+                <div class="rounded  max-sm:m-1  py-ygap w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div className=" flex max-sm:hidden  justify-between w-[95%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
                         <div className=" w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {/* orderID */}
@@ -460,18 +467,21 @@ const ProductionOrderList = (props) => {
                             <AcUnitIcon className='!text-base  text-[#92dce5]'
               /> {translatedMenuItems[1]}
                         </div>)}                                    
-                        <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <LightbulbIcon
+              className='!text-base  text-[#84a59d]'
+              /> {translatedMenuItems[5]}
                             {/* Quoted */}
-                          {translatedMenuItems[5]}
                         </div>
-                        <div className="md:w-[2.6rem]"> {translatedMenuItems[9]}
-                        {/* final */}
+                        <div className="w-[3.6rem]">    <CurrencyExchangeIcon
+              className='!text-base  text-[#e4eb2f]'
+              /> {translatedMenuItems[9]}
+                           {/* final */}
                         </div>
-                        <div className="w-[4.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[5.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
-                            <div className="w-[25.2rem]"></div>
-                            <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className="w-[27.2rem]"></div>
+                            <div className="w-[3.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {/* lead */}
                           <GroupsIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[2]}
                         </div>
@@ -484,7 +494,7 @@ const ProductionOrderList = (props) => {
                            {/* Owner  */}
                            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[4]}
                          </div>
-                        <div className="w-[2.2rem]"></div>
+             
                     </div>
                     <InfiniteScroll
                         dataLength={props.productionNormal.length}
@@ -500,12 +510,12 @@ const ProductionOrderList = (props) => {
                             const date = dayjs(item.createAt).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white  items-center justify-between py-1   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                    <div className="flex rounded  mt-1 bg-white  items-center justify-between py-ygap   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={item.orderPhoneId}>
                                         <div class="flex  max-sm:w-wk items-center max-sm:items-center">
-                                        <div className=" flex items-center md:w-[3.26rem] border-l-2 h-8 border-green-500 bg-[#eef2f9] " >
+                                        <div className=" flex items-center md:w-[2.26rem] border-l-2 h-8 border-green-500 bg-[#eef2f9] " >
                                                         <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                            <div class="flex items-center max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -519,10 +529,10 @@ const ProductionOrderList = (props) => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                                            <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[10.7rem] max-sm:w-auto ">
+                                            <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[9.7rem] max-sm:w-auto ">
                                                 <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
                                                     <span
-                                                        class=" underline font-bold  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        class=" underline font-bold ml-gap text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                         onClick={() => {
                                                             handleRowData(item);
                                                             props.handleProductBuilder(true)
@@ -533,7 +543,7 @@ const ProductionOrderList = (props) => {
                                                
                                                 {date === currentdate ? (
                                                     <span
-                                                        class="text-[tomato] font-bold text-[0.65rem]">
+                                                        class="text-[tomato] flex items-center font-bold text-[0.65rem]">
                                                        {translatedMenuItems[15]} {/* New */}
                                                     </span>
                                                 ) : null}
@@ -547,14 +557,14 @@ const ProductionOrderList = (props) => {
                                         </div>
                                         
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center">
-                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.61rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs ml-gap  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.expectedPrice}
+                                                <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
                                                 </div>
                                             </div>
-                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                   {item.payableOfferPrice} 
+                                                <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.finalPrice / 1000).toFixed(2)}k
                                                 </div>
                                             </div>
 
@@ -610,7 +620,7 @@ const ProductionOrderList = (props) => {
                                                 </div>
                                             </div>
                                             <div className=" flex  w-[4.22rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs  font-poppins w-[2rem] text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.rejectOrderCount > 0 &&
                                                         <Tooltip title={translatedMenuItems[12]}>
                                                             <Badge size="small" count={`${item.rejectOrderCount} `} overflowCount={3000}>
@@ -640,7 +650,7 @@ const ProductionOrderList = (props) => {
                                                     }
                                                 </div>
                                             </div>
-                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.84rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.84rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
 
                                                     {item.supervisorUserName && 

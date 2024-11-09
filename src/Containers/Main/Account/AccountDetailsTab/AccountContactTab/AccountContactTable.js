@@ -139,7 +139,7 @@ const AccountContactTable = (props) => {
 
                     {props.contactDistributor.map((item) => (
                         <div key={item.contactPersonId}>
-                            <div className="flex rounded justify-between mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid  leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]">
+                            <div className="flex rounded justify-between mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid  leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]">
                                 <div className="flex">
                                     <div className="flex font-bold items-center justify-start md:w-[6.8rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div className="flex text-xs ml-gap items-center flex font-poppins">

@@ -227,7 +227,7 @@ function ProductionOrderListById(props) {
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div >
-                                        <div className="flex rounded  mt-1 bg-white  items-center py-1 max-sm:h-24 max-sm:justify-between max-sm:flex-col max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                        <div className="flex rounded  mt-1 bg-white  items-center py-ygap-1 max-sm:h-24 max-sm:justify-between max-sm:flex-col max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                           <div class="flex  max-sm:w-wk items-center">
                                             <div className=" flex border-l-2 h-8  border-green-500 bg-[#eef2f9] items-center md:w-[2.26rem] ">
