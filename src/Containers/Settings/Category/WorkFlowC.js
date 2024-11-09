@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm,Switch, Input,message,Tooltip,Select,Button } from "antd";
 import dayjs from "dayjs";
@@ -308,7 +308,9 @@ return <div><BundleLoader/></div>;
                                         New
                                       </span> : null}</div>
             )}
-
+<div>
+  <EditOutlined/>
+</div>
            
             <div>
             {props.primaryOrgType === 'Parent' && (

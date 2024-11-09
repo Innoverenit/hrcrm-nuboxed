@@ -98,9 +98,11 @@ class TabContentComponent extends Component {
     if (prevProps.processForWorkflowData !== this.props.processForWorkflowData && this.props.processForWorkflowData.length > 0) {
       this.setState({ currentProcess: this.props.processForWorkflowData[0]?.workflowDetailsId });
     }
+console.log(this.state.currentProcess)
+const workflowDetailsId=this.state.currentProcess.workflowDetailsId
 
     if (prevState.currentProcess !== this.state.currentProcess && this.state.currentProcess) {
-      this.props.getProcessStagesForDeals( this.state.currentProcess.workflowDetailsId);
+      this.props.getProcessStagesForDeals( this.props.orgId,workflowDetailsId?workflowDetailsId:this.state.currentProcess);
     }
   }
 
@@ -181,11 +183,12 @@ handleStagePublishClick = (stagesId, publishInd) => {
 
   handleCallBack = (status) => {
     if (status === "Success") {
-      const {
-        currentProcess: { workflowDetailsId },
-      } = this.state;
+      console.log(this.state.currentProcess)
+      // const {
+      //   currentProcess: { workflowDetailsId },
+      // } = this.state;
 
-       this.props.getProcessStagesForDeals(workflowDetailsId);
+       this.props.getProcessStagesForDeals(this.props.orgId,this.state.currentProcess);
     } else {
       alert("error");
     }
