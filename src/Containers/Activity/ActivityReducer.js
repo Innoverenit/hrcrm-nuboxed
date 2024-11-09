@@ -39,7 +39,7 @@ export const activityReducer = (state = initialState, action) => {
         ...state,
        // addDistributorActivityModal:false,
        addingActivityCall: false,
-        // callActivityModal: false,
+        callActivityModal: false,
         // activityDistributor:action.payload,
         activityTimeline: [
           action.payload,
@@ -60,7 +60,7 @@ export const activityReducer = (state = initialState, action) => {
         ...state,
         addingActivityEvent: false,
         //addDistributorActivityModal:false,
-        //callActivityModal: false,
+        callActivityModal: false,
         activityTimeline: [
           action.payload,
           ...state.activityTimeline,
@@ -81,7 +81,7 @@ export const activityReducer = (state = initialState, action) => {
       return {
         ...state,
         addingActivityTask: false,
-        //callActivityModal: false,
+        callActivityModal: false,
 
         activityTimeline: [
           action.payload,

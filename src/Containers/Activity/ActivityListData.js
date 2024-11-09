@@ -22,7 +22,7 @@ const ButtonGroup = Button.Group;
 const ActivityListData = (props) => {
   const [location, setLocation] = useState({ lat: null, lng: null });
   useEffect(() => {
-      props.getActivityTimeline(props.customer.customerId);
+      props.getActivityTimeline(props.uniqueId,props.type);
      // props.getCustomerActivityRecords(props.customer.customerId);
   }, []);
   const [selectedStatus, setSelectedStatus] = useState(null);
