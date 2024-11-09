@@ -43,7 +43,8 @@ import {
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
   handleAddressCutomerModal,
-  deleteCustomer
+  deleteCustomer,
+  handleUpdateUserModal
 } from "../../CustomerAction";
 import { DeleteOutlined} from "@ant-design/icons";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
@@ -54,6 +55,7 @@ import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import EmptyPage from "../../../Main/EmptyPage";
+import UpdateUserModal from "./UpdateUserModal";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
 );
@@ -178,6 +180,7 @@ function CustomerCardList(props) {
   }, []);
 
   const [rowdata, setrowdata] = useState("");
+  const [hoverTimeout, setHoverTimeout] = useState(null);
   const [currentCustomerId, setCurrentCustomerId] = useState("");
   const [currentCustomer, setCurrentCustomer] = useState("");
   function handleSetCurrentCustomerId(customerId) {
@@ -193,6 +196,21 @@ function CustomerCardList(props) {
   const handleConfirm = (customerId) => {
     // Call the function to change the status to "Lost" here
     props.customerToAccount(customerId);
+  };
+
+  const handleMouseEnter = (item) => {
+    const timeout = setTimeout(() => {
+      handleCustomerPulseDrawerModal(true);
+      handleSetCurrentCustomer(item);
+    }, 4000); // 4 seconds delay
+    setHoverTimeout(timeout);
+  };
+  const handleMouseLeave = () => {
+    // Clear the timeout if the mouse leaves before 4 seconds
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
   };
   const handleLoadMore = () => {
     const callPageMapd = props.customerByUserId && props.customerByUserId.length &&props.customerByUserId[0].pageCount
@@ -481,16 +499,25 @@ if (loading) {
                               <div class="text-xs  font-poppins">No Data</div>
                             ) : (
                               <>
-                                {item.assignedTo === item.ownerName ? (
+                                {/* {item.assignedTo === item.ownerName ? (
 
                                   null
-                                ) : (
+                                ) : ( */}
+                                  <div
+                                  style={{cursor:"pointer"}}
+                                onClick={() => {
+                                  handleSetCurrentCustomerId(item.customerId)
+                                  props.handleUpdateUserModal(true);
+                                  
+                                }}
+                                  >
                                   <MultiAvatar2
                                     primaryTitle={item.assignedTo}
                                     imgWidth={"1.8rem"}
                                     imgHeight={"1.8rem"}
                                   />
-                                )}
+                                  </div>
+                                {/* )} */}
                               </>
                             )}
                           </div>
@@ -532,6 +559,12 @@ if (loading) {
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                               }}
+                              onMouseEnter={() => {
+                                handleMouseEnter(item);
+                                //handleSetCurrentCustomer(item);
+                              }}
+                             // onMouseEnter={handleMouseEnter}
+                             onMouseLeave={handleMouseLeave}
                             />
                           </Tooltip>
                         </div>
@@ -671,6 +704,11 @@ if (loading) {
       </div>
   )}
   <Suspense fallback={<BundleLoader />}>
+  <UpdateUserModal
+      currentCustomerId={currentCustomerId}
+      updateUserModal={props.updateUserModal}
+      handleUpdateUserModal={props.handleUpdateUserModal}
+      />
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
@@ -753,6 +791,7 @@ const mapStateToProps = ({
   employee,
 }) => ({
   userId: auth.userDetails.userId,
+  updateUserModal:customer.updateUserModal,
   addDrawerCustomerContactModal: customer.addDrawerCustomerContactModal,
   addDrawerCustomerOpportunityModal: customer.addDrawerCustomerOpportunityModal,
   addDrawerCustomerNotesModal: customer.addDrawerCustomerNotesModal,
@@ -780,6 +819,7 @@ const mapDispatchToProps = (dispatch) =>
     {
 
       getCustomerListByUserId,
+      handleUpdateUserModal,
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
       handleCustomerContactDrawerModal,

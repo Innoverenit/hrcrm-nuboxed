@@ -7,6 +7,7 @@ import { FormattedMessage } from "react-intl";
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
+import ActivityForm from "../../../Activity/ActivityForm";
 
 const CustomerCallActivityForm = lazy(() =>
   import("../CustomerActivity/CustomerCallActivityForm")
@@ -39,7 +40,7 @@ const AddCustomerActivityModal = (props) => {
           {/* <CallTaskForm
           rowdata={props.rowdata}
           /> */}
-          <LeadsActivityTab 
+          <ActivityForm
            defaultCustomers={props.defaultCustomers}
            customerId={props. customerId }
           customer={props.customer}
@@ -47,100 +48,108 @@ const AddCustomerActivityModal = (props) => {
           selectedLanguage={props.selectedLanguage}
         translatedMenuItems={props.translatedMenuItems}
           />
+          {/* <LeadsActivityTab 
+           defaultCustomers={props.defaultCustomers}
+           customerId={props. customerId }
+          customer={props.customer}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+          /> */}
 
         </Suspense>
       </StyledDrawer>
     </>
   );
-  function LeadsActivityTab (props) {
-    const { addCallTaskModal, handleLeadCallModal } = props;
-      const { ...formProps } = props;
-      console.log(props.rowdata)
-      return (
-        <>
-          <TabsWrapper style={{ height:"80vh"}}>
-            <StyledTabs
-              defaultActiveKey="1"
-              style={{ overflow: "visible", padding: "4px" ,scrollbar:"thin"}}
-              animated={false}
-            >
-              <TabPane
-                tab={
-                  <span>
-                <VolumeUpIcon        
-              className='!text-icon mr-1'
-              />
-                    Calls
-                  </span>
-                }
-                key="1"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <CustomerCallActivityForm 
-                     defaultCustomers={props.defaultCustomers}
-                     customerId={props. customerId }
-                  customer={props.customer} {...formProps}
-                  translateText={props.translateText}
-                  selectedLanguage={props.selectedLanguage}
-                translatedMenuItems={props.translatedMenuItems}
-                  />
-                </Suspense>
-              </TabPane>
+  // function LeadsActivityTab (props) {
+  //   const { addCallTaskModal, handleLeadCallModal } = props;
+  //     const { ...formProps } = props;
+  //     console.log(props.rowdata)
+  //     return (
+  //       <>
+  //         <TabsWrapper style={{ height:"80vh"}}>
+  //           <StyledTabs
+  //             defaultActiveKey="1"
+  //             style={{ overflow: "visible", padding: "4px" ,scrollbar:"thin"}}
+  //             animated={false}
+  //           >
+  //             <TabPane
+  //               tab={
+  //                 <span>
+  //               <VolumeUpIcon        
+  //             className='!text-icon mr-1'
+  //             />
+  //                   Calls
+  //                 </span>
+  //               }
+  //               key="1"
+  //             >
+  //               <Suspense fallback={"loading ..."}>
+  //                 <CustomerCallActivityForm 
+  //                    defaultCustomers={props.defaultCustomers}
+  //                    customerId={props. customerId }
+  //                 customer={props.customer} {...formProps}
+  //                 translateText={props.translateText}
+  //                 selectedLanguage={props.selectedLanguage}
+  //               translatedMenuItems={props.translatedMenuItems}
+  //                 />
+  //               </Suspense>
+  //             </TabPane>
           
-              <TabPane
-                tab={
-                  <span>
-                     <EventAvailableIcon
-              className='!text-icon mr-1 '
-              />
-                    Events
-                  </span>
-                }
-                key="2"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <CustomerEventActivityForm 
-                    defaultCustomers={props.defaultCustomers}
-                    customerId={props. customerId }
-                  customer={props.customer} {...formProps}
-                  translateText={props.translateText}
-                  selectedLanguage={props.selectedLanguage}
-                translatedMenuItems={props.translatedMenuItems}
-                  />
-                </Suspense>
-              </TabPane>
-              <TabPane
-                tab={
-                  <span>
-                     <FactCheckIcon
-              className='!text-icon mr-1 '
-              />
-                    Tasks
-                  </span>
-                }
-                key="3"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <CustomerTaskActivityForm 
-                    defaultCustomers={props.defaultCustomers}
-                    customerId={props. customerId }
-                  customer={props.customer} {...formProps}
-                  translateText={props.translateText}
-                  selectedLanguage={props.selectedLanguage}
-                translatedMenuItems={props.translatedMenuItems}
-                  />
-                </Suspense>
-              </TabPane>
-            </StyledTabs>
-          </TabsWrapper>
-          {/* <AddCallTaskModal
-          rowdata={props.rowdata}
-            addCallTaskModal={addCallTaskModal}
-            handleLeadCallModal={handleLeadCallModal}
-          /> */}
-        </>
-      );
-  }
+  //             <TabPane
+  //               tab={
+  //                 <span>
+  //                    <EventAvailableIcon
+  //             className='!text-icon mr-1 '
+  //             />
+  //                   Events
+  //                 </span>
+  //               }
+  //               key="2"
+  //             >
+  //               <Suspense fallback={"loading ..."}>
+  //                 <CustomerEventActivityForm 
+  //                   defaultCustomers={props.defaultCustomers}
+  //                   customerId={props. customerId }
+  //                 customer={props.customer} {...formProps}
+  //                 translateText={props.translateText}
+  //                 selectedLanguage={props.selectedLanguage}
+  //               translatedMenuItems={props.translatedMenuItems}
+  //                 />
+  //               </Suspense>
+  //             </TabPane>
+  //             <TabPane
+  //               tab={
+  //                 <span>
+  //                    <FactCheckIcon
+  //             className='!text-icon mr-1 '
+  //             />
+  //                   Tasks
+  //                 </span>
+  //               }
+  //               key="3"
+  //             >
+  //               <Suspense fallback={"loading ..."}>
+  //                 <CustomerTaskActivityForm 
+  //                   defaultCustomers={props.defaultCustomers}
+  //                   customerId={props. customerId }
+  //                 customer={props.customer} {...formProps}
+  //                 translateText={props.translateText}
+  //                 selectedLanguage={props.selectedLanguage}
+  //               translatedMenuItems={props.translatedMenuItems}
+  //                 />
+  //               </Suspense>
+  //             </TabPane>
+  //           </StyledTabs>
+  //         </TabsWrapper>
+  //         {/* <AddCallTaskModal
+  //         rowdata={props.rowdata}
+  //           addCallTaskModal={addCallTaskModal}
+  //           handleLeadCallModal={handleLeadCallModal}
+  //         /> */}
+  //       </>
+  //     );
+  // }
 };
 
 export default AddCustomerActivityModal;

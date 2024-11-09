@@ -1120,6 +1120,15 @@ export const customerReducer = (state = initialState, action) => {
               return item;
             }
           }),
+
+
+          customerByUserId: state.customerByUserId.map((item) => {
+            if (item.customerId === action.payload.customerId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
         };
       case types.UPDATE_PROSPECT_USER_FAILURE:
         return {

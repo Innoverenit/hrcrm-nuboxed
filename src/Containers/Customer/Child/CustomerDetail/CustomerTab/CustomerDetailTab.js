@@ -23,11 +23,13 @@ import {
   handlefileRecruitModal,
   handleTagProfileModal,
   handleInvoiceModal,
-  handleCallActivityModal,
+
   handleCustomerReactSpeechModal,
   handleCampaignDrawer,
 } from "../../../CustomerAction";
+import {handleCallActivityModal} from "../../../../Activity/ActivityAction"
 import CustomerMapTable from "./CustomerMapTable";
+import ActivityListData from "../../../../Activity/ActivityListData";
 const ReactCustomerSpeechModal = lazy(() => import("../ReactCustomerSpeechModal"));
 const AddProjectDrawer = lazy(() => import("./ProjectTab/AddProjectDrawer"));
 const AddCustomerActivityModal = lazy(() => import("../AddCustomerActivityModal"));
@@ -181,7 +183,7 @@ class ContactDetailTab extends Component {
              /> </div>;
               case "4":
                   return  <div> 
-                    <CustomerActivityTable
+                    <ActivityListData
 
 customer={this.props.customer}
 translateText={this.props.translateText}
@@ -583,7 +585,7 @@ translatedMenuItems={this.props.translatedMenuItems}
     );
   }
 }
-const mapStateToProps = ({ auth, customer, }) => ({
+const mapStateToProps = ({ auth, customer,activity }) => ({
   documentUploadModal: customer.documentUploadModal,
   customerActivityCount:customer.customerActivityCount,
   addCustomerContactModal: customer.addCustomerContactModal,
@@ -598,7 +600,7 @@ const mapStateToProps = ({ auth, customer, }) => ({
   addFileRecruitModal: customer.addFileRecruitModal,
   addTagProfileModal: customer.addTagProfileModal,
   addInvoiceModal: customer.addInvoiceModal,
-  callActivityModal:customer.callActivityModal,
+  callActivityModal:activity.callActivityModal,
   openCampaigndrwr:customer.openCampaigndrwr
 });
 const mapDispatchToProps = (dispatch) =>
