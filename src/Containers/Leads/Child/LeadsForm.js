@@ -25,6 +25,8 @@ import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Listbox, } from '@headlessui/react';
 import { BundleLoader } from "../../../Components/Placeholder";
+import SearchSelect1 from "../../../Components/Forms/Formik/SearchSelect1";
+import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
 const { Option } = Select; 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const LeadsSchema = Yup.object().shape({
@@ -498,8 +500,43 @@ props.emptyClearbit();
                     component={InputComponent}
                     inlineLabel
                   /> 
-                               
-                  <div class=" flex justify-between">
+   <div className="font-bold text-xs">{translatedMenuItems[5]}</div>
+<div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+                    <div class=" w-3/12 max-sm:w-[35%]">     
+                      <FastField
+                        name="countryDialCode"
+                        selectType="dialCode"
+                        component={SearchSelect1}
+                        defaultValue={{
+                          label:`${props.user.countryDialCode}`,
+                        }}
+                        isColumnWithoutNoCreate                      
+                        isColumn
+                        inlineLabel
+                      />            
+                    </div>
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+                    <div class=" w-[76%]">
+                    <div class="text-xs flex flex-col font-bold "> 
+                      <Field
+                        type="text"
+                        name="phoneNumber"                      
+                        isColumn
+                        component={InputComponent1}
+                        inlineLabel
+                        width={"100%"}
+                      />
+                      </div>
+
+                    </div>
+                  
+                  </div> 
+
+
+
+                  {/* <div class=" flex justify-between">
                   {props.customerConfigure.dailCodeInd===true&&
                     <div class=" w-3/12 max-sm:w-[35%]">
                     <div className="font-bold text-xs">{translatedMenuItems[4]}</div>
@@ -532,7 +569,7 @@ props.emptyClearbit();
 }
                     </div>
                   
-                  </div> 
+                  </div>  */}
                   <div class=" mt-3">
                   <Field
                   
