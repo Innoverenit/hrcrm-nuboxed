@@ -184,7 +184,8 @@ class ContactDetailTab extends Component {
               case "4":
                   return  <div> 
                     <ActivityListData
-
+uniqueId={this.props.customer.customerId}
+type={"prospect"}
 customer={this.props.customer}
 translateText={this.props.translateText}
 selectedLanguage={this.props.selectedLanguage}

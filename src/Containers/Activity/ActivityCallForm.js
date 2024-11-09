@@ -276,7 +276,7 @@ function ActivityCallForm(props) {
               }
              
           }
-          validationSchema={CallSchema}
+          // validationSchema={CallSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
             let timeZoneFirst = values.timeZone;
@@ -378,7 +378,7 @@ function ActivityCallForm(props) {
                 },
                 () => handleCallback(resetForm)
               )
-              : addActivityCall(testVal,
+              : props.addActivityCall(testVal,
                 () => handleCallback(resetForm));
           }}
         >
