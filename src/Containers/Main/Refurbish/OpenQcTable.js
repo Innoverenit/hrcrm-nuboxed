@@ -58,7 +58,7 @@ function OpenQcTable(props) {
             {props.fetchingOpenQc ? <BundleLoader /> : 
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                    <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs  sticky  z-10">
                         <div className="text-base text-[#00A2E8] md:w-[34.12rem]">   <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/> {translatedMenuItems[0]} #</div>
                         <div className=" md:w-[35.1rem]">
                      <DateRangeIcon className="!text-icon "/>    {translatedMenuItems[1]}  {/* "duedate"
@@ -86,7 +86,7 @@ function OpenQcTable(props) {
                             {props.openQc.map((item) => {
                                 return (
                                     <div>
-                                        <div className="flex rounded justify-between mt-1 bg-white  items-center py-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                        <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap-1  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                             <div class="flex items-center">
                                                 <div className=" flex font-medium  md:w-[32.6rem] max-sm:w-full  ">
                                                     <Badge size="small" count={`${item.qcCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>

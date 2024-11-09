@@ -439,7 +439,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded justify-between mt-1 bg-white  items-center py-1" >
+                                            <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:">
                                                     <div className=" flex w-[9.25rem] h-8  border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[16.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins  font-bold flex items-center">

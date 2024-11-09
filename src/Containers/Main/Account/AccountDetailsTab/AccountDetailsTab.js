@@ -56,9 +56,9 @@ const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
 const AccountActivityModal = lazy(() => import("./AccountActivityTab/AccountActivityModal"));
 const DistributorDocumentTable = lazy(() => import("./AccountDocumentTab/DistributorDocumentTable"));
 const CatalogueOrderModal = lazy(() => import("./AccountOrder1Tab/CatalogueOrderModal"));
-const AccountContactTable = lazy(() => import("./AccountContactTab/AccountContactTable"))
+const AccountContactTable = lazy(() => import("./AccountContactTab/AccountContactTable"))//8
 const AccountActivityTable = lazy(() => import("./AccountActivityTab/AccountActivityTable"));
-const AccountCreditMemos =lazy(()=>import("./AccountCreditMemo/AccountCreditMemos"));
+const AccountCreditMemos =lazy(()=>import("./AccountCreditMemo/AccountCreditMemos"));//6
 
 const TabPane = StyledTabs.TabPane;
 

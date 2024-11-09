@@ -292,28 +292,28 @@ const handleInfiniteScroll = () => {
         {translatedMenuItems[15]} {/* Shipped */}
            </div>
                         <div className=" md:w-[5.4rem] ml-2">
-                        {translatedMenuItems[1]} ID{/* <FormattedMessage id="app.orderid" defaultMessage="Order ID"/> */}
+                        {translatedMenuItems[1]} ID{/* Order ID"/> */}
                           </div>
                           <div className=" md:w-[2rem]">  
                           {translatedMenuItems[9]}
                           </div>
                         <div className=" md:w-[4.1rem]">
-                        {translatedMenuItems[2]} {/* <FormattedMessage id="app.delivery" defaultMessage="Delivery"/> */}
+                        {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
                         <div className=" md:w-[11.8rem] ">
-                        {translatedMenuItems[3]} {/* <FormattedMessage id="app.location" defaultMessage="Location"/> */}
+                        {translatedMenuItems[3]} {/*Location"/> */}
                           </div>
                           <div className=" md:w-[4.1rem]">
                           {translatedMenuItems[14]} {/*  Items */}
                           </div>
                         <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[5]} {/* <FormattedMessage id="app.contact" defaultMessage="Contact"/> */}
+                        {translatedMenuItems[5]} {/* Contact"/> */}
                           </div>
                         <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[6]}{/* <FormattedMessage id="app.payment" defaultMessage="Payment"/> */}
+                        {translatedMenuItems[6]}{/* Payment"/> */}
                           </div>
                         <div className="md:w-[1.8rem]">
-                        {translatedMenuItems[7]} {/* <FormattedMessage id="app.Status" defaultMessage="Status"/> */}
+                        {translatedMenuItems[7]} {/* Status"/> */}
                           </div>
                       
                         
@@ -336,7 +336,7 @@ const handleInfiniteScroll = () => {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                       <div>
-                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                        <div className="flex rounded  mt-1 bg-white h-8 items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                         <div class="flex">
                                           <div className=" flex  w-wk items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
